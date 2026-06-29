@@ -58,7 +58,7 @@ test("fold-aware critical value atlas imposes no speed window", () => {
 
   assert.equal(
     atlas.quadrature_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.match(
     atlas.quadrature_parameters.quadrature_convention,

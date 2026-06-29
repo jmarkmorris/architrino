@@ -71,7 +71,7 @@ const JET_MULTI_INDICES = [
   [0, 5],
 ];
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const I1_LEFT_ENDPOINT = 0.124678831905;
 const I1_RIGHT_ENDPOINT = 0.145456970556;

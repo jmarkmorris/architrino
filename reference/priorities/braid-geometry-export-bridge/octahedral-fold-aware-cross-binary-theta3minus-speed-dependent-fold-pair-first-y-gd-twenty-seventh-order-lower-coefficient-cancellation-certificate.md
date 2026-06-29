@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Twenty-Seventh-Order Lower-Coefficient Cancellation Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
 
 This packet records a coefficient-preserving lower-numerator cancellation
 certificate for the next $C^1$ twenty-seventh-order first-y $G,D$ route. It

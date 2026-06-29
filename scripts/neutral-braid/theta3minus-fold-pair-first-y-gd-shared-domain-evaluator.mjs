@@ -31,7 +31,7 @@ export const THETA3MINUS_FOLD_PAIR_FIRST_Y_GD_H39_GRAPH_RADII_WITNESS_SCHEMA =
 
 export const THETA3MINUS_H39_SHARED_DOMAIN_EVALUATOR_CONSTANTS = {
   no_speed_window:
-    "none; uses the certified positive speed-ratio zero enclosure only",
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
   promotion_status: "priority-only",
   first_y_cell_upper: 0.115 / 64,
   h38_index: 38,

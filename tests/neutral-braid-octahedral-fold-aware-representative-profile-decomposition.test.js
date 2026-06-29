@@ -49,7 +49,7 @@ test("fold-aware representative profile decomposition imposes no fixed speed win
 
   assert.equal(
     decomposition.representative_profile_decomposition.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.deepEqual(
     decomposition.representative_profile_decomposition.speed_ratio_enclosure,

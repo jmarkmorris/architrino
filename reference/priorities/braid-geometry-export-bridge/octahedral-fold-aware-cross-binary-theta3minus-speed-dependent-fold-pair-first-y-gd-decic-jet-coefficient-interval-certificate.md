@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Decic-Jet Coefficient Interval Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nonic-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-nonic-jet-coefficient-interval-certificate.md). The predecessor interval-certifies the constant through nonic first-y quotient coefficients. This packet extends the zero-cell quotient jet by one more coefficient:
 
@@ -12,7 +14,7 @@ $$
 
 It is not a full first-y-cell remainder enclosure and it is not full $\theta_{3-}^{-}$ collar closure. It closes the decic coefficient row only. The remaining fold-pair blocker is now a finite eleventh-order tail bound after the constant through decic coefficients.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

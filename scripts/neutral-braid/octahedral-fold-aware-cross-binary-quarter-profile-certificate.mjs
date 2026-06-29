@@ -269,7 +269,7 @@ export function buildOctahedralFoldAwareCrossBinaryQuarterProfileCertificate(opt
       root_subdivisions: rootSubdivisions,
       theta_domain: "[0,pi/2)",
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate: formatNumber(speedRatio),
       speed_ratio_enclosure:
         decomposition.representative_profile_decomposition.speed_ratio_enclosure,
@@ -361,7 +361,7 @@ export function validateOctahedralFoldAwareCrossBinaryQuarterProfileCertificate(
   );
   assertField(
     artifact?.scan_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "quarter profile must not impose a fixed speed window",
     errors
   );

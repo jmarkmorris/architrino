@@ -21,6 +21,16 @@ program must restart force margins, recapture/self-drive estimates, action
 rows, and any generated certificate before branch-chart authorization can be
 reconsidered.
 
+Dependency audit rule. Breather packets may not consume theta3minus, H39,
+first-y $G,D$, H-graph, coefficient, or successor quotient certificates as
+force/action evidence unless the consumed packet explicitly carries
+same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows and marks its
+receiver-normal evidence status as accepted. Historical quotient certificates
+may be cited only as root-geometry diagnostics or dependency provenance. Any
+breather margin, recapture, self-drive, branch-chart, or Schauder packet that
+depends on those quotient rows stays restart-only until the dependency chain is
+rebuilt on receiver-normal branch strength.
+
 ## Current Stopping Point
 
 As of 2026-06-07, the fresh-v10 higher-fold null-coordinate preledger route is

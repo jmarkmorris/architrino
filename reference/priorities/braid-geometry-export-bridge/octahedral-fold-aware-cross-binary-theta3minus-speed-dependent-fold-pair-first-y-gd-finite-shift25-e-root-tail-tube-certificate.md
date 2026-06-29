@@ -1,12 +1,14 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Finite Shift25 E Root-Tail Tube Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.md), the direct-H obstruction in [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-finite-e-root-tail-tube-certificate.md), and the post-seed coefficient solve in [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-second-order-post-seed-coefficient-certificate.md). It closes the next root-graph row by replacing the direct $H_\varepsilon$ endpoint probe with the finite-y shifted residual evaluator that the obstruction packet identified as missing.
 
 The proof advance is a coefficient-shifted $\operatorname{Shift}_{25}$ evaluator for the finite $E_\varepsilon$ root-tail tube. The zero endpoint remains inherited from the certified seed $E_\varepsilon(0,\nu)=h_{21,\varepsilon}(\nu)$; the positive first-y subcells are certified by endpoint signs and the shifted derivative identity $\partial_E R_{\varepsilon,25}=J$.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

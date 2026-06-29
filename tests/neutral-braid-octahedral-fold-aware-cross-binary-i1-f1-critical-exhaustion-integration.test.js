@@ -19,7 +19,7 @@ import {
 } from "../scripts/neutral-braid/octahedral-fold-aware-cross-binary-i1-zero-isolation-speed-envelope-scan.mjs";
 
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const EXPECTED_STATUS =
   "source-atlas-aware-i1-f1-critical-exhaustion-integration-certified";
 

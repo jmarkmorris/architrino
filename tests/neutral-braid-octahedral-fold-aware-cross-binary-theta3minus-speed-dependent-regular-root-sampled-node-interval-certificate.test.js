@@ -15,7 +15,7 @@ import {
 const EXPECTED_STATUS =
   "directed-rounded-sampled-node-theta3minus-regular-root-interval-certified";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 let cachedArtifact = null;
 

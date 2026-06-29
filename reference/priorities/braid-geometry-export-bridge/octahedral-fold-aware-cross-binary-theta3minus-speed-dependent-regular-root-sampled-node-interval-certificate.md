@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Regular-Root Sampled-Node Interval Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record   and ^{\mathrm{rec}} are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-regular-root-stencil-certificate.md). The predecessor tightened the regular-root side on an $8\times24$ speed/collar stencil and emitted backend targets. This packet upgrades those same finite nodes to directed-rounded root brackets, fixed-sign $F_\delta$ intervals, and regular-root $G,D$ quotient enclosures.
 

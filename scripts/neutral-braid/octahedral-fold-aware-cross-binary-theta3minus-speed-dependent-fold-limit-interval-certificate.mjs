@@ -14,7 +14,7 @@ const PACKET_ID =
 const PROMOTION_STATUS = "priority-only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const THETA3MINUS_DELTA_BRACKET = [3.29632, 3.29639];
 const QUARTER_PERIOD = Math.PI / 2;
 const SIGMA = -1;
@@ -559,6 +559,8 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
         : "fold-limit-interval-open",
     },
     artifact_claim: {
+      receiver_normal_eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+      receiver_normal_restart_required: true,
       assumes_fixed_speed_window: false,
       certifies_theta3minus_fold_endpoint_bracket: foldRootBracketCertified,
       certifies_directed_rounded_speed_dependent_fold_limit_L_negative:

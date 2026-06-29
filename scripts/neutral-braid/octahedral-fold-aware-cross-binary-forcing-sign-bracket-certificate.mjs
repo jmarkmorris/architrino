@@ -274,7 +274,7 @@ export function buildOctahedralFoldAwareCrossBinaryForcingSignBracketCertificate
       topology_samples_per_cell: topologySamplesPerCell,
       source_quadrature_panels_per_segment: sourceQuadraturePanelsPerSegment,
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate:
         topologyAtlas.topology_parameters.speed_ratio_estimate,
       speed_ratio_enclosure:
@@ -381,7 +381,7 @@ export function validateOctahedralFoldAwareCrossBinaryForcingSignBracketCertific
   );
   assertField(
     artifact?.certificate_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "forcing sign bracket certificate must not impose a fixed speed window",
     errors
   );

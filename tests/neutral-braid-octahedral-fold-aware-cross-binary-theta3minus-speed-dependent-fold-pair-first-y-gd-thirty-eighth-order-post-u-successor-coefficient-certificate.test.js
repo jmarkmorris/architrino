@@ -16,7 +16,7 @@ import {
 const EXPECTED_STATUS =
   "directed-rounded-theta3minus-fold-pair-first-y-GD-thirty-eighth-order-post-U-successor-coefficient-certified";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 let cachedArtifact = null;
 

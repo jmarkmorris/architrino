@@ -28,7 +28,7 @@ const DEFAULT_ENDPOINT_PADDING = 1e-5;
 const DEFAULT_MACHINE_PADDING = 1e-9;
 const CHECK_TOLERANCE = 1e-10;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const EXPECTED_SOURCE_ROOT_COUNT = 6;
 
 function formatSmallNumber(value) {
@@ -180,7 +180,7 @@ function buildScanTheorem() {
     theorem_id: "i1-derivative-negative-speed-envelope-scan",
     theorem_scope: "compact regular I1 source-atlas scan grid",
     statement:
-      "On the compact regular I1 scan grid and across the certified positive speed-ratio zero enclosure, the source-atlas-aware derivative formula evaluates to a strictly negative derivative envelope while preserving six source roots at every sampled point.",
+      "On the compact regular I1 scan grid and across the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required, the source-atlas-aware derivative formula evaluates to a strictly negative derivative envelope while preserving six source roots at every sampled point.",
     proof_steps: [
       "Import the source-atlas-aware derivative formula and the three regular-cell source-atlas partition.",
       "Restrict to the compact I1 regular scan interval obtained by padding the fold endpoint away from the singular collar.",

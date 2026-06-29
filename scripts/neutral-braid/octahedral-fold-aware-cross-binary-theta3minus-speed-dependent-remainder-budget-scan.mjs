@@ -25,7 +25,7 @@ const PROMOTION_STATUS = "priority-only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const SPEED_RATIO_CENTER = 3.021564740248;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const DEFAULT_ROOT_SUBDIVISIONS = 5000;
 const DEFAULT_SPEED_SAMPLES = [
   SPEED_RATIO_ENCLOSURE[0],
@@ -766,6 +766,8 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentRema
         : "sampled-remainder-budget-open",
     },
     artifact_claim: {
+      receiver_normal_eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+      receiver_normal_restart_required: true,
       assumes_fixed_speed_window: false,
       certifies_sampled_theta3minus_remainder_budget_feasibility:
         sampledBudgetPassed,

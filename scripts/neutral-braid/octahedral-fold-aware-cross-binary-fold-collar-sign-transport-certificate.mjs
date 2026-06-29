@@ -43,7 +43,7 @@ const DEFAULT_Y_SAMPLES = [
   0.001,
 ];
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const CHECK_TOLERANCE = 1e-10;
 
 function formatNumber(value) {

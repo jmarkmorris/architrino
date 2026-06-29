@@ -20,7 +20,7 @@ It is a machine-expanded speed-envelope point-sign certificate. It is not yet a 
 
 ## I1 Forcing Bracket Certificate
 
-The finite closure stack uses only the certified positive speed-ratio zero enclosure
+The finite closure stack uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 3.02156\le v_\ast\le3.02157.

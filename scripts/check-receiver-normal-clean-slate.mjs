@@ -69,6 +69,7 @@ const FORBIDDEN_SNIPPETS = [
   "spiral-a1-second-variation-remainder-bound",
   "spiral-a1-outward-constants-certificate-target",
   "nested-shell-braid-motion-model-eom-accepted",
+  "certified positive speed-ratio zero enclosure",
   "{r_{ij}(t;s)^2\\,|J_{ij}(t;s)|}",
   "{r_{ij}(t,s)^2\\,|J_{ij}(t,s)|}",
   "{r_{ij}^2(t;t_0)\\,|J_{ij}(t;t_0)|}",
