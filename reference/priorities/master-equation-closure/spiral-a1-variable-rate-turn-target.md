@@ -1,48 +1,19 @@
 # Spiral A1 Receiver-Normal Variable-Rate Turn Target
 
-Status. Current-law continuation target for nonconstant angular-rate A1
-histories. This file carries no pass/fail verdict.
+Status. Current-law restart target for variable-rate A1 turn-center analysis.
+This file does not supply an angular-rate slope, force-ratio interval, or
+tangential compatibility verdict.
 
-Claim level. Restart target, not an existence certificate.
+Claim level. Priority-only restart target.
 
-For a variable angular rate with
-$$
-\omega_\ast=\dot\theta(0)>0,
-\qquad
-\alpha_\ast=\ddot\theta(0),
-$$
-and retained radial curve
-$$
-r(\theta)=r_\ast\exp(a(1-\cos\theta)),
-\qquad
-a=0.204,
-$$
-the turn-center kinematics give
-$$
-a_r(0)=(a-1)r_\ast\omega_\ast^2,
-\qquad
-a_\theta(0)=r_\ast\alpha_\ast.
-$$
+The variable-rate turn problem is now:
 
-The branch side must be recomputed with receiver-normal branch strengths:
-$$
-B_r^{\mathrm{rec}}(C_{\mathrm{A1}};0),
-\qquad
-T_0^{\mathrm{rec}}(C_{\mathrm{A1}}).
-$$
+1. keep the retained A1 root topology visible;
+2. compute $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the
+   same retained branch boxes;
+3. rebuild radial and tangential turn-center sums from those receiver-normal
+   factors;
+4. only then compare the rebuilt sums to the selected kinematic time law.
 
-Only after those intervals are emitted may the local continuation equations be
-tested:
-$$
-B_r^{\mathrm{rec}}(C_{\mathrm{A1}};0)=(a-1)\Gamma_\ast,
-\qquad
-T_0^{\mathrm{rec}}(C_{\mathrm{A1}})
-=
-\Gamma_\ast\frac{\alpha_\ast}{\omega_\ast^2},
-\qquad
-\Gamma_\ast=\frac{r_\ast^3\omega_\ast^2}{\kappa q_1^2}.
-$$
-
-The nonconstant time-law chart must then recompute the delayed roots and
-receiver-normal strengths for that time law; retaining constant-rate offsets is
-not evidence by itself.
+No old slope or force-ratio value is active evidence under the current Master
+EOM.
