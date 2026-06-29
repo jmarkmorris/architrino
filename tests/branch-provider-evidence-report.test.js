@@ -1701,6 +1701,95 @@ test("branch-provider evidence report emits the H39 split-map producer target fa
   assert.equal(target.provider_ready_authorized_by_this_target, false);
   assert.equal(target.downstream_consumer_authorization, false);
   assert.equal(target.producer_side_branch_row_authorized_by_this_target, false);
+  const sourceAbsenceBoundary = target.source_absence_boundary;
+  assert.equal(
+    sourceAbsenceBoundary.schema,
+    "h39-source-map-provider-object-branch-split-map-source-absence-boundary/v0"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.status,
+    "h39-source-map-provider-object-branch-split-map-source-absence-fail-closed"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.first_missing_producer_field,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+  assert.equal(
+    sourceAbsenceBoundary
+      .observed_source_map_provider_object_branch_split_map_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    sourceAbsenceBoundary
+      .observed_provider_object_branch_antisymmetric_equation_available_terminal_row_count,
+    0
+  );
+  assert.equal(
+    sourceAbsenceBoundary.observed_explicit_provider_object_branch_row_count,
+    0
+  );
+  assert.equal(sourceAbsenceBoundary.aggregate_p_too_late, true);
+  assert.equal(
+    sourceAbsenceBoundary.aggregate_erasure_negative_control_ref,
+    "aggregate-P-provider-probe-born-aggregate-only"
+  );
+  assert.equal(sourceAbsenceBoundary.accepted_producer_source_absent, true);
+  assert.equal(
+    sourceAbsenceBoundary.provider_ready_authorized_by_this_boundary,
+    false
+  );
+  assert.equal(
+    sourceAbsenceBoundary.producer_side_branch_row_authorized_by_this_boundary,
+    false
+  );
+  assert.deepEqual(
+    sourceAbsenceBoundary.downstream_blocked_fields,
+    [
+      "provider_object_branch_antisymmetric_equation_available_terminal_row_count",
+      "explicit_provider_object_branch_row_count",
+      "source_map_provider_branch_intervals",
+      "provider_object_branch_intervals",
+      "same-domain-branch-bearing-P_b-map",
+      "branch_projection_coefficients_or_alpha_map",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+      "aggregate_erasure_negative_control_ref",
+    ]
+  );
+  assert.equal(sourceAbsenceBoundary.searched_candidate_source_count, 8);
+  assert.deepEqual(
+    sourceAbsenceBoundary.searched_candidate_sources.map(
+      (candidateSource) => candidateSource.candidate_ref
+    ),
+    [
+      "h39-aggregate-p-provider-preaggregation-construction-attempt",
+      "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate",
+      "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate",
+      "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate",
+      "buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate",
+      "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate",
+      "H39/H38 source-covariance closure sprint wrap-up",
+      "H39 shared-domain coefficient-series engine packet",
+    ]
+  );
+  assert.deepEqual(
+    new Set(
+      sourceAbsenceBoundary.searched_candidate_sources.map(
+        (candidateSource) => candidateSource.accepted_producer_source
+      )
+    ),
+    new Set([false])
+  );
+  assert.equal(
+    sourceAbsenceBoundary.inspected_h39_diagnostic_surfaces.length,
+    5
+  );
+  assert.deepEqual(
+    sourceAbsenceBoundary.inspected_h39_diagnostic_surfaces.map(
+      (surface) => surface.provider_authorizing_surface
+    ),
+    [false, false, false, false, false]
+  );
   assert.deepEqual(target.required_producer_fields, [
     "source_map_provider_object_branch_split_map_available_terminal_row_count",
     "provider_object_branch_antisymmetric_equation_available_terminal_row_count",

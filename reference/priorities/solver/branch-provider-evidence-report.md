@@ -385,6 +385,26 @@ followed by the $A_P=P_- - P_+$ terminal-row equation count, explicit branch
 row count, interval payloads, $P_b$ identity payloads, and the
 `aggregate-P-provider-probe-born-aggregate-only` negative control.
 
+Source-absence boundary:
+`h39-source-map-provider-object-branch-split-map-source-absence-boundary/v0`.
+The executable report records this boundary inside the split-map producer
+target. It names the searched candidate inputs and keeps each one
+non-authorizing:
+
+| Candidate input | Boundary result |
+| --- | --- |
+| `scripts/solver-audits/fixtures/branch-provider-current-candidates.json` / `h39-aggregate-p-provider-preaggregation-construction-attempt` | Target-only manifest row; no accepted split-map producer source. |
+| `scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs` / branch producer, split-map underdetermination, $A_P$ extractor, $P_b$ pushforward audit, and aggregate-$P$ preaggregation branch-bearing audit | Candidate producers and audits report aggregate-only $P$, one free antisymmetric branch coordinate, zero $A_P$ terminal rows, no pushforward/normalization identity, and zero raw branch-bearing field hits. |
+| `reference/priorities/braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md` and `reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md` | Priority-only packet summaries; they preserve the same absence and do not authorize provider rows. |
+
+The boundary's first missing producer field remains
+`source_map_provider_object_branch_split_map_available_terminal_row_count`.
+Aggregate $P$ is too late because it only supplies $P_-+P_+=P$ on each
+terminal row; without a same-domain branch split map, $A_P=P_- - P_+$,
+explicit `P_-` / `P_+` rows, or a $P_b$ pushforward/normalization identity,
+one antisymmetric branch coordinate remains free and branch identity is erased
+before downstream replay.
+
 Producer-side branch-row target:
 `h39-producer-side-provider-object-branch-row-target/v0`.
 

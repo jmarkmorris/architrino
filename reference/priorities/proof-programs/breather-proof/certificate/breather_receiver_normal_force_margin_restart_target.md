@@ -270,3 +270,31 @@ certificate source root. The boundary names the missing producer object
 `sign_stratum.zeta_t`, and the derivative fields `D_vD_s_interval`,
 `D_vD_t_interval`, `D_vW_rec_interval`, `geometry_derivatives`, and
 `force_kernel_derivatives`.
+
+Producer-route boundary. The same absence-boundary object now includes a
+machine-readable producer route for
+`fresh-v10-higher-fold-12-root-rebuild-v0`. The expected upstream files are:
+
+| Producer role | Expected file |
+| --- | --- |
+| Same-packet branch chart | `branch_chart.json` |
+| Same-record receiver-normal retained rows | `breather_receiver_normal_retained_rows.fresh-v10-higher-fold-12-root-rebuild-v0.json` |
+| Same-record receiver-normal derivative bundle | `breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json` |
+| Breather receiver-normal margin intervals | `breather_receiver_normal_margin_intervals.fresh-v10-higher-fold-12-root-rebuild-v0.json` |
+| Breather receiver-normal force-margin fixture | `breather_receiver_normal_force_margin_fixture.fresh-v10-higher-fold-12-root-rebuild-v0.json` |
+
+The branch-chart route is blocked before those receiver-normal producer files
+can be evidence. The local route classifiers report zero candidate replay
+artifacts in the fold-coordinate history-realization contract, zero accepted
+same-packet fold impulse or direct-quadrature source packets, zero accepted
+fold-layer rows, zero row consumption, and `branch_chart_authorized=false`.
+The first proof object on the source-packet route is a
+`source_packet_acceptance_rule_derivation_proof` for the fixed-parameter
+separator aggregate to same-packet fold impulse/direct-quadrature bound
+acceptance rule. The first source-packet attempt still lacks a mollifier or
+direct-quadrature route declaration, row-projection source-slice coverage
+certificates, and dual-mollified row-integrand interval enclosures for the 112
+higher-fold rows. Until that route produces an accepted higher-fold separator
+layer certificate and an authorized branch chart for the same packet, the
+receiver-normal retained-row, derivative-bundle, margin-interval, and fixture
+filenames remain required producer targets rather than proof evidence.

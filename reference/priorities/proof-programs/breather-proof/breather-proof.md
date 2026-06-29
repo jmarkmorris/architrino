@@ -72,7 +72,13 @@ consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and derivative rows on
 the retained branch family. The validator's `--absence-boundary` mode also
 sharpens this as `accepted_non_fixture_source_missing` by naming the missing
 fixture producer, `branch_chart.json`, retained receiver-normal row source,
-derivative-bundle source, and margin interval producer.
+derivative-bundle source, and margin interval producer. The absence boundary
+also records the producer route for `fresh-v10-higher-fold-12-root-rebuild-v0`:
+the first source-packet proof object is the
+`source_packet_acceptance_rule_derivation_proof`, and the downstream
+branch-chart route remains blocked by absent candidate replay artifacts,
+accepted fold-layer rows, row consumption, and higher-fold separator layer
+certificate evidence.
 
 ## Current Stopping Point
 

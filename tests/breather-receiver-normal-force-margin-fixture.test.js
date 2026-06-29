@@ -115,6 +115,14 @@ test("breather force-margin fixture validator exposes the fixture contract", () 
   assert.equal(schema.required_top_level_fields.includes("receiver_normal_derivative_rows"), true);
   assert.equal(schema.receiver_normal_row_contract.includes("W_rec_interval"), true);
   assert.equal(schema.receiver_normal_derivative_row_contract.includes("D_vW_rec_interval"), true);
+  assert.equal(
+    schema.absence_boundary_contract.expected_producer_files.branch_chart,
+    "branch_chart.json",
+  );
+  assert.equal(
+    schema.absence_boundary_contract.expected_producer_files.derivative_bundle,
+    "breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
   assert.equal(schema.fail_closed_statuses.includes(BREATHER_FORCE_MARGIN_STATUSES.missing), true);
   assert.equal(schema.fail_closed_statuses.includes(BREATHER_FORCE_MARGIN_STATUSES.passed), false);
 });
@@ -147,6 +155,47 @@ test("breather force-margin fixture validator emits breather source absence boun
   assert.deepEqual(boundary.source_evidence.fixture_artifact_files, []);
   assert.deepEqual(boundary.source_evidence.branch_chart_authorized_true_files, []);
   assert.equal(
+    boundary.producer_route_boundary.schema,
+    `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.producer-route-boundary/v0`,
+  );
+  assert.equal(boundary.producer_route_boundary.packet_id, "fresh-v10-higher-fold-12-root-rebuild-v0");
+  assert.equal(
+    boundary.producer_route_boundary.expected_producer_files.retained_rows,
+    "breather_receiver_normal_retained_rows.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.expected_producer_files.fixture,
+    "breather_receiver_normal_force_margin_fixture.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.first_required_proof_object,
+    "source_packet_acceptance_rule_derivation_proof for fixed-parameter separator aggregate to same-packet fold impulse/direct-quadrature bound acceptance",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.branch_chart_route.evidence.fold_coordinate_history_realization_contract.summary
+      .candidate_artifacts_present,
+    0,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.branch_chart_route.evidence.fold_coordinate_history_realization_contract.summary
+      .branch_chart_authorized,
+    false,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.branch_chart_route.evidence.accepted_status_route_evidence_object_contract_disjunction
+      .summary.first_separator_certificate_blocker,
+    "higher_fold_separator_layer_certificate_absent",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary
+      .source_packet_rule_derivation_proof_contract_attempt.summary.first_missing_contract_field,
+    "rule_kernel_derivation_payload",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.receiver_normal_route.derivative_bundle_expected_file,
+    "breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
+  assert.equal(
     boundary.missing_producer_objects.includes("breather_receiver_normal_force_margin_fixture.<packet-id>.json"),
     true,
   );
@@ -165,6 +214,15 @@ test("breather force-margin fixture CLI emits source absence boundary", () => {
   assert.equal(boundary.blocks_fixture_candidate, true);
   assert.equal(boundary.source_evidence.branch_chart_authorized_true_files.length, 0);
   assert.equal(boundary.required_source_boundary.consumer_fields.includes("gamma_rec_interval"), true);
+  assert.equal(
+    boundary.producer_route_boundary.receiver_normal_route.margin_interval_expected_file,
+    "breather_receiver_normal_margin_intervals.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary
+      .same_packet_impulse_direct_quadrature_source_packet_attempt.summary.first_acceptance_blocker,
+    "row_projection_source_slice_coverage_certificate_absent",
+  );
 });
 
 test("breather force-margin fixture validator accepts complete synthetic same-record fixture", () => {

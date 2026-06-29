@@ -29,6 +29,35 @@ const ROOT_DIR = path.resolve(fileURLToPath(new URL("../..", import.meta.url)));
 const DEFAULT_CERTIFICATE_SOURCE_ROOT =
   "reference/priorities/proof-programs/breather-proof/certificate";
 const NUMERIC_TOLERANCE = 1e-12;
+const BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID = "fresh-v10-higher-fold-12-root-rebuild-v0";
+const BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL = "proof-interval-v6";
+const BREATHER_FORCE_MARGIN_ROUTE_CANDIDATE_RUN_ID = "fold-coordinate-candidate.nonlinear-v0";
+const BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG = "lambda0305";
+
+const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES = Object.freeze({
+  branch_chart: "branch_chart.json",
+  retained_rows:
+    "breather_receiver_normal_retained_rows.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  derivative_bundle:
+    "breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  margin_intervals:
+    "breather_receiver_normal_margin_intervals.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  fixture:
+    "breather_receiver_normal_force_margin_fixture.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+});
+
+const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ROUTE_SOURCE_FILES = Object.freeze({
+  fold_coordinate_history_realization_contract:
+    "fold_coordinate_history_realization_contract.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json",
+  accepted_status_route_evidence_object_contract_disjunction:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_evidence_object_contract_disjunction_exhaustion_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  route_input_first_blocker_handoff:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_interval_certified_status_route_input_first_blocker_handoff_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  source_packet_rule_derivation_proof_contract_attempt:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  same_packet_impulse_direct_quadrature_source_packet_attempt:
+    "higher_fold_layer_same_packet_impulse_direct_quadrature_source_packet_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+});
 
 export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY =
   Object.freeze({
@@ -61,6 +90,7 @@ export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY =
       "derivative_variation_keys",
       "gamma_rec_interval",
     ],
+    expected_producer_files: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES,
   });
 
 export function buildBreatherReceiverNormalForceMarginFixtureSchema() {
@@ -205,6 +235,183 @@ function uniquePaths(entries, predicate = () => true) {
   return [...new Set(entries.filter(predicate).map((entry) => entry.path))].sort();
 }
 
+function readRouteJson(sourceRoot, filename) {
+  const pathname = path.resolve(ROOT_DIR, sourceRoot, filename);
+  const relativePath = relativeToRoot(pathname);
+  if (!fs.existsSync(pathname)) {
+    return { path: relativePath, present: false };
+  }
+  try {
+    return {
+      path: relativePath,
+      present: true,
+      value: JSON.parse(fs.readFileSync(pathname, "utf8")),
+    };
+  } catch (error) {
+    return {
+      path: relativePath,
+      present: true,
+      parse_error: error instanceof Error ? error.message : String(error),
+    };
+  }
+}
+
+function summarizeRouteJson(routeJson, summaryKeys) {
+  const summary = {};
+  for (const key of summaryKeys) {
+    summary[key] = routeJson.value?.summary?.[key] ?? null;
+  }
+  return {
+    path: routeJson.path,
+    present: routeJson.present,
+    parse_error: routeJson.parse_error ?? null,
+    schema: routeJson.value?.schema ?? null,
+    status: routeJson.value?.status ?? null,
+    summary,
+  };
+}
+
+function summarizeExpectedCandidateArtifacts(routeJson) {
+  const artifacts = routeJson.value?.expected_candidate_artifacts;
+  if (!isPlainObject(artifacts)) {
+    return {};
+  }
+  return Object.fromEntries(
+    Object.entries(artifacts).map(([key, artifact]) => [
+      key,
+      {
+        path: artifact?.path ?? null,
+        present: artifact?.present === true,
+      },
+    ]),
+  );
+}
+
+function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot) {
+  const routes = Object.fromEntries(
+    Object.entries(BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ROUTE_SOURCE_FILES).map(([key, filename]) => [
+      key,
+      readRouteJson(sourceRoot, filename),
+    ]),
+  );
+  const foldContract = routes.fold_coordinate_history_realization_contract;
+  const routeEvidence = routes.accepted_status_route_evidence_object_contract_disjunction;
+  const routeInput = routes.route_input_first_blocker_handoff;
+  const sourceRuleContract = routes.source_packet_rule_derivation_proof_contract_attempt;
+  const sourcePacketAttempt = routes.same_packet_impulse_direct_quadrature_source_packet_attempt;
+
+  return {
+    schema: `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.producer-route-boundary/v0`,
+    packet_id: BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID,
+    proof_interval: BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL,
+    candidate_run_id: BREATHER_FORCE_MARGIN_ROUTE_CANDIDATE_RUN_ID,
+    lambda_tag: BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG,
+    expected_producer_files: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES,
+    first_required_proof_object:
+      "source_packet_acceptance_rule_derivation_proof for fixed-parameter separator aggregate to same-packet fold impulse/direct-quadrature bound acceptance",
+    first_branch_chart_realization_object:
+      "fold-coordinate same-packet history realization bundle with same_packet_history_update_formula_supplied, candidate replay artifacts present, row_consumed=true, and branch_chart_authorized=true",
+    branch_chart_route: {
+      expected_file: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.branch_chart,
+      authorization_rule:
+        "branch_chart_authorized=true only after accepted same-packet fold-layer rows, candidate replay artifacts, and row-consumption locks are present for the same packet",
+      route_source_files: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ROUTE_SOURCE_FILES,
+      evidence: {
+        fold_coordinate_history_realization_contract: {
+          ...summarizeRouteJson(foldContract, [
+            "variables_with_realization_supplied",
+            "candidate_artifacts_present",
+            "candidate_artifact_count",
+            "contract_ready_rows",
+            "row_consumption_count",
+            "branch_chart_authorized",
+          ]),
+          expected_candidate_artifacts: summarizeExpectedCandidateArtifacts(foldContract),
+          required_fields_certified_counts:
+            foldContract.value?.summary?.required_fields_certified_counts ?? null,
+        },
+        accepted_status_route_evidence_object_contract_disjunction: summarizeRouteJson(routeEvidence, [
+          "current_pool_json_files_scanned",
+          "route_evidence_object_contract_disjunctions_satisfied",
+          "proof_grade_derivation_ref_evidence_object_contract_slots_satisfied",
+          "primitive_source_packet_route_evidence_object_contract_slots_satisfied",
+          "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packets",
+          "accepted_fold_layer_rows",
+          "row_consumption_count",
+          "branch_chart_authorized",
+          "first_route_evidence_object_contract_blocker",
+          "first_proof_grade_contract_blocker",
+          "first_primitive_contract_blocker",
+          "first_source_packet_acceptance_rule_contract_blocker",
+          "first_accepted_source_packet_contract_blocker",
+          "parent_complement_consumption_ref_blocker",
+          "first_separator_certificate_blocker",
+        ]),
+        route_input_first_blocker_handoff: summarizeRouteJson(routeInput, [
+          "route_input_disjunctions_satisfied",
+          "proof_grade_uniform_first_blocker",
+          "primitive_uniform_rule_blocker",
+          "accepted_source_packet_blocker",
+          "accepted_fold_layer_rows",
+          "row_consumption_count",
+          "branch_chart_authorized",
+          "first_separator_certificate_blocker",
+        ]),
+      },
+    },
+    receiver_normal_route: {
+      retained_rows_expected_file:
+        BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.retained_rows,
+      derivative_bundle_expected_file:
+        BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.derivative_bundle,
+      margin_interval_expected_file:
+        BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.margin_intervals,
+      fixture_expected_file: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.fixture,
+      blocked_until: [
+        "branch_chart.json exists with branch_chart_authorized=true for the same packet",
+        "same-record retained receiver-normal rows emit D_s_interval, D_t_interval, W_rec_interval, sign stratum, and branch_family_checksum",
+        "same-record receiver-normal derivative bundle emits D_vD_s_interval, D_vD_t_interval, reconstructed D_vW_rec_interval, geometry_derivatives, and force_kernel_derivatives",
+        "breather margin interval producer emits gamma_rec_interval for every recapture/self-drive/action/power/wake-history/Schauder-envelope consumer",
+      ],
+      required_retained_record_fields:
+        BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.retained_record_fields,
+      required_derivative_fields:
+        BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.derivative_fields,
+      margin_interval_source_field: "gamma_rec_interval",
+    },
+    source_packet_route_boundary: {
+      source_packet_rule_derivation_proof_contract_attempt: summarizeRouteJson(sourceRuleContract, [
+        "source_material_premise_slots_satisfied",
+        "candidate_exact_consistency_premise_slots_satisfied",
+        "rule_kernel_derivation_payload_slots_satisfied",
+        "source_packet_acceptance_rules_constructed",
+        "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packets",
+        "accepted_fold_layer_rows",
+        "row_consumption_count",
+        "branch_chart_authorized",
+        "first_rule_blocker",
+        "first_derivation_proof_blocker",
+        "first_missing_contract_field",
+        "first_missing_contract_field_blocker",
+        "first_downstream_rule_kernel_blocker_after_derivation",
+      ]),
+      same_packet_impulse_direct_quadrature_source_packet_attempt: summarizeRouteJson(sourcePacketAttempt, [
+        "fold_layer_rows",
+        "rows_with_full_rectangle_interval_sources",
+        "rows_with_accepted_row_projection_source_slice_coverage_certificate",
+        "rows_with_dual_mollified_row_integrand_interval_enclosure",
+        "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packets",
+        "accepted_fold_layer_rows",
+        "row_consumption_count",
+        "branch_chart_authorized_rows",
+        "first_missing_source_packet_field",
+        "first_acceptance_blocker",
+        "first_numerical_enclosure_blocker",
+      ]),
+    },
+  };
+}
+
 export function buildBreatherReceiverNormalForceMarginAbsenceBoundary(options = {}) {
   const sourceRoot = options.sourceRoot ?? DEFAULT_CERTIFICATE_SOURCE_ROOT;
   const evidence = parsedJsonEvidence(sourceRoot);
@@ -271,6 +478,8 @@ export function buildBreatherReceiverNormalForceMarginAbsenceBoundary(options = 
     parsed_json_files: evidence.json_files_parsed,
     json_parse_error_count: evidence.json_parse_error_count,
     required_source_boundary: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY,
+    producer_route_boundary:
+      buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot),
     source_evidence: {
       fixture_artifact_files: artifactFiles,
       branch_chart_authorized_true_files: branchChartAuthorizedFiles,

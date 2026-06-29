@@ -28,6 +28,8 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_PRODUCER_TARGET_SCHEMA =
   "h39-source-map-provider-object-branch-split-map-producer-target/v0";
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_PRODUCER_TARGET_ROW_SCHEMA =
   "h39-source-map-provider-object-branch-split-map-producer-target-row/v0";
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SOURCE_ABSENCE_BOUNDARY_SCHEMA =
+  "h39-source-map-provider-object-branch-split-map-source-absence-boundary/v0";
 const H39_PRODUCER_SIDE_PROVIDER_OBJECT_BRANCH_ROW_TARGET_SCHEMA =
   "h39-producer-side-provider-object-branch-row-target/v0";
 const H39_PRODUCER_SIDE_PROVIDER_OBJECT_BRANCH_ROW_TARGET_ROW_SCHEMA =
@@ -148,6 +150,113 @@ const H39_PRODUCER_SIDE_PROVIDER_OBJECT_BRANCH_ROW_REQUIRED_FIELDS =
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_PRODUCER_REQUIRED_FIELDS =
   Object.freeze([
     "source_map_provider_object_branch_split_map_available_terminal_row_count",
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count",
+    "explicit_provider_object_branch_row_count",
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_coefficients_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+    "aggregate_erasure_negative_control_ref",
+  ]);
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES =
+  Object.freeze([
+    Object.freeze({
+      candidate_file:
+        "scripts/solver-audits/fixtures/branch-provider-current-candidates.json",
+      candidate_ref:
+        "h39-aggregate-p-provider-preaggregation-construction-attempt",
+      candidate_surface:
+        "branch-provider current candidate manifest source contract readout",
+      candidate_status: "target_only_not_accepted_source",
+      accepted_producer_source: false,
+      finding:
+        "Manifest fixture carries the aggregate-P construction attempt but reports zero branch split map rows, zero explicit provider-object branch rows, and target-only status.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+      candidate_ref:
+        "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchProducerCandidate",
+      candidate_surface:
+        "terminal-expression-level-source-map-provider-object-branch-producer",
+      candidate_status: "aggregate-provider-object-intervals-only",
+      accepted_producer_source: false,
+      finding:
+        "Producer rows expose finite aggregate P intervals on all 15 terminal rows but keep source_map_provider_object_branch_split_map_available_terminal_row_count at zero.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+      candidate_ref:
+        "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchSplitMapUnderdeterminationCandidate",
+      candidate_surface:
+        "terminal-expression-level-source-map-provider-object-branch-split-map-underdetermination",
+      candidate_status: "aggregate-P-rank-one-underdetermined",
+      accepted_producer_source: false,
+      finding:
+        "Underdetermination rows show P_-+P_+=P leaves one free antisymmetric coordinate per terminal row, so aggregate P does not determine branch identity.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+      candidate_ref:
+        "buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectBranchAntisymmetricEquationExtractorCandidate",
+      candidate_surface:
+        "terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor",
+      candidate_status: "A_P-equation-absent",
+      accepted_producer_source: false,
+      finding:
+        "Extractor searches all 15 terminal rows for A_P=P_- - P_+ or explicit P_- / P_+ rows and reports zero available terminal rows.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+      candidate_ref:
+        "buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate",
+      candidate_surface:
+        "terminal-provider-object-P_b-pushforward-operator-audit",
+      candidate_status: "pushforward-identity-open",
+      accepted_producer_source: false,
+      finding:
+        "Candidate expression-feed branch terms exist, but aggregate P terms expose no same-domain branch-bearing operator or normalization identity.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+      candidate_ref:
+        "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate",
+      candidate_surface:
+        "terminal-aggregate-P-provider-preaggregation-branch-bearing-audit",
+      candidate_status: "aggregate-P-provider-probe-born-aggregate-only",
+      accepted_producer_source: false,
+      finding:
+        "Raw provider-probe rows and precertificate term rows report zero hits in branch labels, branch weights, branch intervals, projection maps, pushforward operators, and normalization fields.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "reference/priorities/braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md",
+      candidate_ref: "H39/H38 source-covariance closure sprint wrap-up",
+      candidate_surface: "priority packet summary",
+      candidate_status: "priority-only-source-absence-report",
+      accepted_producer_source: false,
+      finding:
+        "Packet summary keeps the live blocker at the same-domain branch-bearing provider object before aggregate P, with source_map_provider_object_branch_split_map_available_terminal_row_count still absent.",
+    }),
+    Object.freeze({
+      candidate_file:
+        "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md",
+      candidate_ref: "H39 shared-domain coefficient-series engine packet",
+      candidate_surface: "priority packet producer audit summaries",
+      candidate_status: "priority-only-candidate-producers",
+      accepted_producer_source: false,
+      finding:
+        "Packet records candidate variable-owned alpha, row-local feed, and branch-G moments as nonadmissible for actual A_P or P_b provider-object rows.",
+    }),
+  ]);
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_DOWNSTREAM_BLOCKED_FIELDS =
+  Object.freeze([
     "provider_object_branch_antisymmetric_equation_available_terminal_row_count",
     "explicit_provider_object_branch_row_count",
     "source_map_provider_branch_intervals",
@@ -1236,9 +1345,91 @@ function evaluateH39SourceMapProviderObjectBranchSplitMapProducerTargetRow(row) 
   };
 }
 
+function buildH39SourceMapProviderObjectBranchSplitMapSourceAbsenceBoundary(
+  branchSplitMapAvailability,
+  producerSideBranchRowEvidenceTarget,
+  sourceFieldAvailabilityAudit
+) {
+  const observedSplitMapTerminalRowCount = Number(
+    branchSplitMapAvailability?.observed_available_terminal_row_count ?? 0
+  );
+  const observedAntisymmetricEquationTerminalRowCount = Number(
+    producerSideBranchRowEvidenceTarget?.current_available_terminal_row_count ??
+      0
+  );
+  const observedExplicitBranchRowCount = Number(
+    producerSideBranchRowEvidenceTarget?.current_source_counts
+      ?.explicit_provider_object_branch_row_count ?? 0
+  );
+  const missingTerminalRowIds =
+    producerSideBranchRowEvidenceTarget?.current_missing_terminal_row_ids ??
+    sourceMapProviderObjectTerminalRowIds();
+  const missingBranchRowIds =
+    producerSideBranchRowEvidenceTarget?.current_missing_branch_row_ids ??
+    sourceMapProviderObjectBranchRowIds();
+  const firstMissingProducerField =
+    branchSplitMapAvailability?.first_missing_source_field ??
+    sourceFieldAvailabilityAudit?.first_missing_provider_field ??
+    "source_map_provider_object_branch_split_map_available_terminal_row_count";
+  const splitMapPresent =
+    observedSplitMapTerminalRowCount ===
+    SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length;
+  const inspectedDiagnosticSurfaces = Array.isArray(
+    sourceFieldAvailabilityAudit?.inspected_h39_diagnostic_field_refs
+  )
+    ? sourceFieldAvailabilityAudit.inspected_h39_diagnostic_field_refs.map(
+        (entry) => ({
+          surface: entry.surface,
+          fields: entry.fields,
+          provider_authorizing_surface: false,
+        })
+      )
+    : [];
+
+  return {
+    schema:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SOURCE_ABSENCE_BOUNDARY_SCHEMA,
+    artifact_id:
+      "h39-source-map-provider-object-branch-split-map-source-absence-boundary",
+    claim_level: "priority-only source-absence boundary, not provider acceptance",
+    status: splitMapPresent
+      ? "h39-source-map-provider-object-branch-split-map-source-present-review-required"
+      : "h39-source-map-provider-object-branch-split-map-source-absence-fail-closed",
+    searched_candidate_sources:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES,
+    searched_candidate_source_count:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES
+        .length,
+    inspected_h39_diagnostic_surfaces: inspectedDiagnosticSurfaces,
+    first_missing_producer_field: firstMissingProducerField,
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    observed_source_map_provider_object_branch_split_map_available_terminal_row_count:
+      observedSplitMapTerminalRowCount,
+    observed_provider_object_branch_antisymmetric_equation_available_terminal_row_count:
+      observedAntisymmetricEquationTerminalRowCount,
+    observed_explicit_provider_object_branch_row_count:
+      observedExplicitBranchRowCount,
+    missing_terminal_row_ids: missingTerminalRowIds,
+    missing_branch_row_ids: missingBranchRowIds,
+    aggregate_p_too_late: true,
+    aggregate_erasure_negative_control_ref:
+      SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF,
+    aggregate_p_too_late_reason:
+      "Aggregate P supplies only P_-+P_+=P on each terminal row; without a same-domain branch split map, A_P=P_- - P_+, explicit P_- / P_+ rows, or a P_b pushforward/normalization identity, one antisymmetric branch coordinate remains free and branch identity is erased before downstream replay.",
+    downstream_blocked_fields:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_DOWNSTREAM_BLOCKED_FIELDS,
+    accepted_producer_source_absent: !splitMapPresent,
+    provider_ready_authorized_by_this_boundary: false,
+    downstream_consumer_authorization: false,
+    producer_side_branch_row_authorized_by_this_boundary: false,
+  };
+}
+
 function buildH39SourceMapProviderObjectBranchSplitMapProducerTarget(
   branchSplitMapAvailability,
-  producerSideBranchRowEvidenceTarget
+  producerSideBranchRowEvidenceTarget,
+  sourceFieldAvailabilityAudit
 ) {
   const requiredTerminalRowIds =
     producerSideBranchRowEvidenceTarget?.required_terminal_row_ids ??
@@ -1352,6 +1543,12 @@ function buildH39SourceMapProviderObjectBranchSplitMapProducerTarget(
         "h39-source-map-provider-object-branch-split-map-producer-review-required",
     },
   ].map(evaluateH39SourceMapProviderObjectBranchSplitMapProducerTargetRow);
+  const sourceAbsenceBoundary =
+    buildH39SourceMapProviderObjectBranchSplitMapSourceAbsenceBoundary(
+      branchSplitMapAvailability,
+      producerSideBranchRowEvidenceTarget,
+      sourceFieldAvailabilityAudit
+    );
 
   return {
     schema:
@@ -1380,6 +1577,7 @@ function buildH39SourceMapProviderObjectBranchSplitMapProducerTarget(
       SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF,
     row_count: targetRows.length,
     target_rows: targetRows,
+    source_absence_boundary: sourceAbsenceBoundary,
     negative_control: {
       ref: SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF,
       aggregate_p_only_rejected: true,
@@ -1459,6 +1657,7 @@ function h39SourceMapProviderObjectBranchSplitMapProducerTargetValidationErrors(
       SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF ||
     target.row_count !== expectedRows.size ||
     rows.length !== expectedRows.size ||
+    !isObject(target.source_absence_boundary) ||
     target.provider_ready_authorized_by_this_target !== false ||
     target.downstream_consumer_authorization !== false ||
     target.producer_side_branch_row_authorized_by_this_target !== false
@@ -1545,6 +1744,60 @@ function h39SourceMapProviderObjectBranchSplitMapProducerTargetValidationErrors(
       "aggregate_erasure_negative_control_ref"
   ) {
     errors.push(`${label} identity-bearing split-map row must still require aggregate-erasure negative control`);
+  }
+  const sourceAbsenceBoundary = target.source_absence_boundary;
+  if (
+    sourceAbsenceBoundary?.schema !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SOURCE_ABSENCE_BOUNDARY_SCHEMA ||
+    sourceAbsenceBoundary?.claim_level !==
+      "priority-only source-absence boundary, not provider acceptance" ||
+    sourceAbsenceBoundary?.status !==
+      "h39-source-map-provider-object-branch-split-map-source-absence-fail-closed" ||
+    sourceAbsenceBoundary?.searched_candidate_source_count !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES
+        .length ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.searched_candidate_sources?.map(
+        (candidateSource) => candidateSource.candidate_file
+      ),
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_SEARCHED_CANDIDATE_SOURCES.map(
+        (candidateSource) => candidateSource.candidate_file
+      )
+    ) ||
+    sourceAbsenceBoundary?.first_missing_producer_field !==
+      "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+    sourceAbsenceBoundary
+      ?.observed_source_map_provider_object_branch_split_map_available_terminal_row_count !==
+      0 ||
+    sourceAbsenceBoundary
+      ?.observed_provider_object_branch_antisymmetric_equation_available_terminal_row_count !==
+      0 ||
+    sourceAbsenceBoundary?.observed_explicit_provider_object_branch_row_count !==
+      0 ||
+    sourceAbsenceBoundary?.aggregate_p_too_late !== true ||
+    sourceAbsenceBoundary?.aggregate_erasure_negative_control_ref !==
+      SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.downstream_blocked_fields,
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_DOWNSTREAM_BLOCKED_FIELDS
+    ) ||
+    sourceAbsenceBoundary?.accepted_producer_source_absent !== true ||
+    sourceAbsenceBoundary?.provider_ready_authorized_by_this_boundary !==
+      false ||
+    sourceAbsenceBoundary?.downstream_consumer_authorization !== false ||
+    sourceAbsenceBoundary
+      ?.producer_side_branch_row_authorized_by_this_boundary !== false
+  ) {
+    errors.push(`${label} h39 split-map source-absence boundary is invalid`);
+  }
+  if (
+    !Array.isArray(sourceAbsenceBoundary?.inspected_h39_diagnostic_surfaces) ||
+    sourceAbsenceBoundary.inspected_h39_diagnostic_surfaces.length < 5 ||
+    sourceAbsenceBoundary.inspected_h39_diagnostic_surfaces.some(
+      (surface) => surface.provider_authorizing_surface !== false
+    )
+  ) {
+    errors.push(`${label} h39 split-map source-absence boundary must name non-authorizing searched surfaces`);
   }
   if (
     reviewCandidate?.split_map_terminal_rows_present !== true ||
@@ -2417,7 +2670,8 @@ function enrichSourceMapProviderObjectBranchIntervalReadout(
   const h39SourceMapProviderObjectBranchSplitMapProducerTarget =
     buildH39SourceMapProviderObjectBranchSplitMapProducerTarget(
       branchSplitMapAvailability,
-      producerSideBranchRowEvidenceTarget
+      producerSideBranchRowEvidenceTarget,
+      sourceFieldAvailabilityAudit
     );
   const h39ProducerSideProviderObjectBranchRowTarget =
     buildH39ProducerSideProviderObjectBranchRowTarget(
