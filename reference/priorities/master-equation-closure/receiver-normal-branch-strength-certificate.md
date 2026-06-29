@@ -8,12 +8,14 @@ Master EOM. A retained branch cannot supply force balance, action, power,
 Noether wake-history, A1 outward constants, breather margin, or pass/fail
 evidence until it reports the rows below on the same retained record.
 
-Pure changeover blocker. This file defines the certificate shape and includes
-one accepted analytic row-shape certificate. It does not yet populate an A1,
-VP-1, breather, circular, or assembly-closure branch pass. A solver, vendor
-proposal, or proof packet satisfies the full changeover only when it fills this
-schema for one retained branch family and shows that the force/action row uses
-receiver-normal $W^{\mathrm{rec}}$ rather than a source-normal proxy.
+Pure changeover status. This file defines the certificate shape, includes one
+accepted analytic row-shape certificate, and now includes one accepted
+nontrivial linear moving-receiver branch-family fixture. It does not yet
+populate an A1, VP-1, breather, circular, eigen-braid, or assembly-closure
+branch pass. A solver, vendor proposal, or proof packet satisfies a domain
+changeover only when it fills this schema for its retained branch family and
+shows that the force/action row uses receiver-normal $W^{\mathrm{rec}}$ rather
+than a source-normal proxy.
 
 Vendor/proof intake rule. A proposal may choose the smallest branch family that
 can be reproduced independently, but its first force/action deliverable is this
@@ -167,6 +169,124 @@ authorizes row-shape and invariant-consumer reuse. Any A1, VP-1, breather,
 circular, or vendor/proof proposal must still populate its own retained branch
 identity, source/receiver ids, branch-family aggregation, regulator state, and
 negative controls before it can supply force/action evidence.
+
+## First Accepted Branch-Family Fixture Certificate
+
+Status. Accepted solver-contract fixture certificate for a nontrivial
+receiver-normal branch-strength row on a linear moving-receiver branch family.
+This is validation evidence for branch-family row population and negative
+controls, not an A1, VP-1, breather, circular, eigen-braid, or assembly-closure
+pass.
+
+Claim level. `validation-evidence` for a same-record branch-family row whose
+receiver-normal numerator differs from the source-normal denominator. The
+fixture proves that the durable solver contract can carry $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ on the same retained branch and that the checker rejects a
+source-normal proxy for either the root `branchWeight` or delayed-hit
+`strength`.
+
+Source artifacts:
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `src/solver/fixtures/causal-roots-moving-receiver-f64-smoke.request.json` | `2650d509e459d072e63774f216cabacac7decc47ce8957fbe3b6e46914ffe2f0` |
+| `src/solver/fixtures/roots-and-hits-moving-receiver-f64-smoke.response.json` | `688f954897db22cb554b7c2dfbd55652084d8000213fb5d0d2924281997bbc1a` |
+| `scripts/check-solver-contract-fixtures.mjs` | `279a2088e136932bc7718dbc562b7d5c9ded764ac2fefd2f741759b1f0baf472` |
+| `src/solver/native/solver_analytic_smoke.cpp` | `ea52c3adb84d590200b4488946d4ea88bfff008697a8041856f0ab91e3e72bf7` |
+| `src/solver/src/InvariantChecks.cpp` | `0e1d356b13544a13ad0f20b901655d58c848e79d142ba475cab3b7b4edfe9712` |
+
+Validation command:
+
+```bash
+node scripts/check-solver-contract-fixtures.mjs
+```
+
+The command passed for this branch-family fixture.
+
+### Linear Moving-Receiver Branch Row
+
+The fixture uses solver units with $c_f=1$. The source block is fixed at
+$\mathbf{x}_j(s)=(0,0,0)$ and the receiver block moves as
+$\mathbf{x}_i(t)=(10-\tfrac12 t,0,0)$ on $0\le t\le10$. At hit time $t=10$,
+the retained root has emission time $s_\alpha=5$, distance $r_\alpha=5$, and
+
+$$
+\hat{\mathbf r}_{\alpha}=(1,0,0).
+$$
+
+The source-normal row is
+
+$$
+D_{s,\alpha}
+=
+1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_j(s_\alpha)
+=
+1,
+$$
+
+while the receiver-normal row is
+
+$$
+D_{t,\alpha}
+=
+1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_i(t)
+=
+1-\left(-\frac12\right)
+=
+\frac32.
+$$
+
+Therefore
+
+$$
+W_{\alpha}^{\mathrm{rec}}
+=
+\left|D_{t,\alpha}/D_{s,\alpha}\right|
+=
+\frac32.
+$$
+
+The corresponding certified force/action row shape is
+
+$$
+\mathbf a_{i,\alpha}^{\mathrm{rec}}
+=
+\frac{\kappa\,\sigma_{ij}|q_iq_j|}{\mu_{\mathrm{arch}}}
+\frac{3}{2r_\alpha^2}
+(1,0,0)
+=
+\frac{\kappa\,\sigma_{ij}|q_iq_j|}{\mu_{\mathrm{arch}}}
+\frac{3}{50}
+(1,0,0).
+$$
+
+The scalar prefactor remains symbolic because this row certifies
+receiver-normal branch-strength binding on a solver branch family, not a
+calibrated force-balance verdict.
+
+| Required field | Populated row |
+| --- | --- |
+| Retained root id | `rootId=0`, singleton retained analytic root across the linear moving-receiver fixture. |
+| Source and receiver ids | Request fields `source` and `receiver`, with source fixed and receiver moving toward the source. |
+| Time row | $t=10$, $s_\alpha=5$, $\Delta=5$. |
+| Geometry row | $r_\alpha=5$, $\hat{\mathbf r}_\alpha=(1,0,0)$, source-emission point to receiver-now convention. |
+| Source-normal row | $D_{s,\alpha}=1$; transversality status `ok`. |
+| Receiver-normal row | $D_{t,\alpha}=3/2$ on the same root row. |
+| Branch-strength row | `branchWeight=1.5`, `receiverNormalFactor=1.5`, `unsignedReceiverNormalFactor=1.5`. |
+| Projection rows | Radial projection equals the symbolic prefactor above; tangential projection is $0$. |
+| Aggregation row | Singleton aggregation over `{rootId=0}`. |
+| Scalar statistic row | $W_{\alpha}^{\mathrm{rec}}=3/2$ and invariant status `ok`. |
+| Negative controls | `check-solver-contract-fixtures.mjs` rejects a source-normal proxy by setting root `branchWeight=1` or delayed-hit `strength=1` and requiring receiver-normal invariant failure. `InvariantChecks.cpp` independently rejects completed rows whose branch strength differs from $\lvert D_t/D_s\rvert$. |
+| Source artifact hash | The request, response, native analytic smoke, invariant-consumer, and contract-check hashes listed above. |
+| Regulator state | Simple-root analytic linear-motion fixture; no fold, caustic, $\eta$, or $\epsilon_c$ regulator row is active. |
+
+Changeover consequence. This fixture supplies the first accepted nontrivial
+branch-family row with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ and a
+source-normal-proxy negative control. It authorizes solver-contract and vendor
+intake reuse for the receiver-normal branch-strength field. It does not
+authorize any A1, VP-1, breather, circular, eigen-braid, or assembly-closure
+force/action conclusion; those packets must populate their own retained branch
+families and negative controls.
 
 ## Fail-Closed Controls
 

@@ -8,15 +8,20 @@ const schemaPath = "src/contracts/solver-app-bridge/v1/schema.json";
 const workerBridgePath = "src/solver/app/SolverAppWorkerBridge.mjs";
 const bridgeContractPath = "src/solver/app/SolverAppBridgeContract.d.ts";
 const requestPath = "src/solver/fixtures/causal-roots-f64-smoke.request.json";
+const movingReceiverRequestPath = "src/solver/fixtures/causal-roots-moving-receiver-f64-smoke.request.json";
 const batchResponsePath = "src/solver/fixtures/causal-root-batch-f64-smoke.response.json";
 const responsePath = "src/solver/fixtures/roots-and-hits-f64-smoke.response.json";
+const movingReceiverResponsePath =
+  "src/solver/fixtures/roots-and-hits-moving-receiver-f64-smoke.response.json";
 
 const schema = readJson(schemaPath);
 const workerBridgeSource = fs.readFileSync(path.join(rootDir, workerBridgePath), "utf8");
 const bridgeContractSource = fs.readFileSync(path.join(rootDir, bridgeContractPath), "utf8");
 const request = readJson(requestPath);
+const movingReceiverRequest = readJson(movingReceiverRequestPath);
 const batchResponse = readJson(batchResponsePath);
 const response = readJson(responsePath);
+const movingReceiverResponse = readJson(movingReceiverResponsePath);
 
 const ROOT_LEDGER_ROW_F64_BYTES = 176;
 const DELAYED_HIT_ROW_F64_BYTES = 192;
@@ -125,6 +130,7 @@ const schemaFixtures = [
   ["worker response message", "solverAppWorkerResponseMessage", workerResponseMessage],
   ["worker error message", "solverAppWorkerErrorMessage", workerErrorMessage],
   ["causal roots request", "causalRootsF64RequestEnvelope", request],
+  ["moving-receiver causal roots request", "causalRootsF64RequestEnvelope", movingReceiverRequest],
   ["init request", "initRequestEnvelope", initRequest],
   ["init response", "initResponseEnvelope", initResponse],
   ["capabilities request", "capabilitiesRequestEnvelope", capabilitiesRequest],
@@ -219,6 +225,7 @@ const schemaFixtures = [
   ["motion integration response", "motionIntegrationF64ResponseEnvelope", motionIntegrationResponse],
   ["causal-root batch response", "causalRootBatchF64ResponseEnvelope", batchResponse],
   ["roots-and-hits response", "rootsAndHitsF64ResponseEnvelope", response],
+  ["moving-receiver roots-and-hits response", "rootsAndHitsF64ResponseEnvelope", movingReceiverResponse],
   ["run simulation request", "runSimulationRequestEnvelope", runSimulationRequest],
   ["normalized run simulation request", "runSimulationRequestEnvelope", runSimulationNormalizedRequest],
   ["run simulation response", "runSimulationResponseEnvelope", runSimulationResponse],
@@ -742,6 +749,7 @@ validateWorkerRequestMessage(workerRequestMessage);
 validateWorkerResponseMessage(workerResponseMessage);
 validateWorkerErrorMessage(workerErrorMessage);
 validateRequestEnvelope(request);
+validateRequestEnvelope(movingReceiverRequest);
 validateInitRequestEnvelope(initRequest);
 validateInitResponseEnvelope(initResponse);
 validateCapabilitiesRequestEnvelope(capabilitiesRequest);
@@ -767,6 +775,12 @@ validateMotionIntegrationRequestEnvelope(motionIntegrationRequest);
 validateMotionIntegrationResponseEnvelope(motionIntegrationResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
+validateResponseEnvelope(movingReceiverResponse, {
+  emissionTime: 5,
+  distance: 5,
+  hitStrength: 1.5,
+});
+assertMovingReceiverBranchFamilyFixture(movingReceiverRequest, movingReceiverResponse);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
 validateRunSimulationNormalizedRequestEnvelope(runSimulationNormalizedRequest);
 validateRunSimulationResponseEnvelope(runSimulationResponse);
@@ -1503,7 +1517,10 @@ function validateMotionIntegrationResponseEnvelope(value) {
   assert(responseValue.status.code === "ok", "motion integration status mismatch");
 }
 
-function validateResponseEnvelope(value) {
+function validateResponseEnvelope(
+  value,
+  expected = { emissionTime: 0, distance: 10, hitStrength: 1 }
+) {
   assert(value.schema === "solver-app-bridge/v1", "response schema tag mismatch");
   assert(value.kind === "roots-and-hits-f64-response", "response kind mismatch");
   assertNonemptyString(value.requestId, "response request id");
@@ -1512,10 +1529,10 @@ function validateResponseEnvelope(value) {
   assert(Array.isArray(responseValue.hits), "hits must be an array");
   assert(responseValue.roots.length === 1, "smoke response must contain one root");
   assert(responseValue.hits.length === 1, "smoke response must contain one hit");
-  assertClose(responseValue.roots[0].emissionTime, 0, "root emission time");
-  assertClose(responseValue.roots[0].distance, 10, "root distance");
+  assertClose(responseValue.roots[0].emissionTime, expected.emissionTime, "root emission time");
+  assertClose(responseValue.roots[0].distance, expected.distance, "root distance");
   assertClose(responseValue.hits[0].unitDirection.x, 1, "hit unit direction x");
-  assertClose(responseValue.hits[0].strength, 1, "hit strength");
+  assertClose(responseValue.hits[0].strength, expected.hitStrength, "hit strength");
   assertBuffer(responseValue.buffers[0], "root-ledger", "root_ledger.v1", ROOT_LEDGER_ROW_F64_BYTES, 1);
   assertBuffer(
     responseValue.buffers[1],
@@ -2372,6 +2389,91 @@ function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
   assert(value.rowCount === rowCount, `${bufferId} row count mismatch`);
   assert(value.byteLength === byteLength, `${bufferId} byte length mismatch`);
   assert(value.numericType === "f64", `${bufferId} numeric type mismatch`);
+}
+
+function assertMovingReceiverBranchFamilyFixture(requestEnvelope, responseEnvelope) {
+  assert(
+    requestEnvelope.requestId === "causal-roots-moving-receiver-f64-smoke",
+    "moving-receiver request id mismatch"
+  );
+  assert(
+    responseEnvelope.requestId === requestEnvelope.requestId,
+    "moving-receiver response request id mismatch"
+  );
+  assertClose(requestEnvelope.request.receiver.velocity.x, -0.5, "moving-receiver velocity x");
+
+  const root = responseEnvelope.response.roots[0];
+  const hit = responseEnvelope.response.hits[0];
+  assert(root, "moving-receiver root missing");
+  assert(hit, "moving-receiver hit missing");
+  assertClose(root.emissionTime, 5, "moving-receiver root emission time");
+  assertClose(root.hitTime, 10, "moving-receiver root hit time");
+  assertClose(root.distance, 5, "moving-receiver root distance");
+  assertClose(root.sourceNormalDenominator, 1, "moving-receiver root source-normal denominator");
+  assertClose(root.receiverNormalNumerator, 1.5, "moving-receiver root receiver-normal numerator");
+  assertClose(root.receiverNormalFactor, 1.5, "moving-receiver root receiver-normal factor");
+  assertClose(root.branchWeight, 1.5, "moving-receiver root branch weight");
+  assertClose(hit.strength, 1.5, "moving-receiver hit strength");
+  const failures = receiverNormalInvariantFailures(responseEnvelope);
+  assert(
+    failures.length === 0,
+    `moving-receiver fixture should satisfy receiver-normal invariants: ${failures.join(", ")}`
+  );
+
+  const rootProxy = deepClone(responseEnvelope);
+  rootProxy.response.roots[0].branchWeight = root.sourceNormalDenominator;
+  assert(
+    receiverNormalInvariantFailures(rootProxy).includes("root_branch_weight_mismatch"),
+    "moving-receiver root source-normal proxy negative control did not fail"
+  );
+
+  const hitProxy = deepClone(responseEnvelope);
+  hitProxy.response.hits[0].strength = hit.sourceNormalDenominator;
+  assert(
+    receiverNormalInvariantFailures(hitProxy).includes("hit_strength_mismatch"),
+    "moving-receiver hit source-normal proxy negative control did not fail"
+  );
+}
+
+function receiverNormalInvariantFailures(responseEnvelope) {
+  const failures = [];
+  for (const root of responseEnvelope.response.roots ?? []) {
+    const expectedReceiverNormalFactor =
+      root.receiverNormalNumerator / root.sourceNormalDenominator;
+    const expectedBranchWeight = Math.abs(expectedReceiverNormalFactor);
+    if (!closeEnough(root.receiverNormalFactor, expectedReceiverNormalFactor)) {
+      failures.push("root_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(root.unsignedReceiverNormalFactor, expectedBranchWeight)) {
+      failures.push("root_unsigned_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(root.branchWeight, expectedBranchWeight)) {
+      failures.push("root_branch_weight_mismatch");
+    }
+  }
+  for (const hit of responseEnvelope.response.hits ?? []) {
+    const expectedReceiverNormalFactor =
+      hit.receiverNormalNumerator / hit.sourceNormalDenominator;
+    const expectedStrength = Math.abs(expectedReceiverNormalFactor);
+    if (!closeEnough(hit.receiverNormalFactor, expectedReceiverNormalFactor)) {
+      failures.push("hit_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(hit.unsignedReceiverNormalFactor, expectedStrength)) {
+      failures.push("hit_unsigned_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(hit.strength, expectedStrength)) {
+      failures.push("hit_strength_mismatch");
+    }
+  }
+  return failures;
+}
+
+function closeEnough(actual, expected) {
+  return Math.abs(actual - expected) <= 1e-10;
+}
+
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
 }
 
 function assertCoreBinaryLayouts(expectedLayouts) {
