@@ -40,6 +40,36 @@ architrino::solver::CausalRootRequest make_moving_source_request() {
   };
 }
 
+architrino::solver::CausalRootRequest make_moving_receiver_request() {
+  return architrino::solver::CausalRootRequest{
+      "receiver",
+      "source",
+      architrino::solver::LinearPathSegment{
+          "source",
+          0.0,
+          10.0,
+          architrino::solver::Vector3{0.0, 0.0, 0.0},
+          architrino::solver::Vector3{0.0, 0.0, 0.0},
+          architrino::solver::NumericType::F64,
+          1e-13,
+      },
+      architrino::solver::LinearPathSegment{
+          "receiver",
+          0.0,
+          10.0,
+          architrino::solver::Vector3{10.0, 0.0, 0.0},
+          architrino::solver::Vector3{-0.5, 0.0, 0.0},
+          architrino::solver::NumericType::F64,
+          1e-13,
+      },
+      10.0,
+      1.0,
+      1e-13,
+      128,
+      50,
+  };
+}
+
 architrino::solver::CircularSourceCausalRootRequest make_circular_source_request() {
   return architrino::solver::CircularSourceCausalRootRequest{
       "receiver",
@@ -82,6 +112,12 @@ int main() {
       architrino::solver::solve_causal_roots(request);
   const architrino::solver::DelayedHitResult hits =
       architrino::solver::solve_delayed_hits(request);
+  const architrino::solver::CausalRootRequest movingReceiverRequest =
+      make_moving_receiver_request();
+  const architrino::solver::CausalRootResult movingReceiverRoots =
+      architrino::solver::solve_causal_roots(movingReceiverRequest);
+  const architrino::solver::DelayedHitResult movingReceiverHits =
+      architrino::solver::solve_delayed_hits(movingReceiverRequest);
   const architrino::solver::CircularSourceCausalRootRequest circularRequest =
       make_circular_source_request();
   const architrino::solver::CausalRootResult circularRoots =
@@ -163,6 +199,20 @@ int main() {
       nearly_equal(hits.events[0].unitDirection.x, 1.0) &&
       nearly_equal(hits.events[0].unitDirection.y, 0.0) &&
       nearly_equal(hits.events[0].unitDirection.z, 0.0) &&
+      movingReceiverRoots.validation.ok &&
+      movingReceiverRoots.roots.size() == 1 &&
+      nearly_equal(movingReceiverRoots.roots[0].emissionTime, 5.0) &&
+      nearly_equal(movingReceiverRoots.roots[0].hitTime, 10.0) &&
+      nearly_equal(movingReceiverRoots.roots[0].delay, 5.0) &&
+      nearly_equal(movingReceiverRoots.roots[0].distance, 5.0) &&
+      nearly_equal(movingReceiverRoots.roots[0].jacobian, 1.0) &&
+      nearly_equal(movingReceiverRoots.roots[0].receiverNormalSpeed, -0.5) &&
+      nearly_equal(movingReceiverRoots.roots[0].receiverNormalNumerator, 1.5) &&
+      nearly_equal(movingReceiverRoots.roots[0].receiverNormalFactor, 1.5) &&
+      nearly_equal(movingReceiverRoots.roots[0].branchWeight, 1.5) &&
+      movingReceiverHits.validation.ok &&
+      movingReceiverHits.events.size() == 1 &&
+      nearly_equal(movingReceiverHits.events[0].strength, 1.5) &&
       circularRoots.validation.ok &&
       circularRoots.roots.size() == 1 &&
       nearly_equal(circularRoots.roots[0].emissionTime, expectedCircularEmissionTime) &&

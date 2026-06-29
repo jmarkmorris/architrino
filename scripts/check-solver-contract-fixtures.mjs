@@ -4421,7 +4421,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 14,
+    abiMinor: 15,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,

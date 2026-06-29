@@ -89,11 +89,6 @@ void check_root(const CausalRoot& root,
     return;
   }
 
-  const double expectedBranchWeight = 1.0 / std::abs(root.jacobian);
-  if (!finite(root.branchWeight) ||
-      !close_scaled(root.branchWeight, expectedBranchWeight, options.branchWeightTolerance)) {
-    add_invariant_failure(validation, "root branch weight does not match inverse Jacobian magnitude", stage);
-  }
   const double expectedReceiverNormalFactor =
       root.receiverNormalNumerator / root.sourceNormalDenominator;
   if (!finite(root.receiverNormalFactor) ||
@@ -106,8 +101,15 @@ void check_root(const CausalRoot& root,
       !close_scaled(root.unsignedReceiverNormalFactor,
                     std::abs(root.receiverNormalFactor),
                     options.branchWeightTolerance)) {
-    add_invariant_failure(validation,
+      add_invariant_failure(validation,
                           "root unsigned receiver normal factor does not match magnitude",
+                          stage);
+  }
+  const double expectedBranchWeight = std::abs(expectedReceiverNormalFactor);
+  if (!finite(root.branchWeight) ||
+      !close_scaled(root.branchWeight, expectedBranchWeight, options.branchWeightTolerance)) {
+    add_invariant_failure(validation,
+                          "root branch weight does not match unsigned receiver normal factor",
                           stage);
   }
 }
@@ -165,10 +167,6 @@ void check_hit(const DelayedHitEvent& hit,
   }
 
   if (std::abs(hit.jacobian) > options.smallJacobianTolerance) {
-    const double expectedStrength = 1.0 / std::abs(hit.jacobian);
-    if (!close_scaled(hit.strength, expectedStrength, options.branchWeightTolerance)) {
-      add_invariant_failure(validation, "delayed-hit strength does not match inverse Jacobian magnitude", stage);
-    }
     const double expectedReceiverNormalFactor =
         hit.receiverNormalNumerator / hit.sourceNormalDenominator;
     if (!finite(hit.receiverNormalFactor) ||
@@ -183,6 +181,12 @@ void check_hit(const DelayedHitEvent& hit,
                       options.branchWeightTolerance)) {
       add_invariant_failure(validation,
                             "delayed-hit unsigned receiver normal factor does not match magnitude",
+                            stage);
+    }
+    const double expectedStrength = std::abs(expectedReceiverNormalFactor);
+    if (!close_scaled(hit.strength, expectedStrength, options.branchWeightTolerance)) {
+      add_invariant_failure(validation,
+                            "delayed-hit strength does not match unsigned receiver normal factor",
                             stage);
     }
   }

@@ -207,8 +207,8 @@ CausalRoot make_root(const CausalRootRequest& request,
       eval, request.signalSpeed, request.source.velocity, request.receiver.velocity, request.rootTolerance);
   const Real jacobianReal = normal.sourceNormalDenominatorReal;
   const double jacobian = jacobianReal.convert_to<double>();
-  const double branchWeight = std::isfinite(jacobian) && std::abs(jacobian) > 0.0
-                                  ? (Real(1) / abs(jacobianReal)).convert_to<double>()
+  const double branchWeight = std::isfinite(normal.unsignedReceiverNormalFactor)
+                                  ? normal.unsignedReceiverNormalFactor
                                   : std::numeric_limits<double>::infinity();
   const StatusCode rootStatus =
       std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok;
@@ -263,8 +263,8 @@ CausalRoot make_root(const CircularSourceCausalRootRequest& request,
       eval, request.signalSpeed, sourceVelocity, request.receiver.velocity, request.rootTolerance);
   const Real jacobianReal = normal.sourceNormalDenominatorReal;
   const double jacobian = jacobianReal.convert_to<double>();
-  const double branchWeight = std::isfinite(jacobian) && std::abs(jacobian) > 0.0
-                                  ? (Real(1) / abs(jacobianReal)).convert_to<double>()
+  const double branchWeight = std::isfinite(normal.unsignedReceiverNormalFactor)
+                                  ? normal.unsignedReceiverNormalFactor
                                   : std::numeric_limits<double>::infinity();
   const StatusCode rootStatus =
       std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok;

@@ -10181,21 +10181,6 @@ function checkRootInvariant(root, index, options, statuses) {
     return;
   }
 
-  const expectedBranchWeight = 1 / Math.abs(root.jacobian);
-  if (!Number.isFinite(root.branchWeight) || !closeScaled(root.branchWeight, expectedBranchWeight, options.branchWeightTolerance)) {
-    statuses.push(
-      createStatus(
-        "validation_replay_mismatch",
-        "error",
-        "root branch weight does not match inverse Jacobian magnitude",
-        {
-          stage,
-          recoverable: false,
-          details: { expectedBranchWeight, actualBranchWeight: root.branchWeight },
-        }
-      )
-    );
-  }
   const expectedReceiverNormalFactor =
     root.receiverNormalNumerator / root.sourceNormalDenominator;
   if (
@@ -10214,6 +10199,21 @@ function checkRootInvariant(root, index, options, statuses) {
             expectedReceiverNormalFactor,
             actualReceiverNormalFactor: root.receiverNormalFactor,
           },
+        }
+      )
+    );
+  }
+  const expectedBranchWeight = Math.abs(expectedReceiverNormalFactor);
+  if (!Number.isFinite(root.branchWeight) || !closeScaled(root.branchWeight, expectedBranchWeight, options.branchWeightTolerance)) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root branch weight does not match unsigned receiver normal factor",
+        {
+          stage,
+          recoverable: false,
+          details: { expectedBranchWeight, actualBranchWeight: root.branchWeight },
         }
       )
     );
@@ -10325,21 +10325,6 @@ function checkHitInvariant(hit, index, options, statuses) {
   }
 
   if (Math.abs(hit.jacobian) > options.smallJacobianTolerance) {
-    const expectedStrength = 1 / Math.abs(hit.jacobian);
-    if (!closeScaled(hit.strength, expectedStrength, options.branchWeightTolerance)) {
-      statuses.push(
-        createStatus(
-          "validation_replay_mismatch",
-          "error",
-          "delayed-hit strength does not match inverse Jacobian magnitude",
-          {
-            stage,
-            recoverable: false,
-            details: { expectedStrength, actualStrength: hit.strength },
-          }
-        )
-      );
-    }
     const expectedReceiverNormalFactor =
       hit.receiverNormalNumerator / hit.sourceNormalDenominator;
     if (
@@ -10378,6 +10363,21 @@ function checkHitInvariant(hit, index, options, statuses) {
               expectedUnsignedReceiverNormalFactor: Math.abs(hit.receiverNormalFactor),
               actualUnsignedReceiverNormalFactor: hit.unsignedReceiverNormalFactor,
             },
+          }
+        )
+      );
+    }
+    const expectedStrength = Math.abs(expectedReceiverNormalFactor);
+    if (!closeScaled(hit.strength, expectedStrength, options.branchWeightTolerance)) {
+      statuses.push(
+        createStatus(
+          "validation_replay_mismatch",
+          "error",
+          "delayed-hit strength does not match unsigned receiver normal factor",
+          {
+            stage,
+            recoverable: false,
+            details: { expectedStrength, actualStrength: hit.strength },
           }
         )
       );
@@ -14009,7 +14009,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 14,
+    abiMinor: 15,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14062,7 +14062,7 @@ function defaultAbiInfo() {
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 14 ||
+    abiInfo.abiMinor !== 15 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
