@@ -185,7 +185,10 @@ c_2=\frac{1}{2}\partial_{\eta\eta}G_a(\eta_*;z_*),
 c_1=D_zG_a(\eta_*;z_*)\dot z_*.
 $$
 
-The branch has two nearby root labels on one side of the fold and none on the other when $c_1c_2y<0$ changes sign. Since the retained force contains $1/|J_a|$, the ordinary root ledger stops at the fold:
+The branch has two nearby root labels on one side of the fold and none on the
+other when $c_1c_2y<0$ changes sign. Since the source-normal root chart loses
+its simple-root diagnostic at $J_a=0$, the ordinary root ledger stops at the
+fold:
 
 $$
 \texttt{jacobian-root-fold}.

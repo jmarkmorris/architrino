@@ -67,9 +67,13 @@ $$
 
 and the sheet tube remains separated from all other retained root tubes, excluded slabs, support boundaries, period cuts, and noncollision floors. If any of these margins fails, the correct outcome is a branch event or a root-ledger rebuild, not a dynamics obstruction.
 
-### Fixed Jacobian Sign Row
+### Source-Normal Root-Chart Diagnostic
 
-The force contribution uses $|J_u|^{-1}$, so the derivative formulas below require a fixed Jacobian sign on each retained tube. The ledger must emit
+The source-normal root chart still needs a fixed Jacobian sign on each retained
+tube for differentiating the causal-root row. The force/action contribution is
+not this diagnostic quotient; it is the receiver-normal branch strength
+$W_u^{\mathrm{rec}}=\lvert D_{t,u}/D_{s,u}\rvert$ on the same retained record.
+The ledger must emit
 
 $$
 \zeta_u=\operatorname{sign}J_u\in\{+1,-1\}
@@ -81,7 +85,8 @@ $$
 \zeta_uJ_u\ge J_0>0
 $$
 
-throughout the tube and coefficient ball. Then
+throughout the tube and coefficient ball, together with $D_s$, $D_t$,
+$W_u^{\mathrm{rec}}$, and $D_vW_u^{\mathrm{rec}}$. Then
 
 $$
 |J_u|=\zeta_uJ_u,
@@ -967,7 +972,7 @@ The root-sheet variation row can return:
 | `root-sheet-second-variation-open` | Krawczyk row lacks second sheet variation or an equivalent derivative-Lipschitz enclosure |
 | `root-sheet-inertia-ledger-stale` | scalar inertia row uses the old active ledger after tail roots were assimilated |
 | `root-sheet-inertia-second-variation-open` | full residual includes inertia but lacks the sheet-complete inertia derivative envelope |
-| `root-sheet-jacobian-sign-stratum-open` | a retained sheet has $|J_u|$ bounded away from zero but no fixed sign label for differentiating $|J_u|^{-1}$ |
+| `root-sheet-jacobian-sign-stratum-open` | a retained sheet has $|J_u|$ bounded away from zero but no fixed sign label for differentiating the source-normal root-chart row |
 | `root-sheet-jacobian-floor-failed` | $|J_u|$ loses its floor on a sheet tube |
 | `root-sheet-tube-separation-failed` | a sheet tube hits another tube, an excluded slab, a support boundary, or a period cut |
 | `root-sheet-antipodal-match-failed` | a sheet is not paired by the exact-antipodal involution under the declared tolerance |

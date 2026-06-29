@@ -434,7 +434,7 @@ function pointAtPairConstraintOrLinearPath(pair, state, time, dt) {
   };
 }
 
-function createDelayedHitRunResponse(request) {
+function createDelayedHitRunResponse(request, options = {}) {
   const rootRequest = request.config.rootRequest;
   const link = request.config.link;
   const emissionPoint = pointAtSegment(rootRequest.source, link.emissionTime);
@@ -444,6 +444,18 @@ function createDelayedHitRunResponse(request) {
     receiverPoint.y - emissionPoint.y,
     receiverPoint.z - emissionPoint.z,
   );
+  const receiverNormalFields = options.omitReceiverNormalFields
+    ? {}
+    : {
+        sourceNormalSpeed: 0,
+        receiverNormalSpeed: 0,
+        sourceNormalDenominator: 1,
+        receiverNormalNumerator: 1,
+        receiverNormalCrossingFactor: 1,
+        receiverNormalFactor: 1,
+        unsignedReceiverNormalFactor: 1,
+        receiverNormalStatusCode: 0,
+      };
   return {
     requestId: request.requestId,
     runId: request.runId,
@@ -465,6 +477,7 @@ function createDelayedHitRunResponse(request) {
           residual: 0,
           jacobian: 1,
           branchWeight: 1,
+          ...receiverNormalFields,
           sourcePoint: emissionPoint,
           receiverPoint,
         },
@@ -478,7 +491,8 @@ function createDelayedHitRunResponse(request) {
           hitTime: link.hitTime,
           distance,
           jacobian: 1,
-          strength: link.weight,
+          strength: options.omitReceiverNormalFields ? link.weight : 1,
+          ...receiverNormalFields,
           emissionPoint,
           receiverPoint,
           unitDirection: {
@@ -1459,6 +1473,32 @@ test("causal delay central bridge adapter can build replay frames from central m
   assert.equal(dataset.motionAccelerationPolicy, "pair_initial_attraction_seed");
   assert.equal(dataset.diagnostics[0].code, "causal_delay_motion_solver_replay");
   assert.match(dataset.diagnostics[0].message, /pair_initial_attraction_seed/);
+});
+
+test("causal delay central bridge adapter fails closed without receiver-normal delayed-hit fields", async () => {
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+    async runSolverBridge(request) {
+      if (request.runKind === CENTRAL_SOLVER_MOTION_REPLAY_MODE) {
+        return createMotionRunResponse(request);
+      }
+      return createDelayedHitRunResponse(request, { omitReceiverNormalFields: true });
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      frameCount: 3,
+      runDuration: 1,
+      motionAccelerationPolicy: "pair_initial_attraction_seed",
+    },
+  });
+
+  assert.equal(dataset.wakeLinks.length, 10);
+  assert.equal(dataset.wakeLinks[0].solverHitStatusCode, 0);
+  assert.equal(dataset.wakeLinks[0].rootStatus.code, "receiver_normal_fields_unavailable");
+  assert.equal(dataset.wakeLinks[0].rootStatus.severity, "warn");
 });
 
 test("causal delay central bridge adapter can opt into segmented pair attraction", async () => {

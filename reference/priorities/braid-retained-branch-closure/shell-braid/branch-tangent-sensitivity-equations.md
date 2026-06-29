@@ -195,51 +195,60 @@ $$
 \mathbf{T}_j(\lambda_n-\eta_a)\cdot\dot{\widehat{\mathbf{R}}}_a.
 $$
 
-On a fixed sign stratum for $J_a$, the per-root force term is
+The source-normal Jacobian derivative above is a root-chart diagnostic. It is not
+the received force/action branch strength. The receiver-normal restart row for
+the per-root force term is
 
 $$
 \mathbf{f}_a
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_a.
 $$
 
 Let
 
 $$
-w_a=\frac{1}{\eta_a^2|J_a|}.
+w_a^{\mathrm{rec}}=\eta_a^{-2}W_a^{\mathrm{rec}},
+\qquad
+W_a^{\mathrm{rec}}=\left|\frac{D_{t,a}}{D_{s,a}}\right|.
 $$
 
-Then
+Then the force-sensitivity row must be rebuilt from the same retained record
+that emits $D_{s,a}$, $D_{t,a}$, and $D_vW_a^{\mathrm{rec}}$:
 
 $$
-\dot w_a
+\dot w_a^{\mathrm{rec}}
 =
-w_a
+w_a^{\mathrm{rec}}
 \left(
 -2\frac{\dot\eta_a}{\eta_a}
--
-\frac{\dot J_a}{J_a}
++
+\frac{\dot W_a^{\mathrm{rec}}}{W_a^{\mathrm{rec}}}
 \right),
 $$
 
-where the last quotient is valid on the fixed sign stratum because $d|J|/|J|=dJ/J$. Therefore
+when $W_a^{\mathrm{rec}}>0$ on the branch chart. Therefore
 
 $$
 \dot{\mathbf{f}}_a
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,w_a^{\mathrm{rec}}
 \left(
 \dot{\widehat{\mathbf{R}}}_a
 -
 \left(
 2\frac{\dot\eta_a}{\eta_a}
-+
-\frac{\dot J_a}{J_a}
+-
+\frac{\dot W_a^{\mathrm{rec}}}{W_a^{\mathrm{rec}}}
 \right)
 \widehat{\mathbf{R}}_a
 \right).
 $$
+
+Until that receiver-normal derivative row is emitted, this packet is
+`receiver-normal-restart-required` rather than an active force/action
+certificate.
 
 The receiver force sensitivity is
 

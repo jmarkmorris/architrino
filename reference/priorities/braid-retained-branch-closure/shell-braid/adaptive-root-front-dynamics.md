@@ -214,9 +214,14 @@ A delayed root cannot be silently omitted from a dynamics row. If a retained roo
 $$
 \Delta\widetilde{\mathbf{F}}_{i,a}
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_{a}.
 $$
+
+The source-normal root-front quotient remains a diagnostic for finding and
+continuing the causal-root row. The force/action contribution is the
+receiver-normal branch strength $W_a^{\mathrm{rec}}=\lvert
+D_{t,a}/D_{s,a}\rvert$ on the same retained record.
 
 The retained intrinsic residual changes by
 

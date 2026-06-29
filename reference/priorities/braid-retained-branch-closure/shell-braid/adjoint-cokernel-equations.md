@@ -81,7 +81,7 @@ a=(i,j,\lambda,\mu),
 \nu_a(\lambda)=\lambda-\eta_a(\lambda),
 $$
 
-the force variation from [root-dependent-variational-equation.md](root-dependent-variational-equation.md) can be written on a fixed sign stratum for $J_a$ as
+the force variation from [root-dependent-variational-equation.md](root-dependent-variational-equation.md) can be written only after the same retained record emits $D_s$, $D_t$, and the differentiated receiver-normal branch strength $D_\xi W_a^{\mathrm{rec}}$:
 
 $$
 \delta\mathbf{f}_a[\xi]

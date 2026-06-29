@@ -120,8 +120,16 @@ $$
 where
 
 $$
-w_a=\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}.
+w_a^{\mathrm{rec}}
+=
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}},
+\qquad
+W_a^{\mathrm{rec}}=\left|\frac{D_{t,a}}{D_{s,a}}\right|.
 $$
+
+The source-normal Jacobian variation remains a root-chart diagnostic. The
+linearized force row is `receiver-normal-restart-required` until the same
+retained record emits $D_s$, $D_t$, and $D_\xi W_a^{\mathrm{rec}}$.
 
 The projected-force variation is
 

@@ -157,27 +157,31 @@ For
 $$
 \mathbf{f}_a
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_a,
 $$
 
-the force-term variation on a fixed sign stratum for $J_a$ is
+the force-term variation must be rebuilt on the same retained record that emits
+$D_s$, $D_t$, and $D_\xi W_a^{\mathrm{rec}}$:
 
 $$
 \delta\mathbf{f}_a[\xi]
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \left[
 \delta\widehat{\mathbf{R}}_a[\xi]
 -
 \left(
 2\frac{\delta\eta_a[\xi]}{\eta_a}
-+
-\frac{\delta J_a[\xi]}{J_a}
+-
+\frac{\delta W_a^{\mathrm{rec}}[\xi]}{W_a^{\mathrm{rec}}}
 \right)
 \widehat{\mathbf{R}}_a
 \right].
 $$
+
+Until that row is emitted, this variational-equation packet is
+`receiver-normal-restart-required` for force/action use.
 
 The full force variation is
 

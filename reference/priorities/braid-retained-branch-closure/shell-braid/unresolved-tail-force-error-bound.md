@@ -27,7 +27,7 @@ $$
 \Delta\widetilde{\mathbf{F}}_{i,n}^{\mathrm{tail}}
 =
 \sum_{a\in\mathcal{U}_{i,n}}
-\frac{\sigma_i\sigma_{j(a)}}{\eta_a^2|J_a|}
+\sigma_i\sigma_{j(a)}\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_a.
 $$
 
@@ -48,12 +48,16 @@ $$
 and lower bounds
 
 $$
-\eta_a\ge\eta_0,
-\qquad
-|J_a|\ge J_{\mathrm{tail}}>0
+\eta_a\ge\eta_0
 $$
 
-for every unresolved possible tail root. Since
+and an upper bound
+
+$$
+W_a^{\mathrm{rec}}\le W_{\mathrm{tail}}
+$$
+
+for every unresolved possible tail root on the same retained record. Since
 
 $$
 \|\widehat{\mathbf{R}}_a\|=1,
@@ -67,9 +71,9 @@ $$
 \right\|
 \le
 \frac{
-N_{i,n}^{\mathrm{tail}}
+N_{i,n}^{\mathrm{tail}}W_{\mathrm{tail}}
 }{
-\eta_0^2J_{\mathrm{tail}}
+\eta_0^2
 }.
 $$
 
@@ -81,7 +85,7 @@ $$
 \left(
 \sum_{i,n}
 \left[
-\frac{N_{i,n}^{\mathrm{tail}}}{\eta_0^2J_{\mathrm{tail}}}
+\frac{N_{i,n}^{\mathrm{tail}}W_{\mathrm{tail}}}{\eta_0^2}
 \right]^2
 \right)^{1/2}.
 $$

@@ -91,9 +91,15 @@ const FORBIDDEN_SNIPPETS = [
   "\\eta_r(u)^2|J",
   "\\eta_r^{-2}|J",
   "eta_r^{-2}|J",
+  "eta_a^2|J_a|",
+  "\\eta_a^2|J_a|",
+  "|J_a|^{-1}",
+  "|J_u|^{-1}",
   "|J_r^\\nu|^{-1}",
   "|J_r^{\\nu}|^{-1}",
   "\\omega_r^\\nu=\\eta_r^{-2}|J",
+  "neutralReceiverNormalFields",
+  "receiverNormalNumerator: sourceNormalDenominator",
 ].map((snippet) => ({
   snippet,
   reason: reasonForSnippet(snippet),
@@ -131,6 +137,31 @@ const FORBIDDEN_CODE_PATTERNS = [
     pattern: /1\s*\/\s*\(\s*root\.y\s*\*\s*root\.y\s*\*\s*root\.jacobian\s*\)/g,
     snippet: "1 / (root.y * root.y * root.jacobian)",
     reason: "exposure weights must use receiver-normal branch_weight",
+  },
+  {
+    pattern: /strength:\s*normalizeUnitNumber\(\s*link\.weight/gs,
+    snippet: "strength: normalizeUnitNumber(link.weight ...)",
+    reason: "wake-link display weight cannot fabricate delayed-hit force strength",
+  },
+  {
+    pattern: /solverHit\?\.strength\s*\?\?\s*fallback\.strength/g,
+    snippet: "solverHit?.strength ?? fallback.strength",
+    reason: "missing delayed-hit receiver-normal evidence must fail closed",
+  },
+  {
+    pattern: /solverHit\?\.receiverNormal(?:Numerator|Factor|CrossingFactor|StatusCode)\s*\?\?\s*fallback\.receiverNormal/gs,
+    snippet: "solverHit?.receiverNormal... ?? fallback.receiverNormal...",
+    reason: "missing receiver-normal fields cannot be filled from local fallback",
+  },
+  {
+    pattern: /force[^.\n]{0,120}(?:contains|uses|weighted by|contribution uses)[^.\n]{0,120}1\s*\/\s*\|J/gi,
+    snippet: "force contains/uses 1/|J",
+    reason: "source-normal inverse-Jacobian factors are diagnostic/coarea rows, not force/action strength",
+  },
+  {
+    pattern: /root-front(?:\s|-)(?:law|force-derivative|force derivative)[^\n.]*J_a(?![^\n.]*W\^\{\\mathrm\{rec\}\})/g,
+    snippet: "root-front force-derivative wording without W^{\\mathrm{rec}}",
+    reason: "root-front force derivative wording must carry receiver-normal branch strength",
   },
 ];
 

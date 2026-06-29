@@ -41,9 +41,14 @@ The dimensionless force contribution is
 $$
 \mathbf{f}_a
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_a.
 $$
+
+Here $W_a^{\mathrm{rec}}=\lvert D_{t,a}/D_{s,a}\rvert$ is the
+receiver-normal branch strength on the same retained record. The
+source-normal $J_a$ row below is retained only as a simple-root diagnostic for
+the root chart.
 
 Assume the root chart has floors
 
@@ -51,6 +56,14 @@ $$
 \eta_a\ge\eta_0>0,
 \qquad
 |J_a|\ge J_0>0.
+$$
+
+Assume the received branch-strength row emits
+
+$$
+0\le W_a^{\mathrm{rec}}\le W_0,
+\qquad
+|D_vW_a^{\mathrm{rec}}|\le E_W.
 $$
 
 The receiver force is
@@ -191,17 +204,17 @@ This is conservative but sufficient. If the solver differentiates the root funct
 Let
 
 $$
-w_a=\frac{1}{\eta_a^2|J_a|}.
+w_a^{\mathrm{rec}}=\eta_a^{-2}W_a^{\mathrm{rec}}.
 $$
 
-On a fixed sign stratum for $J_a$,
+On a fixed receiver-normal branch-strength row,
 
 $$
-|D_vw_a|
+|D_vw_a^{\mathrm{rec}}|
 \le
-\frac{2E_\eta}{\eta_0^3J_0}
+\frac{2W_0E_\eta}{\eta_0^3}
 +
-\frac{E_J}{\eta_0^2J_0^2}.
+\frac{E_W}{\eta_0^2}.
 $$
 
 Therefore
@@ -209,14 +222,17 @@ Therefore
 $$
 \|D_v\mathbf{f}_a\|
 \le
-\frac{2E_\eta}{\eta_0^3J_0}
+\frac{2W_0E_\eta}{\eta_0^3}
 +
-\frac{E_J}{\eta_0^2J_0^2}
+\frac{E_W}{\eta_0^2}
 +
-\frac{E_{\widehat{R}}}{\eta_0^2J_0}
+\frac{W_0E_{\widehat{R}}}{\eta_0^2}
 =
 L_a.
 $$
+
+Without the $W_a^{\mathrm{rec}}$ and $D_vW_a^{\mathrm{rec}}$ rows, this
+Lipschitz envelope is `receiver-normal-restart-required`.
 
 For a receiver with at most $N_i$ retained roots,
 
@@ -321,12 +337,17 @@ The constants above feed four rows:
 | [support-complete-newton-closure-certificate.md](support-complete-newton-closure-certificate.md) | $K_R$ or Krawczyk $Z$ bounds for range closure |
 | [history-force-variationality-condition.md](history-force-variationality-condition.md) | one-form derivative and curl entries with moving roots included |
 
-If any denominator floor is missing, the envelope fails:
+If any root-chart floor or receiver-normal branch-strength bound is missing, the
+envelope fails:
 
 $$
 \eta_0\le0
 \quad\text{or}\quad
 J_0\le0
+\quad\text{or}\quad
+W_0<0
+\quad\text{or}\quad
+E_W<0
 \quad\Rightarrow
 \quad
 \texttt{force-lipschitz-envelope-failed}.
@@ -338,7 +359,11 @@ If a memory or tail row changes the root ledger, the emitted $L_F$ is invalid un
 
 ## 7. Lemma Target
 
-**Lemma target: delayed-force differentiability envelope.** On a root-regular finite-mode chart with $\eta_a\ge\eta_0>0$, $|J_a|\ge J_0>0$, bounded curve variation constants $C_0,C_1,C_2$, and finite active-root count, the delayed force map
+**Lemma target: delayed-force differentiability envelope.** On a
+root-regular finite-mode chart with $\eta_a\ge\eta_0>0$, $|J_a|\ge J_0>0$,
+bounded curve variation constants $C_0,C_1,C_2$, finite active-root count, and
+receiver-normal rows $0\le W_a^{\mathrm{rec}}\le W_0$ with
+$|D_vW_a^{\mathrm{rec}}|\le E_W$, the delayed force map
 
 $$
 \alpha\mapsto\widetilde{\mathbf{F}}^{(\eta_{\mathrm{mem}})}(\alpha)
