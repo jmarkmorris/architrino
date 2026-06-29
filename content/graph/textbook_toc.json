@@ -1866,10 +1866,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Theorem Spine (Provable Core under A1-A5)",
+                "title": "Source-Normal Theorem Spine (Provable Diagnostic Core under A1-A5)",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Theorem Spine (Provable Core under A1-A5)",
-                "sectionKey": "theorem spine provable core under a1 a5",
+                "markdownSection": "Source-Normal Theorem Spine (Provable Diagnostic Core under A1-A5)",
+                "sectionKey": "source normal theorem spine provable diagnostic core under a1 a5",
                 "headingLevel": 2
               },
               {
@@ -8263,10 +8263,10 @@
                 "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "Delayed Emission on Jacobian-Weighted Isochrons",
+                    "title": "Delayed Emission and Receiver-Normal Hits",
                     "markdownPath": "content/markdown/aaa/validation/simulations/perspective.md",
-                    "markdownSection": "Delayed Emission on Jacobian-Weighted Isochrons",
-                    "sectionKey": "delayed emission on jacobian weighted isochrons",
+                    "markdownSection": "Delayed Emission and Receiver-Normal Hits",
+                    "sectionKey": "delayed emission and receiver normal hits",
                     "headingLevel": 2
                   },
                   {

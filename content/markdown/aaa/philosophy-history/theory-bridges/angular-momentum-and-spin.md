@@ -2077,7 +2077,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-Forward and rear sectors therefore accumulate different phase delays and Jacobian weights. Combined with the transverse causal budget
+Forward and rear sectors therefore accumulate different phase delays, source-normal denominators, and receiver-normal branch strengths. Combined with the transverse causal budget
 
 $$
 c_{\perp}

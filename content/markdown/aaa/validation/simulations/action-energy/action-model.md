@@ -348,7 +348,7 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
   - Numerically lightweight for particle dynamics; works cleanly with impulsive or mollified ODE integration.
 - Cons
   - Not derived from the scalar wave equation; global field-energy accounting is indirect (via mollified potentials).
-  - Must retain the causal-root Jacobian factor from the master equation; a reduced test harness that omits it is a noncanonical approximation rather than a calibration of $\kappa$.
+  - Must retain the source-normal denominator and receiver-normal branch strength from the Master EOM; a reduced test harness that omits either one is a noncanonical approximation rather than a calibration of $\kappa$.
   - Accuracy depends on robust causal-root finding and regularization choices in complex multi-hit scenarios.
 
 ---

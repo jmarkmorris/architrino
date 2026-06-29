@@ -263,7 +263,7 @@ F_{i,\mathrm{attr}}^\nu
 +F_{i,\mathrm{med}}^\nu.
 $$
 
-The count by itself is not a force-balance proof; the residual consumes the delayed directions, delays, Jacobian weights, support work, and event terms.
+The count by itself is not a force-balance proof; the residual consumes the delayed directions, delays, source-normal denominators, receiver-normal branch strengths, support work, and event terms.
 
 ---
 

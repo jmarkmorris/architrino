@@ -54,7 +54,7 @@ N_{\mathrm{rep},i}
 \#\{j\ne i:\sigma_i\sigma_j=+1\}.
 $$
 
-It does not specify causal-root locations, Jacobian weights, separation lengths, tangent projections, root multiplicities, or phase-dependent cancellations. Those quantities remain force-ledger data, not inventory data.
+It does not specify causal-root locations, source-normal denominators, receiver-normal branch strengths, separation lengths, tangent projections, root multiplicities, or phase-dependent cancellations. Those quantities remain force-ledger data, not inventory data.
 
 ---
 

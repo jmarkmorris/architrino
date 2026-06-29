@@ -342,31 +342,38 @@ Relevant files:
 - [Causal action functional](../dynamics/causal-action-functional.md)
 - [Lorentz near-miss in historical context](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
-This entry records a major correction to the master-equation architecture after an AI-assisted audit exposed a false simplification in earlier drafts. The earlier path had treated constant per-wavefront emission amplitude as if it implied a received force law depending only on $1/r^2$. That collapsed two distinct claims: the source emission cadence is constant, but the received causal flux depends on the geometry of delayed emission from a moving source.
+This entry records a major correction to the master-equation architecture after an AI-assisted audit exposed a false simplification in earlier drafts. The earlier path had treated constant per-wavefront emission amplitude as if it implied a received force law depending only on $1/r^2$. That collapsed three distinct claims: source emission cadence is constant, source motion controls the source-normal denominator of the delayed root, and receiver motion controls the receiver-normal numerator at the crossing.
 
-The corrected master equation keeps the source-side causal Jacobian in the canonical per-hit law:
+The corrected master equation uses the receiver-normal branch factor in the canonical per-hit law:
 $$
 \mathbf{a}_{ij}(t; t_0)
 =
 \kappa\,\sigma_{ij}\,
-\frac{|q_i q_j|}{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}\,
+\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,
+W_{ij}^{\mathrm{rec}}(t;t_0)\,
 \hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
-J_{ij}(t;t_0)=1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}
+W_{ij}^{\mathrm{rec}}=\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
 $$
-The point of the correction is not that source strength itself changes with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because the source moves while laying down successive wake surfaces, so the receiver samples a compressed or dilated branch of the source's causal history. The factor $|J_{ij}|^{-1}$ is therefore part of the causal geometry of received wake flux, not an optional adjustment to a static inverse-square force.
+with
+$$
+D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
+\qquad
+D_{t,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
+$$
+The point of the correction is not that source strength itself changes with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
 
-This correction also clarified the status of receiver velocity. In the current canon, receiver velocity is not written as a separate source-strength factor in the per-hit magnitude at fixed $r_{ij}$, $\hat{\mathbf{r}}_{ij}$, and $J_{ij}$. It matters through the work rate $\mathbf{F}\cdot\mathbf{v}$, the future evolution of the receiver-source geometry, and the delayed branches sampled by the receiver worldline over time. Magnetic-like behavior remains an emergent closure target built from delayed geometry, Jacobian-modulated flux, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+This correction also clarified the status of receiver velocity. In the current canon, receiver velocity appears in the received branch magnitude through $D_{t,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
 
 The same audit also separated theorem-backed statements from closure targets. The current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The safer canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
 Corpus repair targets after this correction were clear:
 
-- remove bare $1/r^2$ per-hit laws where the causal Jacobian belongs,
+- remove bare $1/r^2$ and source-normal-only per-hit laws where receiver-normal branch strength belongs,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
 - replace over-broad conservation claims with assumption-scoped theorem language,
 - keep constant emission cadence distinct from received causal-flux modulation,
-- and treat receiver-velocity effects as work-rate, branch-sampling, and emergent-closure structure unless a local derivation proves a stronger force expression.
+- and include receiver-velocity effects through the receiver-normal numerator before promoting force, action, or finite-certificate rows.
 
 The correction remains a major inflection point because it made the master equation a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. It also made future closure burdens sharper: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
 

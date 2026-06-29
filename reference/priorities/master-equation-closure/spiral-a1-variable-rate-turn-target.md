@@ -126,8 +126,9 @@ one angular-rate-squared.
 
 This packet does not prove that the constant-$\Omega$ retained roots remain
 valid after changing the time law. A real variable-angular-rate A1 continuation
-must recompute the delayed roots, Jacobian weights, inactive gaps, and
-root-transport row for the nonconstant map $t(\theta)$. The mathematical gain
+must recompute the delayed roots, source-normal denominators, receiver-normal
+branch strengths, inactive gaps, and root-transport row for the nonconstant map
+$t(\theta)$. The mathematical gain
 is narrower and useful: the A1 no-go is not an endpoint. It supplies the local
 target equation
 $$

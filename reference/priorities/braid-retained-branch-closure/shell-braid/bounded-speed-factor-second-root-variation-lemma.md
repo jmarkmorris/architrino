@@ -575,7 +575,7 @@ A bounded-speed second root-variation packet must emit:
 | `bounded-speed-second-root-variation-open` | second sheet variations or certified interval equivalents are missing |
 | `bounded-speed-root-second-ad-missing` | the packet relies on interval automatic differentiation but no AD enclosure is emitted |
 | `bounded-speed-hessian-root-ledger-stale` | Hessian/action rows use a different root, support, action, event, or sign ledger |
-| `bounded-speed-force-weight-second-variation-open` | $\eta^{-2}|J|^{-1}$ is differentiated only to first order |
+| `bounded-speed-force-weight-second-variation-open` | source-normal denominator and receiver-normal branch-strength rows are differentiated only to first order |
 | `bounded-speed-second-jacobian-open` | $D^2J_r^{\nu}$ is missing clock, speed, tangent, direction, or second-root terms |
 | `bounded-speed-root-sheet-jacobian-sign-open` | $|J_r^{\nu}|$ has no fixed sign label for differentiating the force weight |
 | `bounded-speed-root-floor-failed` | the delay, Jacobian, inactive-gap, tail, support, event, or noncollision floor fails on the chart ball |

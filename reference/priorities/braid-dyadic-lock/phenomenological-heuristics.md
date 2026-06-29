@@ -100,7 +100,7 @@ $$
 $$
 That argument is not currently rigorous enough to carry the load.
 
-The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix the kernel contains the highly non-uniform Jacobian weight
+The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. In the old source-normal diagnostic, near the null separatrix the kernel contains the highly non-uniform factor
 $$
 \frac{1}{|J|},
 $$

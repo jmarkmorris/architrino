@@ -671,7 +671,7 @@ $$
 {|x(t)-x(t_0)|^2}
 \delta_\eta\!\big(|x(t)-x(t_0)|-c_f(t-t_0)\big)
 $$
-with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
+with the understanding that the source-normal denominators and receiver-normal branch factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
 
 The normalization convention for the shell mollifier is fixed once and used throughout the estimates below. Choose a nonnegative even
 $$

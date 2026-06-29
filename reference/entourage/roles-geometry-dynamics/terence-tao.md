@@ -15,7 +15,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
    - Write:
      - The **N-architrino system** as a delay integro-differential system.
      - Clear assumptions on:
-       - Jacobian-weighted inverse-square causal-wake kernel,
+       - receiver-normal inverse-square causal-wake kernel with source-normal denominator,
        - cutoff or mollification regime $\eta>0$,
        - Path-history dependence,
        - Initial history data on fixed-time intervals.

@@ -489,7 +489,7 @@ Proof route:
 1. interval Newton disjointness excludes roots in scalar delay slabs;
 2. monotone endpoint brackets plus $0\notin J$ give nodewise existence and uniqueness;
 3. the parametric Krawczyk inclusion gives a unique correction $z(\lambda)$ for every $\lambda$ in the receiver cell;
-4. fixed $J$ sign strata make the force derivative through $|J|^{-1}$ valid;
+4. fixed $J$ sign strata make the source-normal diagnostic derivative through $|J|^{-1}$ valid before receiver-normal factors are attached;
 5. coefficient-box persistence turns the point certificate into a Krawczyk/master-eligible chart row;
 6. exact-antipodal pairing copies certified margins to paired cells without changing $G$ or $J$.
 

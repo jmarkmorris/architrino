@@ -390,28 +390,41 @@ T_q(\mathbf{v}_{\text{trans}})\ge T_{q,0}
 $$
 with strict inequality for nonzero translation unless a compensating shape retuning changes the relevant $\ell_a$ rows. This is an absolute-time period theorem target, not a statement about observer clock time.
 
-### Mechanical Oblation From the Jacobian
+### Mechanical Oblation From Receiver-Normal Wake-Flux Asymmetry
 
-The causal Jacobian is the dynamics-side mechanism behind the moving-source flux change that standard field language would otherwise distribute across the effective electromagnetic connection, current/displacement terms, vector-potential curl, and the Noether sea response. For a retained root row $a=(i,j,t_0)$,
+Receiver-normal branch strength is the dynamics-side mechanism behind the wake-flux change that standard field language would otherwise distribute across the effective electromagnetic connection, current/displacement terms, vector-potential curl, and the Noether sea response. For a retained root row $a=(i,j,t_0)$,
 $$
-J_a
+D_{s,a}
 =
-1-
-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0)}{c_f},
+c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0),
+\qquad
+D_{t,a}
+=
+c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf r}_{ij}(t;t_0),
+\qquad
+W_a^{\mathrm{rec}}
+=
+\left|\frac{D_{t,a}}{D_{s,a}}\right|,
 \qquad
 w_a
 =
-\frac{1}{r_a^2|J_a|}
+\frac{W_a^{\mathrm{rec}}}{r_a^2}.
 $$
-The branch force contribution is proportional to $w_a\hat{\mathbf r}_a$. Decompose the source velocity into center translation plus internal motion,
+The branch force contribution is proportional to $w_a\hat{\mathbf r}_a$. Decompose the transceiver velocities into center translation plus internal motion,
 $$
 \mathbf{v}_j(t_0)
 =
 \mathbf{v}_{\text{trans}}
 +
-\mathbf{u}_j(t_0)
+\mathbf{u}_j(t_0),
+\qquad
+\mathbf{v}_i(t)
+=
+\mathbf{v}_{\text{trans}}
++
+\mathbf{u}_i(t).
 $$
-On a retained chart away from grazing, the translation part changes the received weight by
+On a retained chart away from grazing, the old source-normal estimate kept only
 $$
 |J_a|^{-1}
 =
@@ -422,34 +435,19 @@ $$
 \frac{\mathbf{u}_j(t_0)\cdot\hat{\mathbf r}_a}{c_f}
 \right|^{-1}
 $$
-Cycle-paired longitudinal rows with $\hat{\mathbf r}_a=\pm\hat{\mathbf e}_{\parallel}$ acquire the symmetric translation weight
+as a source-side diagnostic. The current Master EOM is stricter: the same translation also enters $D_{t,a}$, so a source-only longitudinal amplification such as $1/(1-\beta_f^2)$ is not by itself an oblation proof. The retained-row target is the receiver-normal anisotropy
 $$
-\frac12
-\left(
-\frac{1}{1-\beta_f}
-+
-\frac{1}{1+\beta_f}
-\right)
-=
-\frac{1}{1-\beta_f^2},
-\qquad
-\beta_f=\frac{\|\mathbf{v}_{\text{trans}}\|}{c_f}
-$$
-whereas ideal transverse rows with $\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a=0$ do not receive this translation amplification at the same order. Therefore the same radial inverse-square law becomes anisotropic after the branch is translated:
-$$
-\langle w\rangle_{\parallel}
+\Delta_w
+\equiv
+\left\langle \frac{W_a^{\mathrm{rec}}}{r_a^2}\right\rangle_{\parallel}
 -
-\langle w\rangle_{\perp}
+\left\langle \frac{W_a^{\mathrm{rec}}}{r_a^2}\right\rangle_{\perp}
 \sim
-\frac{1}{r^2}
-\left(
-\frac{1}{1-\beta_f^2}-1
-\right)
-+\mathcal{R}_{u,J}
+\mathcal{R}_{\mathrm{rec}}
 $$
-Here $\mathcal{R}_{u,J}$ records internal-motion, unequal-radius, finite-memory, and unpaired-row corrections.
+on the same causal-root ledger. Here $\mathcal{R}_{\mathrm{rec}}$ records internal-motion, unequal-radius, finite-memory, unpaired-row, and receiver/source-normal correction terms.
 
-For attractive partner rows this larger longitudinal weight increases the cycle-averaged longitudinal restoring stiffness. If $K_{\parallel}^{(q)}$ and $K_{\perp}^{(q)}$ denote the Hessian projections of the retained branch potential reconstructed from the same receiver-normal rows, the oblation target is
+For attractive partner rows, a positive receiver-normal longitudinal anisotropy would increase the cycle-averaged longitudinal restoring stiffness. If $K_{\parallel}^{(q)}$ and $K_{\perp}^{(q)}$ denote the Hessian projections of the retained branch potential reconstructed from the same receiver-normal rows, the oblation target is
 $$
 K_{\parallel}^{(q)}
 >
@@ -884,7 +882,7 @@ $$
 \frac{\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})}
 {\left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|}
 $$
-and branch Jacobian
+and source-normal causal Jacobian
 $$
 J_b
 =
@@ -892,13 +890,27 @@ J_b
 -
 \frac{\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b}{c_f}
 $$
+with
+$$
+D_{s,b}
+=
+c_f-\mathbf{v}_{j_b}(t_{0,b})\cdot\hat{\mathbf{r}}_b,
+\qquad
+D_{t,b}
+=
+c_f-\mathbf{v}_{o_b}(t_b)\cdot\hat{\mathbf{r}}_b,
+\qquad
+W_b^{\mathrm{rec}}
+=
+\left|\frac{D_{t,b}}{D_{s,b}}\right|.
+$$
 The branch is admissible only when its causal-root equation closes,
 $$
 \left\|\mathbf{x}_{o_b}(t_b)-\mathbf{x}_{j_b}(t_{0,b})\right\|
 =
 c_f(t_b-t_{0,b}),
 \qquad
-J_b\ne0
+D_{s,b}\ne0
 $$
 and the terminal label also satisfies the integer-lock and alignment constraints
 $$
@@ -1138,7 +1150,7 @@ J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
 $$
 and preserve the declared emission-order and observer-record class. Failure of the delay strip rejects the candidate kinematically; failure of the Jacobian floor places it in the grazing boundary class; failure of closed return changes the root ledger over one outer period. Passing this scalar certificate is still not terminal-branch existence, because $\mathcal{Q}_{\ell,\alpha}^{\mathrm{term}}=0$ and the conservation ledger must still close, but it is the first finite rejection and continuation criterion for candidate $(m,n)$ branch labels.
 
-The same chart projects the force residual once a certified root curve is supplied. Let $q_{\ell,\alpha}^{\mathrm{pol}}=\sigma_{\ell,\alpha}\epsilon$ denote the polarity bookkeeping unit carried by the architrino on layer $\ell$ and sign $\alpha$, distinguishing it from the layer frequency integer $q_\ell$. Write the signed coefficient inherited from the canonical per-hit law as
+The same chart projects the force residual once a certified root curve and same-record receiver-normal branch-strength row are supplied. Let $q_{\ell,\alpha}^{\mathrm{pol}}=\sigma_{\ell,\alpha}\epsilon$ denote the polarity bookkeeping unit carried by the architrino on layer $\ell$ and sign $\alpha$, distinguishing it from the layer frequency integer $q_\ell$. Write the signed coefficient inherited from the canonical per-hit law as
 $$
 \mathcal{K}_{jo}^{\alpha_j\alpha_o}
 =
@@ -1152,12 +1164,12 @@ $$
 a_{jo,r}^{\alpha_j\alpha_o}(u)
 =
 \mathcal{K}_{jo}^{\alpha_j\alpha_o}
+W_{jo}^{\mathrm{rec},\alpha_j\alpha_o}(u)
 \frac{
 x_o-\alpha_o\alpha_j x_j
 \cos\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
 }{
 \left(\delta_b(u)\right)^3
-\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
 }
 $$
 and the tangential component, positive in the receiver's instantaneous direction of motion, is
@@ -1165,15 +1177,15 @@ $$
 a_{jo,\tau}^{\alpha_j\alpha_o}(u)
 =
 \mathcal{K}_{jo}^{\alpha_j\alpha_o}
+W_{jo}^{\mathrm{rec},\alpha_j\alpha_o}(u)
 \frac{
 \alpha_o\alpha_j x_j
 \sin\Theta_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))
 }{
 \left(\delta_b(u)\right)^3
-\left|J_{jo}^{\alpha_j\alpha_o}(u,\delta_b(u))\right|
 }
 $$
-These formulas are just the canonical line-of-action acceleration projected onto the two circular-frame basis vectors. The intra-layer self-hit and partner-hit pieces use the same projection after substituting their own certified delay roots from the binary branch chart.
+These formulas are the current canonical line-of-action acceleration projected onto the two circular-frame basis vectors. The source-normal denominator remains part of $W^{\mathrm{rec}}$ through $D_s$, so the formulas are not active closure evidence until the same retained row supplies $D_s$, $D_t$, and $W^{\mathrm{rec}}$. The intra-layer self-hit and partner-hit pieces use the same projection after substituting their own certified delay roots from the binary branch chart.
 
 For each receiver $(\ell_o,\alpha_o)$, sum all admitted branch contributions into
 $$
@@ -1235,20 +1247,19 @@ b
 \mapsto
 \left(
 j_b,o_b,\tau_b,\delta_b(u),\hat{\mathbf{r}}_b(u),J_b(u),
+D_{s,b}(u),D_{t,b}(u),W_b^{\mathrm{rec}}(u),
 q_{j_b}^{\mathrm{pol}},q_{o_b}^{\mathrm{pol}},w_b^{(\eta)}(u)
 \right)
 $$
-where $j_b$ and $o_b$ are the source and receiver architrinos, $\tau_b$ is the hit type, and $w_b^{(\eta)}$ is the regularized inverse-square/Jacobian weight assigned to that branch. On a sharp transversal inter-layer branch,
+where $j_b$ and $o_b$ are the source and receiver architrinos, $\tau_b$ is the hit type, $D_{s,b}$ is the source-normal denominator, $D_{t,b}$ is the receiver-normal numerator, $W_b^{\mathrm{rec}}=\lvert D_{t,b}/D_{s,b}\rvert$, and $w_b^{(\eta)}$ is the regularized inverse-square receiver-normal weight assigned to that branch. On a sharp transversal inter-layer branch,
 $$
 w_b^{(0)}(u)
 =
 \frac{\omega_O^2}{c_f^2}
-\frac{1}{
-\left(\delta_b(u)\right)^2
-\left|J_b(u)\right|
-}
+\frac{W_b^{\mathrm{rec}}(u)}
+{\left(\delta_b(u)\right)^2}
 $$
-while intra-layer self-hit and partner-hit entries use the corresponding binary-root delay and Jacobian. The branch acceleration is then the canonical per-hit law in ledger form,
+while intra-layer self-hit and partner-hit entries use the corresponding binary-root delay, source-normal denominator, and receiver-normal numerator. The branch acceleration is then the canonical per-hit law in ledger form,
 $$
 \mathbf{a}_b^{(\eta)}(u)
 =
@@ -1374,7 +1385,7 @@ $$
 \kappa\,
 \operatorname{sign}(q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}})
 \left|q_{j_b}^{\mathrm{pol}}q_{o_b}^{\mathrm{pol}}\right|
-w_b^{(0)}(u)
+\,w_b^{(0)}(u)
 \hat{\mathbf{r}}_b(u)
 $$
 up to the sign convention fixed by writing the interaction term with a minus sign in the action. In other words, $w_b^{(\eta)}$ is not an independent fitting weight. It is the Euler-Lagrange pullback of the regularized causal kernel on a certified branch chart.
@@ -1454,21 +1465,21 @@ $$
 \right]
 \hat{\mathbf{r}}_b\cdot\delta\mathbf{x}_{o_b}(t_1)
 $$
-The first term already gives the desired terminal branch weight after the causal root is selected:
+The first term gives the source-normal part of the terminal branch scale after the causal root is selected:
 $$
 \int dt_0\,
 \Theta(t_1-t_0)
 \frac{\delta(g_b(t_1,t_0))}{r_b^2(t_1,t_0)}
 =
-\frac{1}{r_b^2(t_1,t_b^0)|J_b(t_1,t_b^0)|}
+\frac{1}{r_b^2(t_1,t_b^0)|D_{s,b}(t_1,t_b^0)|}
 =
 \frac{\omega_O^2}{c_f^2}
-\frac{1}{\delta_b^2(u)|J_b(u)|}
+\frac{1}{\delta_b^2(u)|D_{s,b}(u)|}
 =
-w_b^{(0)}(u)
+w_{b,\mathrm{src}}^{(0)}(u)
 $$
 
-The second term is the nontrivial root-constraint variation. It cannot be dropped after the branch has been pulled back to $\delta_b(u)$. The terminal-chart variation proof closes exactly when the regularized two-time action satisfies, for every compactly supported or period-matched receiver variation,
+The active force-law branch strength still requires the receiver-normal numerator, so the terminal ledger must promote $w_b^{(0)}=(\omega_O^2/c_f^2)W_b^{\mathrm{rec}}/\delta_b^2$ only after $D_{t,b}$ is recorded on the same retained branch. The second term is the nontrivial root-constraint variation. It cannot be dropped after the branch has been pulled back to $\delta_b(u)$. The terminal-chart variation proof closes exactly when the regularized two-time action satisfies, for every compactly supported or period-matched receiver variation,
 $$
 \lim_{\eta\to0}
 \left[
@@ -1480,7 +1491,7 @@ $$
 =
 \mathbf{0}
 $$
-where the subscript $\mathrm{int}$ means after the source-side variation, integration by parts on the root-selected chart, and the Noether boundary term have been accounted for. Equivalently, all interior force density left by varying the causal constraint must cancel into the boundary wake increments rather than adding a second independent line-of-action force. This is the exact missing identity for a complete terminal-chart variation proof. The direct $1/r$ variation supplies the scale coefficient $w_b^{(0)}$; the remaining proof burden is to show that the $\delta_\eta'(g_b)$ contribution is a boundary/source-side term, vanishes under a local stationarity condition, or is cancelled by a declared counterterm under the same symmetry-preserving regularization used for the conservation ledger.
+where the subscript $\mathrm{int}$ means after the source-side variation, integration by parts on the root-selected chart, and the Noether boundary term have been accounted for. Equivalently, all interior force density left by varying the causal constraint must cancel into the boundary wake increments rather than adding a second independent line-of-action force. This is the exact missing identity for a complete terminal-chart variation proof. The direct $1/r$ variation supplies the source-normal scale coefficient $w_{b,\mathrm{src}}^{(0)}$; the remaining proof burden is to show that the $\delta_\eta'(g_b)$ contribution is a boundary/source-side term, vanishes under a local stationarity condition, or is cancelled by a declared counterterm under the same symmetry-preserving regularization used for the conservation ledger while the same branch records $D_{t,b}$ for $W_b^{\mathrm{rec}}$.
 
 This identity can be narrowed one step further. On a transversal branch,
 $$
@@ -1630,7 +1641,7 @@ $$
 $$
 with the same endpoint convention used for the wake-history ledger. Such a counterterm is admissible only when derived from the same symmetry-preserving action-level mechanism, not when inserted as a fit to the accepted branch law. This is the smallest correction exposed by the variation: it preserves the direct inverse-square branch law when the stationarity condition holds, and otherwise records exactly the residual force density that the scalar kernel leaves behind.
 
-For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct $w_b^{(0)}$ scale contribution. The finite local delta-jet extension has the same obstruction. In the common-center inter-layer chart, the stationarity option is also ruled out by the lemma below. The terminal branch proof should therefore test branch-summed residual closure directly; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](../dynamics/master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
+For the same causal-surface local scalar class, this counterterm route is ruled out. A scalar term $a(r_b,J_b)\delta_\eta(g_b)$ must choose $a=-1/r_b$ to cancel the derivative-of-delta coefficient, but that same choice changes the direct source-normal scale contribution. The finite local delta-jet extension has the same obstruction. In the common-center inter-layer chart, the stationarity option is also ruled out by the lemma below. The terminal branch proof should therefore test branch-summed residual closure directly with $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the same retained rows; otherwise the remaining action-level option is the nonlocal characteristic-tail repair target from [Master Equation](../dynamics/master-equation.md#exact-nonlocal-lagrangian), or a richer velocity/history-dependent invariant mechanism. Neither option is a fitted scalar patch.
 
 **Lemma (common-center inter-layer stationarity obstruction).** In the symmetric common-center terminal chart, no positive-delay, non-grazing inter-layer branch with nonzero layer radii and nonzero source speed satisfies the per-branch stationarity condition above. Define the dimensionless separation vector
 $$

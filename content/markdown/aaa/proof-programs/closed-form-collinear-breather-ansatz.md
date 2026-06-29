@@ -244,7 +244,7 @@ A_p
 \frac{g(1+\beta)}{4x^2}
 $$
 
-This is not, by itself, a conservative potential curve. The Jacobian factor makes the affine partner force velocity dependent, so the local model is a Lienard-type phase equation. On the bare affine partner chart,
+This is not, by itself, a conservative potential curve. The old source-normal diagnostic factor makes the affine partner row velocity dependent, so the local model is a Lienard-type phase equation until the same chart is rebuilt with $W^{\mathrm{rec}}$. On the bare source-normal affine partner chart,
 $$
 \ddot x
 =

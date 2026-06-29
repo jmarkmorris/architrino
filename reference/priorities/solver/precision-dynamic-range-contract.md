@@ -171,7 +171,7 @@ Detailed root rows use `root_ledger_detail.v1`. They are the required app-facing
 | `iterationCount` | Number of root iterations or the iteration count associated with the row. |
 | `intervalStart` and `intervalEnd` | Search or support interval for retained roots, inactive gaps, tail boundaries, transition rows, or failures. |
 | `bracketStart` and `bracketEnd` | Root bracket or isolation interval bounds for the row. |
-| `jacobian` | The branch Jacobian value used for weighting and small-Jacobian diagnostics. |
+| `jacobian` | The source-normal branch Jacobian value used for root-transversality and small-Jacobian diagnostics. |
 | `jacobianSignStratum` | Sign stratum for branch diagnostics: negative, near-zero, or positive. |
 | `statusCode` | Canonical solver status code for the row. |
 | `stateFlags` | Row state bits, including whether the row represents a first failure. |

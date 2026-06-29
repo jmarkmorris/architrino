@@ -111,7 +111,7 @@ $$
 S_T^p(0,\Delta)=S_T^s(0,\Delta)=\rho(0,\Delta)\sin\Delta.
 $$
 Thus the exact center residual is determined by the retained delayed-root
-offsets and their Jacobian weights.
+offsets, source-normal denominators, and receiver-normal branch strengths.
 
 ## A1 Center Residual Interval
 

@@ -261,7 +261,7 @@ $$
 2\text{ repulsive source sites}.
 $$
 
-Equivalently, if every nonself source site contributed one identical scalar unit with no delay, no Jacobian weighting, no root multiplicity, and no direction, the receiver would see one net attractive unit:
+Equivalently, if every nonself source site contributed one identical scalar unit with no delay, no source-normal denominator, no receiver-normal branch factor, no root multiplicity, and no direction, the receiver would see one net attractive unit:
 
 $$
 \sum_{j\ne i}(-\sigma_i\sigma_j)
@@ -276,7 +276,7 @@ This is the correct inventory meaning of the operator's observation.
 It is not a force-closure proof for five independent reasons.
 
 1. The actual retained ledger is a root ledger, not just a site ledger. A source site may have zero, one, or several retained roots inside the declared memory convention.
-2. The weights $w_r^\Phi$ and $w_r^F$ depend on delay and Jacobian factors. A long-delay attractive root can be smaller than a short-delay repulsive root.
+2. The weights $w_r^\Phi$ and $w_r^F$ depend on delay, source-normal denominators, and receiver-normal branch strengths. A long-delay attractive root can be smaller than a short-delay repulsive root.
 3. The force is vector-valued. Attractive and repulsive channels can project differently onto $\mathbf{T}_i$, $P_i^\perp$, and any support-band normal.
 4. Same-source, fold-layer, and medium-response rows are outside the $3$-$2$ site count and must be separately absent, regularized, or included.
 5. Dynamics closure requires the same weighted force ledger to pass tangential, curvature, action, Noether/event, convergence, and stability rows.

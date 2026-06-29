@@ -52,7 +52,7 @@ $$
 
 It closes only when the tangent forcing has zero period mean, its primitive excursion stays inside the speed band, and the clock/length row fixes an admissible initial speed. Free-support branches also need support multiplier work to be either zero, exact, or assigned to the Noether/event exchange ledger.
 
-The bounded-speed rows are coupled rather than sequential once they become a certificate. The speed ODE changes $\chi_i$, $\Lambda_i$, causal roots, Jacobian weights, delayed directions, support multipliers, action scale, and event surfaces. Thus the scalar speed row and the normal reconstruction row are diagnostic unless they are joined in the coupled residual $\mathcal{R}_{\mathrm{cpl}}^\nu$ of [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
+The bounded-speed rows are coupled rather than sequential once they become a certificate. The speed ODE changes $\chi_i$, $\Lambda_i$, causal roots, source-normal denominators, receiver-normal branch strengths, delayed directions, support multipliers, action scale, and event surfaces. Thus the scalar speed row and the normal reconstruction row are diagnostic unless they are joined in the coupled residual $\mathcal{R}_{\mathrm{cpl}}^\nu$ of [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
 
 ---
 
