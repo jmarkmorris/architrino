@@ -831,6 +831,18 @@ cancellation in the run summary is not a same-record absent, paired, or routed
 map. The exact blocker therefore moves from "there is no chronology" to "there
 is no retained causal-root replay producer carrying those same-record fields."
 
+The sharper source boundary is
+`t3-retained-causal-root-replay-source-boundary.v1`: it records that the
+observed `t3-run-summary.v1` source is `aggregate_and_step_summary_only`, with
+zero retained producer rows, and that the expected source object remains one
+`t3-retained-causal-root-replay.v1` row per active chronology row. That source
+object must carry the retained source record id, retained causal-root row id,
+row-family identity, boundary orientation, winding label, Jacobian floor or
+declared stratum, endpoint route, memory-window route, collision/core route,
+omitted-row route, and the family-specific seam, neighbor, event, unresolved
+root, or cancellation-routing fields before chronology rows can become
+same-record replay evidence.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It

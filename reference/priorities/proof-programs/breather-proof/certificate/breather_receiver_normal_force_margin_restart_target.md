@@ -298,3 +298,25 @@ higher-fold rows. Until that route produces an accepted higher-fold separator
 layer certificate and an authorized branch chart for the same packet, the
 receiver-normal retained-row, derivative-bundle, margin-interval, and fixture
 filenames remain required producer targets rather than proof evidence.
+
+Rule-kernel payload boundary. The absence-boundary object also imports the
+lower rule-kernel source boundary under
+`producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary`.
+The expected proof-object producer is
+`source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`;
+the expected schema candidate is
+`sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`.
+This is not locally implementable from existing breather data: the local pool
+contains 0 compatible proof-grade derivation schema objects, 0 accepted
+external provenance records, 0 schema-validation intake candidates, and 0
+external schema inputs received. The exact blocked `Sigma_hf_01` proof-grade
+fields are `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`. Until those three fields arrive with
+accepted external provenance and pass schema-validation intake, the
+rule-kernel derivation payload, source-packet acceptance rule derivation proof,
+soundness proof, endpoint-application proof, accepted constants conformance,
+compatible source-packet acceptance evidence, accepted same-packet fold
+impulse/direct-quadrature source packet, higher-fold separator layer
+certificate, `branch_chart.json`, receiver-normal retained rows, derivative
+bundle, and margin interval source remain blocked.

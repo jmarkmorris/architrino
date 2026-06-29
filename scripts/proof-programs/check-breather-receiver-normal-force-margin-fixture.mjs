@@ -59,6 +59,67 @@ const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ROUTE_SOURCE_FILES = Object.freeze({
     "higher_fold_layer_same_packet_impulse_direct_quadrature_source_packet_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
 });
 
+const BREATHER_RULE_KERNEL_PAYLOAD_ROUTE_SOURCE_FILES = Object.freeze({
+  derivation_proof_target_packet:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  proof_object_contract_target_packet:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  proof_grade_derivation_schema_target_packet:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  proof_grade_derivation_schema_current_pool_absence:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  proof_grade_derivation_schema_external_input_obligation:
+    "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  sigma_hf_01_missing_proof_grade_fields_target:
+    "sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  sigma_hf_01_external_provenance_contract_replay:
+    "sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  sigma_hf_01_local_pool_nonreclassification:
+    "sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+});
+
+const BREATHER_RULE_KERNEL_PAYLOAD_REQUIRED_SCHEMA_FIELDS = Object.freeze([
+  "compatible_schema_role_lock",
+  "compatible_proof_object_role_lock",
+  "derivation_proof_target_lock",
+  "derivation_proof_source_data_record_lock",
+  "rule_kernel_obligation_binding",
+  "rule_kernel_derivation_payload_target_binding",
+  "proof_grade_derivation_schema_statement",
+  "non_reinterpretation_guard",
+]);
+
+const BREATHER_RULE_KERNEL_PAYLOAD_EXTERNAL_PROVENANCE_FIELDS = Object.freeze([
+  "external_schema_provenance.provenance_class",
+  "external_schema_provenance.source_ref",
+  "external_schema_provenance.acceptance_contract_ref",
+  "external_schema_provenance.received_for_schema_validation",
+  "external_schema_provenance.authored_inside_local_proof_program_pool",
+  "external_schema_provenance.derived_from_local_certificate_json",
+  "external_schema_provenance.self_authored_placeholder",
+  "external_schema_provenance.local_path_treated_as_external_evidence",
+]);
+
+const BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS = Object.freeze([
+  "source_packet_acceptance_rule_derivation_proof",
+  "source_packet_acceptance_rule_soundness_proof",
+  "source_packet_acceptance_rule_endpoint_application_proof",
+  "accepted_constants_conformance",
+  "compatible_source_packet_acceptance_evidence",
+  "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet",
+]);
+
+const BREATHER_RULE_KERNEL_PAYLOAD_TRACEABILITY_FIELDS = Object.freeze([
+  "source_identity",
+  "source_section_or_equation_refs",
+  "sigma_hf_01_source_data_record_lock",
+  "same_record_rule_kernel_obligation_binding",
+  "same_record_payload_target_binding",
+  "same_record_schema_statement",
+  "non_reinterpretation_guard",
+  "negative_control_or_decoy_rejection",
+]);
+
 export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY =
   Object.freeze({
     expected_producer_object:
@@ -287,6 +348,33 @@ function summarizeExpectedCandidateArtifacts(routeJson) {
   );
 }
 
+function summarizeSigmaHf01MissingFieldsTarget(routeJson) {
+  return {
+    path: routeJson.path,
+    present: routeJson.present,
+    parse_error: routeJson.parse_error ?? null,
+    schema: routeJson.value?.schema ?? null,
+    status: routeJson.value?.status ?? null,
+    target_slot: routeJson.value?.target_slot ?? null,
+    required_fields_total: routeJson.value?.required_fields_total ?? null,
+    required_fields_present: routeJson.value?.required_fields_present ?? null,
+    missing_field_count: routeJson.value?.missing_field_count ?? null,
+    candidate_external_schema_received:
+      routeJson.value?.candidate_external_schema_received ?? null,
+    slot_result: routeJson.value?.slot_result ?? null,
+    row_slots_parked: routeJson.value?.row_slots_parked ?? null,
+    targeted_missing_fields: Array.isArray(routeJson.value?.targeted_missing_fields)
+      ? routeJson.value.targeted_missing_fields.map((field) => ({
+          field: field.field ?? null,
+          status: field.status ?? null,
+          required_predicates: Array.isArray(field.required_predicates)
+            ? field.required_predicates
+            : [],
+        }))
+      : [],
+  };
+}
+
 function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot) {
   const routes = Object.fromEntries(
     Object.entries(BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ROUTE_SOURCE_FILES).map(([key, filename]) => [
@@ -299,6 +387,12 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
   const routeInput = routes.route_input_first_blocker_handoff;
   const sourceRuleContract = routes.source_packet_rule_derivation_proof_contract_attempt;
   const sourcePacketAttempt = routes.same_packet_impulse_direct_quadrature_source_packet_attempt;
+  const ruleKernelRoutes = Object.fromEntries(
+    Object.entries(BREATHER_RULE_KERNEL_PAYLOAD_ROUTE_SOURCE_FILES).map(([key, filename]) => [
+      key,
+      readRouteJson(sourceRoot, filename),
+    ]),
+  );
 
   return {
     schema: `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.producer-route-boundary/v0`,
@@ -380,6 +474,12 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
       margin_interval_source_field: "gamma_rec_interval",
     },
     source_packet_route_boundary: {
+      expected_derivation_proof_object:
+        "source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      expected_rule_kernel_schema_candidate:
+        "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      source_packet_acceptance_rule_fields:
+        BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS,
       source_packet_rule_derivation_proof_contract_attempt: summarizeRouteJson(sourceRuleContract, [
         "source_material_premise_slots_satisfied",
         "candidate_exact_consistency_premise_slots_satisfied",
@@ -408,6 +508,125 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
         "first_acceptance_blocker",
         "first_numerical_enclosure_blocker",
       ]),
+      rule_kernel_payload_boundary: {
+        schema: `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.rule-kernel-payload-boundary/v0`,
+        expected_rule_kernel_schema_candidate:
+          "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+        expected_derivation_proof_object:
+          "source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+        compatible_schema_role:
+          "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema",
+        compatible_proof_object_role: "source_packet_acceptance_rule_derivation_proof_object",
+        derivation_proof_target:
+          "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+        required_schema_fields: BREATHER_RULE_KERNEL_PAYLOAD_REQUIRED_SCHEMA_FIELDS,
+        external_provenance_fields: BREATHER_RULE_KERNEL_PAYLOAD_EXTERNAL_PROVENANCE_FIELDS,
+        required_traceability_fields: BREATHER_RULE_KERNEL_PAYLOAD_TRACEABILITY_FIELDS,
+        source_packet_acceptance_rule_fields:
+          BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS,
+        blocked_downstream_until_schema_received: [
+          "rule_kernel_derivation_payload",
+          "source_packet_acceptance_rule_derivation_proof",
+          "source_packet_acceptance_rule_soundness_proof",
+          "source_packet_acceptance_rule_endpoint_application_proof",
+          "accepted_constants_conformance",
+          "compatible_source_packet_acceptance_evidence",
+          "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet",
+          "higher_fold_separator_layer_certificate",
+          "branch_chart.json",
+          BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.retained_rows,
+          BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.derivative_bundle,
+          BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.margin_intervals,
+        ],
+        evidence: {
+          derivation_proof_target_packet: summarizeRouteJson(
+            ruleKernelRoutes.derivation_proof_target_packet,
+            [
+              "derivation_proof_target_slots_declared",
+              "source_packet_acceptance_rule_derivation_proof_slots_satisfied",
+              "rule_kernel_obligation_slots",
+              "rule_kernel_obligation_slots_satisfied",
+              "first_rule_kernel_blocker",
+              "first_downstream_rule_kernel_blocker_after_derivation",
+            ],
+          ),
+          proof_object_contract_target_packet: summarizeRouteJson(
+            ruleKernelRoutes.proof_object_contract_target_packet,
+            [
+              "source_packet_acceptance_rule_derivation_proof_object_contract_target_slots_declared",
+              "source_packet_acceptance_rule_derivation_proof_object_contract_field_slots",
+              "source_packet_acceptance_rule_derivation_proof_object_contract_field_slots_satisfied",
+              "current_pool_source_packet_acceptance_rule_derivation_proof_object_files_found",
+              "first_derivation_proof_object_contract_blocker",
+            ],
+          ),
+          proof_grade_derivation_schema_target_packet: summarizeRouteJson(
+            ruleKernelRoutes.proof_grade_derivation_schema_target_packet,
+            [
+              "proof_grade_derivation_schema_target_slots_declared",
+              "proof_grade_derivation_schema_target_fields",
+              "proof_grade_derivation_schema_target_field_slots",
+              "proof_grade_derivation_schema_target_field_slots_satisfied",
+              "proof_grade_derivation_schemas_constructed",
+              "rule_kernel_derivation_payloads_constructed",
+              "first_schema_target_blocker",
+            ],
+          ),
+          proof_grade_derivation_schema_current_pool_absence: summarizeRouteJson(
+            ruleKernelRoutes.proof_grade_derivation_schema_current_pool_absence,
+            [
+              "current_pool_json_files_scanned",
+              "current_pool_proof_grade_derivation_schema_files_found",
+              "current_pool_compatible_proof_grade_derivation_schema_refs",
+              "retained_proof_grade_derivation_schema_source_available_slots",
+              "proof_grade_derivation_schema_current_pool_absence_slots_satisfied",
+              "proof_grade_derivation_schemas_constructed",
+              "rule_kernel_derivation_payloads_constructed",
+              "first_current_pool_schema_absence_blocker",
+              "first_payload_construction_blocker",
+            ],
+          ),
+          proof_grade_derivation_schema_external_input_obligation: summarizeRouteJson(
+            ruleKernelRoutes.proof_grade_derivation_schema_external_input_obligation,
+            [
+              "proof_grade_derivation_schema_external_input_obligation_slots_declared",
+              "proof_grade_derivation_schema_external_input_required_slots",
+              "proof_grade_derivation_schema_external_input_received_slots",
+              "proof_grade_derivation_schema_external_input_obligation_field_slots_satisfied",
+              "first_external_schema_obligation_blocker",
+              "mechanical_continuations_from_current_pool",
+              "decision_required_for_acceptance",
+            ],
+          ),
+          sigma_hf_01_missing_proof_grade_fields_target:
+            summarizeSigmaHf01MissingFieldsTarget(
+              ruleKernelRoutes.sigma_hf_01_missing_proof_grade_fields_target,
+            ),
+          sigma_hf_01_external_provenance_contract_replay: summarizeRouteJson(
+            ruleKernelRoutes.sigma_hf_01_external_provenance_contract_replay,
+            [
+              "local_proof_program_json_files_screened_as_candidate_refs",
+              "external_provenance_accepted_records",
+              "schema_validation_intake_candidates_found",
+              "field_complete_but_provenance_rejected_records",
+              "external_schema_inputs_received",
+              "first_failure",
+            ],
+          ),
+          sigma_hf_01_local_pool_nonreclassification: summarizeRouteJson(
+            ruleKernelRoutes.sigma_hf_01_local_pool_nonreclassification,
+            [
+              "local_proof_program_json_files_screened",
+              "local_proof_program_json_files_reclassified_as_external_schema",
+              "schema_validation_intake_candidates_found",
+              "external_schema_input_received_records",
+              "external_provenance_accepted_records",
+              "local_eight_field_records_without_external_schema_intake",
+              "first_nonreclassification_blocker",
+            ],
+          ),
+        },
+      },
     },
   };
 }

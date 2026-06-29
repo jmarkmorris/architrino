@@ -78,7 +78,13 @@ the first source-packet proof object is the
 `source_packet_acceptance_rule_derivation_proof`, and the downstream
 branch-chart route remains blocked by absent candidate replay artifacts,
 accepted fold-layer rows, row consumption, and higher-fold separator layer
-certificate evidence.
+certificate evidence. The same boundary now lowers the source-packet route one
+step further: the `Sigma_hf_01` rule-kernel payload needs a non-local
+`sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`
+with accepted external provenance and the three still-missing proof-grade
+fields `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`.
 
 ## Current Stopping Point
 

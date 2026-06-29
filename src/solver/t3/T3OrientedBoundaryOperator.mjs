@@ -129,11 +129,17 @@ function createSameRecordReplayBoundary(retainedBoundaryChronology) {
   );
   const rows = replayCandidateRows.map(sameRecordReplayBoundaryRow);
   const negativeControls = createReplayNegativeControls(retainedBoundaryChronology);
+  const producerRowSourceBoundary = createProducerRowSourceBoundary({
+    retainedBoundaryChronology,
+    rows,
+    negativeControls,
+  });
   return {
     schema: SAME_RECORD_REPLAY_BOUNDARY_SCHEMA,
     rowDomain:
       "retained chronology rows that still require same-record causal-root replay",
     producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    producerRowSourceBoundary,
     rows,
     negativeControls,
     missingFieldCatalog: {
@@ -169,12 +175,103 @@ function createSameRecordReplayBoundary(retainedBoundaryChronology) {
       acceptedReplayRowCount: 0,
       blockedReplayRowCount: rows.length,
       negativeControlCount: negativeControls.length,
+      producerRowSourceStatus: producerRowSourceBoundary.summary.status,
+      expectedSourceObjectSchema: producerRowSourceBoundary.expectedSourceObject.schema,
       replayStatus:
         rows.length > 0
           ? "fail_closed_missing_same_record_replay"
           : "no_replay_candidate_rows",
       firstReplayBoundaryRowId: rows[0]?.rowId ?? null,
       firstMissingField: rows[0]?.missingFields?.[0] ?? null,
+      firstMissingProducerField:
+        producerRowSourceBoundary.summary.firstMissingProducerField ?? null,
+      firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function createProducerRowSourceBoundary(input) {
+  const { retainedBoundaryChronology, rows, negativeControls } = input;
+  const activeFamilies = Array.from(
+    new Set(rows.map((row) => row.rowFamily))
+  ).sort();
+  return {
+    schema: "t3-retained-causal-root-replay-source-boundary.v1",
+    observedSourceObject: {
+      schema: "t3-run-summary.v1",
+      retainedProducerRowSourcePresent: false,
+      retainedProducerRowCount: 0,
+      sourceStatus: "aggregate_and_step_summary_only",
+      availableChronologyFields: [
+        "stepIndex",
+        "rowFamily",
+        "rowKind",
+        "evidenceMagnitude",
+        "signedBalance",
+        "candidateBoundaryOrientation",
+        "firstBlocker",
+      ],
+      aggregateOrStepOnlyChannels: [
+        "periodicWrapEvidence.imageDeltaTotals",
+        "periodicWrapEvidence.absoluteImageDeltaTotals",
+        "periodicWrapEvidence.perStep",
+        "neighborPairCounts.perStep",
+        "eventSummary.eventTypeCounts",
+        "eventSummary.perStep",
+      ],
+      unsupportedReplayAttempt:
+        "aggregate or per-step run-summary channels do not carry a retained source record id or retained causal-root row id",
+    },
+    expectedSourceObject: {
+      schema: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+      rowDomain:
+        "one retained causal-root replay row per active retained-boundary chronology row",
+      requiredFields: COMMON_REPLAY_FIELDS_REQUIRED,
+      familySpecificRequiredFields: {
+        seam: [
+          "seamPairingMapOrWindingOwnerRowId",
+          "imageDeltaAxis",
+          "signedImageDeltaWitness",
+        ],
+        neighbor: [
+          "neighborPairDeltaRole",
+          "causalRootMultiplicityDelta",
+          "sameRecordPairContactBirthDeathRoute",
+        ],
+        detectorEvent: [
+          "retainedEventRowId",
+          "eventRowOrientation",
+          "declaredBoundaryStratum",
+        ],
+        unresolvedRoot: [
+          "rootLedgerRecordId",
+          "causticRoute",
+          "sourcePathSegmentId",
+        ],
+        signedBalance: [
+          "sameRecordCancellationPairingMap",
+          "absentPairedOrRoutedRowMap",
+        ],
+      },
+    },
+    blockedReplayAuthorization: {
+      crossStepOrAggregateOnly:
+        "must fail until every chronology row has its own retained source record and retained causal-root row id",
+      zeroSignedBalanceCancellation:
+        "must fail until the retained source record carries the same-record cancellation pairing or routing map",
+      negativeControlIds: negativeControls.map((row) => row.controlId),
+    },
+    summary: {
+      status: "missing_retained_causal_root_replay_source",
+      activeChronologyRowCount: rows.length,
+      activeChronologyFamilies: activeFamilies,
+      observedChronologyRowCount: retainedBoundaryChronology.summary.rowCount,
+      retainedProducerRowSourcePresent: false,
+      retainedProducerRowCount: 0,
+      acceptedReplayRowCount: 0,
+      firstMissingProducerField: COMMON_REPLAY_FIELDS_REQUIRED[0],
       firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
       retainedBranch: false,
       provesBranchAdmissibility: false,
@@ -195,6 +292,15 @@ function sameRecordReplayBoundaryRow(chronologyRow) {
     chronologyFirstBlocker: chronologyRow.firstBlocker,
     replayStatus: "blocked_missing_same_record_replay",
     producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    availableChronologyFields: [
+      "stepIndex",
+      "rowFamily",
+      "rowKind",
+      "evidenceMagnitude",
+      "signedBalance",
+      "candidateBoundaryOrientation",
+      "firstBlocker",
+    ],
     missingFields: replayMissingFields(chronologyRow),
     retainedBoundaryTargetRow: chronologyRow.retainedBoundaryTargetRow,
     detectorRow: chronologyRow.detectorRow,

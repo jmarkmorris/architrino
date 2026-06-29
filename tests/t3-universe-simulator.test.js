@@ -423,6 +423,35 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     "t3-retained-causal-root-replay.v1"
   );
   assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.producerRowSourceStatus,
+    "missing_retained_causal_root_replay_source"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.observedSourceObject.sourceStatus,
+    "aggregate_and_step_summary_only"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.expectedSourceObject.schema,
+    "t3-retained-causal-root-replay.v1"
+  );
+  assert.equal(
+    [
+      "retainedSourceRecordId",
+      "retainedCausalRootRowId",
+      "boundaryOrientation",
+      "windingLabel",
+      "endpointRoute",
+      "memoryWindowRoute",
+      "collisionCoreRoute",
+      "omittedRowRoute",
+    ].every((field) =>
+      result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.expectedSourceObject.requiredFields.includes(
+        field
+      )
+    ),
+    true
+  );
+  assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].chronologyRowId,
     "step_0_seam_x"
   );
@@ -596,6 +625,26 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
     "t3-retained-causal-root-replay.v1"
   );
   assert.equal(prototype.sameRecordReplayBoundary.summary.acceptedReplayRowCount, 0);
+  assert.equal(
+    prototype.sameRecordReplayBoundary.summary.producerRowSourceStatus,
+    "missing_retained_causal_root_replay_source"
+  );
+  assert.equal(
+    prototype.sameRecordReplayBoundary.producerRowSourceBoundary.summary.retainedProducerRowSourcePresent,
+    false
+  );
+  assert.equal(
+    prototype.sameRecordReplayBoundary.producerRowSourceBoundary.observedSourceObject.aggregateOrStepOnlyChannels.includes(
+      "periodicWrapEvidence.perStep"
+    ),
+    true
+  );
+  assert.equal(
+    prototype.sameRecordReplayBoundary.producerRowSourceBoundary.blockedReplayAuthorization.negativeControlIds.includes(
+      "cross_step_or_aggregate_only_replay_without_chronology_row_identity"
+    ),
+    true
+  );
   assert.equal(
     prototype.sameRecordReplayBoundary.rows.some(
       (row) =>

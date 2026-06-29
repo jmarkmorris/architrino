@@ -192,6 +192,45 @@ test("breather force-margin fixture validator emits breather source absence boun
     "rule_kernel_derivation_payload",
   );
   assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.expected_rule_kernel_schema_candidate,
+    "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.schema,
+    `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.rule-kernel-payload-boundary/v0`,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.required_schema_fields.includes(
+      "proof_grade_derivation_schema_statement",
+    ),
+    true,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.evidence
+      .proof_grade_derivation_schema_external_input_obligation.summary
+      .proof_grade_derivation_schema_external_input_received_slots,
+    0,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.evidence
+      .sigma_hf_01_missing_proof_grade_fields_target.missing_field_count,
+    3,
+  );
+  assert.deepEqual(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.evidence
+      .sigma_hf_01_missing_proof_grade_fields_target.targeted_missing_fields.map((field) => field.field),
+    [
+      "rule_kernel_obligation_binding",
+      "rule_kernel_derivation_payload_target_binding",
+      "proof_grade_derivation_schema_statement",
+    ],
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.evidence
+      .sigma_hf_01_external_provenance_contract_replay.summary.first_failure,
+    "external_schema_provenance_required_before_schema_validation_intake",
+  );
+  assert.equal(
     boundary.producer_route_boundary.receiver_normal_route.derivative_bundle_expected_file,
     "breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json",
   );
@@ -222,6 +261,11 @@ test("breather force-margin fixture CLI emits source absence boundary", () => {
     boundary.producer_route_boundary.source_packet_route_boundary
       .same_packet_impulse_direct_quadrature_source_packet_attempt.summary.first_acceptance_blocker,
     "row_projection_source_slice_coverage_certificate_absent",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.evidence
+      .sigma_hf_01_local_pool_nonreclassification.summary.external_schema_input_received_records,
+    0,
   );
 });
 
