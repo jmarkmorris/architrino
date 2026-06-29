@@ -723,6 +723,7 @@ assertWorkerMethods([
   "describeAssemblyGraphStoreF64",
   "readAssemblyGraphStoreRangeF64",
   "buildPathHistoryStreamSpaceTimeIndexF64",
+  "stepT3UniverseF64",
   "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
   "applyPathHistoryStorageLifecycleF64",
@@ -4195,6 +4196,10 @@ function createCapabilitiesFixture() {
           appId: "ideal-braid",
           runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
         },
+        {
+          appId: "t3",
+          runKinds: ["motionSimulation", "pathHistory", "validationReplay"],
+        },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],
       workerModel: {
@@ -4421,7 +4426,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 15,
+    abiMinor: 16,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,
@@ -4468,6 +4473,10 @@ function createAbiInfoFixture() {
     statusRowBytes: 24,
     admissionReportF64Bytes: 112,
     pairInteractionRequestF64Bytes: 88,
+    t3StepRequestF64Bytes: 96,
+    t3ParticleStateF64Bytes: 80,
+    t3ParticleStepRowF64Bytes: 104,
+    t3StepSummaryF64Bytes: 88,
   };
 }
 

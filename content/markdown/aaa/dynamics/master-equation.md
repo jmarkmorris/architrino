@@ -3121,7 +3121,7 @@ $$
 \frac{\hat{\mathbf r}_{ij}}{c_f r_{ij}J_{ij}}
 \right]
 $$
-The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive the branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. If that cancellation fails, the branch-resolved law requires an additional regularized counterterm beyond $\hat{\mathbf r}_{ij}/(r_{ij}^2|J_{ij}|)$.
+The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. Under the current Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this old source-only residual must be redriven rather than reused as closure evidence.
 
 The source-side variation narrows the issue further. Holding the receiver point fixed and varying the emission point gives
 $$
@@ -3170,7 +3170,7 @@ $$
 $$
 This is a coefficient of $\delta\mathbf{x}_j(t')$, not of $\delta\mathbf{x}_i(t)$. For arbitrary compactly supported interior variations, the receiver and source variations are independent. The source-side term therefore does not generically cancel the receiver-side root-chart derivative in the Euler-Lagrange equation for $\mathbf{x}_i(t)$. Noether boundary terms control endpoint contributions and global time-translation, spatial-translation, and rotation charges; they do not remove an interior coefficient under compact variations.
 
-In the sharp positive-delay, transversal limit,
+In the old source-only sharp positive-delay, transversal limit,
 $$
 \int dt'\,
 \delta_\eta(g_{ij})
@@ -3188,7 +3188,7 @@ $$
 \right]
 \right|_{t'=t_0}
 $$
-Thus the exact $1/r$ causal kernel proves the target inverse-square branch term only if the admitted branch also satisfies the local stationarity condition
+Thus the old exact $1/r$ causal kernel proved the source-only inverse-square branch term only if the admitted branch also satisfied the local stationarity condition
 $$
 \left.
 \partial_{t'}
@@ -3199,7 +3199,7 @@ $$
 =
 \mathbf{0}
 $$
-as a sufficient special case, or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted force law. Without one of those conditions, the displayed Master EOM remains the accepted causal law and branch diagnostic, while the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold for it.
+as a sufficient special case, or if the action is supplemented by an explicit regularized counterterm whose receiver Euler derivative cancels this residual interior vector. Such a counterterm must come from an invariant action-level mechanism, not from fitting the already accepted force law. Under the receiver-normal law this is not a completed derivation; it is a warning that the pure scalar $1/r$ Fokker-type action is only a partial variational scaffold until the $W_{ij}^{\mathrm{rec}}$ target is derived.
 
 Equivalently, define the direct scale term
 $$
@@ -3243,7 +3243,7 @@ $$
 $$
 with the same branch floors and boundary convention used to define the action. This windowed residual condition is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
 
-**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the canonical branch law. The obstruction is local, not merely a boundary convention: for compactly supported receiver variations, the source-side coefficient and Noether endpoint terms cannot cancel the receiver-side interior derivative unless the branch satisfies the stationarity condition above or an invariant action-level counterterm supplies the missing Euler derivative.
+**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the current receiver-normal canonical branch law. The old source-only obstruction was already local, not merely a boundary convention; the current proof burden is stronger because the variational scaffold must now produce the receiver-normal numerator as well as the source-normal denominator.
 
 Equivalently, on an admissible branch with $r_{ij}>0$ and $|J_{ij}|>J_{\min}>0$,
 $$
@@ -3257,7 +3257,7 @@ $$
 \ne
 \mathbf{0}
 $$
-is a certificate that the pure scalar scaffold leaves a nonzero receiver-force residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action.
+is an old-law certificate that the pure scalar scaffold leaves a nonzero receiver-force residual on that branch. This falsifies the universal claim "the scalar $1/r$ action by itself is the exact action for the Master EOM." It does not falsify the receiver-normal Master EOM, the action-level Noether bookkeeping on closed charts, or the possibility of a later invariant counterterm derived from a richer regularized action. It does mean the action proof path must restart from the receiver-normal branch target.
 
 **No-go scaffold (same-support local scalar counterterm).** The clean local scalar counterterm route is closed under the following restricted assumptions: the added term has the same causal-surface support as the $1/r$ kernel, uses only $g_{ij}$, $r_{ij}$, and $J_{ij}$ on the existing branch chart, introduces no new variables, adds no off-surface support, and is not fitted after the force law is already known. Suppressing the common coupling and sign factors, the allowed branch-pair form is
 $$
@@ -3954,7 +3954,7 @@ e_A\left(
 $$
 vanishes in the stated approximation while the underlying branch ledger remains a sum of line-of-action contributions. Failure of this residual is a magnetic-emergence failure, not evidence for inserting an intrinsic cross-product term into the Master EOM.
 
-**Constrained branch-multiplier formulation.** On a fixed retained branch chart, the causal roots may be represented as constrained variables rather than solved away immediately. Let $s_{ij,\ell}(t)$ be the emission time assigned to retained row $\ell$ and define
+**Constrained branch-multiplier formulation.** The old source-only constrained action with kernel $1/(r|J|)$ is not an active evidence row. It is retained only as a historical diagnostic of why branch constraints matter. On a fixed retained branch chart, the causal roots may still be represented as constrained variables rather than solved away immediately. Let $s_{ij,\ell}(t)$ be the emission time assigned to retained row $\ell$ and define
 $$
 G_{ij,\ell}(t)
 \equiv
@@ -3966,7 +3966,20 @@ r_{ij,\ell}(t)
 \mathbf{x}_i(t)-\mathbf{x}_j(s_{ij,\ell}(t))
 \right\|
 $$
-A branch-reduced constrained scaffold on a window $W$ has the form
+The receiver-normal restart target replaces the source-only density with
+$$
+\mathcal{K}_{ij,\ell}^{\mathrm{rec},\eta}(t)
+\equiv
+\frac{w_{ij,\ell}^{(\eta)}(t)\,W_{ij,\ell}^{\mathrm{rec}}(t)}
+{r_{ij,\ell}(t)},
+\qquad
+W_{ij,\ell}^{\mathrm{rec}}(t)
+=
+\left|
+\frac{D_{t,ij,\ell}(t)}{D_{s,ij,\ell}(t)}
+\right|
+$$
+where $D_s=c_f-\hat{\mathbf r}\cdot\mathbf v_j(s)$ and $D_t=c_f-\hat{\mathbf r}\cdot\mathbf v_i(t)$. A branch-reduced constrained scaffold on a window $W$ must therefore be redriven in the form
 $$
 S_{\mathfrak{B}}^{(\eta)}
 =
@@ -3975,23 +3988,22 @@ S_{\mathfrak{B}}^{(\eta)}
 \sum_i\frac{1}{2}\mu_{\text{arch}}\|\mathbf{v}_i(t)\|^2
 -
 \sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
-\alpha_{ij}
-\frac{w_{ij,\ell}^{(\eta)}(t)}
-{r_{ij,\ell}(t)\,|J_{ij,\ell}(t)|}
+\tilde\alpha_{ij}
+\mathcal{K}_{ij,\ell}^{\mathrm{rec},\eta}(t)
 +
 \sum_{(i,j,\ell)\in\mathcal{R}^{\mathrm{act}}}
 \lambda_{ij,\ell}(t)G_{ij,\ell}(t)
 \right]dt
 $$
-where $\alpha_{ij}=\kappa\,\sigma_{ij}|q_iq_j|/c_f$, $w_{ij,\ell}^{(\eta)}$ carries the retained mollified branch weight and cutoff convention, and $\lambda_{ij,\ell}$ is a Lagrange multiplier for the causal-root constraint. Variation with respect to $\lambda_{ij,\ell}$ enforces $G_{ij,\ell}=0$. Variation with respect to the root variable gives the row equation
+where $\tilde\alpha_{ij}$ carries the coupling and polarity convention, $w_{ij,\ell}^{(\eta)}$ carries the retained mollified branch and cutoff convention, and $\lambda_{ij,\ell}$ is a Lagrange multiplier for the causal-root constraint. Variation with respect to $\lambda_{ij,\ell}$ enforces $G_{ij,\ell}=0$. Variation with respect to the root variable gives the restart row equation
 $$
 0
 =
 \partial_{s_{ij,\ell}}
 \left[
 -
-\alpha_{ij}
-\frac{w_{ij,\ell}^{(\eta)}}{r_{ij,\ell}|J_{ij,\ell}|}
+\tilde\alpha_{ij}
+\mathcal{K}_{ij,\ell}^{\mathrm{rec},\eta}
 +
 \lambda_{ij,\ell}G_{ij,\ell}
 \right]

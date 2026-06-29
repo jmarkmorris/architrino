@@ -1,5 +1,13 @@
 # Causal Action Functional
 
+Receiver-normal restart notice. This chapter's causal-hit statistics were
+written against the older source-only branch-strength convention. Root-locus,
+coarea, regularization, and topological counting material remains useful, but
+any statistic or action-counting row that uses a Jacobian-weighted inverse-square
+kernel must be redriven with the receiver-normal factor
+$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before it can support force, action,
+mass, or conservation closure.
+
 This chapter develops the action-counting complement to the master-equation treatment of dynamics. Its job is to define a scalar causal-hit statistic that compares delayed worldline structures, labels candidate assembly classes, and supplies one geometric input to later mass, shielding, and medium-response closure. It is not the exact variational action for the Master EOM; action-derived dynamics require the variation residual to vanish under the test stated in [Effective Lagrangian](effective-lagrangian.md#regularized-nonlocal-action-and-variation) and [Master Equation](master-equation.md#exact-nonlocal-lagrangian).
 
 The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
@@ -11,7 +19,7 @@ Canonical dynamics are defined in [The Master Equation (Canonical Form)](master-
 The level separation is essential:
 
 1. **Ontology:** architrino histories emit causal wakes in absolute time and the Euclidean void.
-2. **Dynamics:** the master equation sums delayed, Jacobian-weighted line-of-action hits.
+2. **Dynamics:** the master equation sums delayed line-of-action hits with receiver-normal branch strength.
 3. **Statistic:** the functional in this chapter removes direction and counts weighted causal intersections.
 4. **Effective/inferential use:** mass response, effective geometry, and branch spectra are later reconstructions that must be checked against the actual delayed dynamics.
 
@@ -648,7 +656,7 @@ turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\m
 
 ## Summary and Status
 
-- The chapter defines causal self-hit and total action-counting statistics from the Jacobian-weighted inverse-square delayed kernel, plus normalized forms for periodic orbits.
+- The chapter defines causal self-hit and total action-counting statistics from the older Jacobian-weighted inverse-square delayed kernel; those statistics are now restart targets that must absorb receiver-normal branch strength before use in current closure.
 - The causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete branch labels such as winding class, writhe candidate, and link type; those labels segment orbit families but do not by themselves prove stability or mass.
 - The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise Jacobians, and controlled near-threshold asymptotics, anchoring numerical calibrations.
 - Under explicit assumptions (A1-A5), the theorem spine establishes finiteness, coarea reduction, topological invariance away from critical points, and a bifurcation condition for branch changes.

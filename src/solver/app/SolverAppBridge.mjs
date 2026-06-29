@@ -9,7 +9,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
-const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback"];
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "t3"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",
@@ -662,6 +662,10 @@ const PAIR_INTERACTION_REQUEST_F64_BYTES = 88;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 352;
+const T3_STEP_REQUEST_F64_BYTES = 96;
+const T3_PARTICLE_STATE_F64_BYTES = 80;
+const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
+const T3_STEP_SUMMARY_F64_BYTES = 88;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
@@ -877,7 +881,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 192;
+const ABI_INFO_BYTES = 208;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -1279,6 +1283,12 @@ export function createSolverAppBridgeClient(options = {}) {
       );
     },
 
+    async stepT3UniverseF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return stepT3UniverseF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
     async cancelRun(request = {}) {
       assertNotDisposed(state);
       return cancelRun(state, request);
@@ -1368,6 +1378,10 @@ function createCapabilities(hasWasmModuleFactory) {
             "pairInteraction",
             "validationReplay",
           ],
+        },
+        {
+          appId: "t3",
+          runKinds: ["motionSimulation", "pathHistory", "validationReplay"],
         },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],
@@ -11614,6 +11628,319 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
   }
 }
 
+function stepT3UniverseF64WithModule(module, request, abiInfo) {
+  const normalized = normalizeT3StepRequest(request);
+  if (typeof module?._malloc !== "function" || typeof module?._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const stateCount = normalized.particles.length;
+  const maxRows = normalized.maxRows ?? stateCount;
+  if (maxRows < stateCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "T3 bulk step row buffer is too small", {
+        recoverable: true,
+        details: { stateCount, maxRows },
+      })
+    );
+  }
+
+  const requestPtr = module._malloc(abiInfo.t3StepRequestF64Bytes);
+  const statesPtr = module._malloc(Math.max(1, stateCount) * abiInfo.t3ParticleStateF64Bytes);
+  const rowsPtr = maxRows > 0 ? module._malloc(abiInfo.t3ParticleStepRowF64Bytes * maxRows) : 0;
+  const outRowCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(abiInfo.t3StepSummaryF64Bytes);
+  try {
+    writeT3StepRequestF64(module, requestPtr, normalized);
+    normalized.particles.forEach((particle, index) => {
+      writeT3ParticleStateF64(
+        module,
+        statesPtr + index * abiInfo.t3ParticleStateF64Bytes,
+        particle
+      );
+    });
+    module.setValue(outRowCountPtr, 0, "i32");
+    writeZeroBytes(module, summaryPtr, abiInfo.t3StepSummaryF64Bytes);
+    const stepT3 = module.cwrap("architrino_solver_step_t3_universe_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = stepT3(
+      requestPtr,
+      statesPtr,
+      stateCount,
+      rowsPtr,
+      maxRows,
+      outRowCountPtr,
+      summaryPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    const summary = readT3StepSummaryF64(module, summaryPtr);
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `T3 bulk step C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, maxRows, stateCount },
+        })
+      );
+    }
+
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readT3ParticleStepRowF64(
+        module,
+        rowsPtr + index * abiInfo.t3ParticleStepRowF64Bytes
+      ));
+    }
+    return {
+      schema: "solver-t3-step-response.v1",
+      rows,
+      summary,
+      particleCount: stateCount,
+      interactionLaw: normalized.interaction.law,
+      executionPath: "native_c_abi",
+      status: createStatus("ok", "ok", "native T3 bulk step completed", {
+        details: {
+          executionPath: "native_c_abi",
+          interactionLaw: normalized.interaction.law,
+          neighborPairCount: summary.neighborPairCount,
+          occupiedCellCount: summary.occupiedCellCount,
+        },
+      }),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(statesPtr);
+    if (rowsPtr !== 0) {
+      module._free(rowsPtr);
+    }
+    module._free(outRowCountPtr);
+    module._free(summaryPtr);
+  }
+}
+
+function normalizeT3StepRequest(request) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 bulk step request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  const timestep = t3PositiveFinite(
+    request.timestep ?? request.dt ?? request.step,
+    "T3 timestep"
+  );
+  const startTime = t3Finite(request.startTime ?? request.time ?? 0, "T3 startTime");
+  const endTime = t3Finite(request.endTime ?? startTime + timestep, "T3 endTime");
+  const topology = request.topology ?? {};
+  const spatialIndex = request.spatialIndex ?? {};
+  const interaction = normalizeT3Interaction(request.interaction ?? request.interactions ?? {});
+  const interactionRadius = t3PositiveFinite(
+    spatialIndex.interactionRadius ??
+      request.interactionRadius ??
+      interaction.interactionRadius ??
+      interaction.radius,
+    "T3 interactionRadius"
+  );
+  const spatialCellSize = t3PositiveFinite(
+    spatialIndex.cellSize ?? spatialIndex.spatialCellSize ?? request.spatialIndexCellSize ?? interactionRadius,
+    "T3 spatialCellSize"
+  );
+  const particles = normalizeT3ParticleStates(request.particles ?? request.stateRows ?? []);
+  return {
+    schema: "solver-t3-step-request.v1",
+    startTime,
+    endTime,
+    timestep,
+    topology: {
+      sideLength: t3PositiveFinite(topology.sideLength ?? request.sideLength, "T3 sideLength"),
+    },
+    spatialIndex: {
+      interactionRadius,
+      cellSize: spatialCellSize,
+    },
+    interaction,
+    particles,
+    integrationTolerance: t3NonnegativeFinite(
+      request.integrationTolerance ?? request.tolerance ?? 0,
+      "T3 integrationTolerance"
+    ),
+    integrationMethod: t3PositiveInteger(request.integrationMethod ?? 1, "T3 integrationMethod"),
+    maxRows: request.maxRows == null ? particles.length : t3NonnegativeInteger(request.maxRows, "T3 maxRows"),
+  };
+}
+
+function normalizeT3Interaction(input) {
+  if (Array.isArray(input)) {
+    if (input.length === 0) {
+      return normalizeT3Interaction({ law: "none" });
+    }
+    if (input.length === 1) {
+      return normalizeT3Interaction(input[0]);
+    }
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 solver engine supports one native interaction preset per step", {
+        recoverable: false,
+      })
+    );
+  }
+  const value = input && typeof input === "object" ? input : {};
+  const law = value.law ?? value.interactionLaw ?? value.solverLaw ?? value.id ?? "none";
+  if (law === "none" || law === "noop") {
+    return {
+      law: "none",
+      lawCode: 0,
+      radius: t3PositiveFinite(value.radius ?? value.interactionRadius ?? 1, "T3 interaction radius"),
+      interactionRadius: t3PositiveFinite(value.interactionRadius ?? value.radius ?? 1, "T3 interactionRadius"),
+      strength: 0,
+      softening: 0,
+    };
+  }
+  if (law !== "soft_sphere_repel_v1" && law !== "soft-sphere-repulsion") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `unsupported T3 native interaction law: ${law}`, {
+        recoverable: false,
+      })
+    );
+  }
+  const radius = t3PositiveFinite(value.radius ?? value.softSphereRadius, "T3 softSphere radius");
+  return {
+    law: "soft_sphere_repel_v1",
+    lawCode: 1,
+    radius,
+    interactionRadius: t3PositiveFinite(value.interactionRadius ?? radius, "T3 interactionRadius"),
+    strength: t3Finite(value.strength ?? value.softSphereStrength ?? 1, "T3 softSphere strength"),
+    softening: t3PositiveFinite(value.softening ?? radius * 1e-6, "T3 softSphere softening"),
+  };
+}
+
+function normalizeT3ParticleStates(particles) {
+  if (!Array.isArray(particles)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 particles must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  return particles.map((particle, index) => {
+    if (!particle || typeof particle !== "object" || Array.isArray(particle)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `T3 particle ${index} must be an object`, {
+          recoverable: false,
+        })
+      );
+    }
+    const pathKey = t3PositiveInteger(particle.pathKey ?? particle.id ?? index + 1, `T3 particle ${index} pathKey`);
+    return {
+      pathKey,
+      position: t3Vector(particle.position ?? particle.initialPosition, `T3 particle ${index} position`),
+      velocity: t3Vector(particle.velocity ?? particle.initialVelocity ?? [0, 0, 0], `T3 particle ${index} velocity`),
+      mass: t3PositiveFinite(particle.mass ?? 1, `T3 particle ${index} mass`),
+      charge: t3Finite(particle.charge ?? particle.electrineFraction ?? 0, `T3 particle ${index} charge`),
+      stateFlags: t3NonnegativeInteger(particle.stateFlags ?? pathKey, `T3 particle ${index} stateFlags`),
+    };
+  });
+}
+
+function t3Vector(value, label) {
+  if (Array.isArray(value) || ArrayBuffer.isView(value)) {
+    if (value.length < 3) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `${label} must contain three values`, {
+          recoverable: false,
+        })
+      );
+    }
+    return {
+      x: t3Finite(value[0], `${label}.x`),
+      y: t3Finite(value[1], `${label}.y`),
+      z: t3Finite(value[2], `${label}.z`),
+    };
+  }
+  if (value && typeof value === "object") {
+    return {
+      x: t3Finite(value.x, `${label}.x`),
+      y: t3Finite(value.y, `${label}.y`),
+      z: t3Finite(value.z, `${label}.z`),
+    };
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", `${label} must be a vector`, {
+      recoverable: false,
+    })
+  );
+}
+
+function t3Finite(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be finite`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3PositiveFinite(value, label) {
+  const numericValue = t3Finite(value, label);
+  if (numericValue <= 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be positive`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3NonnegativeFinite(value, label) {
+  const numericValue = t3Finite(value, label);
+  if (numericValue < 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be nonnegative`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3PositiveInteger(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue <= 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a positive integer`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3NonnegativeInteger(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue < 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a nonnegative integer`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
 function validateLinearMotionSampleRequest(request) {
   if (!request || typeof request !== "object") {
     throw new SolverBridgeError(
@@ -13923,6 +14250,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_sample_linear_path_history_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_motion_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_path_history_f64 === "function" &&
+    typeof module?._architrino_solver_step_t3_universe_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
     typeof module?._architrino_solver_compute_path_bounds_f64 === "function" &&
     typeof module?._architrino_solver_intersect_sphere_points_f64 === "function" &&
@@ -14000,6 +14328,10 @@ function readAbiInfo(module) {
       statusRowBytes: module.getValue(ptr + 180, "i32"),
       admissionReportF64Bytes: module.getValue(ptr + 184, "i32"),
       pairInteractionRequestF64Bytes: module.getValue(ptr + 188, "i32"),
+      t3StepRequestF64Bytes: module.getValue(ptr + 192, "i32"),
+      t3ParticleStateF64Bytes: module.getValue(ptr + 196, "i32"),
+      t3ParticleStepRowF64Bytes: module.getValue(ptr + 200, "i32"),
+      t3StepSummaryF64Bytes: module.getValue(ptr + 204, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -14009,7 +14341,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 15,
+    abiMinor: 16,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14056,13 +14388,17 @@ function defaultAbiInfo() {
     statusRowBytes: STATUS_ROW_BYTES,
     admissionReportF64Bytes: ADMISSION_REPORT_F64_BYTES,
     pairInteractionRequestF64Bytes: PAIR_INTERACTION_REQUEST_F64_BYTES,
+    t3StepRequestF64Bytes: T3_STEP_REQUEST_F64_BYTES,
+    t3ParticleStateF64Bytes: T3_PARTICLE_STATE_F64_BYTES,
+    t3ParticleStepRowF64Bytes: T3_PARTICLE_STEP_ROW_F64_BYTES,
+    t3StepSummaryF64Bytes: T3_STEP_SUMMARY_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 15 ||
+    abiInfo.abiMinor !== 16 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -14108,7 +14444,11 @@ function assertAbiInfo(abiInfo) {
     abiInfo.admissionStressSummaryF64Bytes !== ADMISSION_STRESS_SUMMARY_F64_BYTES ||
     abiInfo.statusRowBytes !== STATUS_ROW_BYTES ||
     abiInfo.admissionReportF64Bytes !== ADMISSION_REPORT_F64_BYTES ||
-    abiInfo.pairInteractionRequestF64Bytes !== PAIR_INTERACTION_REQUEST_F64_BYTES
+    abiInfo.pairInteractionRequestF64Bytes !== PAIR_INTERACTION_REQUEST_F64_BYTES ||
+    abiInfo.t3StepRequestF64Bytes !== T3_STEP_REQUEST_F64_BYTES ||
+    abiInfo.t3ParticleStateF64Bytes !== T3_PARTICLE_STATE_F64_BYTES ||
+    abiInfo.t3ParticleStepRowF64Bytes !== T3_PARTICLE_STEP_ROW_F64_BYTES ||
+    abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -15702,6 +16042,33 @@ function writePairInteractionStateF64(module, ptr, state) {
   module.setValue(ptr + 76, 0, "i32");
 }
 
+function writeT3StepRequestF64(module, ptr, request) {
+  module.setValue(ptr, request.startTime, "double");
+  module.setValue(ptr + 8, request.endTime, "double");
+  module.setValue(ptr + 16, request.timestep, "double");
+  module.setValue(ptr + 24, request.topology.sideLength, "double");
+  module.setValue(ptr + 32, request.spatialIndex.interactionRadius, "double");
+  module.setValue(ptr + 40, request.spatialIndex.cellSize, "double");
+  module.setValue(ptr + 48, request.interaction.radius, "double");
+  module.setValue(ptr + 56, request.interaction.strength, "double");
+  module.setValue(ptr + 64, request.interaction.softening, "double");
+  module.setValue(ptr + 72, request.integrationTolerance ?? 0, "double");
+  module.setValue(ptr + 80, request.interaction.lawCode, "i32");
+  module.setValue(ptr + 84, request.integrationMethod ?? 1, "i32");
+  module.setValue(ptr + 88, 0, "i32");
+  module.setValue(ptr + 92, 0, "i32");
+}
+
+function writeT3ParticleStateF64(module, ptr, state) {
+  writeUint64(module, ptr, state.pathKey);
+  writeVector(module, ptr + 8, state.position);
+  writeVector(module, ptr + 32, state.velocity);
+  module.setValue(ptr + 56, state.mass, "double");
+  module.setValue(ptr + 64, state.charge ?? 0, "double");
+  module.setValue(ptr + 72, state.stateFlags ?? state.pathKey, "i32");
+  module.setValue(ptr + 76, 0, "i32");
+}
+
 function writePairInteractionPathConstraintF64(module, ptr, constraint) {
   writeUint64(module, ptr, constraint.pathKey);
   module.setValue(ptr + 8, constraint.depth ?? 0, "i32");
@@ -16306,6 +16673,41 @@ function readMotionFrameRowF64(module, ptr) {
     velocity: readVector(module, ptr + 48),
     errorBound: module.getValue(ptr + 72, "double"),
     stateFlags: module.getValue(ptr + 80, "i32") >>> 0,
+  };
+}
+
+function readT3ParticleStepRowF64(module, ptr) {
+  return {
+    pathKey: readUint64(module, ptr),
+    position: readVector(module, ptr + 8),
+    velocity: readVector(module, ptr + 32),
+    acceleration: readVector(module, ptr + 56),
+    mass: module.getValue(ptr + 80, "double"),
+    imageDelta: {
+      x: module.getValue(ptr + 88, "i32"),
+      y: module.getValue(ptr + 92, "i32"),
+      z: module.getValue(ptr + 96, "i32"),
+    },
+    stateFlags: module.getValue(ptr + 100, "i32") >>> 0,
+  };
+}
+
+function readT3StepSummaryF64(module, ptr) {
+  const interactionLawCode = module.getValue(ptr + 72, "i32") >>> 0;
+  return {
+    particleCount: readUint64(module, ptr),
+    neighborPairCount: readUint64(module, ptr + 8),
+    cellCount: readUint64(module, ptr + 16),
+    occupiedCellCount: readUint64(module, ptr + 24),
+    startTime: module.getValue(ptr + 32, "double"),
+    endTime: module.getValue(ptr + 40, "double"),
+    timestep: module.getValue(ptr + 48, "double"),
+    maxAcceleration: module.getValue(ptr + 56, "double"),
+    interactionEnergy: module.getValue(ptr + 64, "double"),
+    interactionLawCode,
+    interactionLaw: interactionLawCode === 1 ? "soft_sphere_repel_v1" : "none",
+    integrationMethod: module.getValue(ptr + 76, "i32") >>> 0,
+    statusFlags: module.getValue(ptr + 80, "i32") >>> 0,
   };
 }
 

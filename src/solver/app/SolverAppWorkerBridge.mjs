@@ -45,6 +45,7 @@ export const SOLVER_APP_WORKER_METHODS = Object.freeze([
   "querySpaceTimeIndexF64",
   "sampleLinearMotionF64",
   "integrateConstantAccelerationMotionF64",
+  "stepT3UniverseF64",
   "createPathHistoryStreamF64",
   "planPathHistoryStorageLifecycleF64",
   "applyPathHistoryStorageLifecycleF64",

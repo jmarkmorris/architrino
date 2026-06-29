@@ -192,6 +192,48 @@ assert(
   "expected Causal Delay Feedback motion, path-history, causal-root, delayed-hit, pair-interaction, and playback adapter capabilities"
 );
 assert(
+  findAppAdapter(initResponse.capabilities.appBridge, "t3").runKinds.includes("motionSimulation") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "t3").runKinds.includes("pathHistory"),
+  "expected T3 motion and path-history adapter capabilities"
+);
+const t3StepResponse = await client.stepT3UniverseF64({
+  schema: "solver-t3-step-request.v1",
+  startTime: 0,
+  timestep: 0.1,
+  topology: { sideLength: 10 },
+  spatialIndex: { interactionRadius: 1, cellSize: 1 },
+  interaction: {
+    law: "soft_sphere_repel_v1",
+    radius: 1,
+    strength: 2,
+    softening: 1e-6,
+  },
+  particles: [
+    {
+      pathKey: 1,
+      position: { x: 9.8, y: 5, z: 5 },
+      velocity: { x: 0, y: 0, z: 0 },
+      mass: 1,
+    },
+    {
+      pathKey: 2,
+      position: { x: 0.2, y: 5, z: 5 },
+      velocity: { x: 0, y: 0, z: 0 },
+      mass: 1,
+    },
+  ],
+});
+assert(t3StepResponse.status.code === "ok", "expected native T3 step status ok");
+assert(t3StepResponse.executionPath === "native_c_abi", "expected native T3 execution path");
+assert(t3StepResponse.rows.length === 2, "expected native T3 rows for both particles");
+assert(t3StepResponse.summary.neighborPairCount === 1, "expected periodic T3 neighbor pair");
+assert(
+  t3StepResponse.rows[0].acceleration.x < 0 &&
+    t3StepResponse.rows[1].acceleration.x > 0 &&
+    Math.abs(t3StepResponse.rows[0].acceleration.x + t3StepResponse.rows[1].acceleration.x) < 1e-12,
+  "expected native T3 soft-sphere accelerations to be equal and opposite"
+);
+assert(
   initResponse.capabilities.appBridge.denseDataTransport.includes("array-buffer") &&
     initResponse.capabilities.appBridge.denseDataTransport.includes("stream-handle"),
   "expected app bridge dense data transport capabilities"

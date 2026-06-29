@@ -50,7 +50,7 @@ $$
 =0.
 $$
 
-This implication is stronger than root-ledger certification. A resolved positive-delay root row supplies source timing and a Jacobian weight. It does not by itself assert cancellation of the delayed, signed, Jacobian-weighted force sum.
+This implication is stronger than root-ledger certification. A resolved positive-delay root row supplies source timing and a source-normal denominator. It does not by itself assert cancellation of the delayed, signed, receiver-normal force sum.
 
 ---
 
@@ -109,7 +109,7 @@ Thus the rigid octahedral fixed-speed witness satisfies the full antecedent of t
 
 ## 3. Failed Fixed-Speed Force Closure
 
-The fixed-speed force row is not a root-count row. On the consumed ledger it is the delayed, signed, Jacobian-weighted all-pairs sum
+The fixed-speed force row is not a root-count row. On the consumed ledger it is the delayed, signed, receiver-normal all-pairs sum
 
 $$
 \widetilde{\mathbf{F}}_i(\theta)

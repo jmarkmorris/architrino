@@ -932,7 +932,7 @@ Proof route:
 1. apply the implicit-function theorem to $G_u(\lambda,\eta;a)=0$ using the floor $|J_u|\ge J_0$;
 2. differentiate the root sheet in $\lambda$ and in coefficient directions;
 3. use arclength-inverse chart derivatives for $\mathbf{Y}$, $\mathbf{T}$, and $\mathbf{K}$;
-4. differentiate the inverse-square, Jacobian-weighted delayed force on a fixed sign stratum;
+4. differentiate the inverse-square, receiver-normal delayed force on a fixed sign stratum;
 5. assemble projected force, dynamics residuals, work one-form, and curl by integration over receiver arclength;
 6. bound the resulting first- and second-derivative terms on the chart ball to obtain $L_R^{+}$.
 

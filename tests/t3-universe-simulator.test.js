@@ -185,50 +185,38 @@ test("pair interaction context exposes receiver normal factor rows", () => {
   assert.equal(rows[0].receiverNormalFactor, 2);
 });
 
-test("central solver engine advances particles through existing solver client", async () => {
+test("central solver engine advances particles through bulk T3 solver client", async () => {
   const calls = [];
   const solverClient = {
-    async integrateConstantAccelerationMotionF64(request) {
+    async stepT3UniverseF64(request) {
       calls.push(request);
-      const dt = request.endTime - request.startTime;
+      const dt = request.timestep;
+      const particle = request.particles[0];
       return {
-        frames: [
+        schema: "solver-t3-step-response.v1",
+        rows: [
           {
-            pathKey: request.pathKey,
-            frameIndex: 0,
-            time: request.startTime,
-            position: request.initialPosition,
-            velocity: request.initialVelocity,
-            errorBound: 0,
-            stateFlags: request.stateFlags,
-          },
-          {
-            pathKey: request.pathKey,
-            frameIndex: 1,
-            time: request.endTime,
-            position: {
-              x:
-                request.initialPosition.x +
-                request.initialVelocity.x * dt +
-                0.5 * request.acceleration.x * dt * dt,
-              y:
-                request.initialPosition.y +
-                request.initialVelocity.y * dt +
-                0.5 * request.acceleration.y * dt * dt,
-              z:
-                request.initialPosition.z +
-                request.initialVelocity.z * dt +
-                0.5 * request.acceleration.z * dt * dt,
-            },
+            pathKey: particle.pathKey,
+            position: { x: 0.3, y: particle.position.y, z: particle.position.z },
             velocity: {
-              x: request.initialVelocity.x + request.acceleration.x * dt,
-              y: request.initialVelocity.y + request.acceleration.y * dt,
-              z: request.initialVelocity.z + request.acceleration.z * dt,
+              x: particle.velocity.x,
+              y: particle.velocity.y,
+              z: particle.velocity.z,
             },
-            errorBound: 0,
-            stateFlags: request.stateFlags,
+            acceleration: { x: 0, y: 0, z: 0 },
+            imageDelta: { x: 1, y: 0, z: 0 },
+            stateFlags: particle.stateFlags,
           },
         ],
+        summary: {
+          startTime: request.startTime,
+          endTime: request.startTime + dt,
+          timestep: dt,
+          particleCount: request.particles.length,
+          neighborPairCount: 0,
+          occupiedCellCount: 1,
+        },
+        executionPath: "native_c_abi",
         status: { code: "ok", severity: "ok", message: "fake solver integrated" },
       };
     },
@@ -248,10 +236,14 @@ test("central solver engine advances particles through existing solver client", 
   const result = await simulator.step();
 
   assert.equal(result.engine, "solver");
+  assert.equal(result.mode, "central-solver-bulk-t3");
+  assert.equal(result.executionPath, "native_c_abi");
   assert.equal(calls.length, 1);
-  assert.equal(calls[0].pathKey, 1);
-  assert.deepEqual(calls[0].initialPosition, { x: 9.8, y: 1, z: 1 });
-  assert.deepEqual(calls[0].initialVelocity, { x: 0.5, y: 0, z: 0 });
+  assert.equal(calls[0].schema, "solver-t3-step-request.v1");
+  assert.equal(calls[0].particles.length, 1);
+  assert.deepEqual(calls[0].particles[0].position, { x: 9.8, y: 1, z: 1 });
+  assert.deepEqual(calls[0].particles[0].velocity, { x: 0.5, y: 0, z: 0 });
+  assert.equal(calls[0].interaction.law, "none");
   assert.ok(Math.abs(simulator.state.positions[0] - 0.3) < 1e-12);
   assert.equal(simulator.state.imageOffsets[0], 1);
 });

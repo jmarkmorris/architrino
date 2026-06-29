@@ -1,8 +1,15 @@
 # Spiral A1 Drive Interval Packet
 
-Status. Priority-only proof packet for the $a_{\mathrm{A1}}=0.204$ drive rows in `spiral_branch_chart_test`. This packet records the radial threshold rule, an outward radial branch-sum interval, a strict negative tangential-drive interval probe, and the exact evidence required before sidecar promotion. It does not edit the executable runner, the current sidecar, generated reports, priority queues, or authored AAA prose.
+Status. Invalidated old-law proof packet for the $a_{\mathrm{A1}}=0.204$ drive
+rows in `spiral_branch_chart_test`. This packet records the old radial threshold
+rule, outward radial branch-sum interval, strict negative tangential-drive
+interval probe, and evidence rule before the receiver-normal Master EOM
+correction. It remains provenance only; its force/action rows must restart with
+same-box $D_t/D_s$ bounds before any sidecar promotion or pass/fail use.
 
-Claim level. A1 radial threshold interval report plus sidecar-consumed tangential interval-pass row, not a full theorem-grade bare-spiral certificate. The force-ratio row remains blocked: $\Gamma$ must not be used as a search knob and must not be inferred from $b_\ast$, a branch threshold, or the tangential sign. Repository theorem-grade status remains pending until the radial force-ratio row is resolved.
+Claim level. Old-law A1 radial threshold interval report plus old-law
+tangential interval row. Under the current Master EOM, this is a restart target,
+not a full theorem-grade bare-spiral certificate and not a pass/fail row.
 
 ## Candidate Row
 

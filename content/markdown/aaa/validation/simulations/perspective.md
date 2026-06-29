@@ -1,10 +1,10 @@
 # Perspective: Why This Model Maps So Well
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices--reduction to $+\epsilon$ and $-\epsilon$ architrino polarities and choosing $\epsilon=|e|/6$--help with parsimony and observer-level charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent "magnetic-like" behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices--reduction to $+\epsilon$ and $-\epsilon$ architrino polarities and choosing $\epsilon=|e|/6$--help with parsimony and observer-level charge bookkeeping, but the outsized wins come from how delayed line-of-action action, receiver-normal causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent "magnetic-like" behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
-We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the causal Jacobian, and superpose linearly.
+We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the receiver-normal branch factor, and superpose linearly.
 
 ---
 
@@ -19,7 +19,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
 
 - Consequence:
-  - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, Jacobian-weighted line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
+  - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, receiver-normal line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
 
 ---
 
@@ -93,7 +93,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Shielding and apparent inertia:
   - Fast internal motion produces far-zone cancellation; the tiny residual wake signature of a coherent assembly behaves like inertial mass in interactions with the outside.
   - Magnetism without magnetism:
-  - Tangential effects and axial structures appear as a corollary of path-history plus Jacobian-weighted line-of-action per-hit action. No cross products required.
+  - Tangential effects and axial structures appear as a corollary of path-history plus receiver-normal line-of-action per-hit action. No cross products required.
 
 ---
 

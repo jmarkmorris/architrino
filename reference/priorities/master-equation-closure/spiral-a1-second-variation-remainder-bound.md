@@ -834,7 +834,8 @@ material.
 The row cannot be closed independently. The retained-root row gives
 $E_\Delta\le K_\Delta\varepsilon_Q$, while the branch-sum row must still bound
 $E_T(b)$ from source-profile perturbations, retained-root offsets, and the
-Jacobian-weighted branch summands. In a Lipschitz form, the coupled proof has
+receiver-normal branch summands. Under the current Master EOM this row is a
+restart target until same-box $D_t/D_s$ bounds are supplied. In a Lipschitz form, the coupled proof has
 the schematic structure
 $$
 E_Q^+\le K_QE_T,

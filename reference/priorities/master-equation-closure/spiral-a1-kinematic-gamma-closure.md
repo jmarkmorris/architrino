@@ -1,8 +1,18 @@
 # Spiral A1 Kinematic Gamma Closure
 
-Status. Consumed proof packet for the A1 `radial_turn` row. This packet consumes [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), and the variable-pitch spiral normalization in [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md). The executable runner, sidecar, generated A1 report, priority queue, and authored AAA prose now consume the interval derived here.
+Status. Invalidated old-law proof packet for the A1 `radial_turn` row. This
+packet consumed [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md),
+[spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md),
+[spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json), and
+the variable-pitch spiral normalization in
+[master-equation](../../../content/markdown/aaa/dynamics/master-equation.md)
+before the receiver-normal Master EOM correction. It is retained as provenance
+and topology context only; it must not be consumed as a live radial-turn
+certificate until redriven with same-box $D_t/D_s$ bounds.
 
-Claim level. Exact radial-balance closure at $\theta_\ast=0$ for the prescribed constant-$\Omega$ A1 candidate history. The earlier A1 force-ratio packet remains correct as a chart-only no-go: the retained causal-root chart alone does not determine $\Gamma$. The additional datum used here is the candidate history's radial kinematics.
+Claim level. Old-law radial-balance derivation for the prescribed
+constant-$\Omega$ A1 candidate history. Under the current Master EOM, it is a
+restart target, not closure evidence.
 
 ## Inputs
 

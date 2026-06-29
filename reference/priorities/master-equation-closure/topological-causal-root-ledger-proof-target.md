@@ -5,7 +5,9 @@
 - Kind: `priority`
 - Claim level: `priority-only theorem target`
 - Workstream: [master-equation-closure](master-equation-closure.md)
-- Corpus destination if accepted:
+- Topology layer: EOM-independent priority-only proof program. A chosen EOM may
+  consume the retained ledger later, but it is not an input assumption here.
+- Downstream corpus destinations if accepted by a future EOM consumer:
   [Master Equation](../../../content/markdown/aaa/dynamics/master-equation.md),
   [Binary Dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md),
   and the relevant branch-certificate packets.
@@ -15,12 +17,13 @@
 ## Purpose
 
 This packet captures a topology-oriented proof route suggested by the causal-root
-and self-hit discussion. The target is not a new force law. The target is to
-decide whether branch admissibility can be stated as a closed causal-root ledger
-condition: the same retained path-history record must account for causal-root
-intersections, root-count changes, action residuals, Noether wake-history
-charges, Noether sea response, and cross-sector acceptance without leaving an
-untracked boundary.
+and self-hit discussion. The target is not a new force law and does not assume a
+chosen EOM. The immediate target is to decide whether branch admissibility can
+be stated as an EOM-independent causal-root ledger condition: the same retained
+path-history record must account for causal-root intersections, root-count
+changes, boundary strata, and declared same-record routes before any downstream
+force, action, wake-history, medium-response, or cross-sector consumer may use
+the row.
 
 The proof laboratory is a neutral finite 3-torus
 $$
@@ -37,30 +40,69 @@ The candidate topological claim is:
 > stable intersection records. Root counts can change only through declared
 > boundary strata: endpoint exclusion, memory-window entry or exit, causal-root
 > caustic $J=0$, collision/core regularization, or winding/seam ownership.
-> A branch can be consumed by the Master Equation closure stack only when those
-> boundary strata are either absent, paired, or routed into the same
-> wake-history and action ledger.
+> A branch can be offered to any downstream EOM consumer only when those boundary
+> strata are absent, paired, or routed into the same retained source record. An
+> EOM label, force-law label, or sector-specific residual cannot substitute for
+> the retained topological ledger object.
 
-This would make the six repeated closure items projections of one object:
+This separates the topology-native rows from the downstream consumer rows:
 
-| Closure item | Topological readout |
+| Layer | Topological readout |
 | --- | --- |
-| Delayed Master EOM | Root intersections supply the local force rows. |
-| Retained branch chart | Simple roots persist as local sections of the root ledger. |
-| Action / variational residual | Root-constraint work and endpoint terms must close on the same ledger. |
-| Noether wake-history charges | Root births, deaths, and memory-boundary flux become charge-boundary terms. |
+| Topology-native root ledger | Root intersections, winding ownership, Jacobian floors, root-count continuity, and declared boundary strata are recorded without choosing an EOM. |
+| Retained branch chart | Simple roots persist as local sections of the root ledger until a declared stratum is reached. |
+| Downstream EOM consumer | A force or acceleration row may consume only retained root rows that already carry same-record topology. |
+| Action / variational residual | Endpoint and multiplier terms are downstream pullbacks that must reference the same retained source record. |
+| Noether wake-history charges | Root births, deaths, and memory-boundary flux become charge-boundary terms only after a same-record event ledger is supplied. |
 | Noether sea response | Medium-response rows consume the same retained history, not a separate fit. |
 | Cross-sector acceptance | No sector may consume a root ledger whose boundary is unaccounted elsewhere. |
+
+## EOM-Independent Theorem Target
+
+The smallest topology-native theorem target is:
+
+> Given a retained path-history window $W$ on $T_L^3$, with winding-labeled
+> causal-root rows and a positive simple-root floor away from declared strata,
+> root identities persist under time continuation, and the root count can change
+> only at endpoint, memory-window, caustic $J=0$, collision/core, winding/seam,
+> or omitted-row boundary strata. A branch is topology-admissible for downstream
+> consumption only when every such boundary contribution is absent, paired, or
+> routed into the same retained source record.
+
+This theorem target deliberately excludes the choice of acceleration law,
+branch-strength law, action functional, medium-response coefficients, or
+observer-facing signal speed. Those are downstream consumers. The missing
+topology-native proof object is an oriented boundary operator on retained
+winding-labeled root rows, plus a same-record routing map that records whether
+each boundary contribution is absent, paired, or routed without invoking an EOM
+or force-law label.
+
+## EOM Boundary Audit
+
+The current split is:
+
+| Packet item | Current classification |
+| --- | --- |
+| Causal-root equation $G_{ij,n}(t,s)=0$ | Topology-native retained intersection record. |
+| Winding ownership and seam transfer | Topology-native ledger data. |
+| Positive $J$ floor away from $J=0$ | Topology-native transversality condition for simple-root persistence. |
+| Caustic $J=0$, endpoint, memory-window, collision/core, and omitted-row strata | Topology-native root-count boundary candidates. |
+| Force or acceleration row | Downstream EOM consumer; may use only retained topology-native root rows. |
+| Action endpoint and multiplier row | Downstream same-record pullback; not part of the topology-only theorem. |
+| Noether wake-history charge row | Downstream same-record pullback from declared event ledger rows. |
+| Noether sea medium-response row | Downstream same-record pullback from one retained response object. |
+| EOM or force-law label | Not admissibility data; fails closed unless the topology-native active root ledger object is present. |
+| Branch retention or corpus promotion | Not supplied by this packet; still requires accepted branch evidence from a future downstream consumer. |
 
 ## Discussion Capture 2026-06-29
 
 The topology thread raised four additional questions that should remain attached
-to this proof target until they are either absorbed into the Master Equation
-proof stack or rejected.
+to this proof target until they are either absorbed into a downstream EOM
+consumer stack or rejected.
 
 ### Source Path Point Versus Source Path Segment
 
-At the sharp branch-law level, a causal hit is from a source-history point. The
+At the sharp causal-root level, a causal hit is from a source-history point. The
 receiver event selects an emission time $s<t$ satisfying
 $$
 G_{ij,n}(t,s)=0.
@@ -126,11 +168,12 @@ observer-facing light speed.
 
 This is not automatically a contradiction. In the current architecture, $c_f$
 is the causal-wake propagation speed, not a declared speed limit for every
-architrino worldline. The Master Equation already has rows for
-super-field-speed source histories, self-hit, caustics, and multiple causal
-roots. What is not yet closed is the photon-specific proof that the
-coaxial planar-pair branch keeps its Gate A/B/C ledgers while its constituent
-absolute velocities may be super-field-speed.
+architrino worldline. Downstream Master Equation packets currently provide
+examples of rows for super-field-speed source histories, self-hit, caustics, and
+multiple causal roots, but the topology layer should not depend on that EOM.
+What is not yet closed is the photon-specific proof that the coaxial planar-pair
+branch keeps its Gate A/B/C ledgers while its constituent absolute velocities
+may be super-field-speed.
 
 Required photon-side rows:
 
@@ -157,7 +200,7 @@ When $\sigma_M<0$, strict sub-field-speed same-source intervals do not supply
 nearby self-hit roots. When $\sigma_M>0$, super-field-speed curved intervals
 can admit same-source roots. At $\sigma_M=0$, the row is near a tangent or
 degenerate boundary and must be routed through the caustic or finite-$\eta$
-chart rather than treated as an ordinary force row. If perturbations repeatedly
+chart rather than treated as an ordinary simple-root row. If perturbations repeatedly
 cross this hinge, the retained causal-root ledger may look like an on/off or
 short/long pulse sequence:
 $$
@@ -246,9 +289,9 @@ $$
 }.
 $$
 
-This is the same source-velocity transversality row used by the Master Equation
-branch law. A root with $J_{ij,n}=0$ is a caustic boundary, not an ordinary force
-row.
+This is a topology-native source-velocity transversality row that any downstream
+simple-root EOM consumer must respect. A root with $J_{ij,n}=0$ is a caustic
+boundary, not an ordinary simple-root row.
 
 ## Candidate Lemma 1: Compact Pair-Contact
 
@@ -334,7 +377,7 @@ Root count can change only when one of the following boundaries is reached:
 | Endpoint $s=t$ | Exclude the trivial coincidence or route through the declared core convention. |
 | Memory edge $s=t-h$ | Record entry or exit as finite-window wake-history flux. |
 | Caustic $J=0$ | Route through finite impulse, branch transition, or fail-closed singular-stratum chart. |
-| Collision/core locus | Use the same $\epsilon_c$ convention in force, action, and energy rows. |
+| Collision/core locus | Use the same $\epsilon_c$ convention in root, action, and energy rows. |
 | Periodic seam or winding transfer | Record winding ownership or prove it is only representative relabeling. |
 | Omitted branch row | Fail closed until the active and inactive root ledgers are complete. |
 
@@ -407,7 +450,19 @@ Let $\mathcal{R}^{\mathrm{act}}$ be the active causal-root rows in a retained
 branch chart on $T_L^3$, and let $\partial\mathcal{R}^{\mathrm{act}}$ denote
 the formal boundary generated by caustics, memory-window crossings, endpoint
 events, core events, winding transfers, and omitted-row gaps. A candidate branch
-is admissible only if
+is topology-admissible only if the topology-native boundary has no unaccounted
+row:
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
+=0
+$$
+where zero means every boundary contribution is absent, paired, or routed into
+the same retained source record by an explicit boundary-stratum row. This first
+condition does not use an EOM.
+
+The downstream cross-sector conjecture is stronger. Once action, wake-history,
+and medium-response consumers are supplied, a branch can be consumed by the full
+closed-ledger stack only if
 $$
 \partial\mathcal{R}^{\mathrm{act}}
 +
@@ -425,12 +480,14 @@ $$
 \mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}.
 $$
 
-This is a working conjecture, not a canonized law. The terms need precise
-definitions before this becomes theorem-grade:
+This is a working conjecture, not a canonized law. The topology-native term can
+be developed before choosing an EOM; the remaining terms are downstream
+same-record consumers. The terms need precise definitions before this becomes
+theorem-grade:
 
 | Term | Needed definition |
 | --- | --- |
-| $\partial\mathcal{R}^{\mathrm{act}}$ | Boundary operator on winding-labeled causal-root rows. |
+| $\partial\mathcal{R}^{\mathrm{act}}$ | EOM-independent boundary operator on winding-labeled causal-root rows. |
 | $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | Energy, momentum, and angular-momentum wake-history boundary under the same retained rows. |
 | $\partial S_{\mathfrak B}^{(\eta)}$ | Variational endpoint and multiplier residual boundary on the retained branch chart. |
 | $\partial\mathcal{M}_{\mathrm{sea}}$ | Medium-response mismatch caused by using a different retained history or response map. |
@@ -465,8 +522,8 @@ $$
 where $q$ is the branch class, $W$ is the retained comparison window,
 $\mathcal{P}_{\mathrm{sea}}$ denotes the projection maps that read clock,
 ruler, signal-speed, weak-field metric, and photon-channel rows from the
-Noether sea response object, and the other rows are the retained branch rows
-already required by the Master Equation closure stack.
+Noether sea response object, and the other rows are the retained topological
+ledger rows that any downstream EOM or medium-response consumer must reference.
 
 The candidate boundary is the residual vector
 $$
@@ -486,9 +543,9 @@ It vanishes only when:
 
 | Residual | Zero condition | Existing handoff failure if nonzero |
 | --- | --- | --- |
-| $\Delta_{\mathrm{id}}$ | The medium-response row names the same branch class $q$ and retained chart as the force/action rows. | `residual.provenance_gap` |
+| $\Delta_{\mathrm{id}}$ | The medium-response row names the same branch class $q$ and retained chart as the root/action rows. | `residual.provenance_gap` |
 | $\Delta_W$ | The medium-response row uses the same retained window $W$ and memory depth $h$. | `residual.observable_refit` |
-| $\Delta_{\mathrm{reg}}$ | The medium-response row declares the same $\eta$ and $\epsilon_c$ status used by the force/action rows, or declares a legal coarse-grained limit from them. | `residual.provenance_gap` |
+| $\Delta_{\mathrm{reg}}$ | The medium-response row declares the same $\eta$ and $\epsilon_c$ status used by the root/action rows, or declares a legal coarse-grained limit from them. | `residual.provenance_gap` |
 | $\Delta_{\mathrm{root}}$ | Active roots, inactive gaps, Jacobian floors, and caustic routes consumed by the medium row match the retained root ledger. | `residual.branch_unidentified` |
 | $\Delta_{\mathrm{event}}$ | Medium updates consume the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ row as clock, ruler, signal, and metric outputs. | `event.ledger_residual` |
 | $\Delta_{\mathrm{proj}}$ | $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ are projections of one $\mathcal{M}_{\mathrm{sea}}^{ab}$ record. | `residual.medium_response_missing` |
@@ -562,9 +619,9 @@ marked compact-box only unless a local noncompact replacement is supplied.
    and omitted-row strata.
 5. State the self-hit criterion separately and show why strict sub-field-speed
    same-source arcs do not supply nearby self-hit roots.
-6. Test whether the closed-ledger conjecture reproduces the existing
-   branch-chart promotion requirements without adding a new force, gate, or
-   ontology.
+6. Test whether the topology-native ledger condition gives downstream
+   branch-chart consumers the same retained source-record identity burden
+   without adding a new force, gate, or ontology.
 
 ## Smallest Executable Check
 
@@ -579,9 +636,10 @@ certificate. It samples a small neutral path inventory on $T_L^3$ and emits:
 | `pair_contact_min_root_count` | For all distinct pairs, at least one root when $h>D_L/c_f$. |
 | `winding_owner_present` | Every root carries a winding class or seam-transfer route. |
 | `simple_root_floor_min` | Simple roots report a positive Jacobian floor. |
-| `caustic_candidate_count` | Near-zero $J$ events are separated from ordinary force rows. |
+| `caustic_candidate_count` | Near-zero $J$ events are separated from ordinary simple-root rows. |
 | `self_hit_root_count` | Same-source roots are reported separately from partner roots. |
 | `source_record_contract` | Root topology declares the retained source-record identity consumed by pullback diagnostics. |
+| `eom_independence_contract` | Declares that the checker uses no EOM assumption and rejects force-law label substitution. |
 | `compact_only_rows` | Rows that disappear when fixed $h$ and $L\to\infty$ are flagged. |
 | `source_point_vs_eta_segment` | Distinguish sharp source-history points from finite-$\eta$ path neighborhoods. |
 | `photon_constituent_speed_split` | Report centerline $c_\gamma$ and constituent absolute speed ranges. |
@@ -591,7 +649,7 @@ The checker currently reports the requested rows and then stops at
 `action_wake_history_noether_sea_and_cross_sector_rows_not_computed`. That is
 the correct fail-closed boundary: root topology is now executable at toy level,
 but action, wake-history, Noether sea, and cross-sector pullbacks are still the
-open proof burden.
+open downstream proof burden.
 
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
@@ -707,7 +765,11 @@ fail-closed, because it checks identity and provenance rather than action
 closure. Its negative controls make hidden topological, photon-route artifact,
 photon-route sample, middle-hinge-route artifact, middle-hinge-route sample,
 event-pullback, regulator, and response-object drift fail before a
-sector-specific residual can be mistaken for a shared closed-ledger row.
+sector-specific residual can be mistaken for a shared closed-ledger row. It also
+has an `eom-label-decoy-without-topological-ledger` negative control: even when
+the retained source record, retained chart, retained window, and regulator
+labels are copied from the reference record, an EOM or force-law label fails
+closed if the topology-native active root ledger object is absent.
 
 The closed-ledger pullback compositor now lives at
 `scripts/proof-programs/closed-ledger-pullback-diagnostic.mjs`, with focused

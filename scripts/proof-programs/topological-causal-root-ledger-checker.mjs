@@ -24,6 +24,8 @@ const DEFAULT_RETAINED_WINDOW_ID = "W0";
 const DEFAULT_ACTIVE_ROOT_LEDGER_ID = "R_act_q0";
 const DEFAULT_EVENT_LEDGER_ID = "L_EpJ_q0";
 const DEFAULT_RESPONSE_OBJECT_ID = "M_sea_q0";
+const TOPOLOGY_NATIVE_SCOPE =
+  "EOM-independent causal-root topology; downstream EOM consumers may consume the retained ledger but cannot supply it";
 
 function vecAdd(left, right) {
   return left.map((value, index) => value + right[index]);
@@ -263,7 +265,7 @@ function classifyRootRow(receiver, source, scenario, root) {
     abs_jacobian: formatNumber(absJacobian),
     row_status:
       absJacobian <= scenario.caustic_tolerance
-        ? "caustic_candidate_not_ordinary_force_row"
+        ? "caustic_candidate_not_ordinary_simple_root_row"
         : "accepted_simple_root_diagnostic",
     finite_eta_segment: {
       eta: scenario.eta,
@@ -296,7 +298,7 @@ function rootLedgerRows(scenario, subdivisions, windingRadius) {
         source_identity: receiver.id === source.id ? "self-hit" : "partner-hit",
         root_count: classified.length,
         simple_root_count: classified.filter((row) => row.row_status === "accepted_simple_root_diagnostic").length,
-        caustic_candidate_count: classified.filter((row) => row.row_status === "caustic_candidate_not_ordinary_force_row").length,
+        caustic_candidate_count: classified.filter((row) => row.row_status === "caustic_candidate_not_ordinary_simple_root_row").length,
         windings: classified.map((row) => row.winding),
       };
       if (receiver.id === source.id) {
@@ -435,7 +437,7 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
   const absJacobians = ledger.rows.map((row) => row.abs_jacobian).filter(Number.isFinite);
   const pairRootCounts = ledger.pairRows.map((row) => row.root_count);
   const selfRootCounts = ledger.selfRows.map((row) => row.root_count);
-  const causticCount = ledger.rows.filter((row) => row.row_status === "caustic_candidate_not_ordinary_force_row").length;
+  const causticCount = ledger.rows.filter((row) => row.row_status === "caustic_candidate_not_ordinary_simple_root_row").length;
   const allRootsHaveWindingOwners = ledger.rows.every((row) => row.winding_owner_present === true);
   const pairContactMinRootCount = finiteMin(pairRootCounts);
   const selfHitRootCount = selfRootCounts.reduce((sum, count) => sum + count, 0);
@@ -475,6 +477,26 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
       })),
     },
     source_record_contract: sourceRecordContract(scenario, ledgerSummary),
+    eom_independence_contract: {
+      scope: TOPOLOGY_NATIVE_SCOPE,
+      eom_assumption_status: "not_used_by_topological_root_ledger_checker",
+      force_law_label_substitution: "rejected; retained root rows, winding owners, boundary strata, and same-record identity are required data",
+      downstream_consumer_examples: [
+        "Master Equation branch chart",
+        "action-boundary pullback",
+        "wake-history event pullback",
+        "Noether sea medium-response handoff",
+      ],
+      topology_native_rows: [
+        "retained_path_history_identity",
+        "winding_labeled_root_rows",
+        "root_count_continuity_or_declared_boundary_stratum",
+        "jacobian_floor_or_caustic_route",
+        "memory_window_entry_exit",
+        "endpoint_exclusion",
+        "collision_core_regularization",
+      ],
+    },
     numerical_method: {
       root_domain_tau: [ROOT_EPSILON, scenario.retained_history_window],
       subdivisions,
@@ -516,7 +538,7 @@ export function buildTopologicalCausalRootLedgerArtifact(options = {}) {
       retained_branch: false,
       updates_live_validation_gate: false,
       strongest_artifact:
-        "sampled T_L^3 root-ledger diagnostic with pair contact, self-hit separation, winding ownership, Jacobian floors, photon speed split, and middle-hinge root-status word",
+        "EOM-independent sampled T_L^3 root-ledger diagnostic with pair contact, self-hit separation, winding ownership, Jacobian floors, photon speed split, and middle-hinge root-status word",
       first_failure_status: "action_wake_history_noether_sea_and_cross_sector_rows_not_computed",
     },
   };
@@ -585,6 +607,22 @@ export function validateTopologicalCausalRootLedgerArtifact(artifact) {
   assertField(
     sourceRecord.response_object_id === DEFAULT_RESPONSE_OBJECT_ID,
     `response_object_id must be ${DEFAULT_RESPONSE_OBJECT_ID}`,
+    errors
+  );
+  assertField(
+    artifact.eom_independence_contract?.scope === TOPOLOGY_NATIVE_SCOPE,
+    "artifact must declare the EOM-independent topology-native scope",
+    errors
+  );
+  assertField(
+    artifact.eom_independence_contract?.eom_assumption_status ===
+      "not_used_by_topological_root_ledger_checker",
+    "artifact must declare that no EOM assumption is used by the topological checker",
+    errors
+  );
+  assertField(
+    artifact.eom_independence_contract?.force_law_label_substitution?.startsWith("rejected;") === true,
+    "artifact must reject force-law label substitution",
     errors
   );
 

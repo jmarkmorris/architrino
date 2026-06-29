@@ -194,6 +194,13 @@ export function createSoftSphereRepulsionInteraction(input = {}) {
     id: input.id ?? "soft-sphere-repulsion",
     schema: "t3-interaction.v1",
     radius,
+    nativeKernel: Object.freeze({
+      schema: "t3-native-interaction-kernel.v1",
+      law: "soft_sphere_repel_v1",
+      radius,
+      strength,
+      softening,
+    }),
     applyPair(context) {
       if (context.distance >= radius || context.distance === 0) {
         return;

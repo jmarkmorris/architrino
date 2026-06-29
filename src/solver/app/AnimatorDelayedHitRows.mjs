@@ -303,8 +303,10 @@ function createDelayedHitRow({
   const receiverNormalNumerator = emission.fieldSpeed - receiverNormalSpeed;
   const receiverNormalCrossingFactor = receiverNormalNumerator / emission.fieldSpeed;
   const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
-  const jacobian = receiverNormalCrossingFactor;
-  const strength = Math.abs(jacobian) > SMALL_JACOBIAN ? 1 / Math.abs(jacobian) : 0;
+  const jacobian = sourceNormalDenominator;
+  const strength = Number.isFinite(receiverNormalFactor) && Math.abs(sourceNormalDenominator) > SMALL_JACOBIAN
+    ? Math.abs(receiverNormalFactor)
+    : 0;
   const displayStrength = distance > 0 ? 1 / (distance * distance) : 0;
   const emitterId = emission.emitterId;
   const receiverId = receiverDescriptor.receiverId;

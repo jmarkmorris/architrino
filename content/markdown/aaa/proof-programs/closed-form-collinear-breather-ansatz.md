@@ -1,5 +1,13 @@
 # Closed-Form Collinear Breather Ansatz
 
+Receiver-normal restart notice. Candidate ansatz packets, collocation rows, and
+finite certificates that consumed the old source-only branch strength are not
+closure evidence under the current Master EOM. The ansatz program may reuse
+history-space, root-ledger, inactive-gap, finite-memory, and source-normal
+transversality structure, but every force, action, returned-history, and margin
+row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+promotion.
+
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](./collinear-breather.md). Its purpose is to generate certificate data for that proof program. A closed-form or closed-by-quadrature orbit is useful only insofar as it produces a candidate cycle, a branch chart, a mesh, and return residuals with strict audit slack.
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.

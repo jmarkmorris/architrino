@@ -61,6 +61,7 @@ const CONTROLS = [
   "event-source-record-mismatch",
   "action-regulator-mismatch",
   "response-object-mismatch",
+  "eom-label-decoy-without-topological-ledger",
 ];
 
 function deepClone(value) {
@@ -192,6 +193,24 @@ export function applyClosedLedgerSourceRecordContractControl(input, controlName)
 
   if (controlName === "response-object-mismatch") {
     packet.topological.source_record_contract.response_object_id = "M_sea_q1";
+    return packet;
+  }
+
+  if (controlName === "eom-label-decoy-without-topological-ledger") {
+    const source = noetherSourceRecord(packet);
+    const handoff = noetherHandoff(packet);
+    packet.topological.source_record_contract = {
+      source_record_id: source.record_id,
+      branch_class: source.branch_class,
+      retained_chart_id: source.retained_chart_id,
+      retained_window: deepClone(source.retained_window),
+      regulator_state: deepClone(source.regulator_state),
+      event_ledger_id: source.event_ledger?.ledger_id,
+      response_object_id: handoff.medium_response?.response_object_id,
+      eom_label: "receiver_normal_master_eom",
+      force_law_label: "declared_eom_label_only",
+      label_substitution_attempt: true,
+    };
     return packet;
   }
 

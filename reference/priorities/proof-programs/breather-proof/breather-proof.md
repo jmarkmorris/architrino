@@ -7,7 +7,19 @@
 - Value: `10`
 - Cost: `4`
 - ROI: `2.50`
-- Status: `active-closure`
+- Status: `receiver-normal-restart`
+
+## Receiver-Normal Restart Notice
+
+The Master EOM branch-strength law has changed from source-only strength to the
+receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Existing
+breather proof packets, pass/fail rows, and certificate reports that consumed
+old source-only force/action strength are invalid as closure evidence. Root
+topology, inactive-gap, finite-memory, source-normal transversality, and
+history-space return-map architecture rows may survive only as conditional
+inputs. The proof program must restart force margins, recapture/self-drive
+estimates, action rows, and any generated certificate before branch-chart
+authorization can be reconsidered.
 
 ## Current Stopping Point
 

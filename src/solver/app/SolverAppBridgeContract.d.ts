@@ -1,4 +1,4 @@
-export type SolverAppId = "animator" | "photon" | "ideal-braid" | "causal-delay-feedback";
+export type SolverAppId = "animator" | "photon" | "ideal-braid" | "causal-delay-feedback" | "t3";
 
 export type SolverRunKind =
   | "motionSimulation"
@@ -128,6 +128,7 @@ export interface SolverClient {
   integrateConstantAccelerationMotionF64(
     request: SolverMotionIntegrationF64Request
   ): Promise<SolverMotionIntegrationF64Response>;
+  stepT3UniverseF64(request: SolverT3StepF64Request): Promise<SolverT3StepF64Response>;
   createPathHistoryStreamF64(
     request: SolverCreatePathHistoryStreamF64Request
   ): Promise<SolverPathHistoryStreamF64Response>;
@@ -220,6 +221,84 @@ export interface SolverMotionIntegrationF64Request {
 export interface SolverMotionIntegrationF64Response {
   frames: SolverMotionFrameF64[];
   buffers: SolverBufferDescriptor[];
+  status: SolverStatusRecord;
+}
+
+export interface SolverT3StepF64Request {
+  schema?: "solver-t3-step-request.v1";
+  startTime: number;
+  endTime?: number;
+  timestep: number;
+  topology: {
+    sideLength: number;
+  };
+  spatialIndex: {
+    interactionRadius: number;
+    cellSize: number;
+  };
+  interaction: SolverT3InteractionF64;
+  particles: SolverT3ParticleStateF64[];
+  integrationTolerance?: number;
+  integrationMethod?: 1;
+  maxRows?: number;
+}
+
+export interface SolverT3InteractionF64 {
+  law: "none" | "soft_sphere_repel_v1";
+  radius: number;
+  interactionRadius?: number;
+  strength?: number;
+  softening?: number;
+}
+
+export interface SolverT3ParticleStateF64 {
+  pathKey: number;
+  position: SolverVector3F64;
+  velocity: SolverVector3F64;
+  mass: number;
+  charge?: number;
+  stateFlags?: number;
+}
+
+export interface SolverT3ParticleStepF64 {
+  pathKey: number;
+  position: SolverVector3F64;
+  velocity: SolverVector3F64;
+  acceleration: SolverVector3F64;
+  mass: number;
+  imageDelta: SolverVector3I32;
+  stateFlags: number;
+}
+
+export interface SolverVector3I32 {
+  x: number;
+  y: number;
+  z: number;
+}
+
+export interface SolverT3StepSummaryF64 {
+  particleCount: number;
+  neighborPairCount: number;
+  cellCount: number;
+  occupiedCellCount: number;
+  startTime: number;
+  endTime: number;
+  timestep: number;
+  maxAcceleration: number;
+  interactionEnergy: number;
+  interactionLawCode: number;
+  interactionLaw: "none" | "soft_sphere_repel_v1";
+  integrationMethod: number;
+  statusFlags: number;
+}
+
+export interface SolverT3StepF64Response {
+  schema: "solver-t3-step-response.v1";
+  rows: SolverT3ParticleStepF64[];
+  summary: SolverT3StepSummaryF64;
+  particleCount: number;
+  interactionLaw: "none" | "soft_sphere_repel_v1";
+  executionPath: "native_c_abi";
   status: SolverStatusRecord;
 }
 

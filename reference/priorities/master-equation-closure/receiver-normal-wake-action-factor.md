@@ -1,14 +1,15 @@
 # Receiver-Normal Wake-Action Factor
 
-Status. Priority-only model-change audit for master-equation closure, A1
-outward constants, action/wake-history closure, and solver support. This packet
-does not replace the canonical event-local Master EOM force row. It records the
-receiver-normal factor that must be audited whenever a proof consumes accumulated
-action, power, wake-history charge, or finite-window conservation rather than
-only an instantaneous branch force.
+Status. Mandatory model-change audit for master-equation closure, A1 outward
+constants, action/wake-history closure, and solver support. This packet records
+the receiver-normal factor now required by the canonical Master EOM branch law.
+Old source-only branch-strength rows are invalid as force/action evidence unless
+they are explicitly stationary-receiver special cases or have been redriven with
+the receiver-normal numerator.
 
-Claim level. Candidate correction to action-measure usage; exact geometry
-identity for smooth retained roots; not yet promoted as a changed force law.
+Claim level. Accepted correction to the Master EOM branch-strength law; exact
+geometry identity for smooth retained roots; downstream proof paths must restart
+their force/action rows from this law.
 
 ## Receiver-Normal Identity
 
@@ -28,24 +29,25 @@ $$
 \frac{ds_\ell}{dt}=\frac{D_{t,ij}}{D_{s,ij}}.
 $$
 
-Interpretation. $D_{s,ij}^{-1}$ is the source-normal causal-root Jacobian already
-used in the event-local branch law. $D_{t,ij}$ is the receiver-normal numerator:
-it says how fast the receiver path cuts through the source-emitted causal wake
-sequence. If the receiver is stationary in the Euclidean-void rest frame, then
-$D_{t,ij}=c_f$ and the effect can be absorbed into the chosen normalization. If
-the receiver has normal motion relative to the source-emission direction, the
-receiver-normal factor $D_{t,ij}/D_{s,ij}$ is geometry-dependent and cannot be
-replaced by one constant.
+Interpretation. $D_{s,ij}^{-1}$ is the source-normal causal-root denominator.
+It remains the transversality floor that makes a simple root legal. $D_{t,ij}$
+is the receiver-normal numerator: it says how fast the receiver path cuts
+through the source-emitted causal wake sequence. If the receiver is stationary
+in the Euclidean-void rest frame, then $D_{t,ij}=c_f$ and the effect can be
+absorbed into the chosen normalization. If the receiver has normal motion
+relative to the source-emission direction, the receiver-normal factor
+$D_{t,ij}/D_{s,ij}$ is geometry-dependent and cannot be replaced by one
+constant.
 
 ## Proof Impact
 
 | Proof lane | Immediate impact |
 | --- | --- |
-| Event-local Master EOM force rows | Do not restart automatically. These rows remain source-normal Jacobian-weighted line-of-action targets unless a later variational proof shows the receiver-normal factor belongs in the force row itself. |
-| Action / wake-history / power rows | Must be audited. Any row that interprets received branch density as an accumulated action rate must declare whether it uses $D_{s,ij}^{-1}$ alone or the receiver-normal factor $D_{t,ij}/D_{s,ij}$. |
-| A1 outward constants | Not ready for action closure until each selected retained row either emits receiver-normal bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same boxes or proves the stationary/constant-normalization exemption. |
+| Event-local Master EOM force rows | Restart required for force magnitude. Source-normal root and inactive-gap rows survive as topology inputs, but old source-only strength rows are invalid as branch-action evidence. |
+| Action / wake-history / power rows | Restart required. Each row must use $D_{t,ij}/D_{s,ij}$ or a proved stationary/constant-normalization exemption. |
+| A1 outward constants | Invalid as closure evidence until each selected retained row emits receiver-normal bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same boxes or proves the stationary/constant-normalization exemption. |
 | Noether wake-history closure | Needs same-record binding between active roots, source-normal Jacobian floors, receiver-normal factors, and boundary wake-history charges. |
-| Solver packets | Need explicit receiver-normal fields so simulations can vary receiver normal velocity independently of $\kappa$. |
+| Solver packets | Central branch weight / delayed-hit strength now consume the unsigned receiver-normal factor, while the source-normal denominator remains a transversality field. |
 
 ## A1-Specific Target
 
@@ -58,8 +60,9 @@ c_f-\hat{\mathbf r}_{\alpha}(\theta,p)\cdot\mathbf v_i(\theta,p)
 $$
 and report outward bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same
 $I_c\times W_\alpha$ boxes used for $D_{s,\alpha}$, inactive-cover gaps, and
-branch-sum constants. A missing $D_t$ row blocks action/wake-history promotion
-but does not by itself falsify an event-local force row.
+branch-sum constants. A missing $D_t$ row invalidates the old force/action/
+wake-history row as closure evidence. It does not falsify root topology,
+inactive gaps, or source-normal transversality rows.
 
 ## Solver Acceptance Target
 
@@ -73,6 +76,6 @@ A solver-side receiver-normal row is accepted only when it reports:
 - receiver-normal factor $D_t/D_s$,
 - fail-closed status for nonfinite values, small $D_s$, or small $D_t$ when the selected proof requires monotone receiver sampling.
 
-This should be consumed as a diagnostic/action row first. Promotion to a
-changed force law requires a separate variational proof and a comparison against
-the existing Master EOM branch rows.
+This is now consumed as the branch-strength row. A separate variational proof is
+still required for action derivation, but not for using receiver-normal branch
+strength in the Master EOM.

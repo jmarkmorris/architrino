@@ -449,7 +449,7 @@ $$
 $$
 Here $\mathcal{R}_{u,J}$ records internal-motion, unequal-radius, finite-memory, and unpaired-row corrections.
 
-For attractive partner rows this larger longitudinal weight increases the cycle-averaged longitudinal restoring stiffness. If $K_{\parallel}^{(q)}$ and $K_{\perp}^{(q)}$ denote the Hessian projections of the retained branch potential reconstructed from the same Jacobian-weighted rows, the oblation target is
+For attractive partner rows this larger longitudinal weight increases the cycle-averaged longitudinal restoring stiffness. If $K_{\parallel}^{(q)}$ and $K_{\perp}^{(q)}$ denote the Hessian projections of the retained branch potential reconstructed from the same receiver-normal rows, the oblation target is
 $$
 K_{\parallel}^{(q)}
 >
@@ -460,7 +460,7 @@ K_{\perp}^{(q)}
 \sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
 <1
 $$
-The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. It is the mechanical response to the $1/|J|$ wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void.
+The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any older source-only $1/|J|$ stiffness estimate is a restart target.
 
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$

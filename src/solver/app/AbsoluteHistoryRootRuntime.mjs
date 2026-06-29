@@ -187,7 +187,9 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     signalSpeed,
   });
   const jacobian = receiverNormal.sourceNormalDenominator;
-  const branchWeight = 1 / Math.max(EPSILON, Math.abs(jacobian));
+  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
+    ? receiverNormal.unsignedReceiverNormalFactor
+    : 0;
   return {
     rootId,
     statusCode: 0,
@@ -221,7 +223,9 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
     signalSpeed,
   });
   const jacobian = receiverNormal.sourceNormalDenominator;
-  const branchWeight = 1 / Math.max(EPSILON, Math.abs(jacobian));
+  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
+    ? receiverNormal.unsignedReceiverNormalFactor
+    : 0;
   return {
     rootId,
     statusCode: 0,

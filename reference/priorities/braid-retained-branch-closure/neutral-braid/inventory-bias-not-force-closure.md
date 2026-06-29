@@ -114,7 +114,7 @@ $$
 \widetilde{\mathbf{F}}_i(\theta)
 $$
 
-to vanish for every retained receiver and phase. The force sum is not a count difference; it is the delayed, Jacobian-weighted all-pairs sum
+to vanish for every retained receiver and phase. The force sum is not a count difference; it is the delayed, receiver-normal all-pairs sum
 
 $$
 \widetilde{\mathbf{F}}_i(\theta)

@@ -906,7 +906,7 @@ A bounded speed factor successor packet must emit:
 | `speed_ode_solvability` | tangent forcing, zero-mean row, primitive excursion, speed-band interval, clock/length speed, and fixed-speed comparison |
 | `time_map` | $\chi_i$, $\chi_i^{-1}$, $D\chi_i$, $D\chi_i^{-1}$, $H_i$, $\mathcal{R}_H$, and winding/equal-period status |
 | `root_jacobian` | $G_{ij}^{\nu}$, $J_{ij}^{\nu}$, root brackets, excluded gaps, $D\eta^{\nu}$, $DJ^{\nu}$, noncollision floors, and source-pair completeness |
-| `force_ledger` | $\mathcal{A}_i^{\nu}$, $\widetilde{\mathbf{F}}_i^{\nu}$, self/fold/medium terms, and Jacobian-weighted force sums |
+| `force_ledger` | $\mathcal{A}_i^{\nu}$, $\widetilde{\mathbf{F}}_i^{\nu}$, self/fold/medium terms, and receiver-normal force sums |
 | `force_moment_decomposition` | $A_i$, $R_i$, attraction/repulsion root partitions, tangent-power split, normal-drive split, support-radial moment split, and count-to-bias status |
 | `dynamics_rows` | $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, $\mathcal{R}_{N\mathrm{rec}}^\nu$, speed-ODE status, row weights, residual norms, and tolerance bounds |
 | `coupled_fixed_point` | $\mathcal{R}_{\mathrm{cpl}}^\nu$, coupled variable tuple, derivative block audit, Schur corrections, range/cokernel split, and stale-subsolve status |

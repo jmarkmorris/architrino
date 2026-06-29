@@ -1,0 +1,100 @@
+# Receiver-Normal Master Equation Global Invalidation Audit
+
+Status. Mandatory model-change ledger. The canonical Master EOM now uses the
+receiver-normal branch factor
+$$
+D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_j(s),
+\qquad
+D_{t,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_i(t),
+\qquad
+W_{ij}^{\mathrm{rec}}=\left|D_{t,ij}/D_{s,ij}\right|.
+$$
+Any active proof, solver row, action row, force row, or certificate that
+consumes the old source-only branch strength is invalid as closure evidence
+unless it explicitly proves a stationary-receiver or constant-normal exemption.
+
+## Purge Rule
+
+The old force/action law
+$$
+W_{ij}=1/\lvert J_{ij}\rvert
+$$
+is purged from active evidence. It may appear only as historical provenance,
+as an explicitly marked old-law diagnostic, or as a stationary-receiver special
+case where $D_t$ is fixed by the declared normalization.
+
+Rows that survive conditionally:
+
+- causal-root existence,
+- retained branch labels,
+- inactive-gap covers,
+- finite-memory depth,
+- source-normal transversality floors,
+- root-transport rows that use only the source-normal implicit-function
+  denominator.
+
+Rows that must restart:
+
+- force-balance rows,
+- radial and tangential drive rows,
+- action, power, energy, and Noether wake-history rows,
+- breather recapture and self-drive margin rows,
+- A1 outward constants,
+- generated pass/fail certificates that consumed old source-only force/action
+  strength,
+- app or solver rows that locally reconstruct old branch strength from
+  $1/\lvert J\rvert$.
+
+## Active Equation
+
+The force-level branch contribution is now
+$$
+\mathbf a_i(t)
+=
+\sum_{j,\ell}
+\frac{\kappa\,\sigma_{ij}|q_iq_j|}{\mu_{\mathrm{arch}}}
+\frac{W_{ij,\ell}^{\mathrm{rec}}(t)}{r_{ij,\ell}(t)^2}
+\hat{\mathbf r}_{ij,\ell}(t).
+$$
+The source-normal denominator remains the root-transversality diagnostic. The
+receiver-normal factor is the branch-strength diagnostic. Those two fields must
+not be collapsed except by a declared special-case proof.
+
+## Global Impact Ledger
+
+| Surface | Disposition | Required restart |
+| --- | --- | --- |
+| `content/markdown/aaa/dynamics/master-equation.md` | Canonical equation updated to receiver-normal branch strength. Old source-only action and circular rows are restart-labeled where retained. | Redrive action functional and circular branch asymptotics with $W^{\mathrm{rec}}$. |
+| `reference/priorities/master-equation-closure/receiver-normal-wake-action-factor.md` | Accepted correction packet. | Use as the local law for every restarted force/action row. |
+| A1 spiral packets | Root topology, inactive gaps, finite memory, and source-normal Jacobian floors remain conditional topology inputs. Force/action verdict rows are invalid as closure evidence. | Add same-box $D_t$ bounds for every retained A1 row before any branch-sum or pass/fail action certificate is replayed. |
+| Breather proof program | Existing branch topology and history-space architecture remain useful. Old recapture, self-drive, force-margin, and certificate rows are invalid as closure evidence where they consumed source-only strength. | Restart the breather margin proof with receiver-normal branch strengths and regenerate any consumed finite certificates. |
+| Action / Noether wake-history | Old source-only obstruction formulas are diagnostic only. | Rebuild the constrained-branch action target and Noether balance rows using $W^{\mathrm{rec}}$ on the same retained branch chart. |
+| Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that reconstruct strength as $1/\lvert J\rvert$. |
+| Photon / Animator / Ideal Braid app-local formulas | App-local physical contribution reconstruction remains suspect until each path consumes solver-owned receiver-normal rows. | Move contribution rows behind solver output before using app-local summaries as physics evidence. |
+| Equation-mapping and geometry-bridge packets | Any row that consumes old branch strength is score-neutral and invalid for proof movement. Provider/root identity lessons remain useful if independent of the old force law. | Redrive only after core Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
+
+## Reinitiation Decisions
+
+Reinitiate the breather path, but only after the branch-strength rows are
+restated as receiver-normal inequalities. The return-map and Schauder-domain
+architecture remains the right proof shape; the numerical and analytic margins
+must be redriven.
+
+Reinitiate A1 outward constants only after each retained label has same-box
+$D_t$ bounds. The old A1 constants do not certify action or force closure.
+
+Reinitiate action and Noether wake-history closure from the constrained branch
+scaffold with $W^{\mathrm{rec}}$. Do not replay the old $1/(r|J|)$ action
+formula as a live proof step.
+
+Pause equation-mapping score movement until the restarted Master EOM rows exist.
+Equation-mapping can still audit which rows depend on old branch strength, but
+numeric pass/fail under the old law is no longer proof evidence.
+
+## Smallest Next Mathematical Artifact
+
+The next closure-relevant artifact is a same-record receiver-normal branch table:
+for each retained branch row, report the source-normal denominator interval,
+receiver-normal numerator interval, receiver-normal factor interval, branch
+status, and a fail-closed negative control on the same box. That table is the
+minimum object needed before any purged proof path can be rationally restarted.

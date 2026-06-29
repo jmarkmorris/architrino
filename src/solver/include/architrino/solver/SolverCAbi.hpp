@@ -449,6 +449,61 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverT3StepRequestF64 {
+  double start_time;
+  double end_time;
+  double timestep;
+  double side_length;
+  double interaction_radius;
+  double spatial_cell_size;
+  double soft_sphere_radius;
+  double soft_sphere_strength;
+  double softening;
+  double integration_tolerance;
+  std::uint32_t interaction_law;
+  std::uint32_t integration_method;
+  std::uint32_t reserved0;
+  std::uint32_t reserved1;
+};
+
+struct ArchitrinoSolverT3ParticleStateF64 {
+  std::uint64_t path_key;
+  ArchitrinoSolverVector3F64 position;
+  ArchitrinoSolverVector3F64 velocity;
+  double mass;
+  double charge;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverT3ParticleStepRowF64 {
+  std::uint64_t path_key;
+  ArchitrinoSolverVector3F64 position;
+  ArchitrinoSolverVector3F64 velocity;
+  ArchitrinoSolverVector3F64 acceleration;
+  double mass;
+  std::int32_t image_delta_x;
+  std::int32_t image_delta_y;
+  std::int32_t image_delta_z;
+  std::uint32_t state_flags;
+};
+
+struct ArchitrinoSolverT3StepSummaryF64 {
+  std::uint64_t particle_count;
+  std::uint64_t neighbor_pair_count;
+  std::uint64_t cell_count;
+  std::uint64_t occupied_cell_count;
+  double start_time;
+  double end_time;
+  double timestep;
+  double max_acceleration;
+  double interaction_energy;
+  std::uint32_t interaction_law;
+  std::uint32_t integration_method;
+  std::uint32_t status_flags;
+  std::uint32_t reserved0;
+};
+
 struct ArchitrinoSolverMotionFrameRowF64 {
   std::uint64_t path_key;
   std::uint64_t frame_index;
@@ -928,6 +983,10 @@ struct ArchitrinoSolverAbiInfo {
   int status_row_bytes;
   int admission_report_f64_bytes;
   int pair_interaction_request_f64_bytes;
+  int t3_step_request_f64_bytes;
+  int t3_particle_state_f64_bytes;
+  int t3_particle_step_row_f64_bytes;
+  int t3_step_summary_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -1089,6 +1148,15 @@ int architrino_solver_integrate_pair_interaction_motion_f64(
     int max_path_rows,
     int* out_path_row_count,
     ArchitrinoSolverPairInteractionSummaryF64* out_summary);
+
+int architrino_solver_step_t3_universe_f64(
+    const ArchitrinoSolverT3StepRequestF64* request,
+    const ArchitrinoSolverT3ParticleStateF64* states,
+    int state_count,
+    ArchitrinoSolverT3ParticleStepRowF64* rows,
+    int max_rows,
+    int* out_row_count,
+    ArchitrinoSolverT3StepSummaryF64* out_summary);
 
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,

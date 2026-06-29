@@ -15,6 +15,7 @@
 #include "architrino/solver/SolverContract.hpp"
 #include "architrino/solver/SpaceTimeIndex.hpp"
 #include "architrino/solver/StorageLifecycle.hpp"
+#include "architrino/solver/T3BulkStep.hpp"
 
 #include <algorithm>
 #include <cmath>
@@ -56,6 +57,10 @@ static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
 static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
+static_assert(sizeof(ArchitrinoSolverT3StepRequestF64) == 96);
+static_assert(sizeof(ArchitrinoSolverT3ParticleStateF64) == 80);
+static_assert(sizeof(ArchitrinoSolverT3ParticleStepRowF64) == 104);
+static_assert(sizeof(ArchitrinoSolverT3StepSummaryF64) == 88);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -89,7 +94,7 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64) =
 static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary) == 96);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 192);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 208);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);
@@ -186,6 +191,12 @@ static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, max_initial_ve
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_initial_velocity_residual) == 328);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_initial_velocity_residual) == 336);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_residual_mode) == 344);
+static_assert(offsetof(ArchitrinoSolverT3ParticleStateF64, position) == 8);
+static_assert(offsetof(ArchitrinoSolverT3ParticleStateF64, state_flags) == 72);
+static_assert(offsetof(ArchitrinoSolverT3ParticleStepRowF64, acceleration) == 56);
+static_assert(offsetof(ArchitrinoSolverT3ParticleStepRowF64, image_delta_x) == 88);
+static_assert(offsetof(ArchitrinoSolverT3StepSummaryF64, start_time) == 32);
+static_assert(offsetof(ArchitrinoSolverT3StepSummaryF64, interaction_law) == 72);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -576,6 +587,73 @@ architrino::solver::PairInteractionPathConstraint to_pair_interaction_path_const
       constraint.depth,
       constraint.time,
       to_vector(constraint.position),
+  };
+}
+
+architrino::solver::T3BulkStepRequest to_t3_step_request(
+    const ArchitrinoSolverT3StepRequestF64& request) {
+  return architrino::solver::T3BulkStepRequest{
+      request.start_time,
+      request.end_time,
+      request.timestep,
+      request.side_length,
+      request.interaction_radius,
+      request.spatial_cell_size,
+      request.soft_sphere_radius,
+      request.soft_sphere_strength,
+      request.softening,
+      request.integration_tolerance,
+      request.interaction_law,
+      request.integration_method,
+      request.reserved0,
+      request.reserved1,
+  };
+}
+
+architrino::solver::T3ParticleState to_t3_particle_state(
+    const ArchitrinoSolverT3ParticleStateF64& state) {
+  return architrino::solver::T3ParticleState{
+      state.path_key,
+      to_vector(state.position),
+      to_vector(state.velocity),
+      state.mass,
+      state.charge,
+      state.state_flags,
+      state.reserved0,
+  };
+}
+
+ArchitrinoSolverT3ParticleStepRowF64 to_c_t3_particle_step_row(
+    const architrino::solver::T3ParticleStepRowF64& row) {
+  return ArchitrinoSolverT3ParticleStepRowF64{
+      row.pathKey,
+      ArchitrinoSolverVector3F64{row.position.x, row.position.y, row.position.z},
+      ArchitrinoSolverVector3F64{row.velocity.x, row.velocity.y, row.velocity.z},
+      ArchitrinoSolverVector3F64{row.acceleration.x, row.acceleration.y, row.acceleration.z},
+      row.mass,
+      row.imageDeltaX,
+      row.imageDeltaY,
+      row.imageDeltaZ,
+      row.stateFlags,
+  };
+}
+
+ArchitrinoSolverT3StepSummaryF64 to_c_t3_step_summary(
+    const architrino::solver::T3StepSummaryF64& summary) {
+  return ArchitrinoSolverT3StepSummaryF64{
+      summary.particleCount,
+      summary.neighborPairCount,
+      summary.cellCount,
+      summary.occupiedCellCount,
+      summary.startTime,
+      summary.endTime,
+      summary.timestep,
+      summary.maxAcceleration,
+      summary.interactionEnergy,
+      summary.interactionLaw,
+      summary.integrationMethod,
+      summary.statusFlags,
+      summary.reserved0,
   };
 }
 
@@ -2210,6 +2288,30 @@ int copy_motion_frames(const std::vector<architrino::solver::MotionFrameRowF64>&
   return 0;
 }
 
+int copy_t3_particle_step_rows(
+    const std::vector<architrino::solver::T3ParticleStepRowF64>& source,
+    ArchitrinoSolverT3ParticleStepRowF64* rows,
+    int maxRows,
+    int* outRowCount) {
+  if (root_count_overflows(source.size())) {
+    *outRowCount = 0;
+    return -4;
+  }
+
+  const int requiredRows = static_cast<int>(source.size());
+  *outRowCount = requiredRows;
+  if (rows == nullptr || maxRows == 0) {
+    return requiredRows == 0 ? 0 : -3;
+  }
+  if (maxRows < requiredRows) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRows; ++index) {
+    rows[index] = to_c_t3_particle_step_row(source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
 int copy_phase_rows(const std::vector<architrino::solver::PhaseAtHit>& source,
                     ArchitrinoSolverPhaseAtHitRowF64* rows,
                     int maxRows,
@@ -2476,7 +2578,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      15,
+      16,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -2523,6 +2625,10 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverStatusRow)),
       static_cast<int>(sizeof(ArchitrinoSolverAdmissionReportF64)),
       static_cast<int>(sizeof(ArchitrinoSolverPairInteractionRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverT3StepRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverT3ParticleStateF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverT3ParticleStepRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverT3StepSummaryF64)),
   };
 }
 
@@ -3016,6 +3122,38 @@ extern "C" int architrino_solver_integrate_pair_interaction_motion_f64(
     path_rows[index] = to_c_path_history_row(result.pathRows[static_cast<std::size_t>(index)]);
   }
   return 0;
+}
+
+extern "C" int architrino_solver_step_t3_universe_f64(
+    const ArchitrinoSolverT3StepRequestF64* request,
+    const ArchitrinoSolverT3ParticleStateF64* states,
+    int state_count,
+    ArchitrinoSolverT3ParticleStepRowF64* rows,
+    int max_rows,
+    int* out_row_count,
+    ArchitrinoSolverT3StepSummaryF64* out_summary) {
+  if (request == nullptr || states == nullptr || out_row_count == nullptr ||
+      state_count < 0 || max_rows < 0) {
+    return -1;
+  }
+
+  std::vector<architrino::solver::T3ParticleState> cppStates;
+  cppStates.reserve(static_cast<std::size_t>(state_count));
+  for (int index = 0; index < state_count; ++index) {
+    cppStates.push_back(to_t3_particle_state(states[index]));
+  }
+
+  const architrino::solver::T3BulkStepResult result =
+      architrino::solver::step_t3_universe(to_t3_step_request(*request), cppStates);
+  if (out_summary != nullptr) {
+    *out_summary = to_c_t3_step_summary(result.summary);
+  }
+  if (!result.validation.ok) {
+    *out_row_count = 0;
+    return -2;
+  }
+
+  return copy_t3_particle_step_rows(result.rows, rows, max_rows, out_row_count);
 }
 
 extern "C" int architrino_solver_compute_phase_at_hit_f64(

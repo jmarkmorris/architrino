@@ -205,6 +205,30 @@ test("response object mismatch fails the Noether sea response row", () => {
   assert.deepEqual(rowById(artifact, "response_object").mismatches, ["topological.response_object_id"]);
 });
 
+test("EOM label decoy cannot replace the topology-native active root ledger", () => {
+  const input = applyClosedLedgerSourceRecordContractControl(
+    buildDefaultClosedLedgerSourceRecordContractInput(),
+    "eom-label-decoy-without-topological-ledger"
+  );
+  const artifact = buildClosedLedgerSourceRecordContractDiagnostic(input);
+
+  assert.deepEqual(validateClosedLedgerSourceRecordContractArtifact(artifact), []);
+  assert.equal(input.topological.source_record_contract.eom_label, "receiver_normal_master_eom");
+  assert.equal(input.topological.source_record_contract.label_substitution_attempt, true);
+  assert.equal(artifact.result.diagnostic_status, "diagnostic_failed");
+  assert.equal(rowById(artifact, "source_record_identity").status, "pass");
+  assert.equal(rowById(artifact, "branch_chart_identity").status, "pass");
+  assert.equal(rowById(artifact, "retained_window").status, "pass");
+  assert.equal(rowById(artifact, "regulator_state").status, "pass");
+  assert.equal(rowById(artifact, "active_root_ledger").status, "fail");
+  assert.deepEqual(rowById(artifact, "active_root_ledger").mismatches, [
+    "active_root_ledger.ledger_id",
+    "topological.active_root_ledger.root_row_count",
+    "topological.active_root_ledger.winding_owner_present",
+    "topological.active_root_ledger.jacobian_floor",
+  ]);
+});
+
 test("closed-ledger source-record contract CLI writes, validates, and reports schema", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "closed-ledger-source-record-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -233,5 +257,6 @@ test("closed-ledger source-record contract CLI writes, validates, and reports sc
     "event-source-record-mismatch",
     "action-regulator-mismatch",
     "response-object-mismatch",
+    "eom-label-decoy-without-topological-ledger",
   ]);
 });

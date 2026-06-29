@@ -169,20 +169,25 @@ $$
 and
 
 $$
-J_{i,k}
+D_{s,i,k}
 =
-1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_{\mathrm{sig}}}
+c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
+\qquad
+D_{t,i,k}
+=
+c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}
 $$
 
-The displayed electric readout is reconstructed from the transverse part of the Jacobian-weighted radial hit sum
+The displayed electric readout is reconstructed from the transverse part of the receiver-normal radial hit sum
 
 $$
 \mathbf a_{\mathrm{VO}}(t)
 =
 g\sum_i\sum_k
 q_i
+\left|\frac{D_{t,i,k}}{D_{s,i,k}}\right|
 \frac{\mathbf n_{i,k}}
-{R_{i,k}^2 |J_{i,k}|}
+{R_{i,k}^2}
 $$
 
 by taking

@@ -1,5 +1,13 @@
 # Collinear Breather
 
+Receiver-normal restart notice. The return-map architecture, root-topology
+lemmas, inactive-gap logic, finite-memory controls, and source-normal
+transversality rows in this chapter remain candidate proof inputs. Any recapture
+margin, self-drive margin, branch-force estimate, action row, or finite
+certificate that consumed the old source-only branch strength is invalid as
+closure evidence until it is redriven with the receiver-normal factor
+$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained branch record.
+
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
 The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.

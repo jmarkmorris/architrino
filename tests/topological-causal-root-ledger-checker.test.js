@@ -44,6 +44,15 @@ test("topological causal-root ledger checker emits the requested priority rows",
   );
   assert.equal(artifact.source_record_contract.event_ledger_id, "L_EpJ_q0");
   assert.equal(artifact.source_record_contract.response_object_id, "M_sea_q0");
+  assert.equal(
+    artifact.eom_independence_contract.eom_assumption_status,
+    "not_used_by_topological_root_ledger_checker"
+  );
+  assert.equal(artifact.eom_independence_contract.force_law_label_substitution.startsWith("rejected;"), true);
+  assert.equal(
+    artifact.eom_independence_contract.topology_native_rows.includes("root_count_continuity_or_declared_boundary_stratum"),
+    true
+  );
   assert.equal(artifact.source_point_vs_eta_segment.row_count, artifact.causal_root_ledger.root_rows.length);
   assert.ok(
     artifact.photon_constituent_speed_split.rows.some(

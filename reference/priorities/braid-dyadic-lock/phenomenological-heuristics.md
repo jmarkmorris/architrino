@@ -19,7 +19,7 @@ The strongest phenomenology from the earlier draft has now been promoted into th
 
 The most important negative result to preserve is this:
 
-- **Jacobian-weighted action failure:** one cannot infer action or energy doubling directly from delay-map covering degree because the $1/|J|$ weighting destroys uniform-sheet counting. Spatial double covering and temporal frequency doubling are therefore not interchangeable, and any future action theorem must come after the reduced stability analysis rather than before it.
+- **Old-law action-counting failure:** one cannot infer action or energy doubling directly from delay-map covering degree. The earlier $1/|J|$ warning is now an old-law diagnostic; under the current Master EOM, the same guardrail must be redriven with receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Spatial double covering and temporal frequency doubling are therefore not interchangeable, and any future action theorem must come after the reduced stability analysis rather than before it.
 
 ## Heuristic Archive
 

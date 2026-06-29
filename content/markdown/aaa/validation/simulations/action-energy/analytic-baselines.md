@@ -1,7 +1,7 @@
 # Analytic Baselines
 
 Purpose:
-- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with Jacobian-weighted magnitude.
+- State the delay differential equations (DDEs) that govern canonical interactions under the delayed line-of-action law with receiver-normal branch strength.
 - Record exact analytical solutions only where they exist; otherwise, state solvability status without approximations.
 
 Models:

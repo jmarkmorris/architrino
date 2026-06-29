@@ -1,7 +1,9 @@
 # Spiral A1 Outward-Constants Certificate Target
 
-Status. Priority-only mathematical artifact for `a1_outward_constants_handoff`
-and the A1 branch of `spiral_branch_chart_test`. This packet consumes
+Status. Receiver-normal restart target for `a1_outward_constants_handoff` and
+the A1 branch of `spiral_branch_chart_test`. Old outward constants that consumed
+source-only branch strength are invalid as closure evidence. This packet now
+exists to rebuild the target with same-box $D_t/D_s$ bounds. It consumes
 [spiral-a1-second-variation-remainder-bound](spiral-a1-second-variation-remainder-bound.md),
 [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md),
 and the retained A1 row set in
@@ -9,10 +11,10 @@ and the retained A1 row set in
 not edit the executable runner, sidecar rows, generated reports, priority queues
 outside this bucket, or authored AAA prose.
 
-Claim level. Candidate certificate target only. This packet turns the sampled
-finite-collar remainder-constants ladder into a concrete outward-constants
-contract. It does not prove A1 finite-collar obstruction, does not identify a
-finite-amplitude repair channel, and does not certify a branch.
+Claim level. Candidate restart target only. This packet turns the retained A1
+topology row set into a receiver-normal outward-constants contract. It does not
+prove A1 finite-collar obstruction, does not identify a finite-amplitude repair
+channel, and does not certify a branch.
 
 ## Retained Row Set
 
@@ -38,13 +40,14 @@ and retained windows
 | $P_3$ | $[6.78,7.12]$ |
 | $S_1$ | $[4.82,5.02]$ |
 
-The already accepted fixed A1 sidecar rows supply the pointwise retained root
-ledger, inactive-gap row, source-speed Jacobian floor, finite-memory row,
-radial-turn row for the prescribed constant-$\Omega$ history, weighted
-tangential-drive row, and exact tangential-compatibility rejection. They do not
-certify the nonconstant finite collar. The present target starts only after the
-endpoint-slope-cancelled retained profile and tangential transport have been
-selected.
+The retained fixed A1 sidecar rows still supply the pointwise retained root
+ledger, inactive-gap row, source-speed Jacobian floor, and finite-memory row.
+Their old radial-turn, weighted tangential-drive, and exact
+tangential-compatibility rows are invalid as force/action evidence under the
+receiver-normal Master EOM until each retained label has same-box $D_t/D_s$
+bounds. They do not certify the nonconstant finite collar. The present target
+starts only after the receiver-normal branch table, endpoint-slope-cancelled
+retained profile, and tangential transport have been selected.
 
 ## Admissible Perturbation Class
 

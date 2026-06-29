@@ -368,7 +368,7 @@ Corpus repair targets after this correction were clear:
 - keep constant emission cadence distinct from received causal-flux modulation,
 - and treat receiver-velocity effects as work-rate, branch-sampling, and emergent-closure structure unless a local derivation proves a stronger force expression.
 
-The correction remains a major inflection point because it made the master equation a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. It also made future closure burdens sharper: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the Jacobian-weighted delayed geometry rather than asserted through imported field-theory vocabulary.
+The correction remains a major inflection point because it made the master equation a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. It also made future closure burdens sharper: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 

@@ -101,7 +101,7 @@ Requirements:
 - Provide speed, curvature, and perturbation controls.
 - Draw the source path and the candidate emission shells that may intersect later positions.
 - Label each candidate as `no same-source root`, `degenerate tangent family`, `active branch`, or `failed Jacobian floor`.
-- Plot $J=1-\mathbf v\cdot\mathbf n/c_f$ for selected roots without treating $1/|J|$ as a speed-only effect.
+- Plot $D_s=c_f-\mathbf v_s\cdot\mathbf n$ and $D_t=c_f-\mathbf v_r\cdot\mathbf n$ for selected roots without treating source-normal denominators as speed-only effects.
 - Include a slow-motion mode around the threshold regime.
 
 ### 5. Branch Geometry Explorer

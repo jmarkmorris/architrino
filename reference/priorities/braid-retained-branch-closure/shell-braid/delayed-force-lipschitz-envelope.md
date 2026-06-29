@@ -354,7 +354,7 @@ $$
 
 with $L_F$ assembled from the per-root bounds above. The same chart also gives a projected-force residual derivative envelope when $D_vP^\perp$, $D_vK$, and $D_v\Gamma_K$ are included.
 
-Proof route. The implicit root derivative is bounded by the Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and inverse-Jacobian weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$ and $|J_a|\ge J_0$. Summing finitely many retained roots gives the force envelope.
+Proof route. The implicit root derivative is bounded by the source-normal Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and receiver-normal weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$, $|D_{s,a}|\ge J_0$, and bounded $D_{t,a}$. Summing finitely many retained roots gives the force envelope.
 
 ---
 
