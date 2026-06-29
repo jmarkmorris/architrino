@@ -6,7 +6,7 @@ Purpose:
 
 Models:
 - Fixed center (test particle, source stationary):
-  - DDE reduces exactly to the ODE $\ddot{r}=-K/r^2$ with $K=\kappa |q q'|>0$; exact closed forms exist.
+  - The causal root is explicit, but the current-law acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a current-law moving-receiver baseline.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{rec}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
@@ -180,7 +180,8 @@ Symmetric two-body on a line (exact DDE; challenges):
   $$
 - For opposite polarities, the exact relative-coordinate equation is the state-dependent DDE
   $$
-  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2\,|J(t)|}
+  \ddot r(t) \;=\; -\,\frac{8\,\kappa\,\epsilon^2}{\big(r(t) + r(t-\tau(t))\big)^2}
+  W^{\mathrm{rec}}(t)
   $$
   with $\tau(t)$ determined by the implicit constraint above. For equal charges, the sign is reversed.
 
@@ -192,7 +193,7 @@ Integral (delta) form selecting the causal root:
   \mathrm{sgn}\!\big(x_1(t)-x_2(t-\tau)\big)}
   {\lvert x_1(t)-x_2(t-\tau)\rvert^{2}}\; d\tau
   $$
-  whose evaluation reduces exactly to finding the causal delay $\tau(t)$; in the symmetric 1D case this yields the DDE above.
+  whose evaluation selects the causal delay $\tau(t)$. The receiver-normal branch strength must then be applied on the selected root to yield the DDE above.
 
 Why closed-form solutions are unlikely (even with symmetry):
 - The delay is state-dependent: the unknown $r(t)$ appears both in the right-hand side and in the implicit constraint defining $\tau(t)$, making the problem a nonlinear functional equation rather than an ODE.
@@ -214,7 +215,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
-- Cross-references to sections with exact solutions (fixed source) and status notes (mutual interaction).
+- Cross-references to sections with current-law baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,

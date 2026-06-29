@@ -2189,10 +2189,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Prepared Held-Release Benchmark",
+                    "title": "Held-Release Restart Target",
                     "markdownPath": "content/markdown/aaa/proof-programs/collinear-breather.md",
-                    "markdownSection": "Prepared Held-Release Benchmark",
-                    "sectionKey": "prepared held release benchmark",
+                    "markdownSection": "Held-Release Restart Target",
+                    "sectionKey": "held release restart target",
                     "headingLevel": 2
                   },
                   {

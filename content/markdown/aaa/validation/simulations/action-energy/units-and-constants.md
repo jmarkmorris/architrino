@@ -20,7 +20,7 @@ Core symbols:
 - Coupling constant ($\kappa>0$):
   - $\kappa$ sets the overall scale of per-hit acceleration. In the canonical law,
     $
-    \mathbf{a}_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}|}\,\hat{\mathbf{r}},
+    \mathbf{a}_{o'\leftarrow o} = \kappa\,\sigma_{q_o q_{o'}}\,\dfrac{|q_o q_{o'}|}{r^2}W_{o'\leftarrow o}^{\mathrm{rec}}\,\hat{\mathbf{r}},
     $
     larger $\kappa$ uniformly strengthens every interaction.
   - Scaling insight: if you scale $\kappa\mapsto \alpha\kappa$ while keeping $(\epsilon,\eta)$ fixed, accelerations scale by $\alpha$. Characteristic assembly scales such as the minimal binary radius $d_0$ and period $t_0$ shift accordingly through the dynamical balance that defines them.

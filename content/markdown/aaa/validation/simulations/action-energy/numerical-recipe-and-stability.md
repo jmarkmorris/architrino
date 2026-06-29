@@ -7,9 +7,12 @@ Event-aware integration (practical algorithm):
    - Discard non-physical roots by convention $H(0)=0$ (exclude $\tau=0$); note $r=0$ occurs only at $\tau=0$ and is thus excluded.
 
 2. Per-hit accumulation:
-   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$, and
+   - For each accepted root, compute $r$, $\hat{\mathbf{r}}$,
+     $D_s=1-\mathbf{v}_o(t_0)\cdot\hat{\mathbf r}$,
+     $D_t=1-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf r}$, and
+     $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Then use
      $$
-     \mathbf{a}_{o'\leftarrow o}(t;t_0)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,\hat{\mathbf{r}}
+     \mathbf{a}_{o'\leftarrow o}(t;t_0)=\kappa\,\sigma_{q_o q_{o'}}\,\frac{|q_o q_{o'}|}{r^2}W^{\mathrm{rec}}\,\hat{\mathbf{r}}
      $$
    - Sum over all sources and all roots (superposition).
 
@@ -23,7 +26,7 @@ Event-aware integration (practical algorithm):
    - Monitor invariants over resolved windows (work–energy balance with $\Phi_\eta$) to validate settings.
 
 5. Units:
-   - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed influences only power via $v_r$.
+   - Use $v=1$ nondimensionalization throughout. Remember: emission cadence and per-wavefront amplitude are constant; receiver speed enters branch strength through $D_t$ and instantaneous power through $v_r$.
 
 6. Two-body closure run packet:
    - For a candidate electrino:positrino binary, emit the signed branch ledger $b$, regulator $\eta$, step or collocation scale $h$, candidate period $P_b$, and the residual tuple
@@ -45,4 +48,4 @@ Event-aware integration (practical algorithm):
    - Fail closed if the signed ledger changes during the reported period, an active Jacobian floor or inactive-root gap vanishes, the projected return-map spectrum is not computed, the energy residuals use a different window or branch chart than the motion residuals, or the extracted frequency is not stable under refinement.
    - Treat a visually periodic orbit without these entries as a search hit only. It is not a binary closure certificate.
 
-Plain language: At each time, find which past emissions can reach the receiver now, sum their radial pushes with $1/r^2$ falloff, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.
+Plain language: At each time, find which past emissions can reach the receiver now, compute how the source laid down the wake and how the receiver crosses it, sum the radial pushes with $W^{\mathrm{rec}}/r^2$ strength, and step forward either with sharp kicks at exact hit times or with thin mollified wake surfaces for smooth integration.

@@ -27,7 +27,8 @@ $$
 \sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}
+{r_{ij}^2(t;t_0)}
+W_{ij}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf{r}}_{ij}(t;t_0)
 $$
 
@@ -400,10 +401,24 @@ $$
 and
 
 $$
-J_{\ell\alpha,m\beta}^{(b)}
+D_{s,\ell\alpha,m\beta}^{(b)}
 =
-1-\frac{\mathbf v_{m,\beta}(t_0^{(b)})\cdot
-\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}}{c_f}
+c_f-\mathbf v_{m,\beta}(t_0^{(b)})\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
+\qquad
+D_{t,\ell\alpha,m\beta}^{(b)}
+=
+c_f-\mathbf v_{\ell,\alpha}(t)\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
+$$
+and
+$$
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
+=
+\left|
+\frac{D_{t,\ell\alpha,m\beta}^{(b)}}
+{D_{s,\ell\alpha,m\beta}^{(b)}}
+\right|
 $$
 
 The branch force-like bookkeeping term is
@@ -413,8 +428,8 @@ $$
 =
 \mu_{\text{arch}}\kappa\sigma_{\ell\alpha,m\beta}
 \frac{|q_{\ell,\alpha}q_{m,\beta}|}
-{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2
-\left|J_{\ell\alpha,m\beta}^{(b)}\right|}
+{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2}
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 

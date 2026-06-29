@@ -196,7 +196,7 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 - Emission cadence and per-wavefront amplitude are constant. Receiver-normal velocity enters the branch strength through $D_t$ and enters instantaneous power through $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
-Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion affects only instantaneous power.
+Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion changes received branch strength through $D_t$ and power through radial velocity.
 
 ---
 

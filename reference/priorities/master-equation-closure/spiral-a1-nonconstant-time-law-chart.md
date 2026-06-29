@@ -157,7 +157,7 @@ window by one simple rule.
 
 | Time-law representative | Root count on $[1/2,4\pi]$ | Branch sum $B_r$ | Tangential sum $T_0$ | Radial implication |
 | --- | ---: | ---: | ---: | --- |
-| First-order inverse-rate memory, $H_1(\Delta)=\Delta+\frac12 k_\ast\Delta^2$ | $0+0$ | undefined | undefined | No active roots; all old A1 windows have $H_1<0$. |
+| First-order inverse-rate memory, $H_1(\Delta)=\Delta+\frac12 k_\ast\Delta^2$ | $0+0$ | undefined | undefined | No active roots; all constant-rate A1 windows have $H_1<0$. |
 | Linear angular rate, $\dot\theta(\theta)=\omega_\ast(1+k_\ast\theta)$ | $2+3$ | $+0.16043490391513504$ | $-0.06262796291257705$ | Requires negative $\Gamma$ through the radial row. |
 | Log-rate law, $\dot\theta(\theta)=\omega_\ast e^{k_\ast\theta}$ | $0+3$ | $+0.0014882771586324736$ | $-0.003657123786202083$ | Requires negative $\Gamma$ through the radial row. |
 | Constant absolute angular acceleration at the turn | $2+3$ | $+0.10270207422077164$ | $-0.06608310776190418$ | Requires negative $\Gamma$ through the radial row. |
@@ -190,8 +190,9 @@ $$
 \int_{-\Delta}^{0}
 \frac{d\phi}{\dot\theta(\phi)}.
 $$
-The simple monotone one-parameter continuations fail because they either lose
-the old roots or move to a branch ledger with the wrong radial sign. A more
+The simple monotone one-parameter continuations fail as topology diagnostics
+because they either lose the constant-rate roots or move to a branch ledger
+with the wrong radial sign before receiver-normal force rows are recomputed. A more
 flexible retained-memory polynomial profile does satisfy the turn-center
 moment, endpoint, radial, and tangential equations; see
 [spiral-a1-retained-memory-profile](spiral-a1-retained-memory-profile.md).

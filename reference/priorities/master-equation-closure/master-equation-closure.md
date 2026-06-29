@@ -9,19 +9,18 @@
 - ROI: `7.05`
 - Status: `active`
 
-## Receiver-Normal Model-Change Notice
+## Receiver-Normal Restart Rule
 
-As of the receiver-normal Master EOM correction, old source-only branch-strength
-rows are purged from active force/action evidence. The global invalidation
-ledger is
-[receiver-normal-master-equation-global-invalidation-audit.md](receiver-normal-master-equation-global-invalidation-audit.md),
+The active Master EOM branch-strength row is the receiver-normal factor
+$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. The restart ledger is
+[receiver-normal-master-equation-restart-ledger.md](receiver-normal-master-equation-restart-ledger.md),
 and the local identity packet is
 [receiver-normal-wake-action-factor.md](receiver-normal-wake-action-factor.md).
 Retained root labels, inactive gaps, finite-memory rows, source-normal
 transversality floors, and root-transport rows may survive as conditional
 topology inputs. Force-balance, action, power, Noether wake-history, A1 outward
-constants, and generated pass/fail certificates must restart unless they prove
-a stationary-receiver or constant-normal exemption on the same retained record.
+constants, and generated pass/fail certificates must restart with same-record
+$D_t/D_s$ branch-strength rows.
 
 ## Task Queue
 
@@ -32,8 +31,7 @@ a stationary-receiver or constant-normal exemption on the same retained record.
    formulas, radial-turn inequality, and weighted tangential obstruction test.
    Receiver-normal restart status: root-topology subrows remain conditional
    inputs, but any radial/tangential force, action, or pass/fail branch row
-   that consumed old source-only branch strength is invalid until redriven with
-   same-box $D_t/D_s$ bounds. Status: `active-restart`; the circular, VP-1, fixed A1, nonconstant-time-law,
+   must expose same-box $D_t/D_s$ bounds before promotion. Status: `active-restart`; the circular, VP-1, fixed A1, nonconstant-time-law,
    retained-memory, first-order transport, tangential-transport,
    endpoint-slope-cancellation, and finite-collar repair packets are integrated
    through [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md)
@@ -129,7 +127,7 @@ a stationary-receiver or constant-normal exemption on the same retained record.
 3. `a1_outward_constants_handoff` — Emit the A1 outward-constants contract and same-box pass/fail comparison before any master-equation closure claim is promoted. Status: `active-priority-artifact-staged; reduced-smoke-unstable-not-outward`. Notes: [spiral-a1-outward-constants-certificate-target](spiral-a1-outward-constants-certificate-target.md) now defines the concrete certificate target: constants $q_{\min},q_{\max},\kappa_\alpha,\nu_\alpha,g_P,g_S,H_b,E_Q^+(b),E_{\Delta,\alpha}(b)$, branch-sum and transport envelopes, and $C_1,C_2$ or $E_\ast(b)$ must close on the same A1 boxes. The sampled ladder still reports $C_{1,\mathrm{samp}}\approx5.46\times10^{-12}$, $C_{2,\mathrm{samp}}\approx6.61\times10^{-4}$, material-floor ratios below $0.141$ through $b=0.03$, and `sampled_remainder_constants_unstable` because the adjacent sampled $C_2$ change is about $0.731$; no closure or branch certification is claimed. A reduced 2026-06-28 smoke with three finite-collar samples, one deterministic coordinate ray, and two amplitudes preserves the same unstable classification with $\max|\Delta C_2|/|C_2|\approx0.706$, so it is a turnaround diagnostic only and not an outward-constant row. Depends on: `spiral_branch_chart_test`.
 4. `lorentz_gr_bridge` — Close the Lorentz and weak-field GR bridge from the coarse-grained delayed medium. Status: `pending`. Depends on: `certified_eigen_braid`.
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
-6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and supplies the source-normal denominator on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only; receiver-normal action-factor audit added`. Notes: active force/action rows must now use receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, while accumulated action, power, and wake-history rows must declare the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$ or prove a stationary/constant-normalization exemption; see [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md). Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
+6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and supplies the source-normal denominator on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only; receiver-normal action-factor audit added`. Notes: active force/action rows must use receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, while accumulated action, power, and wake-history rows must declare the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$ on the same retained record; see [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md). Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
 7. `binary_perturbation_projection_classifier` — Split finite binary perturbations into radial and tangential projection rows, then decide whether the response is same-branch phase, radius/cadence retuning, or branch transition. Status: `priority-only`. Depends on: `certified_eigen_braid`.
 8. `topological_causal_root_ledger_proof_target` — Work out whether causal-root topology on a neutral 3-torus can supply an EOM-independent closed-ledger admissibility theorem: roots persist as winding-labeled retained path-history records, root counts change only through declared boundary strata, and every boundary contribution is absent, paired, or routed into the same retained source record before any downstream EOM consumer may use the row. Status: `priority-only theorem target; executable-diagnostic-chain-active`. The current chain has separate priority-only diagnostics for topological roots, photon constituent root routing, near-$c_f$ middle-hinge root-status routing, same-retained-history source-record contract, Noether sea handoff compatibility, wake-history event pullback, action-boundary pullback, and the closed-ledger compositor. The source-record contract checks that root topology, Noether handoff, photon route artifact and sample rows, middle-hinge route artifact and sample rows, event pullback, and action pullback name the same retained history before the boundary equation is evaluated; it now includes an `eom-label-decoy-without-topological-ledger` negative control proving that an EOM or force-law label cannot replace the topology-native active root ledger object. The photon route diagnostic fails closed until every constituent absolute speed above $c_f$ has a self-hit, partner-hit, caustic, or inactive-root route on the same retained source record; the middle-hinge diagnostic fails closed until every `1` or `C` word sample has a same-record self-hit/inactive-root or caustic/finite-$\eta$ route without literal-communication semantics. Both route diagnostics now emit `route_evidence_summary` so missing, synthetic, toy, and accepted-for-branch-retention route evidence stay distinct. The compositor now fails first on $\partial\mathcal{R}^{\mathrm{act}}$ route population in the default fixture; `--route-replay-fixtures` advances that row to action-boundary blockers only at priority-only fixture level and reports `accepted_route_evidence_status: not_accepted_for_branch_retention`; wake-history, action, and Noether medium-response rows now expose `accepted_evidence_summary` and remain `not_accepted_for_wake_history_closure`, `not_accepted_for_action_closure`, and `not_accepted_for_medium_response_closure` until their rows carry same-record accepted evidence ids and derivation proof objects; the compositor now reports `cross_sector_acceptance_status` and `branch_retention_status` so priority-only row logic cannot be mistaken for branch retention, and sector validators reject accepted-summary drift before compositor consumption; see [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md). Depends on: none for the topology-native ledger layer; downstream branch promotion still depends on an accepted branch consumer such as `certified_eigen_braid`.
 
@@ -297,9 +295,8 @@ $$
 $$
 so a source-emission cadence mapped to a moving receiver path carries a
 receiver-normal numerator. Rows that consume action, power, wake-history
-charge, or finite-window conservation must either include this factor on the
-same retained branch chart or prove that the stationary/constant-normalization
-case applies.
+charge, or finite-window conservation must include this factor on the same
+retained branch chart.
 
 Promotion conditions:
 

@@ -8,8 +8,8 @@ certificate.
 
 Claim level. The finite-memory A1 obstruction is real for simple monotone
 one-parameter time laws, but it is not an algebraic no-go at the turn center.
-A smooth positive inverse-rate memory profile can retain the old A1 delayed
-offsets, keep the old active source-speed Jacobians at those offsets, and
+A smooth positive inverse-rate memory profile can retain the constant-rate A1
+delayed offsets, keep the active source-speed Jacobians at those offsets, and
 supply the local angular-rate slope required by tangential balance.
 
 ## Past-Lag Reduction
@@ -79,7 +79,8 @@ $$
 $$
 Therefore any retained-root profile must have $q(x)>1$ somewhere inside
 $(0,\Delta_{P_1})$. In particular, no past-lag profile that is nonincreasing
-from $q(0)=1$ through the first retained delay can retain the old A1 chart.
+from $q(0)=1$ through the first retained delay can retain the constant-rate A1
+chart.
 
 This is the finite-memory obstruction in its sharp local form: the local slope
 forces an inverse-rate dip near the turn, but root retention forces a

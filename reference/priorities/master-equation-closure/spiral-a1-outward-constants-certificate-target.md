@@ -1,9 +1,9 @@
 # Spiral A1 Outward-Constants Certificate Target
 
 Status. Receiver-normal restart target for `a1_outward_constants_handoff` and
-the A1 branch of `spiral_branch_chart_test`. Old outward constants that consumed
-source-only branch strength are invalid as closure evidence. This packet now
-exists to rebuild the target with same-box $D_t/D_s$ bounds. It consumes
+the A1 branch of `spiral_branch_chart_test`. Outward constants are closure
+evidence only when they carry same-box receiver-normal branch strength. This
+packet exists to rebuild the target with same-box $D_t/D_s$ bounds. It consumes
 [spiral-a1-second-variation-remainder-bound](spiral-a1-second-variation-remainder-bound.md),
 [spiral-a1-radial-transport-jet-report](spiral-a1-radial-transport-jet-report.md),
 and the retained A1 row set in
@@ -42,7 +42,7 @@ and retained windows
 
 The retained fixed A1 sidecar rows still supply the pointwise retained root
 ledger, inactive-gap row, source-speed Jacobian floor, and finite-memory row.
-Their old radial-turn, weighted tangential-drive, and exact
+Their radial-turn, weighted tangential-drive, and exact
 tangential-compatibility rows are invalid as force/action evidence under the
 receiver-normal Master EOM until each retained label has same-box $D_t/D_s$
 bounds. They do not certify the nonconstant finite collar. The present target

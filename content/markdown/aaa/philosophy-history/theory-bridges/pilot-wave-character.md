@@ -111,7 +111,7 @@ $$
 =
 \sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)}
 \kappa\, \sigma_{ij}\,
-\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\,
+\frac{|q_i q_j|\,W_{ij}^{\mathrm{rec}}(t;t_0)}{r_{ij}^2}\,
 \hat{\mathbf{r}}_{ij}
 $$
 

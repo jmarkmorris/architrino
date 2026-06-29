@@ -2,9 +2,8 @@
 
 Receiver-normal restart notice. This bridge chapter remains the correct
 history-space proof architecture, but any force-balance, recapture, self-drive,
-action, or finite-certificate row inherited from the old source-only
-branch-strength law is invalid as closure evidence. The program now restarts
-those rows under the receiver-normal Master EOM branch factor
+action, or finite-certificate row is closure evidence only after it is rebuilt
+under the receiver-normal Master EOM branch factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 

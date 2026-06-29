@@ -86,16 +86,30 @@ $$
 \mathbf{a}_{o'\leftarrow o}(t; t_0)
 =
 \kappa\,\sigma_{q_o q_{o'}}\,
-\frac{|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,\hat{\mathbf{r}}
+\frac{|q_o q_{o'}|}{r^2}
+W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)\,\hat{\mathbf{r}}
 $$
 
 where
 $$
-J_{o'\leftarrow o}(t;t_0)
+D_{s,o'\leftarrow o}(t;t_0)
 \equiv
-1-\frac{\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}}{c_f}
+c_f-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}},
+\qquad
+D_{t,o'\leftarrow o}(t;t_0)
+\equiv
+c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}},
+\qquad
+W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
+\equiv
+\left|
+\frac{D_{t,o'\leftarrow o}(t;t_0)}
+{D_{s,o'\leftarrow o}(t;t_0)}
+\right|
 $$
-is the causal Jacobian encoding geometric bunching or dilation of the received wake flux.
+is the receiver-normal branch strength. The source-normal denominator $D_s$
+is the causal-root transversality diagnostic; the numerator $D_t$ records how
+the receiver cuts through the emitted causal wake sequence.
 
 Decompose the receiver's velocity into radial and transverse components:
 
@@ -110,7 +124,8 @@ Because $\mathbf{a}_{o'\leftarrow o}\parallel\hat{\mathbf{r}}$:
   =
   \mu_{\text{arch}}\mathbf{a}_{o'\leftarrow o}\cdot\mathbf{v}_{o'}
   =
-  \mu_{\text{arch}}\frac{\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|}{r^2\,|J_{o'\leftarrow o}(t;t_0)|}\,v_r
+  \mu_{\text{arch}}\kappa\,\sigma_{q_o q_{o'}}\,|q_o q_{o'}|
+  \frac{W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)}{r^2}\,v_r
   $$
 
   Only $v_r$ contributes to instantaneous quadratic-proxy power. For the primitive scalar $K$, replace $\mu_{\text{arch}}$ by $\mu_K(\|\mathbf{v}_{o'}\|)$.
@@ -159,7 +174,7 @@ $$
 \|\mathbf{a}_{o'\leftarrow o}\|\,v_r
 $$
 
-On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The older simple branch factor $J_p=1+\dot{x}/c_f$ remains only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
+On the affine partner chart used in the [closed-form collinear breather ansatz](../proof-programs/closed-form-collinear-breather-ansatz.md), the source-normal denominator and receiver-normal numerator must both be tracked. The simple branch expression $J_p=1+\dot{x}/c_f$ is only a source-normal topology expression unless the receiver-normal factor is also present on the same chart.
 
 Thus the potential to do work is broadly available wherever causal wakes pass, but work is realized only through an actual receiver trajectory. A quiet region is not a region with no causal activity; it is a region where the active wake contributions sum to negligible net acceleration and negligible net power for the assemblies present there.
 

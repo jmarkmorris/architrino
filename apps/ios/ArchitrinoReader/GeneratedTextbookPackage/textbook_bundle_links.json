@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-29T06:37:56.690Z",
-  "total_links": 1588,
+  "generated_at": "2026-06-29T07:14:37.854Z",
+  "total_links": 1589,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -2919,6 +2919,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/proof-programs/collinear-breather.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/collinear-breather.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/proof-programs/collinear-breather.md#held-release-restart-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/proof-programs/collinear-breather.md"

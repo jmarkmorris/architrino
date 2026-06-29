@@ -18,10 +18,10 @@ W_\gamma^{\mathrm{rec}}(t,t')
 $$
 where $D_s=c_f-\mathbf{v}(t')\cdot\hat{\mathbf r}(t,t')$ is the
 source-normal denominator and $D_t=c_f-\mathbf{v}(t)\cdot\hat{\mathbf r}(t,t')$
-is the receiver-normal numerator. The older source-normal, Jacobian-weighted
-two-time formulas retained below are diagnostic causal-locus statistics only.
+is the receiver-normal numerator. The source-normal, Jacobian-weighted
+two-time formulas below are diagnostic causal-locus statistics only.
 Root-locus, coarea, regularization, and topological counting material remains
-useful, but any statistic or action-counting row that uses only the old
+useful, but any statistic or action-counting row that uses only the
 Jacobian-weighted inverse-square kernel must be redriven with
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before it can support force, action,
 mass, or conservation closure.
@@ -67,10 +67,10 @@ $$
 \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
 {\|\mathbf{x}(t)-\mathbf{x}(t')\|^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
-This older source-normal statistic is not the current branch-strength statistic
+This source-normal statistic is not the current branch-strength statistic
 and is not the exact Fokker-type variational action of
 [Effective Lagrangian](effective-lagrangian.md). It remains useful for causal
-locus topology, coarea checks, and historical comparison, but it cannot support
+locus topology and coarea checks, but it cannot support
 current force, action, mass, or conservation closure until its branch weights
 are replaced by the receiver-normal factor above.
 
@@ -92,8 +92,7 @@ $$
 $$
 up to the declared normalization: it is the weighted length, or current mass, of
 the causal locus under the source-normal diagnostic weight. The current force
-law uses the same causal-root support but replaces the source-only branch
-strength with $W^{\mathrm{rec}}$ before pairing with the line-of-action
+law uses the same causal-root support but requires $W^{\mathrm{rec}}$ before pairing with the line-of-action
 direction field $\hat{\mathbf r}$. Thus the scalar diagnostic detects branch
 support and branch topology, while current vector dynamics require both
 receiver-normal branch strength and the oriented current pairing that the

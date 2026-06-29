@@ -179,9 +179,8 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 Receiver-normal restart notice. The circular MCB branch topology, root labels,
 and source-normal Jacobian formulas remain useful geometry. Force components,
 stability criteria, action rows, and any branch-weighted verdicts in this
-section were developed under the older source-only branch-strength convention
-and must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before they
-can serve as current Master EOM evidence.
+section must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+they can serve as current Master EOM evidence.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -706,8 +705,8 @@ where $h$ is the declared action unit used by the branch packet. A bare two-body
 
 **Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the decisive extra effect is receiver-normal branch strength: the self-hit response can sharpen dramatically as an active branch approaches its source-normal null-separatrix geometry, as the receiver-normal numerator changes the crossing cadence, and because **new self-hit roots appear** at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
 
-The current receiver-normal radial target replaces the old source-only denominator
-with same-root receiver-normal branch strengths:
+The current receiver-normal radial target uses same-root receiver-normal branch
+strengths:
 
 $$
 A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{W_p^{\mathrm{rec}}}{\cos(\delta_p / 2)} - \frac{W_s^{\mathrm{rec}}}{\sin(\delta_s / 2)} \right),
@@ -1471,7 +1470,10 @@ We consider the regularized two-body system in the Euclidean void $\mathbb{R}^3$
 #### Definition 1 (The Fundamental Symmetry Group)
 The background substrate and the master equation interaction kernel
 $$
-\mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2\,|J_{ij}(t;t_0)|}
+\mathbf{a}_{ij}(t) \propto
+\frac{W_{ij}^{\mathrm{rec}}(t;t_0)}
+{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^3}
+\left(\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\right)
 $$
 (regularized by $\eta$) respect the group:
 $$
@@ -1505,12 +1507,15 @@ $$
 =\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|
 $$
 so causal-root times are unchanged. Unit directions transform covariantly:
-$\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. Therefore each force term
-transforms as $\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
+$\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. The dot products defining
+$D_s$, $D_t$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
+isometry. Therefore each force term transforms as
+$\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
 $$
 \ddot{\mathbf{y}}_i(t)=R\ddot{\mathbf{x}}_i(t)
 =\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
-\kappa\sigma_{ij}\frac{|q_iq_j|}{r_{ij}^2\,|J_{ij}(t;t_0)|}\,\hat{\mathbf{r}}_{ij}^y
+\kappa\sigma_{ij}\frac{|q_iq_j|\,W_{ij}^{\mathrm{rec}}(t;t_0)}
+{r_{ij}^2}\,\hat{\mathbf{r}}_{ij}^y
 $$
 Thus $\mathbf{y}$ solves the same equations. $\square$
 
