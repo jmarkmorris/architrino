@@ -436,6 +436,94 @@ definitions before this becomes theorem-grade:
 | $\partial\mathcal{M}_{\mathrm{sea}}$ | Medium-response mismatch caused by using a different retained history or response map. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | The cross-sector acceptance intersection that rejects unaccounted boundaries. |
 
+## Candidate Definition 5: Noether Sea Compatibility Boundary
+
+The Lorentz/GR residual handoff already requires one Noether sea response
+record
+$$
+\mathcal{M}_{\mathrm{sea}}^{ab}
+$$
+or bridge equivalent to supply normalized density, delay, effective potential,
+stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$,
+$c_{\text{eff}}$, and $c_\gamma$ projections. The topological ledger adds a
+same-history condition to that handoff: the medium-response record must be
+read from the same retained branch chart that supplies the active roots,
+inactive gaps, Jacobian floors, finite-memory window, regulator state, and
+wake-history event ledger.
+
+For a retained branch chart $\mathfrak B$, define the medium-response source
+record as
+$$
+\Theta_{\mathrm{sea}}(\mathfrak B)
+=
+\left(
+q,\ W,\ h,\ \eta,\ \epsilon_c,\ \mathcal{R}^{\mathrm{act}},
+\mathcal{G}^{\mathrm{inact}},\ \nu_J,\ \mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{P}_{\mathrm{sea}}
+\right),
+$$
+where $q$ is the branch class, $W$ is the retained comparison window,
+$\mathcal{P}_{\mathrm{sea}}$ denotes the projection maps that read clock,
+ruler, signal-speed, weak-field metric, and photon-channel rows from the
+Noether sea response object, and the other rows are the retained branch rows
+already required by the Master Equation closure stack.
+
+The candidate boundary is the residual vector
+$$
+\partial\mathcal{M}_{\mathrm{sea}}
+=
+\left(
+\Delta_{\mathrm{id}},
+\Delta_W,
+\Delta_{\mathrm{reg}},
+\Delta_{\mathrm{root}},
+\Delta_{\mathrm{event}},
+\Delta_{\mathrm{proj}},
+\Delta_{\mathrm{coef}}
+\right).
+$$
+It vanishes only when:
+
+| Residual | Zero condition | Existing handoff failure if nonzero |
+| --- | --- | --- |
+| $\Delta_{\mathrm{id}}$ | The medium-response row names the same branch class $q$ and retained chart as the force/action rows. | `residual.provenance_gap` |
+| $\Delta_W$ | The medium-response row uses the same retained window $W$ and memory depth $h$. | `residual.observable_refit` |
+| $\Delta_{\mathrm{reg}}$ | The medium-response row declares the same $\eta$ and $\epsilon_c$ status used by the force/action rows, or declares a legal coarse-grained limit from them. | `residual.provenance_gap` |
+| $\Delta_{\mathrm{root}}$ | Active roots, inactive gaps, Jacobian floors, and caustic routes consumed by the medium row match the retained root ledger. | `residual.branch_unidentified` |
+| $\Delta_{\mathrm{event}}$ | Medium updates consume the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ row as clock, ruler, signal, and metric outputs. | `event.ledger_residual` |
+| $\Delta_{\mathrm{proj}}$ | $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ are projections of one $\mathcal{M}_{\mathrm{sea}}^{ab}$ record. | `residual.medium_response_missing` |
+| $\Delta_{\mathrm{coef}}$ | No clock, ruler, photon, PPN, or SME row changes coefficients per observable after the response record is declared. | `gravity.hidden_tuning` |
+
+Thus the working pass/fail condition is
+$$
+\partial\mathcal{M}_{\mathrm{sea}}=0
+\quad\Longleftrightarrow\quad
+\Theta_{\mathrm{sea}}(\mathfrak B)
+\text{ is accepted by the Lorentz/GR medium-response handoff.}
+$$
+If any component is nonzero, the topological closed-ledger conjecture fails
+closed even if the primitive causal roots, action residual, and wake-history
+charges close. This is the precise form of the current blocker: the root
+ledger can be executable while the Noether sea response projection is still
+unproved.
+
+### Lorentz/GR Handoff Test
+
+The smallest test against the Lorentz/GR residual handoff is not a new gate.
+It is a population check for the existing `medium_response`, `event_ledger`,
+`speed_convention`, and dependency-gate rows:
+
+| Handoff row | Required same-history check |
+| --- | --- |
+| `medium_response` | Names one $\mathcal{M}_{\mathrm{sea}}^{ab}$ record and one $\Theta_{\mathrm{sea}}(\mathfrak B)$ source record. |
+| `event_ledger` | Uses the same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ rows named in $\Theta_{\mathrm{sea}}(\mathfrak B)$. |
+| `speed_convention` | Keeps $c_f$, $c_\gamma$, $c_{\text{eff}}$, and $c_0$ distinct until the shared response record derives their allowed common limit. |
+| `G4_effective_metric_and_shift` | Derives lapse, shift, spatial compliance, and signal-speed projections from the same response object. |
+| `G7_null_row_audit` | Emits blocked or failed rows instead of silently omitting a sector whose response projection is missing. |
+
+This test promotes no coefficient. It only decides whether the proposed
+medium-response row is compatible with the same retained causal-root ledger.
+
 ## Large-Box Limit
 
 The $T_L^3$ proof is useful only if its compactness assumptions are explicit.
@@ -469,7 +557,11 @@ marked compact-box only unless a local noncompact replacement is supplied.
 
 ## Smallest Executable Check
 
-Build a toy checker that samples a few paths on $T_L^3$ and emits:
+The first diagnostic implementation now lives at
+`scripts/proof-programs/topological-causal-root-ledger-checker.mjs`, with test
+coverage in `tests/topological-causal-root-ledger-checker.test.js`. It is a
+priority-only diagnostic, not a validation gate and not a retained-branch
+certificate. It samples a small neutral path inventory on $T_L^3$ and emits:
 
 | Output | Requirement |
 | --- | --- |
@@ -483,8 +575,11 @@ Build a toy checker that samples a few paths on $T_L^3$ and emits:
 | `photon_constituent_speed_split` | Report centerline $c_\gamma$ and constituent absolute speed ranges. |
 | `middle_hinge_root_count_word` | Emit the threshold-crossing root-status sequence for a near-$c_f$ middle row. |
 
-This checker would be a diagnostic, not a validation gate, unless the proof
-route later shows that it protects an existing branch-certificate obligation.
+The checker currently reports the requested rows and then stops at
+`action_wake_history_noether_sea_and_cross_sector_rows_not_computed`. That is
+the correct fail-closed boundary: root topology is now executable at toy level,
+but action, wake-history, Noether sea, and cross-sector pullbacks are still the
+open proof burden.
 
 ## What This Could Advance
 

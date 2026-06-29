@@ -93,9 +93,9 @@ The first score-moving row object is eligible only if both the source producer a
 | Carrier binding | `commonCarrierId` equals the retained-domain packet `commonCarrierId`. |
 | Domain binding | `domainId` equals the retained-domain packet `domainId`. |
 | Support binding | `supportId` equals the certified invariant support id. |
-| Source reference | `sourcePath` or `source` resolves to an existing durable source or evidence file in the repository. |
+| Source reference | `sourcePath` or `source` resolves to an existing durable retained-evidence file in the repository; priority prose, review packets, authored AAA prose, attempts, mocks, probes, and negative controls do not count as evidence sources. |
 
-The same-branch checker then reads that row as accepted only if its accepted status, source reference, retained-row-set identity, support identity, and common-carrier identity all match the retained-domain packet. Therefore the first accepted row must be emitted from the same positive-width invariant-cell source report that emits the support; it cannot be copied from a review packet, a generated reading copy, a temp file, or a row-only fixture.
+The same-branch checker then reads that row as accepted only if its accepted status, source-evidence reference, retained-row-set identity, support identity, and common-carrier identity all match the retained-domain packet. Therefore the first accepted row must be emitted from the same positive-width invariant-cell source report that emits the support; it cannot be copied from priority prose, a review packet, a generated reading copy, a temp file, an attempt fixture, a negative control, or a row-only fixture.
 
 ## Direct Geometry Layer
 
@@ -130,11 +130,36 @@ The compact summary also reports the first retained-domain blocker details:
   "reason": "row_not_accepted",
   "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
   "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
-  "sourceReferenceExists": true
+  "sourceReferenceExists": true,
+  "sourceEvidenceReferenceExists": false
 }
 ```
 
 The older direct attempt reports the same blocker with `status: attempt`, `reason: row_not_accepted`, `rowId: raw_labeled_rows_attempt`, and source path [eq-02-04-translating-binary-shared-record-instantiation.md](eq-02-04-translating-binary-shared-record-instantiation.md). This confirms that neither the blocked source shell nor the direct attempt has crossed the first accepted-retained-row boundary.
+
+The accepted-looking coordination-source negative control makes the source-evidence boundary explicit:
+
+```sh
+node scripts/equation-mapping/check-same-branch-chart-identity.mjs \
+  --input scripts/equation-mapping/same-branch-retained-domain-coordination-source-negative-control.v1.json \
+  --summary --pretty
+```
+
+It reports `status: blocked_missing_retained_event_or_domain`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history` even though every retained row and witness in the fixture is marked `accepted`. The first blocker detail is:
+
+```json
+{
+  "id": "raw_labeled_rows_preserved_on_retained_history",
+  "status": "accepted",
+  "reason": "accepted_without_evidence_source",
+  "rowId": "raw_labeled_rows_preserved_on_retained_history_coordsrc_0001",
+  "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+  "sourceReferenceExists": true,
+  "sourceEvidenceReferenceExists": false
+}
+```
+
+This proves that a priority coordination file can document the target but cannot satisfy the first retained-domain row.
 
 The retained-record evaluator now exposes that same first blocker at top-level `summary.nextBlockerDetails`, so the retained-record target and the same-branch checker identify the same missing accepted row:
 
@@ -156,7 +181,8 @@ node scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs \
     "reason": "row_not_accepted",
     "rowId": "raw_labeled_rows_preserved_on_retained_history_blocked_source_shell",
     "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
-    "sourceReferenceExists": true
+    "sourceReferenceExists": true,
+    "sourceEvidenceReferenceExists": false
   }
 }
 ```
@@ -282,6 +308,8 @@ node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs
 | `eq02-04-invariant-cell-coframe-source-shell-negative-control.v1.json` | `blocked` | `support_B_N_certified` |
 
 This sweep confirms that the accepted-looking row objects inside the negative controls are not retained evidence. They remain useful only as fail-closed controls for the future positive-width `S_eq` invariant-cell fixture.
+
+The same-branch source-evidence guardrail is separate from the producer sweep. The fixture [same-branch-retained-domain-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-coordination-source-negative-control.v1.json) proves that accepted-looking `S_eq` rows and witnesses still fail when their source path is a priority coordination file rather than retained evidence. Its first blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, with `reason: accepted_without_evidence_source`.
 
 ## Score-Moving Evidence
 

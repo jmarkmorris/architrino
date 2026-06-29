@@ -582,6 +582,14 @@ source-profile, and inactive-cover boxes. They record the central-float64
 and `authorizes_outward_certificate=false`. The selected-slot first failure is
 `one_slot_shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing`.
 
+Coordinator note, 2026-06-28. The next priority-only artifact is
+`a1_p1_tangential_summand_partial_interval_row/v0`: a directed-rounding
+interval row for `partial_T_alpha_partial_delta_alpha` on the selected `P_1`
+tangential summand, with the same retained-root, source-profile,
+inactive-cover, backend identity, operation-trace, and shared interval-box
+family fields. It may only advance the first branch-sum constant row; it does
+not certify A1 obstruction, channel existence, or the outward certificate.
+
 The top-level row identity now carries
 `inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no
 longer an absent cover id; it is the absent `inactive_cover_interval_boxes`

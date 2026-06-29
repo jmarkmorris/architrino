@@ -475,6 +475,15 @@ same-record branch-chart fields are enumerated, and references with
 explicitly rejected. It is useful dependency-routing evidence only; it is not an
 `accepted_transition_source` and cannot authorize `candidate_h_recovery`.
 
+Coordinator note, 2026-06-28. Name the next executable target
+`torque_wake_retained_active_row_branch_certificate_evidence_object/v0` for
+`torque_wake_same_row_diagnostic:index-ratio:f2`. It must preserve the three
+sampled active rows as `same_retained_active_row_ids`, bind them to a retained
+non-proxy `branch_certificate_ref`, and keep the active-root ledger,
+conservation-pullback, accepted branch-chart, moving-certificate, and negative
+control refs on the same record before `field_speed_action_self_hit_scan/v0`
+can interpret near-$c_f$ behavior.
+
 Rank 2 / rank 6 branch-source join status, 2026-06-28:
 `scripts/nested-shell-braid/rank2-rank6-branch-source-join-report.mjs` compares
 the current rank 2 source-binding report, rank 6 moving-certificate candidate,

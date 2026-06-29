@@ -514,6 +514,8 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("mock") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("probe") ||
     lowerBasename.includes("negative-control")
   );
 }

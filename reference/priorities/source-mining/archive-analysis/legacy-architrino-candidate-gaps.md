@@ -1,6 +1,6 @@
 # Legacy Architrino Candidate Gaps
 
-This queue is for selecting future ordinary source-mining batches and topic sweeps. A row here does not mean the route is true or corpus-ready; it means the archive contains enough signal to justify targeted review.
+This reusable route index supports future ordinary source-mining batches and topic sweeps from the completed original-blog archive. A row here does not mean the route is true, corpus-ready, or an open priority item; it means the searchable archive contains enough signal to justify targeted review if the operator selects that topic later.
 
 | Rank | Candidate route | Why inspect | Main signals | Likely destinations | Starting posts |
 | ---: | --- | --- | --- | --- | --- |

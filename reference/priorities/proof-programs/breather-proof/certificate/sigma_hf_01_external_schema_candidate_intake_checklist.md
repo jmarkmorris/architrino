@@ -96,6 +96,12 @@ Smallest continuation: supply accepted external provenance plus
 `proof_grade_derivation_schema_statement` on one `Sigma_hf_01` proof-grade
 schema object before any row-slot sweep starts.
 
+The priority-only
+[Sigma_hf_01 Sieber Theorem 2.5 Source-Field Row](sigma_hf_01_sieber_theorem_2_5_source_field_row.md)
+names the narrowest source-field translation target for those three fields. It
+does not replace accepted external provenance and does not authorize
+schema-validation intake.
+
 The target-only
 [missing proof-grade fields derivation target](sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
 records those three fields as the current proof burden. It is not a local

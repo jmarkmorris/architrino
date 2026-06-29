@@ -42,7 +42,7 @@ Previously landed score-neutral work to preserve:
 - `EQ-14`/`EQ-30`/`EQ-31` finite-window work now rejects missing, coordination, and self-referential sources; it still blocks at `missing_accepted_W`.
 - `EQ-24`/Noether sea density-compression rejects coordination and authored-prose false positives; it still blocks at `missing_accepted_theta_sea_rho_NS`.
 - `EQ-25` has CMB thermal source-window and coordination-source negative controls; it still blocks at `missing_accepted_theta_therm`.
-- `EQ-26` has a two-line `theta_H_spec` source-report contract; no score movement follows.
+- `EQ-26` has a two-line `theta_H_spec` identity checker, source-attempt fixture, carrier-shell boundary, and fail-closed observer-Rydberg, priority-source, and support-carrier substitution controls; it still blocks at `missing_accepted_theta_H_spec`, with a carrier-shell boundary only advancing to `missing_accepted_recovered_label_rows`. No score movement follows.
 - Recent findability clarifications landed with no score changes:
   - Malus law routes to `EQ-12` / Gate B analyzer evidence, not a standalone row.
   - MOND routes to `EQ-32` as observer-level RAR/BTFR comparison, not substrate ontology.
@@ -107,6 +107,13 @@ Per-equation minimum:
   - one candidate breakthrough angle;
   - one fail-closed negative control;
   - one next action smaller than “write a broad report.”
+- Each Equation Attack Card must also include or point to a packet-level Direct Geometry Layer with these fields before the row is treated as materially advanced:
+  - comparison term;
+  - $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout;
+  - required carrier or row;
+  - same-record binding;
+  - fail-closed negative control;
+  - smallest accepted evidence object.
 
 Coordinator cycle:
 Repeat until the 9-hour cap or true exhaustion:

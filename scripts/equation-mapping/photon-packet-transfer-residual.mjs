@@ -468,10 +468,11 @@ function evaluateSourceReference(row) {
   if (/^https?:\/\//.test(source)) {
     return { accepted: true, reason: "source_url" };
   }
-  if (source.includes("/tmp/") || source.includes("content/generated/")) {
-    return { accepted: false, reason: "source_not_durable" };
+  const resolved = path.resolve(REPO_ROOT, source.replace(/#.*/, ""));
+  const evidenceReason = sourceEvidenceReason(resolved);
+  if (evidenceReason !== "accepted") {
+    return { accepted: false, reason: evidenceReason };
   }
-  const resolved = path.resolve(REPO_ROOT, source);
   if (!fs.existsSync(resolved)) {
     return { accepted: false, reason: "source_not_found" };
   }
@@ -479,6 +480,43 @@ function evaluateSourceReference(row) {
     return { accepted: false, reason: "source_is_directory" };
   }
   return { accepted: true, reason: "source_file" };
+}
+
+function sourceEvidenceReason(resolvedPath) {
+  const normalized = path.normalize(resolvedPath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return "source_outside_repo";
+  }
+  if (
+    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
+    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
+    relative.startsWith(`content${path.sep}generated${path.sep}`)
+  ) {
+    return "source_not_durable";
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return "coordination_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return "authored_prose_source_path";
+  }
+  const basename = path.basename(normalized).toLowerCase();
+  if (
+    basename.includes("attempt") ||
+    basename.includes("mock") ||
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("negative-control") ||
+    basename.includes(".tmp")
+  ) {
+    return "control_or_attempt_source_path";
+  }
+  return "accepted";
 }
 
 function decideStatus({ missingRows, carrierBinding, packetResidual, negativeControls }) {

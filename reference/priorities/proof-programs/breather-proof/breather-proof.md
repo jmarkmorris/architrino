@@ -102,6 +102,10 @@ Engelborghs-Luzyanina-in 't Hout-Roose collocation source family. It narrows
 the three missing proof-grade fields, but it is not accepted external
 provenance, not a received schema-validation input, not row consumption, not a
 live-ledger update, and not branch-chart authorization.
+The coordinator source-field row
+[Sigma_hf_01 Sieber Theorem 2.5 Source-Field Row](./certificate/sigma_hf_01_sieber_theorem_2_5_source_field_row.md)
+records the smallest next translation target for those three fields while
+preserving the same external-provenance blocker.
 
 ## Task Queue
 

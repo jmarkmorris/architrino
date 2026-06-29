@@ -661,6 +661,14 @@ fields; `branch_scope`, `period_rows`, `action_functional`, and
 the four identity fields are supplied, while the four action-measure fields are
 missing same-ledger bindings rather than merely undocumented prose gaps.
 
+Coordinator note, 2026-06-28. The next ranked artifact is the accept/reject row
+for `same-ledger-action-measure-row-with-branch-scope`. It should first extend
+`branch_scope_source_audit` into a same-ledger acceptance test; if `branch_scope`
+binds, the next conditional subfield is `period_rows`. Until those fields bind
+on the normal-candidate ledger, the row must keep
+`same_ledger_branch_scope_source_missing` and must not promote bounded-speed
+live-ledger closure.
+
 The smallest durable artifact is one supplied same-ledger normal candidate that
 matches the handoff's bounded-speed ledger id, force checksum, and consumer
 checksum, then closes normal residual, tangent holonomy, position closure,

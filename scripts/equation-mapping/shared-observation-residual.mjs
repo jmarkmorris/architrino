@@ -720,18 +720,7 @@ function concreteString(value) {
 }
 
 function sourceReferenceExists(value) {
-  if (!concreteString(value)) {
-    return false;
-  }
-  const resolvedPath = path.resolve(value.trim());
-  if (isNonDurableSourcePath(resolvedPath)) {
-    return false;
-  }
-  try {
-    return fs.statSync(resolvedPath).isFile();
-  } catch {
-    return false;
-  }
+  return sourceEvidenceReason(value) === "accepted";
 }
 
 function sourceEvidenceReason(value) {
@@ -768,7 +757,10 @@ function sourceEvidenceReason(value) {
   if (
     basename.includes("attempt") ||
     basename.includes("mock") ||
-    basename.includes("negative-control")
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("negative-control") ||
+    basename.includes(".tmp")
   ) {
     return "control_or_attempt_source_path";
   }

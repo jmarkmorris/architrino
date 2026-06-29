@@ -757,6 +757,14 @@ pressure row bind `branch_id` to that certificate and to the accepted history,
 quotient chart, pressure, exposure, pressure-response, reversible-domain, and
 null-sector records on one row.
 
+Coordinator note, 2026-06-28. Name the next priority-only provider target
+`rank4_retained_pressure_row_branch_source_field/v1`. It must bind one
+retained pressure row to an accepted non-fixture same-domain branch-provider
+object with `branch_certificate_ref`, accepted history segment, source path,
+same-domain record, active-root or live-ledger identity, and branch-local
+projection or normalization identity. Fixture, toy, aggregate, cross-row, and
+target-only rows remain blocked at `accepted_non_fixture_source_missing`.
+
 The branch-certificate audit now carries
 `pressure_row_same_domain_provider_object_construction_attempt/v0`, a
 pressure-specific construction attempt over those same four rank-4 candidates.

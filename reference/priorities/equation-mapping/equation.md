@@ -2433,6 +2433,8 @@ Score: `3`.
 
 The Rydberg coefficient-row target and hydrogen spectral residuals already exist locally. The missing derivation is still the native atomic envelope calculation plus the spin-sensitive and loop-sensitive residuals from the same Noether braid and Noether sea record.
 
+Executable status: [eq26-hydrogen-spectral-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs) now evaluates the score-neutral `EQ-26` hydrogen spectral carrier identity. The default source attempt [eq26-hydrogen-spectral-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-source-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, and first blocker `missing_accepted_theta_H_spec`. The carrier-shell boundary [eq26-hydrogen-spectral-carrier-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-carrier-shell-source-contract-attempt.v1.json) marks only the parent carrier accepted-looking and advances only to `missing_accepted_recovered_label_rows`. The observer-Rydberg-import, priority-source, and support-carrier-substitution negative controls fail closed, so observed line factors, priority prose, photon/action support, Gate A support, and `theta_alpha` support cannot substitute for accepted hydrogen spectral evidence.
+
 ### Closure Burden
 
 The row must recover:

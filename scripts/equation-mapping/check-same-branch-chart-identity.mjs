@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const OUTPUT_SCHEMA = "aaa-equation-map-same-branch-chart-identity-check/v1";
 const INPUT_SCHEMA_PREFIX = "aaa-tri-binary-frequency-candidate-solver-report";
 const RETAINED_DOMAIN_SCHEMA_PREFIX =
@@ -439,6 +441,9 @@ function retainedDomainNextBlockerDetails({
       rowId: requirement.rowId,
       sourcePath: requirement.sourcePath,
       sourceReferenceExists: sourceReferenceExists(requirement.sourcePath),
+      sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(
+        requirement.sourcePath,
+      ),
     };
   }
   const witnesses = {
@@ -455,6 +460,9 @@ function retainedDomainNextBlockerDetails({
       residual: witness.residual ?? null,
       sourcePath: witness.sourcePath ?? null,
       sourceReferenceExists: sourceReferenceExists(witness.sourcePath),
+      sourceEvidenceReferenceExists: sourceEvidenceReferenceExists(
+        witness.sourcePath,
+      ),
     };
   }
   if (blockerId === "blocked_fiber_product_carrier") {
@@ -543,6 +551,16 @@ function evaluateDomainSupport(row, { commonCarrierId } = {}) {
       reason: "support_source_not_found",
     };
   }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "accepted_without_evidence_source",
+    };
+  }
   if (!carrierMatches(row, commonCarrierId)) {
     return {
       accepted: false,
@@ -574,6 +592,12 @@ function evaluateRetainedRowBinding({
   }
   if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
     return { accepted: false, status, reason: "row_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return { accepted: false, status, reason: "accepted_without_evidence_source" };
   }
   if (retainedRowSetId && row.retainedRowSetId !== retainedRowSetId) {
     return { accepted: false, status, reason: "retained_row_set_mismatch" };
@@ -616,6 +640,17 @@ function evaluateZeroWitness(witness, { commonCarrierId, domainId } = {}) {
     !sourceReferenceExists(witness.source)
   ) {
     return { ...base, accepted: false, status, reason: "witness_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(witness.sourcePath) &&
+    !sourceEvidenceReferenceExists(witness.source)
+  ) {
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "accepted_without_evidence_source",
+    };
   }
   const residual = Number(witness.residual ?? witness.value ?? 0);
   if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
@@ -670,6 +705,17 @@ function evaluateOverlapPreimage(witness, { commonCarrierId, domainId } = {}) {
     !sourceReferenceExists(witness.source)
   ) {
     return { ...base, accepted: false, status, reason: "witness_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(witness.sourcePath) &&
+    !sourceEvidenceReferenceExists(witness.source)
+  ) {
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "accepted_without_evidence_source",
+    };
   }
   if (witness.consistent !== true) {
     return {
@@ -896,7 +942,7 @@ function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolvedPath = path.resolve(value.trim());
+  const resolvedPath = resolveSourcePath(value);
   if (isNonDurableSourcePath(resolvedPath)) {
     return false;
   }
@@ -907,6 +953,20 @@ function sourceReferenceExists(value) {
   }
 }
 
+function sourceEvidenceReferenceExists(value) {
+  if (!sourceReferenceExists(value)) {
+    return false;
+  }
+  return isEvidenceSourcePath(resolveSourcePath(value));
+}
+
+function resolveSourcePath(value) {
+  const source = value.trim();
+  return path.isAbsolute(source)
+    ? path.normalize(source)
+    : path.resolve(REPO_ROOT, source);
+}
+
 function isNonDurableSourcePath(filePath) {
   const normalized = path.normalize(filePath);
   return (
@@ -914,5 +974,34 @@ function isNonDurableSourcePath(filePath) {
     normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
     normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
     path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}entourage${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
   );
 }

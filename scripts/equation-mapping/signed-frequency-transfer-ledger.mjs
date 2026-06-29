@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const INPUT_SCHEMA = "aaa-equation-map-signed-frequency-transfer-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-signed-frequency-transfer-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
@@ -621,7 +623,10 @@ function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolvedPath = path.resolve(value.trim());
+  const sourcePath = value.trim().replace(/#.*/, "");
+  const resolvedPath = path.isAbsolute(sourcePath)
+    ? sourcePath
+    : path.resolve(REPO_ROOT, sourcePath);
   if (isNonDurableSourcePath(resolvedPath)) {
     return false;
   }
@@ -634,10 +639,22 @@ function sourceReferenceExists(value) {
 
 function isNonDurableSourcePath(filePath) {
   const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  const basename = path.basename(normalized).toLowerCase();
   return (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative) ||
     normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
     normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
-    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
-    path.basename(normalized).includes(".tmp")
+    relative.startsWith(`reference${path.sep}priorities${path.sep}`) ||
+    relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`) ||
+    relative.startsWith(`content${path.sep}generated${path.sep}`) ||
+    basename.includes("attempt") ||
+    basename.includes("mock") ||
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("negative-control") ||
+    basename.includes(".tmp")
   );
 }

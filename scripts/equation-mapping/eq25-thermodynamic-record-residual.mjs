@@ -624,6 +624,9 @@ function evaluateAcceptedRow(row) {
   if (!source.accepted) {
     return { ...base, reason: source.reason };
   }
+  if (!source.evidenceAccepted) {
+    return { ...base, reason: source.evidenceReason };
+  }
   return { ...base, accepted: true, reason: "accepted" };
 }
 
@@ -708,11 +711,17 @@ function sourceEvidenceReason(resolvedPath) {
   if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
     return "coordination_source_path";
   }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return "authored_prose_source_path";
+  }
   const basename = path.basename(resolvedPath).toLowerCase();
   if (
     basename.includes("attempt") ||
     basename.includes("mock") ||
-    basename.includes("negative-control")
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("negative-control") ||
+    basename.includes(".tmp")
   ) {
     return "control_or_attempt_source_path";
   }
