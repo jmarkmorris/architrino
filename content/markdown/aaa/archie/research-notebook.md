@@ -8,6 +8,21 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-29: EOM Definition Oversight and Conceptual Resilience
+
+Relevant files:
+
+- [Master Equation](../dynamics/master-equation.md)
+- [Tri-Binary Configuration Space](../dynamics/tri-binary-configuration-space.md#eigen-braid-candidates)
+
+This entry records a major oversight in the definition of the Master Equation of Motion. The important distinction is that the exact EOM is the microscopic dynamical law, while much of the higher architecture is a recovery program above that law. The architecture asks whether delayed path-history dynamics can select retained branches, whether those retained branches can become eigen-braid candidates, and whether effective geometry, mass response, quantum records, and observer-level physics can be recovered from those branch records. A correction to the EOM can therefore be serious without invalidating the whole conceptual ladder.
+
+At the conceptual level, $\mathbb{A}\mathbb{A}\mathbb{A}$ adapts easily because its core commitments are not tied to one frozen algebraic presentation of the acceleration law. The framework still begins with architrinos in absolute time and the Euclidean void, causal wakes, path-history dependence, receiver-local interaction, branch certification, and downstream effective reconstruction. What changes is the exact branch-selection and acceleration rule that the proof programs must consume. That is a mathematical bottleneck, not the entire ontology.
+
+The correction should be treated as an opportunity as much as a repair. A better EOM may expose solution families that the earlier definition suppressed or distorted, especially in the search for stable retained branches, eigen-braid candidates, self-hit regimes, and Noether braid-scale assemblies. The right response is therefore not defensive preservation of old formulas. It is to let the corrected law discipline the candidate geometry and then audit every downstream claim whose proof depended on the old exact EOM.
+
+The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, tri-binary selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
+
 ## 2026-06-22: Noether Braid and General Tri-Binary Search Space
 
 Relevant files:
@@ -240,11 +255,11 @@ The mathematical achievement is not just that these theorem packages now exist, 
 $$
 dt=\frac{|\partial_s g|}{|\partial_t g|}\,du
 $$
-to cancel the apparent
+to cancel the apparent source-normal diagnostic
 $$
 |J|^{-1}
 $$
- singularity and yield a uniformly finite fold impulse ceiling. Deep-past memory is no longer an open combinatorial hazard: it is reduced to a finite ancestry complex, and the trapped-exchange loophole is closed by strict backward source-time drift along simple delayed branches. On the recapture side, the four principal escape channels now consume only fixed arithmetic ceilings
+ singularity in the fold-coordinate measure. Deep-past memory is no longer an open combinatorial hazard: it is reduced to a finite ancestry complex, and the trapped-exchange loophole is closed by strict backward source-time drift along simple delayed branches. On the recapture side, the four principal escape channels now consume only fixed arithmetic ceilings
 $$
 F^{\mathrm{mb}}_m
 \qquad

@@ -9392,8 +9392,8 @@ P_{12}(t;t_0)
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|}
-{r_{12}^2|J_{12}|}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+{r_{12}^2}
 v_r
 $$
 

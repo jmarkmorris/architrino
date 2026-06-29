@@ -5999,11 +5999,11 @@ The proof is written one local fold block at a time.
 >    $$
 >    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
->    Therefore the singular factor
+>    Therefore the source-normal diagnostic factor
 >    $$
 >    |J_{ij}|^{-1}
 >    $$
->    in the force kernel is exactly cancelled by the
+>    in the fold-coordinate measure is exactly cancelled by the
 >    $$
 >    |J_{ij}|
 >    $$

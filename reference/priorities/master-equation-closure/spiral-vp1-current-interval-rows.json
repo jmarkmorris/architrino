@@ -122,68 +122,45 @@
       }
     },
     "radial_turn": {
-      "status": "blocked",
-      "source": "spiral_branch_chart_certificate.py radial branch interval evaluator",
-      "claim_level": "outward radial branch interval reported, force ratio undeclared",
+      "status": "receiver_normal_required",
+      "source": "spiral_branch_chart_certificate.py",
+      "claim_level": "current-law restart target",
       "data": {
-        "evidence_kind": "radial_threshold_interval_reported",
-        "branch_sum": -0.27143258050217867,
-        "branch_sum_interval": [
-          -0.27143260470972164,
-          -0.27143255629407625
-        ],
-        "gamma_threshold": 0.27143258050217867,
-        "gamma_pass_threshold": 0.27143260470972164,
-        "gamma_fail_threshold": 0.27143255629407625,
+        "evidence_kind": "receiver_normal_radial_restart_required",
         "active_labels": [
           "P_1",
           "P_2",
           "P_3",
           "S_1"
         ],
-        "root_boundary_sign_verified": true,
-        "min_active_j_abs_lower": 1.7407873578063426,
-        "max_root_interval_width": 2.000000165480742e-8,
-        "decision_rule": "with Gamma in [Gamma^-, Gamma^+], pass if Gamma^- + B_r^- > 0; certify fail if Gamma^+ + B_r^+ <= 0; otherwise block",
-        "summary": "The outward retained-chart branch interval is B_r(0) in [-0.27143260470972164,-0.27143255629407625]. No strict force-ratio Gamma interval is declared, so the row remains blocked."
+        "required_rows": [
+          "D_s",
+          "D_t",
+          "W_rec"
+        ],
+        "decision_rule": "no radial_turn pass or failure until the same retained record carries D_s, D_t, and W_rec=abs(D_t/D_s)",
+        "summary": "The VP-1 radial-turn row has no current-law verdict. Recompute the retained branch sum with same-record receiver-normal branch strength."
       }
     },
     "tangential_drive": {
-      "status": "certified_fail",
-      "source": "spiral_branch_chart_certificate.py --tangential-interval-slabs 256",
-      "claim_level": "outward interval pointwise-sum lower certificate",
+      "status": "receiver_normal_required",
+      "source": "spiral_branch_chart_certificate.py",
+      "claim_level": "current-law restart target",
       "data": {
-        "evidence_kind": "outward_pointwise_sum_lower",
-        "elementary_bound_backend": "nextafter-directed double interval arithmetic with trigonometric critical-point enclosures",
+        "evidence_kind": "receiver_normal_tangential_restart_required",
         "active_labels": [
           "P_1",
           "P_2",
           "P_3",
           "S_1"
         ],
-        "theta_interval": [
-          -0.5235987755982988,
-          0.5235987755982988
+        "required_rows": [
+          "D_s",
+          "D_t",
+          "W_rec"
         ],
-        "slabs": 256,
-        "root_pad_initial": 1e-08,
-        "max_root_pad": 0.00131072,
-        "max_root_interval_width": 0.0030529442635458537,
-        "min_active_j_abs_lower": 1.66274266841616,
-        "root_boundary_sign_verified": true,
-        "branch_contribution_lower_bounds": {
-          "P_1": 0.43757169217231273,
-          "P_2": -0.31272674429402547,
-          "P_3": 0.02954611165387916,
-          "S_1": -0.11032240952308903
-        },
-        "pointwise_sum_lower_bound": 0.06960732213899794,
-        "pointwise_sum_upper_bound": 0.09555651875657238,
-        "weight_integral": 0.5235987755982988,
-        "weighted_integral_lower_bound": 0.036446308644655666,
-        "sampled_integral": 0.04013001776065915,
-        "decision_rule": "certified_fail if weighted_integral_lower_bound >= 0",
-        "summary": "A 256-slab outward interval pointwise-sum evaluation on the retained P_1,P_2,P_3,S_1 chart proves T(theta)>=0.06960732213899794 and D_T(I_*)>=0.036446308644655666, so VP-1 is certified as failing the negative tangential-drive row."
+        "decision_rule": "no tangential_drive pass or failure until the same retained record carries D_s, D_t, and W_rec=abs(D_t/D_s)",
+        "summary": "The VP-1 tangential-drive row has no current-law verdict. Recompute the weighted tangential row with same-record receiver-normal branch strength."
       }
     },
     "dependency_status": {

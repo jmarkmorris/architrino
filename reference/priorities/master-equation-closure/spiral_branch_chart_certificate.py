@@ -7,10 +7,10 @@ self-contained and uses only the Python standard library.
 
 The artifact has one narrow job: make a selected branch ledger replayable. It
 reports active partner/self roots, Jacobian floors, active-count stability,
-finite-memory status, the radial-turn branch-sum threshold interval, a weighted
-``D_T(I_*)`` quadrature estimate, and the remaining blockers for theorem-grade
+finite-memory status, and the receiver-normal restart blockers for theorem-grade
 interval promotion. The runner does not mark the priority item complete unless
-typed sidecar rows resolve the full proof matrix.
+typed sidecar rows resolve the full current-law proof matrix with same-record
+``D_t/D_s`` branch-strength rows.
 """
 
 from __future__ import annotations
@@ -71,7 +71,7 @@ CANDIDATES = {
         a=0.204,
         active_branch_windows=A1_ACTIVE_BRANCH_WINDOWS,
         radial_branch_interval_reference=(-0.005994791326773983, -0.005994715991872956),
-        claim_level="A1 branch ledger with sidecar interval rows and turn-center tangential compatibility no-go",
+        claim_level="A1 branch ledger requiring receiver-normal sidecar interval rows",
         default_report_path="spiral-a1-interval-report.md",
         pass_status="theorem_grade_passed_a1_bare_spiral",
         blocked_status="a1_interval_blocked",
@@ -1109,7 +1109,7 @@ INTERVAL_ROW_NAMES = {
     "tangential_compatibility",
     "dependency_status",
 }
-INTERVAL_STATUSES = {"passed", "certified_fail", "blocked"}
+INTERVAL_STATUSES = {"passed", "certified_fail", "blocked", "receiver_normal_required"}
 DRIVE_ROWS = {"radial_turn", "tangential_drive", "tangential_compatibility"}
 
 
@@ -1149,6 +1149,9 @@ def parse_interval_rows(packet: dict | None) -> tuple[dict[str, IntervalProofRow
             continue
         if status == "certified_fail" and row_name not in DRIVE_ROWS:
             errors.append(f"interval row {row_name} cannot use certified_fail")
+            continue
+        if status == "receiver_normal_required" and row_name not in DRIVE_ROWS:
+            errors.append(f"interval row {row_name} cannot use receiver_normal_required")
             continue
         source = row_value.get("source")
         if not isinstance(source, str) or not source:
@@ -1235,7 +1238,7 @@ def numeric_pair(value: object) -> tuple[float, float] | None:
 
 
 def validate_radial_turn_row(row: IntervalProofRow) -> list[str]:
-    if row.status == "blocked":
+    if row.status in {"blocked", "receiver_normal_required"}:
         return []
     data = row.data
     errors: list[str] = []
@@ -1309,7 +1312,7 @@ def validate_radial_turn_row(row: IntervalProofRow) -> list[str]:
 
 
 def validate_tangential_drive_row(row: IntervalProofRow) -> list[str]:
-    if row.status == "blocked":
+    if row.status in {"blocked", "receiver_normal_required"}:
         return []
     data = row.data
     evidence_kind = data.get("evidence_kind")
@@ -1372,7 +1375,7 @@ def validate_tangential_drive_row(row: IntervalProofRow) -> list[str]:
 
 
 def validate_tangential_compatibility_row(row: IntervalProofRow) -> list[str]:
-    if row.status == "blocked":
+    if row.status in {"blocked", "receiver_normal_required"}:
         return []
     data = row.data
     errors: list[str] = []
@@ -1569,18 +1572,18 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
         },
         {
             "row": "radial_turn",
-            "status": "threshold_reported",
+            "status": "receiver_normal_required",
             "technical_value": (
-                "Reports the normalized branch sum and the Gamma threshold; "
-                "a force-ratio Gamma is not selected by this runner."
+                "Requires same-record D_s, D_t, and W^rec=|D_t/D_s| rows "
+                "before any radial-turn force verdict can be promoted."
             ),
         },
         {
             "row": "tangential_drive",
-            "status": "sampled_fail" if tangent["sampled_tangential_failure"] else "blocked",
+            "status": "receiver_normal_required",
             "technical_value": (
-                "The sampled weighted D_T estimate is positive, so the candidate "
-                "does not support the required negative tangential-drive row."
+                "Requires same-record D_s, D_t, and W^rec=|D_t/D_s| rows "
+                "before any tangential-drive verdict can be promoted."
             ),
         },
         {
@@ -1597,8 +1600,6 @@ def proof_obligation_matrix(certificate: dict) -> list[dict]:
             "technical_value": "This runner consumes the selected branch-chart packet and does not edit the priority ledger.",
         },
     ]
-    if radial["gamma_threshold"] <= 0.0:
-        obligations[8]["status"] = "passed"
     return obligations
 
 
@@ -1660,8 +1661,8 @@ def theorem_readiness(certificate: dict, obligations: list[dict]) -> dict:
     elif structural_rows_passed and tangential_status == "certified_fail":
         certificate_status = f"{candidate_key}_tangential_certified_fail_radial_blocked"
         priority_item_complete = False
-    elif sampled_failure:
-        certificate_status = f"{candidate_key}_sampled_fails_tangential_drive_with_interval_blockers"
+    elif by_row.get("radial_turn") == "receiver_normal_required" or by_row.get("tangential_drive") == "receiver_normal_required":
+        certificate_status = f"{candidate_key}_receiver_normal_restart_required"
         priority_item_complete = False
     else:
         certificate_status = ACTIVE_CANDIDATE.blocked_status
@@ -1704,11 +1705,11 @@ def interval_blockers_from_obligations(obligations: list[dict]) -> list[str]:
         )
     if by_row.get("radial_turn") not in {"passed", "certified_fail"}:
         blockers.append(
-            f"No declared force-ratio Gamma row resolves the {ACTIVE_CANDIDATE.label} radial-turn threshold."
+            f"No same-record receiver-normal branch-strength row resolves the {ACTIVE_CANDIDATE.label} radial-turn target."
         )
     if by_row.get("tangential_drive") not in {"passed", "certified_fail"}:
         blockers.append(
-            "No outward interval tangential-drive verdict is loaded; the current D_T value remains sampled or reduction-only."
+            "No outward interval tangential-drive verdict is loaded with same-record D_s, D_t, and W^rec rows."
         )
     if (
         by_row.get("tangential_drive") == "passed"
@@ -1836,12 +1837,14 @@ def emit_markdown(certificate: dict) -> str:
         f"- Active-count stability: `{str(active['active_count_stable']).lower()}`.",
         f"- Minimum sampled active $|J|$: `{active['min_j_floor']:.12f}`.",
         f"- Finite memory: `{str(memory['passed']).lower()}`.",
-        f"- Sampled tangential-drive verdict: `{tangent['verdict']}`.",
+        f"- Receiver-normal drive rows: `required`.",
         "",
         f"The executable reports a replayable {certificate['candidate']['label']} branch ledger. It promotes only "
-        "typed interval sidecar rows that match the declared candidate; sampled "
-        "support remains sampled. A theorem-grade rejection resolves the selected "
-        "candidate without closing the wider spiral search priority.",
+        "typed interval sidecar rows that match the current Master EOM. Source-normal "
+        "Jacobian rows remain root-transversality diagnostics; force, action, radial, "
+        "and tangential verdicts require same-record receiver-normal branch strength. "
+        "A theorem-grade decision resolves the selected candidate without closing the "
+        "wider spiral search priority.",
         "",
         "## Interval Row Sidecar",
         "",
@@ -1884,21 +1887,19 @@ def emit_markdown(certificate: dict) -> str:
             "",
             "## Active Root Rows At $\\theta_\\ast=0$",
             "",
-            "| Class | Branch | $\\Delta$ | $J$ | $\\Lambda$ | $S_T$ | $S_T/(\\Lambda^3|J|)$ | Radial contribution |",
-            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+            "| Class | Branch | $\\Delta$ | $J$ | $\\Lambda$ | $S_T$ | Current-law restart row |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
         ]
     )
     for row in active["endpoint_rows"]["theta_star"]:
         lines.append(
-            "| {kind} | {branch} | {delta:.9f} | {jac:.9f} | {lam:.9f} | {st:.9f} | {tan:.9f} | {rad:.9f} |".format(
+            "| {kind} | {branch} | {delta:.9f} | {jac:.9f} | {lam:.9f} | {st:.9f} | same-record $D_t/D_s$ required |".format(
                 kind=row["kind"].title(),
                 branch=row["branch_index"],
                 delta=row["delta"],
                 jac=row["jacobian"],
                 lam=row["lambda"],
                 st=row["tangential_numerator"],
-                tan=row["tangential_contribution"],
-                rad=row["radial_contribution"],
             )
         )
 
@@ -1907,8 +1908,8 @@ def emit_markdown(certificate: dict) -> str:
             "",
             "## Corridor Stability",
             "",
-            "| Row | Partner roots | Self roots | Minimum sampled $|J|$ | Unweighted tangential sum |",
-            "| --- | ---: | ---: | ---: | ---: |",
+            "| Row | Partner roots | Self roots | Minimum sampled $|J|$ | Current-law drive row |",
+            "| --- | ---: | ---: | ---: | --- |",
         ]
     )
     endpoint_labels = [
@@ -1921,9 +1922,8 @@ def emit_markdown(certificate: dict) -> str:
         partner_count = sum(1 for row in rows if row["kind"] == "partner")
         self_count = sum(1 for row in rows if row["kind"] == "self")
         min_j = min(abs(row["jacobian"]) for row in rows)
-        tan_sum = sum(row["tangential_contribution"] for row in rows)
         lines.append(
-            f"| {label} | {partner_count} | {self_count} | {min_j:.9f} | {tan_sum:.9f} |"
+            f"| {label} | {partner_count} | {self_count} | {min_j:.9f} | same-record $D_t/D_s$ required |"
         )
 
     lines.extend(
@@ -1931,21 +1931,19 @@ def emit_markdown(certificate: dict) -> str:
             "",
             "## Branch Ranges",
             "",
-            "| Class | Branch | $\\Delta$ min | $\\Delta$ max | Minimum sampled $|J|$ | $\\theta$ at min $|J|$ | Tangential min | Tangential max |",
-            "| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |",
+            "| Class | Branch | $\\Delta$ min | $\\Delta$ max | Minimum sampled $|J|$ | $\\theta$ at min $|J|$ | Current-law branch strength |",
+            "| --- | ---: | ---: | ---: | ---: | ---: | --- |",
         ]
     )
     for row in active["branch_stats"]:
         lines.append(
-            "| {kind} | {branch} | {dmin:.9f} | {dmax:.9f} | {jmin:.9f} | {theta:.9f} | {tmin:.9f} | {tmax:.9f} |".format(
+            "| {kind} | {branch} | {dmin:.9f} | {dmax:.9f} | {jmin:.9f} | {theta:.9f} | same-record $D_t/D_s$ required |".format(
                 kind=row["kind"].title(),
                 branch=row["branch_index"],
                 dmin=row["delta_min"],
                 dmax=row["delta_max"],
                 jmin=row["j_abs_min"],
                 theta=row["theta_at_j_min"],
-                tmin=row["tangential_min"],
-                tmax=row["tangential_max"],
             )
         )
 
@@ -1967,69 +1965,28 @@ def emit_markdown(certificate: dict) -> str:
             "",
             "## Radial Turn",
             "",
-            "The normalized radial-turn row is `$\\Gamma+\\mathrm{branch\\_sum}>0$`.",
+            "The radial-turn row is invalid as force evidence until the retained branch chart carries same-record $D_s$, $D_t$, and $W^{\\mathrm{rec}}=\\lvert D_t/D_s\\rvert$ intervals.",
             "",
-            "| Quantity | Value |",
-            "| --- | ---: |",
-            f"| Branch sum at $\\theta_\\ast=0$ | `{radial['branch_sum']:.12f}` |",
-            f"| Required $\\Gamma$ threshold | `{radial['gamma_threshold']:.12f}` |",
+            "| Quantity | Status |",
+            "| --- | --- |",
+            "| Root geometry | retained as diagnostic |",
+            "| Force/action verdict | receiver-normal restart required |",
             "",
         ]
     )
-    radial_interval = radial.get("branch_interval", {})
-    if radial_interval.get("evaluated"):
-        branch_sum_interval = radial_interval.get("branch_sum_interval", [math.nan, math.nan])
-        lines.extend(
-            [
-                "### Radial Branch-Sum Interval",
-                "",
-                "| Field | Value |",
-                "| --- | ---: |",
-                f"| Status | `{radial_interval['status']}` |",
-                f"| Branch-sum lower | `{branch_sum_interval[0]:.12f}` |",
-                f"| Branch-sum upper | `{branch_sum_interval[1]:.12f}` |",
-                f"| Pass threshold $-B_r^-$ | `{radial_interval.get('gamma_pass_threshold', float('nan')):.12f}` |",
-                f"| Fail threshold $-B_r^+$ | `{radial_interval.get('gamma_fail_threshold', float('nan')):.12f}` |",
-                f"| Minimum active $|J|$ lower bound | `{radial_interval.get('min_active_j_abs_lower', float('nan')):.12f}` |",
-                f"| Max root interval width | `{radial_interval.get('max_root_interval_width', float('nan')):.12e}` |",
-                "",
-            ]
-        )
     lines.extend(
         [
             "## Weighted Tangential Drive",
             "",
-            "The candidate pass condition is $\\mathcal{D}_T(I_\\ast)\\le-\\varepsilon_T$ with $\\varepsilon_T>0$.",
+            "The weighted tangential-drive row is invalid as force evidence until the retained branch chart carries same-record $D_s$, $D_t$, and $W^{\\mathrm{rec}}=\\lvert D_t/D_s\\rvert$ intervals.",
             "",
-            "| Diagnostic | Value |",
-            "| --- | ---: |",
-            f"| Simpson estimate for $\\mathcal{{D}}_T(I_\\ast)$ | `{tangent['simpson_estimate']:.12f}` |",
-            f"| Trapezoid estimate | `{tangent['trapezoid_estimate']:.12f}` |",
-            f"| Half-resolution trapezoid estimate | `{tangent['half_trapezoid_estimate']:.12f}` |",
-            f"| Diagnostic convergence gap | `{tangent['diagnostic_convergence_gap']:.12e}` |",
-            f"| Diagnostic lower estimate | `{tangent['diagnostic_estimate_interval'][0]:.12f}` |",
-            f"| Diagnostic upper estimate | `{tangent['diagnostic_estimate_interval'][1]:.12f}` |",
-            f"| Verdict | `{tangent['verdict']}` |",
+            "| Quantity | Status |",
+            "| --- | --- |",
+            "| Source-normal numerator $S_T$ | retained as diagnostic geometry |",
+            "| Force/action verdict | receiver-normal restart required |",
             "",
         ]
     )
-    evaluator = tangent.get("interval_evaluator", {})
-    if evaluator.get("evaluated"):
-        lines.extend(
-            [
-                "### Tangential Interval Evaluator",
-                "",
-                "| Field | Value |",
-                "| --- | ---: |",
-                f"| Status | `{evaluator['status']}` |",
-                f"| Slabs | `{evaluator['slabs']}` |",
-                f"| Pointwise sum lower bound | `{evaluator.get('pointwise_sum_lower_bound', float('nan')):.12f}` |",
-                f"| Weighted integral lower bound | `{evaluator.get('weighted_integral_lower_bound', float('nan')):.12f}` |",
-                f"| Minimum active $|J|$ lower bound | `{evaluator.get('min_active_j_abs_lower', float('nan')):.12f}` |",
-                f"| Max root interval width | `{evaluator.get('max_root_interval_width', float('nan')):.12e}` |",
-                "",
-            ]
-        )
     lines.extend(
         [
             "## Inactive Gap And Coincidence Diagnostics",

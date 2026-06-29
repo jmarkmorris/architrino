@@ -5519,25 +5519,33 @@ J_{12}
 \Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big]
 $$
 The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
+For force rows the source-normal denominator is not the branch strength; use
+$W_p^{\mathrm{rec}}(\theta,\Delta)=\lvert D_{t,p}/D_{s,p}\rvert$ on the same
+retained partner root.
 
 For opposite polarities, the branch acceleration is
 $$
 \mathbf{a}_{12}
 =
-\frac{-\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^2 |J_{12}|}\,
+-\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}{r(\theta)^2\Lambda_p^2}\,
 \hat{\mathbf{r}}_{12}
 $$
 Projecting onto the variable-pitch Frenet frame gives
 $$
 a_T^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}
+{r(\theta)^2\Lambda_p^3\sqrt{1+p^2}}
 \Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big]
 $$
 $$
 a_N^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}
+{r(\theta)^2\Lambda_p^3\sqrt{1+p^2}}
 \Big[1+\rho\cos\Delta-p\rho\sin\Delta\Big]
 $$
 The partner tangential numerator is therefore
@@ -5595,13 +5603,13 @@ $$
 The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
 \sum_{\mathrm{part}}
-\frac{|q_1q_2|\,S_T^p}{\Lambda_p^3 |J_{12}|}
+|q_1q_2|\frac{W_p^{\mathrm{rec}}S_T^p}{\Lambda_p^3}
 +
 \sum_{\mathrm{self}}
-\frac{q_1^2\,S_T^s}{\Lambda_s^3 |J_{11}|}
+q_1^2\frac{W_s^{\mathrm{rec}}S_T^s}{\Lambda_s^3}
 <0
 $$
-after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive Jacobian floors and finite memory depth.
+after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive source-normal floors, receiver-normal branch-strength intervals, and finite memory depth.
 
 At a minimum-radius event $\theta_\ast$, the pitch condition gives $p(\theta_\ast)=0$. Therefore both tangential numerators reduce locally to
 $$
@@ -13934,7 +13942,7 @@ $$
 \frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2\,J_{ij}(t,t')}\,dt\,dt'
 \right]
 $$
-This single-period symmetric form aggregates source-normal self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above. When multi-period branches are active, replace each symmetric selector by the lifted finite-memory form before comparing source-normal diagnostic totals across branch charts. Current closure comparisons must then replace the old branch strength with same-record $W^{\mathrm{rec}}$ intervals.
+This single-period symmetric form aggregates source-normal self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above. When multi-period branches are active, replace each symmetric selector by the lifted finite-memory form before comparing source-normal diagnostic totals across branch charts. Current closure comparisons must use same-record $W^{\mathrm{rec}}$ intervals.
 
 **Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, $\Delta t = t-t'$, and $J_{ij}(t,t')=\left|\partial_{t'}\big(r_{ij}(t,t')-c_f|t-t'|\big)\right|$ is the branch Jacobian induced by the delayed causal constraint.
 
@@ -14490,7 +14498,7 @@ turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\m
 
 #### Summary and Status
 
-- The active scalar target is the receiver-normal branch statistic $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$; the older Jacobian-weighted inverse-square formulas remain source-normal diagnostics for topology, coarea, and historical comparison, not current force/action closure evidence.
+- The active scalar target is the receiver-normal branch statistic $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$; Jacobian-weighted inverse-square formulas remain source-normal diagnostics for topology and coarea, not current force/action closure evidence.
 - The causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete branch labels such as winding class, writhe candidate, and link type; those labels segment orbit families but do not by themselves prove stability or mass.
 - The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise source-normal Jacobians, receiver-normal restart obligations, and controlled near-threshold asymptotics, anchoring numerical calibrations.
 - Under explicit assumptions (A1-A5), the source-normal theorem spine establishes finiteness, coarea reduction, topological invariance away from critical points, and a bifurcation condition for branch changes.
@@ -25370,7 +25378,7 @@ $$
 D_t=c_f-v.
 $$
 Thus the delayed partner force is neither the naive conservative inverse-square
-force nor the old source-normal row. The receiver-normal branch strength is
+force nor a source-normal-only row. The receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =
@@ -38925,7 +38933,7 @@ K_{\perp}^{(q)}
 \sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
 <1
 $$
-The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any older source-only $1/|J|$ stiffness estimate is a restart target.
+The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any stiffness estimate that lacks same-record $D_t/D_s$ branch strength is a restart target.
 
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$
@@ -85297,8 +85305,8 @@ P_{12}(t;t_0)
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|}
-{r_{12}^2|J_{12}|}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+{r_{12}^2}
 v_r
 $$
 

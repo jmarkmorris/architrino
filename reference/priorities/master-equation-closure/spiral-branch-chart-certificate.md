@@ -314,14 +314,14 @@ on the certified chart, or if a negative value appears only by adding roots outs
 
 The following rows are a reproducibility target for the interval proof. They are not theorem-grade bounds; each decimal must be replaced by an outward enclosure before promotion.
 
-At $\theta=0$, the sampled active ledger on $D_h=(0,4\pi]$ is:
+At $\theta=0$, the sampled active ledger on $D_h=(0,4\pi]$ is retained only as a root-geometry reproducibility target. The source-normal floor $J$ remains a transversality diagnostic. Force, action, radial-turn, and tangential-drive rows require a same-record receiver-normal branch-strength column $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before promotion.
 
-| Class | $\Delta$ | $J$ | $\Lambda$ | $S_T$ | $S_T/(\Lambda^3|J|)$ |
-| --- | ---: | ---: | ---: | ---: | ---: |
-| Partner | $2.502775826$ | $4.356934994$ | $0.715078807$ | $0.714036100$ | $0.448205692$ |
-| Partner | $4.385887226$ | $-1.771316799$ | $1.253110636$ | $-1.080902793$ | $-0.310114554$ |
-| Partner | $6.806959744$ | $1.740787379$ | $1.944845641$ | $0.506902428$ | $0.039584324$ |
-| Self | $4.840212128$ | $4.003062376$ | $1.382917751$ | $-1.082270060$ | $-0.102224321$ |
+| Class | $\Delta$ | $J$ | $\Lambda$ | $S_T$ | Required current-law row |
+| --- | ---: | ---: | ---: | ---: | --- |
+| Partner | $2.502775826$ | $4.356934994$ | $0.715078807$ | $0.714036100$ | same-record $D_t/D_s$ |
+| Partner | $4.385887226$ | $-1.771316799$ | $1.253110636$ | $-1.080902793$ | same-record $D_t/D_s$ |
+| Partner | $6.806959744$ | $1.740787379$ | $1.944845641$ | $0.506902428$ | same-record $D_t/D_s$ |
+| Self | $4.840212128$ | $4.003062376$ | $1.382917751$ | $-1.082270060$ | same-record $D_t/D_s$ |
 
 Endpoint sample checks preserve the same active count:
 

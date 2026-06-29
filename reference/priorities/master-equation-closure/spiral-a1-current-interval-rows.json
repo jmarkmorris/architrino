@@ -154,95 +154,66 @@
       }
     },
     "radial_turn": {
-      "status": "passed",
-      "source": "spiral-a1-kinematic-gamma-closure.md",
-      "claim_level": "exact radial-balance force-ratio interval from prescribed A1 kinematics",
+      "status": "receiver_normal_required",
+      "source": "spiral-a1-gamma-force-ratio-decision.md",
+      "claim_level": "current-law restart target",
       "data": {
-        "evidence_kind": "radial_force_ratio_interval",
-        "branch_sum_interval": [
-          -0.005994791326773983,
-          -0.005994715991872956
-        ],
-        "gamma_interval": [
-          0.007531050241046427,
-          0.007531144882881889
-        ],
-        "gamma_source": "spiral-a1-kinematic-gamma-closure.md",
-        "gamma_normalization": "Gamma = r_*^3 Omega^2/(kappa q_1^2)",
-        "theta_star": 0.0,
+        "evidence_kind": "receiver_normal_radial_restart_required",
         "active_labels": [
           "P_1",
           "P_2",
           "P_3",
           "S_1"
         ],
-        "root_boundary_sign_verified": true,
-        "min_active_j_abs_lower": 1.5990335643769504,
-        "max_root_interval_width": 2.000000165480742e-8,
-        "strict_margin": 0.001536258914272444,
-        "decision_rule": "with Gamma in [Gamma^-, Gamma^+], pass if Gamma^- + B_r^- > 0; certify fail if Gamma^+ + B_r^+ <= 0; otherwise block",
-        "summary": "The prescribed constant-Omega A1 radial kinematics give B_r(C_A1;0)=(a_A1-1)Gamma, so Gamma in [0.007531050241046427,0.007531144882881889] and Gamma^- + B_r^- > 0. The radial_turn row passes."
+        "required_rows": [
+          "D_s",
+          "D_t",
+          "W_rec"
+        ],
+        "decision_rule": "no radial_turn pass or failure until the same retained record carries D_s, D_t, and W_rec=abs(D_t/D_s)",
+        "summary": "The A1 radial-turn row has no current-law verdict. Recompute the retained branch sum with same-record receiver-normal branch strength before comparing to a kinematic Gamma row."
       }
     },
     "tangential_drive": {
-      "status": "passed",
+      "status": "receiver_normal_required",
       "source": "spiral-a1-drive-interval-target.md",
-      "claim_level": "outward weighted integral interval pass",
+      "claim_level": "current-law restart target",
       "data": {
-        "evidence_kind": "outward_integral_interval",
-        "elementary_bound_backend": "nextafter-directed double interval arithmetic with trigonometric critical-point enclosures",
+        "evidence_kind": "receiver_normal_tangential_restart_required",
         "active_labels": [
           "P_1",
           "P_2",
           "P_3",
           "S_1"
         ],
-        "theta_interval": [
-          -0.5235987755982988,
-          0.5235987755982988
+        "required_rows": [
+          "D_s",
+          "D_t",
+          "W_rec"
         ],
-        "D_T_interval": [
-          -0.0015572472070875527,
-          -0.00023480430280344085
-        ],
-        "epsilon_T": 0.0002,
-        "root_boundary_sign_verified": true,
-        "min_active_j_abs_lower": 1.5711302941214833,
-        "max_root_interval_width": 0.0004111903157433261,
-        "max_root_pad": 0.00016384,
-        "weight": "w(theta)=cos^2(3 theta)",
-        "pointwise_tangential_sum_interval": [
-          -0.028377386511489664,
-          0.08125119561398353
-        ],
-        "decision_rule": "passed if D_T^+ <= -epsilon_T for epsilon_T > 0",
-        "summary": "The outward A1 weighted tangential-drive interval has D_T^+ <= -2.0e-4, so the tangential_drive row passes."
+        "decision_rule": "no tangential_drive pass or failure until the same retained record carries D_s, D_t, and W_rec=abs(D_t/D_s)",
+        "summary": "The A1 tangential-drive row has no current-law verdict. Recompute the weighted tangential row with same-record receiver-normal branch strength."
       }
     },
     "tangential_compatibility": {
-      "status": "certified_fail",
+      "status": "receiver_normal_required",
       "source": "spiral-a1-tangential-compatibility-no-go.md",
-      "claim_level": "outward turn-center tangential compatibility no-go for the prescribed constant-Omega A1 history",
+      "claim_level": "current-law restart target",
       "data": {
-        "evidence_kind": "turn_center_tangential_residual_interval",
+        "evidence_kind": "receiver_normal_turn_center_restart_required",
         "active_labels": [
           "P_1",
           "P_2",
           "P_3",
           "S_1"
         ],
-        "theta_star": 0.0,
-        "T0_interval": [
-          -0.007585901776635041,
-          -0.007585740886803276
+        "required_rows": [
+          "D_s",
+          "D_t",
+          "W_rec"
         ],
-        "required_T0": 0.0,
-        "root_boundary_sign_verified": true,
-        "min_active_j_abs_lower": 1.5990335643769504,
-        "strict_margin": 0.007585740886803276,
-        "failure_direction": "negative",
-        "decision_rule": "constant-Omega prescribed history requires T0(C_A1)=0 at theta*=0; certified_fail if the outward T0 interval excludes zero",
-        "summary": "The prescribed constant-Omega A1 history requires zero turn-center tangential acceleration, but the retained chart has T0(C_A1) in [-0.007585901776635041,-0.007585740886803276], so exact tangential compatibility fails."
+        "decision_rule": "no tangential_compatibility pass or failure until the same retained record carries D_s, D_t, and W_rec=abs(D_t/D_s)",
+        "summary": "The A1 turn-center tangential compatibility row is a current-law restart target, not a no-go."
       }
     },
     "dependency_status": {
