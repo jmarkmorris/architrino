@@ -2592,31 +2592,15 @@ $$
 $$
 The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
 
-A fixed retained-chart benchmark illustrates a sharper prescribed-history failure. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows. Its exact radial kinematics at $\theta_\ast=0$ fix the force-ratio row by
-$$
-B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma,
-\qquad
-\Gamma\in[0.007531050241046427,\ 0.007531144882881889]
-$$
-which strictly passes the minimum-turn inequality. The same prescribed history fails exact tangential compatibility at the turn center: constant $\Omega$ and $p(0)=0$ require the normalized pointwise tangential force sum $T_0(C_{\mathrm{A1}})$ to vanish, while the retained chart gives
-$$
-T_0(C_{\mathrm{A1}})
-\in[-0.007585901776635041,\ -0.007585740886803276]
-$$
-Thus A1 is a constant-$\Omega$ kinematic-balance no-go for this prescribed isolated two-body history. It remains a replayable retained-chart benchmark, not a closed isolated spiral certificate and not a rejection of variable-angular-rate, medium-supplemented, nested shell braid, or other non-circular histories.
+A fixed retained-chart benchmark is now a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not current Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
 
-The no-go is also constructive. If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the exact local balance equations become
+If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the local kinematic targets become
 $$
-B_r(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma_\ast,
+B_r^{\mathrm{rec}}(C_{\mathrm{A1}};0)=(a_{\mathrm{A1}}-1)\Gamma_\ast,
 \qquad
-T_0(C_{\mathrm{A1}})=\Gamma_\ast\frac{\alpha_\ast}{\omega_\ast^2}
+T_0^{\mathrm{rec}}(C_{\mathrm{A1}})=\Gamma_\ast\frac{\alpha_\ast}{\omega_\ast^2}
 $$
-where $\Gamma_\ast=r_\ast^3\omega_\ast^2/(\kappa q_1^2)$. Combining the retained A1 intervals gives
-$$
-\frac{\alpha_\ast}{\omega_\ast^2}
-\in[-1.0072833846320208,\ -1.007249363114164]
-$$
-Thus the constant-$\Omega$ row supplies only a local angular-deceleration target for a variable-angular-rate continuation. It does not by itself close such a continuation, because the delayed roots and receiver-normal branch strengths must be recomputed for the nonconstant time law.
+where $\Gamma_\ast=r_\ast^3\omega_\ast^2/(\kappa q_1^2)$. This supplies only a local angular-deceleration target for a variable-angular-rate continuation. It does not by itself close such a continuation, because the delayed roots and receiver-normal branch strengths must be recomputed for the nonconstant time law.
 
 The stronger invariant form of the target is the angular slope of the time law,
 $$
@@ -2626,7 +2610,7 @@ $$
 =
 \frac{\ddot\theta(0)}{\dot\theta(0)^2}
 =
-\frac{T_0(C_{\mathrm{A1}})}{\Gamma_\ast}
+\frac{T_0^{\mathrm{rec}}(C_{\mathrm{A1}})}{\Gamma_\ast}
 $$
 However, the delayed roots are controlled by a finite-memory integral, not by this local slope alone. If
 $$
@@ -2643,7 +2627,7 @@ $$
 \frac{\omega_\ast}{\dot\theta(\phi)}-1
 \right)d\phi=0
 $$
-Thus the variable-rate A1 continuation is a finite-memory time-law problem: the local angular-deceleration target must be reconciled with inverse-rate averages over the delayed branch intervals. Simple one-parameter extensions of the local slope do not preserve A1; they either lose the retained roots or move to a branch ledger with the wrong radial sign for positive $\Gamma$.
+Thus the variable-rate A1 continuation is a finite-memory time-law problem: the local angular-deceleration target must be reconciled with inverse-rate averages over the delayed branch intervals and with the same-box receiver-normal force rows. Simple one-parameter extensions of the local slope are not evidence unless they preserve the retained roots and recompute $W^{\mathrm{rec}}$ on the resulting branch ledger.
 
 This finite-memory condition is nevertheless not an algebraic no-go at the turn center. In past-lag coordinates $x=-\phi$, define
 $$
@@ -10741,10 +10725,10 @@ W_\gamma^{\mathrm{rec}}(t,t')
 $$
 where $D_s=c_f-\mathbf{v}(t')\cdot\hat{\mathbf r}(t,t')$ is the
 source-normal denominator and $D_t=c_f-\mathbf{v}(t)\cdot\hat{\mathbf r}(t,t')$
-is the receiver-normal numerator. The older source-normal, Jacobian-weighted
-two-time formulas retained below are diagnostic causal-locus statistics only.
+is the receiver-normal numerator. The source-normal, Jacobian-weighted
+two-time formulas below are diagnostic causal-locus statistics only.
 Root-locus, coarea, regularization, and topological counting material remains
-useful, but any statistic or action-counting row that uses only the old
+useful, but any statistic or action-counting row that uses only the
 Jacobian-weighted inverse-square kernel must be redriven with
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before it can support force, action,
 mass, or conservation closure.
@@ -10790,10 +10774,10 @@ $$
 \frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
 {\|\mathbf{x}(t)-\mathbf{x}(t')\|^2\,J_\gamma(t,t')}\,dt\,dt'
 $$
-This older source-normal statistic is not the current branch-strength statistic
+This source-normal statistic is not the current branch-strength statistic
 and is not the exact Fokker-type variational action of
 [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md). It remains useful for causal
-locus topology, coarea checks, and historical comparison, but it cannot support
+locus topology and coarea checks, but it cannot support
 current force, action, mass, or conservation closure until its branch weights
 are replaced by the receiver-normal factor above.
 

@@ -52,15 +52,17 @@ $$
 R_p(0,\Delta_p)
 =
 -
+W_p^{\mathrm{rec}}(0,\Delta_p)
 \frac{1+\rho(0,\Delta_p)\cos\Delta_p}
-{\Lambda_p(0,\Delta_p)^3|J_{12}(0,\Delta_p)|}.
+{\Lambda_p(0,\Delta_p)^3}.
 $$
 For a retained self root $\Delta_s$,
 $$
 R_s(0,\Delta_s)
 =
+W_s^{\mathrm{rec}}(0,\Delta_s)
 \frac{1-\rho(0,\Delta_s)\cos\Delta_s}
-{\Lambda_s(0,\Delta_s)^3|J_{11}(0,\Delta_s)|}.
+{\Lambda_s(0,\Delta_s)^3}.
 $$
 Thus the VP-1 radial branch sum at the turn center is
 $$

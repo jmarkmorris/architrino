@@ -88,14 +88,15 @@ $$
 
 The common ansatz has equal lengths across all six sites up to quadrature error. The active-root convention retained the same-binary partner and the four cross-binary sources for each receiver, excluding same-source roots unless a separate self/fold-layer row is declared.
 
-The dimensionless force was
+The receiver-normal restart force is
 
 $$
 \widetilde{\mathbf{F}}_i
 =
 \sum_{j\in\mathcal{A}_i}
-\frac{\sigma_i\sigma_j}
-{y_{ij}^2|J_{ij}|}
+\sigma_i\sigma_j
+\frac{W_{ij}^{\mathrm{rec}}}
+{y_{ij}^2}
 \hat{\mathbf{r}}_{ij}.
 $$
 
@@ -259,4 +260,3 @@ $$
 $$
 
 This is the first search result suggesting that a higher-dimensional intrinsic curve solve is mathematically worthwhile.
-

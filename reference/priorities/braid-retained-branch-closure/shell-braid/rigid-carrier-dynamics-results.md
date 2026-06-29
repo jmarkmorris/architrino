@@ -80,8 +80,9 @@ $$
 =
 \hat{\mathbf{n}}_i(\theta)\cdot
 \sum_{(j,y)\in\mathcal{A}_i(\theta)}
-\frac{\mathrm{sign}(q_iq_j)}
-{y_{ij}^2|J_{ij}|}
+\mathrm{sign}(q_iq_j)
+\frac{W_{ij}^{\mathrm{rec}}}
+{y_{ij}^2}
 \hat{\mathbf{r}}_{ij}.
 $$
 

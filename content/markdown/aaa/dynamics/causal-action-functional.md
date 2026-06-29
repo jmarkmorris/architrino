@@ -169,7 +169,7 @@ $$
 \frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2\,J_{ij}(t,t')}\,dt\,dt'
 \right]
 $$
-This single-period symmetric form aggregates source-normal self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above. When multi-period branches are active, replace each symmetric selector by the lifted finite-memory form before comparing source-normal diagnostic totals across branch charts. Current closure comparisons must then replace the old branch strength with same-record $W^{\mathrm{rec}}$ intervals.
+This single-period symmetric form aggregates source-normal self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above. When multi-period branches are active, replace each symmetric selector by the lifted finite-memory form before comparing source-normal diagnostic totals across branch charts. Current closure comparisons must use same-record $W^{\mathrm{rec}}$ intervals.
 
 **Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, $\Delta t = t-t'$, and $J_{ij}(t,t')=\left|\partial_{t'}\big(r_{ij}(t,t')-c_f|t-t'|\big)\right|$ is the branch Jacobian induced by the delayed causal constraint.
 
@@ -725,7 +725,7 @@ turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\m
 
 ## Summary and Status
 
-- The active scalar target is the receiver-normal branch statistic $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$; the older Jacobian-weighted inverse-square formulas remain source-normal diagnostics for topology, coarea, and historical comparison, not current force/action closure evidence.
+- The active scalar target is the receiver-normal branch statistic $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$; Jacobian-weighted inverse-square formulas remain source-normal diagnostics for topology and coarea, not current force/action closure evidence.
 - The causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete branch labels such as winding class, writhe candidate, and link type; those labels segment orbit families but do not by themselves prove stability or mass.
 - The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise source-normal Jacobians, receiver-normal restart obligations, and controlled near-threshold asymptotics, anchoring numerical calibrations.
 - Under explicit assumptions (A1-A5), the source-normal theorem spine establishes finiteness, coarea reduction, topological invariance away from critical points, and a bifurcation condition for branch changes.

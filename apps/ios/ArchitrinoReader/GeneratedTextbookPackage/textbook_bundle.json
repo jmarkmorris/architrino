@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-29T07:14:37.854Z",
+  "generated_at": "2026-06-29T07:17:41.360Z",
   "package_version": "1.0.0-57ac137c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -204,16 +204,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24952510,
-      "sha256": "78394d6a2d5008b8dc9ccaf77b4eca53d56fdf6b454ea5ca4a7b1da5a2c5589a"
+      "size": 24942737,
+      "sha256": "4c5b019811ef4ecd21af9ec3726eb9d2e8b04e62f3cdb6700796eecd1885c220"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1415943,
-      "sha256": "5bdc322c2008115e31e284f71ef389c1e6c1aded208eeada9a000cb69d8f5b11"
+      "size": 1415083,
+      "sha256": "658ee61d460738a25e8e9ff682c20c229c163d7b2eb157631deeef3b8a9cbe17"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -396,16 +396,16 @@
       "sourcePath": "__generated__/references/mathematics-terminology.html",
       "role": "reference",
       "type": "html",
-      "size": 492248,
-      "sha256": "f7bf0eba19456fcf3dc4ae7933796c22a2de16142b293d640522673b92cf2b8c"
+      "size": 492242,
+      "sha256": "4c966f35f1bcfe5d2797f033cbade55cccefeaadee0b88b72ff61a3466b5301c"
     },
     {
       "path": "references/mathematics-terminology.md",
       "sourcePath": "content/markdown/aaa/archie/mathematics-terminology.md",
       "role": "reference",
       "type": "markdown",
-      "size": 35381,
-      "sha256": "b75f03a15c95dd765a866d88346c71dc622b59538b1e930c389f34bb937aa405"
+      "size": 35375,
+      "sha256": "55a9421007d96d10d8dc8f1edca442e87acf58e7fa01f5a528bd7c8d82871bc3"
     },
     {
       "path": "references/terminology-usage.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9567289,
-      "sha256": "33ff161eb35b9e4c0f0d86d7365982c210e8a2f0659a3454a14422b21b4bcc01"
+      "size": 9566535,
+      "sha256": "655fe5c1584a63c0bb401cba4cf35121eb94b1153286065c6372a8de5fbd4d7f"
     }
   ],
   "links": []

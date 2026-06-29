@@ -2462,25 +2462,33 @@ J_{12}
 \Big[\sin\Delta-p_0(\cos\Delta+\rho)\Big]
 $$
 The sign is fixed by the circular limit: when $p_0=0$ and $\rho=1$, this gives $J_{12}=1+\beta\sin(\Delta/2)$.
+For force rows the source-normal denominator is not the branch strength; use
+$W_p^{\mathrm{rec}}(\theta,\Delta)=\lvert D_{t,p}/D_{s,p}\rvert$ on the same
+retained partner root.
 
 For opposite polarities, the branch acceleration is
 $$
 \mathbf{a}_{12}
 =
-\frac{-\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^2 |J_{12}|}\,
+-\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}{r(\theta)^2\Lambda_p^2}\,
 \hat{\mathbf{r}}_{12}
 $$
 Projecting onto the variable-pitch Frenet frame gives
 $$
 a_T^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}
+{r(\theta)^2\Lambda_p^3\sqrt{1+p^2}}
 \Big[p(1+\rho\cos\Delta)+\rho\sin\Delta\Big]
 $$
 $$
 a_N^{p}
 =
-\frac{\kappa |q_1q_2|}{r(\theta)^2\Lambda_p^3 |J_{12}|\,\sqrt{1+p^2}}
+\kappa |q_1q_2|
+\frac{W_p^{\mathrm{rec}}(\theta,\Delta)}
+{r(\theta)^2\Lambda_p^3\sqrt{1+p^2}}
 \Big[1+\rho\cos\Delta-p\rho\sin\Delta\Big]
 $$
 The partner tangential numerator is therefore
@@ -2538,13 +2546,13 @@ $$
 The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
 \sum_{\mathrm{part}}
-\frac{|q_1q_2|\,S_T^p}{\Lambda_p^3 |J_{12}|}
+|q_1q_2|\frac{W_p^{\mathrm{rec}}S_T^p}{\Lambda_p^3}
 +
 \sum_{\mathrm{self}}
-\frac{q_1^2\,S_T^s}{\Lambda_s^3 |J_{11}|}
+q_1^2\frac{W_s^{\mathrm{rec}}S_T^s}{\Lambda_s^3}
 <0
 $$
-after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive Jacobian floors and finite memory depth.
+after the common positive factors are removed. Algebraic sign allowance is not enough; the delayed-root equations must actually admit those roots with positive source-normal floors, receiver-normal branch-strength intervals, and finite memory depth.
 
 At a minimum-radius event $\theta_\ast$, the pitch condition gives $p(\theta_\ast)=0$. Therefore both tangential numerators reduce locally to
 $$

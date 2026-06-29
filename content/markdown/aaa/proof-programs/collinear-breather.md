@@ -253,7 +253,7 @@ $$
 D_t=c_f-v.
 $$
 Thus the delayed partner force is neither the naive conservative inverse-square
-force nor the old source-normal row. The receiver-normal branch strength is
+force nor a source-normal-only row. The receiver-normal branch strength is
 $$
 W_p^{\mathrm{rec}}
 =

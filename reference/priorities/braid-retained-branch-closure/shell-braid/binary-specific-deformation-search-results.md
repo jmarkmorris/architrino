@@ -102,14 +102,16 @@ The active-root convention matches the earlier rigid and low-order screens:
 3. solve the first positive causal-delay root $y_{ij}=\tau_{ij}c_f/R$ for each retained source;
 4. reject rows that lose the $5$-$5$ root count, collide, or approach a near-tangent root.
 
-The force sum used the same dimensionless factor removal as the earlier packets:
+The receiver-normal restart force sum removes the common dimensional factor and
+uses $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$:
 
 $$
 \mathbf{F}_i
 =
 \sum_{j\in\mathcal{A}_i}
-\frac{\sigma_i\sigma_j}
-{y_{ij}^2|J_{ij}|}
+\sigma_i\sigma_j
+\frac{W_{ij}^{\mathrm{rec}}}
+{y_{ij}^2}
 \hat{\mathbf{r}}_{ij}.
 $$
 
