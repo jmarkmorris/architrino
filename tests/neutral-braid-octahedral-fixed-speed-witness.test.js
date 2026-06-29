@@ -39,7 +39,7 @@ test("octahedral fixed-speed witness captures the receiver 1+ theta=0 residual",
   assert.equal(witness.all_ordered_sources_resolved, true);
   assert.equal(witness.positive_jacobian_data, true);
   assert.equal(witness.residual_class, "nonzero_tangential_residual");
-  closeTo(witness.tangential_residual, 0.073938152296, 1e-9);
+  closeTo(witness.tangential_residual, 0.198022200895, 1e-9);
 
   const rows = new Map(witness.source_rows.map((row) => [row.source, row]));
   assert.equal(rows.size, 5);
@@ -51,15 +51,15 @@ test("octahedral fixed-speed witness captures the receiver 1+ theta=0 residual",
 
   closeTo(rows.get(2).y, 1.47817026643, 1e-9);
   closeTo(rows.get(2).jacobian, 1.673612029183, 1e-9);
-  closeTo(rows.get(2).tangential_contribution, 0.184206996348, 1e-9);
+  closeTo(rows.get(2).tangential_contribution, 0.308291044947, 1e-9);
 
   closeTo(rows.get(3).y, Math.SQRT2, 1e-9);
   closeTo(rows.get(3).jacobian, 1, 1e-12);
-  closeTo(rows.get(3).tangential_contribution, -0.055134422026, 1e-9);
+  closeTo(rows.get(3).tangential_contribution, -0.06121403101, 1e-9);
 
   closeTo(rows.get(4).y, Math.SQRT2, 1e-9);
   closeTo(rows.get(4).jacobian, 1, 1e-12);
-  closeTo(rows.get(4).tangential_contribution, -0.055134422026, 1e-9);
+  closeTo(rows.get(4).tangential_contribution, -0.049054813042, 1e-9);
 
   closeTo(rows.get(5).tangential_contribution, 0, 1e-12);
   closeTo(rows.get(6).tangential_contribution, 0, 1e-12);

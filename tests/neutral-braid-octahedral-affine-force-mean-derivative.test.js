@@ -44,7 +44,7 @@ test("trace affine column removes the frozen zero-mean range obstruction", () =>
   assert.equal(artifact.range_certificate.solve_status, "independent-column-solve-computed");
   assert.ok(artifact.range_certificate.solution_residual_norm_2 <= 1e-8);
   assert.equal(trace.column_id, "trace_I");
-  assert.ok(Math.abs(trace.alpha - 3.24679501458) <= 1e-9);
+  assert.ok(Math.abs(trace.alpha + 3.454064295549) <= 1e-9);
   assert.ok(trace.residual_norm_2 <= 1e-8);
   assert.equal(artifact.result.candidate_correction_direction, "candidate-affine-trace-direction-found");
   assert.equal(artifact.result.theory_status, "candidate-affine-zero-mean-range-obstruction-removed");

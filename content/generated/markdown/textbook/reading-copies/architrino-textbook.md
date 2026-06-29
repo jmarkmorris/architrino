@@ -4238,7 +4238,7 @@ $$
 =
 \frac{1}{1-\beta\cos\theta}
 $$
-up to the common inverse-square dilution and coupling normalization. The formula is not the general transceiver law; it is the $\mathbf v_i=0$ reduction of $W_{ij}^{\mathrm{rec}}$ obtained from the current equation. It is also not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. Forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing in this fixed-receiver check. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be rederived from the full receiver-normal branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
+up to the common inverse-square dilution and coupling normalization. The formula is not the general transceiver law; it is the $\mathbf v_i=0$ reduction of $W_{ij}^{\mathrm{rec}}$ obtained from the canonical equation. It is also not a Lorentz transformation and does not add electrodynamic velocity-field or acceleration-field terms. Forward directions with $\cos\theta>0$ receive compressed isochron spacing, while trailing directions receive diluted spacing in this fixed-receiver check. Doppler shift, aberration, magnetic-like response, preferred-frame leakage estimates, and translating-binary asymmetry must be rederived from the full receiver-normal branch geometry plus assembly and observer-channel closure rather than inserted as independent laws.
 
 For $\beta\ll1$,
 $$
@@ -4571,7 +4571,7 @@ $$
 where the factor of 2 comes from the symmetry when both sides consume the same
 retained partner record. The stripped inverse-square form is only the
 near-rest, single-branch calibration $W_p^{\mathrm{rec}}\approx1$, not a
-current proof row.
+canonical proof row.
 
 **Solution structure:** The slow, single-branch calibration has the same
 quadrature structure as Keplerian radial fall. A promoted branch must keep the
@@ -4591,7 +4591,7 @@ Master EOM, those rows are not force verdicts until the same partner branch
 emits $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
 
 **Result:** The source-normal circular sign row is a restart diagnostic, not a
-current no-go. A constant-speed circular conclusion requires the receiver-normal
+no-go. A constant-speed circular conclusion requires the receiver-normal
 branch row plus finite-window work, wake-flux, recoil, and multi-root ledger
 checks on the same retained record.
 
@@ -6108,7 +6108,7 @@ $$
 \frac{c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_i(t)}
 {c_f-\hat{\mathbf{r}}_{ij}(t;t_\ell)\cdot\mathbf{v}_j(t_\ell)}
 $$
-Therefore a source-emission cadence mapped onto a moving receiver path carries a receiver-normal numerator in addition to the source-normal Jacobian denominator. The action, power, wake-history, and finite-window conservation rows must consume the receiver-normal branch measure on the same retained branch chart. Rows that omit $D_t$ are not current force/action rows; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{rec}}$.
+Therefore a source-emission cadence mapped onto a moving receiver path carries a receiver-normal numerator in addition to the source-normal Jacobian denominator. The action, power, wake-history, and finite-window conservation rows must consume the receiver-normal branch measure on the same retained branch chart. Rows that omit $D_t$ are not canonical force/action rows; fixed-receiver reductions must be obtained by direct substitution in $W_{ij}^{\mathrm{rec}}$.
 
 ###### Variation and line-of-action forces
 
@@ -6311,7 +6311,7 @@ $$
 $$
 with the same branch floors and boundary convention used to define the action. This windowed residual condition is the minimal proof obligation for upgrading the variational scaffold to an exact action derivation of the Master EOM.
 
-**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the current receiver-normal canonical branch law. The remaining obstruction is local, not merely a boundary convention: the variational scaffold must produce the receiver-normal numerator as well as the source-normal denominator.
+**Decision (pure scalar action).** The pure scalar $1/r$ Fokker-type scaffold does not generically derive the receiver-normal canonical branch law. The remaining obstruction is local, not merely a boundary convention: the variational scaffold must produce the receiver-normal numerator as well as the source-normal denominator.
 
 Equivalently, on an admissible branch with $r_{ij}>0$ and $|J_{ij}|>J_{\min}>0$,
 $$
@@ -6501,7 +6501,7 @@ g
 $$
 so it is a causal interior tail behind the arriving wake surface, not a same-support surface density. Conversely, a lower endpoint $r_\ast<r$ supports a tail with $g\le0$ and is not delayed-interior causal support unless the boundary convention supplies a separate interpretation. This proves a useful but limited result: the characteristic-tail equation can cancel the scalar scaffold's interior derivative residual at the level of the Euler derivative, but it does so by adding a nonlocal tail and endpoint ledger obligation. It is not yet an exact action for the Master EOM.
 
-A nondegenerate characteristic endpoint gives the cleanest current candidate. On a retained chart choose
+A nondegenerate characteristic endpoint gives the cleanest candidate. On a retained chart choose
 $$
 R_{+}(u)
 =

@@ -23,7 +23,7 @@ The most important negative result to preserve is this:
 
 ## Heuristic Archive
 
-The remaining sections are preserved as conjectural geometry, scaling, and cosmology notes. They are not the current derivation path unless they are later rederived from the regularized reduced dynamics or from a justified invariant principle.
+The remaining sections are preserved as conjectural geometry, scaling, and cosmology notes. They are not the derivation path unless they are later rederived from the regularized reduced dynamics or from a justified invariant principle.
 
 ### Kinematic Constraints on the Horizon
 
@@ -86,9 +86,9 @@ The live analytical path is now:
 3.  Test whether the Jacobian wall near $v=c_f$ makes the dyadic fixed point locally attracting as $\beta \to 1$.
 4.  Only then lift the argument to the full tri-binary chain and ask whether the stable extension is $1{:}2{:}4$.
 
-This 1:2:4 lock remains a plausible working candidate for a Planck-scale assembly configuration, but the current live support is kinematic plus reduced-map conjecture, not a completed selection theorem.
+This 1:2:4 lock remains a plausible working candidate for a Planck-scale assembly configuration, but the available support is kinematic plus reduced-map conjecture, not a completed selection theorem.
 
-The next subsection records a caution: an earlier attempt to replace the action-partition postulate with a topological derivation from delay-map degree is not currently rigorous enough to support the lock claim.
+The next subsection records a caution: an earlier attempt to replace the action-partition postulate with a topological derivation from delay-map degree is not rigorous enough to support the lock claim.
 
 ---
 
@@ -98,9 +98,9 @@ An earlier version of this note tried to derive the action partition directly fr
 $$
 \Delta L_I = 2\,\Delta L_O.
 $$
-That argument is not currently rigorous enough to carry the load.
+That argument is not rigorous enough to carry the load.
 
-The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix, $D_s$ can lose its floor, and the current row must also carry the matching $D_t$ numerator before any branch-strength comparison is allowed:
+The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix, $D_s$ can lose its floor, and the retained row must also carry the matching $D_t$ numerator before any branch-strength comparison is allowed:
 $$
 \left|D_t/D_s\right|.
 $$
@@ -144,7 +144,7 @@ In the architrino architecture, they are proposed to be topologically homologous
 **The Isomorphism:**
 Let $\mathcal{M}$ be the manifold of a Tri-Binary.
 *   **The Particle (Fermion):** A tri-binary where the Inner Binary dominates energy dynamics (highest action-share branch in the self-hit regime), stabilized by self-hit.
-*   **The Black Hole:** A macroscopic aggregate of tri-binaries where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. In current terms this is only a provenance analogy until same-source roots and ledger closure are certified.
+*   **The Black Hole:** A macroscopic aggregate of tri-binaries where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. This is only a provenance analogy until same-source roots and ledger closure are certified.
 
 **The Map:**
 1.  **Inner Binary (self-hit-capable interior branch):** Corresponds to the **Singularity/Interior**. Super-field-speed history is a candidate marker, not an admission rule.

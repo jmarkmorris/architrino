@@ -55,8 +55,8 @@ $$
 =
 \sum_{r\in\mathcal{A}_i^\nu(u)}
 \sigma_i\sigma_j
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^\nu(u)|}
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u)
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{self}}^\nu(u)
 +

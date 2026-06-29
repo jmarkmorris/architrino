@@ -10,5 +10,5 @@ $$
 D_s,\qquad D_t,\qquad W^{\mathrm{rec}}=\left|D_t/D_s\right|.
 $$
 
-Until those rows exist, VP-1 has retained topology diagnostics but no current
+Until those rows exist, VP-1 has retained topology diagnostics but no canonical
 Master EOM drive verdict.

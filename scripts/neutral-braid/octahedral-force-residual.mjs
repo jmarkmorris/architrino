@@ -261,7 +261,7 @@ export function buildOctahedralForceResidual(options = {}) {
       y_subdivisions: ySubdivisions,
       tangential_tolerance: tangentialTolerance,
       force_formula:
-        "sum_j sign(q_i*q_j)*rhat_ij/(y_ij^2*abs(J_ij)); residual_i=T_i dot force_i",
+        "sum_j sign(q_i*q_j)*abs(Wrec_ij)*rhat_ij/y_ij^2; residual_i=T_i dot force_i",
     },
     site_inventory: siteInventory(),
     sampled_root_dependency: {

@@ -66,8 +66,8 @@ $$
 \widetilde{\mathbf{F}}_i(\theta)
 =
 \sum_{j\ne i}
-\frac{\operatorname{sign}(q_iq_j)}
-{y_{ij}(\theta)^2|J_{ij}(\theta)|}
+\frac{\operatorname{sign}(q_iq_j)W_{ij}^{\mathrm{rec}}(\theta)}
+{y_{ij}(\theta)^2}
 \widehat{\mathbf{R}}_{ij}(\theta),
 $$
 

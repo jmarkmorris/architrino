@@ -3,7 +3,7 @@
 Status: complete proof packet for the VP-1 active-root continuation and Jacobian-floor rows.
 
 Claim level: topology diagnostic. This packet does not claim a theorem-grade
-interval proof and supplies no current force/action evidence. It gives active
+interval proof and supplies no canonical force/action evidence. It gives active
 root labels, fixed root tubes, sampled gap and Jacobian margins that may seed a
 new receiver-normal rebuild.
 

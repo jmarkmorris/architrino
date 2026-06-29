@@ -37,12 +37,12 @@ const THETA0_INTERVAL_CERTIFICATE = {
   receiver_label: "1+",
   theta: 0,
   expression:
-    "sin(y*)/(y*^3*(1+sin(y*)/y*)) - cos(sqrt(2))/sqrt(2), where y*=2*cos(y*/2)",
+    "receiver-normal weighted partner term plus cross-binary tangential terms at theta=0, where y*=2*cos(y*/2)",
   partner_root_interval: [1.47817026642, 1.47817026644],
-  partner_term_interval: [0.18420699634, 0.18420699636],
+  partner_term_interval: [0.30829104493, 0.30829104496],
   cross_binary_2pm_term_interval: [-0.11026884406, -0.11026884404],
   cross_binary_3pm_term_interval: [0, 0],
-  residual_interval: [0.07393815228, 0.07393815232],
+  residual_interval: [0.19802220088, 0.19802220091],
   residual_excludes_zero: true,
   residual_sign: "positive",
   status: "fixed-speed-tangential-no-go-certified-for-witness-node",
@@ -242,7 +242,7 @@ export function buildOctahedralFixedSpeedWitness(options = {}) {
       root_equation: "|X_i(theta)-X_j(theta-y)|-y=0",
       jacobian_formula: "J_ij=1-T_j(theta-y) dot rhat_ij(theta,y)",
       force_formula:
-        "sum_j sign(q_i*q_j)*rhat_ij/(y_ij^2*abs(J_ij)); residual_i=T_i dot force_i",
+        "sum_j sign(q_i*q_j)*abs(Wrec_ij)*rhat_ij/y_ij^2; residual_i=T_i dot force_i",
     },
     site_inventory: siteInventory(),
     witness_set: {

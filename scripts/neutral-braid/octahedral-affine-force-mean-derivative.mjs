@@ -515,7 +515,8 @@ export function buildOctahedralAffineForceMeanDerivative(options = {}) {
       seed: "rigid-octahedral-carrier",
       coordinate_chart: "nine-dimensional affine branch-coordinate variation delta Y_i = H Y_i",
       finite_difference_scheme: "central-finite-difference",
-      force_formula: "sum_j sign(q_i*q_j)*rhat_ij/(y_ij^2*abs(J_ij)); f_i(theta)=T_i(theta) dot force_i(theta)",
+      force_formula:
+        "sum_j sign(q_i*q_j)*abs(Wrec_ij)*rhat_ij/y_ij^2; f_i(theta)=T_i(theta) dot force_i(theta)",
       integration_rule: "uniform periodic left-endpoint sum on [0, 2*pi)",
       retention_claim: "candidate first-order zero-mean affine force-mean correction only; no bounded-speed live ledger is certified",
     },

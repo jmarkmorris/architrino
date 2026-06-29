@@ -142,8 +142,8 @@ For one retained root contribution
 $$
 \mathbf{f}_r^\nu
 =
-\frac{\sigma_i\sigma_j}
-{\eta_r^2|J_r^\nu|}
+\frac{\sigma_i\sigma_j W_{r,\nu}^{\mathrm{rec}}}
+{\eta_r^2}
 \widehat{\mathbf{R}}_r,
 $$
 
@@ -165,21 +165,19 @@ with
 $$
 D_v\mathbf{f}_r^\nu
 =
-\frac{\sigma_i\sigma_j}
-{\eta_r^2|J_r^\nu|}
+\frac{\sigma_i\sigma_j W_{r,\nu}^{\mathrm{rec}}}
+{\eta_r^2}
 \left[
 D_v\widehat{\mathbf{R}}_r
 -
-\left(
-2\frac{D_v\eta_r}{\eta_r}
+2\frac{D_v\eta_r}{\eta_r}\widehat{\mathbf{R}}_r
 +
-\frac{D_vJ_r^\nu}{J_r^\nu}
-\right)
+\frac{D_vW_{r,\nu}^{\mathrm{rec}}}{W_{r,\nu}^{\mathrm{rec}}}
 \widehat{\mathbf{R}}_r
 \right]
 $$
 
-on a fixed Jacobian-sign stratum. The terms $D_v\eta_r$, $D_vJ_r^\nu$, $D_v\widehat{\mathbf{R}}_r$, and the clock-corrected $D_vT_i$ must be the bounded-speed root-sheet derivatives, not fixed-speed derivatives reused after $b$ becomes active.
+on a fixed $D_s,D_t$ sign stratum. The terms $D_v\eta_r$, $D_vW_{r,\nu}^{\mathrm{rec}}$, $D_v\widehat{\mathbf{R}}_r$, and the clock-corrected $D_vT_i$ must be the bounded-speed root-sheet derivatives, not fixed-speed derivatives reused after $b$ becomes active.
 
 Let $\{v_\ell\}$ be the declared active correction directions. Define the mean-row derivative matrix
 

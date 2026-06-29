@@ -34,30 +34,30 @@ test("diagonal affine solver reproduces the unit fixed-speed mean", () => {
   });
 
   assert.equal(unit.root_failure_count, 0);
-  assert.ok(unit.receiver_vector.every((entry) => Math.abs(entry - 1.157406692931) <= 1e-11));
+  assert.ok(unit.receiver_vector.every((entry) => Math.abs(entry - 1.937049763942) <= 1e-11));
   assert.ok(unit.pair_deviation_abs_max <= 1e-12);
   assert.ok(unit.jacobian_abs_min > 0.7);
 });
 
-test("diagonal affine solver finds the finite sampled zero-mean trace candidate", () => {
+test("diagonal affine solver invalidates the old finite sampled zero-mean trace candidate", () => {
   const artifact = buildTestArtifact();
 
   assert.deepEqual(validateOctahedralDiagonalAffineZeroMeanSolver(artifact), []);
   assert.equal(artifact.schema, OCTAHEDRAL_DIAGONAL_AFFINE_ZERO_MEAN_SOLVER_SCHEMA);
   assert.equal(artifact.packet_id, "octahedral_diagonal_affine_zero_mean_solver");
   assert.equal(artifact.promotion_status, "priority-only");
-  assert.equal(artifact.solve_result.status, "sampled-diagonal-zero-mean-candidate-found");
-  assert.equal(artifact.solve_result.candidate_kind, "uniform-trace-subfamily");
-  assert.ok(Math.abs(artifact.solve_result.best_scales[0] - 1.694464950788) <= 1e-9);
-  assert.ok(artifact.solve_result.best_zero_mean_residual_norm_inf <= 1e-8);
+  assert.equal(artifact.solve_result.status, "sampled-diagonal-zero-mean-not-found");
+  assert.equal(artifact.solve_result.candidate_kind, "diagonal-nontrace-or-none");
+  assert.deepEqual(artifact.solve_result.best_scales, [0.2, 0.2, 0.2]);
+  assert.ok(Math.abs(artifact.solve_result.best_zero_mean_residual_norm_inf - 1.591259663301) <= 1e-9);
   assert.equal(artifact.best_row.root_failure_count, 0);
-  assert.ok(artifact.best_row.jacobian_abs_min > 0.02);
-  assert.equal(artifact.solve_result.resolution_stability_status, "sampled-candidate-resolution-unstable");
-  assert.equal(artifact.solve_result.first_failure_status, "sampled-candidate-resolution-stability-failed");
-  assert.equal(artifact.result.theory_status, "sampled-diagonal-affine-zero-mean-candidate-resolution-unstable");
+  assert.ok(artifact.best_row.jacobian_abs_min > 0.8);
+  assert.equal(artifact.solve_result.resolution_stability_status, "not-run-no-zero-mean-candidate");
+  assert.equal(artifact.solve_result.first_failure_status, "non-diagonal-live-variable-or-speed-support-correction-required");
+  assert.equal(artifact.result.theory_status, "sampled-diagonal-affine-zero-mean-not-found");
   assert.equal(artifact.solve_result.declared_speed_window_rows_passed, false);
-  assert.ok(Math.abs(artifact.solve_result.primitive_excursion_max - 1.041664058515) <= 1e-9);
-  assert.ok(artifact.solve_result.primitive_end_abs_max <= 1e-8);
+  assert.ok(Math.abs(artifact.solve_result.primitive_excursion_max - 29.436860981689) <= 1e-9);
+  assert.ok(Math.abs(artifact.solve_result.primitive_end_abs_max - 7.956298316504) <= 1e-9);
   assert.equal(artifact.best_row.primitive.receiver_rows.length, 6);
   assert.ok(
     artifact.best_row.primitive.receiver_rows.every(
@@ -71,20 +71,12 @@ test("diagonal affine solver finds the finite sampled zero-mean trace candidate"
   );
 });
 
-test("diagonal affine solver records fixed-candidate resolution instability", () => {
+test("diagonal affine solver skips fixed-candidate validation without a zero-mean candidate", () => {
   const artifact = buildTestArtifact();
 
-  assert.equal(artifact.fixed_candidate_validation.summary.status, "sampled-candidate-resolution-unstable");
-  assert.equal(artifact.fixed_candidate_validation.summary.rerun_count, 2);
-  assert.ok(artifact.fixed_candidate_validation.summary.max_validation_zero_mean_residual_norm_inf > 1);
-  assert.ok(artifact.fixed_candidate_validation.summary.max_validation_primitive_end_abs_max > 0.6);
-
-  const firstRerun = artifact.fixed_candidate_validation.reruns[0];
-  assert.equal(firstRerun.phase_sample_count, 73);
-  assert.equal(firstRerun.y_subdivision_count, 480);
-  assert.equal(firstRerun.root_failure_count, 0);
-  assert.equal(firstRerun.validation_status, "resolution-zero-mean-or-primitive-return-failed");
-  assert.ok(Math.abs(firstRerun.zero_mean_residual_norm_inf - 0.851344912333) <= 1e-9);
+  assert.equal(artifact.fixed_candidate_validation.summary.status, "not-run-no-zero-mean-candidate");
+  assert.equal(artifact.fixed_candidate_validation.summary.rerun_count, 0);
+  assert.deepEqual(artifact.fixed_candidate_validation.reruns, []);
 });
 
 test("diagonal affine solver preserves the not-retained claim level", () => {
@@ -116,7 +108,7 @@ test("diagonal affine solver CLI emits and validates JSON artifacts", () => {
   );
   assert.equal(validation.valid, true);
   assert.equal(validation.result.retention, "not_retained");
-  assert.equal(validation.solve_result.status, "sampled-diagonal-zero-mean-candidate-found");
+  assert.equal(validation.solve_result.status, "sampled-diagonal-zero-mean-not-found");
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));
   assert.equal(schema.artifact_schema, OCTAHEDRAL_DIAGONAL_AFFINE_ZERO_MEAN_SOLVER_SCHEMA);

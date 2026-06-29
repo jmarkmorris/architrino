@@ -10,7 +10,9 @@ p=\frac{\delta-\delta_f(\nu)}{y},
 \theta=\theta_{3-}(\nu)-y^2.
 $$
 
-It is a sampled/stencil certificate, not a directed-rounded interval proof.
+Receiver-normal status: restart target. The scaled root geometry still records
+bounded $p,z,J$ rows for the coalescing roots, but the old source-denominator
+$G,D$ quotient evidence is no longer active Master EOM evidence.
 
 ## Scaled Fold-Pair Rows
 
@@ -60,32 +62,25 @@ J_- > 0,
 J_+ < 0,
 $$
 
-and reconstructs the pair contribution without a singular $1/F_\delta$ expression:
+and emits the same-row receiver-normal diagnostic
 
 $$
-G_{\mathrm{pair}}
+N_{\pm}^{\mathrm{rec}}
 =
-\sum_{\pm}
-\frac{
-4\sigma_*B(\theta,\delta_\pm)
-}{
-\nu\delta_\pm^2|J_\pm|
-},
+F_\delta+2\cos\phi,
 \qquad
-\sigma_*=-1.
+W_{\pm}^{\mathrm{rec}}
+=
+\frac{N_{\pm}^{\mathrm{rec}}}{F_\delta}.
 $$
 
-The derivative-numerator row is still evaluated through the existing source derivative diagnostic,
-
-$$
-D_{\mathrm{pair}}=4y^3 f_{\mathrm{pair},\theta}',
-$$
-
-while the theorem-grade successor should compute it as $D_{\mathrm{pair}}=G_{\mathrm{pair}}-y\partial_yG_{\mathrm{pair}}$ in the scaled chart.
+The theorem-grade successor must rederive the fold-pair force/action quotient
+with receiver-normal branch strength. The old $G_{\mathrm{pair}}$ and
+$D_{\mathrm{pair}}$ quotient rows are diagnostic residue only.
 
 ## Sampled Result
 
-Across the same five speed samples and nineteen collar samples used by the predecessor, the packet certifies:
+Across the same five speed samples and nineteen collar samples used by the predecessor, the packet now records:
 
 | Row | Sampled value |
 | --- | ---: |
@@ -94,21 +89,24 @@ Across the same five speed samples and nineteen collar samples used by the prede
 | $\max |z_\pm-\gamma|$ | $0.225146535728$ |
 | $\min |J_\pm|$ | $0.77350681608$ |
 | minimum pair-to-regular separation | $1.73277431787$ |
-| $\max |R_G^{\mathrm{pair}}|/y^2$ | $0.171600721993$ |
-| $\max |R_D^{\mathrm{pair}}|/y^2$ | $0.700161629591$ |
-| maximum scaled $G_{\mathrm{pair}}$ reconstruction error | $3.76119968504\times10^{-11}$ |
+| receiver-normal evidence status | invalidated by receiver-normal Master EOM |
+| maximum receiver-normal scaled-row reconstruction error | $9.64228696887\times10^{-14}$ |
 
 The resulting status is
 
 $$
 \boxed{
-\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 }
 $$
 
-This is a theory advance because it converts the singular fold pair into bounded sampled variables. The coalescing roots no longer appear as two unstable ordinary-root contributions; they appear as a bounded $p$-chart with a nonzero scaled denominator $J_\pm$ and quadratic pair-remainder quotients.
+This remains useful only as root geometry. It converts the singular fold pair
+into bounded sampled variables with a nonzero scaled denominator $J_\pm$, but
+it does not certify force/action closure under the receiver-normal Master EOM.
 
-The directed-rounded sampled-node successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.md) replays these same $95$ speed/collar nodes with outward-rounded $z_\pm$ brackets, sign-definite $J_\pm$ intervals, and pair $G,D$ quotient enclosures. The root-tube cell-cover successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) then extends the Taylor-cancelled fold-pair root-tube and $J_\varepsilon$ sign replay to a finite speed/y cell cover. It does not close the fold-pair $G,D$ quotient-remainder bound, but it removes continuous root existence and nondegeneracy as the fold-pair bottleneck.
+The next active successor is not another source-denominator quotient row. It is
+the receiver-normal zero-bracket search and then a rederived fold-pair normal
+form with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
 
 ## Closure Burndown
 
@@ -116,37 +114,24 @@ The directed-rounded sampled-node successor [octahedral-fold-aware-cross-binary-
 | --- | --- |
 | `theta3minus.fold-endpoint-bracket` | directed-rounded interval certified |
 | `theta3minus.negative-fold-limit-L` | directed-rounded interval certified |
-| `theta3minus.sampled-fold-pair-scaled-roots` | sampled-stencil certified |
-| `theta3minus.sampled-fold-pair-quadratic-remainder-quotients` | sampled-stencil certified |
-| `theta3minus.sampled-node-fold-pair-scaled-interval` | directed-rounded sampled-node certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.md) |
-| `theta3minus.fold-pair-root-tube-cell-cover` | directed-rounded finite speed/y cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) |
-| `theta3minus.fold-pair-scaled-remainder` | directed-rounded open |
-| `theta3minus.regular-root-remainder` | directed-rounded open |
-| `I1.regular-critical-exhaustion` | blocked by theta3minus remainder |
+| `theta3minus.sampled-fold-pair-scaled-roots` | diagnostic root geometry only |
+| `theta3minus.sampled-fold-pair-quadratic-remainder-quotients` | invalidated by receiver-normal Master EOM |
+| `theta3minus.sampled-node-fold-pair-scaled-interval` | invalidated as force/action evidence; root-geometry replay only |
+| `theta3minus.fold-pair-root-tube-cell-cover` | invalidated as force/action evidence; root-geometry replay only |
+| `theta3minus.fold-pair-scaled-remainder` | receiver-normal restart required |
+| `theta3minus.regular-root-remainder` | receiver-normal restart required |
+| `I1.regular-critical-exhaustion` | blocked by receiver-normal restart |
 | `representative-cross-binary-retention` | open |
 
-The remaining fold-pair successor should now intervalize the $G,D$ quotient remainder over the certified root tubes:
-
-$$
-\frac{R_G^{\mathrm{pair}}}{y^2},
-\qquad
-\frac{R_D^{\mathrm{pair}}}{y^2}.
-$$
-
-The parallel regular-root successor remains the ordinary root-sheet continuation bound for
-
-$$
-R_G^{\mathrm{reg}}=O(y),
-\qquad
-R_D^{\mathrm{reg}}=O(y^3).
-$$
+The remaining fold-pair successor must rederive the scaled quotient target
+from receiver-normal branch strength before any intervalization can resume.
 
 ## Claim Boundary
 
 This packet may claim:
 
 $$
-\texttt{certifies\_sampled\_theta3minus\_fold\_pair\_scaled\_stencil=true}.
+\texttt{certifies\_sampled\_theta3minus\_fold\_pair\_scaled\_stencil=false}.
 $$
 
 It does not claim:
@@ -177,9 +162,9 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 
 - scaled $p_\pm$ and $z_\pm$ rows for the two coalescing roots;
 - scaled denominator rows $J_\pm=F_\delta/y$;
+- receiver-normal diagnostic rows $N_\pm^{\mathrm{rec}}$ and $W_\pm^{\mathrm{rec}}$;
 - pair-to-regular separation margins;
-- $G_{\mathrm{pair}}$ reconstruction from the scaled source formula;
-- pair quadratic quotient rows $|R_G^{\mathrm{pair}}|/y^2$ and $|R_D^{\mathrm{pair}}|/y^2$;
+- receiver-normal restart status for force/action evidence;
 - explicit non-directed-rounded, non-`I1`, non-quadrature, and non-retention claim boundaries.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, scaled $p,z,J$ rows, pair-root identification, quadratic quotient thresholds, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.test.js) validates schema, no-fixed-speed-window discipline, scaled $p,z,J$ rows, receiver-normal diagnostics, pair-root identification, overclaim rejection, and CLI write/validate behavior.

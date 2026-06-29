@@ -97,10 +97,10 @@ $$
 \frac{D_vJ_u}{J_u}.
 $$
 
-This identity is the only reason the logarithmic derivative in the force row can use $D_vJ_u/J_u$. If the absolute-J row has a floor $|J_u|\ge J_0$ but no fixed sign label, the derivative status is
+This identity is a source-normal transversality diagnostic only. Force-row differentiation now requires the same-root receiver-normal branch weight $W_u^{\mathrm{rec}}$ and its derivative. If the source-normal or receiver-normal sign row has no fixed label, the derivative status is
 
 $$
-\texttt{root-sheet-jacobian-sign-stratum-open}.
+\texttt{root-sheet-receiver-normal-sign-stratum-open}.
 $$
 
 If $J_u$ changes sign inside a retained tube, the event is not a smooth force derivative row; it is a root/Jacobian branch event that must rebuild the support-complete root ledger.
@@ -798,49 +798,49 @@ $$
 For the force row, set
 
 $$
-\alpha_v
+\ell_v
 =
-2\frac{D_v\eta_u}{\eta_u}
+-2\frac{D_v\eta_u}{\eta_u}
 +
-\frac{D_vJ_u}{J_u},
+\frac{D_vW_u^{\mathrm{rec}}}{W_u^{\mathrm{rec}}},
 \qquad
-\alpha_w
+\ell_w
 =
-2\frac{D_w\eta_u}{\eta_u}
+-2\frac{D_w\eta_u}{\eta_u}
 +
-\frac{D_wJ_u}{J_u},
+\frac{D_wW_u^{\mathrm{rec}}}{W_u^{\mathrm{rec}}},
 $$
 
 and
 
 $$
-\alpha_{vw}
+\ell_{vw}
 =
-2\left(
+-2\left(
 \frac{D_{v,w}^{2}\eta_u}{\eta_u}
 -
 \frac{D_v\eta_uD_w\eta_u}{\eta_u^2}
 \right)
 +
 \left(
-\frac{D_{v,w}^{2}J_u}{J_u}
+\frac{D_{v,w}^{2}W_u^{\mathrm{rec}}}{W_u^{\mathrm{rec}}}
 -
-\frac{D_vJ_uD_wJ_u}{J_u^2}
+\frac{D_vW_u^{\mathrm{rec}}D_wW_u^{\mathrm{rec}}}{(W_u^{\mathrm{rec}})^2}
 \right).
 $$
 
-On the fixed $J$ sign stratum,
+On the fixed $D_s,D_t$ sign stratum,
 
 $$
 D_{v,w}^{2}\mathbf{f}_u
 =
-\frac{\sigma_i\sigma_j}{\eta_u^2|J_u|}
+\frac{\sigma_i\sigma_jW_u^{\mathrm{rec}}}{\eta_u^2}
 \left[
 D_{v,w}^{2}\widehat{\mathbf{R}}_u
--\alpha_vD_w\widehat{\mathbf{R}}_u
--\alpha_wD_v\widehat{\mathbf{R}}_u
++\ell_vD_w\widehat{\mathbf{R}}_u
++\ell_wD_v\widehat{\mathbf{R}}_u
 +
-(\alpha_v\alpha_w-\alpha_{vw})
+(\ell_v\ell_w+\ell_{vw})
 \widehat{\mathbf{R}}_u
 \right].
 $$
@@ -850,9 +850,9 @@ Consequently a certified second-variation export may use the bounds
 $$
 \Lambda_{\alpha,u}
 =
-2\frac{\Lambda_{\eta,u}}{\eta_0}
+\frac{2\Lambda_{\eta,u}}{\eta_0}
 +
-\frac{\Lambda_{J,u}}{J_0},
+\Lambda_{W,u},
 $$
 
 and
@@ -860,16 +860,12 @@ and
 $$
 \Lambda_{\alpha,u}^{(2)}
 =
-2\left(
-\frac{\Lambda_{\eta,u}^{(2)}}{\eta_0}
-+
-\frac{\Lambda_{\eta,u}^2}{\eta_0^2}
-\right)
-+
 \left(
-\frac{\Lambda_{J,u}^{(2)}}{J_0}
+\frac{2\Lambda_{\eta,u}^{(2)}}{\eta_0}
 +
-\frac{\Lambda_{J,u}^2}{J_0^2}
+\frac{2\Lambda_{\eta,u}^2}{\eta_0^2}
++
+\Lambda_{W,u}^{(2)}
 \right).
 $$
 
@@ -947,8 +943,8 @@ A root-sheet variation run must emit:
 | `sheet_labels` | root label $u$, source pair $(i,j)$, receiver cell $I_n$, delay slab $Q_q$, exact-antipodal mate, and endpoint ownership |
 | `sheet_geometry` | $\eta_u$, $\widehat{\mathbf{R}}_u$, $J_u$, $\zeta_u$, $\eta_0$, $J_0$, tube separation, and complement-gap intervals |
 | `arclength_variation` | $\eta_u'(\lambda)$ and its mesh-lift bound $L_{\lambda,u}/J_0$ |
-| `coefficient_variation` | $D_v\eta_u$, $D_v\widehat{\mathbf{R}}_u$, $D_vJ_u$, and fixed-sign $D_v|J_u|$ rows |
-| `force_derivative` | $D_v\mathbf{f}_u$, $D_v\widetilde{\mathbf{F}}_i$, and the per-sheet constants $\Lambda_{\eta,u}$, $\Lambda_{R,u}$, $\Lambda_{J,u}$ |
+| `coefficient_variation` | $D_v\eta_u$, $D_v\widehat{\mathbf{R}}_u$, $D_vJ_u$, $D_vW_u^{\mathrm{rec}}$, and fixed $D_s,D_t$ sign rows |
+| `force_derivative` | $D_v\mathbf{f}_u$, $D_v\widetilde{\mathbf{F}}_i$, and the per-sheet constants $\Lambda_{\eta,u}$, $\Lambda_{R,u}$, $\Lambda_{J,u}$, $\Lambda_{W,u}$ |
 | `residual_derivative` | $D_vA_i$, $D_vR_{T,i}$, $D_vR_{K,i}$, and $D_vR_\gamma$ on the sheet-complete ledger |
 | `curl_action_rows` | $W_p^{+}$, $D_qW_p^{+}$, $\mathcal{C}_{pq}^{+}$, $\Gamma_B$, $D_v\Gamma_B$, and scalar inertia rows if active |
 | `second_variation` | certified enclosures for $D_{v,w}^{2}\eta_u$, $D_{v,w}^{2}J_u$, $D_{v,w}^{2}\mathbf{f}_u$, or an interval automatic-differentiation equivalent |

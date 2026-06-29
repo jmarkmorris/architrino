@@ -110,8 +110,8 @@ F_i^{\nu}(u)
 =
 \sum_{r\in\mathcal{A}_i^{\nu}(u)}
 \sigma_i\sigma_j
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^{\nu}(u)|}
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u)
 +
 F_{i,\mathrm{self}}^{\nu}(u)
 +
@@ -547,7 +547,7 @@ The derivative matrix must include:
 1. curve derivatives of $\mathbf{Y}_i$, $\mathbf{T}_i$, $\mathbf{K}_i$, $P_i^\perp$, support radii, and support normals;
 2. bounded-speed clock derivatives when the active finite variables include speed coefficients or period variables;
 3. root-sheet derivatives $D\eta_r$, $DJ_r^{\nu}$, and $D\widehat{\mathbf{R}}_r$ on the same causal-time chart;
-4. force derivatives through $\eta_r^{-2}$, $|J_r^{\nu}|^{-1}$, self-hit terms, and medium-response terms;
+4. force derivatives through $\eta_r^{-2}$, $W_{r,\nu}^{\mathrm{rec}}$, self-hit terms, and medium-response terms;
 5. action-scale derivatives if $\Gamma_B^{\nu}$ is not a frozen certified input;
 6. monodromy derivatives for the tangent-frame closure row.
 

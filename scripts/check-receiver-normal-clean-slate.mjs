@@ -83,6 +83,13 @@ const FORBIDDEN_SNIPPETS = [
   "\\sin^2(\\tilde{\\delta}_{s,m}/2)\\,|J_{s,m}|",
   "jacobianWeight",
   "r^2|J|",
+  "eta_r^2|J",
+  "\\eta_r(u)^2|J",
+  "\\eta_r^{-2}|J",
+  "eta_r^{-2}|J",
+  "|J_r^\\nu|^{-1}",
+  "|J_r^{\\nu}|^{-1}",
+  "\\omega_r^\\nu=\\eta_r^{-2}|J",
 ].map((snippet) => ({
   snippet,
   reason: reasonForSnippet(snippet),

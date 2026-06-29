@@ -212,7 +212,7 @@ J_{ij,n}^{\nu}
 1-\nu_j(\lambda_j^-;b)\mathbf{T}_j(\lambda_j^-;a)\cdot\widehat{\mathbf{R}}_{ij,n}^{\nu}.
 $$
 
-The retained ledger must include isolating brackets, excluded gaps, positive delay floors, fixed Jacobian signs, noncollision floors, and the same source-pair policy used by the force row.
+The retained ledger must include isolating brackets, excluded gaps, positive delay floors, fixed source-normal and receiver-normal signs, noncollision floors, and the same source-pair policy used by the force row.
 
 For a root sheet $\eta_r(u)$, the causal-time slope is
 
@@ -255,11 +255,8 @@ $$
 =
 \sum_{r\in\mathcal{A}_{i,n}^{\nu}}
 \sigma_i\sigma_j
-\frac{
+\frac{W_{r,\nu}^{\mathrm{rec}}}{\eta_r^2}
 \widehat{\mathbf{R}}_r^{\nu}
-}{
-\eta_r^2|J_r^{\nu}|
-}
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{self}}^{\nu}
 +
@@ -353,7 +350,7 @@ Every derivative column must include:
 1. geometric derivatives of $\mathbf{Y}_i$, $\mathbf{T}_i$, and $\mathbf{K}_i$;
 2. speed derivatives of $\nu_i$, $\nu_i'$, $\chi_i$, and $\Lambda_i$;
 3. root derivatives $D\eta_r$, $DJ_r^{\nu}$, and $D\widehat{\mathbf{R}}_r^{\nu}$;
-4. force derivatives through $|J_r^{\nu}|^{-1}$ and $\eta_r^{-2}$;
+4. force derivatives through $W_{r,\nu}^{\mathrm{rec}}$ and $\eta_r^{-2}$;
 5. scale/action derivatives if $\Gamma_B^{\nu}$ is active.
 
 The chart radius is

@@ -28,7 +28,7 @@ function nearlyEqual(actual, expected, tolerance = 1e-12) {
   );
 }
 
-test("fold-aware dynamics handoff validates source certificate and keeps speed unconstrained", () => {
+test("fold-aware dynamics handoff validates the open receiver-normal predecessor", () => {
   const handoff = artifact();
 
   assert.deepEqual(validateOctahedralFoldAwareDynamicsHandoff(handoff), []);
@@ -38,49 +38,36 @@ test("fold-aware dynamics handoff validates source certificate and keeps speed u
   assert.equal(handoff.source_certificate_check.valid, true);
   assert.equal(
     handoff.source_certificate_check.zero_status,
-    "sign-certified-fold-aware-multiroot-period-integral-zero-bracket"
+    "receiver-normal-zero-bracket-certificate-open"
   );
-  assert.equal(
-    handoff.representative_zero_ray_point.speed_constraint,
-    "none; representative h=1 point on the projective zero ray"
-  );
-  nearlyEqual(handoff.representative_zero_ray_point.speed_ratio, 3.021564740248);
-  nearlyEqual(handoff.representative_zero_ray_point.path_speed, 3.021564740248);
+  assert.equal(handoff.representative_zero_ray_point, null);
+  assert.equal(handoff.pointwise_tangential_witness, null);
 });
 
-test("fold-aware dynamics handoff rejects fixed-speed pointwise tangent closure", () => {
+test("fold-aware dynamics handoff requires a receiver-normal zero-bracket restart", () => {
   const handoff = artifact();
-  const witness = handoff.pointwise_tangential_witness;
   const fixedSpeed = handoff.fixed_speed_tangent_closure_test;
 
-  assert.equal(witness.receiver_label, "1+");
-  nearlyEqual(witness.theta, 0.785398163397);
-  assert.equal(witness.active_root_count, 9);
-  assert.equal(witness.partner_root_count, 3);
-  assert.equal(witness.cross_root_count, 6);
-  assert.ok(witness.jacobian_abs_min > 0.5);
-  nearlyEqual(witness.total_tangential_value, -0.168424847206);
-  nearlyEqual(witness.cross_tangential_value, -0.168424847206);
-  assert.ok(Math.abs(witness.partner_tangential_value) < 1e-12);
-  assert.equal(fixedSpeed.status, "fixed-speed-pointwise-tangent-closure-rejected");
-  nearlyEqual(fixedSpeed.witness_total_tangential_value, -0.168424847206);
+  assert.equal(fixedSpeed.status, "not-run-receiver-normal-zero-bracket-open");
+  assert.equal(fixedSpeed.witness_total_tangential_value, null);
+  assert.equal(handoff.bounded_speed_handoff.status, "blocked-receiver-normal-zero-bracket-open");
 });
 
 test("fold-aware dynamics handoff preserves bounded-speed and retention boundaries", () => {
   const handoff = artifact();
 
-  assert.equal(handoff.bounded_speed_handoff.status, "bounded-speed-primitive-handoff-open");
-  assert.equal(handoff.bounded_speed_handoff.primitive_status, "period-mean-compatible-ordinary-primitive-not-certified");
+  assert.equal(handoff.bounded_speed_handoff.status, "blocked-receiver-normal-zero-bracket-open");
+  assert.equal(handoff.bounded_speed_handoff.primitive_status, "blocked-until-receiver-normal-zero-bracket-restarted");
   assert.equal(handoff.artifact_claim.assumes_fixed_speed_window, false);
-  assert.equal(handoff.artifact_claim.certifies_fold_aware_period_mean_zero, true);
-  assert.equal(handoff.artifact_claim.certifies_simple_zero_transversality, true);
-  assert.equal(handoff.artifact_claim.rejects_fixed_speed_pointwise_tangent_closure, true);
-  assert.equal(handoff.artifact_claim.identifies_bounded_speed_successor, true);
+  assert.equal(handoff.artifact_claim.certifies_fold_aware_period_mean_zero, false);
+  assert.equal(handoff.artifact_claim.certifies_simple_zero_transversality, false);
+  assert.equal(handoff.artifact_claim.rejects_fixed_speed_pointwise_tangent_closure, false);
+  assert.equal(handoff.artifact_claim.identifies_bounded_speed_successor, false);
   assert.equal(handoff.artifact_claim.certifies_bounded_speed_primitive, false);
   assert.equal(handoff.artifact_claim.retained_branch, false);
   assert.equal(
     handoff.result.theory_status,
-    "fixed-speed-pointwise-tangent-obstructed-bounded-speed-primitive-handoff"
+    "receiver-normal-zero-bracket-restart-required"
   );
   assert.equal(handoff.result.retention, "not_retained");
   assert.equal(handoff.result.retained_branch, false);
@@ -104,7 +91,7 @@ test("fold-aware dynamics handoff CLI emits and validates JSON artifacts", () =>
   assert.equal(validation.valid, true);
   assert.equal(
     validation.result.theory_status,
-    "fixed-speed-pointwise-tangent-obstructed-bounded-speed-primitive-handoff"
+    "receiver-normal-zero-bracket-restart-required"
   );
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));

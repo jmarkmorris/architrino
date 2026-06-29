@@ -278,7 +278,7 @@ Here the visible outgoing row carries tracks, showers, photons, leptons, hadrons
 
 ## Hydrogen Boundary Closure Object
 
-The current scaffold separates three objects that must not be collapsed:
+The scaffold separates three objects that must not be collapsed:
 
 $$
 \mathcal{A}_{\mathrm{H}}(t)
@@ -315,7 +315,7 @@ $$
 
 Here $\mathcal{A}_{\mathrm{H}}$ is the exact hydrogen matter-assembly ledger, $S_{\mathrm{sea}}^{\Omega_{\mathrm{H}}}$ is the local Noether sea complement, and $\partial\Omega_f(D_X,t)$ is the effective spatial interface extracted from locked-assembly wake dominance in channel $X$. The closure target is to derive $D_{f,X}$ from the same Noether braid geometry and causal-wake ledgers used for mass, confinement, and atomic orbital recovery.
 
-The current kernel scaffold now derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the receiver-normal branch strength
+The receiver-normal kernel scaffold derives the two wake terms from the Master-Equation causal-root flux. In a declared channel $X$, the locked numerator keeps the receiver-normal branch strength
 
 $$
 w_{j,f}^{\mathrm{lock}}(t_0;t)
@@ -542,7 +542,7 @@ $$
 \frac{\left(\Delta\ln|J|\right)^2}{\epsilon_J^2}.
 $$
 
-The tolerance symbols are chart and benchmark declarations. They may differ by channel because clock bias, corridor coherence, stable packing, and penetration stability are different tests, but they must be fixed before the hydrogen line, boundary, or transport observable is evaluated. The current rule is to pull each retained-entry scale back from a declared readout tolerance:
+The tolerance symbols are chart and benchmark declarations. They may differ by channel because clock bias, corridor coherence, stable packing, and penetration stability are different tests, but they must be fixed before the hydrogen line, boundary, or transport observable is evaluated. The declared rule is to pull each retained-entry scale back from a declared readout tolerance:
 
 $$
 \epsilon_{\mu,X}^{2}

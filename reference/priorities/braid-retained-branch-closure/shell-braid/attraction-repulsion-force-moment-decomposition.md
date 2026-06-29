@@ -49,7 +49,7 @@ On a bounded speed factor causal-root ledger $\mathcal{A}_i^\nu(u)$, write a ret
 $$
 \omega_r^\nu(u)
 =
-\frac{1}{\eta_r(u)^2|J_r^\nu(u)|}.
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}.
 $$
 
 The source-site subledgers are
@@ -629,7 +629,7 @@ The status `structural-attraction-bias` is not allowed to stand in for a force, 
 The main algebraic failure modes are:
 
 1. **Root multiplicity failure.** A source site can contribute zero, one, or several retained roots, so $|A_i|=3$ and $|R_i|=2$ do not imply equal numbers of force terms.
-2. **Weight failure.** The weights $\eta_r^{-2}|J_r^\nu|^{-1}$ can make the two repulsive source sites dominate the three attractive source sites in a chosen projection.
+2. **Weight failure.** The weights $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ can make the two repulsive source sites dominate the three attractive source sites in a chosen projection.
 3. **Projection failure.** A source site can be attractive in sign but have a tangent or support-radial projection with the wrong sign for the intended bias.
 4. **Vector cancellation failure.** The normal curvature drive is vector-valued; a scalar count does not determine $P_i^\perp F_i^\nu$ or its holonomy.
 5. **Support-side failure.** An inward radial bias can help the upper support boundary and fail the lower support boundary. Two-sided support restoration requires the sign of $(r_i-R_i^0)b_i^\nu$ to be controlled, not only $b_i^\nu$.
@@ -782,7 +782,7 @@ $$
 
 **Theorem target: attraction/repulsion force-moment decomposition.** Fix one same-level neutral tri-binary site inventory, one bounded speed factor root ledger, one support descriptor, one source-pair policy, one same-source policy, and one row-weight convention. For each receiver $i$, excluding any separately emitted same-source and medium-response rows:
 
-1. the architrino force decomposes exactly into opposite-polarity attractive and same-polarity repulsive source-site sums with weights $\eta_r^{-2}|J_r^\nu|^{-1}$;
+1. the architrino force decomposes exactly into opposite-polarity attractive and same-polarity repulsive source-site sums with weights $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$;
 2. the tangent-power, normal-curvature-drive, and support-radial-moment diagnostics are the corresponding projections of the same weighted force split;
 3. the structural $3$-$2$ count becomes a radial restoring bias only when the weighted support-radial inequality $\Gamma(r_i-R_i^0)b_i^\nu<0$ holds, or under site-kernel equality when $\Gamma(r_i-R_i^0)B_i^\nu>0$;
 4. the structural count becomes a zero-mean speed-ODE bias only when the weighted period integral of the tangent forcing vanishes on the same ledger, with self and medium tangent rows included if active;
@@ -791,7 +791,7 @@ $$
 Proof route:
 
 1. Split the site set into $A_i$ and $R_i$ using $\sigma_i\sigma_j=-1$ for opposite polarity and $\sigma_i\sigma_j=+1$ for same polarity.
-2. Insert that sign split into the bounded-speed force ledger with $\omega_r^\nu=\eta_r^{-2}|J_r^\nu|^{-1}$.
+2. Insert that sign split into the bounded-speed force ledger with $\omega_r^\nu=\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$.
 3. Project the split force onto $\mathbf{T}_i$, $P_i^\perp$, and $\mathbf{n}_i$.
 4. Multiply the support-radial projection by $r_i-R_i^0$ to form the support-radial moment diagnostic.
 5. Express the radial and speed-ODE conditions as weighted algebraic inequalities or period integrals.
@@ -810,7 +810,7 @@ A solver packet that uses the $3$-$2$ inventory as a dynamics diagnostic must em
 | --- | --- |
 | `solver_space` | `bounded-speed-force-moment-decomposition`, `fixed-speed-special-case`, or downstream solver name consuming this packet |
 | `polarity_inventory` | $\sigma_i$, $A_i$, $R_i$, $|A_i|=3$, $|R_i|=2$, and partner/cross split |
-| `root_weight_convention` | $\eta_r$, $J_r^\nu$, $\omega_r^\nu=\eta_r^{-2}|J_r^\nu|^{-1}$, floors, and event-time convention |
+| `root_weight_convention` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{t,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $\omega_r^\nu=\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$, floors, and event-time convention |
 | `source_site_kernels` | $U_{ij}^\nu$, $\Theta_{ij}^\nu$, $B_{ij}^\nu$, and root multiplicity per source site |
 | `force_split` | $F_{i,A}^\nu$, $F_{i,R}^\nu$, self and medium force rows if present |
 | `tangent_power_split` | $f_{i,A}^\nu$, $f_{i,R}^\nu$, $\mathcal{P}_{i,A}^\nu$, $\mathcal{P}_{i,R}^\nu$, and total $f_i^\nu$ consumed by the speed ODE |
@@ -832,8 +832,8 @@ The packet may feed the speed-ODE solver by passing `tangent_power_split`, and i
 | --- | --- |
 | `force-moment-decomposition-certified` | attraction/repulsion force split and all requested projection diagnostics are emitted on one ledger |
 | `source-site-inventory-mismatch` | the neutral same-level $3$-$3$ site inventory or receiver exclusion row is not the declared input |
-| `root-weight-split-missing` | roots are not partitioned by opposite-polarity and same-polarity source sites with $\eta_r^{-2}|J_r^\nu|^{-1}$ weights |
-| `weight-jacobian-floor-open` | delay or Jacobian floors are missing, so the weighted sums are not certified |
+| `root-weight-split-missing` | roots are not partitioned by opposite-polarity and same-polarity source sites with $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ weights |
+| `weight-receiver-normal-row-open` | delay, source-normal floors, receiver-normal numerators, or same-row branch weights are missing, so the weighted sums are not certified |
 | `force-ledger-convention-mismatch` | force, speed, support, self, or medium rows use incompatible center-time or event-time conventions |
 | `radial-restoring-bias-certified` | $\Gamma(r_i-R_i^0)b_i^\nu<0$ holds with declared margin on the same ledger |
 | `radial-restoring-bias-fails` | the weighted support-radial moment has the wrong sign or no margin |

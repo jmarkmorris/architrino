@@ -4,7 +4,7 @@ Status. Reset recommendation packet for `spiral_branch_chart_test`.
 
 Claim level. Corpus promotion record, not a theorem-grade branch certificate.
 
-Recommended current corpus state:
+Recommended corpus state:
 
 - Retain A1 only as a receiver-normal restart target.
 - Preserve active-root, inactive-gap, finite-memory, source-normal floor, and

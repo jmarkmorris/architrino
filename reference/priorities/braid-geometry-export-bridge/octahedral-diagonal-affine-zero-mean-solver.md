@@ -122,7 +122,7 @@ The diagnostic force contribution is
 $$
 F_{ij}^{s}
 =
-\frac{q_iq_j}{y_{ij}^2|J_{ij}^{s}|}
+\frac{q_iq_jW_{ij}^{\mathrm{rec},s}}{y_{ij}^2}
 \widehat R_{ij}^{s},
 $$
 

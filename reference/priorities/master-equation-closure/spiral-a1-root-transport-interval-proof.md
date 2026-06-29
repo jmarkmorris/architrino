@@ -11,7 +11,7 @@ $$
 This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md),
 [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), and the VP-1
 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md).
-It supplies no current force/action evidence.
+It supplies no canonical force/action evidence.
 
 Claim level. Dependent analytic topology contract for the retained A1 chart.
 The root-transport row is not an independent interval obstruction once the same

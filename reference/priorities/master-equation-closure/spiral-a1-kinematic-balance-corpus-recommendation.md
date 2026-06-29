@@ -16,7 +16,7 @@ $P_1,P_2,P_3,S_1$ on the same retained boxes.
 
 Recommended corpus sentence:
 
-> The A1 retained chart currently supplies topology inputs, not a force-balance
+> The A1 retained chart supplies topology inputs, not a force-balance
 > certificate. Its radial, tangential, and action rows restart under the
 > receiver-normal Master EOM and require same-box $W^{\mathrm{rec}}=\lvert
 > D_t/D_s\rvert$ intervals before any pass/fail claim is promoted.

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-29T10:03:26.788Z",
+  "generated_at": "2026-06-29T10:19:50.651Z",
   "package_version": "1.0.0-34faadd1",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -204,16 +204,16 @@
       "sourcePath": "__generated__/reading-copies/dynamics.html",
       "role": "chapter",
       "type": "html",
-      "size": 24219043,
-      "sha256": "ca96a25e0618f952c53ca28da7505ba18728c770f58aa9aa93db9b95ae3390a5"
+      "size": 24219025,
+      "sha256": "fce8a79a5cccf3cd2f41fea05156a3d7d1ac24e737a89e5e99f84a17ab2ee8f2"
     },
     {
       "path": "reading-copies/dynamics.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1369405,
-      "sha256": "fda9025d967432650a98d631e35024e4e345267b5576cc9563591a0e9bec4bb8"
+      "size": 1369387,
+      "sha256": "f85cc3958d0151e3a20260516e7475ddb0658f2039acb1ead0bd7f9f1e74f26f"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9507454,
-      "sha256": "8d3341ac22879e8e36218abf6a3d00e61a5c3b564ac7cd3db69ece2b5bbdefb2"
+      "size": 9507442,
+      "sha256": "07b3cc56a110b2c35c6b4ace10a70772a3821b568a4f13a822d3246c03cd32a0"
     }
   ],
   "links": []

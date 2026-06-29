@@ -119,14 +119,14 @@ Let
 $$
 w_r^\Phi
 =
-\frac{1}{\eta_r|J_r|},
+\frac{W_r^{\mathrm{rec}}}{\eta_r},
 \qquad
 w_r^F
 =
-\frac{1}{\eta_r^2|J_r|}
+\frac{W_r^{\mathrm{rec}}}{\eta_r^2}
 $$
 
-in the fixed-speed row, with $J_r$ replaced by $J_r^\nu$ in the bounded-speed row. These are positive root weights once the root ledger has emitted positive delay and Jacobian floors.
+in the fixed-speed row, with $W_r^{\mathrm{rec}}$ recomputed from the bounded-speed row in the bounded-speed case. These are positive root weights once the root ledger has emitted positive delay, source-normal floors, receiver-normal numerators, and same-row branch weights.
 
 The signed delayed potential inventory seen by receiver $i$ is
 
@@ -408,14 +408,14 @@ $$
 W_{i,\nu}^{\mathrm{attr}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in A_i}}
-\frac{1}{\eta_r(u)^2|J_r^\nu(u)|},
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2},
 $$
 
 $$
 W_{i,\nu}^{\mathrm{rep}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in R_i}}
-\frac{1}{\eta_r(u)^2|J_r^\nu(u)|}.
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}.
 $$
 
 The corresponding vector rows are
@@ -425,16 +425,16 @@ $$
 =
 -
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in A_i}}
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^\nu(u)|},
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u),
 $$
 
 $$
 \widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{rep}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in R_i}}
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^\nu(u)|}.
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u).
 $$
 
 A bounded-speed packet should emit:
@@ -442,7 +442,7 @@ A bounded-speed packet should emit:
 | Field | Payload |
 | --- | --- |
 | `polarity_inventory` | $\sigma_i$, $A_i$, $R_i$, $N_{\mathrm{attr}}=3$, $N_{\mathrm{rep}}=2$ |
-| `bounded_speed_root_weights` | $\eta_r$, $J_r^\nu$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
+| `bounded_speed_root_weights` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{t,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
 | `bounded_speed_force_split` | $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{attr}}$, $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{rep}}$, self and medium rows if present |
 | `bounded_speed_projection_split` | attraction/repulsion contributions to $\mathcal{R}_{\parallel,i}^\nu$ and $\mathcal{R}_{\perp,i}^\nu$ |
 | `force_moment_decomposition` | handoff to weighted tangent-power, normal-drive, support-radial moment, and antipodal parity rows |

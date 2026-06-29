@@ -28,7 +28,7 @@ same receiver-normal EOM record before a restarted proof consumes them.
 The source-normal denominator $D_s$ is root-transversality data. It is not by
 itself branch strength. Stationary, fixed-source, or fixed-receiver reductions
 are acceptable only when they are derived directly from the receiver-normal law
-inside the current row; they do not promote inherited branch-strength rows or
+inside the declared retained row; they do not promote inherited branch-strength rows or
 inherited proof verdicts.
 
 Rows that survive conditionally:

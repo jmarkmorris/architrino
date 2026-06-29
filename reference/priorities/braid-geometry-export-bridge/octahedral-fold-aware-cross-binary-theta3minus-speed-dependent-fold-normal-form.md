@@ -261,16 +261,16 @@ $$
 \texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
 $$
 
-The sampled fold-pair scaled-stencil successor status is
+The sampled fold-pair scaled-stencil successor status is now
 
 $$
-\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
-The directed-rounded sampled-node fold-pair successor status is
+The directed-rounded sampled-node fold-pair successor status is now
 
 $$
-\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
 The directed-rounded fold-pair root-tube cell-cover successor status is

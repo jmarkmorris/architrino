@@ -550,7 +550,7 @@ export function buildOctahedralSpeedOdeDiagnostic(options = {}) {
         nu_max: nuMax,
       },
       force_formula:
-        "sum_j sign(q_i*q_j)*rhat_ij/(y_ij^2*abs(J_ij)); f_i(theta)=T_i(theta) dot force_i(theta)",
+        "sum_j sign(q_i*q_j)*abs(Wrec_ij)*rhat_ij/y_ij^2; f_i(theta)=T_i(theta) dot force_i(theta)",
       integration_rule: "uniform periodic left-endpoint sum on [0, 2*pi)",
     },
     site_inventory: siteInventory(),

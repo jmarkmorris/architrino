@@ -11,7 +11,7 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
 This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap, Jacobian-floor,
-self-coincidence, and finite-memory rows. It supplies no current force/action
+self-coincidence, and finite-memory rows. It supplies no canonical force/action
 evidence.
 
 Claim level. Priority topology packet for the retained $3+1$ root chart. A new

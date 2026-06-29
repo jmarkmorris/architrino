@@ -133,8 +133,8 @@ is accepted only when the following rows are emitted on one bounded-speed ledger
 | `inactive_gap_cover` | disjoint inactive cells with certified predicates on the bounded-speed $G_r^{\nu}$, not inherited fixed-speed gap predicates |
 | `jacobian_floor` | sign labels $\zeta_r$, floors $\zeta_rJ_r^{\nu}\ge J_0^{\nu}>0$, and proof-ball persistence radii |
 | `tail_interface` | support-complete route or finite tail cover on $(h_{\mathrm{mem}},\eta_{\mathrm{sup}}]$, terminal predicates, assimilated root sheets, $\epsilon_{\mathcal{F}}^{\mathrm{tail},\nu}$, and rerun status |
-| `root_derivative_columns` | $d\eta_r/du$, $D_v\eta_r$, $D_vJ_r^{\nu}$, $D_v\widehat{\mathbf{R}}_r$, and $D_v\mathbf{f}_r^{\nu}$ for all active curve, speed, clock, inverse-clock, root, support, action, and event variables consumed downstream |
-| `force_checksum` | all-pairs force row $F_i^{\nu}$, source signs, delay weights, $|J_r^{\nu}|^{-1}$ weights, self/medium/support terms, and the active root set used by tangent, normal, support, action, and event rows |
+| `root_derivative_columns` | $d\eta_r/du$, $D_v\eta_r$, $D_vJ_r^{\nu}$, $D_vW_{r,\nu}^{\mathrm{rec}}$, $D_v\widehat{\mathbf{R}}_r$, and $D_v\mathbf{f}_r^{\nu}$ for all active curve, speed, clock, inverse-clock, root, support, action, and event variables consumed downstream |
+| `force_checksum` | all-pairs force row $F_i^{\nu}$, source signs, delay weights, receiver-normal $W_{r,\nu}^{\mathrm{rec}}$ weights, self/medium/support terms, and the active root set used by tangent, normal, support, action, and event rows |
 | `consumer_checksum` | one hash or structured checksum tying dynamics, support, action, event, Krawczyk, stability, and observer-export consumers to the same $\mathcal{A}_{\mathrm{all}}^{\nu,+}$, inactive gaps, tail convention, clock maps, and row weights |
 
 A fixed-speed source row may appear in `source_ledger_reference`; it may not replace any bounded-speed row from `clock_lift` through `consumer_checksum`.
