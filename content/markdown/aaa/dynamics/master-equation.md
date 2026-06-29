@@ -1495,31 +1495,49 @@ An important open problem is to map the phase-space attractor landscape for self
 
 **Symmetry:** By polarity symmetry, both fall toward their common center of mass.
 
-**Equations:** Radial coordinate $r(t) = \|\mathbf{x}_2(t) - \mathbf{x}_1(t)\|$ satisfies:
+**Equations:** On a retained partner branch, the radial coordinate
+$r(t)=\|\mathbf{x}_2(t)-\mathbf{x}_1(t)\|$ has the current-law schematic form
+with receiver-normal branch strength:
 
 $$
-\frac{d^2r}{dt^2} = -\frac{2\kappa \epsilon^2}{r^2}
+\frac{d^2r}{dt^2}
+=
+-\frac{2\kappa \epsilon^2}{r^2}
+W_p^{\mathrm{rec}}
+\quad
+\text{on the retained branch}
 $$
 
-where the factor of 2 comes from the symmetry (each feels the same magnitude force).
+where the factor of 2 comes from the symmetry when both sides consume the same
+retained partner record. The stripped inverse-square form is only the
+near-rest, single-branch calibration $W_p^{\mathrm{rec}}\approx1$, not a
+current proof row.
 
-**Solution structure:** This has the same quadrature structure as Keplerian radial fall at leading order in the slow, single-branch regime.
+**Solution structure:** The slow, single-branch calibration has the same
+quadrature structure as Keplerian radial fall. A promoted branch must keep the
+same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
-#### Sub-Field-Speed Circular Orbit (Instability)
+#### Sub-Field-Speed Circular Orbit (Receiver-Normal Restart Target)
 
 **Setup:**
 - Two opposite polarities in symmetric circular orbit at radius $R$, speed $v < c_f$
 - No self-hits (sub-field-speed regime)
 
-**Partner contribution:**
-- Provides inward radial force (centripetal)
-- Also provides **tangential force** (always positive, i.e., in direction of motion)
+**Partner contribution:** The circular source-normal geometry nominates an
+inward radial diagnostic and a tangential-sign diagnostic. Under the current
+Master EOM, those rows are not force verdicts until the same partner branch
+emits $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
 
-**Result:** Net tangential power $T > 0$ means the partner-only circular branch is anti-damped. It accelerates along the orbit and cannot remain a constant-speed circle. The sign of this tangential work does not prove inward tightening; any contraction must come from a separate non-circular branch, capture basin, wake-flux/recoil channel, or multi-root ledger.
+**Result:** The source-normal circular sign row is a restart diagnostic, not a
+current no-go. A constant-speed circular conclusion requires the receiver-normal
+branch row plus finite-window work, wake-flux, recoil, and multi-root ledger
+checks on the same retained record.
 
-**Conclusion within this circular benchmark:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-polarity binaries.
+**Conclusion within this circular benchmark:** The sub-field circular row is
+unclosed under the current Master EOM. No stable-orbit or no-stable-orbit verdict is
+promoted until the receiver-normal proof process is restarted.
 
 
 
@@ -2587,19 +2605,19 @@ For a retained chart at a turn center, the radial row can be normalized by the c
 $$
 \Gamma\equiv\frac{r_\ast^3\Omega^2}{\kappa q_1^2},
 \qquad
-B_r(\theta_\ast)
+B_r^{\mathrm{rec}}(\theta_\ast)
 =
 -\sum_{\mathrm{part}}
-\frac{1+\rho_p\cos\Delta_p}{\Lambda_p^3|J_{12,p}|}
+\frac{W_p^{\mathrm{rec}}(1+\rho_p\cos\Delta_p)}{\Lambda_p^3}
 +
 \sum_{\mathrm{self}}
-\frac{1-\rho_s\cos\Delta_s}{\Lambda_s^3|J_{11,s}|}
+\frac{W_s^{\mathrm{rec}}(1-\rho_s\cos\Delta_s)}{\Lambda_s^3}
 $$
 so the normalized turn row is
 $$
-\Gamma+B_r(\theta_\ast)>0
+\Gamma+B_r^{\mathrm{rec}}(\theta_\ast)>0
 $$
-The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
+The retained branch chart must emit same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before $B_r^{\mathrm{rec}}$ exists as force evidence. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval after the receiver-normal branch sum exists or report the radial row as blocked.
 
 A fixed retained-chart benchmark is now a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not current Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
 

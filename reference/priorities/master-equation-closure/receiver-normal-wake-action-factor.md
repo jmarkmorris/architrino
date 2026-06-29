@@ -5,7 +5,7 @@ constants, action/wake-history closure, and solver support. This packet records
 the receiver-normal factor now required by the canonical Master EOM branch law.
 Rows without the receiver-normal numerator are not force/action evidence.
 Stationary, fixed-source, or fixed-receiver reductions must be recomputed from
-this identity inside the current retained row; they are not compatibility paths.
+this identity inside the current retained row.
 
 Claim level. Accepted correction to the Master EOM branch-strength law; exact
 geometry identity for smooth retained roots; downstream proof paths must restart

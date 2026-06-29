@@ -14,12 +14,22 @@ this same-record receiver-normal branch strength before it can move closure.
 Rows that do not expose $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the retained
 branch record are not force/action evidence.
 
+Clean-slate proof-process rule. If a proof path consumed any pre-receiver-normal
+force, action, finite-certificate, no-go, margin, or pass/fail row, restart that
+proof path from its first current-law branch table. Do not promote a prior
+margin, constant, no-go, fixed-point claim, or pass/fail verdict by patching in
+$D_t$ later. The only admissible carryover is explicitly non-force geometry:
+root existence, retained branch labels, inactive gaps, finite-memory depth, and
+source-normal transversality. Even those rows must be re-bound to the same
+current-law record before a restarted proof consumes them.
+
 ## Current-Law Promotion Rule
 
 The source-normal denominator $D_s$ is root-transversality data. It is not by
 itself branch strength. Stationary, fixed-source, or fixed-receiver reductions
 are acceptable only when they are derived directly from the receiver-normal law
-inside the current row; they do not promote inherited branch-strength rows.
+inside the current row; they do not promote inherited branch-strength rows or
+inherited proof verdicts.
 
 Rows that survive conditionally:
 
@@ -40,7 +50,8 @@ Rows that must restart:
 - A1 outward constants,
 - generated pass/fail certificates that lack receiver-normal force/action
   strength,
-- app or solver rows that reconstruct branch strength without $D_t$.
+- app or solver rows that reconstruct branch strength without $D_t$,
+- any proof process whose conclusion depended on one of those rows.
 
 ## Active Equation
 
@@ -63,7 +74,7 @@ not be collapsed.
 | --- | --- | --- |
 | `content/markdown/aaa/dynamics/master-equation.md` | Canonical equation uses receiver-normal branch strength. Action and circular rows that lack same-record $D_t$ are restart targets only. | Redrive action functional and circular branch asymptotics with $W^{\mathrm{rec}}$. |
 | `reference/priorities/master-equation-closure/receiver-normal-wake-action-factor.md` | Accepted correction packet. | Use as the local law for every restarted force/action row. |
-| A1 spiral packets | Root topology, inactive gaps, finite memory, and source-normal Jacobian floors remain conditional topology inputs. Force/action verdict rows are invalid as closure evidence. | Add same-box $D_t$ bounds for every retained A1 row before any branch-sum or pass/fail action certificate is replayed. |
+| A1 spiral packets | Root topology, inactive gaps, finite memory, and source-normal Jacobian floors remain conditional topology inputs. Force/action verdict rows are invalid as closure evidence. | Start a new same-box $D_s$, $D_t$, $W^{\mathrm{rec}}$ branch table before any branch-sum or pass/fail action certificate is attempted. |
 | Breather proof program | Existing branch topology and history-space architecture remain useful only as conditional inputs. Recapture, self-drive, force-margin, and certificate rows must be regenerated with receiver-normal strength. | Restart the breather margin proof with receiver-normal branch strengths and regenerate any consumed finite certificates. |
 | Action / Noether wake-history | Scalar action scaffolds are restart targets unless their variation produces the receiver-normal branch law. | Rebuild the constrained-branch action target and Noether balance rows using $W^{\mathrm{rec}}$ on the same retained branch chart. |
 | Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that omit $D_t$. |
@@ -87,6 +98,10 @@ $D_t$ as live proof steps.
 Pause equation-mapping score movement until the restarted Master EOM rows exist.
 Equation-mapping can still audit which rows lack receiver-normal branch
 strength, but numeric pass/fail without $D_t$ is not proof evidence.
+
+Default decision. When a proof surface is ambiguous, restart it rather than
+inherit it. A restarted proof may cite the earlier topology diagnostics only as
+input obligations to be rebound, not as a completed force/action step.
 
 ## Smallest Next Mathematical Artifact
 

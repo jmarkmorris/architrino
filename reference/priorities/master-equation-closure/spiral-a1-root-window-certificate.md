@@ -1,6 +1,6 @@
 # Spiral A1 Root-Window Certificate
 
-Status. Team-agent proof packet for the retained root chart at
+Status. Topology diagnostic for the retained root chart at
 $$
 a_{\mathrm{A1}}=0.204,
 \qquad
@@ -11,18 +11,13 @@ I_\ast=\left[-\frac{\pi}{6},\frac{\pi}{6}\right],
 D_{\mathrm{cert}}=\left[\frac{1}{2},4\pi\right].
 $$
 This packet writes the $a_{\mathrm{A1}}$ root-window, inactive-gap, Jacobian-floor,
-self-coincidence, and finite-memory rows. It does not edit
-`spiral_branch_chart_certificate.py`, the generated interval report, any sidecar,
-or authored AAA prose.
+self-coincidence, and finite-memory rows. It supplies no current force/action
+evidence.
 
-Claim level. Interval-pass priority packet for the retained $3+1$ root chart,
-with runner-integration still pending. The finite-cover rows below were computed
-by importing [spiral_branch_chart_certificate.py](spiral_branch_chart_certificate.py)
-locally, changing only in-memory constants to $a=0.204$ and the A1 active windows,
-and using the runner's nextafter-directed double interval arithmetic with
-trigonometric critical-point enclosures. Because the executable runner still
-encodes the VP-1 constants and windows, repository theorem-grade status remains
-`proof_target_until_runner_or_sidecar_integration`.
+Claim level. Priority topology packet for the retained $3+1$ root chart. A new
+receiver-normal certificate must reproduce any retained topology it consumes and
+must add same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before any
+force/action interpretation.
 
 ## Candidate Definition
 
@@ -289,25 +284,20 @@ candidate constants:
    branch-history certificate.
 7. `radial_turn` and `tangential_drive`: the companion
    [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md) packet
-   records a radial branch-sum threshold interval and a strict negative
-   tangential-drive interval probe on the same retained chart. This root-window
-   packet does not by itself certify those force rows, and neither packet
-   supplies the independent $\Gamma$ interval needed to resolve radial turn.
+   now requires same-box $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before any
+   force/action verdict can be promoted. This root-window packet is topology
+   evidence only.
 
 ## Packet Verdict
 
-Root-window verdict: `interval-pass packet`. The active-root, inactive-gap,
+Root-window verdict: `topology-diagnostic-only`. The active-root, inactive-gap,
 Jacobian-floor, self-coincidence, and finite-memory rows above certify the
 retained $P_1,P_2,P_3,S_1$ chart at priority-packet level under the displayed
 finite-cover arithmetic.
 
-Repository verdict: `sidecar_integrated_radial_blocked`. The runner now supports
-the A1 candidate path, and [spiral-a1-current-interval-rows](spiral-a1-current-interval-rows.json)
-consumes these retained-root rows together with the companion A1 drive and
-root-transport rows. The remaining theorem-grade blocker is the independent
-$\Gamma$ interval for radial turn.
+Repository verdict: `receiver_normal_restart_required`. No deleted sidecar or
+generated report is an active authority for this chart.
 
-Promotion decision: priority-only for closure, sidecar-promoted for structure.
-The A1 retained root chart is now a concrete sidecar-consumed artifact for
-`spiral_branch_chart_test`, but it is not ready for reader-facing corpus
-promotion as a closure result until the radial force-ratio row is resolved.
+Promotion decision: priority-only for closure. The A1 retained root chart is not
+ready for reader-facing corpus promotion as a closure result until the
+receiver-normal branch table is emitted.

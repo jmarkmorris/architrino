@@ -100,11 +100,11 @@ $$
 $$
 That argument is not currently rigorous enough to carry the load.
 
-The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. In the old source-normal diagnostic, near the null separatrix the kernel contains the highly non-uniform factor
+The analytic obstruction is simple: even if the delay domain has topological degree $2$, the action density is not uniform across the sheets. Near the null separatrix, $D_s$ can lose its floor, and the current row must also carry the matching $D_t$ numerator before any branch-strength comparison is allowed:
 $$
-\frac{1}{|J|},
+\left|D_t/D_s\right|.
 $$
-so one cannot factor the covering degree out of the action integral unless much stronger invariance assumptions are proved.
+Therefore one cannot factor the covering degree out of the action integral unless much stronger same-record invariance assumptions are proved.
 
 Likewise, a spatial double-covering of the delay locus does not by itself imply temporal frequency doubling. At present, the bridge
 $$

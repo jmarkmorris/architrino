@@ -22,14 +22,12 @@ evidence grammar.
 
 ### Rank 1: Master Equation Closure
 
-The useful advancement is not another sampled A1 replay. The current
-`spiral-a1-outward-constants-certificate-target` packet has narrowed the next
-row to a single selected retained branch slot: `P_1`, fixed
-$\theta\in[0,0.02]$, fixed $b=0.001$, fixed source row for
-`q_source_alpha`, and selected partial
-`partial_T_alpha_partial_delta_alpha`. The smallest closure artifact is a
-directed-rounding interval row for the `P_1` tangential summand derivative,
-with the same retained-root, source-profile, and inactive-cover box identities.
+The useful advancement is not another sampled A1 replay. The A1
+outward-constants target is purged as force/action evidence. The smallest
+closure artifact is now one receiver-normal branch-strength row on one retained
+branch slot, with same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, aggregation
+context, and a negative control proving the row fails closed when $D_t$ is
+missing or mismatched.
 
 The row should fail closed unless it carries a shared directed-rounding backend
 identity, operation-trace digest, shared interval-box-family digest, and shared

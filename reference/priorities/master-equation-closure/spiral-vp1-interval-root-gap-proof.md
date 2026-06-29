@@ -19,9 +19,11 @@ P_3=[6.78,6.92],
 S_1=[4.80,4.90].
 $$
 
-Claim level. Interval proof-packet support for the active-root and inactive-gap rows. The mathematical sign rows below close the root-gap blocker at packet level for the declared fixed tubes. The repository-generated report is still not theorem-grade because these interval rows are not yet emitted by `spiral_branch_chart_certificate.py`, and this worker was not authorized to edit the executable runner or generated report.
+Claim level. Topology diagnostic for the active-root and inactive-gap rows. The
+mathematical sign rows below may seed a receiver-normal rebuild for the declared
+fixed tubes, but no generated report or purged runner is an active authority.
 
-Verdict for this lane: `interval-pass packet; runner-integration blocker remains`.
+Verdict for this lane: `topology-diagnostic-only; receiver-normal rebuild required`.
 
 ## Equations Used
 
@@ -223,6 +225,9 @@ so the fixed tubes remain below the corridor-specific finite-memory bound.
 | Excluded self coincidence | analytic-pass | $|F_s|/\Delta\ge0.6794678492\ldots$ |
 | Finite memory for fixed tubes | pass | $6.92<B_{\mathrm{mem}}^{\mathrm{VP1}}=7.8221162806\ldots$ |
 
-The lane blocker is no longer a missing mathematical sign condition for the fixed VP-1 tubes. The exact blocker left is executable integration: `spiral_branch_chart_certificate.py` and `spiral-branch-chart-interval-report.md` still report sampled/blocker status because this worker did not edit the runner or generated report. A coordinator can port the finite-cover rows above into the executable certificate without changing the VP-1 root windows.
+The lane blocker is receiver-normal rebuild. A future certificate must recompute
+any radial, tangential, action, or pass/fail row from same-record $D_s$, $D_t$,
+and $W^{\mathrm{rec}}$ intervals rather than integrating these topology rows
+into a purged runner.
 
 This packet does not decide the root-transport row, radial-turn force-ratio row, or weighted tangential-drive interval row. It only closes the active-root interval-tube and inactive-complement sign-gap lane for the declared VP-1 contract.

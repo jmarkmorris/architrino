@@ -7,6 +7,10 @@ under the receiver-normal Master EOM branch factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 
+The breather proof process therefore starts over from the current-law branch
+table. The architecture can be reused; no previous force margin, return verdict,
+finite certificate, or action conclusion is inherited.
+
 This chapter sits between the canonical delayed law in [master-equation.md](../dynamics/master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
 The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.

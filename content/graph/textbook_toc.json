@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1472
+      "sections": 1463
     }
   },
   "tocRoot": {
@@ -1834,30 +1834,6 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Regularized Mathematical Setting (Explicit Regime)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Regularized Mathematical Setting (Explicit Regime)",
-                "sectionKey": "regularized mathematical setting explicit regime",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Axioms and Admissibility Assumptions",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Axioms and Admissibility Assumptions",
-                "sectionKey": "axioms and admissibility assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Rationale for the Functional",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Rationale for the Functional",
-                "sectionKey": "rationale for the functional",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
                 "title": "Geometric/Topological Framework",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
                 "markdownSection": "Geometric/Topological Framework",
@@ -1866,18 +1842,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Source-Normal Theorem Spine (Provable Diagnostic Core under A1-A5)",
+                "title": "Causal Writhe and Topological Use",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Source-Normal Theorem Spine (Provable Diagnostic Core under A1-A5)",
-                "sectionKey": "source normal theorem spine provable diagnostic core under a1 a5",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Analytic Benchmarks (Circular Orbit)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Analytic Benchmarks (Circular Orbit)",
-                "sectionKey": "analytic benchmarks circular orbit",
+                "markdownSection": "Causal Writhe and Topological Use",
+                "sectionKey": "causal writhe and topological use",
                 "headingLevel": 2
               },
               {
@@ -1890,50 +1858,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Dynamical Interpretation",
+                "title": "Branch Barrier and Transition Cost",
                 "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Dynamical Interpretation",
-                "sectionKey": "dynamical interpretation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Emergent Geometry Constraints",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Emergent Geometry Constraints",
-                "sectionKey": "emergent geometry constraints",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Implementation Notes (Appendix)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Implementation Notes (Appendix)",
-                "sectionKey": "implementation notes appendix",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation Protocol (Minimal Theorem-Backed Checks)",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Simulation Protocol (Minimal Theorem-Backed Checks)",
-                "sectionKey": "simulation protocol minimal theorem backed checks",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Limitations and Caveats",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Limitations and Caveats",
-                "sectionKey": "limitations and caveats",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closure Extension: Spin Bundle and Confinement Energy Law",
-                "markdownPath": "content/markdown/aaa/dynamics/causal-action-functional.md",
-                "markdownSection": "Closure Extension: Spin Bundle and Confinement Energy Law",
-                "sectionKey": "closure extension spin bundle and confinement energy law",
+                "markdownSection": "Branch Barrier and Transition Cost",
+                "sectionKey": "branch barrier and transition cost",
                 "headingLevel": 2
               },
               {

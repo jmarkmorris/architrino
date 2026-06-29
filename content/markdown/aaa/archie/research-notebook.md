@@ -19,7 +19,7 @@ This entry records a major oversight in the definition of the Master Equation of
 
 At the conceptual level, $\mathbb{A}\mathbb{A}\mathbb{A}$ adapts easily because its core commitments are not tied to one frozen algebraic presentation of the acceleration law. The framework still begins with architrinos in absolute time and the Euclidean void, causal wakes, path-history dependence, receiver-local interaction, branch certification, and downstream effective reconstruction. What changes is the exact branch-selection and acceleration rule that the proof programs must consume. That is a mathematical bottleneck, not the entire ontology.
 
-The correction should be treated as an opportunity as much as a repair. A better EOM may expose solution families that the earlier definition suppressed or distorted, especially in the search for stable retained branches, eigen-braid candidates, self-hit regimes, and Noether braid-scale assemblies. The right response is therefore not defensive preservation of old formulas. It is to let the corrected law discipline the candidate geometry and then audit every downstream claim whose proof depended on the old exact EOM.
+The correction should be treated as an opportunity as much as a repair. A better EOM may expose solution families that the earlier definition suppressed or distorted, especially in the search for stable retained branches, eigen-braid candidates, self-hit regimes, and Noether braid-scale assemblies. The right response is therefore not defensive preservation of superseded formulas. It is to let the corrected law discipline the candidate geometry and then audit every downstream claim whose proof depended on the superseded exact EOM.
 
 The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, tri-binary selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
 
@@ -347,7 +347,7 @@ The conceptual gain is that the note now separates three different burdens clean
 
 This mattered for the larger program because the nested shell braid has to satisfy several closure burdens at once: frequency hierarchy, horizon behavior, radiation suppression, and eventually an effective stress-tensor story for higher assemblies. The revised note now reads as a live research surface with explicit assumptions and explicit non-assumptions.
 
-## 2026-03-12: Causal Jacobian Correction
+## 2026-03-12: Receiver-Normal Master Equation Canon
 
 Relevant files:
 
@@ -357,9 +357,7 @@ Relevant files:
 - [Causal action functional](../dynamics/causal-action-functional.md)
 - [Lorentz near-miss in historical context](../philosophy-history/historical-context-and-missed-opportunities.md#lorentz-before-einstein-the-almost-substrate-moment)
 
-This entry records a major correction to the master-equation architecture after an AI-assisted audit exposed a false simplification in earlier drafts. The earlier path had treated constant per-wavefront emission amplitude as if it implied a received force law depending only on $1/r^2$. That collapsed three distinct claims: source emission cadence is constant, source motion controls the source-normal denominator of the delayed root, and receiver motion controls the receiver-normal numerator at the crossing.
-
-The corrected master equation uses the receiver-normal branch factor in the canonical per-hit law:
+The master equation uses the receiver-normal branch factor in the canonical per-hit law:
 $$
 \mathbf{a}_{ij}(t; t_0)
 =
@@ -376,13 +374,13 @@ D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0),
 \qquad
 D_{t,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij}(t;t_0).
 $$
-The point of the correction is not that source strength itself changes with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
+Source strength itself does not change with speed. The source emits according to the same constant-cadence rule. The velocity dependence enters because both transceiver paths set the local wake crossing geometry: the source-normal denominator records how the emitted wake surfaces bunch or dilate, while the receiver-normal numerator records how the receiver cuts those surfaces.
 
-This correction also clarified the status of receiver velocity. In the current canon, receiver velocity appears in the received branch magnitude through $D_{t,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
+Receiver velocity appears in the received branch magnitude through $D_{t,ij}$ and in the work rate $\mathbf{F}\cdot\mathbf{v}$. Magnetic-like behavior remains an emergent closure target built from delayed geometry, receiver-normal branch strength, superposed radial hits, and assembly/Noether sea response; it is not inserted as a primitive cross-product force.
 
-The same audit also separated theorem-backed statements from closure targets. The current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The safer canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
+The canon separates theorem-backed statements from closure targets. Current documents should not state, without local hypotheses, that the master equation is already the exact Euler-Lagrange variation of a completed non-local action or that global energy-momentum conservation is fully restored in every regime. The canonical stance is narrower: the regularized action-functional program supplies a variational lens, the per-hit law supplies the acceleration-first dynamics, and energy bookkeeping must state the assumptions under which work-energy, Noether-style, or action-based conclusions are being claimed.
 
-Corpus repair targets after this correction were clear:
+Corpus requirements:
 
 - remove bare $1/r^2$ and source-normal-only per-hit laws where receiver-normal branch strength belongs,
 - avoid splitting the theory into a permanent "reduced model" and a separate "candidate action" unless the local document is explicitly discussing an approximation,
@@ -390,7 +388,7 @@ Corpus repair targets after this correction were clear:
 - keep constant emission cadence distinct from received causal-flux modulation,
 - and include receiver-velocity effects through the receiver-normal numerator before promoting force, action, or finite-certificate rows.
 
-The correction remains a major inflection point because it made the master equation a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. It also made future closure burdens sharper: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
+The master equation is a genuinely delayed branch law rather than a static inverse-square law with delayed labels attached. The closure burdens are sharp: self-hit walls, magnetic-like behavior, Lorentz behavior, and action/energy structure all need to be derived from the receiver-normal delayed geometry rather than asserted through imported field-theory vocabulary.
 
 ## 2026-03-11 Closure Scorecard
 

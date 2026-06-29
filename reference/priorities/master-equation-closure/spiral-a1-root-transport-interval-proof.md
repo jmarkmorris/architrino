@@ -1,6 +1,6 @@
 # Spiral A1 Root-Transport Interval Proof Packet
 
-Status. Team-agent proof packet for the A1 root-transport row at
+Status. Topology diagnostic for the A1 root-transport row at
 $$
 a_{\mathrm{A1}}=0.204,
 \qquad
@@ -11,16 +11,15 @@ $$
 This packet consumes [spiral-a1-root-window-certificate](spiral-a1-root-window-certificate.md),
 [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), and the VP-1
 template [spiral-vp1-root-transport-interval-proof](spiral-vp1-root-transport-interval-proof.md).
-It does not edit the executable runner, JSON sidecars, generated reports, or authored
-AAA prose.
+It supplies no current force/action evidence.
 
-Claim level. Dependent analytic certificate contract for the retained A1 chart.
+Claim level. Dependent analytic topology contract for the retained A1 chart.
 The root-transport row is not an independent interval obstruction once the same
 A1 active root tubes, nonzero active Jacobian floor, positive $b(\theta)$, and
 velocity-projection convention used in $J$ are certified. It is the differentiated
 causal-delay identity for the retained root equation. Repository theorem-grade
-status remains sidecar-or-runner pending until these A1 rows are consumed by the
-typed sidecar or emitted by the runner.
+status remains pending until a new receiver-normal certificate consumes these
+rows.
 
 ## Fixed A1 Inputs
 
@@ -256,9 +255,9 @@ root_transport:
     allowed_residuals: [root_transport_residual, root_transport_residual_division_free]
 ```
 
-The sidecar should not classify this row from sampled roots. If a numerical
+Any replacement certificate should not classify this row from sampled roots. If a numerical
 residual audit is emitted, it is an audit of the analytic dependency row unless
-the runner is separately certifying a transported numerical representation of
+the certificate is separately certifying a transported numerical representation of
 $\Delta_\alpha(\theta)$ with an interval derivative error bound.
 
 ## Blockers and Failure Modes
@@ -269,7 +268,7 @@ certified. The row is blocked only by dependency failure or convention mismatch:
 - an active window fails to certify exactly one simple root over $I_\ast$;
 - $\partial_\Delta F_\alpha$ contains zero, equivalently the active $J_\alpha$
   floor closes;
-- the runner or sidecar mixes root equations, source labels, Jacobian rows, or
+- the replacement certificate mixes root equations, source labels, Jacobian rows, or
   velocity projections from different branch conventions;
 - the self branch touches spatial coincidence, so $L_\alpha=0$ and
   $\hat{\mathbf r}_\alpha$ is undefined;
@@ -280,11 +279,7 @@ certified. The row is blocked only by dependency failure or convention mismatch:
 
 ## Promotion Decision
 
-Priority capture complete; sidecar promotion pending. The A1 root-transport row
-is analytic-pass once the A1 root-window certificate rows are present in the
-typed sidecar or emitted by the runner on the same retained chart. This packet is
-ready to be referenced by the A1 drive interval packet as the required
-root-transport dependency row. It is not ready for authored corpus promotion as
-an isolated result because the A1 branch chart still requires sidecar-or-runner
-integration, and the radial force-ratio row remains blocked by the missing
-accepted $\Gamma$ interval.
+Priority capture complete; receiver-normal rebuild pending. The A1
+root-transport row is not ready for authored corpus promotion as an isolated
+result because the A1 branch chart still requires same-record $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ rows before force/action interpretation.

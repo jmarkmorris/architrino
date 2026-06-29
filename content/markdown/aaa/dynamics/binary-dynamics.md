@@ -51,13 +51,16 @@ V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
 $$
 cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
 
-**Lemma (No stable circular orbit for $\|\mathbf{v}\| < c_f$).** In units with $c_f=1$, the circular speed is $s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
+**Receiver-normal restart target for the sub-field partner row.** In units with $c_f=1$, the circular speed is $s=R\omega$. The source-normal circular sign diagnostic gives
 $$
-T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\pi)
+T_p^{\mathrm{src}}
+\propto
+\frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
+\quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. The time-averaged tangential acceleration cannot vanish; a constant-speed circular orbit is impossible.
+where $\delta_p$ is the partner delay angle. This is not a current force verdict. The current-law row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
--  The tangential component of the delayed force does positive work in the partner-only circular ledger.
+-  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
 
 With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
@@ -517,66 +520,71 @@ These formulas make the asymmetry between the two branch types explicit:
 
 ---
 
-#### Radial and Tangential Components
+#### Source-Normal Radial and Tangential Diagnostics
 
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
+
+The projections in this subsection are source-normal circular diagnostics. They
+record branch orientation and root geometry, but they are not current Master EOM
+acceleration rows until the same retained branches are recomputed with
+$D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
 **Chord lengths**:
 $$
 r_s = 2R \sin(\delta_s / 2), \quad r_p = 2R \cos(\delta_p / 2)
 $$
 
-**Inward radial components**:
+**Inward radial diagnostic components**:
 
 - **Self** (repulsive -> outward -> negative):
  $$
- A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
+	 A_{s,\text{rad}}^{\mathrm{src}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner** (attractive -> inward -> positive):
  $$
- A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
+	 A_{p,\text{rad}}^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
  $$
 
-**Net inward radial acceleration**:
+**Net inward radial diagnostic**:
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
+A_{\text{rad}}^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
 $$
 
-**Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
+**Tangential diagnostic components**:
 
 - **Self**:
  $$
- T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
+	 T_s^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner**:
  $$
- T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
+	 T_p^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
  $$
 
-**Net tangential acceleration**:
+**Net tangential diagnostic**:
 $$
-T = T_s + T_p \ge 0
+T^{\mathrm{src}} = T_s^{\mathrm{src}} + T_p^{\mathrm{src}}
 $$
 
 ---
 
 #### Sub-Field-Speed Simplification ($s \le 1$; No Self-Hits)
 
-When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes, so the tangential drive remains strictly positive, consistent with the lemma above:
+When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes to this source-normal diagnostic:
 
 $$
-T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
+T^{\mathrm{src}}(s < 1) = T_p^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
 $$
 
 Using the delay relation $\delta_p = 2s \cos(\delta_p / 2)$:
 
 $$
-T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|} > 0
+T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner contribution relative to bare $1/r^2$, but it never changes its sign. Therefore even at sub-field speeds there is always a **net positive tangential force** (accelerating the binary), which prevents a truly stable, constant-speed circular orbit.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. Under the current Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
 
 ---
 
@@ -584,9 +592,9 @@ Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner 
 
 For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
-1. **Centripetal balance**:
+1. **Receiver-normal centripetal balance**:
   $$
-  A_{\text{rad}} = \frac{s^2}{R}
+  A_{\text{rad}}^{\mathrm{rec}} = \frac{s^2}{R}
   $$
 
 2. **Finite-window energy balance**:
@@ -721,8 +729,10 @@ $$
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold source-normal wall.**
-   On the principal self branch, the source-normal denominator has the old $|J_s|^{-1}$ singular diagnostic as $s\downarrow 1^+$. The current force/action row must combine that denominator with the receiver-normal numerator on the same root before claiming a radial balance.
+1. **Near-threshold denominator wall.**
+   On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$.
+   The current force/action row must combine that denominator with the
+   receiver-normal numerator on the same root before claiming a radial balance.
 
 2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full receiver-normal weighted sum over all active branches rather than on the principal branch alone.

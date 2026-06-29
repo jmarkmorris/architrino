@@ -8,6 +8,11 @@ roots as the Master EOM. Source-normal denominators remain transversality
 diagnostics until paired with the receiver-normal numerator and checked by the
 stated residuals.
 
+Variational proof work restarts from this current-law target. No prior action
+stationarity, energy balance, or Noether wake-history verdict is inherited
+unless the same derivation reproduces the receiver-normal branch law on the
+retained record.
+
 This chapter formalizes the conditional variational scaffold used by $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to connect the exact, path-history-dependent microdynamics of discrete architrinos to coarse-grained effective descriptions of macroscopic assembly behavior in the Noether sea.
 
 The bridge is deliberately conditional. The Master EOM remains the primary dynamics at the substrate level; an action or Lagrangian chart becomes theorem-grade only after its variation, boundary, and conservation residuals close on the retained branch chart. Until then, the effective Lagrangian is a disciplined inference device rather than an independent ontology.

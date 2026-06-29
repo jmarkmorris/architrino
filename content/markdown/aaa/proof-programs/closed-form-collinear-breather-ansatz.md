@@ -8,6 +8,10 @@ transversality structure, but every force, action, returned-history, and margin
 row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
 promotion.
 
+This is a restart, not a repair pass. Earlier ansatz constants, collocation
+successes, candidate cycles, or finite-certificate verdicts are not inherited as
+proof steps unless they are regenerated on the current receiver-normal record.
+
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](./collinear-breather.md). Its purpose is to generate certificate data for that proof program. A closed-form or closed-by-quadrature orbit is useful only insofar as it produces a candidate cycle, a branch chart, a mesh, and return residuals with strict audit slack.
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
@@ -338,7 +342,7 @@ $$
 -\frac{g}{4x^2}
 \left(1-\frac{\dot x^2}{c_f^2}\right).
 $$
-A held-release preparation may still supply initial data, but the old solved
+A held-release preparation may still supply initial data, but the solved
 fixture is purged. The held segment must now be solved from the
 receiver-normal equation in
 [Collinear Breather](./collinear-breather.md#held-release-restart-target)

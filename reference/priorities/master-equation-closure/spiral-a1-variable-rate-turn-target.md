@@ -15,5 +15,5 @@ The variable-rate turn problem is now:
    factors;
 4. only then compare the rebuilt sums to the selected kinematic time law.
 
-No old slope or force-ratio value is active evidence under the current Master
-EOM.
+No superseded slope or force-ratio value is active evidence under the current
+Master EOM.

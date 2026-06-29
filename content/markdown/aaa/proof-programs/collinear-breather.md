@@ -8,6 +8,11 @@ certificate is closure evidence only after it is redriven with the
 receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same
 retained branch record.
 
+The proof process restarts at the receiver-normal branch table. Earlier margins,
+constants, candidate cycles, and finite certificates are not inherited as proof
+steps; at most, their root-topology and history-space structure become input
+obligations that must be rebound to the same current-law record.
+
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
 The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.
@@ -421,7 +426,7 @@ At $t=0$ with $x_0=1$, this compact shell also sets the partner term exactly to 
 
 ## Held-Release Restart Target
 
-A held source remains a lawful way to specify pre-release history, but the old
+A held source remains a lawful way to specify pre-release history, but the
 held-release solution is purged as a solution artifact because it used the
 superseded branch law. Let a right-hand Positrino and left-hand Electrino
 be held at
@@ -452,10 +457,10 @@ x(0)=x_0,\qquad
 \dot x(0)=0.
 $$
 
-The old energy identity, field-speed criterion, handoff angle, numerical
-fixture, and source-only continuity claim do not survive as evidence. They
-must be recomputed from this receiver-normal ODE and then matched to the
-moving-partner delayed chart with the same-record $D_t/D_s$ factor.
+The energy identity, field-speed criterion, handoff angle, numerical fixture,
+and source-normal continuity claim must be recomputed from this receiver-normal
+ODE and then matched to the moving-partner delayed chart with the same-record
+$D_t/D_s$ factor before they can act as evidence.
 
 ## Partner-Hit and Self-Hit Root Equations
 

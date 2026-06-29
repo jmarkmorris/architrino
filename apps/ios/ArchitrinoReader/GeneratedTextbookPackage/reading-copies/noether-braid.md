@@ -1041,18 +1041,10 @@ $$
 +
 \mathbf{u}_i(t).
 $$
-On a retained chart away from grazing, the old source-normal estimate kept only
-$$
-|J_a|^{-1}
-=
-\left|
-1-
-\frac{\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a}{c_f}
--
-\frac{\mathbf{u}_j(t_0)\cdot\hat{\mathbf r}_a}{c_f}
-\right|^{-1}
-$$
-as a source-side diagnostic. The current Master EOM is stricter: the same translation also enters $D_{t,a}$, so a source-only longitudinal amplification such as $1/(1-\beta_f^2)$ is not by itself an oblation proof. The retained-row target is the receiver-normal anisotropy
+On a retained chart away from grazing, translation enters both $D_{s,a}$ and
+$D_{t,a}$. A longitudinal denominator effect is therefore not an oblation proof
+unless the same retained row also carries the receiver-normal numerator. The
+retained-row target is the receiver-normal anisotropy
 $$
 \Delta_w
 \equiv
@@ -1075,7 +1067,7 @@ K_{\perp}^{(q)}
 \sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
 <1
 $$
-The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any older source-only $1/|J|$ stiffness estimate is a restart target.
+The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any stiffness estimate that lacks same-record $D_t/D_s$ branch strength is a restart target.
 
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$

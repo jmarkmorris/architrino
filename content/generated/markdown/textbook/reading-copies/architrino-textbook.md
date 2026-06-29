@@ -4555,31 +4555,49 @@ An important open problem is to map the phase-space attractor landscape for self
 
 **Symmetry:** By polarity symmetry, both fall toward their common center of mass.
 
-**Equations:** Radial coordinate $r(t) = \|\mathbf{x}_2(t) - \mathbf{x}_1(t)\|$ satisfies:
+**Equations:** On a retained partner branch, the radial coordinate
+$r(t)=\|\mathbf{x}_2(t)-\mathbf{x}_1(t)\|$ has the current-law schematic form
+with receiver-normal branch strength:
 
 $$
-\frac{d^2r}{dt^2} = -\frac{2\kappa \epsilon^2}{r^2}
+\frac{d^2r}{dt^2}
+=
+-\frac{2\kappa \epsilon^2}{r^2}
+W_p^{\mathrm{rec}}
+\quad
+\text{on the retained branch}
 $$
 
-where the factor of 2 comes from the symmetry (each feels the same magnitude force).
+where the factor of 2 comes from the symmetry when both sides consume the same
+retained partner record. The stripped inverse-square form is only the
+near-rest, single-branch calibration $W_p^{\mathrm{rec}}\approx1$, not a
+current proof row.
 
-**Solution structure:** This has the same quadrature structure as Keplerian radial fall at leading order in the slow, single-branch regime.
+**Solution structure:** The slow, single-branch calibration has the same
+quadrature structure as Keplerian radial fall. A promoted branch must keep the
+same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row.
 
 **Key insight:** Partner attraction dominates; no self-hit (speeds remain sub-field-speed for moderate $d_0$).
 
-###### Sub-Field-Speed Circular Orbit (Instability)
+###### Sub-Field-Speed Circular Orbit (Receiver-Normal Restart Target)
 
 **Setup:**
 - Two opposite polarities in symmetric circular orbit at radius $R$, speed $v < c_f$
 - No self-hits (sub-field-speed regime)
 
-**Partner contribution:**
-- Provides inward radial force (centripetal)
-- Also provides **tangential force** (always positive, i.e., in direction of motion)
+**Partner contribution:** The circular source-normal geometry nominates an
+inward radial diagnostic and a tangential-sign diagnostic. Under the current
+Master EOM, those rows are not force verdicts until the same partner branch
+emits $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
 
-**Result:** Net tangential power $T > 0$ means the partner-only circular branch is anti-damped. It accelerates along the orbit and cannot remain a constant-speed circle. The sign of this tangential work does not prove inward tightening; any contraction must come from a separate non-circular branch, capture basin, wake-flux/recoil channel, or multi-root ledger.
+**Result:** The source-normal circular sign row is a restart diagnostic, not a
+current no-go. A constant-speed circular conclusion requires the receiver-normal
+branch row plus finite-window work, wake-flux, recoil, and multi-root ledger
+checks on the same retained record.
 
-**Conclusion within this circular benchmark:** No stable circular orbit appears in the sub-field-speed regime for isolated opposite-polarity binaries.
+**Conclusion within this circular benchmark:** The sub-field circular row is
+unclosed under the current Master EOM. No stable-orbit or no-stable-orbit verdict is
+promoted until the receiver-normal proof process is restarted.
 
 ###### Maximum-Curvature Orbit (Self-Hit Stabilization)
 
@@ -5644,19 +5662,19 @@ For a retained chart at a turn center, the radial row can be normalized by the c
 $$
 \Gamma\equiv\frac{r_\ast^3\Omega^2}{\kappa q_1^2},
 \qquad
-B_r(\theta_\ast)
+B_r^{\mathrm{rec}}(\theta_\ast)
 =
 -\sum_{\mathrm{part}}
-\frac{1+\rho_p\cos\Delta_p}{\Lambda_p^3|J_{12,p}|}
+\frac{W_p^{\mathrm{rec}}(1+\rho_p\cos\Delta_p)}{\Lambda_p^3}
 +
 \sum_{\mathrm{self}}
-\frac{1-\rho_s\cos\Delta_s}{\Lambda_s^3|J_{11,s}|}
+\frac{W_s^{\mathrm{rec}}(1-\rho_s\cos\Delta_s)}{\Lambda_s^3}
 $$
 so the normalized turn row is
 $$
-\Gamma+B_r(\theta_\ast)>0
+\Gamma+B_r^{\mathrm{rec}}(\theta_\ast)>0
 $$
-The retained branch chart fixes $B_r$ only. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval or report the radial row as blocked.
+The retained branch chart must emit same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before $B_r^{\mathrm{rec}}$ exists as force evidence. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval after the receiver-normal branch sum exists or report the radial row as blocked.
 
 A fixed retained-chart benchmark is now a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not current Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
 
@@ -10843,13 +10861,16 @@ V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
 $$
 cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
 
-**Lemma (No stable circular orbit for $\|\mathbf{v}\| < c_f$).** In units with $c_f=1$, the circular speed is $s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
+**Receiver-normal restart target for the sub-field partner row.** In units with $c_f=1$, the circular speed is $s=R\omega$. The source-normal circular sign diagnostic gives
 $$
-T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\pi)
+T_p^{\mathrm{src}}
+\propto
+\frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
+\quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. The time-averaged tangential acceleration cannot vanish; a constant-speed circular orbit is impossible.
+where $\delta_p$ is the partner delay angle. This is not a current force verdict. The current-law row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
--  The tangential component of the delayed force does positive work in the partner-only circular ledger.
+-  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
 
 With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
@@ -11309,66 +11330,71 @@ These formulas make the asymmetry between the two branch types explicit:
 
 ---
 
-###### Radial and Tangential Components
+###### Source-Normal Radial and Tangential Diagnostics
 
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
+
+The projections in this subsection are source-normal circular diagnostics. They
+record branch orientation and root geometry, but they are not current Master EOM
+acceleration rows until the same retained branches are recomputed with
+$D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
 **Chord lengths**:
 $$
 r_s = 2R \sin(\delta_s / 2), \quad r_p = 2R \cos(\delta_p / 2)
 $$
 
-**Inward radial components**:
+**Inward radial diagnostic components**:
 
 - **Self** (repulsive -> outward -> negative):
  $$
- A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
+	 A_{s,\text{rad}}^{\mathrm{src}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner** (attractive -> inward -> positive):
  $$
- A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
+	 A_{p,\text{rad}}^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
  $$
 
-**Net inward radial acceleration**:
+**Net inward radial diagnostic**:
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
+A_{\text{rad}}^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
 $$
 
-**Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
+**Tangential diagnostic components**:
 
 - **Self**:
  $$
- T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
+	 T_s^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner**:
  $$
- T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
+	 T_p^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
  $$
 
-**Net tangential acceleration**:
+**Net tangential diagnostic**:
 $$
-T = T_s + T_p \ge 0
+T^{\mathrm{src}} = T_s^{\mathrm{src}} + T_p^{\mathrm{src}}
 $$
 
 ---
 
 ###### Sub-Field-Speed Simplification ($s \le 1$; No Self-Hits)
 
-When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes, so the tangential drive remains strictly positive, consistent with the lemma above:
+When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes to this source-normal diagnostic:
 
 $$
-T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
+T^{\mathrm{src}}(s < 1) = T_p^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
 $$
 
 Using the delay relation $\delta_p = 2s \cos(\delta_p / 2)$:
 
 $$
-T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|} > 0
+T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner contribution relative to bare $1/r^2$, but it never changes its sign. Therefore even at sub-field speeds there is always a **net positive tangential force** (accelerating the binary), which prevents a truly stable, constant-speed circular orbit.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. Under the current Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
 
 ---
 
@@ -11376,9 +11402,9 @@ Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner 
 
 For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
-1. **Centripetal balance**:
+1. **Receiver-normal centripetal balance**:
   $$
-  A_{\text{rad}} = \frac{s^2}{R}
+  A_{\text{rad}}^{\mathrm{rec}} = \frac{s^2}{R}
   $$
 
 2. **Finite-window energy balance**:
@@ -11513,8 +11539,10 @@ $$
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold source-normal wall.**
-   On the principal self branch, the source-normal denominator has the old $|J_s|^{-1}$ singular diagnostic as $s\downarrow 1^+$. The current force/action row must combine that denominator with the receiver-normal numerator on the same root before claiming a radial balance.
+1. **Near-threshold denominator wall.**
+   On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$.
+   The current force/action row must combine that denominator with the
+   receiver-normal numerator on the same root before claiming a radial balance.
 
 2. **Higher-speed multi-branch redistribution.**
    At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full receiver-normal weighted sum over all active branches rather than on the principal branch alone.
@@ -13773,737 +13801,184 @@ The chapter should therefore be read as the canonical definition and proof targe
 
 ### Causal Action Functional
 
-Receiver-normal status. The active branch-strength target for this chapter is
-the receiver-normal branch statistic
+#### Problem Statement and Goal
+
+This chapter gives the action-functional side of the current Master EOM. Its
+job is not to preserve a separate scalar law. Its job is to define which
+retained branch records may be used for action, stability, mass-response, and
+transition-cost calculations after the branch has been rebuilt with
+receiver-normal strength.
+
+The active branch strength is
 $$
-\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}[\gamma]
-\equiv
-\frac{1}{T}
-\int_0^T
-\sum_{t'\in\mathcal{C}_{\gamma}(t)}
-\frac{W_\gamma^{\mathrm{rec}}(t,t')}{r(t,t')^2}\,dt,
-\qquad
-W_\gamma^{\mathrm{rec}}(t,t')
+W_{ij}^{\mathrm{rec}}(t;t_0)
 =
 \left|
-\frac{D_t(t,t')}{D_s(t,t')}
-\right|
-$$
-where $D_s=c_f-\mathbf{v}(t')\cdot\hat{\mathbf r}(t,t')$ is the
-source-normal denominator and $D_t=c_f-\mathbf{v}(t)\cdot\hat{\mathbf r}(t,t')$
-is the receiver-normal numerator. The source-normal, Jacobian-weighted
-two-time formulas below are diagnostic causal-locus statistics only.
-Root-locus, coarea, regularization, and topological counting material remains
-useful, but any statistic or action-counting row that uses only the
-Jacobian-weighted inverse-square kernel must be redriven with
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before it can support force, action,
-mass, or conservation closure.
-
-This chapter develops the action-counting complement to the master-equation treatment of dynamics. Its job is to define a scalar causal-hit statistic that compares delayed worldline structures, labels candidate assembly classes, and supplies one geometric input to later mass, shielding, and medium-response closure. It is not the exact variational action for the Master EOM; action-derived dynamics require the variation residual to vanish under the test stated in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#regularized-nonlocal-action-and-variation) and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian).
-
-The current scope is mixed. Some statements are theorem-backed in the regularized setting, while the larger closure program remains open. The chapter therefore begins with the problem statement and core functional definitions, then separates the controlled theorem spine from benchmarks, implementation notes, and longer-range closure targets.
-
-#### Problem Statement and Goal
-The broad objective is to explain why only certain assemblies are stable and discrete, and to treat observer-level mass as an exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling rather than an externally assigned input. The target in this chapter is narrower: a geometric causal-locus statistic derived from the causal-wake kernel that can be evaluated on periodic orbits, compared across topological classes, and tested against dynamical stability.
-Canonical dynamics are defined in [The Master Equation (Canonical Form)](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form); this chapter provides the complementary action-functional lens.
-
-The level separation is essential:
-
-1. **Ontology:** architrino histories emit causal wakes in absolute time and the Euclidean void.
-2. **Dynamics:** the master equation sums delayed line-of-action hits with receiver-normal branch strength.
-3. **Statistic:** the functional in this chapter removes direction and counts weighted causal intersections.
-4. **Effective/inferential use:** mass response, effective geometry, and branch spectra are later reconstructions that must be checked against the actual delayed dynamics.
-
-The conservation status has three allowed levels. At theorem level, a symmetry-preserving delayed action produces history charges by the branch-chart Noether pullback in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian), with Euler residuals and boundary leakage vanishing on the same retained rows. At quasi-Noether level, the same calculation is accepted only after explicit residual, boundary, wake, and history-channel terms close the finite-window balance under refinement. If neither action-derived nor quasi-Noether structure survives self-hit and state-dependent delay, then energy, momentum, and angular-momentum rows are diagnostic quantities only; they may reject a branch by showing unbounded or refinement-unstable drift, but they may not be advertised as derived conservation laws.
-
-#### Core Functional Definitions
-**Current receiver-normal branch statistic.** On a retained one-period chart,
-the scalar statistic that matches the current Master EOM branch strength is
-the direction-discarded branch sum
-$$
-\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}[\gamma]
-=
-\frac{1}{T}
-\int_0^T
-\sum_{t'\in\mathcal{C}_{\gamma}(t)}
-\frac{W_\gamma^{\mathrm{rec}}(t,t')}{r(t,t')^2}\,dt.
-$$
-This statistic keeps the causal-root support, the inverse-square wake density,
-and the receiver-normal branch strength while discarding the line-of-action
-direction. Its appropriate use is to nominate dynamically preferred worldline
-classes, then test those nominations with the Master EOM flow before
-interpreting them as discrete observer-level particle states.
-
-**Source-normal causal-locus statistic (diagnostic only):**
-$$
-\mathcal{A}_{\text{self}}[\gamma] = \iint_{\gamma \times \gamma}
-\frac{\delta\!\big(\|\mathbf{x}(t)-\mathbf{x}(t')\| - c_f|t-t'|\big)}
-{\|\mathbf{x}(t)-\mathbf{x}(t')\|^2\,J_\gamma(t,t')}\,dt\,dt'
-$$
-This source-normal statistic is not the current branch-strength statistic
-and is not the exact Fokker-type variational action of
-[Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md). It remains useful for causal
-locus topology and coarea checks, but it cannot support
-current force, action, mass, or conservation closure until its branch weights
-are replaced by the receiver-normal factor above.
-
-Geometrically, the statistic is the mass of a weighted causal-locus current. On a regular chart, let
-$$
-\mathsf C_\gamma
-=
-\left[\mathcal{L}_{\text{causal}},\tau_\gamma,w_\gamma\right],
-\qquad
-w_\gamma(t,t')
-=
-\frac{1}{r(t,t')^2J_\gamma(t,t')\|\nabla F_\gamma(t,t')\|}
-$$
-where $\tau_\gamma$ is the chosen orientation on each retained component. The coarea limit below reads
-$$
-\mathcal{A}_{\text{self}}[\gamma]
-=
-\mathbb{M}(\mathsf C_\gamma)
-$$
-up to the declared normalization: it is the weighted length, or current mass, of
-the causal locus under the source-normal diagnostic weight. The current force
-law uses the same causal-root support but requires $W^{\mathrm{rec}}$ before pairing with the line-of-action
-direction field $\hat{\mathbf r}$. Thus the scalar diagnostic detects branch
-support and branch topology, while current vector dynamics require both
-receiver-normal branch strength and the oriented current pairing that the
-statistic has intentionally discarded.
-
-This diagnostic integrates over all nontrivial pairs of points on a single
-worldline and counts only those pairs that are causally connected by a wake
-moving at speed $c_f$. The trivial diagonal $t=t'$ is excluded, either by a
-punctured domain or by a cutoff $|t-t'|\ge\tau_{\min}>0$. The inverse-square
-factor weights nearby self‑hits more strongly than distant ones, while
-$J_\gamma^{-1}$ records the source-normal root-density factor. The missing
-receiver-normal numerator is why the expression is diagnostic rather than
-current branch-strength evidence.
-Convention: this document distinguishes the compact symmetric selector $|t-t'|$ from the lifted delayed selector $\Delta_m=t-t'+mT$. The symmetric form is useful on one-period charts; the lifted delayed form is required when multi-period causal roots are active.
-Here $J_\gamma(t,t')$ denotes the branch Jacobian induced by the causal constraint. In lifted delay coordinates one may use the absolute root Jacobian $J_\gamma=\left|\partial_{t'}\big(\|\mathbf{x}(t)-\mathbf{x}(t')\|-c_f\Delta\big)\right|$; when comparing to the Master Equation, the dimensionless source-normal factor is the corresponding $1-\mathbf{v}\cdot\hat{\mathbf{r}}/c_f$, with constant factors absorbed into the declared normalization. This branch Jacobian is distinct from the coarea factor $\|\nabla F_\gamma\|$ that appears when the two-time integral is reduced to a one-dimensional causal locus.
-
-**Interpretation:**
-1. **Object:** The full worldline $\gamma$ is treated as a single geometric object.
-2. **Constraint:** The delta function enforces the causal-isochron condition, selecting causally connected pairs.
-3. **Measure:** The inverse-square weight emphasizes close self‑hits over distant ones, while the source-normal Jacobian factor records root density. Current received branch strength also requires the receiver-normal numerator.
-
-**Lifted normalized periodic source-normal statistic:**
-$$
-\Delta_m(t,t')=t-t'+mT,
-\qquad
-F_m(t,t')=r(t,t')-c_f\Delta_m(t,t')
-$$
-For a $T$-periodic orbit, finite memory depth $h$, and nontrivial-branch cutoff $\tau_{\min}>0$, use
-$$
-\bar{\mathcal{A}}_{\text{self},\eta,h,\tau_{\min}}[\gamma]
-=
-\frac{1}{T}
-\int_0^T\sum_{m\in\mathbb{Z}}\int_0^T
-\mathbf{1}_{\tau_{\min}\le\Delta_m\le h}
-\frac{\delta_\eta\!\big(F_m(t,t')\big)}
-{r(t,t')^2\,J_m(t,t')}\,dt'\,dt
-$$
-with $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $\delta_\eta$ a mollified delta, and $J_m(t,t')=\left|\partial_{t'}F_m(t,t')\right|$ on a simple delayed branch. This lifted source-normal diagnostic captures multi-period circular roots and avoids the trivial diagonal. A symmetric $|t-t'|$ selector is equivalent only after the diagonal is excluded and the delayed half-domain normalization is corrected; otherwise it misses high-winding branches or double-counts them.
-Dimensional status depends on the chosen time/length units and normalization by $T$, $h$, and $c_f$; use a declared dimensionless rescaling before comparing this statistic to mass or action coefficients.
-
-**Lifted finite-memory bound.** If the lifted statistic is restricted to $\tau_{\min}\le\Delta_m\le h$, the active support satisfies $r\ge r_{\min}>0$, and the simple-branch floor $J_m\ge J_{\min}>0$ holds, then
-$$
-0\le
-\bar{\mathcal{A}}_{\text{self},\eta,h,\tau_{\min}}
-\le
-\frac{(h-\tau_{\min})\|\delta_\eta\|_\infty}
-{r_{\min}^2J_{\min}}
-$$
-The reason is that, for each fixed $t$, the lifted intervals selected by $m$ partition the delay line over the retained memory window:
-$$
-\sum_m\int_0^T
-\mathbf{1}_{\tau_{\min}\le\Delta_m\le h}\,dt'
-=
-h-\tau_{\min}
-$$
-Under transversality, the weak coarea limit becomes
-$$
-\frac{1}{T}\sum_m
-\int_{\mathcal{L}_m}
-\frac{1}{r^2J_m\|\nabla F_m\|}\,d\ell,
-\qquad
-\mathcal{L}_m=\{F_m=0,\ \tau_{\min}\le\Delta_m\le h\}
-$$
-Therefore simulations comparing lifted source-normal action-density values must report $h$, $\tau_{\min}$, the retained $m$ range, $r_{\min}$, $J_{\min}$, the transversality floor, inactive-root gaps, and the separate receiver-normal factor intervals needed to redrive the current statistic.
-
-**Total source-normal action-counting statistic (multi‑assembly, diagnostic only):**
-$$
-\bar{\mathcal{A}}_{\text{total}}[\{\gamma_i\}] =
-\frac{1}{T^2}\left[
-\sum_i \int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r_{ii}(t,t')-c_f|t-t'|\big)}{r_{ii}(t,t')^2\,J_{ii}(t,t')}\,dt\,dt'
-\;+\;
-\frac{1}{2}\sum_{i\ne j}\int_0^T\!\int_0^T
-\frac{\delta_\eta\!\big(r_{ij}(t,t')-c_f|t-t'|\big)}{r_{ij}(t,t')^2\,J_{ij}(t,t')}\,dt\,dt'
-\right]
-$$
-This single-period symmetric form aggregates source-normal self‑terms and cross‑terms between components, with the $\frac{1}{2}\sum_{i\ne j}$ convention ensuring unordered pairs are counted once. Self-terms inherit the same nontrivial-branch exclusion used above. When multi-period branches are active, replace each symmetric selector by the lifted finite-memory form before comparing source-normal diagnostic totals across branch charts. Current closure comparisons must use same-record $W^{\mathrm{rec}}$ intervals.
-
-**Definitions:** $r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|$, $r_{ij}(t,t')=\|\mathbf{x}_i(t)-\mathbf{x}_j(t')\|$, $\Delta t = t-t'$, and $J_{ij}(t,t')=\left|\partial_{t'}\big(r_{ij}(t,t')-c_f|t-t'|\big)\right|$ is the branch Jacobian induced by the delayed causal constraint.
-
-**Kernel comparison and restart target:**
-$$
-\text{Current force branch: } \left[ \frac{W^{\mathrm{rec}}\hat{\mathbf{r}}(t,t')}{r^2}, \mathcal{C}(t) \right]
-\qquad
-\text{Current scalar branch statistic: } \left[ \frac{W^{\mathrm{rec}}}{r^2}, \mathcal{C}(t) \right]
-$$
-The force branch retains direction via $\hat{\mathbf{r}}$, while the scalar
-branch statistic keeps only the magnitude. The source-normal two-time kernel
-above is a diagnostic predecessor; the current restart target must use
-$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained causal-root
-record. It should not be read as the exact Fokker-type action whose variation
-derives the force law.
-
-Causal-set action constructions provide a useful external comparison at this point. Their lesson is that interval counts can be arranged so that a discrete causal-order statistic approximates continuum curvature or action in a suitable large-scale regime. The analogous $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether causal-wake and causal-root statistics, redriven with the receiver-normal branch factor when used as dynamics evidence, admit a coarse-grained operator or action statistic that matches the required GR and QFT recovery targets. That benchmark does not license importing causal-set dynamics; it only sharpens the test for any proposed scalar action-counting functional.
-
-As a scalar, $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$ summarizes the total
-receiver-normal strength of causal self‑hits along a worldline. It is derived
-directly from the current interaction structure, but with the directional
-information removed.
-
-For reference, the current self‑interaction term in the Master EOM uses the
-receiver-normal branch factor:
-$$
-\mathbf{a}_{\text{self}}(t)
-=
-\kappa q^2
-\sum_{t'\in\mathcal{C}_{\gamma}(t)}
-\frac{W_\gamma^{\mathrm{rec}}(t,t')}{r^2(t,t')}
-\hat{\mathbf{r}}(t,t')
-$$
-
-#### Regularized Mathematical Setting (Explicit Regime)
-
-To separate what is already controlled from what remains conjectural, we work in the
-regularized regime $\eta>0$ and state all claims on one period.
-
-Define
-$$
-\phi_\eta(u)\equiv \delta_\eta(u),
-\qquad
-F_\gamma(t,t')\equiv r(t,t')-c_f|t-t'|,
-\qquad
-r(t,t')=\|\mathbf{x}(t)-\mathbf{x}(t')\|
-$$
-
-For a $T$-periodic $C^2$ trajectory $\mathbf{x}(t)$ with no collisions or trivial self-support on the sampled
-domain ($r(t,t')\ge r_{\min}>0$, $|t-t'|\ge\tau_{\min}>0$ on self terms, and $J_\gamma(t,t')\ge J_{\min}>0$ on support of $\phi_\eta$), define
-$$
-\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]
-=\frac{1}{T^2}\int_0^T\!\!\int_0^T
-\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2\,J_\gamma(t,t')}\,dt\,dt'
-$$
-
-This is the single-period symmetric source-normal diagnostic object for proofs and numerics when one period contains the full relevant causal memory. It is therefore a controlled chart, not the most general causal-memory functional and not a current branch-strength row until same-record $W^{\mathrm{rec}}$ bounds are added. When high-winding or multi-period branches are active, replace it by the lifted statistic above with the same lower-bound and Jacobian assumptions. The unregularized $\eta\to0^+$ limit is treated only after bounds are established.
-
-#### Axioms and Admissibility Assumptions
-
-We use the following minimal assumption set for theorem-level statements:
-
-- **(A1) Regularity:** $\mathbf{x}\in C^2(\mathbb{R};\mathbb{R}^3)$ and is $T$-periodic.
-- **(A2) Finite-speed causality:** The causal selector is $F_\gamma(t,t')=0$ with field speed $c_f>0$.
-- **(A3) Collision and trivial-diagonal exclusion on support:** $r(t,t')\ge r_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$, with $|t-t'|\ge\tau_{\min}>0$ on self terms unless a separate core regularization is declared.
-- **(A3b) Source-normal Jacobian nondegeneracy on support:** $J_\gamma(t,t')\ge J_{\min}>0$ whenever $\phi_\eta(F_\gamma(t,t'))\neq0$.
-- **(A4) Uniform transversality (generic branch):** on the retained compact domain, the selected causal set has a floor
-  $$
-  \|\nabla F_\gamma\|\ge\nu>0
-  $$
-  in a neighborhood of the zero level. Pointwise nonvanishing is the geometric condition; the uniform floor is the operative form used in coarea limits and simulations. On the retained compact chart this also gives a local uniform length bound
-  $$
-  \mathcal{H}^1\!\left(F_\gamma^{-1}(s)\cap K\right)\le L_{\max}
-  \qquad (|s|\le s_0)
-  $$
-  for each compact retained chart $K$, after reducing $s_0$ if necessary. This length bound is the measure-theoretic reason the coarea weak limit remains controlled rather than only pointwise transverse.
-- **(A5) Fixed topological class:** Deformations are taken inside one time-domain homotopy or relative-homology class on the retained torus or lifted strip unless a bifurcation condition is crossed. For cut components, endpoints may move along the declared diagonal-collar or memory-window boundary, but they may not cross into a different boundary component or leave the retained chart.
-- **(A6) Isolated system bookkeeping:** When connecting to dynamics, energy/momentum use the same $\eta$ and history window conventions as the master-equation diagnostics.
-
-These assumptions are deliberately local and testable. If any assumption fails, the
-corresponding theorem is not claimed.
-
-For the finite-$\eta$ pathology theorem target, (A3) and (A3b) are the source-normal action-statistic side of the self-energy and caustic quarantine. They bound the scalar causal-hit diagnostic on the retained chart, but they do not by themselves prove the Master EOM, no-runaway behavior, or exact conservation. Those stronger claims require the same branch chart to pass the force residual, receiver-normal branch-strength row, action residual, and energy-momentum residuals stated in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target).
-
-#### Rationale for the Functional
-- **Action-like comparison candidate:** If a motion class is stationary or extremal for the receiver-normal statistic, the result gives a candidate branch label. The source-normal statistic can still compare causal-locus topology, but it does not by itself prove attraction, rest mass, or a variational derivation of the master equation.
-- **Bridge to geometric analysis and knot theory:** Showing that simple periodic motions, such as maximum-curvature self-hit orbits, locally minimize $\mathcal{A}_{\text{self}}$ within a topological class would give a geometric reason to test those orbits as preferred branches.
-- **Simulation-friendly statistic:** Given any numerically computed orbit, one can sample $(t,t')$, test the causal-isochron condition, and estimate the source-normal diagnostic and the receiver-normal branch statistic to compare geometries. This makes the "stable = local minimum" heuristic a testable claim rather than a definition.
-- **Statistical-invariant candidate:** Because the receiver-normal statistic is built from the current Master EOM branch strength and can be estimated from simulated histories, it is a candidate input to invariant-measure or basin-measure studies of attractor selection.
-
-#### Geometric/Topological Framework
-**Causal locus and lifted-strip degree:** For a periodic orbit the compact coordinates $(t,t')\in[0,T]^2$ form a torus before the trivial diagonal is removed. The causal locus
-$$
-\mathcal{L}_{\text{causal}} = \{(t,t')\in T^2 \mid \|\mathbf{x}(t)-\mathbf{x}(t')\| = c_f|t-t'|\}
-$$
-is the set of self-hits. Once the diagonal collar $|t-t'|<\tau_{\min}$ is excluded, the working domain is not the closed torus but a torus with boundary. A regular component that closes on the unpunctured torus carries a winding class $(p,q)\in H_1(T^2,\mathbb{Z})$, but a near-threshold component may instead be an arc with endpoints on the excluded collar. The primary invariant on the retained finite-memory chart is therefore the lifted-strip fiber-intersection number.
-
-On the lifted strip
-$$
-S_{\tau,h}
-=
-\{(t,t'):\tau_{\min}\le \Delta_m(t,t')\le h\},
-\qquad
-\Delta_m=t-t'+mT,
-$$
-let $\mathcal{L}_a$ be a connected component of $F_m^{-1}(0)$ and define
-$$
-\iota_a
-=
-\#_{\mathrm{alg}}\big(\mathcal{L}_a\cap\{t=t_0\}\big)
-$$
-for a generic vertical fiber $\{t=t_0\}$. The algebraic sign is the branch-orientation sign, equivalently the sign convention used for the delayed-root Jacobian on that component. The unsigned sum $\sum_a|\iota_a|$ recovers the per-period self-hit count on the retained strip, while the signed sum recovers the signed degree used by the causal-root ledger. If a component also closes on the unpunctured torus with winding class $(p_a,q_a)$, then $\iota_a=q_a$ after the same orientation convention is fixed. The winding language is therefore valid for closed components, while the fiber-intersection degree is the bridge to the root-ledger entries used in the assembly topological charge.
-
-For components cut by the diagonal collar or finite-memory window, the precise object is a relative class
-$$
-[\mathcal{L}_a]\in H_1(S_{\tau,h},\partial S_{\tau,h};\mathbb{Z})
-$$
-together with its intersection pairing against the vertical fiber. The pairing is invariant while endpoints remain on the declared boundary pieces and do not migrate across the memory-wall convention $\Delta_m=h$ or the nontrivial-branch collar $\Delta_m=\tau_{\min}$. This is the same relative-versus-absolute distinction used by [Assembly Topological Charge](../../../../markdown/aaa/dynamics/assembly-topological-charge.md): closed causal-locus components may carry torus winding data, while cut components feed the signed root degrees through $\iota_a$.
-
-As geometric control parameters change, the locus can undergo reconnection or fold events; these are the bifurcations where families appear or disappear, giving a branch-topology mechanism for discrete self-hit patterns. In the circular benchmark below, sub-$c_f$ motion leaves the retained causal locus empty after the trivial diagonal is removed, while super-$c_f$ motion creates branches whose lifted-strip intersections determine the integer self-hit count per period.
-The self-action integral is the **weighted arc length** of the retained causal locus, including the coarea factor in the weak limit. Equivalently, it is the mass $\mathbb M(\mathsf C_\gamma)$ of the weighted causal-locus current defined above, so topology and metric weight enter together.
-
-**Causal writhe (chirality):**
-$$
-Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}} \text{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}(t,t')\big)\,d\ell
-$$
-where $\mathbf{r}(t,t')=\mathbf{x}(t)-\mathbf{x}(t')$ and $d\ell$ is the induced line measure on the causal locus. This is a candidate signed measure of handedness for the self‑interaction pattern. Nonzero $Wr_c$ is a possible topological handle for chirality/spin closure; it is not yet a proof that spin is fixed by the causal locus alone.
-The symmetric torus chart counts the same unordered self-hit pair twice. A chirality comparison must therefore either restrict the integral to the delayed half-domain $\Delta_m>0$ or divide the symmetric quotient value by two, with the orientation convention stated before comparing handedness between branches.
-The notation $Wr_c$ should not be confused with the full Călugăreanu writhe of a framed spatial curve. It is a Gauss-map-like signed density restricted to the causal-locus support, so it is a **causally weighted partial writhe**: it sees only pairs connected by accepted causal roots. The framed self-linking carrier needed by spin-statistics closure is the full invariant
-$$
-Lk=Wr+Tw
-$$
-on a declared framed spatial bundle. Whether $Wr_c$ equals, bounds, or merely correlates with that framed invariant is an open bridge problem; if the causal locus samples only part of the pair set, $Wr_c$ can undercount the chirality relevant to exchange statistics.
-
-**Topological vs Noether data:** Continuous symmetries (time shifts, rotations) identify Noether-charge targets: energy from time-translation symmetry and total angular momentum from rotational symmetry. In a closed symmetry-preserving delayed action these would become conserved history functionals. The winding class of closed components and the lifted-strip intersection degree supply candidate inputs to the assembly topological charge program. A generation-level claim would require a branch that is both Noether-stationary and topologically locked; dissociation would then require changing the causal-locus sector, i.e., a reconnection or fold transit of the retained causal locus.
-
-**Causal-locus sector as a comparison invariant:** The soliton comparison teaches a useful restraint: a sector label does not by itself select a representative inside that sector. For this chapter the native data are the homology classes of closed causal-locus components together with lifted-strip intersection degrees. Write
-$$
-Q_{\mathrm{causal}}(\gamma)
-=
-\left(
-\{[(\mathcal{L}_{\text{causal}})_a]\}_{a\in C_{\mathrm{closed}}},
-\{\iota_b\}_{b\in C_{\mathrm{strip}}}
-\right)
-$$
-the multiset of closed-component winding classes and retained lifted-strip fiber-intersection degrees, optionally refined by source identity and chirality sign. The comparison rule is:
-$$
-Q_{\mathrm{causal}}(\gamma_0)=Q_{\mathrm{causal}}(\gamma_1)
-$$
-means the two trajectories lie in the same branch-topology sector; it does not imply equal action, equal mass response, or stability. A stability claim additionally needs either a constrained critical-point test for
-$$
-\bar{\mathcal{A}}_{\text{total}}
-$$
-or a return-map spectrum for the actual delayed dynamics.
-This sector label lives on the **time-domain** chart: the torus or lifted strip whose coordinates are $(t,t')$ and whose intersections feed the self-hit and partner-hit ledgers $(N_s,M_p)$ and their signed refinements. Spatial knot, link, writhe, and framed self-linking data live on a different object: the spatial projection of the worldline or worldline bundle in $\Sigma_t$ over a declared period or history window. The two data sets may be correlated on a certified branch, but the chapter does not identify them. In particular, $Q_{\mathrm{causal}}$ is the root-ledger sector label, while framed chirality is a separate spatial-domain calculation.
-
-**Instanton-style path competition:** When two branch-topology sectors are connected only by passing through a transversality failure, the useful comparison object is not a new force law but a minimal regularized barrier in path space. For a one-parameter path of histories
-$$
-\Gamma:[0,1]\to \mathcal{H}_h,
-\qquad
-\Gamma(0)=\gamma_0,
-\qquad
-\Gamma(1)=\gamma_1
-$$
-define the barrier proxy
-$$
-B_{\eta,h}(\gamma_0\to\gamma_1)
-\equiv
-\inf_{\Gamma}
-\max_{s\in[0,1]}
-\bar{\mathcal{A}}_{\text{total},\eta,h}[\Gamma(s)]
-$$
-The infimum is taken over paths whose endpoints lie in the declared sectors and whose intermediate histories obey the same regularization convention. This is an instanton-like comparison only in the variational sense: it measures the least regularized action-counting barrier between sectors. It does not assert tunneling, supersymmetry, or Euclidean field-theory ontology.
-For this expression to be more than formal, take $\mathcal{H}_h$ to be a declared history space such as $C^2([-h,0];\mathbb{R}^{3N})$ with the $C^2$ norm, or a Sobolev closure strong enough to preserve the delayed root map. Under the finite-$\eta$ source-normal bounds above, $\bar{\mathcal{A}}_{\text{total},\eta,h}$ is continuous on an admissible chart. The physical mountain-pass hypothesis is then that different causal-locus sectors are separated by a transversality wall where $J_\gamma$ or $\|\nabla F_\gamma\|$ loses its floor; current force/action use additionally requires bounded receiver-normal numerator rows on the same chart. Across such a caustic wall the unregularized barrier is expected to diverge, while $B_{\eta,h}$ records the regulator-controlled cost of crossing the wall. This is the action-counting version of topological protection, not an additional force law.
-More precisely, the pass is a crossing of a fold stratum such as
-$$
-\Sigma_{ij}
-=
-\{F_{ij}=0,\ \partial_{t'}F_{ij}=0\}
-$$
-or its full coarea-degenerate analogue $\{F=0,\nabla F=0\}$ on the retained chart. The barrier height is therefore the regularized saddle height of $\bar{\mathcal A}$ over the codimension-one branch wall. The same reading connects this chapter to the assembly-gap program: a positive sector gap requires a lower bound on the fold-crossing barrier that survives the declared $\eta\to0^+$ refinement.
-
-**Multi-component topology:** For assemblies, project the spatial trajectories over one period, classify the resulting link, and when hyperbolic, use the volume of the link complement as a comparison measure. Brunnian or highly knotted complements are evidence for strong causal interlocking; higher action density remains a dynamical/statistical claim to be measured with the receiver-normal branch statistic before it can affect closure.
-
-#### Source-Normal Theorem Spine (Provable Diagnostic Core under A1-A5)
-
-The theorems in this section control the source-normal causal-locus diagnostic.
-They remain useful for topology, coarea, and finite-$\eta$ bounds, but they are
-not current Master EOM force/action closure unless the same retained rows also
-report bounded $W^{\mathrm{rec}}$ intervals.
-
-In this section we also assume standard approximate-identity properties:
-$\phi_\eta\ge0$, $\int_{\mathbb{R}}\phi_\eta(s)\,ds=1$, $\|\phi_\eta\|_\infty<\infty$ for fixed $\eta>0$, and $\phi_\eta\to\delta$ weakly as $\eta\to0^+$. Compact support or sufficient decay may be used; the estimates below require boundedness on the sampled domain.
-
-##### Assumptions Checklist (Use Before Citing a Theorem)
-
-| Claim | A1 | A2 | A3 | A3b | A4 | A5 |
-| --- | --- | --- | --- | --- | --- | --- |
-| Theorem 1 (finiteness/nonnegativity) | required | required | required | required | not required | not required |
-| Theorem 2 (coarea limit) | required | required | required | required | required | not required |
-| Corollary 2.1 (integer labels) | required | required | required | not required | required | required |
-| Theorem 3 (bifurcation criterion) | required | required | required | not required | required (except at critical value) | required |
-| Theorem 4 (two-sided bounds) | required | required | required | required | not required | not required |
-
-##### Theorem 1 (Well-defined finite regularized action)
-Under (A1)-(A3b), $\bar{\mathcal{A}}_{\text{self},\eta}[\gamma]$ is finite and nonnegative.
-
-**Proof.** Write
-$$
-\bar{\mathcal{A}}_{\text{self},\eta}
-=
-\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma(t,t'))}{r(t,t')^2 J_\gamma(t,t')}\,dt\,dt'
-$$
-The integrand is nonnegative because $\phi_\eta\ge0$, $r^{-2}>0$, and $J_\gamma^{-1}>0$, so $\bar{\mathcal{A}}_{\text{self},\eta}\ge0$.
-By (A3) and (A3b), on the support of $\phi_\eta(F_\gamma)$ we have $r\ge r_{\min}>0$ and $J_\gamma\ge J_{\min}>0$, hence
-$r^{-2}J_\gamma^{-1}\le r_{\min}^{-2}J_{\min}^{-1}$. Therefore
-$$
-0\le \bar{\mathcal{A}}_{\text{self},\eta}
-\le
-\frac{1}{T^2}\,r_{\min}^{-2}J_{\min}^{-1}\,\|\phi_\eta\|_\infty\,|[0,T]^2|
-=
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}<\infty
-$$
-So the functional is finite and nonnegative.
-
-##### Theorem 2 (Coarea reduction to causal locus)
-Under (A1)-(A4), the $\eta\to0^+$ limit of
-$\bar{\mathcal{A}}_{\text{self},\eta}$ is the weighted 1D measure of the causal locus:
-$$
-\lim_{\eta\to0^+}\bar{\mathcal{A}}_{\text{self},\eta}
-=
-\frac{1}{T^2}
-\int_{\mathcal{L}_{\text{causal}}}
-\frac{1}{r(t,t')^2\,J_\gamma(t,t')\,\|\nabla F_\gamma(t,t')\|}\,d\ell
-$$
-where $\mathcal{L}_{\text{causal}}=\{(t,t')\in T^2: F_\gamma(t,t')=0\}$.
-
-**Proof.** Apply the coarea formula on $[0,T]^2$ with level function $F_\gamma$:
-$$
-\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
-=
-\int_{\mathbb{R}}\phi_\eta(s)\,
-H(s)\,ds
+\frac{D_{t,ij}(t;t_0)}{D_{s,ij}(t;t_0)}
+\right|,
 $$
 with
 $$
-H(s)\equiv
-\int_{F_\gamma^{-1}(s)}
-\frac{1}{r^2\,J_\gamma\,\|\nabla F_\gamma\|}\,d\ell
-$$
-By (A4), $\|\nabla F_\gamma\|\ge\nu>0$ on a tubular neighborhood of the retained zero level, so nearby level sets are regular 1-manifolds and $H(s)$ is continuous near $s=0$. By (A3) and (A3b), both $r^{-2}$ and $J_\gamma^{-1}$ are bounded on the active support, and the diagonal collar prevents accumulation on the excluded trivial branch. Hence $H(s)$ is locally bounded. Since $\phi_\eta$ is an approximate identity, $\int \phi_\eta(s)H(s)\,ds\to H(0)$ as $\eta\to0^+$. Dividing by $T^2$ yields the claimed limit.
-The compact-chart length bound in (A4) is the technical step behind this local boundedness: it prevents nearby regular level sets from acquiring unbounded total length while the zero level itself remains regular.
-
-##### Corollary 2.1 (Discrete branch labels)
-Closed connected components of $\mathcal{L}_{\text{causal}}$ carry winding numbers $(p,q)\in\mathbb{Z}^2$ on the unpunctured torus. Components retained on the lifted strip carry algebraic fiber-intersection degrees $\iota_a$ with generic vertical fibers. These labels are unchanged under smooth deformations that preserve (A4), keep the same diagonal-collar and memory-window convention, and remain inside one homotopy class (A5).
-
-**Proof.** Under (A4), each retained component of the level set $F_\gamma=0$ is a smooth embedded 1-manifold in the chosen chart. If it closes on the unpunctured torus, it defines a homology class in $H_1(T^2,\mathbb{Z})\cong\mathbb{Z}^2$, whose coordinates are the winding numbers $(p,q)$. If the diagonal collar or finite-memory boundary cuts the component, the component need not define a closed torus class, but its algebraic intersection number with a generic vertical fiber is well-defined as long as the component remains transverse to that fiber and endpoints do not cross the declared boundary. Under a smooth deformation preserving regularity, boundary convention, and homotopy class, these data evolve by isotopy, so the winding classes and fiber-intersection degrees are unchanged.
-
-##### Theorem 3 (Bifurcation criterion for quantized branch changes)
-For a smooth one-parameter family $\gamma_\lambda$ (equivalently $F_\lambda$), component count and winding labels can change only at parameter values $\lambda_*$ where transversality fails:
-$$
-F_{\lambda_*}(t,t')=0,\qquad \nabla F_{\lambda_*}(t,t')=0
-$$
-for some $(t,t')\in T^2$.
-
-**Proof.** Fix $\lambda_0$ such that $F_{\lambda_0}^{-1}(0)$ is regular (A4). By the implicit function theorem, near every point of $F_{\lambda_0}^{-1}(0)$ the zero set is a smooth curve varying smoothly with $\lambda$. Compactness of $T^2$ gives a finite cover, so the full causal locus varies by isotopy for $\lambda$ in a neighborhood of $\lambda_0$. Isotopy preserves component count and homology labels. Therefore these quantities are locally constant on regular parameter intervals. Any change between two regular intervals must pass through a non-regular parameter where $\nabla F=0$ at a zero-level point.
-
-##### Theorem 4 (Two-sided bounds useful for validation)
-Under (A1)-(A3b), for any fixed $\eta>0$:
-$$
-0\le
-\bar{\mathcal{A}}_{\text{self},\eta}
-\le
-\frac{\|\phi_\eta\|_\infty}{r_{\min}^2 J_{\min}}
-$$
-If additionally $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then
-$$
-\bar{\mathcal{A}}_{\text{self},\eta}
-\ge
-\frac{1}{r_{\max}^2 J_{\max} T^2}
-\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'
-$$
-
-**Proof.** The upper bound is exactly the estimate used in Theorem 1. For the lower bound, if $r\le r_{\max}$ and $J_\gamma\le J_{\max}$ on support, then $r^{-2}\ge r_{\max}^{-2}$ and $J_\gamma^{-1}\ge J_{\max}^{-1}$ on support, hence
-$$
-\bar{\mathcal{A}}_{\text{self},\eta}
+D_{s,ij}
 =
-\frac{1}{T^2}\int_{[0,T]^2}\frac{\phi_\eta(F_\gamma)}{r^2 J_\gamma}\,dt\,dt'
-\ge
-\frac{1}{r_{\max}^2 J_{\max} T^2}\int_{[0,T]^2}\phi_\eta(F_\gamma)\,dt\,dt'
-$$
-
-**Meaning:** numerical pipelines can assert hard pass/fail envelopes before any
-physical interpretation is attempted.
-
-#### Analytic Benchmarks (Circular Orbit)
-For a circular orbit of radius $R$ and speed $v=\beta c_f$:
-$$
-2R\left|\sin\left(\frac{\omega\Delta}{2}\right)\right| = c_f\Delta,
-\quad \text{with } \omega=\frac{v}{R}
-$$
-Define $\xi=\frac{\omega\Delta}{2}$, giving the root condition:
-$$
-\sin\xi = \frac{\xi}{\beta}
-$$
-
-The nontrivial self-hit threshold is
-$$
-\beta^\star = 1
-$$
-For $\beta \le 1$, the only solution is the trivial coincidence $\xi=0$, so the circular self-action vanishes. For $\beta>1$, each admissible root $\xi_n$ determines a concrete branch datum:
-$$
-\Delta_n = \frac{2\xi_n}{\omega},
+c_f-\mathbf v_j(t_0)\cdot\hat{\mathbf r}_{ij}(t;t_0),
 \qquad
-r_n = c_f\Delta_n = \frac{2R\xi_n}{\beta},
-\qquad
-J_n = 1-\beta\cos\xi_n = 1-\xi_n\cot\xi_n
-$$
-The derivative of the root function is
-$$
-g_\beta'(\xi_n)=\cos\xi_n-\frac{1}{\beta}
+D_{t,ij}
 =
-\cos\xi_n-\frac{\sin\xi_n}{\xi_n}
+c_f-\mathbf v_i(t)\cdot\hat{\mathbf r}_{ij}(t;t_0).
 $$
-which is the additional coarea factor controlling branch weight when the two-time integral is collapsed onto the circular causal locus.
 
-Near threshold, write $\beta=1+\mu$ with $\mu>0$ small. The principal root then satisfies
-$$
-\xi_0 \sim \sqrt{6\mu},
-\qquad
-r_0 \sim 2R\sqrt{6\mu},
-\qquad
-J_0 \sim 2\mu,
-\qquad
-g_\beta'(\xi_0)\sim -2\mu
-$$
-Hence the principal branch contribution to the circular action density scales like
-$$
-\frac{1}{r_0^2\,|J_0|\,|g_\beta'(\xi_0)|}
-\sim
-\frac{1}{96R^2\,\mu^3}
-$$
-Here $J_n$ is the dimensionless source-normal root Jacobian, while $|g_\beta'(\xi_n)|$ is the root-density/coarea factor from reducing the circular causal locus to discrete roots. They are distinct geometric factors, not a double count, and both scale as $\mu$ on the principal near-threshold branch. The denominator arithmetic is $r_0^2|J_0||g_\beta'|\sim(24R^2\mu)(4\mu^2)=96R^2\mu^3$. This is the source-normal action-functional expression of the same circular caustic family seen by the current force law; the current receiver-normal branch row must additionally include the receiver-normal numerator on the same circular root.
+A branch record that contains only $D_s$ is incomplete for current force/action
+use. $D_s$ remains the source-normal transversality denominator for root
+existence, caustic routing, and inactive-gap diagnostics. Force, action, power,
+wake-history charge, mass-response, and conservation rows require $D_t$ on the
+same retained record.
 
-At high speed, all admissible roots lie in $(0,\beta)$, so the branch count grows only linearly with $\beta$. The circular toy therefore gives a controlled benchmark: discrete branch creation, explicit near-threshold asymptotics, and a root-by-root source-normal action density that can be redriven with receiver-normal factors before comparison to numerical force/action scans.
+#### Core Functional Definitions
+
+On a retained chart $\mathfrak B$ with active causal roots
+$t_0\in\mathcal C_{ij}(t)$, the receiver-normal scalar branch statistic is
+$$
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B]
+=
+\frac{1}{T}
+\int_0^T
+\sum_{i,j}
+\sum_{t_0\in\mathcal C_{ij}(t)}
+\frac{W_{ij}^{\mathrm{rec}}(t;t_0)}
+{r_{ij}^2(t;t_0)+\epsilon_c^2}
+\,dt.
+$$
+
+This is a scalar statistic, not the vector Master EOM itself. It keeps the same
+causal roots and receiver-normal strength while discarding the line-of-action
+direction. Its use is limited:
+
+1. compare candidate branch classes,
+2. define transition-cost and barrier targets,
+3. supply scalar rows for later mass or medium-response tests,
+4. hand candidates back to the Master EOM for vector force and conservation
+checks.
+
+The exact vector force/action consumer must use
+$$
+\frac{W_{ij}^{\mathrm{rec}}}{r_{ij}^2}
+\hat{\mathbf r}_{ij}
+$$
+on the same retained branch record. A scalar extremum of
+$\bar{\mathcal A}_{\mathrm{rec}}$ is therefore only a candidate branch label
+until the vector residuals close.
+
+#### Geometric/Topological Framework
+
+The causal root locus is defined by
+$$
+g_{ij}(t,t_0)
+=
+\|\mathbf x_i(t)-\mathbf x_j(t_0)\|-c_f(t-t_0)=0.
+$$
+
+On a simple retained root, $D_s\ne0$ supplies the local inverse-function
+condition. The branch label persists as long as the same retained record keeps:
+
+| Row | Required status |
+| --- | --- |
+| root residual | zero on the retained box |
+| source-normal denominator | bounded away from zero except declared caustic routing |
+| receiver-normal numerator | present on the same retained record |
+| receiver-normal strength | outward-rounded $W^{\mathrm{rec}}$ interval |
+| inactive gaps | positive on the retained complement |
+| finite memory | declared finite horizon |
+| regulator state | declared $\eta$ and $\epsilon_c$ limits or finite values |
+
+Branch labels may change only at declared boundaries: a root enters or leaves
+the memory window, an inactive gap closes, $D_s$ reaches a caustic boundary, a
+collision regulator is invoked, or the retained record fails same-box identity.
+
+#### Causal Writhe and Topological Use
+
+Topological quantities such as causal writhe remain admissible only as branch
+geometry:
+$$
+Wr_c(\mathfrak B)
+=
+\sum_{\alpha,\beta}
+\operatorname{sgn}(\alpha,\beta)\,
+\chi_{\mathrm{causal}}(\alpha,\beta).
+$$
+
+This notation records signed causal-locus crossings or linkages in the retained
+record. It does not supply force strength. Any use of $Wr_c$ in spin,
+chirality, confinement, or horizon-interface arguments must also state the
+branch record on which $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are available.
 
 #### Circular Benchmark as a Branch-Count Theorem
 
-Define
-$$
-g_\beta(\xi)=\sin\xi-\frac{\xi}{\beta}
-$$
-Admissible circular self-hit branches are zeros of $g_\beta$ in $(0,\beta)$.
+The circular branch-count benchmark is topology only. Circular self-hit births,
+Jacobian-null thresholds, and inactive-gap ledgers may classify causal-root
+structure, but they do not imply a circular no-go, force-balance result, action
+minimum, or mass scale.
 
-##### Proposition 5.1 (Discrete Root Count and Branch-Change Criterion)
-Fix a compact admissible interval $I_{\text{branch}}=[a,b]\subset(0,\beta)$ with boundary regularity $g_\beta(a)\neq0$, $g_\beta(b)\neq0$.
+A current circular benchmark must emit:
 
-1. For fixed $\beta>0$, the admissible root set
-   $\{\xi\in I_{\text{branch}}:g_\beta(\xi)=0\}$ is finite.
-2. In a smooth one-parameter scan $\beta=\beta(\lambda)$, the root count in
-   $I_{\text{branch}}$ is locally constant except when
-$$
-g_\beta(\xi)=0,\qquad \partial_\xi g_\beta(\xi)=0
-$$
-at some interior point $\xi\in(a,b)$.
+| Evidence row | Required content |
+| --- | --- |
+| retained roots | partner/self labels and windows |
+| $D_s$ | nonzero denominator floor or declared caustic route |
+| $D_t$ | receiver-normal numerator interval |
+| $W^{\mathrm{rec}}$ | same-record branch strength interval |
+| vector residual | radial and tangential Master EOM residuals |
+| scalar statistic | $\bar{\mathcal A}_{\mathrm{rec}}$ on the same record |
+| negative control | fail-closed result when $D_t$ is absent or mismatched |
 
-**Proof.** For fixed $\beta$, $g_\beta$ is real-analytic on $(0,\beta)$, hence zeros are isolated unless the function is identically zero on an interval. That cannot occur here because $g_\beta$ is not identically zero. A discrete subset of a compact interval is finite, proving (1).
+Until those rows exist, circular material is not evidence for action closure.
 
-For (2), if $\xi_*$ is a simple root ($\partial_\xi g_\beta(\xi_*)\neq0$), the implicit function theorem gives a unique smooth continuation of that root under small parameter changes, so simple roots cannot be created or destroyed locally. Root-count change can therefore occur only when simplicity fails, i.e. when $g_\beta=0$ and $\partial_\xi g_\beta=0$ simultaneously (multiple/tangent root). Boundary-root events are excluded by the boundary-regularity condition.
+#### Branch Barrier and Transition Cost
 
-For the principal circular branch, the bifurcation point occurs at $(\beta,\xi)=(1,0)$ in the limiting sense. Higher branches appear at interior tangencies where both equations hold with $\xi>0$. This is the 1D analog of Theorem 3 and provides an explicit, checkable bifurcation condition for the circular toy model.
-
-At an interior tangency the two equations imply the familiar branch condition $\tan\xi=\xi$ on the eligible signed sheet, together with the corresponding positive-$\beta$ sign constraint inherited from the root equation. This gives a reachable bridge to assembly topological charge: for a layer with winding or return degree $k_a$, the number and sign of circular self-hit births below the layer speed ratio can be computed by counting eligible tangency roots before that speed threshold. Because signed sheets and the absolute-value convention in the circular distance decide which intervals contribute, this chapter treats the resulting parity or lower-bound law
+For a path of retained charts $\mathfrak B_\lambda$, define the candidate
+receiver-normal barrier
 $$
-D_s^{(a)}\equiv f(k_a)\pmod 2
-$$
-as a theorem target rather than as a proved formula. The useful point is narrower and established here: the tangency sequence supplies the concrete input from which such a layerwise self-hit degree constraint must be derived.
-
-#### Dynamical Interpretation
-- Candidate stable periodic orbits should first appear as **critical points** of the receiver-normal statistic $\bar{\mathcal{A}}_{\text{total},\mathrm{rec}}$ constrained within a winding class. Source-normal critical points remain useful diagnostic candidates, but the delay flow need not be a gradient flow of either statistic, so extremality is a branch-selection test, not a proof of asymptotic stability.
-- **Existence vs. stability:** Topology of $\mathcal{L}_{\text{causal}}$ constrains which families can exist by identifying bifurcations where branches reconnect. Linear spectra of the delay equation decide which of those families persist or attract. The causal locus gives the branch skeleton; Lyapunov exponents and return-map spectra test dynamical survival.
-- **Discreteness:** Each winding class gives an integer self-hit count; moving between classes requires a reconnection event. This supplies a candidate mechanism for mass gaps and generation-like families, but the actual mass map still requires shielding, partner terms, and Noether sea response.
-- **Conservation with memory:** In the symmetry-preserving delayed action, time-translation and rotational symmetry imply conserved total energy and total angular momentum as history functionals. In regularized working models, these same quantities become validation diagnostics. Energy includes the history contribution stored in active causal wakes.
-- **Gradient vs. symplectic:** The Master EOM is conservative; critical points of $\bar{\mathcal{A}}_{\mathrm{rec}}$ should be compared with KAM-style persistence islands, not with dissipative sinks. If a separate Noether sea coupling introduces dissipation, minima could become attractors, but absent that extra channel, stability means orbital persistence rather than asymptotic convergence.
-
-#### Emergent Geometry Constraints
-Define the source-normal coarse‑grained hit-density diagnostic
-$$
-\mathcal{I}(t,\mathbf{x})=\sum_j\int_{-\infty}^{t}\!\frac{\delta_\eta\!\big(\|\mathbf{x}-\mathbf{x}_j(t')\|-c_f(t-t')\big)}{\|\mathbf{x}-\mathbf{x}_j(t')\|^2\,J_j(t,\mathbf{x};t')}\,dt'
-$$
-where
-$$
-J_j(t,\mathbf{x};t')
+B_{\mathrm{rec}}(\lambda_0,\lambda_1)
 =
-\left|1-\frac{\mathbf{v}_j(t')\cdot\hat{\mathbf{n}}(t,\mathbf{x};t')}{c_f}\right|,
-\qquad
-\hat{\mathbf{n}}(t,\mathbf{x};t')
-=
-\frac{\mathbf{x}-\mathbf{x}_j(t')}{\|\mathbf{x}-\mathbf{x}_j(t')\|}
+\inf_{\mathfrak B_\lambda}
+\int_{\lambda_0}^{\lambda_1}
+\left[
+\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_\lambda]
+-
+\min_{\lambda'}\bar{\mathcal A}_{\mathrm{rec}}[\mathfrak B_{\lambda'}]
+\right]_+
+d\lambda.
 $$
-This scalar hit density is an effective coarse-grained summary of causal-wake intersections, not a substrate metric, not the received branch-strength law, and not by itself the observer-level effective metric. When a receiver path is specified, the current dynamical statistic must replace this source-normal density by same-record receiver-normal factors. At most, $\mathcal{I}$ supplies one provisional scalar channel feeding the ADM/Cartan effective-metric handoff. A restricted isotropic subcase may be written as
-$$
-g^{\text{eff}}_{\mu\nu}dx^\mu dx^\nu = -N^2(\mathcal{I})\,c_\star^2 dt^2 + \Omega_s^2(\mathcal{I})\,h_{ij}dx^i dx^j
-$$
-with small couplings $N=1+\lambda_t\mathcal{I}$ and $\Omega_s=1+\lambda_s\mathcal{I}$ in the weak-field regime. Here $c_\star$ must be declared: primitive branch charts may set $c_\star=c_f$, while observer-level metric comparisons normally use the dressed asymptotic channel speed. The full geometry program must also include the Noether sea lapse, shift/medium velocity, spatial metric response, stress, and PPN decision variables used by the spacetime chapters. Bianchi identities and weak-equivalence demands constrain the admissible scalar subcase; otherwise the emergent geometry reduces to a scalar-tensor approximation with potentially observable fifth forces. Matching the long-range limit of test-assembly motion to geodesics in $g^{\text{eff}}_{\mu\nu}$ is the consistency check linking microscopic causal hits to macroscopic effective curvature.
-Here, "fifth force" means an additional long-range interaction mediated by the scalar sector encoded in $\mathcal{I}$, on top of the shared effective-metric response. If that scalar coupling is not sufficiently constrained, test assemblies can acquire composition-dependent accelerations, producing weak-equivalence-principle violations and post-Newtonian deviations that are tightly bounded experimentally.
-Numerical check: evolve two assemblies with different internal $\bar{\mathcal{A}}_{\text{total}}$ through the same prescribed $\mathcal{I}(t,\mathbf{x})$ background and verify their centers follow the same geodesic to numerical tolerance.
-Mean-field view: in a dilute limit with many architrinos, the closure target is not an ordinary instantaneous Vlasov equation but a delayed kinetic equation,
-$$
-\partial_t f
-+
-\mathbf{v}\cdot\nabla_{\mathbf{x}}f
-+
-\mathbf{F}_{\mathcal I_{\mathrm{hist}}}(t,\mathbf{x},\mathbf{v})\cdot\nabla_{\mathbf{v}}f
-=0
-$$
-where $\mathcal I_{\mathrm{hist}}$ is built from the past distribution along causal isochrons. That derivation would provide the statistical bridge from causal-wake microdynamics to continuum geometry. The transport coefficients used in [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md#native-continuum-action-closure-target) should be read as moment closures of this same Vlasov-delay system, not as independent continuum parameters.
 
-#### Implementation Notes (Appendix)
-- Use the same $\delta_\eta$ and $\eta$ for force and action estimators.
-- For periodic orbits, normalize by $T^2$ and enforce periodic boundary conditions.
-- For circular‑orbit calibration, compute $\xi_n$ roots numerically, report the source-normal Jacobian factor, and add receiver-normal numerator/factor rows before using the result as current force/action evidence.
-- Handle the $\beta=1$ onset caustic with care; the unregularized circular action is singular there once both Jacobian and coarea factors are retained.
-- Keep $\eta>0$ during variation: $\nabla\delta$ terms appear in $\delta\mathcal{A}$; regularization makes the Euler–Lagrange equations well‑posed. Take $\eta\to0$ only after solving or bounding solutions.
-
-#### Simulation Protocol (Minimal Theorem-Backed Checks)
-
-For each simulated orbit family:
-
-1. Verify (A1)-(A4) numerically (regularity, no-support collisions, transversality).
-2. Compute $\bar{\mathcal{A}}_{\text{self},\eta}$ at multiple $\eta$ and confirm boundedness
-   by Theorem 4.
-3. Extract $\mathcal{L}_{\text{causal}}$, its closed-component winding labels $(p,q)$ where available, and its lifted-strip fiber-intersection degrees $\iota_a$.
-4. Scan one control parameter (e.g., $\beta$ or radius ratio) and confirm labels change
-   only at detected transversality failures.
-5. In the circular benchmark, verify Proposition 5.1 double-root condition at branch
-   transitions.
-
-#### Limitations and Caveats
-- **Rest mass is not just self-action:** $\mathcal{A}_{\text{self}}$ needs careful units; observer-level rest energy also depends on partner interactions, shielding, Noether sea coupling, and the medium-response tensor.
-- **Minima ≠ stability without dynamics:** Stability depends on the full DDE flow; the functional must be windowed/normalized (e.g., one period) to avoid divergences and to compare orbits meaningfully.
-- **Topology needs precision:** Time is monotone; periodic motion yields a spatially closed path but a helical curve in absolute timespace. Be explicit about which projection or linking notion defines the "topological class."
-- **Cohomology language is aspirational:** A cochain complex over the moduli of periodic orbits is not yet constructed; treat “cohomology of causal interaction” as a research direction, not a result.
-
-#### Closure Extension: Spin Bundle and Confinement Energy Law
-
-Two downstream theorem targets can be stated on top of the existing causal-locus spine. They are not used by the theorems above; they mark what would have to be proven before spin and confinement language becomes native rather than comparative.
-
-##### (T5.1) Spinor lift target
-
-Construct a framed configuration bundle for nested shell braid ordered axes and prove that the relevant internal-orientation transport lifts through
-$$
-\widetilde{R}:SU(2)\simeq\mathrm{Spin}(3)\to SO(3)
-$$
-so the internal phase distinguishes 2$\pi$ and 4$\pi$ loops.
-
-##### (T5.2) Open-vs-closed braid energy target
-
-Define an effective color-braid energy law:
-$$
-E_{\mathrm{open}}(L)=\sigma_{\mathrm{eff}}L+E_0+\mathcal{O}(1/L),\qquad \sigma_{\mathrm{eff}}>0
-$$
-$$
-E_{\mathrm{closed}}(L)\to E_{\infty}<\infty\quad (L\to\infty)
-$$
-Combined with causal-locus class constraints, this would give a quantitative separation between confined open sectors and screened singlet sectors after the color-braid and singlet-sector proof is supplied. Until that proof is supplied, the equations are an effective closure target rather than a result of this chapter.
-In the action-counting language above, the same target can be stated as a barrier lower bound: the sector gap is positive only if the fold-crossing proxy $B_{\eta,h}$ between the open and closed branch classes remains bounded below under the declared regulator refinement. If that barrier collapses to zero as $\eta\to0^+$, the causal-locus sector has no action-counting protection even if its symbolic label is different.
-
-##### Integration map
-
-- causal-locus topology and bifurcation class invariants: **this chapter**
-- color-algebra and singlet braid structure: [assemblies/fermions/color-charge-su3.md](../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md)
-- gauge-covariant effective layer and failure criteria: [assemblies/gauge-symmetries.md](../../../../markdown/aaa/assemblies/gauge-symmetries.md)
+This is a transition-cost target, not a proof of stability. A promoted barrier
+must state the retained branch path, the root identity across the path, the
+regulator state, and the same-record receiver-normal branch-strength rows.
 
 #### Reduced Branch-Certificate Targets
 
-The source-normal theorem spine proves that the diagnostic scalar statistic is finite, has a coarea limit, and carries branch labels that remain invariant under the stated deformations. The receiver-normal branch statistic adds the same-record $W^{\mathrm{rec}}$ burden before any current force/action closure claim. The next question is stronger: whether a retained branch chart also behaves like a conservative reduced action system. The following residuals are therefore validation targets, not additional theorems of this chapter.
+A branch certificate that consumes this chapter must report:
 
-**Branch return-map symplectic residual.** The receiver-normal scalar statistic can identify candidate stationary branch classes, while the source-normal statistic can still identify topology candidates. A stationary value of $\bar{\mathcal{A}}$ is not yet a Hamiltonian closure claim. On a retained branch chart $\mathfrak{B}$ with reduced section coordinates $z=(Q^a,\Pi_a)$, let
-$$
-\mathcal{P}_{\mathfrak{B}}:z_n\mapsto z_{n+1}
-$$
-be the one-cycle return map and let
-$$
-M_{\mathfrak{B}}(z)=D\mathcal{P}_{\mathfrak{B}}(z)
-$$
-be its linearized monodromy. If the reduced chart is genuinely inherited from a symmetry-preserving delayed action, then after the retained constraints and section condition are solved there must be a pulled-back symplectic form $\Omega_{\mathfrak{B}}$ for which
-$$
-\mathcal{R}_{\Omega}(\mathfrak{B})
-\equiv
-\sup_{z\in U}
-\left\|
-M_{\mathfrak{B}}(z)^T
-\Omega_{\mathfrak{B}}(z)
-M_{\mathfrak{B}}(z)
--
-\Omega_{\mathfrak{B}}(\mathcal{P}_{\mathfrak{B}}(z))
-\right\|
-$$
-is small on the tested neighborhood $U$ of the branch. The companion phase-volume residual
-$$
-\mathcal{R}_{\mathrm{vol}}(\mathfrak{B})
-\equiv
-\sup_{z\in U}
-\left|
-\det M_{\mathfrak{B}}(z)-1
-\right|
-$$
-is weaker but easier to compute. The closure direction is therefore:
-$$
-\nabla_{\gamma}\bar{\mathcal{A}}=0
-\quad\text{within a winding class}
-\qquad
-\mathcal{R}_{\Omega}(\mathfrak{B})\le\epsilon_{\Omega}
-\qquad
-\lambda_{\mathrm{sec}}>0
-$$
-The first condition marks a candidate branch class, the second tests whether the retained return map has the canonical structure expected of an action-derived conservative reduction, and the third checks local section persistence. A failure of $\mathcal{R}_{\Omega}$ does not falsify the Master EOM; it says that the scalar action-counting extremum has not yet been promoted to a reduced Hamiltonian branch certificate.
+| Certificate row | Required content |
+| --- | --- |
+| branch identity | retained roots, inactive gaps, finite memory |
+| receiver-normal strength | same-box $D_s$, $D_t$, and $W^{\mathrm{rec}}$ |
+| scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
+| vector consistency | Master EOM residual on the same retained record |
+| Noether pullback | energy, momentum, and angular-momentum wake-history rows |
+| negative controls | rejection of missing, mismatched, or source-only strength rows |
 
-This is the same branch-symplectic-promotion certificate used by the effective-Hamiltonian domain gate and by binary return-map packets. Because the underlying law is delayed, $\Omega_{\mathfrak B}$ is not assumed to be the naive instantaneous form. The tested two-form must include the retained memory correction,
-$$
-\Omega_{\mathfrak B}
-=
-\Omega_0+\Omega_{\mathrm{mem}}
-$$
-pulled back to the reduced section after the active causal-root rows and history-window boundary convention have been solved. A branch passes the promotion test only when the one-cycle return replays the memory segment congruently enough that this corrected form, not merely the instantaneous phase volume, is preserved to tolerance.
-
-**Hamilton-Jacobi branch phase target.** If a retained branch chart passes the action-derived return-map tests, one can ask for a Hamilton-Jacobi description of the same reduced motion. This is only a comparison target until the delayed action residual closes. Let $H_{\mathfrak{B}}(Q,\Pi,t)$ be the reduced Hamiltonian on the certified chart. A branch principal function $W_{\mathfrak{B}}(Q,t)$ should satisfy
-$$
-\mathcal{R}_{\mathrm{HJ}}(Q,t)
-\equiv
-\partial_t W_{\mathfrak{B}}(Q,t)
-+
-H_{\mathfrak{B}}\!\left(Q,\partial_Q W_{\mathfrak{B}}(Q,t),t\right)
-$$
-with $\mathcal{R}_{\mathrm{HJ}}\to0$ on the retained window. The associated momentum reconstruction is
-$$
-\Pi_a=\partial_{Q^a}W_{\mathfrak{B}}
-$$
-and the first-order branch motion is
-$$
-\dot Q^a
-=
-\left.
-\frac{\partial H_{\mathfrak{B}}}{\partial \Pi_a}
-\right|_{\Pi=\partial_Q W_{\mathfrak{B}}}
-$$
-For a time-independent reduced chart, the separated form
-$$
-W_{\mathfrak{B}}(Q,t)=W_{\mathfrak{B}}^{0}(Q)-E_{\mathfrak{B}}t
-$$
-turns the energy label $E_{\mathfrak{B}}$ into a branch-family parameter. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this would not replace the causal-root ledger; it would be a compact phase-function certificate that the retained ledger, wake-history charge, and reduced canonical coordinates are mutually consistent.
+The branch certificate is not promoted if any of those rows are supplied by
+different root boxes, different regulator states, or different history records.
 
 #### Summary and Status
 
-- The active scalar target is the receiver-normal branch statistic $\bar{\mathcal{A}}_{\text{self},\mathrm{rec}}$; Jacobian-weighted inverse-square formulas remain source-normal diagnostics for topology and coarea, not current force/action closure evidence.
-- The causal locus $\mathcal{L}_{\text{causal}}\subset T^2$ supplies discrete branch labels such as winding class, writhe candidate, and link type; those labels segment orbit families but do not by themselves prove stability or mass.
-- The circular-orbit benchmark gives an analytic threshold at $\beta=1$, explicit branchwise source-normal Jacobians, receiver-normal restart obligations, and controlled near-threshold asymptotics, anchoring numerical calibrations.
-- Under explicit assumptions (A1-A5), the source-normal theorem spine establishes finiteness, coarea reduction, topological invariance away from critical points, and a bifurcation condition for branch changes.
-- The emergent-metric ansatz from coarse-grained hit density $\mathcal{I}$ remains conjectural until weak-field, equivalence, and PPN constraints are met.
-- Overall, the causal-locus action-counting route has theorem-level source-normal diagnostics in the regularized regime; receiver-normal force/action promotion, mass mapping, asymptotic stability, branch Hamiltonian certification, and emergent metric closure remain open.
+The current action-functional lane is a receiver-normal rebuild target. It keeps
+causal-root topology, branch labels, caustic routing, and scalar comparison
+targets, but action evidence requires complete receiver-normal branch records.
+The next useful mathematical artifact is one retained branch packet
+that binds root topology, $D_s$, $D_t$, $W^{\mathrm{rec}}$, vector residuals,
+scalar statistic, Noether pullback, and fail-closed negative controls on the
+same record.
 
 ### Effective Lagrangian
 
@@ -14514,6 +13989,11 @@ force law carries $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained
 roots as the Master EOM. Source-normal denominators remain transversality
 diagnostics until paired with the receiver-normal numerator and checked by the
 stated residuals.
+
+Variational proof work restarts from this current-law target. No prior action
+stationarity, energy balance, or Noether wake-history verdict is inherited
+unless the same derivation reproduces the receiver-normal branch law on the
+retained record.
 
 This chapter formalizes the conditional variational scaffold used by $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to connect the exact, path-history-dependent microdynamics of discrete architrinos to coarse-grained effective descriptions of macroscopic assembly behavior in the Noether sea.
 
@@ -15446,6 +14926,10 @@ action, or finite-certificate row is closure evidence only after it is rebuilt
 under the receiver-normal Master EOM branch factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
+
+The breather proof process therefore starts over from the current-law branch
+table. The architecture can be reused; no previous force margin, return verdict,
+finite certificate, or action conclusion is inherited.
 
 This chapter sits between the canonical delayed law in [master-equation.md](../../../../markdown/aaa/dynamics/master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
@@ -21439,11 +20923,11 @@ The proof is written one local fold block at a time.
 >    $$
 >    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
->    Therefore the singular factor
+>    Therefore the source-normal diagnostic factor
 >    $$
 >    |J_{ij}|^{-1}
 >    $$
->    in the force kernel is exactly cancelled by the
+>    in the fold-coordinate measure is exactly cancelled by the
 >    $$
 >    |J_{ij}|
 >    $$
@@ -25134,6 +24618,11 @@ certificate is closure evidence only after it is redriven with the
 receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same
 retained branch record.
 
+The proof process restarts at the receiver-normal branch table. Earlier margins,
+constants, candidate cycles, and finite certificates are not inherited as proof
+steps; at most, their root-topology and history-space structure become input
+obligations that must be rebound to the same current-law record.
+
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
 The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.
@@ -25546,7 +25035,7 @@ At $t=0$ with $x_0=1$, this compact shell also sets the partner term exactly to 
 
 ##### Held-Release Restart Target
 
-A held source remains a lawful way to specify pre-release history, but the old
+A held source remains a lawful way to specify pre-release history, but the
 held-release solution is purged as a solution artifact because it used the
 superseded branch law. Let a right-hand Positrino and left-hand Electrino
 be held at
@@ -25577,10 +25066,10 @@ x(0)=x_0,\qquad
 \dot x(0)=0.
 $$
 
-The old energy identity, field-speed criterion, handoff angle, numerical
-fixture, and source-only continuity claim do not survive as evidence. They
-must be recomputed from this receiver-normal ODE and then matched to the
-moving-partner delayed chart with the same-record $D_t/D_s$ factor.
+The energy identity, field-speed criterion, handoff angle, numerical fixture,
+and source-normal continuity claim must be recomputed from this receiver-normal
+ODE and then matched to the moving-partner delayed chart with the same-record
+$D_t/D_s$ factor before they can act as evidence.
 
 ##### Partner-Hit and Self-Hit Root Equations
 
@@ -35820,6 +35309,10 @@ transversality structure, but every force, action, returned-history, and margin
 row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
 promotion.
 
+This is a restart, not a repair pass. Earlier ansatz constants, collocation
+successes, candidate cycles, or finite-certificate verdicts are not inherited as
+proof steps unless they are regenerated on the current receiver-normal record.
+
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](../../../../markdown/aaa/proof-programs/collinear-breather.md). Its purpose is to generate certificate data for that proof program. A closed-form or closed-by-quadrature orbit is useful only insofar as it produces a candidate cycle, a branch chart, a mesh, and return residuals with strict audit slack.
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
@@ -36150,7 +35643,7 @@ $$
 -\frac{g}{4x^2}
 \left(1-\frac{\dot x^2}{c_f^2}\right).
 $$
-A held-release preparation may still supply initial data, but the old solved
+A held-release preparation may still supply initial data, but the solved
 fixture is purged. The held segment must now be solved from the
 receiver-normal equation in
 [Collinear Breather](../../../../markdown/aaa/proof-programs/collinear-breather.md#held-release-restart-target)
@@ -38899,18 +38392,10 @@ $$
 +
 \mathbf{u}_i(t).
 $$
-On a retained chart away from grazing, the old source-normal estimate kept only
-$$
-|J_a|^{-1}
-=
-\left|
-1-
-\frac{\mathbf{v}_{\text{trans}}\cdot\hat{\mathbf r}_a}{c_f}
--
-\frac{\mathbf{u}_j(t_0)\cdot\hat{\mathbf r}_a}{c_f}
-\right|^{-1}
-$$
-as a source-side diagnostic. The current Master EOM is stricter: the same translation also enters $D_{t,a}$, so a source-only longitudinal amplification such as $1/(1-\beta_f^2)$ is not by itself an oblation proof. The retained-row target is the receiver-normal anisotropy
+On a retained chart away from grazing, translation enters both $D_{s,a}$ and
+$D_{t,a}$. A longitudinal denominator effect is therefore not an oblation proof
+unless the same retained row also carries the receiver-normal numerator. The
+retained-row target is the receiver-normal anisotropy
 $$
 \Delta_w
 \equiv
@@ -59840,7 +59325,7 @@ $$
 
 where $\Xi_e$ denotes electron-assembly internal state variables. In Master Equation language, wake shock onset corresponds to entry into the emission-capable region of state space, with transition kernel weight from non-emissive to emissive microstates increased above baseline.
 
-In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. In the corrected master-law picture, the received interaction is shaped not only by inverse-square proximity but also by receiver-normal bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the projectile electron assembly enters the dense wake potential of a target with charge decorations $Z$. Path curvature and deceleration generate a wake shock in the electron assembly by increasing $\mathcal{R}_{\Theta}^{\mathrm{br}}$. Under the current Master EOM, the received interaction is shaped not only by inverse-square proximity but also by receiver-normal bunching of delayed causal flux along the active branches during the deflection. When the local shock intensity exceeds the inherited planar-mode stability threshold, shed energy nucleates a photon mode modeled as a coaxial contra-rotating pro/anti planar pair in the Noether sea. This reframes "acceleration drives radiation" as an assembly transition channel rather than a purely classical wave statement.
 
 A minimal radiation-inherited event ledger starts with the projectile source depletion. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$,
 
@@ -66622,7 +66107,7 @@ The morphology term requires the candidate track to match the predicted energy-d
 
 **Definition.** Non-linear elastic or dispersive response of the Noether sea itself under low-acceleration or low-density-gradient conditions. In regions where the effective gravitational acceleration falls below a characteristic scale $a_0^{\mathrm{MOND}}$, the Noether sea's compliance (inverse stiffness) may change, altering the effective force law. This local notation keeps the galactic acceleration threshold distinct from the rest-attractor length scale $a_0$ used in Lorentz-kinematics chapters.
 
-**Mechanism sketch.** In the nested shell case, each Noether braid in the Noether sea has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the Noether sea deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but derived from assembly elasticity rather than postulated. In the corrected master-law picture, part of this response can be understood as a constitutive shift in how the Noether sea organizes receiver-normal delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local receiver crossing state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
+**Mechanism sketch.** In the nested shell case, each Noether braid in the Noether sea has a minimum restoring-force threshold set by the outer-binary binding. Below the corresponding acceleration scale, the Noether sea deforms more easily per unit stress—the effective $G$ increases with decreasing acceleration. This is structurally analogous to MOND ($\mu(a/a_0^{\mathrm{MOND}})\,a = a_N$) but derived from assembly elasticity rather than postulated. Under the current Master EOM, part of this response can be understood as a constitutive shift in how the Noether sea organizes receiver-normal delayed flux under low-strain conditions: the same source population can produce a different received effective pull when branch geometry and local receiver crossing state change. The transition function $\mu$ would then emerge from the outer-binary response curve as a function of the local strain rate $\nabla\Phi / a_0^{\mathrm{MOND}}$.
 
 **Characteristic scale.** The MOND acceleration $a_0^{\mathrm{MOND}} \approx 1.2 \times 10^{-10}\;\mathrm{m\,s}^{-2}$ is suggestively close to horizon-scale accelerations such as $c_0 H_0/(2\pi)$ and, in some entropic-gravity comparisons, $c_0 H_0/6$. In $\mathbb{A}\mathbb{A}\mathbb{A}$, those coefficients are comparison pressure rather than imported doctrine. The native question is whether the same Noether sea response law that supplies the effective Hubble history also yields the galaxy-scale transition acceleration.
 

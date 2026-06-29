@@ -63,6 +63,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Require every promoted result to state what it proves, what it assumes, and what remains open.
 - [ ] Convert repeated discussion loops into a theorem target, simulation target, or explicit rejection note.
 - [ ] Treat canon edits as policy changes and discuss them before broad corpus updates.
+- [ ] When a physics-law change is marked mandatory clean-slate, default to proof-process restart and purge compatibility shims, historical traces, and generated artifacts unless the operator explicitly grants a diagnostic exception.
 - [ ] Keep the active priority surface small enough that completed tasks can be removed and renumbered immediately.
 - [ ] After updating priority buckets, mark each new packet as promoted, deferred, or priority-only with its corpus target and blocker.
 - [ ] After large theory pushes, run one consolidation pass to eliminate duplicated labels and stale TODOs.
