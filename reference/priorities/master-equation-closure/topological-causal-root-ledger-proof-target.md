@@ -807,6 +807,30 @@ $$
 $$
 can be asserted.
 
+The replay boundary is now machine-readable as `sameRecordReplayBoundary` with
+schema `t3-same-record-replay-boundary.v1`. It is not accepted replay evidence:
+`acceptedReplayRowCount` remains zero, and the first required producer object is
+`t3-retained-causal-root-replay.v1`. For every active chronology row, the object
+records the chronology row id, step index, row family, evidence magnitude or
+signed balance, candidate orientation when the run summary provides one, and
+the missing retained replay fields: same-record replay id, retained source
+record id, retained causal-root row id, row-family identity, boundary
+orientation, winding label, Jacobian floor or declared stratum, endpoint route,
+memory-window route, collision/core route, and omitted-row route. Family-specific
+fields add seam pairing or winding owner rows, neighbor birth/death routes,
+event-row orientation, unresolved root ledger ids, or same-record cancellation
+maps as needed.
+
+Two replay negative controls keep the chronology priority-only. A cross-step or
+aggregate-only replay attempt fails as
+`cross_step_or_aggregate_only_replay_without_chronology_row_identity`; each
+chronology row must replay against its own retained source record before any
+aggregation can be used. A zero signed-balance replay attempt fails as
+`zero_signed_balance_replay_without_same_record_pairing_map`; algebraic
+cancellation in the run summary is not a same-record absent, paired, or routed
+map. The exact blocker therefore moves from "there is no chronology" to "there
+is no retained causal-root replay producer carrying those same-record fields."
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It

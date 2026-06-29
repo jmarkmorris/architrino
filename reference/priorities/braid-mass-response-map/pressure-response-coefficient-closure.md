@@ -831,6 +831,23 @@ diagnostics, source-normal force residues, shell-braid rows, fixtures, toy rows,
 empirical rows without branch source, and cross-row bundles as pressure or mass
 evidence.
 
+The sharper provider-side falsifier is now machine-readable. The expected
+provider source producer is an accepted non-fixture same-domain branch-provider
+report carrying `provider_source_status`, `source_ref`,
+`branch_certificate_ref`, `same_domain_record_ref`,
+`active_root_or_live_ledger_identity`, and
+`branch_local_projection_or_normalization_identity` on one provider row. The
+nearest candidate instead still points to the fixture-backed
+`pressure-row-a0-branch-source-frontier-partial`; its missing provider fields
+are exactly `provider_source_status` at the observed value
+`tier0_continuation_ready_not_accepted_history`, and
+`branch_certificate_ref` at the observed value `null`. The expected
+pressure-row producer is then an accepted retained pressure-row report emitted
+by that same provider source, carrying all 33 source fields. The blocked field
+families are retained branch identity, exposure quotient, pressure record,
+exposure source record, pressure-response record, receiver-normal weight record,
+Noether sea response record, reversible-domain record, and null-sector record.
+
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
 checks the same `branch_intake` boundary before replay consumption. It reports

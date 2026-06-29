@@ -1011,6 +1011,87 @@ function sourceFieldPointer(candidatePath, fieldPath) {
   return candidatePath ? `${candidatePath}#${fieldPath}` : fieldPath;
 }
 
+function retainedPressureSourceFieldFamily(fieldPath) {
+  if (["branch_id", "accepted_history_segment_id", "source_path"].includes(fieldPath)) {
+    return "retained_branch_identity";
+  }
+  if (fieldPath === "quotient_chart_id") {
+    return "exposure_quotient";
+  }
+  if (fieldPath.startsWith("pressure_record.")) {
+    return "pressure_record";
+  }
+  if (fieldPath.startsWith("exposure_source_record.")) {
+    return "exposure_source_record";
+  }
+  if (fieldPath.startsWith("pressure_response_record.")) {
+    return "pressure_response_record";
+  }
+  if (fieldPath.startsWith("receiver_normal_weight_record.")) {
+    return "receiver_normal_weight_record";
+  }
+  if (fieldPath.startsWith("noether_sea_response_record.")) {
+    return "noether_sea_response_record";
+  }
+  if (fieldPath.startsWith("reversible_domain.")) {
+    return "reversible_domain";
+  }
+  if (fieldPath.startsWith("null_sector_record.")) {
+    return "null_sector_record";
+  }
+  return "unclassified";
+}
+
+function retainedPressureSourceFieldFamilies(fieldReadouts) {
+  const families = new Map();
+  for (const fieldPath of RETAINED_PRESSURE_ROW_SOURCE_FIELDS) {
+    const field_family = retainedPressureSourceFieldFamily(fieldPath);
+    const summary = families.get(field_family) ?? {
+      field_family,
+      required_count: 0,
+      unaccepted_count: 0,
+      required_fields: [],
+      unaccepted_fields: [],
+    };
+    const readout = fieldReadouts.find((field) => field.field_path === fieldPath);
+    summary.required_count += 1;
+    summary.required_fields.push(fieldPath);
+    if (readout?.accepted_non_fixture_source_provenance !== true) {
+      summary.unaccepted_count += 1;
+      summary.unaccepted_fields.push(fieldPath);
+    }
+    families.set(field_family, summary);
+  }
+  return [...families.values()].sort((left, right) =>
+    left.field_family.localeCompare(right.field_family)
+  );
+}
+
+function missingProviderSourceFields(providerSourcePathProbe) {
+  if (!providerSourcePathProbe) {
+    return [];
+  }
+  return [
+    {
+      field: "provider_source_status",
+      path: providerSourcePathProbe.provider_source_status_path,
+      required_value: "accepted_non_fixture_source",
+      observed_value: providerSourcePathProbe.provider_source_status_observed_value ?? null,
+      pass: providerSourcePathProbe.provider_source_status_pass === true,
+      first_failure: providerSourcePathProbe.provider_source_status_first_failure ?? null,
+    },
+    {
+      field: "branch_certificate_ref",
+      path: providerSourcePathProbe.branch_certificate_ref_path,
+      required_value:
+        "nonempty branch_certificate_ref on the same accepted non-fixture provider record",
+      observed_value: providerSourcePathProbe.branch_certificate_ref_observed_value ?? null,
+      pass: providerSourcePathProbe.branch_certificate_ref_pass === true,
+      first_failure: providerSourcePathProbe.branch_certificate_ref_first_failure ?? null,
+    },
+  ].filter((field) => field.pass !== true);
+}
+
 function buildAcceptedSourceObjectBoundary(
   nearestCandidate,
   provenanceDepthReadout,
@@ -1026,6 +1107,7 @@ function buildAcceptedSourceObjectBoundary(
     provenanceDepthReadout?.field_readouts?.filter(
       (field) => field.accepted_non_fixture_source_provenance !== true
     ) ?? [];
+  const fieldReadouts = provenanceDepthReadout?.field_readouts ?? [];
 
   return {
     schema: "pressure_row_accepted_source_object_boundary/v0",
@@ -1040,9 +1122,17 @@ function buildAcceptedSourceObjectBoundary(
       provider_candidate_path: branchCertificateRefAudit?.provider_candidate_path ?? null,
       required_provider_source_status: "accepted_non_fixture_source",
       required_provider_fields: PRESSURE_PROVIDER_OBJECT_REQUIRED_FIELDS,
+      expected_provider_source_producer:
+        "accepted non-fixture same-domain branch-provider report carrying provider_source_status, source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity on one provider row",
       nearest_provider_candidate_id: nearestProviderPartial?.id ?? null,
       nearest_provider_candidate_missing_or_rejected_fields:
         nearestProviderPartial?.missing_or_rejected_provider_fields ?? [],
+      nearest_provider_candidate_source_ref:
+        providerSourcePathProbe?.nearest_partial_source_ref ?? null,
+      nearest_provider_candidate_source_ref_status:
+        providerSourcePathProbe?.nearest_partial_source_ref_status ?? null,
+      exact_missing_provider_source_fields:
+        missingProviderSourceFields(providerSourcePathProbe),
       exact_missing_provider_source_paths:
         providerSourcePathProbe?.exact_missing_provider_source_paths ?? [],
       provider_source_status_path: providerSourcePathProbe?.provider_source_status_path ?? null,
@@ -1057,6 +1147,8 @@ function buildAcceptedSourceObjectBoundary(
         branchCertificateRefAudit?.accepted_branch_certificate_ref_found === true,
     },
     pressure_row_boundary: {
+      expected_pressure_row_source_producer:
+        "accepted retained pressure-row report emitted by the same provider source, carrying all 33 retained pressure, exposure, receiver-normal, Noether sea, reversible-domain, and null-sector source fields on one row",
       nearest_pressure_row_candidate_path: nearestCandidate?.path ?? null,
       nearest_pressure_row_same_row_binding:
         nearestCandidate?.pressure_row_report?.same_row_binding ?? null,
@@ -1064,6 +1156,7 @@ function buildAcceptedSourceObjectBoundary(
         nearestCandidate?.pressure_row_report?.failed_field_count ?? null,
       required_source_field_count: RETAINED_PRESSURE_ROW_SOURCE_FIELDS.length,
       unaccepted_source_field_count: unacceptedPressureFields.length,
+      source_field_families: retainedPressureSourceFieldFamilies(fieldReadouts),
       exact_unaccepted_pressure_row_source_paths: unacceptedPressureFields.map((field) =>
         sourceFieldPointer(nearestCandidate?.path ?? null, field.field_path)
       ),
@@ -1435,8 +1528,43 @@ export function scoutValidationErrors(report) {
     if (!Array.isArray(acceptedSourceObjectBoundary.provider_boundary?.required_provider_fields)) {
       errors.push("accepted_source_object_boundary must list provider fields");
     }
+    if (
+      typeof acceptedSourceObjectBoundary.provider_boundary?.expected_provider_source_producer !==
+      "string"
+    ) {
+      errors.push("accepted_source_object_boundary must name expected provider source producer");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.exact_missing_provider_source_fields
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list exact missing provider fields");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.exact_missing_provider_source_paths
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list exact missing provider paths");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      acceptedSourceObjectBoundary.provider_boundary.exact_missing_provider_source_fields.length === 0
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name missing provider fields");
+    }
+    if (
+      typeof acceptedSourceObjectBoundary.pressure_row_boundary
+        ?.expected_pressure_row_source_producer !== "string"
+    ) {
+      errors.push("accepted_source_object_boundary must name expected pressure-row source producer");
+    }
     if (!Array.isArray(acceptedSourceObjectBoundary.pressure_row_boundary?.required_source_fields)) {
       errors.push("accepted_source_object_boundary must list pressure-row source fields");
+    }
+    if (!Array.isArray(acceptedSourceObjectBoundary.pressure_row_boundary?.source_field_families)) {
+      errors.push("accepted_source_object_boundary must group pressure-row source field families");
     }
     if (
       acceptedSourceObjectBoundary.required_same_record_binding

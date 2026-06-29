@@ -2,6 +2,21 @@ export const T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA = "t3-oriented-boundary-proto
 
 const AXES = ["x", "y", "z"];
 const BOUNDARY_EVENT_PATTERN = /boundary|wrap|periodic|seam|image/i;
+const SAME_RECORD_REPLAY_BOUNDARY_SCHEMA = "t3-same-record-replay-boundary.v1";
+const SAME_RECORD_REPLAY_PRODUCER_TARGET = "t3-retained-causal-root-replay.v1";
+const COMMON_REPLAY_FIELDS_REQUIRED = [
+  "sameRecordReplayId",
+  "retainedSourceRecordId",
+  "retainedCausalRootRowId",
+  "rowFamilyIdentity",
+  "boundaryOrientation",
+  "windingLabel",
+  "jacobianFloorOrDeclaredStratum",
+  "endpointRoute",
+  "memoryWindowRoute",
+  "collisionCoreRoute",
+  "omittedRowRoute",
+];
 
 export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
   if (!runSummary || runSummary.schema !== "t3-run-summary.v1") {
@@ -21,12 +36,14 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     runSummary,
     negativeControlMatrix,
   });
+  const sameRecordReplayBoundary = createSameRecordReplayBoundary(retainedBoundaryChronology);
   const boundarySignalCounts = {
     seamOwnershipRowCount: seamOwnershipRows.filter((row) => row.status !== "absent").length,
     neighborPairTransitionCount: neighborPairBoundaryRows.filter((row) => row.signedNeighborPairDelta !== 0).length,
     eventBoundaryLikeCount: nonnegativeInteger(runSummary.eventSummary?.boundaryLikeEventCount ?? 0),
     unresolvedBoundaryTargetRowCount: retainedBoundaryTarget.summary.unresolvedRowCount,
     chronologyRowCount: retainedBoundaryChronology.summary.rowCount,
+    replayBoundaryRowCount: sameRecordReplayBoundary.summary.blockedReplayRowCount,
   };
 
   return {
@@ -59,6 +76,7 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     retainedBoundaryTarget,
     negativeControlMatrix,
     retainedBoundaryChronology,
+    sameRecordReplayBoundary,
     boundarySignalCounts,
     discipline: {
       imageDeltas:
@@ -86,6 +104,7 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
       updatesLiveValidationGate: false,
       boundaryMatrixStatus: retainedBoundaryTarget.summary.matrixStatus,
       chronologyStatus: retainedBoundaryChronology.summary.status,
+      sameRecordReplayStatus: sameRecordReplayBoundary.summary.replayStatus,
       firstFailureStatus:
         retainedBoundaryTarget.summary.firstUnresolvedRowId == null
           ? "no_summary_boundary_signal"
@@ -94,9 +113,170 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
         retainedBoundaryTarget.rows.find(
           (row) => row.rowId === retainedBoundaryTarget.summary.firstUnresolvedRowId
         )?.requiredRetainedEvidence ?? null,
+      firstReplayBoundaryStatus:
+        sameRecordReplayBoundary.summary.firstReplayBoundaryRowId == null
+          ? "no_same_record_replay_candidate"
+          : `same_record_replay_boundary:${sameRecordReplayBoundary.summary.firstReplayBoundaryRowId}`,
+      firstProducerObjectRequired: sameRecordReplayBoundary.summary.firstProducerObjectRequired,
     },
     metadata: clonePlainObject(options.metadata ?? {}),
   };
+}
+
+function createSameRecordReplayBoundary(retainedBoundaryChronology) {
+  const replayCandidateRows = retainedBoundaryChronology.rows.filter(
+    (row) => row.closureStatus !== "absent"
+  );
+  const rows = replayCandidateRows.map(sameRecordReplayBoundaryRow);
+  const negativeControls = createReplayNegativeControls(retainedBoundaryChronology);
+  return {
+    schema: SAME_RECORD_REPLAY_BOUNDARY_SCHEMA,
+    rowDomain:
+      "retained chronology rows that still require same-record causal-root replay",
+    producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    rows,
+    negativeControls,
+    missingFieldCatalog: {
+      common: COMMON_REPLAY_FIELDS_REQUIRED,
+      seam: [
+        "seamPairingMapOrWindingOwnerRowId",
+        "imageDeltaAxis",
+        "signedImageDeltaWitness",
+      ],
+      neighbor: [
+        "neighborPairDeltaRole",
+        "causalRootMultiplicityDelta",
+        "sameRecordPairContactBirthDeathRoute",
+      ],
+      detectorEvent: [
+        "retainedEventRowId",
+        "eventRowOrientation",
+        "declaredBoundaryStratum",
+      ],
+      unresolvedRoot: [
+        "rootLedgerRecordId",
+        "causticRoute",
+        "sourcePathSegmentId",
+      ],
+      signedBalance: [
+        "sameRecordCancellationPairingMap",
+        "absentPairedOrRoutedRowMap",
+      ],
+    },
+    summary: {
+      chronologyRowCount: retainedBoundaryChronology.summary.rowCount,
+      replayCandidateRowCount: replayCandidateRows.length,
+      acceptedReplayRowCount: 0,
+      blockedReplayRowCount: rows.length,
+      negativeControlCount: negativeControls.length,
+      replayStatus:
+        rows.length > 0
+          ? "fail_closed_missing_same_record_replay"
+          : "no_replay_candidate_rows",
+      firstReplayBoundaryRowId: rows[0]?.rowId ?? null,
+      firstMissingField: rows[0]?.missingFields?.[0] ?? null,
+      firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function sameRecordReplayBoundaryRow(chronologyRow) {
+  return {
+    rowId: `same_record_replay_boundary_${chronologyRow.rowId}`,
+    chronologyRowId: chronologyRow.rowId,
+    stepIndex: chronologyRow.stepIndex,
+    rowFamily: chronologyRow.rowFamily,
+    rowKind: chronologyRow.rowKind,
+    evidenceMagnitude: chronologyRow.evidenceMagnitude,
+    signedBalance: chronologyRow.signedBalance,
+    boundaryOrientation: replayBoundaryOrientation(chronologyRow),
+    chronologyFirstBlocker: chronologyRow.firstBlocker,
+    replayStatus: "blocked_missing_same_record_replay",
+    producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    missingFields: replayMissingFields(chronologyRow),
+    retainedBoundaryTargetRow: chronologyRow.retainedBoundaryTargetRow,
+    detectorRow: chronologyRow.detectorRow,
+    neighborRow: chronologyRow.neighborRow,
+    negativeControlRow: chronologyRow.negativeControlRow,
+  };
+}
+
+function replayMissingFields(chronologyRow) {
+  const fields = [...COMMON_REPLAY_FIELDS_REQUIRED];
+  if (chronologyRow.rowFamily === "seam") {
+    fields.push(
+      "seamPairingMapOrWindingOwnerRowId",
+      "imageDeltaAxis",
+      "signedImageDeltaWitness"
+    );
+  } else if (chronologyRow.rowFamily === "neighbor") {
+    fields.push(
+      "neighborPairDeltaRole",
+      "causalRootMultiplicityDelta",
+      "sameRecordPairContactBirthDeathRoute"
+    );
+  } else if (chronologyRow.rowFamily === "detector-event") {
+    fields.push("retainedEventRowId", "eventRowOrientation", "declaredBoundaryStratum");
+  } else if (chronologyRow.rowFamily === "unresolved-root") {
+    fields.push("rootLedgerRecordId", "causticRoute", "sourcePathSegmentId");
+  } else if (chronologyRow.rowFamily === "signed-balance") {
+    fields.push("sameRecordCancellationPairingMap", "absentPairedOrRoutedRowMap");
+  }
+  return fields;
+}
+
+function replayBoundaryOrientation(chronologyRow) {
+  if (chronologyRow.signedBalance > 0) {
+    return "positive_boundary_orientation_candidate";
+  }
+  if (chronologyRow.signedBalance < 0) {
+    return "negative_boundary_orientation_candidate";
+  }
+  if (chronologyRow.signedBalance === 0) {
+    return "zero_or_cancelled_summary_balance_not_replay_orientation";
+  }
+  return "orientation_not_available_from_run_summary";
+}
+
+function createReplayNegativeControls(retainedBoundaryChronology) {
+  const controls = [];
+  const activeRows = retainedBoundaryChronology.rows.filter((row) => row.closureStatus !== "absent");
+  const activeSteps = new Set(activeRows.map((row) => row.stepIndex));
+  if (activeSteps.size > 1 || activeRows.length > 1) {
+    controls.push({
+      controlId: "cross_step_or_aggregate_only_replay_without_chronology_row_identity",
+      expectedFailure:
+        "aggregate or cross-step boundary evidence cannot replay a retained causal-root row without preserving the chronology row identity",
+      replayStatus: "blocked_missing_same_record_replay",
+      producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+      requiredEvidence:
+        "one same-record retained causal-root replay row per chronology row before aggregation",
+      promotionBlocked: true,
+    });
+  }
+  const zeroSignedControlRow = retainedBoundaryChronology.rows.find(
+    (row) =>
+      row.negativeControlRow === true &&
+      row.signedBalance === 0 &&
+      row.evidenceMagnitude > 0
+  );
+  if (zeroSignedControlRow) {
+    controls.push({
+      controlId: "zero_signed_balance_replay_without_same_record_pairing_map",
+      chronologyRowId: zeroSignedControlRow.rowId,
+      stepIndex: zeroSignedControlRow.stepIndex,
+      expectedFailure:
+        "zero signed balance cannot replay a retained boundary cancellation without the same-record pairing or routing map",
+      replayStatus: "blocked_missing_same_record_replay",
+      producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+      requiredEvidence:
+        "same-record cancellation pairing map plus absent, paired, or routed row map",
+      promotionBlocked: true,
+    });
+  }
+  return controls;
 }
 
 function createRetainedBoundaryChronology(input) {

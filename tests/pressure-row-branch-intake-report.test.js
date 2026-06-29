@@ -868,6 +868,40 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.provider_boundary.nearest_provider_candidate_id,
     "pressure-row-a0-branch-source-frontier-partial"
   );
+  assert.match(
+    acceptedSourceBoundary.provider_boundary.expected_provider_source_producer,
+    /accepted non-fixture same-domain branch-provider report/
+  );
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.nearest_provider_candidate_source_ref,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json"
+  );
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.nearest_provider_candidate_source_ref_status,
+    "fixture_source_ref_not_accepted_provenance"
+  );
+  assert.deepEqual(
+    acceptedSourceBoundary.provider_boundary.exact_missing_provider_source_fields,
+    [
+      {
+        field: "provider_source_status",
+        path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+        required_value: "accepted_non_fixture_source",
+        observed_value: "tier0_continuation_ready_not_accepted_history",
+        pass: false,
+        first_failure: "provider_source_status.accepted_non_fixture_source_missing",
+      },
+      {
+        field: "branch_certificate_ref",
+        path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+        required_value:
+          "nonempty branch_certificate_ref on the same accepted non-fixture provider record",
+        observed_value: null,
+        pass: false,
+        first_failure: "branch_certificate_ref.missing",
+      },
+    ]
+  );
   assert.deepEqual(
     acceptedSourceBoundary.provider_boundary.exact_missing_provider_source_paths,
     [
@@ -879,8 +913,30 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.pressure_row_boundary.nearest_pressure_row_candidate_path,
     "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
   );
+  assert.match(
+    acceptedSourceBoundary.pressure_row_boundary.expected_pressure_row_source_producer,
+    /accepted retained pressure-row report/
+  );
   assert.equal(acceptedSourceBoundary.pressure_row_boundary.required_source_field_count, 33);
   assert.equal(acceptedSourceBoundary.pressure_row_boundary.unaccepted_source_field_count, 33);
+  const sourceFamilies = new Map(
+    acceptedSourceBoundary.pressure_row_boundary.source_field_families.map((family) => [
+      family.field_family,
+      family,
+    ])
+  );
+  assert.equal(sourceFamilies.get("retained_branch_identity").required_count, 3);
+  assert.equal(sourceFamilies.get("retained_branch_identity").unaccepted_count, 3);
+  assert.equal(sourceFamilies.get("exposure_quotient").required_count, 1);
+  assert.equal(sourceFamilies.get("pressure_record").required_count, 6);
+  assert.equal(sourceFamilies.get("exposure_source_record").required_count, 4);
+  assert.equal(sourceFamilies.get("pressure_response_record").required_count, 4);
+  assert.equal(sourceFamilies.get("receiver_normal_weight_record").required_count, 4);
+  assert.equal(sourceFamilies.get("receiver_normal_weight_record").unaccepted_count, 4);
+  assert.equal(sourceFamilies.get("noether_sea_response_record").required_count, 2);
+  assert.equal(sourceFamilies.get("noether_sea_response_record").unaccepted_count, 2);
+  assert.equal(sourceFamilies.get("reversible_domain").required_count, 3);
+  assert.equal(sourceFamilies.get("null_sector_record").required_count, 6);
   assert.equal(
     acceptedSourceBoundary.pressure_row_boundary.exact_unaccepted_pressure_row_source_paths.includes(
       "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json#receiver_normal_weight_record.D_s"

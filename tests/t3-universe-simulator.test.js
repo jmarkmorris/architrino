@@ -406,6 +406,49 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       ["step_0_unresolved_root_rows", "retained-boundary-target", "run_summary_without_retained_causal_root_rows"],
     ]
   );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.schema,
+    "t3-same-record-replay-boundary.v1"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.replayStatus,
+    "fail_closed_missing_same_record_replay"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.acceptedReplayRowCount,
+    0
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.firstProducerObjectRequired,
+    "t3-retained-causal-root-replay.v1"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].chronologyRowId,
+    "step_0_seam_x"
+  );
+  assert.equal(
+    [
+      "retainedCausalRootRowId",
+      "rowFamilyIdentity",
+      "boundaryOrientation",
+      "windingLabel",
+      "endpointRoute",
+      "memoryWindowRoute",
+    ].every((field) =>
+      result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+        field
+      )
+    ),
+    true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.negativeControls.some(
+      (row) =>
+        row.controlId ===
+        "cross_step_or_aggregate_only_replay_without_chronology_row_identity"
+    ),
+    true
+  );
   assert.equal(simulator.solver.solverCallCount, 3);
   assert.equal(simulator.state.imageOffsets[0], 2);
 });
@@ -546,6 +589,37 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
       ["detector-event", "detector-row", "boundary_like_detector_event_without_retained_event_row"],
       ["unresolved-root", "retained-boundary-target", "run_summary_without_retained_causal_root_rows"],
     ]
+  );
+  assert.equal(prototype.result.sameRecordReplayStatus, "fail_closed_missing_same_record_replay");
+  assert.equal(
+    prototype.result.firstProducerObjectRequired,
+    "t3-retained-causal-root-replay.v1"
+  );
+  assert.equal(prototype.sameRecordReplayBoundary.summary.acceptedReplayRowCount, 0);
+  assert.equal(
+    prototype.sameRecordReplayBoundary.rows.some(
+      (row) =>
+        row.chronologyRowId === "step_0_zero_signed_boundary_sum" &&
+        row.boundaryOrientation === "zero_or_cancelled_summary_balance_not_replay_orientation" &&
+        row.missingFields.includes("sameRecordCancellationPairingMap")
+    ),
+    true
+  );
+  assert.equal(
+    prototype.sameRecordReplayBoundary.negativeControls.some(
+      (row) =>
+        row.controlId ===
+        "cross_step_or_aggregate_only_replay_without_chronology_row_identity"
+    ),
+    true
+  );
+  assert.equal(
+    prototype.sameRecordReplayBoundary.negativeControls.some(
+      (row) =>
+        row.controlId === "zero_signed_balance_replay_without_same_record_pairing_map" &&
+        row.chronologyRowId === "step_0_zero_signed_boundary_sum"
+    ),
+    true
   );
 });
 
