@@ -1,5 +1,55 @@
 import { addAcceleration, addForce, zeroAccelerations } from "./T3State.mjs";
 
+export const T3_RECEIVER_WAKE_PULLBACK_SCHEMA = "t3-receiver-wake-pullback.v1";
+
+export function computeReceiverWakePullback(input = {}) {
+  const causalSpeed = positiveFiniteNumber(input.causalSpeed ?? input.fieldSpeed ?? 1, "causalSpeed");
+  const tolerance = nonnegativeFiniteNumber(
+    input.tolerance ?? input.smallDenominatorTolerance ?? 1e-12,
+    "smallDenominatorTolerance"
+  );
+  const direction = normalizeDirection(
+    input.direction ?? input.unitDirection ?? input.sourceToReceiverDisplacement ?? input.displacement,
+    "source-to-receiver direction"
+  );
+  const sourceVelocity = vector3(input.sourceVelocity ?? [0, 0, 0], "sourceVelocity");
+  const receiverVelocity = vector3(input.receiverVelocity ?? [0, 0, 0], "receiverVelocity");
+  const sourceRadialSpeed = dot3(direction, sourceVelocity);
+  const receiverRadialSpeed = dot3(direction, receiverVelocity);
+  const sourceDenominator = causalSpeed - sourceRadialSpeed;
+  const receiverNumerator = causalSpeed - receiverRadialSpeed;
+  const rootTransportFactor = receiverNumerator / sourceDenominator;
+  const sourceJacobian = sourceDenominator / causalSpeed;
+  const receiverCrossingFactor = receiverNumerator / causalSpeed;
+  let status = "ok";
+  if (
+    !Number.isFinite(rootTransportFactor) ||
+    !Number.isFinite(sourceJacobian) ||
+    !Number.isFinite(receiverCrossingFactor)
+  ) {
+    status = "nonfinite";
+  } else if (Math.abs(sourceDenominator) <= tolerance) {
+    status = "small-source-denominator";
+  } else if (Math.abs(receiverNumerator) <= tolerance) {
+    status = "small-receiver-numerator";
+  }
+  return {
+    schema: T3_RECEIVER_WAKE_PULLBACK_SCHEMA,
+    causalSpeed,
+    direction,
+    sourceRadialSpeed,
+    receiverRadialSpeed,
+    sourceDenominator,
+    receiverNumerator,
+    sourceJacobian,
+    receiverCrossingFactor,
+    rootTransportFactor,
+    unsignedRootTransportWeight: Math.abs(rootTransportFactor),
+    orientation: Math.sign(rootTransportFactor),
+    status,
+  };
+}
+
 export function createInteractionPipeline(interactions = []) {
   const normalized = Array.isArray(interactions) ? interactions : [interactions];
   return {
@@ -210,15 +260,80 @@ function createPairContext(input) {
     displacement: [...input.displacement],
     distance: input.distance,
     distanceSquared: input.distanceSquared,
+    receiverWakePullback: (sourceIndex, receiverIndex, options = {}) =>
+      computeReceiverWakePullback({
+        displacement: input.topology.nearestImageDisplacement(
+          input.state.positions,
+          sourceIndex,
+          input.state.positions,
+          receiverIndex,
+          [0, 0, 0]
+        ),
+        sourceVelocity: stateVector3(input.state.velocities, sourceIndex),
+        receiverVelocity: stateVector3(input.state.velocities, receiverIndex),
+        causalSpeed:
+          options.causalSpeed ??
+          input.config?.model?.causalSpeed ??
+          input.config?.model?.fieldSpeed ??
+          1,
+        tolerance: options.tolerance,
+      }),
     addAcceleration: (particleIndex, ax, ay, az) => addAcceleration(input.state, particleIndex, ax, ay, az),
     addForce: (particleIndex, fx, fy, fz) => addForce(input.state, particleIndex, fx, fy, fz),
   };
+}
+
+function normalizeDirection(value, fieldName) {
+  const vector = vector3(value, fieldName);
+  const norm = Math.hypot(vector[0], vector[1], vector[2]);
+  if (norm <= 0) {
+    throw new TypeError(`${fieldName} must be nonzero`);
+  }
+  return [vector[0] / norm, vector[1] / norm, vector[2] / norm];
+}
+
+function vector3(value, fieldName) {
+  if (Array.isArray(value) || ArrayBuffer.isView(value)) {
+    if (value.length < 3) {
+      throw new TypeError(`${fieldName} must contain three values`);
+    }
+    return [
+      finiteNumber(value[0], `${fieldName}.x`),
+      finiteNumber(value[1], `${fieldName}.y`),
+      finiteNumber(value[2], `${fieldName}.z`),
+    ];
+  }
+  if (value && typeof value === "object") {
+    return [
+      finiteNumber(value.x, `${fieldName}.x`),
+      finiteNumber(value.y, `${fieldName}.y`),
+      finiteNumber(value.z, `${fieldName}.z`),
+    ];
+  }
+  throw new TypeError(`${fieldName} must be a vector`);
+}
+
+function stateVector3(values, particleIndex) {
+  const offset = particleIndex * 3;
+  return [values[offset], values[offset + 1], values[offset + 2]];
+}
+
+function dot3(a, b) {
+  return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
 }
 
 function finiteNumber(value, fieldName) {
   const numericValue = Number(value);
   if (!Number.isFinite(numericValue)) {
     throw new TypeError(`${fieldName} must be finite`);
+  }
+  return numericValue;
+}
+
+function nonnegativeFiniteNumber(value, fieldName) {
+  const numericValue = finiteNumber(value, fieldName);
+  if (numericValue < 0) {
+    throw new TypeError(`${fieldName} must be nonnegative`);
   }
   return numericValue;
 }

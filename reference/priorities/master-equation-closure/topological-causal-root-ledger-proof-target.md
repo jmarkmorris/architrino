@@ -820,7 +820,11 @@ not_accepted_for_wake_history_closure` until the event ledger rows are backed
 by accepted evidence ids rather than declared source-record population alone.
 The Noether sea row reports `accepted_medium_response_evidence_status:
 not_accepted_for_medium_response_closure` until the medium-response handoff is
-backed by accepted evidence rather than same-record compatibility alone.
+backed by accepted evidence rather than same-record compatibility alone. The
+cross-sector $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ row now reports
+`accepted_evidence_ready` plus per-sector accepted-evidence blockers, so a
+fully populated synthetic fixture can pass row logic while still showing that
+accepted cross-sector closure has not been reached.
 
 ## What This Could Advance
 

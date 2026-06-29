@@ -33,7 +33,7 @@ No `6/23 b` score changes are justified.
 
 ## Current Reducer Order
 
-1. Populate $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$ for the translating-binary retained-row extraction. This is the smallest score-moving path for `EQ-02`, `EQ-03`, and `EQ-04`.
+1. Populate $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$ for the translating-binary retained-row extraction. This is the smallest accepted-retained-evidence route for `EQ-02`, `EQ-03`, and `EQ-04`.
 2. Replay $\mathsf e_{\gamma e}^{0}$ over a weak homogeneous Compton angle panel and require the same $h$, $c_\gamma$, $M_e^{\mathrm{exp}}$, recoil convention, Noether sea state, and Gate A/B rows across all projections.
 3. Populate one density-compression surface slice $\mathcal R_{\rho\to\mathrm{surf}}^X$ on a retained Noether sea window, reporting missing outputs rather than fitting them.
 4. Populate $\Delta_K$ for one elastic scattering packet before using cross sections, form factors, resonance widths, or branching fractions as score evidence.

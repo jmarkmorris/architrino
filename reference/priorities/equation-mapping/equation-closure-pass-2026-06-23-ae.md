@@ -190,7 +190,7 @@ The first accepted evidence object is therefore constrained to one source-backed
 
 Fail-closed negative controls remain: toy or attempt status, missing or non-durable source references, placeholder identities, split density/current measure or flow for `EQ-14`, positive retained-measure separatrix mass for `EQ-31`, refinement-cocycle failure, corridor measure exceeding window measure, and hidden retune residual above tolerance.
 
-What would count as score-moving evidence: the same runner returns `accepted_retained_statistical_carrier` on a retained carrier whose source-backed rows satisfy the relevant numeric residuals, with no row populated from toy, placeholder, generated-only, or pending-source material.
+What would count as score-review-eligible retained evidence: the same runner returns `accepted_retained_statistical_carrier` on a retained carrier whose source-backed rows satisfy the relevant numeric residuals, with no row populated from toy, placeholder, generated-only, or pending-source material.
 
 ## Score Disposition
 

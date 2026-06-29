@@ -373,8 +373,28 @@ function evaluateNoether(noether) {
   );
 }
 
+function acceptedEvidenceStatusEntries(rows) {
+  const statusFields = {
+    partial_R_act: "accepted_route_evidence_status",
+    partial_L_EpJ: "accepted_event_evidence_status",
+    partial_S_B_eta: "accepted_action_evidence_status",
+    partial_M_sea: "accepted_medium_response_evidence_status",
+  };
+  return Object.entries(statusFields).map(([rowId, statusField]) => {
+    const boundaryRow = rows.find((entry) => entry.row_id === rowId);
+    const status = boundaryRow?.[statusField] ?? null;
+    return {
+      row_id: rowId,
+      status,
+      accepted: typeof status === "string" && status.startsWith("accepted_for_"),
+    };
+  });
+}
+
 function evaluateCrossSector(rows) {
   const failedRows = rows.filter((entry) => entry.status === "fail");
+  const acceptedEvidenceStatuses = acceptedEvidenceStatusEntries(rows);
+  const acceptedEvidenceReady = acceptedEvidenceStatuses.every((entry) => entry.accepted);
   return row(
     "C_AAA",
     "\\mathcal{C}_{\\mathbb{A}\\mathbb{A}\\mathbb{A}}",
@@ -386,6 +406,14 @@ function evaluateCrossSector(rows) {
         row_id: entry.row_id,
         failure_code: entry.failure_code,
       })),
+      accepted_evidence_ready: acceptedEvidenceReady,
+      accepted_evidence_statuses: acceptedEvidenceStatuses,
+      accepted_evidence_blockers: acceptedEvidenceStatuses
+        .filter((entry) => !entry.accepted)
+        .map((entry) => ({
+          row_id: entry.row_id,
+          status: entry.status,
+        })),
     }
   );
 }

@@ -136,4 +136,4 @@ Priority-only. The new runner does not supply a reader-facing derivation. Promot
 
 ## Next Closure Target
 
-Populate one accepted $\theta_W$ weak-field record. The minimum score-moving packet must include source-backed rows for lapse, drift, spatial compliance, signal delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source provenance, and a no-hidden-retune witness on the same carrier.
+Populate one accepted $\theta_W$ weak-field record. The minimum score-review-eligible packet must include source-backed rows for lapse, drift, spatial compliance, signal delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN/preferred-frame, null/eikonal, action-to-acceleration, source provenance, and a no-hidden-retune witness on the same carrier.

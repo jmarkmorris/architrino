@@ -93,6 +93,19 @@ test("closed-ledger pullback diagnostic fails closed on default active-root rout
   );
   assert.equal(rowById(artifact, "partial_S_B_eta").status, "fail");
   assert.equal(rowById(artifact, "C_AAA").status, "fail");
+  assert.equal(rowById(artifact, "C_AAA").accepted_evidence_ready, false);
+  assert.deepEqual(
+    rowById(artifact, "C_AAA").accepted_evidence_statuses.map((entry) => [
+      entry.row_id,
+      entry.accepted,
+    ]),
+    [
+      ["partial_R_act", false],
+      ["partial_L_EpJ", false],
+      ["partial_S_B_eta", false],
+      ["partial_M_sea", false],
+    ]
+  );
   assert.equal(artifact.result.first_failed_row, "partial_R_act");
   assert.equal(artifact.result.failure_code, "residual.photon_constituent_unrouted");
   assert.deepEqual(
@@ -157,6 +170,12 @@ test("closed-ledger pullback diagnostic can validate a fully populated priority-
     rowById(artifact, "partial_S_B_eta").accepted_evidence_summary
       .counts_by_evidence_level.synthetic_row_logic,
     4
+  );
+  assert.equal(rowById(artifact, "C_AAA").status, "pass");
+  assert.equal(rowById(artifact, "C_AAA").accepted_evidence_ready, false);
+  assert.deepEqual(
+    rowById(artifact, "C_AAA").accepted_evidence_blockers.map((entry) => entry.row_id),
+    ["partial_R_act", "partial_L_EpJ", "partial_S_B_eta", "partial_M_sea"]
   );
   assert.equal(artifact.result.first_failure_status, "closed_ledger_pullback_compatible_priority_only; branch_still_not_retained");
 });

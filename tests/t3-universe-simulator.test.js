@@ -3,7 +3,9 @@ import test from "node:test";
 
 import {
   createInitialT3State,
+  computeReceiverWakePullback,
   createSoftSphereRepulsionInteraction,
+  createInteractionPipeline,
   createT3SpatialIndex,
   createT3Topology,
   createT3UniverseSimulator,
@@ -105,6 +107,82 @@ test("adaptive reference solver accepts deterministic free-flight steps", async 
   assert.equal(simulator.state.stepIndex, 1);
   assert.ok(Math.abs(simulator.state.time - 0.2) < 1e-12);
   assert.ok(Math.abs(simulator.state.positions[0] - 1.05) < 1e-12);
+});
+
+test("receiver wake pullback separates source and receiver radial cadence", () => {
+  const stationary = computeReceiverWakePullback({
+    direction: [1, 0, 0],
+    sourceVelocity: [0, 0, 0],
+    receiverVelocity: [0, 0, 0],
+    causalSpeed: 1,
+  });
+  assert.equal(stationary.status, "ok");
+  assert.equal(stationary.rootTransportFactor, 1);
+
+  const moving = computeReceiverWakePullback({
+    direction: [1, 0, 0],
+    sourceVelocity: [0.25, 0, 0],
+    receiverVelocity: [-0.5, 0, 0],
+    causalSpeed: 1,
+  });
+  assert.equal(moving.status, "ok");
+  assert.equal(moving.sourceDenominator, 0.75);
+  assert.equal(moving.receiverNumerator, 1.5);
+  assert.equal(moving.sourceJacobian, 0.75);
+  assert.equal(moving.receiverCrossingFactor, 1.5);
+  assert.equal(moving.rootTransportFactor, 2);
+
+  const sameRadialDrift = computeReceiverWakePullback({
+    direction: [1, 0, 0],
+    sourceVelocity: [0.2, 0, 0],
+    receiverVelocity: [0.2, 0, 0],
+    causalSpeed: 1,
+  });
+  assert.equal(sameRadialDrift.rootTransportFactor, 1);
+
+  const grazingSource = computeReceiverWakePullback({
+    direction: [1, 0, 0],
+    sourceVelocity: [1, 0, 0],
+    receiverVelocity: [0, 0, 0],
+    causalSpeed: 1,
+  });
+  assert.equal(grazingSource.status, "nonfinite");
+});
+
+test("pair interaction context exposes receiver wake pullback rows", () => {
+  const topology = createT3Topology({ sideLength: 10 });
+  const state = createInitialT3State({
+    topology: { sideLength: 10 },
+    initialConditions: {
+      particles: [
+        { id: "source", position: [4, 5, 5], velocity: [0.25, 0, 0] },
+        { id: "receiver", position: [5, 5, 5], velocity: [-0.5, 0, 0] },
+      ],
+    },
+  });
+  const spatialIndex = createT3SpatialIndex({ topology, interactionRadius: 2 });
+  const rows = [];
+  const pipeline = createInteractionPipeline([
+    {
+      id: "receiver-wake-pullback-probe",
+      schema: "t3-interaction.v1",
+      applyPair(context) {
+        rows.push(context.receiverWakePullback(context.i, context.j, { causalSpeed: 1 }));
+      },
+    },
+  ]);
+
+  pipeline.evaluateAccelerations({
+    schema: "t3-solver-context.v1",
+    state,
+    topology,
+    spatialIndex,
+    config: { model: { causalSpeed: 1 } },
+  });
+
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].status, "ok");
+  assert.equal(rows[0].rootTransportFactor, 2);
 });
 
 test("central solver engine advances particles through existing solver client", async () => {

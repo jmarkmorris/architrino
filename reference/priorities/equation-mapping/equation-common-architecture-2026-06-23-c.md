@@ -111,7 +111,7 @@ Notation alone is never score evidence. For retained-domain rows, the populated 
 
 ### Proof Or Simulation Burden
 
-Each grouped packet should identify its smallest useful $\mathcal C_G$ and list the projections consumed by each row. A packet should not receive a score increase merely for naming $\mathcal C_G$; the score rises only when the populated carrier, residuals, and split/retune witnesses reduce the actual closure burden.
+Each grouped packet should identify its smallest useful $\mathcal C_G$ and list the projections consumed by each row. A packet should not become score-change-review eligible merely for naming $\mathcal C_G$; review becomes eligible only when the populated carrier, residuals, and split/retune witnesses reduce the actual closure burden.
 
 ## Common Component 0B: Retained Event Or Positive-Width Domain
 
@@ -1124,7 +1124,7 @@ The projection/refinement residual and finite-window statistical pushforward sho
 2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [equation-mapping.md](equation-mapping.md) while other agents are changing them.
 3. Instantiate the retained event or positive-width domain carrier $\mathfrak D_R$ first on $S_{\mathrm{eq}}$, $\mathsf e_{\gamma e}^{0}$, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$; the first successful instance should show which row binding is easiest to certify.
 4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
-5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score increase.
+5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score-change review.
 6. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
 7. Populate the neutral-lepton phase-operator packet as the focused `EQ-16A` follow-up. The executable checker now reports `missing_accepted_neutral_lepton_retained_branch`; its crisp falsifier remains that common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
 8. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.

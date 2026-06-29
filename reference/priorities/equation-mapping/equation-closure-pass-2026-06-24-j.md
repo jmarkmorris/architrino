@@ -100,4 +100,4 @@ No scores change.
 
 ## Next Action
 
-Replace the declared attempt coframe legs with an actual wake-return extraction on a certified invariant support. The next score-moving version must source the coframe row from the same accepted positive-width cell that supplies raw labels, causal roots, wake tails, energy/action rows, phase rows, Noether sea rows, and $W_{\mathrm{hol}}=0$.
+Replace the declared attempt coframe legs with an actual wake-return extraction on a certified invariant support. The next score-review-eligible version must source the coframe row from the same accepted positive-width cell that supplies raw labels, causal roots, wake tails, energy/action rows, phase rows, Noether sea rows, and $W_{\mathrm{hol}}=0$.

@@ -21,10 +21,12 @@ export { createInitialT3State } from "./T3InitialConditions.mjs";
 export { createT3SpatialIndex, T3SpatialIndex } from "./T3SpatialIndex.mjs";
 export {
   collectT3Events,
+  computeReceiverWakePullback,
   createCollisionDetector,
   createInteractionPipeline,
   createNoopInteraction,
   createSoftSphereRepulsionInteraction,
+  T3_RECEIVER_WAKE_PULLBACK_SCHEMA,
 } from "./T3InteractionRuntime.mjs";
 export { referenceActionSolver, T3ActionSolver } from "./T3ActionSolver.mjs";
 export {

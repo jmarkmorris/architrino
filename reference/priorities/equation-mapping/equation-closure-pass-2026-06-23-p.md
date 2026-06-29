@@ -104,4 +104,4 @@ No score changes.
 
 ## Next Closure Step
 
-The fastest honest score movement still starts with accepted retained source rows, not more packet scaffolding. The highest-value row to produce first is `raw_labeled_rows_preserved_on_retained_history` for $S_{\mathrm{eq}}$; the highest-value Noether sea sibling is an accepted $\rho_{\text{NS}}$ row for the density-compression retained window.
+The fastest honest score-change review route still starts with accepted retained source rows, not more packet scaffolding. The highest-value row to produce first is `raw_labeled_rows_preserved_on_retained_history` for $S_{\mathrm{eq}}$; the highest-value Noether sea sibling is an accepted $\rho_{\text{NS}}$ row for the density-compression retained window.
