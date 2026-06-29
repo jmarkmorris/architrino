@@ -154,6 +154,156 @@ Promotion note, 2026-05-20: [Particle Masses](../../../content/markdown/aaa/asse
 
 Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate slice. This tensor form is the stronger derivation target. It keeps the mass map from being read as shielding alone; the finished formula must also encode medium-dressed inertial response, Noether sea gradient response, and any residual anisotropy or leakage. Until $E_{\text{internal}}(A)$, $\zeta(A)$, and $\mathcal{M}_{\text{sea}}^{ab}$ are derived from a stable closed tri-binary root ledger, the scalar expression remains a controlled roadmap formula rather than a theorem.
 
+### Receiver-Normal Constitutive Exposure Row
+
+Claim level: priority-only theorem target. This row records the first mass-response closure object that consumes receiver-normal branch strength and the Noether sea constitutive response together. It does not promote a mass prediction, particle hierarchy claim, or pressure replay pass.
+
+For an accepted branch family $A$, let $\mathfrak{R}_{A}^{\mathrm{ret}}$ be the retained causal-root row set on the declared cycle window. Each retained row $\rho$ must carry same-record
+
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}
+=
+\left|
+\frac{D_{t,\rho}}{D_{s,\rho}}
+\right|.
+$$
+
+The receiver-normal mass-facing exposure ledger is the benchmark-blind cycle average
+
+$$
+\mathcal{L}_{A}^{\mathrm{rec}}(\hat{\mathbf R};\theta_{\text{sea}})
+=
+\left\langle
+\sum_{\rho\in\mathfrak{R}_{A}^{\mathrm{ret}}}
+q_{\rho}W_{\rho}^{\mathrm{rec}}\,
+\mathcal{W}_{\rho}(\hat{\mathbf R};\theta_{\text{sea}})
+\right\rangle_{\mathrm{cycle}},
+$$
+
+where $\mathcal{W}_{\rho}$ is the declared normalized wake contribution for the retained row, including the extraction convention for geometric falloff and far-field sampling. The scalar shielding coefficient and trace-free exposure numerator for this row are
+
+$$
+\zeta_{0}^{\mathrm{rec}}(A;\theta_{\text{sea}})
+=
+\frac{\|\Pi_0\mathcal{L}_{A}^{\mathrm{rec}}\|}
+{\|\mathcal{L}_{\mathrm{naive}}^{\mathrm{rec}}\|},
+\qquad
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A;\theta_{\text{sea}})
+=
+\zeta_{0}^{\mathrm{rec}}(A;\theta_{\text{sea}})E_{\text{internal}}(A),
+$$
+
+and
+
+$$
+\mathcal{Z}_{A,\mathrm{rec}}^{ab}
+=
+\zeta_{0}^{\mathrm{rec}}h^{ab}
++
+\mathcal{Z}_{\mathrm{tf,rec}}^{ab}.
+$$
+
+The constitutive mass-response target is the retained symmetric contraction
+
+$$
+\boxed{
+\mathsf{I}_{A,\mathrm{rec}}^{ab}
+=
+\frac{\alpha_{\mathrm{m}}E_{\text{internal}}(A)}{2}
+\left(
+\mathcal{Z}_{A,\mathrm{rec}}^{a}{}_{c}\mathcal{M}_{+}^{cb}(\theta_{\text{sea}})
++
+\mathcal{Z}_{A,\mathrm{rec}}^{b}{}_{c}\mathcal{M}_{+}^{ca}(\theta_{\text{sea}})
+\right),
+}
+$$
+
+with scalar trace
+
+$$
+\boxed{
+m_{\mathrm{tr}}^{\mathrm{rec}}(A;\theta_{\text{sea}})
+=
+\alpha_{\mathrm{m}}
+\frac{E_{\text{internal}}(A)}{c_{\text{eff},0}^{2}}
+\left[
+\zeta_{0}^{\mathrm{rec}}(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+\mathcal{Z}_{\mathrm{tf,rec},ab}
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{rec}}.
+}
+$$
+
+This is the receiver-normal version of the exposed inertial-response trace invariant. The scalar source is not $\zeta_{0}^{\mathrm{rec}}$ alone; it is the quotient-visible product $M_{0,\mathrm{rec}}^{\mathrm{src}}=\zeta_{0}^{\mathrm{rec}}E_{\text{internal}}$. The Noether sea response is not an additive mass term; it enters only through the reversible symmetric response tensor $\mathcal{M}_{+}^{ab}(\theta_{\text{sea}})$ and its trace / trace-free projections.
+
+For a branch-preserving pressure perturbation below $\mathcal{R}_{\text{tr},*}$, the first-order receiver-normal pressure trace target is
+
+$$
+\boxed{
+\delta_P m_{\mathrm{tr}}^{\mathrm{rec}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_P M_{0,\mathrm{rec}}^{\mathrm{src}}(A)
++
+2M_{0,\mathrm{rec}}^{\mathrm{src}}(A)C_{\chi}^{\mathrm{iso}}\Pi
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf,rec},ab}(A)
+\left(
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab}
+\right)A
+\right]
++
+\mathcal{R}_{\mathrm{rec}P}.
+}
+$$
+
+The first falsifiable coefficient is the receiver-normal exposed-source pressure slope
+
+$$
+C_{\mathrm{src},W}^{\Pi}(A)
+\equiv
+\partial_{\Pi}
+\ln M_{0,\mathrm{rec}}^{\mathrm{src}}(A;\theta_{\text{sea}}),
+\qquad
+\delta_P M_{0,\mathrm{rec}}^{\mathrm{src}}
+=
+M_{0,\mathrm{rec}}^{\mathrm{src}}C_{\mathrm{src},W}^{\Pi}\Pi
++
+\mathcal{R}_{\mathrm{src},W}.
+$$
+
+A simulation target for this coefficient is narrow: perturb one accepted retained branch by a declared small pressure row, recompute $D_s$, $D_t$, $W^{\mathrm{rec}}$, $\mathcal{L}_{A}^{\mathrm{rec}}$, $\zeta_{0}^{\mathrm{rec}}$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$ on the same branch identity, and test whether the finite-difference trace matches the boxed $\delta_Pm_{\mathrm{tr}}^{\mathrm{rec}}$ equation within $\mathcal{R}_{\mathrm{rec}P}$. If the result needs a new observable-local $\delta\mathcal{M}_0$ row, a hidden branch representative, or an unlogged loss channel, the row fails rather than becoming a fitted mass map.
+
+Assumptions for this row:
+
+- the retained branch identity, cycle window, pressure record, quotient chart, and Noether sea response record are the same record;
+- $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$ descend through the mass-facing exposure quotient;
+- pressure perturbations are branch-preserving and remain below $\mathcal{R}_{\text{tr},*}$;
+- $\mathcal{M}_{+}^{ab}$ is the reversible symmetric Noether sea response, while antisymmetric, Hall-like, orientation, loss, heating, radiation-like shedding, and branch-transition residues stay outside scalar rest mass;
+- observed particle masses, charged-lepton ratios, electron radius, measured $\alpha$, or benchmark residuals do not enter $\mathcal{L}_{A}^{\mathrm{rec}}$, $\Pi_0$, $Q_0$, $\zeta_{0}^{\mathrm{rec}}$, or $C_{\mathrm{src},W}^{\Pi}$.
+
+Required branch inputs:
+
+- accepted branch identity, accepted history segment, active causal-root ledger, and same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ values;
+- energy ledger $E_{\text{internal}}(A)$ and benchmark-blind shielding extraction schedule;
+- scalar projection $\Pi_0$, quotient $Q_0$, naive exposure ledger $\mathcal{L}_{\mathrm{naive}}^{\mathrm{rec}}$, and no-hidden-mass-handle residual;
+- trace-free exposure moment $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$ with retained direction labels;
+- pressure and Noether sea response record $\theta_{\text{sea}}=(n,\chi_{\text{sea}},\Gamma_N,\lambda,\xi,S_{ij},\mathcal{M}_{\text{sea}}^{ab})$, reversible-domain row, and null-sector bounds.
+
 ## Source-of-Truth Map
 
 | Layer | Document | Ownership |

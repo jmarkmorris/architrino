@@ -66,12 +66,157 @@ sampling field. $W^{\mathrm{rec}}$ is the branch-strength field.
 | Source-normal row | Interval for $D_{s,\alpha}$ and the active transversality floor. |
 | Receiver-normal row | Interval for $D_{t,\alpha}$ on the same retained box. |
 | Branch-strength row | Interval for $W_{\alpha}^{\mathrm{rec}}=\lvert D_{t,\alpha}/D_{s,\alpha}\rvert$. |
+| Derivative row | First retained-branch derivative row for $D_s$, $D_t$, $W^{\mathrm{rec}}$, and the receiver-normal force/action kernel when a downstream packet consumes force, action, power, or wake-history derivatives. |
 | Projection rows | Radial and tangential projections computed from the same force/action row. |
 | Aggregation row | Branch-family sum that names exactly which retained rows were consumed. |
 | Scalar statistic row | Any margin, constant, threshold, or pass/fail statistic derived from the aggregation row. |
 | Negative controls | Fail-closed controls listed below. |
 | Source artifact hash | Stable input artifact, solver version, or proof packet identifier. |
 | Regulator state | Declared $\eta$, $\epsilon_c$, fold, caustic, or simple-root status. |
+
+## Minimal Same-Record Derivative Target
+
+Status. Required target for the first receiver-normal derivative row consumed by
+force/action packets. This is a certificate target, not a branch pass by itself.
+The accepted row-shape and moving-receiver fixtures above remain validation
+evidence for branch-strength binding; a packet that consumes derivatives must
+add the derivative row below on its own retained branch record.
+
+For a retained simple-root record
+$R_\alpha=(i,j,\alpha,t,s_\alpha(t))$, write
+$$
+\mathbf R_\alpha
+=
+\mathbf x_i(t)-\mathbf x_j(s_\alpha),
+\qquad
+r_\alpha=\|\mathbf R_\alpha\|,
+\qquad
+\hat{\mathbf r}_\alpha=\mathbf R_\alpha/r_\alpha.
+$$
+The same record must report
+$$
+D_{s,\alpha}
+=
+c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_j(s_\alpha),
+\qquad
+D_{t,\alpha}
+=
+c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i(t),
+\qquad
+\dot s_\alpha
+=
+\frac{D_{t,\alpha}}{D_{s,\alpha}},
+$$
+and
+$$
+W_{\alpha}^{\mathrm{rec}}
+=
+\left|\frac{D_{t,\alpha}}{D_{s,\alpha}}\right|.
+$$
+
+The first derivative row is evaluated along the same retained branch:
+$$
+\dot{\mathbf R}_\alpha
+=
+\mathbf v_i(t)-\mathbf v_j(s_\alpha)\dot s_\alpha,
+\qquad
+\dot r_\alpha
+=
+\hat{\mathbf r}_\alpha\cdot\dot{\mathbf R}_\alpha,
+\qquad
+\dot{\hat{\mathbf r}}_\alpha
+=
+\frac{(I-\hat{\mathbf r}_\alpha\hat{\mathbf r}_\alpha^{T})
+\dot{\mathbf R}_\alpha}{r_\alpha}.
+$$
+With the same source and receiver acceleration rows, it must then report
+$$
+\dot D_{s,\alpha}
+=
+-\dot{\hat{\mathbf r}}_\alpha\cdot\mathbf v_j(s_\alpha)
+-\hat{\mathbf r}_\alpha\cdot\mathbf a_j(s_\alpha)\dot s_\alpha,
+\qquad
+\dot D_{t,\alpha}
+=
+-\dot{\hat{\mathbf r}}_\alpha\cdot\mathbf v_i(t)
+-\hat{\mathbf r}_\alpha\cdot\mathbf a_i(t).
+$$
+For the signed ratio $Q_\alpha=D_{t,\alpha}/D_{s,\alpha}$, the derivative row is
+$$
+\dot Q_\alpha
+=
+\frac{\dot D_{t,\alpha}D_{s,\alpha}
+-D_{t,\alpha}\dot D_{s,\alpha}}
+{D_{s,\alpha}^2}.
+$$
+If the retained interval for $Q_\alpha$ excludes zero, the branch-strength
+derivative is
+$$
+\dot W_{\alpha}^{\mathrm{rec}}
+=
+\operatorname{sgn}(Q_\alpha)\dot Q_\alpha.
+$$
+If the retained interval for $Q_\alpha$ contains zero, a derivative-consuming
+force/action packet must either declare a nonsmooth crossing row with a bounded
+subgradient convention or fail closed for differentiable action use.
+
+The smallest force/action derivative row derived from these fields is
+$$
+\mathbf B_{\alpha}^{\mathrm{rec}}
+=
+\frac{W_{\alpha}^{\mathrm{rec}}}{r_\alpha^2}\hat{\mathbf r}_\alpha,
+\qquad
+\dot{\mathbf B}_{\alpha}^{\mathrm{rec}}
+=
+\frac{\dot W_{\alpha}^{\mathrm{rec}}}{r_\alpha^2}\hat{\mathbf r}_\alpha
++
+\frac{W_{\alpha}^{\mathrm{rec}}}{r_\alpha^2}\dot{\hat{\mathbf r}}_\alpha
+-
+2\frac{W_{\alpha}^{\mathrm{rec}}\dot r_\alpha}{r_\alpha^3}
+\hat{\mathbf r}_\alpha.
+$$
+Radial and tangential derivative projections may be derived from
+$\dot{\mathbf B}_{\alpha}^{\mathrm{rec}}$, but they are not independent rows
+unless the consuming packet declares a projection basis and branch-family
+aggregation.
+
+Acceptance conditions:
+
+- $D_s$, $D_t$, $W^{\mathrm{rec}}$, $\dot s$, $\dot D_s$, $\dot D_t$,
+  $\dot W^{\mathrm{rec}}$, and $\dot{\mathbf B}^{\mathrm{rec}}$ use the same
+  retained root id, source/receiver ids, source-to-receiver direction, receiver
+  time, source time, retained box, and regulator state.
+- The retained row has $r_\alpha>0$, finite velocities and accelerations, a
+  nonzero source-normal floor for $D_{s,\alpha}$, and a declared simple-root or
+  regulator status.
+- The row states whether $Q_\alpha$ is sign-stable. Differentiable force/action
+  use requires a sign-stable $Q_\alpha$ interval or an explicit nonsmooth
+  crossing convention accepted by the consuming proof packet.
+- The source artifact hash identifies the branch-strength row and derivative
+  row together; a derivative row emitted from a different solver pass, proof
+  packet, finite-difference table, or interpolation grid is not same-record
+  evidence.
+- Any aggregation, scalar statistic, margin, action residual, power row, or
+  wake-history row names exactly the retained derivative rows it consumes.
+
+Failure modes:
+
+- missing $\dot s$, $\dot D_s$, $\dot D_t$, $\dot W^{\mathrm{rec}}$, or
+  $\dot{\mathbf B}^{\mathrm{rec}}$ when the consuming packet requires a first
+  derivative;
+- derivative fields evaluated from a root id, source/receiver id, box,
+  direction convention, regulator state, or artifact hash different from the
+  branch-strength row;
+- finite-difference or interpolated derivative rows without an outward error
+  interval and same-record reconstruction of $D_s$, $D_t$, and
+  $W^{\mathrm{rec}}$;
+- $Q_\alpha$ crossing zero without a declared nonsmooth crossing convention for
+  the consuming packet;
+- $r_\alpha=0$, nonfinite velocity or acceleration rows, a closed
+  source-normal floor, fold/caustic status consumed as a simple-root derivative,
+  or a branch exchange inside the retained box;
+- radial, tangential, action, power, or wake-history derivative projections that
+  consume a derivative row but aggregate a different retained branch list.
 
 ## First Accepted Row-Shape Certificate
 
@@ -299,6 +444,11 @@ The certificate must reject:
 - a topology-only row used as force/action evidence;
 - a stationary-receiver reduction that was not derived by direct substitution
   inside the declared retained row;
+- a derivative-consuming force/action row with missing or non-same-record
+  $\dot s$, $\dot D_s$, $\dot D_t$, $\dot W^{\mathrm{rec}}$, or
+  $\dot{\mathbf B}^{\mathrm{rec}}$;
+- a sign-changing $D_t/D_s$ derivative row treated as differentiable
+  force/action evidence without an accepted nonsmooth crossing convention;
 - an aggregation row whose retained-row list differs from the scalar statistic
   row.
 

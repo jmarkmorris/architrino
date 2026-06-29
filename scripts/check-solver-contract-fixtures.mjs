@@ -2433,11 +2433,24 @@ function assertMovingReceiverBranchFamilyFixture(requestEnvelope, responseEnvelo
     receiverNormalInvariantFailures(hitProxy).includes("hit_strength_mismatch"),
     "moving-receiver hit source-normal proxy negative control did not fail"
   );
+
+  const mixedRecordProxy = deepClone(responseEnvelope);
+  mixedRecordProxy.response.hits[0].receiverNormalNumerator = 1;
+  mixedRecordProxy.response.hits[0].receiverNormalCrossingFactor = 1;
+  mixedRecordProxy.response.hits[0].receiverNormalFactor = 1;
+  mixedRecordProxy.response.hits[0].unsignedReceiverNormalFactor = 1;
+  mixedRecordProxy.response.hits[0].strength = 1;
+  assert(
+    receiverNormalInvariantFailures(mixedRecordProxy).includes("same_record_receiver_normal_mismatch"),
+    "moving-receiver mixed-record receiver-normal negative control did not fail"
+  );
 }
 
 function receiverNormalInvariantFailures(responseEnvelope) {
   const failures = [];
+  const rootsById = new Map();
   for (const root of responseEnvelope.response.roots ?? []) {
+    rootsById.set(root.rootId, root);
     const expectedReceiverNormalFactor =
       root.receiverNormalNumerator / root.sourceNormalDenominator;
     const expectedBranchWeight = Math.abs(expectedReceiverNormalFactor);
@@ -2463,6 +2476,28 @@ function receiverNormalInvariantFailures(responseEnvelope) {
     }
     if (!closeEnough(hit.strength, expectedStrength)) {
       failures.push("hit_strength_mismatch");
+    }
+
+    const root = rootsById.get(hit.rootId);
+    if (!root) {
+      failures.push("same_record_root_missing");
+      continue;
+    }
+    const sameRecordFields = [
+      ["sourceNormalSpeed", root.sourceNormalSpeed, hit.sourceNormalSpeed],
+      ["receiverNormalSpeed", root.receiverNormalSpeed, hit.receiverNormalSpeed],
+      ["sourceNormalDenominator", root.sourceNormalDenominator, hit.sourceNormalDenominator],
+      ["receiverNormalNumerator", root.receiverNormalNumerator, hit.receiverNormalNumerator],
+      ["receiverNormalCrossingFactor", root.receiverNormalCrossingFactor, hit.receiverNormalCrossingFactor],
+      ["receiverNormalFactor", root.receiverNormalFactor, hit.receiverNormalFactor],
+      ["unsignedReceiverNormalFactor", root.unsignedReceiverNormalFactor, hit.unsignedReceiverNormalFactor],
+      ["receiverNormalStatusCode", root.receiverNormalStatusCode, hit.receiverNormalStatusCode],
+    ];
+    if (sameRecordFields.some(([, rootValue, hitValue]) => !closeEnough(rootValue, hitValue))) {
+      failures.push("same_record_receiver_normal_mismatch");
+    }
+    if (!closeEnough(hit.strength, root.branchWeight)) {
+      failures.push("same_record_hit_strength_mismatch");
     }
   }
   return failures;
