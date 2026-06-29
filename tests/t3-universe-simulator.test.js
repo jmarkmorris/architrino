@@ -383,6 +383,29 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       "run_summary_without_retained_causal_root_rows",
     ]
   );
+  assert.equal(result.runSummary.eventSummary.perStep.length, 3);
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryChronology.schema,
+    "t3-retained-boundary-chronology.v1"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryChronology.summary.status,
+    "fail_closed_priority_only"
+  );
+  assert.equal(result.runSummary.orientedBoundaryPrototype.retainedBoundaryChronology.summary.rowCount, 17);
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryChronology.summary.firstFailureStatus,
+    "signed_image_delta_without_winding_owner"
+  );
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryChronology.rows
+      .filter((row) => row.stepIndex === 0 && row.closureStatus !== "absent")
+      .map((row) => [row.rowId, row.rowKind, row.firstBlocker]),
+    [
+      ["step_0_seam_x", "retained-boundary-target", "signed_image_delta_without_winding_owner"],
+      ["step_0_unresolved_root_rows", "retained-boundary-target", "run_summary_without_retained_causal_root_rows"],
+    ]
+  );
   assert.equal(simulator.solver.solverCallCount, 3);
   assert.equal(simulator.state.imageOffsets[0], 2);
 });
@@ -399,6 +422,21 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
     periodicWrapEvidence: {
       imageDeltaTotals: { x: 0, y: -1, z: 0 },
       absoluteImageDeltaTotals: { x: 2, y: 1, z: 0 },
+      perStep: [
+        {
+          imageDeltaTotals: { x: 1, y: -1, z: 0 },
+          absoluteImageDeltaTotals: { x: 1, y: 1, z: 0 },
+        },
+        {
+          imageDeltaTotals: { x: -1, y: 0, z: 0 },
+          absoluteImageDeltaTotals: { x: 1, y: 0, z: 0 },
+        },
+        {
+          imageDeltaTotals: { x: 0, y: 0, z: 0 },
+          absoluteImageDeltaTotals: { x: 0, y: 0, z: 0 },
+        },
+        null,
+      ],
     },
     eventSummary: {
       totalEventCount: 3,
@@ -407,6 +445,16 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
         "periodic-seam-boundary": 2,
         collision: 1,
       },
+      perStep: [
+        { eventCount: 0, boundaryLikeEventCount: 0, eventTypeCounts: {} },
+        {
+          eventCount: 2,
+          boundaryLikeEventCount: 2,
+          eventTypeCounts: { "periodic-seam-boundary": 2 },
+        },
+        { eventCount: 1, boundaryLikeEventCount: 0, eventTypeCounts: { collision: 1 } },
+        { eventCount: 0, boundaryLikeEventCount: 0, eventTypeCounts: {} },
+      ],
     },
   });
 
@@ -475,6 +523,29 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
       (row) => row.controlId === "zero_signed_boundary_sum_without_same_record_routing"
     ),
     true
+  );
+  assert.equal(prototype.retainedBoundaryChronology.summary.status, "fail_closed_priority_only");
+  assert.equal(prototype.retainedBoundaryChronology.summary.stepCount, 4);
+  assert.equal(
+    prototype.retainedBoundaryChronology.rows.some(
+      (row) =>
+        row.stepIndex === 0 &&
+        row.negativeControlRow === true &&
+        row.firstBlocker === "zero_signed_boundary_sum_without_same_record_routing"
+    ),
+    true
+  );
+  assert.deepEqual(
+    prototype.retainedBoundaryChronology.rows
+      .filter((row) => row.stepIndex === 1 && row.closureStatus !== "absent")
+      .map((row) => [row.rowFamily, row.rowKind, row.firstBlocker]),
+    [
+      ["seam", "retained-boundary-target", "signed_image_delta_without_winding_owner"],
+      ["neighbor", "neighbor-row", "neighbor_pair_delta_without_retained_causal_root_rows"],
+      ["detector-event", "detector-row", "boundary_like_detector_event_without_retained_event_row"],
+      ["detector-event", "detector-row", "boundary_like_detector_event_without_retained_event_row"],
+      ["unresolved-root", "retained-boundary-target", "run_summary_without_retained_causal_root_rows"],
+    ]
   );
 });
 

@@ -812,6 +812,25 @@ whose observed value is `null`. The same candidate's populated
 same-row partials, but they are not accepted source provenance and do not close
 the pressure-provider blocker.
 
+The source scout also emits
+`pressure_row_accepted_source_object_boundary/v0`, which composes the upstream
+provider-source requirement with the 33-field retained pressure-row source
+requirement. The boundary reports
+`accepted_source_object_found=false`,
+`accepted_promotion_authorized=false`, and
+`first_failure=accepted_non_fixture_source_missing`. Its provider side requires
+the same nearest partial to replace
+`provider_source_status=tier0_continuation_ready_not_accepted_history` with
+`provider_source_status=accepted_non_fixture_source` and to populate
+`branch_certificate_ref` on that same non-fixture provider row. Its pressure-row
+side requires the nearest same-row pressure probe to replace all 33
+target-required or literal fields with accepted non-fixture source provenance,
+including the receiver-normal and Noether sea fields. The boundary explicitly
+keeps cross-candidate joins unauthorized and rejects H39/theta3minus
+diagnostics, source-normal force residues, shell-braid rows, fixtures, toy rows,
+empirical rows without branch source, and cross-row bundles as pressure or mass
+evidence.
+
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
 checks the same `branch_intake` boundary before replay consumption. It reports

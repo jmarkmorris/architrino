@@ -399,22 +399,33 @@ function summarizeRunEvents(stepResults) {
   const eventTypeCounts = {};
   let totalEventCount = 0;
   let boundaryLikeEventCount = 0;
+  const perStep = [];
   for (const result of stepResults) {
     const events = Array.isArray(result.events) ? result.events : [];
+    const stepEventTypeCounts = {};
+    let stepBoundaryLikeEventCount = 0;
     for (const event of events) {
       totalEventCount += 1;
       const key = eventSummaryKey(event);
       eventTypeCounts[key] = (eventTypeCounts[key] ?? 0) + 1;
+      stepEventTypeCounts[key] = (stepEventTypeCounts[key] ?? 0) + 1;
       if (eventLooksBoundaryLike(event)) {
         boundaryLikeEventCount += 1;
+        stepBoundaryLikeEventCount += 1;
       }
     }
+    perStep.push({
+      eventCount: events.length,
+      boundaryLikeEventCount: stepBoundaryLikeEventCount,
+      eventTypeCounts: stepEventTypeCounts,
+    });
   }
   return {
     schema: "t3-run-event-summary.v1",
     totalEventCount,
     boundaryLikeEventCount,
     eventTypeCounts,
+    perStep,
   };
 }
 

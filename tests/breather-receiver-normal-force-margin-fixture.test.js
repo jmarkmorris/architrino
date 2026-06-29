@@ -10,12 +10,16 @@ import {
   BREATHER_FORCE_MARGIN_STATUSES,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA,
+  buildBreatherReceiverNormalForceMarginAbsenceBoundary,
   buildBreatherReceiverNormalForceMarginFixtureSchema,
   validateBreatherReceiverNormalForceMarginFixture,
 } from "../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs";
 
 const scriptPath = fileURLToPath(
   new URL("../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs", import.meta.url),
+);
+const breatherCertificateRoot = fileURLToPath(
+  new URL("../reference/priorities/proof-programs/breather-proof/certificate", import.meta.url),
 );
 
 function buildPassingFixture(overrides = {}) {
@@ -121,6 +125,46 @@ test("breather force-margin fixture CLI emits the fixture contract", () => {
   assert.equal(schema.artifact_schema, BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA);
   assert.equal(schema.margin_consumer_contract.includes("retained_record_keys"), true);
   assert.equal(schema.margin_interval_contract.includes("gamma_rec_interval"), true);
+});
+
+test("breather force-margin fixture validator emits breather source absence boundary", () => {
+  const boundary = buildBreatherReceiverNormalForceMarginAbsenceBoundary({
+    sourceRoot: "reference/priorities/proof-programs/breather-proof/certificate",
+  });
+
+  assert.equal(boundary.pass, false);
+  assert.equal(boundary.status, BREATHER_FORCE_MARGIN_STATUSES.sourceMissing);
+  assert.equal(boundary.blocks_fixture_candidate, true);
+  assert.equal(
+    boundary.required_source_boundary.expected_producer_object,
+    "breather_receiver_normal_force_margin_fixture.<packet-id>.json",
+  );
+  assert.equal(boundary.required_source_boundary.retained_record_fields.includes("D_s_interval"), true);
+  assert.equal(boundary.required_source_boundary.retained_record_fields.includes("W_rec_interval"), true);
+  assert.equal(boundary.required_source_boundary.derivative_fields.includes("D_vD_s_interval"), true);
+  assert.equal(boundary.required_source_boundary.derivative_fields.includes("D_vD_t_interval"), true);
+  assert.equal(boundary.required_source_boundary.derivative_fields.includes("D_vW_rec_interval"), true);
+  assert.deepEqual(boundary.source_evidence.fixture_artifact_files, []);
+  assert.deepEqual(boundary.source_evidence.branch_chart_authorized_true_files, []);
+  assert.equal(
+    boundary.missing_producer_objects.includes("breather_receiver_normal_force_margin_fixture.<packet-id>.json"),
+    true,
+  );
+  assert.equal(boundary.missing_producer_objects.includes("branch_chart.json"), true);
+});
+
+test("breather force-margin fixture CLI emits source absence boundary", () => {
+  const boundary = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--absence-boundary", breatherCertificateRoot], {
+      encoding: "utf8",
+    }),
+  );
+
+  assert.equal(boundary.pass, false);
+  assert.equal(boundary.status, BREATHER_FORCE_MARGIN_STATUSES.sourceMissing);
+  assert.equal(boundary.blocks_fixture_candidate, true);
+  assert.equal(boundary.source_evidence.branch_chart_authorized_true_files.length, 0);
+  assert.equal(boundary.required_source_boundary.consumer_fields.includes("gamma_rec_interval"), true);
 });
 
 test("breather force-margin fixture validator accepts complete synthetic same-record fixture", () => {

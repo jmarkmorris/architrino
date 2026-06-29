@@ -17,11 +17,16 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     eventBoundaryRows,
   });
   const negativeControlMatrix = createNegativeControlMatrix(retainedBoundaryTarget);
+  const retainedBoundaryChronology = createRetainedBoundaryChronology({
+    runSummary,
+    negativeControlMatrix,
+  });
   const boundarySignalCounts = {
     seamOwnershipRowCount: seamOwnershipRows.filter((row) => row.status !== "absent").length,
     neighborPairTransitionCount: neighborPairBoundaryRows.filter((row) => row.signedNeighborPairDelta !== 0).length,
     eventBoundaryLikeCount: nonnegativeInteger(runSummary.eventSummary?.boundaryLikeEventCount ?? 0),
     unresolvedBoundaryTargetRowCount: retainedBoundaryTarget.summary.unresolvedRowCount,
+    chronologyRowCount: retainedBoundaryChronology.summary.rowCount,
   };
 
   return {
@@ -53,6 +58,7 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     eventBoundaryRows,
     retainedBoundaryTarget,
     negativeControlMatrix,
+    retainedBoundaryChronology,
     boundarySignalCounts,
     discipline: {
       imageDeltas:
@@ -79,6 +85,7 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
       provesBranchAdmissibility: false,
       updatesLiveValidationGate: false,
       boundaryMatrixStatus: retainedBoundaryTarget.summary.matrixStatus,
+      chronologyStatus: retainedBoundaryChronology.summary.status,
       firstFailureStatus:
         retainedBoundaryTarget.summary.firstUnresolvedRowId == null
           ? "no_summary_boundary_signal"
@@ -90,6 +97,196 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     },
     metadata: clonePlainObject(options.metadata ?? {}),
   };
+}
+
+function createRetainedBoundaryChronology(input) {
+  const { runSummary, negativeControlMatrix } = input;
+  const stepCount = nonnegativeInteger(runSummary.stepCount ?? 0);
+  const rows = [];
+  for (let stepIndex = 0; stepIndex < stepCount; stepIndex += 1) {
+    const stepRows = [
+      ...stepSeamChronologyRows(stepIndex, runSummary.periodicWrapEvidence?.perStep?.[stepIndex]),
+      ...stepNeighborChronologyRows(stepIndex, runSummary.neighborPairCounts?.perStep),
+      ...stepEventChronologyRows(stepIndex, runSummary.eventSummary?.perStep?.[stepIndex]),
+      unresolvedRootChronologyRow(stepIndex),
+    ];
+    rows.push(...stepRows, ...stepNegativeControlRows(stepIndex, stepRows, negativeControlMatrix));
+  }
+  const failClosedRows = rows.filter((row) => row.closureStatus !== "absent");
+  return {
+    schema: "t3-retained-boundary-chronology.v1",
+    rowDomain:
+      "per-step T3 run-summary boundary signals before same-record causal-root replay",
+    rows,
+    summary: {
+      stepCount,
+      rowCount: rows.length,
+      failClosedRowCount: failClosedRows.length,
+      status: failClosedRows.length > 0 ? "fail_closed_priority_only" : "no_step_boundary_signal",
+      firstFailureStatus: failClosedRows[0]?.firstBlocker ?? null,
+    },
+  };
+}
+
+function stepSeamChronologyRows(stepIndex, periodicWrapStep) {
+  const signedTotals = periodicWrapStep?.imageDeltaTotals ?? {};
+  const absoluteTotals = periodicWrapStep?.absoluteImageDeltaTotals ?? {};
+  return AXES.map((axis) => {
+    const signedBalance = integer(signedTotals[axis] ?? 0, `perStep[${stepIndex}].imageDeltaTotals.${axis}`);
+    const evidenceMagnitude = nonnegativeInteger(absoluteTotals[axis] ?? Math.abs(signedBalance));
+    const closureStatus = evidenceMagnitude > 0 ? "unresolved_boundary_target" : "absent";
+    return chronologyRow({
+      stepIndex,
+      rowFamily: "seam",
+      rowKind: "retained-boundary-target",
+      rowId: `step_${stepIndex}_seam_${axis}`,
+      evidenceMagnitude,
+      signedBalance,
+      firstBlocker: seamChronologyBlocker(signedBalance, evidenceMagnitude),
+      closureStatus,
+    });
+  });
+}
+
+function stepNeighborChronologyRows(stepIndex, neighborPairCounts = []) {
+  if (stepIndex === 0 || !Array.isArray(neighborPairCounts)) {
+    return [];
+  }
+  const previousCount = nullableFiniteNumber(neighborPairCounts[stepIndex - 1]);
+  const currentCount = nullableFiniteNumber(neighborPairCounts[stepIndex]);
+  const signedBalance = previousCount == null || currentCount == null ? null : currentCount - previousCount;
+  const evidenceMagnitude = signedBalance == null ? null : Math.abs(signedBalance);
+  return [
+    chronologyRow({
+      stepIndex,
+      rowFamily: "neighbor",
+      rowKind: "neighbor-row",
+      rowId: `step_${stepIndex}_neighbor_${stepIndex - 1}_${stepIndex}`,
+      evidenceMagnitude,
+      signedBalance,
+      firstBlocker:
+        signedBalance == null
+          ? "neighbor_count_missing"
+          : signedBalance === 0
+            ? null
+            : "neighbor_pair_delta_without_retained_causal_root_rows",
+      closureStatus:
+        signedBalance == null
+          ? "unresolved_missing_summary_row"
+          : signedBalance === 0
+            ? "absent"
+            : "unresolved_boundary_target",
+    }),
+  ];
+}
+
+function stepEventChronologyRows(stepIndex, eventStep) {
+  const rows = [];
+  const boundaryLikeEventCount = nonnegativeInteger(eventStep?.boundaryLikeEventCount ?? 0);
+  rows.push(
+    chronologyRow({
+      stepIndex,
+      rowFamily: "detector-event",
+      rowKind: "detector-row",
+      rowId: `step_${stepIndex}_event_boundary_like_event_aggregate`,
+      evidenceMagnitude: boundaryLikeEventCount,
+      signedBalance: null,
+      firstBlocker:
+        boundaryLikeEventCount > 0 ? "boundary_like_detector_event_without_retained_event_row" : null,
+      closureStatus: boundaryLikeEventCount > 0 ? "unresolved_boundary_target" : "absent",
+    })
+  );
+  const eventTypeCounts = eventStep?.eventTypeCounts ?? {};
+  for (const eventType of Object.keys(eventTypeCounts).sort()) {
+    const count = nonnegativeInteger(eventTypeCounts[eventType]);
+    const boundaryLike = BOUNDARY_EVENT_PATTERN.test(eventType);
+    rows.push(
+      chronologyRow({
+        stepIndex,
+        rowFamily: "detector-event",
+        rowKind: "detector-row",
+        rowId: `step_${stepIndex}_event_${stableRowId(eventType)}`,
+        evidenceMagnitude: count,
+        signedBalance: null,
+        firstBlocker: boundaryLike
+          ? "boundary_like_detector_event_without_retained_event_row"
+          : "generic_event_count_without_boundary_stratum",
+        closureStatus: count > 0 ? "unresolved_boundary_target" : "absent",
+      })
+    );
+  }
+  return rows;
+}
+
+function unresolvedRootChronologyRow(stepIndex) {
+  return chronologyRow({
+    stepIndex,
+    rowFamily: "unresolved-root",
+    rowKind: "retained-boundary-target",
+    rowId: `step_${stepIndex}_unresolved_root_rows`,
+    evidenceMagnitude: null,
+    signedBalance: null,
+    firstBlocker: "run_summary_without_retained_causal_root_rows",
+    closureStatus: "unresolved_boundary_target",
+  });
+}
+
+function stepNegativeControlRows(stepIndex, stepRows, negativeControlMatrix) {
+  const signedBalance = stepRows.reduce(
+    (sum, row) => (Number.isFinite(row.signedBalance) ? sum + row.signedBalance : sum),
+    0
+  );
+  const evidenceMagnitude = stepRows.reduce(
+    (sum, row) => (Number.isFinite(row.evidenceMagnitude) ? sum + row.evidenceMagnitude : sum),
+    0
+  );
+  const hasUnresolvedRows = stepRows.some((row) => row.closureStatus !== "absent");
+  if (signedBalance !== 0 || evidenceMagnitude <= 0 || !hasUnresolvedRows) {
+    return [];
+  }
+  const control = negativeControlMatrix.controls.find(
+    (row) => row.controlId === "zero_signed_boundary_sum_without_same_record_routing"
+  );
+  return [
+    chronologyRow({
+      stepIndex,
+      rowFamily: "signed-balance",
+      rowKind: "negative-control-row",
+      rowId: `step_${stepIndex}_zero_signed_boundary_sum`,
+      evidenceMagnitude,
+      signedBalance,
+      firstBlocker: control?.controlId ?? "zero_signed_boundary_sum_without_same_record_routing",
+      closureStatus: "unresolved_negative_control",
+    }),
+  ];
+}
+
+function chronologyRow(input) {
+  return {
+    stepIndex: input.stepIndex,
+    rowFamily: input.rowFamily,
+    rowKind: input.rowKind,
+    rowId: input.rowId,
+    evidenceMagnitude: input.evidenceMagnitude,
+    signedBalance: input.signedBalance,
+    firstBlocker: input.firstBlocker,
+    closureStatus: input.closureStatus,
+    retainedBoundaryTargetRow:
+      input.rowKind === "retained-boundary-target" || input.rowKind === "neighbor-row",
+    detectorRow: input.rowKind === "detector-row",
+    neighborRow: input.rowKind === "neighbor-row",
+    negativeControlRow: input.rowKind === "negative-control-row",
+  };
+}
+
+function seamChronologyBlocker(signedBalance, evidenceMagnitude) {
+  if (evidenceMagnitude === 0) {
+    return null;
+  }
+  if (signedBalance === 0) {
+    return "cancelled_image_delta_without_same_record_pairing";
+  }
+  return "signed_image_delta_without_winding_owner";
 }
 
 function createRetainedBoundaryTarget(input) {

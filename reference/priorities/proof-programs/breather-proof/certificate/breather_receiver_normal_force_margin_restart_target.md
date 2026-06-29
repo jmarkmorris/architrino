@@ -200,6 +200,9 @@ fixture passes all priority-only checks. Use `--allow-fail-closed` when a
 diagnostic run should return a JSON fail-closed report without failing the
 shell command. Use `--schema` to emit the required fixture contract for packet
 generators before they attempt a candidate fixture.
+Use `--absence-boundary` to emit the machine-readable non-fixture source
+boundary when the breather certificate directory lacks the producer objects
+needed to construct a real fixture candidate.
 
 The checked fixture shape is intentionally narrow:
 
@@ -215,13 +218,15 @@ The checked fixture shape is intentionally narrow:
 | Emitted $D_vW^{\mathrm{rec}}$ interval does not contain the same-record reconstruction | `breather-force-margin-derivative-reconstruction-failed` |
 | Open $D_s,D_t$ sign stratum or zero-crossing $D_s$ interval | `breather-force-margin-sign-stratum-open` |
 | Nonpositive lower interval for any required $\gamma_m^{\mathrm{rec}}$ | `breather-force-margin-nonpositive` |
+| Missing authorized branch chart, fixture producer, retained receiver-normal rows, derivative bundle, or margin interval producer in the scanned breather certificate source root | `accepted_non_fixture_source_missing` |
 
 Focused validator tests live at
 [`breather-receiver-normal-force-margin-fixture.test.js`](../../../../../tests/breather-receiver-normal-force-margin-fixture.test.js).
 They include a complete synthetic same-record fixture plus negative controls
 for branch-chart absence, checksum drift, derivative-row absence, derivative
 reconstruction failure, forbidden $W^{\mathrm{rec}}$ substitution,
-aggregate-only consumers, and nonpositive margins.
+aggregate-only consumers, nonpositive margins, and the breather source absence
+boundary.
 
 ## Fail-Closed Ledger
 
@@ -237,6 +242,7 @@ aggregate-only consumers, and nonpositive margins.
 | `breather-force-margin-derivative-reconstruction-failed` | The emitted $D_vW^{\mathrm{rec}}$ interval does not contain the reconstructed value from same-record $D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. |
 | `breather-force-margin-sign-stratum-open` | The row does not fix $D_s,D_t$ signs or declare an accepted nonsmooth crossing convention. |
 | `breather-force-margin-nonpositive` | At least one required lower margin interval is nonpositive after the same-record checks pass. |
+| `accepted_non_fixture_source_missing` | The evaluator scanned the breather certificate source root and found no real fixture producer, no authorized branch chart, no same-record retained receiver-normal row source, no derivative-bundle source, or no margin interval producer. This is an accepted absence boundary only, not fixture evidence. |
 
 ## Exact Blocker
 
@@ -252,3 +258,15 @@ root topology, null-coordinate preledger, strict-gap, source-cover, endpoint,
 fold-layer, and higher-fold artifacts remain priority-only topology,
 candidate-repair, or proof-burden evidence until this receiver-normal margin
 fixture exists and passes the executable evaluator.
+
+Machine-readable absence boundary. The evaluator command
+`node scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs --absence-boundary`
+emits `accepted_non_fixture_source_missing` for the breather
+certificate source root. The boundary names the missing producer object
+`breather_receiver_normal_force_margin_fixture.<packet-id>.json`, the required
+`branch_chart.json`, the retained-record fields `packet_identity`,
+`retained_record_key`, `branch_family_checksum`, `D_s_interval`,
+`D_t_interval`, `W_rec_interval`, `sign_stratum.zeta_s`, and
+`sign_stratum.zeta_t`, and the derivative fields `D_vD_s_interval`,
+`D_vD_t_interval`, `D_vW_rec_interval`, `geometry_derivatives`, and
+`force_kernel_derivatives`.

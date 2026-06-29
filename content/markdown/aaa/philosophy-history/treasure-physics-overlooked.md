@@ -240,7 +240,7 @@ That same novelty is also the well-posedness threat. A self-hit branch is not ac
 
 The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
 
-That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, receiver-normal reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
+That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, receiver-normal branch strength, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
 
 The later failure of classical electron theory then overgeneralized the verdict. One failed point-source model made the whole neoclassical design space look exhausted, even though the damaging assumptions were narrower: primitive source = observed electron charge, primitive wake speed = measured photon speed, and photon-channel speed = universal constituent speed limit. The Architrino architecture reverses those assumptions: charge is an assembly-level polarity inventory, photon speed is recovered channel behavior, and point transceivers may enter regimes governed by causal-root structure rather than by the observer-level light limit.
 

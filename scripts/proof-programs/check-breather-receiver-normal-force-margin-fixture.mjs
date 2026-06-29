@@ -1,6 +1,7 @@
 #!/usr/bin/env node
 
 import fs from "node:fs";
+import path from "node:path";
 import { fileURLToPath } from "node:url";
 
 export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA =
@@ -19,11 +20,48 @@ export const BREATHER_FORCE_MARGIN_STATUSES = Object.freeze({
   derivativeReconstructionFailed: "breather-force-margin-derivative-reconstruction-failed",
   signStratumOpen: "breather-force-margin-sign-stratum-open",
   nonpositive: "breather-force-margin-nonpositive",
+  sourceMissing: "accepted_non_fixture_source_missing",
   passed: "breather-force-margin-fixture-passed-priority-only",
 });
 
 const SCRIPT_PATH = fileURLToPath(import.meta.url);
+const ROOT_DIR = path.resolve(fileURLToPath(new URL("../..", import.meta.url)));
+const DEFAULT_CERTIFICATE_SOURCE_ROOT =
+  "reference/priorities/proof-programs/breather-proof/certificate";
 const NUMERIC_TOLERANCE = 1e-12;
+
+export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY =
+  Object.freeze({
+    expected_producer_object:
+      "breather_receiver_normal_force_margin_fixture.<packet-id>.json",
+    expected_artifact_id: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
+    branch_chart_producer: "branch_chart.json",
+    retained_record_fields: [
+      "packet_identity",
+      "retained_record_key",
+      "branch_family_checksum",
+      "D_s_interval",
+      "D_t_interval",
+      "W_rec_interval",
+      "sign_stratum.zeta_s",
+      "sign_stratum.zeta_t",
+    ],
+    derivative_fields: [
+      "retained_record_key",
+      "variation_key",
+      "D_vD_s_interval",
+      "D_vD_t_interval",
+      "D_vW_rec_interval",
+      "geometry_derivatives",
+      "force_kernel_derivatives",
+    ],
+    consumer_fields: [
+      "consumer_id",
+      "retained_record_keys",
+      "derivative_variation_keys",
+      "gamma_rec_interval",
+    ],
+  });
 
 export function buildBreatherReceiverNormalForceMarginFixtureSchema() {
   return {
@@ -72,9 +110,188 @@ export function buildBreatherReceiverNormalForceMarginFixtureSchema() {
       "branch_family_checksum",
       "gamma_rec_interval",
     ],
+    absence_boundary_contract: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY,
     fail_closed_statuses: Object.values(BREATHER_FORCE_MARGIN_STATUSES).filter(
       (status) => status !== BREATHER_FORCE_MARGIN_STATUSES.passed,
     ),
+  };
+}
+
+function listJsonFiles(entryPath) {
+  if (!fs.existsSync(entryPath)) {
+    return [];
+  }
+  const stat = fs.statSync(entryPath);
+  if (stat.isFile()) {
+    return path.extname(entryPath) === ".json" ? [entryPath] : [];
+  }
+  if (!stat.isDirectory()) {
+    return [];
+  }
+  const files = [];
+  for (const child of fs.readdirSync(entryPath)) {
+    files.push(...listJsonFiles(path.join(entryPath, child)));
+  }
+  return files;
+}
+
+function relativeToRoot(pathname) {
+  return path.relative(ROOT_DIR, pathname) || ".";
+}
+
+function collectKeys(value, targetKeys, matches, sourcePath) {
+  if (Array.isArray(value)) {
+    for (const item of value) {
+      collectKeys(item, targetKeys, matches, sourcePath);
+    }
+    return;
+  }
+  if (!isPlainObject(value)) {
+    return;
+  }
+  for (const [key, child] of Object.entries(value)) {
+    if (targetKeys.has(key)) {
+      matches.get(key).push({
+        path: relativeToRoot(sourcePath),
+        value: child,
+      });
+    }
+    collectKeys(child, targetKeys, matches, sourcePath);
+  }
+}
+
+function parsedJsonEvidence(sourceRoot) {
+  const sourceRootAbs = path.resolve(ROOT_DIR, sourceRoot);
+  const files = listJsonFiles(sourceRootAbs);
+  const targetKeys = new Set([
+    "artifact_id",
+    "branch_chart_authorized",
+    "preledger_pass",
+    "updates_live_ledger",
+    "receiver_normal_rows",
+    "receiver_normal_derivative_rows",
+    "receiver_normal_derivative_bundle",
+    "margin_consumers",
+    "gamma_rec_interval",
+  ]);
+  const matches = new Map([...targetKeys].map((key) => [key, []]));
+  const parseErrors = [];
+  let parsedCount = 0;
+
+  for (const file of files) {
+    try {
+      const value = JSON.parse(fs.readFileSync(file, "utf8"));
+      parsedCount += 1;
+      collectKeys(value, targetKeys, matches, file);
+    } catch (error) {
+      parseErrors.push({
+        path: relativeToRoot(file),
+        message: error instanceof Error ? error.message : String(error),
+      });
+    }
+  }
+
+  return {
+    source_root: relativeToRoot(sourceRootAbs),
+    json_files_scanned: files.length,
+    json_files_parsed: parsedCount,
+    json_parse_error_count: parseErrors.length,
+    json_parse_errors: parseErrors,
+    matches,
+  };
+}
+
+function uniquePaths(entries, predicate = () => true) {
+  return [...new Set(entries.filter(predicate).map((entry) => entry.path))].sort();
+}
+
+export function buildBreatherReceiverNormalForceMarginAbsenceBoundary(options = {}) {
+  const sourceRoot = options.sourceRoot ?? DEFAULT_CERTIFICATE_SOURCE_ROOT;
+  const evidence = parsedJsonEvidence(sourceRoot);
+  const artifactFiles = uniquePaths(
+    evidence.matches.get("artifact_id"),
+    (entry) => entry.value === BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
+  );
+  const branchChartAuthorizedFiles = uniquePaths(
+    evidence.matches.get("branch_chart_authorized"),
+    (entry) => entry.value === true,
+  );
+  const receiverRowSourceFiles = uniquePaths(evidence.matches.get("receiver_normal_rows"));
+  const derivativeRowSourceFiles = uniquePaths(evidence.matches.get("receiver_normal_derivative_rows"));
+  const derivativeBundleSourceFiles = uniquePaths(
+    evidence.matches.get("receiver_normal_derivative_bundle"),
+  );
+  const marginConsumerSourceFiles = uniquePaths(evidence.matches.get("margin_consumers"));
+  const gammaMarginSourceFiles = uniquePaths(evidence.matches.get("gamma_rec_interval"));
+  const preledgerPassFiles = uniquePaths(
+    evidence.matches.get("preledger_pass"),
+    (entry) => entry.value === true,
+  );
+  const liveLedgerUpdateFiles = uniquePaths(
+    evidence.matches.get("updates_live_ledger"),
+    (entry) => entry.value === true,
+  );
+
+  const missingProducerObjects = [];
+  if (artifactFiles.length === 0) {
+    missingProducerObjects.push(
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.expected_producer_object,
+    );
+  }
+  if (branchChartAuthorizedFiles.length === 0) {
+    missingProducerObjects.push(
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.branch_chart_producer,
+    );
+  }
+  if (derivativeRowSourceFiles.length === 0 && derivativeBundleSourceFiles.length === 0) {
+    missingProducerObjects.push(
+      "receiver-normal retained-record first-derivative bundle for breather margin consumers",
+    );
+  }
+  if (receiverRowSourceFiles.length === 0) {
+    missingProducerObjects.push(
+      "same-record receiver-normal retained-row bundle for breather margin consumers",
+    );
+  }
+  if (marginConsumerSourceFiles.length === 0 || gammaMarginSourceFiles.length === 0) {
+    missingProducerObjects.push(
+      "breather recapture/self-drive/Schauder margin interval producer",
+    );
+  }
+
+  return {
+    schema: `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.absence-boundary/v0`,
+    artifact_id: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
+    verdict: "fail_closed_absence_boundary",
+    pass: false,
+    status: BREATHER_FORCE_MARGIN_STATUSES.sourceMissing,
+    claim_level: "priority-only absence boundary; not a fixture and not proof evidence",
+    source_root: evidence.source_root,
+    scanned_json_files: evidence.json_files_scanned,
+    parsed_json_files: evidence.json_files_parsed,
+    json_parse_error_count: evidence.json_parse_error_count,
+    required_source_boundary: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY,
+    source_evidence: {
+      fixture_artifact_files: artifactFiles,
+      branch_chart_authorized_true_files: branchChartAuthorizedFiles,
+      preledger_pass_true_files: preledgerPassFiles,
+      live_ledger_update_true_files: liveLedgerUpdateFiles,
+      receiver_normal_row_source_files: receiverRowSourceFiles,
+      receiver_normal_derivative_row_source_files: derivativeRowSourceFiles,
+      receiver_normal_derivative_bundle_source_files: derivativeBundleSourceFiles,
+      margin_consumer_source_files: marginConsumerSourceFiles,
+      gamma_margin_source_files: gammaMarginSourceFiles,
+    },
+    missing_producer_objects: missingProducerObjects,
+    blocks_fixture_candidate: missingProducerObjects.length > 0,
+    diagnostics:
+      missingProducerObjects.length > 0
+        ? [
+            "no source evidence supports a real breather receiver-normal force-margin fixture candidate",
+          ]
+        : [
+            "source-like files were found; run fixture construction only after manual evidence review",
+          ],
   };
 }
 
@@ -491,6 +708,8 @@ function parseArgs(argv) {
     allowFailClosed: false,
     pretty: false,
     schema: false,
+    absenceBoundary: false,
+    sourceRoot: DEFAULT_CERTIFICATE_SOURCE_ROOT,
   };
   for (let index = 0; index < argv.length; index += 1) {
     const arg = argv[index];
@@ -503,6 +722,16 @@ function parseArgs(argv) {
       args.pretty = true;
     } else if (arg === "--schema") {
       args.schema = true;
+    } else if (arg === "--absence-boundary") {
+      args.absenceBoundary = true;
+      const next = argv[index + 1];
+      if (next && !next.startsWith("--")) {
+        args.sourceRoot = next;
+        index += 1;
+      }
+    } else if (arg === "--source-root") {
+      args.sourceRoot = argv[index + 1];
+      index += 1;
     } else if (arg === "--help" || arg === "-h") {
       args.help = true;
     } else {
@@ -518,6 +747,7 @@ function usage() {
     `  node ${SCRIPT_PATH} --fixture <fixture.json> [--allow-fail-closed] [--pretty]`,
     `  node ${SCRIPT_PATH} --allow-fail-closed [--pretty]`,
     `  node ${SCRIPT_PATH} --schema [--pretty]`,
+    `  node ${SCRIPT_PATH} --absence-boundary [source-root] [--pretty]`,
   ].join("\n");
 }
 
@@ -536,6 +766,18 @@ if (process.argv[1] === SCRIPT_PATH) {
       console.log(
         JSON.stringify(
           buildBreatherReceiverNormalForceMarginFixtureSchema(),
+          null,
+          args.pretty ? 2 : 0,
+        ),
+      );
+      process.exit(0);
+    }
+    if (args.absenceBoundary) {
+      console.log(
+        JSON.stringify(
+          buildBreatherReceiverNormalForceMarginAbsenceBoundary({
+            sourceRoot: args.sourceRoot,
+          }),
           null,
           args.pretty ? 2 : 0,
         ),

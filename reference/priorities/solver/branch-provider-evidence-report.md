@@ -361,15 +361,38 @@ handoff inherits that invariant: every one of the 15 terminal rows and all 30
 `P_-` / `P_+` branch rows must be accepted before the receiver-normal
 derivative fields can be considered for the same retained record.
 
-Producer-side target:
+Split-map producer target:
+`h39-source-map-provider-object-branch-split-map-producer-target/v0`.
+
+This executable target sits upstream of the producer-side branch-row target. It
+is priority-only and fail-closed: it does not authorize provider readiness,
+downstream consumers, or producer-side branch-row use. It tests the smallest
+source-map producer object that could create accepted `P_-` / `P_+`
+provider-object branch rows before aggregate $P$ erases branch identity:
+
+| Target row | Required setup | Expected status |
+| --- | --- | --- |
+| `current_h39_split_map_source_field_absent` | The split-map source field is absent, with `0 / 15` available $A_P$ terminal rows and `0 / 30` explicit `P_-` / `P_+` branch rows. | `h39-source-map-provider-object-branch-split-map-source-field-missing` |
+| `split_map_count_without_branch_rows` | The split-map source field reaches all 15 terminal rows, but the $A_P$ equation rows and explicit branch rows are absent. | `h39-source-map-provider-object-branch-row-payloads-missing` |
+| `branch_rows_without_interval_payloads` | The split-map source field, $A_P$ terminal rows, and explicit branch rows are present, but `source_map_provider_branch_intervals` and `provider_object_branch_intervals` are absent. | `h39-source-map-provider-object-branch-interval-payloads-missing` |
+| `interval_payloads_without_identity_payloads` | Both interval payloads are present, but the $P_b$ map, projection coefficients or alpha map, `pushforward_operator_ref`, and `normalization_identity_ref` are absent. | `h39-source-map-provider-object-branch-identity-payloads-missing` |
+| `identity_payloads_without_aggregate_erasure_negative_control` | Branch rows, interval payloads, and identity payloads are present, but the aggregate-erasure negative control is absent. | `h39-source-map-provider-object-aggregate-erasure-negative-control-missing` |
+| `split_map_producer_review_candidate` | All producer source fields, branch rows, interval payloads, identity payloads, and the aggregate-erasure negative control are present. | `h39-source-map-provider-object-branch-split-map-producer-review-required`; still not provider readiness |
+
+The exact upstream blocker is therefore
+`source_map_provider_object_branch_split_map_available_terminal_row_count`,
+followed by the $A_P=P_- - P_+$ terminal-row equation count, explicit branch
+row count, interval payloads, $P_b$ identity payloads, and the
+`aggregate-P-provider-probe-born-aggregate-only` negative control.
+
+Producer-side branch-row target:
 `h39-producer-side-provider-object-branch-row-target/v0`.
 
-This executable target now sits between the emitted absence readout and the
+This executable target sits between the split-map producer target and the
 retained-record preimage fixture. It is priority-only and fail-closed: it does
 not authorize provider readiness, downstream consumers, or retained-record
-preimage use. It tests the smallest producer-side progression toward accepted
-`P_-` / `P_+` provider-object branch rows before aggregate $P$ erases branch
-identity:
+preimage use. It tests the producer-side progression toward accepted `P_-` /
+`P_+` provider-object branch rows:
 
 | Target row | Required setup | Expected status |
 | --- | --- | --- |
@@ -391,8 +414,8 @@ by this target.
 Fixture target:
 `h39-receiver-normal-retained-record-preimage-fixture/v0`.
 
-This fixture target now lives inside the executable branch-provider evidence
-report as a fail-closed object. It tests the retained-record handoff row without
+This fixture target lives inside the executable branch-provider evidence report
+as a fail-closed object. It tests the retained-record handoff row without
 authorizing provider readiness, downstream consumers, or a retained-branch
 claim. It exercises these rows:
 

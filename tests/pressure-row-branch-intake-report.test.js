@@ -853,6 +853,59 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
     "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
   ]);
+
+  const acceptedSourceBoundary =
+    report.failure_family_delta.accepted_source_object_boundary;
+  assert.ok(acceptedSourceBoundary);
+  assert.equal(
+    acceptedSourceBoundary.schema,
+    "pressure_row_accepted_source_object_boundary/v0"
+  );
+  assert.equal(acceptedSourceBoundary.accepted_source_object_found, false);
+  assert.equal(acceptedSourceBoundary.accepted_promotion_authorized, false);
+  assert.equal(acceptedSourceBoundary.first_failure, "accepted_non_fixture_source_missing");
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.nearest_provider_candidate_id,
+    "pressure-row-a0-branch-source-frontier-partial"
+  );
+  assert.deepEqual(
+    acceptedSourceBoundary.provider_boundary.exact_missing_provider_source_paths,
+    [
+      "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+      "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+    ]
+  );
+  assert.equal(
+    acceptedSourceBoundary.pressure_row_boundary.nearest_pressure_row_candidate_path,
+    "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
+  );
+  assert.equal(acceptedSourceBoundary.pressure_row_boundary.required_source_field_count, 33);
+  assert.equal(acceptedSourceBoundary.pressure_row_boundary.unaccepted_source_field_count, 33);
+  assert.equal(
+    acceptedSourceBoundary.pressure_row_boundary.exact_unaccepted_pressure_row_source_paths.includes(
+      "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json#receiver_normal_weight_record.D_s"
+    ),
+    true
+  );
+  assert.equal(
+    acceptedSourceBoundary.pressure_row_boundary.exact_unaccepted_pressure_row_source_paths.includes(
+      "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json#noether_sea_response_record.M_plus_ab"
+    ),
+    true
+  );
+  assert.equal(
+    acceptedSourceBoundary.required_same_record_binding.cross_candidate_join_authorized,
+    false
+  );
+  assert.equal(
+    acceptedSourceBoundary.forbidden_evidence_sources.includes("H39/theta3minus diagnostics"),
+    true
+  );
+  assert.deepEqual(acceptedSourceBoundary.next_exact_source_target.provider_paths, [
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+  ]);
   assert.deepEqual(providerObjectAttempt.accepted_same_domain_provider_object_candidates, []);
   assert.equal(
     providerObjectAttempt.candidate_readouts.every(

@@ -69,7 +69,10 @@ shell-braid force-residue substitutions. The exact blocker remains
 object, no same-packet branch chart is authorized, and no recapture,
 self-drive, action, power, wake-history, or Schauder-envelope margin row
 consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and derivative rows on
-the retained branch family.
+the retained branch family. The validator's `--absence-boundary` mode also
+sharpens this as `accepted_non_fixture_source_missing` by naming the missing
+fixture producer, `branch_chart.json`, retained receiver-normal row source,
+derivative-bundle source, and margin interval producer.
 
 ## Current Stopping Point
 

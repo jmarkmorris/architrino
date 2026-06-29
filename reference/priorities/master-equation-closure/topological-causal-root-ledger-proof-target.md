@@ -780,6 +780,33 @@ evidence string, so a downstream report can point at the missing seam-owner,
 pairing-map, root-delta, event-row, or unresolved-root object without promoting
 the T3 envelope itself.
 
+The prototype also emits `retainedBoundaryChronology`, a per-step view of the
+same fail-closed evidence. Each row records `stepIndex`, `rowFamily`, `rowKind`,
+`evidenceMagnitude`, `signedBalance`, `firstBlocker`, and booleans that mark
+whether the row is a retained-boundary target row, detector row, neighbor row,
+or negative-control row. The chronology compares three summary channels at
+each step:
+
+| Chronology family | Per-step source | Fail-closed blocker |
+| --- | --- | --- |
+| `seam` | `periodicWrapEvidence.perStep` image-delta rows by axis. | Missing same-record winding owner or same-record seam pairing. |
+| `neighbor` | Finite differences of `neighborPairCounts.perStep`. | Native neighbor-pair delta without retained causal-root rows. |
+| `detector-event` | `eventSummary.perStep` event counts and boundary-like event counts. | Detector event without retained event row or declared boundary stratum. |
+| `unresolved-root` | The run-summary envelope itself. | No retained winding-labeled causal-root replay. |
+| `signed-balance` | Step-local signed sum and evidence magnitude. | Zero signed sum without same-record routing. |
+
+This chronology is a comparison surface, not a proof of closure. Its strongest
+use is to locate the first step where seam evidence, neighbor-population
+evidence, and detector evidence diverge before a causal-root replay exists. The
+remaining blocker is unchanged: the T3 run summary must be replaced or joined
+by same-record retained causal-root rows with winding ownership, Jacobian
+floors or declared strata, endpoint and memory-window routing, collision/core
+handling, omitted-row gaps, and event-row orientation before
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}=0
+$$
+can be asserted.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
