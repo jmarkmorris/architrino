@@ -196,7 +196,7 @@ DF(B)
 \{DF_B(z):z\in B\}.
 $$
 
-The derivative enclosure must include clock, inverse-clock, root-sheet, force-weight, support, action, self-hit, event, and Noether sea columns. In particular, for every speed-factor direction $v$ the packet must account for
+The derivative enclosure must include clock, inverse-clock, root-sheet, receiver-normal branch-weight, support, action, self-hit, event, and Noether sea columns. In particular, for every speed-factor direction $v$ the packet must account for
 
 $$
 D_v\chi_i(\lambda)

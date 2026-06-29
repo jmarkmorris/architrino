@@ -11,6 +11,13 @@ Claim level. Accepted correction to the Master EOM branch-strength law; exact
 geometry identity for smooth retained roots; downstream proof paths must restart
 their force/action rows from this law.
 
+Current disposition. `priority-only` for wake-history closure. The identity
+below is accepted as the branch-strength correction, but no wake-history,
+action, power, breather, or mass-response packet promotes from it until that
+packet supplies the same retained record with accepted branch identity,
+$D_s$, $D_t$, $W^{\mathrm{rec}}$, and the derivative rows consumed by the
+packet.
+
 ## Receiver-Normal Identity
 
 For source $j$, receiver $i$, and causal constraint
@@ -79,3 +86,73 @@ A solver-side receiver-normal row is accepted only when it reports:
 This is consumed as the branch-strength row. A separate variational proof is
 still required for action derivation, but not for using receiver-normal branch
 strength in the Master EOM.
+
+## Wake-History Pullback Theorem Target
+
+Wake-history closure is not merely the presence of event rows on a retained
+ledger. A wake-history action or power packet consumes the receiver-normal
+sampling rate along a moving receiver path, so its first theorem target is a
+same-record pullback statement.
+
+For every retained branch row $\rho=(i,j,\ell,t,s_\ell)$ used by a
+wake-history increment, the row must bind
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|,
+\qquad
+D_vD_{s,\rho},
+\qquad
+D_vD_{t,\rho},
+\qquad
+D_vW_{\rho}^{\mathrm{rec}}
+$$
+to the same source/receiver ids, retained box, regulator state, event ledger,
+and source artifact hash. On a fixed $D_s,D_t$ sign stratum the reconstruction
+condition is
+$$
+D_vW_{\rho}^{\mathrm{rec}}
+=
+\frac{\zeta_{t,\rho}\zeta_{s,\rho}}{D_{s,\rho}^2}
+\left(
+D_{s,\rho}D_vD_{t,\rho}
+-
+D_{t,\rho}D_vD_{s,\rho}
+\right).
+$$
+
+The closure equation to prove is that the finite-window wake-history increment
+is a pullback of source-provenanced emitted weight through the same
+receiver-normal branch record:
+$$
+D_v\mathcal{H}_{\mathrm{wake}}^{W}
+=
+\sum_{\rho\in\mathfrak{R}_{W}^{\mathrm{ret}}}
+q_{\rho}
+\left[
+D_vW_{\rho}^{\mathrm{rec}}\,
+\mathcal{K}_{\rho}^{(\eta,\epsilon_c)}
++
+W_{\rho}^{\mathrm{rec}}\,
+D_v\mathcal{K}_{\rho}^{(\eta,\epsilon_c)}
+\right]
++
+\mathcal{R}_{\mathrm{wake},v}^{\mathrm{rec}},
+$$
+with the same retained branch list $\mathfrak{R}_{W}^{\mathrm{ret}}$ consumed by
+the action, power, event, and Noether balance rows. A source-normal diagnostic
+alone, a terminal aggregate, a finite-difference table after branch identity is
+erased, or an H39/theta3minus source-map diagnostic fails with
+`receiver-normal-first-derivative-row-missing` or
+`receiver-normal-derivative-record-mismatch` rather than authorizing
+wake-history closure. A row that carries a different retained branch list exits
+as `branch-family-consumer-checksum-mismatch`. An H39/theta3minus
+provider-object branch row may enter only through
+`h39-receiver-normal-retained-record-preimage-row/v0`, after it is bound to an
+accepted retained causal-root force/action record with the receiver-normal
+derivative bundle above. H39 primitive-vector replays, hybrid prefix-Cauchy
+diagnostics, coefficient-series source-map residual provider candidates,
+source-map residual envelopes, provider-fit diagnostics, and signed-radius
+targets remain negative controls until that preimage row exists.

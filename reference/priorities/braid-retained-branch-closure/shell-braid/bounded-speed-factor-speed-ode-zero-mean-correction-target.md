@@ -66,7 +66,7 @@ $$
 \texttt{bounded-speed-ledger-handoff-open}.
 $$
 
-This is not a no-go theorem for bounded speed factors. It is the source obstruction that any live correction row must overcome after the clocks, roots, Jacobians, force weights, support/action/event rows, and derivative columns are rebuilt on one ledger.
+This is not a no-go theorem for bounded speed factors. It is the source obstruction that any live correction row must overcome after the clocks, roots, source-normal root charts, receiver-normal branch weights, support/action/event rows, and derivative columns are rebuilt on one ledger.
 
 The zero-mean correction intake certificate normalizes this frozen diagnostic into the constant receiver vector
 
@@ -254,7 +254,7 @@ $$
 c_{\mathrm{cand}}=Q_{\mathrm{cand}}^T\mathbf{1}_6.
 $$
 
-This is a candidate screen only. It does not certify the live derivative matrix $B$ unless every column of $B_{\mathrm{cand}}$ is emitted from the same live bounded-speed ledger with the clock, inverse-clock, root, Jacobian, force-weight, support, action, and event derivative terms required above.
+This is a candidate screen only. It does not certify the live derivative matrix $B$ unless every column of $B_{\mathrm{cand}}$ is emitted from the same live bounded-speed ledger with the clock, inverse-clock, root, Jacobian, receiver-normal branch-weight, support, action, and event derivative terms required above.
 
 ### Live Derivative Column Audit Contract
 
@@ -295,7 +295,7 @@ B_{i\ell}^{(\varepsilon)}
 }{2\varepsilon},
 $$
 
-with a reported finite-difference residual. The packet must also report that the clock, inverse-clock, root, Jacobian, force-weight, support, action, event, force-checksum, and consumer-checksum guards are passed on the same live-ledger convention. If any guard is absent, the column is a candidate or diagnostic column only and the status remains `live-ledger-derivative-open`.
+with a reported finite-difference residual. The packet must also report that the clock, inverse-clock, root, Jacobian, receiver-normal branch-weight, support, action, event, force-checksum, and consumer-checksum guards are passed on the same live-ledger convention. If any guard is absent, the column is a candidate or diagnostic column only and the status remains `live-ledger-derivative-open`.
 
 Third, a range screen may use the resulting column matrix as a preview, but it is not the certified matrix $B$ until the bounded-speed all-pairs handoff and this zero-mean correction row consume the same ledger identity. When the range/cokernel probe is derived from `live_derivative_column_intake.column_matrix_preview`, set
 
@@ -363,7 +363,7 @@ $$
 \mathcal{L}_{\mathrm{live}}^\nu.
 $$
 
-Every clock, inverse-clock, root, Jacobian, force-weight, support, action, event, force-checksum, and consumer-checksum guard must pass on that same ledger. Only then may
+Every clock, inverse-clock, root, Jacobian, receiver-normal branch-weight, support, action, event, force-checksum, and consumer-checksum guard must pass on that same ledger. Only then may
 
 $$
 B_{i\ell}
@@ -611,7 +611,7 @@ is a certified frozen-ledger value. It does not decide which live channel works.
 
 1. a live bounded-speed ledger $\mathcal{L}_{\mathrm{live}}^\nu$ with clock maps, active roots, inactive gaps, Jacobian floors, tail interface, force checksum, and consumer checksum;
 2. the mean vector $\mathcal{M}^\nu$ on that ledger;
-3. derivative columns for $\mathcal{M}^\nu$ with all bounded-speed clock, inverse-clock, root, Jacobian, force-weight, support, action, and event terms included or Schur-complemented;
+3. derivative columns for $\mathcal{M}^\nu$ with all bounded-speed clock, inverse-clock, root, Jacobian, receiver-normal branch-weight, support, action, and event terms included or Schur-complemented;
 4. a rank or interval-range certificate for $B$;
 5. a correction direction or obstruction certificate that preserves the declared ledger margins.
 

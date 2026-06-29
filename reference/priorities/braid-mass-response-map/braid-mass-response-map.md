@@ -18,6 +18,14 @@
 
    Shared H39 provider boundary: [branch-provider evidence report](../solver/branch-provider-evidence-report.md) maps the H39 aggregate-$P$ construction attempt to rank 4 as target-only evidence, not a retained pressure-row branch intake. The readout verifies the five-cell source-contract boundary replay and records a source-provenance refinement: the signed-radius subinterval primitive, projected source-term producer-image fields, and lambda terminal witness branch intervals are present, but source-map provider-object branch intervals remain unavailable. The report still returns `same_domain_branch_provider_missing`; the two open H39 blockers are `source_term_provider_directed_source_certification_open` and `source_term_provider_term_width_realization_open`. It does not populate the same-row branch certificate, active-root or live-ledger identity, branch-local projection/normalization identity, pre-aggregate branch rows, projection map, pushforward operator, or normalization identity, so pressure coefficients remain non-authorized.
 
+   Receiver-normal audit update: the same H39/theta3minus provider path also
+   fails the first-derivative mass-response dependency. It does not emit
+   same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or
+   reconstructed $D_vW^{\mathrm{rec}}$ rows for the retained causal-root
+   record consumed by exposure, pressure, wake-history, or response tensors.
+   Its disposition for mass-response use is therefore `defer with blocker`,
+   not `promote now`.
+
 5. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios, the priority-only charged-lepton Koide residual, and hadron constraints after branch-derived exposed-source numerators are fixed. Status: `pending`; [charged-lepton-koide-residual.md](charged-lepton-koide-residual.md) now defines the equal isotropic / trace-free square-root exposure benchmark without using observed masses as inputs. Depends on: `exposure_quotient_theorem`.
 
 Post-promotion cleanup note: `medium_transport_thresholds` was promoted into [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) in the May 2026 promotion batch. Quantitative extraction of $\mathcal{R}_{\text{tr}}$ remains a dependency of the attractor-family and medium-response work above.
@@ -157,6 +165,16 @@ Here $h^{ab}$ is the inverse Euclidean spatial metric on the local substrate sli
 ### Receiver-Normal Constitutive Exposure Row
 
 Claim level: priority-only theorem target. This row records the first mass-response closure object that consumes receiver-normal branch strength and the Noether sea constitutive response together. It does not promote a mass prediction, particle hierarchy claim, or pressure replay pass.
+
+Receiver-normal dependency audit disposition:
+
+| Packet or dependency | Disposition | Reason |
+| --- | --- | --- |
+| Mass-response constitutive exposure row | `priority-only` | The closure equations below define the target but no accepted branch currently binds exposure, Noether sea response, pressure state, and receiver-normal rows on one retained record. |
+| Pressure / Noether sea constitutive packets | `defer with blocker` | They may feed mass response only after a retained pressure row carries $D_s$, $D_t$, $W^{\mathrm{rec}}$, energy/exposure, reversible-domain, and null-sector rows together. |
+| Breather certificate inheritance | `defer with blocker` | Breather topology and finite-certificate discipline remain useful, but recapture, self-drive, force-margin, action, and certificate rows must restart from receiver-normal branch strength before mass-side reuse. |
+| H39/theta3minus quotient diagnostics | `priority-only diagnostic` | They may name provider-boundary or root-geometry candidates, but they do not supply same-record retained causal-root receiver-normal weight or derivative rows. |
+| Old shell-braid force residues | `blocked` | Any $1/|J|$ shell-force residue is source-normal diagnostic material only and cannot be active mass-response evidence. |
 
 For an accepted branch family $A$, let $\mathfrak{R}_{A}^{\mathrm{ret}}$ be the retained causal-root row set on the declared cycle window. Each retained row $\rho$ must carry same-record
 
@@ -596,7 +614,7 @@ The first simulation or derivation report for $A_0$ should use the following top
 | `state_vector` | six architrino labels, polarities, initial $\mathbf{s}_a,\mathbf{v}_a$, history segment, center-of-closure gauge |
 | `closure_labels` | $T_{\mathbf{k}}$, $(k_I,k_M,k_O)$, $q_{\ell m}$, active branch identifiers |
 | `geometry` | $R_I,R_M,R_O$, radius ratios, $\mathbf{n}_I,\mathbf{n}_M,\mathbf{n}_O$, handedness, inter-plane angles |
-| `root_ledger` | partner-hit, self-hit, and inter-layer branch counts with delays, Jacobians, and separator events |
+| `root_ledger` | partner-hit, self-hit, and inter-layer branch counts with delays, Jacobians, separator events, and same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ receiver-normal rows for any branch contribution consumed by energy, shielding, or medium response |
 | `residuals` | $\mathcal{R}_{\text{state}}$, $\mathcal{R}_{\text{root}}$, $\mathcal{R}_{\text{phase}}$, $\mathcal{R}_{E}$, $\mathcal{R}_{\text{drift}}$, $\mathcal{R}_{\text{speed}}$, $\mathcal{R}_{\text{avg}}$, $\mathcal{R}_{\text{lock}}$, $\mathcal{R}_{\text{leak}}$, $\mathcal{R}_{\text{Floquet}}$ |
 | `stability` | monodromy construction, excluded symmetry modes, leading non-symmetry Floquet multipliers, $\Delta_{\mathbf{k}}$ |
 | `energy_ledger` | sign-resolved $E_k$, interaction terms, wake/history terms, layer totals $E_I,E_M,E_O$, total $E_{\text{internal}}(A_0)$ |

@@ -29,6 +29,7 @@ The direct H39 sources inspected for this audit are:
 - [h39-h38-source-covariance-closure-sprint-wrap-up.md](../braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md)
 - [geometry-bridge.md](../braid-geometry-export-bridge/braid-geometry-export-bridge.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md)
+- [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md)
 - [theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs](../../../scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs](../../../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs)
@@ -38,6 +39,8 @@ The direct H39 sources inspected for this audit are:
 - [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js)
 - [solver-h39-shared-domain-primitive-replay.test.js](../../../tests/solver-h39-shared-domain-primitive-replay.test.js)
 - [solver-h39-terminal-graph-remainder-budget-replay.test.js](../../../tests/solver-h39-terminal-graph-remainder-budget-replay.test.js)
+- [receiver-normal-branch-strength-certificate.md](../master-equation-closure/receiver-normal-branch-strength-certificate.md)
+- [branch-provider-evidence-report.md](branch-provider-evidence-report.md)
 
 No H39-named proof-program artifacts were found under [proof-programs](../proof-programs/proof-programs.md). The proof-program relevance is indirect: H39 uses certificate discipline, claim boundaries, source-hash style provenance, fail-closed validators, and candidate-only proof artifacts.
 
@@ -53,6 +56,8 @@ The central solver can improve root, path-history, precision, replay, and ledger
 Foundation/dynamics impact 2026-06-21: the new [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md) chapter sharpens solver ledger vocabulary through $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, but it does not change the H39 blocker. H39 can consume signed-root and assembly topological charge diagnostics as replay metadata, yet the live closure still requires the same-domain provider-object branch schema and upstream producer rows before aggregate $P$ is formed. Classification remains `h39_no_material_effect` for final H39 closure unless that provider-object surface is explicitly reopened.
 
 Master-equation sheaf refinement 2026-06-22: the latest [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) pass adds useful replay vocabulary for H39-style diagnostics: branch-chart local inverse data, $H^0$ global-section counts, $\check H^1$ gluing obstructions, separate $\eta$ versus $\epsilon_c$ regulator status, and finite-window degree changes at memory-boundary starvation. This still does not change the H39 final blocker. The missing object remains a same-domain branch-bearing provider object before aggregate $P$ is formed, so the impact classification remains `h39_no_material_effect` for final closure and `h39_refined_result` only for metadata-rich replay surfaces.
+
+Receiver-normal first-derivative consequence 2026-06-29: the receiver-normal branch-strength certificate and branch-provider evidence report sharpen the same blocker for derivative-consuming force/action packets. Even if an H39 provider-object branch schema produced $A_P=P_- - P_+$ or explicit expression-level `P_-` / `P_+` rows, receiver-normal use still requires `h39-receiver-normal-retained-record-preimage-row/v0`: an accepted provider-object branch row bound to one retained causal-root force/action record carrying $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, and the branch-family checksum. The solver therefore needs a retained-record preimage fixture or producer before H39 provider rows can feed `receiver-normal-retained-branch-family-first-derivative/v0`. Candidate alpha rows, row-local expression feeds, lambda terminal witnesses, aggregate-$P$ probes, hybrid prefix-Cauchy diagnostics, and coefficient-series source-map residual candidates remain negative controls.
 
 Provisional classification before executable replay: `h39_same_result_faster`, bounded by `h39_no_material_effect` for final closure. The likely effect is sharper and faster diagnosis of solver-like subproblems, not automatic H39 closure.
 
@@ -77,6 +82,7 @@ Provisional classification before executable replay: `h39_same_result_faster`, b
 | `h39_pre_sum_provider_branch_source_audit` | `buildH39RequestedY44TerminalExpressionLevelSourceMapProviderObjectPreSumBranchSourceAuditCandidate`. | Source-history streams that preserve branch labels, branch weights, branch intervals, projection coefficients, and provider-object branch ids before aggregate formation. | `needs_missing_solver_capability`. The current solver can preserve supplied metadata, but it cannot derive the missing same-domain $P_b$ source-map provider object. |
 | `h39_provider_object_pushforward_audit` | `buildH39RequestedY44TerminalProviderObjectPbPushforwardOperatorAuditCandidate`. | Same-domain pushforward operator rows, normalization identity rows, branch-pair admissibility, and provider-object branch-pair ledgers. | `needs_missing_solver_capability`. This is a proof-object identity requirement, not merely a root-solving request. |
 | `h39_aggregate_p_preaggregation_branch_bearing_audit` | `buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate`, the cleanest stopping point in the wrap-up. | Raw provider-probe preservation of branch labels, branch weights, branch intervals, projection maps, pushforward operators, and normalization fields before aggregate $P$. | `needs_missing_solver_capability`. The historical artifact reports zero hits in the required branch-bearing field groups, so the central solver would need a new H39 provider-object schema and upstream producer. |
+| `h39_receiver_normal_retained_record_preimage_fixture` | `h39-receiver-normal-retained-record-preimage-fixture/v0` in the branch-provider evidence report and `receiver-normal-retained-branch-family-first-derivative/v0` in the receiver-normal branch-strength certificate. | Accepted H39 provider-object branch rows plus a retained causal-root force/action record with same-record $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, and branch-family checksum. | `needs_missing_solver_capability`. This is the downstream preimage fixture needed before H39 provider rows can become receiver-normal derivative evidence. |
 
 ## First Executable Replay Fixture
 
@@ -125,13 +131,13 @@ Second-run outcome: `h39_refined_result` for the terminal graph remainder budget
 
 ## Audit Plan
 
-1. Keep provider-boundary and aggregate-$P$ packets as missing-capability cases until the solver owns an H39 provider-object schema.
+1. Keep provider-boundary, aggregate-$P$, and receiver-normal retained-record preimage packets as missing-capability cases until the solver owns an H39 provider-object schema plus a retained-record preimage fixture or producer.
 2. If a replay changes root counts, residual signs, Jacobian sign strata, interval containment, or claim-boundary status, classify it as `h39_investigation_required_mismatch` and stop before broadening the audit.
 3. If replay agrees and only improves diagnostics or runtime, classify the relevant candidate as `h39_same_result_faster` or `h39_refined_result`; keep the whole H39/H38 source-covariance lane blocked until a same-domain branch-bearing provider object exists.
 
 ## Current Conclusion
 
-The central solver would likely have improved H39's numerical replay discipline, precision metadata, root/ledger reporting, and repeated manual comparison work. It would not currently supply the missing same-domain branch-bearing provider object before aggregate $P$.
+The central solver would likely have improved H39's numerical replay discipline, precision metadata, root/ledger reporting, and repeated manual comparison work. It would not currently supply the missing same-domain branch-bearing provider object before aggregate $P$, and it would not bind that provider object to the same retained causal-root force/action record needed for $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and reconstructed $D_vW^{\mathrm{rec}}$.
 
 Therefore the best current retrospective classification is:
 
@@ -140,8 +146,9 @@ Therefore the best current retrospective classification is:
 | H39 shared-domain primitive replay | `h39_refined_result`: the adapter preserves historical decisions and claim boundaries while adding solver-style precision metadata, primitive residual rows, hashes, and resource notes. |
 | H39 terminal graph remainder budget replay | `h39_refined_result`: the adapter preserves the historical positive-$\xi$ and symmetric cross-fold budget decisions while adding solver-style root ledger rows, terminal residual rows, replay hashes, interval authority notes, timing notes, and strict diff metadata. |
 | Other H39 solver-like subproblems | Provider-boundary and aggregate-$P$ cases are classified as missing-capability surfaces: they require H39 provider-object theorem schemas and upstream producer rows rather than only replay formatting. |
-| Final H39/H38 source-covariance blocker | `h39_no_material_effect` until the central solver gains an H39 provider-object branch schema and an upstream producer for $P_b$. |
-| Next audit action | Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status until the solver owns H39 provider-boundary theorem objects. |
+| Receiver-normal first-derivative consumer | `needs_missing_solver_capability`: H39 provider rows must pass through `h39-receiver-normal-retained-record-preimage-row/v0` before they can feed `receiver-normal-retained-branch-family-first-derivative/v0`. |
+| Final H39/H38 source-covariance blocker | `h39_no_material_effect` until the central solver gains an H39 provider-object branch schema, an upstream producer for $P_b$, and a retained-record preimage fixture or producer. |
+| Next audit action | Hold `h39_affine_endpoint_provider_boundary_replay` and `h39_receiver_normal_retained_record_preimage_fixture` at missing-capability status until the solver owns H39 provider-boundary theorem objects and retained-record preimage binding. |
 
 ## Completion Judgment
 
@@ -152,6 +159,9 @@ artifact decisions were preserved, and the current classifications are recorded.
 
 The central solver would have improved replay discipline and diagnostics for the
 covered primitive and terminal graph budget surfaces, but it would not have
-removed the final H39/H38 source-covariance blocker. Reopening this audit should
-wait until the solver owns an H39 provider-object branch schema and an upstream
-producer for same-domain $P_b$ rows.
+removed the final H39/H38 source-covariance blocker or the downstream
+receiver-normal retained-record derivative blocker. Reopening this audit should
+wait until the solver owns an H39 provider-object branch schema, an upstream
+producer for same-domain $P_b$ rows, and a retained-record preimage fixture or
+producer binding accepted provider rows to the same retained causal-root
+force/action record.

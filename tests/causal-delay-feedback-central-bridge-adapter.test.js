@@ -444,18 +444,24 @@ function createDelayedHitRunResponse(request, options = {}) {
     receiverPoint.y - emissionPoint.y,
     receiverPoint.z - emissionPoint.z,
   );
-  const receiverNormalFields = options.omitReceiverNormalFields
-    ? {}
-    : {
-        sourceNormalSpeed: 0,
-        receiverNormalSpeed: 0,
-        sourceNormalDenominator: 1,
-        receiverNormalNumerator: 1,
-        receiverNormalCrossingFactor: 1,
-        receiverNormalFactor: 1,
-        unsignedReceiverNormalFactor: 1,
-        receiverNormalStatusCode: 0,
-      };
+  const baseReceiverNormalFields = {
+    sourceNormalSpeed: 0,
+    receiverNormalSpeed: 0,
+    sourceNormalDenominator: 1,
+    receiverNormalNumerator: 1,
+    receiverNormalCrossingFactor: 1,
+    receiverNormalFactor: 1,
+    unsignedReceiverNormalFactor: 1,
+    receiverNormalStatusCode: 0,
+  };
+  const rootReceiverNormalFields = options.omitReceiverNormalFields
+    ? null
+    : { ...baseReceiverNormalFields, ...options.rootReceiverNormalFields };
+  const hitReceiverNormalFields = options.omitReceiverNormalFields
+    ? null
+    : { ...baseReceiverNormalFields, ...options.hitReceiverNormalFields };
+  const rootBranchWeight = options.rootBranchWeight ?? rootReceiverNormalFields?.unsignedReceiverNormalFactor;
+  const hitStrength = options.hitStrength ?? hitReceiverNormalFields?.unsignedReceiverNormalFactor;
   return {
     requestId: request.requestId,
     runId: request.runId,
@@ -476,8 +482,12 @@ function createDelayedHitRunResponse(request, options = {}) {
           distance,
           residual: 0,
           jacobian: 1,
-          branchWeight: 1,
-          ...receiverNormalFields,
+          ...(rootReceiverNormalFields
+            ? {
+                branchWeight: rootBranchWeight,
+                ...rootReceiverNormalFields,
+              }
+            : {}),
           sourcePoint: emissionPoint,
           receiverPoint,
         },
@@ -491,8 +501,12 @@ function createDelayedHitRunResponse(request, options = {}) {
           hitTime: link.hitTime,
           distance,
           jacobian: 1,
-          strength: options.omitReceiverNormalFields ? link.weight : 1,
-          ...receiverNormalFields,
+          ...(hitReceiverNormalFields
+            ? {
+                strength: hitStrength,
+                ...hitReceiverNormalFields,
+              }
+            : {}),
           emissionPoint,
           receiverPoint,
           unitDirection: {
@@ -1498,6 +1512,41 @@ test("causal delay central bridge adapter fails closed without receiver-normal d
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.wakeLinks[0].solverHitStatusCode, 0);
   assert.equal(dataset.wakeLinks[0].rootStatus.code, "receiver_normal_fields_unavailable");
+  assert.equal(dataset.wakeLinks[0].rootStatus.severity, "warn");
+});
+
+test("causal delay central bridge adapter fails closed on mismatched receiver-normal root rows", async () => {
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    solverReplayMode: CENTRAL_SOLVER_MOTION_REPLAY_MODE,
+    async runSolverBridge(request) {
+      if (request.runKind === CENTRAL_SOLVER_MOTION_REPLAY_MODE) {
+        return createMotionRunResponse(request);
+      }
+      return createDelayedHitRunResponse(request, {
+        rootBranchWeight: 1.5,
+        rootReceiverNormalFields: {
+          receiverNormalNumerator: 1.5,
+          receiverNormalCrossingFactor: 1.5,
+          receiverNormalFactor: 1.5,
+          unsignedReceiverNormalFactor: 1.5,
+        },
+      });
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      frameCount: 3,
+      runDuration: 1,
+      motionAccelerationPolicy: "pair_initial_attraction_seed",
+    },
+  });
+
+  assert.equal(dataset.wakeLinks.length, 10);
+  assert.equal(dataset.wakeLinks[0].solverRootStatusCode, 0);
+  assert.equal(dataset.wakeLinks[0].solverHitStatusCode, 0);
+  assert.equal(dataset.wakeLinks[0].rootStatus.code, "same_record_receiver_normal_mismatch");
   assert.equal(dataset.wakeLinks[0].rootStatus.severity, "warn");
 });
 

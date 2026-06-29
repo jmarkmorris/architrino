@@ -4,6 +4,12 @@ Promotion status: `priority-only`. This packet develops the plane-normal precess
 
 Claim level: deformation theorem-target and simulation-target material. This packet does not claim a retained branch. It supplies the curve family, arclength constraints, curvature terms, root-ledger variations, and residual entries that a retained shell braid dynamics packet would have to close.
 
+Receiver-normal status: `receiver-normal-restart-required` for active
+force/action derivative use. The $|J|^{-1}$ precession variation below is a
+source-normal diagnostic snapshot. A live precession packet must rebuild the
+variation with same-record $W^{\mathrm{rec}}$, $D_s$, $D_t$, and
+$DW^{\mathrm{rec}}$ before it can feed action, Krawczyk, or retention rows.
+
 ---
 
 ## 1. Baseline Frame
@@ -547,7 +553,7 @@ W_{ij}^{\mathrm{rec}}
 }.
 $$
 
-Its first-order precession variation is
+Its old source-normal first-order precession diagnostic is
 
 $$
 \delta\widetilde{\mathbf{F}}_{ij}^{(\mu)}
@@ -586,7 +592,7 @@ J_{\min}>\epsilon_J,
 |\mathcal{A}_i(\lambda)|<\infty,
 $$
 
-with the same root labels used in the force, energy/action, and event rows.
+with the same root labels used in the diagnostic force, energy/action, and event rows. Active force/action use also requires same-record $W^{\mathrm{rec}}$ and $DW^{\mathrm{rec}}$ rows.
 
 ---
 

@@ -2691,11 +2691,13 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
     const solverHit = normalizeOptionalArray(
       response.hits ?? response.delayedHits ?? response.delayedHitEvents,
     )[0];
-    const solverRoot = normalizeOptionalArray(response.roots)[0];
+    const solverRoots = normalizeOptionalArray(response.roots);
     const rootLedgerDetails = normalizeOptionalArray(response.rootLedgerDetails);
     const fallback = createBridgeDelayedHitFromWakeLink(replayDataset, links[index], index);
+    const solverRoot = findSolverRootForDelayedHit(solverRoots, solverHit);
     const receiverNormalEvidence = normalizeSolverDelayedHitReceiverNormalEvidence(
       solverHit,
+      solverRoot,
       `delayed-hit run ${index}`,
     );
     const rootStatus = receiverNormalEvidence.accepted
@@ -2779,21 +2781,72 @@ function receiverNormalUnavailableFields() {
   };
 }
 
-function normalizeSolverDelayedHitReceiverNormalEvidence(solverHit, label) {
-  if (!solverHit || typeof solverHit !== "object") {
+function findSolverRootForDelayedHit(solverRoots, solverHit) {
+  if (
+    !Array.isArray(solverRoots) ||
+    solverRoots.length === 0 ||
+    !solverHit ||
+    typeof solverHit !== "object"
+  ) {
+    return null;
+  }
+  const hitRootId = readOptionalFiniteNumber(solverHit.rootId);
+  if (hitRootId != null) {
+    return (
+      solverRoots.find((root) => readOptionalFiniteNumber(root?.rootId) === hitRootId) ??
+      null
+    );
+  }
+  return solverRoots.length === 1 ? solverRoots[0] : null;
+}
+
+function normalizeSolverDelayedHitReceiverNormalEvidence(solverHit, solverRoot, label) {
+  const hitEvidence = normalizeSolverReceiverNormalRow(solverHit, "strength", `${label}.hit`);
+  if (!hitEvidence) {
     return failClosedReceiverNormalEvidence("receiver_normal_fields_unavailable");
   }
-  const statusCode = readOptionalFiniteNumber(solverHit.statusCode);
-  const jacobian = readOptionalFiniteNumber(solverHit.jacobian);
-  const sourceNormalSpeed = readOptionalFiniteNumber(solverHit.sourceNormalSpeed);
-  const receiverNormalSpeed = readOptionalFiniteNumber(solverHit.receiverNormalSpeed);
-  const sourceNormalDenominator = readOptionalFiniteNumber(solverHit.sourceNormalDenominator);
-  const receiverNormalNumerator = readOptionalFiniteNumber(solverHit.receiverNormalNumerator);
-  const receiverNormalCrossingFactor = readOptionalFiniteNumber(solverHit.receiverNormalCrossingFactor);
-  const receiverNormalFactor = readOptionalFiniteNumber(solverHit.receiverNormalFactor);
-  const unsignedReceiverNormalFactor = readOptionalFiniteNumber(solverHit.unsignedReceiverNormalFactor);
-  const receiverNormalStatusCode = readOptionalFiniteNumber(solverHit.receiverNormalStatusCode);
-  const strength = readOptionalFiniteNumber(solverHit.strength);
+  if (!hitEvidence.accepted) {
+    return failClosedReceiverNormalEvidence("receiver_normal_fields_invalid", hitEvidence.fields);
+  }
+  const rootEvidence = normalizeSolverReceiverNormalRow(solverRoot, "branchWeight", `${label}.root`);
+  if (!rootEvidence) {
+    return failClosedReceiverNormalEvidence(
+      "same_record_receiver_normal_root_unavailable",
+      hitEvidence.fields,
+    );
+  }
+  if (!rootEvidence.accepted) {
+    return failClosedReceiverNormalEvidence(
+      "same_record_receiver_normal_root_invalid",
+      hitEvidence.fields,
+    );
+  }
+  if (!sameRecordReceiverNormalRowsMatch(hitEvidence, rootEvidence)) {
+    return failClosedReceiverNormalEvidence("same_record_receiver_normal_mismatch", hitEvidence.fields);
+  }
+  return {
+    accepted: true,
+    reason: "receiver_normal_fields_accepted",
+    fields: hitEvidence.fields,
+    strength: hitEvidence.branchStrength,
+  };
+}
+
+function normalizeSolverReceiverNormalRow(row, branchStrengthKey, label) {
+  if (!row || typeof row !== "object") {
+    return null;
+  }
+  const statusCode = readOptionalFiniteNumber(row.statusCode);
+  const jacobian = readOptionalFiniteNumber(row.jacobian);
+  const sourceNormalSpeed = readOptionalFiniteNumber(row.sourceNormalSpeed);
+  const receiverNormalSpeed = readOptionalFiniteNumber(row.receiverNormalSpeed);
+  const sourceNormalDenominator = readOptionalFiniteNumber(row.sourceNormalDenominator);
+  const receiverNormalNumerator = readOptionalFiniteNumber(row.receiverNormalNumerator);
+  const receiverNormalCrossingFactor = readOptionalFiniteNumber(row.receiverNormalCrossingFactor);
+  const receiverNormalFactor = readOptionalFiniteNumber(row.receiverNormalFactor);
+  const unsignedReceiverNormalFactor = readOptionalFiniteNumber(row.unsignedReceiverNormalFactor);
+  const receiverNormalStatusCode = readOptionalFiniteNumber(row.receiverNormalStatusCode);
+  const branchStrength = readOptionalFiniteNumber(row[branchStrengthKey]);
   if (
     statusCode == null ||
     jacobian == null ||
@@ -2805,37 +2858,23 @@ function normalizeSolverDelayedHitReceiverNormalEvidence(solverHit, label) {
     receiverNormalFactor == null ||
     unsignedReceiverNormalFactor == null ||
     receiverNormalStatusCode == null ||
-    strength == null
+    branchStrength == null
   ) {
-    return failClosedReceiverNormalEvidence("receiver_normal_fields_unavailable");
+    return null;
   }
   const fields = {
-    sourceNormalSpeed: normalizeFiniteNumber(sourceNormalSpeed, `${label}.sourceNormalSpeed`),
-    receiverNormalSpeed: normalizeFiniteNumber(receiverNormalSpeed, `${label}.receiverNormalSpeed`),
-    sourceNormalDenominator: normalizeFiniteNumber(
-      sourceNormalDenominator,
-      `${label}.sourceNormalDenominator`,
-    ),
-    receiverNormalNumerator: normalizeFiniteNumber(
-      receiverNormalNumerator,
-      `${label}.receiverNormalNumerator`,
-    ),
-    receiverNormalCrossingFactor: normalizeFiniteNumber(
-      receiverNormalCrossingFactor,
-      `${label}.receiverNormalCrossingFactor`,
-    ),
-    receiverNormalFactor: normalizeFiniteNumber(receiverNormalFactor, `${label}.receiverNormalFactor`),
-    unsignedReceiverNormalFactor: normalizeNonnegativeNumber(
-      unsignedReceiverNormalFactor,
-      undefined,
-      `${label}.unsignedReceiverNormalFactor`,
-    ),
-    receiverNormalStatusCode: normalizeNonnegativeInteger(
-      receiverNormalStatusCode,
-      `${label}.receiverNormalStatusCode`,
-    ),
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    receiverNormalStatusCode: Number.isInteger(receiverNormalStatusCode)
+      ? receiverNormalStatusCode
+      : RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE,
   };
-  const normalizedStrength = normalizeNonnegativeNumber(strength, undefined, `${label}.strength`);
+  const normalizedBranchStrength = branchStrength;
   const sourceDenominatorMatchesJacobian = closeScaled(fields.sourceNormalDenominator, jacobian);
   const receiverNormalFactorMatches =
     fields.sourceNormalDenominator !== 0 &&
@@ -2844,32 +2883,63 @@ function normalizeSolverDelayedHitReceiverNormalEvidence(solverHit, label) {
     fields.unsignedReceiverNormalFactor,
     Math.abs(fields.receiverNormalFactor),
   );
-  const strengthMatches = closeScaled(normalizedStrength, fields.unsignedReceiverNormalFactor);
+  const branchStrengthMatches = closeScaled(
+    normalizedBranchStrength,
+    fields.unsignedReceiverNormalFactor,
+  );
   if (
     statusCode !== 0 ||
     fields.receiverNormalStatusCode !== 0 ||
+    receiverNormalStatusCode < 0 ||
+    fields.unsignedReceiverNormalFactor < 0 ||
+    normalizedBranchStrength < 0 ||
     !sourceDenominatorMatchesJacobian ||
     !receiverNormalFactorMatches ||
     !unsignedFactorMatches ||
-    !strengthMatches
+    !branchStrengthMatches
   ) {
-    return failClosedReceiverNormalEvidence("receiver_normal_fields_invalid", fields);
+    return {
+      accepted: false,
+      fields,
+      branchStrength: normalizedBranchStrength,
+    };
   }
   return {
     accepted: true,
-    reason: "receiver_normal_fields_accepted",
     fields,
-    strength: normalizedStrength,
+    branchStrength: normalizedBranchStrength,
   };
 }
 
+function sameRecordReceiverNormalRowsMatch(hitEvidence, rootEvidence) {
+  return (
+    closeScaled(hitEvidence.branchStrength, rootEvidence.branchStrength) &&
+    [
+      "sourceNormalSpeed",
+      "receiverNormalSpeed",
+      "sourceNormalDenominator",
+      "receiverNormalNumerator",
+      "receiverNormalCrossingFactor",
+      "receiverNormalFactor",
+      "unsignedReceiverNormalFactor",
+      "receiverNormalStatusCode",
+    ].every((fieldName) =>
+      closeScaled(hitEvidence.fields[fieldName], rootEvidence.fields[fieldName])
+    )
+  );
+}
+
 function failClosedReceiverNormalEvidence(reason, fields = receiverNormalUnavailableFields()) {
+  const receiverNormalStatusCode =
+    Number.isInteger(fields.receiverNormalStatusCode) && fields.receiverNormalStatusCode > 0
+      ? fields.receiverNormalStatusCode
+      : RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE;
   return {
     accepted: false,
     reason,
     fields: {
       ...fields,
-      receiverNormalStatusCode: fields.receiverNormalStatusCode || RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE,
+      receiverNormalStatusCode,
     },
     strength: 0,
   };

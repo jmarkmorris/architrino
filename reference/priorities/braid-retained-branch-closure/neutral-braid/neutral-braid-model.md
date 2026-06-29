@@ -400,8 +400,9 @@ F_i^\nu(u)
 \sum_{j\ne i}
 \sum_{\alpha\in\mathcal{A}_{ij}^{\nu}(u)}
 \sigma_i\sigma_j
+W_{ij,\alpha}^{\mathrm{rec},\nu}(u)
 \frac{\widehat{\mathbf{R}}_{ij,\alpha}(u)}
-{\eta_{ij,\alpha}(u)^2|J_{ij,\alpha}^{\nu}(u)|}
+{\eta_{ij,\alpha}(u)^2}
 +
 F_{i,\mathrm{self}}^\nu
 +
@@ -409,6 +410,13 @@ F_{i,\mathrm{med}}^\nu
 +
 F_{i,\mathrm{supp}}^\nu.
 $$
+
+Here $W_{ij,\alpha}^{\mathrm{rec},\nu}(u)$ is the same-record
+receiver-normal branch strength. The $|J_{ij,\alpha}^{\nu}(u)|$ row remains a
+root-chart diagnostic, not receiver-normal branch strength.
+If a derivative-consuming force/action packet cannot emit this row and its
+required first derivative on the same root record, it exits as
+`receiver-normal-restart-required`.
 
 The structural attraction/repulsion inventory survives without binary partition. For each receiver $i$,
 

@@ -37,6 +37,7 @@ export {
   createT3CentralSolverEngine,
   createT3FallbackMotionIntegrationRequest,
   integrateParticlesWithFallbackCentralMotionSolver,
+  summarizeT3ImageDeltas,
   T3CentralSolverEngine,
 } from "./T3CentralSolverEngine.mjs";
 export { computeKineticEnergy, computeMomentum, computeParticleStatistics, computeSpeedSummary } from "./T3Statistics.mjs";

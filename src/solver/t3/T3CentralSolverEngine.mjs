@@ -48,8 +48,11 @@ export class T3CentralSolverEngine {
       maxRows: state.particleCount,
     });
     const response = await this.solverClient.stepT3UniverseF64(request);
-    applyT3BulkStepRows(state, response?.rows ?? []);
-    state.time = response?.summary?.endTime ?? state.time + dt;
+    const rows = response?.rows ?? [];
+    const bulkStepSummary = response?.summary ?? {};
+    const periodicWrapEvidence = summarizeT3ImageDeltas(rows);
+    applyT3BulkStepRows(state, rows);
+    state.time = bulkStepSummary.endTime ?? state.time + dt;
     state.stepIndex += 1;
     this.lastAcceptedTimestep = dt;
     this.solverCallCount += 1;
@@ -62,11 +65,17 @@ export class T3CentralSolverEngine {
       time: state.time,
       stepIndex: state.stepIndex,
       solverCallCount: this.solverCallCount,
+      particleCount: bulkStepSummary.particleCount ?? state.particleCount,
       particleSolveCount: state.particleCount,
       nativeStepCount: this.solverCallCount,
       interactionLaw: request.interaction.law,
-      neighborPairCount: response?.summary?.neighborPairCount ?? 0,
-      occupiedCellCount: response?.summary?.occupiedCellCount ?? 0,
+      neighborPairCount: bulkStepSummary.neighborPairCount ?? 0,
+      cellCount: bulkStepSummary.cellCount ?? null,
+      occupiedCellCount: bulkStepSummary.occupiedCellCount ?? 0,
+      maxAcceleration: bulkStepSummary.maxAcceleration ?? 0,
+      interactionEnergy: bulkStepSummary.interactionEnergy ?? 0,
+      bulkStepSummary,
+      periodicWrapEvidence,
       executionPath: response?.executionPath ?? "central_solver_bridge",
     };
     this.interactionPipeline.afterStep(this.createContext(state, result));
@@ -202,6 +211,40 @@ export function applyT3BulkStepRows(state, rows) {
   }
 }
 
+export function summarizeT3ImageDeltas(rows = []) {
+  if (!Array.isArray(rows)) {
+    throw new TypeError("T3 image delta summary requires solver rows");
+  }
+  const imageDeltaTotals = { x: 0, y: 0, z: 0 };
+  const absoluteImageDeltaTotals = { x: 0, y: 0, z: 0 };
+  let wrappedParticleCount = 0;
+  for (const row of rows) {
+    const x = integerImageDelta(row?.imageDelta?.x);
+    const y = integerImageDelta(row?.imageDelta?.y);
+    const z = integerImageDelta(row?.imageDelta?.z);
+    imageDeltaTotals.x += x;
+    imageDeltaTotals.y += y;
+    imageDeltaTotals.z += z;
+    absoluteImageDeltaTotals.x += Math.abs(x);
+    absoluteImageDeltaTotals.y += Math.abs(y);
+    absoluteImageDeltaTotals.z += Math.abs(z);
+    if (x !== 0 || y !== 0 || z !== 0) {
+      wrappedParticleCount += 1;
+    }
+  }
+  const totalAbsoluteImageDelta =
+    absoluteImageDeltaTotals.x + absoluteImageDeltaTotals.y + absoluteImageDeltaTotals.z;
+  return {
+    schema: "t3-image-delta-summary.v1",
+    particleCount: rows.length,
+    imageDeltaTotals,
+    absoluteImageDeltaTotals,
+    totalAbsoluteImageDelta,
+    wrappedParticleCount,
+    hasPeriodicWrap: wrappedParticleCount > 0,
+  };
+}
+
 export function createT3FallbackMotionIntegrationRequest(state, particleIndex, startTime, timestep, options = {}) {
   const offset = particleIndex * 3;
   return {
@@ -301,6 +344,14 @@ function finiteNumber(value, fieldName) {
   const numericValue = Number(value);
   if (!Number.isFinite(numericValue)) {
     throw new TypeError(`${fieldName} must be finite`);
+  }
+  return numericValue;
+}
+
+function integerImageDelta(value) {
+  const numericValue = Number(value ?? 0);
+  if (!Number.isInteger(numericValue)) {
+    throw new TypeError("T3 image delta must be an integer");
   }
   return numericValue;
 }

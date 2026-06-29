@@ -169,12 +169,13 @@ The per-root force contribution is
 $$
 \mathbf{f}_a^{(\nu)}
 =
-\frac{\sigma_i\sigma_j}
-{(\eta_a^{(\nu)})^2|J_a^{(\nu)}|}
+\sigma_i\sigma_j(\eta_a^{(\nu)})^{-2}
+W_a^{\mathrm{rec},(\nu)}
 \widehat{\mathbf{R}}_a^{(\nu)}.
 $$
 
-Uniform $\eta_0$ and $J_0$ plus root convergence imply
+Uniform $\eta_0$ and $J_0$, root convergence, and same-record
+receiver-normal convergence imply
 
 $$
 \mathbf{f}_a^{(\nu)}

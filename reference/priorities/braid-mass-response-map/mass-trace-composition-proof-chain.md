@@ -6,7 +6,7 @@ This priority packet synthesizes the current mass-map advances into one proof ch
 
 - **Status:** priority-side theorem target with a reader-facing compact form promoted into [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md).
 - **Main claim:** in a branch-preserving reversible response record, scalar mass trace factors through a quotient-visible exposed source and the rotational trace of the exposed inertial-response tensor. Antisymmetric response, unlogged transport loss, and pressure-row splits cannot contribute to scalar rest mass. Only the trace-free exposure components visible to the retained reversible response directions can affect the scalar trace.
-- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks.
+- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks. For the receiver-normal successor, the same branch records must also carry same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the retained roots consumed by the exposed-source and response rows.
 
 ## Inputs
 
@@ -60,6 +60,65 @@ $$
 \right]
 +
 \mathcal{R}_{\mathcal M,+}^{ab}.
+$$
+
+## Receiver-Normal Successor Target
+
+The generic composition lemma below is not a license to reuse older
+source-normal or quotient-only force weights. The receiver-normal successor
+theorem target replaces the exposed-source and trace-free exposure inputs by
+their same-record receiver-normal versions:
+
+$$
+M_0^{\mathrm{src}}(A)
+\mapsto
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A),
+\qquad
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A)
+\mapsto
+\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A).
+$$
+
+For every retained row $\rho$ used by those objects, the retained branch record
+must carry
+
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}
+=
+\left|
+\frac{D_{t,\rho}}{D_{s,\rho}}
+\right|,
+$$
+
+and the same record must bind the energy ledger, exposure quotient chart,
+Noether sea response record, retained response direction, and null-sector
+status. If any factor is imported from an H39/theta3minus quotient certificate,
+source-normal denominator, shell-braid force residue, fixture, or cross-row
+bundle without that same-record binding, the successor theorem fails with
+`receiver_normal_same_record_missing` rather than producing a mass trace.
+
+The closure equation to prove is therefore the same trace composition with the
+receiver-normal source:
+
+$$
+m_{\mathrm{tr}}^{\mathrm{rec}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf,rec},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{chain,rec}}.
 $$
 
 ## Composition Lemma

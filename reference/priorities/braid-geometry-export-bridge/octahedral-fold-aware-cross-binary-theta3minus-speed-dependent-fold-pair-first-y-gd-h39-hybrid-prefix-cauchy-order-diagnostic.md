@@ -702,6 +702,17 @@ $$
 \texttt{retained\_branch=false}.
 $$
 
+Receiver-normal retained-record routing. This diagnostic can only feed the
+existing primitive-vector provenance lane. It does not emit an accepted
+$A_P=P_- - P_+$ row or explicit `P_-` / `P_+` provider-object branch rows, and
+it does not emit retained causal-root fields $D_s$, $D_t$, $W^{\mathrm{rec}}$,
+$D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, or a retained branch-family
+checksum. For receiver-normal derivative consumers, its local exit is therefore
+the existing
+`h39-primitive-vector-provider-provenance-only-not-retained-record-preimage`
+status unless a later packet supplies
+`h39-receiver-normal-retained-record-preimage-row/v0`.
+
 Passing this diagnostic in the future would identify a sufficient retained
 prefix order and tail-size target for the directed-rounded backend. It would
 not by itself prove the Rouché graph lift, h39 continuous tail, full first-y

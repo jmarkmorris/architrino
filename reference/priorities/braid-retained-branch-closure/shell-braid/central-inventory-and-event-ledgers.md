@@ -72,7 +72,7 @@ N_{\mathrm{attr}}(i)=3,
 N_{\mathrm{rep}}(i)=2
 $$
 
-for each receiver $i$, excluding itself. This row is a structural inventory bias only; weighted delayed force closure still depends on root delays, Jacobians, directions, multiplicities, and any self or medium-response rows.
+for each receiver $i$, excluding itself. This row is a structural inventory bias only; weighted delayed force closure still depends on root delays, receiver-normal branch strengths, directions, multiplicities, and any self or medium-response rows.
 
 For the same-level architecture, its bookkeeping split is
 

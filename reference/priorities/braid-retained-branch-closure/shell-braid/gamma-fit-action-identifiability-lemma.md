@@ -10,7 +10,7 @@ $$
 K_{\nu}=\nu^2K,
 $$
 
-and the fit must use the same bounded-speed force $A^{\nu}=P^\perp\widetilde{\mathbf{F}}^{\nu}$, causal-time weighting, root Jacobian $J^\nu$, and speed-factor action row used by the candidate branch. A fixed-speed fitted $\Gamma_K$ can initialize the bounded-speed solve, but it cannot identify $\Gamma_B^{\nu}$.
+and the fit must use the same bounded-speed force $A^{\nu}=P^\perp\widetilde{\mathbf{F}}^{\nu}$, causal-time weighting, source-normal root chart, receiver-normal branch weights, and speed-factor action row used by the candidate branch. A fixed-speed fitted $\Gamma_K$ can initialize the bounded-speed solve, but it cannot identify $\Gamma_B^{\nu}$.
 
 The corresponding diagnostic scalar is
 

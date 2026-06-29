@@ -8,7 +8,7 @@ The merge decision now runs through [Neutral Braid Model](../neutral-braid/neutr
 
 In the shell braid case, the model trades persistent radial nesting for a certified common support band, phase-locked choreography, central inventory accounting, and branch-certificate data. In the broader neutral braid base case, the model also drops mandatory binary grouping: the neutral braid is six labeled sites with exactly three positive and three negative architrinos, an all-pairs causal-root ledger, and a support band when that case is claimed. The proof burden is therefore not a single visual construction. It is a coupled certificate showing that one retained branch simultaneously closes its causal-root ledger, dynamics residuals, noncollision gates, energy/action ledger, inventory ledger, exposure map, and observer-export rows.
 
-For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a fixed-speed deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual. A bounded-speed branch replaces the tangent row with $\mathcal{R}_{\mathrm{speedODE}}^\nu$ and closes $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, support, and action/event exchange rows on the bounded-speed ledger. Because those rows change the same roots, Jacobians, force weights, support multipliers, and event surfaces, bounded-speed promotion also needs the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$.
+For deformed support-band rows, the preferred dynamics chart is now the arclength chart: fixed speed is encoded by the curve clock, and the remaining carrier equation is force-versus-curvature closure. Thus a fixed-speed deformed retained branch must close $\mathcal{R}_{L}$, $\mathcal{R}_{T}$, $\mathcal{R}_{\mathrm{tan}}$, and $\mathcal{R}_{\mathrm{curv}}$ on the same active-root ledger, not only an angle-clock speed residual. A bounded-speed branch replaces the tangent row with $\mathcal{R}_{\mathrm{speedODE}}^\nu$ and closes $\mathcal{R}_{N\mathrm{rec}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, support, and action/event exchange rows on the bounded-speed ledger. Because those rows change the same roots, source-normal root charts, receiver-normal branch weights, support multipliers, and event surfaces, bounded-speed promotion also needs the coupled live-ledger residual $\mathcal{R}_{\mathrm{cpl}}^\nu$.
 
 The composite promotion decision is stated in [retained-branch-promotion-theorem.md](retained-branch-promotion-theorem.md). That theorem is the guardrail for any future migration: a shell braid packet remains priority-only until geometry, roots, dynamics, convergence, action, conservation, stability, inventory, and event rows all close on one live-ledger convention. Observer-export rows must be reported as statuses before any downstream Lorentz, photon, mass, color, strong-field, or cosmology claim is promoted.
 
@@ -201,12 +201,50 @@ The observer-export rows inherit the branch packet; they do not define it.
 | Export | Branch data it must consume | Minimal residual |
 | --- | --- | --- |
 | Lorentz clock/ruler | periods, moving carrier deformation, signal synchronization, leakage row | $\mathcal{R}_{\mathrm{Lorentz}}^{(q)}$ |
-| Photon transition | planar branch transition, event ledger, speed row, transverse/longitudinal split | $\mathcal{R}_{\gamma}$ |
-| Mass map | $E_{\mathrm{hist}}$, $\mathcal{Z}^{ab}$, $\zeta$, $\mathcal{M}_{\mathrm{sea}}^{ab}$ | $\mathcal{R}_{\mathrm{exposure}}$ plus $\mathcal{R}_E$ |
+| Photon transition | planar branch transition, event ledger, speed row, transverse/longitudinal split, and same-record wake-history receiver-normal row when a branch force or event current is differentiated | $\mathcal{R}_{\gamma}$ |
+| Mass map | $E_{\mathrm{hist}}$, receiver-normal exposure tensor, $\mathcal{Z}^{ab}$, $\zeta$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, and same-record retained branch-strength rows | $\mathcal{R}_{\mathrm{exposure}}$ plus $\mathcal{R}_E$ and `receiver-normal-first-derivative-row-missing` if a derivative-sensitive exposure is consumed |
 | Color | $\mathcal{S}_3$ slots plus continuous phase connection | `color-connection-missing` until generators and curvature are supplied |
 | Strong-field | finite boundary, event-ledger closure, observer-level translation | $\mathcal{R}_H(\Omega)$ |
 
 The current shell braid architecture may improve Lorentz isotropy because an isotropic carrier can reduce rest-frame orientation leakage. That is a proof route, not a result. The retained branch must still compute the preferred-frame leakage diagnostic $\mathcal{A}_{\mathrm{pf}}^{(q)}$.
+
+Receiver-normal export blocker: any observer export that consumes a force,
+wake-history term, action current, mass-response exposure, breather force
+margin, or Noether sea constitutive response must consume $W^{\mathrm{rec}}$
+from the same retained branch-strength record as the active root list, root
+delay, $D_s$, $D_t$, and, for derivative-consuming rows, $D_vD_s$,
+$D_vD_t$, and reconstructed $D_vW^{\mathrm{rec}}$. A terminal aggregate,
+H39/theta3minus quotient certificate, source-normal denominator row, or old
+shell-braid force residue remains diagnostic-only and fails as
+`receiver-normal-export-row-missing`.
+
+**Theorem target E.** If an observer-export packet reports a retained mass,
+photon, wake-history, breather, color, or Noether sea response row, then the
+export map factors through a single retained branch-strength record:
+
+$$
+\mathsf{P}_{\mathrm{export}}
+=
+\Phi_{\mathrm{export}}
+\left(
+\mathcal{A}_q,
+D_s,
+D_t,
+W^{\mathrm{rec}},
+D_vD_s,
+D_vD_t,
+D_vW^{\mathrm{rec}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}Q}^{(q)}
+\right),
+$$
+
+with the derivative entries omitted only for rows that declare
+`derivative_consumption=false`. The proof obligation is record identity: all
+arguments above must carry the same branch-family checksum, variation
+coordinate, regulator state, and source artifact hash. A proof packet that
+substitutes an H39/theta3minus quotient row or old source-normal force weight
+for any receiver-normal argument is `invalid_mixed_ledger`, not an observer
+export.
 
 ---
 
@@ -279,7 +317,7 @@ The first proof-packet layer is now staged:
 | Arclength-inverse trust-region screen | restricted nonlinear descent survives through $K=18$ and $\rho=0.8$; root-count loss at $\rho=1.2$ and support-band growth keep the row unretained |
 | Bounded speed factor extension | generalizes the intrinsic curve model from $\nu_i\equiv1$ to bounded $\nu_i$, changing tangential force closure, root Jacobians, period rows, and self-hit admissibility |
 | Bounded speed factor root-sheet certificate | replaces fixed-speed root sheets by causal-time sheets with $J_{ij}^{\nu}$, clock-corrected coefficient variations, force derivatives, and Krawczyk envelopes |
-| Bounded speed factor second root-variation lemma | supplies $D^2\eta^\nu$, $D^2J^\nu$, force-weight Hessians, and row-weighted Krawczyk/Hessian constants for bounded-speed roots |
+| Bounded speed factor second root-variation lemma | supplies $D^2\eta^\nu$, $D^2J^\nu$, receiver-normal branch-weight Hessians, and row-weighted Krawczyk/Hessian constants for bounded-speed roots |
 | Bounded speed factor executable solver protocol | converts the extension into a finite-mode unknown vector $(a,b,\gamma)$, causal-time root solve, bounded-speed residual, Krawczyk budget, and first-event ledger |
 | Bounded speed factor branch search certificate | defines the executable chart, residual, margin vector, trichotomy, execution order, and report schema needed to accept, reject, or event-reset a bounded-speed candidate box |
 | Bounded speed factor finite-mode branch system | expands the search into the full finite-mode variables $(a,b,r,s,\gamma,e,\ell)$, residual rows, dimension counts, truncation split, and artifact schema |

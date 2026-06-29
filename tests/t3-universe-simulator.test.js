@@ -248,6 +248,92 @@ test("central solver engine advances particles through bulk T3 solver client", a
   assert.equal(simulator.state.imageOffsets[0], 1);
 });
 
+test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {
+  const bulkCalls = [];
+  let fallbackCallCount = 0;
+  const solverClient = {
+    async stepT3UniverseF64(request) {
+      bulkCalls.push(request);
+      const dt = request.timestep;
+      const sideLength = request.topology.sideLength;
+      const rows = request.particles.map((particle) => {
+        const nextX = particle.position.x + particle.velocity.x * dt;
+        const wrappedX = wrapScalarForTest(nextX, sideLength);
+        return {
+          pathKey: particle.pathKey,
+          position: { x: wrappedX.value, y: particle.position.y, z: particle.position.z },
+          velocity: {
+            x: particle.velocity.x,
+            y: particle.velocity.y,
+            z: particle.velocity.z,
+          },
+          acceleration: { x: 0, y: 0, z: 0 },
+          imageDelta: { x: wrappedX.imageDelta, y: 0, z: 0 },
+          stateFlags: particle.stateFlags,
+        };
+      });
+      return {
+        schema: "solver-t3-step-response.v1",
+        rows,
+        summary: {
+          startTime: request.startTime,
+          endTime: request.startTime + dt,
+          timestep: dt,
+          particleCount: request.particles.length,
+          neighborPairCount: 0,
+          cellCount: 8,
+          occupiedCellCount: 1,
+          maxAcceleration: 0,
+          interactionEnergy: 0,
+          interactionLaw: request.interaction.law,
+        },
+        executionPath: "native_c_abi",
+        status: { code: "ok", severity: "ok", message: "fake native bulk solver integrated" },
+      };
+    },
+    async integrateConstantAccelerationMotionF64() {
+      fallbackCallCount += 1;
+      throw new Error("per-particle fallback must not be called for solver T3 runs");
+    },
+  };
+  const simulator = createT3UniverseSimulator({
+    config: {
+      topology: { sideLength: 1 },
+      initialConditions: {
+        particles: [{ id: "solver-runner", position: [0.75, 0.2, 0.2], velocity: [0.5, 0, 0] }],
+      },
+      interactions: { interactionRadius: 0.5, spatialIndexCellSize: 0.5 },
+      solver: { engine: "solver", timestep: 1, centralSolverConcurrency: 1 },
+    },
+    solverClient,
+  });
+
+  const result = await simulator.run({ steps: 3, collectFrames: false });
+
+  assert.equal(bulkCalls.length, 3);
+  assert.equal(fallbackCallCount, 0);
+  assert.equal(result.runSummary.schema, "t3-run-summary.v1");
+  assert.equal(result.runSummary.stepCount, 3);
+  assert.equal(result.runSummary.particleCount, 1);
+  assert.equal(result.runSummary.nativeBulkStepCount, 3);
+  assert.equal(result.runSummary.perParticleFallbackStepCount, 0);
+  assert.equal(result.runSummary.usedPerParticleFallback, false);
+  assert.equal(result.runSummary.executionPath, "native_c_abi");
+  assert.deepEqual(result.runSummary.executionPathCounts, { native_c_abi: 3 });
+  assert.equal(result.runSummary.interactionPreset, "none");
+  assert.deepEqual(result.runSummary.neighborPairCounts.perStep, [0, 0, 0]);
+  assert.deepEqual(result.runSummary.occupiedCellCounts.perStep, [1, 1, 1]);
+  assert.deepEqual(result.runSummary.cellCounts.perStep, [8, 8, 8]);
+  assert.equal(result.runSummary.periodicWrapEvidence.hasPeriodicWrap, true);
+  assert.equal(result.runSummary.periodicWrapEvidence.stepCountWithPeriodicWrap, 2);
+  assert.equal(result.runSummary.periodicWrapEvidence.wrappedParticleStepCount, 2);
+  assert.deepEqual(result.runSummary.periodicWrapEvidence.imageDeltaTotals, { x: 2, y: 0, z: 0 });
+  assert.deepEqual(result.runSummary.periodicWrapEvidence.absoluteImageDeltaTotals, { x: 2, y: 0, z: 0 });
+  assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
+  assert.equal(simulator.solver.solverCallCount, 3);
+  assert.equal(simulator.state.imageOffsets[0], 2);
+});
+
 test("soft pair interaction preserves total momentum under deterministic fixed stepping", async () => {
   const simulator = createT3UniverseSimulator({
     config: {
@@ -307,4 +393,16 @@ function assertVectorsClose(actual, expected, tolerance) {
       `index ${index}: expected ${expected[index]}, got ${actual[index]}`
     );
   }
+}
+
+function wrapScalarForTest(value, sideLength) {
+  let imageDelta = Math.floor(value / sideLength);
+  let wrapped = value - imageDelta * sideLength;
+  if (wrapped >= sideLength) {
+    wrapped = 0;
+  } else if (wrapped < 0) {
+    wrapped += sideLength;
+    imageDelta -= 1;
+  }
+  return { value: wrapped, imageDelta };
 }

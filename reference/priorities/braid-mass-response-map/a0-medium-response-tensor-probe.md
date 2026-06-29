@@ -17,6 +17,16 @@ Required inputs:
 - residual anisotropy $\mathcal{L}_{\text{aniso}}$;
 - homogeneous Noether sea cell data with $u^i_{\text{sea}}=0$, $G_{\text{grad}}=0$, $n=1$, and $\chi_{\text{sea}}=1$.
 
+Receiver-normal changeover boundary. The inputs above are not enough for a
+pure receiver-normal mass-response row unless the accepted branch packet also
+emits same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$
+values for the retained roots that feed the exposure ledger. Source-normal
+denominators, quotient-only branch coordinates, H39/theta3minus diagnostics, or
+old shell-braid force residues may be cited only as conditional root-geometry or
+provider-boundary diagnostics. Until the same retained branch record binds
+$W^{\mathrm{rec}}$ to the energy, shielding, exposure, and Noether sea response
+rows, this tensor probe remains a priority-only theorem target.
+
 ## Response Target
 
 The tensor target is

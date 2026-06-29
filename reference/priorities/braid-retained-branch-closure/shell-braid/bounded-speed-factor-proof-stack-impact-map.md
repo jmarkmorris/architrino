@@ -309,17 +309,19 @@ $$
 =
 \sum_{(j,\alpha)\in\mathcal{A}_i^{\nu}}
 \sigma_i\sigma_j
-\frac{
+(\eta_{ij}^{\nu,\alpha})^{-2}
+W_{ij,\alpha}^{\mathrm{rec},\nu}
 \widehat{\mathbf{R}}_{ij}^{\nu,\alpha}
-}{
-(\eta_{ij}^{\nu,\alpha})^2
-|J_{ij}^{\nu,\alpha}|
-}
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{self}}^{\nu}
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{med}}^{\nu}.
 $$
+
+The source-normal $J_{ij}^{\nu,\alpha}$ row remains a root-chart
+transversality and sensitivity row only. Force/action consumers must use the
+same bounded-speed retained record's receiver-normal
+$W_{ij,\alpha}^{\mathrm{rec},\nu}$ row.
 
 Differentiating
 
@@ -862,7 +864,7 @@ Allowed self-row statuses are:
 1. $0<\nu_-\le\nu_i\le\nu_+$ and $\chi_i^{-1}$ exists on the full event interval;
 2. equal physical periods or declared winding periods pass;
 3. the active and tail root ledgers use $G^{\nu}$, $J^{\nu}$, derivative envelopes including $D\nu$ and $D\chi^{-1}$, and a complete owned finite tail cover;
-4. the force ledger uses the same bounded speed factor root labels and Jacobians;
+4. the force ledger uses the same bounded speed factor root labels, source-normal root charts, and receiver-normal branch weights;
 5. $\mathcal{R}_{\mathrm{speedODE}}^\nu$, $\mathcal{R}_{\parallel}^{\nu}$, $\mathcal{R}_{\perp}^{\nu}$, and $\mathcal{R}_{N\mathrm{rec}}^\nu$ close with an action-derived $\Gamma_B^{\nu}$ or declared inertia operator;
 6. the action/curl/Noether rows vary both $\mathbf{Y}_i$ and $\nu_i$ and include speed-factor current, support-work, and error terms;
 7. the Krawczyk or Newton proof budget is recomputed on the expanded coefficient vector $(\alpha,v,\Gamma)$;

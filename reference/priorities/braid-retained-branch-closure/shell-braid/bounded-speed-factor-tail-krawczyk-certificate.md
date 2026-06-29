@@ -386,8 +386,9 @@ The assimilated force contribution uses the same bounded-speed root label:
 $$
 \mathbf{f}_u^{\nu}(u)
 =
-\frac{\sigma_i\sigma_{j(u)}}
-{\eta_u(u)^2|J_u^{\nu}(u)|}
+\sigma_i\sigma_{j(u)}
+\frac{W_u^{\mathrm{rec},\nu}(u)}
+{\eta_u(u)^2}
 \widehat{\mathbf{R}}_u^{\nu}(u).
 $$
 
@@ -402,7 +403,10 @@ $$
 \mathbf{f}_r^{\nu}(u).
 $$
 
-The old fixed-speed active-window force is stale after this status unless it is recomputed with the same $\chi_i^{-1}$, $J_{ij}^{\nu}$, and bounded speed factor derivative data.
+The old fixed-speed active-window force is stale after this status unless it
+is recomputed with the same $\chi_i^{-1}$, source-normal root chart,
+receiver-normal $W_u^{\mathrm{rec},\nu}$ row, and bounded speed factor
+derivative data.
 
 ---
 

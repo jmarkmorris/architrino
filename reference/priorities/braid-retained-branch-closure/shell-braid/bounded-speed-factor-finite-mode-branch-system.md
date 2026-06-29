@@ -208,8 +208,8 @@ F_{i,\mathrm{tot}}^\nu
 =
 \sum_{\alpha\in\mathcal{A}_{i,n}^{\nu}}
 \sigma_i\sigma_j
-\frac{\widehat{\mathbf{R}}_\alpha}
-{\eta_\alpha^2|J_\alpha^\nu|}
+\frac{W_{\alpha,\nu}^{\mathrm{rec}}}{\eta_\alpha^2}
+\widehat{\mathbf{R}}_\alpha
 +
 F_{i,\mathrm{self}}^\nu
 +
@@ -219,6 +219,9 @@ F_{i,\mathrm{supp}}^\nu,
 $$
 
 where $F_{i,\mathrm{med}}^\nu$ includes coherent response of the Noether sea and $F_{i,\mathrm{supp}}^\nu$ is present only when support multipliers or variational-inequality support rows are active.
+The source-normal $J_\alpha^\nu$ row remains part of root isolation and root
+sensitivity only; active force/action rows consume the same-record
+receiver-normal branch weight $W_{\alpha,\nu}^{\mathrm{rec}}$.
 
 ### 2.1 Chart, Gauge, And Speed Rows
 

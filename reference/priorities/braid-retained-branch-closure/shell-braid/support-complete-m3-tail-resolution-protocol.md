@@ -271,9 +271,14 @@ For a tail root $u$, define
 $$
 \mathbf{f}_u
 =
-\frac{\sigma_i\sigma_{j(u)}}{\eta_u^2|J_u|}
+\sigma_i\sigma_{j(u)}\eta_u^{-2}W_u^{\mathrm{rec}}
 \widehat{\mathbf{R}}_u.
 $$
+
+The Jacobian floor $|J_u|\ge J_{\mathrm{tail}}$ remains a root-chart
+transversality diagnostic. It is not the active tail branch strength;
+the same tail record must emit $W_u^{\mathrm{rec}}$ and its derivative before
+this assimilated-force row can feed action, Krawczyk, or stability consumers.
 
 Then
 

@@ -139,9 +139,13 @@ and
 $$
 \mathbf{f}_u
 =
-\frac{\sigma_i\sigma_{j(u)}}{\eta_u^2|J_u|}
+\sigma_i\sigma_{j(u)}\eta_u^{-2}W_u^{\mathrm{rec}}
 \widehat{\mathbf{R}}_u.
 $$
+
+The Jacobian floor is retained as the tail-root isolation diagnostic only.
+Assimilated force/action use requires the same tail record to emit
+$W_u^{\mathrm{rec}}$, $D_s$, $D_t$, and the corresponding derivative row.
 
 The assimilated tail force is
 

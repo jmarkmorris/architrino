@@ -32,7 +32,7 @@ $$
 z_B
 =
 \left(
-Y,\nu,\chi,\Lambda,\eta,J,\Lambda_B,
+Y,\nu,\chi,\Lambda,\eta,J,W^{\mathrm{rec}},\Lambda_B,
 \mathcal{A}_{\mathrm{cyc}},
 \mathcal{E}_{\mathrm{hist}},
 \mathcal{L}_{E\mathbf{p}\mathbf{J}},
@@ -52,6 +52,7 @@ The entries are:
 | $\Lambda_i=\chi_i^{-1}$ | Source phase inverse used by delayed source rows. |
 | $\eta=(\eta_\rho)$ | Positive dimensionless root delays for every $\rho\in\mathcal{A}_B$. |
 | $J=(J_\rho)$ | Root Jacobians on the declared sign stratum. |
+| $W^{\mathrm{rec}}=(W_\rho^{\mathrm{rec}})$ | Same-record receiver-normal branch strengths for every force, action, wake-history, or exposure root. |
 | $\Lambda_B$ | Discrete branch labels: site identities, root identities, winding class, source policy, memory policy, and sign stratum. |
 | $\mathcal{A}_{\mathrm{cyc}}$ | One-cycle action row or action-increment row for the branch. |
 | $\mathcal{E}_{\mathrm{hist}}$ | Trapped internal causal-history energy row, including wake-history bookkeeping. |
@@ -243,12 +244,13 @@ $$
 \mathbf{f}_\rho
 =
 \sigma_i\sigma_j
-\frac{
-\widehat{\mathbf{R}}_\rho
-}{
-\eta_\rho^2|J_\rho|
-}.
+W_\rho^{\mathrm{rec}}
+\frac{\widehat{\mathbf{R}}_\rho}{\eta_\rho^2}.
 $$
+
+Here $W_\rho^{\mathrm{rec}}$ is the same-record receiver-normal branch
+strength. The $|J_\rho|$ floor remains a root-chart diagnostic, not the
+receiver-normal branch strength.
 
 The receiver force row is
 
@@ -313,7 +315,7 @@ $$
 =
 \mathcal{E}_{\mathrm{hist}}
 -
-\mathfrak{E}_{\mathrm{hist}}(Y,\nu,\eta,J,\Theta_{\mathrm{sea}}),
+\mathfrak{E}_{\mathrm{hist}}(Y,\nu,\eta,J,W^{\mathrm{rec}},\Theta_{\mathrm{sea}}),
 $$
 
 where $\mathfrak{E}_{\mathrm{hist}}$ is computed from the same causal-root and wake-history convention as the force row. The conservation-ledger residual is
@@ -351,11 +353,9 @@ $$
 \left\langle
 \sum_{\rho\in\mathcal{A}_{B}^{\mathrm{ext}}}
 \mathsf{W}_{\mathrm{ext},\rho}(\theta)
-\frac{
+\eta_\rho^{-2}
+W_\rho^{\mathrm{rec}}
 \widehat{R}_\rho^a\widehat{R}_\rho^b
-}{
-\eta_\rho^2|J_\rho|
-}
 \right\rangle_B,
 $$
 
@@ -421,7 +421,7 @@ $$
 
 The response theorem target is:
 
-**Branch-local implicit response theorem target.** Suppose $\mathcal{R}_B(z_B;\theta)=0$ on a fixed root ledger $\Lambda_B$, all active roots satisfy $\eta_\rho>0$ and $|J_\rho|\ge J_{\min}>0$, inactive roots have positive gap, the bounded-speed band is open, and the bordered operator $\mathcal{L}_B$ is invertible on the non-gauge subspace. Then, for sufficiently small environment perturbations $\delta\theta$ that do not cross a branch boundary, there is a unique gauge-fixed first-order response
+**Branch-local implicit response theorem target.** Suppose $\mathcal{R}_B(z_B;\theta)=0$ on a fixed root ledger $\Lambda_B$, all active roots satisfy $\eta_\rho>0$ and $|J_\rho|\ge J_{\min}>0$, same-record receiver-normal $W_\rho^{\mathrm{rec}}$ rows are declared for all force and exposure roots, inactive roots have positive gap, the bounded-speed band is open, and the bordered operator $\mathcal{L}_B$ is invertible on the non-gauge subspace. Then, for sufficiently small environment perturbations $\delta\theta$ that do not cross a branch boundary, there is a unique gauge-fixed first-order response
 
 $$
 \delta z
@@ -480,13 +480,13 @@ together with any declared drift-odd part of $\mathcal{M}_{\mathrm{sea}}^{ab}$. 
 
 Proof route:
 
-1. Use the simple-root rows and $|J_\rho|\ge J_{\min}$ to apply the implicit-function theorem to every active root delay $\eta_\rho$ and Jacobian $J_\rho$ as $C^1$ functions of $(Y,\nu,\theta)$ on the fixed ledger.
-2. Substitute those root derivatives into the force, dynamics, action, tensor, and Noether sea rows to obtain a $C^1$ residual map on the finite coefficient or Galerkin branch chart.
+1. Use the simple-root rows and $|J_\rho|\ge J_{\min}$ to apply the implicit-function theorem to every active root delay $\eta_\rho$ and Jacobian $J_\rho$ as $C^1$ functions of $(Y,\nu,\theta)$ on the fixed ledger, and require the same-record receiver-normal branch-strength derivative row for each root consumed by force or exposure.
+2. Substitute those root and receiver-normal derivatives into the force, dynamics, action, tensor, and Noether sea rows to obtain a $C^1$ residual map on the finite coefficient or Galerkin branch chart.
 3. Quotient translation, rotation, phase, period, and root-label gauge directions by explicit border rows.
 4. Apply the Banach-space or finite-dimensional implicit-function theorem to $\Pi_B\mathcal{R}_B=0$ using invertibility of $\mathcal{L}_B$.
 5. Differentiate $\Pi_{\mathrm{geom}}$ along the resulting solution map $\theta\mapsto z_B(\theta)$ to obtain the displayed export formula.
 
-The theorem target can fail in precise ways: a root hits $J_\rho=0$, an inactive root enters the chart, the speed band boundary is crossed, the action row is not differentiable under the chosen wake-history convention, or $\mathcal{L}_B$ has a non-gauge kernel. Those failures classify the chart as response-open or response-rejected, not as evidence for an observer metric.
+The theorem target can fail in precise ways: a root hits $J_\rho=0$, a required same-record receiver-normal branch-strength derivative row is missing, an inactive root enters the chart, the speed band boundary is crossed, the action row is not differentiable under the chosen wake-history convention, or $\mathcal{L}_B$ has a non-gauge kernel. Those failures classify the chart as response-open or response-rejected, not as evidence for an observer metric.
 
 ---
 

@@ -6,7 +6,7 @@ This priority packet is a report and derivation scaffold, not reader-facing cano
 
 - **Status:** candidate constitutive law with two-material replay scaffold.
 - **Main claim:** local atomic and lattice pressure should retune the surrounding Noether sea through one shared record for normalized Noether braid density $n(\mathbf{x},t)$, delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, effective speed $c_{\text{eff}}(\mathbf{x},t)$, Noether sea cadence factor $\Gamma_N(\mathbf{x},t)$, and assembly strain.
-- **Open burden:** coefficients must be derived from an accepted Noether braid branch, pressure-sensitive packing geometry, and the medium-response tensor probe. The first density-side modulus target is staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
+- **Open burden:** coefficients must be derived from an accepted Noether braid branch, pressure-sensitive packing geometry, and the medium-response tensor probe. Any mass-facing coefficient must additionally consume receiver-normal branch strength from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows, not H39/theta3minus quotient certificates or old shell-braid force residues. The first density-side modulus target is staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md). Until then this packet supplies a falsifiable ansatz, not a promoted theorem.
 - **Promotion targets:** [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), [Atomic Structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md), [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Parameter Ledger](../../../content/markdown/aaa/validation/parameter-ledger.md) after branch and validation support exists.
 
 ## Source Signals
@@ -247,6 +247,35 @@ p_{\text{int}}^a
 $$
 
 This keeps pressure-sensitive condensed-matter response inside the same medium-dressed inertia program instead of turning it into ordinary drag.
+
+## Receiver-Normal Constitutive Dependency
+
+This constitutive law may feed scalar mass response only after the pressure
+state and the mass-facing exposure row are bound to the same retained
+receiver-normal branch record. The required record contains
+
+$$
+\theta_{\mathrm{sea}},
+\qquad
+E_{\text{internal}}(A),
+\qquad
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A),
+\qquad
+\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A),
+\qquad
+\{D_s,D_t,W^{\mathrm{rec}}\}_{\rho\in\mathfrak{R}_{A}^{\mathrm{ret}}}.
+$$
+
+The theorem target is a same-record descent statement: perturb one accepted
+retained branch by a declared subthreshold pressure row, recompute
+$D_s$, $D_t$, $W^{\mathrm{rec}}$, $\theta_{\mathrm{sea}}$,
+$M_{0,\mathrm{rec}}^{\mathrm{src}}$, $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$,
+and $\mathcal{M}_{+}^{ab}$ on the same branch identity, and verify that the
+finite-difference scalar trace is explained by the receiver-normal
+mass-response equation. If the replay needs a separate observable-local
+coefficient, an H39/theta3minus quotient row, a source-normal-only force weight,
+or an unlogged transport channel, the result is `receiver_normal_intake_missing`
+or `loss_channel_unlogged`, not a pressure-mass coefficient.
 
 ## Heavy Metallic Lattice Test Case
 

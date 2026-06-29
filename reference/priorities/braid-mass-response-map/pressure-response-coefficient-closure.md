@@ -510,7 +510,7 @@ The status vector is deliberately fail-closed:
 | Status key | Pass condition | Fail or bound-only reading |
 | --- | --- | --- |
 | `source_descent` | $M_0^{\mathrm{src}}$ and $\partial_P M_0^{\mathrm{src}}$ descend through the mass-facing exposure quotient. | `pending_source_descent` or `source_nondescent` |
-| `branch_intake` | The pressure coefficient row is bound to an accepted finite-branch source record with accepted history, quotient chart identity, stability or branch-gap status, eta-ladder status when required, and branch-emitted pressure/Hessian or response entries. | `finite_branch_evidence_missing` |
+| `branch_intake` | The pressure coefficient row is bound to an accepted finite-branch source record with accepted history, same-row receiver-normal branch-strength data, quotient chart identity, stability or branch-gap status, eta-ladder status when required, and branch-emitted pressure/Hessian or response entries. | `finite_branch_evidence_missing` |
 | `isotropic_trace` | $C_{\mathrm{tr}}^{\mathrm{iso}}$ is computed from branch-emitted $\partial_{\Pi}\delta_PM_0^{\mathrm{src}}$ and $C_{\chi}^{\mathrm{iso}}$. | `coefficient_fit_contamination` if either term is replay-fitted after benchmark comparison |
 | `trace_free_span` | $\mathcal{V}_{P,A}$ is declared before the replay and $B_P^{ab}\in\mathcal{V}_{P,A}$. | `tf_bound_only` when anisotropy is masked; `projection_mismatch` when directions drift |
 | `no_hidden_mass_handle` | $\mathcal{R}_{\mathrm{nohandle}}^{P}\le\epsilon_{\mathrm{nohandle}}^{P}$. | `hidden_pressure_mass_handle` |
@@ -529,6 +529,7 @@ $$
 \left(
 \mathsf{branch\_id},
 \mathsf{accepted\_history\_segment\_id},
+\mathsf{receiver\_normal\_weight\_record},
 \mathsf{source\_path},
 \mathsf{quotient\_chart\_id},
 \mathsf{residual\_status},
@@ -543,13 +544,16 @@ $$
 $$
 
 The accepted-history source must include the path to the priority packet or
-generated report that emits it. Scanner, correction-packet, waveform-replay,
-toy-Hessian, empirical pressure, or source-mining rows may be cited as
-diagnostics, but they must produce `finite_branch_evidence_missing` unless the
-same record also supplies the accepted history segment, quotient chart identity,
-source path, positive branch-gap or stability status, required eta-ladder
-persistence, pressure record, branch-emitted exposure and pressure-response
-records, reversible-domain row, and null-sector record.
+generated report that emits it. The receiver-normal weight record must report
+same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the
+retained roots consumed by the pressure response. Scanner, correction-packet,
+waveform-replay, toy-Hessian, empirical pressure, H39/theta3minus quotient
+diagnostics, or source-mining rows may be cited as diagnostics, but they must
+produce `finite_branch_evidence_missing` unless the same record also supplies
+the accepted history segment, receiver-normal weight record, quotient chart
+identity, source path, positive branch-gap or stability status, required
+eta-ladder persistence, pressure record, branch-emitted exposure and
+pressure-response records, reversible-domain row, and null-sector record.
 
 Current status for $\mathcal{C}_{P,A}$ is
 `finite_branch_evidence_missing`: no accepted branch currently emits
@@ -567,6 +571,7 @@ cross-row bundle. Its required fields are:
 | --- | --- | --- |
 | `branch_id` | Accepted finite branch identity for the row. | absent |
 | `accepted_history_segment_id` | History segment emitted by the accepted branch packet or generated report. | absent |
+| `receiver_normal_weight_record` | Same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows for the retained roots used by the pressure response. | absent |
 | `source_path` | Path to the accepted branch packet or generated report that emits the history segment. | absent |
 | `quotient_chart_id` | Exposure quotient chart used by the mass-facing source row. | absent |
 | `residual_status` | Pass/fail residual status for the same pressure row. | absent |
@@ -592,6 +597,7 @@ Hessian, Fe/Cr, or Ni/Co material to stand in for accepted branch evidence.
 | --- | --- | --- |
 | `branch_id` | A0 rest diagnostic and toy rows only | absent for retained pressure row |
 | `accepted_history_segment_id` | no accepted finite pressure-row history segment | `finite_branch_evidence_missing` |
+| `receiver_normal_weight_record` | no same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ record for the pressure response | absent |
 | `source_path` | no accepted branch report path emitting a pressure-row history segment | absent |
 | `quotient_chart_id` | no branch-local exposure quotient chart for the same row | absent |
 | `residual_status` | algebraic or toy residuals only | diagnostic-only |
@@ -614,9 +620,10 @@ toy rows, empirical replay, or the $A_0$ frontier partial. It is
 `target_only_not_accepted_source` with target status
 `same_row_branch_intake_provider_missing`, so it must continue to return
 `finite_branch_evidence_missing` until one accepted non-fixture retained
-pressure row supplies accepted branch identity, accepted history segment, source
-path, quotient chart, exposure source record, pressure response record,
-reversible-domain row, and null-sector record together.
+pressure row supplies accepted branch identity, accepted history segment,
+same-row receiver-normal weight record, source path, quotient chart, exposure
+source record, pressure response record, reversible-domain row, and null-sector
+record together.
 
 The target-only provider/intake artifact
 [pressure-row-branch-intake-provider-intake-artifact.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-intake-artifact.json)

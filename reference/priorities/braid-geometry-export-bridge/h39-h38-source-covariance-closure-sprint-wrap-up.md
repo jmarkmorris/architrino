@@ -133,6 +133,73 @@ Concretely, one of these must exist before the path should be resumed:
 Without one of those, downstream rank-two, Wronskian, scalar-lambda, or virial
 replays remain nonadmissible wrappers around an aggregate-only provider object.
 
+## Receiver-Normal First-Derivative Consequence
+
+The receiver-normal derivative pass does not resume this H39/H38 path by
+itself. It sharpens the blocker: the H39 target-only provider row names a
+candidate branch-family surface, but it does not populate the receiver-normal
+retained branch-family first-derivative artifact.
+
+The nearest executable H39 object names five shared source cells, 15 terminal
+rows `speed.{0..4}.first-y:h{37,36,35}`, and 30 target branch rows
+`P_-` / `P_+`. The branch-provider audit still reports zero accepted
+provider-object branch intervals, zero available provider-object branch
+antisymmetric equations, and zero explicit provider-object branch rows. It also
+emits no retained causal-root record with $D_s$, $D_t$,
+$W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$.
+
+Therefore the H39 receiver-normal derivative blocker is two-stage:
+
+1. materialize the same-domain expression-level provider-object branch row
+   $A_P=P_- - P_+$, or explicit `P_-` / `P_+` rows with both interval payloads,
+   the $P_b$ map, branch projection or alpha map, pushforward operator, and
+   normalization identity before aggregate $P$ erases branch identity. The
+   first missing executable field is
+   `source_map_provider_object_branch_split_map_available_terminal_row_count`;
+   the next producer-side surface,
+   `terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor`,
+   is emitted only as an absence readout with `0 / 15` available $A_P$ terminal
+   rows and `0 / 30` explicit provider-object branch rows;
+2. bind the accepted provider-object branch row to a retained causal-root
+   force/action record that emits the receiver-normal derivative bundle on the
+   same retained record.
+
+Until both stages close, H39/theta3minus packets remain root-geometry,
+recurrence, or provider-provenance diagnostics. They do not authorize
+force/action, action, power, wake-history, retained-branch, or receiver-normal
+derivative evidence.
+
+Lemma target. H39 provider-object rows do not imply receiver-normal retained
+branch-family derivative evidence unless the H39 preimage row also binds them
+to a retained causal-root force/action record.
+
+Assume an H39 packet emits a candidate provider-object branch surface over the
+15 terminal rows `speed.{0..4}.first-y:h{37,36,35}` and 30 branch rows
+`P_-` / `P_+`. If any of the following is absent:
+
+1. an accepted same-domain provider-object branch row $A_P=P_- - P_+$ or
+   explicit `P_-` / `P_+` rows with both interval payloads and the $P_b$
+   identity payloads;
+2. a retained causal-root force/action record consuming that row on the same
+   branch family;
+3. same-record $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$,
+   $D_vD_s$, $D_vD_t$, and reconstructed $D_vW^{\mathrm{rec}}$;
+4. a retained branch-family checksum shared by the force/action, action, power,
+   wake-history, or Lipschitz consumer;
+
+then the H39 row has status
+`h39-receiver-normal-first-derivative-evidence-not-populated`. Populated
+variable-owned alpha rows, row-local branch feeds, term-pushforward candidates,
+lambda terminal witness intervals, aggregate `P` rows, primitive-vector replays,
+hybrid prefix-Cauchy diagnostics, coefficient-series source-map residual
+provider candidates, source-map residual envelopes, provider-fit diagnostics,
+and signed-radius targets are negative-control inputs under this lemma, not
+substitute retained records. The corresponding
+packet-local failures are
+`h39-thirty-eighth-successor-not-retained-record-preimage`,
+`h39-primitive-vector-provider-provenance-only-not-retained-record-preimage`,
+and `h39-coefficient-series-provider-candidate-not-retained-record-preimage`.
+
 ## Key Executable Artifacts
 
 Primary diagnostic file:

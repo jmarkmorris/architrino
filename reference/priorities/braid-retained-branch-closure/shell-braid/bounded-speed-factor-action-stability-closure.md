@@ -412,7 +412,7 @@ $$
 \right).
 $$
 
-The force variation $\delta\widetilde{\mathbf{F}}_i^{\nu}[v]$ must include the clock variation, root-delay variation, Jacobian variation, and delayed speed-factor variation from the bounded speed factor root-sheet certificate. The exchange variation is
+The force variation $\delta\widetilde{\mathbf{F}}_i^{\nu}[v]$ must include the clock variation, root-delay variation, source-normal root-chart variation, receiver-normal branch-weight variation, and delayed speed-factor variation from the bounded speed factor root-sheet certificate. The exchange variation is
 
 $$
 \delta\mathcal{R}_{\mathrm{exch},i}^{\nu}[v]

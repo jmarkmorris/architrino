@@ -651,6 +651,48 @@ the correct fail-closed boundary: root topology is now executable at toy level,
 but action, wake-history, Noether sea, and cross-sector pullbacks are still the
 open downstream proof burden.
 
+## Native T3 Run Envelope Handoff 2026-06-29
+
+The neutral T3 simulator now emits a `t3-run-summary.v1` record from
+`src/solver/t3/T3UniverseSimulator.mjs` when `run()` returns. The record is a
+run envelope, not a causal-root proof. In solver mode it
+aggregates the native bulk T3 step summaries returned through
+`solverClient.stepT3UniverseF64` and records:
+
+- step count and particle count,
+- neighbor-pair count series,
+- occupied-cell count series,
+- cell-count series when the native step reports it,
+- periodic image-delta totals and wrapped-particle step counts,
+- interaction preset,
+- execution path counts,
+- native bulk step count,
+- per-particle fallback step count,
+- and already-emitted event counts, including boundary-like event counts only
+  when an existing event detector emits such a row.
+
+The current test coverage in `tests/t3-universe-simulator.test.js` proves the
+solver-engine route for this envelope: a three-step solver run calls
+`stepT3UniverseF64` once per step, reports `executionPath: "native_c_abi"`,
+and does not call `integrateConstantAccelerationMotionF64`. That makes the
+run envelope a useful benchmark record for topology-native work because it can
+show, without choosing a receiver-normal EOM or Master Equation closure, which
+particles crossed periodic images, how many native neighbor pairs were present,
+and whether the execution path stayed on the native bulk T3 route.
+
+What this can discipline: the missing oriented boundary-operator proof must be
+compatible with retained winding and image-delta evidence that appears in
+native bulk T3 runs. In particular, image-delta totals and wrapped-particle
+step counts give a small executable witness for where seam ownership rows would
+have to be declared, paired, or routed in the same retained source record.
+
+What remains unproven: the run envelope does not construct the oriented
+boundary operator on retained winding-labeled causal-root rows, does not supply
+the same-record routing map for absent, paired, or routed boundary
+contributions, and does not prove branch admissibility for any downstream EOM,
+action, wake-history, Noether sea, or cross-sector consumer. Until those proof
+objects exist, this remains priority-only executable evidence.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
@@ -817,7 +859,15 @@ wake-history closure. A row must carry `accepted_for_wake_history_closure`,
 an `accepted_evidence_id`, the retained source record, and the retained event
 ledger id before the compositor can report accepted wake-history evidence.
 The wake-history derivation proof object must bind the same row, accepted
-evidence id, and source record.
+evidence id, source record, and receiver-normal branch-strength derivative
+bundle. In particular, any wake-history row consumed by
+$\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ must name the same retained
+branch list, $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+reconstructed $D_vW^{\mathrm{rec}}$ rows used by the force/action packet. A
+declared event ledger without those rows remains
+`not_accepted_for_wake_history_closure`; a terminal aggregate, H39/theta3minus
+quotient row, source-normal-only denominator, or old shell-braid force residue
+fails as `receiver-normal-first-derivative-row-missing`.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
@@ -854,9 +904,9 @@ default fixture has the following blocker order:
 | --- | --- | --- |
 | `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
 | $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples and require active-root route derivation proof objects. |
-| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, and the same retained event ledger. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the receiver-normal derivative bundle. |
 | $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, accepted evidence ids, and derivation proof objects. |
-| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, and a medium-response derivation proof object. |
+| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, receiver-normal branch-strength rows for any force/action consumer, and a medium-response derivation proof object. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
 
 Thus the next mathematical artifact should not try to promote the closed-ledger

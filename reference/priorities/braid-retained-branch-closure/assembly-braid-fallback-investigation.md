@@ -323,8 +323,9 @@ F_i^\nu(u)
 \sum_{j\ne i}
 \sum_{\alpha\in\mathcal{A}_{ij}^{\nu}(u)}
 \sigma_i\sigma_j
-\frac{\widehat{\mathbf{R}}_{ij,\alpha}(u)}
-{\eta_{ij,\alpha}(u)^2|J_{ij,\alpha}^{\nu}(u)|}
+\frac{W_{ij,\alpha}^{\mathrm{rec},\nu}(u)}
+{\eta_{ij,\alpha}(u)^2}
+\widehat{\mathbf{R}}_{ij,\alpha}(u)
 +
 F_{i,\mathrm{self}}^\nu
 +
@@ -332,6 +333,12 @@ F_{i,\mathrm{med}}^\nu
 +
 F_{i,\mathrm{supp}}^\nu.
 $$
+
+Here $J_{ij,\alpha}^{\nu}$ is only the source-normal transversality row for
+root isolation. The active force/action branch strength is the same-record
+receiver-normal factor $W_{ij,\alpha}^{\mathrm{rec},\nu}$, so any fallback
+packet that lacks the corresponding $D_s,D_t,DW^{\mathrm{rec}}$ row is
+`receiver-normal-restart-required`.
 
 The fallback therefore adds these proof risks:
 
