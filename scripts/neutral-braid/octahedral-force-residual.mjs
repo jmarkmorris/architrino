@@ -105,7 +105,10 @@ function forceContribution(pair, theta, y) {
   const source = octahedralSiteById(pair.source);
   const rhat = normalizedDisplacement(receiver, source, theta, y);
   const jacobian = octahedralRootJacobian(receiver, source, theta, y);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return {
     vector: scale(rhat, coefficient),
     jacobian,

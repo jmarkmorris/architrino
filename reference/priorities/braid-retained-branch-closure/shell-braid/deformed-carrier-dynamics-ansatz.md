@@ -161,10 +161,12 @@ $$
 \mathbf{F}_{ij}^{\alpha}(t)
 =
 \kappa\,\mathrm{sign}(q_iq_j)
-\frac{|q_iq_j|}
-{\left(r_{ij}^{\alpha}(t)\right)^2|J_{ij}^{\alpha}(t)|}
+\frac{|q_iq_j|W_{ij}^{\mathrm{rec},\alpha}(t)}
+{\left(r_{ij}^{\alpha}(t)\right)^2}
 \hat{\mathbf{r}}_{ij}^{\alpha}(t).
 $$
+
+Here $J_{ij}^{\alpha}$ is the source-normal root transversality denominator. The force/action weight is the receiver-normal wake crossing factor $W_{ij}^{\mathrm{rec},\alpha}$.
 
 Let
 
@@ -290,19 +292,17 @@ $$
 =
 \kappa\,\mathrm{sign}(q_iq_j)|q_iq_j|
 \left[
+W_{ij}^{\mathrm{rec},0,\alpha}
 \frac{
 \left(I-3\hat{\mathbf{r}}_{ij}^{0,\alpha}
 \hat{\mathbf{r}}_{ij}^{0,\alpha T}\right)
 \delta\mathbf{r}_{ij}^{\alpha}
 }
-{\left(r_{ij}^{0,\alpha}\right)^3|J_{ij}^{0,\alpha}|}
--
-\frac{
+{\left(r_{ij}^{0,\alpha}\right)^3}
++
+\frac{\delta W_{ij}^{\mathrm{rec},\alpha}}
+{\left(r_{ij}^{0,\alpha}\right)^2}
 \hat{\mathbf{r}}_{ij}^{0,\alpha}
-\operatorname{sgn}\!\left(J_{ij}^{0,\alpha}\right)
-\delta J_{ij}^{\alpha}
-}
-{\left(r_{ij}^{0,\alpha}\right)^2|J_{ij}^{0,\alpha}|^2}
 \right].
 $$
 

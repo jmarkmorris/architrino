@@ -54,12 +54,11 @@ $$
 \lambda_{ij}^{\alpha}(t)
 =
 \kappa\sigma_i\sigma_j
-\frac{\epsilon^2}
-{\left(r_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|}.
+\frac{\epsilon^2W_{ij}^{\mathrm{rec},\alpha}(t)}
+{\left(r_{ij}^{\alpha}(t)\right)^2}.
 $$
 
-Here "line-of-action" means radial along the delayed causal wake hit. It is distinct from the support-band radial direction defined below.
+Here "line-of-action" means radial along the delayed causal wake hit. It is distinct from the support-band radial direction defined below. The receiver-normal factor $W_{ij}^{\mathrm{rec},\alpha}$ supplies branch strength; $J_{ij}^{\alpha}$ remains the root transversality denominator.
 
 For a six-site tri-binary carrier, let $b(i)\in\{1,2,3\}$ be the binary label and let $\bar{i}$ be the partner of $i$ in the same binary. For each receiver $i$, partition the retained architrino-root set into
 
@@ -285,10 +284,9 @@ $$
 \Theta_i^{\mathrm{partner}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{P}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -296,10 +294,9 @@ $$
 \Theta_i^{\mathrm{cross}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{X}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -307,10 +304,9 @@ $$
 \Theta_i^{\mathrm{self}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{S}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 }.
 $$
 

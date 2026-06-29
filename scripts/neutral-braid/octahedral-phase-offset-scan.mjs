@@ -247,7 +247,10 @@ function evaluateOffsets(phi2, phi3, options) {
         const y = roots[0];
         const jacobian = rootJacobian(receiver, source, theta, y, offsets);
         const rhat = normalizedDisplacement(receiver, source, theta, y, offsets);
-        force = add(force, scale(rhat, pair.force_sign / (y * y * Math.abs(jacobian))));
+        const receiverNormalNumerator = 1 - dot(siteTangent(receiver, theta, offsets), rhat);
+        const receiverNormalFactor = receiverNormalNumerator / jacobian;
+        const branchWeight = Math.abs(receiverNormalFactor);
+        force = add(force, scale(rhat, (pair.force_sign * branchWeight) / (y * y)));
         delays.push(y);
         jacobians.push(jacobian);
       }

@@ -184,12 +184,17 @@ function partnerRootContribution(speedRatio, delta) {
   const q = cosine >= 0 ? 1 : -1;
   const sine = Math.sin(delta / 2);
   const jacobian = 1 + speedRatio * q * sine;
+  const receiverNormalNumerator = 1 - speedRatio * q * sine;
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
   const periodIntegral =
-    (TAU * speedRatio * q * sine) / (delta * delta * Math.abs(jacobian));
+    (TAU * speedRatio * q * sine * Math.abs(receiverNormalFactor)) / (delta * delta);
   return {
     phase_delay: delta,
     q,
     jacobian,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    branch_weight: Math.abs(receiverNormalFactor),
     period_integral: periodIntegral,
   };
 }

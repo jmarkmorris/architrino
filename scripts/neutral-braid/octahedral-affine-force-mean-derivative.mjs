@@ -173,7 +173,10 @@ function deformedForceContribution(pair, theta, y, epsilon, coordinateMatrix) {
   const rhat = scale(displacement, 1 / distance);
   const sourceTangent = deformedTangent(source, theta - y, epsilon, coordinateMatrix);
   const jacobian = 1 - dot(sourceTangent, rhat);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = deformedTangent(receiver, theta, epsilon, coordinateMatrix);
+  const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return { force: scale(rhat, coefficient), jacobian };
 }
 

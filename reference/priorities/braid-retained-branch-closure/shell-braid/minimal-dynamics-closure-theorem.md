@@ -209,11 +209,12 @@ $$
 \mathbf{F}_{ij}^{\beta}(t;\alpha)
 =
 \kappa\,\mathrm{sign}(q_iq_j)
-\frac{|q_iq_j|}
-{\left(r_{ij}^{\beta}(t;\alpha)\right)^2
-\left|J_{ij}^{\beta}(t;\alpha)\right|}
+\frac{|q_iq_j|W_{ij}^{\mathrm{rec},\beta}(t;\alpha)}
+{\left(r_{ij}^{\beta}(t;\alpha)\right)^2}
 \widehat{\mathbf{r}}_{ij}^{\beta}(t;\alpha).
 $$
+
+The retained-root row must carry $J_{ij}^{\beta}$ as the source-normal root transversality denominator and $W_{ij}^{\mathrm{rec},\beta}$ as the receiver-normal branch-strength weight.
 
 The total branch force on site $i$ is
 

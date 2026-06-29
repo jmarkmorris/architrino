@@ -144,7 +144,9 @@ function sourceForceRow(pair, theta, ySubdivisions, receiverTangent) {
   const y = roots[0];
   const jacobian = octahedralRootJacobian(receiver, source, theta, y);
   const rhat = normalizedDisplacement(receiver, source, theta, y);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   const force = scale(rhat, coefficient);
 
   return {

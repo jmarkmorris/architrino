@@ -88,6 +88,25 @@ const FORBIDDEN_SNIPPETS = [
   reason: reasonForSnippet(snippet),
 }));
 
+const FORBIDDEN_CODE_PATTERNS = [
+  {
+    pattern: /pair\.force_sign\s*\/\s*\([^;]*Math\.abs\(jacobian\)[^;]*\)/gs,
+    snippet: "pair.force_sign / (... Math.abs(jacobian) ...)",
+    reason: "source-normal Jacobian cannot be used as force/action branch strength",
+  },
+  {
+    pattern:
+      /1\s*\/\s*\(\s*distance\s*\*\s*distance\s*\*\s*Math\.abs\([^)]*jacobian[^)]*\)\s*\)/gs,
+    snippet: "1 / (distance * distance * Math.abs(...jacobian...))",
+    reason: "torque/force diagnostics must consume receiver-normal branchWeight",
+  },
+  {
+    pattern: /1\s*\/\s*\(\s*root\.y\s*\*\s*root\.y\s*\*\s*root\.jacobian\s*\)/g,
+    snippet: "1 / (root.y * root.y * root.jacobian)",
+    reason: "exposure weights must use receiver-normal branch_weight",
+  },
+];
+
 function reasonForSnippet(snippet) {
   if (snippet.includes("current")) {
     return "temporal EOM wording forbidden by receiver-normal changeover";
@@ -146,6 +165,19 @@ function scanPath(entryPath) {
         snippet,
       });
       start = index + snippet.length;
+    }
+  }
+  for (const { pattern, snippet, reason } of FORBIDDEN_CODE_PATTERNS) {
+    pattern.lastIndex = 0;
+    let match = pattern.exec(text);
+    while (match) {
+      findings.push({
+        file: path.relative(ROOT_DIR, entryPath),
+        line: lineNumberAt(text, match.index),
+        reason,
+        snippet,
+      });
+      match = pattern.exec(text);
     }
   }
 }

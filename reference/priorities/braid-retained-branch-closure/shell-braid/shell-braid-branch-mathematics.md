@@ -283,12 +283,12 @@ $$
 \mathbf{F}_{ij}(t,s)
 =
 \kappa\,\mathrm{sign}(q_iq_j)
-\frac{|q_iq_j|}
-{r_{ij}^2(t,s)\,|J_{ij}(t,s)|}
+\frac{|q_iq_j|W_{ij}^{\mathrm{rec}}(t,s)}
+{r_{ij}^2(t,s)}
 \hat{\mathbf{r}}_{ij}(t,s),
 $$
 
-using the same active root convention as the causal-root ledger. The fixed-speed tangential closure residual is
+using the same active root convention as the causal-root ledger. Here $J_{ij}$ remains the source-normal root transversality row; $W_{ij}^{\mathrm{rec}}$ is the receiver-normal wake crossing factor that supplies branch strength. The fixed-speed tangential closure residual is
 
 $$
 \mathcal{R}_{\mathrm{tan},i}(t)

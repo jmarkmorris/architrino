@@ -183,12 +183,19 @@ function rootForceContribution(pair, receiver, source, theta, y, traceScale, per
   const distance = norm(displacement);
   const rhat = scaleVector(displacement, 1 / distance);
   const sourcePhaseTangent = octahedralSiteTangent(source, sourcePhase);
-  const jacobian = 1 - speedRatio * dot(sourcePhaseTangent, rhat);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const sourceNormalDenominator = 1 - speedRatio * dot(sourcePhaseTangent, rhat);
+  const receiverNormalNumerator = 1 - speedRatio * dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return {
     force: scaleVector(rhat, coefficient),
     tangential_value: null,
-    jacobian,
+    jacobian: sourceNormalDenominator,
+    source_normal_denominator: sourceNormalDenominator,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    branch_weight: Math.abs(receiverNormalFactor),
   };
 }
 
@@ -243,6 +250,10 @@ export function evaluatePointwiseTangentialWitness({
         phase_delay: y / periodRatio,
         physical_delay: y,
         jacobian: contribution.jacobian,
+        source_normal_denominator: contribution.source_normal_denominator,
+        receiver_normal_numerator: contribution.receiver_normal_numerator,
+        receiver_normal_factor: contribution.receiver_normal_factor,
+        branch_weight: contribution.branch_weight,
         tangential_value: tangentialValue,
       });
     }
@@ -284,6 +295,10 @@ function formatRootRow(row) {
     phase_delay: formatNumber(row.phase_delay),
     physical_delay: formatNumber(row.physical_delay),
     jacobian: formatNumber(row.jacobian),
+    source_normal_denominator: formatNumber(row.source_normal_denominator),
+    receiver_normal_numerator: formatNumber(row.receiver_normal_numerator),
+    receiver_normal_factor: formatNumber(row.receiver_normal_factor),
+    branch_weight: formatNumber(row.branch_weight),
     tangential_value: formatNumber(row.tangential_value),
   };
 }

@@ -229,9 +229,20 @@ function deformedRootRow(receiver, source, theta, y, epsilon, coordinateMatrix) 
   const displacement = subtract(receiverPosition, sourcePosition);
   const distance = norm(displacement);
   const rhat = scale(displacement, 1 / distance);
-  const tangent = deformedTangent(source, theta - y, epsilon, coordinateMatrix);
-  const jacobian = 1 - dot(tangent, rhat);
-  return { y, rhat, jacobian };
+  const sourceTangent = deformedTangent(source, theta - y, epsilon, coordinateMatrix);
+  const receiverTangent = deformedTangent(receiver, theta, epsilon, coordinateMatrix);
+  const jacobian = 1 - dot(sourceTangent, rhat);
+  const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  return {
+    y,
+    rhat,
+    jacobian,
+    source_tangent: sourceTangent,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    branch_weight: Math.abs(receiverNormalFactor),
+  };
 }
 
 const COORDINATE_COLUMNS = [
@@ -322,6 +333,7 @@ function analyticCoordinateContribution(coordinateMatrix, row) {
   const deltaEta = alpha / row.jacobian;
   const deltaReceiver = matrixVector(coordinateMatrix, row.receiver_position);
   const deltaSource = matrixVector(coordinateMatrix, row.source_position);
+  const deltaReceiverTangent = matrixVector(coordinateMatrix, row.receiver_tangent);
   const deltaTangent = matrixVector(coordinateMatrix, row.source_tangent);
   const deltaFixedSeparation = subtract(deltaReceiver, deltaSource);
   const deltaDisplacement = add(deltaFixedSeparation, scale(row.source_tangent, deltaEta));
@@ -332,14 +344,20 @@ function analyticCoordinateContribution(coordinateMatrix, row) {
 
   const projector = traceFree(outer(row.rhat, row.rhat));
   const deltaProjector = addMatrix(outer(deltaRhat, row.rhat), outer(row.rhat, deltaRhat));
-  const weight = 1 / (row.y * row.y * row.jacobian);
-  const logWeightDerivative = -((2 * deltaEta) / row.y + deltaJ / row.jacobian);
+  const deltaReceiverNormalNumerator =
+    -dot(deltaReceiverTangent, row.rhat) - dot(row.receiver_tangent, deltaRhat);
+  const weight = row.branch_weight / (row.y * row.y);
+  const logWeightDerivative =
+    -((2 * deltaEta) / row.y) +
+    deltaReceiverNormalNumerator / row.receiver_normal_numerator -
+    deltaJ / row.jacobian;
   const matrix = scaleMatrix(addMatrix(deltaProjector, scaleMatrix(projector, logWeightDerivative)), weight);
 
   return {
     matrix,
     delta_eta: deltaEta,
     delta_jacobian: deltaJ,
+    delta_receiver_normal_numerator: deltaReceiverNormalNumerator,
     delta_rhat_norm: norm(deltaRhat),
     weight,
     projector,
@@ -371,8 +389,11 @@ function rootSampleRows(theta, pairs, ySubdivisions) {
     const distance = norm(displacement);
     const rhat = scale(displacement, 1 / distance);
     const jacobian = octahedralRootJacobian(receiver, source, theta, y);
+    const receiverTangent = octahedralSiteTangent(receiver, theta);
     const sourceTangent = octahedralSiteTangent(source, theta - y);
     const sourceCurvature = curvature(source, theta - y);
+    const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+    const receiverNormalFactor = receiverNormalNumerator / jacobian;
 
     rows.push({
       receiver: pair.receiver,
@@ -382,8 +403,12 @@ function rootSampleRows(theta, pairs, ySubdivisions) {
       rhat,
       receiver_position: receiverPosition,
       source_position: sourcePosition,
+      receiver_tangent: receiverTangent,
       source_tangent: sourceTangent,
       source_curvature: sourceCurvature,
+      receiver_normal_numerator: receiverNormalNumerator,
+      receiver_normal_factor: receiverNormalFactor,
+      branch_weight: Math.abs(receiverNormalFactor),
     });
   }
 
@@ -415,7 +440,7 @@ function exposureTensorForCoordinateMatrix(coordinateMatrix, epsilon, phaseSampl
       }
 
       const root = deformedRootRow(receiver, source, theta, roots[0], epsilon, coordinateMatrix);
-      const weight = 1 / (root.y * root.y * root.jacobian);
+      const weight = root.branch_weight / (root.y * root.y);
       exposureAccumulator = addMatrix(exposureAccumulator, scaleMatrix(traceFree(outer(root.rhat, root.rhat)), weight));
       resolvedRowCount += 1;
     }
@@ -479,7 +504,7 @@ export function buildOctahedralCoordinateExposureMatrix(options = {}) {
       resolvedRowCount += 1;
       delays.push(row.y);
       jacobians.push(row.jacobian);
-      const baseWeight = 1 / (row.y * row.y * row.jacobian);
+      const baseWeight = row.branch_weight / (row.y * row.y);
       weights.push(baseWeight);
       exposureAccumulator = addMatrix(exposureAccumulator, scaleMatrix(traceFree(outer(row.rhat, row.rhat)), baseWeight));
 
