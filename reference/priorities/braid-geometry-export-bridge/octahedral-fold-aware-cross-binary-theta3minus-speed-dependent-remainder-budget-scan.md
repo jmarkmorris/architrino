@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Remainder Budget Scan
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-limit-interval-certificate.md). The predecessor certified the moving fold endpoint and the negative limit
 
@@ -163,11 +165,11 @@ The local closure state is now:
 | `theta3minus.sampled-fold-pair-regular-decomposition` | sampled certified |
 | `theta3minus.sampled-fold-pair-quadratic-remainder-scaling` | sampled certified |
 | `theta3minus.sampled-regular-root-linear-cubic-remainder-scaling` | sampled certified |
-| `theta3minus.sampled-fold-pair-scaled-stencil` | sampled-stencil certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.md) |
-| `theta3minus.sampled-node-fold-pair-scaled-interval` | directed-rounded sampled-node certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.md) |
-| `theta3minus.fold-pair-scaled-root-tube-cell-cover` | directed-rounded cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) |
-| `theta3minus.fold-pair-h-root-graph-cell-cover` | directed-rounded cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) |
-| `theta3minus.fold-pair-h-graph-positive-y-GD-quotient` | directed-rounded cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-h-graph-g-quotient-cell-certificate.md) |
+| `theta3minus.sampled-fold-pair-scaled-stencil` | receiver-normal restart required by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.md) |
+| `theta3minus.sampled-node-fold-pair-scaled-interval` | invalidated as force/action evidence by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.md) |
+| `theta3minus.fold-pair-scaled-root-tube-cell-cover` | invalidated as force/action evidence; root-geometry replay only |
+| `theta3minus.fold-pair-h-root-graph-cell-cover` | invalidated as force/action evidence; root-geometry replay only |
+| `theta3minus.fold-pair-h-graph-positive-y-GD-quotient` | invalidated by receiver-normal Master EOM |
 | `theta3minus.fold-pair-first-y-GD-jet-cancellation` | sampled analytic jet certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-jet-witness.md) |
 | `theta3minus.fold-pair-first-y-GD-constant-coefficient` | directed-rounded interval certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-coefficient-interval-certificate.md) |
 | `theta3minus.fold-pair-first-y-GD-linear-jet-coefficient` | directed-rounded interval certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-linear-jet-coefficient-interval-certificate.md) |

@@ -126,7 +126,12 @@ function forceContribution(receiver, source, theta, eta, traceScale) {
   const displacement = subtract(receiverPosition, sourcePosition);
   const rhat = scale(displacement, 1 / norm(displacement));
   const jacobian = rootJacobian(receiver, source, theta, eta, traceScale);
-  const coefficient = (receiver.polarity * source.polarity) / (eta * eta * Math.abs(jacobian));
+  const speedRatio = traceScale;
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const receiverNormalNumerator = 1 - speedRatio * dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient =
+    (receiver.polarity * source.polarity * Math.abs(receiverNormalFactor)) / (eta * eta);
   return scale(rhat, coefficient);
 }
 

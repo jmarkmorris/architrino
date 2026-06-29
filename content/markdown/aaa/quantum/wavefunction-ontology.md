@@ -157,11 +157,11 @@ The effective status of the wavefunction does not make every overlap between sta
 Standard quantum uncertainty ($\Delta x \Delta p \ge \hbar/2$) does not stem from fundamental indeterminism. It arises as a strict informational limit imposed by the delay-dynamics of the interaction kernel.
 
 ### Informational Ambiguity at the Receiver
-When an architrino intersects a causal wake surface, it receives an instantaneous radial acceleration. The receiver extracts only two pieces of information from this hit:
+When an architrino intersects a causal wake surface, it receives a branch-local radial acceleration rather than a filled-sphere impulse. The receiver extracts only two pieces of information from this hit:
 1.  The unoriented line of action.
 2.  The net force magnitude.
 
-The receiver cannot intrinsically distinguish an attractive pull toward an opposite-polarity source on one ray from a repulsive push by a same-polarity source on the opposite ray of the same line of action. If the receiver polarity flips, the source-polarity labels flip too; the invariant ambiguity is the exchange of side with attraction/repulsion. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea braids, the exact origin and path-history of any single perturbation is irretrievable.
+The receiver cannot intrinsically distinguish an attractive pull toward an opposite-polarity source on one ray from a repulsive push by a same-polarity source on the opposite ray of the same line of action. If the receiver polarity flips, the source-polarity labels flip too; the invariant ambiguity is the exchange of side with attraction/repulsion. Furthermore, because the local potential is a dense superposition of hits from countless Noether sea braids, the exact origin and path-history of any single perturbation is irretrievable. When the same hit is used in an accumulated action or wake-history ledger, the retained path must also record how the receiver worldline crosses the causal wake sequence; that receiver-normal factor is a branch-chart datum, not a fact available from one local hit alone.
 
 ### Measurement Back-Action and the $h$-Bracket
 Any attempt by a Physical Observer to resolve the microstate of an assembly requires an interaction (e.g., scattering a photon assembly modeled as a coaxial contra-rotating pro/anti planar pair). This interaction injects a discrete, minimum action increment (scaling with $h$) into the target assembly's causal history. This back-action continuously alters the boundary conditions of the state, placing a hard limit on simultaneously resolvable conjugate variables. The uncertainty principle brackets the physical action step associated with assembly transitions.

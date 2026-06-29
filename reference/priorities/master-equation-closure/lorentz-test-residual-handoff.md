@@ -56,7 +56,7 @@ The handoff may be emitted in `blocked_upstream` state before `lorentz_gr_bridge
 | `clock_branch_certificate` | Eigen-braid return residual $\mathcal R_{\mathrm{eig}}$, non-symmetry Floquet margin, memory-boundary recurrence row, and moduli-component / assembly topological charge identifiers for the clock branch. | Establishes that the phase row is a valid proper-time standard rather than a drifting oscillator. | `clock.eigen_braid_missing`, `clock.floquet_margin_failed`, or `clock.memory_boundary_leak` |
 | `signal_channel` | Round-trip signal time $T_{\circlearrowleft}(\beta,\hat{\mathbf n})$, synchronization convention, channel speed $c_\star$, and photon specialization $c_\gamma$ when used. | Feeds two-way and Michelson-Morley rows. | `residual.signal_missing` |
 | `speed_convention` | Declaration of $c_f$, $c_\star$, $c_\gamma$, and $c_0=c_{\text{eff}}(\infty)$ where applicable. | Prevents primitive/dressed speed conflation. | `residual.speed_conflation` |
-| `medium_response` | One Noether sea response record $\mathcal{M}_{\mathrm{sea}}^{ab}$ or bridge equivalent fixing $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ projections. | Feeds clock/ruler, PPN, SME gravity-sector, matter-speed, and photon rows from one sea-constitutive object. | `residual.medium_response_missing` or `gravity.hidden_tuning` |
+| `medium_response` | One Noether sea response record $\mathcal{M}_{\mathrm{sea}}^{ab}$ or bridge equivalent fixing $n$, $\chi_{\text{sea}}$, $\Phi_{\mathrm{eff}}$, stress, lapse, shift, spatial compliance, $G_{\mathrm{eff}}$, $c_{\text{eff}}$, and $c_\gamma$ projections, together with the same retained-history source record $\Theta_{\mathrm{sea}}(\mathfrak B)$ used by the active-root, event-ledger, and regulator rows. | Feeds clock/ruler, PPN, SME gravity-sector, matter-speed, and photon rows from one sea-constitutive object on one retained branch chart. | `residual.medium_response_missing`, `residual.retained_history_mismatch`, or `gravity.hidden_tuning` |
 | `framing_quadrupoles` | Matter framing quadrupole $Q_A^{ij}$, sea-response trace-free quadrupole or $\zeta_{ij}^{\mathrm{TF}}$, and $D_{\mathrm{plane}}$ or equivalent frame-conditioning row when a tri-binary branch supplies the clock or matter assembly. | Feeds orientation leakage, two-way photon anisotropy, Hughes-Drever matter anisotropy, and scalar-mass anisotropy as one $\ell=2$ obstruction family. | `lorentz.framing_quadrupole_missing` or `lorentz.frame_isotropy_failed` |
 | `event_ledger` | $\mathcal{L}_{E\mathbf{p}\mathbf{J}}^{(q)}$ row states, selected route identifiers, and legal null rows for any recoil, medium update, remnant deformation, radiation output, or product inventory associated with the same branch. | Ties the Lorentz packet to `G0_branch_admissibility` provenance and lets `G7_null_row_audit` verify that no residual was hidden in an omitted event row. | `event.ledger_residual` or `residual.provenance_gap` |
 | `frame_projection` | Laboratory frame, preferred-frame drift vector, epoch convention, and Sun-centered comparison-frame transform for SME-style coefficients. | Gives coefficient signs, axes, and time harmonics. | `residual.frame_projection_missing` |
@@ -299,6 +299,17 @@ artifact_refs: []
 failure_code: residual.bridge_not_closed
 ```
 
+The current priority-only population diagnostic for the shared medium-response
+contract is
+`scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`.
+That script checks whether a handoff-like JSON object uses the same
+$\Theta_{\mathrm{sea}}(\mathfrak B)$ source record for `medium_response`,
+`event_ledger`, `speed_convention`, `G4_effective_metric_and_shift`, and
+coefficient families. It is not a residual export and does not pass `G4` or
+`G7`; it only routes malformed handoffs to
+`residual.retained_history_mismatch`, `residual.speed_conflation`, or
+`gravity.hidden_tuning`.
+
 ## Dependency Gates
 
 | Gate id | Requirement | Rows unlocked |
@@ -307,7 +318,7 @@ failure_code: residual.bridge_not_closed
 | `G1_moving_assembly` | The bridge closes $a_{\parallel}/a_{\perp}=1/\gamma_\star+R_{\parallel}$ on the drift band. | `rms.mm`, `rms.kt` inputs. |
 | `G2_clock_retuning` | The same branch closes $T(v)/T_0=\gamma_\star+R_T$ or the equivalent clock-frequency law. | `rms.is`, clock parts of PPN and SME matter rows. |
 | `G3_two_way_signal` | The same branch and channel speed close $\Delta_{\mathrm{tw}}$ within the declared direct photon-sector bound. | `rms.mm`, `sme.photon`. |
-| `G4_effective_metric_and_shift` | The medium-response record derives lapse, shift, and spatial compliance from one $\mathcal{M}_{\mathrm{sea}}^{ab}$-level object. | All PPN rows and `sme.gravity`. |
+| `G4_effective_metric_and_shift` | The medium-response record derives lapse, shift, spatial compliance, and signal-speed projections from one $\mathcal{M}_{\mathrm{sea}}^{ab}$-level object on the same retained branch chart named by $\Theta_{\mathrm{sea}}(\mathfrak B)$. | All PPN rows and `sme.gravity`. |
 | `G5_frame_projection` | The export supplies lab-frame, preferred-frame, epoch, and Sun-centered comparison-frame transforms. | All SME-style rows and preferred-frame PPN diagnostics. |
 | `G6_bounds_and_covariance` | Bound vectors or covariance-root maps are declared before comparison. | Normalized RMS, PPN, and SME-style pass/fail verdicts. |
 | `G7_null_row_audit` | Every expected row is present with a legal `row_state`. | Final handoff acceptance. |
@@ -322,6 +333,7 @@ The line item `lorentz_test_residual_handoff` remains pending while `lorentz_gr_
 | `residual.row_omitted` | RMS, PPN, or SME-style expected row is absent. | Fail `G7_null_row_audit`. |
 | `residual.bound_missing` | A raw residual is reported without bound vector, covariance, unit, or sign convention. | Fail normalization. |
 | `residual.coefficient_split` | Clock, ruler, signal, PPN, or SME rows require independently tuned coefficients. | Route to validation-gates hidden-tuning witness. |
+| `residual.retained_history_mismatch` | The medium-response row uses a different branch class, retained window, regulator state, root ledger, or event ledger than the force/action rows. | Fail `G4_effective_metric_and_shift`; route back to the topological causal-root ledger compatibility boundary. |
 | `residual.speed_conflation` | Primitive $c_f$ is silently substituted for $c_\star$, $c_\gamma$, or $c_0$. | Route to clock/signal speed-convention repair. |
 | `residual.frame_projection_missing` | SME-style or preferred-frame row lacks comparison-frame transform. | Block SME and preferred-frame PPN rows. |
 | `residual.provenance_gap` | Row cannot be replayed from named proof, simulation, interval, or adapter artifacts. | Fail export. |

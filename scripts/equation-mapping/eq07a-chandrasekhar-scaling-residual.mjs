@@ -129,6 +129,10 @@ function evaluateEq07aChandrasekharScaling(input, inputPath) {
     solver,
     negativeControls,
   });
+  const nextBlocker = firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls });
+  const solverDiagnosticBlocker = firstSolverBlocker(solver, negativeControls);
+  const solverDiagnosticMaskedByRetainedEvidence =
+    solverDiagnosticBlocker !== null && (!carrier.accepted || missingRows.length > 0);
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -144,14 +148,15 @@ function evaluateEq07aChandrasekharScaling(input, inputPath) {
       row: "EQ-07A",
       solverTarget: "chandrasekhar_scaling",
       claimLevel:
-        "score-neutral solver-style Chandrasekhar scaling residual; accepted compact-region retained evidence is required before score movement",
+        "score-neutral solver-style Chandrasekhar scaling residual; accepted compact-region retained evidence is required before score review",
     },
     tolerances,
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
-      nextBlocker: firstBlocker({ status, carrier, missingRows, carrierBinding, solver, negativeControls }),
-      solverNextBlocker: firstSolverBlocker(solver, negativeControls),
+      nextBlocker,
+      solverDiagnosticBlocker,
+      solverDiagnosticMaskedByRetainedEvidence,
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
@@ -537,6 +542,9 @@ function evaluateSourcePath(sourcePath) {
   if (sourcePath.includes("content/generated/")) {
     return { accepted: false, reason: "generated_source_path" };
   }
+  if (path.basename(sourcePath).toLowerCase().includes("source-contract")) {
+    return { accepted: false, reason: "source_contract_path" };
+  }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
@@ -585,7 +593,7 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, ne
     return carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier";
   }
   const solverBlocker = firstSolverBlocker(solver, negativeControls);
-  return solverBlocker ?? carrier.reason ?? "unknown_blocker";
+  return solverBlocker ?? carrier.reason ?? status;
 }
 
 function firstSolverBlocker(solver, negativeControls) {

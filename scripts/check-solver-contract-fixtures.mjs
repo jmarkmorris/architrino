@@ -8,15 +8,24 @@ const schemaPath = "src/contracts/solver-app-bridge/v1/schema.json";
 const workerBridgePath = "src/solver/app/SolverAppWorkerBridge.mjs";
 const bridgeContractPath = "src/solver/app/SolverAppBridgeContract.d.ts";
 const requestPath = "src/solver/fixtures/causal-roots-f64-smoke.request.json";
+const movingReceiverRequestPath = "src/solver/fixtures/causal-roots-moving-receiver-f64-smoke.request.json";
 const batchResponsePath = "src/solver/fixtures/causal-root-batch-f64-smoke.response.json";
 const responsePath = "src/solver/fixtures/roots-and-hits-f64-smoke.response.json";
+const movingReceiverResponsePath =
+  "src/solver/fixtures/roots-and-hits-moving-receiver-f64-smoke.response.json";
 
 const schema = readJson(schemaPath);
 const workerBridgeSource = fs.readFileSync(path.join(rootDir, workerBridgePath), "utf8");
 const bridgeContractSource = fs.readFileSync(path.join(rootDir, bridgeContractPath), "utf8");
 const request = readJson(requestPath);
+const movingReceiverRequest = readJson(movingReceiverRequestPath);
 const batchResponse = readJson(batchResponsePath);
 const response = readJson(responsePath);
+const movingReceiverResponse = readJson(movingReceiverResponsePath);
+
+const ROOT_LEDGER_ROW_F64_BYTES = 176;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
 const initRequest = createInitRequestEnvelope();
 const initResponse = createInitResponseEnvelope();
 const capabilitiesRequest = createCapabilitiesRequestEnvelope();
@@ -121,6 +130,7 @@ const schemaFixtures = [
   ["worker response message", "solverAppWorkerResponseMessage", workerResponseMessage],
   ["worker error message", "solverAppWorkerErrorMessage", workerErrorMessage],
   ["causal roots request", "causalRootsF64RequestEnvelope", request],
+  ["moving-receiver causal roots request", "causalRootsF64RequestEnvelope", movingReceiverRequest],
   ["init request", "initRequestEnvelope", initRequest],
   ["init response", "initResponseEnvelope", initResponse],
   ["capabilities request", "capabilitiesRequestEnvelope", capabilitiesRequest],
@@ -215,6 +225,7 @@ const schemaFixtures = [
   ["motion integration response", "motionIntegrationF64ResponseEnvelope", motionIntegrationResponse],
   ["causal-root batch response", "causalRootBatchF64ResponseEnvelope", batchResponse],
   ["roots-and-hits response", "rootsAndHitsF64ResponseEnvelope", response],
+  ["moving-receiver roots-and-hits response", "rootsAndHitsF64ResponseEnvelope", movingReceiverResponse],
   ["run simulation request", "runSimulationRequestEnvelope", runSimulationRequest],
   ["normalized run simulation request", "runSimulationRequestEnvelope", runSimulationNormalizedRequest],
   ["run simulation response", "runSimulationResponseEnvelope", runSimulationResponse],
@@ -719,6 +730,7 @@ assertWorkerMethods([
   "describeAssemblyGraphStoreF64",
   "readAssemblyGraphStoreRangeF64",
   "buildPathHistoryStreamSpaceTimeIndexF64",
+  "stepT3UniverseF64",
   "integrateConstantAccelerationMotionF64",
   "createPathHistoryStreamF64",
   "applyPathHistoryStorageLifecycleF64",
@@ -737,6 +749,7 @@ validateWorkerRequestMessage(workerRequestMessage);
 validateWorkerResponseMessage(workerResponseMessage);
 validateWorkerErrorMessage(workerErrorMessage);
 validateRequestEnvelope(request);
+validateRequestEnvelope(movingReceiverRequest);
 validateInitRequestEnvelope(initRequest);
 validateInitResponseEnvelope(initResponse);
 validateCapabilitiesRequestEnvelope(capabilitiesRequest);
@@ -762,6 +775,12 @@ validateMotionIntegrationRequestEnvelope(motionIntegrationRequest);
 validateMotionIntegrationResponseEnvelope(motionIntegrationResponse);
 validateBatchResponseEnvelope(batchResponse);
 validateResponseEnvelope(response);
+validateResponseEnvelope(movingReceiverResponse, {
+  emissionTime: 5,
+  distance: 5,
+  hitStrength: 1.5,
+});
+assertMovingReceiverBranchFamilyFixture(movingReceiverRequest, movingReceiverResponse);
 validateRunSimulationRequestEnvelope(runSimulationRequest);
 validateRunSimulationNormalizedRequestEnvelope(runSimulationNormalizedRequest);
 validateRunSimulationResponseEnvelope(runSimulationResponse);
@@ -1361,7 +1380,9 @@ function assertCapabilities(value, label) {
   );
   assert(
     value.binaryLayouts.layouts.some(
-      (layout) => layout.layout === "root_ledger_detail.v1" && layout.rowSizeBytes === 192
+      (layout) =>
+        layout.layout === "root_ledger_detail.v1" &&
+        layout.rowSizeBytes === ROOT_LEDGER_DETAIL_ROW_F64_BYTES
     ),
     `${label} root ledger detail binary layout mismatch`
   );
@@ -1428,7 +1449,7 @@ function assertCapabilities(value, label) {
   assert(value.validation.invariantChecks.includes("root_hit_f64"), `${label} validation capability mismatch`);
   assert(value.maxTransferBytes === 67108864, `${label} max transfer mismatch`);
   assert(value.wasmModuleFactory === true, `${label} wasm factory mismatch`);
-  assert(value.abiInfo.rootRowF64Bytes === 112, `${label} ABI root row mismatch`);
+  assert(value.abiInfo.rootRowF64Bytes === ROOT_LEDGER_ROW_F64_BYTES, `${label} ABI root row mismatch`);
   assert(value.abiInfo.motionIntegrationRequestF64Bytes === 120, `${label} ABI motion integration mismatch`);
   assert(value.abiInfo.pairInteractionRequestF64Bytes === 88, `${label} ABI pair request mismatch`);
 }
@@ -1458,7 +1479,13 @@ function validateBatchResponseEnvelope(value) {
   assert(responseValue.items[1].rootCount === 1, "second batch root count mismatch");
   assertClose(responseValue.items[0].roots[0].distance, 10, "first batch root distance");
   assertClose(responseValue.items[1].roots[0].distance, 6, "second batch root distance");
-  assertBuffer(responseValue.buffers[0], "batch-root-ledger", "root_ledger.v1", 224, 2);
+  assertBuffer(
+    responseValue.buffers[0],
+    "batch-root-ledger",
+    "root_ledger.v1",
+    ROOT_LEDGER_ROW_F64_BYTES * 2,
+    2
+  );
   assert(responseValue.status.code === "ok", "batch status code mismatch");
 }
 
@@ -1490,7 +1517,10 @@ function validateMotionIntegrationResponseEnvelope(value) {
   assert(responseValue.status.code === "ok", "motion integration status mismatch");
 }
 
-function validateResponseEnvelope(value) {
+function validateResponseEnvelope(
+  value,
+  expected = { emissionTime: 0, distance: 10, hitStrength: 1 }
+) {
   assert(value.schema === "solver-app-bridge/v1", "response schema tag mismatch");
   assert(value.kind === "roots-and-hits-f64-response", "response kind mismatch");
   assertNonemptyString(value.requestId, "response request id");
@@ -1499,17 +1529,26 @@ function validateResponseEnvelope(value) {
   assert(Array.isArray(responseValue.hits), "hits must be an array");
   assert(responseValue.roots.length === 1, "smoke response must contain one root");
   assert(responseValue.hits.length === 1, "smoke response must contain one hit");
-  assertClose(responseValue.roots[0].emissionTime, 0, "root emission time");
-  assertClose(responseValue.roots[0].distance, 10, "root distance");
+  assertClose(responseValue.roots[0].emissionTime, expected.emissionTime, "root emission time");
+  assertClose(responseValue.roots[0].distance, expected.distance, "root distance");
   assertClose(responseValue.hits[0].unitDirection.x, 1, "hit unit direction x");
-  assertClose(responseValue.hits[0].strength, 1, "hit strength");
-  assertBuffer(responseValue.buffers[0], "root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "delayed-hit-events", "delayed_hit_events.v1", 128, 1);
+  assertClose(responseValue.hits[0].strength, expected.hitStrength, "hit strength");
+  assertBuffer(responseValue.buffers[0], "root-ledger", "root_ledger.v1", ROOT_LEDGER_ROW_F64_BYTES, 1);
+  assertBuffer(
+    responseValue.buffers[1],
+    "delayed-hit-events",
+    "delayed_hit_events.v1",
+    DELAYED_HIT_ROW_F64_BYTES,
+    1
+  );
   assert(responseValue.streams.length === 1, "expected one transient stream");
   const stream = responseValue.streams[0];
   assert(stream.indexLayout === "stream_index.v1", "stream index layout mismatch");
   assert(stream.availableRanges.length === 2, "stream ranges mismatch");
-  assert(stream.storagePolicy.maxBytes === 240, "stream storage byte count mismatch");
+  assert(
+    stream.storagePolicy.maxBytes === ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+    "stream storage byte count mismatch"
+  );
   assert(responseValue.status.code === "ok", "status code mismatch");
 }
 
@@ -2132,8 +2171,20 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assert(responseValue.items[0].hitOffset === 0, "emission-shell refinement hit offset mismatch");
   assert(responseValue.roots.length === 1, "emission-shell refinement roots mismatch");
   assert(responseValue.hits.length === 1, "emission-shell refinement hits mismatch");
-  assertBuffer(responseValue.buffers[0], "packet-refine-a:emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "packet-refine-a:emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
+  assertBuffer(
+    responseValue.buffers[0],
+    "packet-refine-a:emission-shell-refined-root-ledger",
+    "root_ledger.v1",
+    ROOT_LEDGER_ROW_F64_BYTES,
+    1
+  );
+  assertBuffer(
+    responseValue.buffers[1],
+    "packet-refine-a:emission-shell-refined-delayed-hits",
+    "delayed_hit_events.v1",
+    DELAYED_HIT_ROW_F64_BYTES,
+    1
+  );
   assert(responseValue.status.code === "ok", "emission-shell refinement status mismatch");
 }
 
@@ -2340,6 +2391,126 @@ function assertBuffer(value, bufferId, layout, byteLength, rowCount) {
   assert(value.numericType === "f64", `${bufferId} numeric type mismatch`);
 }
 
+function assertMovingReceiverBranchFamilyFixture(requestEnvelope, responseEnvelope) {
+  assert(
+    requestEnvelope.requestId === "causal-roots-moving-receiver-f64-smoke",
+    "moving-receiver request id mismatch"
+  );
+  assert(
+    responseEnvelope.requestId === requestEnvelope.requestId,
+    "moving-receiver response request id mismatch"
+  );
+  assertClose(requestEnvelope.request.receiver.velocity.x, -0.5, "moving-receiver velocity x");
+
+  const root = responseEnvelope.response.roots[0];
+  const hit = responseEnvelope.response.hits[0];
+  assert(root, "moving-receiver root missing");
+  assert(hit, "moving-receiver hit missing");
+  assertClose(root.emissionTime, 5, "moving-receiver root emission time");
+  assertClose(root.hitTime, 10, "moving-receiver root hit time");
+  assertClose(root.distance, 5, "moving-receiver root distance");
+  assertClose(root.sourceNormalDenominator, 1, "moving-receiver root source-normal denominator");
+  assertClose(root.receiverNormalNumerator, 1.5, "moving-receiver root receiver-normal numerator");
+  assertClose(root.receiverNormalFactor, 1.5, "moving-receiver root receiver-normal factor");
+  assertClose(root.branchWeight, 1.5, "moving-receiver root branch weight");
+  assertClose(hit.strength, 1.5, "moving-receiver hit strength");
+  const failures = receiverNormalInvariantFailures(responseEnvelope);
+  assert(
+    failures.length === 0,
+    `moving-receiver fixture should satisfy receiver-normal invariants: ${failures.join(", ")}`
+  );
+
+  const rootProxy = deepClone(responseEnvelope);
+  rootProxy.response.roots[0].branchWeight = root.sourceNormalDenominator;
+  assert(
+    receiverNormalInvariantFailures(rootProxy).includes("root_branch_weight_mismatch"),
+    "moving-receiver root source-normal proxy negative control did not fail"
+  );
+
+  const hitProxy = deepClone(responseEnvelope);
+  hitProxy.response.hits[0].strength = hit.sourceNormalDenominator;
+  assert(
+    receiverNormalInvariantFailures(hitProxy).includes("hit_strength_mismatch"),
+    "moving-receiver hit source-normal proxy negative control did not fail"
+  );
+
+  const mixedRecordProxy = deepClone(responseEnvelope);
+  mixedRecordProxy.response.hits[0].receiverNormalNumerator = 1;
+  mixedRecordProxy.response.hits[0].receiverNormalCrossingFactor = 1;
+  mixedRecordProxy.response.hits[0].receiverNormalFactor = 1;
+  mixedRecordProxy.response.hits[0].unsignedReceiverNormalFactor = 1;
+  mixedRecordProxy.response.hits[0].strength = 1;
+  assert(
+    receiverNormalInvariantFailures(mixedRecordProxy).includes("same_record_receiver_normal_mismatch"),
+    "moving-receiver mixed-record receiver-normal negative control did not fail"
+  );
+}
+
+function receiverNormalInvariantFailures(responseEnvelope) {
+  const failures = [];
+  const rootsById = new Map();
+  for (const root of responseEnvelope.response.roots ?? []) {
+    rootsById.set(root.rootId, root);
+    const expectedReceiverNormalFactor =
+      root.receiverNormalNumerator / root.sourceNormalDenominator;
+    const expectedBranchWeight = Math.abs(expectedReceiverNormalFactor);
+    if (!closeEnough(root.receiverNormalFactor, expectedReceiverNormalFactor)) {
+      failures.push("root_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(root.unsignedReceiverNormalFactor, expectedBranchWeight)) {
+      failures.push("root_unsigned_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(root.branchWeight, expectedBranchWeight)) {
+      failures.push("root_branch_weight_mismatch");
+    }
+  }
+  for (const hit of responseEnvelope.response.hits ?? []) {
+    const expectedReceiverNormalFactor =
+      hit.receiverNormalNumerator / hit.sourceNormalDenominator;
+    const expectedStrength = Math.abs(expectedReceiverNormalFactor);
+    if (!closeEnough(hit.receiverNormalFactor, expectedReceiverNormalFactor)) {
+      failures.push("hit_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(hit.unsignedReceiverNormalFactor, expectedStrength)) {
+      failures.push("hit_unsigned_receiver_normal_factor_mismatch");
+    }
+    if (!closeEnough(hit.strength, expectedStrength)) {
+      failures.push("hit_strength_mismatch");
+    }
+
+    const root = rootsById.get(hit.rootId);
+    if (!root) {
+      failures.push("same_record_root_missing");
+      continue;
+    }
+    const sameRecordFields = [
+      ["sourceNormalSpeed", root.sourceNormalSpeed, hit.sourceNormalSpeed],
+      ["receiverNormalSpeed", root.receiverNormalSpeed, hit.receiverNormalSpeed],
+      ["sourceNormalDenominator", root.sourceNormalDenominator, hit.sourceNormalDenominator],
+      ["receiverNormalNumerator", root.receiverNormalNumerator, hit.receiverNormalNumerator],
+      ["receiverNormalCrossingFactor", root.receiverNormalCrossingFactor, hit.receiverNormalCrossingFactor],
+      ["receiverNormalFactor", root.receiverNormalFactor, hit.receiverNormalFactor],
+      ["unsignedReceiverNormalFactor", root.unsignedReceiverNormalFactor, hit.unsignedReceiverNormalFactor],
+      ["receiverNormalStatusCode", root.receiverNormalStatusCode, hit.receiverNormalStatusCode],
+    ];
+    if (sameRecordFields.some(([, rootValue, hitValue]) => !closeEnough(rootValue, hitValue))) {
+      failures.push("same_record_receiver_normal_mismatch");
+    }
+    if (!closeEnough(hit.strength, root.branchWeight)) {
+      failures.push("same_record_hit_strength_mismatch");
+    }
+  }
+  return failures;
+}
+
+function closeEnough(actual, expected) {
+  return Math.abs(actual - expected) <= 1e-10;
+}
+
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 function assertCoreBinaryLayouts(expectedLayouts) {
   const actualLayouts = schema.$defs.coreBinaryLayoutId?.enum || [];
   for (const layout of expectedLayouts) {
@@ -2413,6 +2584,19 @@ function assertSameSet(left, right, leftLabel, rightLabel) {
   const extra = right.filter((value) => !left.includes(value));
   assert(missing.length === 0, `${rightLabel} missing ${leftLabel} value(s): ${missing.join(", ")}`);
   assert(extra.length === 0, `${rightLabel} has extra value(s) not in ${leftLabel}: ${extra.join(", ")}`);
+}
+
+function createNeutralReceiverNormalFields() {
+  return {
+    sourceNormalSpeed: 0,
+    receiverNormalSpeed: 0,
+    sourceNormalDenominator: 1,
+    receiverNormalNumerator: 1,
+    receiverNormalCrossingFactor: 1,
+    receiverNormalFactor: 1,
+    unsignedReceiverNormalFactor: 1,
+    receiverNormalStatusCode: 0,
+  };
 }
 
 function createCausalRootsResponseEnvelope() {
@@ -2562,7 +2746,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-root-ledger",
     layout: "root_ledger.v1",
     byteOffset: 0,
-    byteLength: 112,
+    byteLength: ROOT_LEDGER_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2570,7 +2754,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-delayed-hit-events",
     layout: "delayed_hit_events.v1",
     byteOffset: 0,
-    byteLength: 128,
+    byteLength: DELAYED_HIT_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2578,7 +2762,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-root-ledger-detail",
     layout: "root_ledger_detail.v1",
     byteOffset: 0,
-    byteLength: 192,
+    byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2776,6 +2960,7 @@ function createRootLedgerDetailFixture(options = {}) {
     bracketEnd: 0,
     sourcePoint: { x: 0, y: 0, z: 0 },
     receiverPoint: { x: 10, y: 0, z: 0 },
+    ...createNeutralReceiverNormalFields(),
     entryKind: 1,
     rootKind: 1,
     statusCode: 0,
@@ -2801,7 +2986,7 @@ function createCausalRootsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2851,7 +3036,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2859,7 +3044,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-delayed-hit-events",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
-          byteLength: 128,
+          byteLength: DELAYED_HIT_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2867,7 +3052,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger-detail",
           layout: "root_ledger_detail.v1",
           byteOffset: 0,
-          byteLength: 192,
+          byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2881,23 +3066,33 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 0, end: 112 },
+              byteRange: { start: 0, end: ROOT_LEDGER_ROW_F64_BYTES },
             },
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 112, end: 240 },
+              byteRange: {
+                start: ROOT_LEDGER_ROW_F64_BYTES,
+                end: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+              },
             },
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 240, end: 432 },
+              byteRange: {
+                start: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+                end:
+                  ROOT_LEDGER_ROW_F64_BYTES +
+                  DELAYED_HIT_ROW_F64_BYTES +
+                  ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
+              },
             },
           ],
           storagePolicy: {
             target: "caller-buffer",
             durable: false,
-            maxBytes: 432,
+            maxBytes:
+              ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES + ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
           },
           metadata: createRunStreamMetadataFixture(),
         },
@@ -2931,7 +3126,12 @@ function createRootLedgerDetailResponseEnvelope() {
     response: {
       rows: [createRootLedgerDetailFixture()],
       buffers: [
-        createBufferDescriptorFixture("root-ledger-detail-contract-buffer", "root_ledger_detail.v1", 192, 1),
+        createBufferDescriptorFixture(
+          "root-ledger-detail-contract-buffer",
+          "root_ledger_detail.v1",
+          ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
+          1
+        ),
       ],
       status: createStatusFixture("ok", "ok", "root-ledger detail fixture"),
     },
@@ -4046,9 +4246,9 @@ function createBinaryLayoutCatalogFixture() {
     ["assembly_hierarchy.v1", "assembly-graph", 56, false],
     ["assembly_events.v1", "assembly-graph", 88, false],
     ["path_chunk.v1", "path-history-index", 104, true],
-    ["root_ledger.v1", "root-ledger", 112, false],
-    ["root_ledger_detail.v1", "root-ledger", 192, false],
-    ["delayed_hit_events.v1", "delayed-hit", 128, false],
+    ["root_ledger.v1", "root-ledger", ROOT_LEDGER_ROW_F64_BYTES, false],
+    ["root_ledger_detail.v1", "root-ledger", ROOT_LEDGER_DETAIL_ROW_F64_BYTES, false],
+    ["delayed_hit_events.v1", "delayed-hit", DELAYED_HIT_ROW_F64_BYTES, false],
     ["field_shell_events.v1", "field-shell-event", 160, true],
     ["phase_at_hit.v1", "phase-diagnostic", 104, false],
     ["spacetime_index.v1", "spacetime-index", 128, false],
@@ -4132,6 +4332,10 @@ function createCapabilitiesFixture() {
         {
           appId: "ideal-braid",
           runKinds: ["delayedHits", "pathHistory", "sharedGeometry", "validationReplay"],
+        },
+        {
+          appId: "t3",
+          runKinds: ["motionSimulation", "pathHistory", "validationReplay"],
         },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],
@@ -4359,11 +4563,11 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 13,
+    abiMinor: 16,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
-    rootRowF64Bytes: 112,
-    delayedHitRowF64Bytes: 128,
+    rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,
+    delayedHitRowF64Bytes: DELAYED_HIT_ROW_F64_BYTES,
     motionSampleRequestF64Bytes: 112,
     motionFrameRowF64Bytes: 88,
     phaseClockF64Bytes: 24,
@@ -4389,7 +4593,7 @@ function createAbiInfoFixture() {
     emissionShellBroadPhaseSummaryBytes: 32,
     emissionShellNarrowPhaseRequestF64Bytes: 208,
     emissionShellNarrowPhaseRowF64Bytes: 40,
-    rootLedgerDetailRowF64Bytes: 192,
+    rootLedgerDetailRowF64Bytes: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
     errorBudgetF64Bytes: 64,
     errorBudgetStageInputF64Bytes: 16,
     errorBudgetStageRowF64Bytes: 40,
@@ -4406,6 +4610,10 @@ function createAbiInfoFixture() {
     statusRowBytes: 24,
     admissionReportF64Bytes: 112,
     pairInteractionRequestF64Bytes: 88,
+    t3StepRequestF64Bytes: 96,
+    t3ParticleStateF64Bytes: 80,
+    t3ParticleStepRowF64Bytes: 104,
+    t3StepSummaryF64Bytes: 88,
   };
 }
 
@@ -5111,7 +5319,7 @@ function createRunBuffers() {
       bufferId: "run-contract:root-ledger",
       layout: "root_ledger.v1",
       byteOffset: 0,
-      byteLength: 112,
+      byteLength: ROOT_LEDGER_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "5555555555555555",
@@ -5120,7 +5328,7 @@ function createRunBuffers() {
       bufferId: "run-contract:delayed-hit-events",
       layout: "delayed_hit_events.v1",
       byteOffset: 0,
-      byteLength: 128,
+      byteLength: DELAYED_HIT_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "6666666666666666",
@@ -5129,7 +5337,7 @@ function createRunBuffers() {
       bufferId: "run-contract:root-ledger-detail",
       layout: "root_ledger_detail.v1",
       byteOffset: 0,
-      byteLength: 192,
+      byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "7777777777777777",
@@ -6679,7 +6887,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           bufferId: "packet-refine-a:emission-shell-refined-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
           checksum: "cccccccccccccccc",
@@ -6688,7 +6896,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           bufferId: "packet-refine-a:emission-shell-refined-delayed-hits",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
-          byteLength: 128,
+          byteLength: DELAYED_HIT_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
           checksum: "dddddddddddddddd",
@@ -6740,7 +6948,7 @@ function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCou
         layout: "root_ledger.v1",
         numericType: "f64",
         byteOffset: 0,
-        byteLength: rowCount * 112,
+        byteLength: rowCount * ROOT_LEDGER_ROW_F64_BYTES,
         rowOffset: 0,
         rowCount,
         checksum: "cccccccccccccccc",
@@ -6750,7 +6958,7 @@ function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCou
         layout: "delayed_hit_events.v1",
         numericType: "f64",
         byteOffset: 0,
-        byteLength: rowCount * 128,
+        byteLength: rowCount * DELAYED_HIT_ROW_F64_BYTES,
         rowOffset: 0,
         rowCount,
         checksum: "dddddddddddddddd",

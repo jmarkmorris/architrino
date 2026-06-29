@@ -13,9 +13,9 @@
 
 ## Run Boundary
 
-This run is a team-agent breakthrough search over least-advanced equation rows. It does not promote material into `content/markdown/aaa` and does not change equation scores. Candidate breakthroughs remain candidate-level until accepted retained evidence, source-backed carrier rows, or supported checker results land.
+This run is a team-agent breakthrough search over least-advanced equation rows. It does not promote material into `content/markdown/aaa` and does not change equation scores. Candidate breakthroughs remain candidate-level until accepted retained evidence lands and a checker validates it.
 
-Operator correction, 2026-06-26: the later `Checkpoint 11` wall-clock claim is not a reliable active-runtime measurement. The thread hit a token-limit interruption and did not automatically restart when the interruption cleared. Treat the prior run as interrupted before satisfying the hard runtime requirement. Keep the artifacts and checker outputs below as score-neutral work already landed, but do not cite the prior run as a completed nine-hour or ten-hour search.
+Operator correction, 2026-06-26: the later `Checkpoint 11` wall-clock claim is not a reliable active-runtime measurement. The thread hit a token-limit interruption and did not automatically restart when the interruption cleared. Treat the prior run as interrupted before satisfying the hard runtime requirement. Keep the artifacts and checker outputs below as score-neutral artifacts already recorded, but do not cite the prior run as a completed nine-hour or ten-hour search.
 
 The queue order is:
 
@@ -66,7 +66,7 @@ Not reached at checkpoint 0.
   - score `2` action/gauge/precision rows: `EQ-12A`, `EQ-15`, `EQ-16`, `EQ-22A`, `EQ-26A`, `EQ-27`;
   - finite-window rows: `EQ-30`, `EQ-31`, with shared pressure from `EQ-14` and `EQ-25`;
   - score `3` carrier layer: `EQ-10`, `EQ-11`, `EQ-18`, `EQ-19`, `EQ-20`, `EQ-21`, `EQ-22`, `EQ-23`, `EQ-24`, `EQ-32`.
-- Current best candidate: an unintegrated suffix packet may be more score-moving than another high-score blocker pass if it can name a single retained carrier instead of another broad equation list.
+- Current best candidate: an unintegrated suffix packet may be more useful for narrowing the evidence route than another high-score blocker pass if it can name the first accepted-evidence object and checker consumer instead of another broad equation list.
 - Files edited so far: this checkpoint file.
 - Validation status: not yet run after this checkpoint write.
 
@@ -497,7 +497,7 @@ Meaningful score `3` work remains. The next concrete implementation target shoul
 
 - Current score and closure driver: score `2`; derive $\alpha(\mu)$ as scale-dependent electromagnetic response from one exposure domain, not a fitted constant.
 - Primary AAA carrier: `Theta_alpha=(q_obs,h_vartheta,c_gamma,E_S,K_EM,I_mu)` on one action-period, charge-exposure, photon-speed, gauge-domain, threshold-inventory, and Noether sea record.
-- Smallest score-moving evidence object: accepted source-backed `theta_alpha` packet rooted first in `charge_exposure_row`, then `alpha_coupling_row`, `vacuum_polarization_wake_dressing_row`, charged-threshold inventory, and `energy_scale_running_row`.
+- Smallest accepted evidence object: accepted source-backed `theta_alpha` packet rooted first in `charge_exposure_row`, then `alpha_coupling_row`, `vacuum_polarization_wake_dressing_row`, charged-threshold inventory, and `energy_scale_running_row`.
 - Exact first blocker: parent `missing_accepted_theta_gamma_packet`; local source-field first row after the parent is `missing_accepted_charge_exposure_row`.
 - Existing scripts/fixtures/packets found: shared Planck/alpha runner, default attempt, theta-bb source attempt, theta-alpha source attempt, and theta-gamma coordination-source negative control.
 - Candidate breakthrough angle: use running $\alpha(\mu)$ as a hidden-retune discriminator. Only $\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and $I_\mu$ may run; $h_\vartheta$, $q_{\mathrm{obs}}$, $c_\gamma$, and fixed Noether sea state must remain shared across anchors.
@@ -537,7 +537,7 @@ No score changes.
 - `EQ-22A` fail-closed negative control: the new `theta_gamma_packet` coordination-source guard; arithmetic controls still include `wrong_mode_count_dimension`.
 - `EQ-28A` current blocker: `missing_accepted_path_frequency_exchange_carrier`.
 - `EQ-28A` smallest evidence object: accepted source-backed `Theta_nu-ex(W)` carrier binding photon in/out, electron/medium, Noether sea path history, exchange ledger, recoil/remnant, and finite-window thermal record on one `commonCarrierId`.
-- `EQ-28A` next action: probe one candidate durable retained-evidence source for only the carrier; if accepted, the checker should advance to a child blocker such as `missing_accepted_theta_gamma_packet` without score movement.
+- `EQ-28A` next action: probe one candidate durable retained-evidence source for only the carrier; if accepted, the checker should advance to a child blocker such as `missing_accepted_theta_gamma_packet` without score change.
 
 No score changes.
 
@@ -568,7 +568,7 @@ No score changes.
 
 - Current score and closure driver: score `1`; Koide remains a speculative charged-lepton benchmark until the upstream `EQ-04` retained mass-shell carrier and charged-lepton mass map are accepted.
 - Primary AAA carrier: `Theta_l^04A`, the retained charged-lepton generation-by-shielding branch family plus shared mass readout, exposed-sector record, Noether sea response, mass-shell residual, and no-retune witness.
-- Smallest score-moving evidence object: accepted `S_eq` retained-domain row object for `EQ-02` through `EQ-04`, especially `raw_labeled_rows_preserved_on_retained_history` on the same domain/carrier/support ids.
+- Smallest accepted evidence object: accepted `S_eq` retained-domain row object for `EQ-02` through `EQ-04`, especially `raw_labeled_rows_preserved_on_retained_history` on the same domain/carrier/support ids.
 - Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 - Existing scripts/fixtures/packets found: `eq04a-koide-residual.mjs`, default attempt, direct-fit negative control, split-generation negative control, and the upstream `EQ-02` through `EQ-04` retained-record checker.
 - Candidate breakthrough angle: treat Koide as a retained mass-root section and moment-map diagnostic over predicted shielding-energy products, not as an observed-mass fit.
@@ -744,7 +744,7 @@ No score changes.
 - Agents completed in second restart wave:
   - `EQ-04A` score-1 pass: confirmed `missing_accepted_raw_labeled_rows_preserved_on_retained_history`; do not prioritize a Koide-specific edit before upstream `S_eq` retained-domain evidence.
   - `EQ-12A` retained action-period pass: confirmed `missing_accepted_retained_orbit_reduction_row`; after the new guard, the next safe artifact is a retained `S_eq` action-period source-attempt fixture.
-  - `EQ-11A` GW source-window pass: confirmed `missing_accepted_gw_source_carrier`; recommended an accepted-source guard and source-evidence probe before any GW score movement.
+  - `EQ-11A` GW source-window pass: confirmed `missing_accepted_gw_source_carrier`; recommended an accepted-source guard and source-evidence probe before any GW score review.
   - `EQ-31` finite-window pass: confirmed the new `W` probe advances to `missing_accepted_Phi_T`; recommended the one-row `Phi_T` follow-up probe.
   - Gate A `EQ-13`/`EQ-28` pass: confirmed `missing_accepted_photon_gate_A_input_output`; the smallest next accepted object is one retained Gate A row on `e_gamma_e_0`.
   - `theta_sea_rho_NS` pass: confirmed no live source can serve as accepted retained evidence today; the smallest future object is a dedicated retained-window `rho_NS` evidence JSON.
@@ -770,7 +770,7 @@ No score changes.
   - Full validation after the `EQ-31` `Phi_T` probe and this checkpoint append passed: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.
 - Current best breakthrough candidates:
   1. `theta_sea_rho_NS` retained-window evidence JSON, because it can feed `EQ-24`, `EQ-20`, and later `EQ-32`.
-  2. finite-window `W/Phi_T/mu_star_T` charged-pion ladder, now advanced to `missing_accepted_mu_star_T` without score movement.
+  2. finite-window `W/Phi_T/mu_star_T` charged-pion ladder, now advanced to `missing_accepted_mu_star_T` without score change.
   3. Gate A `photon_gate_A_input_output` retained-evidence candidate on `e_gamma_e_0`.
   4. `EQ-12A` retained `S_eq` action-period source-attempt fixture.
   5. `EQ-11A` `gw_source_carrier` accepted-source guard and probe.
@@ -816,7 +816,7 @@ No score changes.
 - Elapsed: about 148 minutes from required `git status --short --untracked-files=all`.
 - Agents completed since checkpoint 9:
   - `Poincare the 2nd`: `EQ-10`/`EQ-11` second pass; kept `theta_W` as the `EQ-10` first blocker and separated `theta_11_20` as the local weak-gravity handoff row for `EQ-11`.
-  - `Chandrasekhar the 2nd`: finite-window `W` audit; recommended rejecting coordination notes as accepted source evidence before any `W`-based score movement.
+  - `Chandrasekhar the 2nd`: finite-window `W` audit; recommended rejecting coordination notes as accepted source evidence before any `W`-based score review.
   - `Franklin the 2nd`: `EQ-26` hydrogen fixture design; kept `theta_H_spec` as the first object and recommended a two-line spectral source-report gate.
   - `Fermat the 2nd`: `EQ-29` fixture design; recommended a source-attempt radiation-source carrier fixture rather than broad radiation prose.
   - `Sartre the 2nd`: Gate A fixture design; recommended a source-attempt `photon_gate_A_input_output` object on `e_gamma_e_0` and a coordination-source false-positive control.
@@ -1172,7 +1172,7 @@ No score changes.
 | 12 | Add `EQ-22A` and `EQ-26A` child source maps under `theta_gamma_packet`. | Added source-field maps for `theta_bb` and `theta_alpha`, linked them from the photon packet and observation-first packet, and kept both children blocked behind the parent `missing_accepted_theta_gamma_packet`. | No score changes. |
 | 13 | Add an `EQ-26` hydrogen spectral carrier source-field map. | Added a priority-only map for a two-line hydrogen spectral carrier and validated the existing hydrogen scan expectations. | No score changes. |
 | 14 | Add an `EQ-29` radiation source carrier source-field map. | Added a priority-only source/channel carrier map and validated that the existing radiation-source checker fails closed when populated evidence is required. | No score changes. |
-| 15 | Harden the `EQ-16A` common-clock phase checker against hidden weak-domain splits. | Added a domain-identity requirement and a negative-control fixture that fails before score movement when accepted-looking weak rows are sourced from incompatible weak domains. | No score changes. |
+| 15 | Harden the `EQ-16A` common-clock phase checker against hidden weak-domain splits. | Added a domain-identity requirement and a negative-control fixture that fails before score review when accepted-looking weak rows are sourced from incompatible weak domains. | No score changes. |
 
 ### Best Breakthrough Candidates At Checkpoint 5
 
@@ -1182,7 +1182,7 @@ No score changes.
 | 2 | `theta_gamma_packet` with explicit child consumers | `theta_bb`, `theta_alpha`, action-period, and photon-exchange rows are now separated enough to target smaller accepted objects without collapsing them into one photon label. | `missing_accepted_theta_gamma_packet` |
 | 3 | `theta_W` weak-field source record | One accepted weak-field record would connect the effective metric rows, `EQ-10`, `EQ-11`, and redshift handoffs. | `missing_accepted_theta_W` |
 | 4 | `theta_sea_rho_NS` compact-window sidecar | Best candidate bridge between Noether sea density compression and compact-region consumers, but still not sufficient as the full compact-region carrier. | `missing_accepted_compact_region_carrier` |
-| 5 | `EQ-11A` source-window identity hardening | The no-retune identity tuple is a small checker improvement that can prevent source-window mixing before any gravitational-wave score movement. | `missing_accepted_gw_source_carrier` |
+| 5 | `EQ-11A` source-window identity hardening | The no-retune identity tuple is a small checker improvement that can prevent source-window mixing before any gravitational-wave score review. | `missing_accepted_gw_source_carrier` |
 | 6 | `EQ-16A` weak-domain identity control | The new negative control sharpens the weak-visible domain requirement and exposes a concrete fail-closed object for neutral-lepton work. | `missing_accepted_neutral_lepton_retained_branch` |
 | 7 | `EQ-26` hydrogen two-line spectral carrier | The cleanest current atomic route, with an existing toy scan that already distinguishes pass and intended-failure scenarios. | `missing_accepted_theta_H_spec` candidate |
 
@@ -1565,7 +1565,7 @@ No score changes.
 | Rank | Candidate | Why it matters | Current first blocker |
 | --- | --- | --- | --- |
 | 1 | `theta_sea_rho_NS` retained-window source object | Cross-row carrier for `EQ-24`, `EQ-20`, and later `EQ-32`; current controls now reject coordination/prose paths. | `missing_accepted_theta_sea_rho_NS` |
-| 2 | finite-window charged-pion ladder | `W`, `Phi_T`, and `mu_star_T` probes now isolate the next unaccepted parent row without score movement. | `missing_accepted_Q` after the `mu_star_T` probe |
+| 2 | finite-window charged-pion ladder | `W`, `Phi_T`, and `mu_star_T` probes now isolate the next unaccepted parent row without score change. | `missing_accepted_Q` after the `mu_star_T` probe |
 | 3 | `EQ-12A` retained `S_eq` action-period source | Smallest non-photon route to $h_\vartheta$; source-attempt contract is now checker-consumable. | `missing_accepted_retained_orbit_reduction_row` |
 | 4 | `EQ-11A` GW source carrier | The carrier and `gw_source_carrier` probe now expose `theta_sea` as the next native dependency. | `missing_accepted_theta_sea` after the source-evidence probe |
 | 5 | `EQ-30` elastic finite-window row | A one-row `W` probe now verifies the score-2 ladder before any form-factor evidence claim. | `missing_accepted_Phi_T` after the `W` probe |
@@ -1608,7 +1608,7 @@ The unscored queue is not exhausted. `EQ-07B` has a focused priority packet, ide
 
 ### Next Safe Targets
 
-1. Build the `EQ-16` weak-visible ledger-only source-attempt fixture and verify the checker advances one blocker without score movement.
+1. Build the `EQ-16` weak-visible ledger-only source-attempt fixture and verify the checker advances one blocker without score change.
 2. Build the `EQ-15`/`EQ-27` ordered-frame-loop source-attempt fixture and verify it remains blocked at `missing_accepted_ordered_frame_loop`.
 3. Keep `EQ-07B` and `EQ-23A` as unscored focused packets for this run; do not integrate either into the main score table until accepted carrier evidence lands.
 
@@ -1776,7 +1776,7 @@ No score changes.
   - `Herschel`: confirmed the smallest `EQ-22B` follow-up is an accepted-looking carrier-shell probe that advances only to the shared `theta_src` blocker.
   - `Cicero`: confirmed `EQ-29` needs a row-metadata source-support guard so unrelated durable files cannot satisfy radiation-source evidence.
   - `Helmholtz`: confirmed `EQ-30` should continue past `B` through `S_retune`, `Gamma_a`, and `Phi_in`, then stop at detected-class measures.
-  - `Noether`: confirmed `EQ-31` parent rows through `C` still need a separate retained top-carrier source contract before any carrier-level score movement.
+  - `Noether`: confirmed `EQ-31` parent rows through `C` still need a separate retained top-carrier source contract before any carrier-level score review.
 - Coordinator targets completed since Restart Checkpoint 29:
   - Added [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json), marking only the top recombination/acoustic carrier and `recombination_acoustic_carrier` row accepted-looking while leaving all shared observation, thermal/provenance, readout, photon, neutrino, Noether sea, computed, provenance, and retune rows at `attempt`.
   - Updated [EQ-22B Recombination And Acoustic Transfer](eq-22b-recombination-acoustic-transfer.md) and [equation.md](equation.md) with the new exact blocker.

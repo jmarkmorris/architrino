@@ -326,29 +326,31 @@ For a retained root sheet, define the force contribution
 $$
 \mathbf{f}_u^{\nu}(u)
 =
-\frac{\sigma_i\sigma_j}
-{\eta_u(u)^2|J_{ij}^{\nu}(u)|}
+\frac{\sigma_i\sigma_jW_u^{\mathrm{rec},\nu}(u)}
+{\eta_u(u)^2}
 \widehat{\mathbf{R}}_u(u).
 $$
 
-On a fixed sign stratum for $J_{ij}^{\nu}$,
+On a fixed sign stratum for $W_u^{\mathrm{rec},\nu}$,
 
 $$
 D_v\mathbf{f}_u^{\nu}
 =
-\frac{\sigma_i\sigma_j}
-{\eta_u^2|J_{ij}^{\nu}|}
+\frac{\sigma_i\sigma_jW_u^{\mathrm{rec},\nu}}
+{\eta_u^2}
 \left[
 D_v\widehat{\mathbf{R}}_u
--
-\left(
-2\frac{D_v\eta_u}{\eta_u}
 +
-\frac{D_vJ_{ij}^{\nu}}{J_{ij}^{\nu}}
+\left(
+\frac{D_vW_u^{\mathrm{rec},\nu}}{W_u^{\mathrm{rec},\nu}}
+-
+2\frac{D_v\eta_u}{\eta_u}
 \right)
 \widehat{\mathbf{R}}_u
 \right].
 $$
+
+The source-normal denominator $J_{ij}^{\nu}$ enters this derivative only through the receiver-normal weight $W_u^{\mathrm{rec},\nu}$ and the root-sheet sensitivity rows.
 
 The support-complete force derivative must include both geometric and speed-factor directions:
 

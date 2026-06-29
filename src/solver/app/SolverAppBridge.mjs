@@ -9,7 +9,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
-const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback"];
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "t3"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",
@@ -96,9 +96,9 @@ const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
   ["assembly_hierarchy.v1", 56],
   ["assembly_events.v1", 88],
   ["path_chunk.v1", 104],
-  ["root_ledger.v1", 112],
-  ["root_ledger_detail.v1", 192],
-  ["delayed_hit_events.v1", 128],
+  ["root_ledger.v1", 176],
+  ["root_ledger_detail.v1", 248],
+  ["delayed_hit_events.v1", 192],
   ["field_shell_events.v1", 160],
   ["phase_at_hit.v1", 104],
   ["spacetime_index.v1", 128],
@@ -441,6 +441,7 @@ const STATUS_CODE_BY_ID = [
   "validation_replay_mismatch",
   "app_contract_error",
   "internal_solver_error",
+  "receiver_normal_degenerate",
 ];
 const STATUS_SEVERITY_BY_ID = ["ok", "info", "warning", "halt", "error"];
 const STATUS_TAXONOMY_METADATA = {
@@ -619,6 +620,13 @@ const STATUS_TAXONOMY_METADATA = {
     stageHints: ["solver_core"],
     description: "Solver encountered an internal error outside caller-correctable contract input.",
   },
+  receiver_normal_degenerate: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_solving", "delayed_hits", "receiver_normal"],
+    description: "Receiver-normal crossing geometry is degenerate for this causal root.",
+  },
 };
 const STATUS_TAXONOMY = createStatusTaxonomy();
 const DEFAULT_CAPABILITY_ENVELOPE = {
@@ -637,9 +645,9 @@ const ADMISSION_STRESS_SUMMARY_F64_BYTES = 96;
 const STATUS_ROW_BYTES = 24;
 const ADMISSION_REPORT_F64_BYTES = 112;
 const CAUSAL_ROOT_REQUEST_F64_BYTES = 176;
-const CAUSAL_ROOT_ROW_F64_BYTES = 112;
-const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 192;
-const DELAYED_HIT_ROW_F64_BYTES = 128;
+const CAUSAL_ROOT_ROW_F64_BYTES = 176;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
 const CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES = 24;
 const PRECISION_DIAGNOSTIC_ROW_F64_BYTES = 96;
 const PRECISION_SOLVE_OPTIONS_BYTES = 16;
@@ -654,6 +662,10 @@ const PAIR_INTERACTION_REQUEST_F64_BYTES = 88;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 352;
+const T3_STEP_REQUEST_F64_BYTES = 96;
+const T3_PARTICLE_STATE_F64_BYTES = 80;
+const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
+const T3_STEP_SUMMARY_F64_BYTES = 88;
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
@@ -799,6 +811,16 @@ const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUA
   "retained_knot_boundary_residual_not_preserved";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED =
   "physical_boundary_solver_not_implemented";
+const PAIR_INTERACTION_EOM_EVIDENCE_STATUS_NONCANONICAL_PREVIEW =
+  "noncanonical_preview_not_master_eom_evidence";
+const PAIR_INTERACTION_EOM_EVIDENCE_REASON_RECEIVER_NORMAL_BRANCH_ROWS_MISSING =
+  "receiver_normal_branch_rows_missing";
+const PAIR_INTERACTION_EOM_EVIDENCE_METADATA = Object.freeze({
+  canonicalEomEvidence: false,
+  eomEvidenceStatus: PAIR_INTERACTION_EOM_EVIDENCE_STATUS_NONCANONICAL_PREVIEW,
+  eomEvidenceReason:
+    PAIR_INTERACTION_EOM_EVIDENCE_REASON_RECEIVER_NORMAL_BRANCH_ROWS_MISSING,
+});
 const PAIR_INTERACTION_DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
@@ -869,7 +891,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 192;
+const ABI_INFO_BYTES = 208;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -1271,6 +1293,12 @@ export function createSolverAppBridgeClient(options = {}) {
       );
     },
 
+    async stepT3UniverseF64(request) {
+      assertNotDisposed(state);
+      const module = await requireWasmModule(state);
+      return stepT3UniverseF64WithModule(module, request, state.abiInfo || defaultAbiInfo());
+    },
+
     async cancelRun(request = {}) {
       assertNotDisposed(state);
       return cancelRun(state, request);
@@ -1360,6 +1388,10 @@ function createCapabilities(hasWasmModuleFactory) {
             "pairInteraction",
             "validationReplay",
           ],
+        },
+        {
+          appId: "t3",
+          runKinds: ["motionSimulation", "pathHistory", "validationReplay"],
         },
       ],
       denseDataTransport: ["array-buffer", "stream-handle"],
@@ -3976,6 +4008,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         frameCount: pair.frames.length,
         pathCount: pair.pathCount,
         interactionLaw: pair.interactionLaw,
+        canonicalEomEvidence: pair.summary?.canonicalEomEvidence === true,
+        eomEvidenceStatus: pair.summary?.eomEvidenceStatus,
+        eomEvidenceReason: pair.summary?.eomEvidenceReason,
         pathConstraintFrameRefinementSampleCount:
           pair.summary?.pathConstraintFrameRefinementSampleCount,
         pathConstraintPositionResidualSampleCount:
@@ -4088,6 +4123,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         chunkCount: pathHistory?.summary.chunkCount ?? 0,
         stepCount: pair.stepCount,
         interactionLaw: pair.interactionLaw,
+        canonicalEomEvidence: pair.summary?.canonicalEomEvidence === true,
+        eomEvidenceStatus: pair.summary?.eomEvidenceStatus,
+        eomEvidenceReason: pair.summary?.eomEvidenceReason,
         ...(Number.isFinite(Number(pair.summary?.signalSpeed))
           ? { signalSpeed: Number(pair.summary.signalSpeed) }
           : {}),
@@ -4556,6 +4594,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       requestedPrecisionPath: options.requestedPrecisionPath,
       precisionPath: options.precisionPath,
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -4637,6 +4676,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       pathConstraintFrameRefinementSampleCount:
         sampleSchedule.pathConstraintFrameRefinementSampleCount,
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -4696,6 +4736,7 @@ function solvePairInteractionPathF64(request, options = {}) {
     pathCount: normalized.initialStates.length,
     stepCount: Math.max(0, times.length - 1),
     interactionLaw: normalized.interactionLaw,
+    ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
     ...(Number.isFinite(normalized.signalSpeed)
       ? { signalSpeed: normalized.signalSpeed }
       : {}),
@@ -9340,20 +9381,88 @@ function bridgeMagnitude(vector) {
   return Math.sqrt(bridgeDot(vector, vector));
 }
 
+function bridgeOptionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function resolveBridgeReceiverNormalRows(branch = {}) {
+  const branchWeight = bridgeOptionalFiniteNumber(branch.branchWeight);
+  const sourceNormalDenominator = bridgeOptionalFiniteNumber(branch.sourceNormalDenominator);
+  const receiverNormalNumerator = bridgeOptionalFiniteNumber(branch.receiverNormalNumerator);
+  const receiverNormalFactor = bridgeOptionalFiniteNumber(branch.receiverNormalFactor);
+  const unsignedReceiverNormalFactor = bridgeOptionalFiniteNumber(branch.unsignedReceiverNormalFactor);
+  if (
+    branchWeight === null ||
+    sourceNormalDenominator === null ||
+    receiverNormalNumerator === null ||
+    receiverNormalFactor === null ||
+    unsignedReceiverNormalFactor === null
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator: sourceNormalDenominator ?? 0,
+      receiverNormalNumerator: receiverNormalNumerator ?? 0,
+      receiverNormalFactor: receiverNormalFactor ?? 0,
+      unsignedReceiverNormalFactor: unsignedReceiverNormalFactor ?? 0,
+      evidenceStatus: "receiver_normal_branch_rows_missing",
+    };
+  }
+  const expectedReceiverNormalFactor =
+    receiverNormalNumerator / sourceNormalDenominator;
+  if (
+    branchWeight < 0 ||
+    unsignedReceiverNormalFactor < 0 ||
+    Math.abs(sourceNormalDenominator) <= 1e-12 ||
+    !Number.isFinite(expectedReceiverNormalFactor) ||
+    !closeScaled(receiverNormalFactor, expectedReceiverNormalFactor, 1e-9) ||
+    !closeScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor), 1e-9) ||
+    !closeScaled(branchWeight, unsignedReceiverNormalFactor, 1e-9)
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator,
+      receiverNormalNumerator,
+      receiverNormalFactor,
+      unsignedReceiverNormalFactor,
+      evidenceStatus: "receiver_normal_branch_rows_invalid",
+    };
+  }
+  return {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus: "ok",
+  };
+}
+
 function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, request = {}) {
   const signalSpeed = Math.max(1e-12, bridgeFiniteNumber(request.signalSpeed, 1));
-  const jacobianFloor = Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4));
   const direction = bridgeVector(branch.direction);
   const sourceVelocity = bridgeVector(branch.sourceVelocity);
   const chargeSign = bridgeFiniteNumber(branch.chargeSign, 0);
   const distance = Math.max(1e-12, bridgeFiniteNumber(branch.distance, 0));
-  const sourceRadialSpeed = bridgeDot(sourceVelocity, direction);
-  const jacobian = 1 - sourceRadialSpeed / signalSpeed;
+  const sourceNormalSpeed = bridgeFiniteNumber(
+    branch.sourceNormalSpeed,
+    bridgeDot(sourceVelocity, direction)
+  );
+  const receiverNormalSpeed = bridgeFiniteNumber(branch.receiverNormalSpeed, 0);
+  const receiverNormalCrossingFactor = bridgeFiniteNumber(branch.receiverNormalCrossingFactor, 0);
+  const {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus,
+  } = resolveBridgeReceiverNormalRows(branch);
+  const jacobian = sourceNormalDenominator;
   const jacobianAbs = Math.abs(jacobian);
-  const jacobianWeight = 1 / Math.max(jacobianFloor, jacobianAbs);
   const electric = bridgeScaleVector(
     direction,
-    chargeSign * jacobianWeight / (distance * distance)
+    chargeSign * branchWeight / (distance * distance)
   );
   const comparisonB = bridgeScaleVector(
     bridgeCrossVector({ x: 1, y: 0, z: 0 }, electric),
@@ -9366,8 +9475,18 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
     delaySolveGap: Math.abs(bridgeFiniteNumber(branch.residual, 0)),
     jacobian,
     jacobianAbs,
-    jacobianWeight,
-    sourceRadialSpeed,
+    branchWeight,
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    receiverNormalStatusCode: Number.isFinite(Number(branch.receiverNormalStatusCode))
+      ? Number(branch.receiverNormalStatusCode)
+      : evidenceStatus === "ok" ? 0 : -1,
+    receiverNormalEvidenceStatus: evidenceStatus,
     sourceSpeedRatio: bridgeMagnitude(sourceVelocity) / signalSpeed,
     receiverAcceleration: electric,
     electric,
@@ -9407,13 +9526,23 @@ function computeMovingCircularObserverFieldF64(request = {}) {
   );
   const unstableContributionCount = contributions.filter(
     (contribution) =>
+      contribution.receiverNormalEvidenceStatus !== "ok" ||
       contribution.delaySolveGap > bridgeFiniteNumber(request.unstableGapThreshold, 0.05) ||
       contribution.jacobianAbs <= Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4))
   ).length;
+  const missingReceiverNormalCount = contributions.filter(
+    (contribution) => contribution.receiverNormalEvidenceStatus !== "ok"
+  ).length;
+  const receiverNormalFailureCode = contributions.find(
+    (contribution) => contribution.receiverNormalEvidenceStatus !== "ok"
+  )?.receiverNormalEvidenceStatus;
   const status = createStatus(
-    "ok",
-    "ok",
-    "moving-circular observer field computed"
+    receiverNormalFailureCode ?? "ok",
+    missingReceiverNormalCount > 0 ? "warn" : "ok",
+    missingReceiverNormalCount > 0
+      ? "moving-circular observer field has branches without complete receiver-normal branch rows"
+      : "moving-circular observer field computed",
+    missingReceiverNormalCount > 0 ? { details: { missingReceiverNormalCount } } : {}
   );
   return {
     schema: "solver-moving-circular-observer-field-f64.v1",
@@ -10143,6 +10272,23 @@ function checkRootInvariant(root, index, options, statuses) {
       })
     );
   }
+  if (!closeScaled(root.sourceNormalDenominator, root.jacobian, options.branchWeightTolerance)) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root source normal denominator does not match Jacobian",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            sourceNormalDenominator: root.sourceNormalDenominator,
+            jacobian: root.jacobian,
+          },
+        }
+      )
+    );
+  }
 
   if (Math.abs(root.jacobian) <= options.smallJacobianTolerance) {
     if (root.statusCode !== STATUS_CODE_BY_ID.indexOf("small_jacobian")) {
@@ -10156,17 +10302,59 @@ function checkRootInvariant(root, index, options, statuses) {
     return;
   }
 
-  const expectedBranchWeight = 1 / Math.abs(root.jacobian);
+  const expectedReceiverNormalFactor =
+    root.receiverNormalNumerator / root.sourceNormalDenominator;
+  if (
+    !Number.isFinite(root.receiverNormalFactor) ||
+    !closeScaled(root.receiverNormalFactor, expectedReceiverNormalFactor, options.branchWeightTolerance)
+  ) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root receiver normal factor does not match numerator over denominator",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            expectedReceiverNormalFactor,
+            actualReceiverNormalFactor: root.receiverNormalFactor,
+          },
+        }
+      )
+    );
+  }
+  const expectedBranchWeight = Math.abs(expectedReceiverNormalFactor);
   if (!Number.isFinite(root.branchWeight) || !closeScaled(root.branchWeight, expectedBranchWeight, options.branchWeightTolerance)) {
     statuses.push(
       createStatus(
         "validation_replay_mismatch",
         "error",
-        "root branch weight does not match inverse Jacobian magnitude",
+        "root branch weight does not match unsigned receiver normal factor",
         {
           stage,
           recoverable: false,
           details: { expectedBranchWeight, actualBranchWeight: root.branchWeight },
+        }
+      )
+    );
+  }
+  if (
+    !Number.isFinite(root.unsignedReceiverNormalFactor) ||
+    !closeScaled(root.unsignedReceiverNormalFactor, Math.abs(root.receiverNormalFactor), options.branchWeightTolerance)
+  ) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root unsigned receiver normal factor does not match magnitude",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            expectedUnsignedReceiverNormalFactor: Math.abs(root.receiverNormalFactor),
+            actualUnsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
+          },
         }
       )
     );
@@ -10201,6 +10389,23 @@ function checkHitInvariant(hit, index, options, statuses) {
         stage,
         recoverable: false,
       })
+    );
+  }
+  if (!closeScaled(hit.sourceNormalDenominator, hit.jacobian, options.branchWeightTolerance)) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "delayed-hit source normal denominator does not match Jacobian",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            sourceNormalDenominator: hit.sourceNormalDenominator,
+            jacobian: hit.jacobian,
+          },
+        }
+      )
     );
   }
 
@@ -10241,13 +10446,55 @@ function checkHitInvariant(hit, index, options, statuses) {
   }
 
   if (Math.abs(hit.jacobian) > options.smallJacobianTolerance) {
-    const expectedStrength = 1 / Math.abs(hit.jacobian);
+    const expectedReceiverNormalFactor =
+      hit.receiverNormalNumerator / hit.sourceNormalDenominator;
+    if (
+      !Number.isFinite(hit.receiverNormalFactor) ||
+      !closeScaled(hit.receiverNormalFactor, expectedReceiverNormalFactor, options.branchWeightTolerance)
+    ) {
+      statuses.push(
+        createStatus(
+          "validation_replay_mismatch",
+          "error",
+          "delayed-hit receiver normal factor does not match numerator over denominator",
+          {
+            stage,
+            recoverable: false,
+            details: {
+              expectedReceiverNormalFactor,
+              actualReceiverNormalFactor: hit.receiverNormalFactor,
+            },
+          }
+        )
+      );
+    }
+    if (
+      !Number.isFinite(hit.unsignedReceiverNormalFactor) ||
+      !closeScaled(hit.unsignedReceiverNormalFactor, Math.abs(hit.receiverNormalFactor), options.branchWeightTolerance)
+    ) {
+      statuses.push(
+        createStatus(
+          "validation_replay_mismatch",
+          "error",
+          "delayed-hit unsigned receiver normal factor does not match magnitude",
+          {
+            stage,
+            recoverable: false,
+            details: {
+              expectedUnsignedReceiverNormalFactor: Math.abs(hit.receiverNormalFactor),
+              actualUnsignedReceiverNormalFactor: hit.unsignedReceiverNormalFactor,
+            },
+          }
+        )
+      );
+    }
+    const expectedStrength = Math.abs(expectedReceiverNormalFactor);
     if (!closeScaled(hit.strength, expectedStrength, options.branchWeightTolerance)) {
       statuses.push(
         createStatus(
           "validation_replay_mismatch",
           "error",
-          "delayed-hit strength does not match inverse Jacobian magnitude",
+          "delayed-hit strength does not match unsigned receiver normal factor",
           {
             stage,
             recoverable: false,
@@ -11308,6 +11555,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         requestedPrecisionPath: options.requestedPrecisionPath,
         precisionPath: options.precisionPath,
         interactionLaw: normalized.interactionLaw,
+        ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
         ...(Number.isFinite(normalized.signalSpeed)
           ? { signalSpeed: normalized.signalSpeed }
           : {}),
@@ -11398,6 +11646,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         pathConstraintFrameRefinementSampleCount:
           nativeSummary.frameRefinementSampleCount,
         interactionLaw: normalized.interactionLaw,
+        ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
         ...(Number.isFinite(normalized.signalSpeed)
           ? { signalSpeed: normalized.signalSpeed }
           : {}),
@@ -11465,6 +11714,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       pathCount: stateCount,
       stepCount: Math.max(0, times.length - 1),
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -11486,6 +11736,319 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
     module._free(outPathRowCountPtr);
     module._free(summaryPtr);
   }
+}
+
+function stepT3UniverseF64WithModule(module, request, abiInfo) {
+  const normalized = normalizeT3StepRequest(request);
+  if (typeof module?._malloc !== "function" || typeof module?._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+
+  const stateCount = normalized.particles.length;
+  const maxRows = normalized.maxRows ?? stateCount;
+  if (maxRows < stateCount) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "T3 bulk step row buffer is too small", {
+        recoverable: true,
+        details: { stateCount, maxRows },
+      })
+    );
+  }
+
+  const requestPtr = module._malloc(abiInfo.t3StepRequestF64Bytes);
+  const statesPtr = module._malloc(Math.max(1, stateCount) * abiInfo.t3ParticleStateF64Bytes);
+  const rowsPtr = maxRows > 0 ? module._malloc(abiInfo.t3ParticleStepRowF64Bytes * maxRows) : 0;
+  const outRowCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(abiInfo.t3StepSummaryF64Bytes);
+  try {
+    writeT3StepRequestF64(module, requestPtr, normalized);
+    normalized.particles.forEach((particle, index) => {
+      writeT3ParticleStateF64(
+        module,
+        statesPtr + index * abiInfo.t3ParticleStateF64Bytes,
+        particle
+      );
+    });
+    module.setValue(outRowCountPtr, 0, "i32");
+    writeZeroBytes(module, summaryPtr, abiInfo.t3StepSummaryF64Bytes);
+    const stepT3 = module.cwrap("architrino_solver_step_t3_universe_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = stepT3(
+      requestPtr,
+      statesPtr,
+      stateCount,
+      rowsPtr,
+      maxRows,
+      outRowCountPtr,
+      summaryPtr
+    );
+    const rowCount = module.getValue(outRowCountPtr, "i32");
+    const summary = readT3StepSummaryF64(module, summaryPtr);
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "halt", `T3 bulk step C ABI returned ${status}`, {
+          recoverable: status === -3,
+          details: { status, rowCount, maxRows, stateCount },
+        })
+      );
+    }
+
+    const rows = [];
+    for (let index = 0; index < rowCount; index += 1) {
+      rows.push(readT3ParticleStepRowF64(
+        module,
+        rowsPtr + index * abiInfo.t3ParticleStepRowF64Bytes
+      ));
+    }
+    return {
+      schema: "solver-t3-step-response.v1",
+      rows,
+      summary,
+      particleCount: stateCount,
+      interactionLaw: normalized.interaction.law,
+      executionPath: "native_c_abi",
+      status: createStatus("ok", "ok", "native T3 bulk step completed", {
+        details: {
+          executionPath: "native_c_abi",
+          interactionLaw: normalized.interaction.law,
+          neighborPairCount: summary.neighborPairCount,
+          occupiedCellCount: summary.occupiedCellCount,
+        },
+      }),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(statesPtr);
+    if (rowsPtr !== 0) {
+      module._free(rowsPtr);
+    }
+    module._free(outRowCountPtr);
+    module._free(summaryPtr);
+  }
+}
+
+function normalizeT3StepRequest(request) {
+  if (!request || typeof request !== "object" || Array.isArray(request)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 bulk step request object is required", {
+        recoverable: false,
+      })
+    );
+  }
+  const timestep = t3PositiveFinite(
+    request.timestep ?? request.dt ?? request.step,
+    "T3 timestep"
+  );
+  const startTime = t3Finite(request.startTime ?? request.time ?? 0, "T3 startTime");
+  const endTime = t3Finite(request.endTime ?? startTime + timestep, "T3 endTime");
+  const topology = request.topology ?? {};
+  const spatialIndex = request.spatialIndex ?? {};
+  const interaction = normalizeT3Interaction(request.interaction ?? request.interactions ?? {});
+  const interactionRadius = t3PositiveFinite(
+    spatialIndex.interactionRadius ??
+      request.interactionRadius ??
+      interaction.interactionRadius ??
+      interaction.radius,
+    "T3 interactionRadius"
+  );
+  const spatialCellSize = t3PositiveFinite(
+    spatialIndex.cellSize ?? spatialIndex.spatialCellSize ?? request.spatialIndexCellSize ?? interactionRadius,
+    "T3 spatialCellSize"
+  );
+  const particles = normalizeT3ParticleStates(request.particles ?? request.stateRows ?? []);
+  return {
+    schema: "solver-t3-step-request.v1",
+    startTime,
+    endTime,
+    timestep,
+    topology: {
+      sideLength: t3PositiveFinite(topology.sideLength ?? request.sideLength, "T3 sideLength"),
+    },
+    spatialIndex: {
+      interactionRadius,
+      cellSize: spatialCellSize,
+    },
+    interaction,
+    particles,
+    integrationTolerance: t3NonnegativeFinite(
+      request.integrationTolerance ?? request.tolerance ?? 0,
+      "T3 integrationTolerance"
+    ),
+    integrationMethod: t3PositiveInteger(request.integrationMethod ?? 1, "T3 integrationMethod"),
+    maxRows: request.maxRows == null ? particles.length : t3NonnegativeInteger(request.maxRows, "T3 maxRows"),
+  };
+}
+
+function normalizeT3Interaction(input) {
+  if (Array.isArray(input)) {
+    if (input.length === 0) {
+      return normalizeT3Interaction({ law: "none" });
+    }
+    if (input.length === 1) {
+      return normalizeT3Interaction(input[0]);
+    }
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 solver engine supports one native interaction preset per step", {
+        recoverable: false,
+      })
+    );
+  }
+  const value = input && typeof input === "object" ? input : {};
+  const law = value.law ?? value.interactionLaw ?? value.solverLaw ?? value.id ?? "none";
+  if (law === "none" || law === "noop") {
+    return {
+      law: "none",
+      lawCode: 0,
+      radius: t3PositiveFinite(value.radius ?? value.interactionRadius ?? 1, "T3 interaction radius"),
+      interactionRadius: t3PositiveFinite(value.interactionRadius ?? value.radius ?? 1, "T3 interactionRadius"),
+      strength: 0,
+      softening: 0,
+    };
+  }
+  if (law !== "soft_sphere_repel_v1" && law !== "soft-sphere-repulsion") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `unsupported T3 native interaction law: ${law}`, {
+        recoverable: false,
+      })
+    );
+  }
+  const radius = t3PositiveFinite(value.radius ?? value.softSphereRadius, "T3 softSphere radius");
+  return {
+    law: "soft_sphere_repel_v1",
+    lawCode: 1,
+    radius,
+    interactionRadius: t3PositiveFinite(value.interactionRadius ?? radius, "T3 interactionRadius"),
+    strength: t3Finite(value.strength ?? value.softSphereStrength ?? 1, "T3 softSphere strength"),
+    softening: t3PositiveFinite(value.softening ?? radius * 1e-6, "T3 softSphere softening"),
+  };
+}
+
+function normalizeT3ParticleStates(particles) {
+  if (!Array.isArray(particles)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "T3 particles must be an array", {
+        recoverable: false,
+      })
+    );
+  }
+  return particles.map((particle, index) => {
+    if (!particle || typeof particle !== "object" || Array.isArray(particle)) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `T3 particle ${index} must be an object`, {
+          recoverable: false,
+        })
+      );
+    }
+    const pathKey = t3PositiveInteger(particle.pathKey ?? particle.id ?? index + 1, `T3 particle ${index} pathKey`);
+    return {
+      pathKey,
+      position: t3Vector(particle.position ?? particle.initialPosition, `T3 particle ${index} position`),
+      velocity: t3Vector(particle.velocity ?? particle.initialVelocity ?? [0, 0, 0], `T3 particle ${index} velocity`),
+      mass: t3PositiveFinite(particle.mass ?? 1, `T3 particle ${index} mass`),
+      charge: t3Finite(particle.charge ?? particle.electrineFraction ?? 0, `T3 particle ${index} charge`),
+      stateFlags: t3NonnegativeInteger(particle.stateFlags ?? pathKey, `T3 particle ${index} stateFlags`),
+    };
+  });
+}
+
+function t3Vector(value, label) {
+  if (Array.isArray(value) || ArrayBuffer.isView(value)) {
+    if (value.length < 3) {
+      throw new SolverBridgeError(
+        createStatus("app_contract_error", "error", `${label} must contain three values`, {
+          recoverable: false,
+        })
+      );
+    }
+    return {
+      x: t3Finite(value[0], `${label}.x`),
+      y: t3Finite(value[1], `${label}.y`),
+      z: t3Finite(value[2], `${label}.z`),
+    };
+  }
+  if (value && typeof value === "object") {
+    return {
+      x: t3Finite(value.x, `${label}.x`),
+      y: t3Finite(value.y, `${label}.y`),
+      z: t3Finite(value.z, `${label}.z`),
+    };
+  }
+  throw new SolverBridgeError(
+    createStatus("app_contract_error", "error", `${label} must be a vector`, {
+      recoverable: false,
+    })
+  );
+}
+
+function t3Finite(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be finite`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3PositiveFinite(value, label) {
+  const numericValue = t3Finite(value, label);
+  if (numericValue <= 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be positive`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3NonnegativeFinite(value, label) {
+  const numericValue = t3Finite(value, label);
+  if (numericValue < 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be nonnegative`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3PositiveInteger(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue <= 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a positive integer`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
+}
+
+function t3NonnegativeInteger(value, label) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue < 0) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `${label} must be a nonnegative integer`, {
+        recoverable: false,
+      })
+    );
+  }
+  return numericValue;
 }
 
 function validateLinearMotionSampleRequest(request) {
@@ -13076,6 +13639,13 @@ function validateRootLedgerDetailRow(row, label) {
   requireFiniteNumber(row.bracketEnd, `${label}.bracketEnd`);
   validateVector(row.sourcePoint, `${label}.sourcePoint`);
   validateVector(row.receiverPoint, `${label}.receiverPoint`);
+  requireFiniteNumber(row.sourceNormalSpeed, `${label}.sourceNormalSpeed`);
+  requireFiniteNumber(row.receiverNormalSpeed, `${label}.receiverNormalSpeed`);
+  requireFiniteNumber(row.sourceNormalDenominator, `${label}.sourceNormalDenominator`);
+  requireFiniteNumber(row.receiverNormalNumerator, `${label}.receiverNormalNumerator`);
+  requireFiniteNumber(row.receiverNormalCrossingFactor, `${label}.receiverNormalCrossingFactor`);
+  requireFiniteNumber(row.receiverNormalFactor, `${label}.receiverNormalFactor`);
+  requireFiniteNumber(row.unsignedReceiverNormalFactor, `${label}.unsignedReceiverNormalFactor`);
   requireUint32(row.entryKind, `${label}.entryKind`);
   requireUint32(row.rootKind, `${label}.rootKind`);
   requireUint32(row.statusCode, `${label}.statusCode`);
@@ -13083,6 +13653,7 @@ function validateRootLedgerDetailRow(row, label) {
   requireUint32(row.sequenceIndex, `${label}.sequenceIndex`);
   requireUint32(row.iterationCount, `${label}.iterationCount`);
   requireUint32(row.stateFlags, `${label}.stateFlags`);
+  requireUint32(row.receiverNormalStatusCode, `${label}.receiverNormalStatusCode`);
   requireUint32(row.firstFailureCode, `${label}.firstFailureCode`);
 }
 
@@ -13619,6 +14190,14 @@ function validatePlaybackRoot(root, index) {
   requireFiniteNumber(root.residual, `roots[${index}].residual`);
   requireFiniteNumber(root.jacobian, `roots[${index}].jacobian`);
   requireFiniteNumber(root.branchWeight, `roots[${index}].branchWeight`);
+  requireFiniteNumber(root.sourceNormalSpeed, `roots[${index}].sourceNormalSpeed`);
+  requireFiniteNumber(root.receiverNormalSpeed, `roots[${index}].receiverNormalSpeed`);
+  requireFiniteNumber(root.sourceNormalDenominator, `roots[${index}].sourceNormalDenominator`);
+  requireFiniteNumber(root.receiverNormalNumerator, `roots[${index}].receiverNormalNumerator`);
+  requireFiniteNumber(root.receiverNormalCrossingFactor, `roots[${index}].receiverNormalCrossingFactor`);
+  requireFiniteNumber(root.receiverNormalFactor, `roots[${index}].receiverNormalFactor`);
+  requireFiniteNumber(root.unsignedReceiverNormalFactor, `roots[${index}].unsignedReceiverNormalFactor`);
+  requireUint32(root.receiverNormalStatusCode, `roots[${index}].receiverNormalStatusCode`);
   validateVector(root.sourcePoint, `roots[${index}].sourcePoint`);
   validateVector(root.receiverPoint, `roots[${index}].receiverPoint`);
 }
@@ -13639,6 +14218,14 @@ function validatePlaybackHit(hit, index) {
   requireNonnegativeFiniteNumber(hit.distance, `hits[${index}].distance`);
   requireFiniteNumber(hit.jacobian, `hits[${index}].jacobian`);
   requireFiniteNumber(hit.strength, `hits[${index}].strength`);
+  requireFiniteNumber(hit.sourceNormalSpeed, `hits[${index}].sourceNormalSpeed`);
+  requireFiniteNumber(hit.receiverNormalSpeed, `hits[${index}].receiverNormalSpeed`);
+  requireFiniteNumber(hit.sourceNormalDenominator, `hits[${index}].sourceNormalDenominator`);
+  requireFiniteNumber(hit.receiverNormalNumerator, `hits[${index}].receiverNormalNumerator`);
+  requireFiniteNumber(hit.receiverNormalCrossingFactor, `hits[${index}].receiverNormalCrossingFactor`);
+  requireFiniteNumber(hit.receiverNormalFactor, `hits[${index}].receiverNormalFactor`);
+  requireFiniteNumber(hit.unsignedReceiverNormalFactor, `hits[${index}].unsignedReceiverNormalFactor`);
+  requireUint32(hit.receiverNormalStatusCode, `hits[${index}].receiverNormalStatusCode`);
   validateVector(hit.emissionPoint, `hits[${index}].emissionPoint`);
   validateVector(hit.receiverPoint, `hits[${index}].receiverPoint`);
   validateVector(hit.unitDirection, `hits[${index}].unitDirection`);
@@ -13773,6 +14360,7 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_sample_linear_path_history_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_motion_f64 === "function" &&
     typeof module?._architrino_solver_integrate_constant_acceleration_path_history_f64 === "function" &&
+    typeof module?._architrino_solver_step_t3_universe_f64 === "function" &&
     typeof module?._architrino_solver_compute_phase_at_hit_f64 === "function" &&
     typeof module?._architrino_solver_compute_path_bounds_f64 === "function" &&
     typeof module?._architrino_solver_intersect_sphere_points_f64 === "function" &&
@@ -13850,6 +14438,10 @@ function readAbiInfo(module) {
       statusRowBytes: module.getValue(ptr + 180, "i32"),
       admissionReportF64Bytes: module.getValue(ptr + 184, "i32"),
       pairInteractionRequestF64Bytes: module.getValue(ptr + 188, "i32"),
+      t3StepRequestF64Bytes: module.getValue(ptr + 192, "i32"),
+      t3ParticleStateF64Bytes: module.getValue(ptr + 196, "i32"),
+      t3ParticleStepRowF64Bytes: module.getValue(ptr + 200, "i32"),
+      t3StepSummaryF64Bytes: module.getValue(ptr + 204, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -13859,7 +14451,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 13,
+    abiMinor: 16,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -13906,13 +14498,17 @@ function defaultAbiInfo() {
     statusRowBytes: STATUS_ROW_BYTES,
     admissionReportF64Bytes: ADMISSION_REPORT_F64_BYTES,
     pairInteractionRequestF64Bytes: PAIR_INTERACTION_REQUEST_F64_BYTES,
+    t3StepRequestF64Bytes: T3_STEP_REQUEST_F64_BYTES,
+    t3ParticleStateF64Bytes: T3_PARTICLE_STATE_F64_BYTES,
+    t3ParticleStepRowF64Bytes: T3_PARTICLE_STEP_ROW_F64_BYTES,
+    t3StepSummaryF64Bytes: T3_STEP_SUMMARY_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 13 ||
+    abiInfo.abiMinor !== 16 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -13958,7 +14554,11 @@ function assertAbiInfo(abiInfo) {
     abiInfo.admissionStressSummaryF64Bytes !== ADMISSION_STRESS_SUMMARY_F64_BYTES ||
     abiInfo.statusRowBytes !== STATUS_ROW_BYTES ||
     abiInfo.admissionReportF64Bytes !== ADMISSION_REPORT_F64_BYTES ||
-    abiInfo.pairInteractionRequestF64Bytes !== PAIR_INTERACTION_REQUEST_F64_BYTES
+    abiInfo.pairInteractionRequestF64Bytes !== PAIR_INTERACTION_REQUEST_F64_BYTES ||
+    abiInfo.t3StepRequestF64Bytes !== T3_STEP_REQUEST_F64_BYTES ||
+    abiInfo.t3ParticleStateF64Bytes !== T3_PARTICLE_STATE_F64_BYTES ||
+    abiInfo.t3ParticleStepRowF64Bytes !== T3_PARTICLE_STEP_ROW_F64_BYTES ||
+    abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -15340,6 +15940,15 @@ function writeCausalRootRowF64(module, ptr, root) {
   module.setValue(ptr + 56, root.branchWeight ?? 0, "double");
   writeVector(module, ptr + 64, root.sourcePoint ?? { x: 0, y: 0, z: 0 });
   writeVector(module, ptr + 88, root.receiverPoint ?? { x: 0, y: 0, z: 0 });
+  module.setValue(ptr + 112, root.sourceNormalSpeed ?? 0, "double");
+  module.setValue(ptr + 120, root.receiverNormalSpeed ?? 0, "double");
+  module.setValue(ptr + 128, root.sourceNormalDenominator ?? 0, "double");
+  module.setValue(ptr + 136, root.receiverNormalNumerator ?? 0, "double");
+  module.setValue(ptr + 144, root.receiverNormalCrossingFactor ?? 0, "double");
+  module.setValue(ptr + 152, root.receiverNormalFactor ?? 0, "double");
+  module.setValue(ptr + 160, root.unsignedReceiverNormalFactor ?? Math.abs(root.receiverNormalFactor ?? 0), "double");
+  module.setValue(ptr + 168, root.receiverNormalStatusCode ?? root.statusCode ?? 0, "i32");
+  module.setValue(ptr + 172, 0, "i32");
 }
 
 function writePhaseClockF64(module, ptr, clock) {
@@ -15543,6 +16152,33 @@ function writePairInteractionStateF64(module, ptr, state) {
   module.setValue(ptr + 76, 0, "i32");
 }
 
+function writeT3StepRequestF64(module, ptr, request) {
+  module.setValue(ptr, request.startTime, "double");
+  module.setValue(ptr + 8, request.endTime, "double");
+  module.setValue(ptr + 16, request.timestep, "double");
+  module.setValue(ptr + 24, request.topology.sideLength, "double");
+  module.setValue(ptr + 32, request.spatialIndex.interactionRadius, "double");
+  module.setValue(ptr + 40, request.spatialIndex.cellSize, "double");
+  module.setValue(ptr + 48, request.interaction.radius, "double");
+  module.setValue(ptr + 56, request.interaction.strength, "double");
+  module.setValue(ptr + 64, request.interaction.softening, "double");
+  module.setValue(ptr + 72, request.integrationTolerance ?? 0, "double");
+  module.setValue(ptr + 80, request.interaction.lawCode, "i32");
+  module.setValue(ptr + 84, request.integrationMethod ?? 1, "i32");
+  module.setValue(ptr + 88, 0, "i32");
+  module.setValue(ptr + 92, 0, "i32");
+}
+
+function writeT3ParticleStateF64(module, ptr, state) {
+  writeUint64(module, ptr, state.pathKey);
+  writeVector(module, ptr + 8, state.position);
+  writeVector(module, ptr + 32, state.velocity);
+  module.setValue(ptr + 56, state.mass, "double");
+  module.setValue(ptr + 64, state.charge ?? 0, "double");
+  module.setValue(ptr + 72, state.stateFlags ?? state.pathKey, "i32");
+  module.setValue(ptr + 76, 0, "i32");
+}
+
 function writePairInteractionPathConstraintF64(module, ptr, constraint) {
   writeUint64(module, ptr, constraint.pathKey);
   module.setValue(ptr + 8, constraint.depth ?? 0, "i32");
@@ -15732,6 +16368,14 @@ function readCausalRootRowF64(module, ptr) {
     branchWeight: module.getValue(ptr + 56, "double"),
     sourcePoint: readVector(module, ptr + 64),
     receiverPoint: readVector(module, ptr + 88),
+    sourceNormalSpeed: module.getValue(ptr + 112, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 120, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 128, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 136, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 144, "double"),
+    receiverNormalFactor: module.getValue(ptr + 152, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 160, "double"),
+    receiverNormalStatusCode: module.getValue(ptr + 168, "i32"),
   };
 }
 
@@ -15753,13 +16397,21 @@ function readRootLedgerDetailRowF64(module, ptr, rootTolerance = 0) {
     bracketEnd: module.getValue(ptr + 104, "double"),
     sourcePoint: readVector(module, ptr + 112),
     receiverPoint: readVector(module, ptr + 136),
-    entryKind: module.getValue(ptr + 160, "i32") >>> 0,
-    rootKind: module.getValue(ptr + 164, "i32") >>> 0,
-    statusCode: module.getValue(ptr + 168, "i32") >>> 0,
-    jacobianSignStratum: module.getValue(ptr + 172, "i32") >>> 0,
-    sequenceIndex: module.getValue(ptr + 176, "i32") >>> 0,
-    iterationCount: module.getValue(ptr + 180, "i32") >>> 0,
-    stateFlags: module.getValue(ptr + 184, "i32") >>> 0,
+    sourceNormalSpeed: module.getValue(ptr + 160, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 168, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 176, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 184, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 192, "double"),
+    receiverNormalFactor: module.getValue(ptr + 200, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 208, "double"),
+    entryKind: module.getValue(ptr + 216, "i32") >>> 0,
+    rootKind: module.getValue(ptr + 220, "i32") >>> 0,
+    statusCode: module.getValue(ptr + 224, "i32") >>> 0,
+    jacobianSignStratum: module.getValue(ptr + 228, "i32") >>> 0,
+    sequenceIndex: module.getValue(ptr + 232, "i32") >>> 0,
+    iterationCount: module.getValue(ptr + 236, "i32") >>> 0,
+    stateFlags: module.getValue(ptr + 240, "i32") >>> 0,
+    receiverNormalStatusCode: module.getValue(ptr + 244, "i32") >>> 0,
   };
   return addRootLedgerDetailPrecisionForensics(row, rootTolerance);
 }
@@ -15795,6 +16447,14 @@ function readDelayedHitRowF64(module, ptr) {
     emissionPoint: readVector(module, ptr + 56),
     receiverPoint: readVector(module, ptr + 80),
     unitDirection: readVector(module, ptr + 104),
+    sourceNormalSpeed: module.getValue(ptr + 128, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 136, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 144, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 152, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 160, "double"),
+    receiverNormalFactor: module.getValue(ptr + 168, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 176, "double"),
+    receiverNormalStatusCode: module.getValue(ptr + 184, "i32"),
   };
 }
 
@@ -16123,6 +16783,41 @@ function readMotionFrameRowF64(module, ptr) {
     velocity: readVector(module, ptr + 48),
     errorBound: module.getValue(ptr + 72, "double"),
     stateFlags: module.getValue(ptr + 80, "i32") >>> 0,
+  };
+}
+
+function readT3ParticleStepRowF64(module, ptr) {
+  return {
+    pathKey: readUint64(module, ptr),
+    position: readVector(module, ptr + 8),
+    velocity: readVector(module, ptr + 32),
+    acceleration: readVector(module, ptr + 56),
+    mass: module.getValue(ptr + 80, "double"),
+    imageDelta: {
+      x: module.getValue(ptr + 88, "i32"),
+      y: module.getValue(ptr + 92, "i32"),
+      z: module.getValue(ptr + 96, "i32"),
+    },
+    stateFlags: module.getValue(ptr + 100, "i32") >>> 0,
+  };
+}
+
+function readT3StepSummaryF64(module, ptr) {
+  const interactionLawCode = module.getValue(ptr + 72, "i32") >>> 0;
+  return {
+    particleCount: readUint64(module, ptr),
+    neighborPairCount: readUint64(module, ptr + 8),
+    cellCount: readUint64(module, ptr + 16),
+    occupiedCellCount: readUint64(module, ptr + 24),
+    startTime: module.getValue(ptr + 32, "double"),
+    endTime: module.getValue(ptr + 40, "double"),
+    timestep: module.getValue(ptr + 48, "double"),
+    maxAcceleration: module.getValue(ptr + 56, "double"),
+    interactionEnergy: module.getValue(ptr + 64, "double"),
+    interactionLawCode,
+    interactionLaw: interactionLawCode === 1 ? "soft_sphere_repel_v1" : "none",
+    integrationMethod: module.getValue(ptr + 76, "i32") >>> 0,
+    statusFlags: module.getValue(ptr + 80, "i32") >>> 0,
   };
 }
 

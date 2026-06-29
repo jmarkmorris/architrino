@@ -209,11 +209,12 @@ $$
 \mathbf{F}_{ij}^{\beta}(t;\alpha)
 =
 \kappa\,\mathrm{sign}(q_iq_j)
-\frac{|q_iq_j|}
-{\left(r_{ij}^{\beta}(t;\alpha)\right)^2
-\left|J_{ij}^{\beta}(t;\alpha)\right|}
+\frac{|q_iq_j|W_{ij}^{\mathrm{rec},\beta}(t;\alpha)}
+{\left(r_{ij}^{\beta}(t;\alpha)\right)^2}
 \widehat{\mathbf{r}}_{ij}^{\beta}(t;\alpha).
 $$
+
+The retained-root row must carry $J_{ij}^{\beta}$ as the source-normal root transversality denominator and $W_{ij}^{\mathrm{rec},\beta}$ as the receiver-normal branch-strength weight.
 
 The total branch force on site $i$ is
 
@@ -612,7 +613,7 @@ The theorem target has the following proof structure.
 
 1. **Arclength kinematics.** H1 gives inverse arclength phases $q_i(t)$ and proves $\|\mathbf{u}_i(t)\|=c_f$ identically.
 2. **Root continuation.** H5 and the implicit function theorem give locally unique $C^1$ active-root labels and root derivatives on the retained stratum.
-3. **Force regularity.** H4 and H5 keep inverse-square and Jacobian factors away from singular values, so each retained line-of-action force is $C^1$ in the branch chart.
+3. **Force regularity.** H4 and H5 keep inverse-square factors, source-normal denominators, and receiver-normal branch-strength rows away from singular values, so each retained line-of-action force is $C^1$ in the branch chart.
 4. **Dynamics closure.** The residual equation $\mathcal{R}_{\mathrm{dyn}}=0$ is exactly the force-versus-curvature equation for fixed-speed arclength motion.
 5. **Ledger compatibility.** Inventory, energy/action, and event rows must read the same state history and root ledger; otherwise the result is only a dynamics-screening row.
 6. **Continuation.** Surjectivity of the gauge-reduced derivative gives local persistence of zeros by the implicit function theorem; floor strictness keeps the continuation inside the same branch stratum.

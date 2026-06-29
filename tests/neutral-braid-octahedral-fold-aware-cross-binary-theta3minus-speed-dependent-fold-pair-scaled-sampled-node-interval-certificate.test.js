@@ -13,9 +13,9 @@ import {
 } from "../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.mjs";
 
 const EXPECTED_STATUS =
-  "directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified";
+  "receiver-normal-zero-bracket-restart-required";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; receiver-normal zero-bracket restart required before this stencil can be active evidence";
 
 let cachedArtifact = null;
 
@@ -80,6 +80,8 @@ test("sampled-node interval rows certify z brackets and J signs", () => {
   const firstRow = packet.sampled_node_interval_rows[0];
 
   assert.equal(summary.sample_count, 95);
+  assert.equal(summary.status, EXPECTED_STATUS);
+  assert.equal(summary.eom_evidence_status, "invalidated-by-receiver-normal-master-eom");
   assert.equal(summary.z_endpoint_count, 380);
   assert.equal(summary.all_endpoint_brackets_certified, true);
   assert.equal(summary.all_J_signs_certified, true);
@@ -93,14 +95,15 @@ test("sampled-node interval rows certify z brackets and J signs", () => {
   assert.equal(firstRow.all_J_signs_certified, true);
 });
 
-test("sampled-node interval rows enclose pair G and D quotient budgets", () => {
-  const summary = artifact().sampled_node_interval_summary;
+test("sampled-node interval rows invalidate pair G and D quotient evidence", () => {
+  const packet = artifact();
+  const summary = packet.sampled_node_interval_summary;
 
-  assert.ok(Number(summary.max_abs_R_G_pair_over_y2_interval_upper) < 0.2);
-  assert.ok(Number(summary.max_abs_R_D_pair_over_y2_interval_upper) < 0.9);
-  assert.ok(
-    Number(summary.max_abs_R_D_pair_over_y2_interval_upper) * 0.115 * 0.115 <
-      0.012
+  assert.equal(summary.eom_evidence_status, "invalidated-by-receiver-normal-master-eom");
+  assert.equal(
+    packet.artifact_claim
+      .certifies_directed_rounded_sampled_node_fold_pair_GD_quotient_enclosures,
+    false
   );
 });
 
@@ -115,7 +118,7 @@ test("sampled-node interval certificate keeps continuous closure and retention o
   assert.equal(
     packet.artifact_claim
       .certifies_directed_rounded_sampled_node_fold_pair_GD_quotient_enclosures,
-    true
+    false
   );
   assert.equal(
     packet.artifact_claim.certifies_directed_rounded_fold_pair_scaled_remainder,

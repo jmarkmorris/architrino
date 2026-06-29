@@ -1,13 +1,15 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Finite Shift27 U Root-Tail Tube Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the $U$-seed coefficient solve in
 [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-third-order-u-seed-coefficient-certificate.md). It closes the finite positive-y root-tail tube for the sharper post-seed coordinate $U_\varepsilon(y,\nu)$, without claiming the continuous $G,D$ quotient-tail bound.
 
 The proof advance is a coefficient-shifted $\operatorname{Shift}_{27}$ evaluator for the finite $U_\varepsilon$ root-tail tube. The zero endpoint is inherited from the certified seed $U_\varepsilon(0,\nu)=h_{23,\varepsilon}(\nu)$; the positive first-y subcells are certified by endpoint signs, the shifted derivative identity $\partial_U R_{\varepsilon,27}=J$, and containment of the induced $E_\varepsilon$ image inside the predecessor $E_\varepsilon$ tube.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

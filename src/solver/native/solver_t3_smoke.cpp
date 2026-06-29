@@ -1,0 +1,126 @@
+#include "architrino/solver/SolverCAbi.hpp"
+#include "architrino/solver/T3BulkStep.hpp"
+
+#include <cmath>
+#include <cstdint>
+#include <iostream>
+
+namespace {
+
+bool nearly_equal(double left, double right, double tolerance = 1e-12) {
+  return std::abs(left - right) <= tolerance;
+}
+
+}  // namespace
+
+int main() {
+  using architrino::solver::T3BulkStepRequest;
+  using architrino::solver::T3InteractionLaw;
+  using architrino::solver::T3ParticleState;
+  using architrino::solver::Vector3;
+
+  const T3BulkStepRequest request{
+      0.0,
+      1.0,
+      1.0,
+      10.0,
+      1.0,
+      1.0,
+      1.0,
+      2.0,
+      1e-6,
+      0.0,
+      static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
+      1,
+      0,
+      0,
+  };
+  const std::vector<T3ParticleState> states{
+      T3ParticleState{1, Vector3{9.8, 5.0, 5.0}, Vector3{0.5, 0.0, 0.0}, 1.0, 0.0, 1, 0},
+      T3ParticleState{2, Vector3{0.2, 5.0, 5.0}, Vector3{-0.5, 0.0, 0.0}, 1.0, 0.0, 2, 0},
+  };
+
+  const architrino::solver::T3BulkStepResult result =
+      architrino::solver::step_t3_universe(request, states);
+
+  ArchitrinoSolverT3ParticleStepRowF64 abiRows[2]{};
+  ArchitrinoSolverT3StepSummaryF64 abiSummary{};
+  int abiRowCount = 0;
+  const ArchitrinoSolverT3ParticleStateF64 abiStates[2]{
+      ArchitrinoSolverT3ParticleStateF64{
+          1,
+          ArchitrinoSolverVector3F64{9.8, 5.0, 5.0},
+          ArchitrinoSolverVector3F64{0.5, 0.0, 0.0},
+          1.0,
+          0.0,
+          1,
+          0,
+      },
+      ArchitrinoSolverT3ParticleStateF64{
+          2,
+          ArchitrinoSolverVector3F64{0.2, 5.0, 5.0},
+          ArchitrinoSolverVector3F64{-0.5, 0.0, 0.0},
+          1.0,
+          0.0,
+          2,
+          0,
+      },
+  };
+  const ArchitrinoSolverT3StepRequestF64 abiRequest{
+      0.0,
+      1.0,
+      1.0,
+      10.0,
+      1.0,
+      1.0,
+      1.0,
+      2.0,
+      1e-6,
+      0.0,
+      static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
+      1,
+      0,
+      0,
+  };
+  const int abiStatus = architrino_solver_step_t3_universe_f64(
+      &abiRequest,
+      abiStates,
+      2,
+      abiRows,
+      2,
+      &abiRowCount,
+      &abiSummary);
+  const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
+
+  const bool ok =
+      result.validation.ok &&
+      result.rows.size() == 2 &&
+      result.summary.neighborPairCount == 1 &&
+      result.summary.occupiedCellCount == 2 &&
+      result.rows[0].imageDeltaX == 0 &&
+      result.rows[1].imageDeltaX == 0 &&
+      nearly_equal(result.rows[0].position.x, abiRows[0].position.x) &&
+      nearly_equal(result.rows[1].position.x, abiRows[1].position.x) &&
+      nearly_equal(result.rows[0].acceleration.x, -result.rows[1].acceleration.x) &&
+      abiStatus == 0 &&
+      abiRowCount == 2 &&
+      abiSummary.neighbor_pair_count == 1 &&
+      abiRows[0].image_delta_x == 0 &&
+      abiRows[1].image_delta_x == 0 &&
+      abiInfo.abi_minor == 16 &&
+      abiInfo.t3_step_request_f64_bytes == 96 &&
+      abiInfo.t3_particle_state_f64_bytes == 80 &&
+      abiInfo.t3_particle_step_row_f64_bytes == 104 &&
+      abiInfo.t3_step_summary_f64_bytes == 88;
+
+  if (!ok) {
+    std::cerr << "solver T3 smoke failed\n";
+    std::cerr << "rows=" << result.rows.size()
+              << " pairs=" << result.summary.neighborPairCount
+              << " abiStatus=" << abiStatus
+              << " abiRows=" << abiRowCount << '\n';
+    return 1;
+  }
+
+  return 0;
+}

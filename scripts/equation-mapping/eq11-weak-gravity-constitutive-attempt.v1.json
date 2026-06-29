@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq11-weak-gravity-constitutive-input/v1",
-  "claimLevel": "score-neutral weak-gravity constitutive attempt; accepted retained rows are required before score movement",
+  "claimLevel": "score-neutral weak-gravity constitutive attempt; accepted retained rows are required before score review",
   "residualId": "R_11_weak_gravity_constitutive_attempt_0001",
   "commonCarrierId": "theta_11_20_weak_attempt_0001",
   "tolerances": {

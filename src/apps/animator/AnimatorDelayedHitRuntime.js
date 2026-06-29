@@ -209,6 +209,14 @@ export function createAnimatorDelayedHitsFromSolverRows(rowsOrResponse = [], opt
         `solver_path_history_${idPart(emitterId, "source")}_to_${idPart(receiverId, "receiver")}_${index}`
       ),
       jacobian: normalizeNumber(row.jacobian, 0),
+      sourceNormalSpeed: normalizeNumber(row.sourceNormalSpeed, 0),
+      receiverNormalSpeed: normalizeNumber(row.receiverNormalSpeed, 0),
+      sourceNormalDenominator: normalizeNumber(row.sourceNormalDenominator, 0),
+      receiverNormalNumerator: normalizeNumber(row.receiverNormalNumerator, 0),
+      receiverNormalCrossingFactor: normalizeNumber(row.receiverNormalCrossingFactor, 0),
+      receiverNormalFactor: normalizeNumber(row.receiverNormalFactor, 0),
+      unsignedReceiverNormalFactor: normalizeNumber(row.unsignedReceiverNormalFactor, 0),
+      receiverNormalStatusCode: normalizeNumber(row.receiverNormalStatusCode, 0),
       status: normalizeString(options.status ?? row.status, "solver-owned-row"),
       metadata: {
         ...metadata,

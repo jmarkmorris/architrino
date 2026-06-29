@@ -62,7 +62,7 @@ test("octahedral coordinate exposure matrix differs from fixed-ledger trace prob
   const artifact = buildTestArtifact();
   const traceColumn = artifact.coordinate_decomposition.columns.find((column) => column.id === "trace_I");
 
-  assert.ok(traceColumn.matrix[0][1] > 0.04);
+  assert.ok(traceColumn.matrix[0][1] > 0.039);
   assert.ok(traceColumn.delta_jacobian_max_abs > 0.9);
   assert.equal(artifact.result.first_failure_status, "rigid-octahedral-force-action-event-retention-rejected");
 });

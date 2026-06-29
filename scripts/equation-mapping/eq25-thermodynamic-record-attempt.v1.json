@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq25-thermodynamic-record-input/v1",
-  "claimLevel": "score-neutral finite-window thermodynamic record attempt; accepted retained rows are required before score movement",
+  "claimLevel": "score-neutral finite-window thermodynamic record attempt; accepted retained rows are required before score review",
   "residualId": "R_25_thermodynamic_record_attempt_0001",
   "commonCarrierId": "theta_therm_CMB_attempt_0001",
   "tolerances": {

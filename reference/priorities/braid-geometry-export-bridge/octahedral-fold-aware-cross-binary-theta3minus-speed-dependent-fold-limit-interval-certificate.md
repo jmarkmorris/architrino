@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Limit Interval Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-normal-form.md). The predecessor moved the $\theta_{3-}^{-}$ collar into the speed-dependent chart
 
@@ -188,16 +190,16 @@ $$
 \texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
 $$
 
-The sampled fold-pair scaled-stencil successor status is
+The sampled fold-pair scaled-stencil successor status is now
 
 $$
-\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
-The directed-rounded sampled-node fold-pair successor status is
+The directed-rounded sampled-node fold-pair successor status is now
 
 $$
-\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
 The directed-rounded fold-pair root-tube cell-cover successor status is

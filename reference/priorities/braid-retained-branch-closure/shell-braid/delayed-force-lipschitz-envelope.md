@@ -41,9 +41,25 @@ The dimensionless force contribution is
 $$
 \mathbf{f}_a
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \widehat{\mathbf{R}}_a.
 $$
+
+Here the same retained record must carry
+
+$$
+D_{s,a}=J_a,
+\qquad
+D_{t,a}
+=
+1-\mathbf{T}_i(\lambda)\cdot\widehat{\mathbf{R}}_a,
+\qquad
+W_a^{\mathrm{rec}}=\left|\frac{D_{t,a}}{D_{s,a}}\right|.
+$$
+
+$W_a^{\mathrm{rec}}$ is the receiver-normal branch strength. The
+source-normal $J_a$ row below is retained only as a simple-root diagnostic for
+the root chart.
 
 Assume the root chart has floors
 
@@ -51,6 +67,81 @@ $$
 \eta_a\ge\eta_0>0,
 \qquad
 |J_a|\ge J_0>0.
+$$
+
+Assume the same record also emits fixed sign labels
+
+$$
+\zeta_{s,a}=\operatorname{sign}D_{s,a},
+\qquad
+\zeta_{t,a}=\operatorname{sign}D_{t,a},
+$$
+
+with
+
+$$
+\zeta_{s,a}D_{s,a}\ge D_{s,0}=J_0>0,
+\qquad
+\zeta_{t,a}D_{t,a}\ge D_{t,0}>0.
+$$
+
+For every unit coefficient variation consumed by the certificate, the
+same-record receiver-normal first-derivative row is
+
+$$
+D_vW_a^{\mathrm{rec}}
+=
+\frac{\zeta_{t,a}\zeta_{s,a}}{D_{s,a}^2}
+\left(
+D_{s,a}D_vD_{t,a}
+-
+D_{t,a}D_vD_{s,a}
+\right).
+$$
+
+Equivalently, on this fixed $D_s,D_t$ sign stratum,
+
+$$
+D_vW_a^{\mathrm{rec}}
+=
+W_a^{\mathrm{rec}}
+\left(
+\frac{D_vD_{t,a}}{D_{t,a}}
+-
+\frac{D_vD_{s,a}}{D_{s,a}}
+\right).
+$$
+
+If the emitted row has bounds
+
+$$
+|D_vD_{s,a}|\le E_s,
+\qquad
+|D_vD_{t,a}|\le E_t,
+$$
+
+then the branch-strength derivative bound used below may be rebuilt as
+
+$$
+|D_vW_a^{\mathrm{rec}}|
+\le
+\frac{E_t}{D_{s,0}}
++
+\frac{W_0E_s}{D_{s,0}}
+=
+E_W,
+$$
+
+provided the same row also emits
+
+$$
+0\le W_a^{\mathrm{rec}}\le W_0,
+$$
+
+Without this same-record bundle, the first blocker is
+
+$$
+\texttt{receiver-normal-first-derivative-row-missing}.
 $$
 
 The receiver force is
@@ -191,17 +282,17 @@ This is conservative but sufficient. If the solver differentiates the root funct
 Let
 
 $$
-w_a=\frac{1}{\eta_a^2|J_a|}.
+w_a^{\mathrm{rec}}=\eta_a^{-2}W_a^{\mathrm{rec}}.
 $$
 
-On a fixed sign stratum for $J_a$,
+On a fixed receiver-normal branch-strength row,
 
 $$
-|D_vw_a|
+|D_vw_a^{\mathrm{rec}}|
 \le
-\frac{2E_\eta}{\eta_0^3J_0}
+\frac{2W_0E_\eta}{\eta_0^3}
 +
-\frac{E_J}{\eta_0^2J_0^2}.
+\frac{E_W}{\eta_0^2}.
 $$
 
 Therefore
@@ -209,14 +300,17 @@ Therefore
 $$
 \|D_v\mathbf{f}_a\|
 \le
-\frac{2E_\eta}{\eta_0^3J_0}
+\frac{2W_0E_\eta}{\eta_0^3}
 +
-\frac{E_J}{\eta_0^2J_0^2}
+\frac{E_W}{\eta_0^2}
 +
-\frac{E_{\widehat{R}}}{\eta_0^2J_0}
+\frac{W_0E_{\widehat{R}}}{\eta_0^2}
 =
 L_a.
 $$
+
+Without the $W_a^{\mathrm{rec}}$ and $D_vW_a^{\mathrm{rec}}$ rows, this
+Lipschitz envelope is `receiver-normal-restart-required`.
 
 For a receiver with at most $N_i$ retained roots,
 
@@ -321,12 +415,17 @@ The constants above feed four rows:
 | [support-complete-newton-closure-certificate.md](support-complete-newton-closure-certificate.md) | $K_R$ or Krawczyk $Z$ bounds for range closure |
 | [history-force-variationality-condition.md](history-force-variationality-condition.md) | one-form derivative and curl entries with moving roots included |
 
-If any denominator floor is missing, the envelope fails:
+If any root-chart floor or receiver-normal branch-strength bound is missing, the
+envelope fails:
 
 $$
 \eta_0\le0
 \quad\text{or}\quad
 J_0\le0
+\quad\text{or}\quad
+W_0<0
+\quad\text{or}\quad
+E_W<0
 \quad\Rightarrow
 \quad
 \texttt{force-lipschitz-envelope-failed}.
@@ -338,7 +437,11 @@ If a memory or tail row changes the root ledger, the emitted $L_F$ is invalid un
 
 ## 7. Lemma Target
 
-**Lemma target: delayed-force differentiability envelope.** On a root-regular finite-mode chart with $\eta_a\ge\eta_0>0$, $|J_a|\ge J_0>0$, bounded curve variation constants $C_0,C_1,C_2$, and finite active-root count, the delayed force map
+**Lemma target: delayed-force differentiability envelope.** On a
+root-regular finite-mode chart with $\eta_a\ge\eta_0>0$, $|J_a|\ge J_0>0$,
+bounded curve variation constants $C_0,C_1,C_2$, finite active-root count, and
+receiver-normal rows $0\le W_a^{\mathrm{rec}}\le W_0$ with
+$|D_vW_a^{\mathrm{rec}}|\le E_W$, the delayed force map
 
 $$
 \alpha\mapsto\widetilde{\mathbf{F}}^{(\eta_{\mathrm{mem}})}(\alpha)
@@ -354,7 +457,7 @@ $$
 
 with $L_F$ assembled from the per-root bounds above. The same chart also gives a projected-force residual derivative envelope when $D_vP^\perp$, $D_vK$, and $D_v\Gamma_K$ are included.
 
-Proof route. The implicit root derivative is bounded by the Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and inverse-Jacobian weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$ and $|J_a|\ge J_0$. Summing finitely many retained roots gives the force envelope.
+Proof route. The implicit root derivative is bounded by the source-normal Jacobian floor. The unit line-of-action derivative is bounded by the delay floor and curve-variation envelope. The inverse-square and receiver-normal weights are differentiable on fixed sign strata with $\eta_a\ge\eta_0$, $|D_{s,a}|\ge J_0$, and bounded $D_{t,a}$. Summing finitely many retained roots gives the force envelope.
 
 ---
 
@@ -363,10 +466,13 @@ Proof route. The implicit root derivative is bounded by the Jacobian floor. The 
 The current $M=3$ packets report useful root floors and residual descent, but they do not emit the derivative envelopes required by this packet:
 
 1. $C_0,C_1,C_2$ for the reduced $M=3$ basis;
-2. per-root $E_\eta,E_{\widehat{R}},E_J,L_a$;
-3. full $L_F$ on the support-complete memory ledger;
-4. derivative bounds for $\Gamma_K^{\mathrm{fit}}$ or for an action-derived $\Gamma_K$;
-5. second-variation or interval derivative bounds needed for Krawczyk $Z$.
+2. the same-record receiver-normal derivative bundle
+   $D_{s,a},D_{t,a},D_vD_{s,a},D_vD_{t,a}$, fixed sign labels, and
+   $D_vW_a^{\mathrm{rec}}$;
+3. per-root $E_\eta,E_{\widehat{R}},E_J,L_a$;
+4. full $L_F$ on the support-complete memory ledger;
+5. derivative bounds for $\Gamma_K^{\mathrm{fit}}$ or for an action-derived $\Gamma_K$;
+6. second-variation or interval derivative bounds needed for Krawczyk $Z$.
 
 Therefore the status is
 
@@ -387,6 +493,7 @@ Future solver packets should emit:
 | Field | Required payload |
 | --- | --- |
 | `curve_variation_bounds` | $C_0,C_1,C_2$ in the reduced coefficient norm |
+| `receiver_normal_first_derivative_row` | $D_{s,a}$, $D_{t,a}$, fixed sign labels, $D_vD_{s,a}$, $D_vD_{t,a}$, $W_a^{\mathrm{rec}}$, and $D_vW_a^{\mathrm{rec}}$ on the same retained record |
 | `root_derivative_bounds` | $E_\eta$ per retained label and worst-case value |
 | `direction_derivative_bounds` | $E_{\widehat{R}}$ per retained label |
 | `jacobian_derivative_bounds` | $E_J$ per retained label |
@@ -399,6 +506,10 @@ Failure/status codes:
 
 $$
 \texttt{delayed-force-lipschitz-envelope-open},
+\qquad
+\texttt{receiver-normal-first-derivative-row-missing},
+\qquad
+\texttt{receiver-normal-sign-stratum-open},
 \qquad
 \texttt{force-lipschitz-envelope-failed},
 \qquad

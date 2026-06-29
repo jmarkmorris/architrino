@@ -1,0 +1,44 @@
+{
+  "schema": "aaa-equation-map-signed-frequency-transfer-source-contract/v1",
+  "claimLevel": "score-neutral EQ-17 theta-transfer source-contract boundary; contract metadata only, not retained evidence",
+  "row": "EQ-17",
+  "purpose": "Name the durable source-backed theta_transfer boundary before endpoint cadence, source branch, launch geometry, path-history propagation, photon-channel record, event ledger, segment-energy, path-quality, or no-hidden-retune rows can count.",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_theta_transfer",
+    "boundaryExercisedBy": "scripts/equation-mapping/signed-frequency-transfer-source-contract-negative-control.v1.json",
+    "expectedStatusAfterThetaTransferAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterThetaTransferAcceptance": "missing_accepted_endpoint_cadence_emitter",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "sourceIdentity": {
+    "transferId": "eq17_theta_transfer_contract_0001",
+    "eventId": "event_eq17_theta_transfer_contract_0001",
+    "sourceBranchId": "source_branch_eq17_theta_transfer_contract_0001",
+    "receiverBranchId": "receiver_branch_eq17_theta_transfer_contract_0001",
+    "pathWindowId": "path_window_eq17_theta_transfer_contract_0001",
+    "photonChannelId": "photon_channel_eq17_theta_transfer_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "signed redshift factorization",
+      "aaaGeometricReadout": "theta_transfer parent with endpoint cadence, source branch, launch geometry, and path-history factors on one transfer",
+      "requiredCarrierOrRow": "theta_transfer",
+      "sameRecordBinding": "same transferId, eventId, sourceBranchId, receiverBranchId, pathWindowId, and photonChannelId",
+      "failClosedNegativeControl": "source_contract_path or coordination_source_path",
+      "smallestAcceptedEvidenceObject": "durable non-priority theta_transfer source with accepted child-row source provenance"
+    },
+    {
+      "standardComparisonTerm": "segment energy exchange",
+      "aaaGeometricReadout": "photon frequency increment plus medium, recoil, and remnant energy terms on each transfer segment",
+      "requiredCarrierOrRow": "energy_exchange_segments",
+      "sameRecordBinding": "same transferId, eventId, pathWindowId, and photonChannelId as theta_transfer",
+      "failClosedNegativeControl": "hidden retune, collapsed redshift scalar, or source_contract_path",
+      "smallestAcceptedEvidenceObject": "accepted segment-energy ledger bound to the parent theta_transfer record"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "scripts/equation-mapping/signed-frequency-transfer-priority-source-negative-control.v1.json",
+    "scripts/equation-mapping/signed-frequency-transfer-source-contract-negative-control.v1.json"
+  ]
+}

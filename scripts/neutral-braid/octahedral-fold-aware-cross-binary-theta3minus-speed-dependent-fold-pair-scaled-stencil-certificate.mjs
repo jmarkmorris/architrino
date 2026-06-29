@@ -25,7 +25,7 @@ const PROMOTION_STATUS = "priority-only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const SPEED_RATIO_CENTER = 3.021564740248;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; receiver-normal zero-bracket restart required before this stencil can be active evidence";
 const DEFAULT_ROOT_SUBDIVISIONS = 5000;
 const DEFAULT_SPEED_SAMPLES = [
   SPEED_RATIO_ENCLOSURE[0],
@@ -160,6 +160,7 @@ function gammaCoefficient({ foldRow }) {
 function scaledContribution({ speedRatio, term, root, y }) {
   const delta = Number(root.delta);
   const thetaTilde = Number(term.theta_tilde);
+  const phi = sourcePhi(thetaTilde, delta);
   const FDelta = sourceRootDeltaDerivative({
     speedRatio,
     kappa: term.kappa,
@@ -167,15 +168,29 @@ function scaledContribution({ speedRatio, term, root, y }) {
     delta,
   });
   const J = FDelta / y;
+  const receiverNormalNumerator = FDelta + 2 * Math.cos(phi);
+  const receiverNormalFactor = receiverNormalNumerator / FDelta;
+  const scaledReceiverNormalFactor = receiverNormalNumerator / J;
+  const branchWeight = Math.abs(receiverNormalFactor);
+  const scaledBranchWeight = Math.abs(scaledReceiverNormalFactor);
+  const unscaledContribution = (2 * term.sigma * kernelB({
+    kappa: term.kappa,
+    thetaTilde,
+    delta,
+  }) * branchWeight) / (speedRatio * delta * delta);
   const gamma = (4 * term.coefficient * term.sigma * kernelB({
     kappa: term.kappa,
     thetaTilde,
     delta,
-  })) / (speedRatio * delta * delta * Math.abs(J));
+  }) * scaledBranchWeight) / (speedRatio * delta * delta);
   return {
+    unscaled_contribution: unscaledContribution,
     scaled_G_contribution: gamma,
     J,
     F_delta: FDelta,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    scaled_receiver_normal_factor: scaledReceiverNormalFactor,
   };
 }
 
@@ -213,8 +228,23 @@ function pairRowsForSample({ foldRow, sample, rootSubdivisions }) {
     .slice(0, 2)
     .sort((left, right) => left.delta - right.delta);
   const regularRoots = rankedRoots.slice(2);
+  const pairEvaluations = new Map();
+  for (const root of pairRoots) {
+    pairEvaluations.set(
+      root.root_index,
+      scaledContribution({
+        speedRatio,
+        term,
+        root,
+        y,
+      })
+    );
+  }
   const pairValue = pairRoots.reduce(
-    (sum, root) => sum + term.coefficient * Number(root.contribution),
+    (sum, root) =>
+      sum +
+      term.coefficient *
+        pairEvaluations.get(root.root_index).unscaled_contribution,
     0
   );
   const pairDerivative = pairRoots.reduce(
@@ -230,12 +260,7 @@ function pairRowsForSample({ foldRow, sample, rootSubdivisions }) {
       branch === "-"
         ? (root.delta - deltaFold + beta * y) / (y * y)
         : (root.delta - deltaFold - beta * y) / (y * y);
-    const scaled = scaledContribution({
-      speedRatio,
-      term,
-      root,
-      y,
-    });
+    const scaled = pairEvaluations.get(root.root_index);
     return {
       branch,
       root_index: root.root_index,
@@ -249,6 +274,13 @@ function pairRowsForSample({ foldRow, sample, rootSubdivisions }) {
       F_delta: formatSmallNumber(scaled.F_delta),
       J: formatSmallNumber(scaled.J),
       J_sign: signLabel(scaled.J),
+      receiver_normal_numerator: formatSmallNumber(
+        scaled.receiver_normal_numerator
+      ),
+      receiver_normal_factor: formatSmallNumber(scaled.receiver_normal_factor),
+      scaled_receiver_normal_factor: formatSmallNumber(
+        scaled.scaled_receiver_normal_factor
+      ),
       scaled_G_contribution: formatSmallNumber(
         scaled.scaled_G_contribution
       ),
@@ -351,8 +383,8 @@ function summarizeRows(rows) {
     all_term_root_signatures_preserved: allTermSignaturesPreserved,
     all_J_signs_expected: allJSignsExpected,
     status: passed
-      ? "sampled-theta3minus-fold-pair-scaled-stencil-certified"
-      : "sampled-theta3minus-fold-pair-scaled-stencil-open",
+      ? "sampled-theta3minus-fold-pair-root-geometry-diagnostic"
+      : "sampled-theta3minus-fold-pair-root-geometry-open",
   };
 }
 
@@ -390,10 +422,12 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
         pairRowsForSample({ foldRow, sample, rootSubdivisions })
       )
   );
-  const summary = summarizeRows(rows);
-  const passed =
-    summary.status ===
-    "sampled-theta3minus-fold-pair-scaled-stencil-certified";
+  const summary = {
+    ...summarizeRows(rows),
+    status: "receiver-normal-zero-bracket-restart-required",
+    eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+  };
+  const passed = false;
 
   return {
     schema:
@@ -433,19 +467,19 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       },
       {
         row: "theta3minus.sampled-fold-pair-scaled-roots",
-        status: passed ? "sampled-stencil-certified" : "open",
+        status: "root-geometry-diagnostic",
       },
       {
         row: "theta3minus.sampled-fold-pair-quadratic-remainder-quotients",
-        status: passed ? "sampled-stencil-certified" : "open",
+        status: "invalidated-by-receiver-normal-master-eom",
       },
       {
         row: "theta3minus.fold-pair-scaled-remainder",
-        status: "directed-rounded-open",
+        status: "receiver-normal-zero-bracket-restart-required",
       },
       {
         row: "theta3minus.regular-root-remainder",
-        status: "directed-rounded-open",
+        status: "receiver-normal-zero-bracket-restart-required",
       },
       {
         row: "I1.regular-critical-exhaustion",
@@ -457,6 +491,8 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       },
     ],
     artifact_claim: {
+      receiver_normal_eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+      receiver_normal_restart_required: true,
       assumes_fixed_speed_window: false,
       certifies_sampled_theta3minus_fold_pair_scaled_stencil: passed,
       certifies_directed_rounded_fold_pair_scaled_remainder: false,
@@ -468,20 +504,17 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       certifies_interval_quadrature_enclosure: false,
       retained_branch: false,
       claim_level:
-        "Sampled/stencil scaled fold-pair normal-form certificate for p, z, J, and pair quadratic residual quotients. Directed-rounded fold-pair remainder, regular-root remainder, full collar closure, I1 closure, quadrature, and retained branch status remain open.",
+        "Receiver-normal zero-bracket restart target. The prior sampled/stencil scaled fold-pair normal-form rows are diagnostic only and cannot certify p, z, J, pair quadratic residual quotients, closure, quadrature, or retained branch status.",
     },
     result: {
-      theory_status: passed
-        ? "sampled-theta3minus-fold-pair-scaled-stencil-certified"
-        : "theta3minus-fold-pair-scaled-stencil-open",
-      first_successor_row:
-        "theta3minus.fold-pair-scaled-remainder-directed-rounded-required",
+      theory_status: "receiver-normal-zero-bracket-restart-required",
+      first_successor_row: "receiver-normal-zero-bracket-search-required",
       parallel_successor_row:
         "theta3minus.regular-root-remainder-directed-rounded-required",
       retention: "not_retained",
       retained_branch: false,
       status_note:
-        "The coalescing fold-pair roots are now represented in the scaled p chart with bounded z rows, nonzero scaled J rows, and sampled quadratic R_G,R_D pair quotients; this narrows but does not close the directed-rounded remainder proof.",
+        "The receiver-normal Master EOM invalidates the source-normal speed-ratio zero enclosure used by this scaled stencil. Re-derive the fold-pair normal form with receiver-normal weights before using these rows as evidence.",
     },
   };
 }
@@ -529,7 +562,9 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
   );
   assertField(
     artifact?.scaled_fold_pair_summary?.status ===
-      "sampled-theta3minus-fold-pair-scaled-stencil-certified" &&
+      "receiver-normal-zero-bracket-restart-required" &&
+      artifact?.scaled_fold_pair_summary?.eom_evidence_status ===
+        "invalidated-by-receiver-normal-master-eom" &&
       artifact?.scaled_fold_pair_summary?.all_term_root_signatures_preserved ===
         true &&
       artifact?.scaled_fold_pair_summary?.all_J_signs_expected === true &&
@@ -540,16 +575,17 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
         artifact?.scaled_fold_pair_summary
           ?.min_pair_to_regular_root_separation
       ) > 1.7 &&
-      Number(artifact?.scaled_fold_pair_summary?.max_abs_R_G_pair_over_y2) <
-        0.18 &&
-      Number(artifact?.scaled_fold_pair_summary?.max_abs_R_D_pair_over_y2) <
-        0.71,
-    "scaled fold-pair rows must satisfy bounded z, J, separation, and quadratic quotient thresholds",
+      Number.isFinite(
+        Number(
+          artifact?.scaled_fold_pair_summary?.max_scaled_G_pair_formula_abs_error
+        )
+      ),
+    "scaled fold-pair rows must remain diagnostic and be marked invalidated by the receiver-normal Master EOM",
     errors
   );
   assertField(
     artifact?.artifact_claim
-      ?.certifies_sampled_theta3minus_fold_pair_scaled_stencil === true &&
+      ?.certifies_sampled_theta3minus_fold_pair_scaled_stencil === false &&
       artifact?.artifact_claim?.certifies_directed_rounded_fold_pair_scaled_remainder ===
         false &&
       artifact?.artifact_claim?.certifies_directed_rounded_regular_root_remainder ===
@@ -565,8 +601,8 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
   );
   assertField(
     artifact?.result?.theory_status ===
-      "sampled-theta3minus-fold-pair-scaled-stencil-certified",
-    "result must report sampled fold-pair scaled stencil certification",
+      "receiver-normal-zero-bracket-restart-required",
+    "result must report receiver-normal zero-bracket restart",
     errors
   );
   return errors;

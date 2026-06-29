@@ -18,7 +18,7 @@ const PACKET_ID =
 const PROMOTION_STATUS = "priority-only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; receiver-normal zero-bracket restart required before this stencil can be active evidence";
 const QUARTER_PERIOD = Math.PI / 2;
 const KAPPA = 1;
 const SIGMA = 1;
@@ -565,8 +565,8 @@ function summarizeRows(rows) {
       maxRDPairOverY2IntervalAbsUpper
     ),
     status: passed
-      ? "directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified"
-      : "directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-open",
+      ? "directed-rounded-sampled-node-theta3minus-root-geometry-diagnostic"
+      : "directed-rounded-sampled-node-theta3minus-root-geometry-open",
   };
 }
 
@@ -582,10 +582,16 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
   const rows = predecessor.scaled_fold_pair_rows.map((row) =>
     intervalRowForSample({ row, zRadius })
   );
-  const summary = summarizeRows(rows);
-  const passed =
-    summary.status ===
-    "directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified";
+  const diagnosticSummary = summarizeRows(rows);
+  const rootGeometryPassed =
+    diagnosticSummary.status ===
+    "directed-rounded-sampled-node-theta3minus-root-geometry-diagnostic";
+  const summary = {
+    ...diagnosticSummary,
+    status: "receiver-normal-zero-bracket-restart-required",
+    eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+  };
+  const passed = false;
 
   return {
     schema:
@@ -612,15 +618,15 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
     closure_burndown: [
       {
         row: "theta3minus.sampled-fold-pair-scaled-stencil",
-        status: "sampled-stencil-certified",
+        status: "receiver-normal-zero-bracket-restart-required",
       },
       {
         row: "theta3minus.sampled-node-fold-pair-z-brackets",
-        status: passed ? "directed-rounded-certified" : "open",
+        status: rootGeometryPassed ? "root-geometry-diagnostic" : "open",
       },
       {
         row: "theta3minus.sampled-node-fold-pair-GD-quotient-enclosures",
-        status: passed ? "directed-rounded-certified" : "open",
+        status: "invalidated-by-receiver-normal-master-eom",
       },
       {
         row: "theta3minus.fold-pair-scaled-remainder-continuous-collar",
@@ -636,10 +642,13 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       },
     ],
     artifact_claim: {
+      receiver_normal_eom_evidence_status: "invalidated-by-receiver-normal-master-eom",
+      receiver_normal_restart_required: true,
       assumes_fixed_speed_window: false,
-      certifies_directed_rounded_sampled_node_fold_pair_z_brackets: passed,
+      certifies_directed_rounded_sampled_node_fold_pair_z_brackets:
+        rootGeometryPassed,
       certifies_directed_rounded_sampled_node_fold_pair_GD_quotient_enclosures:
-        passed,
+        false,
       certifies_directed_rounded_fold_pair_scaled_remainder: false,
       certifies_directed_rounded_regular_root_remainder: false,
       certifies_directed_rounded_speed_dependent_fold_normal_form_remainder:
@@ -649,18 +658,17 @@ export function buildOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentFold
       certifies_interval_quadrature_enclosure: false,
       retained_branch: false,
       claim_level:
-        "Directed-rounded sampled-node interval certificate for the fold-pair z brackets and G,D quadratic quotient enclosures. Continuous speed/y fold-pair remainder, regular-root remainder, full collar closure, I1 closure, quadrature, and retained branch status remain open.",
+        "Receiver-normal zero-bracket restart target. Directed-rounded z and J rows remain root-geometry diagnostics only; old G,D quadratic quotient enclosures cannot certify force/action closure.",
     },
     result: {
-      theory_status: summary.status,
-      first_successor_row:
-        "theta3minus.fold-pair-scaled-remainder-continuous-collar-directed-rounded-required",
+      theory_status: "receiver-normal-zero-bracket-restart-required",
+      first_successor_row: "receiver-normal-zero-bracket-search-required",
       parallel_successor_row:
-        "theta3minus.regular-root-remainder-directed-rounded-required",
+        "theta3minus.receiver-normal-fold-pair-normal-form-required",
       retention: "not_retained",
       retained_branch: false,
       status_note:
-        "The fold-pair roots are now interval-bracketed with directed-rounded arithmetic at every sampled speed/y node, with sign-definite J intervals and enclosed G,D pair quotient rows. The remaining fold-pair burden is continuous speed/y cell intervalization.",
+        "The receiver-normal Master EOM invalidates the old sampled-node G,D quotient enclosure. Rebuild this lane from same-record D_s, D_t, and Wrec rows before using it as evidence.",
     },
   };
 }
@@ -707,22 +715,16 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
   );
   assertField(
     artifact?.sampled_node_interval_summary?.status ===
-      "directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified" &&
+      "receiver-normal-zero-bracket-restart-required" &&
+      artifact?.sampled_node_interval_summary?.eom_evidence_status ===
+        "invalidated-by-receiver-normal-master-eom" &&
       artifact?.sampled_node_interval_summary
         ?.all_endpoint_brackets_certified === true &&
       artifact?.sampled_node_interval_summary?.all_J_signs_certified === true &&
       Number(artifact?.sampled_node_interval_summary?.min_endpoint_K_clearance) >
         1e-6 &&
-      Number(artifact?.sampled_node_interval_summary?.min_J_clearance) > 0.77 &&
-      Number(
-        artifact?.sampled_node_interval_summary
-          ?.max_abs_R_G_pair_over_y2_interval_upper
-      ) < 0.2 &&
-      Number(
-        artifact?.sampled_node_interval_summary
-          ?.max_abs_R_D_pair_over_y2_interval_upper
-      ) < 0.9,
-    "sampled-node interval rows must certify endpoint brackets, J signs, and G/D quotient enclosures",
+      Number(artifact?.sampled_node_interval_summary?.min_J_clearance) > 0.77,
+    "sampled-node interval rows must keep root geometry diagnostic and mark G/D quotient evidence invalidated",
     errors
   );
   assertField(
@@ -730,7 +732,7 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
       ?.certifies_directed_rounded_sampled_node_fold_pair_z_brackets === true &&
       artifact?.artifact_claim
         ?.certifies_directed_rounded_sampled_node_fold_pair_GD_quotient_enclosures ===
-        true &&
+        false &&
       artifact?.artifact_claim?.certifies_directed_rounded_fold_pair_scaled_remainder ===
         false &&
       artifact?.artifact_claim?.certifies_directed_rounded_regular_root_remainder ===
@@ -742,6 +744,12 @@ export function validateOctahedralFoldAwareCrossBinaryTheta3minusSpeedDependentF
         false &&
       artifact?.artifact_claim?.retained_branch === false,
     "artifact claim must keep continuous fold-pair remainder, I1 closure, and retention open",
+    errors
+  );
+  assertField(
+    artifact?.result?.theory_status ===
+      "receiver-normal-zero-bracket-restart-required",
+    "result must report receiver-normal zero-bracket restart",
     errors
   );
   return errors;

@@ -483,6 +483,15 @@ field list, and a rejection policy for `priority-only:`, `fixture:`, `proxy:`,
 does not populate `moving_retained_branch_certificate/v0` or any
 structural-integrity residual row.
 
+Coordinator note, 2026-06-28. Name the shared rank-6 intake target
+`same_record_accepted_branch_chart_intake_for_q_index_ratio_f2`. It should bind
+`q:index-ratio:f2`, the sampled active rows, a non-proxy
+`branch_certificate_ref`, a non-proxy accepted branch chart, separator chart,
+positive gap record, memory-depth record, active wave-vector gap,
+active-root-ledger hash, conservation-pullback hash, and negative control on
+one same record. It remains below structural-integrity residual population
+until the accepted branch chart is real.
+
 ## Promotion Decision
 
 - The compact theorem target is surfaced in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure), with conceptual support in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and empirical speed gates in [Constraint Ledger](../../../content/markdown/aaa/validation/constraint-ledger.md).

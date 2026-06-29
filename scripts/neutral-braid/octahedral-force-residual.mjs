@@ -105,7 +105,10 @@ function forceContribution(pair, theta, y) {
   const source = octahedralSiteById(pair.source);
   const rhat = normalizedDisplacement(receiver, source, theta, y);
   const jacobian = octahedralRootJacobian(receiver, source, theta, y);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const receiverNormalNumerator = 1 - dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return {
     vector: scale(rhat, coefficient),
     jacobian,
@@ -258,7 +261,7 @@ export function buildOctahedralForceResidual(options = {}) {
       y_subdivisions: ySubdivisions,
       tangential_tolerance: tangentialTolerance,
       force_formula:
-        "sum_j sign(q_i*q_j)*rhat_ij/(y_ij^2*abs(J_ij)); residual_i=T_i dot force_i",
+        "sum_j sign(q_i*q_j)*abs(Wrec_ij)*rhat_ij/y_ij^2; residual_i=T_i dot force_i",
     },
     site_inventory: siteInventory(),
     sampled_root_dependency: {

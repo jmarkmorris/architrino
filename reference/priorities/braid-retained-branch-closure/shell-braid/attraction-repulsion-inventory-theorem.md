@@ -119,14 +119,14 @@ Let
 $$
 w_r^\Phi
 =
-\frac{1}{\eta_r|J_r|},
+\frac{W_r^{\mathrm{rec}}}{\eta_r},
 \qquad
 w_r^F
 =
-\frac{1}{\eta_r^2|J_r|}
+\frac{W_r^{\mathrm{rec}}}{\eta_r^2}
 $$
 
-in the fixed-speed row, with $J_r$ replaced by $J_r^\nu$ in the bounded-speed row. These are positive root weights once the root ledger has emitted positive delay and Jacobian floors.
+in the fixed-speed row, with $W_r^{\mathrm{rec}}$ recomputed from the bounded-speed row in the bounded-speed case. These are positive root weights once the root ledger has emitted positive delay, source-normal floors, receiver-normal numerators, and same-row branch weights.
 
 The signed delayed potential inventory seen by receiver $i$ is
 
@@ -261,7 +261,7 @@ $$
 2\text{ repulsive source sites}.
 $$
 
-Equivalently, if every nonself source site contributed one identical scalar unit with no delay, no Jacobian weighting, no root multiplicity, and no direction, the receiver would see one net attractive unit:
+Equivalently, if every nonself source site contributed one identical scalar unit with no delay, no source-normal denominator, no receiver-normal branch factor, no root multiplicity, and no direction, the receiver would see one net attractive unit:
 
 $$
 \sum_{j\ne i}(-\sigma_i\sigma_j)
@@ -276,7 +276,7 @@ This is the correct inventory meaning of the operator's observation.
 It is not a force-closure proof for five independent reasons.
 
 1. The actual retained ledger is a root ledger, not just a site ledger. A source site may have zero, one, or several retained roots inside the declared memory convention.
-2. The weights $w_r^\Phi$ and $w_r^F$ depend on delay and Jacobian factors. A long-delay attractive root can be smaller than a short-delay repulsive root.
+2. The weights $w_r^\Phi$ and $w_r^F$ depend on delay, source-normal denominators, and receiver-normal branch strengths. A long-delay attractive root can be smaller than a short-delay repulsive root.
 3. The force is vector-valued. Attractive and repulsive channels can project differently onto $\mathbf{T}_i$, $P_i^\perp$, and any support-band normal.
 4. Same-source, fold-layer, and medium-response rows are outside the $3$-$2$ site count and must be separately absent, regularized, or included.
 5. Dynamics closure requires the same weighted force ledger to pass tangential, curvature, action, Noether/event, convergence, and stability rows.
@@ -408,14 +408,14 @@ $$
 W_{i,\nu}^{\mathrm{attr}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in A_i}}
-\frac{1}{\eta_r(u)^2|J_r^\nu(u)|},
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2},
 $$
 
 $$
 W_{i,\nu}^{\mathrm{rep}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in R_i}}
-\frac{1}{\eta_r(u)^2|J_r^\nu(u)|}.
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}.
 $$
 
 The corresponding vector rows are
@@ -425,16 +425,16 @@ $$
 =
 -
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in A_i}}
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^\nu(u)|},
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u),
 $$
 
 $$
 \widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{rep}}(u)
 =
 \sum_{\substack{r\in\mathcal{A}_i^\nu(u)\\ j(r)\in R_i}}
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^\nu(u)|}.
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u).
 $$
 
 A bounded-speed packet should emit:
@@ -442,7 +442,7 @@ A bounded-speed packet should emit:
 | Field | Payload |
 | --- | --- |
 | `polarity_inventory` | $\sigma_i$, $A_i$, $R_i$, $N_{\mathrm{attr}}=3$, $N_{\mathrm{rep}}=2$ |
-| `bounded_speed_root_weights` | $\eta_r$, $J_r^\nu$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
+| `bounded_speed_root_weights` | $\eta_r$, $D_{s,r}^{\nu}=J_r^\nu$, $D_{t,r}^{\nu}$, $W_{r,\nu}^{\mathrm{rec}}$, $W_{i,\nu}^{\mathrm{attr}}$, $W_{i,\nu}^{\mathrm{rep}}$ |
 | `bounded_speed_force_split` | $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{attr}}$, $\widetilde{\mathbf{F}}_{i,\nu}^{\mathrm{rep}}$, self and medium rows if present |
 | `bounded_speed_projection_split` | attraction/repulsion contributions to $\mathcal{R}_{\parallel,i}^\nu$ and $\mathcal{R}_{\perp,i}^\nu$ |
 | `force_moment_decomposition` | handoff to weighted tangent-power, normal-drive, support-radial moment, and antipodal parity rows |

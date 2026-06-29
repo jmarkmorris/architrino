@@ -13,9 +13,9 @@ import {
 } from "../scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.mjs";
 
 const EXPECTED_STATUS =
-  "sampled-theta3minus-fold-pair-scaled-stencil-certified";
+  "receiver-normal-zero-bracket-restart-required";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; receiver-normal zero-bracket restart required before this stencil can be active evidence";
 
 let cachedArtifact = null;
 
@@ -74,12 +74,14 @@ test("fold-pair scaled stencil imposes no fixed speed band", () => {
   assert.equal(packet.scaled_stencil_parameters.speed_max, undefined);
 });
 
-test("scaled p,z,J rows certify the sampled fold-pair chart", () => {
+test("scaled p,z,J rows are diagnostic after the receiver-normal restart", () => {
   const packet = artifact();
   const summary = packet.scaled_fold_pair_summary;
   const firstRow = packet.scaled_fold_pair_rows[0];
 
   assert.equal(summary.sample_count, 95);
+  assert.equal(summary.status, "receiver-normal-zero-bracket-restart-required");
+  assert.equal(summary.eom_evidence_status, "invalidated-by-receiver-normal-master-eom");
   assert.equal(summary.all_term_root_signatures_preserved, true);
   assert.equal(summary.all_J_signs_expected, true);
   assert.ok(Number(summary.max_abs_z) < 3.0);
@@ -95,12 +97,15 @@ test("scaled p,z,J rows certify the sampled fold-pair chart", () => {
   );
 });
 
-test("scaled contribution formula reconstructs G_pair and quadratic quotients", () => {
-  const summary = artifact().scaled_fold_pair_summary;
+test("scaled contribution rows carry receiver-normal diagnostics only", () => {
+  const packet = artifact();
+  const summary = packet.scaled_fold_pair_summary;
+  const firstBranch = packet.scaled_fold_pair_rows[0].fold_pair_rows[0];
 
   assert.ok(Number(summary.max_scaled_G_pair_formula_abs_error) < 1e-9);
-  assert.ok(Number(summary.max_abs_R_G_pair_over_y2) < 0.18);
-  assert.ok(Number(summary.max_abs_R_D_pair_over_y2) < 0.71);
+  assert.ok(Number.isFinite(Number(firstBranch.receiver_normal_numerator)));
+  assert.ok(Number.isFinite(Number(firstBranch.receiver_normal_factor)));
+  assert.ok(Number.isFinite(Number(firstBranch.scaled_receiver_normal_factor)));
 });
 
 test("fold-pair scaled stencil keeps directed-rounded closure and retention open", () => {
@@ -108,7 +113,7 @@ test("fold-pair scaled stencil keeps directed-rounded closure and retention open
 
   assert.equal(
     packet.artifact_claim.certifies_sampled_theta3minus_fold_pair_scaled_stencil,
-    true
+    false
   );
   assert.equal(
     packet.artifact_claim.certifies_directed_rounded_fold_pair_scaled_remainder,

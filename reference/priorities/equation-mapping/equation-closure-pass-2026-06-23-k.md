@@ -44,7 +44,7 @@ The Compton/recoil checker already reports `nativeRowStatuses` and `eventLedgerS
 
 No current repo evidence satisfies any of the 14 `same_branch_chart_identity` retained-row requirements for $S_{\mathrm{eq}}$. The strongest evidence remains current proxy alignment: 7/7 proxy sources and 15/15 current structural witnesses point at $S_{\mathrm{eq}}$, but every retained identity row is still `attempt` or absent. The octahedral root-ledger certificate and Noether sea retained-attempt packet are useful design inputs, but they are not accepted retained $S_{\mathrm{eq}}$ evidence and cannot populate the same-branch reducer.
 
-The next score-moving object is one accepted retained $S_{\mathrm{eq}}$ event or positive-width domain packet. The smallest useful target is a first `f=2` middle-to-outer carrier with accepted domain support, source/receiver event IDs, root keys, emitted/received phase rows, branch-history segment, wake/coupling carrier, energy/action and momentum/angular-momentum ledgers, response-center/group-velocity rows, Noether sea binding, zero split/retune witnesses, and a consistent overlap-preimage witness.
+The next accepted-retained-evidence object is one accepted retained $S_{\mathrm{eq}}$ event or positive-width domain packet. The smallest useful target is a first `f=2` middle-to-outer carrier with accepted domain support, source/receiver event IDs, root keys, emitted/received phase rows, branch-history segment, wake/coupling carrier, energy/action and momentum/angular-momentum ledgers, response-center/group-velocity rows, Noether sea binding, zero split/retune witnesses, and a consistent overlap-preimage witness.
 
 ### Noether Sea Density-Compression Slice
 

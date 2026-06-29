@@ -21,11 +21,11 @@ No score changes.
 
 ## Equation Attack Cards
 
-| Row | Current score | Primary carrier | Exact first blocker | Smallest blocker-moving object |
+| Row | Current score | Primary carrier | Exact first blocker | Smallest accepted evidence route |
 | --- | --- | --- | --- | --- |
-| `EQ-21` | `3` | `Theta_obs` narrowed to `Theta_src + Theta_read + growth projection` | `missing_accepted_theta_obs`; proposed sharper source blocker `missing_accepted_theta_src` | Accepted `Theta_src` row with `W_src`, `rho_bar`, `rho_A`, `N_sea(W_src)`, `P_seed`, and shared readout keys consumed by growth, lensing, shear/RSD, and BAO rows. |
+| `EQ-21` | `3` | `Theta_obs` narrowed to `Theta_src + Theta_read + growth projection` | Summary blocker `missing_accepted_theta_obs`; diagnostic-only focused blocker `missing_accepted_theta_src` | Accepted `Theta_src` row with `W_src`, `rho_bar`, `rho_A`, `N_sea(W_src)`, `P_seed`, and shared readout keys consumed by growth, lensing, shear/RSD, and BAO rows. |
 | `EQ-22` | `3` | `Theta_src + Theta_therm/prov + Theta_read` | `missing_accepted_theta_obs`, with child blockers at `missing_accepted_theta_gamma_packet`, `missing_accepted_recombination_acoustic_carrier`, and `missing_accepted_theta_therm` | Accepted CMB source handoff row tying `eta`, `N_eff`, `Y_p`, photon loading, thermal depth, neutrino energy, and event provenance to the same `W_src`. |
-| `EQ-23` | `3` | `Theta_src` plus `Theta_therm/prov` | `missing_accepted_theta_obs`; proposed sharper source blocker `missing_accepted_theta_src` | Accepted BBN/source-window ledger with `T_theta(t)`, `rho_theta(t)`, `eta_theta`, `N_eff_theta`, `Y_BBN_theta`, source event rows, and thermal provenance. |
+| `EQ-23` | `3` | `Theta_src` plus `Theta_therm/prov` | Summary blocker `missing_accepted_theta_obs`; diagnostic-only focused blocker `missing_accepted_theta_src` | Accepted BBN/source-window ledger with `T_theta(t)`, `rho_theta(t)`, `eta_theta`, `N_eff_theta`, `Y_BBN_theta`, source event rows, and thermal provenance. |
 | `EQ-32` | `3` | `Theta_gal` inside `Theta_obs`, but upstream first carrier is `theta_sea_rho_NS` | `missing_accepted_theta_obs` in the shared checker; sharper physical blockers are `missing_accepted_theta_sea_rho_NS` and `delta_a_star` | Source-backed `theta_sea_rho_NS` same-window density-compression bundle plus an actual `delta_a_star` projection before any private galaxy readout row is accepted. |
 
 ## Source-Window Contract
@@ -61,7 +61,7 @@ The accepted `Theta_src` row must be one source-window record with:
 
 ## Direct Geometry Layer
 
-| Standard comparison term | AAA geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
+| Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
 | Source-window identity for BBN, CMB, growth, and RAR rows | $\Theta_{\mathrm{src}}(W_{\mathrm{src}})$ as one finite source-window readout, not four fitted observation summaries | `theta_src`, with parent `theta_obs` still blocked until the other retained rows are accepted | One `W_src`, event-ledger id, source-window id, and no-hidden-retune witness across BBN, CMB, growth, and RAR projections | `cosmology.source_window_split` | Accepted `theta_src` row with durable source support for `W_src`, event ledger, Noether sea keys, baryon/architrino loading, photon loading, neutrino handoff, and readout references. |
 | BBN source terms: $T_\theta(t)$, $\rho_\theta(t)$, $\eta$, $N_{\text{eff}}$, and $Y_p$ | Thermal/source-window ledger values produced inside `Theta_src`, then consumed by the BBN projection | `theta_src` plus `thermal_provenance_ledger` and the `BBN` projection row | Same `W_src`, thermal-provenance id, and event ledger as the CMB photon-loading route | `cosmology.blackbody_yield_split` | Source-backed BBN handoff row whose keys remain unchanged when CMB and recombination/acoustic consumers read them. |
@@ -81,8 +81,20 @@ The accepted `Theta_src` row must be one source-window record with:
 
 ## Next Action
 
-Use the existing source-attempt fixture as the checker-consumable `Theta_src` scaffold. The next safe implementation target is a source-backed row template or source-support contract that can mark only `theta_src` accepted-looking with durable support metadata, then prove the checker advances to the next missing retained row without summary score movement.
+Use the existing source-attempt fixture as the checker-consumable `Theta_src` scaffold. The score-neutral source-contract boundary is now [shared-observation-theta-src-source-contract.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-contract.v1.json), exercised by [shared-observation-theta-src-source-contract-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-contract-attempt.v1.json). The attempt marks only `theta_src` accepted-looking with `sourceObjectKind: "theta_src"`, `sourceSupport: ["EQ-21", "EQ-22", "EQ-23", "Theta_src"]`, `sourceWindowId`, `eventLedgerId`, `thetaSrcId`, and `noHiddenRetuneWitnessId`; `theta_obs`, projection families, shared keys, and child rows stay `attempt`.
 
-A normal run still reports `nextBlocker=missing_accepted_theta_obs`; running with `--focus-row theta_src` adds diagnostic-only `focusedBlockers.theta_src.nextBlocker=missing_accepted_theta_src` without changing summary blocker order, `scoreDecision`, required rows, or `--require-populated` behavior.
+```bash
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json --summary --pretty --focus-row theta_src
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-theta-src-source-contract-attempt.v1.json --summary --pretty --focus-row theta_src
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-theta-src-source-contract-attempt.v1.json --summary --pretty --focus-row theta_src --require-populated
+```
 
-The checker also now rejects accepted-looking rows, projection families, or shared keys whose source paths point only to priority packets, authored AAA prose, generated files, temporary files, attempt fixtures, mocks, or negative-control fixtures. Such rows must block at `accepted_without_evidence_source` before any shared-observation packet can populate.
+A normal source-attempt run still reports `nextBlocker=missing_accepted_theta_obs`; running with `--focus-row theta_src` adds diagnostic-only `focusedBlockers.theta_src.nextBlocker=missing_accepted_theta_src` without changing summary blocker order, `scoreDecision`, required rows, or `--require-populated` behavior. The source-contract attempt also reports `nextBlocker=missing_accepted_theta_obs`, but its focused `theta_src` row returns `reason=source_contract_path` and `sourceEvidenceFailureCount=1`; the `--require-populated` form exits nonzero. This proves the contract shell names the accepted-object boundary without becoming accepted retained evidence.
+
+The checker also now rejects accepted-looking rows, projection families, or shared keys whose source paths point only to priority packets, authored AAA prose, generated files, temporary files, source-contract shells, attempt fixtures, mocks, or negative-control fixtures. The existing priority-source control:
+
+```bash
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-priority-source-negative-control.v1.json --summary --pretty
+```
+
+stays score-neutral at `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_obs`, and `sourceEvidenceFailureCount=26` before any shared-observation packet can populate.

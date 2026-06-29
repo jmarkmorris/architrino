@@ -51,12 +51,18 @@ First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_order
 
 ## Equation Attack Cards
 
-| Row | Current score | Primary carrier | Exact first blocker | Smallest blocker-moving object |
+| Row | Current score | Primary carrier | Exact first blocker | Smallest accepted evidence route |
 | --- | ---: | --- | --- | --- |
 | `EQ-15` | `2` | Retained ordered-frame spinor-label pullback on one branch record. | `missing_accepted_ordered_frame_loop` | One accepted, durable, non-gauge `ordered_frame_loop` proving nontrivial $\mathbb Z/2$ holonomy, $4\pi$ restoration, gauge-control, and same-record angular-momentum residuals. |
 | `EQ-27` | `2` | Same ordered-frame/exposure quotient plus moment-map magnetic row. | `missing_accepted_ordered_frame_loop` | Same accepted `ordered_frame_loop`, then same-record `moment_map_magnetic` from $\boldsymbol\mu=\int_{\mathfrak D_R}(\mathbf r\times\mathbf j_{\mathrm{exp}})\,d\mathcal E_S$, not assigned spin notation. |
 
-Safe implementation target for this pass: priority packet refinement only. No checker semantics, fixtures, scores, or reader-facing corpus files are changed.
+| Shared coordinate | Current answer |
+| --- | --- |
+| Existing scripts/fixtures/packets | [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs), [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json), [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json), [eq15-27-ordered-frame-loop-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json), and the priority-source, record-split, assigned-spin, and assigned-spin durable-source controls listed in metadata. |
+| Fail-closed negative control | Priority/source-map rows and source-contract shell paths fail at `accepted_without_evidence_source`; valid durable source metadata with a split `sameRecordId` fails at `record_split`; assigned-spin or imported $g(q/2m)\mathbf S$ support fails at `eq27.assigned_spin_label` once durable source evidence exists. |
+| Smaller next action | Replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record before any moment-map or leading-$g$ comparison is reviewed. |
+
+Current safe implementation target: replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record. The existing source-attempt, source-contract boundary, priority-source, record-split, and assigned-spin controls remain score-neutral guardrails; they do not change scores or count as retained evidence.
 
 ## EQ-15 Direct Geometry Layer
 
@@ -123,7 +129,7 @@ Required rows on one `sameRecordId`:
 
 Use `visible_so3_closure_import_without_non_gauge_lift`: a fixture supplies a closed visible $SO(3)$ loop and maybe $g_{\mathrm{lead}}=2$, but lacks accepted nontrivial $\mathbb Z/2$ holonomy, same-record gauge-control probes, or computes `moment_map_magnetic` from $g(q/2m)\mathbf S$ instead of the exposure-current moment map.
 
-The expected result is no score movement: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
+The expected result is no score review: first `missing_accepted_ordered_frame_loop`; after an accepted-looking but empty loop, `spin_lift_not_odd`, `gauge_residual`, `missing_moment_map`, or `eq27.assigned_spin_label`.
 
 The fixture `eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json` isolates the source-evidence branch: all rows are accepted-looking and numerically pass same-record, gauge, angular-momentum, nonzero moment-map, and $g_{\mathrm{lead}}=2$ checks, but every row points back to this priority map. The checker must return `blocked_source_evidence`, `nextBlocker: accepted_without_evidence_source`, and `sourceEvidenceFailureCount: 7`.
 
@@ -148,7 +154,7 @@ The carrier-shell source-contract boundary is staged at [eq15-27-ordered-frame-l
 node scripts/equation-mapping/spin-magnetic-moment-certificate.mjs --input scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json --summary --pretty
 ```
 
-The expected boundary run reports `status: blocked_missing_rows`, `nextBlocker: missing_accepted_spin_lift`, `sourceEvidenceFailureCount: 0`, and `scoreDecision: no_score_increase`. This does not land retained evidence. It only proves that once the parent ordered-frame loop is source-backed, the checker advances to the spin-lift row instead of letting visible $SO(3)$ closure, magnetic moment numerics, or assigned spin notation count as score evidence.
+The expected boundary run reports `status: blocked_missing_rows`, `nextBlocker: accepted_without_evidence_source`, `sourceEvidenceFailureCount: 1`, and `scoreDecision: no_score_increase`. This does not land retained evidence. It proves the source-contract shell itself cannot stand in for a retained `ordered_frame_loop`. Once a real non-priority ordered-frame-loop source replaces the contract shell, the next expected child blocker is `missing_accepted_spin_lift`.
 
 The priority-source control is:
 

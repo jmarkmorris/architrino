@@ -22,7 +22,7 @@ const DEFAULT_SPEED_SAMPLE_COUNT = 9;
 const DEFAULT_MACHINE_PADDING = 1e-9;
 const DEFAULT_FOLD_COLLAR_ATTACHMENT_Y = 0.003;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const EXPECTED_SOURCE_ROOT_COUNT = 6;
 const EXPECTED_TERM_SIGNATURE = "1,3,1,1";

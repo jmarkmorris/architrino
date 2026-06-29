@@ -14,9 +14,20 @@ This separation enables a hierarchy of dynamical atlases: local charts of assemb
 
 ### Core Mathematical Challenge
 
-The master equation defines acceleration via intersections with past causal wake surfaces:
+The canonical Master EOM defines acceleration via intersections with past causal
+wake surfaces and same-record receiver-normal branch strength:
 $$
-\frac{d^2 \mathbf{x}_i}{dt^2} = \sum_j \sum_{t_0 \in \mathcal{C}_j(t)} \kappa\,\sigma_{ij}\,\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}\,\hat{\mathbf{r}}_{ij}(t;t_0)
+\frac{d^2 \mathbf{x}_i}{dt^2}
+=
+\sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)}
+\kappa\,\sigma_{ij}\,
+\frac{|q_i q_j|}{r_{ij}^2(t;t_0)}
+W_{ij}^{\mathrm{rec}}(t;t_0)\,
+\hat{\mathbf{r}}_{ij}(t;t_0),
+\qquad
+W_{ij}^{\mathrm{rec}}
+=
+\left|\frac{D_{t,ij}}{D_{s,ij}}\right|.
 $$
 
 The key insight is that the state at time $t$ is not the finite-dimensional tuple $(\mathbf{x}_i(t), \mathbf{v}_i(t))$ but the entire trajectory history $h_t(\theta) = \mathbf{x}(t+\theta)$ for $\theta \in [-\tau_{\max}, 0]$ over the causal horizon. Formally, this is a neutral functional differential equation with state-dependent delays, making the effective phase space infinite-dimensional.

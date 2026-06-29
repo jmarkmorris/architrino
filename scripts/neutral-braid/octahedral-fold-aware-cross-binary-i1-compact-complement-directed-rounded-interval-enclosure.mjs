@@ -35,7 +35,7 @@ const TWO_PI = 2 * Math.PI;
 const QUARTER_PERIOD = Math.PI / 2;
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const EXPECTED_SOURCE_ROOT_COUNT = 6;
 const EXPECTED_TERM_SIGNATURE = "1,3,1,1";
 const I1_CELL_LEFT_ENDPOINT = 0;

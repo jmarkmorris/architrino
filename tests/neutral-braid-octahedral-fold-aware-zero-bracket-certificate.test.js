@@ -37,7 +37,7 @@ test("fold-aware zero bracket certificate validates source and does not impose a
   assert.equal(certificate.promotion_status, "priority-only");
   assert.equal(
     certificate.scan_parameters.speed_constraint,
-    "none; the bracket is a certified positive speed-ratio zero enclosure"
+    "none; the bracket is a historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required"
   );
   assert.equal(certificate.source_artifact_check.valid, true);
   assert.equal(

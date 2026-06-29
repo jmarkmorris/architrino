@@ -54,7 +54,7 @@ test("fold-aware cross-binary quarter profile imposes no speed window", () => {
 
   assert.equal(
     certificate.scan_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.match(certificate.scan_parameters.quadrature_convention, /not an interval enclosure/);
   assert.deepEqual(certificate.scan_parameters.speed_ratio_enclosure, [3.02156, 3.02157]);

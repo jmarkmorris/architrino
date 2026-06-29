@@ -88,7 +88,7 @@ J_{\mathbf{x}j}(t;t_0)
 \{t_0<t:g_{\mathbf{x}j}(t;t_0)=0\}
 $$
 
-Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, and let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$. Then the simple-root diagnostic is
+Let $\mathcal{I}_a(t)$ be the architrino constituents and bound wake records belonging to assembly $a$, and let $\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)$ be the ambient Noether sea contributors in the same coarse window after excluding $\mathcal{I}_a(t)$. Let $w_{j,a}^{\mathrm{lock}}(t_0;t)$ retain the branches phase-locked to the assembly label, let $w_j^{\mathrm{sea}}(t_0;t)$ retain the ambient branches, let $\alpha_{j,X}(\mathbf{x},t;t_0)\ge 0$ be the channel intensity inherited from branch-ledger exposure in channel $X$, and let $W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)=\lvert D_{t,\mathbf{x}j}/D_{s,\mathbf{x}j}\rvert$ be the receiver-normal branch strength on the same root row. Then the simple-root diagnostic is
 
 $$
 \mathcal{W}_{a,X}^{\mathrm{locked}}(\mathbf{x},t;\ell)
@@ -97,8 +97,8 @@ W_\ell *
 \sum_{j\in\mathcal{I}_a(t)}
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_{j,a}^{\mathrm{lock}}(t_0;t)
-\frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
+\frac{\alpha_{j,X}(\mathbf{x},t;t_0)W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)}
+{r_{\mathbf{x}j}^2(t;t_0)}
 $$
 
 and
@@ -110,8 +110,8 @@ W_\ell *
 \sum_{j\in\mathcal{I}_{\mathrm{sea}}(\Omega_\ell,t)}
 \sum_{t_0\in\mathcal{C}_{\mathbf{x}j}(t)}
 w_j^{\mathrm{sea}}(t_0;t)
-\frac{\alpha_{j,X}(\mathbf{x},t;t_0)}
-{r_{\mathbf{x}j}^2(t;t_0)\left|J_{\mathbf{x}j}(t;t_0)\right|}
+\frac{\alpha_{j,X}(\mathbf{x},t;t_0)W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)}
+{r_{\mathbf{x}j}^2(t;t_0)}
 $$
 
 These coefficients are not fit amplitudes. For each accepted causal root, define the root-selected branch record

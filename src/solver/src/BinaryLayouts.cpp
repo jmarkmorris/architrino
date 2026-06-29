@@ -119,8 +119,8 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           to_string(layoutId),
           NumericType::F64,
           ByteOrder::LittleEndian,
-          112,
-          "root id, status, emission/hit/delay/distance/residual/J/weight, source point, receiver point",
+          176,
+          "root id, status, emission/hit/delay/distance/residual/J/weight, source point, receiver point, receiver-normal fields",
       };
     case BinaryLayoutId::RootLedgerDetailV1:
       return BinaryLayoutDescriptor{
@@ -128,8 +128,8 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           to_string(layoutId),
           NumericType::F64,
           ByteOrder::LittleEndian,
-          192,
-          "ledger keys, source/receiver keys, root support interval, root geometry, entry kind, root kind, status, J stratum, sequence, iterations, flags",
+          248,
+          "ledger keys, source/receiver keys, root support interval, root geometry, receiver-normal fields, entry kind, root kind, status, J stratum, sequence, iterations, flags",
       };
     case BinaryLayoutId::DelayedHitEventsV1:
       return BinaryLayoutDescriptor{
@@ -137,8 +137,8 @@ BinaryLayoutDescriptor binary_layout_descriptor(BinaryLayoutId layoutId) {
           to_string(layoutId),
           NumericType::F64,
           ByteOrder::LittleEndian,
-          128,
-          "event id, root id, status, emission/hit/distance/J/strength, emission point, receiver point, unit direction",
+          192,
+          "event id, root id, status, emission/hit/distance/J/strength, emission point, receiver point, unit direction, receiver-normal fields",
       };
     case BinaryLayoutId::PhaseAtHitV1:
       return BinaryLayoutDescriptor{

@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq28a-path-frequency-exchange-input/v1",
-  "claimLevel": "score-neutral Theta_nu-ex path-frequency source attempt; accepted retained evidence is required before score movement",
+  "claimLevel": "score-neutral Theta_nu-ex path-frequency source attempt; accepted retained evidence is required before score review",
   "residualId": "R_28A_path_frequency_exchange_source_attempt_0001",
   "commonCarrierId": "theta_nu_ex_source_attempt_0001",
   "carrier": {

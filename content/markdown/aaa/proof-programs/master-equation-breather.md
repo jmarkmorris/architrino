@@ -1,5 +1,16 @@
 # Master-Equation Breather Program
 
+Receiver-normal restart notice. This bridge chapter remains the correct
+history-space proof architecture, but any force-balance, recapture, self-drive,
+action, or finite-certificate row is closure evidence only after it is rebuilt
+under the receiver-normal Master EOM branch factor
+$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
+source-normal transversality rows only as conditional inputs.
+
+The breather proof process therefore starts over from the receiver-normal branch
+table. The architecture can be reused; no previous force margin, return verdict,
+finite certificate, or action conclusion is inherited.
+
 This chapter sits between the canonical delayed law in [master-equation.md](../dynamics/master-equation.md) and the one-dimensional reference scaffold in [collinear-breather.md](./collinear-breather.md). It is a theorem-program atlas, not the proof itself. Its purpose is to extract the transportable theorem architecture and to state clearly which replacement lemmas would be required before a genuine breather theorem can be pursued at the level of the master equation.
 
 The strategic point is simple. The proof should first close in the collinear dual-mollified model by producing a candidate cycle, a finite branch chart, a closed convex certificate, a return self-map, and the Schauder fixed point. Only after that closure is certified should the higher-dimensional sections below be reused as dependency maps. The next task in this chapter is therefore abstraction: identify what part of the collinear scaffold belongs to the general delayed dynamics, what part uses the ordered geometry of the line, and what new geometry must replace those 1D-only moves in higher dimension.
@@ -5992,11 +6003,11 @@ The proof is written one local fold block at a time.
 >    $$
 >    |\partial_t g_{ij}(t;s)|\ge \chi_{\mathrm{fold}}>0.
 >    $$
->    Therefore the singular factor
+>    Therefore the source-normal diagnostic factor
 >    $$
 >    |J_{ij}|^{-1}
 >    $$
->    in the force kernel is exactly cancelled by the
+>    in the fold-coordinate measure is exactly cancelled by the
 >    $$
 >    |J_{ij}|
 >    $$
@@ -7149,13 +7160,29 @@ $$
 
 To connect this directly to the master equation, write
 $$
+D_{s,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s),
+\qquad
+D_{t,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t),
+$$
+and
+$$
+W_{ij}^{\mathrm{rec}}(t;s)
+=
+\left|D_{t,ij}(t;s)/D_{s,ij}(t;s)\right|.
+$$
+The receiver-normal branch law is
+$$
 \ddot{\mathbf{x}}_i(t)
 =
 \sum_{j=1}^3
 \sum_{s\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}\,
-\frac{|q_i q_j|}
-{r_{ij}(t;s)^2\,|J_{ij}(t;s)|}
+\frac{|q_i q_j|W_{ij}^{\mathrm{rec}}(t;s)}
+{r_{ij}(t;s)^2}
 \hat{\mathbf{r}}_{ij}(t;s),
 $$
 with the usual convention that the
@@ -7212,7 +7239,12 @@ where:
   3
   $$
 
-The explicit unresolved theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
+The explicit unresolved theorem burden is to prove, on the recapture windows,
+that the opposite-sign core term dominates the same-sign and self-driven
+widening after all admissible fold-tube and deep-past ceilings are paid. Any
+margin lacking same-record $D_t$ is restart-only: the margin becomes force
+evidence only after the same retained record reports $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ for every consumed branch family.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as
 $$

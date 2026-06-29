@@ -3,6 +3,8 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const INPUT_SCHEMA = "aaa-equation-map-effective-frw-handoff-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-effective-frw-handoff-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
@@ -138,11 +140,11 @@ function evaluateEffectiveFrwHandoff(input, inputPath) {
   const handoff = input.handoff ?? input;
   const rows = handoff.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], inputPath)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, handoff.commonCarrierId);
-  const sharedKeys = evaluateSharedKeys(handoff.sharedKeys ?? [], tolerances);
+  const sharedKeys = evaluateSharedKeys(handoff.sharedKeys ?? [], tolerances, inputPath);
   const frw = evaluateFrwProjection(
     handoff.frwProjection ?? handoff.frw ?? {},
     constants,
@@ -193,7 +195,7 @@ function evaluateEffectiveFrwHandoff(input, inputPath) {
       row: "EQ-18/EQ-19",
       supportedRows: ["EQ-17", "EQ-18", "EQ-19", "EQ-20", "EQ-21", "EQ-22"],
       claimLevel:
-        "score-neutral effective-FRW handoff; accepted retained rows are required before score movement",
+        "score-neutral effective-FRW handoff; accepted retained rows are required before score review",
     },
     constants,
     tolerances,
@@ -201,10 +203,12 @@ function evaluateEffectiveFrwHandoff(input, inputPath) {
       status,
       scoreDecision: SCORE_DECISION,
       missingRows,
+      sourceEvidenceFailureCount: sourceEvidenceFailureCount(rowChecks, sharedKeys),
       missingSharedKeys: sharedKeys.missingSharedKeys,
       sharedKeyMismatchCount: sharedKeys.mismatches.length,
       nextBlocker: firstBlocker({
         status,
+        rowChecks,
         missingRows,
         carrierBinding,
         sharedKeys,
@@ -237,6 +241,7 @@ function evaluateEffectiveFrwHandoff(input, inputPath) {
           status: normalizeStatus(rows[rowId]),
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
+          sourceReason: rowChecks[rowId].sourceReason ?? null,
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
@@ -333,14 +338,14 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateSharedKeys(rawKeys, tolerances) {
+function evaluateSharedKeys(rawKeys, tolerances, inputPath) {
   const keyRows = new Map(
     (Array.isArray(rawKeys) ? rawKeys : []).map((row) => [row.key, row]),
   );
   const keys = Object.fromEntries(
     EXPECTED_SHARED_KEYS.map((key) => {
       const row = keyRows.get(key);
-      const check = evaluateAcceptedRow(row);
+      const check = evaluateAcceptedRow(row, inputPath);
       const comparison = compareProjectionValues(row?.projectionValues ?? {}, tolerances);
       return [
         key,
@@ -348,6 +353,7 @@ function evaluateSharedKeys(rawKeys, tolerances) {
           status: normalizeStatus(row),
           accepted: check.accepted,
           reason: check.reason,
+          sourceReason: check.sourceReason ?? null,
           sourcePath: row?.sourcePath ?? row?.source ?? null,
           values: row?.projectionValues ?? {},
           mismatch: comparison.mismatch,
@@ -599,6 +605,7 @@ function decideStatus({
 
 function firstBlocker({
   status,
+  rowChecks,
   missingRows,
   carrierBinding,
   sharedKeys,
@@ -613,10 +620,17 @@ function firstBlocker({
     return null;
   }
   if (missingRows.length > 0) {
+    if (rowChecks?.[missingRows[0]]?.reason === "accepted_without_evidence_source") {
+      return "accepted_without_evidence_source";
+    }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!sharedKeys.accepted) {
-    return `missing_accepted_shared_key_${sharedKeys.missingSharedKeys[0]}`;
+    const firstMissingKey = sharedKeys.missingSharedKeys[0];
+    if (sharedKeys.keys?.[firstMissingKey]?.reason === "accepted_without_evidence_source") {
+      return "accepted_without_evidence_source";
+    }
+    return `missing_accepted_shared_key_${firstMissingKey}`;
   }
   if (!sharedKeys.hiddenRetuneNumericPass) {
     return `hidden_retune_${sharedKeys.mismatches[0]?.key ?? "shared_key"}`;
@@ -654,7 +668,7 @@ function firstBlocker({
   return status;
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, inputPath = null) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -665,8 +679,16 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
-    return { accepted: false, reason: "row_source_not_found" };
+  const sourceCheck = firstSourceReferenceCheck(inputPath, row.sourcePath, row.source);
+  if (!sourceCheck.accepted) {
+    if (isNonEvidenceSourceReason(sourceCheck.reason)) {
+      return {
+        accepted: false,
+        reason: "accepted_without_evidence_source",
+        sourceReason: sourceCheck.reason,
+      };
+    }
+    return { accepted: false, reason: sourceCheck.reason, sourceReason: sourceCheck.reason };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -712,27 +734,111 @@ function concreteString(value) {
   );
 }
 
-function sourceReferenceExists(value) {
-  if (!concreteString(value)) {
-    return false;
+function sourceReferenceExists(value, inputPath = null) {
+  return sourceReferenceCheck(value, inputPath).accepted;
+}
+
+function firstSourceReferenceCheck(inputPath, ...values) {
+  let firstFailure = { accepted: false, reason: "missing_source_path" };
+  for (const value of values) {
+    const check = sourceReferenceCheck(value, inputPath);
+    if (check.accepted) {
+      return check;
+    }
+    if (firstFailure.reason === "missing_source_path") {
+      firstFailure = check;
+    }
   }
-  const resolvedPath = path.resolve(value.trim());
-  if (isNonDurableSourcePath(resolvedPath)) {
-    return false;
+  return firstFailure;
+}
+
+function sourceReferenceCheck(value, inputPath = null) {
+  if (!concreteString(value)) {
+    return { accepted: false, reason: "missing_source_path" };
+  }
+  const sourcePath = value.trim().replace(/#.*/, "");
+  const resolvedPath = path.isAbsolute(sourcePath)
+    ? sourcePath
+    : path.resolve(REPO_ROOT, sourcePath);
+  if (inputPath && path.resolve(inputPath) === resolvedPath) {
+    return { accepted: false, reason: "self_referential_source" };
+  }
+  const rejectionReason = sourceReferenceRejectionReason(resolvedPath);
+  if (rejectionReason) {
+    return { accepted: false, reason: rejectionReason };
   }
   try {
-    return fs.statSync(resolvedPath).isFile();
+    if (!fs.statSync(resolvedPath).isFile()) {
+      return { accepted: false, reason: "source_not_file" };
+    }
   } catch {
-    return false;
+    return { accepted: false, reason: "source_not_found" };
   }
+  return { accepted: true, reason: "accepted" };
 }
 
 function isNonDurableSourcePath(filePath) {
+  return sourceReferenceRejectionReason(filePath) !== null;
+}
+
+function sourceEvidenceFailureCount(rowChecks, sharedKeys) {
+  const rowFailures = Object.values(rowChecks).filter(
+    (check) => check.reason === "accepted_without_evidence_source",
+  ).length;
+  const sharedKeyFailures = Object.values(sharedKeys.keys ?? {}).filter(
+    (check) => check.reason === "accepted_without_evidence_source",
+  ).length;
+  return rowFailures + sharedKeyFailures;
+}
+
+function isNonEvidenceSourceReason(reason) {
+  return new Set([
+    "temp_source_path",
+    "coordination_source_path",
+    "authored_prose_source_path",
+    "generated_source_path",
+    "control_or_attempt_source_path",
+    "self_referential_source",
+    "source_contract_path",
+  ]).has(reason);
+}
+
+function sourceReferenceRejectionReason(filePath) {
   const normalized = path.normalize(filePath);
-  return (
-    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
-    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
-    normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
-    path.basename(normalized).includes(".tmp")
-  );
+  const tempRoot = path.normalize("/tmp");
+  const privateTempRoot = path.normalize("/private/tmp");
+  if (
+    normalized.startsWith(`${tempRoot}${path.sep}`) ||
+    normalized.startsWith(`${privateTempRoot}${path.sep}`)
+  ) {
+    return "temp_source_path";
+  }
+  const relative = path.relative(REPO_ROOT, normalized);
+  const basename = path.basename(normalized).toLowerCase();
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return "source_outside_repo";
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return "coordination_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return "authored_prose_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return "generated_source_path";
+  }
+  if (
+    basename.includes("attempt") ||
+    basename.includes("mock") ||
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("negative-control") ||
+    basename.includes("source-contract") ||
+    basename.includes(".tmp")
+  ) {
+    return basename.includes("source-contract")
+      ? "source_contract_path"
+      : "control_or_attempt_source_path";
+  }
+  return null;
 }

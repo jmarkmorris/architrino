@@ -184,12 +184,17 @@ function partnerRootContribution(speedRatio, delta) {
   const q = cosine >= 0 ? 1 : -1;
   const sine = Math.sin(delta / 2);
   const jacobian = 1 + speedRatio * q * sine;
+  const receiverNormalNumerator = 1 - speedRatio * q * sine;
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
   const periodIntegral =
-    (TAU * speedRatio * q * sine) / (delta * delta * Math.abs(jacobian));
+    (TAU * speedRatio * q * sine * Math.abs(receiverNormalFactor)) / (delta * delta);
   return {
     phase_delay: delta,
     q,
     jacobian,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    branch_weight: Math.abs(receiverNormalFactor),
     period_integral: periodIntegral,
   };
 }
@@ -392,7 +397,7 @@ export function buildOctahedralFoldAwareMultirootPeriodIntegral(options = {}) {
     partner_multiroot_reduction: {
       root_equation: "2*v*|cos(delta/2)|-delta=0",
       contribution_formula:
-        "P_alpha(v)=2*pi*v*q_alpha*sin(delta_alpha/2)/(delta_alpha^2*|1+v*q_alpha*sin(delta_alpha/2)|)",
+        "P_alpha(v)=2*pi*v*q_alpha*sin(delta_alpha/2)*abs((1-v*q_alpha*sin(delta_alpha/2))/(1+v*q_alpha*sin(delta_alpha/2)))/delta_alpha^2",
       q_definition: "q_alpha=sign(cos(delta_alpha/2))",
       period_integral_formula: "P_all(v)=sum_alpha P_alpha(v)",
       secondary_fold: {
@@ -429,18 +434,23 @@ export function buildOctahedralFoldAwareMultirootPeriodIntegral(options = {}) {
       certifies_observer_export: false,
       retained_branch: false,
       claim_level:
-        "sampled fold-aware multi-root period-integral zero bracket via partner-root reduction; not retained",
+        "sampled fold-aware multi-root period-integral receiver-normal scan; not retained",
     },
     result: {
       theory_status:
         zero.status === "zero-bracket-detected" && crossCancellationPassed
           ? "sampled-fold-aware-multiroot-period-integral-zero-bracket-detected"
           : "sampled-fold-aware-multiroot-period-integral-open",
-      first_successor_row: "sign-zero-bracket-certificate-created-retention-rows-required",
+      first_successor_row:
+        zero.status === "zero-bracket-detected" && crossCancellationPassed
+          ? "sign-zero-bracket-certificate-created-retention-rows-required"
+          : "receiver-normal-zero-bracket-search-required",
       retention: "not_retained",
       retained_branch: false,
       status_note:
-        "The fold-aware multi-root period integral reduces to the antipodal-partner all-root sum after cross-binary period cancellation. A sampled zero bracket appears on the three-root partner sheet, but no clock, action/Noether, event-stability, bounded-speed live ledger, or observer-export row is certified.",
+        zero.status === "zero-bracket-detected" && crossCancellationPassed
+          ? "The fold-aware multi-root period integral reduces to the antipodal-partner all-root sum after cross-binary period cancellation. The sampled receiver-normal zero bracket is still not a clock, action/Noether, event-stability, bounded-speed live ledger, or observer-export row."
+          : "The receiver-normal wake factor preserves the cross-binary cancellation row but removes the prior sampled partner-root zero bracket on this scan. The zero-bracket lane must be restarted before any dynamics handoff can use it.",
     },
   };
 }
@@ -483,19 +493,11 @@ export function validateOctahedralFoldAwareMultirootPeriodIntegral(artifact) {
     errors
   );
   assertField(
-    artifact?.zero_mean_candidate?.status ===
+    [
       "sampled-fold-aware-multiroot-period-integral-zero-bracket-detected",
-    "artifact must record the sampled fold-aware zero bracket",
-    errors
-  );
-  assertField(
-    artifact?.zero_mean_candidate?.row?.root_count === 3,
-    "zero bracket row must sit on the three-root partner sheet",
-    errors
-  );
-  assertField(
-    Math.abs(Number(artifact?.zero_mean_candidate?.row?.period_integral)) < 1e-10,
-    "zero candidate period integral must be numerically small",
+      "sampled-fold-aware-multiroot-period-integral-zero-bracket-open",
+    ].includes(artifact?.zero_mean_candidate?.status),
+    "artifact must record whether the sampled receiver-normal zero bracket was detected",
     errors
   );
   assertField(

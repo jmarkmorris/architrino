@@ -1,0 +1,98 @@
+{
+  "schema": "aaa-equation-map-eq02-04-retained-geometry-provenance/v1",
+  "claimLevel": "retained-geometry provenance schema fixture with accepted identity fields and synthetic target-specific provenance payload",
+  "status": "accepted",
+  "provenanceId": "eq02_04_retained_geometry_provenance_shell_0001",
+  "retainedRowSetId": "S_eq",
+  "commonCarrierId": "C_02_04_bin_u_external_provider_shell_0001",
+  "domainId": "D_02_04_bin_u_external_provider_shell_0001",
+  "supportId": "S_eq_retained_domain_external_provider_shell_0001",
+  "provenanceRecords": [
+    {
+      "id": "raw_labeled_rows_preserved_on_retained_history",
+      "status": "accepted",
+      "traceId": "synthetic_raw_row_trace_external_provider_shell_0001",
+      "rows": [
+        {
+          "rowId": "raw_labeled_rows_preserved_on_retained_history_external_provider_shell_0001"
+        }
+      ]
+    },
+    {
+      "id": "B_N",
+      "status": "accepted",
+      "traceId": "synthetic_B_N_trace_external_provider_shell_0001",
+      "observations": [
+        {
+          "field": "B_N"
+        }
+      ]
+    },
+    {
+      "id": "Sigma_N",
+      "status": "accepted",
+      "traceId": "synthetic_Sigma_N_trace_external_provider_shell_0001",
+      "observations": [
+        {
+          "field": "Sigma_N"
+        }
+      ]
+    },
+    {
+      "id": "P_N",
+      "status": "accepted",
+      "traceId": "synthetic_P_N_trace_external_provider_shell_0001",
+      "observations": [
+        {
+          "field": "P_N"
+        }
+      ]
+    },
+    {
+      "id": "K_P_N",
+      "status": "accepted",
+      "traceId": "synthetic_K_P_N_trace_external_provider_shell_0001",
+      "observations": [
+        {
+          "field": "K_P_N"
+        }
+      ]
+    },
+    {
+      "id": "refinement_step_0",
+      "status": "accepted",
+      "traceId": "synthetic_refinement_step_0_trace_external_provider_shell_0001",
+      "steps": [
+        {
+          "h": 0.01,
+          "N": 16
+        }
+      ]
+    },
+    {
+      "id": "refinement_step_1",
+      "status": "accepted",
+      "traceId": "synthetic_refinement_step_1_trace_external_provider_shell_0001",
+      "steps": [
+        {
+          "h": 0.005,
+          "N": 17
+        }
+      ]
+    },
+    {
+      "id": "refinement_step_2",
+      "status": "accepted",
+      "traceId": "synthetic_refinement_step_2_trace_external_provider_shell_0001",
+      "steps": [
+        {
+          "h": 0.0025,
+          "N": 18
+        }
+      ]
+    }
+  ],
+  "notes": [
+    "This file exists only to prove that accepted-looking target-specific provenance records are not retained geometry provenance by themselves."
+  ]
+}

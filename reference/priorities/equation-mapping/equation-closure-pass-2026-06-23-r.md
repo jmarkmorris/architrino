@@ -58,13 +58,13 @@ No score changes. The hardening protects future acceptance but does not supply a
 
 ## Closure Value
 
-The finite-window carrier can now be used as a shared score-moving route without a hidden compatibility trap. The evaluator distinguishes:
+The finite-window carrier can now be used as a shared accepted-retained-evidence route without a hidden compatibility trap. The evaluator distinguishes:
 
 - a useful toy shape check;
 - an attempted retained carrier with missing accepted rows;
 - an accepted retained carrier whose rows are source-backed and not merely labeled.
 
-The strongest next score-moving target is still one real retained carrier:
+The strongest next accepted-retained-evidence target is still one real retained carrier:
 
 $$
 \left(

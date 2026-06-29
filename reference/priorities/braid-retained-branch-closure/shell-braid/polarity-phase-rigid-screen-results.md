@@ -73,14 +73,15 @@ $$
 Ry.
 $$
 
-The dimensionless force was
+The receiver-normal restart force is
 
 $$
 \widetilde{\mathbf{F}}_i(\theta)
 =
 \sum_{j\in\mathcal{A}_i}
-\frac{\sigma_i\sigma_j}
-{y_{ij}^2|J_{ij}|}
+\sigma_i\sigma_j
+\frac{W_{ij}^{\mathrm{rec}}}
+{y_{ij}^2}
 \hat{\mathbf{r}}_{ij},
 $$
 

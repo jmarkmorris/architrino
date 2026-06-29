@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-29T00:52:39.233Z",
-  "total_links": 1588,
+  "generated_at": "2026-06-29T10:19:50.651Z",
+  "total_links": 1579,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -1798,22 +1798,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/assemblies/fermions/color-charge-su3.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/assemblies/gauge-symmetries.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1842,14 +1826,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2118,14 +2094,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#effective-hamiltonian-domain-gate",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2134,23 +2102,7 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#native-continuum-action-closure-target",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#regularized-nonlocal-action-and-variation",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
@@ -2494,30 +2446,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#finite-eta-pathology-quarantine-theorem-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2551,14 +2479,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-logarithmic-spiral-advanced-non-circular-benchmark",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -2919,6 +2839,14 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/proof-programs/collinear-breather.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/collinear-breather.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/proof-programs/collinear-breather.md#held-release-restart-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/proof-programs/collinear-breather.md"

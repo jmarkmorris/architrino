@@ -28,7 +28,7 @@ import {
 const EXPECTED_STATUS =
   "h39-rouche-y-radius-optimum-reduction-certified";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 function scriptPath() {
   return path.resolve(

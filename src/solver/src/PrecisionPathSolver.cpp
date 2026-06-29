@@ -220,10 +220,18 @@ DelayedHitResult build_delayed_hits_from_roots(const CausalRootRequest& request,
         root.distance,
         root.jacobian,
         strength,
+        root.sourceNormalSpeed,
+        root.receiverNormalSpeed,
+        root.sourceNormalDenominator,
+        root.receiverNormalNumerator,
+        root.receiverNormalCrossingFactor,
+        root.receiverNormalFactor,
+        root.unsignedReceiverNormalFactor,
         root.sourcePoint,
         root.receiverPoint,
         unit_or_zero(displacement),
         root.statusCode,
+        root.receiverNormalStatusCode,
     });
   }
 

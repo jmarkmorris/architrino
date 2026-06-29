@@ -79,7 +79,7 @@ test("fold-aware forcing interval sign target atlas imposes no speed window", ()
 
   assert.equal(
     atlas.enclosure_target_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.equal(atlas.enclosure_target_parameters.speed_band, undefined);
   assert.equal(atlas.enclosure_target_parameters.speed_window, undefined);

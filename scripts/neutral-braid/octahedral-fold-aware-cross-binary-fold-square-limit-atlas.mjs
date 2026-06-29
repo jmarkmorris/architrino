@@ -476,7 +476,7 @@ export function buildOctahedralFoldAwareCrossBinaryFoldSquareLimitAtlas(
       source_quadrature_panels_per_segment: sourceQuadraturePanelsPerSegment,
       y_samples: ySamples.map(formatNumber),
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate: formatNumber(speedRatio),
       speed_ratio_enclosure:
         criticalValueAtlas.quadrature_parameters.speed_ratio_enclosure,
@@ -588,7 +588,7 @@ export function validateOctahedralFoldAwareCrossBinaryFoldSquareLimitAtlas(
   );
   assertField(
     artifact?.square_limit_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "fold square limit atlas must not impose a fixed speed window",
     errors
   );

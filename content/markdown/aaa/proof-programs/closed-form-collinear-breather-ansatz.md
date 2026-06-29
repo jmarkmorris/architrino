@@ -1,5 +1,17 @@
 # Closed-Form Collinear Breather Ansatz
 
+Receiver-normal restart notice. Candidate ansatz packets, collocation rows, and
+finite certificates are closure evidence for the canonical Master EOM only if
+they carry receiver-normal branch strength. The ansatz program may reuse
+history-space, root-ledger, inactive-gap, finite-memory, and source-normal
+transversality structure, but every force, action, returned-history, and margin
+row must be rebuilt with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+promotion.
+
+This is a restart, not a repair pass. Earlier ansatz constants, collocation
+successes, candidate cycles, or finite-certificate verdicts are not inherited as
+proof steps unless they are regenerated on the current receiver-normal record.
+
 This note starts a parallel ansatz program for the 1D collinear breather. It does not replace the fixed-point proof architecture in [collinear-breather.md](./collinear-breather.md). Its purpose is to generate certificate data for that proof program. A closed-form or closed-by-quadrature orbit is useful only insofar as it produces a candidate cycle, a branch chart, a mesh, and return residuals with strict audit slack.
 
 This program is optional for the existence proof. The proof does not need an elementary closed-form orbit; it needs one candidate certified cycle and a finite certificate for the return map on a closed convex tame domain.
@@ -211,17 +223,31 @@ The causal partner distance is therefore
 $$
 r_p=c_f\tau_p=\frac{2c_f x}{c_f+v}
 $$
-and the branch Jacobian is
+and the source-normal denominator is
 $$
-J_p=1+\frac{v}{c_f}
+D_s=c_f+v.
 $$
-Ignoring the short-distance core for a moment, the partner force scale becomes
+The receiver-normal numerator is
+$$
+D_t=c_f-v,
+$$
+so the receiver-normal branch strength is
+$$
+W_p^{\mathrm{rec}}
+=
+\left|\frac{D_t}{D_s}\right|
+=
+\frac{c_f-v}{c_f+v}
+$$
+on this inbound exterior chart. Ignoring the short-distance core for a moment,
+the partner force scale becomes
 $$
 A_p
 \sim
-\frac{\kappa\epsilon^2}{r_p^2J_p}
+\frac{\kappa\epsilon^2 W_p^{\mathrm{rec}}}{r_p^2}
 =
-\frac{\kappa\epsilon^2(c_f+v)}{4c_f x^2}
+\frac{\kappa\epsilon^2}{4x^2}
+\left(1-\frac{v^2}{c_f^2}\right).
 $$
 With
 $$
@@ -233,15 +259,16 @@ this reads
 $$
 A_p
 \sim
-\frac{g(1+\beta)}{4x^2}
+\frac{g(1-\beta^2)}{4x^2}
 $$
 
-This is not, by itself, a conservative potential curve. The Jacobian factor makes the affine partner force velocity dependent, so the local model is a Lienard-type phase equation. On the bare affine partner chart,
+This is not, by itself, a conservative potential curve. The receiver-normal
+affine partner row remains velocity dependent:
 $$
 \ddot x
 =
 -\frac{g}{4x^2}
-\left(1+\frac{\dot x}{c_f}\right)
+\left(1-\frac{\dot x^2}{c_f^2}\right).
 $$
 Writing
 $$
@@ -251,15 +278,15 @@ v(x)=\dot x,
 $$
 gives the separable phase equation
 $$
-\frac{v}{1+v/c_f}\,dv
+\frac{v}{1-v^2/c_f^2}\,dv
 =
 -\frac{g}{4x^2}\,dx
 $$
-Hence the exact affine partner invariant is
+Hence the receiver-normal affine partner invariant is
 $$
-c_f v-c_f^2\ln|c_f+v|
+\ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
-\frac{g}{4x}+C_{\mathcal{R}}
+-\frac{g}{2c_f^2x}+C_{\mathcal{R}}
 $$
 This implicit phase-space curve replaces the naive energy curve on the affine partner chart. The logarithmic term also exposes a useful topology check: in the unsoftened affine partner model, reaching
 $$
@@ -298,7 +325,9 @@ $$
 
 ### Sub-field-speed partner-only benchmark
 
-The sub-field comparison case must be generated from the force law, not prescribed as a future path. On the exterior affine partner chart above, fix initial data
+The sub-field comparison case must be generated from the receiver-normal force
+law, not prescribed as a future path. On the exterior affine partner chart
+above, fix initial data
 $$
 x(0)=x_0>0,
 \qquad
@@ -311,77 +340,53 @@ $$
 \ddot x
 =
 -\frac{g}{4x^2}
-\left(1+\frac{\dot x}{c_f}\right)
+\left(1-\frac{\dot x^2}{c_f^2}\right).
 $$
-The held-release preparation supplies one concrete source of such initial data. If the pre-release source is held at $-x_0$ and
-$$
-y(t)\equiv x(t)+x_0
-$$
-then the held-source segment has
-$$
-y(\theta)=2x_0\cos^2\theta,
-\qquad
-x(\theta)=x_0\cos(2\theta),
-\qquad
-\dot x(\theta)=-\sqrt{\frac{g}{x_0}}\tan\theta
-$$
-The first moving-partner wake reaches the receiver at the unique angle satisfying
-$$
-\cos^2\theta_\ast
-=
-\rho\left(\theta_\ast+\sin\theta_\ast\cos\theta_\ast\right),
-\qquad
-\rho\equiv c_f\sqrt{\frac{x_0}{g}}
-$$
-For $x_0=1.25$, $g=1$, and $c_f=1$, this gives
-$$
-x_\ast\approx0.8707972823389274,
-\qquad
-\beta_\ast\approx-0.37820836925058077
-$$
-Thus the exterior Lambert branch can be initialized from a finite sub-field-speed handoff rather than from the rejected exact field-speed head-on prehistory.
+A held-release preparation may still supply initial data, but the solved
+fixture is purged. The held segment must now be solved from the
+receiver-normal equation in
+[Collinear Breather](./collinear-breather.md#held-release-restart-target)
+before it can initialize this exterior chart.
 
 With
 $$
 \alpha=\frac{g}{4c_f^2}
 $$
-the exact phase invariant is
+the exact receiver-normal phase invariant is
 $$
-\beta-\beta_0
--\ln\!\left(\frac{1+\beta}{1+\beta_0}\right)
+\ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)
 =
-\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right),
+-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right),
 \qquad
 \beta=\frac{\dot x}{c_f}
 $$
-Equivalently, if
-$$
-S(x)=\beta_0-\ln(1+\beta_0)+\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
-$$
-then the two analytic velocity branches are
-$$
-\beta_k(x)
-=
--1-\operatorname{W}_k\!\left(-e^{-(S(x)+1)}\right)
-$$
-The inbound sub-field branch is
+For the inbound branch,
 $$
 \beta_{\mathrm{in}}(x)
 =
--1-\operatorname{W}_0\!\left(-e^{-(S(x)+1)}\right)
+-\sqrt{
+1-(1-\beta_0^2)
+\exp\!\left[-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)\right]
+}
 $$
-and satisfies $-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart. The outbound branch uses the other real Lambert branch when the same invariant is continued away from the core layer. The branch time is recovered by
+and $-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart. The
+opposite sign supplies the outbound square-root branch when the same invariant
+is continued away from the core layer. The branch time is recovered by
 $$
 t-t_0
 =
 \int_x^{x_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
 $$
 
-This gives a controlled analytic baseline for a sub-field-speed breather search. The exterior partner branch does not reach
+This gives only a receiver-normal restart scaffold for a sub-field-speed
+breather search. The exterior partner branch does not reach
 $$
 |\dot x|=c_f
 $$
-at any finite $x>0$; the logarithm diverges as $\beta\to-1^+$. Therefore a finite-radius field-speed separator is not produced by this action-generated partner chart. It must come from a core-layer effect, finite shell width, nonaffine path history, a self-image contribution, or a different certified branch chart.
+at any finite $x>0$. Therefore a finite-radius field-speed separator is not
+produced by this receiver-normal affine partner chart. It must come from a
+core-layer effect, finite shell width, nonaffine path history, a self-image
+contribution, or a different certified branch chart.
 
 The same branch also supplies an exact self-root exclusion test in the sharp-shell limit. If a candidate history satisfies
 $$
@@ -429,7 +434,11 @@ r_p=c_f\tau_p,
 \qquad
 \hat r_p=\sigma,
 \qquad
-J_p=1+\frac{u_r}{c_f}
+D_s=c_f+u_r,
+\qquad
+D_t=c_f-u_r,
+\qquad
+W_p^{\mathrm{rec}}=\frac{c_f-u_r}{c_f+u_r}
 $$
 The signed partner acceleration in the
 $$
@@ -441,13 +450,13 @@ $$
 $$
 that is, inward toward the origin.
 
-| Arc chart | Radial assumptions | $\tau_p$ | $\hat r_p$ | $J_p$ | Partner sign in $x$ | Validity conditions |
-| --- | --- | --- | --- | --- | --- | --- |
-| inbound exterior | $q>0$, $u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}$ | $-\sigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
-| field-speed hinge | $u_r=-c_f$ | singular | $\sigma$ before the fold | $0$ | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral |
-| origin-crossing layer | $q\lesssim \epsilon_c$ or $\sigma$ changes | not a single affine root | changes by layer | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
-| outbound exterior | $q>0$, $u_r>0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}>1$ | $-\sigma$ | same exterior chart and certified active root |
-| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | near $1$ | $-\sigma$ | strict sub-field margin and active-root separation on the apocenter window |
+| Arc chart | Radial assumptions | $\tau_p$ | $\hat r_p$ | $D_s/c_f$ | $W_p^{\mathrm{rec}}$ | Partner sign in $x$ | Validity conditions |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| inbound exterior | $q>0$, $u_r<0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | $c_f+u_r\ge \nu c_f$, no origin crossing inside the affine window |
+| field-speed hinge | $u_r=-c_f$ | singular | $\sigma$ before the fold | $0$ | singular | fold-controlled | branch-sum form invalid; use the dual-mollified fold integral |
+| origin-crossing layer | $q\lesssim \epsilon_c$ or $\sigma$ changes | not a single affine root | changes by layer | chart-dependent | chart-dependent | core-controlled | use the absolute-time integral law, not one exterior branch table |
+| outbound exterior | $q>0$, $u_r>0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | $1+\dfrac{u_r}{c_f}>1$ | $\dfrac{c_f-u_r}{c_f+u_r}$ | $-\sigma$ | same exterior chart and certified active root |
+| apocenter sub-field | $q>0$, $|u_r|<c_f$, $u_r\to 0$ | $\dfrac{2q}{c_f+u_r}$ | $\sigma$ | near $1$ | near $1$ | $-\sigma$ | strict sub-field margin and active-root separation on the apocenter window |
 
 This table is only the partner column of the certificate packet. The self-image columns must be produced separately because their source and receiver are the same labeled path and their active roots can change at field-speed separators.
 
@@ -473,7 +482,7 @@ Therefore a perfectly affine segment has no same-side exact self root away from 
 
 This suggests a closed-form strategy:
 
-1. solve sub-field and super-field segments as certified phase-space arcs, using Lienard quadrature where the causal Jacobian remains velocity dependent;
+1. solve sub-field and super-field segments as certified phase-space arcs, using receiver-normal phase quadrature where the branch strength remains velocity dependent;
 2. treat the field-speed separator as the event where causal images are born, die, or switch branch labels;
 3. impose matching laws at those separator events.
 
@@ -595,19 +604,20 @@ $$
 $$
 held fixed by the certificate.
 
-The affine partner calculation gives the model row
+The receiver-normal affine partner calculation gives the model row
 $$
 v\frac{dv}{dx}
 =
--\frac{g}{4x^2}\left(1+\frac{v}{c_f}\right)
+-\frac{g}{4x^2}\left(1-\frac{v^2}{c_f^2}\right)
 $$
 with exact implicit quadrature
 $$
-c_f v-c_f^2\ln|c_f+v|
+\ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
-\frac{g}{4x}+C_{\mathcal{R}}
+-\frac{g}{2c_f^2x}+C_{\mathcal{R}}
 $$
-More generally, if the certified branch chart yields a separable Lienard row
+More generally, if the certified branch chart yields a separable
+receiver-normal velocity row
 $$
 \frac{v}{Q_{\mathcal{R}}(v)}\,dv
 =
@@ -621,7 +631,8 @@ $$
 =
 C_{\mathcal{R}}
 $$
-This is the preferred closed-form object for branch charts with velocity-dependent causal Jacobians.
+This is the preferred closed-form object for branch charts with
+velocity-dependent receiver-normal branch strength.
 
 A conservative potential is allowed only as a special certified reduction. The required condition is
 $$
@@ -637,7 +648,9 @@ dependence after the active image data are fixed. If that identity is proved, th
 $$
 \frac{1}{2}\dot x^2+U_{\mathcal{R}}(x;\mathcal{I}_{\mathcal{R}})=E_{\mathcal{R}}
 $$
-Absent that proof, the chart must use the Lienard phase invariant, direct interval quadrature, or collocation residuals for the dual-mollified absolute-time law.
+Absent that proof, the chart must use the receiver-normal phase invariant,
+direct interval quadrature, or collocation residuals for the dual-mollified
+absolute-time law.
 
 Thus the ansatz search reduces to two questions:
 
@@ -1417,7 +1430,7 @@ A candidate ansatz packet must produce:
    \{\theta_j\}_{j=0}^{N}
    \subset[-h,0]
    $$
-9. algebraic, Lienard phase quadrature, fractionally augmented Chebyshev or cubic
+9. algebraic receiver-normal phase quadrature, fractionally augmented Chebyshev or cubic
    $$
    C^1
    $$
@@ -1523,11 +1536,12 @@ C_{>}
 $$
 is replaced by the analogous independent shape coefficient for the inner super-field segment.
 
-On a fixed affine partner chart, the default quadrature arc is generated by the Lienard phase invariant
+On a fixed affine partner chart, the default quadrature arc is generated by the
+receiver-normal phase invariant
 $$
-c_f v-c_f^2\ln|c_f+v|
+\ln\!\left(1-\frac{v^2}{c_f^2}\right)
 =
-\frac{g}{4x}+C_{\mathcal{R}},
+-\frac{g}{2c_f^2x}+C_{\mathcal{R}},
 \qquad
 v=\dot x
 $$
@@ -1610,7 +1624,10 @@ $$
 
 ## Immediate Derivation Tasks
 
-1. Use the action-generated sub-field test case as the first analytic baseline: compare the held-source energy segment, the Lambert-$W$ exterior partner branch, and the finite-width self-collar before accepting any field-speed separator as dynamically produced.
+1. Rebuild the sub-field analytic baseline from the receiver-normal held-release
+   restart equation, the receiver-normal exterior partner branch, and the
+   finite-width self-collar before accepting any field-speed separator as
+   dynamically produced.
 2. Complete the signed partner branch table for affine and fixed-chart arcs, including the core-mollified force coefficient and validity margins.
 3. Compute the separator normal-form constants and fold-layer impulse bounds for every proposed
    $$

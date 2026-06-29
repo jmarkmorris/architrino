@@ -331,7 +331,8 @@ function evaluateRetainedRecord(input, inputPath) {
     },
     summary: {
       status,
-      scoreDecision: populated ? "eligible_for_score_review" : "no_score_increase",
+      scoreDecision: "no_score_increase",
+      scoreReviewPreconditionsMet: populated,
       nextBlocker,
       nextBlockerDetails,
       commonCarrierId,

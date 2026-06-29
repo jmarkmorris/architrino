@@ -8404,7 +8404,7 @@ bookkeeping or proof scaffolds that remain subordinate to the native branch law.
 
 The important correction is the status of the familiar $1/r$ potential. The
 accepted primitive dynamics is not "a static $1/r$ field." The accepted
-primitive dynamics is the causal-root, inverse-square, Jacobian-weighted
+primitive dynamics is the causal-root, inverse-square, receiver-normal
 acceleration law. A $1/r$ expression appears as a stationary/path-history
 potential calibration and as a partial Fokker-type variational scaffold, but it
 does not by itself relieve the burden of deriving or certifying the Master EOM.
@@ -8420,8 +8420,8 @@ does not by itself relieve the burden of deriving or certifying the Master EOM.
 | Causal-root set | $F_{ij}(t,s)=\lVert\mathbf{x}_i(t)-\mathbf{x}_j(s)\rVert-c_f(t-s)$ and $\mathcal{C}_{ij}(t)=\{\,s<t:F_{ij}(t,s)=0\,\}$ | Native branch-selection geometry | Treating all past source points as active, or treating root existence as stability proof |
 | Causal surface density | $\rho(t,\mathbf{x})=\dfrac{q}{4\pi r^2}\delta(r-c_f\tau)H(\tau)$ | Distributional representation of causal wake support | A permanent filled $1/r$ near field or autonomous field substance |
 | Heaviside endpoint rule | $H(0)=0$ and $t_0<t$ in the causal-root set | Native endpoint convention | Instantaneous self-kick or zero-delay self-force |
-| Root Jacobian and transversality | $J_{ij}=1-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}/c_f$ with positive branch floor | Direct branch-analysis tool in the native law | Replacing the branch factor by speed magnitude, or ignoring caustic/fold regimes |
-| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, or a mass-based force ontology |
+| Root Jacobian and transversality | $D_{s,ij}=c_f-\mathbf{v}_j(s)\cdot\hat{\mathbf{r}}_{ij}$ with positive branch floor | Direct source-normal branch-analysis tool in the native law | Replacing branch strength by source-normal data alone, speed magnitude, or ignoring caustic/fold regimes |
+| Per-hit acceleration | $\mathbf{a}_{ij}=\kappa\sigma_{ij}\dfrac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}}{r_{ij}^2}\hat{\mathbf{r}}_{ij}$ with $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ | Accepted native dynamical law on certified branch charts | Cross-product forces, primitive magnetic fields, source-normal-only branch strength, or a mass-based force ontology |
 | Total acceleration | $\ddot{\mathbf{x}}_i(t)=\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}\mathbf{a}_{ij}(t;t_0)$ | Accepted native branch sum | Bulk equations, convergence for infinite populations, or assembly stability without added branch records |
 | Superposition | Source contributions add linearly on the declared branch chart | Native source-addition rule and effective reconstruction tool | Wake-wake interaction as an independent substance law |
 | Regularized wake surface | $\delta(r-c_f\tau)\to\delta_\eta(r-c_f\tau)$, with optional core scale $\epsilon_c$ in proof models | Formal regularization and simulation/proof tool | A new substrate substance, a hidden fit parameter, or a completed $\eta\to0$ proof |
@@ -8446,7 +8446,8 @@ $$
 =
 \sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \kappa\sigma_{ij}
-\frac{\lvert q_iq_j\rvert}{r_{ij}^2(t;t_0)\lvert J_{ij}(t;t_0)\rvert}
+\frac{\lvert q_iq_j\rvert W_{ij}^{\mathrm{rec}}(t;t_0)}
+{r_{ij}^2(t;t_0)}
 \hat{\mathbf{r}}_{ij}(t;t_0).
 $$
 
@@ -8484,7 +8485,7 @@ Risk scores:
 | Causal-root set | 4 | Root existence is exact but branch completeness, multiplicity, and fold handling are hard | Record active roots, inactive gaps, memory depth, and branch-chart boundaries |
 | Causal surface density | 4 | The $1/r^2$ surface law can be mistaken for a permanent filled field and does not by itself solve convergence in large populations | Use it as distributional wake support with normalization, screening, or cancellation conditions |
 | Heaviside endpoint rule | 2 | Endpoint exclusion is clear, but regulator choices can reintroduce ambiguous self-contact behavior | Keep $H(0)=0$ and match any mollified endpoint convention to the same branch packet |
-| Root Jacobian and transversality | 4 | The Jacobian is essential and easy to misread as speed weighting; small denominators mark branch failure, not ordinary force amplification | Use $\lvert J_{ij}\rvert^{-1}$ only with transversality floors, caustic routing, and root diagnostics |
+| Source-normal transversality and receiver-normal strength | 4 | The source-normal denominator is essential and easy to misread as total branch strength; small denominators mark branch failure, not ordinary force amplification | Use $D_s$ for transversality floors, caustic routing, and root diagnostics; use $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for force/action strength |
 | Per-hit acceleration | 4 | This is the accepted native law, but relying on it globally without branch certification overclaims exact closure | Attach use to certified causal roots, Jacobian floors, endpoint rules, and regularization status |
 | Total acceleration | 5 | The branch sum can hide missing roots, divergent far populations, or unproved infinite-system convergence | Declare finite horizons, summation prescriptions, cancellation estimates, or convergence proof targets |
 | Superposition | 4 | Linear source addition is native on a branch chart, but far-field accumulation and incoherent cancellation are nontrivial | Pair superposition with convergence, screening, finite-window, or mean-field controls |
@@ -8758,7 +8759,7 @@ A physical qubit corresponds to the stable orientational states of a nested shel
 
 The computational basis states $|0\rangle$ and $|1\rangle$ are defined as the two meta-stable, minimal-energy topological alignments of $\hat{\mathbf{n}}_{\text{in}}$ and $\hat{\mathbf{n}}_{\text{out}}$ relative to the middle binary fulcrum $\hat{\mathbf{n}}_{\text{mid}}$.
 
-The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, Jacobian-weighted causal-root sum defined in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
+The abstract Hilbert space $\mathcal{H}$ serves as an effective description of the continuous non-Markovian phase space $\Gamma$. The dynamics of the constituent architrinos are governed by the delayed, line-of-action, receiver-normal causal-root sum defined in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md). This page uses that law as the substrate dynamics and treats Hilbert operators as recovered record-channel maps, not as primitive generators.
 
 Superposition is not a linear combination of independent ontological branches. It is a bounded, precessional limit cycle in $\Gamma$. During superposition, the assembly continuously emits polarized potential along its causal wake, exploring multiple stable path-histories simultaneously without settling into a singular orientational attractor.
 
@@ -9291,7 +9292,8 @@ $$
 \sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}
+{r_{ij}^2(t;t_0)}
+W_{ij}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf{r}}_{ij}(t;t_0)
 $$
 
@@ -9390,8 +9392,8 @@ P_{12}(t;t_0)
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|}
-{r_{12}^2|J_{12}|}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+{r_{12}^2}
 v_r
 $$
 
@@ -9664,10 +9666,24 @@ $$
 and
 
 $$
-J_{\ell\alpha,m\beta}^{(b)}
+D_{s,\ell\alpha,m\beta}^{(b)}
 =
-1-\frac{\mathbf v_{m,\beta}(t_0^{(b)})\cdot
-\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}}{c_f}
+c_f-\mathbf v_{m,\beta}(t_0^{(b)})\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
+\qquad
+D_{t,\ell\alpha,m\beta}^{(b)}
+=
+c_f-\mathbf v_{\ell,\alpha}(t)\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
+$$
+and
+$$
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
+=
+\left|
+\frac{D_{t,\ell\alpha,m\beta}^{(b)}}
+{D_{s,\ell\alpha,m\beta}^{(b)}}
+\right|
 $$
 
 The branch force-like bookkeeping term is
@@ -9677,8 +9693,8 @@ $$
 =
 \mu_{\text{arch}}\kappa\sigma_{\ell\alpha,m\beta}
 \frac{|q_{\ell,\alpha}q_{m,\beta}|}
-{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2
-\left|J_{\ell\alpha,m\beta}^{(b)}\right|}
+{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2}
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 
@@ -11341,7 +11357,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-Forward and rear sectors therefore accumulate different phase delays and Jacobian weights. Combined with the transverse causal budget
+Forward and rear sectors therefore accumulate different phase delays, source-normal denominators, and receiver-normal branch strengths. Combined with the transverse causal budget
 
 $$
 c_{\perp}
@@ -12331,10 +12347,13 @@ $$
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
 \sum_{s\in\mathcal C_{ia}^{A}(t)}
 \sigma_{ia}
-\frac{|q_iq_a|}
-{r_{ia}^2(t;s)|J_{ia}(t;s)|}
+|q_iq_a|
+\frac{W_{ia}^{\mathrm{rec}}(t;s)}
+{r_{ia}^2(t;s)}
 \hat{\mathbf r}_{ia}(t;s)
 $$
+
+where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{t,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 
@@ -13008,7 +13027,7 @@ $$
 =
 \sum_j \sum_{t_0 \in \mathcal{C}_{ij}(t)}
 \kappa\, \sigma_{ij}\,
-\frac{|q_i q_j|}{r_{ij}^2\,\left|J_{ij}(t;t_0)\right|}\,
+\frac{|q_i q_j|\,W_{ij}^{\mathrm{rec}}(t;t_0)}{r_{ij}^2}\,
 \hat{\mathbf{r}}_{ij}
 $$
 
@@ -13284,7 +13303,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a caution about singular idealizati
 | de Broglie–Bohm Concept | $\mathbb{A}\mathbb{A}\mathbb{A}$ Micro-Dynamics |
 |:---|:---|
 | **Pilot wave $\psi$ on $\mathbb{R}^{3N}$** | Superposed causal wake in physical $\mathbb{R}^3$, generated by all architrinos and experienced by each at its location. No separate ontological entity; wake is produced by and acts on the same architrinos. |
-| **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all Jacobian-weighted inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
+| **Guidance equation** $\dot{\mathbf{q}}_k = (\hbar/m_k)\operatorname{Im}(\nabla_k\psi/\psi)$ | Master Equation: acceleration is the vector sum of all receiver-normal inverse-square causal wake-surface intersections. In the coarse-grained, slow-assembly limit, the net wake gradient produces an effective velocity field identifiable with $\nabla S/m$. |
 | **Quantum potential** $Q = -(\hbar^2/2m)(\nabla^2 R/R)$ | Jointly: self-hit non-Markovian feedback (path-history-dependent forces from own past emissions) plus Noether sea response (context-dependent effective potential from the surrounding Noether sea). |
 | **Quantum equilibrium** $\rho = |\psi|^2$ | Emergent statistical distribution over attractor basin volumes, mapped from unresolved Noether sea boundary and path-history structure. The Born rule is a **target derivation**, not an axiom; it belongs to the statistics gate below. |
 | **Configuration-space nonlocality** | Non-separable hidden-variable geometry from shared creation events (see [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md)). Correlations are carried in the joint internal configuration, not mediated by a field on $\mathbb{R}^{3N}$. |
@@ -13393,7 +13412,7 @@ Traditional superposition treats the indeterminacy as fundamental and ontologica
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, superposition is an epistemic (operational) description of an underlying deterministic, multistable dynamical system. At the fundamental level, every architrino possesses a definite position and velocity in the Euclidean void at all absolute times. There is no ontological smearing.
 
-Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the total potential experienced by any receiver is the exact, unmediated linear sum of all Jacobian-weighted inverse-square causal wake-surface intersections at its current location. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
+Linear causal-wake addition is one substrate ingredient for quantum superposition recovery: the total potential experienced by any receiver is the exact, unmediated linear sum of all receiver-normal inverse-square causal wake-surface intersections at its current location. Recovering Hilbert-space superposition still requires an effective chart, basin measure, coherence condition, and record-channel closure.
 
 This statement is substrate-level and should not be confused with the effective claim that a quantum state has formed a superposition in some Hilbert basis. Basis-dependent superposition language is admissible only after a preparation, apparatus kernel, retained coarse-graining, and record window have been declared. A change of Hilbert representation may move the apparent state-vector branch structure without changing the underlying assembly, causal-wake, or record-channel content.
 
@@ -20697,13 +20716,13 @@ The sharper version of the miss is a speed-ledger distinction. Classical source-
 
 Primitive wakes propagate at $c_f$; the photon-channel speed is $c_\gamma$ after assembly and Noether sea dressing; the effective kinematic speed in clock and ruler maps is $c_{\text{eff}}$; and the weak homogeneous empirical calibration speed is $c_0$. The architecture may later prove identifications such as $c_\gamma=c_{\text{eff}}=c_0+O(\epsilon_{\text{LV}}c_0)$ inside a declared regime, but it may not assume them before the dressing map closes.
 
-Point-transceiver speed remains a branch variable that may enter super-field-speed regimes without making the wake itself faster than $c_f$. With those levels separated, the moving-charge formulas become a source-history chart to refactor: keep causal roots and Jacobian weighting, but rebuild the many-body assembly law before importing observer-level light or field language.
+Point-transceiver speed remains a branch variable that may enter super-field-speed regimes without making the wake itself faster than $c_f$. With those levels separated, the moving-charge formulas become a source-history chart to refactor: keep causal roots and source-normal transversality, add receiver-normal branch strength, and rebuild the many-body assembly law before importing observer-level light or field language.
 
 That same novelty is also the well-posedness threat. A self-hit branch is not accepted merely because an architrino or internal assembly component enters a super-field-speed regime. Same-source root existence, transversality, a non-vanishing Jacobian floor, and regularization must keep the update finite. The architecture therefore requires a branch-selection rule that preserves deterministic multistability while excluding runaway self-acceleration and unbounded energy growth.
 
 The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
 
-That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, Jacobian-weighted reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
+That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, receiver-normal reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
 
 The later failure of classical electron theory then overgeneralized the verdict. One failed point-source model made the whole neoclassical design space look exhausted, even though the damaging assumptions were narrower: primitive source = observed electron charge, primitive wake speed = measured photon speed, and photon-channel speed = universal constituent speed limit. The Architrino architecture reverses those assumptions: charge is an assembly-level polarity inventory, photon speed is recovered channel behavior, and point transceivers may enter regimes governed by causal-root structure rather than by the observer-level light limit.
 

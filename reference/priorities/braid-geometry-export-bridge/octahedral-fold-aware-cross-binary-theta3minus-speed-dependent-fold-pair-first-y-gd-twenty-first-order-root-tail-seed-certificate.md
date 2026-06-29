@@ -1,12 +1,14 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Twenty-First-Order Root-Tail Seed Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate.md) and consumes the zero-safe setup from [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-shifted-tail-cancellation-certificate.md). It advances the first-y fold-pair $G,D$ branch by solving the first coefficient of the post-twentieth root-tail variable.
 
 It is not a finite $E_\varepsilon(y,\nu)$ tube, not a continuous bound on $T_G^{(21)}$ or $T_D^{(21)}$, and not full $\theta_{3-}^{-}$ collar closure. It certifies the seed value $E_\varepsilon(0,\nu)=h_{21,\varepsilon}(\nu)$ and the induced twenty-first-order quotient coefficients $Q_{G,21}$ and $Q_{D,21}$ over the existing no-fixed-speed-window speed-cell domain.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

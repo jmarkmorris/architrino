@@ -5,7 +5,7 @@
 #include <limits>
 #include <tuple>
 
-static_assert(sizeof(architrino::solver::RootLedgerDetailRowF64) == 192);
+static_assert(sizeof(architrino::solver::RootLedgerDetailRowF64) == 248);
 
 namespace architrino::solver {
 namespace {
@@ -145,6 +145,13 @@ RootLedgerDetailRowF64 make_empty_row(const CausalRootRequest& request,
       0.0,
       0.0,
       0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0,
       static_cast<std::uint32_t>(entryKind),
       static_cast<std::uint32_t>(root_kind_for(request, nullptr)),
       status_code_u32(statusCode),
@@ -152,7 +159,7 @@ RootLedgerDetailRowF64 make_empty_row(const CausalRootRequest& request,
       sequenceIndex,
       0,
       state_flags_for(statusCode, firstFailure),
-      0,
+      status_code_u32(statusCode),
   };
 }
 
@@ -183,6 +190,13 @@ RootLedgerDetailRowF64 make_active_root_row(const CausalRootRequest& request,
       finite_or_zero(root.receiverPoint.x),
       finite_or_zero(root.receiverPoint.y),
       finite_or_zero(root.receiverPoint.z),
+      finite_or_zero(root.sourceNormalSpeed),
+      finite_or_zero(root.receiverNormalSpeed),
+      finite_or_zero(root.sourceNormalDenominator),
+      finite_or_zero(root.receiverNormalNumerator),
+      finite_or_zero(root.receiverNormalCrossingFactor),
+      finite_or_zero(root.receiverNormalFactor),
+      finite_or_zero(root.unsignedReceiverNormalFactor),
       static_cast<std::uint32_t>(RootLedgerEntryKind::ActiveRoot),
       static_cast<std::uint32_t>(root_kind_for(request, &root)),
       status_code_u32(root.statusCode),
@@ -190,7 +204,7 @@ RootLedgerDetailRowF64 make_active_root_row(const CausalRootRequest& request,
       sequenceIndex,
       static_cast<std::uint32_t>(std::max(0, root.iterations)),
       state_flags_for(root.statusCode, firstFailure),
-      0,
+      status_code_u32(root.receiverNormalStatusCode),
   };
 }
 

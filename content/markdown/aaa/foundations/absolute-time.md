@@ -206,7 +206,7 @@ $$
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $t$, obey the same dynamical law.
 
-The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, velocity factors, and Jacobian weights rather than merely changing units.
+The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, source-normal denominators, and receiver-normal factors rather than merely changing units.
 
 **Connection to Conservation Laws:** Time-translation invariance is the kinematic basis for **energy conservation** when the relevant dynamics admit an energy or action formulation. In this chapter, the point is structural: the background clock supplies a fixed parameter against which such conservation statements can be formulated.
 

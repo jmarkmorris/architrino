@@ -63,7 +63,7 @@ h_\vartheta=\oint_{\gamma_0}\vartheta,
 \hbar_\vartheta=\frac{h_\vartheta}{2\pi}.
 $$
 
-The executable attempt still checks the normalized readouts $E=h_\vartheta\nu$, $E=\hbar_\vartheta\omega$, $h_\vartheta=2\pi\hbar_\vartheta$, and angular-momentum unit consistency, but the score-moving target is the Period Quantization Lemma: the energy, momentum, and angular-momentum projections of $\vartheta$ must extract one action period, with wake-storage and radiated/self-hit flux changes closing over a retained period.
+The executable attempt still checks the normalized readouts $E=h_\vartheta\nu$, $E=\hbar_\vartheta\omega$, $h_\vartheta=2\pi\hbar_\vartheta$, and angular-momentum unit consistency, but the score-review target is the Period Quantization Lemma: the energy, momentum, and angular-momentum projections of $\vartheta$ must extract one action period, with wake-storage and radiated/self-hit flux changes closing over a retained period.
 
 The blackbody component checks
 

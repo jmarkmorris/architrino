@@ -8,7 +8,7 @@
 - Source fixture: [hydrogen-gamma-n-spectral-row-mock.json](../../../scripts/spacetime/hydrogen-gamma-n-spectral-row-mock.json)
 - Related source protocol: [Hydrogen Gamma-N Spectral Row Toy Scan](../../../content/markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md)
 - Row served: `EQ-26`
-- Claim level: candidate source-field map and attack card
+- Claim level: checker-backed source-field map and attack card
 - Promotion status: priority-only
 
 ## Boundary
@@ -24,12 +24,12 @@ No score changes.
 | Row | `EQ-26` |
 | Current score and closure driver | Score `3`; recover one transition-independent hydrogen/Rydberg readout with recovered envelope labels, explicit reduced-mass/recoil/spin/Lamb residuals, and one emission/absorption event ledger. |
 | Primary AAA carrier | $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$: the hydrogen spectral channel ledger that supplies electron-envelope gaps, local Noether sea response, and clock/rate conversion from one hydrogen branch. |
-| Smallest score-moving evidence object | A two-line, two-resolution $\mathcal C_{\mathrm H}^{\Gamma}$ certificate over `H_alpha_3_to_2` and `H_beta_4_to_2`, with source-backed carrier, recovered labels, computed $E_{\mathrm{env}}$ gaps, shared $\mathbf g_{N,\mathrm H}^{(\ell)}$, shared static response, observer frequency after $C_N=\Gamma_N^{-1}$, and separated residual budget. |
-| Exact first blocker | Candidate label `missing_accepted_theta_H_spec`; no direct `EQ-26` checker currently emits this string. |
-| Existing scripts/fixtures/packets found | The hydrogen spectral toy runner and fixture listed above; [photon-packet-transfer-residual.mjs](../../../scripts/equation-mapping/photon-packet-transfer-residual.mjs); [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs); [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs); [eq28a-path-frequency-exchange-residual.mjs](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs). |
-| Candidate breakthrough angle | Promote the two-line object to a source-field map first, then to a checker contract. Observer Rydberg factors are acceptance tests after labels are recovered, not evidence by themselves. |
-| Fail-closed negative control | `observer_rydberg_import_without_hydrogen_carrier`: two observed Rydberg lines match $\Lambda_{ab}$ but the packet lacks source-backed envelope gaps, $\mathbf g_{N,\mathrm H}^{(\ell)}$, static response, and provenance. |
-| Smaller next action | Add a checker contract or fixture layer that names `theta_H_spec`, then require the hydrogen runner to fail imported-Rydberg shells before any line-set residual is interpreted. |
+| Smallest accepted evidence object | A two-line, two-resolution $\mathcal C_{\mathrm H}^{\Gamma}$ certificate over `H_alpha_3_to_2` and `H_beta_4_to_2`, with source-backed carrier, recovered labels, computed $E_{\mathrm{env}}$ gaps, shared $\mathbf g_{N,\mathrm H}^{(\ell)}$, shared static response, observer frequency after $C_N=\Gamma_N^{-1}$, and separated residual budget. |
+| Exact first blocker | `missing_accepted_theta_H_spec`, emitted by [eq26-hydrogen-spectral-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs) on the default source attempt. |
+| Existing scripts/fixtures/packets found | [eq26-hydrogen-spectral-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs), [eq26-hydrogen-spectral-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-source-attempt.v1.json), [eq26-hydrogen-spectral-carrier-carrier-shell-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-carrier-shell-source-contract-attempt.v1.json), [eq26-hydrogen-spectral-carrier-observer-rydberg-import-negative-control.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-observer-rydberg-import-negative-control.v1.json), [eq26-hydrogen-spectral-carrier-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-priority-source-negative-control.v1.json), [eq26-hydrogen-spectral-carrier-support-substitution-negative-control.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-support-substitution-negative-control.v1.json), the hydrogen spectral toy runner and fixture listed above, [photon-packet-transfer-residual.mjs](../../../scripts/equation-mapping/photon-packet-transfer-residual.mjs), [planck-alpha-braid-residual.mjs](../../../scripts/equation-mapping/planck-alpha-braid-residual.mjs), [compton-recoil-event-replay.mjs](../../../scripts/equation-mapping/compton-recoil-event-replay.mjs), and [eq28a-path-frequency-exchange-residual.mjs](../../../scripts/equation-mapping/eq28a-path-frequency-exchange-residual.mjs). |
+| Candidate breakthrough angle | Promote the two-line object from checker-emitted carrier identity to source-backed parent carrier, then to recovered-label and envelope-gap rows. Observer Rydberg factors are acceptance tests after labels are recovered, not evidence by themselves. |
+| Fail-closed negative control | `observer_rydberg_import_without_hydrogen_carrier`: two observed Rydberg lines match $\Lambda_{ab}$ but the packet lacks source-backed envelope gaps, $\mathbf g_{N,\mathrm H}^{(\ell)}$, static response, and provenance. The carrier-shell source-contract boundary must also fail closed at `accepted_without_evidence_source`. |
+| Smaller next action | Replace the carrier-shell source contract with a real source-backed `theta_H_spec` parent carrier, then populate `recovered_label_rows` and `envelope_gap_rows` on the same `carrierId`, `branchId`, `lineSetId`, `staticResponseId`, `gammaNRowId`, `eventLedgerId`, and `retuneWitnessId`. |
 
 ## Accepted-Object Contract
 
@@ -80,6 +80,8 @@ This layer keeps the hydrogen/Rydberg comparison as a same-record spectral-carri
 ## Fail-Closed Controls
 
 - `observer_rydberg_import_without_hydrogen_carrier`: matching $\Lambda_{ab}$ without source-backed envelope gaps or spectral response rows must fail.
+- `eq26.priority_source_accepted_carrier`: accepted-looking carrier and rows sourced only to this priority packet must fail at `accepted_without_evidence_source`.
+- `eq26.support_carrier_substitution`: accepted-looking photon/action, Gate A, or `theta_alpha` support rows must fail if they are promoted into the `theta_H_spec` carrier.
 - `response_record_mismatch_failure`: one line or resolution changes $\ln\chi_{\text{sea}}$ or another $\mathbf g_{N,\mathrm H}$ component while retaining local line fits.
 - `per_line_row_fitting`: each transition receives a private coefficient row.
 
@@ -102,7 +104,25 @@ Minimum fields:
 | `residualBudget` | Reduced mass, recoil, fine/hyperfine, Lamb/wake-dressing, and propagation residual slots kept outside $\Gamma_N$ unless explicitly populated. |
 | `retuneWitnessId` | One no-hidden-retune witness for both lines and both admissible resolutions. |
 
-The `observer_rydberg_import_without_hydrogen_carrier` negative control should use the same line labels and line-factor arithmetic while omitting source-backed envelope gaps, the shared $\mathbf g_{N,\mathrm H}^{(\ell)}$ record, the static response row, and the retune witness. The expected result is a line-factor match with no score movement and no accepted `theta_H_spec` row.
+The direct identity checker is:
+
+```sh
+node scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs --summary --pretty
+```
+
+The default source attempt returns `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_H_spec`. Its three embedded negative controls pass: the observer-Rydberg-import control stays blocked at `missing_accepted_theta_H_spec`, the priority-source control fails at `accepted_without_evidence_source`, and the support-carrier substitution control fails at `theta_H_spec_support_substitution`.
+
+The carrier-shell source-contract boundary is:
+
+```sh
+node scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs \
+  --input scripts/equation-mapping/eq26-hydrogen-spectral-carrier-carrier-shell-source-contract-attempt.v1.json \
+  --summary --pretty
+```
+
+This boundary marks only the parent `theta_H_spec` carrier accepted-looking against [eq26-hydrogen-spectral-carrier-source-contract.v1.json](../../../scripts/equation-mapping/eq26-hydrogen-spectral-carrier-source-contract.v1.json) while every child row remains `attempt`. The hardened checker rejects the contract shell itself as non-evidence, so the expected score-neutral result is `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, `sourceEvidenceAccepted: false`, and `sourceEvidenceFailureCount: 1`; the same command with `--require-populated` exits nonzero. This is a fail-closed boundary test, not accepted retained evidence.
+
+The `observer_rydberg_import_without_hydrogen_carrier` negative control uses the same line labels and line-factor arithmetic while omitting source-backed envelope gaps, the shared $\mathbf g_{N,\mathrm H}^{(\ell)}$ record, the static response row, and the retune witness. The expected result is a line-factor match with no score change and no accepted `theta_H_spec` row.
 
 Current targeted run:
 
@@ -114,10 +134,10 @@ reports `packet_expectations_pass=true`, `scenario_count=6`, `scenario_pass_coun
 
 ## Next Action
 
-Create a checker-consumable `theta_H_spec` source report for `H_alpha_3_to_2` and `H_beta_4_to_2`, then run:
+Create a durable source-backed `theta_H_spec` source report for `H_alpha_3_to_2` and `H_beta_4_to_2`, then run:
 
 ```sh
-node scripts/spacetime/hydrogen-gamma-n-spectral-row-toy-scan.mjs --pretty
+node scripts/equation-mapping/eq26-hydrogen-spectral-carrier-identity-check.mjs --input <source-backed-theta-H-spec>.json --summary --pretty --require-populated
 ```
 
-Until source-backed envelope and response rows exist, the correct disposition is no score movement.
+Until source-backed envelope, response, event-ledger, residual-budget, provenance, and no-hidden-retune rows exist, the correct disposition is no score change.

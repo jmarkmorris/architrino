@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y Positive G/D Quotient Subcell Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the directed-rounded $h_\varepsilon$ root-graph quotient
 cover and the finite $\operatorname{Shift}_{25}$ $E_\varepsilon$ root-tail tube

@@ -1,0 +1,147 @@
+{
+  "schema": "aaa-equation-map-same-branch-retained-domain-packet.v1",
+  "claimLevel": "accepted-looking S_eq retained-domain coordination-source negative control; priority prose paths must not count as retained evidence",
+  "targetRow": "same_branch_chart_identity",
+  "retainedRowSetId": "S_eq",
+  "domain": {
+    "id": "S_eq_retained_domain_coordsrc_0001",
+    "kind": "positive_width_domain",
+    "status": "accepted",
+    "rowId": "domain_support_coordsrc_0001",
+    "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+    "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+  },
+  "rowBindings": {
+    "raw_labeled_rows_preserved_on_retained_history": {
+      "status": "accepted",
+      "rowId": "raw_labeled_rows_preserved_on_retained_history_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "six_body_polarity_neutral_inventory_preserved": {
+      "status": "accepted",
+      "rowId": "six_body_polarity_neutral_inventory_preserved_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "role_map_selected_or_quotient_policy_declared": {
+      "status": "accepted",
+      "rowId": "role_map_selected_or_quotient_policy_declared_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "path_history_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "path_history_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "causal_root_ledger_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "causal_root_ledger_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "wake_tail_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "wake_tail_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "energy_action_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "energy_action_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "momentum_and_angular_momentum_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "momentum_and_angular_momentum_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "phase_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "phase_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "retained_plane_orientation_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "retained_plane_orientation_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "response_center_and_group_velocity_rows_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "response_center_and_group_velocity_rows_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "Noether_sea_record_bound_to_S_eq": {
+      "status": "accepted",
+      "rowId": "Noether_sea_record_bound_to_S_eq_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "binary_to_binary_phase_row_set_identity": {
+      "status": "accepted",
+      "rowId": "binary_to_binary_phase_row_set_identity_coordsrc_0001",
+      "retainedRowSetId": "S_eq",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    }
+  },
+  "witnesses": {
+    "split_witness_zero": {
+      "status": "accepted",
+      "rowId": "split_witness_zero_coordsrc_0001",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "retune_witness_zero": {
+      "status": "accepted",
+      "rowId": "retune_witness_zero_coordsrc_0001",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "residual": 0,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    },
+    "overlap_preimage_identity": {
+      "status": "accepted",
+      "rowId": "overlap_preimage_identity_coordsrc_0001",
+      "domainId": "S_eq_retained_domain_coordsrc_0001",
+      "consistent": true,
+      "sourcePath": "reference/priorities/equation-mapping/eq-02-04-s-eq-retained-domain-evidence-object.md",
+      "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+    }
+  },
+  "commonCarrierId": "C_02_04_bin_u_coordsrc_0001"
+}

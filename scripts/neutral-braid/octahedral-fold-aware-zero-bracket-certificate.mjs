@@ -118,19 +118,17 @@ function negativeSheetEquation(speedRatio, x) {
 
 function contributionFromX(x) {
   const xtan = x * Math.tan(x);
-  return (Math.PI * Math.tan(x)) / (2 * x * Math.abs(1 + xtan));
+  return (
+    (Math.PI * Math.tan(x) * Math.abs(1 - xtan)) /
+    (2 * x * Math.abs(1 + xtan))
+  );
 }
 
 function contributionDerivativeFromX(x, q) {
-  const tangent = Math.tan(x);
-  const secantSquared = 1 / Math.cos(x) ** 2;
-  const jacobian = 1 + x * tangent;
-  const absJacobian = Math.abs(jacobian);
-  const jacobianSign = Math.sign(jacobian);
-  const numerator =
-    secantSquared * x * absJacobian -
-    tangent * (absJacobian + x * jacobianSign * (tangent + x * secantSquared));
-  const dPdx = (Math.PI * numerator) / (2 * (x * absJacobian) ** 2);
+  const jacobian = 1 + x * Math.tan(x);
+  const step = Math.max(1e-7, Math.abs(x) * 1e-7);
+  const dPdx =
+    (contributionFromX(x + step) - contributionFromX(x - step)) / (2 * step);
   const dxdv = (q * Math.cos(x)) / jacobian;
   return {
     contribution_derivative_x: dPdx,
@@ -323,7 +321,7 @@ export function buildOctahedralFoldAwareZeroBracketCertificate(options = {}) {
     successor_packet:
       "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
     scan_parameters: {
-      speed_constraint: "none; the bracket is a certified positive speed-ratio zero enclosure",
+      speed_constraint: "none; the bracket is a receiver-normal positive speed-ratio zero target",
       zero_speed_ratio_bracket: zeroSpeedRatioBracket.map(formatNumber),
       root_coordinate: "x=delta/2",
       root_tolerance: ROOT_TOLERANCE,
@@ -373,14 +371,16 @@ export function buildOctahedralFoldAwareZeroBracketCertificate(options = {}) {
     },
     zero_existence_certificate: {
       theorem_route:
-        "The cross-binary period integral cancels in the phi coarea chart. On this bracket the antipodal-partner sheet has three regular roots, and P_all(v) changes sign, so a fold-aware zero exists by continuity.",
+        signChangeCertified
+          ? "The cross-binary period integral cancels in the phi coarea chart. On this bracket the receiver-normal antipodal-partner sheet has three regular roots, and P_all(v) changes sign, so a fold-aware zero exists by continuity."
+          : "The receiver-normal antipodal-partner sheet has no sign change on this bracket. The prior source-normal zero bracket is invalid and this lane must be restarted.",
       speed_ratio_enclosure: zeroSpeedRatioBracket.map(formatNumber),
       speed_ratio_estimate: formatNumber(zero.speed_ratio),
       residual_abs: formatSmallNumber(zero.residual_abs),
       row: zero.row ? formatIntegralRow(zero.row) : null,
       status: signChangeCertified
         ? "sign-certified-fold-aware-multiroot-period-integral-zero-bracket"
-        : "fold-aware-zero-bracket-certificate-open",
+        : "receiver-normal-zero-bracket-certificate-open",
     },
     transversality_certificate: {
       speed_ratio_estimate: formatNumber(zero.speed_ratio),
@@ -427,17 +427,23 @@ export function buildOctahedralFoldAwareZeroBracketCertificate(options = {}) {
       certifies_observer_export: false,
       retained_branch: false,
       claim_level:
-        "sign-certified fold-aware multi-root period-integral zero bracket; not retained",
+        signChangeCertified
+          ? "sign-certified receiver-normal fold-aware multi-root period-integral zero bracket; not retained"
+          : "receiver-normal fold-aware zero-bracket restart target; not retained",
     },
     result: {
       theory_status: signChangeCertified
         ? "sign-certified-fold-aware-multiroot-period-integral-zero-bracket"
-        : "fold-aware-zero-bracket-certificate-open",
-      first_successor_row: "clock-action-noether-event-export-retention-rows-required",
+        : "receiver-normal-zero-bracket-certificate-open",
+      first_successor_row: signChangeCertified
+        ? "clock-action-noether-event-export-retention-rows-required"
+        : "receiver-normal-zero-bracket-search-required",
       retention: "not_retained",
       retained_branch: false,
       status_note:
-        "The sampled fold-aware zero bracket is upgraded to a sign/regularity certificate on a narrow positive speed-ratio bracket. This certifies a period-integral zero candidate, not a retained branch.",
+        signChangeCertified
+          ? "The sampled receiver-normal fold-aware zero bracket is upgraded to a sign/regularity certificate on a narrow positive speed-ratio bracket. This certifies a period-integral zero candidate, not a retained branch."
+          : "The receiver-normal wake factor invalidates the prior source-normal zero bracket on this interval. Restart the zero-bracket search before using this lane for dynamics handoff.",
     },
   };
 }
@@ -467,8 +473,8 @@ export function validateOctahedralFoldAwareZeroBracketCertificate(artifact) {
   );
   assertField(
     artifact?.scan_parameters?.speed_constraint ===
-      "none; the bracket is a certified positive speed-ratio zero enclosure",
-    "artifact must not impose a speed window",
+      "none; the bracket is a receiver-normal positive speed-ratio zero target",
+    "artifact must not impose a speed window and must use receiver-normal zero-bracket wording",
     errors
   );
   assertField(
@@ -483,8 +489,10 @@ export function validateOctahedralFoldAwareZeroBracketCertificate(artifact) {
     errors
   );
   assertField(
-    artifact?.endpoint_sign_certificate?.sign_change === "negative-to-positive",
-    "endpoint signs must bracket a zero",
+    ["negative-to-positive", "sign-change-open"].includes(
+      artifact?.endpoint_sign_certificate?.sign_change
+    ),
+    "endpoint signs must record either a receiver-normal sign bracket or an open bracket",
     errors
   );
   assertField(
@@ -493,26 +501,31 @@ export function validateOctahedralFoldAwareZeroBracketCertificate(artifact) {
     errors
   );
   assertField(
-    artifact?.zero_existence_certificate?.status ===
+    [
       "sign-certified-fold-aware-multiroot-period-integral-zero-bracket",
-    "certificate must record the sign-certified zero bracket",
+      "receiver-normal-zero-bracket-certificate-open",
+    ].includes(artifact?.zero_existence_certificate?.status),
+    "certificate must record either a sign-certified receiver-normal zero bracket or an open bracket",
     errors
   );
   assertField(
-    artifact?.artifact_claim?.certifies_fold_aware_multiroot_zero_bracket === true,
-    "artifact must certify the fold-aware zero bracket",
+    typeof artifact?.artifact_claim?.certifies_fold_aware_multiroot_zero_bracket === "boolean",
+    "artifact must explicitly state whether it certifies the receiver-normal zero bracket",
     errors
   );
   assertField(
-    artifact?.transversality_certificate?.status ===
-      "simple-zero-transversality-certified",
-    "certificate must record the simple-zero transversality row",
+    ["simple-zero-transversality-certified", "simple-zero-transversality-open"].includes(
+      artifact?.transversality_certificate?.status
+    ),
+    "certificate must record the simple-zero transversality row or open status",
     errors
   );
   assertField(
-    artifact?.clock_scale_gauge_lemma?.status ===
+    [
       "projective-zero-ray-certified-clock-normalization-open",
-    "certificate must record the projective zero-ray clock gauge row",
+      "projective-zero-ray-open",
+    ].includes(artifact?.clock_scale_gauge_lemma?.status),
+    "certificate must record the projective zero-ray clock gauge row or open status",
     errors
   );
   assertField(
@@ -543,7 +556,7 @@ function usage() {
     "Usage: node scripts/neutral-braid/octahedral-fold-aware-zero-bracket-certificate.mjs [options]",
     "",
     "Options:",
-    "  --zero-speed-ratio-bracket <a,b>  Positive speed-ratio zero enclosure",
+    "  --zero-speed-ratio-bracket <a,b>  Positive speed-ratio zero target",
     "  --out <path>                      Write artifact JSON to path instead of stdout",
     "  --validate <path>                 Validate an existing artifact JSON file",
     "  --schema                          Print the artifact schema identifier",

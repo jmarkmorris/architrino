@@ -74,7 +74,7 @@
           "source_mechanism",
           "Compton exchange source mechanism"
         ],
-        "claimLevel": "accepted-looking non-synchrotron source-mechanism control; Compton exchange is not EQ-29 synchrotron source-mechanism evidence"
+        "claimLevel": "accepted-looking non-synchrotron source-mechanism control; Compton exchange is not EQ-29 synchrotron source-mechanism evidence; negative control only, no score change"
       },
       "source_branch_row": {
         "id": "source-branch-gamma-e-pm-source-candidate-0001",

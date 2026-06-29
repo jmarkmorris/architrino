@@ -1488,27 +1488,116 @@ function dedupePhotonDelayedRoots(roots) {
     });
 }
 
+function readPhotonFiniteNumber(value, fallback = 0) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : fallback;
+}
+
+function readPhotonOptionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function closePhotonScaled(left, right, tolerance = 1e-9) {
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  return Math.abs(left - right) <= tolerance * scale;
+}
+
+function resolvePhotonReceiverNormalRows(root = {}) {
+  const branchWeight = readPhotonOptionalFiniteNumber(root.branchWeight);
+  const sourceNormalDenominator = readPhotonOptionalFiniteNumber(root.sourceNormalDenominator);
+  const receiverNormalNumerator = readPhotonOptionalFiniteNumber(root.receiverNormalNumerator);
+  const receiverNormalFactor = readPhotonOptionalFiniteNumber(root.receiverNormalFactor);
+  const unsignedReceiverNormalFactor = readPhotonOptionalFiniteNumber(root.unsignedReceiverNormalFactor);
+  if (
+    branchWeight === null ||
+    sourceNormalDenominator === null ||
+    receiverNormalNumerator === null ||
+    receiverNormalFactor === null ||
+    unsignedReceiverNormalFactor === null
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator: sourceNormalDenominator ?? 0,
+      receiverNormalNumerator: receiverNormalNumerator ?? 0,
+      receiverNormalFactor: receiverNormalFactor ?? 0,
+      unsignedReceiverNormalFactor: unsignedReceiverNormalFactor ?? 0,
+      evidenceStatus: "receiver_normal_branch_rows_missing",
+    };
+  }
+  const expectedReceiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  if (
+    branchWeight < 0 ||
+    unsignedReceiverNormalFactor < 0 ||
+    Math.abs(sourceNormalDenominator) <= EPSILON ||
+    !Number.isFinite(expectedReceiverNormalFactor) ||
+    !closePhotonScaled(receiverNormalFactor, expectedReceiverNormalFactor) ||
+    !closePhotonScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor)) ||
+    !closePhotonScaled(branchWeight, unsignedReceiverNormalFactor)
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator,
+      receiverNormalNumerator,
+      receiverNormalFactor,
+      unsignedReceiverNormalFactor,
+      evidenceStatus: "receiver_normal_branch_rows_invalid",
+    };
+  }
+  return {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus: "ok",
+  };
+}
+
 function computePhotonDelayedContribution(root, measurement) {
   const n = root.direction;
-  const sourceRadialSpeed = dotVector(root.kinematics.velocity, n);
-  const jacobian = 1 - sourceRadialSpeed / Math.max(EPSILON, measurement.emissionSpeedCf);
+  const signalSpeed = Math.max(EPSILON, measurement.emissionSpeedCf);
+  const sourceNormalSpeed = readPhotonFiniteNumber(
+    root.sourceNormalSpeed,
+    dotVector(root.kinematics.velocity, n)
+  );
+  const receiverNormalSpeed = readPhotonFiniteNumber(root.receiverNormalSpeed, 0);
+  const receiverNormalCrossingFactor = readPhotonFiniteNumber(root.receiverNormalCrossingFactor, 0);
+  const {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus,
+  } = resolvePhotonReceiverNormalRows(root);
+  const jacobian = sourceNormalDenominator;
   const jacobianAbs = Math.abs(jacobian);
-  const jacobianWeight = 1 / Math.max(JACOBIAN_FLOOR, jacobianAbs);
-  const sourceSpeedRatio = vectorMagnitude(root.kinematics.velocity) / Math.max(EPSILON, measurement.emissionSpeedCf);
+  const sourceSpeedRatio = vectorMagnitude(root.kinematics.velocity) / signalSpeed;
   const receiverAcceleration = scaleVector(
     n,
-    root.kinematics.chargeSign * jacobianWeight / (root.distance * root.distance)
+    root.kinematics.chargeSign * branchWeight / (root.distance * root.distance)
   );
   const electric = receiverAcceleration;
-  const comparisonB = scaleVector(crossVector(X_HAT, electric), 1 / measurement.emissionSpeedCf);
+  const comparisonB = scaleVector(crossVector(X_HAT, electric), 1 / signalSpeed);
 
   return {
     ...root,
     delaySolveGap: Math.abs(root.residual),
     jacobian,
     jacobianAbs,
-    jacobianWeight,
-    sourceRadialSpeed,
+    branchWeight,
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    receiverNormalStatusCode: Number.isFinite(Number(root.receiverNormalStatusCode))
+      ? Number(root.receiverNormalStatusCode)
+      : evidenceStatus === "ok" ? 0 : -1,
+    receiverNormalEvidenceStatus: evidenceStatus,
     sourceSpeedRatio,
     receiverAcceleration,
     electric,
@@ -1528,6 +1617,15 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
       distance: root.distance,
       residual: root.residual,
       delay: root.delay,
+      branchWeight: root.branchWeight,
+      sourceNormalSpeed: root.sourceNormalSpeed,
+      receiverNormalSpeed: root.receiverNormalSpeed,
+      sourceNormalDenominator: root.sourceNormalDenominator,
+      receiverNormalNumerator: root.receiverNormalNumerator,
+      receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
+      receiverNormalFactor: root.receiverNormalFactor,
+      unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
+      receiverNormalStatusCode: root.receiverNormalStatusCode,
     })),
   };
 }
@@ -1546,7 +1644,7 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
   if (!response) {
     const contributions = roots.map((root) => computePhotonDelayedContribution(root, measurement));
     return {
-      sourceMode: "app_absolute_history_moving_circular_branch_sum",
+      sourceMode: "solver_bridge_absolute_history_receiver_normal_root_branch_sum",
       contributions,
       electric: contributions.reduce(
         (sum, contribution) => addVector(sum, contribution.electric),
@@ -1573,6 +1671,7 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
       ),
       unstableSourceCount: contributions.filter(
         (contribution) =>
+          contribution.receiverNormalEvidenceStatus !== "ok" ||
           contribution.delaySolveGap > 0.05 ||
           contribution.jacobianAbs <= JACOBIAN_FLOOR
       ).length,
@@ -1583,15 +1682,22 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
     };
   }
   const solverContributions = Array.isArray(response.contributions) ? response.contributions : [];
+  const contributions = roots.map((root, index) => ({
+    ...root,
+    ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
+  }));
   return {
-    sourceMode: "solver_bridge_absolute_history_moving_circular_branch_sum",
+    sourceMode: "solver_bridge_absolute_history_receiver_normal_root_branch_sum",
     solverFieldSchema: response.schema ?? "",
-    contributions: roots.map((root, index) => ({
-      ...root,
-      ...(solverContributions[index] ?? computePhotonDelayedContribution(root, measurement)),
-    })),
-    electric: response.electric ?? { x: 0, y: 0, z: 0 },
-    comparisonB: response.comparisonB ?? { x: 0, y: 0, z: 0 },
+    contributions,
+    electric: contributions.reduce(
+      (sum, contribution) => addVector(sum, contribution.electric),
+      { x: 0, y: 0, z: 0 }
+    ),
+    comparisonB: contributions.reduce(
+      (sum, contribution) => addVector(sum, contribution.comparisonB),
+      { x: 0, y: 0, z: 0 }
+    ),
     averageDelay: Number(response.averageDelay) || 0,
     delaySolveGapMax: Number(response.delaySolveGapMax) || 0,
     maxSourceSpeedRatio: Number(response.maxSourceSpeedRatio) || 0,
@@ -1930,6 +2036,7 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
           ),
           unstableSourceCount: contributions.filter(
             (contribution) =>
+              contribution.receiverNormalEvidenceStatus !== "ok" ||
               contribution.delaySolveGap > 0.05 ||
               contribution.jacobianAbs <= JACOBIAN_FLOOR
           ).length,

@@ -52,7 +52,7 @@ test("fold-aware multiroot integral records cross-binary cancellation and phi co
   );
 });
 
-test("fold-aware multiroot integral records the partner secondary fold and zero bracket", () => {
+test("fold-aware multiroot integral invalidates the prior sampled zero bracket", () => {
   const integral = artifact();
   const secondaryFold = integral.partner_multiroot_reduction.secondary_fold;
   const zero = integral.zero_mean_candidate;
@@ -60,17 +60,12 @@ test("fold-aware multiroot integral records the partner secondary fold and zero 
   nearlyEqual(secondaryFold.x, 2.798386045784);
   nearlyEqual(secondaryFold.phase_delay, 5.596772091568);
   nearlyEqual(secondaryFold.speed_ratio, 2.971693870714);
-  assert.equal(zero.status, "sampled-fold-aware-multiroot-period-integral-zero-bracket-detected");
+  assert.equal(zero.status, "sampled-fold-aware-multiroot-period-integral-zero-bracket-open");
   assert.deepEqual(zero.bracket, [3.02, 3.025]);
   assert.ok(zero.bracket_values[0] < 0);
-  assert.ok(zero.bracket_values[1] > 0);
-  nearlyEqual(zero.speed_ratio, 3.021564740248);
-  assert.equal(zero.row.root_count, 3);
-  assert.ok(Math.abs(zero.row.period_integral) <= 1e-12);
-  nearlyEqual(zero.row.jacobian_abs_min, 0.5043746238);
-  nearlyEqual(zero.row.rows[0].phase_delay, 2.344688042275);
-  nearlyEqual(zero.row.rows[1].phase_delay, 5.240881784882);
-  nearlyEqual(zero.row.rows[2].phase_delay, 5.968461395446);
+  assert.ok(zero.bracket_values[1] < 0);
+  assert.equal(zero.speed_ratio, null);
+  assert.equal(zero.row, null);
 });
 
 test("fold-aware multiroot integral preserves non-retention and certification boundaries", () => {
@@ -79,7 +74,7 @@ test("fold-aware multiroot integral preserves non-retention and certification bo
   assert.equal(integral.artifact_claim.assumes_fixed_speed_window, false);
   assert.equal(integral.artifact_claim.proves_cross_binary_period_cancellation_by_symmetry, true);
   assert.equal(integral.artifact_claim.reduces_fold_aware_period_integral_to_partner_roots, true);
-  assert.equal(integral.artifact_claim.finds_sampled_multiroot_zero_bracket, true);
+  assert.equal(integral.artifact_claim.finds_sampled_multiroot_zero_bracket, false);
   assert.equal(integral.artifact_claim.certifies_fold_aware_multiroot_period_integral, false);
   assert.equal(integral.artifact_claim.certifies_bounded_speed_live_ledger, false);
   assert.equal(integral.artifact_claim.certifies_action_noether_event_rows, false);
@@ -87,11 +82,11 @@ test("fold-aware multiroot integral preserves non-retention and certification bo
   assert.equal(integral.artifact_claim.retained_branch, false);
   assert.equal(
     integral.result.theory_status,
-    "sampled-fold-aware-multiroot-period-integral-zero-bracket-detected"
+    "sampled-fold-aware-multiroot-period-integral-open"
   );
   assert.equal(
     integral.result.first_successor_row,
-    "sign-zero-bracket-certificate-created-retention-rows-required"
+    "receiver-normal-zero-bracket-search-required"
   );
   assert.equal(integral.result.retention, "not_retained");
 });
@@ -114,7 +109,7 @@ test("fold-aware multiroot integral CLI emits and validates JSON artifacts", () 
   assert.equal(validation.valid, true);
   assert.equal(
     validation.result.theory_status,
-    "sampled-fold-aware-multiroot-period-integral-zero-bracket-detected"
+    "sampled-fold-aware-multiroot-period-integral-open"
   );
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));

@@ -18,7 +18,7 @@ This packet advances that row with a machine-expanded speed-envelope scan on the
 
 ## Scan Certificate
 
-The scan uses only the certified positive speed-ratio zero enclosure
+The scan uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 3.02156\le v_\ast\le3.02157,

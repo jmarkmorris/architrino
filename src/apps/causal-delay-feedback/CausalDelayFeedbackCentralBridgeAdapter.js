@@ -28,6 +28,8 @@ export const CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND = "delayedHits";
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
 const DEFAULT_FRAME_COUNT = 180;
+const RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE = 14;
+const RECEIVER_NORMAL_TOLERANCE = 1e-9;
 const DEFAULT_RUN_DURATION = 1;
 const DEFAULT_PAIR_ACCELERATION_SCALE = 0.18;
 const DEFAULT_PAIR_INTERACTION_ACCELERATION_SCALE = 4000;
@@ -2662,7 +2664,8 @@ function createBridgeDelayedHitsFromReplayDataset(replayDataset) {
       hitTime: normalizeFiniteNumber(receiver.t, `wakeLinks[${index}].hitTime`),
       distance,
       jacobian: 1,
-      strength: normalizeUnitNumber(link.weight, 1, `wakeLinks[${index}].weight`),
+      strength: 0,
+      ...receiverNormalUnavailableFields(),
       emissionPoint: toBridgeVector(source),
       receiverPoint: toBridgeVector(receiver),
       unitDirection: toUnitDirection(source, receiver, distance),
@@ -2691,14 +2694,24 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
     const solverRoot = normalizeOptionalArray(response.roots)[0];
     const rootLedgerDetails = normalizeOptionalArray(response.rootLedgerDetails);
     const fallback = createBridgeDelayedHitFromWakeLink(replayDataset, links[index], index);
+    const receiverNormalEvidence = normalizeSolverDelayedHitReceiverNormalEvidence(
+      solverHit,
+      `delayed-hit run ${index}`,
+    );
+    const rootStatus = receiverNormalEvidence.accepted
+      ? response.status ?? response.summary?.status ?? fallback.rootStatus
+      : receiverNormalFailClosedStatus(receiverNormalEvidence.reason);
     return {
       ...fallback,
       eventId: solverHit?.eventId ?? fallback.eventId,
       rootId: solverHit?.rootId ?? fallback.rootId,
-      statusCode: solverHit?.statusCode ?? fallback.statusCode,
+      statusCode: receiverNormalEvidence.accepted
+        ? solverHit?.statusCode ?? fallback.statusCode
+        : receiverNormalEvidence.fields.receiverNormalStatusCode,
       distance: solverHit?.distance ?? fallback.distance,
       jacobian: solverHit?.jacobian ?? fallback.jacobian,
-      strength: solverHit?.strength ?? fallback.strength,
+      strength: receiverNormalEvidence.strength,
+      ...receiverNormalEvidence.fields,
       ...(solverHit?.emissionTime != null ? { solverEmissionTime: solverHit.emissionTime } : {}),
       ...(solverHit?.hitTime != null ? { solverHitTime: solverHit.hitTime } : {}),
       ...(solverHit?.distance != null ? { solverDistance: solverHit.distance } : {}),
@@ -2716,7 +2729,7 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
         ? { solverUnitDirection: cloneObject(solverHit.unitDirection, "solverHit.unitDirection") }
         : {}),
       ...(rootLedgerDetails.length > 0 ? { rootLedgerDetails } : {}),
-      rootStatus: response.status ?? response.summary?.status ?? fallback.rootStatus,
+      rootStatus,
       solverRunId: response.runId ?? runHandle.runId,
       rootCount: Array.isArray(response.roots) ? response.roots.length : 0,
       solverHitCount: Array.isArray(response.hits) ? response.hits.length : 0,
@@ -2736,7 +2749,8 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
     hitTime: normalizeFiniteNumber(receiver.t, `wakeLinks[${index}].hitTime`),
     distance,
     jacobian: 0,
-    strength: normalizeUnitNumber(link.weight, 1, `wakeLinks[${index}].weight`),
+    strength: 0,
+    ...receiverNormalUnavailableFields(),
     emissionPoint: toBridgeVector(source),
     receiverPoint: toBridgeVector(receiver),
     unitDirection: toUnitDirection(source, receiver, distance),
@@ -2750,6 +2764,133 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
     mode: replayDataset.wakeArcDisplayMode,
     rootStatus: { code: "solver_no_delayed_hit", severity: "warn" },
   };
+}
+
+function receiverNormalUnavailableFields() {
+  return {
+    sourceNormalSpeed: 0,
+    receiverNormalSpeed: 0,
+    sourceNormalDenominator: 0,
+    receiverNormalNumerator: 0,
+    receiverNormalCrossingFactor: 0,
+    receiverNormalFactor: 0,
+    unsignedReceiverNormalFactor: 0,
+    receiverNormalStatusCode: RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE,
+  };
+}
+
+function normalizeSolverDelayedHitReceiverNormalEvidence(solverHit, label) {
+  if (!solverHit || typeof solverHit !== "object") {
+    return failClosedReceiverNormalEvidence("receiver_normal_fields_unavailable");
+  }
+  const statusCode = readOptionalFiniteNumber(solverHit.statusCode);
+  const jacobian = readOptionalFiniteNumber(solverHit.jacobian);
+  const sourceNormalSpeed = readOptionalFiniteNumber(solverHit.sourceNormalSpeed);
+  const receiverNormalSpeed = readOptionalFiniteNumber(solverHit.receiverNormalSpeed);
+  const sourceNormalDenominator = readOptionalFiniteNumber(solverHit.sourceNormalDenominator);
+  const receiverNormalNumerator = readOptionalFiniteNumber(solverHit.receiverNormalNumerator);
+  const receiverNormalCrossingFactor = readOptionalFiniteNumber(solverHit.receiverNormalCrossingFactor);
+  const receiverNormalFactor = readOptionalFiniteNumber(solverHit.receiverNormalFactor);
+  const unsignedReceiverNormalFactor = readOptionalFiniteNumber(solverHit.unsignedReceiverNormalFactor);
+  const receiverNormalStatusCode = readOptionalFiniteNumber(solverHit.receiverNormalStatusCode);
+  const strength = readOptionalFiniteNumber(solverHit.strength);
+  if (
+    statusCode == null ||
+    jacobian == null ||
+    sourceNormalSpeed == null ||
+    receiverNormalSpeed == null ||
+    sourceNormalDenominator == null ||
+    receiverNormalNumerator == null ||
+    receiverNormalCrossingFactor == null ||
+    receiverNormalFactor == null ||
+    unsignedReceiverNormalFactor == null ||
+    receiverNormalStatusCode == null ||
+    strength == null
+  ) {
+    return failClosedReceiverNormalEvidence("receiver_normal_fields_unavailable");
+  }
+  const fields = {
+    sourceNormalSpeed: normalizeFiniteNumber(sourceNormalSpeed, `${label}.sourceNormalSpeed`),
+    receiverNormalSpeed: normalizeFiniteNumber(receiverNormalSpeed, `${label}.receiverNormalSpeed`),
+    sourceNormalDenominator: normalizeFiniteNumber(
+      sourceNormalDenominator,
+      `${label}.sourceNormalDenominator`,
+    ),
+    receiverNormalNumerator: normalizeFiniteNumber(
+      receiverNormalNumerator,
+      `${label}.receiverNormalNumerator`,
+    ),
+    receiverNormalCrossingFactor: normalizeFiniteNumber(
+      receiverNormalCrossingFactor,
+      `${label}.receiverNormalCrossingFactor`,
+    ),
+    receiverNormalFactor: normalizeFiniteNumber(receiverNormalFactor, `${label}.receiverNormalFactor`),
+    unsignedReceiverNormalFactor: normalizeNonnegativeNumber(
+      unsignedReceiverNormalFactor,
+      undefined,
+      `${label}.unsignedReceiverNormalFactor`,
+    ),
+    receiverNormalStatusCode: normalizeNonnegativeInteger(
+      receiverNormalStatusCode,
+      `${label}.receiverNormalStatusCode`,
+    ),
+  };
+  const normalizedStrength = normalizeNonnegativeNumber(strength, undefined, `${label}.strength`);
+  const sourceDenominatorMatchesJacobian = closeScaled(fields.sourceNormalDenominator, jacobian);
+  const receiverNormalFactorMatches =
+    fields.sourceNormalDenominator !== 0 &&
+    closeScaled(fields.receiverNormalFactor, fields.receiverNormalNumerator / fields.sourceNormalDenominator);
+  const unsignedFactorMatches = closeScaled(
+    fields.unsignedReceiverNormalFactor,
+    Math.abs(fields.receiverNormalFactor),
+  );
+  const strengthMatches = closeScaled(normalizedStrength, fields.unsignedReceiverNormalFactor);
+  if (
+    statusCode !== 0 ||
+    fields.receiverNormalStatusCode !== 0 ||
+    !sourceDenominatorMatchesJacobian ||
+    !receiverNormalFactorMatches ||
+    !unsignedFactorMatches ||
+    !strengthMatches
+  ) {
+    return failClosedReceiverNormalEvidence("receiver_normal_fields_invalid", fields);
+  }
+  return {
+    accepted: true,
+    reason: "receiver_normal_fields_accepted",
+    fields,
+    strength: normalizedStrength,
+  };
+}
+
+function failClosedReceiverNormalEvidence(reason, fields = receiverNormalUnavailableFields()) {
+  return {
+    accepted: false,
+    reason,
+    fields: {
+      ...fields,
+      receiverNormalStatusCode: fields.receiverNormalStatusCode || RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE,
+    },
+    strength: 0,
+  };
+}
+
+function receiverNormalFailClosedStatus(reason) {
+  return {
+    code: reason,
+    severity: "warn",
+    message: "delayed-hit receiver-normal branch strength unavailable",
+  };
+}
+
+function readOptionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function closeScaled(left, right, tolerance = RECEIVER_NORMAL_TOLERANCE) {
+  const scale = Math.max(1, Math.abs(left), Math.abs(right));
+  return Math.abs(left - right) <= tolerance * scale;
 }
 
 function createBridgeGeometryFromReplayDataset(replayDataset, { initialConditions = {} } = {}) {

@@ -74,7 +74,7 @@ const KEPSILON_MAJORANT_WITNESS_PACKET_ID =
   "octahedral_fold_aware_cross_binary_theta3minus_speed_dependent_fold_pair_first_y_gd_h39_K_epsilon_majorant_witness";
 const PROMOTION_STATUS = "priority-only";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 const DEFAULT_PRIMITIVE_BOUNDS_STATUS = "provided-unverified";
 const DIRECTED_ROUNDED_EXTERNAL_STATUS =

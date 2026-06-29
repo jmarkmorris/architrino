@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair Scaled Sampled-Node Interval Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-stencil-certificate.md). The predecessor put the two coalescing `3-` source roots into the scaled chart
 
@@ -10,7 +12,10 @@ p=\frac{\delta-\delta_f}{y},
 \theta=\theta_{3-}(\nu)-y^2.
 $$
 
-This packet upgrades the finite speed/collar stencil nodes from ordinary sampled roots to directed-rounded interval brackets in the scaled $z$ coordinate. It does not itself certify a continuous root-tube cell cover or the fold-pair remainder; the root-tube successor now closes the root-geometry part and leaves the fold-pair $G,D$ quotient remainder open.
+Receiver-normal status: restart target. This packet still has value as a
+directed-rounded root-geometry replay in the scaled $z$ coordinate, but its old
+pair $G,D$ quotient rows are not receiver-normal Master EOM force/action
+evidence.
 
 ## Sampled-Node Interval Row
 
@@ -48,7 +53,8 @@ This proves one fold-pair root in each sampled-node $z$ bracket by endpoint sign
 
 ## Result
 
-The directed-rounded sampled-node interval replay emits:
+The directed-rounded sampled-node interval replay keeps these root-geometry
+diagnostics:
 
 | Row | Certified value |
 | --- | ---: |
@@ -56,24 +62,19 @@ The directed-rounded sampled-node interval replay emits:
 | $z$ endpoint intervals | $380$ |
 | minimum endpoint $K$ clearance | $4.21884749358\times10^{-6}$ |
 | minimum $|J_\pm|$ clearance | $0.773505505914$ |
-| $\max |R_G^{\mathrm{pair}}|/y^2$ interval upper | $0.179366300118$ |
-| $\max |R_D^{\mathrm{pair}}|/y^2$ interval upper | $0.881942400111$ |
+| receiver-normal evidence status | invalidated by receiver-normal Master EOM |
 
 The resulting status is
 
 $$
 \boxed{
-\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 }
 $$
 
-The $R_D^{\mathrm{pair}}/y^2$ interval upper is wider than the sampled quotient because this packet uses a finite $z$ interval rather than a point root. It still gives a useful budget row: at the outer collar radius,
-
-$$
-0.881942400111(0.115)^2<0.012,
-$$
-
-well below the certified negative-limit margin $0.192653693867$.
+The old $R_G^{\mathrm{pair}}$ and $R_D^{\mathrm{pair}}$ budget rows are not
+evidence until the fold-pair normal form is rederived with same-record
+$D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
 
 ## Claim Boundary
 
@@ -83,10 +84,10 @@ $$
 \texttt{certifies\_directed\_rounded\_sampled\_node\_fold\_pair\_z\_brackets=true},
 $$
 
-and
+as root geometry only. It may not claim:
 
 $$
-\texttt{certifies\_directed\_rounded\_sampled\_node\_fold\_pair\_GD\_quotient\_enclosures=true}.
+\texttt{certifies\_directed\_rounded\_sampled\_node\_fold\_pair\_GD\_quotient\_enclosures=false}.
 $$
 
 It does not claim:
@@ -115,16 +116,16 @@ $$
 
 | Row | Status |
 | --- | --- |
-| `theta3minus.sampled-fold-pair-scaled-stencil` | sampled-stencil certified |
-| `theta3minus.sampled-node-fold-pair-z-brackets` | directed-rounded certified |
-| `theta3minus.sampled-node-fold-pair-GD-quotient-enclosures` | directed-rounded certified |
-| `theta3minus.fold-pair-scaled-root-tube-cell-cover` | directed-rounded cell-cover certified by [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) |
-| `theta3minus.fold-pair-scaled-remainder-continuous-collar` | directed-rounded open |
-| `theta3minus.regular-root-remainder` | directed-rounded open |
-| `I1.regular-critical-exhaustion` | blocked by theta3minus remainder |
+| `theta3minus.sampled-fold-pair-scaled-stencil` | receiver-normal restart required |
+| `theta3minus.sampled-node-fold-pair-z-brackets` | directed-rounded root-geometry diagnostic |
+| `theta3minus.sampled-node-fold-pair-GD-quotient-enclosures` | invalidated by receiver-normal Master EOM |
+| `theta3minus.fold-pair-scaled-root-tube-cell-cover` | invalidated as force/action evidence; root-geometry replay only |
+| `theta3minus.fold-pair-scaled-remainder-continuous-collar` | receiver-normal restart required |
+| `theta3minus.regular-root-remainder` | receiver-normal restart required |
+| `I1.regular-critical-exhaustion` | blocked by receiver-normal restart |
 | `representative-cross-binary-retention` | open |
 
-The root-tube successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) now replaces the finite-node $z_\pm,J_\pm$ replay with a directed-rounded speed/y cell cover. The remaining fold-pair proof is no longer a root-finding question. It is the $G,D$ quotient remainder row over the certified root tubes.
+The root-tube successor [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-root-tube-cell-certificate.md) can be reused only as root-geometry scaffolding. The active proof must restart at the receiver-normal zero-bracket row before quotient or retention claims resume.
 
 ## Continuous-Cell Formula Target
 
@@ -190,7 +191,7 @@ The executable packet is [octahedral-fold-aware-cross-binary-theta3minus-speed-d
 
 - directed-rounded sampled-node $z_\pm$ endpoint brackets;
 - sign-definite $J_\pm=F_\delta/y$ intervals on each bracket;
-- interval enclosures for $R_G^{\mathrm{pair}}/y^2$ and $R_D^{\mathrm{pair}}/y^2$ at the sampled nodes;
+- receiver-normal restart status for the sampled-node force/action quotient rows;
 - explicit open continuous-collar, regular-root, `I1`, quadrature, and retention rows.
 
-The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js) validates schema, no-fixed-speed-window discipline, endpoint brackets, $J$ signs, quotient budgets, overclaim rejection, and CLI write/validate behavior.
+The companion test [neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js](../../../tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-scaled-sampled-node-interval-certificate.test.js) still needs the same receiver-normal restart treatment as the executable packet.

@@ -473,11 +473,27 @@ function rootDuplicateTolerance(sampling, rootStep) {
   return sampling.rootDuplicateTolerance ?? Math.max(sampling.rootTolerance * 4, rootStep * 1e-9, Number.EPSILON);
 }
 
+function receiverNormalFields(receiverVelocity, sourceVelocity, direction, cF) {
+  const sourceNormalDenominator = 1 - dot(sourceVelocity, direction) / cF;
+  const receiverNormalNumerator = 1 - dot(receiverVelocity, direction) / cF;
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const branchWeight = Math.abs(receiverNormalFactor);
+  return {
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor: branchWeight,
+    branchWeight,
+    receiverNormalStatusCode: Number.isFinite(branchWeight) ? 0 : 1,
+  };
+}
+
 function buildRootRecord(receiver, source, values, t, rootDelay, cF, config) {
   const receiverState = bodyState(receiver, values, t);
   const sourceState = bodyState(source, values, t - rootDelay);
   const direction = unit(sub(receiverState.position, sourceState.position));
-  const j = 1 - dot(sourceState.velocity, direction) / cF;
+  const receiverNormal = receiverNormalFields(receiverState.velocity, sourceState.velocity, direction, cF);
+  const j = receiverNormal.sourceNormalDenominator;
   const rootClass = classifyRoot(receiver, source, rootDelay, j, config);
   return {
     receiver: receiver.id,
@@ -488,6 +504,7 @@ function buildRootRecord(receiver, source, values, t, rootDelay, cF, config) {
     delay: rootDelay,
     residual: Math.abs(rootFunction(receiver, source, values, t, rootDelay, cF)),
     J: j,
+    ...receiverNormal,
     nearSeparator: rootClass.nearSeparator,
     nearZeroSelf: rootClass.nearZeroSelf,
     selfDelayClass: rootClass.selfDelayClass,
@@ -1237,7 +1254,13 @@ function rootKickAccelerations(row, tier0, configResult, roots, observationTime)
   for (const root of selectedRoots) {
     const receiver = bodyCatalog().find((body) => body.id === root.receiver);
     const source = bodyCatalog().find((body) => body.id === root.source);
-    if (!receiver || !source || !Number.isFinite(root.delay) || !Number.isFinite(root.J)) {
+    if (
+      !receiver ||
+      !source ||
+      !Number.isFinite(root.delay) ||
+      !Number.isFinite(root.J) ||
+      !Number.isFinite(root.branchWeight)
+    ) {
       invalidContributionCount += 1;
       continue;
     }
@@ -1248,8 +1271,7 @@ function rootKickAccelerations(row, tier0, configResult, roots, observationTime)
     const regularizedDistance = Math.sqrt(regularizedDistanceSquared);
     const denominator = Math.max(regularizedDistanceSquared * regularizedDistance, Number.EPSILON);
     const signedCharge = bodyCharge(root.receiver) * bodyCharge(root.source);
-    const jacobianWeight = 1 / Math.max(Math.abs(root.J), 1e-6);
-    const coefficient = relationWeight(root.relation) * signedCharge * jacobianWeight;
+    const coefficient = relationWeight(root.relation) * signedCharge * root.branchWeight;
     addTo(accelerations[root.receiver], scale(sourceToReceiver, coefficient / denominator));
   }
 
@@ -1326,10 +1348,10 @@ function oneStepDynamicsDiagnostic(row, tier0, configResult, roots, args) {
   return {
     status: pass ? "one-step-speed-ordering-retained" : "one-step-speed-ordering-failed",
     schema_status: "provisional",
-    dynamics_scope: "single bounded root-weighted regularized step",
+    dynamics_scope: "single bounded receiver-normal branch-weighted regularized step",
     observation_time: 0,
     formula:
-      "a_r = sum_s w_relation q_r q_s (x_s(t-delay)-x_r(t)) / ((|x_s(t-delay)-x_r(t)|^2 + eta^2)^(3/2) max(|J|,1e-6))",
+      "a_r = sum_s w_relation q_r q_s W_rec(root) (x_s(t-delay)-x_r(t)) / ((|x_s(t-delay)-x_r(t)|^2 + eta^2)^(3/2))",
     regularization_eta: accelerations.eta,
     requested_dt: baseDt,
     bounded_dt: boundedDt,
@@ -2056,7 +2078,8 @@ function buildDirectRootRecord(row, history, receiver, source, receiverState, t,
     return null;
   }
   const direction = unit(sub(receiverState.position, sourceState.position));
-  const j = 1 - dot(sourceState.velocity, direction) / cF;
+  const receiverNormal = receiverNormalFields(receiverState.velocity, sourceState.velocity, direction, cF);
+  const j = receiverNormal.sourceNormalDenominator;
   const rootClass = classifyRoot(receiver, source, rootDelay, j, config);
   return {
     receiver: receiver.id,
@@ -2067,6 +2090,7 @@ function buildDirectRootRecord(row, history, receiver, source, receiverState, t,
     delay: rootDelay,
     residual: Math.abs(directRootFunction(receiverState, sourceState, rootDelay, cF)),
     J: j,
+    ...receiverNormal,
     nearSeparator: rootClass.nearSeparator,
     nearZeroSelf: rootClass.nearZeroSelf,
     selfDelayClass: rootClass.selfDelayClass,
@@ -2170,7 +2194,13 @@ function directRootKickAccelerations(row, tier0, configResult, roots, states, hi
     const receiverState = states[root.receiver];
     const sourceStates = stateHistoryAt(row, history, observationTime - root.delay);
     const sourceState = sourceStates?.[root.source] ?? null;
-    if (!receiverState || !sourceState || !Number.isFinite(root.delay) || !Number.isFinite(root.J)) {
+    if (
+      !receiverState ||
+      !sourceState ||
+      !Number.isFinite(root.delay) ||
+      !Number.isFinite(root.J) ||
+      !Number.isFinite(root.branchWeight)
+    ) {
       invalidContributionCount += 1;
       continue;
     }
@@ -2179,8 +2209,7 @@ function directRootKickAccelerations(row, tier0, configResult, roots, states, hi
     const regularizedDistance = Math.sqrt(regularizedDistanceSquared);
     const denominator = Math.max(regularizedDistanceSquared * regularizedDistance, Number.EPSILON);
     const signedCharge = bodyCharge(root.receiver) * bodyCharge(root.source);
-    const jacobianWeight = 1 / Math.max(Math.abs(root.J), 1e-6);
-    const coefficient = relationWeight(root.relation) * signedCharge * jacobianWeight;
+    const coefficient = relationWeight(root.relation) * signedCharge * root.branchWeight;
     addTo(accelerations[root.receiver], scale(sourceToReceiver, coefficient / denominator));
   }
 

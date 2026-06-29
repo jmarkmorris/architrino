@@ -1,5 +1,18 @@
 # Collinear Breather
 
+Receiver-normal restart notice. The return-map architecture, root-topology
+lemmas, inactive-gap logic, finite-memory controls, and source-normal
+transversality rows in this chapter remain candidate proof inputs. Any recapture
+margin, self-drive margin, branch-force estimate, action row, or finite
+certificate is closure evidence only after it is redriven with the
+receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same
+retained branch record.
+
+The proof process restarts at the receiver-normal branch table. Earlier margins,
+constants, candidate cycles, and finite certificates are not inherited as proof
+steps; at most, their root-topology and history-space structure become input
+obligations that must be rebound to the same receiver-normal EOM record.
+
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
 The guiding idea is narrow: if delayed self-interaction can contribute to any bounded recapture mechanism at all, it should first be visible in a reflection-symmetric one-dimensional opposite-polarity binary. If it cannot be made to work there, then later claims about maximum-curvature binaries, nested shell braid locking, and assembly-level closure lose their cleanest analytic foothold.
@@ -219,9 +232,12 @@ u^2
 $$
 so it predicts $|u|\to\infty$ as $x\to0^+$. The hinge marks where the reduced partner-only model has reached the self-hit-capable regime and should hand off to the delayed root ledger rather than being extrapolated through the origin.
 
-### Delayed partner correction
+### Receiver-normal delayed partner correction
 
-The preceding estimate is intentionally only a dimensional scale. It drops the causal-root Jacobian and therefore should not be used as evidence that a released history reaches field speed at a finite exterior radius. On the simplest action-generated exterior chart, the partner source is locally affine:
+The preceding estimate is intentionally only a dimensional scale. It drops the
+causal-root branch factor and therefore should not be used as evidence that a
+released history reaches field speed at a finite exterior radius. On the
+simplest receiver-normal exterior chart, the partner source is locally affine:
 $$
 x(s)\approx x(t)-v(t-s),
 \qquad
@@ -235,14 +251,34 @@ $$
 \qquad
 r_p=c_f\tau_p,
 \qquad
-J_p=1+\frac{v}{c_f}
+D_s=c_f+v
 $$
-Thus the delayed partner force is not the naive conservative inverse-square force. The simple-root branch law is
+while the receiver-normal numerator is
+$$
+D_t=c_f-v.
+$$
+Thus the delayed partner force is neither the naive conservative inverse-square
+force nor a source-normal-only row. The receiver-normal branch strength is
+$$
+W_p^{\mathrm{rec}}
+=
+\left|\frac{D_t}{D_s}\right|
+=
+\frac{c_f-v}{c_f+v}
+$$
+on this inbound exterior chart, and therefore
+$$
+\frac{W_p^{\mathrm{rec}}}{r_p^2}
+=
+\frac{1}{4x^2}
+\left(1-\frac{v^2}{c_f^2}\right).
+$$
+The simple-root receiver-normal comparison law is consequently
 $$
 \ddot x
 =
 -\frac{g}{4x^2}
-\left(1+\frac{\dot x}{c_f}\right),
+\left(1-\frac{\dot x^2}{c_f^2}\right),
 \qquad
 g\equiv\kappa\epsilon^2
 $$
@@ -254,47 +290,33 @@ $$
 \qquad
 \alpha\equiv\frac{g}{4c_f^2}
 $$
-the phase equation has the exact invariant
+the phase equation has the exact receiver-normal invariant
 $$
-\beta-\beta_0
--\ln\!\left(\frac{1+\beta}{1+\beta_0}\right)
+\ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)
 =
-\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
+-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
 $$
-For a released exterior branch with $\beta_0=0$ at $x=x_0$, this becomes
-$$
-\beta-\ln(1+\beta)
-=
-\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
-$$
-The left side diverges as $\beta\to-1^+$, so this delayed partner branch approaches field speed only in the limiting approach to $x=0$, not at a finite exterior radius. The finite-radius hinge scale $x_{c_f}$ is therefore a normalization of the naive partner-only estimate, while the action-generated delayed partner test says that any finite-radius field-speed crossing must come from structure omitted by the affine exterior partner chart: finite-width shell effects, core-layer transit, nonaffine path history, self-image terms, or a different certified branch chart.
-
-The corresponding exact sub-field branch can be written with the Lambert $W$ function. Let
-$$
-S(x)
-\equiv
-\beta_0-\ln(1+\beta_0)
-+\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)
-$$
-Then
-$$
-\beta_k(x)
-=
--1-\operatorname{W}_k\!\left(-e^{-(S(x)+1)}\right)
-$$
-For the inbound released branch, $k=0$. Define
+For a released exterior branch with $\beta_0=0$ at $x=x_0$, this gives
 $$
 \beta_{\mathrm{in}}(x)
-\equiv
--1-\operatorname{W}_0\!\left(-e^{-(S(x)+1)}\right)
+=
+-\sqrt{
+1-\exp\!\left[-2\alpha\left(\frac{1}{x}-\frac{1}{x_0}\right)\right]
+}
 $$
-Then $-1<\beta_{\mathrm{in}}(x)<0$, and the time parametrization is the quadrature
+where the negative square-root branch is the inbound branch. Hence
+$-1<\beta_{\mathrm{in}}(x)<0$ for every $x>0$ on the exterior chart, and the
+time parametrization is the quadrature
 $$
 t-t_0
 =
 \int_x^{x_0}\frac{d\xi}{-c_f\,\beta_{\mathrm{in}}(\xi)}
 $$
-This is the controlled sub-field-speed analytic comparison problem: it is generated by the delayed branch force rather than by prescribing a future path. A full breather theorem still has to prove how this exterior branch connects through the core layer and returns through the history-space map.
+This is a receiver-normal restart scaffold, not a solved breather baseline. It
+shows only that the affine exterior partner row by itself still approaches
+field speed only at the origin-layer limit. Any finite-radius field-speed
+crossing, sub-field return, or recapture mechanism must be redriven from the
+dual-mollified law with the same-record $D_t/D_s$ branch strength.
 
 ### Field-Speed Head-On Caustic Test
 
@@ -402,9 +424,12 @@ $$
 $$
 At $t=0$ with $x_0=1$, this compact shell also sets the partner term exactly to zero whenever $\eta<2x_0$, because the partner support has not reached the receiver. The theory consequence is sharper than "the partner wake is in flight": an exact affine $v=c_f$ inbound history produces a regulator-dependent self-continuum acceleration before the partner wake can contribute. A lawful candidate must therefore break the exact continuum by preparation or branch geometry before the simple-root certificate can begin.
 
-## Prepared Held-Release Benchmark
+## Held-Release Restart Target
 
-A useful initial-data test fixes the pre-release history explicitly. Let a right-hand Positrino and left-hand Electrino be held at
+A held source remains a lawful way to specify pre-release history, but the
+held-release solution is purged as a solution artifact because it used the
+superseded branch law. Let a right-hand Positrino and left-hand Electrino
+be held at
 $$
 x_2(t)=+x_0,\qquad x_1(t)=-x_0,\qquad x_0 > 0
 $$
@@ -412,148 +437,30 @@ with zero velocity for a holding interval long enough that the stationary partne
 $$
 T_{\mathrm{hold}}\ge \frac{2x_0}{c_f}
 $$
-Set the release time to $t=0$. During the held interval the holding constraint cancels the stationary partner attraction, and a stationary architrino has no nontrivial self-hit root.
-
-For the right-hand coordinate after release, while the partner emission time still lies in the held history, the partner source position is fixed at $-x_0$ and the partner Jacobian is $1$. The reduced equation is the ordinary initial-value problem
+Set the release time to $t=0$. During the first post-release segment, while
+the partner emission time still lies in the held history,
+$$
+D_s=c_f,
+\qquad
+D_t=c_f-\dot x(t),
+\qquad
+W^{\mathrm{rec}}=1-\frac{\dot x(t)}{c_f}.
+$$
+The receiver-normal restart equation is therefore
 $$
 \ddot x(t)
 =
--\frac{\kappa\epsilon^2}{(x(t)+x_0)^2},
+-\frac{\kappa\epsilon^2}{(x(t)+x_0)^2}
+\left(1-\frac{\dot x(t)}{c_f}\right),
 \qquad
 x(0)=x_0,\qquad
-\dot x(0)=0
+\dot x(0)=0.
 $$
-In particular,
-$$
-\ddot x(0)
-=
--\frac{\kappa\epsilon^2}{4x_0^2}
-$$
-This initial action-generated ODE segment has an exact energy identity. With
-$$
-g\equiv\kappa\epsilon^2
-$$
-one has
-$$
-\frac{1}{2}\dot x^2-\frac{g}{x+x_0}
-=
--\frac{g}{2x_0}
-$$
-and therefore
-$$
-|\dot x|^2
-=
-2g\left(\frac{1}{x+x_0}-\frac{1}{2x_0}\right)
-$$
-Extrapolating the stationary-source ODE to the origin gives the speed bound
-$$
-|\dot x|_{\max}^2=\frac{g}{x_0}
-$$
-Therefore the extrapolated held-source branch reaches field speed strictly before the origin only if
-$$
-c_f^2<\frac{g}{x_0}
-$$
-with equality corresponding to field speed at the origin. In the normalized comparison $g=1$ and $c_f=1$, a release from $x_0>1$ remains sub-field-speed throughout this ODE extrapolation, and therefore throughout the actual held-source segment. Thus a starting position such as $x_0=1.25$ does not by itself imply a field-speed crossing under the action-generated held-release force.
 
-The handoff from held partner history to moving partner history is also explicit. Put
-$$
-y(t)\equiv x(t)+x_0
-$$
-The inbound solution can be parametrized by
-$$
-y(\theta)=2x_0\cos^2\theta,
-\qquad
-x(\theta)=x_0\cos(2\theta),
-\qquad
-\dot x(\theta)=-\sqrt{\frac{g}{x_0}}\tan\theta
-$$
-with
-$$
-t(\theta)=2x_0\sqrt{\frac{x_0}{g}}\left(\theta+\sin\theta\cos\theta\right)
-$$
-The first moving-partner emission, released at $t=0$, reaches the right-hand receiver when
-$$
-y(t_\ast)=c_ft_\ast
-$$
-Equivalently, if
-$$
-\rho\equiv c_f\sqrt{\frac{x_0}{g}}
-$$
-then the handoff angle is the unique solution of
-$$
-\cos^2\theta_\ast
-=
-\rho\left(\theta_\ast+\sin\theta_\ast\cos\theta_\ast\right),
-\qquad
-0\le\theta_\ast\le\frac{\pi}{4}
-$$
-whenever the solution occurs before the origin. Since the left-minus-right side has derivative
-$$
--\sin(2\theta)-2\rho\cos^2\theta<0
-$$
-the root is unique. It occurs before or at the origin exactly when
-$$
-\rho\ge\frac{1}{1+\pi/2}
-$$
-The stronger normalized condition $x_0>g/c_f^2$ gives $\rho>1$, so the held-source segment both hands off before the origin and remains strictly sub-field-speed up to the handoff.
-
-If one asks whether field speed occurs before the handoff rather than before the origin, the exact comparison is sharper. Field speed would occur at $\theta_c=\arctan\rho$, so it occurs before handoff exactly when
-$$
-\frac{1-\rho^2}{1+\rho^2}>\rho\arctan\rho
-$$
-The $x_0=1.25$, $g=1$, $c_f=1$ benchmark has $\rho>1$, so it is safely outside that early-field-speed regime.
-
-For $x_0=1.25$, $g=1$, and $c_f=1$, the handoff values are
-$$
-\theta_\ast\approx0.400048009813582,
-\qquad
-x_\ast\approx0.8707972823389274,
-\qquad
-\dot x_\ast\approx-0.37820836925058077
-$$
-Thus the lawful held-release preparation enters the moving-partner delayed chart with a finite sub-field-speed state rather than with the singular exact field-speed self-continuum.
-
-The handoff is also a regular simple-root opening. For the moving partner emission time $t_e$, define
-$$
-F(t,t_e)\equiv x(t)+x(t_e)-c_f(t-t_e)
-$$
-At the handoff,
-$$
-F(t_\ast,0)=0,
-\qquad
-\partial_{t_e}F(t_\ast,0)=\dot x(0)+c_f=c_f>0
-$$
-Therefore the delayed emission time continues uniquely for $t$ near $t_\ast$, with
-$$
-\frac{dt_e}{dt}
-=
-\frac{c_f-\dot x(t)}{c_f+\dot x(t_e)}
-$$
-The partner Jacobian at handoff is
-$$
-J_p(t_\ast;0)=1+\frac{\dot x(0)}{c_f}=1
-$$
-so the partner acceleration is continuous across the transition:
-$$
--\frac{g}{(x(t_\ast)+x_0)^2}
-=
--\frac{g}{(x(t_\ast)+x(0))^2\,J_p(t_\ast;0)}
-$$
-Thus the held-release handoff is not a hidden caustic. It is a regular transfer from fixed partner history into the delayed moving-partner chart.
-
-This ODE segment remains valid until the first post-release partner emission reaches the right-hand receiver. If $t_\ast$ denotes that handoff time, then
-$$
-x(t_\ast)+x_0=c_f t_\ast
-$$
-After that time the partner root samples the moving history and must be solved as a delayed emission time $t_e < t$:
-$$
-x(t)+x(t_e)=c_f(t-t_e)
-$$
-with exterior-branch partner Jacobian
-$$
-J_p(t;t_e)=1+\frac{\dot x(t_e)}{c_f}
-$$
-Thus the held-release benchmark supplies a simple ODE start, but it does not remove the delayed partner-root problem once the receiver begins sampling post-release history.
+The energy identity, field-speed criterion, handoff angle, numerical fixture,
+and source-normal continuity claim must be recomputed from this receiver-normal
+ODE and then matched to the moving-partner delayed chart with the same-record
+$D_t/D_s$ factor before they can act as evidence.
 
 ## Partner-Hit and Self-Hit Root Equations
 
@@ -640,7 +547,7 @@ $$
 
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
 
-Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with the Jacobian deciding how sharply each branch is weighted.
+Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with the same retained record carrying both the source-normal transversality denominator and the receiver-normal branch strength.
 
 ## Regularized 1D Equation
 
@@ -663,7 +570,7 @@ $$
 {|x(t)-x(t_0)|^2}
 \delta_\eta\!\big(|x(t)-x(t_0)|-c_f(t-t_0)\big)
 $$
-with the understanding that the exact Jacobian factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
+with the understanding that the source-normal denominators and receiver-normal branch factors reappear in the branch-sum representation when the mollified shell collapses onto isolated roots.
 
 The normalization convention for the shell mollifier is fixed once and used throughout the estimates below. Choose a nonnegative even
 $$
@@ -4976,7 +4883,12 @@ $$
 
 The first explicit velocity-class packet has moved the obstruction from candidate absence to candidate falsification. A fixed cosine candidate supplies useful null-coordinate and fold-layer diagnostics, but it fails at the parent-complement part of the pre-ledger: after accepted simple-root windows and fold-layer diagnostics are removed, some parent complements still carry equality cores or non-strict null-coordinate overlap. The next admissible route is therefore a fresh fold-adapted collocation candidate, or an equivalent certified construction, whose pre-ledger closes before any seed-chart or branch-chart row begins.
 
-A stricter sub-field-speed comparison branch is also available. The held-release ODE segment and the exterior affine delayed-partner chart are action-generated baselines, not prescribed trajectories. They show that a normalized release from $x_0>1$ need not reach field speed during the held-source segment, and that the exterior delayed partner branch approaches $\dot x=-c_f$ only at the origin-layer limit. This does not prove a sub-field-speed breather, but it changes the proof burden: field-speed separators must be derived from the full dual-mollified dynamics or replaced by a certified sub-field return mechanism.
+A stricter sub-field-speed comparison branch is now a restart route rather than
+an available baseline. The held-release segment and exterior affine
+delayed-partner chart must be solved with the receiver-normal factors above.
+Only after that recomputation may the proof ask whether field-speed separators
+are dynamically produced by the full dual-mollified dynamics or replaced by a
+certified sub-field return mechanism.
 
 The negative-breather lesson is that even a formal expansion valid to all
 orders can miss a leakage channel outside the expansion scale. The collinear

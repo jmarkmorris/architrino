@@ -266,9 +266,14 @@ Because no primitive mass is assigned to a single architrino, the primitive dyna
 $$
 \mathbf{a}_{i\leftarrow j}
 \sim
-\kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}
+\kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2}
+W_{ij}^{\mathrm{rec}}\hat{\mathbf{r}}_{ij},
+\qquad
+W_{ij}^{\mathrm{rec}}
+=
+\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
 $$
-Here $J_{ij}$ is not an adjustable constant. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}=\partial_s F_{ij}$ is the causal-root transversality Jacobian. In the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}=\partial_{t_0}g_{ij}$ up to the chosen normalization, so the factor $\lvert J_{ij}\rvert^{-1}$ is the simple-root Jacobian weight, not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map: the ordinary branch row is valid away from the Whitney-fold set
+Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j(t_0)$ is the source-normal denominator and $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_i(t)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_s F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_s F_{ij}=0\},
 $$
@@ -387,7 +392,7 @@ K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
 \subseteq
 \left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
 $$
-The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, Jacobian weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
+The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, source-normal denominators, receiver-normal branch strengths, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
 
@@ -403,7 +408,7 @@ This page fixes the ontological commitments:
 - Reception is universal across architrinos.
 - Emitted wake history supplies provenance for later dynamics.
 
-This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, Jacobian weights, inverse-square kernels, and regularization belong in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, source-normal denominators, receiver-normal branch strengths, inverse-square kernels, and regularization belong in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Worldlines and Path History
 
@@ -438,7 +443,7 @@ This is an ontology statement about source identity and path-history provenance.
 
 The ontology only states that every architrino receives wake contributions according to one universal law. This is a universality claim about the primitive receiver, not a claim that all effective assemblies respond in the same coarse-grained way.
 
-It does not define the force kernel, causal emission-time set, Jacobian weighting, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
+It does not define the force kernel, causal emission-time set, source-normal denominator, receiver-normal branch strength, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
 ### Dynamics and Regime Boundary
 
@@ -446,7 +451,7 @@ This page does not own wake regimes, self-hit activation, maximum-curvature bina
 
 The canonical homes are:
 
-- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
+- [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md) for causal hits, delay roots, source-normal denominators, receiver-normal branch strengths, received acceleration, and branch topology.
 - [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../../../../markdown/aaa/noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.
@@ -702,7 +707,7 @@ $$
 
 This symmetry expresses the principle that **the laws of physics are time-translation invariant**: the same admissible state and path-history data, translated by a constant amount in $t$, obey the same dynamical law.
 
-The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, velocity factors, and Jacobian weights rather than merely changing units.
+The larger group of smooth orientation-preserving time relabelings is not a symmetry of the substrate law. Once the constant wake speed and receiving-law normalization are fixed, nonlinear time reparametrizations change the causal-root spacing, source-normal denominators, and receiver-normal factors rather than merely changing units.
 
 **Connection to Conservation Laws:** Time-translation invariance is the kinematic basis for **energy conservation** when the relevant dynamics admit an energy or action formulation. In this chapter, the point is structural: the background clock supplies a fixed parameter against which such conservation statements can be formulated.
 
@@ -1241,7 +1246,7 @@ $$
 $$
 This set records source identities and emission times whose causal isochrons pass through the point. It is a provenance index set, not a field: it has no independent state variables, stress, density, energy, or equation of motion.
 
-Equivalently, $\mathcal{P}(\mathbf{x},t)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf{x},t)$ must converge after the branch-strength, distance, and causal-root Jacobian weights are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
+Equivalently, $\mathcal{P}(\mathbf{x},t)$ is the receiver-side fiber of the tagged-emission map before the received wake terms are summed into an untagged potential. The receiver-centered exhaustion problem is therefore a summability question over this fiber: the weighted counting measure on $\mathcal{P}(\mathbf{x},t)$ must converge after the receiver-normal branch strengths, inverse-square distance factors, and source-normal transversality floors are applied. Convergence of the Noether sea background is not a new property of the void; it is a condition on the population of provenance labels and their wake weights.
 
 In this precise sense, the void is a **Plenum of Potential**: materially empty, but relationally available to causal-wake history. The phrase is explanatory rather than ontological. It does not add a new substance between the Euclidean void and the Noether sea, and it does not create a fourth layer alongside void, medium, and effective spacetime. It names the fact that an empty coordinate location can still lie within the superposed causal-wake history of the architrino population. Noether sea density and response variables belong to $\mathcal{N}_{\mathrm{sea}}$; $\mathcal{P}(\mathbf{x},t)$ names only the wake-history provenance labels available at that point.
 
@@ -1675,6 +1680,21 @@ $$
 \hat{\mathbf{r}}_{ij}=\frac{\mathbf{r}_{ij}}{\|\mathbf{r}_{ij}\|}
 $$
 Failure of this floor marks a caustic-like or degenerate wake-root regime; it is a branch-chart failure condition, not an ordinary small perturbation.
+
+On a smooth retained branch $s=s_\ell(t)$, differentiating
+$F_{ij}(t,s_\ell(t))=0$ gives the receiver-normal factor
+$$
+\frac{ds_\ell}{dt}
+=
+\frac{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_i(t)}
+{c_f-\hat{\mathbf{r}}_{ij}(t,s_\ell)\cdot\mathbf{v}_j(s_\ell)}
+$$
+This identity is not a new coupling constant. It distinguishes the source-normal
+causal-root Jacobian from the rate at which a moving receiver path samples the
+same emitted causal wake sequence. A stationary receiver in the Euclidean-void
+rest frame sets the numerator to $c_f$; radial receiver motion changes the
+receiver-normal action or wake-history rate and must be recorded when a proof
+uses accumulated action rather than only an event-local force row.
 
 The status of $\kappa_{\mathrm{hit}}$ is fixed in [Absolute Time](../../../../markdown/aaa/foundations/absolute-time.md#causality-and-finite-propagation-speed): it is a declared branch-chart or certificate lower bound, not a universal coupling constant, coordinate parameter, or regularization width.
 

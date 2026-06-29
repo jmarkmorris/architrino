@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold Normal Form
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet is the direct theorem target after [octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure](octahedral-fold-aware-cross-binary-i1-compact-complement-directed-rounded-interval-enclosure.md). The compact complement packet closed the ordinary-$\theta$ interval rows away from the $\theta_{3-}$ fold, but it exposed that the fold collar cannot be closed as a fixed-reference collar across the speed enclosure.
 
@@ -261,16 +263,16 @@ $$
 \texttt{sampled-theta3minus-remainder-budget-feasibility-certified}.
 $$
 
-The sampled fold-pair scaled-stencil successor status is
+The sampled fold-pair scaled-stencil successor status is now
 
 $$
-\texttt{sampled-theta3minus-fold-pair-scaled-stencil-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
-The directed-rounded sampled-node fold-pair successor status is
+The directed-rounded sampled-node fold-pair successor status is now
 
 $$
-\texttt{directed-rounded-sampled-node-theta3minus-fold-pair-scaled-interval-certified}.
+\texttt{receiver-normal-zero-bracket-restart-required}.
 $$
 
 The directed-rounded fold-pair root-tube cell-cover successor status is

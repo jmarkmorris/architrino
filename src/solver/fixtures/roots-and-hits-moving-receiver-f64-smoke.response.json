@@ -1,0 +1,156 @@
+{
+  "schema": "solver-app-bridge/v1",
+  "kind": "roots-and-hits-f64-response",
+  "requestId": "causal-roots-moving-receiver-f64-smoke",
+  "response": {
+    "roots": [
+      {
+        "rootId": 0,
+        "statusCode": 0,
+        "emissionTime": 5,
+        "hitTime": 10,
+        "delay": 5,
+        "distance": 5,
+        "residual": 0,
+        "jacobian": 1,
+        "branchWeight": 1.5,
+        "sourcePoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "receiverPoint": {
+          "x": 5,
+          "y": 0,
+          "z": 0
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": -0.5,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1.5,
+        "receiverNormalCrossingFactor": 1.5,
+        "receiverNormalFactor": 1.5,
+        "unsignedReceiverNormalFactor": 1.5,
+        "receiverNormalStatusCode": 0
+      }
+    ],
+    "hits": [
+      {
+        "eventId": 0,
+        "rootId": 0,
+        "statusCode": 0,
+        "emissionTime": 5,
+        "hitTime": 10,
+        "distance": 5,
+        "jacobian": 1,
+        "strength": 1.5,
+        "emissionPoint": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "receiverPoint": {
+          "x": 5,
+          "y": 0,
+          "z": 0
+        },
+        "unitDirection": {
+          "x": 1,
+          "y": 0,
+          "z": 0
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": -0.5,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1.5,
+        "receiverNormalCrossingFactor": 1.5,
+        "receiverNormalFactor": 1.5,
+        "unsignedReceiverNormalFactor": 1.5,
+        "receiverNormalStatusCode": 0
+      }
+    ],
+    "buffers": [
+      {
+        "bufferId": "root-ledger",
+        "layout": "root_ledger.v1",
+        "byteOffset": 0,
+        "byteLength": 176,
+        "rowCount": 1,
+        "numericType": "f64"
+      },
+      {
+        "bufferId": "delayed-hit-events",
+        "layout": "delayed_hit_events.v1",
+        "byteOffset": 0,
+        "byteLength": 192,
+        "rowCount": 1,
+        "numericType": "f64"
+      }
+    ],
+    "streams": [
+      {
+        "streamId": "causal-root-transient",
+        "manifestVersion": "solver-stream-manifest.v1",
+        "indexLayout": "stream_index.v1",
+        "availableRanges": [
+          {
+            "timeRange": {
+              "start": 10,
+              "end": 10
+            },
+            "frameRange": {
+              "start": 0,
+              "end": 0
+            },
+            "byteRange": {
+              "start": 0,
+              "end": 176
+            }
+          },
+          {
+            "timeRange": {
+              "start": 10,
+              "end": 10
+            },
+            "frameRange": {
+              "start": 0,
+              "end": 0
+            },
+            "byteRange": {
+              "start": 176,
+              "end": 368
+            }
+          }
+        ],
+        "storagePolicy": {
+          "target": "caller-buffer",
+          "durable": false,
+          "maxBytes": 368
+        },
+        "metadata": {
+          "schema": "solver-path-history-stream-metadata.v1",
+          "precisionPath": "auto",
+          "numericType": "f64",
+          "numericChart": "absolute_f64",
+          "valueAuthority": "authoritative",
+          "appBufferAuthority": "authoritative",
+          "claimLevel": "interactive-preview",
+          "units": "solver-units",
+          "coordinateFrame": "solver-frame",
+          "scaleNormalization": "none",
+          "interpolationRule": "transient-buffer",
+          "provenance": {
+            "source": "transient-stream"
+          },
+          "diagnostics": []
+        }
+      }
+    ],
+    "status": {
+      "code": "ok",
+      "severity": "ok",
+      "message": "causal roots and delayed hits solved",
+      "recoverable": true
+    }
+  }
+}

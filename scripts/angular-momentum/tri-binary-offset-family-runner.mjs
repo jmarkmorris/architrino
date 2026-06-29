@@ -2841,9 +2841,10 @@ function createTorqueDiagnosticRow(row) {
   const displacement = sourcePoint && receiverPoint ? subtractVectors(receiverPoint, sourcePoint) : null;
   const distance = displacement ? vectorNorm(displacement) : row.root.distance;
   const unitDirection = displacement && distance > 0 ? scaleVector(displacement, 1 / distance) : null;
+  const branchWeight = Number(row.root.branchWeight);
   const forceScale =
-    unitDirection && distance > 0 && Math.abs(row.root.jacobian) > 0
-      ? 1 / (distance * distance * Math.abs(row.root.jacobian))
+    unitDirection && distance > 0 && Number.isFinite(branchWeight) && branchWeight >= 0
+      ? branchWeight / (distance * distance)
       : null;
   const normalizedForce = unitDirection && forceScale != null ? scaleVector(unitDirection, forceScale) : null;
   const receiverTorque =
@@ -21782,13 +21783,14 @@ function projectRootLedgerDetailForHinge(row) {
     emissionTime: row.emissionTime,
     hitTime: row.hitTime,
     delay: row.delay,
-    normalizedResidual: row.normalizedResidual,
-    absoluteResidual: row.absoluteResidual,
-    jacobian: row.jacobian,
-    jacobianSignStratum: row.jacobianSignStratum,
-    sourcePoint: row.sourcePoint,
-    receiverPoint: row.receiverPoint,
-  };
+        normalizedResidual: row.normalizedResidual,
+        absoluteResidual: row.absoluteResidual,
+        jacobian: row.jacobian,
+        jacobianSignStratum: row.jacobianSignStratum,
+        branchWeight: row.branchWeight,
+        sourcePoint: row.sourcePoint,
+        receiverPoint: row.receiverPoint,
+      };
 }
 
 function createHingePairPointDiagnostics({ pairKey, time, matchingEdges }) {
@@ -21869,9 +21871,10 @@ function createPointEventForceTorqueDiagnostic({ pairKey, row }) {
     row.sourcePoint && row.receiverPoint ? subtractVectors(row.receiverPoint, row.sourcePoint) : null;
   const distance = displacement ? vectorNorm(displacement) : null;
   const unitDirection = displacement && distance > 0 ? scaleVector(displacement, 1 / distance) : null;
+  const branchWeight = Number(row.branchWeight);
   const forceScale =
-    unitDirection && distance > 0 && Math.abs(row.jacobian) > 0
-      ? 1 / (distance * distance * Math.abs(row.jacobian))
+    unitDirection && distance > 0 && Number.isFinite(branchWeight) && branchWeight >= 0
+      ? branchWeight / (distance * distance)
       : null;
   const normalizedForce = unitDirection && forceScale != null ? scaleVector(unitDirection, forceScale) : null;
   const receiverTorque =

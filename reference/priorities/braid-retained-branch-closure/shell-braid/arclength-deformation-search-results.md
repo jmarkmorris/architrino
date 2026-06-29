@@ -66,17 +66,17 @@ The active-root convention retained one partner or cross-binary positive-delay r
 
 ## 2. Residuals
 
-For each retained hit, the dimensionless line-of-action force was
+For each retained hit, the dimensionless line-of-action force uses
 
 $$
 \widetilde{\mathbf{F}}_{ij}^{\alpha}
 =
-\frac{\mathrm{sign}(q_iq_j)}
-{(y_{ij}^{\alpha})^2|J_{ij}^{\alpha}|}
+\frac{\mathrm{sign}(q_iq_j)W_{ij}^{\mathrm{rec},\alpha}}
+{(y_{ij}^{\alpha})^2}
 \hat{\mathbf{r}}_{ij}^{\alpha}.
 $$
 
-The total force projection used
+The total force projection uses
 
 $$
 \widetilde{\mathbf{F}}_i
@@ -277,4 +277,3 @@ $$
 $$
 
 The main live hypothesis is now narrower: a viable same-level branch likely requires site-specific curve deformation, plane-normal motion, a controlled self/fold-layer contribution, or a declared medium-response term. Common breathing alone is not enough.
-

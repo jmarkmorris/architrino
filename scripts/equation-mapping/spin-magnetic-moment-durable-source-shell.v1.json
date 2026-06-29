@@ -11,6 +11,6 @@
   "retainedEvidenceStatus": "control_source_only",
   "notes": [
     "This file is not a positive retained evidence object.",
-    "A score-moving source must supply a retained non-coplanar ordered-frame loop, exposure-current moment map, covering-degree witness, and exposure-fiber residual on one record."
+    "An accepted retained source must supply a retained non-coplanar ordered-frame loop, exposure-current moment map, covering-degree witness, and exposure-fiber residual on one record."
   ]
 }

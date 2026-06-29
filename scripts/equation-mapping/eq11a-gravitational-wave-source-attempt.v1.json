@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq11a-gravitational-wave-source-input/v1",
-  "claimLevel": "score-neutral gravitational-wave source attempt; accepted source-carrier retained evidence is required before score movement",
+  "claimLevel": "score-neutral gravitational-wave source attempt; accepted source-carrier retained evidence is required before score review",
   "residualId": "R_11A_gw_source_attempt_0001",
   "commonCarrierId": "theta_gwsrc_attempt_0001",
   "carrier": {

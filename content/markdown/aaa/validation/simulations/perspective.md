@@ -1,25 +1,25 @@
 # Perspective: Why This Model Maps So Well
 
-This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices--reduction to $+\epsilon$ and $-\epsilon$ architrino polarities and choosing $\epsilon=|e|/6$--help with parsimony and observer-level charge bookkeeping, but the outsized wins come from how delayed line-of-action action, Jacobian-weighted causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent "magnetic-like" behavior without ever invoking right-hand-rule cross products.
+This framework appears to fit a surprising breadth of phenomena not because of any single novelty, but because a small set of simple, mutually reinforcing structural decisions is doing most of the heavy lifting. Two widely discussed choices--reduction to $+\epsilon$ and $-\epsilon$ architrino polarities and choosing $\epsilon=|e|/6$--help with parsimony and observer-level charge bookkeeping, but the outsized wins come from how delayed line-of-action action, receiver-normal causal flux, and same-source causal-root branches conspire to produce stability, scale selection, and emergent "magnetic-like" behavior without ever invoking right-hand-rule cross products.
 
 Historically, general relativity and quantum mechanics are extraordinarily successful as effective theories that summarize large classes of phenomena. We position this neoclassical, delayed line-of-action model as a simpler dynamical substrate whose coherent assemblies recover GR/QM-like phenomenology in appropriate coarse-grained, slow/weak, or phase-locked limits.
 
-We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the causal Jacobian, and superpose linearly.
+We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerations are directed along $\hat{\mathbf{r}}$, weighted by the receiver-normal branch factor, and superpose linearly.
 
 ---
 
-## Delayed Emission on Jacobian-Weighted Isochrons
+## Delayed Emission and Receiver-Normal Hits
 
 - What we assume:
 - Sources emit potential on expanding causal isochrons with surface density $\propto 1/r^2$, represented distributionally by $\delta(r-\tau)$ with $\tau = t - t_0$.
-  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by the branch Jacobian.
+  - Each causal hit is directed along $\hat{\mathbf{r}}$ from the source history point to the receiver, with received magnitude weighted by $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
 - Why it matters:
   - Gauss-like behavior follows immediately ($1/r^2$ on causal wake fronts).
-  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, and source motion enhances or suppresses active branches through the Jacobian. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
+  - Moving systems automatically generate tangential components in the receiver’s frame due to path-history geometry and causal-flux bunching: the “aim point” is in the past, source motion changes $D_s$, and receiver motion changes $D_t$. Orbital and vortex-like patterns emerge from delay, not from any $B\propto \mathbf{v}\times\mathbf{E}$ construction.
 
 - Consequence:
-  - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, Jacobian-weighted line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
+  - Many “magnetic” phenomenologies (circulation, axial vortices, flux tubes) can be reproduced as kinematic consequences of delayed, receiver-normal line-of-action pushes. There is no right-hand rule, no cross products, just geometry, flux weighting, and time delay.
 
 ---
 
@@ -29,7 +29,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
   - Emission cadence and per-wavefront amplitude are constant at the source.
 
 - Why it matters:
-  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Receiver motion influences instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$, while source motion modulates the received force magnitude through the Jacobian.
+  - Simplifies calibration and emphasizes that stability and scale selection arise from delay and self-interaction. Source motion supplies the source-normal denominator, receiver motion supplies the receiver-normal numerator and also enters instantaneous power via $\mathbf{F}\cdot\mathbf{v}$ through the radial component $v_r$.
   - With $\eta$-mollification ($\delta\to\delta_\eta$), the calculation can define $\Phi_\eta$ and verify $\Delta E_k=-\Delta U$ on resolved intervals while still taking $\eta\to 0$ for sharp impulses.
 
 ---
@@ -93,7 +93,7 @@ We work throughout in units with primitive wake speed $c_f=1$; per-hit accelerat
 - Shielding and apparent inertia:
   - Fast internal motion produces far-zone cancellation; the tiny residual wake signature of a coherent assembly behaves like inertial mass in interactions with the outside.
   - Magnetism without magnetism:
-  - Tangential effects and axial structures appear as a corollary of path-history plus Jacobian-weighted line-of-action per-hit action. No cross products required.
+  - Tangential effects and axial structures appear as a corollary of path-history plus receiver-normal line-of-action per-hit action. No cross products required.
 
 ---
 
@@ -175,7 +175,7 @@ Plain language: a receiver never sees the full ledger of who emitted what; it se
 
 Absolute time and Euclidean frames remove coordinate ambiguity (synchronization and alignment) but not physical ambiguity:
 - Sign/side ambiguity: attraction from +$\epsilon$ on one side vs repulsion from −$\epsilon$ on the opposite side along the same line remain indistinguishable at an instant.
-- Baseline distance scaling plus Jacobian modulation: $A \propto 1/(r^2 |J|)$; emitter speed affects both the timing of causal roots and the received per-hit amplitude through the branch Jacobian.
+- Baseline distance scaling plus receiver-normal modulation: $A \propto W^{\mathrm{rec}}/r^2$; source speed affects causal-root timing through $D_s$, while receiver motion enters received per-hit strength through $D_t$.
 - Collinear superposition: several sources along the same unoriented line can sum to the same instantaneous A and L.
 - Self-hit aliasing: self-intersections can mimic external sources along L.
 - Surrogate location recast: any instantaneous hit may be recast to a stationary surrogate source placed somewhere along L with an adjusted emission time; useful for inference and visualization, but it does not resolve the sign/side ambiguity or fix distance without temporal data.
@@ -188,7 +188,7 @@ Consequence: embedded observers and synthetic detector records must reason stati
 
 Even for a single source, the receiver cannot be sure that a given shove did not come from multiple distinct emission times $t_0 \in \mathcal{C}_{o'j}(t)$ on that same source. When $\|\mathbf{v}_j\| > 1$ or the source trajectory curves, several roots of $r = v(t - t_0)$ can occur and arrive in close succession along the same unoriented line of action, contributing separate per-hit pushes that are locally indistinguishable as to origin.
 
-However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While inverse-square surface dilution and Jacobian weighting usually make nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
+However, this is not the dominant practical difficulty. The governing issue is global superposition: at any instant the net field is the linear sum of contributions from all architrinos in the universe whose causal isochrons intersect the receiver “now.” While inverse-square surface dilution and receiver-normal branch strength usually make nearby sources dominate, the mapping from the universal emission ledger to observed hit histories remains vastly many-to-one. Consequently, inference must be temporal, statistical, and multi-view, not a frame-perfect instantaneous inversion.
 
 ---
 

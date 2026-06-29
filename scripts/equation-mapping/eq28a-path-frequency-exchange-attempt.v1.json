@@ -1,6 +1,6 @@
 {
   "schema": "aaa-equation-map-eq28a-path-frequency-exchange-input/v1",
-  "claimLevel": "score-neutral inverse-Compton/SZ path-frequency exchange attempt; accepted photon/path/medium retained evidence is required before score movement",
+  "claimLevel": "score-neutral inverse-Compton/SZ path-frequency exchange attempt; accepted photon/path/medium retained evidence is required before score review",
   "residualId": "R_28A_path_frequency_exchange_attempt_0001",
   "commonCarrierId": "theta_nu_ex_attempt_0001",
   "carrier": {

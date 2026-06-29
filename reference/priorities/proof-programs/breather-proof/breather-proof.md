@@ -7,7 +7,29 @@
 - Value: `10`
 - Cost: `4`
 - ROI: `2.50`
-- Status: `active-closure`
+- Status: `receiver-normal-restart`
+
+## Receiver-Normal Restart Notice
+
+The receiver-normal Master EOM branch-strength law is the receiver-normal factor
+$W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. Breather proof packets, pass/fail
+rows, and certificate reports are closure evidence only when their force/action
+rows carry that factor on the same retained branch record. Root topology,
+inactive-gap, finite-memory, source-normal transversality, and history-space
+return-map architecture rows may survive only as conditional inputs. The proof
+program must restart force margins, recapture/self-drive estimates, action
+rows, and any generated certificate before branch-chart authorization can be
+reconsidered.
+
+Dependency audit rule. Breather packets may not consume theta3minus, H39,
+first-y $G,D$, H-graph, coefficient, or successor quotient certificates as
+force/action evidence unless the consumed packet explicitly carries
+same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows and marks its
+receiver-normal evidence status as accepted. Historical quotient certificates
+may be cited only as root-geometry diagnostics or dependency provenance. Any
+breather margin, recapture, self-drive, branch-chart, or Schauder packet that
+depends on those quotient rows stays restart-only until the dependency chain is
+rebuilt on receiver-normal branch strength.
 
 ## Current Stopping Point
 
@@ -102,6 +124,10 @@ Engelborghs-Luzyanina-in 't Hout-Roose collocation source family. It narrows
 the three missing proof-grade fields, but it is not accepted external
 provenance, not a received schema-validation input, not row consumption, not a
 live-ledger update, and not branch-chart authorization.
+The coordinator source-field row
+[Sigma_hf_01 Sieber Theorem 2.5 Source-Field Row](./certificate/sigma_hf_01_sieber_theorem_2_5_source_field_row.md)
+records the smallest next translation target for those three fields while
+preserving the same external-provenance blocker.
 
 ## Task Queue
 
@@ -138,8 +164,6 @@ live-ledger update, and not branch-chart authorization.
 - `next_candidate_refinement_handoff` produced `certificate/next_candidate_refinement_handoff.md`, opening the next finite candidate/refinement target and forbidding branch-chart construction on the rejected cosine packet.
 - `fixed_cosine_refinement_rescue_test` produced `certificate/fixed_cosine_refinement_rescue_test.md`, rejecting mesh-only rescue of the fixed cosine candidate because residual equality collars are structural under the current contract.
 - `fixed_history_strict_collar_persistence_lemma` produced `certificate/fixed_history_strict_collar_persistence_lemma.md`, proving that fixed-history mesh refinement cannot consume positive-width equality cores under strict simple-root coverage.
-- `sub_field_speed_action_test_case` produced `certificate/sub_field_speed_action_test_case.md`, promoting an action-generated sub-field-speed analytic baseline: the held-source segment has an exact field-speed criterion and explicit regular handoff map, the exterior delayed-partner branch has a Lambert-$W$ phase solution, and exact same-side self roots are excluded under a strict sub-field speed cap.
-- `held_release_handoff_map` produced `certificate/held_release_handoff_map.md`, proving that the stationary-partner ODE segment admits a unique scalar handoff equation, a separate field-speed-before-handoff criterion, and a simple-root opening with $J_p=1$ and no acceleration jump. In the normalized $x_0=1.25$, $g=1$, $c_f=1$ fixture, the handoff occurs at $x_\ast\approx0.8707972823389274$ with $\dot x_\ast\approx-0.37820836925058077$, so the moving-partner delayed chart is entered from a strict sub-field-speed state rather than the rejected exact field-speed self-continuum.
 - `next_candidate_solver_target` produced `certificate/next_candidate_solver_target.md`, defining the next executable target as a fresh fold-adapted collocation candidate whose null-coordinate pre-ledger must pass before any branch chart is built, and now upgrading $H_{\mathrm{pc}}$ into a tangent-space gap-opening criterion.
 - `fresh_fold_collocation_solver_surface` produced `certificate/fresh_fold_collocation_solver_surface.md`, recording the minimum lawful successor artifact set plus the finite gap-opening linearization. It now notes that the first sidecar generator exists, that the binary64 fail-closed range-empty preledger attempt rejects the sidecar before branch-chart authorization, and that proof-interval-v10 records exact-rational range-empty, monotone-diagonal, simple-root-subwindow, parent-complement-probe, ownership/coverage-probe, same-packet ownership-data-constructor, regular-boundary finite-family, separator-assignment no-go, and topology/no-double-counting no-go partial certificates while all ten probed complement strips remain unresolved. The higher-fold endpoint route now also records the endpoint boundary-binding primitive rule/witness-record construction attempt, the ref-carrier/full-binding construction attempt, the endpoint value-binding map construction attempt, the binding contract/full-binding/carrier-admission construction attempt, the witness-object contract-link source-candidate construction attempt, the actual contract-link rule attempt, the contract-link membership rule attempt, the actual contract-link rule/membership proof target, the same-packet constructed witness-object identity attempt, the ref/value non-domain carrier rule target, the ref/value carrier-introduction route decision, the binding/full-binding completion attempt, the actual-link/membership dependency-cycle completion attempt, the independent constructed witness-object membership theorem attempt, the ref/value non-domain carrier-pair theorem attempt, the ref/value carrier-introduction rule theorem attempt, the ref/value carrier-introduction rule derivation attempt, the ref/value carrier-introduction inference-rule schema audit, the ref/value carrier-introduction inference-schema lemma target, the ref/value carrier-introduction inference-schema lemma proof attempt, the ref/value carrier-introduction definition-lemma stack proof attempt, the ref/value carrier-introduction non-domain carrier admissibility lemma proof attempt, the ref/value carrier-introduction same-packet ref/value carrier-field existence lemma proof attempt, the ref/value carrier-introduction same-packet ref/value carrier-field dependency-closure lemma proof attempt, and the ref/value carrier-introduction constructive same-packet full endpoint boundary-binding dependency lemma proof attempt. The carrier-pair theorem attempt fail-closes: 4 / 4 ref/value source pairs, carrier rule targets, non-domain carrier obstruction records, and direct source-promotion rejections are present, but 0 / 4 ref carrier rules, value-map carrier rules, joint carrier-pair rules, rule derivations, soundness proofs, application proofs, same-packet ref/value carrier fields, same-witness carrier-pair proofs, ref/value non-domain carrier pairs, carrier-pair theorems, independent membership theorems, or cycle breakers exist. The carrier-introduction rule theorem attempt then fail-closes at derivation level: 4 / 4 source premise sets, rule targets, direct source-promotion rejections, and selected carrier-admission routes are present, but 0 / 4 ref rule derivations, value-map rule derivations, joint ref/value rule derivations, soundness proofs, endpoint application proofs, available carrier rules, rule-theorem bundles, ref/value carrier pairs, independent membership theorems, or cycle breakers exist. The derivation attempt narrows that blocker: 4 / 4 ref contract roots, value-map contract roots, joint same-witness carrier-pair rule roots, and derivation targets are present, but 0 / 4 ref contract-to-ref-carrier rule derivations, value-map contract-to-value-map-carrier rule derivations, joint same-witness carrier-pair rule derivations, soundness bridges, endpoint applications, available carrier rules, or carrier pairs exist. The inference-rule schema audit narrows the blocker again: 4 / 4 inference-schema source scopes and missing axiom/lemma layers are identified, but 0 / 4 carrier-introduction inference-rule schemata, contract-to-carrier axiom/lemma records, same-witness pairing schemata, admissibility/preservation lemmas, source-handle non-promotion lemmas, schema soundness proofs, endpoint instantiation lemmas, derivation bundles, available carrier rules, or carrier pairs exist. The latest inference-schema lemma target states the candidate `S_ref`, `S_val`, and `S_pair` proof obligations without accepting them. The proof attempt selects the derivation-from-existing-definitions route and fail-closes with 4 / 4 definition source scopes but 0 / 4 ref contract-to-carrier lemma derivations, value-map contract-to-carrier lemma derivations, same-witness carrier-pairing derivations, admissibility derivations, membership-preservation derivations, source-handle non-promotion derivations, soundness derivations, endpoint-instantiation derivations, schema-family derivability proofs, schema bundles, derivation bundles, or carrier pairs. The definition-lemma stack proof attempt then narrows the blocker to the supporting layer: 4 / 4 definition source scopes, direct source-promotion rejections, selected carrier-admission routes, and definition-lemma stack targets are present, but 0 / 4 admissibility derivations, membership-preservation derivations, source-handle non-promotion derivations, ref/value contract-to-carrier lemma derivations, same-witness carrier-pairing derivations, soundness derivations, endpoint-instantiation derivations, definition-lemma stack completions, primitive-rule acceptances, schema-family derivability proofs, derivation bundles, or carrier pairs exist. The non-domain carrier admissibility lemma proof attempt narrows the first sublemma blocker: 4 / 4 source scopes, selected carrier-admission routes, route-only carrier-admission rejections, source refs/value maps, non-domain carrier obstructions, and ref/value carrier source candidates are present, but 0 / 4 ref candidate carrier fields, value-map candidate carrier fields, carrier-admission definition bridges, witness-object field membership proofs, source-handle non-promotion guards, admissibility derivations, or membership-preservation derivations exist. The same-packet ref/value carrier-field existence lemma proof attempt narrows that first blocker again: 4 / 4 source refs/value maps, domain-chart carrier subfields, ref/value non-domain carrier source candidates, and non-domain carrier obstructions are present, but 0 / 4 same-packet ref carrier fields, value-map carrier fields, dependency closures, existence lemmas, or endpoint application proofs exist. The same-packet ref/value carrier-field dependency-closure lemma proof attempt then separates source-layer binding evidence from proof-grade same-packet dependencies: 4 / 4 source ref/value binding layers and non-promotion guards are present, but 0 / 4 full endpoint boundary-binding dependencies, endpoint boundary-binding dependencies, witness-object ref dependencies, endpoint value-bound dependencies, witness-object value-map dependencies, ref dependency closures, value-map dependency closures, constructed ref/value carrier fields, dependency-closure lemmas, or endpoint application proofs exist. The constructive same-packet full endpoint boundary-binding dependency lemma proof attempt confirms 4 / 4 full-binding construction inputs and 3 / 3 row input pairs but 0 / 4 full endpoint boundary bindings in the full-binding packet or carrier-field layer, 0 / 4 same-packet full endpoint boundary-binding dependencies, endpoint boundary-binding dependencies, endpoint value-bound dependencies, witness-object dependencies, ref/value dependency closures, or dependency lemmas. No row consumption or branch-chart authorization exists.
 - `independent_full_endpoint_boundary_binding_theorem_attempt` produced `scripts/proof-programs/fresh-v10-higher-fold-fold-coordinate-endpoint-functional-independent-full-endpoint-boundary-binding-theorem-attempt.mjs`, `certificate/fold_coordinate_endpoint_functional_independent_full_endpoint_boundary_binding_theorem_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.json`, and `certificate/fold_coordinate_endpoint_functional_independent_full_endpoint_boundary_binding_theorem_attempt_report.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.nonlinear-v0.md`. It tests the dependency-cycle escape route and confirms 4 / 4 selected-route inputs and escape-route declarations, but 0 / 4 independent full endpoint boundary-binding theorems, no-contract-link premise proofs, carrier-admission bridges, full endpoint boundary bindings in the full-binding packet or carrier-field layer, same-packet dependency fields, row consumption, or branch-chart authorization.
@@ -277,7 +301,6 @@ rather than to a mismatched tame-subclass / macro-envelope pair.
 - Use `certificate/next_candidate_refinement_handoff.md` as the next executable handoff for a new candidate or refinement packet.
 - Use `certificate/fixed_cosine_refinement_rescue_test.md` as the no-go for mesh-only rescue of the same cosine candidate.
 - Use `certificate/fixed_history_strict_collar_persistence_lemma.md` as the local obstruction lemma explaining why fixed-history refinement leaves strict equality collars.
-- Use `certificate/sub_field_speed_action_test_case.md` and `certificate/held_release_handoff_map.md` as the action-generated comparison branch for testing whether a breather can remain strictly sub-field-speed; they are success markers and analytic baselines, not branch-chart authorizations.
 - Use `certificate/next_candidate_solver_target.md` as the current solver target for the next candidate packet.
 - Use `certificate/fresh_fold_collocation_solver_surface.md` as the implementation contract for the missing fresh-candidate solver or manual artifact instantiation.
 - Use `certificate/null_coordinate_separation_direction_lemma.md` as the constructive proof route for opening parent-complement gaps by changing the candidate history.
@@ -734,22 +757,19 @@ close the remaining 162 higher-fold proof-interval rows for
 certificate, proof-interval v6 adaptive receiver-cover sidecar, source-cover
 defect atlas, and fold-layer burden atlas.
 
-The sub-field-speed comparison lane now has a concrete action-generated
-baseline rather than a prescribed-path ansatz. The held-source release segment
-shows that, in normalized units $g=1$ and $c_f=1$, a release from $x_0=1.25$
-does not reach field speed before the moving-source handoff. The exterior
-affine delayed-partner branch then has the invariant
+The sub-field-speed comparison lane has restarted under the receiver-normal
+Master EOM. The held-release segment and exterior affine delayed-partner chart
+must now be solved with same-record $D_t/D_s$ branch strength. On the exterior
+affine partner row the receiver-normal invariant is
 $$
-\beta-\beta_0
--\ln\!\left(\frac{1+\beta}{1+\beta_0}\right)
+\ln\!\left(\frac{1-\beta^2}{1-\beta_0^2}\right)
 =
-\frac{g}{4c_f^2}\left(\frac{1}{x}-\frac{1}{x_0}\right),
+-\frac{g}{2c_f^2}\left(\frac{1}{x}-\frac{1}{x_0}\right),
 $$
-so $\beta\to-1$ only at the origin-layer limit on that chart. This is a real
-theory advance because it changes the field-speed question from "choose a curve
-that crosses $c_f$" to "derive a crossing from terms beyond the affine
-sub-field partner chart, or certify a bounded sub-field return without such a
-crossing."
+so $\beta\to-1$ only at the origin-layer limit on that chart. The field-speed
+question is now: derive a crossing from terms beyond the receiver-normal
+affine sub-field partner chart, or certify a bounded sub-field return without
+such a crossing.
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus has now been updated safely at a high level: the pre-ledger is
 described as a candidate-falsification gate, while the rejected cosine packet's
 row tables, hashes, and parent-strip history remain priority-only operational

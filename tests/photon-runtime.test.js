@@ -769,6 +769,15 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
         distance: 2,
         residual: 0,
         delay: 0.25,
+        branchWeight: 1,
+        sourceNormalSpeed: 0,
+        receiverNormalSpeed: 0,
+        sourceNormalDenominator: 1,
+        receiverNormalNumerator: 1,
+        receiverNormalCrossingFactor: 1,
+        receiverNormalFactor: 1,
+        unsignedReceiverNormalFactor: 1,
+        receiverNormalStatusCode: 0,
       },
     ],
   });
@@ -790,6 +799,8 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
   );
   assertNear(observerFieldResponse.electric.y, 0.25);
   assertNear(observerFieldResponse.comparisonB.z, 0.25);
+  assert.equal(observerFieldResponse.contributions[0].receiverNormalEvidenceStatus, "ok");
+  assert.equal(observerFieldResponse.contributions[0].branchWeight, 1);
   await client.dispose();
 });
 
@@ -825,6 +836,35 @@ test("Photon absolute-history source roots route through the moving-circular sol
   await client.dispose();
 });
 
+test("Solver bridge observer field fails closed without complete receiver-normal branch rows", async () => {
+  const client = createSolverAppBridgeClient();
+  await client.init(createPhotonTestSolverInitRequest());
+
+  const response = await client.computeMovingCircularObserverFieldF64({
+    signalSpeed: 1,
+    jacobianFloor: 1e-4,
+    branches: [
+      {
+        chargeSign: 1,
+        direction: { x: 0, y: 1, z: 0 },
+        sourceVelocity: { x: 0, y: 0, z: 0 },
+        distance: 2,
+        residual: 0,
+        delay: 0.25,
+        sourceNormalDenominator: 0.5,
+      },
+    ],
+  });
+
+  assert.equal(response.status.code, "receiver_normal_branch_rows_missing");
+  assert.equal(response.unstableContributionCount, 1);
+  assert.equal(response.contributions[0].receiverNormalEvidenceStatus, "receiver_normal_branch_rows_missing");
+  assert.equal(response.contributions[0].branchWeight, 0);
+  assert.equal(response.electric.y, 0);
+  assert.equal(response.comparisonB.z, 0);
+  await client.dispose();
+});
+
 test("Photon absolute-history observer field routes through the moving-circular solver bridge", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
@@ -847,7 +887,7 @@ test("Photon absolute-history observer field routes through the moving-circular 
   });
 
   assert.equal(observerFieldCalls, 1);
-  assert.equal(field.sourceMode, "solver_bridge_absolute_history_moving_circular_branch_sum");
+  assert.equal(field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.equal(field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
   assert.ok(Number.isFinite(field.electric.y));
   await client.dispose();
@@ -1045,7 +1085,7 @@ test("Photon delayed emission field can use absolute-history moving circular sol
   });
 
   assert.equal(field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(field.sourceMode, "app_absolute_history_moving_circular_branch_sum");
+  assert.equal(field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.equal(field.measurement.sourceHistoryMode, "absolute_history");
   assert.equal(field.sourceCount, buildPhotonArchitrinoSourceRefs(state).length);
   assert.ok(field.rootCount > 0);
@@ -1158,7 +1198,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
 
   assert.equal(summary.solverEngineId, "architrino-solver-app-bridge");
   assert.equal(summary.field.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(summary.field.sourceMode, "app_absolute_history_moving_circular_branch_sum");
+  assert.equal(summary.field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.equal(summary.polarization.solverEngineId, "architrino-solver-app-bridge");
   assert.ok(Number.isFinite(summary.polarization.amplitudes.y));
   assert.ok(Number.isFinite(summary.averageAnalyzerFraction));
@@ -1171,7 +1211,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
     solveCircularSourceRootsHitsLedger: observerBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(observerField.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(observerField.sourceMode, "app_absolute_history_moving_circular_branch_sum");
+  assert.equal(observerField.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.ok(Number.isFinite(observerField.electric.magnitude));
 
   const plotBridge = createPhotonCircularSourceBridgeStub();
@@ -1179,7 +1219,7 @@ test("Photon formula and plot APIs expose central solver bridge results", async 
     solveCircularSourceRootsHitsLedger: plotBridge.solveCircularSourceRootsHitsLedger,
   });
   assert.equal(plot.solverEngineId, "architrino-solver-app-bridge");
-  assert.equal(plot.sourceMode, "app_absolute_history_moving_circular_branch_sum");
+  assert.equal(plot.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.equal(plot.samples.length, 5);
   assert.ok(Number.isFinite(plot.amplitudeScale));
 });
@@ -1510,7 +1550,7 @@ test("configuration search can score and compare settings through the solver pat
     assert.equal(result.comparison.status, "ok");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "app_absolute_history_moving_circular_branch_sum"
+      "solver_bridge_absolute_history_receiver_normal_root_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalPhaseFamilyCount));
     assert.ok(Number.isFinite(result.comparison.absoluteHistory.helicalStablePhaseFamilyCount));
@@ -1561,7 +1601,7 @@ test("configuration search compares co-moving and absolute-history solver result
     assert.equal(result.comparison.coMoving.sourceMode, "solver_bridge_circular_source_branch_sum");
     assert.equal(
       result.comparison.absoluteHistory.sourceMode,
-      "app_absolute_history_moving_circular_branch_sum"
+      "solver_bridge_absolute_history_receiver_normal_root_branch_sum"
     );
     assert.ok(Number.isFinite(result.comparison.deltas.strengthDelta));
     assert.ok(Number.isFinite(result.comparison.deltas.rootCountDelta));

@@ -45,7 +45,7 @@ test("fold-aware cross-binary source atlas imposes no fixed speed window", () =>
 
   assert.equal(
     atlas.atlas_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.equal(atlas.atlas_parameters.speed_ratio_estimate, 3.021564740248);
   assert.deepEqual(atlas.atlas_parameters.speed_ratio_enclosure, [3.02156, 3.02157]);

@@ -93,8 +93,8 @@ F_i^{\nu}(u)
 =
 \sum_{r\in\mathcal{A}_{i}^{\nu}(u)}
 \sigma_i\sigma_j
-\frac{\widehat{\mathbf{R}}_r(u)}
-{\eta_r(u)^2|J_r^{\nu}(u)|}
+\frac{W_{r,\nu}^{\mathrm{rec}}(u)}{\eta_r(u)^2}
+\widehat{\mathbf{R}}_r(u)
 +
 F_{i,\mathrm{self}}^{\nu}(u)
 +
@@ -878,7 +878,7 @@ Leaving the fixed-speed subspace requires recomputing:
 
 1. $\chi_i$, $\Lambda_i$, $H_i$, winding rows, and their derivative columns;
 2. active roots $G_r^{\nu}=0$, delays $\eta_r$, Jacobian signs $J_r^{\nu}$, inactive gaps, tail slabs, and noncollision floors;
-3. forces $F_i^{\nu}$ and their derivatives through $\eta_r^{-2}$, $|J_r^{\nu}|^{-1}$, delayed directions, self-hit terms, medium-response terms, and support multipliers;
+3. forces $F_i^{\nu}$ and their derivatives through $\eta_r^{-2}$, $W_{r,\nu}^{\mathrm{rec}}$, delayed directions, self-hit terms, medium-response terms, and support multipliers;
 4. the speed primitive $A_i$, zero-mean tangent forcing, speed-band feasibility, clock/length speed, and tangential residual;
 5. the normal row with the $\nu_i^2$ curvature factor and bounded-speed projector/force derivatives;
 6. support-radial compatibility, support work, speed-factor storage/exchange, action curl, and action-derived $\Gamma_B^{\nu}$;

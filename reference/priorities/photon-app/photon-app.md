@@ -206,20 +206,25 @@ $$
 and source velocity $\mathbf v_i(\tau_{i,k})$, compute
 
 $$
-J_{i,k}
+D_{s,i,k}
 =
-1-\frac{\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k}}{c_{\mathrm{sig}}}.
+c_{\mathrm{sig}}-\mathbf v_i(\tau_{i,k})\cdot\mathbf n_{i,k},
+\qquad
+D_{t,i,k}
+=
+c_{\mathrm{sig}}-\mathbf v_{\mathrm{VO}}(t)\cdot\mathbf n_{i,k}.
 $$
 
-The Virtual Observer receiver acceleration is the Jacobian-weighted radial hit sum for a unit positive receiver:
+The Virtual Observer receiver acceleration is the receiver-normal radial hit sum for a unit positive receiver:
 
 $$
 \mathbf a_{\mathrm{VO}}(t)
 =
 g\sum_i\sum_k
 q_i
+\left|\frac{D_{t,i,k}}{D_{s,i,k}}\right|
 \frac{\mathbf n_{i,k}}
-{R_{i,k}^2 |J_{i,k}|},
+{R_{i,k}^2},
 \qquad
 R_{i,k}
 =
@@ -335,7 +340,7 @@ The moving-apparatus calculation and the same-source self-hit calculation should
 - the source phase-at-hit for each retained root, including layer id, charge sign, leading/trailing role, orbit phase, and phase cycle index;
 - the receiver phase-at-hit for every modeled receiver binary, with `n/a` for the Virtual Observer;
 - rejected-root reasons such as insufficient history, no catch-up root, singular root, small Jacobian, or transversality-floor failure;
-- the Jacobian-weighted hit sum;
+- the receiver-normal hit sum;
 - the reconstructed receiver acceleration;
 - and the observer-level transverse field derived from that acceleration.
 
@@ -369,7 +374,7 @@ $$
 \rightarrow
 \text{all causal roots}
 \rightarrow
-\text{Jacobian-weighted hit sum}
+\text{receiver-normal hit sum}
 \rightarrow
 \text{receiver acceleration}
 \rightarrow

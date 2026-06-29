@@ -81,9 +81,17 @@ $$
 =
 \frac{\mathbf{R}_r}{\eta_r},
 \qquad
-J_r
+D_{s,r}=J_r
 =
-1-\mathbf{T}_j(\lambda_n-\eta_r)\cdot\widehat{\mathbf{R}}_r.
+1-\mathbf{T}_j(\lambda_n-\eta_r)\cdot\widehat{\mathbf{R}}_r,
+\qquad
+D_{t,r}
+=
+1-\mathbf{T}_i(\lambda_n)\cdot\widehat{\mathbf{R}}_r,
+\qquad
+W_r^{\mathrm{rec}}
+=
+\left|\frac{D_{t,r}}{D_{s,r}}\right|.
 $$
 
 The delayed force contribution is
@@ -91,7 +99,7 @@ The delayed force contribution is
 $$
 \mathbf{f}_r
 =
-\frac{\sigma_i\sigma_j}{\eta_r^2|J_r|}
+\frac{\sigma_i\sigma_j W_r^{\mathrm{rec}}}{\eta_r^2}
 \widehat{\mathbf{R}}_r.
 $$
 
@@ -244,20 +252,18 @@ $$
 \delta\widehat{\mathbf{R}}_r.
 $$
 
-On a fixed sign stratum for $J_r$, the force derivative is
+On a fixed sign stratum for $D_{s,r}$ and $D_{t,r}$, the force derivative is
 
 $$
 \delta\mathbf{f}_r
 =
-\frac{\sigma_i\sigma_j}{\eta_r^2|J_r|}
+\frac{\sigma_i\sigma_j W_r^{\mathrm{rec}}}{\eta_r^2}
 \left[
 \delta\widehat{\mathbf{R}}_r
 -
-\left(
-2\frac{\delta\eta_r}{\eta_r}
+2\frac{\delta\eta_r}{\eta_r}\widehat{\mathbf{R}}_r
 +
-\frac{\delta J_r}{J_r}
-\right)
+\frac{\delta W_r^{\mathrm{rec}}}{W_r^{\mathrm{rec}}}
 \widehat{\mathbf{R}}_r
 \right].
 $$

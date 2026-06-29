@@ -99,7 +99,7 @@ The carrier requires:
 | $\mathcal S_{\mathrm{rad}}$ | Radiation and high-energy output rows. | Photon, synchrotron, Compton, hadronic, pair-cascade, cosmic-ray, and neutrino channels as comparison outputs. |
 | $\mathcal F_{\mathrm{fb}}$ | Environmental feedback row. | Heating, cavities, cocoons, bubbles, and duty-cycle work bound to the same release history. |
 
-The first score-moving carrier should be source-backed as one accepted `agn_accretion_release_carrier`. A packet that accepts only jet power, only radio lobes, or only horizon entropy does not populate `EQ-07B`.
+The first accepted-evidence carrier should be source-backed as one accepted `agn_accretion_release_carrier`. A packet that accepts only jet power, only radio lobes, or only horizon entropy does not populate `EQ-07B`.
 
 ## Release Residual
 
@@ -172,7 +172,7 @@ The carrier-shell source-contract boundary is [eq07b-agn-accretion-release-carri
 node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-shell-source-contract-attempt.v1.json --summary --pretty
 ```
 
-This boundary marks only the parent `agn_accretion_release_carrier` accepted-looking against a durable source-contract file while every child row remains `attempt`. The expected checker result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_strong_field_parent_support`, `carrierAccepted: true`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `4/4` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a boundary test, not accepted retained evidence.
+This boundary marks only the parent `agn_accretion_release_carrier` accepted-looking against a source-contract file while every child row remains `attempt`. The hardened checker rejects the contract shell as non-evidence, so the expected result is `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, `sourceEvidenceAccepted: false`, `sourceEvidenceFailureCount: 1`, `scoreDecision: no_score_increase`, `residualArithmeticEvaluated: false`, and `4/4` negative controls passing. The same command with `--require-populated` must exit nonzero. This is a fail-closed boundary test, not accepted retained evidence.
 
 The probe-source source-evidence guard is [eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json):
 
@@ -180,7 +180,7 @@ The probe-source source-evidence guard is [eq07b-agn-accretion-release-carrier-p
 node scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs --input scripts/equation-mapping/eq07b-agn-accretion-release-carrier-probe-source-negative-control.v1.json --summary --pretty
 ```
 
-This control marks the carrier and required rows accepted-looking while pointing their `sourcePath` values at a source-evidence-probe JSON. The checker now returns `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, and `residualArithmeticEvaluated: false`; the `--require-populated` form exits nonzero. Authored AAA prose, toy files, probe files, source-evidence-probe files, generated files, temporary files, priority packets, attempts, mocks, and negative controls cannot satisfy accepted AGN source evidence.
+This control marks the carrier and required rows accepted-looking while pointing their `sourcePath` values at a source-evidence-probe JSON. The checker now returns `status: blocked_accepted_without_evidence_source`, `nextBlocker: accepted_without_evidence_source`, and `residualArithmeticEvaluated: false`; the `--require-populated` form exits nonzero. Authored AAA prose, toy files, probe files, source-evidence-probe files, source-contract shells, generated files, temporary files, priority packets, attempts, mocks, and negative controls cannot satisfy accepted AGN source evidence.
 
 ## Direct Geometry Layer
 
@@ -194,7 +194,7 @@ This layer is priority-only and score-neutral. It maps the observer-level black-
 | Blandford-Znajek-style jet power, launch speed, opening angle, loading, shocks, hot spots, and dissipation | Release-selector readout for jet energy, momentum, angular momentum, collimation, loading, and dissipation on one source state. | `jet_channel_row` plus `wind_sheath_confinement_row`. | Same `releaseSelectorId`, `releaseWindowId`, `radiationChannelId`, `supportId`, and `eventLedgerId` as radiation and feedback rows. | `agn.lobe_without_launch`: large-scale lobe or bubble fit is rejected when launch, wind/sheath, and angular-momentum drain rows are absent or split. | Accepted carrier with source-backed jet-channel and wind/sheath rows bound to one release selector. |
 | Noether sea anisotropy/loading and environmental feedback | Surrounding Noether sea loading, cocoon/bubble heating, cavity work, and duty-cycle feedback as one response row. | `noether_sea_loading_row` and `feedback_row`. | Same `noetherSeaLoadingId`, `feedbackRowId`, `carrierId`, `sourceWindowId`, and `eventLedgerId` as release and radiation rows. | `agn.noether_sea_feedback_missing`: release/radiation rows pass while Noether sea loading is missing. | Accepted carrier with source-backed Noether sea loading and feedback rows. |
 | Horizon area, entropy, and detailed-balance comparisons | Horizon-interface label ensemble tied to the same inflow/release event ledger, not a standalone entropy fit. | `horizon_interface_label_row`. | Same `horizonInterfaceId`, `thetaWId`, `carrierId`, `supportId`, and `eventLedgerId` as inflow and release rows. | `agn.horizon_entropy_private_row` blocks private horizon rows before residual arithmetic. | Accepted carrier with a source-backed horizon-interface row only when horizon/state-counting comparisons are claimed. |
-| Energy, momentum, angular momentum, feedback, and no-hidden-retune balance | One finite-window $\mathcal L_{E\mathbf p\mathbf J}$ balance and one hidden-retune witness across inflow, radiation, jet, feedback, Noether sea loading, and horizon labels. | `event_ledger_row`, `source_provenance`, and `no_hidden_retune_witness`. | Same `eventLedgerId`, `retuneWitnessId`, `carrierId`, `sourceWindowId`, `releaseWindowId`, `supportId`, `releaseSelectorId`, `radiationChannelId`, `feedbackRowId`, and `horizonInterfaceId`. | Accepted-looking rows sourced only to probe/source-evidence-probe, priority, authored prose, generated, attempt, mock, toy, temporary, or negative-control files fail at `accepted_without_evidence_source`; identity splits fail before residual arithmetic. | Source-backed accepted `agn_accretion_release_carrier` with every required row accepted and bound to the same source identity. |
+| Energy, momentum, angular momentum, feedback, and no-hidden-retune balance | One finite-window $\mathcal L_{E\mathbf p\mathbf J}$ balance and one hidden-retune witness across inflow, radiation, jet, feedback, Noether sea loading, and horizon labels. | `event_ledger_row`, `source_provenance`, and `no_hidden_retune_witness`. | Same `eventLedgerId`, `retuneWitnessId`, `carrierId`, `sourceWindowId`, `releaseWindowId`, `supportId`, `releaseSelectorId`, `radiationChannelId`, `feedbackRowId`, and `horizonInterfaceId`. | Accepted-looking rows sourced only to probe/source-evidence-probe, source-contract, priority, authored prose, generated, attempt, mock, toy, temporary, or negative-control files fail at `accepted_without_evidence_source`; identity splits fail before residual arithmetic. | Source-backed accepted `agn_accretion_release_carrier` with every required row accepted and bound to the same source identity. |
 
 ## Candidate Breakthrough Angle
 
@@ -229,18 +229,18 @@ This object can test whether launch speed, collimation, radiation, baryon loadin
 | `agn.perpetual_recycling` | Outward release appears as free energy rather than redistribution from infalling matter, radiation, or pre-existing medium energy. |
 | `agn.radiation_child_promoted_to_parent` | A downstream EQ-29-style radiation carrier is promoted into the parent AGN release carrier while inflow, jet, horizon label, Noether sea loading, and feedback remain private or missing. |
 
-## Attack Card Summary
+## Equation Attack Card
 
 - Current score and closure driver: unscored; prove or fail one accretion-to-release residual over $\Theta_{\mathrm{AGN}}$ before adding `EQ-07B` to the main score table.
 - Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier: $\Theta_{\mathrm{AGN}}(W,T)$ plus $\theta_W$, $\mathcal L_{E\mathbf p\mathbf J}$, Noether sea loading, release-channel rows, and $\mathcal B_H$.
-- Smallest score-moving evidence object: accepted `agn_accretion_release_carrier` with source-backed inflow, accretion, jet, radiation, feedback, horizon-label, event-ledger, and no-retune rows.
+- Smallest accepted evidence object: accepted `agn_accretion_release_carrier` with source-backed inflow, accretion, jet, radiation, feedback, horizon-label, event-ledger, and no-retune rows.
 - Exact first blocker: `missing_accepted_agn_accretion_release_carrier`.
 - Existing scripts/fixtures/packets found: [eq07b-agn-accretion-release-carrier-source-attempt.v1.json](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-source-attempt.v1.json) is the score-neutral identity shell, and [eq07b-agn-accretion-release-carrier-identity-check.mjs](../../../scripts/equation-mapping/eq07b-agn-accretion-release-carrier-identity-check.mjs) enforces AGN source/release identity before residual arithmetic; related consumers include effective-metric, pressure/effective-$\Lambda$, radiation source-ledger, and finite-window thermodynamic runners.
 - Direct Geometry Layer: present in this packet; it binds strong-field support, inflow/accretion, radiation, jet, wind/sheath, Noether sea loading, feedback, horizon interface, event ledger, provenance, and no-hidden-retune witness to one AGN source/release identity.
 - Candidate breakthrough angle: start with the existing AGN release-channel selector and force launch, collimation, radiation, and feedback onto one state before horizon thermodynamics.
 - Fail-closed negative control: jet/lobe/radiation fits that split inflow, Noether sea loading, angular-momentum drain, and feedback records; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
 - Next action smaller than broad report: replace the carrier-shell source contract with a real source-backed parent carrier, then populate `strong_field_parent_support` on the same `carrierId`, `thetaWId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
-- Current implementation target: the identity shell, four fail-closed identity controls, probe-source guard, and carrier-shell source-contract boundary now exist. The next smaller action is a retained `strong_field_parent_support` evidence object, not a broader horizon-thermodynamics or jet-power report.
+- Current implementation target: the identity shell, four fail-closed identity controls, probe-source guard, and carrier-shell source-contract guard now exist. The next smaller action is a retained `strong_field_parent_support` evidence object after a real parent-carrier source replaces the contract shell, not a broader horizon-thermodynamics or jet-power report.
 
 ## Promotion Classification
 

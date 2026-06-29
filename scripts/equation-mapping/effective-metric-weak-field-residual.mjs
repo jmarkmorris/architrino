@@ -154,7 +154,7 @@ function evaluateEffectiveMetricWeakField(input, inputPath) {
       row: "EQ-07/EQ-08/EQ-09/EQ-10",
       supportedRows: ["EQ-07", "EQ-08", "EQ-09", "EQ-10", "EQ-17", "EQ-11"],
       claimLevel:
-        "score-neutral weak-field effective-metric residual; accepted retained rows are required before score movement",
+        "score-neutral weak-field effective-metric residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
@@ -514,6 +514,9 @@ function isEvidenceSourcePath(filePath) {
   return !(
     lowerBasename.includes("attempt") ||
     lowerBasename.includes("mock") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("source-contract") ||
+    lowerBasename.includes("probe") ||
     lowerBasename.includes("negative-control")
   );
 }
@@ -574,7 +577,7 @@ function firstBlocker({ status, missingRows, carrierBinding, sharedKeys, weakFie
   if (failedControl) {
     return `negative_control_failed_${failedControl.id}`;
   }
-  return "unknown_blocker";
+  return status;
 }
 
 function responseCoefficient(response, key) {

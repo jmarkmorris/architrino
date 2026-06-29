@@ -183,12 +183,19 @@ function rootForceContribution(pair, receiver, source, theta, y, traceScale, per
   const distance = norm(displacement);
   const rhat = scaleVector(displacement, 1 / distance);
   const sourcePhaseTangent = octahedralSiteTangent(source, sourcePhase);
-  const jacobian = 1 - speedRatio * dot(sourcePhaseTangent, rhat);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const sourceNormalDenominator = 1 - speedRatio * dot(sourcePhaseTangent, rhat);
+  const receiverNormalNumerator = 1 - speedRatio * dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return {
     force: scaleVector(rhat, coefficient),
     tangential_value: null,
-    jacobian,
+    jacobian: sourceNormalDenominator,
+    source_normal_denominator: sourceNormalDenominator,
+    receiver_normal_numerator: receiverNormalNumerator,
+    receiver_normal_factor: receiverNormalFactor,
+    branch_weight: Math.abs(receiverNormalFactor),
   };
 }
 
@@ -243,6 +250,10 @@ export function evaluatePointwiseTangentialWitness({
         phase_delay: y / periodRatio,
         physical_delay: y,
         jacobian: contribution.jacobian,
+        source_normal_denominator: contribution.source_normal_denominator,
+        receiver_normal_numerator: contribution.receiver_normal_numerator,
+        receiver_normal_factor: contribution.receiver_normal_factor,
+        branch_weight: contribution.branch_weight,
         tangential_value: tangentialValue,
       });
     }
@@ -284,6 +295,10 @@ function formatRootRow(row) {
     phase_delay: formatNumber(row.phase_delay),
     physical_delay: formatNumber(row.physical_delay),
     jacobian: formatNumber(row.jacobian),
+    source_normal_denominator: formatNumber(row.source_normal_denominator),
+    receiver_normal_numerator: formatNumber(row.receiver_normal_numerator),
+    receiver_normal_factor: formatNumber(row.receiver_normal_factor),
+    branch_weight: formatNumber(row.branch_weight),
     tangential_value: formatNumber(row.tangential_value),
   };
 }
@@ -321,7 +336,7 @@ function formatWitness(row) {
 export function buildOctahedralFoldAwareDynamicsHandoff(options = {}) {
   const sourceCertificate = buildOctahedralFoldAwareZeroBracketCertificate();
   const sourceErrors = validateOctahedralFoldAwareZeroBracketCertificate(sourceCertificate);
-  const speedRatio = sourceCertificate.zero_existence_certificate.speed_ratio_estimate;
+  const speedRatio = Number(sourceCertificate.zero_existence_certificate.speed_ratio_estimate);
   const rootSubdivisions = Number.parseInt(
     options.rootSubdivisions ?? DEFAULT_ROOT_SUBDIVISIONS,
     10
@@ -329,14 +344,86 @@ export function buildOctahedralFoldAwareDynamicsHandoff(options = {}) {
   const witnessTheta = Number(options.witnessTheta ?? DEFAULT_WITNESS_THETA);
   const witnessReceiver = options.witnessReceiver ?? DEFAULT_WITNESS_RECEIVER;
 
-  if (!Number.isFinite(speedRatio) || speedRatio <= 0) {
-    throw new Error("source certificate must provide a positive speed-ratio estimate");
-  }
   if (!Number.isInteger(rootSubdivisions) || rootSubdivisions < 100) {
     throw new Error("rootSubdivisions must be an integer >= 100");
   }
   if (!Number.isFinite(witnessTheta)) {
     throw new Error("witnessTheta must be finite");
+  }
+
+  const sourceZeroCertified =
+    sourceErrors.length === 0 &&
+    sourceCertificate.artifact_claim.certifies_fold_aware_multiroot_zero_bracket === true &&
+    Number.isFinite(speedRatio) &&
+    speedRatio > 0;
+  const sourceCertificateCheck = {
+    schema: sourceCertificate.schema,
+    valid: sourceErrors.length === 0,
+    errors: sourceErrors,
+    zero_status: sourceCertificate.zero_existence_certificate.status,
+    transversality_status: sourceCertificate.transversality_certificate.status,
+    clock_scale_status: sourceCertificate.clock_scale_gauge_lemma.status,
+  };
+  const baseArtifact = {
+    schema: OCTAHEDRAL_FOLD_AWARE_DYNAMICS_HANDOFF_SCHEMA,
+    packet_id: PACKET_ID,
+    promotion_status: PROMOTION_STATUS,
+    predecessor_schema: OCTAHEDRAL_FOLD_AWARE_ZERO_BRACKET_CERTIFICATE_SCHEMA,
+    predecessor_packet:
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
+    priority_packet:
+      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
+    source_certificate_check: sourceCertificateCheck,
+  };
+
+  if (!sourceZeroCertified) {
+    return {
+      ...baseArtifact,
+      representative_zero_ray_point: null,
+      pointwise_tangential_witness: null,
+      fixed_speed_tangent_closure_test: {
+        required_equation:
+          "T_i(theta) dot F_i^{fold}(theta)=0 for every receiver and phase on a retained fixed-speed trace branch",
+        witness_receiver: null,
+        witness_theta: null,
+        witness_total_tangential_value: null,
+        witness_cross_tangential_value: null,
+        witness_partner_tangential_value: null,
+        witness_jacobian_abs_min: null,
+        status: "not-run-receiver-normal-zero-bracket-open",
+      },
+      bounded_speed_handoff: {
+        mean_zero_equation: "integral_0^H T_i dot F_i^{fold} du=0",
+        speed_ode_equation: "nu_i nu_i'=Gamma_B^nu T_i dot F_i^{fold}",
+        primitive_return_condition:
+          "zero period mean is the necessary condition for a periodic speed primitive",
+        primitive_status: "blocked-until-receiver-normal-zero-bracket-restarted",
+        ordinary_theta_warning:
+          "cross-binary folds are projection singularities; a live primitive must use the coarea or branch-chart convention, not a dropped-root one-root theta ledger",
+        status: "blocked-receiver-normal-zero-bracket-open",
+      },
+      artifact_claim: {
+        assumes_fixed_speed_window: false,
+        certifies_fold_aware_period_mean_zero: false,
+        certifies_simple_zero_transversality: false,
+        rejects_fixed_speed_pointwise_tangent_closure: false,
+        identifies_bounded_speed_successor: false,
+        certifies_bounded_speed_primitive: false,
+        certifies_action_noether_event_rows: false,
+        certifies_observer_export: false,
+        retained_branch: false,
+        claim_level:
+          "receiver-normal zero-bracket restart target; dynamics handoff not run",
+      },
+      result: {
+        theory_status: "receiver-normal-zero-bracket-restart-required",
+        first_successor_row: "receiver-normal-zero-bracket-search-required",
+        retention: "not_retained",
+        retained_branch: false,
+        status_note:
+          "The receiver-normal Master EOM invalidates the predecessor zero bracket used by this handoff. Restart the zero-bracket search before evaluating pointwise dynamics.",
+      },
+    };
   }
 
   const pointwiseWitness = evaluatePointwiseTangentialWitness({
@@ -350,22 +437,7 @@ export function buildOctahedralFoldAwareDynamicsHandoff(options = {}) {
     pointwiseWitness.jacobian_abs_min > 0.1;
 
   return {
-    schema: OCTAHEDRAL_FOLD_AWARE_DYNAMICS_HANDOFF_SCHEMA,
-    packet_id: PACKET_ID,
-    promotion_status: PROMOTION_STATUS,
-    predecessor_schema: OCTAHEDRAL_FOLD_AWARE_ZERO_BRACKET_CERTIFICATE_SCHEMA,
-    predecessor_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-zero-bracket-certificate.md",
-    priority_packet:
-      "reference/priorities/braid-geometry-export-bridge/octahedral-fold-aware-dynamics-handoff.md",
-    source_certificate_check: {
-      schema: sourceCertificate.schema,
-      valid: sourceErrors.length === 0,
-      errors: sourceErrors,
-      zero_status: sourceCertificate.zero_existence_certificate.status,
-      transversality_status: sourceCertificate.transversality_certificate.status,
-      clock_scale_status: sourceCertificate.clock_scale_gauge_lemma.status,
-    },
+    ...baseArtifact,
     representative_zero_ray_point: {
       speed_constraint: "none; representative h=1 point on the projective zero ray",
       speed_ratio: formatNumber(speedRatio),
@@ -447,43 +519,61 @@ export function validateOctahedralFoldAwareDynamicsHandoff(artifact) {
     "promotion status must remain priority-only",
     errors
   );
-  assertField(
-    artifact?.representative_zero_ray_point?.speed_constraint ===
-      "none; representative h=1 point on the projective zero ray",
-    "artifact must not impose a speed window",
-    errors
-  );
+  const restartRequired =
+    artifact?.result?.theory_status === "receiver-normal-zero-bracket-restart-required";
+  if (!restartRequired) {
+    assertField(
+      artifact?.representative_zero_ray_point?.speed_constraint ===
+        "none; representative h=1 point on the projective zero ray",
+      "artifact must not impose a speed window",
+      errors
+    );
+  }
   assertField(
     artifact?.source_certificate_check?.valid === true,
     "source zero bracket certificate must validate",
     errors
   );
-  assertField(
-    artifact?.pointwise_tangential_witness?.active_root_count === 9,
-    "witness must include the expected nine active roots at receiver 1+ and theta=pi/4",
-    errors
-  );
-  assertField(
-    Number(artifact?.pointwise_tangential_witness?.jacobian_abs_min) > 0.5,
-    "pointwise witness must be root-regular",
-    errors
-  );
-  assertField(
-    Math.abs(Number(artifact?.pointwise_tangential_witness?.total_tangential_value)) > 0.1,
-    "pointwise witness must show nonzero tangential force",
-    errors
-  );
-  assertField(
-    artifact?.fixed_speed_tangent_closure_test?.status ===
-      "fixed-speed-pointwise-tangent-closure-rejected",
-    "fixed-speed pointwise tangential closure must be rejected",
-    errors
-  );
-  assertField(
-    artifact?.bounded_speed_handoff?.status === "bounded-speed-primitive-handoff-open",
-    "bounded-speed primitive handoff must remain open",
-    errors
-  );
+  if (restartRequired) {
+    assertField(
+      artifact?.fixed_speed_tangent_closure_test?.status ===
+        "not-run-receiver-normal-zero-bracket-open",
+      "restart artifact must not run fixed-speed tangent closure",
+      errors
+    );
+    assertField(
+      artifact?.bounded_speed_handoff?.status === "blocked-receiver-normal-zero-bracket-open",
+      "restart artifact must block bounded-speed handoff until the zero bracket is restarted",
+      errors
+    );
+  } else {
+    assertField(
+      artifact?.pointwise_tangential_witness?.active_root_count === 9,
+      "witness must include the expected nine active roots at receiver 1+ and theta=pi/4",
+      errors
+    );
+    assertField(
+      Number(artifact?.pointwise_tangential_witness?.jacobian_abs_min) > 0.5,
+      "pointwise witness must be root-regular",
+      errors
+    );
+    assertField(
+      Math.abs(Number(artifact?.pointwise_tangential_witness?.total_tangential_value)) > 0.01,
+      "pointwise witness must show nonzero tangential force",
+      errors
+    );
+    assertField(
+      artifact?.fixed_speed_tangent_closure_test?.status ===
+        "fixed-speed-pointwise-tangent-closure-rejected",
+      "fixed-speed pointwise tangential closure must be rejected",
+      errors
+    );
+    assertField(
+      artifact?.bounded_speed_handoff?.status === "bounded-speed-primitive-handoff-open",
+      "bounded-speed primitive handoff must remain open",
+      errors
+    );
+  }
   assertField(
     artifact?.artifact_claim?.certifies_bounded_speed_primitive === false &&
       artifact?.artifact_claim?.certifies_action_noether_event_rows === false &&

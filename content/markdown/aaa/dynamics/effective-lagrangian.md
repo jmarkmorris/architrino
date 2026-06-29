@@ -1,5 +1,18 @@
 # Effective Lagrangian
 
+Receiver-normal restart notice. Any variational scaffold in this chapter that
+does not produce receiver-normal branch strength is invalid as closure evidence.
+The current target is to vary a path-history functional whose branch-reduced
+force law carries $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ on the same retained
+roots as the Master EOM. Source-normal denominators remain transversality
+diagnostics until paired with the receiver-normal numerator and checked by the
+stated residuals.
+
+Variational proof work restarts from this canonical receiver-normal target. No prior action
+stationarity, energy balance, or Noether wake-history verdict is inherited
+unless the same derivation reproduces the receiver-normal branch law on the
+retained record.
+
 This chapter formalizes the conditional variational scaffold used by $\mathbb{A}\mathbb{A}\mathbb{A}$. Its purpose is to connect the exact, path-history-dependent microdynamics of discrete architrinos to coarse-grained effective descriptions of macroscopic assembly behavior in the Noether sea.
 
 The bridge is deliberately conditional. The Master EOM remains the primary dynamics at the substrate level; an action or Lagrangian chart becomes theorem-grade only after its variation, boundary, and conservation residuals close on the retained branch chart. Until then, the effective Lagrangian is a disciplined inference device rather than an independent ontology.
@@ -92,7 +105,7 @@ where $m_{\mathrm{delay}}$ denotes the mass-like shift and $\Gamma_{\mathrm{dela
 
 Historically, the route into this form matters. Newtonian force balance can be projected along fixed-endpoint variations as virtual work. For conservative interactions, $\mathbf{F}=-\nabla V$ turns the work term into a variation of potential energy, while the inertial term supplies a variation of kinetic energy plus an endpoint term. When the endpoint variation vanishes, Hamilton's construction turns that differential relation into the stationary action of $T-V$. The useful condition is therefore stationarity of the action, not a literal minimum in every case.
 
-The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous variables $(\mathbf{x}_i(t),\dot{\mathbf{x}}_i(t))$: receiver acceleration depends on delayed source coordinates, causal-root branches, Jacobian weights, and the retained causal-wake history. A local expression $L(\mathbf{x},\dot{\mathbf{x}},t)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed, Jacobian-weighted branch law.
+The same idea survives in $\mathbb{A}\mathbb{A}\mathbb{A}$ only after changing the object being varied. The Master EOM is not local in the instantaneous variables $(\mathbf{x}_i(t),\dot{\mathbf{x}}_i(t))$: receiver acceleration depends on delayed source coordinates, causal-root branches, receiver-normal branch factors, and the retained causal-wake history. A local expression $L(\mathbf{x},\dot{\mathbf{x}},t)$ therefore cannot be the substrate-level action for the exact law. The appropriate candidate is a multi-time path-history functional whose variation must reproduce the delayed receiver-normal branch law.
 
 The operational bridge is:
 
@@ -101,7 +114,7 @@ The operational bridge is:
 3. the action is promoted only if its variation yields the Master EOM on the retained branch chart;
 4. failure is measured by the variation residual $\mathbf{R}_i^{(\eta)}(t)$ and the window diagnostic $\epsilon_{\mathrm{var}}^{(\eta)}(W)$ defined below.
 
-Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, Jacobian, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
+Thus the Lagrangian question in $\mathbb{A}\mathbb{A}\mathbb{A}$ is not whether one can write a familiar-looking $T-V$ expression. The question is whether a delayed action with the same causal-root, source-normal denominator, receiver-normal branch-strength, boundary, and wake-history conventions as the Master EOM has a stationary variation whose residual closes. Only then do Noether-style energy, momentum, and angular-momentum statements become theorem-grade rather than diagnostic.
 
 ### Ordinary Hamiltonian Orientation
 
@@ -250,7 +263,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below gives the scale-only Master EOM; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -264,15 +277,19 @@ $$
 
 where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
 
-On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the scale-only result is the delayed force law
+On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
 $$
 \mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
-{r_{ij}(t;t_0)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
+\frac{
+W_{ij}^{\mathrm{rec}}(t;t_0)\,
+\hat{\mathbf{r}}_{ij}(t;t_0)
+}
+{r_{ij}(t;t_0)^2}
 $$
+where $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
 including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
@@ -300,7 +317,7 @@ $$
 \frac{\hat{\mathbf{r}}_{ij}(t;t_0)}{r_{ij}(t;t_0)^2}\,
 \phi_\eta\!\big(g_{ij}(t,t_0)\big)
 $$
-with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate whose weak limit is the Jacobian-weighted branch law above. The derivative term in $\nabla_{\mathbf{x}_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the force and conservation ledger rather than being forced to zero.
+with the understanding that the displayed finite-$\eta$ integral is a branch-selector surrogate. Its weak limit must be redriven so that the retained branch law carries the receiver-normal factor $W^{\mathrm{rec}}$. The derivative term in $\nabla_{\mathbf{x}_i}\mathcal{K}_{ij}$ is absorbed only after the full delayed variation is assembled and the branch reduction is performed. In a recoil-inclusive reading, this sentence is replaced by a stronger requirement: the derivative term is retained as $\mathbf{C}_{ij}^{(\eta)}$ and tested as part of the force and conservation ledger rather than being forced to zero.
 
 A derivation, reduction, or simulation that claims action-derived dynamics must therefore report the variation residual
 $$
@@ -332,9 +349,9 @@ $$
 \varepsilon
 }
 $$
-The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
+The scale-only receiver-normal branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
-The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](energy.md#wake-escapement).
+The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only receiver-normal branch target; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](energy.md#wake-escapement).
 
 The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
 
@@ -559,9 +576,9 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 =
 \left|1-\frac{\mathbf{u}(\mathbf{x}',t')\cdot\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')}{c_f}\right|
 $$
-This functional is the continuum inheritance of the discrete delayed causal $1/r$ action kernel together with the same Jacobian branch weight that appears in the Master EOM. Source emission remains isotropic at the microscopic level, but the received coarse flux is compressed or dilated by delayed transport geometry. Differentiating this delayed action with respect to receiver coordinates produces the corresponding Jacobian-weighted inverse-square force density plus velocity-dependent correction terms. In the quasi-static limit $\|\mathbf{u}\|/c_f\to0$, one recovers $J_{\mathrm{eff}}\to 1$ and the leading force law reduces to the familiar inverse-square form.
+This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. In the canonical Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
-The $J_{\mathrm{eff}}$ denominator is also the continuum location of the per-hit third-law defect. It is evaluated using the delayed source velocity $\mathbf{u}(\mathbf{x}',t')$, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
+The source-normal denominator is also one continuum location of the per-hit third-law defect. The corrected branch factor must additionally include the receiver-normal numerator, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
 $$
 \Pi_q^{ij}
@@ -580,7 +597,7 @@ $$
 \right)
 $$
 
-where $\Pi_{q,J}^{[ij]}$ is generated by the source-only velocity dependence of the Jacobian factor. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three equivalent diagnostics of the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can therefore test magnetic-like emergence by measuring whether these three reconstructions agree on the same branch window.
+where $\Pi_{q,J}^{[ij]}$ is the source-normal diagnostic contribution generated by the velocity dependence of the branch chart. The antisymmetric part is not a new force; it is the continuum expression of wake momentum that the particle-only mechanical ledger has omitted. This identifies three restart diagnostics for the same effective channel: the discrete recoil term $\mathbf{C}_{ij}^{(\eta)}$, the vector transport potential $\mathbf{A}_{\mathrm{wake}}$, and the antisymmetric stress contribution $\Pi_{q,J}^{[ij]}$. A continuum simulation can test magnetic-like emergence only after these reconstructions are rebuilt on the same branch window with the receiver-normal numerator included.
 
 The continuum variables are admitted only through balance laws inherited from resolved histories. A coarse polarity density and current must satisfy
 $$

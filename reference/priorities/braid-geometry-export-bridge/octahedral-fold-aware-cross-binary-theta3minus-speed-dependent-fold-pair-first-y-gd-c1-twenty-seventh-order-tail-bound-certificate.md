@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D C1 Twenty-Seventh-Order Tail-Bound Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet records a rigorous obstruction for the broad C1 attempt at the
 twenty-seventh-order first-y $G,D$ quotient-tail bound on the certified finite
@@ -8,8 +10,7 @@ $\operatorname{Shift}_{31}$ $W_\varepsilon$ root-tail tube. It does not certify
 closure. It proves that this factored positive-y interval evaluator cannot
 close the inherited twenty-seventh-order $D$ budget.
 
-No fixed speed band is imposed. The attempt uses only the certified positive
-speed-ratio zero enclosure
+No fixed speed band is imposed. The attempt uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

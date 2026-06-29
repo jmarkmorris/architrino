@@ -69,7 +69,7 @@ test("source-atlas interval implication imposes no speed window", () => {
 
   assert.equal(
     packet.interval_implication_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.equal(packet.interval_implication_parameters.speed_band, undefined);
   assert.equal(packet.interval_implication_parameters.speed_window, undefined);

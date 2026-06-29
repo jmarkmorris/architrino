@@ -64,7 +64,7 @@
         "rowId": "source-mechanism-metadata-missing-control-row",
         "status": "accepted",
         "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
-        "claimLevel": "accepted-looking mechanism row with durable source path but no source-mechanism support metadata"
+        "claimLevel": "accepted-looking mechanism row with durable source path but no source-mechanism support metadata; negative control only, no score change"
       },
       "source_branch_row": {
         "id": "source-branch-gamma-e-pm-source-candidate-0001",

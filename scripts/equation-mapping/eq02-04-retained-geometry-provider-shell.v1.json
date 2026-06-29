@@ -1,0 +1,74 @@
+{
+  "schema": "aaa-equation-map-eq02-04-retained-geometry-source/v1",
+  "claimLevel": "retained-geometry evidence schema fixture with accepted identity fields and synthetic retained-geometry payload",
+  "status": "accepted",
+  "providerId": "eq02_04_retained_geometry_provider_shell_0001",
+  "retainedRowSetId": "S_eq",
+  "commonCarrierId": "C_02_04_bin_u_external_provider_shell_0001",
+  "domainId": "D_02_04_bin_u_external_provider_shell_0001",
+  "supportId": "S_eq_retained_domain_external_provider_shell_0001",
+  "retainedGeometry": {
+    "rawLabeledRowsPreservedOnRetainedHistory": {
+      "status": "accepted",
+      "rowSetId": "S_eq",
+      "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json",
+      "rows": [
+        {
+          "rowId": "raw_labeled_rows_preserved_on_retained_history_external_provider_shell_0001",
+          "rawLabel": "synthetic-I",
+          "retainedHistoryIndex": 0
+        }
+      ]
+    },
+    "positiveWidthInvariantCell": {
+      "status": "accepted",
+      "B_N": {
+        "id": "B_N_external_provider_payload_shell_0001",
+        "intervalHull": [[-0.01, 0.01], [-0.01, 0.01]],
+        "measureLowerBound": 0.0001,
+        "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+      },
+      "Sigma_N": {
+        "id": "Sigma_N_external_provider_payload_shell_0001",
+        "sectionRule": "theta_root_0_crossing_with_positive_wake_flux",
+        "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+      },
+      "P_N": {
+        "id": "P_N_external_provider_payload_shell_0001",
+        "returnTime": 1.25,
+        "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+      },
+      "K_P_N": {
+        "id": "K_P_N_external_provider_payload_shell_0001",
+        "inclusionResidual": 0,
+        "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+      }
+    },
+    "refinementTrace": {
+      "status": "accepted",
+      "steps": [
+        {
+          "status": "accepted",
+          "h": 0.01,
+          "N": 16,
+          "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+        },
+        {
+          "status": "accepted",
+          "h": 0.005,
+          "N": 17,
+          "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+        },
+        {
+          "status": "accepted",
+          "h": 0.0025,
+          "N": 18,
+          "sourcePath": "scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json"
+        }
+      ]
+    }
+  },
+  "notes": [
+    "This file exists to prove that syntactic retained rows, invariant-cell fields, and refinement steps are insufficient without source provenance for the retained geometry."
+  ]
+}

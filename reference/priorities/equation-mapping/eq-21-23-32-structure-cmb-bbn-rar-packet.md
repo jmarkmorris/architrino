@@ -80,8 +80,15 @@ The last term is the split-state witness. It is zero only when growth, CMB, BBN,
 - Current score snapshot: `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32` are each recommended at score `3` in this packet. This pass does not update [equation.md](equation.md).
 - Closure driver: one retained observation-family record must bind growth, CMB, BBN, and low-acceleration galaxy projections through shared Noether sea, assembly, source, photon, baryon, neutrino, medium, and event-ledger rows.
 - Exact first blocker: the refined [EQ-21 Through EQ-23 And EQ-32 Shared Observation Residual Packet](eq-21-23-32-shared-observation-residual-packet.md) makes this executable and blocks at `missing_accepted_theta_obs`; its upstream readout remains blocked at `missing_accepted_theta_cos`; `EQ-32` additionally inherits `missing_accepted_theta_sea_rho_NS` and `delta_a_star`.
-- First implementation target for this packet: priority packet refinement only, aligning this earlier shared closure object with the newer Direct Geometry Layer and accepted-evidence contract.
-- Smallest later score-moving target: a source-backed retained $\Theta_{\mathrm{obs}}$ bundle with accepted growth, CMB, BBN, RAR/BTFR, readout, thermal/provenance, and no-hidden-retune rows on one parent observation record.
+- First implementation target for this packet: replace the shared-observation attempt with a durable non-priority `theta_obs` evidence object whose growth, CMB, BBN, RAR/BTFR, readout, thermal/provenance, and no-hidden-retune rows bind to one parent observation record. No score change follows until the shared-observation checker accepts those rows from durable source evidence.
+- Smallest accepted evidence object: a source-backed retained $\Theta_{\mathrm{obs}}$ bundle with accepted growth, CMB, BBN, RAR/BTFR, readout, thermal/provenance, and no-hidden-retune rows on one parent observation record.
+- Smallest next artifact: replace the shared-observation attempt with one durable `theta_obs` source object whose projection families and shared keys remain on one parent observation record.
+- Runnable handoff: use [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) and [shared-observation-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/shared-observation-priority-source-negative-control.v1.json) with [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs); both remain `scoreDecision=no_score_increase` and block at `missing_accepted_theta_obs`.
+
+```sh
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-residual-attempt.v1.json --summary --pretty
+node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/equation-mapping/shared-observation-priority-source-negative-control.v1.json --summary --pretty
+```
 
 ## Direct Geometry Layer
 

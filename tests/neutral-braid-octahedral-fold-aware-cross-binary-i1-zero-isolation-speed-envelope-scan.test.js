@@ -59,7 +59,7 @@ test("I1.f1 zero-isolation scan imposes no fixed speed window", () => {
 
   assert.equal(
     packet.scan_parameters.speed_constraint,
-    "none; uses the certified positive speed-ratio zero enclosure only"
+    "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only"
   );
   assert.deepEqual(packet.scan_parameters.speed_ratio_enclosure, [
     3.02156,

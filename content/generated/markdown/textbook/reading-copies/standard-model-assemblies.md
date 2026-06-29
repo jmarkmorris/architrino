@@ -26,7 +26,7 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
 
 - **Complete-state view:** The $\mathbb{U}_{\text{now}}$ universe-state perspective records architrinos with polarity bookkeeping labels $q=\pm\epsilon$ and their causal-wake histories. There are no primitive continuous gauge fields, only effective potential summaries reconstructed from causal-wake contributions.
 - **Physical Observer view:** A Physical Observer lacks direct resolution of individual architrinos and instead measures collective observables such as the effective potential gradient $\nabla\Phi$ at a point.
-  - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of Jacobian-weighted causal-flux density and circulation/vorticity in the Noether sea.
+  - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
 ### Symmetry Groups as Geometric Deformations
@@ -317,10 +317,10 @@ S_{\text{fund}}
 \int dt\left[
 \sum_i \frac{1}{2}\mu_{\text{arch}}\dot{\mathbf{x}}_i^2
 -\frac{1}{2}\sum_{i\ne j}\int_{\Sigma_{ij}} d^2\sigma\,
-\frac{\kappa \epsilon^2}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2\,|J_{ij}|}\,W_{ij}
+\frac{\kappa \epsilon^2\,W_{ij}^{\mathrm{rec}}}{\|\mathbf{x}_i(t)-\mathbf{x}_j(t-\tau)\|^2}
 \right]
 $$
-Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $J_{ij}$ is the delay-map Jacobian on the active branch, so the electroweak closure map starts from the same Jacobian-weighted causal geometry as the master equation rather than from a stripped inverse-square surrogate.
+Here $\mu_{\text{arch}}$ is the universal force/energy bookkeeping constant and $W_{ij}^{\mathrm{rec}}$ is the receiver-normal branch factor on the active branch, so the electroweak closure map starts from the same receiver-normal causal geometry as the master equation rather than from a stripped inverse-square surrogate.
 After fast-mode averaging of inner and middle binary phases (Lie-Deprit/Hamiltonian averaging) and coarse-graining to $q^2\ll \omega_M^2$, the minimal observer-level action is written as
 $$
 \mathcal{L}_{\text{eff}}

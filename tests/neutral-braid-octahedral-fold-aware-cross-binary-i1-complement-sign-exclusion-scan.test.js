@@ -15,7 +15,7 @@ import {
 const EXPECTED_STATUS =
   "sampled-source-atlas-aware-i1-complement-sign-exclusion-scan-certified";
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 let cachedArtifact = null;
 
@@ -57,7 +57,7 @@ test("I1 complement sign exclusion scan validates", () => {
   assert.equal(packet.result.theory_status, EXPECTED_STATUS);
 });
 
-test("I1 complement scan uses only the certified positive speed-ratio zero enclosure", () => {
+test("I1 complement scan uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required", () => {
   const packet = artifact();
 
   assert.equal(packet.scan_parameters.speed_constraint, NO_SPEED_WINDOW);

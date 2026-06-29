@@ -181,7 +181,10 @@ function periodRescaledForceContribution(pair, theta, y, traceScale, periodRatio
   const rhat = scaleVector(displacement, 1 / distance);
   const sourcePhaseTangent = octahedralSiteTangent(source, sourcePhase);
   const jacobian = 1 - speedRatio * dot(sourcePhaseTangent, rhat);
-  const coefficient = pair.force_sign / (y * y * Math.abs(jacobian));
+  const receiverTangent = octahedralSiteTangent(receiver, theta);
+  const receiverNormalNumerator = 1 - speedRatio * dot(receiverTangent, rhat);
+  const receiverNormalFactor = receiverNormalNumerator / jacobian;
+  const coefficient = pair.force_sign * Math.abs(receiverNormalFactor) / (y * y);
   return { force: scaleVector(rhat, coefficient), jacobian };
 }
 

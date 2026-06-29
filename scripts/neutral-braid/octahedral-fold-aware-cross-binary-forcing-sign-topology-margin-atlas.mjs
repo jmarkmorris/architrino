@@ -585,7 +585,7 @@ export function buildOctahedralFoldAwareCrossBinaryForcingSignTopologyMarginAtla
       source_quadrature_panels_per_segment: sourceQuadraturePanelsPerSegment,
       value_quadrature_panels_per_segment: valueQuadraturePanelsPerSegment,
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate:
         signCertificate.certificate_parameters.speed_ratio_estimate,
       speed_ratio_enclosure:
@@ -716,7 +716,7 @@ export function validateOctahedralFoldAwareCrossBinaryForcingSignTopologyMarginA
   );
   assertField(
     artifact?.margin_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "forcing sign topology margin atlas must not impose a fixed speed window",
     errors
   );

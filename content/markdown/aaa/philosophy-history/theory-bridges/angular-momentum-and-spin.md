@@ -27,7 +27,8 @@ $$
 \sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}
 \frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}
+{r_{ij}^2(t;t_0)}
+W_{ij}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf{r}}_{ij}(t;t_0)
 $$
 
@@ -126,8 +127,8 @@ P_{12}(t;t_0)
 =
 \mu_{\text{arch}}\,
 \kappa\sigma_{12}
-\frac{|q_1q_2|}
-{r_{12}^2|J_{12}|}
+\frac{|q_1q_2|W_{12}^{\mathrm{rec}}(t;t_0)}
+{r_{12}^2}
 v_r
 $$
 
@@ -400,10 +401,24 @@ $$
 and
 
 $$
-J_{\ell\alpha,m\beta}^{(b)}
+D_{s,\ell\alpha,m\beta}^{(b)}
 =
-1-\frac{\mathbf v_{m,\beta}(t_0^{(b)})\cdot
-\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}}{c_f}
+c_f-\mathbf v_{m,\beta}(t_0^{(b)})\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)},
+\qquad
+D_{t,\ell\alpha,m\beta}^{(b)}
+=
+c_f-\mathbf v_{\ell,\alpha}(t)\cdot
+\hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
+$$
+and
+$$
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
+=
+\left|
+\frac{D_{t,\ell\alpha,m\beta}^{(b)}}
+{D_{s,\ell\alpha,m\beta}^{(b)}}
+\right|
 $$
 
 The branch force-like bookkeeping term is
@@ -413,8 +428,8 @@ $$
 =
 \mu_{\text{arch}}\kappa\sigma_{\ell\alpha,m\beta}
 \frac{|q_{\ell,\alpha}q_{m,\beta}|}
-{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2
-\left|J_{\ell\alpha,m\beta}^{(b)}\right|}
+{\left\|\mathbf r_{\ell\alpha,m\beta}^{(b)}\right\|^2}
+W_{\ell\alpha,m\beta}^{\mathrm{rec},(b)}
 \hat{\mathbf r}_{\ell\alpha,m\beta}^{(b)}
 $$
 
@@ -2077,7 +2092,7 @@ $$
 {c_\star^2-\|\mathbf V_{\text{cm}}\|^2}
 $$
 
-Forward and rear sectors therefore accumulate different phase delays and Jacobian weights. Combined with the transverse causal budget
+Forward and rear sectors therefore accumulate different phase delays, source-normal denominators, and receiver-normal branch strengths. Combined with the transverse causal budget
 
 $$
 c_{\perp}
@@ -3067,10 +3082,13 @@ $$
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
 \sum_{s\in\mathcal C_{ia}^{A}(t)}
 \sigma_{ia}
-\frac{|q_iq_a|}
-{r_{ia}^2(t;s)|J_{ia}(t;s)|}
+|q_iq_a|
+\frac{W_{ia}^{\mathrm{rec}}(t;s)}
+{r_{ia}^2(t;s)}
 \hat{\mathbf r}_{ia}(t;s)
 $$
+
+where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{t,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 

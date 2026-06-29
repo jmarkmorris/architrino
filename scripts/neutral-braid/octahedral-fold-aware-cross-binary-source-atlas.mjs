@@ -427,7 +427,7 @@ export function buildOctahedralFoldAwareCrossBinarySourceAtlas(options = {}) {
       sample_count: sampleCount,
       root_subdivisions: rootSubdivisions,
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate: formatNumber(speedRatio),
       speed_ratio_enclosure: predecessor.scan_parameters.speed_ratio_enclosure,
     },
@@ -549,7 +549,7 @@ export function validateOctahedralFoldAwareCrossBinarySourceAtlas(artifact) {
   );
   assertField(
     artifact?.atlas_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "source atlas must not impose a fixed speed window",
     errors
   );

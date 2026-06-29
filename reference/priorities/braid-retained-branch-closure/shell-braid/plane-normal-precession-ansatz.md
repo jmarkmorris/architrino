@@ -539,10 +539,11 @@ $$
 \widetilde{\mathbf{F}}_{ij}
 =
 \chi_{ij}
+W_{ij}^{\mathrm{rec}}
 \frac{
 \widehat{\mathbf{R}}_{ij}
 }{
-\eta_{ij}^{2}|J_{ij}|
+\eta_{ij}^{2}
 }.
 $$
 

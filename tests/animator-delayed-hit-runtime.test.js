@@ -153,3 +153,42 @@ test("animator delayed-hit runtime consumes solver-owned path-history hit rows",
   assert.equal(hits[0].metadata.solverBranchWeight, 1);
   assert.equal(hits[0].status, "path-history");
 });
+
+test("animator delayed-hit rows use receiver-normal strength for moving receivers", () => {
+  const rowResponse = createAnimatorDelayedHitRowsFromStreamDescriptors(
+    {
+      streamId: "fixture-moving-receiver-stream",
+      fieldSpeed: 1,
+      emissionEvents: [{
+        emitterId: "source_a",
+        emissionTime: 0,
+        emissionPoint: [0, 0, 0],
+        fieldSpeed: 1,
+      }],
+      receiverPathDescriptors: [{
+        receiverId: "receiver_b",
+        pathKey: 2,
+        streamId: "fixture-moving-receiver-stream",
+        rowLayout: "path_segment.v1",
+        segments: [{
+          pathKey: 2,
+          segmentIndex: 0,
+          startTime: 0,
+          endTime: 3,
+          start: { x: 2, y: 0, z: 0 },
+          velocity: { x: -0.25, y: 0, z: 0 },
+        }],
+      }],
+    },
+    { fieldSpeed: 1 }
+  );
+
+  assert.equal(rowResponse.rows.length, 1);
+  const [row] = rowResponse.rows;
+  assert.ok(Math.abs(row.hitTime - 1.6) < 0.002);
+  assert.equal(row.jacobian, 1);
+  assert.equal(row.receiverNormalCrossingFactor, 1.25);
+  assert.equal(row.receiverNormalFactor, 1.25);
+  assert.equal(row.unsignedReceiverNormalFactor, 1.25);
+  assert.equal(row.strength, 1.25);
+});

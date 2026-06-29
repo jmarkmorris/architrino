@@ -1,12 +1,14 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Finite E Root-Tail Tube Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twenty-first-order-root-tail-seed-certificate.md). It tests the next closure route: whether the certified seed $E_\varepsilon(0,\nu)=h_{21,\varepsilon}$ can be inflated into a finite $E_\varepsilon(y,\nu)$ root-tail tube by direct endpoint signs on the existing Taylor-cancelled scaled root graph.
 
 It does not certify the finite $E_\varepsilon$ tube. It certifies the obstruction to the direct route: the existing direct $H_\varepsilon$ evaluator preserves the $J$ and direct $\partial_EH$ signs on positive first-y subcells, but it sees $E$ only through the tiny factor $y^{21}E$. Therefore it cannot resolve the $\operatorname{Shift}_{25}$ cancellation needed for the finite tube.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

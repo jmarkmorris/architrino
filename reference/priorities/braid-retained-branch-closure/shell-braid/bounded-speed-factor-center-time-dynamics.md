@@ -281,9 +281,10 @@ $$
 \sum_{r\in\mathcal{A}_i^\nu(u)}
 \sigma_i\sigma_j
 \frac{
+W_{r,\nu}^{\mathrm{rec}}(u)
 \widehat{\mathbf{R}}_r(u)
 }{
-\eta_r(u)^2|J_r^\nu(u)|
+\eta_r(u)^2
 }
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{self}}^\nu(u)

@@ -40,6 +40,10 @@ const locateWasmFile = (fileName) => path.join(wasmDir, fileName);
 const fixtureRequest = readJson("src/solver/fixtures/causal-roots-f64-smoke.request.json");
 const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.response.json");
 
+const ROOT_LEDGER_ROW_F64_BYTES = 176;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
+
 fs.mkdirSync(outputDir, { recursive: true });
 
 const client = createSolverAppBridgeClient({
@@ -974,9 +978,9 @@ function createPhotonCircularSourceFacadeCase() {
         },
       ],
       buffers: [
-        { layout: "root_ledger.v1", byteLength: 112, rowCount: 1 },
-        { layout: "delayed_hit_events.v1", byteLength: 128, rowCount: 1 },
-        { layout: "root_ledger_detail.v1", byteLength: 768, rowCount: 4 },
+        { layout: "root_ledger.v1", byteLength: ROOT_LEDGER_ROW_F64_BYTES, rowCount: 1 },
+        { layout: "delayed_hit_events.v1", byteLength: DELAYED_HIT_ROW_F64_BYTES, rowCount: 1 },
+        { layout: "root_ledger_detail.v1", byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES * 4, rowCount: 4 },
       ],
       status: { code: "ok" },
     },

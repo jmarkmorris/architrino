@@ -1,5 +1,8 @@
 const TWO_PI = Math.PI * 2;
 const EPSILON = 1e-9;
+const STATUS_OK = 0;
+const STATUS_SMALL_JACOBIAN = 14;
+const STATUS_RECEIVER_NORMAL_DEGENERATE = 25;
 
 function finiteNumber(value, fallback = 0) {
   const number = Number(value);
@@ -54,6 +57,38 @@ function dot(a, b) {
 
 function magnitude(a) {
   return Math.sqrt(dot(a, a));
+}
+
+function receiverNormalFields({ direction, sourceVelocity, receiverVelocity, signalSpeed }) {
+  const sourceNormalSpeed = dot(sourceVelocity, direction);
+  const receiverNormalSpeed = dot(receiverVelocity, direction);
+  const sourceNormalDenominator = signalSpeed - sourceNormalSpeed;
+  const receiverNormalNumerator = signalSpeed - receiverNormalSpeed;
+  const receiverNormalCrossingFactor = receiverNormalNumerator / signalSpeed;
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const unsignedReceiverNormalFactor = Math.abs(receiverNormalFactor);
+  let receiverNormalStatusCode = STATUS_OK;
+  if (
+    !Number.isFinite(receiverNormalFactor) ||
+    !Number.isFinite(receiverNormalCrossingFactor) ||
+    !Number.isFinite(unsignedReceiverNormalFactor)
+  ) {
+    receiverNormalStatusCode = STATUS_RECEIVER_NORMAL_DEGENERATE;
+  } else if (Math.abs(sourceNormalDenominator) <= EPSILON) {
+    receiverNormalStatusCode = STATUS_SMALL_JACOBIAN;
+  } else if (Math.abs(receiverNormalNumerator) <= EPSILON) {
+    receiverNormalStatusCode = STATUS_RECEIVER_NORMAL_DEGENERATE;
+  }
+  return {
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    receiverNormalStatusCode,
+  };
 }
 
 function phaseRecord(rawPhase) {
@@ -145,8 +180,16 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
   const info = residualInfo ?? movingCircularResidual(request, emissionTime);
   const safeDistance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / safeDistance);
-  const jacobian = 1 - dot(info.sourceSample.velocity, direction) / signalSpeed;
-  const branchWeight = 1 / Math.max(EPSILON, Math.abs(jacobian));
+  const receiverNormal = receiverNormalFields({
+    direction,
+    sourceVelocity: info.sourceSample.velocity,
+    receiverVelocity: vector(request.receiver?.velocity),
+    signalSpeed,
+  });
+  const jacobian = receiverNormal.sourceNormalDenominator;
+  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
+    ? receiverNormal.unsignedReceiverNormalFactor
+    : 0;
   return {
     rootId,
     statusCode: 0,
@@ -157,6 +200,7 @@ function buildMovingCircularRoot(request, emissionTime, rootId, residualInfo = n
     residual: info.residual,
     jacobian,
     branchWeight,
+    ...receiverNormal,
     sourcePoint: info.sourceSample.position,
     receiverPoint: info.receiverPoint,
     sourceVelocity: info.sourceSample.velocity,
@@ -172,8 +216,16 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
   const info = residualInfo ?? movingCircularSameSourceResidual(request, emissionTime);
   const safeDistance = Math.max(EPSILON, info.distance);
   const direction = scale(info.delta, 1 / safeDistance);
-  const jacobian = 1 - dot(info.sourceSample.velocity, direction) / signalSpeed;
-  const branchWeight = 1 / Math.max(EPSILON, Math.abs(jacobian));
+  const receiverNormal = receiverNormalFields({
+    direction,
+    sourceVelocity: info.sourceSample.velocity,
+    receiverVelocity: info.receiverSample.velocity,
+    signalSpeed,
+  });
+  const jacobian = receiverNormal.sourceNormalDenominator;
+  const branchWeight = Number.isFinite(receiverNormal.unsignedReceiverNormalFactor)
+    ? receiverNormal.unsignedReceiverNormalFactor
+    : 0;
   return {
     rootId,
     statusCode: 0,
@@ -185,6 +237,7 @@ function buildMovingCircularSameSourceRoot(request, emissionTime, rootId, residu
     residual: info.residual,
     jacobian,
     branchWeight,
+    ...receiverNormal,
     sourcePoint: info.sourceSample.position,
     receiverPoint: info.receiverPoint,
     sourceVelocity: info.sourceSample.velocity,

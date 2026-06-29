@@ -153,7 +153,8 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq22bRecombinationAcoustic(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "recombination_acoustic_carrier", inputPath);
+  const carrierRow = input.carrier ?? packet.carrier;
+  const carrier = evaluateAcceptedEvidence(carrierRow, "recombination_acoustic_carrier", inputPath);
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
     REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId, inputPath)]),
@@ -166,10 +167,27 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
   const solver = evaluateRecombinationAcousticSolver(packet, tolerances);
   const negativeControls = evaluateNegativeControls(packet, packet.negativeControls ?? [], tolerances);
   const status = decideStatus({ carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls });
+  const nextBlocker = firstBlocker({ status, carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls });
+  const solverDiagnosticBlocker = firstSolverBlocker(solver, negativeControls);
+  const solverDiagnosticMaskedByRetainedEvidence =
+    solverDiagnosticBlocker !== null && (!carrier.accepted || missingRows.length > 0);
   const carrierSource = sourceReferenceDetails(
     input.carrier?.sourcePath ?? packet.carrier?.sourcePath ?? input.carrier?.source ?? null,
     inputPath,
   );
+  const nextBlockerDetails = firstBlockerDetails({
+    nextBlocker,
+    status,
+    carrier,
+    carrierRow,
+    carrierSource,
+    rowChecks,
+    rowSourceAudit,
+    missingRows,
+    carrierBinding,
+    solver,
+    negativeControls,
+  });
 
   return {
     schema: OUTPUT_SCHEMA,
@@ -186,14 +204,16 @@ function evaluateEq22bRecombinationAcoustic(input, inputPath) {
       solverTarget: "recombination_visibility_acoustic_transfer",
       supportedRows: ["EQ-21", "EQ-22", "EQ-22A", "EQ-23", "EQ-24", "EQ-25"],
       claimLevel:
-        "score-neutral solver-style recombination/acoustic residual; accepted shared thermal/provenance/readout evidence is required before score movement",
+        "score-neutral solver-style recombination/acoustic residual; accepted shared thermal/provenance/readout evidence is required before score review",
     },
     tolerances,
     summary: {
       status,
       scoreDecision: SCORE_DECISION,
-      nextBlocker: firstBlocker({ status, carrier, rowChecks, missingRows, carrierBinding, solver, negativeControls }),
-      solverNextBlocker: firstSolverBlocker(solver, negativeControls),
+      nextBlocker,
+      nextBlockerDetails,
+      solverDiagnosticBlocker,
+      solverDiagnosticMaskedByRetainedEvidence,
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
@@ -726,6 +746,7 @@ function isEvidenceSourcePath(filePath) {
   return (
     !basename.includes("attempt") &&
     !basename.includes("toy") &&
+    !basename.includes("source-contract") &&
     !basename.includes("source-evidence-probe") &&
     !basename.includes("probe") &&
     !basename.includes("mock") &&
@@ -842,6 +863,94 @@ function firstBlocker({ status, carrier, rowChecks, missingRows, carrierBinding,
     return carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier";
   }
   return firstSolverBlocker(solver, negativeControls);
+}
+
+function firstBlockerDetails({
+  nextBlocker,
+  status,
+  carrier,
+  carrierRow,
+  carrierSource,
+  rowChecks,
+  rowSourceAudit,
+  missingRows,
+  carrierBinding,
+  solver,
+  negativeControls,
+}) {
+  if (nextBlocker === null) {
+    return null;
+  }
+  if (!carrier.accepted) {
+    return {
+      blocker: nextBlocker,
+      type: "carrier",
+      rowId: "recombination_acoustic_carrier",
+      id: carrierRow?.id ?? null,
+      status: normalizeStatus(carrierRow),
+      reason: carrier.reason,
+      sourcePath: carrierRow?.sourcePath ?? carrierRow?.source ?? null,
+      sourceKind: carrierRow?.sourceKind ?? null,
+      sourceFamily: carrierRow?.sourceFamily ?? null,
+      sourceConcrete: carrierSource.concrete,
+      sourceReferenceExists: carrierSource.exists,
+      sourceReason: carrierSource.reason,
+    };
+  }
+  if (nextBlocker === "accepted_without_evidence_source") {
+    const rowId =
+      missingRows.find((id) => isSourceEvidenceFailureReason(rowChecks[id]?.reason)) ??
+      Object.keys(rowChecks).find((id) => isSourceEvidenceFailureReason(rowChecks[id]?.reason));
+    return rowBlockerDetails(nextBlocker, rowSourceAudit[rowId]);
+  }
+  if (missingRows.length > 0) {
+    return rowBlockerDetails(nextBlocker, rowSourceAudit[missingRows[0]]);
+  }
+  if (!carrierBinding.passed) {
+    return {
+      blocker: nextBlocker,
+      type: "carrier_binding",
+      commonCarrierId: carrierBinding.commonCarrierId ?? null,
+      mismatches: carrierBinding.mismatches,
+    };
+  }
+  const solverBlocker = firstSolverBlocker(solver, negativeControls);
+  if (solverBlocker) {
+    return {
+      blocker: nextBlocker,
+      type: "solver",
+      solverBlocker,
+    };
+  }
+  return {
+    blocker: nextBlocker,
+    type: status,
+  };
+}
+
+function rowBlockerDetails(blocker, row) {
+  if (!row) {
+    return {
+      blocker,
+      type: "row",
+      rowId: null,
+    };
+  }
+  return {
+    blocker,
+    type: "row",
+    rowId: row.rowId,
+    status: row.status,
+    reason: row.reason,
+    carrierId: row.carrierId,
+    sourcePath: row.sourcePath,
+    sourceKind: row.sourceKind,
+    sourceFamily: row.sourceFamily,
+    sourceConcrete: row.sourceConcrete,
+    sourceReferenceExists: row.sourceReferenceExists,
+    sourceReason: row.sourceReason,
+    intendedSourceFamily: row.intendedSourceFamily,
+  };
 }
 
 function normalizeStatus(row) {

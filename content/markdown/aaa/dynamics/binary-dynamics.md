@@ -26,7 +26,7 @@ $$
 $$
 A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
 
-In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper fact: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart; it is not implied by the principal circular sign.
+In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 
 Standard central-force mechanics conserves angular momentum because the force at time $t$ is collinear with the equal-time separation vector. The partner-hit branch does not have that geometry. Define the equal-time separation and delayed line of action by
 $$
@@ -51,16 +51,19 @@ V_{\mathrm{eff}}(r)=V(r)+\frac{ml^2}{2r^2}
 $$
 cannot be imported as the binary's governing reduction. A conserved angular-momentum-like quantity, if present, must include the causal-wake history term that balances the delayed torque.
 
-**Lemma (No stable circular orbit for $\|\mathbf{v}\| < c_f$).** In units with $c_f=1$, the circular speed is $s=R\omega$. In the partner-only regime, the per-hit tangential component satisfies
+**Receiver-normal restart target for the sub-field partner row.** In units with $c_f=1$, the circular speed is $s=R\omega$. The source-normal circular sign diagnostic gives
 $$
-T_p \propto \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)} > 0 \quad (0<\delta_p<\pi)
+T_p^{\mathrm{src}}
+\propto
+\frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
+\quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. The time-averaged tangential acceleration cannot vanish; a constant-speed circular orbit is impossible.
+where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
--  The tangential component of the delayed force does positive work in the partner-only circular ledger.
+-  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
 
-With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. The evolution is therefore driven by delay geometry, branch bunching, and, once active, self-interaction.
+With perfectly symmetric initial conditions, the paths of the electrino and positrino are distinct but mirror-related. If the branch begins as a radial fall or enters a non-circular capture basin, it may still contract, but that is a separate branch-history statement. Emission cadence and intrinsic per-wavefront amplitude remain constant, while the **received** force is velocity-dependent because the causal-delay Jacobian compresses or dilates the causal flux along each active branch. For action or wake-history rates accumulated along a moving receiver path, the same root also carries the receiver-normal factor $ds_\ell/dt=(c_f-\hat{\mathbf r}\cdot\mathbf v_i)/(c_f-\hat{\mathbf r}\cdot\mathbf v_j)$. The evolution is therefore driven by delay geometry, branch bunching, receiver-path sampling, and, once active, self-interaction.
 
 Initially, and as long as the speeds of both architrinos are less than or equal to the wake propagation speed $c_f$, they are only influenced by their partner's attractive wake. The total acceleration is simply the attractive force:
 $$
@@ -176,13 +179,19 @@ In the circular benchmark, the principal self-hit branch ($m=0$) becomes availab
 
 ## Maximum-Curvature Binary — Circular
 
+Receiver-normal restart notice. The circular MCB branch topology, root labels,
+and source-normal Jacobian formulas remain useful geometry. Force components,
+stability criteria, action rows, and any branch-weighted verdicts in this
+section must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
+they can serve as canonical Master EOM evidence.
+
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
 MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In this chapter we treat $\eta > 0$ as fixed; any $\eta \to 0$ statement is outside the claims established here unless a weak-limit argument is explicitly supplied. The formal state-space framework appears in **State Space and Well-Posedness of the Two-Body Delay System**.
 
-**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and Jacobian-weighted magnitude.
+**Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and receiver-normal branch strength.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed, Jacobian-weighted line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side).
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). In the canonical receiver-normal law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
 
 ### Foundational Context (Ontological Clarification)
 
@@ -462,7 +471,7 @@ $$
 
 #### Canonical Per-Hit Accelerations
 
-Using the delayed law with line-of-action direction and Jacobian-weighted magnitude (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define branch Jacobians
+Using the delayed law with line-of-action direction and receiver-normal branch strength (where $\kappa$ is a coupling constant and $\epsilon = |e|/6$), define source-normal branch denominators
 
 $$
 J_s \equiv 1-\frac{\mathbf{v}_{\text{self}}(t_0)\cdot \hat{u}_s}{c_f},
@@ -511,66 +520,71 @@ These formulas make the asymmetry between the two branch types explicit:
 
 ---
 
-#### Radial and Tangential Components
+#### Source-Normal Radial and Tangential Diagnostics
 
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
+
+The projections in this subsection are source-normal circular diagnostics. They
+record branch orientation and root geometry, but they are not canonical Master EOM
+acceleration rows until the same retained branches are recomputed with
+$D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
 **Chord lengths**:
 $$
 r_s = 2R \sin(\delta_s / 2), \quad r_p = 2R \cos(\delta_p / 2)
 $$
 
-**Inward radial components**:
+**Inward radial diagnostic components**:
 
 - **Self** (repulsive -> outward -> negative):
  $$
- A_{s,\text{rad}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
+	 A_{s,\text{rad}}^{\mathrm{src}} = -\kappa \epsilon^2 \frac{\sin(\delta_s / 2)}{r_s^2\,|J_s|} = -\frac{\kappa \epsilon^2}{4R^2 \sin(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner** (attractive -> inward -> positive):
  $$
- A_{p,\text{rad}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
+	 A_{p,\text{rad}}^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_p / 2)}{r_p^2\,|J_p|} = +\frac{\kappa \epsilon^2}{4R^2 \cos(\delta_p / 2)\,|J_p|}
  $$
 
-**Net inward radial acceleration**:
+**Net inward radial diagnostic**:
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
+A_{\text{rad}}^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
 $$
 
-**Tangential components** (both non-negative for $0 < \delta_s, \delta_p < \pi$):
+**Tangential diagnostic components**:
 
 - **Self**:
  $$
- T_s = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
+	 T_s^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\cos(\delta_s / 2)}{r_s^2\,|J_s|} = \frac{\kappa \epsilon^2 \cos(\delta_s / 2)}{4R^2 \sin^2(\delta_s / 2)\,|J_s|}
  $$
 
 - **Partner**:
  $$
- T_p = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
+	 T_p^{\mathrm{src}} = +\kappa \epsilon^2 \frac{\sin(\delta_p / 2)}{r_p^2\,|J_p|} = \frac{\kappa \epsilon^2 \sin(\delta_p / 2)}{4R^2 \cos^2(\delta_p / 2)\,|J_p|}
  $$
 
-**Net tangential acceleration**:
+**Net tangential diagnostic**:
 $$
-T = T_s + T_p \ge 0
+T^{\mathrm{src}} = T_s^{\mathrm{src}} + T_p^{\mathrm{src}}
 $$
 
 ---
 
 #### Sub-Field-Speed Simplification ($s \le 1$; No Self-Hits)
 
-When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes, so the tangential drive remains strictly positive, consistent with the lemma above:
+When $s \le 1$, self-hits do not occur ($\delta_s$ has no solution). Only the partner contributes to this source-normal diagnostic:
 
 $$
-T(s < 1) = T_p = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
+T^{\mathrm{src}}(s < 1) = T_p^{\mathrm{src}} = \frac{\kappa \epsilon^2}{4R^2} \frac{\sin(\delta_p / 2)}{\cos^2(\delta_p / 2)\,|J_p|}
 $$
 
 Using the delay relation $\delta_p = 2s \cos(\delta_p / 2)$:
 
 $$
-T(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|} > 0
+T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner contribution relative to bare $1/r^2$, but it never changes its sign. Therefore even at sub-field speeds there is always a **net positive tangential force** (accelerating the binary), which prevents a truly stable, constant-speed circular orbit.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. In the canonical Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
 
 ---
 
@@ -578,9 +592,9 @@ Because $J_p = 1+s\sin(\delta_p/2) > 1$, the delay geometry weakens the partner 
 
 For uniform circular motion at fixed radius $R$ and constant speed $s$:
 
-1. **Centripetal balance**:
+1. **Receiver-normal centripetal balance**:
   $$
-  A_{\text{rad}} = \frac{s^2}{R}
+  A_{\text{rad}}^{\mathrm{rec}} = \frac{s^2}{R}
   $$
 
 2. **Finite-window energy balance**:
@@ -637,7 +651,7 @@ T_{\mathrm{net}}
 \sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
 >0
 $$
-where $w_{p,m},w_{s,m}\ge 0$ are branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
+where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-normal branch weights induced by $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
 *Proof.*  
 For any active partner branch, the tangential contribution is
@@ -645,7 +659,7 @@ $$
 T_{p,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)\,|J_{p,m}|}
+\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)}
 >0,
 \qquad \tilde{\delta}_{p,m}\in(0,\pi)
 $$
@@ -654,7 +668,7 @@ $$
 T_{s,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)\,|J_{s,m}|}
+\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)}
 >0,
 \qquad \tilde{\delta}_{s,m}\in(0,\pi)
 $$
@@ -697,26 +711,31 @@ where $h$ is the declared action unit used by the branch packet. A bare two-body
 
 ### What "Maximum Curvature" Demands
 
-**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the decisive extra effect is the Jacobian weighting: the self-hit response can sharpen dramatically as an active branch approaches its null-separatrix geometry and because **new self-hit roots appear** at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
+**Mechanism summary (self-hit balance):** once $s>1$, each self-hit contributes a **repulsive acceleration away from its own past emission point**. In the symmetric circular geometry that repulsion has a **radial outward component** (opposing further contraction) and a **positive tangential component** (continuing to speed up the architrino). As the radius shrinks, both partner attraction and self-hit repulsion scale like $1/R^2$, while the decisive extra effect is receiver-normal branch strength: the self-hit response can sharpen dramatically as an active branch approaches its source-normal null-separatrix geometry, as the receiver-normal numerator changes the crossing cadence, and because **new self-hit roots appear** at higher $s$. Maximum curvature would require the **outward self-hit radial component** to balance the inward partner pull without the still-positive tangential drive destroying constant-speed closure.
 
-From the radial component formula:
+The current receiver-normal radial target uses same-root receiver-normal branch
+strengths:
 
 $$
-A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{1}{\cos(\delta_p / 2)\,|J_p|} - \frac{1}{\sin(\delta_s / 2)\,|J_s|} \right)
+A_{\text{rad}} = \frac{\kappa \epsilon^2}{4R^2} \left( \frac{W_p^{\mathrm{rec}}}{\cos(\delta_p / 2)} - \frac{W_s^{\mathrm{rec}}}{\sin(\delta_s / 2)} \right),
+\qquad
+W_{\bullet}^{\mathrm{rec}}=\left|\frac{D_{t,\bullet}}{D_{s,\bullet}}\right|.
 $$
 
 **Increasing curvature** ($1/R$ larger, so $R$ smaller) requires **stronger inward radial force**. This occurs when:
 
 1. **$\delta_p$ increases** -> $\cos(\delta_p / 2)$ decreases -> partner term $1/\cos(\delta_p / 2)$ **increases** (stronger inward pull).
-2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on how rapidly the Jacobian factor $|J_s|^{-1}$ grows along the active branch.
+2. **$\delta_s$ increases** -> $\sin(\delta_s / 2)$ increases -> the geometric part of the self term decreases, while the full outward response still depends on the same-root receiver-normal branch strength $W_s^{\mathrm{rec}}$.
 
 Two distinct balance mechanisms are now mathematically visible:
 
-1. **Near-threshold Jacobian wall.**  
-   On the principal self branch, $|J_s|^{-1}$ turns on singularly as $s\downarrow 1^+$, with radial magnitude scaling like $(s-1)^{-3/2}$. This is the earliest possible obstruction to continued contraction.
+1. **Near-threshold denominator wall.**
+   On the principal self branch, $D_s$ loses its floor as $s\downarrow 1^+$.
+   The current force/action row must combine that denominator with the
+   receiver-normal numerator on the same root before claiming a radial balance.
 
-2. **Higher-speed multi-branch redistribution.**  
-   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full weighted sum over all active branches rather than on the principal branch alone.
+2. **Higher-speed multi-branch redistribution.**
+   At larger $s$, additional self branches turn on and redistribute the outward response across several winding sectors. In that regime the detailed balance depends on the full receiver-normal weighted sum over all active branches rather than on the principal branch alone.
 
 **However**: Due to the same-sheet per-hit $T > 0$ result, this "maximum curvature" state remains unverified for the isolated two-body system. Its stability must be tested by the full, signed, multi-root time-averaged dynamics.
 
@@ -1461,7 +1480,10 @@ We consider the regularized two-body system in the Euclidean void $\mathbb{R}^3$
 #### Definition 1 (The Fundamental Symmetry Group)
 The background substrate and the master equation interaction kernel
 $$
-\mathbf{a}_{ij}(t) \propto \frac{\mathbf{x}_i(t) - \mathbf{x}_j(t_0)}{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^2\,|J_{ij}(t;t_0)|}
+\mathbf{a}_{ij}(t) \propto
+\frac{W_{ij}^{\mathrm{rec}}(t;t_0)}
+{\|\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\|^3}
+\left(\mathbf{x}_i(t) - \mathbf{x}_j(t_0)\right)
 $$
 (regularized by $\eta$) respect the group:
 $$
@@ -1495,12 +1517,15 @@ $$
 =\|\mathbf{x}_i(t)-\mathbf{x}_j(t_0)\|
 $$
 so causal-root times are unchanged. Unit directions transform covariantly:
-$\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. Therefore each force term
-transforms as $\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
+$\hat{\mathbf{r}}_{ij}^y=R\hat{\mathbf{r}}_{ij}^x$. The dot products defining
+$D_s$, $D_t$, and $W^{\mathrm{rec}}$ are preserved by the same spatial
+isometry. Therefore each force term transforms as
+$\mathbf{a}_{ij}^y=R\mathbf{a}_{ij}^x$, and
 $$
 \ddot{\mathbf{y}}_i(t)=R\ddot{\mathbf{x}}_i(t)
 =\sum_j\sum_{t_0\in\mathcal{C}_{ij}(t)}
-\kappa\sigma_{ij}\frac{|q_iq_j|}{r_{ij}^2\,|J_{ij}(t;t_0)|}\,\hat{\mathbf{r}}_{ij}^y
+\kappa\sigma_{ij}\frac{|q_iq_j|\,W_{ij}^{\mathrm{rec}}(t;t_0)}
+{r_{ij}^2}\,\hat{\mathbf{r}}_{ij}^y
 $$
 Thus $\mathbf{y}$ solves the same equations. $\square$
 

@@ -207,13 +207,13 @@ function evaluateSharedObservationResidual(input, inputPath) {
       row: "EQ-21/EQ-22/EQ-23/EQ-32",
       supportedRows: ["EQ-21", "EQ-22", "EQ-23", "EQ-32"],
       claimLevel:
-        "score-neutral shared-observation residual; accepted retained rows are required before score movement",
+        "score-neutral shared-observation residual; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision:
-        status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       missingProjectionFamilies: projections.missingProjectionFamilies,
       missingSharedKeys: sharedKeys.missingSharedKeys,
@@ -677,8 +677,9 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id ?? row.key)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
-    return { accepted: false, reason: "row_source_not_found" };
+  const sourceReason = firstSourceEvidenceReason(row.sourcePath, row.source);
+  if (sourceReason !== "accepted") {
+    return { accepted: false, reason: sourceReason };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -720,18 +721,21 @@ function concreteString(value) {
 }
 
 function sourceReferenceExists(value) {
-  if (!concreteString(value)) {
-    return false;
+  return sourceEvidenceReason(value) === "accepted";
+}
+
+function firstSourceEvidenceReason(...values) {
+  let firstReason = "missing_source_path";
+  for (const value of values) {
+    const reason = sourceEvidenceReason(value);
+    if (reason === "accepted") {
+      return "accepted";
+    }
+    if (firstReason === "missing_source_path") {
+      firstReason = reason;
+    }
   }
-  const resolvedPath = path.resolve(value.trim());
-  if (isNonDurableSourcePath(resolvedPath)) {
-    return false;
-  }
-  try {
-    return fs.statSync(resolvedPath).isFile();
-  } catch {
-    return false;
-  }
+  return firstReason;
 }
 
 function sourceEvidenceReason(value) {
@@ -768,9 +772,15 @@ function sourceEvidenceReason(value) {
   if (
     basename.includes("attempt") ||
     basename.includes("mock") ||
-    basename.includes("negative-control")
+    basename.includes("toy") ||
+    basename.includes("probe") ||
+    basename.includes("source-contract") ||
+    basename.includes("negative-control") ||
+    basename.includes(".tmp")
   ) {
-    return "control_or_attempt_source_path";
+    return basename.includes("source-contract")
+      ? "source_contract_path"
+      : "control_or_attempt_source_path";
   }
   return "accepted";
 }

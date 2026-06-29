@@ -288,14 +288,15 @@ $$
 \mathcal B_{\mathbf{x}j}^{(t_0)}
 \right)
 \right\|_X
+W_{\mathbf{x}j}^{\mathrm{rec}}(t;t_0)
 }{
-r_{\mathbf{x}j}^2\left|J_{\mathbf{x}j}\right|
+r_{\mathbf{x}j}^2
 },
 \qquad
 f\in\{e,u_1,u_2,d\}
 $$
 
-The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient denominator uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
+The hydrogen channel decision is then not a free radius choice. It is the stability statement that the relevant exposure scan crosses the declared threshold while the same ambient branch-strength kernel uses $\zeta_{\mathrm{sea,H}}^{(\ell)}$ and the same-root receiver-normal factor $W_{\mathbf{x}j}^{\mathrm{rec}}=\lvert D_{t,\mathbf{x}j}/D_{s,\mathbf{x}j}\rvert$. Clock scans use the dimensionless phase/cadence/delay norm; corridor scans use orientation, provenance, and strong-sector ledger coherence; packing scans use exclusion magnitude and envelope-shape response; and penetration scans use signed path acceleration plus phase disruption before taking the scalar dominance norm. The same branch can therefore be weakly visible to clocks while still far below the packing or penetration thresholds.
 
 Hydrogen-specific tolerance scales are fixed by the channel readout being protected. For a declared hydrogen channel readout $\mathcal O_{\mathrm H,X}^{(\ell)}$, the admissible tolerance pullback is
 

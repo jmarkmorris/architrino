@@ -24,9 +24,14 @@ Because no primitive mass is assigned to a single architrino, the primitive dyna
 $$
 \mathbf{a}_{i\leftarrow j}
 \sim
-\kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2\lvert J_{ij}\rvert}\hat{\mathbf{r}}_{ij}
+\kappa\,\sigma_{ij}\frac{\lvert q_iq_j\rvert}{r_{ij}^2}
+W_{ij}^{\mathrm{rec}}\hat{\mathbf{r}}_{ij},
+\qquad
+W_{ij}^{\mathrm{rec}}
+=
+\left|\frac{D_{t,ij}}{D_{s,ij}}\right|
 $$
-Here $J_{ij}$ is not an adjustable constant. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}=\partial_s F_{ij}$ is the causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}=\partial_{t_0}g_{ij}$ up to the chosen normalization, so the factor $\lvert J_{ij}\rvert^{-1}$ is the simple-root Jacobian weight, not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map: the ordinary branch row is valid away from the Whitney-fold set
+Here $D_{s,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_j(t_0)$ is the source-normal denominator and $D_{t,ij}=c_f-\hat{\mathbf{r}}_{ij}\cdot\mathbf{v}_i(t)$ is the receiver-normal numerator. If $F_{ij}$ denotes the normalized causal-delay constraint on a retained source-time root, then $J_{ij}^{\mathrm{src}}=\partial_s F_{ij}$ is the source-normal causal-root transversality Jacobian. In the [Master Equation](../dynamics/master-equation.md#the-master-equation-canonical-form) notation, $c_fJ_{ij}^{\mathrm{src}}=D_{s,ij}$ up to the chosen normalization, so the source-normal denominator is not a free inverse-strength parameter. It is the density-of-states factor of the causal-root map, while the active received branch strength is $W_{ij}^{\mathrm{rec}}$. The ordinary branch row is valid away from the Whitney-fold set
 $$
 \Sigma_{ij}=\{F_{ij}=0,\ \partial_s F_{ij}=0\},
 $$
@@ -145,7 +150,7 @@ K\!\left(\mathbf{x},t;\mathbf{s}_a(s),s\right)
 \subseteq
 \left\{\|\mathbf{x}-\mathbf{s}_a(s)\|=c_f(t-s)\right\}
 $$
-The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, Jacobian weights, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
+The kernel $K$ is only a schematic placeholder here; the exact causal-root sets, source-normal denominators, receiver-normal branch strengths, kernels, and regularization belong to the dynamics chapter. The ontology claim is the dependency claim: after the source identity, polarity, and path history are fixed, there is no second material inventory or autonomous field state left to specify.
 
 Point-source causal-delay theories carry a known pathology class. Classical point-charge electrodynamics develops divergent self-energy at zero radius, runaway solution branches, and pre-acceleration in Abraham-Lorentz-Dirac-type reductions. This chapter does not solve those issues by naming the architrino primitive. It routes them to the dynamics layer: coincidence handling, self-hit admissibility, regularized or weak-limit kernels, Jacobian/transversality floors, and energy-momentum accounting must remove or quarantine those pathology channels in the branch being used.
 
@@ -161,7 +166,7 @@ This page fixes the ontological commitments:
 - Reception is universal across architrinos.
 - Emitted wake history supplies provenance for later dynamics.
 
-This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, Jacobian weights, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
+This chapter stops before the exact acceleration law. Exact causal wake surfaces, density representations, causal emission-time roots, source-normal denominators, receiver-normal branch strengths, inverse-square kernels, and regularization belong in [Master Equation](../dynamics/master-equation.md).
 
 ## Worldlines and Path History
 
@@ -196,7 +201,7 @@ This is an ontology statement about source identity and path-history provenance.
 
 The ontology only states that every architrino receives wake contributions according to one universal law. This is a universality claim about the primitive receiver, not a claim that all effective assemblies respond in the same coarse-grained way.
 
-It does not define the force kernel, causal emission-time set, Jacobian weighting, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
+It does not define the force kernel, causal emission-time set, source-normal denominator, receiver-normal branch strength, root topology, or branch-resolved acceleration. Those are dynamical commitments, not primitive-entity ontology. The canonical source is [Master Equation](../dynamics/master-equation.md).
 
 ## Dynamics and Regime Boundary
 
@@ -204,7 +209,7 @@ This page does not own wake regimes, self-hit activation, maximum-curvature bina
 
 The canonical homes are:
 
-- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, Jacobian weights, received acceleration, and branch topology.
+- [Master Equation](../dynamics/master-equation.md) for causal hits, delay roots, source-normal denominators, receiver-normal branch strengths, received acceleration, and branch topology.
 - [Binary Dynamics](../dynamics/binary-dynamics.md) for wake-speed regimes, partner hit versus self-hit behavior, spiral contraction, and maximum-curvature binary analysis.
 - [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md) for coupled three-binary speed regimes, alignment behavior, and assembly-stability mechanisms.
 - [Noether Braid](../noether-braid/noether-braid.md) for the assembly-level Noether braid architecture built from those dynamics.

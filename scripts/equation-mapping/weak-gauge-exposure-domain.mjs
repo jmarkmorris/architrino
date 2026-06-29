@@ -156,12 +156,13 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
       row: "EQ-16",
       supportedRows: ["EQ-15", "EQ-16", "EQ-16A", "EQ-27", "EQ-30"],
       claimLevel:
-        "score-neutral weak/gauge exposure-domain packet; accepted retained rows are required before score movement",
+        "score-neutral weak/gauge exposure-domain packet; accepted retained rows are required before score review",
     },
     tolerances,
     summary: {
       status,
-      scoreDecision: status === "populated" ? "score_review_required" : SCORE_DECISION,
+      scoreDecision: SCORE_DECISION,
+      scoreReviewPreconditionsMet: status === "populated",
       missingRows,
       nextBlocker: firstBlocker({
         status,
@@ -455,6 +456,7 @@ function isEvidenceSourcePath(filePath) {
   const basename = path.basename(relative).toLowerCase();
   return (
     !basename.includes("attempt") &&
+    !basename.includes("source-contract") &&
     !basename.includes("mock") &&
     !basename.includes("negative-control")
   );

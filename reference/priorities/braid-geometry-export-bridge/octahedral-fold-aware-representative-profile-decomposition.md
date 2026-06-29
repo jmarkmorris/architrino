@@ -32,7 +32,7 @@ $$
 \texttt{speed\_constraint=none}.
 $$
 
-The only speed input is the certified positive speed-ratio zero enclosure
+The only speed input is the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 3.02156\le v_*\le3.02157,

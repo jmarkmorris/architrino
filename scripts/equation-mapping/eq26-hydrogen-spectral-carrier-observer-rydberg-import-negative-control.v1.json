@@ -1,0 +1,159 @@
+{
+  "schema": "aaa-equation-map-eq26-hydrogen-spectral-carrier-identity-input/v1",
+  "claimLevel": "score-neutral EQ-26 observer-Rydberg import negative control; observed line factors match but theta_H_spec is not accepted",
+  "row": "EQ-26",
+  "carrier": {
+    "id": "theta_H_spec_observer_import_negative_control_0001",
+    "rowId": "theta_H_spec_observer_import_negative_control_0001",
+    "status": "attempt",
+    "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md",
+    "sourceKind": "observer_rydberg_import_negative_control",
+    "sourceFamily": "EQ-26 hydrogen spectral carrier",
+    "sourceRole": "theta_H_spec"
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+    "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+    "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+    "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+    "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+    "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+    "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001"
+  },
+  "lines": [
+    {
+      "id": "H_alpha_3_to_2",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "upperPrincipalLabel": 3,
+      "lowerPrincipalLabel": 2,
+      "recoveredLabels": true,
+      "lineFactor": 0.1388888888888889,
+      "observerRydbergFactorMatches": true
+    },
+    {
+      "id": "H_beta_4_to_2",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "upperPrincipalLabel": 4,
+      "lowerPrincipalLabel": 2,
+      "recoveredLabels": true,
+      "lineFactor": 0.1875,
+      "observerRydbergFactorMatches": true
+    }
+  ],
+  "rows": {
+    "recovered_label_rows": {
+      "status": "attempt",
+      "rowId": "hydrogen_recovered_label_rows_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    },
+    "envelope_gap_rows": {
+      "status": "attempt",
+      "rowId": "observer_rydberg_imported_gap_only_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    },
+    "gamma_N_row": {
+      "status": "attempt",
+      "rowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    },
+    "static_response_row": {
+      "status": "attempt",
+      "rowId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    },
+    "photon_action_support": {
+      "status": "attempt",
+      "rowId": "photon_action_support_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+    },
+    "residual_budget": {
+      "status": "attempt",
+      "rowId": "hydrogen_residual_budget_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    },
+    "event_ledger_row": {
+      "status": "attempt",
+      "rowId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-ledger.md"
+    },
+    "source_provenance": {
+      "status": "attempt",
+      "rowId": "hydrogen_source_provenance_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md"
+    },
+    "no_hidden_retune_witness": {
+      "status": "attempt",
+      "rowId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "carrierId": "theta_H_spec_observer_import_negative_control_0001",
+      "branchId": "hydrogen_branch_observer_import_negative_control_0001",
+      "lineSetId": "hydrogen_balmer_two_line_observer_import_negative_control_0001",
+      "staticResponseId": "aG_hydrogen_static_response_observer_import_negative_control_0001",
+      "gammaNRowId": "Gamma_N_H_observer_import_negative_control_0001",
+      "eventLedgerId": "L_EpJ_hydrogen_spectral_observer_import_negative_control_0001",
+      "retuneWitnessId": "S_retune_hydrogen_spectral_observer_import_negative_control_0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-26-hydrogen-spectral-carrier-source-field-map.md"
+    }
+  },
+  "scoreDecision": "no_score_increase",
+  "nextBlocker": "missing_accepted_theta_H_spec"
+}

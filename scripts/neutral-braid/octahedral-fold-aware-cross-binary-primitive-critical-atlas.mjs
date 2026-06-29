@@ -426,7 +426,7 @@ export function buildOctahedralFoldAwareCrossBinaryPrimitiveCriticalAtlas(
       scan_samples_per_cell: scanSamplesPerCell,
       root_subdivisions: rootSubdivisions,
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate: formatNumber(speedRatio),
       speed_ratio_enclosure: reduction.reduction_parameters.speed_ratio_enclosure,
     },
@@ -533,7 +533,7 @@ export function validateOctahedralFoldAwareCrossBinaryPrimitiveCriticalAtlas(
   );
   assertField(
     artifact?.atlas_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "primitive critical atlas must not impose a fixed speed window",
     errors
   );

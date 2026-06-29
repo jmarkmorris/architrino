@@ -20,7 +20,7 @@ const DEFAULT_ROOT_SUBDIVISIONS = 5000;
 const DEFAULT_SPEED_SAMPLE_COUNT = 9;
 const DEFAULT_MACHINE_PADDING = 1e-9;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 const SPEED_RATIO_ENCLOSURE = [3.02156, 3.02157];
 const I1_FORCING_BRACKET_MARGIN = 0.000472358401387;
 const I1_FORCING_BRACKET_TARGET_RADIUS = 0.000236179200694;
@@ -142,7 +142,7 @@ function buildBracketTheorem() {
     theorem_id: "i1-forcing-bracket-speed-envelope-sign-certificate",
     theorem_scope: "representative receiver 1+ cross-binary I1 forcing bracket",
     statement:
-      "For the fixed I1 bracket endpoints and the certified positive speed-ratio zero enclosure, machine-expanded speed-envelope evaluations of f_cross at I1.f1.left and I1.f1.right preserve the signs f_cross(a1)>0 and f_cross(b1)<0 with enclosure radius below the I1.forcing-bracket target radius.",
+      "For the fixed I1 bracket endpoints and the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required, machine-expanded speed-envelope evaluations of f_cross at I1.f1.left and I1.f1.right preserve the signs f_cross(a1)>0 and f_cross(b1)<0 with enclosure radius below the I1.forcing-bracket target radius.",
     proof_steps: [
       "Evaluate the source-atlas-aware f_cross formula at the two fixed I1 bracket endpoints across the certified speed-ratio enclosure.",
       "Require the expected six source roots at every sampled speed point for both endpoints.",

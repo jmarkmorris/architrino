@@ -27,7 +27,7 @@ Priority-only comparison and source-mining packet. This may support later corpus
 | Relativistic speed limit | Effective observer-level limiting speed in recovered kinematics. | Keep separate from branch variables and root existence in the master-equation system. |
 | Surface spheres from a point source | Causal wake surfaces or surface-delta causal isochrons. | Use only when the surface represents a causal emission locus. |
 | Multiple delayed contacts | Multiple active causal roots in a causal-root ledger. | Route to master-equation root bookkeeping. |
-| Moving-source denominator | Delay-map Jacobian weighting. | Compare structurally to $|J_{ij}|^{-1}$ at causal-root flux level. |
+| Moving-source denominator | Source-normal delay-map denominator. | Compare structurally to source-normal causal-root flux; current force/action rows also require the receiver-normal numerator through $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. |
 | Magnetic cross-product form | Effective observer-level field language. | Do not import as the primitive interaction law. |
 | Direct singular hit | Regularized causal contact governed by the active kernel, $H(0)=0$, the exclusion scale $\epsilon_c$, and mollifier parameter $\eta$. | Do not reintroduce unregularized $r=0$ roots. |
 

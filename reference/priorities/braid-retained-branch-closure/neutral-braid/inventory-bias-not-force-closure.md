@@ -54,7 +54,7 @@ N_{\mathrm{rep},i}
 \#\{j\ne i:\sigma_i\sigma_j=+1\}.
 $$
 
-It does not specify causal-root locations, Jacobian weights, separation lengths, tangent projections, root multiplicities, or phase-dependent cancellations. Those quantities remain force-ledger data, not inventory data.
+It does not specify causal-root locations, source-normal denominators, receiver-normal branch strengths, separation lengths, tangent projections, root multiplicities, or phase-dependent cancellations. Those quantities remain force-ledger data, not inventory data.
 
 ---
 
@@ -114,14 +114,14 @@ $$
 \widetilde{\mathbf{F}}_i(\theta)
 $$
 
-to vanish for every retained receiver and phase. The force sum is not a count difference; it is the delayed, Jacobian-weighted all-pairs sum
+to vanish for every retained receiver and phase. The force sum is not a count difference; it is the delayed, receiver-normal all-pairs sum
 
 $$
 \widetilde{\mathbf{F}}_i(\theta)
 =
 \sum_{j\ne i}
-\frac{\operatorname{sign}(q_iq_j)}
-{y_{ij}(\theta)^2|J_{ij}(\theta)|}
+\frac{\operatorname{sign}(q_iq_j)W_{ij}^{\mathrm{rec}}(\theta)}
+{y_{ij}(\theta)^2}
 \widehat{\mathbf{R}}_{ij}(\theta).
 $$
 

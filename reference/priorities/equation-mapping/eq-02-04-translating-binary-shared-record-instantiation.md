@@ -11,6 +11,15 @@
 - Claim level: derivation/closure target and simulation target
 - Promotion status: priority-only
 
+## Equation Attack Card
+
+- Current score effect: no score change; current solver-proxy rows and retained-record arithmetic diagnostics remain score-neutral.
+- Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, inherited through same-branch identity before retained-record population can count.
+- First accepted route: certify a positive-width invariant cell $B_N\subset\Sigma_N$ with $\mathcal K_{P_N}(B_N)\subset B_N$, then bind `S_eq` raw labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, orientation rows, response-center/group-velocity rows, and the local Noether sea row to the same source-backed carrier.
+- Smallest accepted evidence object: a source-backed `S_eq` retained-domain fixture that the existing same-branch checker accepts with `--require-accepted`, followed by a matching retained-record fixture accepted with `--require-populated`.
+- Smallest next artifact: a positive-width invariant-cell source report for the translating-binary benchmark, with stable `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId` fields ready for the same-branch checker.
+- Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, temporary frequency reports, solver-proxy payloads, accepted-looking row labels, and synthetic provenance shells are not accepted retained evidence.
+
 ## Purpose
 
 This packet instantiates the common same-record residual on the translating maximum-curvature binary benchmark. The goal is to turn `lorentz_mass_shell_common_branch_residual` from a packet-level residual grammar into a concrete retained-record contract.
@@ -480,7 +489,7 @@ with `blocked_not_evaluable` returned for every component whose required project
 | `eventLedgerResidual` | Points to wake, recoil, vector-partition, and energy-routing blockers. | Blocked; not $\mathcal R_{01-05}^{\mathfrak B_u}(W_u)$. |
 | `stabilityResidual` | Records whether the candidate survives retained branch stability checks. | Blocked. |
 
-Do not cite this solver payload as evidence for a score increase until the emitted retained-row extraction supplies the rows above with zero $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, zero $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$, and a populated or inherited $\mathcal R_{01-05}^{\mathfrak B_{u_k}}(W_k)$.
+Do not cite this solver payload as evidence for score-change review until the emitted retained-row extraction supplies the rows above with zero $\mathcal S_{\mathrm{root}}^{02\text{-}04}$, zero $\mathcal S_{\mathrm{retune}}^{02\text{-}04}$, and a populated or inherited $\mathcal R_{01-05}^{\mathfrak B_{u_k}}(W_k)$.
 
 ## Executable Emit Contract Check
 
@@ -492,7 +501,7 @@ node scripts/equation-mapping/check-emit-02-04-contract.mjs --input <tri-binary-
 
 The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 equal-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
 
-The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned a score increase.
+The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
 
 ## Executable Same-Branch Identity Check
 
@@ -553,7 +562,7 @@ exits nonzero until the inherited `S_eq` same-branch identity, retained-record r
 
 ### First Accepted Invariant Cell
 
-The next score-moving object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules. Score-neutral guardrails are useful only when they sharpen that acceptance path, as in the split between support-transport and holonomy-transport residuals.
+The next accepted-retained-evidence object is the first source-backed retained-domain fixture that makes the existing same-branch and retained-record evaluators leave `attempt` status without changing their acceptance rules. Score-neutral guardrails are useful only when they sharpen that acceptance path, as in the split between support-transport and holonomy-transport residuals.
 
 The atomic evidence object is an accepted invariant cell, not an isolated accepted row. Let $\mathcal H_N$ be the truncated delay-state space with declared maximal wake-memory window, discretization or collocation order $N$, and a stated truncation error. Let $\Sigma_N\subset\mathcal H_N$ be a transverse section through the candidate retained branch, and let
 
@@ -764,7 +773,7 @@ The `gamma_inserted_coframe` negative control catches the failure mode where the
 
 ### Minimum Accepted `S_eq` Retained-Domain Fixture
 
-The next score-moving artifact is not another proxy summary. It is a source-backed retained-domain packet that can replace [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json) without changing the checker. In the notation of the common architecture, the fixture must instantiate
+The next accepted-retained-evidence artifact is not another proxy summary. It is a source-backed retained-domain packet that can replace [same-branch-retained-domain-attempt.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-attempt.v1.json) without changing the checker. In the notation of the common architecture, the fixture must instantiate
 
 $$
 \mathfrak D_{S_{\mathrm{eq}}}
@@ -822,9 +831,9 @@ The minimum fixture contract is:
 | `witnesses.retune_witness_zero` | Accepted, source-backed witness with zero hidden-retune residual. | $A_{\mathrm{retune}}$ |
 | `witnesses.overlap_preimage_identity` | Accepted, source-backed witness with `consistent: true`. | $A_{\mathrm{overlap}}$ |
 
-Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, matching `commonCarrierId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count. The current attempt fixture now declares `commonCarrierId: "C_02-04_bin_u_attempt_0001"` and reports `fiberProductCarrierPass: true`, but this is only structural: all row bindings remain `attempt`, so the first score-moving blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
+Every accepted row binding must include concrete `rowId`, `retainedRowSetId: "S_eq"`, matching `domainId`, matching `commonCarrierId`, and a durable `sourcePath` or `source`. A row label, current proxy row, temporary file, generated reading copy, or nonresolving source path does not count. The current attempt fixture now declares `commonCarrierId: "C_02-04_bin_u_attempt_0001"` and reports `fiberProductCarrierPass: true`, but this is only structural: all row bindings remain `attempt`, so the first score-review blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 
-In the connection refinement, the fiber product is the necessary set-level shadow of the no-retune object. It becomes score-moving only when it is paired with $W_{\mathrm{hol}}=0$ for the same accepted invariant cell. The raw-label blocker should therefore be accepted as a local trivialization and flat reference section at $u=0$, with a recorded gamma-free transport rule to $u\neq0$, not as a preserved list of labels alone.
+In the connection refinement, the fiber product is the necessary set-level shadow of the no-retune object. It becomes score-review eligible only when it is paired with $W_{\mathrm{hol}}=0$ for the same accepted invariant cell. The raw-label blocker should therefore be accepted as a local trivialization and flat reference section at $u=0$, with a recorded gamma-free transport rule to $u\neq0$, not as a preserved list of labels alone.
 
 Current structural witnesses and ignored temporary frequency reports remain useful search signals, but they are not durable retained-domain evidence. The next accepted source object must be a tracked invariant-cell certificate, followed by source-backed row extraction on that cell, not a pointer to a current proxy report.
 

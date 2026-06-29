@@ -72,7 +72,7 @@ for sufficiently small positive $y$. The packet therefore avoids treating the fo
 
 ## Sampled Complement Rows
 
-The executable scan uses only the certified positive speed-ratio zero enclosure
+The executable scan uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 3.02156\le\nu\le3.02157,

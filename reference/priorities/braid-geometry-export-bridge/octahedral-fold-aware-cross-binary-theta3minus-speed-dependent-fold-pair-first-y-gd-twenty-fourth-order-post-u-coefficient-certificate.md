@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Twenty-Fourth-Order Post-U Coefficient Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the $U$-seed coefficient solve and the finite
 $\operatorname{Shift}_{27}$ $U_\varepsilon$ root-tail tube. It does not close
@@ -8,8 +10,7 @@ the continuous $U_\varepsilon$-coordinate quotient tail. Its advance is the next
 zero-touching coefficient: $h_{24,\varepsilon}$ and the induced
 twenty-fourth-order quotient coefficients $Q_{G,24}$ and $Q_{D,24}$.
 
-No fixed speed band is imposed. The certificate uses only the certified positive
-speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

@@ -2,8 +2,17 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { spawnSync } from "node:child_process";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const OUTPUT_SCHEMA = "aaa-equation-map-same-branch-chart-identity-check/v1";
+const EQ02_04_SOURCE_SCHEMA =
+  "aaa-equation-map-eq02-04-invariant-cell-coframe-source/v1";
+const RETAINED_GEOMETRY_EVIDENCE_SCHEMA =
+  "aaa-equation-map-eq02-04-retained-geometry-source/v1";
+const RETAINED_GEOMETRY_PROVENANCE_SCHEMA =
+  "aaa-equation-map-eq02-04-retained-geometry-provenance/v1";
 const INPUT_SCHEMA_PREFIX = "aaa-tri-binary-frequency-candidate-solver-report";
 const RETAINED_DOMAIN_SCHEMA_PREFIX =
   "aaa-equation-map-same-branch-retained-domain-packet";
@@ -11,6 +20,10 @@ const SOURCE_AUDIT_PATH =
   "frequencyTripletSearch.equalFrequencyEnergyRadiusAudit";
 const TARGET_ROW = "same_branch_chart_identity";
 const ACCEPTED_STATUSES = new Set(["accepted", "populated", "passed"]);
+const RETAINED_EVIDENCE_DISCLAIMER_PATTERN =
+  /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell)\b/;
+const RETAINED_PROVENANCE_DISCLAIMER_PATTERN =
+  /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell|synthetic|fixture)\b/;
 const RETAINED_ROW_SET_ID = "S_eq";
 const SUPPORT_KINDS = new Set([
   "finite_event",
@@ -432,13 +445,18 @@ function retainedDomainNextBlockerDetails({
     : nextBlocker;
   const requirement = requirementChecks.find((check) => check.id === blockerId);
   if (requirement) {
+    const sourceEvidence = sourceEvidenceReferenceStatus(requirement.sourcePath);
     return {
       id: requirement.id,
       status: requirement.status,
       reason: requirement.reason,
       rowId: requirement.rowId,
       sourcePath: requirement.sourcePath,
-      sourceReferenceExists: sourceReferenceExists(requirement.sourcePath),
+      sourceReferenceExists: sourceEvidence.sourceReferenceExists,
+      sourceEvidenceReferenceExists: sourceEvidence.accepted,
+      sourceEvidenceReason: sourceEvidence.reason,
+      sourceEvidenceProducerStatus: sourceEvidence.producerStatus ?? null,
+      sourceEvidenceProducerNextBlocker: sourceEvidence.producerNextBlocker ?? null,
     };
   }
   const witnesses = {
@@ -448,13 +466,18 @@ function retainedDomainNextBlockerDetails({
   };
   const witness = witnesses[blockerId];
   if (witness) {
+    const sourceEvidence = sourceEvidenceReferenceStatus(witness.sourcePath);
     return {
       id: blockerId,
       status: witness.status,
       reason: witness.reason,
       residual: witness.residual ?? null,
       sourcePath: witness.sourcePath ?? null,
-      sourceReferenceExists: sourceReferenceExists(witness.sourcePath),
+      sourceReferenceExists: sourceEvidence.sourceReferenceExists,
+      sourceEvidenceReferenceExists: sourceEvidence.accepted,
+      sourceEvidenceReason: sourceEvidence.reason,
+      sourceEvidenceProducerStatus: sourceEvidence.producerStatus ?? null,
+      sourceEvidenceProducerNextBlocker: sourceEvidence.producerNextBlocker ?? null,
     };
   }
   if (blockerId === "blocked_fiber_product_carrier") {
@@ -543,6 +566,16 @@ function evaluateDomainSupport(row, { commonCarrierId } = {}) {
       reason: "support_source_not_found",
     };
   }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return {
+      accepted: false,
+      status: row.status,
+      reason: "accepted_without_evidence_source",
+    };
+  }
   if (!carrierMatches(row, commonCarrierId)) {
     return {
       accepted: false,
@@ -574,6 +607,12 @@ function evaluateRetainedRowBinding({
   }
   if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
     return { accepted: false, status, reason: "row_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(row.sourcePath) &&
+    !sourceEvidenceReferenceExists(row.source)
+  ) {
+    return { accepted: false, status, reason: "accepted_without_evidence_source" };
   }
   if (retainedRowSetId && row.retainedRowSetId !== retainedRowSetId) {
     return { accepted: false, status, reason: "retained_row_set_mismatch" };
@@ -616,6 +655,17 @@ function evaluateZeroWitness(witness, { commonCarrierId, domainId } = {}) {
     !sourceReferenceExists(witness.source)
   ) {
     return { ...base, accepted: false, status, reason: "witness_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(witness.sourcePath) &&
+    !sourceEvidenceReferenceExists(witness.source)
+  ) {
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "accepted_without_evidence_source",
+    };
   }
   const residual = Number(witness.residual ?? witness.value ?? 0);
   if (!Number.isFinite(residual) || Math.abs(residual) > ZERO_TOLERANCE) {
@@ -670,6 +720,17 @@ function evaluateOverlapPreimage(witness, { commonCarrierId, domainId } = {}) {
     !sourceReferenceExists(witness.source)
   ) {
     return { ...base, accepted: false, status, reason: "witness_source_not_found" };
+  }
+  if (
+    !sourceEvidenceReferenceExists(witness.sourcePath) &&
+    !sourceEvidenceReferenceExists(witness.source)
+  ) {
+    return {
+      ...base,
+      accepted: false,
+      status,
+      reason: "accepted_without_evidence_source",
+    };
   }
   if (witness.consistent !== true) {
     return {
@@ -892,11 +953,49 @@ function concreteString(value) {
   );
 }
 
+function sourceClaimText(record) {
+  return [
+    record?.claimLevel,
+    record?.claim,
+    record?.description,
+    ...(Array.isArray(record?.notes) ? record.notes : []),
+  ]
+    .filter((item) => typeof item === "string")
+    .join(" ")
+    .toLowerCase();
+}
+
+function sourceClaimDisclaimsRetainedEvidence(record) {
+  return RETAINED_EVIDENCE_DISCLAIMER_PATTERN.test(sourceClaimText(record));
+}
+
+function sourceClaimDisclaimsRetainedProvenance(record) {
+  return RETAINED_PROVENANCE_DISCLAIMER_PATTERN.test(sourceClaimText(record));
+}
+
+function collectStringValues(value) {
+  if (typeof value === "string") {
+    return [value];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((item) => collectStringValues(item));
+  }
+  if (value && typeof value === "object") {
+    return Object.values(value).flatMap((item) => collectStringValues(item));
+  }
+  return [];
+}
+
+function provenanceRecordDisclaimsRetainedGeometry(record) {
+  const text = collectStringValues(record).join(" ").toLowerCase();
+  return RETAINED_PROVENANCE_DISCLAIMER_PATTERN.test(text);
+}
+
 function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolvedPath = path.resolve(value.trim());
+  const resolvedPath = resolveSourcePath(value);
   if (isNonDurableSourcePath(resolvedPath)) {
     return false;
   }
@@ -907,6 +1006,415 @@ function sourceReferenceExists(value) {
   }
 }
 
+function sourceEvidenceReferenceExists(value) {
+  return sourceEvidenceReferenceStatus(value).accepted;
+}
+
+function sourceEvidenceReferenceStatus(value) {
+  if (!sourceReferenceExists(value)) {
+    return {
+      accepted: false,
+      sourceReferenceExists: false,
+      reason: "source_reference_not_found_or_not_durable",
+    };
+  }
+  const resolvedPath = resolveSourcePath(value);
+  if (!isEvidenceSourcePath(resolvedPath)) {
+    return {
+      accepted: false,
+      sourceReferenceExists: true,
+      reason: "source_path_not_evidence_path",
+    };
+  }
+  const producerStatus = eq02_04SourceProducerStatus(resolvedPath);
+  if (producerStatus.applies && !producerStatus.accepted) {
+    return {
+      accepted: false,
+      sourceReferenceExists: true,
+      reason: "source_report_not_producer_accepted",
+      producerStatus: producerStatus.status,
+      producerNextBlocker: producerStatus.nextBlocker,
+    };
+  }
+  if (producerStatus.applies && producerStatus.accepted) {
+    return {
+      accepted: true,
+      sourceReferenceExists: true,
+      reason: "accepted_source_report",
+      producerStatus: producerStatus.status,
+      producerNextBlocker: producerStatus.nextBlocker,
+    };
+  }
+  const recordStatus = retainedGeometryEvidenceRecordStatus(resolvedPath);
+  if (!recordStatus.accepted) {
+    return {
+      accepted: false,
+      sourceReferenceExists: true,
+      reason: recordStatus.reason,
+      producerStatus: null,
+      producerNextBlocker: null,
+      evidenceSchema: recordStatus.schema ?? null,
+    };
+  }
+  return {
+    accepted: true,
+    sourceReferenceExists: true,
+    reason: "accepted_retained_geometry_evidence",
+    producerStatus: null,
+    producerNextBlocker: null,
+    evidenceSchema: recordStatus.schema ?? null,
+  };
+}
+
+function retainedGeometryEvidenceRecordStatus(filePath) {
+  if (path.extname(filePath) !== ".json") {
+    return {
+      accepted: false,
+      reason: "source_evidence_json_required",
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(filePath);
+  } catch (error) {
+    return {
+      accepted: false,
+      reason: "source_evidence_json_invalid",
+      detail: String(error?.message ?? error),
+    };
+  }
+  if (sourceClaimDisclaimsRetainedEvidence(parsed)) {
+    return {
+      accepted: false,
+      reason: "source_claim_disclaims_retained_evidence",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (parsed.schema !== RETAINED_GEOMETRY_EVIDENCE_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "source_schema_not_retained_geometry_evidence",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (!ACCEPTED_STATUSES.has(parsed.status)) {
+    return {
+      accepted: false,
+      reason: "source_evidence_status_not_accepted",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (
+    parsed.retainedRowSetId !== RETAINED_ROW_SET_ID ||
+    !concreteString(parsed.commonCarrierId) ||
+    !concreteString(parsed.domainId) ||
+    !concreteString(parsed.supportId)
+  ) {
+    return {
+      accepted: false,
+      reason: "source_identity_incomplete",
+      schema: parsed.schema ?? null,
+    };
+  }
+  const payloadStatus = retainedGeometryEvidencePayloadStatus(parsed, filePath);
+  if (!payloadStatus.accepted) {
+    return {
+      accepted: false,
+      reason: payloadStatus.reason,
+      schema: parsed.schema ?? null,
+      details: payloadStatus.details,
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_evidence",
+    schema: parsed.schema,
+  };
+}
+
+function retainedGeometryEvidencePayloadStatus(source, filePath) {
+  const geometry = source.retainedGeometry ?? source.geometry ?? {};
+  const rawRows =
+    geometry.rawLabeledRowsPreservedOnRetainedHistory ??
+    source.rawLabeledRowsPreservedOnRetainedHistory ??
+    {};
+  const rawRowList = rawRows.rows ?? rawRows.rawRows ?? [];
+  const invariantCell =
+    geometry.positiveWidthInvariantCell ??
+    source.positiveWidthInvariantCell ??
+    source.invariantCell ??
+    {};
+  const refinementTrace =
+    geometry.refinementTrace ??
+    source.refinementTrace ??
+    invariantCell.refinementTrace ??
+    {};
+  const payloadPresent =
+    ACCEPTED_STATUSES.has(rawRows.status) &&
+    Array.isArray(rawRowList) &&
+    rawRowList.length > 0 &&
+    ACCEPTED_STATUSES.has(invariantCell.status) &&
+    ["B_N", "Sigma_N", "P_N", "K_P_N"].every((field) =>
+      Boolean(invariantCell[field] ?? source[field]),
+    ) &&
+    ACCEPTED_STATUSES.has(refinementTrace.status) &&
+    Array.isArray(refinementTrace.steps) &&
+    refinementTrace.steps.length >= 3;
+  if (!payloadPresent) {
+    return {
+      accepted: false,
+      reason: "source_retained_geometry_payload_missing",
+    };
+  }
+  const provenanceDetails = [
+    sourceProvenanceDetail(
+      "raw_labeled_rows_preserved_on_retained_history",
+      rawRows.sourcePath ?? rawRows.source,
+      filePath,
+      source,
+    ),
+    ...["B_N", "Sigma_N", "P_N", "K_P_N"].map((field) => {
+      const value = invariantCell[field] ?? source[field] ?? {};
+      return sourceProvenanceDetail(
+        field,
+        value.sourcePath ?? value.source,
+        filePath,
+        source,
+      );
+    }),
+    ...refinementTrace.steps.map((step, index) =>
+      sourceProvenanceDetail(
+        `refinement_step_${index}`,
+        step?.sourcePath ?? step?.source,
+        filePath,
+        source,
+      ),
+    ),
+  ];
+  if (!provenanceDetails.every((detail) => detail.accepted)) {
+    const failedReasons = [
+      ...new Set(
+        provenanceDetails
+          .filter((detail) => !detail.accepted)
+          .map((detail) => detail.reason)
+          .filter(concreteString),
+      ),
+    ];
+    return {
+      accepted: false,
+      reason:
+        failedReasons.length === 1
+          ? failedReasons[0]
+          : "source_retained_geometry_provenance_missing",
+      details: provenanceDetails,
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_evidence",
+  };
+}
+
+function sourceProvenanceDetail(id, value, ownerPath, expectedIds) {
+  const sourceReferenceFound = sourceReferenceExists(value);
+  const resolvedPath = sourceReferenceFound ? resolveSourcePath(value) : null;
+  const selfReference =
+    resolvedPath !== null && resolvedPath === path.normalize(ownerPath);
+  const evidenceSource =
+    resolvedPath !== null && !selfReference && isEvidenceSourcePath(resolvedPath);
+  const provenanceStatus =
+    evidenceSource && resolvedPath !== null
+      ? retainedGeometryProvenanceStatus(resolvedPath, id, expectedIds)
+      : {
+          accepted: false,
+          reason: !sourceReferenceFound
+            ? "source_provenance_reference_not_found_or_not_durable"
+            : selfReference
+              ? "source_provenance_path_is_owner_record"
+              : "source_provenance_path_not_evidence_path",
+        };
+  return {
+    id,
+    sourcePath: value ?? null,
+    sourceReferenceExists: sourceReferenceFound,
+    sourceSelfReference: selfReference,
+    sourceEvidenceReferenceExists: evidenceSource,
+    sourceProvenanceReferenceExists: provenanceStatus.accepted,
+    evidenceSchema: provenanceStatus.schema ?? null,
+    reason: provenanceStatus.reason,
+    accepted: provenanceStatus.accepted,
+    details: provenanceStatus.details ?? null,
+  };
+}
+
+function retainedGeometryProvenanceStatus(filePath, targetId, expectedIds) {
+  if (path.extname(filePath) !== ".json") {
+    return {
+      accepted: false,
+      reason: "source_provenance_json_required",
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(filePath);
+  } catch (error) {
+    return {
+      accepted: false,
+      reason: "source_provenance_json_invalid",
+      detail: String(error?.message ?? error),
+    };
+  }
+  if (parsed.schema !== RETAINED_GEOMETRY_PROVENANCE_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "source_provenance_schema_not_retained_geometry_provenance",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (!ACCEPTED_STATUSES.has(parsed.status)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_status_not_accepted",
+      schema: parsed.schema ?? null,
+    };
+  }
+  const identityChecks = {
+    retainedRowSetId: parsed.retainedRowSetId === expectedIds?.retainedRowSetId,
+    commonCarrierId: parsed.commonCarrierId === expectedIds?.commonCarrierId,
+    domainId: parsed.domainId === expectedIds?.domainId,
+    supportId: parsed.supportId === expectedIds?.supportId,
+  };
+  if (!Object.values(identityChecks).every(Boolean)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_identity_mismatch",
+      schema: parsed.schema ?? null,
+      details: identityChecks,
+    };
+  }
+  if (sourceClaimDisclaimsRetainedProvenance(parsed)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_payload_disclaimed_or_synthetic",
+      schema: parsed.schema ?? null,
+      details: { targetId },
+    };
+  }
+  const records =
+    parsed.provenanceRecords ??
+    parsed.retainedGeometryProvenance?.records ??
+    parsed.provenance?.records ??
+    [];
+  const matchingRecord = Array.isArray(records)
+    ? records.find((record) => {
+        const id = record?.id ?? record?.targetId ?? record?.field ?? null;
+        return id === targetId && ACCEPTED_STATUSES.has(record?.status);
+      })
+    : null;
+  if (matchingRecord && provenanceRecordDisclaimsRetainedGeometry(matchingRecord)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_payload_disclaimed_or_synthetic",
+      schema: parsed.schema ?? null,
+      details: { targetId },
+    };
+  }
+  const hasPayload =
+    matchingRecord &&
+    concreteString(
+      matchingRecord.traceId ??
+        matchingRecord.sourceHash ??
+        matchingRecord.rawDatasetId ??
+        matchingRecord.derivationId ??
+        matchingRecord.certificateId,
+    ) &&
+    (Array.isArray(matchingRecord.rows) ||
+      Array.isArray(matchingRecord.observations) ||
+      Array.isArray(matchingRecord.steps) ||
+      concreteString(matchingRecord.statement));
+  if (!hasPayload) {
+    return {
+      accepted: false,
+      reason: "source_retained_geometry_provenance_payload_missing",
+      schema: parsed.schema ?? null,
+      details: {
+        targetId,
+        recordCount: Array.isArray(records) ? records.length : null,
+      },
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_provenance",
+    schema: parsed.schema,
+  };
+}
+
+function eq02_04SourceProducerStatus(filePath) {
+  if (path.extname(filePath) !== ".json") {
+    return { applies: false };
+  }
+  let parsed;
+  try {
+    parsed = readJson(filePath);
+  } catch (error) {
+    return {
+      applies: true,
+      accepted: false,
+      status: "invalid_json",
+      nextBlocker: String(error?.message ?? error),
+    };
+  }
+  if (parsed.schema !== EQ02_04_SOURCE_SCHEMA) {
+    return { applies: false };
+  }
+  const producerPath = path.join(
+    SCRIPT_DIR,
+    "produce-eq02-04-coframe-extraction-certificate.mjs",
+  );
+  const result = spawnSync(
+    process.execPath,
+    [producerPath, "--input", filePath, "--summary", "--no-retained-record"],
+    {
+      cwd: REPO_ROOT,
+      encoding: "utf8",
+      maxBuffer: 1024 * 1024,
+    },
+  );
+  if (result.error || result.status !== 0) {
+    return {
+      applies: true,
+      accepted: false,
+      status: "producer_failed",
+      nextBlocker: result.stderr?.trim() ?? String(result.error ?? ""),
+    };
+  }
+  let summary;
+  try {
+    summary = JSON.parse(result.stdout);
+  } catch (error) {
+    return {
+      applies: true,
+      accepted: false,
+      status: "producer_output_invalid_json",
+      nextBlocker: String(error?.message ?? error),
+    };
+  }
+  return {
+    applies: true,
+    accepted: summary.status === "accepted",
+    status: summary.status ?? "unknown",
+    nextBlocker: summary.producer?.nextBlocker ?? null,
+  };
+}
+
+function resolveSourcePath(value) {
+  const source = value.trim();
+  return path.isAbsolute(source)
+    ? path.normalize(source)
+    : path.resolve(REPO_ROOT, source);
+}
+
 function isNonDurableSourcePath(filePath) {
   const normalized = path.normalize(filePath);
   return (
@@ -914,5 +1422,35 @@ function isNonDurableSourcePath(filePath) {
     normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
     normalized.includes(`${path.sep}content${path.sep}generated${path.sep}`) ||
     path.basename(normalized).includes(".tmp")
+  );
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}entourage${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("source-contract") ||
+    lowerBasename.includes("negative-control")
   );
 }

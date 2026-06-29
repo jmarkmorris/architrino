@@ -65,6 +65,9 @@ const { default: createWasmModule } = await import(pathToFileURL(wasmLoaderPath)
 const fixtureRequest = readJson("src/solver/fixtures/causal-roots-f64-smoke.request.json");
 const batchFixtureResponse = readJson("src/solver/fixtures/causal-root-batch-f64-smoke.response.json");
 const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.response.json");
+const ROOT_LEDGER_ROW_F64_BYTES = 176;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
 const pairBoundaryRelaxationLineSearchFactors = Object.freeze([
   1.25,
   1,
@@ -189,6 +192,48 @@ assert(
   "expected Causal Delay Feedback motion, path-history, causal-root, delayed-hit, pair-interaction, and playback adapter capabilities"
 );
 assert(
+  findAppAdapter(initResponse.capabilities.appBridge, "t3").runKinds.includes("motionSimulation") &&
+    findAppAdapter(initResponse.capabilities.appBridge, "t3").runKinds.includes("pathHistory"),
+  "expected T3 motion and path-history adapter capabilities"
+);
+const t3StepResponse = await client.stepT3UniverseF64({
+  schema: "solver-t3-step-request.v1",
+  startTime: 0,
+  timestep: 0.1,
+  topology: { sideLength: 10 },
+  spatialIndex: { interactionRadius: 1, cellSize: 1 },
+  interaction: {
+    law: "soft_sphere_repel_v1",
+    radius: 1,
+    strength: 2,
+    softening: 1e-6,
+  },
+  particles: [
+    {
+      pathKey: 1,
+      position: { x: 9.8, y: 5, z: 5 },
+      velocity: { x: 0, y: 0, z: 0 },
+      mass: 1,
+    },
+    {
+      pathKey: 2,
+      position: { x: 0.2, y: 5, z: 5 },
+      velocity: { x: 0, y: 0, z: 0 },
+      mass: 1,
+    },
+  ],
+});
+assert(t3StepResponse.status.code === "ok", "expected native T3 step status ok");
+assert(t3StepResponse.executionPath === "native_c_abi", "expected native T3 execution path");
+assert(t3StepResponse.rows.length === 2, "expected native T3 rows for both particles");
+assert(t3StepResponse.summary.neighborPairCount === 1, "expected periodic T3 neighbor pair");
+assert(
+  t3StepResponse.rows[0].acceleration.x < 0 &&
+    t3StepResponse.rows[1].acceleration.x > 0 &&
+    Math.abs(t3StepResponse.rows[0].acceleration.x + t3StepResponse.rows[1].acceleration.x) < 1e-12,
+  "expected native T3 soft-sphere accelerations to be equal and opposite"
+);
+assert(
   initResponse.capabilities.appBridge.denseDataTransport.includes("array-buffer") &&
     initResponse.capabilities.appBridge.denseDataTransport.includes("stream-handle"),
   "expected app bridge dense data transport capabilities"
@@ -283,9 +328,12 @@ assert(
   initResponse.capabilities.validation?.transitionClassifiers.includes("root_ledger_f64"),
   "expected root-ledger transition validation capability"
 );
-assert(initResponse.capabilities.abiInfo?.rootRowF64Bytes === 112, "expected root row ABI size");
 assert(
-  initResponse.capabilities.abiInfo?.rootLedgerDetailRowF64Bytes === 192,
+  initResponse.capabilities.abiInfo?.rootRowF64Bytes === ROOT_LEDGER_ROW_F64_BYTES,
+  "expected root row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.rootLedgerDetailRowF64Bytes === ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
   "expected root-ledger detail row ABI size"
 );
 assert(initResponse.capabilities.abiInfo?.errorBudgetF64Bytes === 64, "expected error-budget ABI size");
@@ -302,7 +350,7 @@ assert(
   "expected error-budget summary ABI size"
 );
 assert(
-  initResponse.capabilities.abiInfo?.delayedHitRowF64Bytes === 128,
+  initResponse.capabilities.abiInfo?.delayedHitRowF64Bytes === DELAYED_HIT_ROW_F64_BYTES,
   "expected delayed-hit row ABI size"
 );
 assert(
@@ -468,7 +516,7 @@ assert(
     (layout) =>
       layout.layout === "root_ledger_detail.v1" &&
       layout.role === "root-ledger" &&
-      layout.rowSizeBytes === 192 &&
+      layout.rowSizeBytes === ROOT_LEDGER_DETAIL_ROW_F64_BYTES &&
       layout.fixedRowSize === true
   ),
   "expected root ledger detail binary layout catalog row"
@@ -703,7 +751,7 @@ assert(
 const workerStreamRead = await workerClient.readStreamRange({
   streamId: "causal-root-transient",
   timeRange: { start: 10, end: 10 },
-  maxBytes: 240,
+  maxBytes: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
 });
 assert(
   workerStreamRead.status.code === "ok" &&
@@ -853,7 +901,7 @@ assert(
 const transportWorkerRead = await transportWorkerClient.readStreamRange({
   streamId: "causal-root-transient",
   timeRange: { start: 10, end: 10 },
-  maxBytes: 240,
+  maxBytes: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
 });
 assert(
   transportWorkerRead.status.code === "ok" &&
@@ -1669,7 +1717,8 @@ assert(
   "expected root-ledger detail buffer row count"
 );
 assert(
-  rootLedgerDetailBuffer.buffer.byteLength === rootLedgerDetailResponse.rows.length * 192,
+  rootLedgerDetailBuffer.buffer.byteLength ===
+    rootLedgerDetailResponse.rows.length * ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
   "expected root-ledger detail payload rows"
 );
 const rootLedgerFailureDetailResponse = await client.buildRootLedgerDetailF64({
@@ -1872,7 +1921,10 @@ assert(
 );
 const batchRootBuffer = findBuffer(batchResponse, "root_ledger.v1");
 assert(batchRootBuffer.buffer instanceof ArrayBuffer, "expected batch root ArrayBuffer payload");
-assert(batchRootBuffer.buffer.byteLength === 224, "expected two-row batch root payload byte length");
+assert(
+  batchRootBuffer.buffer.byteLength === ROOT_LEDGER_ROW_F64_BYTES * 2,
+  "expected two-row batch root payload byte length"
+);
 assertDeepEqual(
   normalizeJson(stripRuntimeBuffers(batchResponse)),
   batchFixtureResponse.response,
@@ -1896,8 +1948,14 @@ const rootBuffer = findBuffer(rootsAndHitsResponse, "root_ledger.v1");
 const delayedHitBuffer = findBuffer(rootsAndHitsResponse, "delayed_hit_events.v1");
 assert(rootBuffer.buffer instanceof ArrayBuffer, "expected root ledger ArrayBuffer payload");
 assert(delayedHitBuffer.buffer instanceof ArrayBuffer, "expected delayed-hit ArrayBuffer payload");
-assert(rootBuffer.buffer.byteLength === 112, "expected root ledger payload ABI byte length");
-assert(delayedHitBuffer.buffer.byteLength === 128, "expected delayed-hit payload ABI byte length");
+assert(
+  rootBuffer.buffer.byteLength === ROOT_LEDGER_ROW_F64_BYTES,
+  "expected root ledger payload ABI byte length"
+);
+assert(
+  delayedHitBuffer.buffer.byteLength === DELAYED_HIT_ROW_F64_BYTES,
+  "expected delayed-hit payload ABI byte length"
+);
 assert(
   rootsAndHitsResponse.streams.length === 1 &&
     rootsAndHitsResponse.streams[0].indexLayout === "stream_index.v1" &&
@@ -1922,24 +1980,30 @@ const streamRead = await client.readStreamRange(
   createReadStreamRangeRequest({
     streamId: "causal-root-transient",
     timeRange: { start: 10, end: 10 },
-    maxBytes: 240,
+    maxBytes: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
   })
 );
 assert(streamRead.status.code === "ok", "expected stream range read status ok");
 assert(streamRead.buffers.length === 2, "expected both transient stream buffers");
-assert(streamRead.buffers[0].buffer.byteLength === 112, "expected root stream payload");
-assert(streamRead.buffers[1].buffer.byteLength === 128, "expected delayed-hit stream payload");
+assert(streamRead.buffers[0].buffer.byteLength === ROOT_LEDGER_ROW_F64_BYTES, "expected root stream payload");
+assert(
+  streamRead.buffers[1].buffer.byteLength === DELAYED_HIT_ROW_F64_BYTES,
+  "expected delayed-hit stream payload"
+);
 assertReadbackChecksums(streamRead, "transient stream read");
 const delayedHitOnlyRead = await client.readStreamRange(
   createReadStreamRangeRequest({
     streamId: "causal-root-transient",
-    byteRange: { start: 112, end: 240 },
+    byteRange: {
+      start: ROOT_LEDGER_ROW_F64_BYTES,
+      end: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+    },
   })
 );
 assert(delayedHitOnlyRead.buffers.length === 1, "expected one byte-range-selected stream buffer");
 assert(
   delayedHitOnlyRead.buffers[0].layout === "delayed_hit_events.v1" &&
-    delayedHitOnlyRead.buffers[0].buffer.byteLength === 128,
+    delayedHitOnlyRead.buffers[0].buffer.byteLength === DELAYED_HIT_ROW_F64_BYTES,
   "expected delayed-hit byte-range payload"
 );
 assertReadbackChecksums(delayedHitOnlyRead, "delayed-hit stream read");
@@ -3452,13 +3516,13 @@ const refinedRootBuffer = findBuffer(emissionShellRootRefinement, "root_ledger.v
 const refinedHitBuffer = findBuffer(emissionShellRootRefinement, "delayed_hit_events.v1");
 assert(
   refinedRootBuffer.rowCount === emissionShellRootRefinement.rootCount &&
-    refinedRootBuffer.byteLength === emissionShellRootRefinement.rootCount * 112 &&
+    refinedRootBuffer.byteLength === emissionShellRootRefinement.rootCount * ROOT_LEDGER_ROW_F64_BYTES &&
     refinedRootBuffer.buffer.byteLength === refinedRootBuffer.byteLength,
   "expected refined root dense buffer"
 );
 assert(
   refinedHitBuffer.rowCount === emissionShellRootRefinement.hitCount &&
-    refinedHitBuffer.byteLength === emissionShellRootRefinement.hitCount * 128 &&
+    refinedHitBuffer.byteLength === emissionShellRootRefinement.hitCount * DELAYED_HIT_ROW_F64_BYTES &&
     refinedHitBuffer.buffer.byteLength === refinedHitBuffer.byteLength,
   "expected refined delayed-hit dense buffer"
 );

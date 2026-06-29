@@ -195,18 +195,22 @@ The first force variation is
 $$
 \delta\mathbf{f}_a[\xi]
 =
-\frac{\sigma_i\sigma_j}{\eta_a^2|J_a|}
+\sigma_i\sigma_j\,\eta_a^{-2}W_a^{\mathrm{rec}}
 \left[
 \delta\widehat{\mathbf{R}}_a[\xi]
 -
 \left(
 2\frac{h_a^{\xi}}{\eta_a}
-+
-\frac{\delta J_a[\xi]}{J_a}
+-
+\frac{\delta W_a^{\mathrm{rec}}[\xi]}{W_a^{\mathrm{rec}}}
 \right)
 \widehat{\mathbf{R}}_a
 \right].
 $$
+
+The row is a receiver-normal restart row: $W_a^{\mathrm{rec}}=\lvert
+D_{t,a}/D_{s,a}\rvert$ and its first variation must be emitted on the same
+retained record before this packet can act as force/action evidence.
 
 For direct second-variation audits, the packet must also emit or enclose
 
@@ -226,10 +230,14 @@ $$
 The remaining terms in $\delta^2\mathbf{f}_a[\xi,\zeta]$ are obtained by differentiating the scalar prefactor
 
 $$
-\eta_a^{-2}|J_a|^{-1}
+\eta_a^{-2}W_a^{\mathrm{rec}}
 $$
 
-and the direction variation $\delta\widehat{\mathbf{R}}_a$. A certificate may avoid writing every tensor component if it emits an interval or automatic-differentiation Hessian bound for the same root solver and validates the skew part against the curl row.
+and the direction variation $\delta\widehat{\mathbf{R}}_a$. A certificate may
+avoid writing every tensor component if it emits an interval or
+automatic-differentiation Hessian bound for the same retained-record solver,
+including $D_s$, $D_t$, $D W_a^{\mathrm{rec}}$, and
+$D^2W_a^{\mathrm{rec}}$, and validates the skew part against the curl row.
 
 ---
 

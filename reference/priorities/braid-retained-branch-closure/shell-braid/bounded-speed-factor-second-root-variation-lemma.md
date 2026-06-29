@@ -329,50 +329,55 @@ $$
 
 with $D^2\mathbf{R}_r[v,w]$ evaluated on the total delayed sheet.
 
-On the fixed sign stratum,
-
-$$
-|J_r^{\nu}|=\zeta_rJ_r^{\nu}.
-$$
+On a fixed $D_s,D_t$ sign stratum, the source-normal root sheet still carries
+$D_{s,r}^{\nu}=J_r^{\nu}$, but force strength is the receiver-normal branch
+weight $W_{r,\nu}^{\mathrm{rec}}$.
 
 Define the force scalar weight
 
 $$
 H_r^{\nu}
 =
-\eta_r^{-2}|J_r^{\nu}|^{-1}.
+\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}.
 $$
 
 Its logarithmic first variation is
 
 $$
-\alpha_v
+\ell_v
 =
-2\frac{h_v}{\eta_r}
+-2\frac{h_v}{\eta_r}
 +
-\frac{j_v}{J_r^{\nu}},
+\omega_v,
+\qquad
+\omega_v
+=
+\frac{DW_{r,\nu}^{\mathrm{rec}}[v]}{W_{r,\nu}^{\mathrm{rec}}},
 \qquad
 DH_r^{\nu}[v]
 =
--H_r^{\nu}\alpha_v.
+H_r^{\nu}\ell_v.
 $$
 
 The second logarithmic variation is
 
 $$
-\alpha_{vw}
+\ell_{vw}
 =
-2\left(
+-2\left(
 \frac{k_{vw}}{\eta_r}
 -
 \frac{h_vh_w}{\eta_r^2}
 \right)
 +
-\left(
-\frac{j_{vw}}{J_r^{\nu}}
+\omega_{vw},
+\qquad
+\omega_{vw}
+=
+\frac{D^2W_{r,\nu}^{\mathrm{rec}}[v,w]}{W_{r,\nu}^{\mathrm{rec}}}
 -
-\frac{j_vj_w}{(J_r^{\nu})^2}
-\right).
+\frac{DW_{r,\nu}^{\mathrm{rec}}[v]DW_{r,\nu}^{\mathrm{rec}}[w]}
+{(W_{r,\nu}^{\mathrm{rec}})^2}.
 $$
 
 Therefore
@@ -382,7 +387,7 @@ D^2H_r^{\nu}[v,w]
 =
 H_r^{\nu}
 \left(
-\alpha_v\alpha_w-\alpha_{vw}
+\ell_v\ell_w+\ell_{vw}
 \right).
 $$
 
@@ -402,9 +407,9 @@ D^2\mathbf{f}_r^{\nu}[v,w]
 \sigma_i\sigma_jH_r^{\nu}
 \left[
 D^2n[v,w]
--\alpha_vDn[w]
--\alpha_wDn[v]
-+(\alpha_v\alpha_w-\alpha_{vw})n
++\ell_vDn[w]
++\ell_wDn[v]
++(\ell_v\ell_w+\ell_{vw})n
 \right].
 $$
 
@@ -537,7 +542,7 @@ First sheet derivatives alone can populate a Newton matrix. They cannot certify 
 4. the chart has the first and second derivative bounds for $G_r^{\nu}$, $\nu_j^-$, $\mathbf{T}_j^-$, $\widehat{\mathbf{R}}_r$, and the total delayed phase;
 5. the action, support, speed-storage, and coupled fixed-point rows consume the same root ledger and sign convention.
 
-Then every retained bounded-speed root sheet has a bilinear second variation $D^2\eta_r[v,w]$ given by the implicit formula above. The force weight $\eta_r^{-2}|J_r^{\nu}|^{-1}$ and force contribution $\mathbf{f}_r^{\nu}$ have the displayed second variations on the same stratum. The bounded-speed Hessian and Krawczyk rows may consume $L_R^{\mathrm{sheet},\nu}$ as the sheet derivative-Lipschitz contribution.
+Then every retained bounded-speed root sheet has a bilinear second variation $D^2\eta_r[v,w]$ given by the implicit formula above. The receiver-normal force weight $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ and force contribution $\mathbf{f}_r^{\nu}$ have the displayed second variations on the same stratum. The bounded-speed Hessian and Krawczyk rows may consume $L_R^{\mathrm{sheet},\nu}$ as the sheet derivative-Lipschitz contribution.
 
 Proof route:
 
@@ -545,7 +550,7 @@ Proof route:
 2. differentiate the implicit equation once to recover $D\eta_r[v]$ and the delayed phase variation;
 3. differentiate a second time at fixed receiver time to obtain the bilinear formula for $D^2\eta_r[v,w]$;
 4. propagate $D^2\eta_r[v,w]$ through $\lambda_j^-$, $\nu_j^-$, $\mathbf{T}_j^-$, $\widehat{\mathbf{R}}_r$, and $J_r^{\nu}$;
-5. differentiate $\eta_r^{-2}|J_r^{\nu}|^{-1}$ on the fixed sign stratum;
+5. differentiate $\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}}$ on the fixed $D_s,D_t$ sign stratum;
 6. assemble the second force envelope and push it through the bounded-speed residual rows to obtain the Krawczyk contribution.
 
 ---
@@ -560,7 +565,7 @@ A bounded-speed second root-variation packet must emit:
 | `first_variation` | $\phi_{v,i}$, $\Xi_{v,i}$, $D\eta_r[v]$, $D\lambda_j^-[v]$, $D\widehat{\mathbf{R}}_r[v]$, and $DJ_r^{\nu}[v]$ |
 | `second_root_variation` | $D^2\eta_r[v,w]$ from the implicit formula or an interval automatic-differentiation enclosure |
 | `second_jacobian_variation` | $D^2J_r^{\nu}[v,w]$, including clock, speed, tangent, direction, and second-root terms |
-| `force_weight_hessian` | $D^2(\eta_r^{-2}|J_r^{\nu}|^{-1})[v,w]$, $\alpha_v$, $\alpha_{vw}$, and sign-stratum data |
+| `force_weight_hessian` | $D^2(\eta_r^{-2}W_{r,\nu}^{\mathrm{rec}})[v,w]$, $\ell_v$, $\ell_{vw}$, and $D_s,D_t$ sign-stratum data |
 | `force_hessian` | $D^2\mathbf{f}_r^{\nu}[v,w]$ or a certified enclosure |
 | `interval_floors` | $\eta_0$, $J_0$, speed band, inverse-clock, tail, support, action, event, inactive-gap, and noncollision margins |
 | `krawczyk_export` | $\Lambda_{\eta,r}^{(2)}$, $\Lambda_{J,r}^{(2)}$, $\Lambda_{n,r}^{(2)}$, $L_{f,r}^{(2),\nu}$, $L_R^{\mathrm{sheet},\nu}$, limiting root label, and first failed status |
@@ -575,9 +580,9 @@ A bounded-speed second root-variation packet must emit:
 | `bounded-speed-second-root-variation-open` | second sheet variations or certified interval equivalents are missing |
 | `bounded-speed-root-second-ad-missing` | the packet relies on interval automatic differentiation but no AD enclosure is emitted |
 | `bounded-speed-hessian-root-ledger-stale` | Hessian/action rows use a different root, support, action, event, or sign ledger |
-| `bounded-speed-force-weight-second-variation-open` | $\eta^{-2}|J|^{-1}$ is differentiated only to first order |
+| `bounded-speed-force-weight-second-variation-open` | source-normal denominator and receiver-normal branch-strength rows are differentiated only to first order |
 | `bounded-speed-second-jacobian-open` | $D^2J_r^{\nu}$ is missing clock, speed, tangent, direction, or second-root terms |
-| `bounded-speed-root-sheet-jacobian-sign-open` | $|J_r^{\nu}|$ has no fixed sign label for differentiating the force weight |
+| `bounded-speed-root-sheet-receiver-normal-sign-open` | $D_{s,r}^{\nu}$ or $D_{t,r}^{\nu}$ has no fixed sign label for differentiating the receiver-normal force weight |
 | `bounded-speed-root-floor-failed` | the delay, Jacobian, inactive-gap, tail, support, event, or noncollision floor fails on the chart ball |
 | `bounded-speed-krawczyk-second-envelope-open` | the Krawczyk $Z$ row lacks $L_R^{\mathrm{sheet},\nu}$ |
 | `not-retained` | the second-variation row is diagnostic only and cannot support bounded-speed retention |

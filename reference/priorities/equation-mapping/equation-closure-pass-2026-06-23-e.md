@@ -94,7 +94,7 @@ No `6/23 b` score changes are justified.
 
 ## Next Reducer Target
 
-The smallest score-moving next step is not another prose residual. It is a retained branch carrier row that satisfies:
+The smallest accepted-retained-evidence next step is not another prose residual. It is a retained branch carrier row that satisfies:
 
 $$
 \mathcal C_{02\text{-}04}^{\mathrm{bin}}(u_k)

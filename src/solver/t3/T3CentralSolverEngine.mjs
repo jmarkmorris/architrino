@@ -1,0 +1,314 @@
+export const T3_CENTRAL_SOLVER_ENGINE_SCHEMA = "t3-central-solver-engine.v1";
+
+export class T3CentralSolverEngine {
+  constructor(input = {}) {
+    if (!input.topology) {
+      throw new TypeError("T3CentralSolverEngine requires a topology");
+    }
+    if (!input.spatialIndex) {
+      throw new TypeError("T3CentralSolverEngine requires a spatialIndex");
+    }
+    if (!input.interactionPipeline) {
+      throw new TypeError("T3CentralSolverEngine requires an interactionPipeline");
+    }
+    this.id = "solver";
+    this.schema = T3_CENTRAL_SOLVER_ENGINE_SCHEMA;
+    this.topology = input.topology;
+    this.spatialIndex = input.spatialIndex;
+    this.interactionPipeline = input.interactionPipeline;
+    this.config = input.config ?? {};
+    this.solverClient = input.solverClient ?? null;
+    this.solverCallCount = 0;
+    this.lastAcceptedTimestep = null;
+  }
+
+  async step(state, options = {}) {
+    if (!this.solverClient) {
+      throw new TypeError(
+        "T3 central solver engine requires solverClient; pass createSolverAppBridgeClient(...) or choose solver.engine=\"reference\""
+      );
+    }
+    if (typeof this.solverClient.stepT3UniverseF64 !== "function") {
+      throw new TypeError(
+        "T3 solver engine requires solverClient.stepT3UniverseF64; choose solver.engine=\"reference\" for JS callback interactions"
+      );
+    }
+    const dt = positiveFiniteNumber(
+      options.timestep ?? options.dt ?? this.config.solver?.timestep ?? this.config.timestep ?? 0.01,
+      "timestep"
+    );
+    const request = createT3BulkStepRequest({
+      state,
+      startTime: state.time,
+      timestep: dt,
+      topology: this.topology,
+      spatialIndex: this.spatialIndex,
+      interactionPipeline: this.interactionPipeline,
+      integrationTolerance: this.config.solver?.tolerance ?? 0,
+      maxRows: state.particleCount,
+    });
+    const response = await this.solverClient.stepT3UniverseF64(request);
+    applyT3BulkStepRows(state, response?.rows ?? []);
+    state.time = response?.summary?.endTime ?? state.time + dt;
+    state.stepIndex += 1;
+    this.lastAcceptedTimestep = dt;
+    this.solverCallCount += 1;
+    const result = {
+      schema: "t3-solver-step-result.v1",
+      mode: "central-solver-bulk-t3",
+      engine: "solver",
+      accepted: true,
+      timestep: dt,
+      time: state.time,
+      stepIndex: state.stepIndex,
+      solverCallCount: this.solverCallCount,
+      particleSolveCount: state.particleCount,
+      nativeStepCount: this.solverCallCount,
+      interactionLaw: request.interaction.law,
+      neighborPairCount: response?.summary?.neighborPairCount ?? 0,
+      occupiedCellCount: response?.summary?.occupiedCellCount ?? 0,
+      executionPath: response?.executionPath ?? "central_solver_bridge",
+    };
+    this.interactionPipeline.afterStep(this.createContext(state, result));
+    return result;
+  }
+
+  createContext(state, extra = {}) {
+    return {
+      schema: "t3-solver-context.v1",
+      solver: this,
+      state,
+      topology: this.topology,
+      spatialIndex: this.spatialIndex,
+      config: this.config,
+      ...extra,
+    };
+  }
+
+  snapshot() {
+    return {
+      schema: "t3-central-solver-engine-snapshot.v1",
+      id: this.id,
+      solverCallCount: this.solverCallCount,
+      lastAcceptedTimestep: this.lastAcceptedTimestep,
+      integrationPath: "solver.stepT3UniverseF64",
+    };
+  }
+}
+
+export function createT3CentralSolverEngine(input = {}) {
+  return new T3CentralSolverEngine(input);
+}
+
+export function createT3BulkStepRequest(input = {}) {
+  const {
+    state,
+    startTime,
+    timestep,
+    topology,
+    spatialIndex,
+    interactionPipeline,
+    integrationTolerance = 0,
+    maxRows,
+  } = input;
+  if (!state || !topology || !spatialIndex) {
+    throw new TypeError("T3 bulk step request requires state, topology, and spatialIndex");
+  }
+  const dt = positiveFiniteNumber(timestep, "timestep");
+  return {
+    schema: "solver-t3-step-request.v1",
+    startTime,
+    endTime: startTime + dt,
+    timestep: dt,
+    topology: {
+      sideLength: topology.sideLength,
+    },
+    spatialIndex: {
+      interactionRadius: spatialIndex.interactionRadius,
+      cellSize: spatialIndex.cellSize,
+    },
+    interaction: createNativeT3InteractionSpec(interactionPipeline),
+    particles: Array.from({ length: state.particleCount }, (_, particleIndex) => {
+      const offset = particleIndex * 3;
+      return {
+        pathKey: particleIndex + 1,
+        position: vectorObject(state.positions, offset),
+        velocity: vectorObject(state.velocities, offset),
+        mass: state.masses[particleIndex],
+        charge: state.electrineFractions[particleIndex],
+        stateFlags: particleIndex + 1,
+      };
+    }),
+    integrationTolerance,
+    integrationMethod: 1,
+    maxRows: maxRows ?? state.particleCount,
+  };
+}
+
+export function createNativeT3InteractionSpec(interactionPipeline) {
+  const interactions = Array.isArray(interactionPipeline?.interactions)
+    ? interactionPipeline.interactions.filter(Boolean)
+    : [];
+  const activeInteractions = interactions.filter((interaction) => interaction.id !== "noop");
+  if (activeInteractions.length === 0) {
+    return {
+      law: "none",
+      radius: 1,
+      interactionRadius: 1,
+      strength: 0,
+      softening: 0,
+    };
+  }
+  if (activeInteractions.length > 1) {
+    throw new TypeError("T3 solver engine supports one native interaction preset per step");
+  }
+  const nativeKernel = activeInteractions[0].nativeKernel;
+  if (!nativeKernel || nativeKernel.law !== "soft_sphere_repel_v1") {
+    throw new TypeError(
+      `T3 solver engine cannot run JS interaction callback "${activeInteractions[0].id}"; choose solver.engine="reference" or provide a nativeKernel`
+    );
+  }
+  return {
+    law: "soft_sphere_repel_v1",
+    radius: positiveFiniteNumber(nativeKernel.radius, "nativeKernel.radius"),
+    interactionRadius: positiveFiniteNumber(nativeKernel.interactionRadius ?? nativeKernel.radius, "nativeKernel.interactionRadius"),
+    strength: finiteNumber(nativeKernel.strength ?? 1, "nativeKernel.strength"),
+    softening: positiveFiniteNumber(nativeKernel.softening ?? nativeKernel.radius * 1e-6, "nativeKernel.softening"),
+  };
+}
+
+export function applyT3BulkStepRows(state, rows) {
+  if (!Array.isArray(rows) || rows.length !== state.particleCount) {
+    throw new TypeError("T3 bulk solver row count must match particle count");
+  }
+  for (let particleIndex = 0; particleIndex < state.particleCount; particleIndex += 1) {
+    const row = rows[particleIndex];
+    if (!row || row.pathKey !== particleIndex + 1) {
+      throw new TypeError(`T3 bulk solver row ${particleIndex} has an unexpected pathKey`);
+    }
+    const offset = particleIndex * 3;
+    state.positions[offset] = row.position.x;
+    state.positions[offset + 1] = row.position.y;
+    state.positions[offset + 2] = row.position.z;
+    state.velocities[offset] = row.velocity.x;
+    state.velocities[offset + 1] = row.velocity.y;
+    state.velocities[offset + 2] = row.velocity.z;
+    state.accelerations[offset] = row.acceleration.x;
+    state.accelerations[offset + 1] = row.acceleration.y;
+    state.accelerations[offset + 2] = row.acceleration.z;
+    state.imageOffsets[offset] += row.imageDelta?.x ?? 0;
+    state.imageOffsets[offset + 1] += row.imageDelta?.y ?? 0;
+    state.imageOffsets[offset + 2] += row.imageDelta?.z ?? 0;
+  }
+}
+
+export function createT3FallbackMotionIntegrationRequest(state, particleIndex, startTime, timestep, options = {}) {
+  const offset = particleIndex * 3;
+  return {
+    pathKey: particleIndex + 1,
+    startTime,
+    endTime: startTime + timestep,
+    step: timestep,
+    initialPosition: vectorObject(state.positions, offset),
+    initialVelocity: vectorObject(state.velocities, offset),
+    acceleration: vectorObject(state.accelerations, offset),
+    integrationTolerance: options.integrationTolerance ?? 0,
+    integrationMethod: 1,
+    stateFlags: particleIndex + 1,
+    maxFrames: 2,
+  };
+}
+
+export async function integrateParticlesWithFallbackCentralMotionSolver(input) {
+  const {
+    solverClient,
+    state,
+    startTime,
+    timestep,
+    integrationTolerance,
+    maxConcurrency,
+  } = input;
+  const results = new Array(state.particleCount);
+  const concurrency = Math.max(1, Math.min(positiveInteger(maxConcurrency ?? 32, "maxConcurrency"), state.particleCount || 1));
+  let nextIndex = 0;
+  async function worker() {
+    while (nextIndex < state.particleCount) {
+      const particleIndex = nextIndex;
+      nextIndex += 1;
+      const request = createT3FallbackMotionIntegrationRequest(state, particleIndex, startTime, timestep, {
+        integrationTolerance,
+      });
+      const response = await solverClient.integrateConstantAccelerationMotionF64(request);
+      results[particleIndex] = selectFinalFrame(response, request);
+    }
+  }
+  await Promise.all(Array.from({ length: concurrency }, () => worker()));
+  return results;
+}
+
+export function applyFallbackCentralSolverFrames(state, framesByParticle, topology) {
+  if (framesByParticle.length !== state.particleCount) {
+    throw new TypeError("central solver frame count must match particle count");
+  }
+  for (let particleIndex = 0; particleIndex < state.particleCount; particleIndex += 1) {
+    const frame = framesByParticle[particleIndex];
+    if (!frame) {
+      throw new TypeError(`missing central solver frame for particle ${particleIndex}`);
+    }
+    const offset = particleIndex * 3;
+    state.positions[offset] = frame.position.x;
+    state.positions[offset + 1] = frame.position.y;
+    state.positions[offset + 2] = frame.position.z;
+    topology.wrapPositionInPlace(state.positions, particleIndex, state.imageOffsets);
+    state.velocities[offset] = frame.velocity.x;
+    state.velocities[offset + 1] = frame.velocity.y;
+    state.velocities[offset + 2] = frame.velocity.z;
+  }
+}
+
+function selectFinalFrame(response, request) {
+  const frames = response?.frames ?? response?.response?.frames ?? [];
+  if (!Array.isArray(frames) || frames.length === 0) {
+    throw new TypeError("central solver response must include frames");
+  }
+  const finalFrame = frames[frames.length - 1];
+  if (!finalFrame.position || !finalFrame.velocity) {
+    throw new TypeError("central solver final frame must include position and velocity");
+  }
+  if (Math.abs(finalFrame.time - request.endTime) > Math.max(1e-12, request.step * 1e-9)) {
+    throw new TypeError("central solver final frame time does not match requested endTime");
+  }
+  return finalFrame;
+}
+
+function vectorObject(values, offset) {
+  return {
+    x: values[offset],
+    y: values[offset + 1],
+    z: values[offset + 2],
+  };
+}
+
+function positiveFiniteNumber(value, fieldName) {
+  const numericValue = finiteNumber(value, fieldName);
+  if (numericValue <= 0) {
+    throw new TypeError(`${fieldName} must be positive and finite`);
+  }
+  return numericValue;
+}
+
+function finiteNumber(value, fieldName) {
+  const numericValue = Number(value);
+  if (!Number.isFinite(numericValue)) {
+    throw new TypeError(`${fieldName} must be finite`);
+  }
+  return numericValue;
+}
+
+function positiveInteger(value, fieldName) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue <= 0) {
+    throw new TypeError(`${fieldName} must be a positive integer`);
+  }
+  return numericValue;
+}

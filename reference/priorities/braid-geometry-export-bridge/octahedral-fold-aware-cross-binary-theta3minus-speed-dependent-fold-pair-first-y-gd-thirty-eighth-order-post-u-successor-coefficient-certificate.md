@@ -1,6 +1,8 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Thirty-Eighth-Order Post-U Successor Coefficient Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues the coefficient-preserving post-$U$ successor row after
 the certified $h_{37,\varepsilon}$ packet. It certifies the next zero-touching
@@ -9,8 +11,7 @@ quotient coefficients $Q_{G,38}$ and $Q_{D,38}$. It converts the constant term
 of the $T_G^{(38)},T_D^{(38)}$ quotient tails into a directed-rounded
 coefficient row; the remaining quotient tail begins at order $39$.
 
-No fixed speed band is imposed. The certificate uses only the certified positive
-speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

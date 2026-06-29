@@ -27,11 +27,19 @@ int main() {
       0.0,
       1.0,
       1.0,
+      0.0,
+      0.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
       3.0,
       3.0,
       0,
       architrino::solver::Vector3{0.0, 0.0, 0.0},
       architrino::solver::Vector3{4.0, 0.0, 0.0},
+      architrino::solver::StatusCode::Ok,
       architrino::solver::StatusCode::Ok,
   };
   const architrino::solver::PhaseAtHitResult phases =
@@ -58,6 +66,15 @@ int main() {
       4.0,
       0.0,
       0.0,
+      0.0,
+      0.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      1.0,
+      static_cast<int>(architrino::solver::StatusCode::Ok),
+      0,
   };
   const ArchitrinoSolverPhaseClockF64 sourceClock{2.0, 0.0, 0.0};
   const ArchitrinoSolverPhaseClockF64 receiverClock{5.0, 0.0, 0.0};

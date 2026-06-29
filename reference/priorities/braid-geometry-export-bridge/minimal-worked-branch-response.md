@@ -173,21 +173,29 @@ $$
 
 Thus an exactly isotropic branch with $Q_{\mathrm{tf}}^{ab}=0$ does not create new trace-free preferred-frame leakage under this probe; an anisotropic branch amplifies its existing trace-free shape by the same factor.
 
-## Root-Weight And Exposure Response
+## Root-Flux Diagnostic And Exposure Response
 
-For the per-root geometry-facing weight
+The source-normal inverse-Jacobian factor is a coarea/root-flux diagnostic for
+the root chart. It explains how the delay row responds to the affine probe, but
+it is not the received force/action branch strength. For the geometry-facing
+force/action weight, use the receiver-normal row
 
 $$
-w_\rho
+w_\rho^{\mathrm{rec}}
 =
-\frac{1}{\eta_\rho^2|J_\rho|},
+\eta_\rho^{-2}W_\rho^{\mathrm{rec}},
+\qquad
+W_\rho^{\mathrm{rec}}
+=
+\left|\frac{D_{t,\rho}}{D_{s,\rho}}\right|.
 $$
 
-the isotropic deformation does not change $\widehat{\mathbf{R}}_\rho$ and does not change $J_\rho$ at first order in the fixed-speed chart. Hence
+Under the isotropic probe, if $W_\rho^{\mathrm{rec}}$ is held fixed to isolate
+the root-delay response, then
 
 $$
 \boxed{
-\delta\ln w_\rho
+\delta\ln w_\rho^{\mathrm{rec}}
 =
 -2\frac{\delta\eta_\rho}{\eta_\rho}
 =
@@ -203,7 +211,7 @@ $$
 \left\langle
 \sum_{\rho\in\mathcal{A}_{B}^{\mathrm{ext}}}
 \mathsf{W}_{\mathrm{ext},\rho}
-w_\rho
+w_\rho^{\mathrm{rec}}
 \widehat R_\rho^a\widehat R_\rho^b
 \right\rangle_B,
 $$
@@ -217,7 +225,7 @@ $$
 \left\langle
 \sum_{\rho\in\mathcal{A}_{B}^{\mathrm{ext}}}
 \mathsf{W}_{\mathrm{ext},\rho}
-w_\rho
+w_\rho^{\mathrm{rec}}
 \widehat R_\rho^a\widehat R_\rho^b
 \left(
 -\frac{2\varepsilon}{J_\rho}
@@ -226,7 +234,13 @@ w_\rho
 }
 $$
 
-This formula is already discriminating. If the active roots have different $J_\rho$ values by orientation, an isotropic support deformation produces anisotropic exposed response even though the imposed deformation was isotropic. That is a concrete delayed-root mechanism for preferred-frame or spatial-compliance residue:
+This formula is already discriminating. If the active roots have different
+$J_\rho$ values by orientation, an isotropic support deformation produces
+anisotropic exposed response even though the imposed deformation was isotropic.
+The inverse-Jacobian factor appears here as the root-delay sensitivity
+$\delta\eta_\rho/\eta_\rho$, while the received force/action strength remains
+$W_\rho^{\mathrm{rec}}$. That is a concrete delayed-root mechanism for
+preferred-frame or spatial-compliance residue:
 
 $$
 \delta\mathcal{Z}_{\mathrm{tf}}^{ab}
@@ -235,7 +249,7 @@ $$
 \left\langle
 \sum_{\rho}
 \mathsf{W}_{\mathrm{ext},\rho}
-\frac{w_\rho}{J_\rho}
+\frac{w_\rho^{\mathrm{rec}}}{J_\rho}
 \left(
 \widehat R_\rho^a\widehat R_\rho^b
 -
@@ -244,7 +258,9 @@ $$
 \right\rangle_B.
 $$
 
-Therefore spatial-compliance anisotropy can arise from the distribution of causal-root Jacobians, not only from an anisotropic imposed environment.
+Therefore spatial-compliance anisotropy can arise from the distribution of
+causal-root Jacobian sensitivities, not only from an anisotropic imposed
+environment.
 
 ## Interface Displacement Row
 
@@ -320,7 +336,12 @@ $$
 \ \text{when the }J_\rho\text{ distribution is anisotropic}.
 $$
 
-The theory advance is that an apparently isotropic assembly deformation can export anisotropic geometry because the received causal-root flux is weighted by $1/|J_\rho|$ and responds with an additional $1/J_\rho$ sensitivity. This supplies a direct mathematical route from Master EOM root geometry to spatial-compliance residue before any metric is assumed.
+The theory advance is that an apparently isotropic assembly deformation can
+export anisotropic geometry because the causal-root delay row carries a
+source-normal coarea sensitivity and the received force/action row carries
+$W_\rho^{\mathrm{rec}}$ on the same retained record. This supplies a direct
+mathematical route from Master EOM root geometry to spatial-compliance residue
+before any metric is assumed.
 
 ## Status
 

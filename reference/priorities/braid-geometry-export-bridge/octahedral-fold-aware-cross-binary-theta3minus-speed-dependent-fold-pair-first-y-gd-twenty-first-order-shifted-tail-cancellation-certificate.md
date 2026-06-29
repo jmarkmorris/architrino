@@ -1,12 +1,14 @@
 # Octahedral Fold-Aware Cross-Binary Theta3minus Speed-Dependent Fold-Pair First-Y G/D Twenty-First-Order Shifted-Tail Cancellation Certificate
 
-Promotion status: `priority-only`.
+Promotion status: `diagnostic-only; receiver-normal restart required`.
+
+Receiver-normal quarantine. This packet is historical diagnostic material for root geometry or dependency provenance only. It is not force/action evidence and cannot support branch promotion until same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows are regenerated and accepted.
 
 This packet continues [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate](octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-twentieth-order-jet-coefficient-interval-certificate.md). The predecessor interval-certifies the constant through twentieth-order first-y quotient coefficients. This packet advances the open first-y tail problem by certifying the zero-safe symbolic cancellation needed before any continuous twenty-first-order tail bound can be attempted.
 
 It is not a full first-y-cell remainder enclosure and it is not full $\theta_{3-}^{-}$ collar closure. It certifies that the shifted-tail numerators have zero lower coefficients through $y^{22}$ after the twentieth-order jet is subtracted. The remaining fold-pair blocker is still a finite twenty-first-order quotient tail bound on the actual post-twentieth root graph.
 
-No fixed speed band is imposed. The certificate uses only the certified positive speed-ratio zero enclosure
+No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
 
 $$
 \nu\in[3.02156,3.02157],

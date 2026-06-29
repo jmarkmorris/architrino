@@ -15,6 +15,8 @@ echo "[pre-commit] validating scene graph manifest..."
 node scripts/build-scene-graph.mjs --check --strict
 echo "[pre-commit] validating textbook reading copies..."
 node scripts/build-textbook-md-pdf.mjs --check
+echo "[pre-commit] checking receiver-normal Master EOM clean slate..."
+node scripts/check-receiver-normal-clean-slate.mjs
 echo "[pre-commit] checking frequency-triplet notation drift..."
 node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
 echo "[pre-commit] auditing animator runtime wiring..."

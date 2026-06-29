@@ -1,0 +1,64 @@
+{
+  "schema": "aaa-equation-map-eq26-hydrogen-spectral-carrier-source-contract/v1",
+  "claimLevel": "score-neutral theta_H_spec carrier-shell source-support contract; not accepted retained evidence and not accepted retained evidence",
+  "row": "EQ-26",
+  "contractId": "theta_H_spec_carrier_shell_source_contract_0001",
+  "carrierId": "theta_H_spec_carrier_shell_source_contract_0001",
+  "sourceRole": "theta_H_spec_carrier_source_contract",
+  "evidenceBoundary": {
+    "acceptedEvidenceLands": false,
+    "scoreMovementAllowed": false,
+    "checkerUse": "parent carrier source-path boundary only",
+    "expectedStatusAfterParentAcceptance": "blocked_missing_rows",
+    "expectedNextBlockerAfterParentAcceptance": "missing_accepted_recovered_label_rows"
+  },
+  "requiredSourceSupport": [
+    "EQ-26",
+    "theta_H_spec",
+    "two-line weak homogeneous hydrogen line set",
+    "H_alpha_3_to_2 and H_beta_4_to_2 recovered-label rows",
+    "shared envelope gap, Gamma_N, static response, event ledger, residual budget, and no-retune rows"
+  ],
+  "sameRecordBinding": {
+    "carrierId": "theta_H_spec_carrier_shell_source_contract_0001",
+    "branchId": "hydrogen_branch_source_contract_0001",
+    "lineSetId": "hydrogen_balmer_two_line_source_contract_0001",
+    "staticResponseId": "aG_hydrogen_static_response_source_contract_0001",
+    "gammaNRowId": "Gamma_N_H_source_contract_0001",
+    "eventLedgerId": "L_EpJ_hydrogen_spectral_source_contract_0001",
+    "retuneWitnessId": "S_retune_hydrogen_spectral_source_contract_0001"
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "Rydberg line factor",
+      "aaaGeometricReadout": "principal-label recovery and envelope-gap readout from one hydrogen branch",
+      "requiredCarrierOrRow": "recovered_label_rows and envelope_gap_rows",
+      "sameRecordBinding": "carrierId, branchId, and lineSetId stay shared by H_alpha and H_beta",
+      "failClosedNegativeControl": "eq26.observer_rydberg_import_without_hydrogen_carrier",
+      "smallestAcceptedEvidenceObject": "accepted theta_H_spec carrier plus two recovered-label and envelope-gap rows"
+    },
+    {
+      "standardComparisonTerm": "observed line frequency",
+      "aaaGeometricReadout": "clock/rate conversion after Gamma_N, not a direct observed-frequency import",
+      "requiredCarrierOrRow": "gamma_N_row and static_response_row",
+      "sameRecordBinding": "staticResponseId and gammaNRowId stay shared across both lines",
+      "failClosedNegativeControl": "direct_cadence_multiplication_failure",
+      "smallestAcceptedEvidenceObject": "accepted Gamma_N and static-response rows bound to theta_H_spec"
+    },
+    {
+      "standardComparisonTerm": "support-carrier separation",
+      "aaaGeometricReadout": "photon/action, Compton Gate A, and theta_alpha rows are support references only",
+      "requiredCarrierOrRow": "photon_action_support and residual_budget",
+      "sameRecordBinding": "support ids may be referenced but cannot replace carrierId",
+      "failClosedNegativeControl": "eq26.support_carrier_substitution",
+      "smallestAcceptedEvidenceObject": "source-backed theta_H_spec object with support-row references and no-hidden-retune witness"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "eq26.observer_rydberg_import_without_hydrogen_carrier",
+    "eq26.priority_source_accepted_carrier",
+    "eq26.support_carrier_substitution",
+    "response_record_mismatch_failure",
+    "per_line_row_fitting"
+  ]
+}

@@ -168,7 +168,7 @@ function evaluateConstantDelayRetainedOrbit(input, inputPath) {
       rows: ["EQ-12A"],
       supportedRows: ["EQ-12", "EQ-22A", "EQ-26A", "EQ-28"],
       claimLevel:
-        "score-neutral constant-delay retained-orbit scaffold and scalar falsifier; locked tri-binary evidence is required before score movement",
+        "score-neutral constant-delay retained-orbit scaffold and scalar falsifier; locked tri-binary evidence is required before score review",
     },
     tolerances,
     summary: {
@@ -384,6 +384,7 @@ function isEvidenceSourcePath(filePath) {
   const lowerBasename = path.basename(normalized).toLowerCase();
   return !(
     lowerBasename.includes("attempt") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("mock") ||
     lowerBasename.includes("negative-control")
   );

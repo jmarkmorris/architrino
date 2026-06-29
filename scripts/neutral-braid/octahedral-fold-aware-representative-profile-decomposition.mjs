@@ -248,7 +248,7 @@ export function buildOctahedralFoldAwareRepresentativeProfileDecomposition(optio
     },
     representative_profile_decomposition: {
       receiver_label: REPRESENTATIVE_RECEIVER_LABEL,
-      speed_constraint: "none; uses the certified positive speed-ratio zero enclosure only",
+      speed_constraint: "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_enclosure: zeroCertificate.zero_existence_certificate.speed_ratio_enclosure,
       speed_ratio_estimate: formatNumber(speedRatio),
       decomposition_identity:
@@ -367,7 +367,7 @@ export function validateOctahedralFoldAwareRepresentativeProfileDecomposition(ar
   );
   assertField(
     artifact?.representative_profile_decomposition?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "representative decomposition must not impose a fixed speed window",
     errors
   );

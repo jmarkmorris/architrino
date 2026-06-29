@@ -336,7 +336,7 @@ export function buildOctahedralFoldAwareCrossBinarySourceAtlasQuarterCellReducti
       theta_domain: "[0,H/4)",
       root_subdivisions: rootSubdivisions,
       speed_constraint:
-        "none; uses the certified positive speed-ratio zero enclosure only",
+        "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
       speed_ratio_estimate: formatNumber(speedRatio),
       speed_ratio_enclosure: atlas.atlas_parameters.speed_ratio_enclosure,
     },
@@ -469,7 +469,7 @@ export function validateOctahedralFoldAwareCrossBinarySourceAtlasQuarterCellRedu
   );
   assertField(
     artifact?.reduction_parameters?.speed_constraint ===
-      "none; uses the certified positive speed-ratio zero enclosure only",
+      "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only",
     "quarter-cell reduction must not impose a fixed speed window",
     errors
   );

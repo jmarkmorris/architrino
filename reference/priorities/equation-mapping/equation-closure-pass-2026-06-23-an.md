@@ -62,7 +62,7 @@ Every required row in the attempt fixture is marked `attempt`, so the successful
 
 ## Required Accepted Rows
 
-The first score-moving packet must replace the attempt rows with source-backed accepted rows for:
+The first score-review-eligible packet must replace the attempt rows with source-backed accepted rows for:
 
 - `radiation_source_carrier`;
 - `carrier_channel_family_row`;

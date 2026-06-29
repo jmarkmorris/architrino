@@ -4,8 +4,9 @@
   "residualId": "R_04A_koide_carrier_shell_source_contract_0001",
   "inheritedBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
   "expectedBoundary": {
-    "status": "blocked_missing_accepted_charged_lepton_mass_map",
-    "nextBlocker": "koide.accepted_mass_map_missing",
+    "status": "blocked_inherited_carrier",
+    "nextBlocker": "missing_accepted_raw_labeled_rows_preserved_on_retained_history",
+    "nextBlockerAfterDurableParentSource": "koide.accepted_mass_map_missing",
     "scoreDecision": "no_score_increase",
     "acceptedEvidenceObjectLanded": false
   },

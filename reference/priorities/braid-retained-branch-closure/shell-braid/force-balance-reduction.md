@@ -54,12 +54,11 @@ $$
 \lambda_{ij}^{\alpha}(t)
 =
 \kappa\sigma_i\sigma_j
-\frac{\epsilon^2}
-{\left(r_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|}.
+\frac{\epsilon^2W_{ij}^{\mathrm{rec},\alpha}(t)}
+{\left(r_{ij}^{\alpha}(t)\right)^2}.
 $$
 
-Here "line-of-action" means radial along the delayed causal wake hit. It is distinct from the support-band radial direction defined below.
+Here "line-of-action" means radial along the delayed causal wake hit. It is distinct from the support-band radial direction defined below. The receiver-normal factor $W_{ij}^{\mathrm{rec},\alpha}$ supplies branch strength; $J_{ij}^{\alpha}$ remains the root transversality denominator.
 
 For a six-site tri-binary carrier, let $b(i)\in\{1,2,3\}$ be the binary label and let $\bar{i}$ be the partner of $i$ in the same binary. For each receiver $i$, partition the retained architrino-root set into
 
@@ -285,10 +284,9 @@ $$
 \Theta_i^{\mathrm{partner}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{P}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -296,10 +294,9 @@ $$
 \Theta_i^{\mathrm{cross}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{X}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -307,10 +304,9 @@ $$
 \Theta_i^{\mathrm{self}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{S}_i(t)}
-\frac{\sigma_i\sigma_j T_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)T_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 }.
 $$
 
@@ -492,10 +488,9 @@ $$
 \Xi_i^{\mathrm{partner}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{P}_i(t)}
-\frac{\sigma_i\sigma_j N_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)N_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -503,10 +498,9 @@ $$
 \Xi_i^{\mathrm{cross}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{X}_i(t)}
-\frac{\sigma_i\sigma_j N_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)N_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -514,10 +508,9 @@ $$
 \Xi_i^{\mathrm{self}}(t)
 =
 \sum_{(j,\alpha)\in\mathcal{S}_i(t)}
-\frac{\sigma_i\sigma_j N_{ij}^{\alpha}(t)}
+\frac{\sigma_i\sigma_j W_{ij}^{\mathrm{rec},\alpha}(t)N_{ij}^{\alpha}(t)}
 {
 \left(y_{ij}^{\alpha}(t)\right)^2
-\left|J_{ij}^{\alpha}(t)\right|
 },
 $$
 
@@ -594,7 +587,7 @@ Substituting the radial identity converts these boundary tests into inequalities
 Instantaneous geometric symmetry is not enough to infer either $\mathcal{R}_{\mathrm{tan}}=0$ or radial support closure. A same-level branch proof must compute the retained causal-root sums because:
 
 1. The force is evaluated between $\mathbf{x}_i(t)$ and delayed source positions $\mathbf{x}_j(s_{ij}^{\alpha}(t))$, not between simultaneous vertices of an instantaneous polyhedron.
-2. The weights contain $\left(y_{ij}^{\alpha}\right)^{-2}$ and $\left|J_{ij}^{\alpha}\right|^{-1}$. Equal simultaneous distances do not imply equal causal delays or equal Jacobian flux weights.
+2. The weights contain $\left(y_{ij}^{\alpha}\right)^{-2}$ and $W_{ij}^{\mathrm{rec},\alpha}$. Equal simultaneous distances do not imply equal causal delays or equal receiver-normal wake-crossing weights.
 3. Partner, cross-binary, and self/fold-layer rows can have different root counts, root statuses, and delay branches. A missing or regularized same-source row changes the force ledger.
 4. The reciprocal hit from $j$ to $i$ is generally a different delayed equation. The same-level causal-wake force law does not give an instantaneous equal-and-opposite pair cancellation at time $t$ without a separate event-ledger proof.
 5. Polarity signs $\sigma_i\sigma_j$ and medium-response contributions may transform differently from the spatial carrier symmetry. Their representation under the branch choreography must be proved, not assumed.

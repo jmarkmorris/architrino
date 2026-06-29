@@ -1,12 +1,18 @@
 # VP-1 Inactive-Memory Proof Packet
 
-Status. Team-agent worker packet for the VP-1 inactive-complement, finite-memory, self-coincidence, and root-transport lane. This packet consumes [spiral-branch-chart-certificate](spiral-branch-chart-certificate.md), stays inside the VP-1 candidate history, and does not mark `spiral_branch_chart_test` complete.
+Status. Topology diagnostic for the VP-1 inactive-complement, finite-memory,
+self-coincidence, and root-transport lane. This packet stays inside the VP-1
+candidate history and does not mark `spiral_branch_chart_test` complete.
 
-Claim level. Partial branch-chart certificate support. The finite-memory inequality and the near-coincidence self row are certified for the declared VP-1 equations with
+Claim level. Partial topology support. The finite-memory inequality and the near-coincidence self row are certified for the declared VP-1 equations with
 $$
 \Delta_{\mathrm{co}}=\frac{1}{2}.
 $$
-The inactive-complement cover and root-transport residual contract are specified with concrete seed rows from the active-root lane, but they are not theorem-grade complete until the executable certificate supplies outward interval active-root tubes, box gaps, and derivative residual rows.
+The inactive-complement cover and root-transport residual contract are specified
+with concrete seed rows from the active-root lane, but they are not theorem-grade
+complete until a new certificate supplies outward interval active-root tubes,
+box gaps, derivative residual rows, and any force/action consumer separately
+emits same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
 
 ## Fixed VP-1 Domain
 

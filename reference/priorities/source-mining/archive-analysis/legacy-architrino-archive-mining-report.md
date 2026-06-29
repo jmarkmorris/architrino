@@ -114,7 +114,9 @@ The archive contains useful history but also legacy ontology, polemic, and aband
 | polemic-marker | 114 |
 | abandoned-or-corrected-language | 22 |
 
-## Next Operating Modes
+## Reuse Modes
+
+The original-blog archive-level mining priority is complete. Use these modes only when a later question needs the searchable archive:
 
 1. Use a candidate-gap route for an ordinary post-by-post mining batch, starting with the representative posts.
 2. Use topic-sweep mode when the operator asks what the legacy archive says about one concept across many posts.

@@ -30,7 +30,7 @@ const DEFAULT_SOURCE_QUADRATURE_PANELS_PER_SEGMENT = 96;
 const DEFAULT_VALUE_QUADRATURE_PANELS_PER_SEGMENT = 384;
 const DEFAULT_TARGET_MARGIN_FACTOR = 0.5;
 const NO_SPEED_WINDOW =
-  "none; uses the certified positive speed-ratio zero enclosure only";
+  "none; uses the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required only";
 
 function formatNumber(value) {
   if (!Number.isFinite(value)) {
