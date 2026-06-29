@@ -2759,9 +2759,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "name": "Acknowledgements In Architrino's Room",
-      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2783,15 +2783,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
       "name": "First Page Problem",
-      "path": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2831,15 +2825,21 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
-      "name": "Signals From Earlier",
-      "path": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
       "name": "Show The Residuals",
       "path": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -7384,12 +7384,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "name": "Acknowledgements In Architrino's Room",
-      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "implicit": false
     },
     {
@@ -7420,21 +7420,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
       "name": "First Page Problem",
-      "path": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/first-page-problem.md",
       "implicit": false
     },
     {
@@ -7492,12 +7483,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
-      "name": "Signals From Earlier",
-      "path": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "implicit": false
     },
     {
@@ -7507,6 +7498,15 @@
       "name": "Show The Residuals",
       "path": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/show-the-residuals.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "implicit": false
     },
     {
@@ -13522,7 +13522,7 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrino-s-room.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "field": "scene.source.path"
@@ -13550,14 +13550,14 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
       "field": "scene.source.path"
     },
     {
       "from": "scene:content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
       "field": "scene.source.path"
@@ -13606,7 +13606,7 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics/present_has_an_inbox.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/present_has_an_inbox.json",
       "field": "scene.source.path"

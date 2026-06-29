@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-28T19:46:11.729Z",
+  "generated_at": "2026-06-29T00:52:39.233Z",
   "package_version": "1.0.0-e8c1fa45",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 10207376,
-      "sha256": "ca84d5bd54c4d14fe56607a8efe12ee15d070188845e34cd6ffc86de68653f69"
+      "size": 10207478,
+      "sha256": "6742804ffdb3786cf6a420d6473616bf4144bcf742ae56c4537260a44fd72c35"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1892720,
-      "sha256": "7a571b9699ed94d10da3ea81e05ffc53d0d0a0e9d0d5bccb4e594a2bbc539f1e"
+      "size": 1892672,
+      "sha256": "e7a37610c26853d8078c47e66ab7829aaf71b97aa41eec5fe1b48cca7ed01811"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9555201,
-      "sha256": "ab0a29ddce81b93f5f8bd63f55804bcdaca00cd1d7b101abf495cb3b1ddb6095"
+      "size": 9555105,
+      "sha256": "e719bd2fa205027b8ef2ef41d546e5894e6e1944a865d4edc7f17f3a1131adb5"
     }
   ],
   "links": []
