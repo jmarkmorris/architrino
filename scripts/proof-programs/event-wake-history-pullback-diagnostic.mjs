@@ -18,6 +18,9 @@ const PROMOTION_STATUS = "priority-only diagnostic";
 const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
 const REQUIRED_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
 const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
+const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
+  "receiver-normal-retained-branch-family-first-derivative/v0";
+const NUMERIC_TOLERANCE = 1e-12;
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -76,6 +79,103 @@ function acceptedEvidenceAttempted(evidence) {
   );
 }
 
+function isFiniteNumber(value) {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function nearlyEqual(left, right, tolerance = NUMERIC_TOLERANCE) {
+  return Math.abs(left - right) <= tolerance * Math.max(1, Math.abs(left), Math.abs(right));
+}
+
+function present(value) {
+  return value !== null && value !== undefined && value !== "";
+}
+
+function receiverNormalDerivativeBundleMismatches(input, rowId, evidence) {
+  const prefix = "event_evidence.receiver_normal_derivative_bundle";
+  const bundle = evidence?.receiver_normal_derivative_bundle;
+  if (!bundle || typeof bundle !== "object" || Array.isArray(bundle)) {
+    return [prefix];
+  }
+
+  const retainedRecord = bundle.retained_record_key ?? {};
+  const fields = bundle.receiver_normal_fields ?? {};
+  const derivatives = bundle.receiver_normal_derivatives ?? {};
+  const checksum = bundle.branch_family_checksum ?? {};
+  const mismatches = [];
+  const check = (field, ok) => {
+    if (!ok) {
+      mismatches.push(`${prefix}.${field}`);
+    }
+  };
+
+  check("artifact_id", bundle.artifact_id === RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID);
+  check("consumer_row_id", bundle.consumer_row_id === rowId);
+  check("source_record_id", bundle.source_record_id === evidence?.source_record_id);
+  check("event_ledger_id", bundle.event_ledger_id === input.event_ledger?.ledger_id);
+  check("retained_record_key.record_id", present(retainedRecord.record_id));
+  check("retained_record_key.branch_family_id", present(retainedRecord.branch_family_id));
+  check("retained_record_key.retained_root_id", present(retainedRecord.retained_root_id));
+  check("retained_record_key.branch_label", present(retainedRecord.branch_label));
+  check("retained_record_key.source_receiver_ids", present(retainedRecord.source_receiver_ids));
+  check("retained_record_key.direction_convention", present(retainedRecord.direction_convention));
+  check("retained_record_key.receiver_time", present(retainedRecord.receiver_time));
+  check("retained_record_key.source_time", present(retainedRecord.source_time));
+  check("retained_record_key.retained_box", present(retainedRecord.retained_box));
+  check("retained_record_key.regulator_state", present(retainedRecord.regulator_state));
+  check("retained_record_key.source_artifact_hash", present(retainedRecord.source_artifact_hash));
+  check("retained_record_key.variation_key", present(retainedRecord.variation_key));
+  check("retained_record_key.source_record_id", retainedRecord.source_record_id === evidence?.source_record_id);
+
+  const numericFields = [
+    ["receiver_normal_fields.D_s", fields.D_s],
+    ["receiver_normal_fields.D_t", fields.D_t],
+    ["receiver_normal_fields.W_rec", fields.W_rec],
+    ["receiver_normal_derivatives.D_vD_s", derivatives.D_vD_s],
+    ["receiver_normal_derivatives.D_vD_t", derivatives.D_vD_t],
+    ["receiver_normal_derivatives.D_vW_rec", derivatives.D_vW_rec],
+  ];
+  for (const [field, value] of numericFields) {
+    check(field, isFiniteNumber(value));
+  }
+
+  const hasNumericBundle = numericFields.every(([, value]) => isFiniteNumber(value));
+  if (hasNumericBundle) {
+    check("receiver_normal_fields.D_s_nonzero", Math.abs(fields.D_s) > NUMERIC_TOLERANCE);
+    check("receiver_normal_fields.D_t_nonzero", Math.abs(fields.D_t) > NUMERIC_TOLERANCE);
+    check("receiver_normal_fields.zeta_s", fields.zeta_s === Math.sign(fields.D_s));
+    check("receiver_normal_fields.zeta_t", fields.zeta_t === Math.sign(fields.D_t));
+    check(
+      "receiver_normal_fields.W_rec_reconstruction",
+      Math.abs(fields.D_s) > NUMERIC_TOLERANCE &&
+        nearlyEqual(fields.W_rec, Math.abs(fields.D_t / fields.D_s))
+    );
+    const reconstructed =
+      (fields.zeta_t * fields.zeta_s * (fields.D_s * derivatives.D_vD_t - fields.D_t * derivatives.D_vD_s)) /
+      (fields.D_s * fields.D_s);
+    check(
+      "receiver_normal_derivatives.D_vW_rec_reconstruction",
+      nearlyEqual(derivatives.D_vW_rec, reconstructed)
+    );
+  }
+
+  check(
+    "branch_family_checksum.retained_record_ids",
+    Array.isArray(checksum.retained_record_ids) &&
+      checksum.retained_record_ids.includes(retainedRecord.record_id)
+  );
+  check(
+    "branch_family_checksum.consumer_row_ids",
+    Array.isArray(checksum.consumer_row_ids) && checksum.consumer_row_ids.includes(rowId)
+  );
+  check(
+    "branch_family_checksum.source_artifact_hash",
+    checksum.source_artifact_hash === retainedRecord.source_artifact_hash
+  );
+
+  return mismatches;
+}
+
 function acceptedEvidenceMismatches(input, rowId, rowPresent) {
   const evidence = eventEvidenceById(input, rowId);
   const proofObject = evidence?.derivation_proof_object ?? {};
@@ -126,7 +226,10 @@ function acceptedEvidenceMismatches(input, rowId, rowPresent) {
       ok: evidence?.event_ledger_id === input.event_ledger?.ledger_id,
     },
   ];
-  return checks.filter((entry) => !entry.ok).map((entry) => entry.field);
+  return [
+    ...checks.filter((entry) => !entry.ok).map((entry) => entry.field),
+    ...receiverNormalDerivativeBundleMismatches(input, rowId, evidence),
+  ];
 }
 
 function eventEvidenceSummaryForRow(input, rowId, rowPresent) {
@@ -432,6 +535,7 @@ function main() {
             "accepted_evidence_contract_attempted",
             "accepted_evidence_mismatches",
             "derivation_proof_object",
+            "receiver_normal_derivative_bundle",
             "accepted_for_wake_history_closure",
           ],
           controls: ["missing-angular-momentum-row", "source-record-mismatch"],

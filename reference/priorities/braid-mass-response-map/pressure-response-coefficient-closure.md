@@ -6,7 +6,7 @@ This priority packet closes the coefficient side of the pressure-dependent Noeth
 
 - **Status:** branch-conditional coefficient closure; no empirical pass claimed.
 - **Main claim:** in a branch-preserving pressure perturbation, the cadence, delay, effective-speed, strain, and medium-response tensor channels reduce to a small set of shared isotropic and anisotropic pressure coefficients. Individual values of $a_i$, $b_i$, $\kappa_i$, $m_S$, and $K_{\text{sea}}$ are not observable-local fit freedoms.
-- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether braid branch or a certified pressure simulation. The density-side modulus and headroom target is now staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
+- **Open burden:** derive $\kappa_n$, $\kappa_\lambda$, $\kappa_\xi$, $a_i$, $b_i$, $m_S$, $K_{\text{sea}}$, and the packing response from an accepted Noether braid branch or a certified pressure simulation. Any mass-facing pressure row must also pass the retained pressure-row receiver-normal simulation target below, with same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, exposure, energy, Noether sea response, and pressure rows on one retained branch identity. The density-side modulus and headroom target is now staged in [Noether sea Pressure Modulus and Packing Headroom](noether-sea-pressure-modulus-and-packing-headroom.md).
 - **Promotion target:** none until the pressure response survives a shared-row replay and the Lorentz, clock/signal, dispersion, birefringence, and transport null sectors remain below bound.
 
 ## Source Anchors
@@ -422,6 +422,7 @@ The branch intake must be emitted before any replay residual is inspected:
 | Intake field | Required branch source |
 | --- | --- |
 | `accepted_branch_id` | accepted Noether braid branch or branch-preserving material segment |
+| `receiver_normal_weight_record` | same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rows for the retained roots consumed by exposure, pressure, and response tensors |
 | `source_record` | $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and $\mathcal{N}_{\mathrm{tf},ab}(A)$ from the exposure quotient |
 | `pressure_record` | declared $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and the retained replay direction |
 | `coefficient_record` | branch-emitted $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and any masked packing or heavy-scaling columns |
@@ -511,6 +512,7 @@ The status vector is deliberately fail-closed:
 | --- | --- | --- |
 | `source_descent` | $M_0^{\mathrm{src}}$ and $\partial_P M_0^{\mathrm{src}}$ descend through the mass-facing exposure quotient. | `pending_source_descent` or `source_nondescent` |
 | `branch_intake` | The pressure coefficient row is bound to an accepted finite-branch source record with accepted history, same-row receiver-normal branch-strength data, quotient chart identity, stability or branch-gap status, eta-ladder status when required, and branch-emitted pressure/Hessian or response entries. | `finite_branch_evidence_missing` |
+| `receiver_normal_same_record` | Same-row $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are present for the retained roots consumed by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
 | `isotropic_trace` | $C_{\mathrm{tr}}^{\mathrm{iso}}$ is computed from branch-emitted $\partial_{\Pi}\delta_PM_0^{\mathrm{src}}$ and $C_{\chi}^{\mathrm{iso}}$. | `coefficient_fit_contamination` if either term is replay-fitted after benchmark comparison |
 | `trace_free_span` | $\mathcal{V}_{P,A}$ is declared before the replay and $B_P^{ab}\in\mathcal{V}_{P,A}$. | `tf_bound_only` when anisotropy is masked; `projection_mismatch` when directions drift |
 | `no_hidden_mass_handle` | $\mathcal{R}_{\mathrm{nohandle}}^{P}\le\epsilon_{\mathrm{nohandle}}^{P}$. | `hidden_pressure_mass_handle` |
@@ -865,6 +867,115 @@ and keeps `branch_id`, `accepted_history_segment_id`, `source_path`,
 unpopulated in the contract fields.
 
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
+
+### Retained Pressure-Row Receiver-Normal Simulation Target
+
+The concrete target for the current mass/pressure blocker is
+`retained_pressure_row_receiver_normal_simulation/v0`. It is a priority-only
+simulation or theorem target, not an empirical pressure pass and not a mass
+prediction. Its current status is `finite_branch_evidence_missing` until one
+accepted non-fixture retained pressure row supplies every required field on one
+retained branch identity.
+
+The target consumes a baseline retained pressure row and a small subthreshold
+pressure perturbation. The baseline and perturbed records must share
+`accepted_branch_id`, `accepted_history_segment_id`, `source_path`,
+`quotient_chart_id`, retained root-row identity, retained response direction,
+reversible-domain row, and null-sector record. On that same row, the simulation
+must recompute rather than import
+
+$$
+D_s,
+\qquad
+D_t,
+\qquad
+W^{\mathrm{rec}}=\left|\frac{D_t}{D_s}\right|,
+\qquad
+E_{\text{internal}}(A),
+\qquad
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A),
+\qquad
+\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A),
+$$
+
+and the Noether sea pressure-response record
+
+$$
+\theta_{\mathrm{sea}},
+\qquad
+\Pi,
+\qquad
+A,
+\qquad
+s_n,
+\qquad
+Q_{\chi}^{ab},
+\qquad
+S_{\mathrm{dev}}^{ab},
+\qquad
+C_{\chi}^{\mathrm{iso}},
+\qquad
+C_{\chi}^{\mathrm{aniso}},
+\qquad
+m_S.
+$$
+
+The simulation comparison is the finite-difference trace residual
+
+$$
+\mathcal{R}_{\mathrm{rec}P}^{\mathrm{sim}}
+=
+\frac{
+\left|
+\left[
+m_{\mathrm{tr}}^{\mathrm{rec}}(\Delta P)
+-m_{\mathrm{tr}}^{\mathrm{rec}}(0)
+\right]
+-\widehat{\delta_Pm}_{\mathrm{tr}}^{\mathrm{rec}}
+\right|
+}{
+\left|\widehat{\delta_Pm}_{\mathrm{tr}}^{\mathrm{rec}}\right|
++\epsilon_{\mathrm{rec}P}
+},
+$$
+
+where $\widehat{\delta_Pm}_{\mathrm{tr}}^{\mathrm{rec}}$ is the receiver-normal
+pressure trace expression built from the same branch-emitted exposure,
+pressure, and Noether sea response rows. No coefficient in
+$\widehat{\delta_Pm}_{\mathrm{tr}}^{\mathrm{rec}}$ may be fitted after benchmark
+comparison.
+
+The required output fields are:
+
+| Field | Required content |
+| --- | --- |
+| `retained_branch_identity` | accepted branch id, accepted history segment, source path, retained pressure-row id, retained response direction, and quotient chart |
+| `receiver_normal_weight_record` | same-row $D_s$, $D_t$, $W^{\mathrm{rec}}$, and retained root-row identities before and after the pressure perturbation |
+| `energy_exposure_record` | same-row $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$, and exposure quotient descent status |
+| `pressure_noether_sea_record` | same-row $\theta_{\mathrm{sea}}$, $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and $\mathcal{M}_{+}^{ab}$ |
+| `finite_difference_trace` | baseline trace, perturbed trace, predicted receiver-normal pressure trace, $\mathcal{R}_{\mathrm{rec}P}^{\mathrm{sim}}$, and tolerance |
+| `domain_and_null_records` | reversible-domain row, closed loss-channel status, clock/signal, birefringence, photon-dispersion, preferred-frame, directional-tensor, and transport budgets |
+| `negative_controls` | explicit rejection of H39/theta3minus quotient certificates, source-normal force residues, fixture-only rows, toy rows, empirical rows without branch source, and cross-row bundles as pressure or mass evidence |
+
+The pass/fail status vector is:
+
+| Status key | Pass condition | Fail or bound-only reading |
+| --- | --- | --- |
+| `accepted_retained_branch_identity` | one accepted non-fixture retained pressure row supplies branch identity, history segment, source path, and quotient chart. | `finite_branch_evidence_missing` |
+| `receiver_normal_same_record` | $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots used by exposure, pressure, and response tensors. | `receiver_normal_same_record_missing` |
+| `energy_exposure_binding` | $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}$ descend through the same mass-facing exposure quotient. | `pending_source_descent`, `source_nondescent`, or `energy_exposure_row_split` |
+| `pressure_noether_sea_binding` | pressure variables and Noether sea response coefficients are branch-emitted on the same retained pressure row. | `pressure_response_row_split` or `coefficient_fit_contamination` |
+| `trace_prediction` | $\mathcal{R}_{\mathrm{rec}P}^{\mathrm{sim}}\le\epsilon_{\mathrm{rec}P}^{\mathrm{sim}}$ with no benchmark-tuned coefficient. | `trace_prediction_fail` |
+| `reversible_domain` | $\mathcal{R}_{\mathrm{tr}}<\mathcal{R}_{\text{tr},*}$ and no unlogged excitation, heating, radiation-like shedding, or branch transition appears. | `threshold_event`, `loss_below_threshold`, or `loss_channel_unlogged` |
+| `null_sector` | all clock/signal, birefringence, photon-dispersion, preferred-frame, directional-tensor, and transport bounds remain inside budget. | `metric_null_violation` |
+| `diagnostic_exclusion` | H39/theta3minus quotient certificates, source-normal force rows, old shell-braid residues, fixtures, and cross-row bundles remain diagnostic-only. | `diagnostic_evidence_import` |
+
+The static validation precheck remains
+[pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs).
+It must report both same-row binding and accepted non-fixture source evidence
+before this simulation target can claim branch-derived pressure response. A
+simulation that passes the finite-difference trace but fails that precheck
+remains `finite_branch_evidence_missing`.
 
 The pressure row also fixes the response-visible trace-free span for this specialization. At first order the pressure-visible span is contained in
 

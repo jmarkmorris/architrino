@@ -8,6 +8,8 @@ import {
   createInteractionPipeline,
   createT3SpatialIndex,
   createT3Topology,
+  createT3OrientedBoundaryPrototype,
+  T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA,
   createT3UniverseSimulator,
   restoreT3UniverseSimulatorFromCheckpoint,
 } from "../src/solver/t3/index.mjs";
@@ -330,8 +332,82 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.deepEqual(result.runSummary.periodicWrapEvidence.imageDeltaTotals, { x: 2, y: 0, z: 0 });
   assert.deepEqual(result.runSummary.periodicWrapEvidence.absoluteImageDeltaTotals, { x: 2, y: 0, z: 0 });
   assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.schema,
+    T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA
+  );
+  assert.equal(result.runSummary.orientedBoundaryPrototype.result.masterEomDependency, false);
+  assert.equal(result.runSummary.orientedBoundaryPrototype.result.provesBranchAdmissibility, false);
+  assert.equal(result.runSummary.orientedBoundaryPrototype.result.retainedBranch, false);
+  assert.deepEqual(result.runSummary.orientedBoundaryPrototype.seamOwnershipRows[0], {
+    axis: "x",
+    signedImageDelta: 2,
+    absoluteImageDelta: 2,
+    orientedBoundaryCoefficient: 2,
+    orientation: "positive_winding_orientation",
+    status: "same_record_seam_owner_required",
+    boundaryStratum: "winding/seam",
+  });
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.neighborPairBoundaryRows.map((row) => row.status),
+    ["neighbor_population_unchanged", "neighbor_population_unchanged"]
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.eventBoundaryRows[0].status,
+    "absent"
+  );
   assert.equal(simulator.solver.solverCallCount, 3);
   assert.equal(simulator.state.imageOffsets[0], 2);
+});
+
+test("oriented boundary prototype consumes T3 run-summary evidence without branch retention", () => {
+  const prototype = createT3OrientedBoundaryPrototype({
+    schema: "t3-run-summary.v1",
+    stepCount: 4,
+    particleCount: 2,
+    solverEngine: "solver",
+    interactionPreset: "soft_sphere_repel_v1",
+    executionPath: "native_c_abi",
+    neighborPairCounts: { perStep: [0, 2, 1, 1] },
+    periodicWrapEvidence: {
+      imageDeltaTotals: { x: 0, y: -1, z: 0 },
+      absoluteImageDeltaTotals: { x: 2, y: 1, z: 0 },
+    },
+    eventSummary: {
+      totalEventCount: 3,
+      boundaryLikeEventCount: 2,
+      eventTypeCounts: {
+        "periodic-seam-boundary": 2,
+        collision: 1,
+      },
+    },
+  });
+
+  assert.equal(prototype.schema, T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA);
+  assert.equal(prototype.result.masterEomDependency, false);
+  assert.equal(prototype.result.retainedBranch, false);
+  assert.equal(prototype.result.provesBranchAdmissibility, false);
+  assert.deepEqual(
+    prototype.seamOwnershipRows.map((row) => [row.axis, row.status, row.orientedBoundaryCoefficient]),
+    [
+      ["x", "paired_seam_transfer_candidate", 0],
+      ["y", "same_record_seam_owner_required", -1],
+      ["z", "absent", 0],
+    ]
+  );
+  assert.deepEqual(
+    prototype.neighborPairBoundaryRows.map((row) => row.orientation),
+    ["pair_contact_birth_candidate", "pair_contact_death_candidate", "none"]
+  );
+  assert.equal(prototype.eventBoundaryRows[0].count, 2);
+  assert.equal(prototype.eventBoundaryRows[1].status, "event_count_only");
+  assert.equal(prototype.eventBoundaryRows[2].status, "boundary_like_event_type");
+  assert.equal(
+    prototype.remainingUnproven.includes(
+      "retained winding-labeled causal-root rows are not constructed from the run envelope"
+    ),
+    true
+  );
 });
 
 test("soft pair interaction preserves total momentum under deterministic fixed stepping", async () => {

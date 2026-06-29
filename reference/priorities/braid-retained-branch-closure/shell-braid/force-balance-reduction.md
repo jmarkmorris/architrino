@@ -58,7 +58,14 @@ $$
 {\left(r_{ij}^{\alpha}(t)\right)^2}.
 $$
 
-Here "line-of-action" means radial along the delayed causal wake hit. It is distinct from the support-band radial direction defined below. The receiver-normal factor $W_{ij}^{\mathrm{rec},\alpha}$ supplies branch strength; $J_{ij}^{\alpha}$ remains the root transversality denominator.
+Here "line-of-action" means radial along the delayed causal wake hit. It is
+distinct from the support-band radial direction defined below. The
+receiver-normal factor $W_{ij}^{\mathrm{rec},\alpha}$ supplies branch strength;
+$J_{ij}^{\alpha}$ remains the root transversality denominator. A breather
+force-margin consumer must therefore follow the same-record target in
+[Breather Receiver-Normal Force-Margin Restart Target](../../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md);
+old shell-braid $1/\lvert J\rvert$ force weights and aggregate residues are
+not admissible force-margin evidence.
 
 For a six-site tri-binary carrier, let $b(i)\in\{1,2,3\}$ be the binary label and let $\bar{i}$ be the partner of $i$ in the same binary. For each receiver $i$, partition the retained architrino-root set into
 

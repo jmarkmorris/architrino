@@ -5,6 +5,7 @@ import { computeParticleStatistics } from "./T3Statistics.mjs";
 import { createT3State } from "./T3State.mjs";
 import { createT3Topology } from "./T3Topology.mjs";
 import { createT3CentralSolverEngine } from "./T3CentralSolverEngine.mjs";
+import { createT3OrientedBoundaryPrototype } from "./T3OrientedBoundaryOperator.mjs";
 import { referenceActionSolver } from "./T3ActionSolver.mjs";
 import {
   createT3Checkpoint,
@@ -291,7 +292,7 @@ function createT3RunSummary(input) {
     (result) => result.engine === "reference" || result.executionPath == null
   ).length;
   const perParticleFallbackStepCount = stepResults.filter(isPerParticleFallbackStep).length;
-  return {
+  const summary = {
     schema: "t3-run-summary.v1",
     stepCount: input.stepCount,
     particleCount: input.particleCount,
@@ -314,6 +315,10 @@ function createT3RunSummary(input) {
     cellCounts: summarizeNumericSeries(stepResults.map((result) => result.cellCount)),
     periodicWrapEvidence: summarizePeriodicWrapEvidence(stepResults),
     eventSummary: summarizeRunEvents(stepResults),
+  };
+  return {
+    ...summary,
+    orientedBoundaryPrototype: createT3OrientedBoundaryPrototype(summary),
   };
 }
 

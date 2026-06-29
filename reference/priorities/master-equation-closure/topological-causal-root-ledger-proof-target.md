@@ -693,6 +693,58 @@ contributions, and does not prove branch admissibility for any downstream EOM,
 action, wake-history, Noether sea, or cross-sector consumer. Until those proof
 objects exist, this remains priority-only executable evidence.
 
+## T3 Oriented Boundary Prototype 2026-06-29
+
+The smallest executable prototype now lives in
+`src/solver/t3/T3OrientedBoundaryOperator.mjs` and is attached to each
+`t3-run-summary.v1` record as `orientedBoundaryPrototype`. Its schema is
+`t3-oriented-boundary-prototype.v1`, with `promotionStatus:
+priority-only executable evidence`, `masterEomDependency: false`,
+`retainedBranch: false`, and `provesBranchAdmissibility: false`.
+
+The prototype defines the topology-native readout for
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
+$$
+only at the evidence-envelope level. The input domain remains the desired
+retained winding-labeled causal-root rows on $T_L^3$, but the T3 run envelope
+does not yet construct those rows. Therefore the prototype treats the summary
+channels as constraints on any future oriented boundary operator:
+
+| Run-summary channel | Prototype boundary readout | What it can discipline | What it cannot prove |
+| --- | --- | --- | --- |
+| `periodicWrapEvidence.imageDeltaTotals` | Signed seam-transfer coefficient by axis. | Which winding direction would need a seam-owner row. | That the seam owner is a retained causal-root row. |
+| `periodicWrapEvidence.absoluteImageDeltaTotals` | Seam-transfer multiplicity by axis. | Whether the seam evidence is absent, cancelling, or owner-requiring in the run summary. | That cancelling signed totals are paired on the same retained source record. |
+| `neighborPairCounts.perStep` | Finite-difference rows for native neighbor-pair population. | Candidate pair-contact births and deaths in the native T3 run. | Causal-root multiplicity, Jacobian floor, caustic status, or branch admissibility. |
+| `eventSummary.eventTypeCounts` and `boundaryLikeEventCount` | Detector-declared boundary-like event rows with no orientation sign. | Whether existing T3 event detectors emitted seam, wrap, periodic, image, or boundary rows. | Accepted wake-history event-ledger evidence or same-record routing. |
+
+The sign convention is minimal: a positive image delta contributes a
+$+\mathbf e_a$ seam-transfer demand on axis $a$, and a negative image delta
+contributes $-\mathbf e_a$. If the absolute image delta is nonzero while the
+signed total cancels, the row is only a paired seam-transfer candidate until
+the same-record owner rows are supplied. Neighbor-count increases are
+candidate pair-contact births; decreases are candidate pair-contact deaths.
+Event rows are detector declarations and therefore carry no boundary sign until
+a retained event ledger supplies one.
+
+This gives an executable first approximation to the missing
+oriented-boundary object:
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
+\leadsto
+\Delta_{\mathrm{seam}}^{T3}
++\Delta_{\mathrm{neighbor}}^{T3}
++\Delta_{\mathrm{event}}^{T3}
++\Delta_{\mathrm{unresolved\ root}}.
+$$
+The final term is explicit: the run summary still lacks the retained
+causal-root rows, Jacobian floors, caustic routes, endpoint rows,
+memory-window rows, collision/core rows, omitted-row gaps, and same-record
+absent/paired/routed map. Consequently this prototype can reject premature
+promotion and discipline future proof objects, but it cannot certify branch
+admissibility or substitute for any downstream Master Equation, action,
+wake-history, Noether sea, or cross-sector consumer.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
@@ -869,6 +921,17 @@ declared event ledger without those rows remains
 quotient row, source-normal-only denominator, or old shell-braid force residue
 fails as `receiver-normal-first-derivative-row-missing`.
 
+The first same-record receiver-normal derivative consumer is now explicit in
+that diagnostic. The `energy_wake` accepted-evidence fixture binds
+`receiver-normal-retained-branch-family-first-derivative/v0` to the same source
+record, event ledger, retained record key, source artifact hash, and consumer
+row, then recomputes $D_vW^{\mathrm{rec}}$ from $D_s$, $D_t$, $D_vD_s$, and
+$D_vD_t$. Missing derivative bundles, source-record drift, and reconstruction
+drift remain `accepted_evidence_contract_mismatch` rather than accepted
+wake-history closure. This is row-logic evidence only; the closed-ledger
+compositor still reports the wake-history sector as not accepted until all
+required event rows carry accepted evidence and proof objects.
+
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
 in `tests/action-boundary-pullback-diagnostic.test.js`. It names the required
@@ -894,7 +957,7 @@ state, boundary symbol, and action-boundary `derivation_proof_object`.
 Synthetic action rows and regulator-only rows therefore remain
 `not_accepted_for_action_closure` even when their row contracts pass.
 
-## Current Executable Frontier
+## Executable Frontier
 
 The executable chain now separates same-record compatibility, active-root
 routing, wake-history rows, action rows, and Noether sea handoff rows. The
@@ -903,11 +966,16 @@ default fixture has the following blocker order:
 | Diagnostic row | Default status | Next accepted evidence needed |
 | --- | --- | --- |
 | `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
-| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples and require active-root route derivation proof objects. |
-| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the receiver-normal derivative bundle. |
+| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the route summaries report zero accepted route samples and require active-root route derivation proof objects. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; one `energy_wake` row-logic fixture now exercises the receiver-normal derivative bundle, but accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the same-record receiver-normal derivative bundle. |
 | $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, accepted evidence ids, and derivation proof objects. |
 | $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, receiver-normal branch-strength rows for any force/action consumer, and a medium-response derivation proof object. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
+
+The `energy_wake` receiver-normal derivative fixture sharpens the accepted
+wake-history evidence contract, but it does not change this blocker order:
+wake-history row population still passes only at diagnostic level, and accepted
+closure still waits for the full event-row set with derivation proof objects.
 
 Thus the next mathematical artifact should not try to promote the closed-ledger
 equation. It should replace one toy active-root route row or populate one
@@ -977,7 +1045,7 @@ the cross-sector row.
   telegraph signal; it only records the root-count topology that could make
   such pulse patterns meaningful.
 
-## Current Disposition
+## Disposition
 
 Priority-only. This is a strong proof-route candidate because it turns the
 shock-front, pair-contact, multi-hit, self-hit, and six-item admissibility

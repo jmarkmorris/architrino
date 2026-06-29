@@ -39,6 +39,11 @@ function h39SourceMapProviderObjectReadout(report) {
     .source_map_provider_object_branch_interval_readout;
 }
 
+function h39RetainedRecordPreimageFixture(report) {
+  return h39SourceMapProviderObjectReadout(report)
+    .h39_receiver_normal_retained_record_preimage_fixture;
+}
+
 test("branch-provider evidence report rejects current fixture, toy, proxy, status-shell, and target candidates", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
@@ -1007,6 +1012,84 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
     sourceMapProviderObjectReadout.downstream_consumer_authorization,
     false
   );
+  const retainedRecordPreimageFixture =
+    sourceMapProviderObjectReadout
+      .h39_receiver_normal_retained_record_preimage_fixture;
+  assert.equal(
+    retainedRecordPreimageFixture.schema,
+    "h39-receiver-normal-retained-record-preimage-fixture/v0"
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.claim_level,
+    "priority-only executable fixture, not provider acceptance"
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.status,
+    "h39-receiver-normal-retained-record-preimage-fixture-fail-closed"
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.target_row_schema,
+    "h39-receiver-normal-retained-record-preimage-row/v0"
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.receiver_normal_artifact_ref,
+    "receiver-normal-retained-branch-family-first-derivative/v0"
+  );
+  assert.deepEqual(
+    retainedRecordPreimageFixture.required_preimage_fields,
+    [
+      "accepted_provider_object_branch_row_ref",
+      "retained_causal_root_record_ref",
+      "branch_family_checksum",
+      "receiver_normal_fields",
+      "receiver_normal_derivative_fields",
+      "geometry_derivative_fields",
+    ]
+  );
+  assert.deepEqual(
+    retainedRecordPreimageFixture.required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    retainedRecordPreimageFixture.required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.equal(retainedRecordPreimageFixture.row_count, 7);
+  assert.equal(retainedRecordPreimageFixture.fixture_rows.length, 7);
+  assert.equal(
+    retainedRecordPreimageFixture.provider_ready_authorized_by_this_fixture,
+    false
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.downstream_consumer_authorization,
+    false
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.retained_branch_claim_authorized_by_this_fixture,
+    false
+  );
+  assert.deepEqual(
+    retainedRecordPreimageFixture.negative_control.rejected_provider_candidate_kinds,
+    [
+      "aggregate-P-only-provider-row",
+      "lambda-terminal-witness-branch-interval",
+      "variable-owned-alpha-candidate",
+      "row-local-expression-branch-feed",
+      "term-pushforward-candidate-row",
+      "primitive-vector-replay",
+      "hybrid-prefix-cauchy-diagnostic",
+      "coefficient-series-source-map-residual-provider-candidate",
+      "source-map-residual-provider-candidate",
+      "provider-fit-diagnostic",
+      "signed-radius-target",
+      "fourth-jet-or-Taylor-derivative-row",
+    ]
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.negative_control
+      .fourth_jet_or_taylor_rows_rejected_as_receiver_normal_derivative_evidence,
+    true
+  );
   assert.equal(
     h39ConstructionAttemptDetails.source_contract_readout
       .source_provenance_refinement.latest_candidate_boundary,
@@ -1437,6 +1520,187 @@ test("branch-provider evidence report keeps a partial producer-side branch-row o
     false
   );
   assert.equal(producerSideTarget.downstream_consumer_authorization, false);
+  const retainedRecordPreimageFixture = h39RetainedRecordPreimageFixture(report);
+  const currentAbsenceRow = retainedRecordPreimageFixture.fixture_rows.find(
+    (row) => row.row_id === "current_h39_absence"
+  );
+  assert.equal(
+    retainedRecordPreimageFixture.status,
+    "h39-receiver-normal-retained-record-preimage-fixture-fail-closed"
+  );
+  assert.equal(
+    currentAbsenceRow.available_provider_object_terminal_row_count,
+    14
+  );
+  assert.equal(currentAbsenceRow.explicit_provider_object_branch_row_count, 28);
+  assert.deepEqual(currentAbsenceRow.missing_terminal_row_ids, missingTerminalRowIds);
+  assert.deepEqual(currentAbsenceRow.missing_branch_row_ids, missingBranchRowIds);
+  assert.equal(currentAbsenceRow.status, "h39-provider-object-branch-row-missing");
+  assert.equal(
+    currentAbsenceRow.provider_ready_authorized_by_this_row,
+    false
+  );
+  assert.equal(currentAbsenceRow.downstream_consumer_authorization, false);
+});
+
+test("branch-provider evidence report emits the H39 retained-record preimage fixture fail-closed", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
+  const preimageFixture = h39RetainedRecordPreimageFixture(report);
+  const rowsById = Object.fromEntries(
+    preimageFixture.fixture_rows.map((row) => [row.row_id, row])
+  );
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(
+    preimageFixture.schema,
+    "h39-receiver-normal-retained-record-preimage-fixture/v0"
+  );
+  assert.equal(
+    preimageFixture.status,
+    "h39-receiver-normal-retained-record-preimage-fixture-fail-closed"
+  );
+  assert.equal(preimageFixture.row_count, 7);
+  assert.equal(preimageFixture.provider_ready_authorized_by_this_fixture, false);
+  assert.equal(preimageFixture.downstream_consumer_authorization, false);
+  assert.equal(
+    preimageFixture.retained_branch_claim_authorized_by_this_fixture,
+    false
+  );
+
+  assert.equal(
+    rowsById.current_h39_absence.status,
+    "h39-provider-object-branch-row-missing"
+  );
+  assert.equal(
+    rowsById.current_h39_absence.first_missing_preimage_field,
+    "accepted_provider_object_branch_row_ref"
+  );
+  assert.equal(
+    rowsById.current_h39_absence.available_provider_object_terminal_row_count,
+    0
+  );
+  assert.equal(rowsById.current_h39_absence.explicit_provider_object_branch_row_count, 0);
+  assert.equal(
+    rowsById.current_h39_absence.accepted_provider_object_branch_interval_count,
+    0
+  );
+  assert.equal(rowsById.current_h39_absence.missing_branch_row_ids.length, 30);
+  assert.equal(
+    rowsById.current_h39_absence.provider_ready_authorized_by_this_row,
+    false
+  );
+
+  assert.equal(
+    rowsById.source_map_residual_provider_only.status,
+    "h39-coefficient-series-provider-candidate-not-retained-record-preimage"
+  );
+  assert.equal(
+    rowsById.source_map_residual_provider_only.provider_row_source_kind,
+    "directed-rounded-same-domain-h38-source-map-residual-provider"
+  );
+  assert.equal(
+    rowsById.source_map_residual_provider_only
+      .accepted_provider_object_branch_row_present,
+    false
+  );
+
+  assert.equal(
+    rowsById.partial_provider_object_branch_row.status,
+    "h39-provider-object-branch-row-missing"
+  );
+  assert.equal(
+    rowsById.partial_provider_object_branch_row
+      .available_provider_object_terminal_row_count,
+    14
+  );
+  assert.equal(
+    rowsById.partial_provider_object_branch_row
+      .explicit_provider_object_branch_row_count,
+    28
+  );
+  assert.deepEqual(
+    rowsById.partial_provider_object_branch_row.missing_terminal_row_ids,
+    ["speed.4.first-y:h35"]
+  );
+  assert.deepEqual(
+    rowsById.partial_provider_object_branch_row.missing_branch_row_ids,
+    ["speed.4.first-y:h35:P_-", "speed.4.first-y:h35:P_+"]
+  );
+
+  assert.equal(
+    rowsById.accepted_provider_object_unbound.status,
+    "h39-provider-object-retained-record-unbound"
+  );
+  assert.equal(
+    rowsById.accepted_provider_object_unbound
+      .accepted_provider_object_branch_row_present,
+    true
+  );
+  assert.equal(
+    rowsById.accepted_provider_object_unbound.retained_causal_root_record_bound,
+    false
+  );
+
+  assert.equal(
+    rowsById.retained_record_missing_receiver_normal_derivative.status,
+    "h39-receiver-normal-derivative-fields-missing"
+  );
+  assert.equal(
+    rowsById.retained_record_missing_receiver_normal_derivative
+      .receiver_normal_fields_present,
+    true
+  );
+  assert.equal(
+    rowsById.retained_record_missing_receiver_normal_derivative
+      .receiver_normal_derivative_fields_present,
+    false
+  );
+
+  assert.equal(
+    rowsById.fourth_jet_taylor_derivative_only.status,
+    "h39-provider-candidate-consumed-as-retained-record"
+  );
+  assert.equal(
+    rowsById.fourth_jet_taylor_derivative_only.rejected_provider_candidate_kind,
+    "fourth-jet-or-Taylor-derivative-row"
+  );
+  assert.equal(
+    rowsById.fourth_jet_taylor_derivative_only
+      .receiver_normal_derivative_fields_present,
+    false
+  );
+
+  assert.equal(
+    rowsById.preimage_review_candidate.status,
+    "h39-receiver-normal-retained-record-preimage-review-required"
+  );
+  assert.equal(
+    rowsById.preimage_review_candidate
+      .accepted_provider_object_branch_row_present,
+    true
+  );
+  assert.equal(
+    rowsById.preimage_review_candidate.retained_causal_root_record_bound,
+    true
+  );
+  assert.equal(rowsById.preimage_review_candidate.branch_family_checksum_bound, true);
+  assert.equal(rowsById.preimage_review_candidate.receiver_normal_fields_present, true);
+  assert.equal(
+    rowsById.preimage_review_candidate.receiver_normal_derivative_fields_present,
+    true
+  );
+  assert.equal(rowsById.preimage_review_candidate.geometry_derivative_fields_present, true);
+  assert.equal(rowsById.preimage_review_candidate.same_record_identity_verified, true);
+  assert.equal(
+    rowsById.preimage_review_candidate.provider_ready_authorized_by_this_row,
+    false
+  );
+  assert.equal(rowsById.preimage_review_candidate.downstream_consumer_authorization, false);
+  assert.equal(
+    rowsById.preimage_review_candidate.retained_branch_claim_authorized_by_this_row,
+    false
+  );
 });
 
 test("branch-provider evidence report can accept a complete non-fixture provider per consumer", () => {

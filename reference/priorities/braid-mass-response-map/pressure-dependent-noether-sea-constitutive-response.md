@@ -277,6 +277,25 @@ coefficient, an H39/theta3minus quotient row, a source-normal-only force weight,
 or an unlogged transport channel, the result is `receiver_normal_intake_missing`
 or `loss_channel_unlogged`, not a pressure-mass coefficient.
 
+The concrete simulation target is
+`retained_pressure_row_receiver_normal_simulation/v0`. For this constitutive
+packet, the target is admissible only when one retained pressure row supplies:
+
+| Intake field | Same-record requirement |
+| --- | --- |
+| `retained_branch_identity` | accepted branch id, accepted history segment, source path, quotient chart, retained root-row identity, and retained pressure-row id |
+| `receiver_normal_weight_record` | recomputed $D_s$, $D_t$, and $W^{\mathrm{rec}}$ for the retained roots used by the mass-facing exposure and pressure response |
+| `energy_exposure_record` | $E_{\text{internal}}(A)$, $\zeta_{0}^{\mathrm{rec}}$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$ descending through the same exposure quotient |
+| `pressure_record` | $\Pi$, $A$, $s_n$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, retained direction, and pressure step size |
+| `noether_sea_response_record` | $\theta_{\mathrm{sea}}$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, $\mathcal{M}_{+}^{ab}$, reversible-domain row, and null-sector bounds |
+| `trace_validation` | finite-difference $m_{\mathrm{tr}}^{\mathrm{rec}}(\Delta P)-m_{\mathrm{tr}}^{\mathrm{rec}}(0)$ compared to the receiver-normal pressure trace equation |
+
+The current reading is `defer with blocker`: no accepted retained branch row
+currently binds these records. Fe/Cr, Ni/Co, Earth-core iron, toy pressure,
+Hessian, H39/theta3minus, or empirical rows may screen or falsify side
+conditions, but they remain non-evidence for pressure-mass response until this
+same-row receiver-normal intake exists.
+
 ## Heavy Metallic Lattice Test Case
 
 In an iron or nickel lattice under external or internal core pressure, the candidate predicts a correlated response:

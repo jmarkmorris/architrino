@@ -24,6 +24,10 @@ const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_AVAILABILITY_SCHEMA =
   "branch_provider_candidate_source_map_provider_object_branch_split_map_availability/v0";
 const PRODUCER_SIDE_SAME_DOMAIN_BRANCH_ROW_EVIDENCE_TARGET_SCHEMA =
   "branch_provider_candidate_producer_side_same_domain_branch_row_evidence_target/v0";
+const H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_FIXTURE_SCHEMA =
+  "h39-receiver-normal-retained-record-preimage-fixture/v0";
+const H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_ROW_SCHEMA =
+  "h39-receiver-normal-retained-record-preimage-row/v0";
 
 const ACCEPTED_SOURCE_STATUS = "accepted_non_fixture_source";
 const SOURCE_MAP_PROVIDER_OBJECT_SOURCE_CELL_IDS = Object.freeze([
@@ -98,6 +102,28 @@ const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_NEXT_EVIDENCE_OBJECT =
   "same-domain provider-object branch antisymmetric equation A_P=P_- - P_+ or explicit expression-level P_- / P_+ branch rows on all 15 terminal rows";
 const SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF =
   "aggregate-P-provider-probe-born-aggregate-only";
+const H39_RETAINED_RECORD_PREIMAGE_REQUIRED_FIELDS = Object.freeze([
+  "accepted_provider_object_branch_row_ref",
+  "retained_causal_root_record_ref",
+  "branch_family_checksum",
+  "receiver_normal_fields",
+  "receiver_normal_derivative_fields",
+  "geometry_derivative_fields",
+]);
+const H39_RETAINED_RECORD_PREIMAGE_REJECTED_SOURCE_KINDS = Object.freeze([
+  "aggregate-P-only-provider-row",
+  "lambda-terminal-witness-branch-interval",
+  "variable-owned-alpha-candidate",
+  "row-local-expression-branch-feed",
+  "term-pushforward-candidate-row",
+  "primitive-vector-replay",
+  "hybrid-prefix-cauchy-diagnostic",
+  "coefficient-series-source-map-residual-provider-candidate",
+  "source-map-residual-provider-candidate",
+  "provider-fit-diagnostic",
+  "signed-radius-target",
+  "fourth-jet-or-Taylor-derivative-row",
+]);
 
 const COMMON_REQUIRED_FIELDS = [
   {
@@ -1086,6 +1112,435 @@ function buildProducerSideSameDomainBranchRowEvidenceTarget(
   };
 }
 
+function evaluateH39ReceiverNormalRetainedRecordPreimageFixtureRow(row) {
+  const acceptedProviderObjectBranchRowPresent =
+    row.provider_object_branch_row_complete === true &&
+    present(row.accepted_provider_object_branch_row_ref);
+  const retainedCausalRootRecordBound =
+    row.retained_causal_root_record_bound === true &&
+    present(row.retained_causal_root_record_ref);
+  const branchFamilyChecksumBound =
+    row.branch_family_checksum_bound === true &&
+    present(row.branch_family_checksum);
+  const receiverNormalFieldsPresent =
+    row.receiver_normal_fields_bound === true &&
+    present(row.receiver_normal_fields);
+  const receiverNormalDerivativeFieldsPresent =
+    row.receiver_normal_derivative_fields_bound === true &&
+    present(row.receiver_normal_derivative_fields) &&
+    row.receiver_normal_derivative_reconstruction_verified === true;
+  const geometryDerivativeFieldsPresent =
+    row.geometry_derivative_fields_bound === true &&
+    present(row.geometry_derivative_fields);
+  const sameRecordIdentityVerified =
+    row.same_source_artifact_hash_and_retained_box === true;
+  const rejectedSourceKind = row.rejected_provider_candidate_kind ?? null;
+  const firstMissingPreimageField =
+    !acceptedProviderObjectBranchRowPresent
+      ? "accepted_provider_object_branch_row_ref"
+      : !retainedCausalRootRecordBound
+        ? "retained_causal_root_record_ref"
+        : !branchFamilyChecksumBound
+          ? "branch_family_checksum"
+          : !receiverNormalFieldsPresent
+            ? "receiver_normal_fields"
+            : !receiverNormalDerivativeFieldsPresent
+              ? "receiver_normal_derivative_fields"
+              : !geometryDerivativeFieldsPresent
+                ? "geometry_derivative_fields"
+                : !sameRecordIdentityVerified
+                  ? "same_source_artifact_hash_and_retained_box"
+                  : null;
+  const status = rejectedSourceKind
+    ? rejectedSourceKind ===
+      "coefficient-series-source-map-residual-provider-candidate"
+      ? "h39-coefficient-series-provider-candidate-not-retained-record-preimage"
+      : "h39-provider-candidate-consumed-as-retained-record"
+    : !acceptedProviderObjectBranchRowPresent
+      ? "h39-provider-object-branch-row-missing"
+      : !retainedCausalRootRecordBound
+        ? "h39-provider-object-retained-record-unbound"
+        : !branchFamilyChecksumBound
+          ? "h39-retained-branch-family-checksum-missing"
+          : !receiverNormalFieldsPresent
+            ? "h39-receiver-normal-fields-missing"
+            : !receiverNormalDerivativeFieldsPresent ||
+                !geometryDerivativeFieldsPresent
+              ? "h39-receiver-normal-derivative-fields-missing"
+              : !sameRecordIdentityVerified
+                ? "h39-provider-object-retained-record-unbound"
+                : "h39-receiver-normal-retained-record-preimage-review-required";
+  const expectedStatus = row.expected_status ?? status;
+
+  return {
+    schema: H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_ROW_SCHEMA,
+    row_id: row.row_id,
+    setup: row.setup,
+    status,
+    expected_status: expectedStatus,
+    status_matches_expected: status === expectedStatus,
+    first_missing_preimage_field: firstMissingPreimageField,
+    provider_row_source_kind: row.provider_row_source_kind ?? null,
+    rejected_provider_candidate_kind: rejectedSourceKind,
+    available_provider_object_terminal_row_count:
+      row.available_provider_object_terminal_row_count ?? null,
+    explicit_provider_object_branch_row_count:
+      row.explicit_provider_object_branch_row_count ?? null,
+    accepted_provider_object_branch_interval_count:
+      row.accepted_provider_object_branch_interval_count ?? null,
+    missing_terminal_row_ids: row.missing_terminal_row_ids ?? [],
+    missing_branch_row_ids: row.missing_branch_row_ids ?? [],
+    accepted_provider_object_branch_row_present:
+      acceptedProviderObjectBranchRowPresent,
+    retained_causal_root_record_bound: retainedCausalRootRecordBound,
+    branch_family_checksum_bound: branchFamilyChecksumBound,
+    receiver_normal_fields_present: receiverNormalFieldsPresent,
+    receiver_normal_derivative_fields_present:
+      receiverNormalDerivativeFieldsPresent,
+    receiver_normal_derivative_reconstruction_verified:
+      row.receiver_normal_derivative_reconstruction_verified === true,
+    geometry_derivative_fields_present: geometryDerivativeFieldsPresent,
+    same_record_identity_verified: sameRecordIdentityVerified,
+    required_preimage_fields: H39_RETAINED_RECORD_PREIMAGE_REQUIRED_FIELDS,
+    provider_ready_authorized_by_this_row: false,
+    downstream_consumer_authorization: false,
+    retained_branch_claim_authorized_by_this_row: false,
+  };
+}
+
+function buildH39ReceiverNormalRetainedRecordPreimageFixture(
+  readout,
+  producerSideBranchRowEvidenceTarget
+) {
+  const requiredTerminalRowIds =
+    producerSideBranchRowEvidenceTarget?.required_terminal_row_ids ??
+    sourceMapProviderObjectTerminalRowIds();
+  const requiredBranchRowIds =
+    producerSideBranchRowEvidenceTarget?.required_branch_row_ids ??
+    sourceMapProviderObjectBranchRowIds();
+  const partialMissingTerminalRowIds = requiredTerminalRowIds.slice(-1);
+  const partialMissingBranchRowIds = requiredBranchRowIds.slice(-2);
+  const currentAvailableTerminalRowCount =
+    producerSideBranchRowEvidenceTarget?.current_available_terminal_row_count ??
+    0;
+  const currentExplicitBranchRowCount =
+    producerSideBranchRowEvidenceTarget?.current_source_counts
+      ?.explicit_provider_object_branch_row_count ?? 0;
+  const fixtureRows = [
+    {
+      row_id: "current_h39_absence",
+      setup:
+        "Current H39 target has no accepted provider-object branch row and no retained causal-root force/action record.",
+      available_provider_object_terminal_row_count:
+        currentAvailableTerminalRowCount,
+      explicit_provider_object_branch_row_count:
+        currentExplicitBranchRowCount,
+      accepted_provider_object_branch_interval_count:
+        readout?.accepted_provider_object_branch_interval_count ?? 0,
+      missing_terminal_row_ids:
+        producerSideBranchRowEvidenceTarget?.current_missing_terminal_row_ids ??
+        requiredTerminalRowIds,
+      missing_branch_row_ids:
+        producerSideBranchRowEvidenceTarget?.current_missing_branch_row_ids ??
+        requiredBranchRowIds,
+      expected_status: "h39-provider-object-branch-row-missing",
+    },
+    {
+      row_id: "source_map_residual_provider_only",
+      setup:
+        "Source-map residual provider checks are present, but the row is not an accepted provider-object branch row and is not retained-record bound.",
+      provider_row_source_kind:
+        "directed-rounded-same-domain-h38-source-map-residual-provider",
+      rejected_provider_candidate_kind:
+        "coefficient-series-source-map-residual-provider-candidate",
+      expected_status:
+        "h39-coefficient-series-provider-candidate-not-retained-record-preimage",
+    },
+    {
+      row_id: "partial_provider_object_branch_row",
+      setup:
+        "Producer-side extractor is partially populated but still misses one terminal row and its two P_- / P_+ branch rows.",
+      available_provider_object_terminal_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length - 1,
+      explicit_provider_object_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length - 2,
+      missing_terminal_row_ids: partialMissingTerminalRowIds,
+      missing_branch_row_ids: partialMissingBranchRowIds,
+      expected_status: "h39-provider-object-branch-row-missing",
+    },
+    {
+      row_id: "accepted_provider_object_unbound",
+      setup:
+        "All required P_- / P_+ provider-object rows are accepted, but no retained causal-root force/action record consumes them.",
+      accepted_provider_object_branch_row_ref:
+        "h39-provider-object-branch-rows:all-15-terminal-rows:all-30-branches",
+      provider_object_branch_row_complete: true,
+      available_provider_object_terminal_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+      explicit_provider_object_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      accepted_provider_object_branch_interval_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      expected_status: "h39-provider-object-retained-record-unbound",
+    },
+    {
+      row_id: "retained_record_missing_receiver_normal_derivative",
+      setup:
+        "Accepted provider-object rows are retained-record bound with D_s, D_t, fixed signs, and W^rec, but derivative rows are absent.",
+      accepted_provider_object_branch_row_ref:
+        "h39-provider-object-branch-rows:all-15-terminal-rows:all-30-branches",
+      provider_object_branch_row_complete: true,
+      retained_causal_root_record_ref: "retained-causal-root:h39-fixture",
+      retained_causal_root_record_bound: true,
+      branch_family_checksum: "branch-family-checksum:h39-fixture",
+      branch_family_checksum_bound: true,
+      receiver_normal_fields: "D_s,D_t,fixed-signs,W_rec",
+      receiver_normal_fields_bound: true,
+      expected_status: "h39-receiver-normal-derivative-fields-missing",
+    },
+    {
+      row_id: "fourth_jet_taylor_derivative_only",
+      setup:
+        "Fourth-jet or Taylor derivative rows are present as diagnostics only; they are not receiver-normal retained-record derivative evidence.",
+      rejected_provider_candidate_kind:
+        "fourth-jet-or-Taylor-derivative-row",
+      receiver_normal_derivative_fields:
+        "fourth-jet-or-Taylor-derivative-diagnostic",
+      receiver_normal_derivative_fields_bound: false,
+      expected_status: "h39-provider-candidate-consumed-as-retained-record",
+    },
+    {
+      row_id: "preimage_review_candidate",
+      setup:
+        "Accepted provider-object rows, the retained causal-root record, branch checksum, receiver-normal fields, derivative reconstruction, geometry derivatives, source hash, and retained box are all same-record bound.",
+      accepted_provider_object_branch_row_ref:
+        "h39-provider-object-branch-rows:all-15-terminal-rows:all-30-branches",
+      provider_object_branch_row_complete: true,
+      retained_causal_root_record_ref: "retained-causal-root:h39-fixture",
+      retained_causal_root_record_bound: true,
+      branch_family_checksum: "branch-family-checksum:h39-fixture",
+      branch_family_checksum_bound: true,
+      receiver_normal_fields: "D_s,D_t,fixed-signs,W_rec",
+      receiver_normal_fields_bound: true,
+      receiver_normal_derivative_fields: "D_vD_s,D_vD_t,D_vW_rec",
+      receiver_normal_derivative_fields_bound: true,
+      receiver_normal_derivative_reconstruction_verified: true,
+      geometry_derivative_fields: "D_vr_a,D_vrhat_a",
+      geometry_derivative_fields_bound: true,
+      same_source_artifact_hash_and_retained_box: true,
+      expected_status:
+        "h39-receiver-normal-retained-record-preimage-review-required",
+    },
+  ].map(evaluateH39ReceiverNormalRetainedRecordPreimageFixtureRow);
+
+  return {
+    schema: H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_FIXTURE_SCHEMA,
+    artifact_id: "h39-receiver-normal-retained-record-preimage-fixture",
+    claim_level: "priority-only executable fixture, not provider acceptance",
+    status: fixtureRows.every(
+      (row) =>
+        row.status_matches_expected === true &&
+        row.provider_ready_authorized_by_this_row === false &&
+        row.downstream_consumer_authorization === false &&
+        row.retained_branch_claim_authorized_by_this_row === false
+    )
+      ? "h39-receiver-normal-retained-record-preimage-fixture-fail-closed"
+      : "h39-receiver-normal-retained-record-preimage-fixture-review-required",
+    target_row_schema: H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_ROW_SCHEMA,
+    receiver_normal_artifact_ref:
+      "receiver-normal-retained-branch-family-first-derivative/v0",
+    required_preimage_fields: H39_RETAINED_RECORD_PREIMAGE_REQUIRED_FIELDS,
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    required_terminal_row_ids: requiredTerminalRowIds,
+    required_branch_row_ids: requiredBranchRowIds,
+    row_count: fixtureRows.length,
+    fixture_rows: fixtureRows,
+    negative_control: {
+      rejected_provider_candidate_kinds:
+        H39_RETAINED_RECORD_PREIMAGE_REJECTED_SOURCE_KINDS,
+      aggregate_p_only_rejected: true,
+      lambda_terminal_witness_only_rejected: true,
+      source_map_residual_provider_only_rejected: true,
+      fourth_jet_or_taylor_rows_rejected_as_receiver_normal_derivative_evidence:
+        true,
+      provider_ready_authorized_by_negative_control: false,
+    },
+    provider_ready_authorized_by_this_fixture: false,
+    downstream_consumer_authorization: false,
+    retained_branch_claim_authorized_by_this_fixture: false,
+  };
+}
+
+function h39ReceiverNormalRetainedRecordPreimageFixtureValidationErrors(
+  fixture,
+  label
+) {
+  if (!isObject(fixture)) {
+    return [`${label} must include h39 receiver-normal retained-record preimage fixture`];
+  }
+  const errors = [];
+  const expectedRows = new Map([
+    ["current_h39_absence", "h39-provider-object-branch-row-missing"],
+    [
+      "source_map_residual_provider_only",
+      "h39-coefficient-series-provider-candidate-not-retained-record-preimage",
+    ],
+    ["partial_provider_object_branch_row", "h39-provider-object-branch-row-missing"],
+    ["accepted_provider_object_unbound", "h39-provider-object-retained-record-unbound"],
+    [
+      "retained_record_missing_receiver_normal_derivative",
+      "h39-receiver-normal-derivative-fields-missing",
+    ],
+    [
+      "fourth_jet_taylor_derivative_only",
+      "h39-provider-candidate-consumed-as-retained-record",
+    ],
+    [
+      "preimage_review_candidate",
+      "h39-receiver-normal-retained-record-preimage-review-required",
+    ],
+  ]);
+  const rows = Array.isArray(fixture.fixture_rows) ? fixture.fixture_rows : [];
+  const rowsById = new Map(rows.map((row) => [row.row_id, row]));
+  if (
+    fixture.schema !==
+      H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_FIXTURE_SCHEMA ||
+    fixture.claim_level !==
+      "priority-only executable fixture, not provider acceptance" ||
+    fixture.status !==
+      "h39-receiver-normal-retained-record-preimage-fixture-fail-closed" ||
+    fixture.target_row_schema !==
+      H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_ROW_SCHEMA ||
+    fixture.receiver_normal_artifact_ref !==
+      "receiver-normal-retained-branch-family-first-derivative/v0" ||
+    !sameStringSet(
+      fixture.required_preimage_fields,
+      H39_RETAINED_RECORD_PREIMAGE_REQUIRED_FIELDS
+    ) ||
+    fixture.required_terminal_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length ||
+    fixture.required_branch_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length ||
+    !sameStringSet(
+      fixture.required_terminal_row_ids,
+      sourceMapProviderObjectTerminalRowIds()
+    ) ||
+    !sameStringSet(
+      fixture.required_branch_row_ids,
+      sourceMapProviderObjectBranchRowIds()
+    ) ||
+    fixture.row_count !== expectedRows.size ||
+    rows.length !== expectedRows.size ||
+    fixture.provider_ready_authorized_by_this_fixture !== false ||
+    fixture.downstream_consumer_authorization !== false ||
+    fixture.retained_branch_claim_authorized_by_this_fixture !== false
+  ) {
+    errors.push(`${label} h39 receiver-normal retained-record preimage fixture is invalid`);
+  }
+  for (const [rowId, expectedStatus] of expectedRows) {
+    const row = rowsById.get(rowId);
+    if (
+      !isObject(row) ||
+      row.schema !== H39_RECEIVER_NORMAL_RETAINED_RECORD_PREIMAGE_ROW_SCHEMA ||
+      row.status !== expectedStatus ||
+      row.expected_status !== expectedStatus ||
+      row.status_matches_expected !== true ||
+      row.provider_ready_authorized_by_this_row !== false ||
+      row.downstream_consumer_authorization !== false ||
+      row.retained_branch_claim_authorized_by_this_row !== false
+    ) {
+      errors.push(`${label} h39 preimage fixture row ${rowId} is invalid`);
+      break;
+    }
+  }
+  const currentAbsence = rowsById.get("current_h39_absence");
+  const partialRow = rowsById.get("partial_provider_object_branch_row");
+  const acceptedUnbound = rowsById.get("accepted_provider_object_unbound");
+  const derivativeMissing = rowsById.get(
+    "retained_record_missing_receiver_normal_derivative"
+  );
+  const fourthJetTaylor = rowsById.get("fourth_jet_taylor_derivative_only");
+  const reviewCandidate = rowsById.get("preimage_review_candidate");
+  if (
+    currentAbsence?.first_missing_preimage_field !==
+      "accepted_provider_object_branch_row_ref" ||
+    currentAbsence?.accepted_provider_object_branch_row_present !== false ||
+    currentAbsence?.retained_causal_root_record_bound !== false ||
+    !Array.isArray(currentAbsence?.missing_branch_row_ids) ||
+    currentAbsence.missing_branch_row_ids.length !==
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length
+  ) {
+    errors.push(`${label} current_h39_absence row must keep branch rows missing`);
+  }
+  if (
+    partialRow?.available_provider_object_terminal_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length - 1 ||
+    partialRow?.explicit_provider_object_branch_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length - 2 ||
+    partialRow?.missing_terminal_row_ids?.length !== 1 ||
+    partialRow?.missing_branch_row_ids?.length !== 2 ||
+    partialRow?.first_missing_preimage_field !==
+      "accepted_provider_object_branch_row_ref"
+  ) {
+    errors.push(`${label} partial provider-object branch row must stay fail-closed`);
+  }
+  if (
+    acceptedUnbound?.accepted_provider_object_branch_row_present !== true ||
+    acceptedUnbound?.retained_causal_root_record_bound !== false ||
+    acceptedUnbound?.first_missing_preimage_field !==
+      "retained_causal_root_record_ref"
+  ) {
+    errors.push(`${label} accepted provider-object row must still require retained record binding`);
+  }
+  if (
+    derivativeMissing?.receiver_normal_fields_present !== true ||
+    derivativeMissing?.receiver_normal_derivative_fields_present !== false ||
+    derivativeMissing?.first_missing_preimage_field !==
+      "receiver_normal_derivative_fields"
+  ) {
+    errors.push(`${label} retained-record fixture must reject missing receiver-normal derivatives`);
+  }
+  if (
+    fourthJetTaylor?.rejected_provider_candidate_kind !==
+      "fourth-jet-or-Taylor-derivative-row" ||
+    fourthJetTaylor?.receiver_normal_derivative_fields_present !== false ||
+    fourthJetTaylor?.status !== "h39-provider-candidate-consumed-as-retained-record"
+  ) {
+    errors.push(`${label} fourth-jet/Taylor row must remain a rejected derivative source`);
+  }
+  if (
+    reviewCandidate?.accepted_provider_object_branch_row_present !== true ||
+    reviewCandidate?.retained_causal_root_record_bound !== true ||
+    reviewCandidate?.branch_family_checksum_bound !== true ||
+    reviewCandidate?.receiver_normal_fields_present !== true ||
+    reviewCandidate?.receiver_normal_derivative_fields_present !== true ||
+    reviewCandidate?.geometry_derivative_fields_present !== true ||
+    reviewCandidate?.same_record_identity_verified !== true ||
+    reviewCandidate?.first_missing_preimage_field !== null
+  ) {
+    errors.push(`${label} preimage review candidate must be complete but non-authorizing`);
+  }
+  if (
+    !sameStringSet(
+      fixture.negative_control?.rejected_provider_candidate_kinds,
+      H39_RETAINED_RECORD_PREIMAGE_REJECTED_SOURCE_KINDS
+    ) ||
+    fixture.negative_control?.aggregate_p_only_rejected !== true ||
+    fixture.negative_control?.lambda_terminal_witness_only_rejected !== true ||
+    fixture.negative_control?.source_map_residual_provider_only_rejected !==
+      true ||
+    fixture.negative_control
+      ?.fourth_jet_or_taylor_rows_rejected_as_receiver_normal_derivative_evidence !==
+      true ||
+    fixture.negative_control?.provider_ready_authorized_by_negative_control !==
+      false
+  ) {
+    errors.push(`${label} h39 preimage fixture negative control is invalid`);
+  }
+  return errors;
+}
+
 function enrichSourceMapProviderObjectBranchIntervalReadout(
   readout,
   sourceProvenanceRefinement = {}
@@ -1105,6 +1560,11 @@ function enrichSourceMapProviderObjectBranchIntervalReadout(
     buildSourceMapProviderObjectBranchIntervalSourceFieldAudit(
       readout,
       sourceProvenanceRefinement
+    );
+  const producerSideBranchRowEvidenceTarget =
+    buildProducerSideSameDomainBranchRowEvidenceTarget(
+      branchSplitMapAvailability,
+      sourceFieldAvailabilityAudit
     );
   return {
     ...readout,
@@ -1136,9 +1596,11 @@ function enrichSourceMapProviderObjectBranchIntervalReadout(
       branchSplitMapAvailability,
     source_field_availability_audit: sourceFieldAvailabilityAudit,
     producer_side_same_domain_branch_row_evidence_target:
-      buildProducerSideSameDomainBranchRowEvidenceTarget(
-        branchSplitMapAvailability,
-        sourceFieldAvailabilityAudit
+      producerSideBranchRowEvidenceTarget,
+    h39_receiver_normal_retained_record_preimage_fixture:
+      buildH39ReceiverNormalRetainedRecordPreimageFixture(
+        readout,
+        producerSideBranchRowEvidenceTarget
       ),
     positive_evidence_target: {
       ...positiveEvidenceTarget,
@@ -1383,6 +1845,9 @@ function sourceContractReadoutValidationErrors(readout, label) {
       const producerSideBranchRowEvidenceTarget =
         sourceMapProviderObjectReadout
           .producer_side_same_domain_branch_row_evidence_target;
+      const retainedRecordPreimageFixture =
+        sourceMapProviderObjectReadout
+          .h39_receiver_normal_retained_record_preimage_fixture;
       const positiveEvidenceTarget =
         sourceMapProviderObjectReadout.positive_evidence_target;
       const sourceFields = sourceFieldAvailabilityAudit?.source_fields ?? [];
@@ -1653,6 +2118,14 @@ function sourceContractReadoutValidationErrors(readout, label) {
         errors.push(
           `${label} source_map_provider_object_branch_interval_readout producer-side same-domain branch-row evidence target must stay fail-closed`
         );
+      }
+      const retainedRecordPreimageFixtureErrors =
+        h39ReceiverNormalRetainedRecordPreimageFixtureValidationErrors(
+          retainedRecordPreimageFixture,
+          `${label} source_map_provider_object_branch_interval_readout`
+        );
+      if (retainedRecordPreimageFixtureErrors.length > 0) {
+        errors.push(...retainedRecordPreimageFixtureErrors);
       }
       if (
         !isObject(positiveEvidenceTarget) ||

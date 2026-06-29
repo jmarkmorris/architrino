@@ -42,6 +42,10 @@ D_{t,\rho},
 \qquad
 W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|,
 \qquad
+D_vD_{s,\rho},
+\qquad
+D_vD_{t,\rho},
+\qquad
 D_vW_{\rho}^{\mathrm{rec}}
 $$
 on every retained force/action row $\rho$ consumed by recapture or self-drive.
@@ -52,6 +56,18 @@ Schauder envelope. If the packet instead consumes a theta3minus/H39 quotient
 certificate, source-normal denominator, old shell-braid force residue, or
 finite-difference table after branch identity is erased, it remains
 restart-only even when its topology or preledger rows pass.
+
+Concrete restart object. The priority-only theorem and fixture target is now
+[Breather Receiver-Normal Force-Margin Restart Target](./certificate/breather_receiver_normal_force_margin_restart_target.md).
+It defines the receiver-normal force-margin closure equation, the required
+same-record derivative reconstruction, the executable fixture schema, and the
+negative controls for source-normal-only, aggregate-only, and old shell-braid
+force-residue substitutions. The current exact blocker remains
+`receiver_normal_breather_force_margin_missing`: no current breather fixture
+emits that object, no same-packet branch chart is authorized, and no recapture,
+self-drive, action, power, wake-history, or Schauder-envelope margin row
+consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and derivative rows on
+the retained branch family.
 
 ## Current Stopping Point
 

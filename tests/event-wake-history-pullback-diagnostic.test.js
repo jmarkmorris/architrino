@@ -26,6 +26,101 @@ function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
 }
 
+const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
+  "receiver-normal-retained-branch-family-first-derivative/v0";
+
+function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
+  const retainedRecord = {
+    record_id: "linear-moving-receiver-root-0",
+    branch_family_id: "linear-moving-receiver-smoke",
+    retained_root_id: "rootId=0",
+    branch_label: "alpha0",
+    source_receiver_ids: { receiver: "receiver", source: "source" },
+    direction_convention: "source-emission-point-to-receiver-now",
+    receiver_time: 10,
+    source_time: 5,
+    retained_box: "linear-moving-receiver-singleton",
+    regulator_state: "simple-root-analytic-no-regulator",
+    source_artifact_hash: "sha256:receiver-normal-wake-history-energy-row-v0",
+    source_record_id: input.source_record_id,
+    variation_key: "v=t",
+    ...(overrides.retained_record_key ?? {}),
+  };
+  const receiverNormalFields = {
+    D_s: 1,
+    D_t: 1.5,
+    zeta_s: 1,
+    zeta_t: 1,
+    W_rec: 1.5,
+    ...(overrides.receiver_normal_fields ?? {}),
+  };
+  const receiverNormalDerivatives = {
+    D_vD_s: 0.1,
+    D_vD_t: 0.4,
+    D_vW_rec: 0.25,
+    ...(overrides.receiver_normal_derivatives ?? {}),
+  };
+  const branchFamilyChecksum = {
+    retained_record_ids: [retainedRecord.record_id],
+    consumer_row_ids: [rowId],
+    source_artifact_hash: retainedRecord.source_artifact_hash,
+    ...(overrides.branch_family_checksum ?? {}),
+  };
+
+  return {
+    artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
+    source_record_id: input.source_record_id,
+    event_ledger_id: input.event_ledger.ledger_id,
+    consumer_row_id: rowId,
+    retained_record_key: retainedRecord,
+    receiver_normal_fields: receiverNormalFields,
+    receiver_normal_derivatives: receiverNormalDerivatives,
+    branch_family_checksum: branchFamilyChecksum,
+    ...Object.fromEntries(
+      Object.entries(overrides).filter(
+        ([key]) =>
+          ![
+            "retained_record_key",
+            "receiver_normal_fields",
+            "receiver_normal_derivatives",
+            "branch_family_checksum",
+          ].includes(key)
+      )
+    ),
+  };
+}
+
+function acceptedWakeHistoryEvidence(input, rowId, overrides = {}) {
+  const acceptedEvidenceId = `accepted_${rowId}_same_record_receiver_normal_derivative_v0`;
+  const base = {
+    row_id: rowId,
+    evidence_level: "accepted_for_wake_history_closure",
+    accepted_for_wake_history_closure: true,
+    accepted_evidence_id: acceptedEvidenceId,
+    source_record_id: input.source_record_id,
+    event_ledger_id: input.event_ledger.ledger_id,
+    derivation_proof_object: {
+      role: "wake_history_derivation_proof_object",
+      accepted_evidence_id: acceptedEvidenceId,
+      row_id: rowId,
+      source_record_id: input.source_record_id,
+      status: "accepted",
+    },
+    receiver_normal_derivative_bundle: buildSameRecordReceiverNormalDerivativeBundle(input, rowId),
+  };
+
+  return {
+    ...base,
+    ...overrides,
+    derivation_proof_object: {
+      ...base.derivation_proof_object,
+      ...(overrides.derivation_proof_object ?? {}),
+    },
+    receiver_normal_derivative_bundle:
+      overrides.receiver_normal_derivative_bundle ?? base.receiver_normal_derivative_bundle,
+  };
+}
+
 test("event wake-history pullback diagnostic emits a priority-only closed boundary fixture", () => {
   const artifact = buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput());
   const errors = validateEventWakeHistoryPullbackArtifact(artifact);
@@ -49,6 +144,24 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     4
   );
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
+  assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, false);
+  assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+});
+
+test("event wake-history accepts one same-record receiver-normal derivative consumer row", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = [acceptedWakeHistoryEvidence(input, "energy_wake")];
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+  const energyEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(artifact.boundary_status, "closed");
+  assert.equal(energyEvidence.evidence_level, "accepted_for_wake_history_closure");
+  assert.equal(energyEvidence.accepted_for_wake_history_closure, true);
+  assert.deepEqual(energyEvidence.accepted_evidence_mismatches, []);
+  assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 1);
   assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, false);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
 });
@@ -80,9 +193,64 @@ test("event wake-history accepted metadata without derivation proof object stays
     "event_evidence.derivation_proof_object.row_id",
     "event_evidence.derivation_proof_object.source_record_id",
     "event_evidence.derivation_proof_object.status",
+    "event_evidence.receiver_normal_derivative_bundle",
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+});
+
+test("event wake-history rejects receiver-normal derivative record mismatch", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = [
+    acceptedWakeHistoryEvidence(input, "energy_wake", {
+      receiver_normal_derivative_bundle: buildSameRecordReceiverNormalDerivativeBundle(
+        input,
+        "energy_wake",
+        { source_record_id: "theta_sea_branch_q1_v0" }
+      ),
+    }),
+  ];
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+  const energyEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(energyEvidence.evidence_level, "accepted_evidence_contract_mismatch");
+  assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
+  assert.equal(
+    energyEvidence.accepted_evidence_mismatches.includes(
+      "event_evidence.receiver_normal_derivative_bundle.source_record_id"
+    ),
+    true
+  );
+});
+
+test("event wake-history rejects receiver-normal derivative reconstruction drift", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = [
+    acceptedWakeHistoryEvidence(input, "energy_wake", {
+      receiver_normal_derivative_bundle: buildSameRecordReceiverNormalDerivativeBundle(
+        input,
+        "energy_wake",
+        { receiver_normal_derivatives: { D_vW_rec: 0.5 } }
+      ),
+    }),
+  ];
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+  const energyEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(energyEvidence.evidence_level, "accepted_evidence_contract_mismatch");
+  assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
+  assert.equal(
+    energyEvidence.accepted_evidence_mismatches.includes(
+      "event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction"
+    ),
+    true
+  );
 });
 
 test("event wake-history validator rejects accepted summary drift", () => {
@@ -149,6 +317,7 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "accepted_evidence_contract_attempted",
     "accepted_evidence_mismatches",
     "derivation_proof_object",
+    "receiver_normal_derivative_bundle",
     "accepted_for_wake_history_closure",
   ]);
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);

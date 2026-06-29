@@ -182,6 +182,47 @@ are not top-level scored priority rows.
 
 ## Current Focus
 
+### Receiver-Normal Changeover Integration 2026-06-29
+
+Completed worker artifacts are integrated at `priority-only` or fail-closed
+status; no rank, score, authored-corpus promotion, or branch-pass claim follows
+from these rows by itself.
+
+- `master-equation-closure`: the wake-history diagnostic now has one concrete
+  same-record receiver-normal derivative consumer. The `energy_wake`
+  row-logic fixture binds `receiver-normal-retained-branch-family-first-derivative/v0`
+  to the same source record, event ledger, retained record key, source artifact
+  hash, and consumer row, then reconstructs $D_vW^{\mathrm{rec}}$ from $D_s$,
+  $D_t$, $D_vD_s$, and $D_vD_t$.
+- `solver` / `braid-geometry-export-bridge`: the H39/theta3minus provider
+  audit now emits `h39-receiver-normal-retained-record-preimage-fixture/v0` as
+  an executable fail-closed matrix. It rejects absence rows, partial
+  $P_-/P_+$ rows, accepted-but-unbound provider rows, missing derivative rows,
+  and Taylor/fourth-jet diagnostics before retained branch-family derivative
+  consumption.
+- `proof-programs`: the breather lane now has
+  `breather-receiver-normal-force-margin-restart/v0`, a priority-only theorem
+  and fixture target for same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$,
+  $D_vD_s$, $D_vD_t$, and $D_vW^{\mathrm{rec}}$ force-margin rows. Its blocker
+  remains `receiver_normal_breather_force_margin_missing`.
+- `master-equation-closure` / `simulations`: the T3 run summary now carries an
+  `orientedBoundaryPrototype` derived from `t3-run-summary.v1`. It is an
+  EOM-independent priority prototype: image deltas, neighbor-pair deltas, and
+  detector events discipline candidate boundary rows, but they do not construct
+  retained causal-root rows or prove branch admissibility.
+- `braid-mass-response-map`: the retained pressure-row simulation target now
+  requires same-record receiver-normal rows, exposure, energy, pressure,
+  Noether sea response, reversible-domain, and null-sector rows on one retained
+  branch identity. The pressure-row checker remains fail-closed at
+  `finite_branch_evidence_missing`, with branch-provider intake blocked at
+  `accepted_non_fixture_source_missing`.
+
+Pure changeover reading: retired H39/theta3minus rows, source-normal force
+residues, shell-braid residue rows, fixture-only rows, toy rows, and cross-row
+bundles remain diagnostics or negative controls. Accepted evidence must be
+provider-object branch rows plus retained causal-root binding and same-record
+receiver-normal derivatives.
+
 - Workstream `master-equation-closure`: remains ranked first because the priority surface is still equation-engine-first. The current `a1_admissible_profile_bounds_attempt` records sampled seed and transported profile bounds, plus local exact-rational float64 `nextafter` certificates for the past endpoint-slope-cancelled profile and the emitted future piecewise-linear transport profile. The past `a1_past_profile_interval_box_certificate.v0` encloses 61,440 Bernstein control points, giving $q_{\min}=0.6542907922493042$, $q_{\max}=1.536808073607694$, and $H_b=0.5368080736076938$. The future `a1_future_piecewise_linear_profile_box_certificate.v0` gives $Q_{\min}=1.0$, $Q_{\max}=1.0152046296486557$, auxiliary $Q'\in[0.720598851445857,0.8023571583642308]$, and node payload digest `sha256:4d4183edadf3bd20775d6f1ce8bafa5d74386a1886f014ed13dc3ee64b262951`; its $Q'$ row is an auxiliary transport-derivative interpolant, not the derivative of the emitted piecewise-linear $Q$, and it does not bound the continuous transport equation. The packet also records `a1_retained_root_window_sample_replay.v0`, with sampled global `3+1` partner/self root counts, sampled minimum retained-window clearance `0.04429899040143903`, and replay digest `sha256:f17e6495fa4f91631f26d9b5c8e39dd9573f73b5bf320ab95924452614ed9c5e`; `a1_retained_root_window_sign_bracket_sample_replay.v0`, verifying 12 sampled endpoint sign brackets with sampled minimum endpoint absolute value `0.03165673240831124` and replay digest `sha256:1fa836595fb7c2450b417e1ecab1c431d2a7af53e128395e704578f640a80d12`; and `a1_inactive_cover_global_root_exclusion_sample_replay.v0`, mapping all 12 sampled global roots into retained windows with `sampled_inactive_root_count=0` and replay digest `sha256:f1bf76712348f952e9e2678dd40ff2047ece37c42b2e8483539aadf8933776be`. These sampled replays have `used_as_certificate=false` and do not supply retained-root or inactive-cover interval boxes. The packet also records a reproducible source-identity payload digest for the endpoint-slope-cancelled perturbation, a 42-interval `float64_nextafter_single_ulp_enclosure` coefficient attempt, a digestible `a1_directed_rounding_backend_target.v0`, and `a1_directed_rounding_backend_self_audit.v0` with exact-rational float64 `nextafter` checks passing all 7 audited rows. It keeps first failure `admissible_profile_bounds`, because the local boxes, sampled replays, and backend self-audit are not a shared interval-box certificate, retained-root and inactive-cover boxes are absent, and the future transported-profile $E_Q^+(b)$ row is absent for the admissible class. The reduced finite-collar smoke remains diagnostic-only at `sampled_remainder_constants_unstable`; no master-equation closure or A1 obstruction/channel claim is promoted until outward constants and a same-box pass/fail comparison exist.
 - Workstream `simulations`: remains second by ROI because it is the lowest-intuition way to discipline the equation engine. The current minimum evidence object for `field_speed_action_self_hit_scan/v0` is a non-fixture `accepted_transition_source` with a retained branch certificate, active-root ledger hash, conservation-pullback hash, named action-increment row, and fail-closed negative control on one action-increment record. The source-binding emitter now makes the fixture boundary executable: fixture row `fixture-B12-B13-a` hashes successfully but returns `source_verdict=diagnostic_rejected_endpoint_source`, `first_failure=source_row_binding_open`, and no `candidate_h_recovery` vote because the packet remains shape-only and lacks branch/hash bindings.
 - Workstream `proof-programs`: remains top-three because potential/action closure still carries a major validated-closure deficit and certified branches are the first hard evidence that the dynamics have nonempty structure. The generated `Sigma_hf_01` external schema candidate intake record now screens one local source-data partial: 5 / 8 fields are present, while `rule_kernel_obligation_binding`, `rule_kernel_derivation_payload_target_binding`, and `proof_grade_derivation_schema_statement` remain absent. The placeholder-rejection intake record supplies local placeholders for those three fields and proves they are rejected, leaving `required_fields_present=5`, `slot_result=external_input_required`, 11 row slots parked, row consumption 0, no live-ledger update, and no branch-chart authorization. The proof-object envelope packages the same 5 / 8 local locks with status `sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization`, keeps `candidate_external_schema_received=false`, and authorizes no schema-validation intake. The new missing proof-grade fields derivation target names the three remaining predicates for one external proof object: discharge the derivation, soundness, and endpoint-application obligations; bind `Sigma_hf_01` to a constructed rule-kernel derivation payload; and provide nonempty hypotheses, inference steps, conclusion, and source-data correspondence. The next proof-program object is still one proof-grade external object bound to the separator slot with all eight required fields.

@@ -364,10 +364,10 @@ derivative fields can be considered for the same retained record.
 Fixture target:
 `h39-receiver-normal-retained-record-preimage-fixture/v0`.
 
-This fixture target is the smallest executable shape that would test the
-handoff row without authorizing a retained-branch claim. It should live beside
-the branch-provider evidence report if implemented, and it should exercise these
-rows:
+This fixture target now lives inside the executable branch-provider evidence
+report as a fail-closed object. It tests the retained-record handoff row without
+authorizing provider readiness, downstream consumers, or a retained-branch
+claim. It exercises these rows:
 
 | Fixture row | Required setup | Expected status |
 | --- | --- | --- |
@@ -376,14 +376,20 @@ rows:
 | `partial_provider_object_branch_row` | The producer-side extractor reports 14 available $A_P$ terminal rows and 28 explicit provider-object branch rows, with exact missing terminal and branch row ids. | `h39-provider-object-branch-row-missing`; no downstream authorization |
 | `accepted_provider_object_unbound` | All 15 terminal rows and all 30 `P_-` / `P_+` rows are accepted as provider-object branch rows, but no retained causal-root force/action record consumes them. | `h39-provider-object-retained-record-unbound` |
 | `retained_record_missing_receiver_normal_derivative` | The provider row is bound to a retained causal-root record carrying $D_s$, $D_t$, fixed signs, and $W^{\mathrm{rec}}$, but omits $D_vD_s$, $D_vD_t$, or reconstructed $D_vW^{\mathrm{rec}}$. | `h39-receiver-normal-derivative-fields-missing` |
+| `fourth_jet_taylor_derivative_only` | Fourth-jet or Taylor derivative rows are present only as diagnostics, without accepted provider-object branch rows and retained causal-root same-record binding. | `h39-provider-candidate-consumed-as-retained-record`; no receiver-normal derivative evidence |
 | `preimage_review_candidate` | The accepted provider row, retained causal-root record, branch-family checksum, $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, and geometry derivative fields all share one source artifact hash and retained box. | `h39-receiver-normal-retained-record-preimage-review-required`; still not retained-branch promotion |
 
 The positive review fixture is not allowed to pass by copying a terminal graph
 coordinate into a force/action record. It must verify the receiver-normal
 derivative reconstruction on the retained causal-root row and must keep
-`provider_ready_authorized_by_this_target=false` unless the independent
-branch-provider acceptance report also marks the source as an accepted
-non-fixture provider.
+`provider_ready_authorized_by_this_fixture=false`,
+`downstream_consumer_authorization=false`, and
+`retained_branch_claim_authorized_by_this_fixture=false`. Fourth-jet/Taylor
+rows, coefficient-series source-map residual providers, lambda terminal
+witnesses, row-local expression feeds, aggregate-$P$ rows, and signed-radius
+targets remain negative controls unless the accepted provider-object branch row
+and retained causal-root derivative record are both present on the same retained
+record.
 
 ## Authorization Boundary
 

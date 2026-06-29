@@ -91,6 +91,13 @@ table after branch identity is erased, or an old shell-braid force residue, its
 status is `receiver-normal-action-derivative-record-missing` rather than
 `action-noether-closed`.
 
+Breather force-margin consumers use the same rule. The specialized target is
+[Breather Receiver-Normal Force-Margin Restart Target](../../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md);
+it keeps recapture, self-drive, action, power, wake-history, and
+Schauder-envelope margin rows fail-closed unless they consume same-record
+$D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+$D_vW^{\mathrm{rec}}$ on the retained branch-family checksum.
+
 If any row is computed on a different active-root ledger, memory depth, support descriptor, or endpoint convention, the status is
 
 $$

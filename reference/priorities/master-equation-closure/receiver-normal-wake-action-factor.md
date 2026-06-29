@@ -156,3 +156,58 @@ derivative bundle above. H39 primitive-vector replays, hybrid prefix-Cauchy
 diagnostics, coefficient-series source-map residual provider candidates,
 source-map residual envelopes, provider-fit diagnostics, and signed-radius
 targets remain negative controls until that preimage row exists.
+
+## First Executable Wake-History Consumer Row
+
+Status. Priority-only executable row-logic artifact. The wake-history consumer
+lane now has one concrete same-record derivative fixture in
+`scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`, with
+coverage in `tests/event-wake-history-pullback-diagnostic.test.js`.
+
+The first populated consumer row is `energy_wake`. It remains non-promotional:
+the whole event pullback still reports `not_accepted_for_wake_history_closure`
+until every required wake-history row carries accepted evidence. The value of
+the row is narrower. It proves that a declared accepted wake-history row is
+rejected unless its `wake_history_derivation_proof_object` also carries the
+existing `receiver-normal-retained-branch-family-first-derivative/v0` artifact
+on the same retained source record, retained event ledger, retained record key,
+source artifact hash, and consumer row.
+
+The fixture uses the nontrivial linear moving-receiver row-shape values
+$$
+D_s=1,
+\qquad
+D_t=\frac{3}{2},
+\qquad
+W^{\mathrm{rec}}=\frac{3}{2},
+\qquad
+D_vD_s=0.1,
+\qquad
+D_vD_t=0.4,
+\qquad
+D_vW^{\mathrm{rec}}=0.25.
+$$
+The last value is not accepted as an independent fit. The diagnostic recomputes
+it from
+$$
+D_vW^{\mathrm{rec}}
+=
+\frac{\zeta_t\zeta_s}{D_s^2}
+\left(D_sD_vD_t-D_tD_vD_s\right)
+$$
+and rejects the row if the emitted value drifts from that reconstruction.
+
+Executable fail-closed controls now include:
+
+| Control | Failure surface |
+| --- | --- |
+| Missing receiver-normal derivative bundle | Accepted wake-history metadata remains `accepted_evidence_contract_mismatch`. |
+| Source-record drift inside the derivative bundle | The row reports `event_evidence.receiver_normal_derivative_bundle.source_record_id`. |
+| Reconstruction drift for $D_vW^{\mathrm{rec}}$ | The row reports `event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction`. |
+
+This is the first same-record wake-history derivative consumer artifact. It is
+not an A1, VP-1, breather, circular, H39/theta3minus, eigen-braid, assembly, or
+Noether-closure pass. H39/theta3minus quotient rows remain excluded unless a
+future regenerated provider-object preimage row is bound to an accepted
+retained causal-root force/action record carrying the same receiver-normal
+derivative bundle.

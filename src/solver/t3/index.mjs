@@ -42,6 +42,10 @@ export {
 } from "./T3CentralSolverEngine.mjs";
 export { computeKineticEnergy, computeMomentum, computeParticleStatistics, computeSpeedSummary } from "./T3Statistics.mjs";
 export {
+  createT3OrientedBoundaryPrototype,
+  T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA,
+} from "./T3OrientedBoundaryOperator.mjs";
+export {
   createT3Checkpoint,
   createT3TrajectoryFrame,
   deserializeT3State,

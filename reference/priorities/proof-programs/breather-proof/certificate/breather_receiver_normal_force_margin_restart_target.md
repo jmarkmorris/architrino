@@ -1,0 +1,217 @@
+# Breather Receiver-Normal Force-Margin Restart Target
+
+Status. Priority-only restart artifact for the breather proof program. This is a
+theorem target and fixture target, not proof evidence, not row consumption, and
+not branch-chart authorization.
+
+Artifact id. `breather-receiver-normal-force-margin-restart/v0`.
+
+Claim level. `certificate-target`. The target specializes the receiver-normal
+branch-strength and first-derivative certificate to the breather recapture,
+self-drive, action, and Schauder-envelope force-margin rows. It does not promote
+any breather packet unless the same packet emits the same-record rows below.
+
+Value assessment. This is not a new general gate. It is the breather-specific
+consumer of the existing receiver-normal branch-strength certificate. It
+protects the live breather proof route where force margins decide recapture,
+self-drive, and invariant-envelope trapping. Improving only the native
+preledger or branch chart would not close this point, because a later margin
+row could still consume source-normal or aggregate force data after branch
+identity is erased.
+
+## Retained Branch-Family Object
+
+For a breather packet identity
+$$
+\mathfrak I_B
+=
+\left(
+\mathcal{K},
+T_{\mathrm{cyc}},
+\mathcal{S},
+\mathcal{P},
+\mathcal{B}_{\mathrm{rep}},
+\Theta
+\right),
+$$
+let $\mathfrak R_B^{\mathrm{ret}}$ be the retained force/action branch list
+accepted by the same branch chart and same event ledger. Each retained row
+$\rho\in\mathfrak R_B^{\mathrm{ret}}$ must bind one retained causal-root record
+$$
+R_\rho
+=
+\left(
+\mathfrak I_B,
+\mathrm{root}_\rho,
+i_\rho,
+j_\rho,
+t_\rho,
+s_\rho(t_\rho),
+\mathcal{U}_\rho,
+\eta,
+\epsilon_c,
+\mathrm{hash}_\rho
+\right)
+$$
+to the receiver-normal fields
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}
+=
+\left|D_{t,\rho}/D_{s,\rho}\right|.
+$$
+The source-normal field $D_s$ remains the simple-root transversality floor. It
+is not a force-strength substitute. The old shell-braid $1/\lvert J\rvert$
+force weight is not admissible in this target.
+
+For each variation coordinate $v$ consumed by a recapture, self-drive, action,
+power, wake-history, or Schauder-envelope row, the same retained record must
+also emit
+$$
+D_vD_{s,\rho},
+\qquad
+D_vD_{t,\rho},
+\qquad
+D_vW_{\rho}^{\mathrm{rec}}.
+$$
+On a fixed $D_s,D_t$ sign stratum with
+$\zeta_{s,\rho}=\operatorname{sign}D_{s,\rho}$ and
+$\zeta_{t,\rho}=\operatorname{sign}D_{t,\rho}$, the derivative is not an
+independent fit. It must reconstruct
+$$
+D_vW_{\rho}^{\mathrm{rec}}
+=
+\frac{\zeta_{t,\rho}\zeta_{s,\rho}}{D_{s,\rho}^2}
+\left(
+D_{s,\rho}D_vD_{t,\rho}
+-
+D_{t,\rho}D_vD_{s,\rho}
+\right).
+$$
+
+## Closure Equation
+
+For every breather force-margin consumer $m$ in the recapture, self-drive, or
+invariant-envelope stack, let $\mathfrak R_m^{\mathrm{ret}}\subseteq
+\mathfrak R_B^{\mathrm{ret}}$ be the retained rows named by that consumer and
+let $\ell_m$ be its declared projection or signed scalar functional. The
+receiver-normal force kernel is
+$$
+\mathbf B_{\rho}^{\mathrm{rec}}
+=
+\frac{W_{\rho}^{\mathrm{rec}}}{r_\rho^2}
+\hat{\mathbf r}_\rho,
+$$
+with first variation
+$$
+D_v\mathbf B_{\rho}^{\mathrm{rec}}
+=
+\frac{D_vW_{\rho}^{\mathrm{rec}}}{r_\rho^2}\hat{\mathbf r}_\rho
++
+\frac{W_{\rho}^{\mathrm{rec}}}{r_\rho^2}D_v\hat{\mathbf r}_\rho
+-
+2\frac{W_{\rho}^{\mathrm{rec}}D_vr_\rho}{r_\rho^3}
+\hat{\mathbf r}_\rho.
+$$
+The admissible breather margin row is therefore
+$$
+\gamma_m^{\mathrm{rec}}
+=
+\sigma_m
+\left[
+\ell_m
+\left(
+\sum_{\rho\in\mathfrak R_m^{\mathrm{ret}}}
+\kappa\,\sigma_{i_\rho j_\rho}|q_{i_\rho}q_{j_\rho}|
+\mathbf B_{\rho}^{\mathrm{rec}}
++
+\mathbf F_{m}^{\mathrm{fold}}
++
+\mathbf F_{m}^{\mathrm{med}}
+\right)
+-
+\Gamma_m
+\right],
+$$
+where $\sigma_m$ is the pass orientation, $\Gamma_m$ is the required recapture
+or trapping demand, and the fold and medium-response terms are admissible only
+when their rows use the same packet identity, event interval, regulator state,
+and branch-family checksum. The derivative-consuming form is
+$$
+D_v\gamma_m^{\mathrm{rec}}
+=
+\sigma_m
+\ell_m
+\left(
+\sum_{\rho\in\mathfrak R_m^{\mathrm{ret}}}
+\kappa\,\sigma_{i_\rho j_\rho}|q_{i_\rho}q_{j_\rho}|
+D_v\mathbf B_{\rho}^{\mathrm{rec}}
++
+D_v\mathbf F_{m}^{\mathrm{fold}}
++
+D_v\mathbf F_{m}^{\mathrm{med}}
+-
+D_v\Gamma_m
+\right),
+$$
+again on the same retained branch list. A positive margin can be consumed only
+after the lower interval for every required $\gamma_m^{\mathrm{rec}}$ is
+strictly positive and every derivative row used by the consumer passes the
+same-record reconstruction test.
+
+## Executable Fixture Target
+
+The first executable fixture should be a JSON object named by packet identity,
+for example
+`breather_receiver_normal_force_margin_fixture.<packet-id>.json`, with these
+top-level fields:
+
+| Field | Requirement |
+| --- | --- |
+| `artifact_id` | `breather-receiver-normal-force-margin-restart/v0`. |
+| `packet_identity` | The same $\mathfrak I_B$ tuple used by candidate, mesh, preledger, branch-chart, event-ledger, and Schauder-envelope rows. |
+| `branch_family_checksum` | Exact retained list $\mathfrak R_B^{\mathrm{ret}}$ plus aggregation convention. |
+| `receiver_normal_rows` | One entry per retained row containing $R_\rho$, $D_s$, $D_t$, $W^{\mathrm{rec}}$, sign stratum, and floors. |
+| `receiver_normal_derivative_rows` | $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives, and force-kernel derivatives for every variation used by the consumer. |
+| `margin_consumers` | Recapture, self-drive, action, power, wake-history, or Schauder-envelope rows, each naming the exact retained rows it consumes. |
+| `margin_intervals` | Outward intervals for $\gamma_m^{\mathrm{rec}}$ and, when consumed, $D_v\gamma_m^{\mathrm{rec}}$. |
+| `negative_controls` | The fail-closed controls below, including old shell-braid force-residue and source-normal-only substitutions. |
+| `source_hashes` | Stable hashes for the candidate, mesh, branch chart, event ledger, derivative bundle, and fixture evaluator. |
+
+The fixture passes only when all required margin intervals are strictly positive
+and all same-record and derivative-reconstruction checks pass. If the branch
+chart is absent or unauthorized, the fixture may still be emitted as a target
+or diagnostic input, but its verdict is blocked before margin arithmetic.
+
+## Fail-Closed Ledger
+
+| Status | Meaning |
+| --- | --- |
+| `receiver_normal_breather_force_margin_missing` | No breather force-margin fixture consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and required derivative rows. |
+| `breather-force-margin-branch-chart-unauthorized` | The margin fixture attempts to evaluate before a same-packet branch chart is authorized. |
+| `breather-force-margin-branch-family-checksum-mismatch` | The margin row consumes a retained branch list different from the receiver-normal derivative bundle. |
+| `breather-force-margin-source-normal-substitution` | The row substitutes $D_s$, $J$, a source-normal inverse factor, or a source-normal denominator for $W^{\mathrm{rec}}$. |
+| `breather-force-margin-old-shell-braid-residue` | The row consumes an old shell-braid force residue rather than recomputing receiver-normal force kernels on the same retained rows. |
+| `breather-force-margin-aggregate-only` | The row consumes a terminal force, margin, or finite-difference aggregate after retained branch identity is erased. |
+| `breather-force-margin-derivative-row-missing` | A derivative-consuming consumer lacks $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, geometry derivatives, or $D_v\mathbf B^{\mathrm{rec}}$ on the retained row. |
+| `breather-force-margin-derivative-reconstruction-failed` | The emitted $D_vW^{\mathrm{rec}}$ interval does not contain the reconstructed value from same-record $D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. |
+| `breather-force-margin-sign-stratum-open` | The row does not fix $D_s,D_t$ signs or declare an accepted nonsmooth crossing convention. |
+| `breather-force-margin-nonpositive` | At least one required lower margin interval is nonpositive after the same-record checks pass. |
+
+## Exact Blocker
+
+Status:
+`receiver_normal_breather_force_margin_missing`.
+
+No breather certificate file emits
+`breather-receiver-normal-force-margin-restart/v0`, no same-packet branch chart
+is authorized, and no recapture, self-drive, action, power, wake-history, or
+Schauder-envelope margin row consumes same-record $D_s$, $D_t$,
+$W^{\mathrm{rec}}$, and derivative rows on the retained branch family. Existing
+root topology, null-coordinate preledger, strict-gap, source-cover, endpoint,
+fold-layer, and higher-fold artifacts remain priority-only topology,
+candidate-repair, or proof-burden evidence until this receiver-normal margin
+fixture exists and passes.
