@@ -296,6 +296,320 @@ A sampled finite-collar smoke may be cited only as diagnostic context for this
 object. It cannot supply any field above unless the value is outward-certified
 on the declared boxes.
 
+Current attempt artifact:
+[spiral-a1-admissible-profile-bounds.v0.json](spiral-a1-admissible-profile-bounds.v0.json)
+records the current fail-closed packet for $b=0.001$. The executable diagnostic
+mode is:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_admissible_profile_bounds_attempt --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --admissible-profile-bernstein-depth 12
+```
+
+The source-identity payload that binds the endpoint-slope-cancelled
+perturbation to that packet is emitted by the sibling diagnostic mode:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" reference/priorities/master-equation-closure/spiral_a1_finite_memory_transport.py --theta-hi 0.02 --delta-steps 128 --integration-panels 16 --profile-mode tangential_transport --transport-steps 16 --past-profile endpoint_slope_cancel --endpoint-cancel-positivity-samples 101 --diagnostic-mode a1_endpoint_slope_cancel_source_identity --finite-collar-samples 3 --finite-collar-integration-panels 16 --finite-collar-transport-steps 16 --finite-collar-delta-steps 128 --finite-collar-positivity-samples 101 --admissible-profile-bernstein-depth 12
+```
+
+The sampled seed and transported $Q$ values stay inside the declared
+$0.2\le Q\le3.0$ convention on this grid, and the retained rows replay with no
+sampled retained-window failure. The packet now also emits a local
+exact-rational subdivided-Bernstein certificate for the past
+endpoint-slope-cancelled polynomial and a local exact-rational node-extrema
+certificate for the emitted future piecewise-linear transport profile:
+
+| Past-profile quantity | Current local certificate |
+| --- | --- |
+| $q_{\min}$ | `0.6542907922493042` |
+| $q_{\max}$ | `1.536808073607694` |
+| $H_b$ | `0.5368080736076938` |
+
+| Future emitted profile quantity | Current local certificate |
+| --- | --- |
+| $Q_{\min}$ | `1.0` |
+| $Q_{\max}$ | `1.0152046296486557` |
+| Auxiliary $Q'$ interval | `[0.720598851445857, 0.8023571583642308]` |
+| Node payload digest | `sha256:4d4183edadf3bd20775d6f1ce8bafa5d74386a1886f014ed13dc3ee64b262951` |
+
+The future certificate is `a1_future_piecewise_linear_profile_box_certificate.v0`.
+It has `bounds_emitted_piecewise_linear_profile=true` and
+`outward_for_continuous_transport_equation=false`. Its $Q'$ row is explicitly
+`auxiliary_transport_derivative_interpolant_not_derivative_of_piecewise_linear_q`,
+so it must not be consumed as a derivative certificate for the emitted
+piecewise-linear $Q$. These local certificates advance the past-profile and
+emitted-profile subrows, but they are not yet a shared interval-box certificate.
+The packet now records a deterministic source-identity digest for the
+endpoint-slope-cancelled homogeneous perturbation:
+`sha256:cba10155d5b54719bf7e4a48f86abd27dcabdca4fe24fd040a67b35e2c7a73b0`.
+The digest now has a reproducible source-payload diagnostic, but that payload is
+provenance only, with `used_as_certificate=false`; it is not a shared
+interval-box certificate. The packet also emits
+`shared_interval_box_certificate_target` as a fail-closed contract. Its
+coefficient-enclosure subrow now carries a
+`float64_nextafter_single_ulp_enclosure` attempt with 42 intervals, but that row
+has `used_as_certificate=false` and is not a directed-rounding interval
+certificate. The past-profile interval-box subrow now also carries a float64
+subdivided-Bernstein attempt with a subdivision-tree digest, plus
+`a1_past_profile_interval_box_certificate.v0`, an exact-rational
+subdivided-Bernstein float64 `nextafter` local certificate. That local
+certificate encloses 61,440 control points over 4,096 subintervals and gives
+$q_{\min}=0.6542907922493042$, $q_{\max}=1.536808073607694$, and
+$H_b=0.5368080736076938$. It has `used_as_local_certificate=true`, but
+`used_as_shared_certificate=false` and `authorizes_outward_certificate=false`.
+The future-profile subrow carries the local emitted-profile certificate above,
+with certificate digest
+`sha256:420d8460230e9dc97463d5dd374c3625f0f8a09b2cbc12fa70c5c685d911f51a`.
+It has `used_as_local_certificate=true`, but
+`used_as_shared_certificate=false`, `authorizes_outward_certificate=false`, and
+does not supply $E_Q^+(b)$ for the admissible class.
+The shared target now also emits
+`a1_future_continuous_transport_bounds_target.v0` with target digest
+`sha256:df8f4fe0cef71edfde0063149ad0cfe4cbc01cd0449f78a646195d19a9e998f9`.
+That row binds the same source digest, radius $b=0.001$, $\theta$ interval,
+declared $0.2\le Q\le3.0$ bounds, local past-profile certificate digest, and
+local future emitted-profile certificate digest to the still-missing
+continuous-transport and $E_Q^+(b)$ obligation. It is target-only: it requires
+continuous-transport equation interval boxes, future-profile bounds on the same
+$\theta$ boxes, an outward $E_Q^+(b)$ bound, a transport Gronwall constant
+$K_Q$, and the branch-sum feedback bound. It explicitly rejects
+piecewise-linear node extrema, the auxiliary $Q'$ interpolant, and sampled
+transport replay as certificate evidence.
+The retained-root context now also emits
+`a1_retained_root_window_sample_replay.v0` with replay digest
+`sha256:f17e6495fa4f91631f26d9b5c8e39dd9573f73b5bf320ab95924452614ed9c5e`.
+On the three-point $\theta$ sample grid it reports the retained labels in the
+declared order, sampled global `3+1` partner/self root counts, and sampled
+minimum retained-window clearance `0.04429899040143903`. This is a
+root-window replay only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
+The same retained-root context now records
+`a1_retained_root_window_sign_bracket_sample_replay.v0` with replay digest
+`sha256:1fa836595fb7c2450b417e1ecab1c431d2a7af53e128395e704578f640a80d12`.
+It verifies 12 sampled endpoint sign brackets over the retained windows, with
+sampled minimum endpoint absolute value `0.03165673240831124` and sampled
+maximum endpoint absolute value `0.15897364203230846`. This is a sampled
+sign-bracket success marker only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
+The retained-root context also records
+`a1_inactive_cover_global_root_exclusion_sample_replay.v0` with replay digest
+`sha256:f1bf76712348f952e9e2678dd40ff2047ece37c42b2e8483539aadf8933776be`.
+On the same three-point $\theta$ sample grid it reports expected global
+partner/self root counts, maps all 12 sampled roots into the retained windows,
+and records `sampled_inactive_root_count=0`. This is an inactive-complement
+sample replay only: it has `used_as_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
+The shared target row now additionally records
+`a1_retained_root_inactive_cover_interval_box_target.v0` with target digest
+`sha256:63dede344647775adc3afdf507b6664b2fd52173ffb5e713c87b3af524a22618`.
+That target binds the same source digest, radius $b=0.001$, and
+$0\le\theta\le0.02$ interval to 4 retained-window endpoint-sign obligations,
+4 retained-window Jacobian-floor obligations, and 6 inactive-cover no-root
+obligations. It is still target-only: it has `used_as_certificate=false`,
+`authorizes_outward_certificate=false`,
+`bounds_retained_root_interval_boxes=false`, and
+`bounds_inactive_cover_interval_boxes=false`.
+The directed-rounding backend subrow now carries a digestible backend target,
+`a1_directed_rounding_backend_target.v0`, plus
+`a1_directed_rounding_backend_self_audit.v0`. The self-audit uses
+exact-rational float64 `nextafter` brackets, passes all 7 audited rows with
+zero failures, and records the rounding-policy audit trail for the audited
+coefficient and Bernstein-control-point rows. It still has
+`used_as_certificate=false` and `authorizes_outward_certificate=false`; it is
+not a shared interval-box certificate, does not control hardware rounding mode,
+and does not certify the shared past/future/root/inactive-cover interval-box
+family. The target records the required outward-rounded coefficient rows,
+Bernstein subdivision control points, shared past/future/root/inactive-cover
+interval-box family, and rounding-mode audit trail for the next
+certificate-grade pass. Its current runtime probe now nests
+`a1_directed_rounding_runtime_backend_availability_audit.v0` with digest
+`sha256:bdc26567645a833e546e8f74019e3b222c5395e8114a3113c441636e310c77dc`
+and status `directed_rounding_runtime_backend_unavailable_fail_closed`.
+That availability audit records `float64_nextafter_probe_present=true`, but
+`hardware_rounding_mode_control_available=false`,
+`shared_runtime_rounding_mode_audit_trail_available=false`, and
+`directed_rounding_interval_backend_module_available=false`. Its exact
+replacement object is
+`a1_directed_rounding_interval_backend_runtime_identity.v0`, which must set
+`directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available`
+true and provide a backend runtime id, build/version digest, rounding-mode
+transition-log digest, `source_q_derivative_composition` operation-trace digest,
+and shared interval-box-family digest. The nested runtime-identity row now
+carries executable absence probe
+`a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0` with
+digest
+`sha256:4f3e76a84211159347b32c1e23585f68a8f8a41cbe58ce17eefeb717af541776`
+and status
+`directed_rounding_runtime_identity_absence_probe_backend_identity_missing_fail_closed`.
+That probe checks candidate backend modules and the current
+`spiral_branch_chart_certificate` helpers; it finds local interval helpers and
+float64 `nextafter`, but no backend runtime id provider, build/version digest
+provider, rounding-mode transition-log provider,
+`source_q_derivative_composition` operation-trace provider, or shared
+interval-box-family digest provider. The runtime-identity row has digest
+`sha256:bd0d384370bdee28bdb676795f365ee31158827b99bad724908f4ea4c93f11d1`
+and status
+`runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed`;
+all five required identity fields remain explicitly absent and the row has
+`used_as_certificate=false`.
+The shared target row now records local certificates for
+`past_profile_interval_box` and `future_transport_interval_box`, a computed
+sampled `a1_future_continuous_transport_bounds_attempt.v0`, the target
+continuous-transport / $E_Q^+(b)$ obligation object, and a target-only
+retained-root / inactive-cover obligation object. The computed attempt consumes
+the future node certificate, samples `tangential_transport_derivative` on the 16
+transport steps, bounds the piecewise-linear transport defect by
+`defect_sup_upper=0.0027421963363138966`, and reports
+`integrated_l1_defect_upper=5.109894306984598e-05`. It still has
+`outward_for_continuous_transport_equation=false`, `emits_E_Q_plus_b=false`, and
+`first_failure=branch_sum_feedback_bound_missing`; it is not a replacement for
+summand derivative boxes, $E_Q^+(b)$, or $K_Q$. The packet now also records
+`a1_branch_sum_feedback_bound_attempt.v0`, which samples the existing tangent
+branch-sum code on 2 nullspace columns across 3 $\theta$ samples for 6 total
+rows. That row has `emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`first_failure=summand_derivative_boxes_absent`, so it narrows the branch-sum
+blocker without authorizing an outward certificate. That branch-sum row now
+nests `a1_outward_summand_derivative_boxes_target.v0` with target digest
+`sha256:e641c41515cdb888c6a100900a37b7d86000d6bfad302eb79111afafc75f4a36` and
+status `target_only_outward_summand_derivative_boxes_absent`. The target
+requires the retained labels `P_1`, `P_2`, `P_3`, and `S_1` on the same source
+digest, $b=0.001$, $\theta$ interval, retained-root boxes, inactive-cover
+boxes, and outward summand-derivative boxes. It names the derivative families
+for tangential summand partials, radial summand partials, retained-root motion,
+and source-profile variation, with `summand_partial_interval_boxes` as the
+first missing interval row. Its negative-control policy rejects sampled float64
+finite differences as certificate evidence because grid samples, central
+float64 partials, sampled root motion, and Simpson memory integrals do not
+produce outward intervals on the shared boxes. It keeps
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`.
+The branch-sum row now also nests
+`a1_summand_partial_interval_boxes_negative_control.v0` with negative-control
+digest `sha256:5d6453e5d9ef1debe7b455cb254ae0f810713b07c9eb232f04a79744b02b9c14`.
+That readout expands `summand_partial_interval_boxes` into 36 label/family
+slots over `P_1`, `P_2`, `P_3`, and `S_1`: tangential summand partials,
+radial summand partials, retained-root motion, and source-profile variation.
+It records 6 sampled branch-sum rows and 24 sampled summand rows, but every
+slot fails as `sampled_value_not_outward_interval_box`. The central float64
+partials, sampled root motion, sampled source-profile values, and Simpson
+memory integrals remain point-sample evidence, so the object has
+`satisfies_summand_partial_interval_boxes=false`,
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`. This is a priority-only negative
+control, not an interval certificate.
+A narrower one-slot construction attempt is now nested beside that matrix:
+`a1_summand_partial_interval_box_one_slot_construction_attempt.v0` with digest
+`sha256:463eccb6373c193ec801ee3e79cd88038494dde586f02f4527f482f287846bd3`.
+It targets only `P_1` / `tangential_summand_partials` /
+`partial_T_alpha_partial_delta_alpha` and fixes the intended formula row as
+`partial_delta_alpha T_alpha(theta, delta_alpha, q_source_alpha)` with
+`theta` and `q_source_alpha` held fixed. The nested
+`a1_one_slot_formula_dependency_audit.v0` now has audit digest
+`sha256:f970c06929a507177c422c7531ef6be665aaba207842bab6486eea6d587bb727`.
+It now nests
+`a1_p1_retained_root_delta_alpha_interval_box_attempt.v0` with digest
+`sha256:461557ae07eb1669a0e91740e591b413eff4e5a1d85158a0192e5f0fc157bacb`.
+That row proposes the local priority-only interval
+$\delta_{P_1}\in[2.642787400798279,2.6465010095985613]$, verifies the
+sampled `P_1` roots lie inside it, verifies endpoint signs over 16
+$\theta$-slabs, and records a positive local `J_partner` floor
+`3.7900798832489038`. It is not certificate-grade: it uses a local
+past-polynomial-antiderivative plus future piecewise-linear source-memory
+integral row, and it is not a shared retained-root, source-profile, or
+inactive-cover interval-box certificate. The dependency audit now also nests
+`a1_p1_q_source_alpha_interval_box_attempt.v0` with digest
+`sha256:133c33f160562f1894db6d686a073aa377994f8614994b8dda03737a446a1a36`.
+That row maps the same $\theta\in[0,0.02]$ and local
+$\delta_{P_1}$ box to the past-profile source interval
+`[-2.6465010095985617,-2.6227874007982783]`, equivalently
+`[2.622787400798278,2.646501009598562]` in $x=-\theta$, and uses exact
+rational subwindow Bernstein control points to emit the local priority-only
+box
+`P_1_q_source_alpha_interval_box=[0.9860944162989329,1.0003045214613422]`.
+The row encloses 61,440 control points over 4,096 subintervals and has
+control-point interval payload digest
+`sha256:957743ab45c969f2ee83eece58dbdf64e369482936b6287ad567e08ecc8ee377`.
+It has `used_as_local_certificate=true`, but `used_as_certificate=false`,
+`used_as_shared_certificate=false`, and
+`authorizes_outward_certificate=false`.
+
+Consuming the local retained-root delta box and the local q-source box narrows
+the selected-partial formula probe to `partial_T_alpha_partial_delta_alpha` in
+`[0.578120456576599,1.0825200208208012]` and records
+`partial_delta_J_partner_with_source_q_interval_formula` as locally evaluated.
+The dependency audit also nests
+`a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition.v0`
+with digest
+`sha256:3954eeb32ae9d3a2d65a105bfd9d4eb16769fca76794b6f79ab45032ca6bd2cc`.
+That object checks the selected $\theta$ interval, the local retained-root
+`P_1` delta box, the local `P_1` q-source box, the local formula rows, and the
+existing directed-rounding backend target/self-audit. It records
+`local_readout_present=true` and
+`directed_rounding_backend_self_audit_rows_failed=0`, but it is still only a
+priority-only readout with `used_as_shared_certificate=false`. Its first
+missing shared backend/source-box identity field is
+`directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available`;
+the selected-slot audit also carries the runtime availability audit digest
+`sha256:bdc26567645a833e546e8f74019e3b222c5395e8114a3113c441636e310c77dc`
+and names
+`a1_directed_rounding_interval_backend_runtime_identity.v0` as the next
+required runtime/backend evidence object. The nested runtime-identity row now
+records executable absence probe digest
+`sha256:4f3e76a84211159347b32c1e23585f68a8f8a41cbe58ce17eefeb717af541776`
+and still records `backend_runtime_id`, `backend_version_or_build_digest`,
+`rounding_mode_transition_log_digest`,
+`source_q_derivative_composition_operation_trace_digest`, and
+`shared_interval_box_family_digest` as the missing fields. The availability
+negative control records that the float64 `nextafter` probe, the passing
+self-audit rows, and the sampled partials do not satisfy backend availability,
+and that a missing rounding-mode transition log, missing operation-trace digest,
+missing shared interval-box-family digest, or mixed backend digest fails closed;
+the remaining missing shared fields are the directed rounding mode audit-trail
+probe, `P_1_retained_root_delta_alpha_interval_box_attempt.used_as_shared_certificate`,
+`P_1_q_source_alpha_interval_box_attempt.used_as_shared_certificate`, and
+`P_1_q_source_alpha_interval_box_attempt.past_profile_certificate_used_as_shared_certificate`.
+The attempt still does not emit a selected slot interval box: the first missing
+dependency row remains
+`shared_directed_rounding_audit_trail_for_source_q_derivative_composition`.
+The backend row and the new audit-trail row remain local nextafter readouts,
+not shared directed-rounding audit trails over shared retained-root,
+source-profile, and inactive-cover boxes. They record the central-float64
+`P_1` sampled partials only as rejected diagnostic reference values, so
+`satisfies_selected_slot=false`, `emits_E_Q_plus_b=false`, `emits_K_Q=false`,
+and `authorizes_outward_certificate=false`. The selected-slot first failure is
+`one_slot_shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing`.
+
+The top-level row identity now carries
+`inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no
+longer an absent cover id; it is the absent `inactive_cover_interval_boxes`
+certificate. The sampled retained-root replay, sampled sign-bracket replay,
+sampled inactive-cover replay, computed transport-defect attempt, branch-sum
+feedback attempt, and target-only obligation objects do not change that
+missing-box status. The local past-profile Bernstein certificate and emitted
+future-profile certificate are not a shared interval-box certificate because
+the retained-root and inactive-cover boxes are still absent, hardware directed
+rounding is not controlled, and the $E_Q^+(b)$ row is still missing pending
+branch-sum and transport constants.
+
+The packet now adds `a1_certificate_composition_readiness.v0` with readiness
+digest `sha256:50bb230a9f01ed7b3cefcc67b5188ee86c6800c608356e4fd0ecb06ffcaaebc8`.
+This row composes the local past/future certificate digests with the
+continuous-transport target and retained-root/inactive-cover target, then names
+the still-missing certificate-grade objects:
+`future_continuous_transport_bounds`, `E_Q_plus_b_outward_bound`,
+`retained_root_interval_boxes`, `inactive_cover_interval_boxes`,
+`branch_sum_constants`, `transport_constants`, and `residual_envelope`. Its
+first missing evidence object is
+`a1_future_continuous_transport_bounds/v0`; it has
+`used_as_certificate=false` and authorizes no outward certificate or
+obstruction/channel decision. The branch-sum constants, transport constants,
+and residual envelope are also still absent, so the current first failure
+remains `admissible_profile_bounds`. The reduced smoke result and retained-root
+replay are carried only as diagnostic context with `used_as_certificate=false`.
+
 ## Advancement Decision
 
 This packet materially narrows `a1_outward_constants_handoff` from "make the

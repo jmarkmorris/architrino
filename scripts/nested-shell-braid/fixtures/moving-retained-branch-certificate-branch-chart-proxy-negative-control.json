@@ -1,0 +1,22 @@
+{
+  "schema": "moving_retained_branch_certificate/v0",
+  "promotion_status": "priority-only",
+  "certificate_id": "branch-chart-proxy-negative-control-2026-06-28",
+  "first_failure": "blocked_pending_accepted_branch_chart",
+  "source_ref": "reference/priorities/braid-nested-shell-causal-closure/structural-integrity-common-limit-theorem.md",
+  "source_root_ledger_ref": "neutral_braid_octahedral_root_ledger.certified.v1",
+  "rest_seed_ref": "A0 one-period rest diagnostic",
+  "branch_certificate_ref": "proxy:branch-chart-ref-without-accepted-same-record-identity",
+  "moving_continuation_ref": "proxy:moving-continuation-row",
+  "root_boundary_ref": "proxy:root-boundary-row",
+  "deformation_generator_ref": "proxy:deformation-generator-row",
+  "common_speed_record_ref": "proxy:common-speed-row",
+  "signal_sector_refs": [
+    "proxy:photon-gate-a-row",
+    "proxy:gw-tt-row",
+    "proxy:two-way-signal-row",
+    "proxy:nondispersion-row"
+  ],
+  "event_ledger_ref": "proxy:event-ledger-row",
+  "certificate_status": "accepted_same_branch"
+}

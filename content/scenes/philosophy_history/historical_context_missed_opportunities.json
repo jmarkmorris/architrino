@@ -8,7 +8,11 @@
     "wrapLabels": true,
     "centerOn": "historical_context_overview",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": "historical_context_overview",
+      "order": "objects",
+      "direction": "clockwise",
+      "allowInnerRings": false
     },
     "labelDocIconOwnLine": true,
     "source": {

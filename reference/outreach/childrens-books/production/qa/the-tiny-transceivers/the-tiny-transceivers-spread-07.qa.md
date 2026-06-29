@@ -1,7 +1,7 @@
 # QA: Keeps Its Path
 
 - id: `the-tiny-transceivers-spread-07`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-07.png`
 - lesson: The entity is tracked through its worldline-like path.
 - geometry: One point transceiver is shown through before-position, current position, and after-position along one continuous path.
 

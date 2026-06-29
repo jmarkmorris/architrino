@@ -4,9 +4,9 @@
 
 - Kind: `priority-app`
 - Rank: `16`
-- Value: `4.99`
+- Value: `4.89`
 - Cost: `2.7`
-- ROI: `1.85`
+- ROI: `1.81`
 - Status: `active`
 
 ## Current

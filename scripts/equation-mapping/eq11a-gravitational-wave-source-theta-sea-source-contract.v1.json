@@ -1,0 +1,29 @@
+{
+  "schema": "aaa-equation-map-eq11a-theta-sea-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A theta_sea row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "theta_sea_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "theta_sea"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_theta_sea_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "theta_sea for gravitational-wave tensor propagation",
+    "aaaGeometricReadout": "Noether sea/effective-metric constitutive row consumed by the GW150914 source carrier",
+    "requiredCarrierOrRow": "theta_sea",
+    "sameRecordBinding": "theta_sea shares the EQ-11A carrierId, sourceWindowId, supportId, and eventId before the effective metric tensor channel can be scored",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-theta-sea-generic-source-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed theta_sea row bound to the GW150914 carrier; score remains neutral until the tensor channel and remaining source rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

@@ -1,7 +1,7 @@
 # QA: Back Matter Activity 1
 
 - id: `the-message-that-traveled-backmatter-01`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-backmatter-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-backmatter-01.png`
 - lesson: Back-matter activity image.
 - geometry: Use the geometry already introduced in the story at activity scale.
 

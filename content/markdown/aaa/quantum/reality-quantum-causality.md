@@ -10,7 +10,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to [Ontology](../foundations/ontology.md), [Observer Framework](../spacetime/observer-framework.md), and [Master Equation](../dynamics/master-equation.md).
 
-**Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
+**Scope note:** This chapter states $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
 ## Reality: Absolute vs Operational
 
@@ -138,6 +138,16 @@ Where the exact topology is not proven, we use "-like" and treat the label as a 
 
 The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, and a branch-chart closure object from the Master Equation.
 
+This is also the safe translation of symmetry-breaking language in decision-like systems. A near-threshold assembly does not need metaphysical indeterminism to produce sharp alternatives. It needs a deterministic basin boundary whose selected side depends on high-dimensional path history, local Noether sea state, and small perturbations near the field-speed or self-hit hinge. The mathematical target is therefore a basin-bifurcation map, not a new source of acausal choice:
+$$
+B_k
+=
+\left\{
+S(t_0):\Phi_{t_0\to t_1}(S(t_0))\in\mathcal{A}_k
+\right\}.
+$$
+Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
+
 ### Chaos and Effective Unpredictability
 
 Because:
@@ -211,7 +221,7 @@ This also prevents a common overreading of branch language. In a quantum compari
 
 Complex assemblies can, however, have **agency** in the compatibilist sense: the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable.
 
-The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. The present chapter uses agency only in the dynamical sense defined above.
+The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. This chapter uses agency only in the dynamical sense defined above.
 
 ### Determinism in This Framework
 
@@ -381,7 +391,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
-> The toy oscillator and action-bracket models are working-draft scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
+> The toy oscillator and action-bracket models are provisional diagnostic scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.

@@ -1,7 +1,7 @@
 # QA: Reach
 
 - id: `here-there-back-spread-03`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-03.png`
 - lesson: Wanting begins a path.
 - geometry: Reaching creates a clear direction from the children toward the ball.
 

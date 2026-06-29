@@ -1,7 +1,7 @@
 # QA: Predict
 
 - id: `again-makes-a-pattern-spread-10`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-10.png`
 - lesson: Patterns support predictions.
 - geometry: A faint open place in the existing pattern suggests where the next path could fit.
 

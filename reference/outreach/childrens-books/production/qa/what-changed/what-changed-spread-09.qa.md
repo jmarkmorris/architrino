@@ -1,7 +1,7 @@
 # QA: Try A Hill
 
 - id: `what-changed-spread-09`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-09.png`
 - lesson: Different places guide motion differently.
 - geometry: Closer-spaced purple trace marks near the top of a low hill make slowing visible.
 

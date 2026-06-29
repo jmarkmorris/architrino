@@ -1,7 +1,7 @@
 # QA: Tick, Tock
 
 - id: `the-message-that-traveled-spread-01`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-01.png`
 - lesson: Events have order.
 - geometry: Two soft sound pulses show tick before tock after.
 

@@ -1,7 +1,7 @@
 # QA: The Message Lab
 
 - id: `the-tiny-transceivers-spread-01`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-01.png`
 - lesson: The story moves from everyday messages to fundamental senders.
 - geometry: A simple tabletop message lab makes tiny red and blue point paths visible.
 

@@ -1,7 +1,7 @@
 # QA: Compare
 
 - id: `roll-turn-again-spread-09`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-09.png`
 - lesson: Two paths can be compared.
 - geometry: The red ball's earlier path and the blue ball's newer path appear side by side as simple dotted curves.
 

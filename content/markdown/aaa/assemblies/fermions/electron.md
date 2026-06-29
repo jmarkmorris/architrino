@@ -2,11 +2,11 @@
 
 ## Purpose
 
-This chapter defines the current electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
+This chapter defines the electron-assembly target for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
-## Current framing
+## Framing
 
-The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. In the current corpus it is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
+The electron is treated as a stable charged fermion assembly with net charge $-e$, persistent identity, and a fully assembled lower-energy configuration relative to the heavier charged lepton excitations. It is the Generation-I charged-lepton reference case for [Noether Braid](../../noether-braid/noether-braid.md), [Particle Masses: Emergent Inertia in the Noether sea](../particle-masses.md), and [Weak Mixing Angle](./weak-mixing-angle.md).
 
 ## Axial Inventory and Generation Core
 
@@ -117,4 +117,4 @@ For the electron branch, the gate is conservative: any finite-size or Noether se
 
 ## Status
 
-This page now records the electron ontology target needed by the atomic, quantum, weak-reaction, and precision-lepton chapters. It remains a derivation target until the branch record, medium response, reaction provenance, and detection projection are computed from the master equation rather than inserted as fitted effective data.
+The electron ontology target supports the atomic, quantum, weak-reaction, and precision-lepton chapters. It remains a derivation target until the branch record, medium response, reaction provenance, and detection projection are computed from the master equation rather than inserted as fitted effective data.

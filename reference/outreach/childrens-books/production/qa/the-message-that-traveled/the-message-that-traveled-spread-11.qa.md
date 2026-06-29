@@ -1,7 +1,7 @@
 # QA: Which Message?
 
 - id: `the-message-that-traveled-spread-11`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-11.png`
 - lesson: Different messages share the same idea: begin, travel, arrive.
 - geometry: Several message examples each show begin, travel, and arrive in miniature.
 

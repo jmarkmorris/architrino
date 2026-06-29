@@ -1,7 +1,7 @@
 # QA: The Ball Goes
 
 - id: `nature-remembers-motion-spread-02`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-02.png`
 - lesson: Motion carries the ball from one place to another.
 - geometry: The red ball has moved forward and leaves a faint purple trail behind it.
 

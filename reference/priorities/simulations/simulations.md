@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `tier0_tier1_runs` — The $A_0$ self-root fold/splitting diagnostic now classifies all ready rows as `fold-layer`; the step-fraction controller, event-local fold-layer lock, and macro-stride packet brought the compact fixture under the $10^6$ attempt cap with `963815` retained steps. The May 18, 2026 direct fold-layer-locked one-period runner executed that plan without trajectory abort, preserved the two locked self-root keys in $\mathcal{R}_{\text{lock}}$, and failed closed on state return, root closure, phase closure, speed ordering, center drift, and energy-like speed closure. The new residual-balance ledger shows scalar branch-native relation weights over $B_{\text{self}}$, $B_{\text{partner}}$, and $B_{\text{inter}}$ leave relative acceleration residual about `0.755` against tolerance `0.02`. A May 22, 2026 regenerated corrected one-period packet reproduced the same boundary: default chart policy blocked as `blocked_chart_mode_dominated`; `--omit-modes none` emitted `correction_packet_ready` and `waveform_replay_ready`; the corrected run completed `963815` steps with center drift passing, but still failed closed with state-return residual `0.941735939861014`, root residual `40.11726413905969` against tolerance `0.000001`, phase residual `0.2805922799292434`, speed-ordering residual `1.5917288827774456`, energy-like speed residual `0.8721694814657742`, refined-basis residual `0.4262791208762879`, and I-phase-bin residual `0.3500173344435869`. The pre-rerun branch-chart checker rejects residual-surface splits as hidden fitting; the supported predeclared source declarations `prefit_branch_chart`, `active_roots`, `root_times`, and `corrected_carrier_state` all pass the source declaration guard but fail the held-out residual with `R_xval = 2.4537879974811028`. A low-degree scan over one-, two-, and three-mode subsets of modes `1..7` also fails, with best simple row mode `6` still at held-out residual about `1.094`. The runner now emits a root-transport source record with `512` root rows and `128` retained `I`-receiver inter-layer single-artifact transport slots for the first $J$ / delay shear coordinate. The source-declared coordinate-specific checker passes source, coordinate-construction, and degrees-of-freedom guards, but fails holdout with `R_xval = 1.712369148202459`; diagnostic signed-polarity and mixed M-Jacobian quotients are not source-declared and also fail held-out residual at `1.6156063295193552` and `1.944813346261963`. The root-transport feature-span scanner now tests eight fixed branch-geometric feature families over the same source record and still returns `root_transport_feature_span_no_go`: the best source-declared family is `source_layer_shear` at `1.712369148202459`, and the best diagnostic-only family is `source_layer_DJ_Dtau_no_phase_projection` at `1.2474273873652615`. A residual-spectrum diagnostic over the same sampled forcing reports `I`-layer residual norm `313.09723758998507`, dominant total cyclic mode `6` at energy fraction `0.20679763310995922`, and modes `4..7` carrying about `0.7552232385377363` of the one-sided cyclic energy. A mode-band source-eligibility diagnostic then finds lawful pre-fit source-direction evidence in reciprocal inter-layer transport and corrected-carrier motion: `transport:M:inter_layer:I:mean_D_J` has mode-band fraction `0.9944893706413693`, and `body:I:rel_vel:x` has `0.9353099187288153`. The reciprocal inter-layer branch-equation checker tests the smallest lawful version of that lead with three source channels projected along normalized `I` relative velocity; it passes degrees-of-freedom controls but fails held-out residual with maximum relative residual `1.4057625588588099`, so the source-direction evidence is not rerun authority. The carrier-frame residual spectrum then localizes the same target as primarily radial in the corrected `I` frame under declared linear time alignment, with radial energy fraction `0.5823726218116948` and radial mode-band fraction `0.7984257865887138`. The direct carrier-frame branch-coordinate checker then rules out the smallest source-side deformation ladder: `delta_radius * e_I,r` has maximum held-out residual `1.0492394121933206`, and radial-rate or radial/tangential companions worsen holdout to `1.5341171039338615` or `1.6498611276202226`. The reciprocal carrier-frame projection checker also rules out the remaining same-source projection ladder: radial, tangential, and radial/tangential reciprocal projections all pass degrees-of-freedom controls but fail held-out residual, with best held-out variant `tangential` still at `1.0546122909019986`. The root-loop branch-coordinate checker rules out the immediate two-edge active-root delay/J holonomy coordinate: all checked families fail held-out residual, with best row `tangential/im_loop_curl` still at `1.705996205813595`. The delayed source-direction branch-coordinate checker then rules out the root-specific line-of-action coordinate in the corrected `I` carrier frame: the receiver-polarity-signed `im_delayed_direction` row has the best held-out residual at `1.0408163198841647`, still about `52.0` times tolerance. The same root-transport path now keeps $R_{\mathrm{transport}}$ pending unless `transport_identity_refinement_stable`, `phase_origin_covariance_certified`, and raw-row root-ledger stability are true; the current identity-form source remains `root-transport-identity-not-refinement-stable`. The new `a0-root-transport-refinement-certificate/v1` script can compare two source records by root key and cyclic order without using `transport_id`, and can verify quotient-feature bucket covariance after cyclic reindexing only when the phase shift is declared; auto-detected shifts are diagnostic-only. A May 22, 2026 sidecar, `a0-root-transport-phase-origin-variant/v1`, now re-emits a declared bucket-shift variant from the raw `active_causal_root_ledger` rather than by copying the prior source record. Its first production-shaped pair passes the declared shift-`1` certificate with `matched_root_count = 512`, `feature_bucket_count = 16`, and `max_feature_relative_delta = 6.516707155123344e-15`, while the auto-shift run remains diagnostic-only. The checker now consumes that certificate through `--root-transport-certificate`. A separate `a0-root-ledger-refinement-stability-certificate/v1` discriminator compares `active_causal_root_ledger` rows directly, rejects the same phase-origin sidecar as `phase-origin-variant-not-root-ledger-refinement`, and now consumes a carrier-replay continuation source as non-phase-origin certificate-only root-ledger evidence with `matched_root_count = 512`, `max_field_relative_delta = 4.976849768509301e-7`, and `carrier-root-refinement-J-drift-reported`. Certificate-only root-ledger evidence is reported but is not corrected-rerun authority while the source row still says `root_ledger_stable_under_refinement = false`. The source-declared root-transport coordinate, reciprocal branch-equation, reciprocal carrier-frame projection ladder, root-loop branch-coordinate, delayed source-direction branch-coordinate, and corrected-carrier radial deformation ladder all fail held-out residual, $R_{\mathrm{transport}}$ remains pending, and no corrected rerun is authorized. Current boundary: branch-chart revision checker and anti-overfit coordinate tests may advance as pre-rerun simulation work, but no corrected $A_0$ branch may be promoted as accepted physics until `master-equation-closure` supplies the matching dynamics/branch-chart basis. $\Delta_k$ and eta-ladder persistence remain downstream until corrected one-period residuals pass. Status: `active`. Depends on: none for fail-closed checker work; accepted-branch promotion depends on the matching `master-equation-closure` branch-chart basis.
-2. `field_speed_action_self_hit_scan` — Run the binary-delay approach-to-$c_f$ scan on the same branch rows used for the nested shell braid action-increment packet. Each row must report causal-root multiplicity, active-root identity, minimum accepted Jacobian floor, branch-selection verdict, particle-plus-wake energy functional value and drift under refinement, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), stable-cycle action-increment cluster, and failure code while the branch approaches $c_f$ from below, at the boundary, and from any admitted super-field-speed interval. The scan is the first executable test of the action-spacing and self-hit well-posedness walls: no `candidate_h_recovery` promotion is allowed if root identity changes under refinement, the Jacobian floor collapses, the particle-plus-wake energy row is unbounded or nonconvergent, the Noether status remains `diagnostic-only`, stable increments split without a derived branch-class reason, or the v0 source row cannot bind to a named action-increment row with matching root-ledger and conservation-pullback hashes. Status: `source_row_binding_open; fixture_shape_only_packet_not_source`; execution and artifact hashes remain pending. Depends on: `tier0_tier1_runs`, `eta_positive_package`, and the nested shell braid action-increment protocol.
+2. `field_speed_action_self_hit_scan` — Run the binary-delay approach-to-$c_f$ scan on the same branch rows used for the nested shell braid action-increment packet. Each row must report causal-root multiplicity, active-root identity, minimum accepted Jacobian floor, branch-selection verdict, particle-plus-wake energy functional value and drift under refinement, delayed-Noether status (`action-derived`, `quasi-Noether`, or `diagnostic-only`), stable-cycle action-increment cluster, and failure code while the branch approaches $c_f$ from below, at the boundary, and from any admitted super-field-speed interval. The scan is the first executable test of the action-spacing and self-hit well-posedness walls: no `candidate_h_recovery` promotion is allowed if root identity changes under refinement, the Jacobian floor collapses, the particle-plus-wake energy row is unbounded or nonconvergent, the Noether status remains `diagnostic-only`, stable increments split without a derived branch-class reason, or the v0 source row cannot bind to a named action-increment row with matching root-ledger and conservation-pullback hashes. Status: `source_row_binding_open`; packet-level first failure remains `fixture_shape_only_packet_not_source`, and nearest-candidate readiness fails first at `branch_certificate_ref_missing` for `torque_wake_same_row_diagnostic_family`; execution and artifact hashes remain pending. Depends on: `tier0_tier1_runs`, `eta_positive_package`, and the nested shell braid action-increment protocol.
 3. `convergence_and_provenance` — Publish convergence plots and $\mathbb{U}_{\text{now}}$ provenance logs. Status: `pending`. Depends on: `tier0_tier1_runs`.
 4. `eta_positive_package` — Consolidate the formal $\eta > 0$ existence and continuation package. Status: `pending`. Depends on: `tier0_tier1_runs`.
 5. `hydrogen_gamma_n_record_extraction` — The hydrogen $\Gamma_N$ spectral coefficient-row scan now derives $\Lambda_{ab}$, observer frequency, and replay envelope gap entries from recovered principal labels, `frequency_scale`, and `line_inferred_ln_Gamma_N`; the remaining proof/simulation burden is to derive or bound $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ from the same hydrogen spectral channel ledger, replace the scaffolded static response vector only with a constitutive response row for the same Noether sea cell, and replace the shared line-inferred cadence stretch only with electron-envelope gaps from the hydrogen branch. A May 22, 2026 inspection found no declared native $\Theta_{\mathrm H,\mathrm{spec}}^{(\ell)}$ artifact in scope, so no scaffold input is safe to replace yet. Residual recoil, hyperfine structure, photon-channel propagation, and source-branch effects must remain outside $\Gamma_N$ unless a declared residual budget carries them. Status: `pending`. Depends on: `hydrogen_fermion_sea_boundary` and Noether sea response rows from `mass-map`.
@@ -331,6 +331,24 @@ Current live v0 status remains `source_row_binding_open` until a non-fixture
 action-increment packet emits matching root-ledger and conservation-pullback
 hashes.
 
+Shared H39 provider boundary, 2026-06-28. The
+[branch-provider evidence report](../solver/branch-provider-evidence-report.md)
+maps the H39 aggregate-$P$ construction attempt to this rank as
+`target_only_not_accepted_source`. Its
+`branch_provider_candidate_source_contract_readout/v0` verifies the five-cell
+boundary replay and now records a non-authorizing source-provenance refinement:
+the signed-radius subinterval primitive, projected source-term producer-image
+fields, and lambda terminal witness branch intervals are present, but
+source-map provider-object branch intervals remain unavailable. The shared
+report still returns
+`provider_verdict=same_domain_branch_provider_missing` and
+`first_failure=accepted_non_fixture_source_missing`. The remaining H39
+blockers are `source_term_provider_directed_source_certification_open` and
+`source_term_provider_term_width_realization_open`; rank 2 also still requires
+`conservation_pullback_hash` on the same accepted transition source. Therefore
+this readout is not an `accepted_transition_source` and does not authorize
+`candidate_h_recovery`.
+
 Minimum non-fixture `accepted_transition_source` object:
 
 | Field | Required content | Fixture packet reading |
@@ -342,6 +360,136 @@ Minimum non-fixture `accepted_transition_source` object:
 | `action_increment_row_id` | Named non-fixture action-increment row with accepted status. | fixture row only |
 | `negative_control_ref` | Fail-closed control showing mismatched root or conservation hashes reject. | absent |
 | `candidate_h_recovery_vote` | May be emitted only after every row above binds on the same retained branch record. | not authorized |
+
+Current source-binding report object: `field_speed_action_self_hit_scan_source_binding_report/v0`.
+It now embeds the priority-only acceptance artifact
+`field_speed_action_self_hit_scan_source_acceptance_contract/v0`, which orders
+the same-record source requirements and reports the first blocking field before
+any scan output is interpreted.
+
+| Field | Current reading | Verdict |
+| --- | --- | --- |
+| `transition_source_ref` | `scripts/nested-shell-braid/fixtures/action-increment-packet/` | first required source field; blocked by `fixture_shape_only_packet_not_source` |
+| `action_increment_row_id` | fixture row `fixture-B12-B13-a` | blocked by `fixture_action_increment_row_not_source` |
+| `branch_certificate_ref` | absent | next branch-ownership blocker after a non-fixture source exists |
+| `action_row_hash` | fixture row `fixture-B12-B13-a` now hashes to `sha256:0f6bab71d0aec1882afcbd9dcbe40f97f19a90ef928f85f392ed5602160d7bb9`; absent for a non-fixture row | `source_row_binding_open` |
+| `root_ledger_hash` | absent for live binding | `source_row_binding_open` |
+| `conservation_pullback_hash` | absent for live binding | `source_row_binding_open` |
+| `source_verdict` | fixture rows have `status=accepted`, but `promotion_status=fixture-shape-only` | `diagnostic_rejected_endpoint_source` for closure purposes |
+| `negative_control_ref` | absent | fail-closed hash mismatch control still required |
+| `candidate_h_recovery_vote` | not authorized | no simulation vote |
+
+Executable report status, 2026-06-28:
+`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-report.mjs`
+emits and validates the source-binding report object. Running it on the fixture
+packet with `--branch-row-id fixture-B12-B13-a` produces
+`source_verdict=diagnostic_rejected_endpoint_source`,
+`first_failure=source_row_binding_open`,
+`first_required_source_field=transition_source_ref`,
+`first_missing_or_rejected_failure_code=fixture_shape_only_packet_not_source`,
+`source_acceptance_contract.status=blocked`, and
+`candidate_h_recovery_vote=not_authorized`.
+
+The fixture packet, blocked source-contract fixture, and rank-2 transition-source
+attempt at
+`scripts/nested-shell-braid/fixtures/action-increment-source-contract-rank2-transition-source-attempt.json`
+can test parser, failure-code, and source-binding behavior, but they do not
+satisfy `accepted_transition_source`. The rank-2 attempt intentionally provides
+a populated transition shell with no accepted branch-state source; the checker
+therefore fails at the accepted-source boundary while keeping the benchmark
+policy clean. The first executable closure move is a non-fixture action-increment
+row with a retained branch certificate, matching active-root and
+conservation-pullback hashes, and a failing negative control for mismatched
+hashes.
+
+Candidate-intake scanner status, 2026-06-28:
+`scripts/nested-shell-braid/field-speed-action-self-hit-scan-source-binding-candidate-intake-report.mjs`
+emits `field_speed_action_self_hit_scan_source_candidate_intake_report/v0`.
+It enumerates four current candidate paths and six rank-2 candidate rows: the
+fixture action-increment packet, the rank-2 transition-source attempt, the
+blocked source-contract fixture, and the three branch-provider manifest rows
+that feed rank 2 (`field-speed-action-increment-fixture-source`,
+`tri-binary-torque-wake-same-row-diagnostic`, and
+`h39-aggregate-p-provider-preaggregation-construction-attempt`). The report
+finds zero accepted transition-source candidates, returns
+`report_status=source_row_binding_open`,
+`first_candidate_failure_code=fixture_shape_only_packet_not_source`, and keeps
+`first_required_source_field=transition_source_ref`. The source-contract attempt
+fails as `accepted_transition_source_absent_in_current_repo_pool`; the
+branch-provider rows fail as `accepted_non_fixture_source_missing` because they
+are fixture, proxy-diagnostic, or target-only surfaces rather than non-fixture
+same-record action-increment sources. This scanner is priority-only candidate
+intake: it does not run `field_speed_action_self_hit_scan/v0`, does not accept
+synthetic or proxy rows, and keeps `candidate_h_recovery_vote=not_authorized`.
+It now embeds
+`field_speed_action_self_hit_scan_nearest_candidate_provenance_readiness_audit/v0`;
+the audit also finds no non-fixture `accepted_transition_source`, selects
+`torque_wake_same_row_diagnostic_family` /
+`tri-binary-torque-wake-same-row-diagnostic` as the strongest current partial,
+records present same-row `active_root_ledger_hash`,
+`conservation_pullback_hash`, and `negative_control_ref`, and names
+`branch_certificate_ref` as the first missing required field. The smallest next
+evidence object is one retained active-row `branch_certificate_ref` for
+`torque_wake_same_row_diagnostic:index-ratio:f2`, preserving the sampled active
+row ids before emitting the non-fixture `accepted_transition_source_ref`; this
+audit is not acceptance and does not authorize `candidate_h_recovery`.
+Its embedded `field_speed_action_self_hit_scan_source_family_delta_scout/v0`
+adds a delta report over six current source families: action-increment packet,
+action-increment source contracts, rank-2 branch-provider rows, torque/wake
+same-row diagnostic, moving-retained-branch certificate candidates, and the
+rank 2 / rank 6 branch-source join checker. The scout also finds zero accepted
+transition-source families and keeps the overall first failure at
+`source_row_binding_open`. The closest partial family is the torque/wake
+diagnostic: it carries `action_increment_row_ref`,
+`active_root_ledger_hash`, `conservation_pullback_hash`, and
+`negative_control_ref`, but fails at `branch_certificate_ref_missing` and
+still lacks `retained_branch` plus an accepted non-fixture
+`action_increment_row_id`. The exact next rank-2 source object is therefore a
+branch-emitted non-fixture action-increment transition row owned by a retained
+`branch_certificate_ref`, with same-row `root_ledger_hash`,
+`conservation_pullback_hash`, and `negative_control_ref`.
+
+Related torque/wake diagnostic status, 2026-06-28:
+`scripts/nested-shell-braid/torque-wake-same-row-diagnostic-report.mjs` emits
+and validates `torque_wake_same_row_diagnostic_report/v0` for the angular
+momentum same-row payload. The current fixture records sampled same-row
+force/partition/torque/wake ids on `selected_case_id=index-ratio:f2`, but it
+returns `first_failure=branch_certificate_ref_missing`, keeps
+`same_record_source_binding=false`, and records the retained-row upgrade as
+missing. Its embedded
+`torque_wake_branch_certificate_ref_source_availability_audit/v0` is the
+retained active-row readiness audit for the rank 2 / rank 6 route: source-report
+identity and sampled same-row binding pass, but
+`retained_active_row_branch_certificate_ref_found=false` and the first retained
+active-row failure is `branch_certificate_ref_missing`. The smallest next
+evidence object is one retained active-row `branch_certificate_ref` for
+`torque_wake_same_row_diagnostic:index-ratio:f2` with
+`same_retained_active_row_ids` equal to the sampled active rows,
+`retained_branch=true`, accepted branch-chart and moving-certificate refs,
+same-record branch-chart identity fields, active-root ledger hash,
+conservation-pullback hash, and negative control. The audit emits this as a
+machine-readable `next_retained_active_row_evidence_object`: the required
+`same_retained_active_row_ids` are exactly the three sampled active rows, the
+same-record branch-chart fields are enumerated, and references with
+`priority-only:`, `fixture:`, `proxy:`, `candidate:`, or `synthetic:` status are
+explicitly rejected. It is useful dependency-routing evidence only; it is not an
+`accepted_transition_source` and cannot authorize `candidate_h_recovery`.
+
+Rank 2 / rank 6 branch-source join status, 2026-06-28:
+`scripts/nested-shell-braid/rank2-rank6-branch-source-join-report.mjs` compares
+the current rank 2 source-binding report, rank 6 moving-certificate candidate,
+and torque/wake same-row diagnostic. The fixture set passes only the torque/wake
+same-row id check; it returns `first_failure=source_row_binding_open` because no
+non-fixture accepted transition source is present. Its
+`same_record_provider_intake` now names the needed same-record fields:
+non-fixture `accepted_transition_source`, accepted branch chart,
+`moving_retained_branch_certificate/v0`, common branch certificate, active-root
+ledger identity, conservation-pullback hash, and a common negative-control
+reference. It also records bounded-speed live ledger, Photon Gate A, Lorentz
+rows, and observer export as missing or not authorized, and its negative-control
+guard rejects cross-report or synthetic mismatches. The report keeps
+`candidate_h_recovery`, `moving_retained_branch_certificate`, bounded-speed live
+ledger, Photon Gate A, Lorentz rows, and observer export unauthorized.
 
 The remaining promotion blockers are executable, not editorial: no current artifact has shown same-row active-root identity under refinement, a positive Jacobian floor through the approach-to-$c_f$ scan, bounded particle-plus-wake energy on the retained branch rows, delayed-Noether status above `diagnostic-only`, stable one-cluster $\Delta I_{\mathrm{ME}}$ behavior, and a failing negative control with content hashes.
 

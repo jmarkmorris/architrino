@@ -43,7 +43,8 @@ schema for the live breather-certificate frontier.
 A compatible external proof-grade derivation schema must provide all eight
 fields for each admitted separator or row slot. Partial input may be staged as a
 candidate, but it cannot satisfy an obligation slot until every required field
-below is present and bound to the same record.
+below is present, bound to the same record, and accompanied by accepted external
+provenance under this contract.
 
 | Required field | Proof-grade meaning | Fail-closed rejection |
 | --- | --- | --- |
@@ -63,11 +64,16 @@ For a separator or row slot $s$, define the slot predicate
 
 1. `s` is one of the 124 declared external-input obligation slots.
 2. All scope locks in this contract match the candidate object.
-3. The candidate object supplies the eight required fields for `s`.
-4. The `proof_grade_derivation_schema_statement` proves the
+3. The candidate object carries accepted external provenance: non-local
+   `provenance_class=external_proof_grade_derivation_schema_candidate`, matching
+   `source_ref`, matching `acceptance_contract_ref`,
+   `received_for_schema_validation=true`, and false local/self-authored
+   provenance markers.
+4. The candidate object supplies the eight required fields for `s`.
+5. The `proof_grade_derivation_schema_statement` proves the
    rule-kernel derivation payload schema for `s` rather than merely naming the
    target or recording current-pool absence.
-5. The `non_reinterpretation_guard` rejects every fail-closed source already
+6. The `non_reinterpretation_guard` rejects every fail-closed source already
    rejected by the current-pool absence classifiers.
 
 Only then may the slot move from `external_input_required` to
@@ -81,7 +87,7 @@ the received schema constructs a rule-kernel derivation payload.
 | --- | --- | --- |
 | External proof-grade derivation schema satisfying this contract | Continue | This is the direct missing input named by the live blocker. |
 | External `source_packet_acceptance_rule_derivation_proof` object containing an embedded compatible schema and payload proof | Continue after schema-field extraction | It may satisfy the same frontier only if it exposes the eight schema fields and the rule-kernel derivation payload target binding per slot. |
-| Current-pool rescan without new input | Reject as non-advancing | The pool has already been scanned at 271 certificate JSON files and 37 / 37 accepted-status lane files fail-closed. |
+| Current-pool or local-pool rescan without new input | Reject as non-advancing | The current-pool classifier already scanned 271 certificate JSON files and 37 / 37 accepted-status lane files fail-closed; the `Sigma_hf_01` provenance replay separately screens 282 local proof-program JSON paths as attempted candidate refs and rejects 282 / 282 by provenance, including 1 field-complete local decoy. |
 | Constructor-basis or formation-rule lane | Park unless proof-grade constructor-basis or formation-rule derivation is supplied | The constructor-basis handoff remains stopped at 0 predicate-symbol, argument-sort, judgment-codomain, endpoint-localization, soundness, derivation, formation-rule, declaration, row-consumption, and branch-chart fields. |
 | Fold-layer source-field or separator-field lane | Park unless it supplies the accepted-status schema fields above | Existing fold-layer field packets preserve source material but do not construct the proof-grade derivation schema required by the current blocker. |
 | Primitive/source-packet acceptance decision | Operator/developer decision required | This would be a proof-rule or primitive-acceptance decision, outside this priority-only contract. |
@@ -95,7 +101,44 @@ It freezes the separator slot and 11 row slots for `Sigma_hf_01`, preserving
 0 rule-kernel derivation payloads, 0 consumed rows, `preledger_pass=false`,
 `updates_live_ledger=false`, and no branch-chart authorization.
 
+The target-only
+[missing proof-grade fields derivation target](sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+narrows the local 5 / 8 state to three required proof-grade predicates for
+`Sigma_hf_01`: `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`. It is not input received and does
+not authorize schema-validation intake.
+
+The
+[Sigma_hf_01 local proof-program pool non-reclassification classifier](sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the current fail-closed local-pool check. It applies the same eight-field
+intake predicate to 282 local certificate JSON objects and finds 0 accepted
+external provenance records, 0 schema-validation intake candidates, 0 local
+objects reclassified as external schema, 1 local record with 8 / 8 required
+fields but no external provenance, and 0 external schema inputs received. It
+records only that the local pool cannot satisfy the boundary; it does not
+create a proof-grade schema or move any slot into validation intake.
+
+The
+[Sigma_hf_01 external-label decoy negative control](sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the field-complete local boundary test. It supplies external-looking
+candidate labels and all eight schema fields, but its intake record keeps
+`external_provenance_accepted=false`,
+`candidate_external_schema_received=false`, and
+`slot_result=external_input_required` because the provenance predicate is not
+accepted.
+
+The
+[Sigma_hf_01 external provenance contract replay](sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is the current provenance-boundary check. It replays 282 local JSON paths as
+attempted candidate refs, rejects all 282 by provenance, records 1
+field-complete but provenance-rejected record, accepts 0 external provenance
+records, authorizes 0 schema-validation intake candidates, and keeps the first
+failure at
+`external_schema_provenance_required_before_schema_validation_intake`.
+
 The next live proof-program action is not another 124-slot scan. It is to
-receive or construct one candidate external schema for the `Sigma_hf_01`
-separator slot and test the eight required fields above. If the separator slot
-cannot satisfy those fields, the 11 row slots remain parked.
+receive one non-local candidate external schema for the `Sigma_hf_01`
+separator slot with accepted external provenance and the eight required fields
+above. If the separator slot cannot satisfy those fields, the 11 row slots
+remain parked.

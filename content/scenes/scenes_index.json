@@ -1754,6 +1754,86 @@
       "id": "outreach",
       "name": "Outreach",
       "path": "content/scenes/outreach/outreach.json"
+    },
+    {
+      "id": "outreach__comics__group_project_assumption",
+      "name": "Group Project Assumption",
+      "path": "content/scenes/outreach/comics/group_project_assumption.json"
+    },
+    {
+      "id": "outreach__comics__new_theory_same_budget",
+      "name": "New Theory Same Budget",
+      "path": "content/scenes/outreach/comics/new_theory_same_budget.json"
+    },
+    {
+      "id": "outreach__comics__office_hours_for_a_claim",
+      "name": "Office Hours For A Claim",
+      "path": "content/scenes/outreach/comics/office_hours_for_a_claim.json"
+    },
+    {
+      "id": "outreach__comics__show_the_residuals",
+      "name": "Show The Residuals",
+      "path": "content/scenes/outreach/comics/show_the_residuals.json"
+    },
+    {
+      "id": "outreach__comics__citation_needed",
+      "name": "Citation Needed",
+      "path": "content/scenes/outreach/comics/citation_needed.json"
+    },
+    {
+      "id": "outreach__comics__observable_edge_receipt",
+      "name": "The Observable Edge Receipt",
+      "path": "content/scenes/outreach/comics/observable_edge_receipt.json"
+    },
+    {
+      "id": "outreach__comics__acknowledgements_in_architrinos_room",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json"
+    },
+    {
+      "id": "outreach__comics__birthday_cake_for_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json"
+    },
+    {
+      "id": "outreach__comics__candidate_not_a_throne",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/candidate_not_a_throne.json"
+    },
+    {
+      "id": "outreach__comics__first_footage_not_birth_certificate",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json"
+    },
+    {
+      "id": "outreach__comics__first_page_is_not_the_beginning",
+      "name": "First Page Problem",
+      "path": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json"
+    },
+    {
+      "id": "outreach__comics__four_theories_one_oval",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/four_theories_one_oval.json"
+    },
+    {
+      "id": "outreach__comics__old_alchemy_new_apparatus",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json"
+    },
+    {
+      "id": "outreach__comics__present_has_an_inbox",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/present_has_an_inbox.json"
+    },
+    {
+      "id": "outreach__comics__we_need_to_talk",
+      "name": "We Need To Talk",
+      "path": "content/scenes/outreach/comics/we_need_to_talk.json"
+    },
+    {
+      "id": "outreach__comics__what_counts_as_evidence",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/what_counts_as_evidence.json"
     }
   ]
 }

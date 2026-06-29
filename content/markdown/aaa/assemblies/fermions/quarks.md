@@ -2,11 +2,11 @@
 
 ## Overview
 
-This chapter collects the current quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
+This chapter collects the quark catalog for $\mathbb{A}\mathbb{A}\mathbb{A}$ in one place. The aim is narrower than a full QCD derivation. It is to state, in a single canonical reference, how the six quark flavors are built from the nested shell braid program, how their axial patterns encode charge, how color is assigned, how many architrinos each flavor contains, and what a gluon is allowed to do to a quark state.
 
 At the substrate level, a quark is a Noether braid assembly with an axial layer. The core fixes generation tier and matter chirality. The six-site axial layer fixes electric charge and the weak-active axial pattern. Color then appears when one axis is exceptional relative to the other two. At the effective level this reproduces the quark triplet structure of the Standard Model and supplies the coupling channel for gluons.
 
-Illustrative diagrams can be added later. For now the chapter uses axis strings and tables so the catalog is explicit without waiting on artwork.
+The chapter uses axis strings and tables so the catalog is explicit without depending on artwork.
 
 ## Architecture
 
@@ -49,7 +49,7 @@ To describe color and axial geometry compactly, use the three core axes $(H,M,L)
 - $P^- = (-,-)$: an axis whose two polar sites are both electrino.
 - $P^{m} = (+,-)$ or $(-,+)$: a mixed axis with one positrino and one electrino.
 
-In the fully shielded implementation picture currently favored in the repo, each axis contains:
+In the fully shielded implementation picture, each axis contains:
 
 - one neutral source binary, with one orbiting positrino and one orbiting electrino,
 - plus one polar dyad attached to that binary axis.
@@ -92,7 +92,7 @@ $$
 Q = \frac{2-4}{6}e = -\frac{1}{3}e
 $$
 
-The down-type sector admits two currently allowed axis-pattern families:
+The down-type sector admits two allowed axis-pattern families:
 
 1. Family I:
    one axis of type $P^+$ and two axes of type $P^-$, i.e. permutations of
@@ -105,7 +105,7 @@ The down-type sector admits two currently allowed axis-pattern families:
    (P^-,P^{m},P^{m})
    $$
 
-Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The current corpus does not assign $d$, $s$, and $b$ to separate families as a settled rule.
+Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The catalog does not assign $d$, $s$, and $b$ to separate families as a settled rule.
 
 ### Right-handed singlet bookkeeping
 
@@ -225,7 +225,7 @@ $$
 
 The practical advantage of this rule is that it closes the quark-sector wheel without inventing a separate anti-braid lookup system. Once the pro-braid sector is specified, the anti-braid sector follows by charge conjugation plus the handedness swap in weak exposure.
 
-This remains a conjectural bookkeeping layer derived by reverse engineering from the current weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
+This remains a conjectural bookkeeping layer derived by reverse engineering from the weak-coupling pictures. It should not yet be treated as a proved weak-sector theorem.
 
 ### Electroweak-plane embedding (conjectural map to the standard diagram)
 
@@ -392,7 +392,7 @@ In the baryon picture used elsewhere in the repo, a color singlet is a closed 9-
 
 In this framework, a gluon is not treated as a primitive point particle added on top of the quarks. It is an emergent axis-reconfiguration ribbon or braid segment running along a color flux tube in the Noether sea. Its job is to transfer color phase and axis exceptionality between Noether braids while preserving the quark inventory that defines flavor and electric charge.
 
-The more detailed strong-sector picture remains in [gluons.md](../bosons/gluons.md) and [color-charge-su3.md](./color-charge-su3.md). The present chapter only states the coupling rules required by the quark catalog.
+The more detailed strong-sector picture remains in [gluons.md](../bosons/gluons.md) and [color-charge-su3.md](./color-charge-su3.md). This chapter only states the coupling rules required by the quark catalog.
 
 ### Working vortex picture
 
@@ -455,9 +455,9 @@ The catalog uses the following working rules:
 
 ## What is fixed and what remains open
 
-### Fixed by the current architecture
+### Fixed by the Architecture
 
-The following parts of the quark catalog are already fixed strongly enough to be treated as canonical in the present writeup:
+The following parts of the quark catalog are fixed strongly enough to be treated as canonical:
 
 - up-type axial count $5P,1E$,
 - down-type axial count $2P,4E$,
@@ -477,7 +477,7 @@ Several important derivations are not yet closed and should remain marked as ope
 - whether captive axial-potential swapping inside coupled vortices is the correct microscopic picture of gluon exchange,
 - explicit diagrammatic rendering of the six quark geometries.
 
-That boundary matters. The current chapter is a canonical catalog, not a claim that the full quark-sector closure is complete.
+That boundary matters. This chapter is a canonical catalog, not a claim that the full quark-sector closure is complete.
 
 ## Cross-links
 

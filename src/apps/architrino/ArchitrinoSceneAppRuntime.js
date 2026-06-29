@@ -80,11 +80,11 @@ import {
 } from "../../runtime/SceneLabelSizingRuntime.js";
 import { resolveSharedSceneSphereRadius } from "../../runtime/SceneSphereSizingRuntime.js";
 import { resolveCenterContextDescriptor } from "../../runtime/SceneCenterContextRuntime.js";
-import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js";
+import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js?v=2026-06-28-historical-context-single-ring";
 import {
   RING_LAYOUT_DEFAULTS as ringLayoutDefaults,
   getRingGuardBand,
-} from "../../runtime/RingLayoutRuntime.js";
+} from "../../runtime/RingLayoutRuntime.js?v=2026-06-28-historical-context-single-ring";
 import { createTransitionEngine } from "../../runtime/TransitionEngine.js";
 import { SceneRepository } from "../../services/SceneRepository.js";
 import { SceneIndexService } from "../../services/SceneIndexService.js";
@@ -6838,7 +6838,7 @@ function appendCacheBust(path) {
 }
 
 if (hydePeriodicArtwork) {
-  hydePeriodicArtwork.src = appendCacheBust("content/assets/hyde_periodic_table.svg");
+  hydePeriodicArtwork.src = appendCacheBust("content/assets/images/nuclear/hyde-periodic-table-rsvg-friendly.svg");
 }
 
 async function resolveMarkdownFileSize(path) {

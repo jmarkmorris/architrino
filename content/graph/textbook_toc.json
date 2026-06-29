@@ -1000,10 +1000,10 @@
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Event-driven radial-transport + per-hit EOM (current canonical method)",
+                    "title": "Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)",
                     "markdownPath": "content/markdown/aaa/validation/simulations/action-energy/action-model.md",
-                    "markdownSection": "Event-driven radial-transport + per-hit EOM (current canonical method)",
-                    "sectionKey": "event driven radial transport per hit eom current canonical method",
+                    "markdownSection": "Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)",
+                    "sectionKey": "event driven radial transport per hit eom canonical method",
                     "headingLevel": 2
                   },
                   {
@@ -1800,10 +1800,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Current Status",
+                "title": "Status",
                 "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Current Status",
-                "sectionKey": "current status",
+                "markdownSection": "Status",
+                "sectionKey": "status",
                 "headingLevel": 2
               }
             ]
@@ -5464,10 +5464,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Current Framing",
+                "title": "Framing",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/molecular-geometry.md",
-                "markdownSection": "Current Framing",
-                "sectionKey": "current framing",
+                "markdownSection": "Framing",
+                "sectionKey": "framing",
                 "headingLevel": 2
               },
               {
@@ -9352,6 +9352,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "2026-06-28 Comparator and AAA Rescore Notes",
+                "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
+                "markdownSection": "2026-06-28 Comparator and AAA Rescore Notes",
+                "sectionKey": "2026 06 28 comparator and aaa rescore notes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "2026-06-26 Assessment Notes",
                 "markdownPath": "content/markdown/aaa/validation/closure-scorecard.md",
                 "markdownSection": "2026-06-26 Assessment Notes",
@@ -12645,14 +12653,6 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Timeline of Near Misses",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Timeline of Near Misses",
-                "sectionKey": "timeline of near misses",
                 "headingLevel": 2
               },
               {

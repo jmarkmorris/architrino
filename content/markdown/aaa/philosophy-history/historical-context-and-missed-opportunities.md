@@ -65,13 +65,13 @@ Template conformance test protocol for each episode section:
 4. Confirm `Relation to` $\mathbb{A}\mathbb{A}\mathbb{A}$ is classified as direct, partial, cautionary, or open.
 5. Confirm a concrete closure criterion is stated under `What Would Count As Recovery`.
 
-## Timeline of Near Misses
+### Timeline of Near Misses
 
-### Overview
+#### Overview
 
 **Episode:** Timeline of Near Misses. **Short Name:** Near-Miss Timeline. **Period:** 1687 through the 2020s across mechanics, electrodynamics, relativity, quantum theory, field theory, and cosmology. The near-miss thesis of this section is synthetic rather than local: the history of physics contains repeated moments where substrate-first or assembly-first interpretation was available in principle, but a different narrative lock-in achieved dominance. The point of the timeline is not to homogenize those episodes. It is to show that the same interpretive pattern recurs under different technical conditions.
 
-### Where The Opening Appeared
+#### Where The Opening Appeared
 
 What physics already had at each moment was never trivial. Newtonian mechanics supplied exact time and lawful dynamics. Maxwellian electrodynamics supplied finite propagation and wave structure. Lorentz and the Michelson-Morley era supplied transformation structure compatible with emergent invariance. General relativity supplied metric closure of gravitation. Quantum theory supplied rich statistics with unresolved outcome structure. Renormalized field theory supplied predictive control with ultraviolet discomfort. Precision cosmology supplied long-baseline observation with increasingly layered inference.
 
@@ -98,27 +98,27 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 | 2000s-2020s (Dark matter null detections vs gravity evidence) | Strong gravitational evidence, weak direct particle confirmation | Neutral assembly sectors + medium response hybrid possibilities | WIMP-first then piecemeal model proliferation delayed unified substrate reinterpretation |
 | 2010s-2020s (Hubble and $S_8$ tensions) | Persistent background-vs-growth mismatches | One medium-history explanation for both expansion and growth channels | Tensions were often treated as separate parameter patches instead of shared ontology failures |
 
-### What Current Physics Still Gets Right
+#### What Current Physics Still Gets Right
 
 What still works across the timeline is substantial. The victorious interpretations were often locally rational because they enabled calculation, unification, and empirical progress. Special relativity simplified kinematics and disciplined inertial reasoning. General relativity delivered precise gravitational predictions. Copenhagen-style quantum practice stabilized a workable formal culture. Renormalization allowed quantum field theory to become one of the most successful predictive structures in science. Precision cosmology organized immense observational archives into tractable models.
 
-### Where Interpretation Locked In
+#### Where Interpretation Locked In
 
 The recurring lock-in mechanism was not stupidity or conspiracy. It was explanatory triage under real pressure. Physics typically favored the interpretation that preserved computation, reduced visible metaphysical burden, and integrated fastest with active research practice. When an unobservable substrate and an elegant effective principle competed, the effective principle usually won because it was cleaner, more portable, and easier to mathematize.
 
-### What Was Left Unfinished
+#### What Was Left Unfinished
 
 What was occluded was not a finished architrino theory waiting to be discovered. What was occluded was the willingness to keep the substrate question open and active. Once effective variables were promoted to ontology, the burden of proof for deeper constitutive interpretation became culturally much heavier. The unfinished residue is therefore historical process guidance: strong formal success can close inquiry around the wrong layer.
 
-### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
+#### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive** at the level of pattern recognition. Transition relevance is high because the timeline shows that repeated local rationality can still produce long-term ontological lock-in. The lesson is not that history guarantees the architrino view. It is that history repeatedly rewarded formal closure before constitutive closure.
 
-### Recovery Target
+#### Recovery Target
 
 The long-term relevance of this section is as permanent process guidance. Recovery would consist in reopening these episodes with modern constraints and asking, case by case, whether a substrate-first reinterpretation can now do empirical work that earlier versions could not. The timeline is justified only if it sharpens present derivation targets rather than serving as retrospective mythology.
 
-### Compositeness Programs as Contrast, Not Precursor
+#### Compositeness Programs as Contrast, Not Precursor
 
 Another historical pattern worth naming explicitly is the recurring attempt to replace Standard Model finality with some deeper compositeness or reductionist layer. Preon and rishon models, early quark-lepton compositeness proposals, technicolor, extended or walking technicolor, composite-Higgs programs, partial compositeness, top-condensation ideas, and topological braid-style schemes all belong to that broad family. Their historical importance is real, but it is mostly historical and contrastive rather than directly preparatory for $\mathbb{A}\mathbb{A}\mathbb{A}$.
 

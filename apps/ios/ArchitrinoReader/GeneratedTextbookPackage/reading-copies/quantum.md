@@ -27,7 +27,7 @@ This page is the entry hub for the quantum branch of $\mathbb{A}\mathbb{A}\mathb
 - **Symmetry, holonomy, and index ledger:** [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) owns parity/time-reversal antiunitary benchmarks, Berry-phase/Chern-number holonomy checks, and supersymmetric-index comparison guardrails.
 - **Spin-statistics / exchange ledger:** [fermi-dirac-and-bose-einstein-statistics.md](../../../../markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md), [Nested Shell Braid Geometry](../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [Quantum Operator Mapping](../../../../markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md) own the route from 3D volumetric exclusion to fermionic antisymmetry and from coherent 2D support to bosonic symmetric occupation. Fermionic exchange may consume the spinor label only from the same retained non-gauge ordered-frame row that passes the $2\pi/4\pi$, gauge-control, and angular-momentum checks in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md).
 - **Spin, measurement, and Bell ledger:** [measurement-ontology.md](../../../../markdown/aaa/quantum/measurement-ontology.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response), [Bell's Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md), and [Entanglement and Nonlocality](../../../../markdown/aaa/philosophy-history/theory-bridges/entanglement-nonlocality.md) own the lifted Stern-Gerlach response, pair-provenance joint law, measurement-independence, no-signaling, and product-screening audits. The current Bell no-go is sharper than a gate: two independent one-wing threshold-pullback kernels over a setting-independent source measure imply the CHSH bound, and exact singlet recovery requires $\Delta_{\mathrm{prod}}\ge(\sqrt2-1)/8$ in the per-cell residual normalization. Bell closure therefore requires a derived non-product joint response or non-restartable provenance compression, while spinor, exchange, weak, and fermion-metric consumers must share the same retained spinor-label pullback record.
-- **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is now an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
+- **Photon Gate A/B/C ledger:** [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface) owns the photon-channel theorem scaffold, while [Reaction-Cosmology Provenance Ledger](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md#photon-closure-gates) records the Gate A/B/C acceptance filters. Gate B is the quantum-facing bridge where planar-pair capture must recover Malus' law and the native squared-amplitude rule without replacing the broader Born-rule basin-measure program; it inherits the spin and helicity ledger from [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md) and the source-depletion/recoil/wake/handoff event residual from [Reaction Ledger](../../../../markdown/aaa/validation/reaction-ledger.md). Photon helicity is an event-window projection of that same balance, with error controlled by $\|\mathbf B_{\gamma}^{0}\|/\hbar$. Gate A and Gate C constrain the same photon branch through kinematics, optics, transition vertices, Bose-Einstein occupation behavior, and validated QED limits.
 
 ## Reality Quantum Causality
 
@@ -41,7 +41,7 @@ This chapter addresses the quantum branch at the level of ontology and epistemic
 - Connect the **Decider** and **Switch** case studies to those requirements.
 - Tie the chapter to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Observer Framework](../../../../markdown/aaa/spacetime/observer-framework.md), and [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md).
 
-**Scope note:** This chapter states current $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
+**Scope note:** This chapter states $\mathbb{A}\mathbb{A}\mathbb{A}$ working claims unless a passage is explicitly labeled as a toy model, phenomenological mapping, or closure target.
 
 ### Reality: Absolute vs Operational
 
@@ -169,6 +169,16 @@ Where the exact topology is not proven, we use "-like" and treat the label as a 
 
 The delay-oscillator picture is useful only as an illustration: a control parameter near $v/c_f$ can change stability, and delayed self-hit feedback can create a bifurcation surface in reduced phase space. The canonical claim is limited to that structural point. A proof must replace the toy gain and delay parameters with active causal-root ledgers, Jacobian floors, and a branch-chart closure object from the Master Equation.
 
+This is also the safe translation of symmetry-breaking language in decision-like systems. A near-threshold assembly does not need metaphysical indeterminism to produce sharp alternatives. It needs a deterministic basin boundary whose selected side depends on high-dimensional path history, local Noether sea state, and small perturbations near the field-speed or self-hit hinge. The mathematical target is therefore a basin-bifurcation map, not a new source of acausal choice:
+$$
+B_k
+=
+\left\{
+S(t_0):\Phi_{t_0\to t_1}(S(t_0))\in\mathcal{A}_k
+\right\}.
+$$
+Here $B_k$ is the basin of initial path-history states that resolve to outcome branch $\mathcal{A}_k$ over the declared window. Apparent randomness enters through observer access to the basin boundary, not through a break in absolute-time causality.
+
 #### Chaos and Effective Unpredictability
 
 Because:
@@ -242,7 +252,7 @@ This also prevents a common overreading of branch language. In a quantum compari
 
 Complex assemblies can, however, have **agency** in the compatibilist sense: the capacity to navigate deterministic dynamics in ways that depend on their internal structure and history, making their behavior functionally autonomous and practically unpredictable.
 
-The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. The present chapter uses agency only in the dynamical sense defined above.
+The distinction matters because "free will" is a philosophically loaded term with multiple incompatible definitions. This chapter uses agency only in the dynamical sense defined above.
 
 #### Determinism in This Framework
 
@@ -412,7 +422,7 @@ These are the four points where $\mathbb{A}\mathbb{A}\mathbb{A}$ maps standard q
 >
 > Operationally, the uncertainty principle and measurement back‑action limit how precisely an observer can place the system relative to the basin boundary. This creates a **finite bracket** around the threshold. The step is real; the bracket is epistemic.
 >
-> The toy oscillator and action-bracket models are working-draft scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
+> The toy oscillator and action-bracket models are provisional diagnostic scaffolds, not derivations. The accepted statement is only that a recordable transition must be described by a declared basin boundary, an action-transfer ledger, and a finite uncertainty bracket whose width is derived from the apparatus and unresolved-history measure rather than inserted as primitive randomness.
 
 > ### **Branching Trees Are Epistemic, Not Ontic**
 > Many-worlds diagrams visualize the tree of **possible coarse-grained histories** near a bifurcation. In $\mathbb{A}\mathbb{A}\mathbb{A}$ there is still **one realized trajectory** in absolute time; the "branching" reflects the observer's incomplete knowledge of microstate and wake history. The diagram is a map of epistemic alternatives, not a claim that reality splits.
@@ -1730,7 +1740,7 @@ For fermion spin-$\tfrac{1}{2}$, the standard Stern-Gerlach recovery target is a
 
 The spin operator is therefore a compact generator of the recovered record statistics and basis rotations, not a new substrate degree of freedom. Its eigenlabels are licensed only when the apparatus kernel maps the nested shell braid spin ledger into stable basin records with the standard half-angle probabilities.
 
-The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full nested shell braid spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is now explicit: the angular impulse is the braid-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
+The Stern-Gerlach-like specialization is developed in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#stern-gerlach-like-measurement-response). In that channel, the apparatus potential-gradient geometry couples to the full nested shell braid spin ledger, including layer phases, frequencies, active causal-root branches, self-hit history, and causal-wake angular momentum. The two recorded outcomes are basin resolutions after a finite interaction time. The derived kernels are deterministic pullbacks of the record-forming basins. In the reduced spinor-record chart, the concrete separatrix and unbiased record-phase measure supply the comparison target for spin-$\tfrac{1}{2}$ half-angle probabilities. The Master-Equation origin of the external apparatus terms is explicit: the angular impulse is the braid-centered torque of delayed apparatus cross-root hits, and the record-phase measure is the invariant measure of the locked apparatus record cycle. The remaining substrate closure target is to derive the effective spinor coordinate and verify when the record cycle and apparatus impulse reduce to the ideal chart.
 
 For an apparatus axis $\hat{\mathbf m}$, let $Z_0\in\mathcal Z_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the incoming target-plus-apparatus state, let $\Phi_{T_{\mathrm{int}}}^{\hat{\mathbf m}}$ be the finite interaction map, let $G_{\mathrm{rec}}$ be the successful-record gate, and let $\Sigma_{\hat{\mathbf m}}^{\mathrm{SG}}$ be the signed separatrix functional. The lifted plus basin is
 
@@ -2035,7 +2045,7 @@ For this chapter to count as closed, the repo still needs:
 4. one gravitational which-path distinguishability calculation $\mathcal{D}_{\mathrm{grav}}$ for a massive-superposition apparatus, following the [Massive-Superposition Gravity Validation Packet](../../../../markdown/aaa/validation/massive-superposition-gravity.md),
 5. one bridge from basin weights to observed frequencies.
 
-This chapter now fixes the ontology and interface. The remaining work is derivational, not definitional.
+This chapter fixes the ontology and interface. The remaining work is derivational, not definitional.
 
 ### Falsification Gate
 

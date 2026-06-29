@@ -102,6 +102,36 @@ V_{\mathrm{wake}},
 $$
 The first comparison should ask whether the retained records produce stable hadron-like bound states, confinement-scale growth with separation, and gluon-comparison transition behavior before importing QCD language as ontology. Failure modes include a stable free-quark branch, color leakage outside a singlet ledger, and a fitted force law that does not arise from the retained wake-coupling rows.
 
+The octet check should be explicit. A candidate color-corridor run should start from the naive $3\times3$ axis-coupling space and show that the symmetric singlet is not an open long-range corridor while the eight traceless directions remain as active reconfiguration modes:
+$$
+\mathcal{O}_{8/9}
+=
+\left(
+\mathcal{C}_{3\times3},
+\Pi_{\mathrm{singlet}},
+\Pi_{\mathrm{octet}},
+\mathcal{R}_{\mathrm{open}},
+\mathcal{R}_{\mathrm{conf}}
+\right).
+$$
+Here $\mathcal{C}_{3\times3}$ is the candidate color-coupling inventory, $\Pi_{\mathrm{singlet}}$ and $\Pi_{\mathrm{octet}}$ are the singlet and octet projections, $\mathcal{R}_{\mathrm{open}}$ rejects an independent ninth open mode, and $\mathcal{R}_{\mathrm{conf}}$ checks that the same corridor record still supports confinement-scale behavior. This is a refinement of the existing quark vortex-coupling target, not a new top-level gate.
+
+### Feynman-Diagram To Event-Ledger Translation Target
+
+Feynman diagrams remain a compact observer-level grammar for external particle labels, internal comparison lines, and vertex bookkeeping. The $\mathbb{A}\mathbb{A}\mathbb{A}$ translation target is not to redraw every perturbative diagram as a literal assembly cartoon. It is to choose small curated reactions and bind each external label, exchanged comparison term, and detector-facing output to a finite assembly event ledger:
+$$
+\mathcal{F}_{\mathrm{diag}\to\mathrm{evt}}
+=
+\left(
+\mathcal{E}_{\mathrm{ext}},
+\mathcal{V}_{\mathrm{QFT}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\mathcal{I}_{\mathrm{asm}},
+\mathcal{R}_{\mathrm{lim}}
+\right).
+$$
+Here $\mathcal{E}_{\mathrm{ext}}$ is the external particle-label inventory, $\mathcal{V}_{\mathrm{QFT}}$ is the effective vertex or operator term being recovered, $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ is the finite event ledger, $\mathcal{I}_{\mathrm{asm}}$ records assembly association, dissociation, shielding, and Noether sea exchange, and $\mathcal{R}_{\mathrm{lim}}$ checks the ordinary QFT limit. The first use should be a curated low-complexity channel such as Compton/recoil, beta-family weak reaction, or pair threshold, not raw automatic conversion of the whole PDG catalogue.
+
 ## Scalar-Boson Acceptance Target
 
 The Higgs discovery benchmark is a required Standard Model-facing recovery target, not evidence for primitive Higgs ontology in $\mathbb{A}\mathbb{A}\mathbb{A}$. The acceptance target is a shared scalar residual combining ATLAS mass, inclusive signal strength, channel-rate compatibility, and excluded-scalar-window pressure. The benchmark fails if the native scalar mode is fit only by mass, if production and branching channels require independent tuning, or if extra scalar strength survives in search windows where ATLAS reports no accepted resonance.
@@ -229,6 +259,22 @@ $$
 $$
 
 Here $\Theta$ denotes already-declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch, shielding, exposure, and medium-response data. A benchmark row with a PDG scale factor, asymmetric uncertainty, confidence limit, or mixed statistical/systematic uncertainty must carry that convention into the likelihood or residual definition rather than being symmetrized silently. The 2024 statistics review gives the matching convention for fit reporting: likelihood or $\chi^2$ combinations should state nuisance parameters, covariance/correlation structure, limits and confidence levels, and whether a quoted one-standard-deviation interval comes from $\Delta\chi^2=1$ rather than a literal $68.3\%$ probability statement.
+
+The PDG benchmark also needs event-provenance rows before reaction claims are treated as closed. For a benchmark reaction or inferred particle property, attach a provenance packet
+$$
+\Theta_{\mathrm{PDG,event}}
+=
+\left(
+\mathfrak{L}_{\mathrm{in}},
+\mathfrak{L}_{\mathrm{vis,out}},
+\mathfrak{L}_{\mathrm{hidden/out}},
+\Delta E_{\mathrm{shield/exp}},
+\mathcal{R}_{\mathrm{recoil/rem}},
+\mathcal{D}_{\mathrm{det}},
+\mathcal{U}_{\mathrm{stat/syst}}
+\right).
+$$
+Here the visible outgoing row carries tracks, showers, photons, leptons, hadrons, or reconstructed objects; the hidden/outgoing row carries neutrino, Noether sea, low-apparent-energy, dark-sector, or unresolved medium participation; $\Delta E_{\mathrm{shield/exp}}$ carries shielding and exposure change; $\mathcal{R}_{\mathrm{recoil/rem}}$ carries recoil and remnant balance; and $\mathcal{D}_{\mathrm{det}}$ plus $\mathcal{U}_{\mathrm{stat/syst}}$ preserve detector provenance and uncertainty conventions. A PDG match is therefore not closed by naming products alone.
 
 ## Hydrogen Boundary Closure Object
 

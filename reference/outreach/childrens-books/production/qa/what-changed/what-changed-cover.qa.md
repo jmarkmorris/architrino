@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `what-changed-cover`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-cover.png`
 - lesson: The cover introduces first experimental discipline: one try, one changed setup, and one visible difference.
 - geometry: Two purple paths show an older result and a newer changed result on a simple play surface with a star start, shallow dip, low hill, and flat path piece.
 

@@ -1,7 +1,7 @@
 # QA: The Shadow Walks
 
 - id: `nature-remembers-motion-spread-08`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-08.png`
 - lesson: Motion can be shown in more than one way.
 - geometry: Shadow positions show earlier and current body locations.
 

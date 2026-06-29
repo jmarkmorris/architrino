@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `again-makes-a-pattern-cover`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-cover.png`
 - lesson: The cover introduces repeated rolling paths as a visible pattern without formal diagrams.
 - geometry: Older and newer purple path traces gather into a simple readable pattern with near paths, far paths, and one gentle crossing.
 

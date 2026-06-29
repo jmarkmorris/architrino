@@ -45,11 +45,58 @@ $$
 $$
 where $\omega_{\nu 0}\mathbf{1}$ is the large near-photon common propagation term and $\delta\Omega_{\mathrm{bin}}$ is the residual internal-binary phase operator. The common term is why the neutrino is a high-speed neutral channel. The residual term is why it can oscillate instead of becoming a photon-channel packet.
 
+The exposed-energy row should be kept separate from the internal energy row. For a near-photon neutrino branch,
+$$
+E_{\nu,\mathrm{int}}
+=
+E_{\nu,\mathrm{exp}}(t)
++E_{\nu,\mathrm{sh}}(t),
+$$
+where $E_{\nu,\mathrm{exp}}(t)$ is the weak-channel exposed part and $E_{\nu,\mathrm{sh}}(t)$ is the internally shielded part of the same retained branch. A compact closure target is
+$$
+\mathcal{R}_{\nu,\mathrm{shield}}
+=
+\left\|
+E_{\nu,\mathrm{exp}}(t)
+-
+\langle\psi_\nu(t)|\Pi_W H_{\mathrm{geo}}\Pi_W|\psi_\nu(t)\rangle
+\right\|
++
+\left\|
+\frac{d}{dt}
+\left(
+E_{\nu,\mathrm{exp}}+E_{\nu,\mathrm{sh}}
+\right)
+\right\|,
+$$
+with $\Pi_W$ the weak-exposure projector on the near-photon branch. This does not make the neutrino's mass a hidden-energy label. It states that the tiny observer-facing mass and oscillation signal must come from the same exposed fraction that the weak channel samples, while the total retained internal ledger remains conserved during free propagation.
+
+The three residual internal binaries should remain visible in the closure record before PMNS fitting begins. A resolved near-photon branch may be written schematically as
+$$
+\Theta_{\nu}^{(3B)}(t)
+=
+\left\{
+\left(
+E_{\ell}(t),
+R_{\ell}(t),
+\hat{\mathbf{J}}_{\ell}(t),
+\phi_{\ell}(t),
+\zeta_{\ell W}(t)
+\right)
+\right\}_{\ell=1}^{3},
+\qquad
+E_{\nu,\mathrm{exp}}(t)
+=
+\sum_{\ell=1}^{3}
+\zeta_{\ell W}(t)E_{\ell}(t).
+$$
+Here $E_{\ell}$, $R_{\ell}$, $\hat{\mathbf{J}}_{\ell}$, and $\phi_{\ell}$ record the layer energy, scale, angular-momentum direction, and phase of each residual internal binary, while $\zeta_{\ell W}$ is the weak-channel exposure weight derived from the near-photon geometry. The PMNS map should recover its effective three-mode behavior from this exposure record, not from three independent flavor labels added after propagation.
+
 Plain language: A neutrino is almost a photon-shaped neutral pair, but not quite. Most of its energy is hidden in the near-planar pro/anti lock. As it travels, tiny differences among its internal binaries become visible to weak interactions in different ways; that changing visible part is what the theory uses for oscillation. If the lock completed, the object would be read as a photon-channel packet; because it does not complete, the remaining internal-binary rhythm is still available to the weak channel.
 
 ## Conversion and Reaction-Provenance Questions
 
-The near-photon picture raises natural photon/neutrino conversion questions. The current corpus should treat these as closure questions, not as settled claims.
+The near-photon picture raises natural photon/neutrino conversion questions. The corpus treats these as closure questions, not as settled claims.
 
 - A free photon is not assumed to dissociate directly into neutrinos. Photon-channel energy can participate in neutrino production only if the full reaction provenance closes: energy, momentum, charge/polarity, spin/angular momentum, and medium participation must all balance.
 - A neutrino is not assumed to relock spontaneously into a photon. A photon-channel outcome would require an interaction that relocks the near-planar pro/anti pair into the fully coherent coaxial contra-rotating pro/anti planar-pair mode.

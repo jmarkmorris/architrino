@@ -1,7 +1,7 @@
 # QA: Gentle Push
 
 - id: `roll-turn-again-spread-02`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-02.png`
 - lesson: Motion can begin from a push.
 - geometry: The push begins the red ball's route, with one or two earlier-position dots behind it.
 

@@ -21,7 +21,7 @@ These images are exemplars, not final book plates. Later production should prese
 
 ## Here, There, Back
 
-![Here, There, Back preview](assets/here-there-back-preview.png)
+![Here, There, Back preview](../../../content/assets/images/outreach/childrens-books/here-there-back-preview.png)
 
 Why it works:
 
@@ -39,7 +39,7 @@ Best for:
 
 ## Nature Remembers Motion
 
-![Nature Remembers Motion preview](assets/nature-remembers-motion-preview.png)
+![Nature Remembers Motion preview](../../../content/assets/images/outreach/childrens-books/nature-remembers-motion-preview.png)
 
 Why it works:
 
@@ -57,7 +57,7 @@ Best for:
 
 ## The Message That Traveled
 
-![The Message That Traveled preview](assets/the-message-that-traveled-preview.png)
+![The Message That Traveled preview](../../../content/assets/images/outreach/childrens-books/the-message-that-traveled-preview.png)
 
 Why it works:
 
@@ -75,7 +75,7 @@ Best for:
 
 ## The Tiny Transceivers
 
-![The Tiny Transceivers preview](assets/the-tiny-transceivers-preview.png)
+![The Tiny Transceivers preview](../../../content/assets/images/outreach/childrens-books/the-tiny-transceivers-preview.png)
 
 Why it works:
 
@@ -94,7 +94,7 @@ Best for:
 
 ## The Balance Point
 
-![The Balance Point preview](assets/the-balance-point-preview.png)
+![The Balance Point preview](../../../content/assets/images/outreach/childrens-books/the-balance-point-preview.png)
 
 Why it works:
 
@@ -113,7 +113,7 @@ Best for:
 
 ## The History That Pushes Now
 
-![The History That Pushes Now preview](assets/the-history-that-pushes-now-preview.png)
+![The History That Pushes Now preview](../../../content/assets/images/outreach/childrens-books/the-history-that-pushes-now-preview.png)
 
 Why it works:
 
@@ -132,7 +132,7 @@ Best for:
 
 ## The World We Recover
 
-![The World We Recover preview](assets/the-world-we-recover-preview.png)
+![The World We Recover preview](../../../content/assets/images/outreach/childrens-books/the-world-we-recover-preview.png)
 
 Why it works:
 

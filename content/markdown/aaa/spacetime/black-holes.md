@@ -162,7 +162,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required o
 | :--- | :--- | :--- | :--- |
 | Iron core near instability | Electrons form a dense pressure reservoir rather than atomic orbital distributions. | Iron-group nuclei remain identifiable but no longer release useful fusion support. | The Noether sea sees a compact but still non-horizon matter source through exposed shielded response. |
 | Electron-capture onset | Electron number falls as electrons are consumed by proton channels. | Protons convert toward neutrons, and the composition becomes more neutron-rich. | Atomic-scale electron resonance is no longer the right response picture; the active ledger shifts toward nuclear reaction provenance. |
-| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | The old iron-nucleus closure loses authority; source terms into the Noether sea become fragmented, anisotropic, and rapidly changing. |
+| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | Iron-nucleus closure loses authority; source terms into the Noether sea become fragmented, anisotropic, and rapidly changing. |
 | Neutrino-trapping regime | Lepton accounting must include trapped and escaping neutrino channels. | Matter approaches nuclear density, and free nucleons dominate the local inventory. | Transport is no longer globally transparent: neutrino, stress, heat, and medium-update ledgers must be tracked together. |
 | Bounce or continued collapse | Electrons become secondary to nuclear and neutrino pressure channels. | Nuclear-density stiffening can halt the inner core, or support can fail. | A neutron-star branch remains an extreme non-horizon Noether sea response; continued collapse routes the same record toward the horizon-interface condition. |
 
@@ -718,6 +718,19 @@ This is the sense in which black holes are treated as recycling furnaces in the 
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether sea, then part of what observers infer as compact-object mass can depend on how the surrounding Noether sea loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding Noether sea state" is dynamical rather than absolute.
 
+The corresponding mass statement is an exposure ledger, not a claim that mass can disappear. In a resolved strong-field window the exterior reconstruction must separate incoming energy, compact stored energy, shielding and exposure change, escaped outflow, reabsorbed content, and embedding Noether sea loading. A useful schematic form is
+
+$$
+\Delta\!\left(M_{\mathrm{app}}c_0^2\right)
+=
+\Delta E_{\mathrm{comp,exp}}
++\Delta E_{\mathrm{sea,emb}}
+-\Delta E_{\mathrm{out,esc}}
++R_{M,\mathrm{app}},
+$$
+
+with the hidden rows expanded when a release channel is being tested. The point is not that the compact object violates conservation. The point is that the observer-facing mass label is a projection of a larger strong-field, shielding, release, and medium-coupling record.
+
 ## Mass-Scale Traversal
 
 The exterior-to-core sequence is the same for black holes at every mass scale, but the relative weight of the local gradients, horizon-interface capacity, release channels, and cosmological embedding changes with mass. The useful comparison is therefore not a separate ontology for small, stellar, and supermassive black holes. It is one traversal map evaluated with different effective horizon scales.
@@ -790,6 +803,8 @@ For that reason, the framework uses a release-channel hierarchy:
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
+The same hierarchy also separates two recycling modes. A strong-field site may load the surrounding Noether sea diffusely without producing a narrow visible jet, or it may route part of the same processed content into a collimated assembly, photon-channel, or mixed-sector outflow. These are different channel records. The diffuse mode asks how the ambient Noether sea density, cadence, orientation, and delay-factor state are updated. The collimated mode asks how the horizon interface, disk or boundary layer, and environment select a directed outflow with definite energy, momentum, angular momentum, composition, and lifetime.
+
 The same distinction can be phrased as a sequence.
 
 1. Core processing compresses infalling content into maximum-curvature and alignment regimes.
@@ -810,7 +825,7 @@ Three working possibilities remain live:
 
 ### Jet Production as a Selection Problem
 
-The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In the current framework, that is a channel-selection problem governed by at least four ingredients:
+The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In this framework, that is a channel-selection problem governed by at least four ingredients:
 
 - the degree of horizon-interface alignment;
 - the state of the surrounding Noether sea, including anisotropy and loading;
@@ -818,6 +833,22 @@ The open physical question is not merely whether release occurs, but why some en
 - the ambient matter and effective magnetic-like environment through which the outflow propagates.
 
 This is the disciplined way to keep jets in the chapter: as one important release channel among several, rather than as the whole definition of recycling.
+
+Rotating compact sources add one more bridge variable. In standard comparison language, frame dragging is a metric effect around a rotating mass. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it should be recovered as an effective readout of the same angular-momentum ledger, surrounding Noether sea vorticity, and horizon-interface state that also enter release selection:
+
+$$
+\boldsymbol{\omega}_{\mathrm{eff}}
+=
+\mathcal{W}_{\mathrm{drag}}
+\left(
+\mathbf{J}_{\Omega},
+\nabla\times\mathbf{u}_{\mathrm{sea}},
+\mathcal{A}_{\mathrm{NS}},
+\mathcal{B}_{H}
+\right).
+$$
+
+This does not make the Euclidean void rotate. It states the recovery target: the observer-level dragging of local inertial frames must be reconstructed from compact-source angular momentum, Noether sea flow and anisotropy, and the same interface record used by jets or diffuse release.
 
 Observer-level jet phenomenology supplies three compact constraints on this selection problem. First, powerful collimated outflows are strongly associated with compact accretors and disks, so the native record must include an inflow, disk, or boundary-layer source of energy and angular momentum. Second, across young stellar objects, microquasars, and active galactic nuclei, the characteristic jet speed is usually of order the escape or Keplerian speed at the launch region:
 

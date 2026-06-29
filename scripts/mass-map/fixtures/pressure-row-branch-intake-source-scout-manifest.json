@@ -1,0 +1,144 @@
+{
+  "schema": "pressure_row_branch_intake_source_scout_manifest/v0",
+  "scout_ref": "pressure_row_branch_intake_accepted_source_scout/v0",
+  "source_manifest_ref": "scripts/mass-map/fixtures/pressure-row-branch-intake-source-scout-manifest.json",
+  "candidates": [
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-provider-intake-artifact.json",
+      "candidate_kind": "complete_same_row_target_fixture",
+      "source_status": "same_row_provider_intake_artifact_target_only_not_accepted_source",
+      "rejection_codes": [
+        "target_only_source",
+        "fixture_path",
+        "diagnostic_source",
+        "nested_target_provenance"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json",
+      "candidate_kind": "nested_target_provenance_probe",
+      "source_status": "nested_target_required_not_accepted_source",
+      "rejection_codes": [
+        "target_only_source",
+        "fixture_path",
+        "nested_target_provenance"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json",
+      "candidate_kind": "provider_target_fixture",
+      "source_status": "target_only_not_accepted_source",
+      "rejection_codes": [
+        "target_only_source",
+        "fixture_path"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-fe-silicate-toy-partial.json",
+      "candidate_kind": "toy_pressure_replay_partial",
+      "source_status": "partial_same_row_diagnostic_only",
+      "rejection_codes": [
+        "toy_source",
+        "fixture_path",
+        "diagnostic_source",
+        "partial_source"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json",
+      "candidate_kind": "a0_branch_source_frontier_partial",
+      "source_status": "branch_source_frontier_partial_fail_closed",
+      "rejection_codes": [
+        "fixture_path",
+        "diagnostic_source",
+        "partial_source",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json",
+      "candidate_kind": "cross_row_bundle_negative_control",
+      "source_status": "cross_row_bundle_negative_control_not_accepted_source",
+      "rejection_codes": [
+        "negative_control_source",
+        "fixture_path",
+        "diagnostic_source",
+        "target_only_source",
+        "toy_source"
+      ]
+    },
+    {
+      "path": "scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json",
+      "candidate_kind": "current_status_fixture",
+      "source_status": "finite_branch_evidence_missing",
+      "rejection_codes": [
+        "fixture_path",
+        "required_fields_missing",
+        "same_row_binding_missing",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/noether-braid-envelope-hessian-toy-branch.md",
+      "candidate_kind": "finite_branch_hessian_target_packet",
+      "source_status": "toy_branch_hessian_not_accepted_branch_output",
+      "rejection_codes": [
+        "toy_source",
+        "priority_packet_not_source_row",
+        "contract_target_not_source_row",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/a0-branch-chart-revision-contract.md",
+      "candidate_kind": "a0_branch_chart_revision_contract",
+      "source_status": "priority_only_until_accepted_corrected_branch_row_exists",
+      "rejection_codes": [
+        "diagnostic_source",
+        "priority_packet_not_source_row",
+        "contract_target_not_source_row",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-toy.md",
+      "candidate_kind": "toy_pressure_replay_packet",
+      "source_status": "toy_pressure_replay_not_branch_source",
+      "rejection_codes": [
+        "toy_source",
+        "priority_packet_not_source_row",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/pressure-replay-fe-cr-empirical-skeleton.md",
+      "candidate_kind": "empirical_pressure_replay_skeleton",
+      "source_status": "empirical_skeleton_not_branch_source",
+      "rejection_codes": [
+        "empirical_source",
+        "priority_packet_not_source_row",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/a0-energy-shielding-extraction.md",
+      "candidate_kind": "exposure_source_theorem_target",
+      "source_status": "accepted_branch_required_not_emitted",
+      "rejection_codes": [
+        "priority_packet_not_source_row",
+        "contract_target_not_source_row",
+        "accepted_history_missing"
+      ]
+    },
+    {
+      "path": "reference/priorities/braid-mass-response-map/a0-medium-response-tensor-probe.md",
+      "candidate_kind": "noether_sea_response_probe_target",
+      "source_status": "accepted_branch_packet_required_not_emitted",
+      "rejection_codes": [
+        "priority_packet_not_source_row",
+        "contract_target_not_source_row",
+        "accepted_history_missing"
+      ]
+    }
+  ]
+}

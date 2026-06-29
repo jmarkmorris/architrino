@@ -1,0 +1,101 @@
+{
+  "schema": "sigma_hf_01_external_schema_candidate/v0",
+  "candidate_status": "partial_local_source_data_candidate_not_external_proof_grade",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "proof_interval": "proof-interval-v6",
+  "lambda_branch": "lambda0305",
+  "target_slot": "Sigma_hf_01",
+  "fold_interval": "F01",
+  "candidate_external_schema_ref": "local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
+  "candidate_origin": "local_source_data_records_and_fail_closed_target_packets",
+  "external_schema_provenance": {
+    "provenance_class": "local_proof_program_source_data_partial",
+    "source_ref": "local-source-data-partial:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
+    "acceptance_contract_ref": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+    "received_for_schema_validation": false,
+    "authored_inside_local_proof_program_pool": true,
+    "derived_from_local_certificate_json": true,
+    "self_authored_placeholder": false,
+    "local_path_treated_as_external_evidence": false
+  },
+  "source_refs": [
+    {
+      "role": "source_data_readiness",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "d09c0823dd903133a10dedb001c27635ffb6290e82192a57504c951ac75df8a4"
+    },
+    {
+      "role": "schema_target",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "50135e27fcceed3f8fbe44983d384be4d955f31ee0e93986907ee64f997e7e40"
+    },
+    {
+      "role": "contract_satisfaction",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "d38bd1b260a10d000cacc8ffc24fbcfeeb4e471e7c9399bd9a2cc8d419297fd2"
+    }
+  ],
+  "compatible_schema_role_lock": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema",
+  "compatible_proof_object_role_lock": "source_packet_acceptance_rule_derivation_proof_object",
+  "derivation_proof_target_lock": "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+  "derivation_proof_source_data_record_lock": {
+    "separator_event": "Sigma_hf_01",
+    "fold_interval": "F01",
+    "derivation_proof_target": "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+    "derivation_proof_source_data_record_declared": true,
+    "derivation_proof_source_data_ready": true,
+    "source_material_premises_complete": true,
+    "candidate_exact_consistency_premises_complete": true
+  },
+  "non_reinterpretation_guard": {
+    "guard_status": "source_available_fail_closed_non_reinterpretation_guard",
+    "forbidden_reinterpretations": [
+      "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_proof_grade_derivation_schema_target_packet_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_construction_attempt_as_proof_grade_derivation_schema",
+      "source_packet_acceptance_rule_derivation_proof_object_contract_target_satisfaction_attempt_as_proof_grade_derivation_schema",
+      "source_packet_acceptance_rule_kernel_binding_split_classifier_as_proof_grade_derivation_schema"
+    ],
+    "row_consumption_count": 0,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "branch_chart_authorized": false
+  },
+  "absent_required_fields": [
+    {
+      "field": "rule_kernel_obligation_binding",
+      "blocker": "source_packet_acceptance_rule_derivation_proof_absent",
+      "source_status": "retained_rule_kernel_obligation_slots_satisfied=0"
+    },
+    {
+      "field": "rule_kernel_derivation_payload_target_binding",
+      "blocker": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_absent",
+      "source_status": "rule_kernel_derivation_payload_present=false"
+    },
+    {
+      "field": "proof_grade_derivation_schema_statement",
+      "blocker": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_absent",
+      "source_status": "proof_grade_derivation_schema_present=false"
+    }
+  ],
+  "source_readout": {
+    "source_data_ready": true,
+    "schema_target_declared": true,
+    "schema_target_satisfied": false,
+    "proof_grade_derivation_schema_present": false,
+    "contract_field_source_availability_slots_ready": 7,
+    "contract_field_slots_satisfied": 0,
+    "first_missing_contract_field": "rule_kernel_derivation_payload",
+    "first_missing_contract_field_blocker": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_absent"
+  },
+  "authorization": {
+    "schema_validation_intake": false,
+    "row_consumption": false,
+    "accepted_source_packet": false,
+    "branch_chart": false
+  }
+}

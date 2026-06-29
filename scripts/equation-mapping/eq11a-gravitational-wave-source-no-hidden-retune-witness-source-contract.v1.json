@@ -1,0 +1,59 @@
+{
+  "schema": "aaa-equation-map-eq11a-no-hidden-retune-witness-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A no_hidden_retune_witness row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "no_hidden_retune_witness_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "no_hidden_retune_witness"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_no_hidden_retune_witness_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "noHiddenRetuneFields": {
+    "witnessReadout": [
+      "sharedRecordId",
+      "perSampleCarrierCount",
+      "perSampleMetricRecordCount",
+      "perSampleRingdownLabelCount",
+      "perFormulaFitHandleCount",
+      "maxResidual"
+    ],
+    "requiredRows": [
+      "gw_source_carrier",
+      "theta_sea",
+      "effective_metric_tensor_channel",
+      "source_event_ledger",
+      "quadrupole_source_row",
+      "chirp_mass_row",
+      "peters_decay_row",
+      "strain_flux_row",
+      "ringdown_label_row",
+      "detector_strain_record",
+      "source_provenance"
+    ],
+    "requiredArtifactState": [
+      "source_field_manifest",
+      "artifact_hashes",
+      "sourceWindowId",
+      "supportId",
+      "eventId"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "no-hidden-retune witness S_retune for one GW150914 source record",
+    "aaaGeometricReadout": "retained same-record witness that chirp, quadrupole, Peters decay, strain flux, detector strain, provenance, radiated ledger, and ringdown labels use one carrier without formula-specific retuning",
+    "requiredCarrierOrRow": "no_hidden_retune_witness",
+    "sameRecordBinding": "the no_hidden_retune_witness shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, sharedRecordId, source_provenance, detector_strain_record, source_event_ledger, strain_flux_row, ringdown_label_row, and all upstream source rows before a populated status can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-no-hidden-retune-witness-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed no_hidden_retune_witness with sharedRecordId, artifact hashes, source/version identity, per-sample carrier count, metric-record count, ringdown-label count, and formula-fit handle count bound to the GW150914 retained source packet; a source-contract shell remains score-neutral and must still fail at source_contract_boundary_not_retained_evidence"
+  },
+  "scoreDecision": "no_score_increase"
+}

@@ -128,6 +128,21 @@
       "labelTitle": "Historical Context and Missed Opportunities"
     },
     {
+      "id": "aaa_journey",
+      "title": "AAA Journey",
+      "radius": 2.688,
+      "color": "#8b6f47",
+      "labelTitle": "AAA Journey",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
+      },
+      "view": {
+        "columns": 1
+      }
+    },
+    {
       "id": "major_thinkers",
       "title": "Major Thinkers",
       "radius": 2.688,

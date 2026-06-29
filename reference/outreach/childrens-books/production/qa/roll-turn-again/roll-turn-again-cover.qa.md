@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `roll-turn-again-cover`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-cover.png`
 - lesson: Cover key art introduces rolling, turning, and repeating without text.
 - geometry: Use a low rounded hill, a shallow dip, and one faint dotted path that rolls forward, turns gently, and loops back for repetition. Keep the children natural human children rather than symbols.
 

@@ -1,7 +1,7 @@
 # QA: Back Again
 
 - id: `nature-remembers-motion-spread-09`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-09.png`
 - lesson: Returning can cross an earlier path.
 - geometry: Return path intersects or meets earlier path.
 

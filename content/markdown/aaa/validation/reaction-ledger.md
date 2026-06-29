@@ -128,6 +128,21 @@ $$
 
 componentwise across the tuple. Nonzero physical recoil, medium heating, remnant excitation, outgoing product energy, or photon output is allowed only as a named term inside $Y_{\mathsf e}$; it is not allowed as an implicit loss.
 
+A reaction record should also state how the surviving assemblies restabilize after work is done. The compact restabilization record is
+$$
+\Theta_{\mathrm{restab}}
+=
+\left(
+B_{\mathrm{pre}},
+W_{\mathrm{in}},
+\Delta\mathcal A,
+B_{\mathrm{post}},
+\tau_{\mathrm{return}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}
+\right).
+$$
+Here $B_{\mathrm{pre}}$ and $B_{\mathrm{post}}$ are the retained branch records before and after the interaction, $W_{\mathrm{in}}$ is the applied work or incoming excitation, $\Delta\mathcal A$ is the branch-action change, $\tau_{\mathrm{return}}$ is the return or relaxation time when a stable branch is recovered, and $\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{post}}$ is the post-event balance. This prevents a reaction map from closing only by label replacement while leaving the outgoing assemblies dynamically unsettled.
+
 The stronger event-balance target bundles energy, momentum, and angular momentum instead of checking photon polarization separately from the source ledger. For $\mathcal Q\in\{E,\mathbf p,\mathbf J\}$, define source depletion by
 
 $$
@@ -363,7 +378,7 @@ This is a promotion criterion, not a completed theorem. Worked sector cases rema
 
 ## Weak-Corridor Provenance Gate
 
-Weak reactions now require an explicit corridor-provenance stance. The current corpus supports two live possibilities:
+Weak reactions require an explicit corridor-provenance stance. The corpus supports two live possibilities:
 
 1. **Transaction-payload corridor:** $W^\pm$ carries the charged triad payload and phase relation, while final-state pro/anti Noether braid material is supplied by the local Noether sea or by explicitly identified incoming assemblies.
 2. **Provenance-carrying corridor:** $W^\pm$ carries not only the charged transaction payload but also enough pro/anti Noether braid provenance to seed some final-state lepton or antilepton braid content.
@@ -388,7 +403,7 @@ $$
 
 Native status: provisional weak-reaction provenance map.
 
-The active quark change is an axial-layer reconfiguration. In the current assembly catalog, the top-to-bottom transition is represented as a shift from the top axial pattern to the bottom axial pattern:
+The active quark change is an axial-layer reconfiguration. In the assembly catalog, the top-to-bottom transition is represented as a shift from the top axial pattern to the bottom axial pattern:
 
 $$
 (1E,5P)_{\text{axial}} \to (4E,2P)_{\text{axial}}
@@ -436,7 +451,7 @@ So the active quark assembly sheds three $E$-type axial units and receives three
 
 ### Exposure-operator record
 
-The controlled beta channel now has a first finite-state exposure operator in [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
+The controlled beta channel has a first finite-state exposure operator in [Weak-Mixing CKM](../philosophy-history/theory-bridges/weak-mixing-ckm.md). The ledger record for this channel should use that operator as the geometry gate before any rate or provenance claim is made.
 
 This gate inherits the unresolved spinor/helicity proof in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md). The blocked right-handed branch, antineutrino orientation, and weak-channel angular-momentum balance remain provisional until the weak-coupling-triad exposure geometry and the reaction-level angular-momentum ledger are derived from the same substrate proof.
 
@@ -468,7 +483,7 @@ This map supports a strong but bounded claim: beta reaction charge bookkeeping c
 
 ### Method-Resolved Lifetime Benchmark
 
-The lifetime benchmark should not be reduced to a single scalar until the experimental comparison channel is declared. The current PDG neutron listing averages ultracold-neutron storage measurements at $\tau_n^{\mathrm{UCN}}=878.4\pm0.5\,\mathrm{s}$, while the in-beam trapped-proton result `YUE 13` reports $\tau_n^{\mathrm{beam}}=887.7\pm1.2_{\mathrm{stat}}\pm1.9_{\mathrm{syst}}\,\mathrm{s}$. The review does not use the beam row in the main average and treats the beam/storage split as a long-standing disagreement. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a method-resolved weak-reaction benchmark, not evidence by itself for a hidden reaction channel.
+The lifetime benchmark should not be reduced to a single scalar until the experimental comparison channel is declared. The PDG neutron listing averages ultracold-neutron storage measurements at $\tau_n^{\mathrm{UCN}}=878.4\pm0.5\,\mathrm{s}$, while the in-beam trapped-proton result `YUE 13` reports $\tau_n^{\mathrm{beam}}=887.7\pm1.2_{\mathrm{stat}}\pm1.9_{\mathrm{syst}}\,\mathrm{s}$. The review does not use the beam row in the main average and treats the beam/storage split as a long-standing disagreement. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, this is a method-resolved weak-reaction benchmark, not evidence by itself for a hidden reaction channel.
 
 A native closure attempt should therefore publish two readouts from the same free-neutron beta-reaction record:
 

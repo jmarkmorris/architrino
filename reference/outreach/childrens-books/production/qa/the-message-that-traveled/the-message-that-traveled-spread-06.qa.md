@@ -1,7 +1,7 @@
 # QA: The Ring Arrives
 
 - id: `the-message-that-traveled-spread-06`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-06.png`
 - lesson: Arrival can change what happens next.
 - geometry: A ripple ring reaches a paper leaf and changes its motion.
 

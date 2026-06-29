@@ -1,7 +1,7 @@
 # QA: Not Everywhere
 
 - id: `the-message-that-traveled-spread-03`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-03.png`
 - lesson: A message can travel.
 - geometry: Sound rings occupy only part of the space, with clear white space beyond them.
 

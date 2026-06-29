@@ -204,7 +204,7 @@ $$
 
 If $\Delta_{\mathrm{prod}}$ vanishes in the completed record table, the expression has reduced to an ordinary measurement-independent Bell-local hidden-variable integral and the Bell gate fails.
 
-The threshold-pullback warning is now sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
+The threshold-pullback warning is sharp. A deterministic one-wing basin kernel can reproduce its local probability law after pushing forward an invariant record-window measure, but two independent one-wing kernels over a setting-independent source measure imply the usual CHSH bound. If
 
 $$
 K_{ab}^{AB}

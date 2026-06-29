@@ -471,6 +471,11 @@ The packet must emit:
 | --- | --- |
 | `normal_candidate_input` | source artifact id, `bounded-speed-normal-reconstruction-candidate` status, speed/clock/normal/root/support rows, force checksum, consumer checksum, and non-retention flags |
 | `live_ledger_identity` | full $\operatorname{id}\mathcal{L}_{\mathrm{live}}^{\nu}$ tuple and equality checks across normal, action, event, tail, stability, observer, and coupled rows |
+| `bounded_speed_live_ledger` | fail-closed target object with the normal-candidate ledger id, force checksum, consumer checksum, `bounded-speed-live-ledger-open`, the nested `live_ledger_identity_target`, and the required same-ledger rows for action-derived scale, action curl, speed-factor storage/exchange, Noether/event exchange, tail/refinement persistence, bounded-speed stability, observer-export eligibility, and coupled fixed point |
+| `bounded_speed_live_ledger.live_ledger_identity_target` | priority-only identity target with the exact normal-candidate ledger tuple, required closed rows, current closed rows, missing closed rows, `first_missing_closed_row=action_derived_scale`, and the negative control `same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger` |
+| `bounded_speed_live_ledger.action_derived_scale_target` | priority-only target for the first missing downstream row: $\Gamma_B^{\nu}$, the action functional, scale parameter, speed-factor profile, force/action pairing, scale margin, and required same-ledger action rows; the fixture rejects by `same-ledger-tuple-without-action-scale-rows-not-action-derived-scale` |
+| `bounded_speed_live_ledger.action_derived_scale_target.action_measure_row_target` | priority-only target for the first missing action-derived-scale row; no same-ledger action-measure source exists in the current neutral-braid artifact pool, so the fixture supplies only `same_ledger_identity_tuple`, rejects by `same-ledger-tuple-without-action-functional-not-action-measure-row`, runs `branch_scope_source_audit` across eight branch-scope artifacts with explicit search basis, acceptance criteria, and per-candidate `action_measure_field_statuses`, names the certified fixed-speed root ledger as the nearest rejected lineage source, and keeps `branch_scope` as the first missing measure field |
+| `bounded_speed_live_ledger.action_derived_scale_target.action_measure_row_target.same_ledger_action_measure_row_with_branch_scope_attempt` | priority-only attempted next object for `same-ledger-action-measure-row-with-branch-scope`; it constructs no action-measure row, records `branch_scope_binding_status=not_accepted`, keeps `same_ledger_branch_scope_source_missing` as the blocking failure, names `period_rows` as the first conditional subfield after branch-scope through a target-only `period_rows_target`, and carries `fail_closed_action_measure_row_target` with `field_statuses_on_normal_candidate_ledger` separating the exact supplied identity fields from the missing `branch_scope`, `period_rows`, `action_functional`, and `root_support_event_rows` same-ledger bindings |
 | `action_scale` | $\Gamma_B^{\nu}$, `gamma-action-derived` / `gamma-fitted-not-derived` / `gamma-ledger-mismatch`, inertia or scale derivation, and scale margins |
 | `action_curl` | $\omega_{\mathrm{hist}}^{\nu}$, clock-corrected variations, bounded-speed root derivatives, $\mathcal{R}_{\mathrm{curl}}^{\nu}$, and tolerance |
 | `storage_exchange` | $E_{\mathrm{spd}}^{\nu}$, $\mathcal{R}_{\mathrm{exch}}^{\nu}$, support-work assignment, Noether sea/event exchange, and window residuals |
@@ -486,14 +491,15 @@ Current priority status:
 $$
 \texttt{bounded-speed-action-stability-after-normal-candidate-open},
 \qquad
-\texttt{normal-candidate-consumer-packet-staged},
+\texttt{after-normal-fixture-fails-closed-at-bounded-speed-live-ledger-open},
 \qquad
 \texttt{not_retained}.
 $$
 
 ## 11. Current First-Failure Application 2026-06-28
 
-Applying the ladder to the current priority tree stops at the first row:
+Applying the ladder to non-fixture branch work in the current priority tree
+still stops at the first row:
 
 $$
 \texttt{normal-candidate-missing}.
@@ -529,11 +535,158 @@ unless every row below is emitted on one bounded-speed ledger id.
 | `normal_krawczyk_row` | Krawczyk or equivalent proof-ball budget for the normal reconstruction unknowns. | absent |
 | `candidate_status` | `bounded-speed-normal-reconstruction-candidate` with `retention=not_retained` and `retained_branch=false`. | `normal-candidate-missing` |
 
-Therefore the after-normal action/stability consumer must not attempt
-$\Gamma_B^\nu$, action curl, Noether/event exchange, tail/refinement,
-stability, observer-export eligibility, or coupled fixed-point consumption yet.
-The next admissible artifact is the normal candidate itself. Until it exists,
-every downstream row in this packet inherits
+Current candidate-source boundary:
+
+| Source row | Current reading | Consumption rule |
+| --- | --- | --- |
+| Frozen fixed-speed root ledger | certified only for rigid octahedral fixed-speed roots; `retained_branch=false` | provenance only |
+| Frozen speed-ODE diagnostic | fails `sampled-speed-ode-zero-mean-failed` with no bounded-speed live ledger | provenance only |
+| Zero-mean correction intake schema | can accept supplied normal-candidate packets | schema support only |
+| Normal-reconstruction handoff | fixture-only; not currently emitted by a non-fixture bounded-speed ledger id with force and consumer checksums | first missing non-fixture prerequisite |
+| Supplied normal candidate | fixture-only; absent for non-fixture branch work | keeps non-fixture branch work below retention |
+| Downstream action/stability rows | not reached | keep `retention=not_retained` and `retained_branch=false` |
+
+Executable normal-candidate fixture status, 2026-06-28:
+[zero-mean-normal-candidate](../../../../scripts/neutral-braid/fixtures/zero-mean-normal-candidate/README.md)
+supplies the same-ledger packet chain consumed by
+`scripts/neutral-braid/octahedral-zero-mean-correction-intake.mjs`. The fixture
+validates the plumbing path through `live-derivative-matrix-certified`,
+`correction-direction-found`, `speed-primitive-feasibility-certified`,
+`speed-clock-length-return-certified`, `normal-reconstruction-handoff-staged`,
+`bounded-speed-normal-reconstruction-candidate`, and the fail-closed
+`bounded-speed-action-stability-after-normal-candidate-intake` boundary.
+
+The generated artifact reports:
+
+| Field | Fixture result |
+| --- | --- |
+| `result.intake_status` | `zero-mean-action-stability-after-normal-candidate-blocked` |
+| `residual_vector.first_failure_row` | `bounded-speed-live-ledger-open` |
+| `artifact_claim.emits_bounded_speed_normal_reconstruction_candidate` | `true` |
+| `artifact_claim.emits_action_stability_after_normal_candidate_intake` | `true` |
+| `artifact_claim.certifies_normal_reconstruction` | `true` for supplied same-ledger candidate rows |
+| `artifact_claim.certifies_bounded_speed_live_ledger` | `false` |
+| `artifact_claim.certifies_action_stability` | `false` |
+| `artifact_claim.certifies_observer_export` | `false` |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.required_same_ledger_rows.*` | all required rows present and `blocked:bounded-speed-live-ledger-open` |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.live_ledger_identity_target` | target-only identity object whose required closed rows are the normal candidate plus eight downstream live-ledger rows, while the current packet supplies only `bounded_speed_normal_reconstruction_candidate` and lists `action_derived_scale` as the first missing closed row |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.action_derived_scale_target` | target-only object for the first missing row; it requires `action_measure_row`, `scale_derivative_row`, `force_action_pairing_row`, `normal_speed_pullback_row`, and `scale_margin_row`, and rejects the current fixture because it supplies only the normal candidate plus tuple identity |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.action_derived_scale_target.action_measure_row_target` | target-only object for the first missing row inside `action_derived_scale_target`; it requires `branch_scope`, `period_rows`, `action_functional`, and `root_support_event_rows`, while the fixture supplies only `same_ledger_identity_tuple`, audits eight current branch-scope sources as non-binding with per-candidate missing fields and field statuses, records the fixed-speed root ledger as nearest provenance-only lineage, and keeps `certifies_action_measure_row=false` |
+| `action_stability_after_normal_candidate_intake.bounded_speed_live_ledger.action_derived_scale_target.action_measure_row_target.same_ledger_action_measure_row_with_branch_scope_attempt` | target-only attempted object for `same-ledger-action-measure-row-with-branch-scope`; it is not constructed, the first actual failure remains `same_ledger_branch_scope_source_missing`, the first conditional subfield after branch-scope is `period_rows` with no accepted source, and the fail-closed row target records that only the identity fields are supplied on the normal-candidate ledger while the four action-measure fields remain missing same-ledger bindings |
+| `action_stability_after_normal_candidate_intake.downstream_row_statuses.*` | `blocked:bounded-speed-live-ledger-open` |
+| `result.retained_branch` | `false` |
+
+This moves the executable fixture boundary past `normal-candidate-missing` for a
+supplied same-ledger packet chain only, and then records the first after-normal
+failure at `bounded-speed-live-ledger-open`. It does not create a retained
+branch, certify bounded-speed live-ledger closure, or authorize
+action/Noether/event, stability, observer-export, or coupled fixed-point
+consumption.
+
+The added identity target is a negative control against over-consuming the
+fixture's matching ledger/checksum tuple. It records that the tuple is shared
+with the normal candidate, but the current artifact closes only
+`bounded_speed_normal_reconstruction_candidate`; action-derived scale, action
+curl, speed-factor storage/exchange, Noether/event exchange,
+tail/refinement persistence, bounded-speed stability, observer-export
+eligibility, and coupled fixed point are still missing closed rows. Tuple
+equality alone is therefore not a bounded-speed live ledger certificate.
+
+The executable `action_derived_scale_target` makes the first missing downstream
+row concrete without accepting it. It names the needed variables
+$\Gamma_B^{\nu}$, $A^{\nu}$, scale parameter, speed-factor profile,
+force/action pairing, and scale margin, then requires same-ledger rows for the
+action measure, scale derivative, force/action pairing, normal-speed pullback,
+and scale margin. The current fixture supplies only
+`bounded_speed_normal_reconstruction_candidate`, so it is rejected by
+`same-ledger-tuple-without-action-scale-rows-not-action-derived-scale` and keeps
+`certifies_action_derived_scale=false`,
+`certifies_bounded_speed_live_ledger=false`, and `retained_branch=false`.
+The nested `action_measure_row_target` tightens that first missing row: the
+current neutral-braid artifact pool has no same-ledger action-measure source, so
+the fixture supplies only the same-ledger identity tuple and rejects by
+`same-ledger-tuple-without-action-functional-not-action-measure-row`. The next
+missing measure field is `branch_scope`. The nested `branch_scope_source_audit`
+checks the current root ledger, fixed-speed witness, force residual, root-force
+closure witness, inventory-closure witness, phase-offset scan, polarity-phase
+retention witness, and finite-mode artifact branch scopes. Every candidate is
+rejected before binding because it lacks the same bounded-speed live-ledger
+tuple and an `action_measure_row`; `period_rows`, `action_functional`, and
+`root_support_event_rows` remain missing on the same ledger. The nearest
+lineage/readiness readout names the certified fixed-speed all-pairs root ledger:
+it carries `branch_scope` and certified root rows, but it is fixed-speed
+provenance only and does not provide `bounded_speed_ledger_id`,
+`force_checksum_id`, `consumer_checksum_id`,
+`source_normal_reconstruction_candidate_id`, `action_measure_row`,
+`period_rows`, `action_functional`, or `root_support_event_rows` on the
+bounded-speed normal-candidate ledger.
+
+The audit now makes that failure mechanically inspectable. It records the
+searched roots `scripts/neutral-braid` and
+`reference/priorities/braid-retained-branch-closure`, the searched terms
+`branch_scope`, `action_measure_row`,
+`same_ledger_action_measure_row_with_branch_scope`,
+`accepted_branch_scope_source`, and `period_rows`, and the acceptance criteria:
+the branch-scope source must carry the normal-candidate
+`bounded_speed_ledger_id`, `force_checksum_id`, `consumer_checksum_id`, and
+`source_normal_reconstruction_candidate_id`, and must also bind the
+`same_ledger_identity_tuple` to an `action_measure_row`. Each rejected
+candidate lists `branch_scope` as the only observed field, the missing
+same-ledger identity fields, the missing action-measure fields, and a rejection
+summary. Its `action_measure_field_statuses` rows make the rejection sharper:
+`branch_scope` is present but rejected off-ledger, `period_rows` is conditional
+and blocked until branch-scope binds, and `action_functional` plus
+`root_support_event_rows` remain absent same-ledger bindings. No branch-scope
+source is accepted from fixed-speed provenance alone.
+
+The attempted `same-ledger-action-measure-row-with-branch-scope` object is now
+explicitly represented and rejected. The fixture does not construct an
+`action_measure_row`; it records `branch_scope_binding_status=not_accepted`
+because the branch-scope audit still fails at
+`same_ledger_branch_scope_source_missing`. Conditional on a future accepted
+branch-scope binding, the next missing subfield is `period_rows`; the
+target-only `period_rows_target` has no accepted source and is blocked by the
+branch-scope failure, so it does not advance `certifies_action_measure_row`,
+`certifies_action_derived_scale`, bounded-speed live-ledger closure, or
+retention. The nested `fail_closed_action_measure_row_target` makes the absent
+row exact: a candidate row would need `bounded_speed_ledger_id`,
+`force_checksum_id`, `consumer_checksum_id`,
+`source_normal_reconstruction_candidate_id`, `branch_scope`, `period_rows`,
+`action_functional`, and `root_support_event_rows` on the same
+normal-candidate ledger. The current fixture supplies only the four identity
+fields; `branch_scope`, `period_rows`, `action_functional`, and
+`root_support_event_rows` have no same-ledger binding, so no candidate
+`action_measure_row` is constructed. The
+`field_statuses_on_normal_candidate_ledger` rows keep that absence executable:
+the four identity fields are supplied, while the four action-measure fields are
+missing same-ledger bindings rather than merely undocumented prose gaps.
+
+The smallest durable artifact is one supplied same-ledger normal candidate that
+matches the handoff's bounded-speed ledger id, force checksum, and consumer
+checksum, then closes normal residual, tangent holonomy, position closure,
+unit-tangent, support margin, noncollision, root persistence, and normal
+Krawczyk rows. Even if that artifact passes, it may only set
+`bounded-speed-normal-reconstruction-candidate`; it still does not retain a
+branch or certify bounded-speed live-ledger closure.
+
+Therefore the after-normal action/stability consumer may only consume the
+normal candidate as a fail-closed intake boundary until a real same-ledger live
+ledger exists. It must not attempt $\Gamma_B^\nu$, action curl, Noether/event
+exchange, tail/refinement, stability, observer-export eligibility, or coupled
+fixed-point consumption from the fixture. For non-fixture branch work, the next
+admissible artifact remains the normal candidate itself. For the fixture path,
+the next same-ledger action-measure evidence object remains
+`same-ledger-action-measure-row-with-branch-scope`: an `action_measure_row` that
+carries the bounded-speed identity tuple, `branch_scope`, `period_rows`,
+`action_functional`, and `root_support_event_rows` on the normal-candidate
+ledger. The newly added attempt records that this object is still absent; once
+branch-scope is accepted on the same ledger, the smallest conditional next
+subfield is `period_rows`. That object would advance only the action-measure
+target; a broader bounded-speed live-ledger certificate still must close action,
+event,
+tail/refinement, stability, observer-export eligibility, and coupled fixed-point
+rows rather than leaving them `blocked:bounded-speed-live-ledger-open`. Until
+those rows close, every downstream row in this packet inherits
 
 $$
 \texttt{retention=not\_retained},

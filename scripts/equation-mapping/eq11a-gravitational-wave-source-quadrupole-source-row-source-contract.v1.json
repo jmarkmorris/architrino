@@ -1,0 +1,46 @@
+{
+  "schema": "aaa-equation-map-eq11a-quadrupole-source-row-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A quadrupole_source_row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "quadrupole_source_row_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "quadrupole_source_row"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_quadrupole_source_row_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "quadrupoleSourceFields": {
+    "binarySource": [
+      "m1",
+      "m2",
+      "sourceSeparationOrOrbitalState",
+      "orbitalFrequency"
+    ],
+    "effectiveQuadrupole": [
+      "Qij_eff",
+      "quadrupoleThirdDerivativeNorm",
+      "radiatedPower"
+    ],
+    "requiredConsumers": [
+      "source_event_ledger",
+      "effective_metric_tensor_channel"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "quadrupole power P_GW and effective source quadrupole Q_ij",
+    "aaaGeometricReadout": "effective source-quadrupole readout from the same binary source event ledger and effective-metric tensor channel",
+    "requiredCarrierOrRow": "quadrupole_source_row",
+    "sameRecordBinding": "the quadrupole row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, source_event_ledger, and effective_metric_tensor_channel before chirp, strain, and ringdown residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-quadrupole-source-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed quadrupole_source_row bound to the GW150914 source ledger and tensor channel; score remains neutral until chirp, detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

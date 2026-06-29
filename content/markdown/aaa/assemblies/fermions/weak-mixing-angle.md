@@ -1,10 +1,10 @@
 # Weak Mixing Angle
 
-This note records the current geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../gauge-structure-emergence.md).
+This note records the geometric interpretation of the weak mixing angle inside the assembly framework. Its purpose is to distinguish what is being used as a constrained geometric hypothesis from what is already measured electroweak phenomenology, and to keep the scaffold-frame versus axial-frame distinction explicit. It bridges the fermion-side geometry to [Electroweak Bosons: Photons, W/Z, and Higgs](../bosons/electroweak-bosons.md) and [Gauge Structure Emergence](../gauge-structure-emergence.md).
 
 ## Purpose
 
-The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. In the present note, we do not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, we use the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
+The Weinberg angle $\theta_W$ is the electroweak mixing angle of the Standard Model. It parameterizes how the weak-isospin neutral boson $W^3$ and the hypercharge boson $B$ combine to form the physical photon $\gamma$ and the neutral weak boson $Z$. Equivalently, it sets the relative alignment between the SU(2) and U(1) electroweak sectors, so it appears wherever neutral-current and charged-current electroweak couplings are compared. This note does not assume that the measured Weinberg angle itself is literally an internal quark tilt. Instead, it uses the existing bare six-pole relation in $\mathbb{A}\mathbb{A}\mathbb{A}$ as a possible geometric increment for axial-frame misalignment.
 
 This note records a constrained geometric hypothesis for fermion assemblies in $\mathbb{A}\mathbb{A}\mathbb{A}$:
 
@@ -196,7 +196,7 @@ In this language:
 - flavor-dependent quark structure enters through the allowed values of $\alpha$ and through the axial-tensor amplitudes,
 - electron-like states remain at $\alpha=0$ and color singlet.
 
-So the proposal does **not** replace the current color picture. It adds a second geometric datum: a discrete polar misalignment carried by the axial frame.
+So the proposal does **not** replace the color picture. It adds a second geometric datum: a discrete polar misalignment carried by the axial frame.
 
 ---
 
@@ -285,7 +285,7 @@ That handoff keeps the claim strong but scoped. The weak-mixing increment $\thet
 
 ## Weak-Coupling Interpretation
 
-In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
+In the $\mathbb{A}\mathbb{A}\mathbb{A}$ dictionary, the weak sector acts on the **weak-coupling triad**, the three more exposed polar sites. If the axial frame rotates relative to the core frame, then the weak-coupling triad need not sit in the same orientation as it does in the electron.
 
 This gives a possible geometric interpretation of quark weak structure:
 
@@ -300,9 +300,9 @@ This is a cleaner statement than saying that weak mixing directly rotates the co
 
 ## Relation to Color
 
-This idea must coexist with the current color construction rather than replace it.
+This idea must coexist with the color construction rather than replace it.
 
-Current color picture:
+Color picture:
 
 - one axis is exceptional,
 - color labels which exceptional-axis sector the quark occupies,
@@ -371,7 +371,7 @@ If the idea does not improve one of those closure targets, it should be treated 
 This hypothesis should be discarded or revised if any of the following occurs:
 
 1. The discrete-angle rule forces violations of the existing color-singlet closure for baryons.
-2. The rotated axial frame spoils the weak-triad arithmetic that currently reproduces the quark/lepton doublets.
+2. The rotated axial frame spoils the weak-triad arithmetic that reproduces the quark/lepton doublets.
 3. The angle assignment becomes arbitrary, with no energy functional or symmetry argument selecting the allowed branches.
 4. The same observed structure can be explained more simply by axial-moment anisotropy alone, without any quantized $30^\circ$ locking.
 

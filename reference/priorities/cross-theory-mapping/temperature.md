@@ -18,6 +18,8 @@
 5. `cosmology_temperature_handoff` - Separate intrinsic Noether braid energy, local emissive ensemble temperature, and observer-inferred CMB temperature. Status: `draft`. Depends on: [cosmology-closure](../cosmology-closure/cosmology-closure.md), [validation-gates](../validation-gates/validation-gates.md).
 6. `high_energy_reaction_stage_temperature_split` - Separate free-architrino kinetic width, assembly apparent temperature, photon-bath temperature, and Noether sea emissive temperature in early-chronology or strong-field reaction-stage prose. Status: `draft`. Depends on: `cosmology_temperature_handoff`.
 7. `medium_excitation_temperature_guardrail` - Keep Noether sea excitation, RMS wake loading, lapse response, and thermodynamic temperature separate unless an ensemble relation is declared. Status: `draft`. Depends on: `ensemble_temperature_definition`.
+8. `accessible_temperature_store_split` - Keep observer-accessible kinetic or ensemble temperature separate from shielded/stored configuration energy. Status: `draft`. Depends on: `ensemble_temperature_definition`.
+9. `packed_core_temperature_endpoint_residual` - Treat packed-core temperature language as an accessible-state residual, not as proof of zero entropy or literal one-microstate completion. Status: `draft`. Depends on: `accessible_temperature_store_split`, [strong-field-closure](../strong-field-closure/strong-field-closure.md).
 
 ## Scope
 
@@ -78,6 +80,7 @@ In horizon physics, Hawking and Unruh temperatures are comparison targets associ
 | [Reaction-Cosmology Provenance Ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) | Photon bath temperature, thermalization depth, redshift, and CMB spectra must be carried by one source-to-observer ledger. | derivation-closure target |
 | [Architrino SI Base Units](../../../content/markdown/aaa/validation/architrino-si-base-units.md#the-kelvin-temperature-unit--k_b) | $k_B$ should be derived from Noether sea thermal equilibrium, assembly mass, and velocity-distribution width. | derivation-closure target |
 | [Noether sea](../../../content/markdown/aaa/spacetime/noether-sea.md) | Noether sea density, stress, flow, orientation, energy storage, and delay-factor response are medium variables, not void properties. | ontology |
+| Legacy WordPress temperature and strong-field notes | Stored configuration energy, accessible kinetic width, and packed-core endpoint language must be separated before assigning a temperature. | derivation-closure target |
 
 ## Draft $\mathbb{A}\mathbb{A}\mathbb{A}$ Mapping
 
@@ -114,6 +117,27 @@ The minimum $\mathbb{A}\mathbb{A}\mathbb{A}$ temperature record should declare:
 | Measure | The distribution or basin measure over compatible states |
 | Equilibrium claim | Whether local thermodynamic equilibrium, detailed balance, or another thermalization condition has been derived |
 | Observer handoff | How the inferred temperature is measured, redshifted, or reconstructed |
+
+### Accessible Temperature And Stored Energy
+
+A 2026 legacy temperature note sharpens a useful guardrail: high stored energy is not automatically high temperature. In current terminology, temperature only sees the energy made accessible by the chosen ensemble, coarse-graining, and observation window. Shielded or stored configuration energy can dominate an assembly or medium region while contributing little to the observer-accessible kinetic width.
+
+Use an explicit split when the source is strongly shielded, densely packed, or far from local equilibrium:
+
+$$
+\Theta_{T,\mathrm{acc}}(W)
+=
+\left(
+E_{\mathrm{kin,acc}},
+E_{\mathrm{store}},
+\Omega_{\mathrm{acc}},
+\mathcal Q,
+W,
+\mu
+\right),
+$$
+
+where $E_{\mathrm{kin,acc}}$ is the energy that participates in the accessible distribution, $E_{\mathrm{store}}$ is shielded or configuration energy retained outside that distribution, $\Omega_{\mathrm{acc}}$ is the accessible state set, $\mathcal Q$ is the coarse-graining, $W$ is the observation window, and $\mu$ is the measure. A scalar $T_{\mathrm{obs}}$ is admitted only from an entropy derivative or distribution over $(E_{\mathrm{kin,acc}},\Omega_{\mathrm{acc}},\mu)$; it cannot be assigned directly from $E_{\mathrm{store}}$.
 
 ## Mapping Table
 
@@ -232,6 +256,36 @@ Legacy cosmology posts often used one temperature label for several different re
 | Noether sea emissive temperature | Effective source-temperature of a medium region that releases or reprocesses radiation | Tie emissivity, absorption, release rate, and transport to one Noether sea record |
 
 This split prevents early-epoch or strong-field prose from treating a high energy scale, a hot ensemble, a photon spectrum, and a medium-emission source as the same variable.
+
+### Packed-Core Endpoint Residual
+
+Strong-field packed-core language needs the same split. A compact interior may carry large stored configuration energy while the retained accessible kinetic ensemble is narrow, frozen, or unavailable under the chosen coarse-graining. The priority residual is therefore:
+
+$$
+\mathcal R_{T\text{-pack}}
+=
+\left(
+T_{\mathrm{obs}}^{(\Omega)},
+E_{\mathrm{store}}^{(\Omega)},
+\Omega_{\mathrm{acc}}^{(\Omega)},
+\mathcal R_{\mathrm{pack,max}},
+\mathcal L_{E\mathbf p\mathbf J}^{(\Omega)}
+\right).
+$$
+
+The admitted temperature row is
+
+$$
+T_{\mathrm{obs}}^{(\Omega)}
+=
+T\!\left[
+E_{\mathrm{kin,acc}}^{(\Omega)},
+\mu_{\mathcal Q,W},
+\Omega_{\mathrm{acc}}^{(\Omega)}
+\right],
+$$
+
+not $T[E_{\mathrm{store}}^{(\Omega)}]$. This keeps the useful endpoint idea - a high-energy packed state with very few accessible rearrangements - without promoting legacy zero-entropy or one-microstate language beyond its declared coarse-graining.
 
 ### Medium Excitation Is Not A Thermometer
 

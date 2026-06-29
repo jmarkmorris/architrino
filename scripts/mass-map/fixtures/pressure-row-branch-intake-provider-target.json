@@ -1,0 +1,86 @@
+{
+  "schema": "pressure_row_branch_intake_provider_target/v0",
+  "row_id": "retained-pressure-row-branch-intake-provider-target",
+  "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+  "provider_source_status": "target_only_not_accepted_source",
+  "target_status": "same_row_branch_intake_provider_missing",
+  "provider_target": {
+    "required_provider_fields": [
+      "accepted_non_fixture_source",
+      "same_domain_record_ref",
+      "branch_certificate_ref",
+      "active_root_or_live_ledger_identity",
+      "branch_local_projection_or_normalization_identity"
+    ],
+    "same_domain_provider_object_target": {
+      "schema": "pressure_row_same_domain_provider_object_target/v0",
+      "claim_scope": "rank4 pressure-row branch-intake provider object",
+      "claim_level": "priority-only fail-closed target, not provider acceptance",
+      "required_provider_source_status": "accepted_non_fixture_source",
+      "required_provider_fields": [
+        "provider_source_status",
+        "same_domain_record_ref",
+        "branch_certificate_ref",
+        "active_root_or_live_ledger_identity",
+        "branch_local_projection_or_normalization_identity"
+      ],
+      "required_same_domain_binding": "all provider fields must be carried by one non-fixture provider record before a retained pressure row can bind branch_id to branch_certificate_ref",
+      "required_pressure_row_binding": "the pressure row must bind branch_id, accepted_history_segment_id, quotient_chart_id, pressure_record, exposure_source_record, pressure_response_record, reversible_domain, and null_sector_record to the same retained row",
+      "forbidden_shortcut": "Do not combine fixture, toy, diagnostic, target-only, or cross-candidate fields into an accepted pressure provider object.",
+      "current_best_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
+      "current_best_partial_missing_fields": [
+        "provider_source_status",
+        "branch_certificate_ref"
+      ],
+      "current_best_partial_source_path_probe_target": {
+        "schema": "pressure_row_provider_source_status_and_certificate_path_probe/v0",
+        "claim_level": "priority-only fail-closed target, not provider acceptance",
+        "nearest_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
+        "required_provider_source_status_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+        "required_branch_certificate_ref_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+        "forbidden_shortcut": "Populated same-candidate fields do not become accepted provenance until provider_source_status and branch_certificate_ref are supplied on one accepted non-fixture provider row.",
+        "authorizes_pressure_response": false
+      },
+      "authorizes_pressure_response": false
+    },
+    "required_pressure_row_fields": [
+      "accepted_branch_identity",
+      "accepted_history_segment",
+      "source_path",
+      "quotient_chart",
+      "residual_status",
+      "gap_or_stability_status",
+      "eta_ladder_status_when_required",
+      "pressure_record",
+      "exposure_source_record",
+      "pressure_response_record",
+      "reversible_domain_row",
+      "null_sector_record"
+    ],
+    "excluded_current_partials": [
+      "pressure-row-branch-intake-fe-silicate-toy-partial",
+      "pressure-row-branch-intake-a0-branch-source-partial",
+      "earth-core-iron-replay.mock"
+    ],
+    "provider_target_reading": "target_only_same_row_branch_intake_provider_missing"
+  },
+  "authorization": {
+    "branch_derived_pressure_response": false,
+    "empirical_mass_response": false,
+    "retained_branch_claim": false
+  },
+  "branch_id": null,
+  "accepted_history_segment_id": null,
+  "source_path": null,
+  "quotient_chart_id": null,
+  "residual_status": "target_only",
+  "gap_or_stability_status": null,
+  "eta_ladder_status": null,
+  "pressure_record": {},
+  "exposure_source_record": {},
+  "pressure_response_record": {},
+  "reversible_domain": {
+    "loss_channels_closed": false
+  },
+  "null_sector_record": {}
+}

@@ -1,0 +1,23 @@
+{
+  "schema": "neutral-braid-octahedral-zero-mean-live-correction-direction-certificate/v1",
+  "claim_scope": "live-correction-direction-certificate",
+  "source_intake_schema": "neutral-braid-octahedral-zero-mean-correction-intake/v1",
+  "source_artifact_id": "neutral_braid_octahedral_zero_mean_correction_intake.frozen_constant_vector.v1",
+  "source_live_derivative_matrix_certificate_schema": "neutral-braid-octahedral-zero-mean-live-derivative-matrix-certificate/v1",
+  "source_live_derivative_matrix_id": "same-ledger-constant-column-pass",
+  "source_range_certificate_status": "certified-live-rhs-in-range",
+  "direction_id": "alpha-constant-column-fixture",
+  "alpha_b_vector": [-1.15740669293],
+  "certifies_live_derivative_matrix": true,
+  "certifies_correction_direction": true,
+  "certifies_bounded_speed_live_ledger": false,
+  "retained_branch": false,
+  "first_order_margin_guards": {
+    "delay_floor_guard": "passed",
+    "jacobian_floor_guard": "passed",
+    "speed_band_margin_guard": "passed",
+    "support_margin_guard": "passed",
+    "action_convention_guard": "passed",
+    "event_convention_guard": "passed"
+  }
+}

@@ -290,6 +290,31 @@ Reports of massive, mature galaxies at $z > 10$ (from JWST and successors) test 
 - If $G_{\text{eff}}$ was larger at early times (medium more compliant when hotter/denser), early structure formation is enhanced relative to standard $\Lambda$CDM—potentially explaining surprisingly massive high-$z$ systems without exotic physics.
 - Conversely, if $G_{\text{eff}}$ was constant, the same tension present in standard cosmology persists and must be addressed through astrophysical channels (early star formation efficiency, AGN feedback).
 
+High-redshift quasars add the compact-source side of the same test. A massive quasar at large inferred redshift is not only a point on a distance curve; it is a joint record of seed inventory, feeding history, radiative efficiency, obscuration and selection, line-of-sight transfer, and the redshift extraction itself. A useful comparison object is
+$$
+\mathcal{R}_{\mathrm{QSO\text{-}grow}}(\theta)
+=
+d_M\!\left(
+M_{\mathrm{BH}}^{\mathrm{obs}},
+M_{\mathrm{BH}}^\theta[
+\mathcal{H}_{\mathrm{seed}},
+\mathcal{H}_{\mathrm{feed}},
+\epsilon_{\mathrm{rad}},
+\theta_{\mathrm{sea}}
+]
+\right)
++
+d_z\!\left(
+z_{\mathrm{QSO}}^{\mathrm{obs}},
+Z^\theta[
+\mathcal{S}_{E\to R},
+\Theta_{\mathrm{sel}},
+\Theta_{\mathrm{line}}
+]
+\right).
+$$
+Here the first term tests whether the shared source history can grow the compact object, while the second tests whether the same source-to-receiver and selection records support the reported redshift. A branch fails this row if quasar growth is repaired by changing the age, redshift-transfer, or Noether sea state independently of the growth, CMB, lensing, and source-history records.
+
 ### Top-Down vs Bottom-Up Discriminator
 
 The framework should be evaluated on whether early-time growth behaves predominantly as hierarchical buildup (bottom-up), fragmentation-dominant assembly (top-down), or a mixed regime across scale and epoch. In practice, this is read from the joint evolution of the high-$z$ halo mass function, merger statistics, and large-scale filament maturity under one calibrated $G_{\text{eff}}(a,k)$ history.

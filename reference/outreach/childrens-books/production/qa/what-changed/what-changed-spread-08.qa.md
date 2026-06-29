@@ -1,7 +1,7 @@
 # QA: Compare
 
 - id: `what-changed-spread-08`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-08.png`
 - lesson: Comparison shows the difference.
 - geometry: An old faint path and a new fresh path differ at the changed turn.
 

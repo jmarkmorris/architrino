@@ -1,7 +1,7 @@
 # QA: Remember It
 
 - id: `what-changed-spread-03`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-03.png`
 - lesson: A record helps comparison.
 - geometry: A physical purple record of the red ball path preserves what happened.
 

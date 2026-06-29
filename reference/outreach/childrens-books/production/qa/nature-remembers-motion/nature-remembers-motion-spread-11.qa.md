@@ -1,7 +1,7 @@
 # QA: The World Shows Us
 
 - id: `nature-remembers-motion-spread-11`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-11.png`
 - lesson: Nature gives clues.
 - geometry: One scene includes many kinds of traces: line, rings, and shadow.
 

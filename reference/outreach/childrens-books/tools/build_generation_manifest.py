@@ -300,10 +300,10 @@ def entry_paths(entry: dict) -> dict:
     slug = entry["book_slug"]
     eid = entry["id"]
     return {
-        "source_png": f"reference/outreach/childrens-books/production/source/{slug}/{eid}.png",
+        "source_png": f"content/assets/images/outreach/childrens-books/source/{slug}/{eid}.png",
         "qa_json": f"reference/outreach/childrens-books/production/qa/{slug}/{eid}.qa.json",
         "qa_markdown": f"reference/outreach/childrens-books/production/qa/{slug}/{eid}.qa.md",
-        "page_landscape_png": f"reference/outreach/childrens-books/production/pages/{slug}/landscape/{eid}.png",
+        "page_landscape_png": f"content/assets/images/outreach/childrens-books/pages/{slug}/landscape/{eid}.png",
         "derivative_4x5_png": f"reference/outreach/childrens-books/production/derivatives/{slug}/4x5/{eid}.png",
         "derivative_9x16_png": f"reference/outreach/childrens-books/production/derivatives/{slug}/9x16/{eid}.png",
     }

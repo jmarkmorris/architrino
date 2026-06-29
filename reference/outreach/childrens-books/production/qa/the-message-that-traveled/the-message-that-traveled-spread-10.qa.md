@@ -1,7 +1,7 @@
 # QA: The Boat Wake
 
 - id: `the-message-that-traveled-spread-10`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-10.png`
 - lesson: A moving thing can leave a traveling wake.
 - geometry: A toy boat wake reaches a paper leaf and moves it.
 

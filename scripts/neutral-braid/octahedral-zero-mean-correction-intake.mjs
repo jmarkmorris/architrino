@@ -34,6 +34,18 @@ export const OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA =
   "neutral-braid-octahedral-zero-mean-normal-reconstruction-handoff/v1";
 export const OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA =
   "neutral-braid-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-bounded-speed-action-stability-after-normal-candidate-intake/v1";
+export const OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-bounded-speed-live-ledger-identity-target/v0";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-bounded-speed-action-derived-scale-target/v0";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-action-measure-row-target/v0";
+export const OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-action-measure-branch-scope-source-audit/v0";
+export const OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-same-ledger-action-measure-row-with-branch-scope-attempt/v0";
 
 const PACKET_ID = "octahedral_zero_mean_correction_intake";
 const PROMOTION_STATUS = "priority-only";
@@ -77,6 +89,271 @@ const REQUIRED_CORRECTION_DIRECTION_GUARDS = [
   "action_convention_guard",
   "event_convention_guard",
 ];
+const REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS = [
+  "action_scale",
+  "action_curl",
+  "speed_factor_storage_exchange",
+  "noether_event_exchange",
+  "tail_refinement_persistence",
+  "bounded_speed_stability",
+  "observer_export_eligibility",
+  "coupled_fixed_point",
+];
+const REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS = [
+  ["action_derived_scale", "action_scale"],
+  ["action_curl", "action_curl"],
+  ["speed_factor_storage_exchange", "speed_factor_storage_exchange"],
+  ["noether_event_exchange", "noether_event_exchange"],
+  ["tail_refinement_persistence", "tail_refinement_persistence"],
+  ["bounded_speed_stability", "bounded_speed_stability"],
+  ["observer_export_eligibility", "observer_export_eligibility"],
+  ["coupled_fixed_point", "coupled_fixed_point"],
+];
+const REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS = [
+  "bounded_speed_normal_reconstruction_candidate",
+  ...REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row]) => row),
+];
+const CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS = ["bounded_speed_normal_reconstruction_candidate"];
+const MISSING_LIVE_LEDGER_CLOSED_ROWS = REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(
+  ([row]) => row
+);
+const ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES = [
+  "gamma_B_nu",
+  "action_functional_A_nu",
+  "scale_parameter",
+  "speed_factor_profile_nu",
+  "force_action_pairing",
+  "scale_margin",
+];
+const ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS = [
+  "bounded_speed_normal_reconstruction_candidate",
+  "action_measure_row",
+  "scale_derivative_row",
+  "force_action_pairing_row",
+  "normal_speed_pullback_row",
+  "scale_margin_row",
+];
+const CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS = ["bounded_speed_normal_reconstruction_candidate"];
+const MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS = ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS.filter(
+  (row) => !CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS.includes(row)
+);
+const ACTION_MEASURE_ROW_TARGET_REQUIRED_VARIABLES = [
+  "action_functional_A_nu",
+  "branch_scope",
+  "period_rows",
+  "root_support_event_rows",
+  "normalization_scale_R_star",
+  "finite_chart",
+];
+const ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS = [
+  "same_ledger_identity_tuple",
+  "branch_scope",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+  "branch_scope",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+];
+const MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS =
+  ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS.filter(
+    (field) => !CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.includes(field)
+  );
+const ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS = [
+  {
+    field: "branch_scope",
+    required_binding: "same-normal-candidate-ledger-branch-scope-source",
+    blocker: "same_ledger_branch_scope_source_missing",
+  },
+  {
+    field: "period_rows",
+    required_binding: "same-normal-candidate-ledger-period-rows",
+    blocker: "same_ledger_period_rows_source_missing",
+  },
+  {
+    field: "action_functional",
+    required_binding: "same-normal-candidate-ledger-action-functional",
+    blocker: "same_ledger_action_functional_source_missing",
+  },
+  {
+    field: "root_support_event_rows",
+    required_binding: "same-normal-candidate-ledger-root-support-event-rows",
+    blocker: "same_ledger_root_support_event_rows_source_missing",
+  },
+];
+const ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS = [
+  ...CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.map((field) => ({
+    field,
+    status: "supplied_on_normal_candidate_ledger",
+    blocker: null,
+  })),
+  ...ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.map((binding) => ({
+    field: binding.field,
+    status: "missing_same_ledger_binding",
+    blocker: binding.blocker,
+  })),
+];
+const CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS = ["same_ledger_identity_tuple"];
+const MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS = ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS.filter(
+  (field) => !CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS.includes(field)
+);
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE =
+  "same_ledger_branch_scope_source_missing";
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL =
+  "branch-scope-artifacts-without-same-ledger-action-measure-row-not-bound";
+const ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS = [
+  "bounded_speed_ledger_id",
+  "force_checksum_id",
+  "consumer_checksum_id",
+  "source_normal_reconstruction_candidate_id",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS = ["branch_scope"];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS = [
+  "same_ledger_identity_tuple",
+  "action_measure_row",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS = [
+  "same_ledger_identity_tuple",
+  "action_measure_row",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS = [
+  "scripts/neutral-braid",
+  "reference/priorities/braid-retained-branch-closure",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS = [
+  "branch_scope",
+  "action_measure_row",
+  "same_ledger_action_measure_row_with_branch_scope",
+  "accepted_branch_scope_source",
+  "period_rows",
+];
+const ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT =
+  "no-accepted-same-ledger-action-measure-branch-scope-source";
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS =
+  "fixed-speed-root-ledger-branch-scope-provenance-only";
+const ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT =
+  "same-ledger-action-measure-row-with-branch-scope";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS = [
+  "same_ledger_identity_tuple",
+  "branch_scope",
+];
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS =
+  ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS.filter(
+    (field) => !ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS.includes(field)
+  );
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE =
+  "same_ledger_period_rows_source_missing";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL =
+  "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row";
+const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT =
+  "same-ledger-action-measure-row-with-branch-scope-and-period-rows";
+const ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES = [
+  {
+    field: "branch_scope",
+    candidate_source_status: "present",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_off_ledger",
+    blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+  },
+  {
+    field: "period_rows",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "conditional_blocked_until_branch_scope_binds",
+    blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    conditional_next_failure: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+  },
+  {
+    field: "action_functional",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_missing_same_ledger_binding",
+    blocker: "same_ledger_action_functional_source_missing",
+  },
+  {
+    field: "root_support_event_rows",
+    candidate_source_status: "absent",
+    normal_candidate_ledger_status: "missing_same_ledger_binding",
+    acceptance_status: "rejected_missing_same_ledger_binding",
+    blocker: "same_ledger_root_support_event_rows_source_missing",
+  },
+];
+const ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES = [
+  {
+    source_path: "scripts/neutral-braid/octahedral-root-ledger.mjs",
+    artifact_schema: "neutral-braid-octahedral-root-ledger/v1",
+    artifact_id: "neutral_braid_octahedral_root_ledger.certified.v1",
+    branch_scope_role: "certified fixed-speed all-pairs root ledger",
+    first_rejection_code: "root-ledger-branch-scope-lacks-action-measure-row",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-fixed-speed-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-fixed-speed-witness/v1",
+    artifact_id: "neutral_braid_octahedral_fixed_speed_witness.deterministic_nodes.v1",
+    branch_scope_role: "fixed-speed tangential residual no-go witness",
+    first_rejection_code: "fixed-speed-witness-branch-scope-lacks-live-ledger-tuple",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-force-residual.mjs",
+    artifact_schema: "neutral-braid-octahedral-force-residual/v1",
+    artifact_id: "neutral_braid_octahedral_force_residual.sampled_diagnostic.v1",
+    branch_scope_role: "sampled fixed-speed force residual diagnostic",
+    first_rejection_code: "force-residual-branch-scope-is-diagnostic-not-action-measure",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-root-force-closure-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-root-force-closure-witness/v1",
+    artifact_id: "neutral_braid_octahedral_root_force_closure_witness.narrow_no_go.v1",
+    branch_scope_role: "resolved-root force-closure overread rejection",
+    first_rejection_code: "root-force-no-go-branch-scope-not-same-ledger-action-measure",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-inventory-closure-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-inventory-closure-witness/v1",
+    artifact_id: "neutral_braid_octahedral_inventory_closure_witness.narrow_no_go.v1",
+    branch_scope_role: "inventory-bias closure overread rejection",
+    first_rejection_code: "inventory-witness-branch-scope-not-action-functional-row",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-phase-offset-scan.mjs",
+    artifact_schema: "neutral-braid-octahedral-phase-offset-scan/v1",
+    artifact_id: "neutral_braid_octahedral_phase_offset_scan.sampled_diagnostic.v1",
+    branch_scope_role: "phase-offset sampled diagnostic",
+    first_rejection_code: "phase-offset-branch-scope-not-bounded-speed-live-ledger",
+  },
+  {
+    source_path: "scripts/neutral-braid/octahedral-polarity-phase-retention-witness.mjs",
+    artifact_schema: "neutral-braid-octahedral-polarity-phase-retention-witness/v1",
+    artifact_id: "neutral_braid_octahedral_polarity_phase_retention_witness.best_row_consumption.v1",
+    branch_scope_role: "polarity-phase retention overread rejection",
+    first_rejection_code: "polarity-phase-branch-scope-retention-rejected",
+  },
+  {
+    source_path: "scripts/neutral-braid/finite-mode-artifact.mjs",
+    artifact_schema: "neutral-braid-finite-mode-artifact/v1",
+    artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
+    branch_scope_role: "finite-mode open search contract",
+    first_rejection_code: "finite-mode-branch-scope-open-placeholders-not-action-measure",
+  },
+];
+const ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE =
+  ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES[0];
 const LIVE_DERIVATIVE_DIFFERENCE_SCHEMES = new Set(["central-finite-difference"]);
 
 function formatNumber(value) {
@@ -159,12 +436,28 @@ function readBoundedSpeedNormalReconstructionCandidatePacket(filePath) {
   return readJsonObjectPacket(filePath, "bounded speed normal reconstruction candidate");
 }
 
+function readActionStabilityAfterNormalCandidatePacket(filePath) {
+  return readJsonObjectPacket(filePath, "action stability after normal candidate");
+}
+
 function isNonemptyString(value) {
   return typeof value === "string" && value.length > 0;
 }
 
+function isRecordObject(value) {
+  return Boolean(value) && typeof value === "object" && !Array.isArray(value);
+}
+
 function uniqueEntries(values) {
   return new Set(values).size === values.length;
+}
+
+function sameStringArray(actual, expected) {
+  return (
+    Array.isArray(actual) &&
+    actual.length === expected.length &&
+    expected.every((value, index) => actual[index] === value)
+  );
 }
 
 function validateCandidateMatrixShape(matrix) {
@@ -2057,6 +2350,1675 @@ export function attachBoundedSpeedNormalReconstructionCandidate(artifact, candid
   };
 }
 
+function boundedSpeedLiveLedgerTargetValidationErrors(candidate, liveLedgerTarget) {
+  const errors = [];
+
+  assertField(
+    isRecordObject(liveLedgerTarget),
+    "action stability after normal candidate must declare bounded_speed_live_ledger target",
+    errors
+  );
+  if (!isRecordObject(liveLedgerTarget)) {
+    return errors;
+  }
+
+  assertField(
+    liveLedgerTarget?.claim_scope === "bounded-speed-live-ledger-target-after-normal-candidate",
+    "bounded_speed_live_ledger claim_scope must be bounded-speed-live-ledger-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.source_normal_reconstruction_candidate_id === candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.intake_status === "bounded-speed-live-ledger-open",
+    "bounded_speed_live_ledger intake_status must be bounded-speed-live-ledger-open",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.first_failure_row === "bounded-speed-live-ledger-open",
+    "bounded_speed_live_ledger first_failure_row must be bounded-speed-live-ledger-open",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.certifies_action_stability === false,
+    "bounded_speed_live_ledger must set certifies_action_stability=false",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.certifies_observer_export === false,
+    "bounded_speed_live_ledger must set certifies_observer_export=false",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger retention must be not_retained",
+    errors
+  );
+  assertField(
+    liveLedgerTarget?.retained_branch === false,
+    "bounded_speed_live_ledger must set retained_branch=false",
+    errors
+  );
+
+  const requiredRows = liveLedgerTarget?.required_same_ledger_rows ?? {};
+  assertField(
+    isRecordObject(requiredRows),
+    "bounded_speed_live_ledger required_same_ledger_rows must be an object",
+    errors
+  );
+  if (isRecordObject(requiredRows)) {
+    const expectedRowNames = REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row]) => row);
+    const actualRowNames = Object.keys(requiredRows);
+    assertField(
+      actualRowNames.length === expectedRowNames.length &&
+        expectedRowNames.every((row) => Object.prototype.hasOwnProperty.call(requiredRows, row)),
+      `bounded_speed_live_ledger must declare exactly required same-ledger rows: ${expectedRowNames.join(", ")}`,
+      errors
+    );
+    for (const [row, downstreamRow] of REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS) {
+      const rowTarget = requiredRows[row] ?? {};
+      assertField(
+        rowTarget?.downstream_row === downstreamRow,
+        `bounded_speed_live_ledger row ${row} downstream_row must be ${downstreamRow}`,
+        errors
+      );
+      assertField(
+        rowTarget?.same_ledger_binding === "same-normal-candidate-ledger-checksum",
+        `bounded_speed_live_ledger row ${row} must bind to the same normal-candidate ledger/checksum`,
+        errors
+      );
+      assertField(
+        rowTarget?.status === "blocked:bounded-speed-live-ledger-open",
+        `bounded_speed_live_ledger row ${row} must be blocked:bounded-speed-live-ledger-open`,
+        errors
+      );
+    }
+  }
+
+  errors.push(
+    ...boundedSpeedLiveLedgerIdentityTargetValidationErrors(
+      candidate,
+      liveLedgerTarget?.live_ledger_identity_target
+    )
+  );
+  errors.push(
+    ...boundedSpeedActionDerivedScaleTargetValidationErrors(
+      candidate,
+      liveLedgerTarget?.action_derived_scale_target
+    )
+  );
+
+  return errors;
+}
+
+function boundedSpeedLiveLedgerIdentityTargetValidationErrors(candidate, identityTarget) {
+  const errors = [];
+  const identityTuple = identityTarget?.required_identity_tuple ?? {};
+
+  assertField(
+    identityTarget?.schema === OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA,
+    `bounded_speed_live_ledger identity target schema must be ${OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA}`,
+    errors
+  );
+  assertField(
+    identityTarget?.claim_scope === "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    "bounded_speed_live_ledger identity target claim_scope must be bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger identity target promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    identityTarget?.status === "target-only",
+    "bounded_speed_live_ledger identity target status must be target-only",
+    errors
+  );
+  assertField(
+    identityTarget?.source_normal_reconstruction_candidate_id === candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger identity target source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger identity target bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger identity target force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger identity target consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger identity target required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      identityTarget?.required_closed_rows,
+      REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS
+    ),
+    "bounded_speed_live_ledger identity target required_closed_rows must declare the normal candidate plus every downstream live-ledger row",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      identityTarget?.closed_rows_supplied_by_current_packet,
+      CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS
+    ),
+    "bounded_speed_live_ledger identity target closed_rows_supplied_by_current_packet must contain only the normal candidate row",
+    errors
+  );
+  assertField(
+    sameStringArray(identityTarget?.missing_closed_rows, MISSING_LIVE_LEDGER_CLOSED_ROWS),
+    "bounded_speed_live_ledger identity target missing_closed_rows must list every downstream live-ledger row",
+    errors
+  );
+  assertField(
+    identityTarget?.first_missing_closed_row === MISSING_LIVE_LEDGER_CLOSED_ROWS[0],
+    "bounded_speed_live_ledger identity target first_missing_closed_row must be action_derived_scale",
+    errors
+  );
+  assertField(
+    identityTarget?.negative_control_status ===
+      "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+    "bounded_speed_live_ledger identity target negative_control_status must reject tuple-only live-ledger certification",
+    errors
+  );
+  assertField(
+    identityTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger identity target must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    identityTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger identity target retention must be not_retained",
+    errors
+  );
+  assertField(
+    identityTarget?.retained_branch === false,
+    "bounded_speed_live_ledger identity target must set retained_branch=false",
+    errors
+  );
+
+  return errors;
+}
+
+function boundedSpeedActionMeasureRowTargetValidationErrors(candidate, actionMeasureTarget) {
+  const errors = [];
+  const identityTuple = actionMeasureTarget?.required_identity_tuple ?? {};
+
+  assertField(
+    isRecordObject(actionMeasureTarget),
+    "bounded_speed_live_ledger action_derived_scale_target must declare action_measure_row_target",
+    errors
+  );
+  if (!isRecordObject(actionMeasureTarget)) {
+    return errors;
+  }
+
+  assertField(
+    actionMeasureTarget?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA,
+    `bounded_speed_live_ledger action_measure_row_target schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA}`,
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.claim_scope === "bounded-speed-action-measure-row-target-after-normal-candidate",
+    "bounded_speed_live_ledger action_measure_row_target claim_scope must be bounded-speed-action-measure-row-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger action_measure_row_target promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.status === "target-only",
+    "bounded_speed_live_ledger action_measure_row_target status must be target-only",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.row === "action_measure_row",
+    "bounded_speed_live_ledger action_measure_row_target row must be action_measure_row",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.source_action_derived_scale_row === "action_derived_scale",
+    "bounded_speed_live_ledger action_measure_row_target source_action_derived_scale_row must be action_derived_scale",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.source_normal_reconstruction_candidate_id ===
+      candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_measure_row_target source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger action_measure_row_target bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger action_measure_row_target force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger action_measure_row_target consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_measure_row_target required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionMeasureTarget?.required_variables,
+      ACTION_MEASURE_ROW_TARGET_REQUIRED_VARIABLES
+    ),
+    "bounded_speed_live_ledger action_measure_row_target required_variables must list the action-measure variables",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionMeasureTarget?.required_measure_fields,
+      ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_target required_measure_fields must list the action-measure fields",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionMeasureTarget?.current_fixture_supplied_measure_fields,
+      CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_target current_fixture_supplied_measure_fields must contain only the identity tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionMeasureTarget?.missing_measure_fields,
+      MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_target missing_measure_fields must list the missing action-measure fields",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.first_missing_measure_field ===
+      MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS[0],
+    "bounded_speed_live_ledger action_measure_row_target first_missing_measure_field must be branch_scope",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.negative_control_status ===
+      "same-ledger-tuple-without-action-functional-not-action-measure-row",
+    "bounded_speed_live_ledger action_measure_row_target negative_control_status must reject tuple-only action-measure certification",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.rejected_current_fixture === true,
+    "bounded_speed_live_ledger action_measure_row_target must reject the current fixture",
+    errors
+  );
+  errors.push(
+    ...actionMeasureBranchScopeSourceAuditValidationErrors(
+      candidate,
+      actionMeasureTarget?.branch_scope_source_audit
+    )
+  );
+  errors.push(
+    ...sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(
+      candidate,
+      actionMeasureTarget
+    )
+  );
+  assertField(
+    actionMeasureTarget?.certifies_action_measure_row === false,
+    "bounded_speed_live_ledger action_measure_row_target must set certifies_action_measure_row=false",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.certifies_action_derived_scale === false,
+    "bounded_speed_live_ledger action_measure_row_target must set certifies_action_derived_scale=false",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger action_measure_row_target must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.certifies_action_stability === false,
+    "bounded_speed_live_ledger action_measure_row_target must set certifies_action_stability=false",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.certifies_observer_export === false,
+    "bounded_speed_live_ledger action_measure_row_target must set certifies_observer_export=false",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger action_measure_row_target retention must be not_retained",
+    errors
+  );
+  assertField(
+    actionMeasureTarget?.retained_branch === false,
+    "bounded_speed_live_ledger action_measure_row_target must set retained_branch=false",
+    errors
+  );
+
+  return errors;
+}
+
+function actionMeasureBranchScopeSourceAuditValidationErrors(candidate, sourceAudit) {
+  const errors = [];
+  const identityTuple = sourceAudit?.required_identity_tuple ?? {};
+  const candidateSources = sourceAudit?.candidate_branch_scope_sources ?? [];
+  const nearestLineage = sourceAudit?.nearest_candidate_lineage_readout ?? {};
+  const closestRejectedSource = nearestLineage?.closest_rejected_branch_scope_source ?? {};
+  const searchBasis = sourceAudit?.search_basis ?? {};
+  const acceptanceCriteria = sourceAudit?.acceptance_criteria ?? {};
+
+  assertField(
+    isRecordObject(sourceAudit),
+    "bounded_speed_live_ledger action_measure_row_target must declare branch_scope_source_audit",
+    errors
+  );
+  if (!isRecordObject(sourceAudit)) {
+    return errors;
+  }
+  assertField(
+    sourceAudit?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA,
+    `bounded_speed_live_ledger branch_scope_source_audit schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA}`,
+    errors
+  );
+  assertField(
+    sourceAudit?.claim_scope === "bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    "bounded_speed_live_ledger branch_scope_source_audit claim_scope must be bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    errors
+  );
+  assertField(
+    sourceAudit?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger branch_scope_source_audit promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    sourceAudit?.status === "no-same-ledger-branch-scope-source",
+    "bounded_speed_live_ledger branch_scope_source_audit status must be no-same-ledger-branch-scope-source",
+    errors
+  );
+  assertField(
+    sourceAudit?.audited_measure_field === "branch_scope",
+    "bounded_speed_live_ledger branch_scope_source_audit audited_measure_field must be branch_scope",
+    errors
+  );
+  assertField(
+    sourceAudit?.source_action_measure_row === "action_measure_row",
+    "bounded_speed_live_ledger branch_scope_source_audit source_action_measure_row must be action_measure_row",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger branch_scope_source_audit required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    isRecordObject(searchBasis),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare search_basis",
+    errors
+  );
+  if (isRecordObject(searchBasis)) {
+    assertField(
+      sameStringArray(searchBasis.searched_roots, ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS),
+      "bounded_speed_live_ledger branch_scope_source_audit searched_roots mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(searchBasis.searched_terms, ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS),
+      "bounded_speed_live_ledger branch_scope_source_audit searched_terms mismatch",
+      errors
+    );
+    assertField(
+      searchBasis.result === ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT,
+      "bounded_speed_live_ledger branch_scope_source_audit search result mismatch",
+      errors
+    );
+  }
+  assertField(
+    isRecordObject(acceptanceCriteria),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare acceptance_criteria",
+    errors
+  );
+  if (isRecordObject(acceptanceCriteria)) {
+    const criteriaTuple = acceptanceCriteria.required_identity_tuple ?? {};
+    assertField(
+      criteriaTuple.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+        criteriaTuple.force_checksum_id === candidate?.force_checksum_id &&
+        criteriaTuple.consumer_checksum_id === candidate?.consumer_checksum_id &&
+        criteriaTuple.source_normal_reconstruction_candidate_id ===
+          candidate?.normal_reconstruction_candidate_id,
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance_criteria identity tuple must match",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_same_ledger_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance same-ledger fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_action_measure_fields,
+        ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance action-measure fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        acceptanceCriteria.required_acceptance_bindings,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit acceptance bindings mismatch",
+      errors
+    );
+  }
+  assertField(
+    sourceAudit?.candidate_count === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    "bounded_speed_live_ledger branch_scope_source_audit candidate_count must cover all audited sources",
+    errors
+  );
+  assertField(
+    sourceAudit?.accepted_count === 0,
+    "bounded_speed_live_ledger branch_scope_source_audit accepted_count must be zero",
+    errors
+  );
+  assertField(
+    sourceAudit?.accepted_branch_scope_source === null,
+    "bounded_speed_live_ledger branch_scope_source_audit accepted_branch_scope_source must be null",
+    errors
+  );
+  assertField(
+    sourceAudit?.first_failure === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    "bounded_speed_live_ledger branch_scope_source_audit first_failure must be same_ledger_branch_scope_source_missing",
+    errors
+  );
+  assertField(
+    sourceAudit?.negative_control_status === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL,
+    "bounded_speed_live_ledger branch_scope_source_audit negative_control_status must reject off-ledger branch scopes",
+    errors
+  );
+  assertField(
+    isRecordObject(nearestLineage),
+    "bounded_speed_live_ledger branch_scope_source_audit must declare nearest_candidate_lineage_readout",
+    errors
+  );
+  if (isRecordObject(nearestLineage)) {
+    assertField(
+      nearestLineage.status === "fail-closed-nearest-candidate-lineage",
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout status must be fail-closed",
+      errors
+    );
+    assertField(
+      nearestLineage.readiness_status === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout readiness_status mismatch",
+      errors
+    );
+    assertField(
+      isRecordObject(closestRejectedSource),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout must name closest_rejected_branch_scope_source",
+      errors
+    );
+    assertField(
+      closestRejectedSource.source_path === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.source_path &&
+        closestRejectedSource.artifact_schema === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_schema &&
+        closestRejectedSource.artifact_id === ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_id &&
+        closestRejectedSource.branch_scope_role ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.branch_scope_role &&
+        closestRejectedSource.first_rejection_code ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.first_rejection_code,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout closest source must be the fixed-speed root ledger rejection",
+      errors
+    );
+    assertField(
+      sameStringArray(nearestLineage.present_fields, ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout present_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.missing_same_ledger_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout missing_same_ledger_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.missing_action_measure_fields,
+        ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout missing_action_measure_fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        nearestLineage.required_acceptance_bindings,
+        ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS
+      ),
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout required_acceptance_bindings mismatch",
+      errors
+    );
+    assertField(
+      nearestLineage.smallest_next_evidence_object ===
+        ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      "bounded_speed_live_ledger branch_scope_source_audit nearest_candidate_lineage_readout smallest_next_evidence_object mismatch",
+      errors
+    );
+  }
+  assertField(
+    Array.isArray(candidateSources) &&
+      candidateSources.length === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    "bounded_speed_live_ledger branch_scope_source_audit must list every candidate branch-scope source",
+    errors
+  );
+  if (Array.isArray(candidateSources)) {
+    for (const expected of ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES) {
+      const row = candidateSources.find((candidateRow) => candidateRow?.source_path === expected.source_path);
+      assertField(Boolean(row), `branch_scope_source_audit missing source ${expected.source_path}`, errors);
+      if (!row) {
+        continue;
+      }
+      assertField(row.artifact_schema === expected.artifact_schema, `${expected.source_path} artifact_schema mismatch`, errors);
+      assertField(row.artifact_id === expected.artifact_id, `${expected.source_path} artifact_id mismatch`, errors);
+      assertField(row.branch_scope_status === "present", `${expected.source_path} branch_scope_status must be present`, errors);
+      assertField(
+        sameStringArray(row.observed_fields, ["branch_scope"]),
+        `${expected.source_path} observed_fields must record only branch_scope`,
+        errors
+      );
+      assertField(
+        row.action_measure_row_status === "absent",
+        `${expected.source_path} action_measure_row_status must be absent`,
+        errors
+      );
+      assertField(
+        row.same_ledger_tuple_match === false,
+        `${expected.source_path} same_ledger_tuple_match must be false`,
+        errors
+      );
+      assertField(
+        row.accepted_for_action_measure_branch_scope === false,
+        `${expected.source_path} must not be accepted for action_measure_row branch_scope`,
+        errors
+      );
+      assertField(
+        row.first_rejection_code === expected.first_rejection_code,
+        `${expected.source_path} first_rejection_code mismatch`,
+        errors
+      );
+      const observedIdentity = row.observed_identity_fields ?? {};
+      assertField(
+        observedIdentity.bounded_speed_ledger_id === null &&
+          observedIdentity.force_checksum_id === null &&
+          observedIdentity.consumer_checksum_id === null &&
+          observedIdentity.source_normal_reconstruction_candidate_id === null,
+        `${expected.source_path} observed_identity_fields must not claim the bounded-speed live-ledger tuple`,
+        errors
+      );
+      assertField(
+        sameStringArray(
+          row.missing_required_identity_fields,
+          ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS
+        ),
+        `${expected.source_path} missing_required_identity_fields mismatch`,
+        errors
+      );
+      assertField(
+        sameStringArray(row.missing_action_measure_fields, ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS),
+        `${expected.source_path} missing_action_measure_fields mismatch`,
+        errors
+      );
+      assertField(
+        JSON.stringify(row.action_measure_field_statuses) ===
+          JSON.stringify(ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES),
+        `${expected.source_path} action_measure_field_statuses mismatch`,
+        errors
+      );
+      assertField(
+        row.rejection_summary ===
+          "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+        `${expected.source_path} rejection_summary mismatch`,
+        errors
+      );
+    }
+  }
+
+  return errors;
+}
+
+function sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(candidate, actionMeasureTarget) {
+  const errors = [];
+  const attempt = actionMeasureTarget?.same_ledger_action_measure_row_with_branch_scope_attempt ?? {};
+  const identityTuple = attempt?.required_identity_tuple ?? {};
+  const rowTarget = attempt?.fail_closed_action_measure_row_target ?? {};
+  const periodRowsTarget = attempt?.period_rows_target ?? {};
+
+  assertField(
+    isRecordObject(attempt),
+    "bounded_speed_live_ledger action_measure_row_target must declare same_ledger_action_measure_row_with_branch_scope_attempt",
+    errors
+  );
+  if (!isRecordObject(attempt)) {
+    return errors;
+  }
+  assertField(
+    attempt?.schema === OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA,
+    `bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt schema must be ${OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA}`,
+    errors
+  );
+  assertField(
+    attempt?.claim_scope ===
+      "bounded-speed-same-ledger-action-measure-row-with-branch-scope-attempt-after-normal-candidate",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt claim_scope mismatch",
+    errors
+  );
+  assertField(
+    attempt?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    attempt?.status === "fail-closed-target",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt status must be fail-closed-target",
+    errors
+  );
+  assertField(
+    attempt?.attempted_evidence_object === ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt attempted_evidence_object mismatch",
+    errors
+  );
+  assertField(
+    attempt?.source_action_measure_row_target === "action_measure_row",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must target action_measure_row",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      attempt?.current_fixture_supplied_measure_fields,
+      CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt current fixture fields mismatch",
+    errors
+  );
+  assertField(
+    sameStringArray(attempt?.attempted_measure_fields, ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt attempted fields mismatch",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      attempt?.missing_measure_fields_if_branch_scope_bound,
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS
+    ),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt missing fields after branch_scope mismatch",
+    errors
+  );
+  assertField(
+    attempt?.branch_scope_binding_status === "not_accepted",
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt branch_scope_binding_status must be not_accepted",
+    errors
+  );
+  assertField(
+    attempt?.branch_scope_source_audit_first_failure ===
+      ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must cite branch_scope source-audit first failure",
+    errors
+  );
+  assertField(
+    attempt?.first_missing_subfield_after_branch_scope ===
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS[0],
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt first_missing_subfield_after_branch_scope must be period_rows",
+    errors
+  );
+  assertField(
+    attempt?.constructed_action_measure_row === null,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must not construct an action_measure_row",
+    errors
+  );
+  assertField(
+    isRecordObject(rowTarget),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must declare fail_closed_action_measure_row_target",
+    errors
+  );
+  if (isRecordObject(rowTarget)) {
+    assertField(
+      rowTarget?.row === "action_measure_row",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target row must be action_measure_row",
+      errors
+    );
+    assertField(
+      rowTarget?.status === "absent-fail-closed",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target status must be absent-fail-closed",
+      errors
+    );
+    assertField(
+      rowTarget?.candidate_row_status === "not_constructed",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target candidate row status must be not_constructed",
+      errors
+    );
+    assertField(
+      rowTarget?.accepted_row_status === "absent",
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target accepted row status must be absent",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.required_row_fields,
+        ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target required row fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.supplied_fields_on_normal_candidate_ledger,
+        CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target supplied fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rowTarget?.missing_fields_on_normal_candidate_ledger,
+        MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS
+      ),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target missing fields mismatch",
+      errors
+    );
+    assertField(
+      rowTarget?.first_blocker === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target first blocker must cite branch_scope",
+      errors
+    );
+    assertField(
+      JSON.stringify(rowTarget?.field_statuses_on_normal_candidate_ledger) ===
+        JSON.stringify(ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS),
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target field statuses mismatch",
+      errors
+    );
+    assertField(
+      Array.isArray(rowTarget?.missing_same_ledger_bindings) &&
+        rowTarget.missing_same_ledger_bindings.length ===
+          ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.length,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target missing bindings length mismatch",
+      errors
+    );
+    if (Array.isArray(rowTarget?.missing_same_ledger_bindings)) {
+      for (const expected of ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS) {
+        const actual = rowTarget.missing_same_ledger_bindings.find(
+          (binding) => binding?.field === expected.field
+        );
+        assertField(
+          actual?.required_binding === expected.required_binding &&
+            actual?.blocker === expected.blocker,
+          `bounded_speed_live_ledger fail_closed_action_measure_row_target missing binding ${expected.field} mismatch`,
+          errors
+        );
+      }
+    }
+    assertField(
+      rowTarget?.certifies_action_measure_row === false,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target must not certify action_measure_row",
+      errors
+    );
+    assertField(
+      rowTarget?.retention === "not_retained" && rowTarget?.retained_branch === false,
+      "bounded_speed_live_ledger fail_closed_action_measure_row_target must not retain a branch",
+      errors
+    );
+  }
+  assertField(
+    isRecordObject(periodRowsTarget),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must declare period_rows_target",
+    errors
+  );
+  if (isRecordObject(periodRowsTarget)) {
+    assertField(
+      periodRowsTarget?.field === "period_rows",
+      "bounded_speed_live_ledger period_rows_target field must be period_rows",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.status === "target-only-blocked-by-branch-scope",
+      "bounded_speed_live_ledger period_rows_target status must be target-only-blocked-by-branch-scope",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.source_action_measure_row === "action_measure_row",
+      "bounded_speed_live_ledger period_rows_target source_action_measure_row must be action_measure_row",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.blocking_failure === ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      "bounded_speed_live_ledger period_rows_target blocking_failure must cite the branch_scope first failure",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.first_failure ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+      "bounded_speed_live_ledger period_rows_target first_failure must be same_ledger_period_rows_source_missing",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.accepted_period_rows_source === null,
+      "bounded_speed_live_ledger period_rows_target accepted_period_rows_source must be null",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.candidate_count === 0,
+      "bounded_speed_live_ledger period_rows_target candidate_count must be zero",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.negative_control_status ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL,
+      "bounded_speed_live_ledger period_rows_target negative_control_status mismatch",
+      errors
+    );
+    assertField(
+      periodRowsTarget?.smallest_next_evidence_object ===
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      "bounded_speed_live_ledger period_rows_target smallest_next_evidence_object mismatch",
+      errors
+    );
+  }
+  assertField(
+    attempt?.certifies_action_measure_row === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_action_measure_row=false",
+    errors
+  );
+  assertField(
+    attempt?.certifies_action_derived_scale === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_action_derived_scale=false",
+    errors
+  );
+  assertField(
+    attempt?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    attempt?.retention === "not_retained" && attempt?.retained_branch === false,
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must not retain a branch",
+    errors
+  );
+
+  return errors;
+}
+
+function buildActionMeasureBranchScopeNearestCandidateLineageReadout() {
+  const nearestCandidate = ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE;
+  return {
+    status: "fail-closed-nearest-candidate-lineage",
+    readiness_status: ACTION_MEASURE_BRANCH_SCOPE_NEAREST_READINESS_STATUS,
+    closest_rejected_branch_scope_source: {
+      source_path: nearestCandidate.source_path,
+      artifact_schema: nearestCandidate.artifact_schema,
+      artifact_id: nearestCandidate.artifact_id,
+      branch_scope_role: nearestCandidate.branch_scope_role,
+      first_rejection_code: nearestCandidate.first_rejection_code,
+    },
+    closest_candidate_reason:
+      "certified fixed-speed all-pairs root ledger carries branch_scope and certified root rows, but it is provenance only for the bounded-speed action-measure target",
+    present_fields: [...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_PRESENT_FIELDS],
+    missing_same_ledger_fields: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS],
+    missing_action_measure_fields: [...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_MISSING_ACTION_MEASURE_FIELDS],
+    required_acceptance_bindings: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS],
+    smallest_next_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+  };
+}
+
+function boundedSpeedActionDerivedScaleTargetValidationErrors(candidate, actionScaleTarget) {
+  const errors = [];
+  const identityTuple = actionScaleTarget?.required_identity_tuple ?? {};
+
+  assertField(
+    isRecordObject(actionScaleTarget),
+    "bounded_speed_live_ledger must declare action_derived_scale_target",
+    errors
+  );
+  if (!isRecordObject(actionScaleTarget)) {
+    return errors;
+  }
+
+  assertField(
+    actionScaleTarget?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA,
+    `bounded_speed_live_ledger action_derived_scale_target schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA}`,
+    errors
+  );
+  assertField(
+    actionScaleTarget?.claim_scope === "bounded-speed-action-derived-scale-target-after-normal-candidate",
+    "bounded_speed_live_ledger action_derived_scale_target claim_scope must be bounded-speed-action-derived-scale-target-after-normal-candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.promotion_status === PROMOTION_STATUS,
+    `bounded_speed_live_ledger action_derived_scale_target promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    actionScaleTarget?.status === "target-only",
+    "bounded_speed_live_ledger action_derived_scale_target status must be target-only",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.row === "action_derived_scale",
+    "bounded_speed_live_ledger action_derived_scale_target row must be action_derived_scale",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.downstream_row === "action_scale",
+    "bounded_speed_live_ledger action_derived_scale_target downstream_row must be action_scale",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.source_normal_reconstruction_candidate_id ===
+      candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_derived_scale_target source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "bounded_speed_live_ledger action_derived_scale_target bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.force_checksum_id === candidate?.force_checksum_id,
+    "bounded_speed_live_ledger action_derived_scale_target force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "bounded_speed_live_ledger action_derived_scale_target consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    identityTuple?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+      identityTuple?.force_checksum_id === candidate?.force_checksum_id &&
+      identityTuple?.consumer_checksum_id === candidate?.consumer_checksum_id &&
+      identityTuple?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id,
+    "bounded_speed_live_ledger action_derived_scale_target required_identity_tuple must match the normal candidate ledger tuple",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionScaleTarget?.required_variables,
+      ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES
+    ),
+    "bounded_speed_live_ledger action_derived_scale_target required_variables must list the action-derived scale variables",
+    errors
+  );
+  assertField(
+    sameStringArray(actionScaleTarget?.required_rows, ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS),
+    "bounded_speed_live_ledger action_derived_scale_target required_rows must list the action-derived scale rows",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      actionScaleTarget?.current_fixture_supplied_rows,
+      CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS
+    ),
+    "bounded_speed_live_ledger action_derived_scale_target current_fixture_supplied_rows must contain only the normal candidate",
+    errors
+  );
+  assertField(
+    sameStringArray(actionScaleTarget?.missing_rows, MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS),
+    "bounded_speed_live_ledger action_derived_scale_target missing_rows must list the missing action-derived scale rows",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.first_missing_required_row === MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS[0],
+    "bounded_speed_live_ledger action_derived_scale_target first_missing_required_row must be action_measure_row",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.negative_control_status ===
+      "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+    "bounded_speed_live_ledger action_derived_scale_target negative_control_status must reject tuple-only action-derived scale certification",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.rejected_current_fixture === true,
+    "bounded_speed_live_ledger action_derived_scale_target must reject the current fixture",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_action_derived_scale === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_action_derived_scale=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_bounded_speed_live_ledger === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_action_stability === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_action_stability=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.certifies_observer_export === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set certifies_observer_export=false",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.retention === "not_retained",
+    "bounded_speed_live_ledger action_derived_scale_target retention must be not_retained",
+    errors
+  );
+  assertField(
+    actionScaleTarget?.retained_branch === false,
+    "bounded_speed_live_ledger action_derived_scale_target must set retained_branch=false",
+    errors
+  );
+  errors.push(
+    ...boundedSpeedActionMeasureRowTargetValidationErrors(
+      candidate,
+      actionScaleTarget?.action_measure_row_target
+    )
+  );
+
+  return errors;
+}
+
+function buildBoundedSpeedLiveLedgerIdentityTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_TARGET_SCHEMA,
+    claim_scope: "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "target-only",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    required_closed_rows: [...REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_IDENTITY_ROWS],
+    closed_rows_supplied_by_current_packet: [...CURRENT_PACKET_LIVE_LEDGER_CLOSED_ROWS],
+    missing_closed_rows: [...MISSING_LIVE_LEDGER_CLOSED_ROWS],
+    first_missing_closed_row: MISSING_LIVE_LEDGER_CLOSED_ROWS[0],
+    negative_control_status:
+      "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildActionMeasureBranchScopeSourceAudit(candidate) {
+  const requiredIdentityTuple = {
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+  };
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA,
+    claim_scope: "bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "no-same-ledger-branch-scope-source",
+    audited_measure_field: "branch_scope",
+    source_action_measure_row: "action_measure_row",
+    required_identity_tuple: requiredIdentityTuple,
+    search_basis: {
+      searched_roots: [...ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_ROOTS],
+      searched_terms: [...ACTION_MEASURE_BRANCH_SCOPE_AUDIT_SEARCH_TERMS],
+      result: ACTION_MEASURE_BRANCH_SCOPE_AUDIT_RESULT,
+    },
+    acceptance_criteria: {
+      required_identity_tuple: requiredIdentityTuple,
+      required_same_ledger_fields: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS],
+      required_action_measure_fields: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS],
+      required_acceptance_bindings: [...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_ACCEPTANCE_BINDINGS],
+    },
+    candidate_count: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.length,
+    accepted_count: 0,
+    accepted_branch_scope_source: null,
+    first_failure: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    negative_control_status: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_NEGATIVE_CONTROL,
+    nearest_candidate_lineage_readout: buildActionMeasureBranchScopeNearestCandidateLineageReadout(),
+    candidate_branch_scope_sources: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_CANDIDATES.map((candidateSource) => ({
+      ...candidateSource,
+      branch_scope_status: "present",
+      observed_fields: ["branch_scope"],
+      observed_identity_fields: {
+        bounded_speed_ledger_id: null,
+        force_checksum_id: null,
+        consumer_checksum_id: null,
+        source_normal_reconstruction_candidate_id: null,
+      },
+      missing_required_identity_fields: [
+        ...ACTION_MEASURE_BRANCH_SCOPE_REQUIRED_SAME_LEDGER_FIELDS,
+      ],
+      missing_action_measure_fields: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS],
+      same_ledger_tuple_match: false,
+      action_measure_row_status: "absent",
+      accepted_for_action_measure_branch_scope: false,
+      action_measure_field_statuses: ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES.map(
+        (fieldStatus) => ({ ...fieldStatus })
+      ),
+      rejection_summary:
+        "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+    })),
+  };
+}
+
+function buildSameLedgerActionMeasureWithBranchScopeAttempt(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA,
+    claim_scope:
+      "bounded-speed-same-ledger-action-measure-row-with-branch-scope-attempt-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "fail-closed-target",
+    attempted_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    source_action_measure_row_target: "action_measure_row",
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    current_fixture_supplied_measure_fields: [...CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS],
+    attempted_measure_fields: [...ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_FIELDS],
+    missing_measure_fields_if_branch_scope_bound: [
+      ...ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS,
+    ],
+    branch_scope_binding_status: "not_accepted",
+    branch_scope_source_audit_first_failure:
+      ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    first_missing_subfield_after_branch_scope:
+      ACTION_MEASURE_WITH_BRANCH_SCOPE_MISSING_FIELDS[0],
+    constructed_action_measure_row: null,
+    fail_closed_action_measure_row_target: {
+      row: "action_measure_row",
+      status: "absent-fail-closed",
+      candidate_row_status: "not_constructed",
+      accepted_row_status: "absent",
+      required_row_fields: [...ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS],
+      supplied_fields_on_normal_candidate_ledger: [
+        ...CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS,
+      ],
+      missing_fields_on_normal_candidate_ledger: [
+        ...MISSING_ACTION_MEASURE_ROW_CANDIDATE_FIELDS,
+      ],
+      missing_same_ledger_bindings: ACTION_MEASURE_ROW_MISSING_SAME_LEDGER_BINDINGS.map(
+        (binding) => ({ ...binding })
+      ),
+      first_blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      field_statuses_on_normal_candidate_ledger:
+        ACTION_MEASURE_ROW_CANDIDATE_FIELD_STATUS_ROWS.map((fieldStatus) => ({
+          ...fieldStatus,
+        })),
+      certifies_action_measure_row: false,
+      retention: "not_retained",
+      retained_branch: false,
+    },
+    period_rows_target: {
+      field: "period_rows",
+      status: "target-only-blocked-by-branch-scope",
+      source_action_measure_row: "action_measure_row",
+      blocking_failure: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      first_failure: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_FIRST_FAILURE,
+      accepted_period_rows_source: null,
+      candidate_count: 0,
+      negative_control_status: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL,
+      smallest_next_evidence_object:
+        ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    },
+    certifies_action_measure_row: false,
+    certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildBoundedSpeedActionMeasureRowTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA,
+    claim_scope: "bounded-speed-action-measure-row-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "target-only",
+    row: "action_measure_row",
+    source_action_derived_scale_row: "action_derived_scale",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    required_variables: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_VARIABLES],
+    required_measure_fields: [...ACTION_MEASURE_ROW_TARGET_REQUIRED_FIELDS],
+    current_fixture_supplied_measure_fields: [...CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS],
+    missing_measure_fields: [...MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS],
+    first_missing_measure_field: MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS[0],
+    negative_control_status:
+      "same-ledger-tuple-without-action-functional-not-action-measure-row",
+    rejected_current_fixture: true,
+    branch_scope_source_audit: buildActionMeasureBranchScopeSourceAudit(candidate),
+    same_ledger_action_measure_row_with_branch_scope_attempt:
+      buildSameLedgerActionMeasureWithBranchScopeAttempt(candidate),
+    certifies_action_measure_row: false,
+    certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildBoundedSpeedActionDerivedScaleTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_DERIVED_SCALE_TARGET_SCHEMA,
+    claim_scope: "bounded-speed-action-derived-scale-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    status: "target-only",
+    row: "action_derived_scale",
+    downstream_row: "action_scale",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    },
+    required_variables: [...ACTION_DERIVED_SCALE_TARGET_REQUIRED_VARIABLES],
+    required_rows: [...ACTION_DERIVED_SCALE_TARGET_REQUIRED_ROWS],
+    current_fixture_supplied_rows: [...CURRENT_ACTION_DERIVED_SCALE_TARGET_ROWS],
+    missing_rows: [...MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS],
+    first_missing_required_row: MISSING_ACTION_DERIVED_SCALE_TARGET_ROWS[0],
+    negative_control_status:
+      "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+    rejected_current_fixture: true,
+    action_measure_row_target: buildBoundedSpeedActionMeasureRowTarget(candidate),
+    certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildBoundedSpeedLiveLedgerTarget(candidate, liveLedgerTarget) {
+  return {
+    claim_scope: "bounded-speed-live-ledger-target-after-normal-candidate",
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    intake_status: "bounded-speed-live-ledger-open",
+    first_failure_row: "bounded-speed-live-ledger-open",
+    required_same_ledger_rows: Object.fromEntries(
+      REQUIRED_BOUNDED_SPEED_LIVE_LEDGER_TARGET_ROWS.map(([row, downstreamRow]) => [
+        row,
+        {
+          downstream_row: downstreamRow,
+          same_ledger_binding: "same-normal-candidate-ledger-checksum",
+          status: liveLedgerTarget.required_same_ledger_rows[row].status,
+        },
+      ])
+    ),
+    live_ledger_identity_target: buildBoundedSpeedLiveLedgerIdentityTarget(candidate),
+    action_derived_scale_target: buildBoundedSpeedActionDerivedScaleTarget(candidate),
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function actionStabilityAfterNormalCandidateValidationErrors(artifact, actionPacket) {
+  const errors = [];
+  const candidate = artifact?.bounded_speed_normal_reconstruction_candidate;
+  const downstreamRows = actionPacket?.downstream_row_statuses ?? {};
+  const liveLedgerIdentity = actionPacket?.live_ledger_identity ?? {};
+
+  assertField(
+    actionPacket?.schema === OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
+    `action stability after normal candidate schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA}`,
+    errors
+  );
+  assertField(
+    actionPacket?.claim_scope === "bounded-speed-action-stability-after-normal-candidate-intake",
+    "action stability after normal candidate claim_scope must be bounded-speed-action-stability-after-normal-candidate-intake",
+    errors
+  );
+  assertField(
+    actionPacket?.source_intake_schema === OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    `action stability after normal candidate source_intake_schema must be ${OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA}`,
+    errors
+  );
+  assertField(
+    actionPacket?.source_artifact_id === artifact?.artifact_id,
+    "action stability after normal candidate source_artifact_id must match the intake artifact",
+    errors
+  );
+  assertField(
+    actionPacket?.promotion_status === PROMOTION_STATUS,
+    `action stability after normal candidate promotion_status must be ${PROMOTION_STATUS}`,
+    errors
+  );
+  assertField(
+    candidate?.schema === OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    "action stability after normal candidate requires an attached bounded speed normal reconstruction candidate",
+    errors
+  );
+  assertField(
+    candidate?.candidate_status === "bounded-speed-normal-reconstruction-candidate",
+    "action stability after normal candidate requires bounded-speed-normal-reconstruction-candidate",
+    errors
+  );
+  assertField(
+    actionPacket?.source_bounded_speed_normal_reconstruction_candidate_schema ===
+      OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+    "action stability after normal candidate must cite the bounded speed normal reconstruction candidate schema",
+    errors
+  );
+  assertField(
+    actionPacket?.source_normal_reconstruction_candidate_id === candidate?.normal_reconstruction_candidate_id,
+    "action stability after normal candidate source_normal_reconstruction_candidate_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionPacket?.normal_candidate_status === "bounded-speed-normal-reconstruction-candidate",
+    "action stability after normal candidate normal_candidate_status must be bounded-speed-normal-reconstruction-candidate",
+    errors
+  );
+  assertField(
+    isNonemptyString(actionPacket?.action_stability_intake_id),
+    "action stability after normal candidate must declare action_stability_intake_id",
+    errors
+  );
+  assertField(
+    actionPacket?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "action stability after normal candidate bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionPacket?.force_checksum_id === candidate?.force_checksum_id,
+    "action stability after normal candidate force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    actionPacket?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "action stability after normal candidate consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerIdentity?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id,
+    "action stability after normal candidate live_ledger_identity bounded_speed_ledger_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerIdentity?.force_checksum_id === candidate?.force_checksum_id,
+    "action stability after normal candidate live_ledger_identity force_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerIdentity?.consumer_checksum_id === candidate?.consumer_checksum_id,
+    "action stability after normal candidate live_ledger_identity consumer_checksum_id must match the normal candidate",
+    errors
+  );
+  assertField(
+    liveLedgerIdentity?.certification_status === "bounded-speed-live-ledger-open",
+    "action stability after normal candidate live_ledger_identity certification_status must be bounded-speed-live-ledger-open",
+    errors
+  );
+  errors.push(...boundedSpeedLiveLedgerTargetValidationErrors(candidate, actionPacket?.bounded_speed_live_ledger));
+  assertField(
+    actionPacket?.live_ledger_status === "bounded-speed-live-ledger-open",
+    "action stability after normal candidate live_ledger_status must be bounded-speed-live-ledger-open",
+    errors
+  );
+  assertField(
+    actionPacket?.first_failure_row === "bounded-speed-live-ledger-open",
+    "action stability after normal candidate first_failure_row must be bounded-speed-live-ledger-open",
+    errors
+  );
+  assertField(
+    actionPacket?.retention === "not_retained",
+    "action stability after normal candidate retention must be not_retained",
+    errors
+  );
+  assertField(
+    actionPacket?.retained_branch === false,
+    "action stability after normal candidate must set retained_branch=false",
+    errors
+  );
+  assertField(
+    actionPacket?.certifies_live_derivative_matrix === true &&
+      actionPacket?.certifies_correction_direction === true &&
+      actionPacket?.certifies_speed_primitive_feasibility === true &&
+      actionPacket?.certifies_speed_clock_length === true &&
+      actionPacket?.certifies_normal_reconstruction === true,
+    "action stability after normal candidate must preserve the certified scalar and normal candidate chain",
+    errors
+  );
+  assertField(
+    actionPacket?.certifies_bounded_speed_live_ledger === false,
+    "action stability after normal candidate must set certifies_bounded_speed_live_ledger=false",
+    errors
+  );
+  assertField(
+    actionPacket?.certifies_action_stability === false,
+    "action stability after normal candidate must set certifies_action_stability=false",
+    errors
+  );
+  assertField(
+    actionPacket?.certifies_observer_export === false,
+    "action stability after normal candidate must set certifies_observer_export=false",
+    errors
+  );
+  for (const row of REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS) {
+    assertField(
+      downstreamRows?.[row] === "blocked:bounded-speed-live-ledger-open",
+      `action stability after normal candidate downstream row ${row} must be blocked:bounded-speed-live-ledger-open`,
+      errors
+    );
+  }
+
+  return errors;
+}
+
+export function evaluateActionStabilityAfterNormalCandidateIntake(artifact, actionPacket) {
+  const errors = actionStabilityAfterNormalCandidateValidationErrors(artifact, actionPacket);
+  if (errors.length > 0) {
+    throw new Error(`action stability after normal candidate packet failed validation: ${errors.join("; ")}`);
+  }
+
+  const candidate = artifact.bounded_speed_normal_reconstruction_candidate;
+
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
+    source_intake_schema: OCTAHEDRAL_ZERO_MEAN_CORRECTION_INTAKE_SCHEMA,
+    source_bounded_speed_normal_reconstruction_candidate_schema: candidate.schema,
+    claim_scope: "bounded-speed-action-stability-after-normal-candidate-intake",
+    promotion_status: PROMOTION_STATUS,
+    action_stability_intake_id: actionPacket.action_stability_intake_id,
+    source_artifact_id: actionPacket.source_artifact_id,
+    source_normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+    normal_candidate_input: {
+      normal_reconstruction_candidate_id: candidate.normal_reconstruction_candidate_id,
+      candidate_status: candidate.candidate_status,
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      certifies_bounded_speed_live_ledger: false,
+      retention: "not_retained",
+      retained_branch: false,
+    },
+    live_ledger_identity: {
+      ...actionPacket.live_ledger_identity,
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      certification_status: "bounded-speed-live-ledger-open",
+    },
+    bounded_speed_live_ledger: buildBoundedSpeedLiveLedgerTarget(
+      candidate,
+      actionPacket.bounded_speed_live_ledger
+    ),
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    normal_candidate_status: "bounded-speed-normal-reconstruction-candidate",
+    live_ledger_status: "bounded-speed-live-ledger-open",
+    first_failure_row: "bounded-speed-live-ledger-open",
+    downstream_row_statuses: Object.fromEntries(
+      REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS.map((row) => [
+        row,
+        actionPacket.downstream_row_statuses[row],
+      ])
+    ),
+    certifies_live_derivative_matrix: true,
+    certifies_correction_direction: true,
+    certifies_speed_primitive_feasibility: true,
+    certifies_speed_clock_length: true,
+    certifies_normal_reconstruction: true,
+    certifies_bounded_speed_live_ledger: false,
+    certifies_action_stability: false,
+    certifies_observer_export: false,
+    action_stability_intake_status: "after-normal-action-stability-intake-blocked",
+    downstream_status: "bounded-speed-live-ledger-open",
+    retention: "not_retained",
+    retained_branch: false,
+    status_note:
+      "This packet consumes the supplied bounded-speed normal reconstruction candidate on the same ledger/checksum boundary and fails closed at bounded-speed-live-ledger-open. It does not certify action, Noether/event, stability, observer export, coupled fixed point, or retained branch rows.",
+  };
+}
+
+export function attachActionStabilityAfterNormalCandidateIntake(artifact, actionPacket) {
+  const intake = evaluateActionStabilityAfterNormalCandidateIntake(artifact, actionPacket);
+  const existingRows = artifact.residual_vector.rows.filter(
+    (row) => row.row !== "R_bounded_speed_action_stability_after_normal_candidate"
+  );
+
+  return {
+    ...artifact,
+    artifact_claim: {
+      ...artifact.artifact_claim,
+      emits_action_stability_after_normal_candidate_intake: true,
+      certifies_bounded_speed_live_ledger: false,
+      certifies_action_stability: false,
+      certifies_observer_export: false,
+      strongest_claim:
+        "The supplied same-ledger bounded-speed normal reconstruction candidate can be consumed by an after-normal action/stability intake boundary, but the bounded-speed live ledger remains open and no branch is retained.",
+    },
+    residual_vector: {
+      ...artifact.residual_vector,
+      rows: [
+        ...existingRows,
+        {
+          row: "R_bounded_speed_action_stability_after_normal_candidate",
+          status: "open",
+          value: "bounded-speed-live-ledger-open",
+        },
+      ],
+      first_failure_row: "bounded-speed-live-ledger-open",
+    },
+    result: {
+      ...artifact.result,
+      intake_status: "zero-mean-action-stability-after-normal-candidate-blocked",
+      bounded_speed_live_ledger: "not_built",
+      action_stability: "not_certified",
+      observer_export: "not_authorized",
+      retention: "not_retained",
+      retained_branch: false,
+      status_note:
+        "This artifact packages the frozen zero-mean right-hand side, certifies the scalar speed-ODE correction chain through supplied normal reconstruction candidate rows, and records the after-normal action/stability intake boundary. It stops at bounded-speed-live-ledger-open and does not certify a retained branch.",
+    },
+    not_retained_reason: [
+      "bounded-speed live ledger is not certified as a retained branch",
+      "action, Noether, event, stability, and observer-export rows are blocked by bounded-speed-live-ledger-open",
+      "coupled fixed-point and refinement-persistence rows are not closed",
+    ],
+    action_stability_after_normal_candidate_intake: intake,
+  };
+}
+
 function candidateBValidationErrors(artifact, candidateBPacket, options) {
   const errors = [];
   const rankTolerance = options.rankTolerance;
@@ -2571,6 +4533,7 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
   const normalReconstructionHandoffPacket = options.normalReconstructionHandoffPacket ?? null;
   const boundedSpeedNormalReconstructionCandidatePacket =
     options.boundedSpeedNormalReconstructionCandidatePacket ?? null;
+  const actionStabilityAfterNormalCandidatePacket = options.actionStabilityAfterNormalCandidatePacket ?? null;
   const probeLiveDerivativeColumnPreview = Boolean(options.probeLiveDerivativeColumnPreview);
 
   const artifact = {
@@ -2593,7 +4556,10 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
       certifies_speed_clock_length: false,
       emits_normal_reconstruction_handoff: false,
       emits_bounded_speed_normal_reconstruction_candidate: false,
+      emits_action_stability_after_normal_candidate_intake: false,
       certifies_normal_reconstruction: false,
+      certifies_action_stability: false,
+      certifies_observer_export: false,
       retained_branch: false,
       strongest_claim:
         "The frozen rigid-octahedral speed-ODE mean vector is a positive constant six-vector, so any live zero-mean correction matrix must hit that right-hand-side direction.",
@@ -2741,6 +4707,7 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
     speed_ode_clock_length_certificate: null,
     normal_reconstruction_handoff: null,
     bounded_speed_normal_reconstruction_candidate: null,
+    action_stability_after_normal_candidate_intake: null,
   };
 
   let packagedArtifact = artifact;
@@ -2785,6 +4752,12 @@ export function buildOctahedralZeroMeanCorrectionIntake(options = {}) {
       boundedSpeedNormalReconstructionCandidatePacket
     );
   }
+  if (actionStabilityAfterNormalCandidatePacket) {
+    packagedArtifact = attachActionStabilityAfterNormalCandidateIntake(
+      packagedArtifact,
+      actionStabilityAfterNormalCandidatePacket
+    );
+  }
   return packagedArtifact;
 }
 
@@ -2820,6 +4793,11 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
   const hasBoundedSpeedNormalReconstructionCandidate =
     boundedSpeedNormalReconstructionCandidate !== null &&
     boundedSpeedNormalReconstructionCandidate !== undefined;
+  const actionStabilityAfterNormalCandidateIntake =
+    artifact.action_stability_after_normal_candidate_intake;
+  const hasActionStabilityAfterNormalCandidateIntake =
+    actionStabilityAfterNormalCandidateIntake !== null &&
+    actionStabilityAfterNormalCandidateIntake !== undefined;
   assertField(artifact.artifact_claim?.solves_dynamics === false, "artifact must declare solves_dynamics=false", errors);
   assertField(
     artifact.artifact_claim?.certifies_bounded_speed_live_ledger === false,
@@ -2863,8 +4841,24 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
     errors
   );
   assertField(
+    artifact.artifact_claim?.emits_action_stability_after_normal_candidate_intake ===
+      hasActionStabilityAfterNormalCandidateIntake,
+    "artifact action stability after normal candidate intake claim must match attached intake",
+    errors
+  );
+  assertField(
     artifact.artifact_claim?.certifies_normal_reconstruction === hasBoundedSpeedNormalReconstructionCandidate,
     "artifact normal reconstruction claim must match attached candidate",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.certifies_action_stability === false,
+    "artifact must not certify action stability",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.certifies_observer_export === false,
+    "artifact must not certify observer export",
     errors
   );
   assertField(artifact.result?.retained_branch === false, "result.retained_branch must be false", errors);
@@ -3815,6 +5809,101 @@ export function validateOctahedralZeroMeanCorrectionIntake(artifact) {
     );
   }
 
+  if (hasActionStabilityAfterNormalCandidateIntake) {
+    assertField(
+      hasBoundedSpeedNormalReconstructionCandidate,
+      "action stability after normal candidate intake requires bounded speed normal reconstruction candidate",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.schema ===
+        OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
+      `action stability after normal candidate intake schema must be ${OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA}`,
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.claim_scope ===
+        "bounded-speed-action-stability-after-normal-candidate-intake",
+      "action stability after normal candidate intake must keep after-normal intake scope",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.source_normal_reconstruction_candidate_id ===
+        boundedSpeedNormalReconstructionCandidate?.normal_reconstruction_candidate_id,
+      "action stability after normal candidate intake must cite the attached normal candidate",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.normal_candidate_status ===
+        "bounded-speed-normal-reconstruction-candidate",
+      "action stability after normal candidate intake must consume the normal candidate status",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.live_ledger_status ===
+        "bounded-speed-live-ledger-open" &&
+        actionStabilityAfterNormalCandidateIntake.first_failure_row ===
+          "bounded-speed-live-ledger-open",
+      "action stability after normal candidate intake must stop at bounded-speed-live-ledger-open",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.bounded_speed_ledger_id ===
+        boundedSpeedNormalReconstructionCandidate?.bounded_speed_ledger_id &&
+        actionStabilityAfterNormalCandidateIntake.force_checksum_id ===
+          boundedSpeedNormalReconstructionCandidate?.force_checksum_id &&
+        actionStabilityAfterNormalCandidateIntake.consumer_checksum_id ===
+          boundedSpeedNormalReconstructionCandidate?.consumer_checksum_id,
+      "action stability after normal candidate intake must reuse the normal candidate ledger and checksums",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.live_ledger_identity?.bounded_speed_ledger_id ===
+        boundedSpeedNormalReconstructionCandidate?.bounded_speed_ledger_id &&
+        actionStabilityAfterNormalCandidateIntake.live_ledger_identity?.force_checksum_id ===
+          boundedSpeedNormalReconstructionCandidate?.force_checksum_id &&
+        actionStabilityAfterNormalCandidateIntake.live_ledger_identity?.consumer_checksum_id ===
+          boundedSpeedNormalReconstructionCandidate?.consumer_checksum_id &&
+        actionStabilityAfterNormalCandidateIntake.live_ledger_identity?.certification_status ===
+          "bounded-speed-live-ledger-open",
+      "action stability after normal candidate intake live ledger identity must carry the normal candidate ledger boundary",
+      errors
+    );
+    errors.push(
+      ...boundedSpeedLiveLedgerTargetValidationErrors(
+        boundedSpeedNormalReconstructionCandidate,
+        actionStabilityAfterNormalCandidateIntake.bounded_speed_live_ledger
+      )
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.certifies_live_derivative_matrix === true &&
+        actionStabilityAfterNormalCandidateIntake.certifies_correction_direction === true &&
+        actionStabilityAfterNormalCandidateIntake.certifies_speed_primitive_feasibility === true &&
+        actionStabilityAfterNormalCandidateIntake.certifies_speed_clock_length === true &&
+        actionStabilityAfterNormalCandidateIntake.certifies_normal_reconstruction === true &&
+        actionStabilityAfterNormalCandidateIntake.certifies_bounded_speed_live_ledger === false &&
+        actionStabilityAfterNormalCandidateIntake.certifies_action_stability === false &&
+        actionStabilityAfterNormalCandidateIntake.certifies_observer_export === false,
+      "action stability after normal candidate intake must preserve the prior chain without certifying live ledger, action stability, or observer export",
+      errors
+    );
+    assertField(
+      actionStabilityAfterNormalCandidateIntake.retention === "not_retained" &&
+        actionStabilityAfterNormalCandidateIntake.retained_branch === false,
+      "action stability after normal candidate intake must not retain a branch",
+      errors
+    );
+    const downstreamRows =
+      actionStabilityAfterNormalCandidateIntake.downstream_row_statuses ?? {};
+    for (const row of REQUIRED_ACTION_STABILITY_DOWNSTREAM_ROWS) {
+      assertField(
+        downstreamRows?.[row] === "blocked:bounded-speed-live-ledger-open",
+        `action stability after normal candidate downstream row ${row} must remain blocked by bounded-speed-live-ledger-open`,
+        errors
+      );
+    }
+  }
+
   const derivativeAudit = artifact.derivative_column_audit ?? {};
   if (hasLiveMatrixCertificate) {
     assertField(
@@ -3904,6 +5993,8 @@ function usage() {
     "                             Post-correction normal reconstruction handoff packet JSON",
     "  --bounded-speed-normal-reconstruction-candidate <path>",
     "                             Bounded-speed normal reconstruction candidate packet JSON",
+    "  --action-stability-after-normal-candidate <path>",
+    "                             Fail-closed action/stability intake packet after the normal candidate",
     "  --out <path>               Write artifact JSON to path instead of stdout",
     "  --validate <path>          Validate an existing artifact JSON file",
     "  --schema                   Print the artifact schema identifier",
@@ -3931,6 +6022,7 @@ function parseArgs(argv) {
     speedClockLengthPath: null,
     normalReconstructionHandoffPath: null,
     boundedSpeedNormalReconstructionCandidatePath: null,
+    actionStabilityAfterNormalCandidatePath: null,
     out: null,
     validate: null,
     schema: false,
@@ -3974,6 +6066,8 @@ function parseArgs(argv) {
       args.normalReconstructionHandoffPath = argv[++index];
     } else if (arg === "--bounded-speed-normal-reconstruction-candidate") {
       args.boundedSpeedNormalReconstructionCandidatePath = argv[++index];
+    } else if (arg === "--action-stability-after-normal-candidate") {
+      args.actionStabilityAfterNormalCandidatePath = argv[++index];
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -4024,6 +6118,8 @@ function main() {
           normal_reconstruction_handoff_schema: OCTAHEDRAL_ZERO_MEAN_NORMAL_RECONSTRUCTION_HANDOFF_SCHEMA,
           bounded_speed_normal_reconstruction_candidate_schema:
             OCTAHEDRAL_ZERO_MEAN_BOUNDED_SPEED_NORMAL_RECONSTRUCTION_CANDIDATE_SCHEMA,
+          action_stability_after_normal_candidate_intake_schema:
+            OCTAHEDRAL_ZERO_MEAN_ACTION_STABILITY_AFTER_NORMAL_CANDIDATE_INTAKE_SCHEMA,
           candidate_b_support: "optional candidate B packet checked only as an algebraic range probe",
           live_derivative_column_support:
             "optional live derivative column packet checked only as provenance intake, not as a certified live derivative matrix",
@@ -4041,6 +6137,8 @@ function main() {
             "optional normal reconstruction handoff packet that requires speed clock/length return and still certifies neither normal reconstruction nor a retained branch",
           bounded_speed_normal_reconstruction_candidate_support:
             "optional bounded-speed normal reconstruction candidate packet that requires normal reconstruction handoff and still certifies neither a bounded-speed live ledger nor a retained branch",
+          action_stability_after_normal_candidate_intake_support:
+            "optional after-normal action/stability intake packet that consumes the bounded-speed normal candidate and fails closed at bounded-speed-live-ledger-open without certifying action stability, observer export, or retained branch",
         },
         args.pretty
       )
@@ -4069,6 +6167,9 @@ function main() {
       : null;
     const boundedSpeedNormalReconstructionCandidatePacket = args.boundedSpeedNormalReconstructionCandidatePath
       ? readBoundedSpeedNormalReconstructionCandidatePacket(args.boundedSpeedNormalReconstructionCandidatePath)
+      : null;
+    const actionStabilityAfterNormalCandidatePacket = args.actionStabilityAfterNormalCandidatePath
+      ? readActionStabilityAfterNormalCandidatePacket(args.actionStabilityAfterNormalCandidatePath)
       : null;
     const candidateBRangeProbe =
       candidateBPacket && errors.length === 0
@@ -4250,6 +6351,58 @@ function main() {
             boundedSpeedNormalReconstructionCandidatePacket
           )
         : artifact.bounded_speed_normal_reconstruction_candidate ?? null;
+    const actionStabilityAfterNormalCandidateIntake =
+      actionStabilityAfterNormalCandidatePacket && errors.length === 0
+        ? evaluateActionStabilityAfterNormalCandidateIntake(
+            boundedSpeedNormalReconstructionCandidate &&
+              !artifact.bounded_speed_normal_reconstruction_candidate
+              ? attachBoundedSpeedNormalReconstructionCandidate(
+                  normalReconstructionHandoff && !artifact.normal_reconstruction_handoff
+                    ? attachNormalReconstructionHandoff(
+                        speedClockLengthCertificate && !artifact.speed_ode_clock_length_certificate
+                          ? attachSpeedClockLengthCertificate(
+                              speedPrimitiveFeasibilityCertificate &&
+                                !artifact.speed_ode_primitive_feasibility_certificate
+                                ? attachSpeedPrimitiveFeasibilityCertificate(
+                                    liveCorrectionDirectionCertificate &&
+                                      !artifact.live_correction_direction_certificate
+                                      ? attachLiveCorrectionDirectionCertificate(
+                                          liveDerivativeMatrixCertificate &&
+                                            !artifact.live_derivative_matrix_certificate
+                                            ? attachLiveDerivativeMatrixCertificate(artifact, liveDerivativeMatrixPacket, {
+                                                rankTolerance: args.rankTolerance,
+                                                rangeTolerance: args.rangeTolerance,
+                                              })
+                                            : artifact,
+                                          liveCorrectionDirectionPacket,
+                                          {
+                                            rankTolerance: args.rankTolerance,
+                                            rangeTolerance: args.rangeTolerance,
+                                          }
+                                        )
+                                      : artifact,
+                                    speedPrimitiveFeasibilityPacket,
+                                    {
+                                      primitiveReturnTolerance: args.primitiveReturnTolerance,
+                                      speedBandMarginFloor: args.speedBandMarginFloor,
+                                    }
+                                  )
+                                : artifact,
+                              speedClockLengthPacket,
+                              {
+                                clockLengthTolerance: args.clockLengthTolerance,
+                              }
+                            )
+                          : artifact,
+                        normalReconstructionHandoffPacket
+                      )
+                    : artifact,
+                  boundedSpeedNormalReconstructionCandidatePacket
+                )
+              : artifact,
+            actionStabilityAfterNormalCandidatePacket
+          )
+        : artifact.action_stability_after_normal_candidate_intake ?? null;
     console.log(
       emitJson(
         {
@@ -4268,6 +6421,7 @@ function main() {
           speed_ode_clock_length_certificate: speedClockLengthCertificate,
           normal_reconstruction_handoff: normalReconstructionHandoff,
           bounded_speed_normal_reconstruction_candidate: boundedSpeedNormalReconstructionCandidate,
+          action_stability_after_normal_candidate_intake: actionStabilityAfterNormalCandidateIntake,
         },
         args.pretty
       )
@@ -4295,6 +6449,9 @@ function main() {
   const boundedSpeedNormalReconstructionCandidatePacket = args.boundedSpeedNormalReconstructionCandidatePath
     ? readBoundedSpeedNormalReconstructionCandidatePacket(args.boundedSpeedNormalReconstructionCandidatePath)
     : null;
+  const actionStabilityAfterNormalCandidatePacket = args.actionStabilityAfterNormalCandidatePath
+    ? readActionStabilityAfterNormalCandidatePacket(args.actionStabilityAfterNormalCandidatePath)
+    : null;
   const artifact = buildOctahedralZeroMeanCorrectionIntake({
     ...args,
     candidateBPacket,
@@ -4305,6 +6462,7 @@ function main() {
     speedClockLengthPacket,
     normalReconstructionHandoffPacket,
     boundedSpeedNormalReconstructionCandidatePacket,
+    actionStabilityAfterNormalCandidatePacket,
   });
   const errors = validateOctahedralZeroMeanCorrectionIntake(artifact);
   if (errors.length > 0) {

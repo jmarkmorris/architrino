@@ -1,7 +1,7 @@
 # QA: Ready
 
 - id: `roll-turn-again-spread-01`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-01.png`
 - lesson: A clear space gives the ball a place to move.
 - geometry: The red ball is still at the start of an open route.
 

@@ -6,7 +6,7 @@ For the canonical medium ontology, total-density boundary, and terminology disci
 
 ## Pro/Anti Noether Braid Basis
 
-In the current framing, the basic Noether sea carrier is a Noether braid with a state that can appear in two complementary orientations:
+In this framing, the basic Noether sea carrier is a Noether braid with a state that can appear in two complementary orientations:
 
 - pro-Noether braid orientation
 - anti-Noether braid orientation

@@ -417,7 +417,9 @@ A_\star
 \Pi_E\theta_{\mathrm{sea}},
 \rho_{\mathrm{bar}},
 \rho_A,
-\mathcal{M}_{\mathrm{sea}}^{ab}
+\mathcal{M}_{\mathrm{sea}}^{ab},
+\mathcal{H}_{\mathrm{src/rel}},
+\mathcal{T}_{\mathrm{path}}
 \right),
 \qquad
 f^\theta(E)
@@ -429,7 +431,7 @@ F_\star
 \right).
 $$
 
-This row fails if a MOND-like comparison law is promoted into substrate ontology, or if $a_\star^\theta$, $f^\theta$, lensing, local-gravity recovery, cluster offsets, kSZ, and linear growth are tuned through different Noether sea response records.
+Here $\mathcal{H}_{\mathrm{src/rel}}$ records compact-source, feedback, release, and capture history relevant to the galaxy environment, while $\mathcal{T}_{\mathrm{path}}$ records transport loading that changes the local Noether sea state without becoming a private acceleration scale. This row fails if a MOND-like comparison law is promoted into substrate ontology, or if $a_\star^\theta$, $f^\theta$, lensing, local-gravity recovery, cluster offsets, kSZ, and linear growth are tuned through different Noether sea response records. It also fails if the low-acceleration scale is chosen independently of the source/release and transport records that the same branch uses for redshift, CMB, and growth.
 
 ## Handoff Residual
 

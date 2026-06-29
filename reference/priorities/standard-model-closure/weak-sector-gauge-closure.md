@@ -43,6 +43,26 @@ This packet absorbs two former top-level queue items without discarding them:
 
 For weak-reaction event accounting, this packet consumes the shared [residual-routing event-ledger theorem](../braid-nested-shell-causal-closure/residual-routing-event-ledger.md). It owns the weak exposure domain and provenance burden; the shared packet owns the general rule that a charged-current route must close $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without unbalanced source inventory.
 
+## External Weak-Isospin Error Checkpoint
+
+Source-mining intake 2026-06-28. An external physicist critique in the legacy archive usefully flags weak isospin as an error checkpoint. The electromagnetic and polarity geometry can look promising while still failing if it cannot recover weak-sector covariance, charged-current handedness, and flavor overlap in one exposure domain.
+
+The checkpoint is:
+
+$$
+\mathcal E_W
+\longrightarrow
+\left(
+\mathrm{SU(2)}_L,
+V\!-\!A,
+\mathbf V_{\mathrm{CKM}},
+\mathbf U_{\mathrm{PMNS}},
+W/Z\ \mathrm{corridor\ provenance}
+\right).
+$$
+
+Failure is explicit: if $\mathcal E_W$ cannot supply the effective $\mathrm{SU(2)}_L$ channel, left-handed charged-current selection, CKM/PMNS overlap structure, and $W^\pm/Z$ provenance without separately tuned rules, then the Standard Model mapping has not closed even if charge, mass, or color rows appear geometrically plausible.
+
 ## Weak Exposure Operator
 
 Define a provisional weak-exposure functional
@@ -189,6 +209,34 @@ $$
 $$
 
 The neutrino benchmark is a mixing and mass-difference target. Absolute-mass rows remain separate limits: $m_{\nu_e}^{\mathrm{eff}}<0.8\,\mathrm{eV}$ at $90\%$ CL, $m_{\nu_\mu}^{\mathrm{eff}}<0.19\,\mathrm{MeV}$ at $90\%$ CL, and $m_{\nu_\tau}^{\mathrm{eff}}<18.2\,\mathrm{MeV}$ at $95\%$ CL in the current PDG rows.
+
+Source-mining intake 2026-06-28 from the December 2020 neutrino notes adds a weak-exposure consistency row. The PMNS map should consume the same exposed fraction that the near-photon neutrino chapter assigns to the weak channel:
+$$
+\mathcal{R}_{\nu W}
+=
+\left(
+\Pi_W,
+H_{\mathrm{geo}},
+E_{\nu,\mathrm{exp}},
+\mathbf U_{\mathrm{PMNS}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{src/det}}
+\right).
+$$
+The row fails if the propagation phase, detector flavor projection, and exposed-energy bookkeeping require different weak-exposure projectors. It also fails if hidden internal energy is used as an unconstrained mass reservoir rather than as part of the retained near-photon branch ledger.
+
+The resolved three-binary form of the same burden is
+$$
+\mathcal{R}_{\nu W}^{(3B)}
+=
+\left(
+\Theta_{\nu}^{(3B)},
+\{\zeta_{\ell W}\}_{\ell=1}^{3},
+\Pi_W,
+\mathbf U_{\mathrm{PMNS}},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{src/det}}
+\right).
+$$
+This priority row consumes the near-photon state record in the neutrino chapter. It asks whether the exposed fractions of the three residual internal binaries can supply weak detection flavor, oscillation phase, and source/detector event provenance through one geometry, rather than using PMNS parameters as a detached fit layer.
 
 ## CERN Weak, Higgs, and Flavor Event Burdens
 

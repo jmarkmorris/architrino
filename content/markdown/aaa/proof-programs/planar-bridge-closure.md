@@ -8,7 +8,7 @@ The planar bridge is the first regime where the proof architecture must leave th
 
 ## Position in the Dynamics Stack
 
-The present chapter sits between four existing layers:
+This chapter sits between four existing layers:
 
 1. the exact delayed equations in [Master Equation](../dynamics/master-equation.md),
 2. the topological branch formalism in [Causal Action Functional](../dynamics/causal-action-functional.md),
@@ -315,6 +315,6 @@ If planar bridge closure fails, those higher-level chapters must become more con
 - [Master Equation](../dynamics/master-equation.md): exact delayed law, root equations, and Jacobian structure.
 - [Causal Action Functional](../dynamics/causal-action-functional.md): branch labels, coarea reduction, and the Jacobian-null bifurcation criterion.
 - [Collinear Breather](./collinear-breather.md): reduced return-map architecture and tame-envelope philosophy.
-- [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter now instantiates in the first planar regime.
+- [Master-Equation Breather Program](./master-equation-breather.md): global roadmap that this chapter instantiates in the first planar regime.
 - [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md): higher-dimensional geometric target that eventually inherits the planar bridge machinery.
 - [Horizon Chirality and Planar Spin](../spacetime/horizon-chirality.md): downstream interpretation of planar branch selection once the planar bridge is mathematically under control.

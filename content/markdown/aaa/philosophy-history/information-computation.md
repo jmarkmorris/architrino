@@ -12,7 +12,7 @@ For $\mathbb{A}\mathbb{A}\mathbb{A}$, the central question is whether informatio
 
 This page is indexed by subjects rather than by biography. Related people-centered material remains in [major-thinkers.md](major-thinkers.md).
 
-The current architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
+The architrino position is this: physical entities and causal dynamics are primary, while information and computation are derived descriptions of organized states, constraints, and update structure.
 
 At the software-modeling edge of that claim, it also interfaces with [Simulation, Modeling, and Computability Limits](#simulation-modeling-and-computability-limits).
 
@@ -204,6 +204,16 @@ A second tension concerns semantic inflation. Once every lawful process is calle
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **partially aligned but mislocated when made fundamental**. $\mathbb{A}\mathbb{A}\mathbb{A}$ is committed to explicit dynamics, finite update structure, and nontrivial path-history dependence. In that sense it is friendly to computational description. One can expect simulations, discrete approximations, and rule-based coarse-grainings to be central tools in its development. But the theory does not identify the world with computation. It identifies the world with physically real entities whose interactions can often be computed. A simulation may store path histories or evaluate wake intersections from source trajectories; that computational representation should not be confused with a space-filling grid ontology.
+
+The strongest overlap with assembly-theory language is state-dependent transition. A durable assembly is not merely a label in a catalogue of possible states. Its current retained path history, shielding, Noether sea context, and internal branch variables change which later transitions are admissible. A reduced transition map can be written schematically as
+$$
+S_{t+\Delta t}
+=
+\Phi_{\Delta t}\!\left(
+S_t,\mathcal{H}_{W}(S_t),\Theta_{\mathrm{sea}}(t),c
+\right),
+$$
+where $\mathcal{H}_{W}(S_t)$ is the retained path-history window and $c$ is the surrounding assembly or environmental context. This is computable in principle, but its meaning is physical: the assembly's realized structure constrains the future basin geometry. That is why life-like and agency-like discussions should not reduce persistence to an information count alone.
 
 Its transition relevance is high because computational ontology keeps attention on update law rather than on static formal summary. That is useful during a replacement period, especially when one is trying to derive effective continuum behavior from lower-level organization. Still, the transition use is conditional. Computation should guide model construction, not terminate ontological analysis. The critical distinction is between a process that is computable and a process whose essence is exhausted by being called computation.
 

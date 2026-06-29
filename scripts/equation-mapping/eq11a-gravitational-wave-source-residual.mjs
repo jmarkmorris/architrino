@@ -10,6 +10,17 @@ const INPUT_SCHEMA = "aaa-equation-map-eq11a-gravitational-wave-source-input/v1"
 const OUTPUT_SCHEMA = "aaa-equation-map-eq11a-gravitational-wave-source-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
+// Boundary-only files can expose row order, but they are not retained evidence.
+const BOUNDARY_ONLY_SOURCE_PATH_MARKERS = [
+  "source-contract",
+  "retained-evidence-object-contract",
+  "intake-template",
+];
+const BOUNDARY_ONLY_SOURCE_EVIDENCE_KIND_MARKERS = [
+  "source_contract",
+  "retained_evidence_object_contract",
+  "intake_template",
+];
 
 const REQUIRED_ROWS = [
   "gw_source_carrier",
@@ -25,6 +36,54 @@ const REQUIRED_ROWS = [
   "source_provenance",
   "no_hidden_retune_witness",
 ];
+
+const REQUIRED_ARTIFACT_HASH_FAMILIES_BY_ROW = {
+  carrier: ["gwosc_event_release_metadata", "aaa_local_extraction_manifest"],
+  gw_source_carrier: [
+    "gwosc_event_release_metadata",
+    "parameter_estimation_posterior_or_release",
+    "aaa_local_extraction_manifest",
+  ],
+  theta_sea: ["aaa_local_extraction_manifest"],
+  effective_metric_tensor_channel: ["aaa_local_extraction_manifest"],
+  source_event_ledger: [
+    "gwosc_event_release_metadata",
+    "parameter_estimation_posterior_or_release",
+    "aaa_local_extraction_manifest",
+  ],
+  quadrupole_source_row: [
+    "parameter_estimation_posterior_or_release",
+    "waveform_or_phase_provenance",
+    "aaa_local_extraction_manifest",
+  ],
+  chirp_mass_row: ["parameter_estimation_posterior_or_release", "aaa_local_extraction_manifest"],
+  peters_decay_row: ["waveform_or_phase_provenance", "aaa_local_extraction_manifest"],
+  strain_flux_row: [
+    "h1_l1_strain_products",
+    "waveform_or_phase_provenance",
+    "aaa_local_extraction_manifest",
+  ],
+  ringdown_label_row: [
+    "parameter_estimation_posterior_or_release",
+    "waveform_or_phase_provenance",
+    "aaa_local_extraction_manifest",
+  ],
+  detector_strain_record: ["h1_l1_strain_products", "aaa_local_extraction_manifest"],
+  source_provenance: [
+    "gwosc_event_release_metadata",
+    "parameter_estimation_posterior_or_release",
+    "h1_l1_strain_products",
+    "waveform_or_phase_provenance",
+    "aaa_local_extraction_manifest",
+  ],
+  no_hidden_retune_witness: [
+    "gwosc_event_release_metadata",
+    "parameter_estimation_posterior_or_release",
+    "h1_l1_strain_products",
+    "waveform_or_phase_provenance",
+    "aaa_local_extraction_manifest",
+  ],
+};
 
 const SOURCE_IDENTITY_FIELDS = ["sourceWindowId", "supportId", "eventId"];
 
@@ -121,18 +180,34 @@ function writeOutput(output, parsedArgs) {
 function evaluateEq11aGravitationalWaveSource(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
-  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier);
+  const carrier = evaluateAcceptedEvidence(input.carrier ?? packet.carrier, "carrier");
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedEvidence(rows[rowId], rowId)]),
+  );
+  const carrierArtifactEvidence = evaluateArtifactEvidence(input.carrier ?? packet.carrier, "carrier", carrier.accepted);
+  const rowArtifactEvidence = Object.fromEntries(
+    REQUIRED_ROWS.map((rowId) => [
+      rowId,
+      evaluateArtifactEvidence(rows[rowId], rowId, rowChecks[rowId].accepted),
+    ]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
+  const sourceContractBoundaryRows = REQUIRED_ROWS.filter(
+    (rowId) => rowChecks[rowId].accepted && hasSourceContractBoundarySource(rows[rowId]),
+  );
+  const sourceArtifactHashMissingRows = [
+    ...(carrierArtifactEvidence.accepted === false ? ["carrier"] : []),
+    ...REQUIRED_ROWS.filter((rowId) => rowArtifactEvidence[rowId].accepted === false),
+  ];
   const carrierBinding = evaluateCarrierBinding(rows, input.commonCarrierId ?? packet.id);
   const solver = evaluateGravitationalWaveSourceSolver(packet, tolerances);
   const negativeControls = evaluateNegativeControls(packet, packet.negativeControls ?? [], tolerances);
   const status = decideStatus({
     carrier,
     missingRows,
+    sourceContractBoundaryRows,
+    sourceArtifactHashMissingRows,
     carrierBinding,
     solver,
     negativeControls,
@@ -164,6 +239,10 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
       carrierAccepted: carrier.accepted,
       carrierReason: carrier.reason,
       missingRows,
+      sourceContractBoundaryRows,
+      sourceContractBoundaryCount: sourceContractBoundaryRows.length,
+      sourceArtifactHashMissingRows,
+      sourceArtifactHashMissingCount: sourceArtifactHashMissingRows.length,
       commonCarrierPass: carrierBinding.passed,
       solverResidualPass: allSolverChecksPass(solver),
       chirpMassPass: solver.chirpMass.passed,
@@ -187,6 +266,8 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
       status: normalizeStatus(input.carrier ?? packet.carrier),
       accepted: carrier.accepted,
       reason: carrier.reason,
+      sourceArtifactEvidenceAccepted: carrierArtifactEvidence.accepted,
+      sourceArtifactEvidenceReason: carrierArtifactEvidence.reason,
       id: input.carrier?.id ?? packet.carrier?.id ?? null,
       sourcePath: input.carrier?.sourcePath ?? packet.carrier?.sourcePath ?? input.carrier?.source ?? null,
     },
@@ -197,6 +278,8 @@ function evaluateEq11aGravitationalWaveSource(input, inputPath) {
           status: normalizeStatus(rows[rowId]),
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
+          sourceArtifactEvidenceAccepted: rowArtifactEvidence[rowId].accepted,
+          sourceArtifactEvidenceReason: rowArtifactEvidence[rowId].reason,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
         },
@@ -217,7 +300,14 @@ function summarizeOutput(output) {
     summary: output.summary,
     carrier: output.carrier,
     rowStatuses: Object.fromEntries(
-      Object.entries(output.rows).map(([rowId, row]) => [rowId, { status: row.status, reason: row.reason }]),
+      Object.entries(output.rows).map(([rowId, row]) => [
+        rowId,
+        {
+          status: row.status,
+          reason: row.reason,
+          sourceArtifactEvidenceReason: row.sourceArtifactEvidenceReason,
+        },
+      ]),
     ),
   };
 }
@@ -688,7 +778,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedEvidence(row) {
+function evaluateAcceptedEvidence(row, rowId) {
   const status = normalizeStatus(row);
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
@@ -697,6 +787,44 @@ function evaluateAcceptedEvidence(row) {
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
+  }
+  const sourceEvidence = evaluateSourceEvidenceSupport(row, rowId);
+  if (!sourceEvidence.accepted) {
+    return { accepted: false, reason: sourceEvidence.reason };
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function evaluateSourceEvidenceSupport(row, rowId) {
+  const evidence = row?.sourceEvidence;
+  if (!isPlainObject(evidence)) {
+    return { accepted: false, reason: "missing_source_evidence_contract" };
+  }
+  if (!stringOrNull(evidence.kind)) {
+    return { accepted: false, reason: "missing_source_evidence_kind" };
+  }
+  const supportsEquationRows = Array.isArray(evidence.supportsEquationRows)
+    ? evidence.supportsEquationRows
+    : [];
+  if (!supportsEquationRows.includes("EQ-11A")) {
+    return { accepted: false, reason: "source_contract_equation_mismatch" };
+  }
+  const supportsRows = Array.isArray(evidence.supportsRows) ? evidence.supportsRows : [];
+  if (!supportsRows.includes(rowId)) {
+    return { accepted: false, reason: "source_contract_row_mismatch" };
+  }
+  const missingIdentityFields = SOURCE_IDENTITY_FIELDS.filter((field) => !stringOrNull(evidence[field]));
+  if (missingIdentityFields.length > 0) {
+    return { accepted: false, reason: "source_contract_identity_missing" };
+  }
+  const mismatchedIdentityFields = SOURCE_IDENTITY_FIELDS.filter(
+    (field) =>
+      row?.[field] !== undefined &&
+      evidence[field] !== undefined &&
+      stringOrNull(row[field]) !== stringOrNull(evidence[field]),
+  );
+  if (mismatchedIdentityFields.length > 0) {
+    return { accepted: false, reason: "source_contract_identity_mismatch" };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -727,6 +855,140 @@ function evaluateSourcePath(sourcePath) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
   return { accepted: true, reason: "accepted" };
+}
+
+function hasSourceContractBoundarySource(row) {
+  const sourcePath = row?.sourcePath ?? row?.source;
+  const sourceEvidenceKind = row?.sourceEvidence?.kind;
+  const sourceBasename = typeof sourcePath === "string" ? path.basename(sourcePath) : "";
+  return (
+    BOUNDARY_ONLY_SOURCE_PATH_MARKERS.some((marker) => sourceBasename.includes(marker)) ||
+    (typeof sourceEvidenceKind === "string" &&
+      BOUNDARY_ONLY_SOURCE_EVIDENCE_KIND_MARKERS.some((marker) => sourceEvidenceKind.includes(marker)))
+  );
+}
+
+function evaluateArtifactEvidence(row, rowId, rowAccepted) {
+  if (!rowAccepted) {
+    return { accepted: null, reason: "row_not_accepted" };
+  }
+  if (hasSourceContractBoundarySource(row)) {
+    return { accepted: null, reason: "boundary_only_source" };
+  }
+  if (!hasArtifactHashEvidence(row, rowId)) {
+    return { accepted: false, reason: "source_artifact_path_or_hash_missing" };
+  }
+  return { accepted: true, reason: "accepted" };
+}
+
+function hasArtifactHashEvidence(row, rowId) {
+  const hashes = collectArtifactHashes(row);
+  const paths = collectArtifactPaths(row);
+  const requiredFamilies = REQUIRED_ARTIFACT_HASH_FAMILIES_BY_ROW[rowId] ?? [];
+  if (requiredFamilies.length === 0) {
+    return Object.values(hashes).some(hasHashValue) && Object.values(paths).some(isAcceptedArtifactPath);
+  }
+  return requiredFamilies.every((family) => hasHashValue(hashes[family]) && isAcceptedArtifactPath(paths[family]));
+}
+
+function collectArtifactHashes(row) {
+  const evidence = row?.sourceEvidence;
+  const rowArtifacts = isPlainObject(row?.artifacts) ? row.artifacts : {};
+  const evidenceArtifacts = isPlainObject(evidence?.artifacts) ? evidence.artifacts : {};
+  const sources = [
+    row?.artifactHashes,
+    row?.sourceHashes,
+    row?.artifactHash ? { artifactHash: row.artifactHash } : null,
+    row?.sourceHash ? { sourceHash: row.sourceHash } : null,
+    artifactFieldMap(rowArtifacts, "hash"),
+    artifactFieldMap(rowArtifacts, "artifactHash"),
+    artifactFieldMap(rowArtifacts, "sourceHash"),
+    evidence?.artifactHashes,
+    evidence?.sourceHashes,
+    evidence?.hashes,
+    evidence?.artifactHash ? { artifactHash: evidence.artifactHash } : null,
+    evidence?.sourceHash ? { sourceHash: evidence.sourceHash } : null,
+    artifactFieldMap(evidenceArtifacts, "hash"),
+    artifactFieldMap(evidenceArtifacts, "artifactHash"),
+    artifactFieldMap(evidenceArtifacts, "sourceHash"),
+  ];
+  const hashes = {};
+  for (const source of sources) {
+    if (isPlainObject(source)) {
+      Object.assign(hashes, source);
+    }
+  }
+  return hashes;
+}
+
+function collectArtifactPaths(row) {
+  const evidence = row?.sourceEvidence;
+  const rowArtifacts = isPlainObject(row?.artifacts) ? row.artifacts : {};
+  const evidenceArtifacts = isPlainObject(evidence?.artifacts) ? evidence.artifacts : {};
+  const sources = [
+    row?.artifactPaths,
+    row?.sourceArtifactPaths,
+    row?.artifactPath ? { artifactPath: row.artifactPath } : null,
+    artifactFieldMap(rowArtifacts, "path"),
+    artifactFieldMap(rowArtifacts, "sourcePath"),
+    artifactFieldMap(rowArtifacts, "artifactPath"),
+    evidence?.artifactPaths,
+    evidence?.sourceArtifactPaths,
+    evidence?.artifactPath ? { artifactPath: evidence.artifactPath } : null,
+    artifactFieldMap(evidenceArtifacts, "path"),
+    artifactFieldMap(evidenceArtifacts, "sourcePath"),
+    artifactFieldMap(evidenceArtifacts, "artifactPath"),
+  ];
+  const paths = {};
+  for (const source of sources) {
+    if (isPlainObject(source)) {
+      Object.assign(paths, source);
+    }
+  }
+  return paths;
+}
+
+function artifactFieldMap(artifacts, field) {
+  if (!isPlainObject(artifacts)) {
+    return null;
+  }
+  return Object.fromEntries(
+    Object.entries(artifacts)
+      .map(([key, value]) => [key, isPlainObject(value) ? value[field] : null])
+      .filter(([, value]) => typeof value === "string" && value.trim() !== ""),
+  );
+}
+
+function isAcceptedArtifactPath(artifactPath) {
+  if (typeof artifactPath !== "string" || artifactPath.trim() === "") {
+    return false;
+  }
+  if (artifactPath.includes("placeholder") || artifactPath.includes("pending")) {
+    return false;
+  }
+  const resolved = path.isAbsolute(artifactPath)
+    ? artifactPath
+    : path.resolve(REPO_ROOT, artifactPath.replace(/#.*/, ""));
+  return (
+    resolved.startsWith(REPO_ROOT) &&
+    !isNonDurableSourcePath(resolved) &&
+    fs.existsSync(resolved) &&
+    fs.statSync(resolved).isFile() &&
+    isEvidenceSourcePath(resolved)
+  );
+}
+
+function hasHashValue(value) {
+  if (typeof value === "string") {
+    return value.trim() !== "";
+  }
+  if (Array.isArray(value)) {
+    return value.some(hasHashValue);
+  }
+  if (isPlainObject(value)) {
+    return Object.values(value).some(hasHashValue);
+  }
+  return false;
 }
 
 function isNonDurableSourcePath(filePath) {
@@ -766,12 +1028,26 @@ function isEvidenceSourcePath(filePath) {
   );
 }
 
-function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {
+function decideStatus({
+  carrier,
+  missingRows,
+  sourceContractBoundaryRows,
+  sourceArtifactHashMissingRows,
+  carrierBinding,
+  solver,
+  negativeControls,
+}) {
   if (!carrier.accepted) {
     return "blocked_missing_accepted_gw_source_carrier";
   }
   if (missingRows.length > 0) {
     return "blocked_missing_rows";
+  }
+  if (sourceContractBoundaryRows.length > 0) {
+    return "blocked_source_contract_boundary";
+  }
+  if (sourceArtifactHashMissingRows.length > 0) {
+    return "blocked_source_artifact_hashes_missing";
   }
   if (!carrierBinding.passed) {
     return "blocked_carrier_split";
@@ -794,6 +1070,12 @@ function firstBlocker({ status, carrier, missingRows, carrierBinding, solver, ne
   }
   if (missingRows.length > 0) {
     return `missing_accepted_${missingRows[0]}`;
+  }
+  if (status === "blocked_source_contract_boundary") {
+    return "source_contract_boundary_not_retained_evidence";
+  }
+  if (status === "blocked_source_artifact_hashes_missing") {
+    return "source_artifact_hashes_missing";
   }
   if (!carrierBinding.passed) {
     return carrierBinding.commonCarrierId ? "carrier_split" : "missing_common_carrier";

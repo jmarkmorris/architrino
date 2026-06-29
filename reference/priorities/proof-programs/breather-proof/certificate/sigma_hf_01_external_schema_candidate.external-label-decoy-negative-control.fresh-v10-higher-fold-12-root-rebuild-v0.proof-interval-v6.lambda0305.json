@@ -1,0 +1,93 @@
+{
+  "schema": "sigma_hf_01_external_schema_candidate_external_label_decoy_negative_control/v0",
+  "status": "sigma_hf_01_external_schema_candidate_external_label_decoy_negative_control_rejected_8_of_8_fields_external_labels_without_accepted_provenance_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+  "candidate_status": "local_external_label_decoy_negative_control_not_external_proof_grade_schema",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "proof_interval": "proof-interval-v6",
+  "lambda_branch": "lambda0305",
+  "target_slot": "Sigma_hf_01",
+  "fold_interval": "F01",
+  "candidate_external_schema_ref": "external-proof-looking-label:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
+  "candidate_origin": "local_self_authored_negative_control_with_external_looking_candidate_ref_and_source_ref",
+  "external_schema_provenance": {
+    "provenance_class": "local_external_label_decoy_negative_control",
+    "source_ref": "external-proof-looking-label:Sigma_hf_01:fresh-v10-higher-fold-12-root-rebuild-v0:proof-interval-v6:lambda0305",
+    "acceptance_contract_ref": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+    "received_for_schema_validation": true,
+    "authored_inside_local_proof_program_pool": true,
+    "derived_from_local_certificate_json": true,
+    "self_authored_placeholder": true,
+    "local_path_treated_as_external_evidence": true
+  },
+  "compatible_schema_role_lock": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema",
+  "compatible_proof_object_role_lock": "source_packet_acceptance_rule_derivation_proof_object",
+  "derivation_proof_target_lock": "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+  "derivation_proof_source_data_record_lock": {
+    "separator_event": "Sigma_hf_01",
+    "fold_interval": "F01",
+    "derivation_proof_target": "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+    "derivation_proof_source_data_record_declared": true,
+    "derivation_proof_source_data_ready": true
+  },
+  "rule_kernel_obligation_binding": {
+    "derivation_proof_obligation": "discharged",
+    "soundness_proof_obligation": "discharged",
+    "endpoint_application_proof_obligation": "discharged",
+    "decoy_status": "structural_field_only_no_proof_rule_decision"
+  },
+  "rule_kernel_derivation_payload_target_binding": {
+    "slot": "Sigma_hf_01",
+    "payload_target_declared": true,
+    "proof_binds_to_payload_target": true,
+    "rule_kernel_derivation_payload_constructed": true,
+    "decoy_status": "structural_field_only_no_payload_accepted"
+  },
+  "proof_grade_derivation_schema_statement": {
+    "hypotheses": [
+      "local decoy hypothesis label"
+    ],
+    "inference_steps": [
+      "local decoy inference label"
+    ],
+    "conclusion": "local decoy conclusion label",
+    "source_data_correspondence": "local decoy source-data correspondence label",
+    "decoy_status": "structural_field_only_no_external_schema_constructed"
+  },
+  "non_reinterpretation_guard": {
+    "guard_status": "decoy_non_reinterpretation_guard_structurally_present",
+    "forbidden_reinterpretations": [
+      "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_proof_grade_derivation_schema_target_packet_as_proof_grade_derivation_schema",
+      "rule_kernel_payload_construction_attempt_as_proof_grade_derivation_schema",
+      "source_packet_acceptance_rule_derivation_proof_object_contract_target_satisfaction_attempt_as_proof_grade_derivation_schema",
+      "source_packet_acceptance_rule_kernel_binding_split_classifier_as_proof_grade_derivation_schema"
+    ],
+    "row_consumption_count": 0,
+    "preledger_pass": false,
+    "updates_live_ledger": false,
+    "branch_chart_authorized": false
+  },
+  "external_label_decoy_negative_control": {
+    "status": "external_looking_labels_and_8_of_8_fields_rejected_without_accepted_external_provenance",
+    "external_looking_labels_present": true,
+    "required_fields_present_expected": 8,
+    "external_provenance_accepted_expected": false,
+    "candidate_external_schema_received_expected": false,
+    "slot_result_expected": "external_input_required",
+    "first_failure_expected": "external_schema_provenance_required_before_schema_validation_intake",
+    "local_object_marked_external": false,
+    "proof_rule_or_primitive_acceptance_decision": false,
+    "row_consumption": false,
+    "updates_live_ledger": false,
+    "branch_chart_authorized": false
+  },
+  "authorization": {
+    "schema_validation_intake": false,
+    "row_consumption": false,
+    "accepted_source_packet": false,
+    "branch_chart": false
+  },
+  "used_as_external_schema": false,
+  "used_as_proof_grade_schema": false
+}

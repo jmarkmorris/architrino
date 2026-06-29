@@ -72,7 +72,7 @@ not a primitive frame-free photon scalar. The redshift task is to compute the en
 
 ### Composition
 
-The Noether sea is composed of neutral Noether braid assemblies. In the present corpus the best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
+The Noether sea is composed of neutral Noether braid assemblies. The best-developed Noether braid case is the nested shell braid, made from three nested electrino:positrino binaries. A Noether braid itself is not elementary; its stability is a downstream assembly result.
 
 This composition statement is a theorem target, not a permission to ignore other possible architrino assemblies. The universe-state inventory may contain many finite assembly classes: bare binaries, transient multi-body reaction corridors, larger $N$-site branches, charged assemblies, photon-channel packets, neutrino-like near-photon assemblies, and strong-field branch variants. Most of those may be physically real without being the ambient Noether sea population. The medium claim is that one neutral assembly class supplies the weak homogeneous background whose coarse variables recover clocks, rulers, signal speeds, pressure, inertia, and effective metric behavior.
 
@@ -94,6 +94,19 @@ $$
 $$
 
 The entries are, respectively: retained-branch closure; local polarity neutrality and pro/anti balance; convergence of the far-population wake sum; dense packing without uncontrolled branch disruption; weak homogeneous transparency to ordinary matter, photon-channel packets, and neutrino-like assemblies; a shared constitutive response for $n$, $\chi_{\text{sea}}$, $\Gamma_N$, stress, and effective metric channels; compatibility with the particle-building branch program; and a production, recycling, or relaxation route that gives the class sufficient abundance.
+
+Transparency is therefore a bounded-response condition, not a claim of zero interaction. For a channel family $X\in\{\gamma,\tau,\mathrm{mat},\nu\}$, the Noether sea must make direct loss, scattering, and preferred-frame visibility small while still supplying the constitutive response that the channel is supposed to recover. A compact two-row check is
+
+$$
+\mathcal R_{\mathrm{vis/resp},X}
+=
+\max\!\left(
+\frac{\mathcal R_{\mathrm{loss/scat},X}+\mathcal R_{\mathrm{LV},X}}{\epsilon_{\mathrm{vis},X}},
+\frac{\left\|O_X^{\mathrm{eff}}-\Pi_X[\Theta_{\mathrm{sea}},\mathcal L_X]\right\|}{\epsilon_{\mathrm{resp},X}}
+\right).
+$$
+
+The first term enforces weak homogeneous transparency and hides ordinary medium-drift leakage; the second term enforces that clocks, photon transport, matter response, or neutrino-like propagation still consume the same retained Noether sea record. A candidate class that sets the coupling to zero passes neither row: it may become invisible, but it no longer reconstructs the effective observables assigned to the Noether sea.
 
 The nested shell braid-centered Noether sea claim is therefore the statement that the corresponding class $\mathfrak C_{\mathrm{nest}}$ can drive $\mathcal R_{\mathrm{sea\text{-}class}}(\mathfrak C_{\mathrm{nest}})$ below the accepted tolerance while other candidate classes either fail one of the rows or are classified as localized matter, radiation, reaction, or strong-field branches. This is stronger than saying that nested shell braid exclusion volumes are visually plausible. It is a comparative selection problem over assembly classes.
 
@@ -251,6 +264,20 @@ S_{\mathrm{prod}}
 +S_{\mathrm{relax}}.
 $$
 Production, return, capture, decay, reclassification, and relaxation are not separate ontologies. They are bookkeeping channels for how neutral Noether braid content enters, leaves, or changes class inside the local Noether sea population. A long-time Noether sea model is credible only when these rows share one continuity ledger with the energy and reaction records.
+
+Strong-field recycling and pair-channel activity sharpen the same requirement. A compact source may be a net source, sink, or reclassifier of Noether sea content only after the local balance separates diffuse medium loading from collimated release and from visible pair-channel products. One useful source term split is
+$$
+S_{\rho}
+=
+S_{\mathrm{BH,diff}}
++S_{\mathrm{BH,col}}
++S_{\mathrm{pair}}
++S_{\mathrm{return}}
+-S_{\mathrm{capture}}
+-S_{\mathrm{reclass}}
++S_{\mathrm{relax}}.
+$$
+Here $S_{\mathrm{BH,diff}}$ denotes broad medium loading, $S_{\mathrm{BH,col}}$ denotes collimated or jet-like release that later couples back to the medium, and $S_{\mathrm{pair}}$ denotes pair-channel participation controlled by local density, cadence, excitation, and threshold state. None of these terms creates substrate from nothing. Each is a projection of architrino and Noether braid inventory through a declared reaction, release, or relaxation record.
 
 The hydrodynamic comparison also has a domain warning: quantizing the coarse variable does not by itself reveal the microscopic contents. In a medium analogy, phonon quantization recovers collective excitations of the continuum; it does not recover the atoms. For the Noether sea, this means that a quantized effective metric, scalar, or vector channel is a recovery benchmark for long-wavelength behavior, while the microscopic derivation still has to come from Noether braid population dynamics, causal wakes, and branch ledgers.
 
@@ -1012,7 +1039,7 @@ For the canonical medium ontology, total-density boundary, and terminology disci
 
 ### Pro/Anti Noether Braid Basis
 
-In the current framing, the basic Noether sea carrier is a Noether braid with a state that can appear in two complementary orientations:
+In this framing, the basic Noether sea carrier is a Noether braid with a state that can appear in two complementary orientations:
 
 - pro-Noether braid orientation
 - anti-Noether braid orientation
@@ -1661,6 +1688,28 @@ d\tau_{\mathcal A}
 $$
 Here $\varphi_{\mathcal A}$ is the counted clock phase, $\Omega_{\mathcal A}^{(0)}$ is its rest-branch reference rate, $\mathcal{N}_{\mathrm{sea}}$ is the retained Noether sea state, $R_{\mathcal A}$ is the clock geometry/orientation record, $H_{\mathcal A}$ is the relevant path-history ledger, and $\mathbf{w}$ is the clock drift relative to local Noether sea flow. A broad expression such as $d\tau/dt=F(\mathbf{w},n,\chi_{\text{sea}},\Phi_{\text{eff}},\text{clock geometry})$ is only a shorthand after this phase channel has been declared.
 
+For a two-clock comparison, the native input is not the relative velocity of the two clock centers by itself. It is the pair of local clock records
+$$
+\mathcal{D}_{\tau}^{AB}
+=
+\left(
+\mathbf{w}_A,
+\mathbf{w}_B,
+\mathcal{N}_{\mathrm{sea},A},
+\mathcal{N}_{\mathrm{sea},B},
+R_A,
+R_B,
+H_A,
+H_B
+\right),
+\qquad
+\mathbf{w}_K
+=
+\mathbf{V}_{K,\mathrm{cm}}
+-\mathbf{u}_{\mathrm{sea},K}.
+$$
+Ordinary relative-velocity time dilation is the weak homogeneous limit of this record after the clock, ruler, and signal channels hide any observer-accessible preferred-frame leakage. If two clocks sample different Noether sea cells, a formula using only $\mathbf{V}_{A,\mathrm{cm}}-\mathbf{V}_{B,\mathrm{cm}}$ has already discarded part of the clock map.
+
 The target is to reproduce, in the appropriate regime,
 $$
 \frac{d\tau}{dt} \approx \sqrt{1+\frac{2\Phi_N}{c_0^2} - \frac{\|\mathbf{w}\|^2}{c_0^2}}
@@ -2247,7 +2296,7 @@ The current Fe/Cr toy pressure projection has $\mathbf{a}^{P\to\Gamma}=(0,0.6,0,
 
 The current validation result is therefore:
 
-| Coefficient | Current status |
+| Coefficient | Status |
 | --- | --- |
 | $a_n$ | Optional in the weak static endpoint; conditionally required only if a branch-derived density response is needed to keep hydrogen or pressure records on one shared row. |
 | $a_\lambda$ | Optional in the weak static endpoint; conditionally required only if the envelope-scale branch supplies the compensating record. |
@@ -2373,7 +2422,7 @@ This target fails if $\Gamma_N$ is multiplied directly into the line frequency a
 
 The first proof/simulation packet for this row is the [Hydrogen $\Gamma_N$ Spectral Coefficient Row Toy Scan](../../../../markdown/aaa/validation/simulations/hydrogen-gamma-n-spectral-row-toy-scan.md). It treats $\mathbf{b}_{N}^{\mathrm{spec}}$ as a constrained clock-row instance: $b_\xi=1$ is fixed by the homogeneous Lorentz branch, the weak static endpoint row must satisfy $b_n a_n+b_\chi a_\chi+b_\lambda a_\lambda+b_R a_R=1$, and the observer frequency uses $C_N=\Gamma_N^{-1}$. The packet passes only if a shared row controls the chosen hydrogen line set across admissible refinement; it fails when the scan needs a transition-specific row, a direct $\Gamma_N$ frequency multiplier, a collapsed density/delay variable, or a residual budget that hides recoil, hyperfine structure, photon-channel propagation, or unresolved source-branch effects.
 
-The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable now derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
+The first executable scaffold keeps the clock proof burden visible. Its accepted spectral row is inherited from the density/scale-compensated static-response packet, not fitted from hydrogen lines alone. Its hydrogen records also keep $n$, $\chi_{\text{sea}}$, $\lambda$, $\xi$, and $R_{\text{core}}$ as separate entries in $\mathbf{g}_{N,\mathrm H}^{(\ell)}$, so a row that matches one line or one record can still fail when the component split changes under admissible refinement. The executable derives the scaffold line factors, observer frequencies, and replay envelope gaps from recovered principal labels plus one shared line-inferred $\ln\Gamma_N$. A completed theory-bearing record must therefore supply the same four inputs together from one declared hydrogen spectral channel ledger and the same Noether sea cell: the hydrogen $\mathbf{g}_{N,\mathrm H}^{(\ell)}$ record, envelope gaps, observer frequencies, and static response vector.
 
 ---
 
@@ -2495,7 +2544,7 @@ In this chapter, Planck-scale references inherit that same alignment definition.
 
 #### Clock Model and Equations of Motion
 
-To close the derivation gap, we now fix an explicit clock model and an explicit observable-extraction map.
+To close the derivation gap, fix an explicit clock model and an explicit observable-extraction map.
 
 ##### Concrete Nested Shell Braid Clock State
 
@@ -4057,7 +4106,7 @@ Here each residual label $r$ must correspond to a named branch-chart feature: a 
 
 The technology-facing status is therefore conditional. The immediate test is not necessarily a laboratory Lorentz-violation search. The first test is mathematical and computational: solve a controlled translating branch chart, extract $\mathcal{L}_{\mathrm{root}}(\beta)$, compute $K_{\parallel}$, $K_{\perp}$, $T(v)$, and $\Delta_{\mathrm{tw}}$, and verify that the same ledger produces the Lorentz coefficients and any residual sidebands. Only after a nonzero residual survives branch completion, hierarchy averaging, and $\eta\to0$ control does the question become an experimental one. If the predicted residual amplitude lies below existing clock, resonator, matter-interferometer, or photon-channel sensitivity, the theory remains constrained but not yet technology-testable. If a branch-sourced residual survives at an accessible scale, its signature should be more specific than a generic Lorentz-violation coefficient: it should carry the speed, orientation, material-channel, or medium-density dependence of the responsible branch-chart feature.
 
-This also prevents overclaiming. The present chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
+This also prevents overclaiming. This chapter does not prove that quantum mechanics causes special relativity. It states a narrower closure target: in $\mathbb{A}\mathbb{A}\mathbb{A}$, the discrete causal-root progression that supports quantum-facing assembly behavior must also generate the Lorentz formulas in the homogeneous weak-field observer limit. If the branch ledger produces quantum-like discreteness but fails to produce the Lorentz coefficient vector, then the proposed common mechanism fails. If it produces the Lorentz vector only by tuning a separate clock law, ruler law, or photon speed for each observable, the Lorentz bridge also fails.
 
 ##### Nested shell braid adiabatic decoupling bound
 
@@ -4427,7 +4476,7 @@ Here $A_s$ denotes the branch-resolved wake amplitude from source segment $s$, a
 
 #### ADM/Cartan Reconstruction Surface
 
-The metric bridge should now be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
+The metric bridge should be expressed through the same ADM/Cartan variables used by [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#admcartan-reconstruction-target). The observer-level line element target is
 
 $$
 ds_{\rm eff}^2
@@ -5053,7 +5102,7 @@ A proposed recovery that supplies only $c_{\text{eff}}(\mathbf{x})$ or $\chi_{\t
 
 #### Weak-Field Geodesic Handoff (ADM Constitutive Subclass)
 
-The older scalar/disformal bridge is now a subclass of the ADM/Cartan surface. In the local Noether sea rest gauge, set
+The scalar/disformal bridge is the ADM/Cartan subclass obtained by choosing the local Noether sea rest gauge:
 $$
 u^i_{\text{sea}}=0,
 \qquad
@@ -6775,7 +6824,7 @@ The $\mathbb{A}\mathbb{A}\mathbb{A}$ reading keeps this reaction as a required o
 | :--- | :--- | :--- | :--- |
 | Iron core near instability | Electrons form a dense pressure reservoir rather than atomic orbital distributions. | Iron-group nuclei remain identifiable but no longer release useful fusion support. | The Noether sea sees a compact but still non-horizon matter source through exposed shielded response. |
 | Electron-capture onset | Electron number falls as electrons are consumed by proton channels. | Protons convert toward neutrons, and the composition becomes more neutron-rich. | Atomic-scale electron resonance is no longer the right response picture; the active ledger shifts toward nuclear reaction provenance. |
-| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | The old iron-nucleus closure loses authority; source terms into the Noether sea become fragmented, anisotropic, and rapidly changing. |
+| Photodisintegration and breakup | Electron pressure keeps weakening as collapse accelerates. | Heavy nuclei break into smaller nuclei, alpha-like fragments, and free nucleons, consuming energy. | Iron-nucleus closure loses authority; source terms into the Noether sea become fragmented, anisotropic, and rapidly changing. |
 | Neutrino-trapping regime | Lepton accounting must include trapped and escaping neutrino channels. | Matter approaches nuclear density, and free nucleons dominate the local inventory. | Transport is no longer globally transparent: neutrino, stress, heat, and medium-update ledgers must be tracked together. |
 | Bounce or continued collapse | Electrons become secondary to nuclear and neutrino pressure channels. | Nuclear-density stiffening can halt the inner core, or support can fail. | A neutron-star branch remains an extreme non-horizon Noether sea response; continued collapse routes the same record toward the horizon-interface condition. |
 
@@ -7331,6 +7380,19 @@ This is the sense in which black holes are treated as recycling furnaces in the 
 
 The same picture implies that the effective mass of a black hole need not be interpreted as a purely isolated bookkeeping variable. If the horizon interface and interior remain constitutively coupled to the ambient Noether sea, then part of what observers infer as compact-object mass can depend on how the surrounding Noether sea loads, unloads, or stores energy around the recycling site. This does not license arbitrary mass drift. It means that the distinction between "local compact-object state" and "embedding Noether sea state" is dynamical rather than absolute.
 
+The corresponding mass statement is an exposure ledger, not a claim that mass can disappear. In a resolved strong-field window the exterior reconstruction must separate incoming energy, compact stored energy, shielding and exposure change, escaped outflow, reabsorbed content, and embedding Noether sea loading. A useful schematic form is
+
+$$
+\Delta\!\left(M_{\mathrm{app}}c_0^2\right)
+=
+\Delta E_{\mathrm{comp,exp}}
++\Delta E_{\mathrm{sea,emb}}
+-\Delta E_{\mathrm{out,esc}}
++R_{M,\mathrm{app}},
+$$
+
+with the hidden rows expanded when a release channel is being tested. The point is not that the compact object violates conservation. The point is that the observer-facing mass label is a projection of a larger strong-field, shielding, release, and medium-coupling record.
+
 #### Mass-Scale Traversal
 
 The exterior-to-core sequence is the same for black holes at every mass scale, but the relative weight of the local gradients, horizon-interface capacity, release channels, and cosmological embedding changes with mass. The useful comparison is therefore not a separate ontology for small, stellar, and supermassive black holes. It is one traversal map evaluated with different effective horizon scales.
@@ -7403,6 +7465,8 @@ For that reason, the framework uses a release-channel hierarchy:
 
 This hierarchy keeps the theory from overcommitting to a single morphology. A jet is evidence for organized outflow, not by itself proof that all recycling must emerge in collimated form.
 
+The same hierarchy also separates two recycling modes. A strong-field site may load the surrounding Noether sea diffusely without producing a narrow visible jet, or it may route part of the same processed content into a collimated assembly, photon-channel, or mixed-sector outflow. These are different channel records. The diffuse mode asks how the ambient Noether sea density, cadence, orientation, and delay-factor state are updated. The collimated mode asks how the horizon interface, disk or boundary layer, and environment select a directed outflow with definite energy, momentum, angular momentum, composition, and lifetime.
+
 The same distinction can be phrased as a sequence.
 
 1. Core processing compresses infalling content into maximum-curvature and alignment regimes.
@@ -7423,7 +7487,7 @@ Three working possibilities remain live:
 
 ##### Jet Production as a Selection Problem
 
-The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In the current framework, that is a channel-selection problem governed by at least four ingredients:
+The open physical question is not merely whether release occurs, but why some environments produce narrow, persistent jets while others favor broader or darker outflows. In this framework, that is a channel-selection problem governed by at least four ingredients:
 
 - the degree of horizon-interface alignment;
 - the state of the surrounding Noether sea, including anisotropy and loading;
@@ -7431,6 +7495,22 @@ The open physical question is not merely whether release occurs, but why some en
 - the ambient matter and effective magnetic-like environment through which the outflow propagates.
 
 This is the disciplined way to keep jets in the chapter: as one important release channel among several, rather than as the whole definition of recycling.
+
+Rotating compact sources add one more bridge variable. In standard comparison language, frame dragging is a metric effect around a rotating mass. In $\mathbb{A}\mathbb{A}\mathbb{A}$ it should be recovered as an effective readout of the same angular-momentum ledger, surrounding Noether sea vorticity, and horizon-interface state that also enter release selection:
+
+$$
+\boldsymbol{\omega}_{\mathrm{eff}}
+=
+\mathcal{W}_{\mathrm{drag}}
+\left(
+\mathbf{J}_{\Omega},
+\nabla\times\mathbf{u}_{\mathrm{sea}},
+\mathcal{A}_{\mathrm{NS}},
+\mathcal{B}_{H}
+\right).
+$$
+
+This does not make the Euclidean void rotate. It states the recovery target: the observer-level dragging of local inertial frames must be reconstructed from compact-source angular momentum, Noether sea flow and anisotropy, and the same interface record used by jets or diffuse release.
 
 Observer-level jet phenomenology supplies three compact constraints on this selection problem. First, powerful collimated outflows are strongly associated with compact accretors and disks, so the native record must include an inflow, disk, or boundary-layer source of energy and angular momentum. Second, across young stellar objects, microquasars, and active galactic nuclei, the characteristic jet speed is usually of order the escape or Keplerian speed at the launch region:
 
@@ -7859,17 +7939,17 @@ Away from the horizon, the project already treats `pro/anti` as a handedness or 
 
 That distinction is natural in the ordinary nested shell braid because the three binaries occupy non-coplanar planes with an ordered set of normals and a genuine precession structure. In that regime, `pro/anti` is a 3D chirality datum.
 
-The strongest current mathematical candidate beneath that datum comes from [causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md): the causal writhe
+The strongest mathematical candidate beneath that datum comes from [causal-action-functional.md](../../../../markdown/aaa/dynamics/causal-action-functional.md): the causal writhe
 
 $$
 Wr_c[\gamma] = \iint_{\mathcal{L}_{\text{causal}}}
 \mathrm{sign}\!\big(\mathbf{v}(t)\times\mathbf{v}(t')\cdot\mathbf{r}\big)\,d\tau
 $$
 
-is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest current reading is:
+is a signed measure of handedness for the self-interaction pattern, and the same chapter states that changing $Wr_c$ requires tearing the causal locus. So the cleanest reading is:
 
 - the surface convention for `pro/anti` remains the ordered `HML/HLM` nested shell braid distinction;
-- the best current formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
+- the best formalization candidate is a topological branch label carried by the causal locus, with $Wr_c$ as the leading chirality measure.
 
 The horizon state is different. Once the planes collapse into one planar lock and precession ceases, some of the ordinary 3D chirality data are suppressed. That makes it plausible that the horizon exposes only a reduced exterior signature of the deeper `pro/anti` distinction.
 
@@ -7885,7 +7965,7 @@ Several standing examples point in that direction.
 
 So when this note isolates `pro/anti`, it is **not** doing so because the larger ontology is expected to drift into a globally pro-dominant or anti-dominant universe. It is doing so because the horizon problem compresses the Noether braid strongly enough that the binary branch structure becomes especially visible.
 
-The matter sector then becomes the special case. In the current intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
+The matter sector then becomes the special case. In this intuition, what we call ordinary matter may be the regime where pro-Noether braid and anti-Noether braid encounters act as a kind of geometric opener for one another, making fast reconfiguration channels available. In that reading, the standard word "annihilation" is too blunt. The deeper process is a **reaction** or **reconfiguration event** in which the coupled structures open, exchange, and re-express their content through new channels rather than vanishing into nothing.
 
 That broader matter/reaction thesis belongs with reaction-channel provenance and fermion assembly structure. Inside this chapter, its role is narrower: it reminds us that horizon chirality should be developed inside a theory that is broadly pro/anti balanced, with the dramatic visible asymmetries appearing only in certain reaction channels or assembly sectors.
 
@@ -7895,7 +7975,7 @@ To keep terms from sliding into one another, use the following provisional dicti
 
 | Label | Meaning in this note | Typical regime |
 | --- | --- | --- |
-| `pro/anti` | the deeper 3D Noether braid chirality, currently tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
+| `pro/anti` | the deeper 3D Noether braid chirality, tracked by ordered nested shell braid structure such as `HML` versus `HLM` | pre-planar 3D braid |
 | `CW/CCW` | the exterior planar angular-momentum sign seen from one chosen viewing side of a planarized Noether braid | horizon / planar lock |
 | `left/right` | a possible axial sign relative to translation, for example $\hat J_{\text{net}} \parallel \pm \hat{\mathbf V}$, if that later proves to control forward exposure of the weak-active structure | high-velocity aligned regime |
 
@@ -8062,13 +8142,13 @@ The most conservative horizon hypothesis is that the stable terminal branches ar
 
 These are the cleanest candidates for the two horizon-level branches that an exterior observer could identify. In that reading, the horizon presents a binary choice of common-sign planar lock.
 
-The six mixed rows should be treated more cautiously. At present they are best read as candidate:
+The six mixed rows should be treated more cautiously. They are best read as candidate:
 
 - transitional states during flattening;
 - frustrated planar states that still carry unresolved internal shear;
 - or short-lived reconfiguration states rather than canonical terminal locks.
 
-This is only a working hypothesis. The current theory does not yet derive that mixed-sign planar states are forbidden. It says only that the two uniform rows are the strongest candidates for stable horizon identities, while the mixed rows appear less natural as endpoint states.
+This is only a working hypothesis. The theory does not yet derive that mixed-sign planar states are forbidden. It says only that the two uniform rows are the strongest candidates for stable horizon identities, while the mixed rows appear less natural as endpoint states.
 
 Under the translation-axis argument above, those two rows can be restated more sharply: in the terminal branch the three orbital normals are expected to become coaxial with $\pm \hat{\mathbf V}$, where $\hat{\mathbf V}$ is the unit translation direction. The remaining binary choice is then the sign of the common axial spin.
 
@@ -8096,7 +8176,7 @@ In the more cautious reduction, the two uniform planar states are still the visi
 
 On this reading, the horizon preserves only a compressed image of the deeper nested shell braid chirality. The exterior observer sees the branch, but not necessarily the full internal ordering history.
 
-At present, Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
+Theory B is the stronger conceptual fit with the existing 3D `HML/HLM` framing, because that framing is richer than a single planar spin sign.
 
 The history-lifted reading also sets a guardrail for nearby labels. Horizon `pro/anti`, boundary helicity, `CW/CCW`, `HML/HLM`, and weak left/right language should not be identified with one another by a visible planar sign alone. A stronger identification requires a component row carrying the lifted history $\widetilde r(s)$, the row-local parity checks $\Pi_{W,r}^{2\pi}$ and $\Pi_{W,r}^{4\pi}$, a quotient witness, doubled-path restoration, and gauge invariance. Without those rows, the horizon sign is a boundary-visible marker for a deeper branch history, not the whole chirality proof.
 
@@ -8112,7 +8192,7 @@ $$
 
 are natural candidates for a left/right or helicity-like pair.
 
-That does **not** automatically make them identical to weak-interaction chirality. The current canon already uses left/right language operationally in terms of whether the weak-coupling triad is exposed or hidden relative to motion and wake geometry. Still, the axial-lock picture suggests a possible underlying bridge:
+That does **not** automatically make them identical to weak-interaction chirality. The canon uses left/right language operationally in terms of whether the weak-coupling triad is exposed or hidden relative to motion and wake geometry. Still, the axial-lock picture suggests a possible underlying bridge:
 
 - the high-velocity Noether braid first selects one of the two axial branches $\pm \hat{\mathbf V}$;
 - that branch then influences which side of the axial structure is forward-exposed versus wake-hidden;
@@ -8137,13 +8217,13 @@ is not enough to identify weak left/right exposure. The same record must also pa
 
 #### Status Table
 
-The current chapter mixes canonical inputs with stronger and weaker hypotheses. The distinction should stay explicit.
+This chapter mixes canonical inputs with stronger and weaker hypotheses. The distinction should stay explicit.
 
 | Claim | Status |
 | --- | --- |
-| horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in current project framing |
+| horizon lock drives the nested shell braid toward coplanarity and suppresses precession | canonical in project framing |
 | `pro/anti` is a deeper 3D Noether braid chirality label rather than a net-charge label | canonical working convention |
-| `Wr_c` and causal-locus topology supply the best current formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
+| `Wr_c` and causal-locus topology supply the best formalization candidate for that chirality | strong structural candidate, not yet sole canonical definition |
 | the planar exterior sign space has 8 rows for labeled `H/M/L` binaries | exact combinatorial statement |
 | high translation speed biases orbital normals toward the translation axis | strong geometric argument in this chapter |
 | the two uniform planar rows are the most likely stable terminal horizon branches | strong working hypothesis |
@@ -8161,7 +8241,7 @@ That possibility raises three immediate questions:
 2. If they are stable, do they define additional horizon classes beyond `pro/anti`?
 3. If they are unstable, are they the natural transition states through which a Noether braid passes while entering or leaving the horizon interface?
 
-The present note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
+This note favors the third reading: mixed-sign planar states are more naturally interpreted as transition or frustration states than as clean final branches. But this remains an open dynamics question rather than a closed derivation.
 
 One reason for that preference is action-geometric rather than merely visual. In a strictly flattened disk, mixed-sign configurations plausibly generate stronger phase-slip and more severe branch competition, because not all tangential drives can cooperate in closing the delayed loop on one clean planar branch family. That does not yet amount to a theorem, but it points to the right criterion: mixed rows should be judged by whether they force larger Jacobian stress, larger cycle-to-cycle action variance, or repeated failure of singularity-free phase closure.
 
@@ -8169,7 +8249,7 @@ One reason for that preference is action-geometric rather than merely visual. In
 
 One of the biggest unresolved questions is whether a Noether braid can flip from `pro` to `anti` smoothly, or only through a more singular reconfiguration.
 
-The current chapter points toward the second option. The likely possibilities are:
+This chapter points toward the second option. The likely possibilities are:
 
 1. **No flip in ordinary smooth evolution:** away from the planar degeneracy, the ordered 3D Noether braid chirality appears robust and should survive adiabatic deformations.
 2. **Near-degenerate branch switch at planar lock:** when the three planes collapse into one planar state, some 3D chirality data are compressed strongly enough that a branch change may become dynamically accessible.
@@ -8177,11 +8257,11 @@ The current chapter points toward the second option. The likely possibilities ar
 
 This is exactly where the language of "annihilation" starts to look too weak. If a pro/anti encounter opens the Noether braid and allows branch-changing reconfiguration, the physical process is better described as a structured reaction than as disappearance.
 
-The strongest current language from the dynamics stack is that true branch conversion should be associated with a **mode-lock event** or related non-perturbative reconfiguration, not with an adiabatic drift. If the branch label is indeed carried by the topology of the causal locus, then a smooth $pro \leftrightarrow anti$ conversion would require passage through a singular or near-singular reconnection stage rather than ordinary continuous motion.
+The strongest language from the dynamics stack is that true branch conversion should be associated with a **mode-lock event** or related non-perturbative reconfiguration, not with an adiabatic drift. If the branch label is indeed carried by the topology of the causal locus, then a smooth $pro \leftrightarrow anti$ conversion would require passage through a singular or near-singular reconnection stage rather than ordinary continuous motion.
 
 Put differently: if branch-changing evolution forces an active delayed branch toward a Jacobian-null boundary, then the exact dynamics encounter the same kind of amplitude wall already familiar from the self-hit geometry. That is why smooth branch inversion should be treated as forbidden or at least highly non-generic in the exact theory. The expected route is instead a discrete mode-lock / reconnection event in which the old branch graph fails and a new one nucleates.
 
-For now, the safest working rule is:
+The safest working rule is:
 
 - smooth motion should preserve the deeper branch label;
 - planar degeneracy may permit branch ambiguity;
@@ -8200,7 +8280,7 @@ If this note is to become more than a conceptual sketch, the following diagnosti
 
 #### Provisional Conclusion
 
-The full planar spin-sign space at the horizon has eight rows because each of the three labeled binaries can appear as either `CW` or `CCW` from a fixed exterior viewpoint. But the strongest current theory is that only two of those rows are good candidates for canonical horizon identities: the two uniform common-sign locks.
+The full planar spin-sign space at the horizon has eight rows because each of the three labeled binaries can appear as either `CW` or `CCW` from a fixed exterior viewpoint. But the strongest theory is that only two of those rows are good candidates for canonical horizon identities: the two uniform common-sign locks.
 
 That yields a disciplined provisional picture:
 

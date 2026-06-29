@@ -18,6 +18,10 @@
 5. `discriminating_observable` — Extract at least one discriminating observable against GR-like strong-field behavior. Status: `pending`. Depends on: `release_channel_selection`.
 6. `hypothesis_bank_review` — Preserve strong-field and tri-binary hypotheses as a watchlist, and promote only hypotheses that gain a boundary condition, equation, simulation target, or observable. Status: `ongoing`. Depends on: none.
 7. `high_energy_source_sink_taxonomy` — Classify horizon release, jets, mergers, diffuse release, catastrophic candidates, reabsorption, and return channels before using strong-field events as cosmology source terms. Status: `pending`. Depends on: `release_channel_selection`.
+8. `packed_core_temperature_endpoint_residual` — Keep observer-accessible temperature, stored configuration energy, and packed-core coarse-graining separate before making any low-temperature or low-entropy interior claim. Status: `priority-only`. Depends on: [temperature](../cross-theory-mapping/temperature.md), `embedded_boundary_conditions`.
+9. `hard_em_constitutive_ceiling` — Test whether finite radius, Noether sea effective permittivity/permeability, and maximum-curvature regularity combine into a bounded electromagnetic constitutive response. Status: `priority-only`. Depends on: `embedded_boundary_conditions`.
+10. `ingress_conserved_ledger_deposition` — Route infalling conserved ledgers into horizon-interface, packed-core, Noether sea, defect, or release rows before making any assimilation or information claim. Status: `priority-only`. Depends on: `horizon_entropy_packet`, `release_channel_selection`.
+11. `quasar_wind_mechanical_benchmark` — Use high-power quasar winds as a mechanical outflow benchmark for release-channel selection and galaxy-scale feedback. Status: `priority-only`. Depends on: `release_channel_selection`, `high_energy_source_sink_taxonomy`.
 
 ## Scope
 
@@ -87,6 +91,53 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   k_B\log\left|\mathcal{M}_{\mathcal{Q}}(\Omega)\right|.
   $$
   A small $S_{\mathcal{Q}}(\Omega)$ for the interior packing record must not be confused with horizon-interface entropy, exterior observer entropy, release-channel information, or global information loss.
+- Source-mining intake 2026-06-28 from the December 2020 strong-field posts adds a hard electromagnetic constitutive ceiling to the same maximum-curvature problem. The priority-only target is
+  $$
+  \mathcal{C}_{\mathrm{EM,max}}
+  =
+  \left(
+  R_{\min},
+  \epsilon_{\mathrm{eff}}(\mathcal I),
+  \mu_{\mathrm{eff}}(\mathcal I),
+  F_{\max},
+  \mathcal{R}_{\mathrm{ceil}}
+  \right),
+  $$
+  where $\mathcal I$ is the declared local invariant or intensity record. The ceiling is accepted only if the same Noether sea constitutive response that bounds field/self-energy also remains compatible with the packed-geometry barrier and observer-level electromagnetic recovery. A fixed lower radius, a fitted field cap, or a verbal Planck-scale appeal is not sufficient.
+- Keep isolated-binary Planck-scale rows separate from many-body packed-core rows. A free binary record such as
+  $$
+  \Theta_{\mathrm{free\text{-}bin}}
+  =
+  \left(
+  R,\omega,s,J,\mathcal A_{\mathrm{root}},E_{\mathrm{branch}}
+  \right)
+  $$
+  does not by itself imply a packed-core record
+  $$
+  \Theta_{\mathrm{pack}}
+  =
+  \left(
+  N,\rho_{\mathrm{pack}},
+  \mathcal B_{\mathrm{pack}}^{(\Omega)},
+  \mathcal L_{E\mathbf p\mathbf J}^{(\Omega)},
+  \partial\Omega
+  \right).
+  $$
+  The former may seed scale estimates for a two-body branch; the latter requires density, defect, surface, shielding, release, and many-body ledger rows.
+- Treat packed-core temperature as an accessible-ensemble row, not as stored-energy shorthand. The priority-only endpoint residual is
+  $$
+  T_{\mathrm{obs}}^{(\Omega)}
+  =
+  T\!\left[
+  E_{\mathrm{kin,acc}}^{(\Omega)},
+  \mu_{\mathcal Q,W},
+  \Omega_{\mathrm{acc}}^{(\Omega)}
+  \right],
+  \qquad
+  E_{\mathrm{store}}^{(\Omega)}
+  \ \text{reported separately}.
+  $$
+  A compact interior may have high stored configuration energy and few accessible rearrangements, but low $T_{\mathrm{obs}}^{(\Omega)}$ is only a claim about the declared accessible ensemble.
 - Add a packed-geometry residual before treating the maximum-curvature barrier as quantitative. If $\mathcal{B}_{\mathrm{pack}}^{(\Omega)}$ is represented by candidate local packing cells, defects, or surface layers, require
   $$
   \mathcal{R}_{\mathrm{pack,geom}}
@@ -97,6 +148,20 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   +d_{\mathrm{shield}}\!\left(\Pi_{\mathrm{surf}},\Pi_{\mathrm{ext}}\right).
   $$
   FCC, HCP, or other familiar dense-pack labels may seed trial cell families, but no lattice label is accepted as ontology until the delayed branch dynamics supply the retained packing, defect, and exposure rows.
+- Source-mining intake 2026-06-28 from the remaining 2019-2020 strong-field posts adds an alternating-polarity packed-core trial family under the existing packed-geometry residual. This is a simulation family, not packed-core ontology:
+  $$
+  \mathcal{T}_{\mathrm{pack\text{-}pol}}
+  =
+  \left(
+  \Pi_{\pm},
+  \mathcal{L}_{\mathrm{cell}},
+  \mathcal{S}_{\mathrm{layer}},
+  \mathcal{D}_{\mathrm{defect}},
+  \mathcal{A}_{\mathrm{axis}},
+  \mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}
+  \right).
+  $$
+  Here $\Pi_{\pm}$ is the local electrino/positrino polarity pattern, $\mathcal{L}_{\mathrm{cell}}$ is the declared cell or support basis, $\mathcal{S}_{\mathrm{layer}}$ records whether the trial family uses planar, shell, or mixed layering, $\mathcal{D}_{\mathrm{defect}}$ records defects and faults, $\mathcal{A}_{\mathrm{axis}}$ records any axis-alignment or magnetic-like exterior readout, and $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$ is the conserved compact-region ledger. A trial family is useful only if it is evaluated by the existing $\mathcal{R}_{\mathrm{pack,geom}}$, exposure, angular-momentum, and release-selector rows; it must not promote alternating charge layers, FCC/HCP labels, or a single microstate claim before the retained branch dynamics emit them.
 - Keep angular momentum as a separate compact-core ledger. Dense packing does not remove $\mathbf{J}$; it relocates the bookkeeping into bulk rotation, surface shear, defect circulation, surrounding Noether sea response, or outbound release. A candidate core should report
   $$
   \mathbf{J}_{\Omega}
@@ -108,6 +173,20 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   +\mathbf{J}_{\mathrm{out}},
   $$
   and the release selector must state which terms drain into jets, winds, diffuse release, or reabsorption.
+- If the packed region is modeled as layered rather than homogeneous, the angular-momentum row must remain layer resolved:
+  $$
+  \mathbf{J}_{\Omega}
+  =
+  \sum_{\ell}
+  \left(
+  \mathbf{J}_{\ell,\mathrm{bulk}}
+  +\mathbf{J}_{\ell,\mathrm{shear}}
+  +\mathbf{J}_{\ell,\mathrm{defect}}
+  \right)
+  +\mathbf{J}_{\mathrm{sea}}
+  +\mathbf{J}_{\mathrm{out}}.
+  $$
+  A jet, diffuse release, or dark-sector escape branch that drains angular momentum from only one layer must identify that layer and its transition state rather than using a single compact-object spin label.
 - Add a many-body delayed-dynamics simulation target for packed interiors. The first useful target is not another isolated binary; it is an ensemble over $N\gg1$ architrinos or reduced Noether braid cells with delayed causal wakes, finite $c_f$, density control, defect creation, surface/interface rows, and a closed $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ ledger. The minimal parameter record is
   $$
   \Theta_{\mathrm{pack\text{-}sim}}
@@ -142,6 +221,35 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
 - Test any proposed horizon identification by checking that the induced identified ensemble preserves exterior readout distributions, $\mathcal{R}_{H,\mathrm{bal}}$, Page-compatible release, finite boundary data, and the standard Hawking-temperature normalization within declared tolerances.
 - Decide the release-channel selection between jets, diffuse outflow, dark-sector escape, and candidate dark-sector photon-like modes.
 - Make the release selector condition-facing. At minimum it should record spin, net polarity/charge balance, inflow rate, ingestion spikes, merger history, existing packed-core size, core growth or shrinkage, interface defect population, surrounding Noether sea loading, jetting rate, and layer-transition state. A branch that changes the selected channel without changing one of these source conditions has introduced an untracked switch.
+- Make the selector time dependent across launch, sustain, propagation, and shutoff. A minimal selector packet is
+  $$
+  \Theta_{\mathrm{rel}}(t)
+  =
+  \left(
+  M,\mathbf{J},Q_{\mathrm{eff}},
+  \dot M_{\mathrm{in}},
+  \delta I_{\mathrm{spike}},
+  H_{\mathrm{merge}},
+  \mathcal{D}_{\mathrm{defect}},
+  \mathcal{A}_{\mathrm{NS}},
+  \mathcal{L}_{\mathrm{layer}},
+  \Xi_{\mathrm{env}}
+  \right),
+  $$
+  with $\Pi_{\mathrm{rel}}[\Theta_{\mathrm{rel}}(t)]$ returning the active channel, outflow rates, and shutoff condition. A branch that explains launch but not maintenance or termination has not closed the release selector.
+- Track apparent compact-object mass as an observer-facing ledger rather than as a primitive isolated scalar. Over a resolved window,
+  $$
+  \Delta\!\left(M_{\mathrm{app}}c_0^2\right)
+  =
+  \Delta E_{\mathrm{in}}
+  +\Delta E_{\mathrm{shield\to exp}}
+  -\Delta E_{\mathrm{exp\to shield}}
+  -\Delta E_{\mathrm{out,esc}}
+  +\Delta E_{\mathrm{sea,emb}}
+  -\Delta E_{\mathrm{reabs,out}}
+  +R_{M,\mathrm{app}}.
+  $$
+  The signs are observer-facing: they ask what an exterior reconstruction counts as compact-source mass after shielding/exposure change, escaped release, reabsorbed outbound content, and embedding Noether sea loading are declared. This row is a diagnostic for shrinkage, growth, or coupling claims, not a license for arbitrary mass drift.
 - For any emitted Noether sea assembly or assembly fragment, retain a release-variable packet before routing the branch into visible, dark-sector, or reabsorbed channels:
   $$
   \Theta_{\mathrm{emit}}^{(c)}
@@ -173,6 +281,32 @@ Black-hole entropy and Page-curve recovery are high-value downstream consistency
   $$
   The ladder is a reporting target, not a claim that every route realizes every state. Each occupied step must carry architrino inventory, active causal-root ledgers, $E,\mathbf{p},\mathbf{J}$ balance, shielding/exposure change, Noether sea update, and the release selector that moved the record to the next step. A step may be skipped only with an explicit null route, for example direct photon-channel release, dark-sector escape, remnant capture, or reabsorption by the horizon-interface ensemble. This prevents strong-field recycling claims from jumping directly from a packed interior to a visible jet or CMB-facing output without naming the assembly reconstitution path.
 - State the Page-curve-compatible information-preservation requirement for those release channels.
+- Separate information claims into conserved ledgers, accessible observer records, interior coarse-graining, and release accounting before making any destruction or preservation claim:
+  $$
+  \mathcal{I}_{H}
+  =
+  \left(
+  \mathcal{L}_{\mathrm{cons}},
+  \mathcal{B}_{H},
+  \mathcal{C}_{\mathrm{coarse}},
+  \mathcal{L}_{\mathrm{out}},
+  R_{\mathrm{Page}}
+  \right).
+  $$
+  Here $\mathcal{L}_{\mathrm{cons}}$ carries conserved energy, momentum, angular momentum, polarity, and identity-routing rows; $\mathcal{B}_{H}$ carries horizon-interface labels; $\mathcal{C}_{\mathrm{coarse}}$ states the declared interior coarse-graining; $\mathcal{L}_{\mathrm{out}}$ carries release records; and $R_{\mathrm{Page}}$ is the Page-compatible recovery residual. A small interior coarse-grained state count is not by itself global information destruction.
+- Before an inward assembly, photon-channel packet, or fragment is counted as assimilated into a packed region, route its conserved ledger into declared deposition channels:
+  $$
+  \mathcal{D}_{\mathrm{ingress}}
+  =
+  \left(
+  \mathcal{L}_{\mathrm{in}},
+  \mathcal{L}_{\partial\Omega},
+  \Delta\mathcal{B}_{H},
+  \Delta\mathcal{C}_{\mathrm{coarse}},
+  \mathcal{L}_{\mathrm{out/sea}}
+  \right).
+  $$
+  Here $\mathcal{L}_{\mathrm{in}}$ is the incoming conserved ledger, $\mathcal{L}_{\partial\Omega}$ is the horizon-interface crossing row, $\Delta\mathcal{B}_{H}$ is any horizon-label update, $\Delta\mathcal{C}_{\mathrm{coarse}}$ is the packed-interior coarse-graining change, and $\mathcal{L}_{\mathrm{out/sea}}$ records Noether sea, defect, recoil, or release-channel deposition. A branch that makes content disappear into the packed core without one of these rows has lost ledger provenance rather than solved the information problem.
 - Extract at least one discriminating observable relative to GR-like strong-field behavior.
 
 ### High-Energy Source/Sink Taxonomy
@@ -194,6 +328,72 @@ This taxonomy does not add a new closure gate. It keeps `release_channel_selecti
 Odd radio circles are a candidate source-family lead for the catastrophic row, not evidence for a new class by themselves. If used, the packet should record host association, morphology, spectrum, polarization, environment, merger/AGN history, and null controls against ordinary shock, lobe, and projection explanations. A strong-field release interpretation is admissible only if the same source/sink ledger supplies the energy, angular momentum, medium loading, and exterior radiative handoff without changing the release selector per object.
 
 Fermi-bubble and eROSITA-bubble comparisons are a cleaner galaxy-scale release lead because they already point to bounded energy, age, axis, and environment rows. If used, the packet should record total energy, radiative and dynamical age, Galactic-center or AGN history, axis symmetry, polarization or spectrum where available, surrounding gas state, and null controls against starburst winds, ordinary AGN feedback, and projection effects. The useful question is whether one release-channel selector can connect compact-source history to large-scale medium work without becoming a free feedback term.
+
+High-power quasar winds supply a mechanical outflow benchmark for the same source/sink taxonomy. The useful data product is not the legacy claim that a Planck-plasma jet is established. It is the observer-level fact that some quasar systems drive galaxy-scale winds with large mass-loading, percent-of-$c$ velocities, and host-scale feedback. A compact benchmark packet is
+$$
+\mathcal{B}_{\mathrm{QSO\text{-}wind}}
+=
+\left(
+\dot M_{\mathrm{out}},
+v_{\mathrm{out}},
+\dot E_{\mathrm{mech}},
+t_{\mathrm{duty}},
+R_{\mathrm{shock}},
+\Delta\mathrm{SFR},
+\mathcal{L}_{E\mathbf p\mathbf J}^{\mathrm{wind}}
+\right).
+$$
+The release selector should pass this benchmark only when the same compact-source, disk/interface, wind-propagation, and surrounding Noether sea loading record supplies the mass outflow, mechanical power, duty cycle, shock scale, star-formation feedback, and $E,\mathbf p,\mathbf J$ ledger. A branch that explains a launch impulse but not the sustained mechanical work has not closed the quasar-wind channel.
+
+Asymmetric jet release needs its own momentum-balance residual before it is allowed to influence host dynamics. For a compact source with two polar channels, define
+$$
+\mathcal{R}_{\mathrm{jet\text{-}recoil}}
+=
+\left\|
+\Delta\mathbf{p}_{\mathrm{BH}}
++
+\int
+\left(
+\mathbf{\Pi}_{j,+}
++
+\mathbf{\Pi}_{j,-}
++
+\mathbf{\Pi}_{\mathrm{rad}}
++
+\mathbf{\Pi}_{\mathrm{sea}}
+\right)dt
+\right\|_{\Sigma_p^{-1}}
++
+\lambda_J
+\left\|
+\Delta\mathbf{J}_{\mathrm{BH}}
++
+\Delta\mathbf{J}_{j,+}
++
+\Delta\mathbf{J}_{j,-}
++
+\Delta\mathbf{J}_{\mathrm{sea}}
+\right\|_{\Sigma_J^{-1}}.
+$$
+The residual is a source/sink ledger check, not a claim that one-sided jets explain galaxy dynamics. It asks whether asymmetric onset, shutoff, baryon loading, or dark-sector loading can be reconciled with compact-source recoil, host-galaxy motion, angular-momentum routing, and medium updates without changing the release selector per object.
+
+Resolved jet knots should be recorded as release chronology rather than generic morphology. A useful source packet is
+$$
+\mathcal{K}_{\mathrm{jet}}
+=
+\left(
+\mathbf{x}_K,
+t_K,
+\Delta t_K,
+E_K,
+\Pi_K,
+\alpha_K,
+\psi_K,
+\Theta_{\mathrm{env},K},
+\mathcal{H}_{\mathrm{rel},K}
+\right),
+$$
+where $\mathbf{x}_K$ is knot position, $t_K$ and $\Delta t_K$ are age and duration estimates, $E_K$ is bounded energy, $\Pi_K$ is polarization or polarization fraction, $\alpha_K$ is spectral index, $\psi_K$ is projected angle, $\Theta_{\mathrm{env},K}$ records local environment, and $\mathcal{H}_{\mathrm{rel},K}$ records the candidate release history. The packet is useful only when knots, lobes, shocks, and inverse-Compton or synchrotron rows consume the same source, transport, and medium state.
 
 ### MIT 8.962 Compact-Source Scaffold
 

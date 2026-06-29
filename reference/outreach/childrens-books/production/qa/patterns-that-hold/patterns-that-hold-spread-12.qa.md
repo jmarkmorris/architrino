@@ -1,7 +1,7 @@
 # QA: The Discovery
 
 - id: `patterns-that-hold-spread-12`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-12.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-12.png`
 - lesson: The series now has the bridge from messages to assemblies.
 - geometry: The beads keep moving along repeated traces while spacing and timing cues make one held pattern visible.
 

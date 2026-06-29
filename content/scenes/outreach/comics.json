@@ -3,20 +3,226 @@
   "scene": {
     "id": "outreach__comics",
     "title": "Comics",
-    "type": "Scene-Markdown-View",
+    "type": "Scene-Index",
     "units": "relative",
     "wrapLabels": true,
     "layout": {
-      "type": "static"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
-    "source": {
-      "type": "markdown",
-      "path": "content/markdown/aaa/outreach/comics.md"
-    },
-    "view": {
-      "columns": 1,
-      "autoOpen": true
-    }
+    "children": [
+      {
+        "nodeId": "present_has_an_inbox",
+        "scenePath": "content/scenes/outreach/comics/present_has_an_inbox.json"
+      },
+      {
+        "nodeId": "group_project_assumption",
+        "scenePath": "content/scenes/outreach/comics/group_project_assumption.json"
+      },
+      {
+        "nodeId": "citation_needed",
+        "scenePath": "content/scenes/outreach/comics/citation_needed.json"
+      },
+      {
+        "nodeId": "old_alchemy_new_apparatus",
+        "scenePath": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json"
+      },
+      {
+        "nodeId": "acknowledgements_in_architrinos_room",
+        "scenePath": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json"
+      },
+      {
+        "nodeId": "candidate_not_a_throne",
+        "scenePath": "content/scenes/outreach/comics/candidate_not_a_throne.json"
+      },
+      {
+        "nodeId": "what_counts_as_evidence",
+        "scenePath": "content/scenes/outreach/comics/what_counts_as_evidence.json"
+      },
+      {
+        "nodeId": "new_theory_same_budget",
+        "scenePath": "content/scenes/outreach/comics/new_theory_same_budget.json"
+      },
+      {
+        "nodeId": "show_the_residuals",
+        "scenePath": "content/scenes/outreach/comics/show_the_residuals.json"
+      },
+      {
+        "nodeId": "office_hours_for_a_claim",
+        "scenePath": "content/scenes/outreach/comics/office_hours_for_a_claim.json"
+      },
+      {
+        "nodeId": "first_page_is_not_the_beginning",
+        "scenePath": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json"
+      },
+      {
+        "nodeId": "observable_edge_receipt",
+        "scenePath": "content/scenes/outreach/comics/observable_edge_receipt.json"
+      },
+      {
+        "nodeId": "first_footage_not_birth_certificate",
+        "scenePath": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json"
+      },
+      {
+        "nodeId": "birthday_cake_for_observer_era",
+        "scenePath": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json"
+      },
+      {
+        "nodeId": "four_theories_one_oval",
+        "scenePath": "content/scenes/outreach/comics/four_theories_one_oval.json"
+      },
+      {
+        "nodeId": "we_need_to_talk",
+        "scenePath": "content/scenes/outreach/comics/we_need_to_talk.json"
+      }
+    ]
   },
-  "objects": []
+  "objects": [
+    {
+      "id": "present_has_an_inbox",
+      "title": "Signals From Earlier",
+      "radius": 1.8,
+      "color": "#2f6b6f",
+      "labelTitle": "Signals From Earlier",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/present-has-an-inbox-thumb.png",
+      "labelBadgeAlt": "Signals From Earlier thumbnail"
+    },
+    {
+      "id": "group_project_assumption",
+      "title": "Group Project Assumption",
+      "radius": 1.8,
+      "color": "#7a5a2f",
+      "labelTitle": "Group Project Assumption",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/group-project-assumption-thumb.png",
+      "labelBadgeAlt": "Group Project Assumption thumbnail"
+    },
+    {
+      "id": "citation_needed",
+      "title": "Citation Needed",
+      "radius": 1.8,
+      "color": "#4e647c",
+      "labelTitle": "Citation Needed",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/citation-needed-thumb.png",
+      "labelBadgeAlt": "Citation Needed thumbnail"
+    },
+    {
+      "id": "old_alchemy_new_apparatus",
+      "title": "Old Alchemy, New Apparatus",
+      "radius": 1.8,
+      "color": "#80623c",
+      "labelTitle": "Old Alchemy, New Apparatus",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/old-alchemy-new-apparatus-thumb.png",
+      "labelBadgeAlt": "Old Alchemy, New Apparatus thumbnail"
+    },
+    {
+      "id": "acknowledgements_in_architrinos_room",
+      "title": "Acknowledgements In Architrino's Room",
+      "radius": 1.8,
+      "color": "#6e5a46",
+      "labelTitle": "Acknowledgements In Architrino's Room",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/acknowledgements-in-architrinos-room-thumb.png",
+      "labelBadgeAlt": "Acknowledgements In Architrino's Room thumbnail"
+    },
+    {
+      "id": "candidate_not_a_throne",
+      "title": "Candidate, Not A Throne",
+      "radius": 1.8,
+      "color": "#5f5b77",
+      "labelTitle": "Candidate, Not A Throne",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/candidate-not-a-throne-thumb.png",
+      "labelBadgeAlt": "Candidate, Not A Throne thumbnail"
+    },
+    {
+      "id": "what_counts_as_evidence",
+      "title": "What Counts As Evidence?",
+      "radius": 1.8,
+      "color": "#3e6672",
+      "labelTitle": "What Counts As Evidence?",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/what-counts-as-evidence-thumb.png",
+      "labelBadgeAlt": "What Counts As Evidence? thumbnail"
+    },
+    {
+      "id": "new_theory_same_budget",
+      "title": "New Theory Same Budget",
+      "radius": 1.8,
+      "color": "#7a4a1f",
+      "labelTitle": "New Theory Same Budget",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/new-theory-same-budget-thumb.png",
+      "labelBadgeAlt": "New Theory Same Budget thumbnail"
+    },
+    {
+      "id": "show_the_residuals",
+      "title": "Show The Residuals",
+      "radius": 1.8,
+      "color": "#3a5f9f",
+      "labelTitle": "Show The Residuals",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/show-the-residuals-thumb.png",
+      "labelBadgeAlt": "Show The Residuals thumbnail"
+    },
+    {
+      "id": "office_hours_for_a_claim",
+      "title": "Office Hours For A Claim",
+      "radius": 1.8,
+      "color": "#5a1f2e",
+      "labelTitle": "Office Hours For A Claim",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/office-hours-for-a-claim-thumb.png",
+      "labelBadgeAlt": "Office Hours For A Claim thumbnail"
+    },
+    {
+      "id": "first_page_is_not_the_beginning",
+      "title": "First Page Problem",
+      "radius": 1.8,
+      "color": "#3c6a7a",
+      "labelTitle": "First Page Problem",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-is-not-the-beginning-thumb.png",
+      "labelBadgeAlt": "First Page Problem thumbnail"
+    },
+    {
+      "id": "observable_edge_receipt",
+      "title": "The Observable Edge Receipt",
+      "radius": 1.8,
+      "color": "#536d75",
+      "labelTitle": "The Observable Edge Receipt",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/observable-edge-receipt-thumb.png",
+      "labelBadgeAlt": "The Observable Edge Receipt thumbnail"
+    },
+    {
+      "id": "first_footage_not_birth_certificate",
+      "title": "Opening Scene, Not Building Permit",
+      "radius": 1.8,
+      "color": "#74513d",
+      "labelTitle": "Opening Scene, Not Building Permit",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-footage-not-birth-certificate-thumb.png",
+      "labelBadgeAlt": "Opening Scene, Not Building Permit thumbnail"
+    },
+    {
+      "id": "birthday_cake_for_observer_era",
+      "title": "Birthday Cake For The Observer Era",
+      "radius": 1.8,
+      "color": "#7a5f3d",
+      "labelTitle": "Birthday Cake For The Observer Era",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/birthday-cake-for-observer-era-thumb.png",
+      "labelBadgeAlt": "Birthday Cake For The Observer Era thumbnail"
+    },
+    {
+      "id": "four_theories_one_oval",
+      "title": "Four Theories, One Oval",
+      "radius": 1.8,
+      "color": "#6c4f8d",
+      "labelTitle": "Four Theories, One Oval",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/four-theories-one-oval-thumb.png",
+      "labelBadgeAlt": "Four Theories, One Oval thumbnail"
+    },
+    {
+      "id": "we_need_to_talk",
+      "title": "We Need To Talk",
+      "radius": 1.8,
+      "color": "#4f6f58",
+      "labelTitle": "We Need To Talk",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/we-need-to-talk-thumb.png",
+      "labelBadgeAlt": "We Need To Talk thumbnail"
+    }
+  ]
 }

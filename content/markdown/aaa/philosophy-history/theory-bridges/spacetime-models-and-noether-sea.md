@@ -114,7 +114,7 @@ For a Noether sea comparison to become superfluid-like rather than merely medium
 
 | Required object | Mathematical form to look for | What it would buy |
 | --- | --- | --- |
-| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence is no longer just prose; it has phase and amplitude data. |
+| Order parameter | A native $\Psi_{\text{sea}}=\sqrt{\rho_s}e^{i\theta}$ analogue or a replacement with the same phase/stiffness role. | Coherence has phase and amplitude data. |
 | Excitation spectrum | A phonon-like branch $\omega(k)$, roton-like gap, or other collective-mode dispersion. | Transport and radiation comparisons become testable. |
 | Critical threshold | A Landau-like bound $v_c=\min_k \omega(k)/k$ or a native residual threshold. | "No drag below threshold" becomes a derivable condition rather than an analogy. |
 | Two-component split | A superfluid/normal fraction analogue or phase-mixture model. | Environment-dependent behavior can differ between galaxies, clusters, and cosmology without changing ontology. |

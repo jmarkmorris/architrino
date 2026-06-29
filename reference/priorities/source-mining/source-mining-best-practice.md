@@ -47,6 +47,7 @@ This guide is a source-intake and source-processing practice. It is not another 
 - Priority workstreams remain the staging area for unresolved source material, backlog rows, report packets, and follow-up prompts. A source-mining report is working memory and traceability, not reader-facing doctrine.
 - Existing validation, gate, certificate, residual, and ledger processes remain separate. Source mining may identify benchmark pressure or an existing recovery target, but it should not create new hurdle artifacts by default.
 - Authored corpus pages should receive only the safe current substance: definitions, equations, proof routes, worked examples, claim-level corrections, or source-backed bridge prose. They should not link back to priority-only source-mining process material.
+- Legacy "solved problem" lists require disposition before reuse. For each claimed solution, classify it as current canon, priority target, rejected legacy, duplicate, source lead, or historical process. Do not promote a legacy list simply because it enumerates many modern problems; preserve only the current-useful mechanism, benchmark pressure, proof route, or source lead that survives terminology and claim-level triage.
 
 ## Mining History
 
@@ -271,11 +272,11 @@ Acquisition steps:
 5. Keep historical process material out of the reader-facing corpus unless it yields a current definition, equation, proof route, worked example, or reader-facing bridge.
 6. Do not preserve process-history prose in corpus drafts; rewrite promoted material as current source of truth.
 
-For long-running blog queues, preserve the normalized URL list in `reference/priorities/source-mining/`, not only in platform temporary storage. A temporary queue is acceptable as an active-session working copy, but before pausing or closing a mining batch, resync completed/open status into the durable queue so future passes inherit the repaired URLs, local completion accounting, and remaining worklist.
+For long-running blog archives, preserve the normalized post registry in `reference/priorities/source-mining/`, not only in platform temporary storage. A temporary queue is acceptable as an active-session working copy, but the durable inventory is the post registry JSONL plus generated markdown views. Do not treat ordinary post completion as a permanent post property; record mining and incorporation events in source-mining history because the same post may later be mined again by topic.
 
-Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable queue, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts still need ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not mark a post complete unless its source signals were individually triaged and any accepted edits, source-mining-history row, and durable queue/table status update are complete.
+Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable post registry, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts warrant ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not record an incorporation event unless its source signals were individually triaged and any accepted edits plus source-mining-history rows are complete.
 
-Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes full cleansed text and JSONL idea cards under `${TMPDIR:-/tmp}/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not mark posts mined, do not update source-mining history or durable queue/table status, and do not promote any claim into `content/markdown/aaa`.
+Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes the durable post registry, regenerates the markdown library table and URL queue from that registry, writes full cleansed text and JSONL idea cards under `${TMPDIR:-/tmp}/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not update source-mining history and do not promote any claim into `content/markdown/aaa`.
 
 Prompt addendum:
 
@@ -309,7 +310,7 @@ Topic:
 [PASTE TOPIC, TERM SET, MECHANISM, HISTORICAL PHRASE, OR SOURCE LEAD]
 
 Search surfaces:
-- Durable source-mining queues under `reference/priorities/source-mining/`.
+- Durable source-mining registry and generated URL views under `reference/priorities/source-mining/`.
 - Existing local extraction artifacts under `${TMPDIR:-/tmp}` when available.
 - WordPress public API records and downloaded HTML for candidate posts.
 - Current corpus and priority files that may already capture the topic.
@@ -318,8 +319,8 @@ Acquisition steps:
 - Build a search-term set with exact phrases, legacy synonyms, current AAA terms, and likely misspellings.
 - Search the durable queue and any local extraction artifacts before fetching new pages.
 - Apply the URL repair rule before fetching candidate posts.
-- For each candidate post, record title, date, repaired URL, local table status, and the matched topic signals.
-- Preserve the distinction between topic discovery and source completion. Do not mark a post mined unless it receives ordinary per-source triage, accepted edits when needed, source-mining-history logging, and durable queue/table status update.
+- For each candidate post, record title, date, repaired URL, registry metadata, and the matched topic signals.
+- Preserve the distinction between topic discovery and incorporation history. Do not add a source-mining-history row unless the post receives ordinary per-source triage plus accepted edits or an explicit no-edit disposition.
 
 Source-specific output additions:
 - Topic map sorted by strongest signal and chronology.
@@ -446,7 +447,7 @@ Acquisition steps:
 4. Mark abandoned language and historical process as non-corpus unless it can be rewritten as current doctrine with a clear claim level.
 5. Route product or outlook material through priority-only planning unless it directly improves a current definition, equation, proof route, or reader-facing bridge.
 
-For legacy WordPress batches, use [legacy-architrino-wordpress-mining-queue.txt](legacy-architrino-wordpress-mining-queue.txt) as the durable Architrino post queue and [legacy-architrino-wordpress-library-posts.md](legacy-architrino-wordpress-library-posts.md) as the full title/date/status table. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the queue is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; local source-mining history, the durable post table, and the durable queue are authoritative. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, copy status changes back to the durable queue before ending the pass.
+For legacy WordPress batches, use [legacy-architrino-wordpress-posts.jsonl](legacy-architrino-wordpress-posts.jsonl) as the durable Architrino post registry, [legacy-architrino-wordpress-library-posts.md](legacy-architrino-wordpress-library-posts.md) as the generated human-readable inventory, and [legacy-architrino-wordpress-mining-queue.txt](legacy-architrino-wordpress-mining-queue.txt) as the generated all-post URL view. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the registry is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; source-mining history records mining and incorporation events. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, treat it as a disposable working copy and resync durable inventory changes through the registry generator.
 
 Deferred legacy material classes:
 

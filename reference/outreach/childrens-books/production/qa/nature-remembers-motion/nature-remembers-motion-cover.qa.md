@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `nature-remembers-motion-cover`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-cover.png`
 - lesson: The cover introduces motion as visible trace in the same style as Books 1–2.
 - geometry: A purple trail gently links one earlier ball place to a newer ball place.
 

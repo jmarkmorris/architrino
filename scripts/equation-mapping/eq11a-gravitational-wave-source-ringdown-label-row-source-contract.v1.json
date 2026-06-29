@@ -1,0 +1,45 @@
+{
+  "schema": "aaa-equation-map-eq11a-ringdown-label-row-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A ringdown_label_row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "ringdown_label_row_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "ringdown_label_row"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_ringdown_label_row_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "ringdownLabelFields": {
+    "finalCompactObjectReadout": [
+      "finalMass",
+      "frequency",
+      "dampingTime"
+    ],
+    "ringdownCoefficientState": [
+      "frequencyCoefficient",
+      "dampingCoefficient"
+    ],
+    "requiredConsumers": [
+      "source_event_ledger",
+      "strain_flux_row",
+      "effective_metric_tensor_channel"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "ringdown f_ring and tau_ring",
+    "aaaGeometricReadout": "final compact-object label after the radiated energy and angular momentum ledger updates the remnant on the same source event ledger",
+    "requiredCarrierOrRow": "ringdown_label_row",
+    "sameRecordBinding": "the ringdown-label row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, source_event_ledger, strain_flux_row, and effective_metric_tensor_channel before final-state residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-ringdown-label-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed ringdown_label_row bound to the GW150914 source/remnant ledger, strain-flux row, and tensor channel; score remains neutral until detector strain, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

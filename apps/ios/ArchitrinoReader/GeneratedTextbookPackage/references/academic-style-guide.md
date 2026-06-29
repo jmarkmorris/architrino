@@ -186,7 +186,7 @@ Avoid the following unless there is a specific reason to retain them:
 
 ## Forward-Only Documentation
 
-Reader-facing prose should state the current architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless that history is the subject of the document.
+Reader-facing prose should state the architecture, claim, rule, or curriculum directly. It should not preserve drafting history, migration story, abandoned counts, old names, or "what changed from the last version" unless that history is the subject of the document.
 
 Use present-tense, source-of-truth wording:
 
@@ -335,7 +335,7 @@ Examples:
 - "in this framework"
 - "at the effective level"
 - "in comparative terms"
-- "under current interpretation"
+- "under the declared interpretation"
 - "as a first-pass classification"
 
 Do not use qualification to evade commitment. If the text is making a real claim, state it plainly and then delimit its scope.

@@ -1,0 +1,96 @@
+{
+  "schema": "sigma_hf_01_external_schema_candidate_proof_object_envelope/v0",
+  "status": "sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization",
+  "packet_id": "fresh-v10-higher-fold-12-root-rebuild-v0",
+  "proof_interval": "proof-interval-v6",
+  "lambda_branch": "lambda0305",
+  "target_slot": "Sigma_hf_01",
+  "fold_interval": "F01",
+  "candidate_external_schema_received": false,
+  "external_schema_provenance": {
+    "provenance_class": "local_proof_program_proof_object_envelope_target",
+    "source_ref": "reference/priorities/proof-programs/breather-proof/certificate/sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+    "acceptance_contract_ref": "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+    "received_for_schema_validation": false,
+    "authored_inside_local_proof_program_pool": true,
+    "derived_from_local_certificate_json": true,
+    "self_authored_placeholder": false,
+    "local_path_treated_as_external_evidence": false
+  },
+  "local_source_candidate_status": "partial_local_source_data_candidate_not_external_proof_grade",
+  "required_fields_total": 8,
+  "required_fields_present": 5,
+  "local_locks_bound": [
+    "compatible_schema_role_lock",
+    "compatible_proof_object_role_lock",
+    "derivation_proof_target_lock",
+    "derivation_proof_source_data_record_lock",
+    "non_reinterpretation_guard"
+  ],
+  "missing_fields": [
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement"
+  ],
+  "proof_grade_fields_required": [
+    "rule_kernel_obligation_binding",
+    "rule_kernel_derivation_payload_target_binding",
+    "proof_grade_derivation_schema_statement"
+  ],
+  "slot_result": "external_input_required",
+  "row_slots_parked": 11,
+  "row_consumption_count": 0,
+  "preledger_pass": false,
+  "updates_live_ledger": false,
+  "branch_chart_authorized": false,
+  "authorization": {
+    "schema_validation_intake": false,
+    "row_consumption": false,
+    "accepted_source_packet": false,
+    "branch_chart": false
+  },
+  "intake_record_summary": {
+    "schema": "sigma_hf_01_external_schema_candidate_intake_record/v0",
+    "candidate_external_schema_received": false,
+    "required_fields_present": 5,
+    "missing_fields": [
+      "rule_kernel_obligation_binding",
+      "rule_kernel_derivation_payload_target_binding",
+      "proof_grade_derivation_schema_statement"
+    ],
+    "supplied_but_rejected_fields": [],
+    "slot_result": "external_input_required"
+  },
+  "source_readout": {
+    "source_data_ready": true,
+    "schema_target_declared": true,
+    "schema_target_satisfied": false,
+    "proof_grade_derivation_schema_present": false,
+    "contract_field_source_availability_slots_ready": 7,
+    "contract_field_slots_satisfied": 0,
+    "first_missing_contract_field": "rule_kernel_derivation_payload",
+    "first_missing_contract_field_blocker": "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_absent"
+  },
+  "source_refs": [
+    {
+      "role": "source_data_readiness",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_source_data_readiness_classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "d09c0823dd903133a10dedb001c27635ffb6290e82192a57504c951ac75df8a4"
+    },
+    {
+      "role": "schema_target",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_rule_kernel_payload_proof_grade_derivation_schema_target_packet.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "50135e27fcceed3f8fbe44983d384be4d955f31ee0e93986907ee64f997e7e40"
+    },
+    {
+      "role": "contract_satisfaction",
+      "path": "reference/priorities/proof-programs/breather-proof/certificate/higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "basename": "higher_fold_layer_same_packet_candidate_live_higher_fold_constants_accepted_status_source_packet_rule_derivation_proof_object_contract_target_satisfaction_attempt.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+      "sha256": "d38bd1b260a10d000cacc8ffc24fbcfeeb4e471e7c9399bd9a2cc8d419297fd2"
+    }
+  ],
+  "used_as_external_schema": false,
+  "used_as_proof_grade_schema": false
+}

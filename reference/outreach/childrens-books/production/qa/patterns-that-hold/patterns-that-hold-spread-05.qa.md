@@ -1,7 +1,7 @@
 # QA: The Pattern Returns
 
 - id: `patterns-that-hold-spread-05`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-05.png`
 - lesson: Repeated relation can be recognized.
 - geometry: Layered purple traces show the same three-bead relation revisiting left, right, and back positions.
 

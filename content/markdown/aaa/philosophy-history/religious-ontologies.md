@@ -110,7 +110,7 @@ But parallels are not identities. $\mathbb{A}\mathbb{A}\mathbb{A}$ does not grou
 
 The strongest comparative overlap lies in traditions that allow beginningless or cyclic order rather than one-time creation. Here Hinduism, Buddhism, and Daoism provide imaginative precedents for a cosmos that does not need a singular creator event. Still, these traditions usually tie such views to metaphysical or soteriological claims that a scientific theory must not inherit uncritically.
 
-Religious origin and end-state images are useful only at this comparative level. A mythic descent into heat, ascent into cold heaven, renewal after death, or repeated world-cycle can help a reader notice why source/release history, recycling, and open-ended transformation are familiar narrative patterns. It does not count as evidence for Architrino cosmology and should not be used to name mechanisms. The current theory must still state the physical record: architrino assemblies, Noether sea state, causal-wake history, source/release channels, thermodynamic transfer, and observer-level clock reconstruction.
+Religious origin and end-state images are useful only at this comparative level. A mythic descent into heat, ascent into cold heaven, renewal after death, or repeated world-cycle can help a reader notice why source/release history, recycling, and open-ended transformation are familiar narrative patterns. It does not count as evidence for Architrino cosmology and should not be used to name mechanisms. The theory must still state the physical record: architrino assemblies, Noether sea state, causal-wake history, source/release channels, thermodynamic transfer, and observer-level clock reconstruction.
 
 #### Architrino Contrast Summary
 

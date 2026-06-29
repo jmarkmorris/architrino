@@ -1,7 +1,7 @@
 # QA: Still Moving
 
 - id: `patterns-that-hold-spread-06`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-06.png`
 - lesson: Stable does not mean still.
 - geometry: Current string angles and repeated path traces show a relation holding while the beads are still moving.
 

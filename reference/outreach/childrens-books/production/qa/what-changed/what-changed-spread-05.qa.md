@@ -1,7 +1,7 @@
 # QA: Same Start
 
 - id: `what-changed-spread-05`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-05.png`
 - lesson: Keeping things the same can repeat a result.
 - geometry: A newer purple path nearly matches the older faint path and ends in the same shallow dip.
 

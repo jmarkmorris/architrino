@@ -1,0 +1,50 @@
+{
+  "schema": "aaa-equation-map-eq11a-retained-evidence-object-contract/v1",
+  "claimLevel": "contract-only specification for the smallest accepted EQ-11A retained evidence object; score-neutral and not retained evidence by itself",
+  "sourceRole": "retained_evidence_object_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredCarrier": "Theta_GWsrc(W,P)",
+  "requiredRows": [
+    "gw_source_carrier",
+    "theta_sea",
+    "effective_metric_tensor_channel",
+    "source_event_ledger",
+    "quadrupole_source_row",
+    "chirp_mass_row",
+    "peters_decay_row",
+    "strain_flux_row",
+    "ringdown_label_row",
+    "detector_strain_record",
+    "source_provenance",
+    "no_hidden_retune_witness"
+  ],
+  "requiredNonContractEvidence": {
+    "sourcePaths": "durable non-priority, non-generated, non-attempt, non-probe, non-mock, non-negative-control evidence files that are not contract-only objects",
+    "artifactHashes": true,
+    "sameRecordBinding": [
+      "carrierId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "sharedRecordId"
+    ],
+    "sourceEvidencePerRow": true
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "complete GW150914 retained source packet for quadrupole, chirp, Peters decay, strain flux, ringdown, provenance, and no-hidden-retune comparisons",
+    "aaaGeometricReadout": "one retained gravitational-wave source geometry binding source-event ledger, effective metric tensor channel, detector path history, radiated-output ledger, final remnant label, source provenance, and no-hidden-retune witness",
+    "requiredCarrierOrRow": "Theta_GWsrc(W,P) with all EQ-11A required rows",
+    "sameRecordBinding": "every required row shares carrierId, sourceWindowId=GW150914-v3, supportId=H1L1_GWTC1_PE_v3, eventId=GWTC-1-confident/GW150914/v3, artifact hashes, and sourceEvidence for the exact row before residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json",
+    "artifactHashNegativeControl": "eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json",
+    "artifactPathNegativeControl": "eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json",
+    "intakeTemplate": "eq11a-gravitational-wave-source-gw150914-retained-evidence-intake-template.v1.json",
+    "smallestAcceptedEvidenceObject": "a retained GW150914 evidence packet whose rows cite real durable evidence objects rather than this contract, source-contract files, priority prose, authored AAA prose, generated files, attempts, probes, mocks, toys, negative controls, or temporary paths"
+  },
+  "scoreDecision": "no_score_increase"
+}

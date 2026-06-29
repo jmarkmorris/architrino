@@ -6,16 +6,21 @@ This document defines the standard repo process for ending a work session, publi
 
 ## Branch Naming Convention
 
-The active branch series for this repo is currently the periodic table sequence. The periodic-table sequence ends at `codex/oganesson` (Oganesson, element 118). When a branch series is exhausted, continue with the next series in [Branch Series Rollover Order](#branch-series-rollover-order) rather than reusing retired branch names.
+The active branch series for this repo is currently the moon sequence, using
+the committed [moon branch registry](moon-branch-registry.md). The moon
+sequence ends at `codex/sao`. When a branch series is exhausted, continue
+with the next series in [Branch Series Rollover Order](#branch-series-rollover-order)
+rather than reusing retired branch names.
+The branch-series index and configured counts are tracked in
+[branch-series-registry.md](branch-series-registry.md).
 
 - Working branches should use `codex/<series-item-name>` by default.
-- While the active series is the periodic table, working branches should use `codex/<element-name>` by default.
 - If a short topic suffix materially improves clarity, use `codex/<series-item-name>-<topic>`.
 - Advance the active sequence one item at a time.
 - Keep the series item prefix canonical even when using a topic suffix.
 - Do not invent an unrelated branch name unless there is an explicit reason to step outside the active sequence.
-- After `codex/hydrogen`, the next standard branch is `codex/helium`, then `codex/lithium`, and so on through `codex/oganesson`.
-- After `codex/oganesson`, the next standard branch is `codex/mercury`.
+- Series item names used in branch names must be lowercase branch tokens with no blanks.
+- When a source item contains blanks, concatenate the words with hyphens for the branch token: use `codex/north-dakota` for the state name North Dakota, and `codex/salt-lake-city` for the city name Salt Lake City.
 - When rolling over to the next branch, explicitly tell the operator/developer which series item was chosen and include a short factual blurb about that item.
 - The blurb should be a short paragraph, not just the branch name by itself.
 - For an element branch, the blurb should identify the element name, symbol, and atomic number, then give one or two concise factual notes.
@@ -26,13 +31,19 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 ## Branch Series Rollover Order
 
 Use these branch-name series in order. Finish one series before advancing to the next.
+The series counts and registry-file status are summarized in
+[branch-series-registry.md](branch-series-registry.md).
 
 1. Periodic table elements. Use canonical element names in atomic-number order: `codex/hydrogen` through `codex/oganesson`.
 2. Planets in our solar system. Use the eight IAU planets in order from the Sun: `codex/mercury`, `codex/venus`, `codex/earth`, `codex/mars`, `codex/jupiter`, `codex/saturn`, `codex/uranus`, `codex/neptune`. Dwarf planets are excluded unless the operator/developer explicitly adds them.
 3. Moons in our solar system. Before cutting the first moon branch, add or update a committed moon registry so the exact sequence is frozen for branch use. The committed registry is [moon-branch-registry.md](moon-branch-registry.md). Use commonly known natural moons of the eight IAU planets, capped at 10 moons per planet; Mercury and Venus contribute none unless future project policy explicitly changes. Default ordering should be parent body from the Sun outward, then a curated common-recognition order for that planet's moons. Use lowercase hyphenated names.
 4. Minerals and gemstones. Before cutting the first mineral or gemstone branch, add or update a committed registry of exactly 48 curated mineral or gemstone names. Prefer common, memorable, broadly recognized names over exhaustive mineralogical coverage. Use lowercase hyphenated names and avoid commercial or trademark-only names unless explicitly approved.
-5. Space missions and probes. Before cutting the first mission or probe branch, add or update a committed registry limited to missions and probes that were publicly marketed as named missions to a general audience. Prefer widely recognized spacecraft, probes, rovers, landers, orbiters, telescopes, and sample-return missions. Exclude internal-only project codes, instruments without a public mission identity, launch vehicles by themselves, and duplicate variants of the same mission name. Default ordering should be launch date, then canonical mission or probe name in lowercase hyphenated form.
+5. NASA space missions and probes. Before cutting the first NASA mission or probe branch, add or update a committed registry of exactly 64 curated NASA mission or probe names. Include publicly recognizable NASA spacecraft, probes, rover missions, lander missions, observatories, sample-return missions, and program missions. Prefer official NASA mission names over spacecraft serials. Exclude non-NASA missions, internal-only project codes, instruments without a public mission identity, launch vehicles by themselves, and duplicate variants of the same mission name. Default ordering should be launch date, then canonical mission or probe name in lowercase hyphenated form, for example `apollo-11`, `mars-pathfinder`, and `lunar-reconnaissance-orbiter`.
 6. Dog or cat breeds. Before cutting the first breed branch, add or update a committed registry of exactly 44 breed names: 36 commonly known dog breeds followed by 8 commonly known cat breeds. Use lowercase hyphenated names. Prefer recognizable breed names over exhaustive registry coverage.
+7. U.S. state names. Before cutting the first U.S. state branch, add or update a committed registry of exactly 50 state names. Default ordering should be state admission order unless the operator/developer chooses alphabetical order before the registry is frozen. Use lowercase hyphenated branch tokens with no blanks, for example `north-dakota`, `west-virginia`, and `rhode-island`.
+8. U.S. state capital city names. Before cutting the first U.S. state capital branch, add or update a committed registry of exactly 50 state capital city names. Default ordering should follow the same state order chosen for the U.S. state-name registry. Use lowercase hyphenated branch tokens with no blanks, for example `salt-lake-city`, `baton-rouge`, and `oklahoma-city`.
+9. U.S. president surnames. Before cutting the first U.S. president surname branch, add or update a committed registry of exactly 40 unique surname tokens from the U.S. presidential sequence current at the time this policy was updated. Default ordering should be first presidential service order, and repeated surnames should appear only once at first occurrence. Use lowercase hyphenated branch tokens with no blanks, for example `van-buren`.
+10. Worldwide islands. Before cutting the first island branch, add or update a committed registry of exactly 64 curated worldwide island names. Prefer widely recognized island names with broad geographic distribution, and avoid archipelago names unless the archipelago name is also the common island-name target chosen for the branch registry. Use lowercase hyphenated branch tokens with no blanks, for example `great-britain`, `new-guinea`, and `sri-lanka`.
 
 ## Principles
 
@@ -508,7 +519,7 @@ After the previous PR is merged and the previous branch is retired, start the ne
 ### 1. Create the next branch from current `main`
 
 - Use the next item in the active branch series.
-- The active series is currently the periodic table; after `codex/oganesson`, advance to the planets sequence with `codex/mercury`.
+- The active series is currently the moon sequence; after `codex/sao`, advance to the minerals/gemstones sequence with the first item from the committed mineral/gemstone registry.
 - An optional `-<topic>` suffix is allowed when it materially improves clarity, but the series item prefix should still advance in order.
 - Create the branch only after local `main` has been fast-forwarded and verified against `origin/main`.
 - Create the branch first, then publish it. Do not try to create and push it in parallel.

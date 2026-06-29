@@ -1,7 +1,7 @@
 # QA: Not A Person
 
 - id: `the-tiny-transceivers-spread-11`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-11.png`
 - lesson: Polarity is physics, not personality.
 - geometry: Plain red and blue point transceivers remain distinct from human expression and personality.
 

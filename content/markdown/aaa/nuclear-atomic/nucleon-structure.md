@@ -1,14 +1,14 @@
 # Nucleon Structure
 
-This chapter fixes the current proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md).
+This chapter fixes the proton and neutron picture used by the nuclear branch. Its purpose is to make the coarse-grained baryon architecture explicit enough that later nuclear notes can treat nucleons as stable units without re-deriving the same assembly assumptions each time. It is the baryon-side bridge between [Quarks](../assemblies/fermions/quarks.md), [Color Charge and SU(3)](../assemblies/fermions/color-charge-su3.md), and [Mesons](../assemblies/mesons/mesons.md).
 
 ## Purpose
 
-This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in the current assembly language and which geometric features matter most for nuclear physics.
+This chapter fixes the canonical proton and neutron picture used by the nuclear branch of $\mathbb{A}\mathbb{A}\mathbb{A}$. It is the coarse-grained baryon chapter: not a full QCD replacement, but a precise statement of what a nucleon is in assembly language and which geometric features matter most for nuclear physics.
 
 ## Core Claim
 
-A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In the present architecture:
+A nucleon is a confined three-quark color-singlet assembly built from three Generation-I Noether braids linked by shared strong-sector flux structure. In this architecture:
 
 - a **proton** is the ground-state `uud` nested shell braid,
 - a **neutron** is the ground-state `udd` nested shell braid.
@@ -64,7 +64,7 @@ $$
 3\otimes 3\otimes 3 \supset 1
 $$
 
-In the present geometric language:
+In geometric language:
 
 - each quark contributes one exceptional axis,
 - the three exceptional axes occur once each across the nested shell braid,
@@ -342,7 +342,7 @@ up to bounded CP-odd perturbations in the same branch record that recovers the n
 
 ## Effective Internal Geometry
 
-The current nucleon picture has three structural layers.
+The nucleon picture has three structural layers.
 
 ### 1. Noether braids
 
@@ -367,7 +367,7 @@ At nuclear scales, the nucleon is seen as one composite hadronic assembly with:
 
 ## Spin and Magnetic-Moment Expectations
 
-The current repo does not yet contain a full proton spin decomposition, but the nucleon chapter can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
+The nucleon chapter does not yet contain a full proton spin decomposition, but it can still state the minimal closure picture. This section is downstream of the core ledger in [Angular Momentum and Spin](../philosophy-history/theory-bridges/angular-momentum-and-spin.md): it uses observer-level spin labels and hadron-level bookkeeping targets, not an independent derivation of spin.
 
 ### Spin
 

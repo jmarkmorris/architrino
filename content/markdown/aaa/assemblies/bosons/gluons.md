@@ -5,7 +5,7 @@ This chapter should be read together with [Quarks](../fermions/quarks.md), [Colo
 
 ## The Geometric Origin of Color Charge
 
-In the Standard Model, color is an abstract $SU(3)$ label. In the current $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
+In the Standard Model, color is an abstract $SU(3)$ label. In $\mathbb{A}\mathbb{A}\mathbb{A}$ assembly language, color is the **axis-exceptionality state** of a Noether braid with an axial layer: one axis is distinguished relative to the other two, and the three admissible choices span the quark color triplet. The canonical algebra-and-bookkeeping closure remains in [Color Charge and SU(3)](../fermions/color-charge-su3.md).
 
 ### The Noether Braid Substrate
 
@@ -31,7 +31,7 @@ A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar s
 #### Case B: The Down Quark ($d$)
 
 - **Composition:** $2P,4E$, so $Q=-\frac{1}{3}e$.
-- **Axis pattern:** the current architecture admits two families:
+- **Axis pattern:** the architecture admits two families:
   - Family I: one $P^+$ axis and two $P^-$ axes.
   - Family II: one $P^-$ axis and two $P^{m}$ axes.
 - **Color basis:** in either family, color is still the position of the exceptional axis:
@@ -127,6 +127,7 @@ At the Standard Model level, gluons are spin-1 gauge bosons. Because color is co
 
 - **Vector channel:** the open color corridor selects a spatial axis and transverse twist data. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that geometry is the candidate substrate for the observer-level spin-1 representation; it is not a derivation merely from the fact that a flux tube has a direction.
 - **Helicity limit:** in the massless short-distance gauge-boson limit, the physical gluon polarizations are transverse helicity states. The vortex-bundle twist must reproduce those helicity degrees of freedom where QCD treats gluons as propagating internal degrees of freedom.
+- **No free longitudinal mode:** the same corridor record must project out a free longitudinal gluon degree of freedom. Direction alone is not enough; the accepted vector-channel row must bind corridor axis, transverse twist, source-binary angular-momentum change, and Noether sea recoil so that only the two transverse helicity readouts survive in the perturbative comparison limit.
 - **Angular-momentum ledger:** during exchange, the rotating vortex link is the candidate carrier of spin and orbital angular momentum between Noether braids. The full hadron accounting must still include Noether braid spinor structure, color-corridor circulation, and flux-network response, but that accounting remains open until the reusable angular-momentum ledger has been derived.
 
 ---

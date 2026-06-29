@@ -1,7 +1,7 @@
 # QA: A Point With A Path
 
 - id: `the-tiny-transceivers-spread-02`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-02.png`
 - lesson: The tiny entity has persistent identity through motion.
 - geometry: One red point has older/fainter positions, one current position, and a continuous path trace.
 

@@ -181,7 +181,7 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 
 
-## Event-driven radial-transport + per-hit EOM (current canonical method)
+## Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
 Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with Jacobian-weighted magnitude at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
 
@@ -339,7 +339,7 @@ Method 2 — Green’s function (path-history integral)
   - Costly when many receivers/sources are present; bookkeeping grows quickly.
   - Needs careful handling near tangencies (small Jacobians) and in multi-hit/self-hit regimes.
 
-Method 3 — Event-driven radial-transport + per-hit EOM (current canonical)
+Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 - Pros
   - Directly implements the project’s delayed, radial-only interaction law with constant emission cadence.
   - Natural support for self-hits and superposition; local $1/r^2$ weighting makes nearby coherent roots dominate once the far-field cutoff, screening, cancellation, or summation prescription is declared.

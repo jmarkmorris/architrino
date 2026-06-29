@@ -1,6 +1,6 @@
 # Nuclear Binding
 
-This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the current language is meant to support before any precision model exists.
+This chapter gives the first effective-level nuclear-binding picture for the nuclear branch. Its purpose is to say what the binding ingredients are, what level of coarse-graining is being used, and what kinds of nuclear questions the shared language is meant to support before any precision model exists.
 
 ## Purpose
 
@@ -22,6 +22,26 @@ From the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective, the released energy was h
 
 For that reason, ordinary fission and fusion should not be treated as direct releases of the deeply shielded internal energy of Standard Model particle assemblies. The shielded internal energy and far-field leakage pattern of each surviving proton or neutron mostly carry through the reaction. What changes is the higher-level nuclear binding ledger and the surrounding Noether sea response of the nuclear assembly. A reaction that actually opened, destroyed, or changed the internal branch of a nucleon would be a different claim and would require its own particle-level provenance and shielding ledger.
 
+The same accounting applies to fission. The mass defect is exposed nuclear-assembly energy because the daughter arrangement has a cheaper corridor, Coulomb, shell, deformation, and Noether sea polarization ledger than the parent arrangement. A schematic fission ledger is
+
+$$
+\Delta E_{\mathrm{fis}}
+=
+\left(
+M_{\mathrm{parent}}
+-\sum_d M_d
+-\sum_b M_b
+\right)c_{\text{eff}}^2
+=
+K_{\mathrm{frag}}
++E_\gamma
++\Delta E_{\mathrm{heat}}
++\Delta E_{\mathrm{recoil}}
++\Delta E_{\mathrm{sea}},
+$$
+
+where the daughter masses $M_d$, emitted branch masses $M_b$, fragment kinetic energy, photon output, medium heating, recoil, and local Noether sea update all belong to the exposed nuclear ledger. That accounting is different from claiming that ordinary fission releases the shielded internal branch energy of the surviving nucleons.
+
 ### Fusion Reaction Ledger Benchmark
 
 The deuterium-tritium reaction is a compact benchmark for this distinction:
@@ -32,7 +52,7 @@ $$
 {}^4\mathrm{He}+n+\Delta E.
 $$
 
-In the current interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
+In this interpretation, $\Delta E$ is the difference between two nuclear assembly ledgers, not a literal conversion of nucleon substance into energy. The event should be recorded as
 
 $$
 \Delta E_{\mathrm{DT}}
@@ -96,7 +116,7 @@ Binding requires the negative medium-plus-residual-strong terms to outweigh the 
 
 ### Residual strong attraction
 
-The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the current repo picture, pions are the lightest and therefore longest-range residual exchange packets.
+The dominant attractive channel is expected to come from meson-like exchange and shared polarization corridors between neighboring nucleons. In the residual-exchange picture, pions are the lightest and therefore longest-range residual exchange packets.
 
 So, at coarse level,
 $$
@@ -160,7 +180,7 @@ $$
 d = p+n
 $$
 
-In the present language, the deuteron should exist if the proton-neutron channel admits
+In this language, the deuteron should exist if the proton-neutron channel admits
 $$
 E_{pn}^{\text{bound}}
 <
@@ -194,7 +214,7 @@ $$
 
 ## Why Alpha-Like Structures Should Be Special
 
-A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the current assembly picture because it combines:
+A four-nucleon cluster with two protons and two neutrons is expected to be especially favorable in the assembly picture because it combines:
 
 - charge balance,
 - multiple proton-neutron attractive channels,
@@ -228,7 +248,7 @@ This chapter will count as successful only if a later quantitative version can r
 4. special alpha-like stability,
 5. the qualitative valley of beta stability.
 
-If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the current coarse-grained hadronic picture is inadequate.
+If the effective nuclear potential cannot even satisfy the sign structure needed for those five features, the coarse-grained hadronic picture is inadequate.
 
 ## Relation to Mesons
 

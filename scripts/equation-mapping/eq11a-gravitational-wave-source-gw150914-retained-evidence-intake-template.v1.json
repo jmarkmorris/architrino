@@ -1,0 +1,330 @@
+{
+  "schema": "aaa-equation-map-eq11a-gw150914-retained-evidence-intake-template/v1",
+  "claimLevel": "score-neutral EQ-11A GW150914 retained-evidence intake template; artifact-incomplete and not retained evidence by itself",
+  "status": "artifact_incomplete",
+  "scoreDecision": "no_score_increase",
+  "sourceRole": "retained_evidence_intake_template",
+  "carrierId": "theta_gwsrc_GW150914_v3",
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredCarrier": "Theta_GWsrc(W,P)",
+  "durableSeedReports": [
+    {
+      "path": "reference/entourage/cody/reports/corpus-exploration-claims/20260519-162716-tier1-gwosc-lvk.md",
+      "role": "source-mining summary seed only; can seed source_provenance fields but is not retained event evidence"
+    },
+    {
+      "path": "reference/entourage/cody/reports/corpus-exploration-claims/20260522-152039-sim-gw-public-artifact-manifest.md",
+      "role": "document-level manifest boundary only"
+    },
+    {
+      "path": "reference/entourage/cody/reports/corpus-exploration-claims/20260522-153152-sim-gw-local-artifact-readiness.md",
+      "role": "readiness report; records that local strain, PE, release metadata, hash, HDF5, GWF, and residual packet files were absent"
+    }
+  ],
+  "requiredArtifactFamilies": [
+    {
+      "id": "gwosc_event_release_metadata",
+      "requiredForRows": [
+        "gw_source_carrier",
+        "source_event_ledger",
+        "source_provenance",
+        "no_hidden_retune_witness"
+      ],
+      "minimumFields": [
+        "event page URL",
+        "release name",
+        "event version",
+        "GPS and UTC time",
+        "detector set",
+        "data URLs",
+        "local artifact path",
+        "content hash"
+      ],
+      "currentStatus": "missing_local_hash"
+    },
+    {
+      "id": "h1_l1_strain_products",
+      "requiredForRows": [
+        "detector_strain_record",
+        "strain_flux_row",
+        "no_hidden_retune_witness"
+      ],
+      "minimumFields": [
+        "H1 strain artifact",
+        "L1 strain artifact",
+        "sample rate",
+        "analysis window",
+        "detector mask",
+        "calibration or nuisance record",
+        "local artifact paths",
+        "content hashes"
+      ],
+      "currentStatus": "missing_local_artifact"
+    },
+    {
+      "id": "parameter_estimation_posterior_or_release",
+      "requiredForRows": [
+        "gw_source_carrier",
+        "source_event_ledger",
+        "quadrupole_source_row",
+        "chirp_mass_row",
+        "ringdown_label_row",
+        "source_provenance"
+      ],
+      "minimumFields": [
+        "component masses",
+        "chirp mass or fields required to derive it",
+        "final mass and spin",
+        "radiated energy",
+        "distance or redshift when used",
+        "local artifact path",
+        "posterior/release artifact hash"
+      ],
+      "currentStatus": "missing_local_artifact"
+    },
+    {
+      "id": "waveform_or_phase_provenance",
+      "requiredForRows": [
+        "quadrupole_source_row",
+        "peters_decay_row",
+        "strain_flux_row",
+        "ringdown_label_row"
+      ],
+      "minimumFields": [
+        "waveform family or numerical-relativity provenance",
+        "frequency or time window",
+        "fit/nuisance rows",
+        "local artifact path",
+        "artifact hashes"
+      ],
+      "currentStatus": "missing_local_artifact"
+    },
+    {
+      "id": "aaa_local_extraction_manifest",
+      "requiredForRows": [
+        "carrier",
+        "gw_source_carrier",
+        "theta_sea",
+        "effective_metric_tensor_channel",
+        "source_event_ledger",
+        "quadrupole_source_row",
+        "chirp_mass_row",
+        "peters_decay_row",
+        "strain_flux_row",
+        "ringdown_label_row",
+        "detector_strain_record",
+        "source_provenance",
+        "no_hidden_retune_witness"
+      ],
+      "minimumFields": [
+        "local extraction script or manifest path",
+        "input artifact paths",
+        "input artifact hashes",
+        "extracted-field hashes",
+        "row-specific sourceEvidence",
+        "shared carrier/source/support/event ids"
+      ],
+      "currentStatus": "missing_local_artifact"
+    }
+  ],
+  "rowIntake": {
+    "gw_source_carrier": {
+      "requiredArtifactFamilies": [
+        "gwosc_event_release_metadata",
+        "parameter_estimation_posterior_or_release",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "gw_source_carrier"
+      ],
+      "currentBlocker": "source_artifact_hashes_missing"
+    },
+    "theta_sea": {
+      "requiredArtifactFamilies": [
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "theta_sea"
+      ],
+      "currentBlocker": "accepted_noether_sea_effective_metric_constitutive_row_absent"
+    },
+    "effective_metric_tensor_channel": {
+      "requiredArtifactFamilies": [
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "effective_metric_tensor_channel"
+      ],
+      "currentBlocker": "accepted_effective_metric_tensor_channel_row_absent"
+    },
+    "source_event_ledger": {
+      "requiredArtifactFamilies": [
+        "gwosc_event_release_metadata",
+        "parameter_estimation_posterior_or_release",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "source_event_ledger"
+      ],
+      "currentBlocker": "retained_same_event_ledger_absent"
+    },
+    "quadrupole_source_row": {
+      "requiredArtifactFamilies": [
+        "parameter_estimation_posterior_or_release",
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "quadrupole_source_row"
+      ],
+      "currentBlocker": "retained_quadrupole_projection_absent"
+    },
+    "chirp_mass_row": {
+      "requiredArtifactFamilies": [
+        "parameter_estimation_posterior_or_release",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "chirp_mass_row"
+      ],
+      "currentBlocker": "retained_chirp_mass_projection_absent"
+    },
+    "peters_decay_row": {
+      "requiredArtifactFamilies": [
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "peters_decay_row"
+      ],
+      "currentBlocker": "retained_orbital_decay_projection_absent"
+    },
+    "strain_flux_row": {
+      "requiredArtifactFamilies": [
+        "h1_l1_strain_products",
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "strain_flux_row"
+      ],
+      "currentBlocker": "retained_strain_flux_projection_absent"
+    },
+    "ringdown_label_row": {
+      "requiredArtifactFamilies": [
+        "parameter_estimation_posterior_or_release",
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "ringdown_label_row"
+      ],
+      "currentBlocker": "retained_ringdown_label_absent"
+    },
+    "detector_strain_record": {
+      "requiredArtifactFamilies": [
+        "h1_l1_strain_products",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "detector_strain_record"
+      ],
+      "currentBlocker": "local_h1_l1_strain_artifacts_and_hashes_absent"
+    },
+    "source_provenance": {
+      "requiredArtifactFamilies": [
+        "gwosc_event_release_metadata",
+        "parameter_estimation_posterior_or_release",
+        "h1_l1_strain_products",
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "source_provenance"
+      ],
+      "currentBlocker": "retained_source_artifact_manifest_absent"
+    },
+    "no_hidden_retune_witness": {
+      "requiredArtifactFamilies": [
+        "gwosc_event_release_metadata",
+        "h1_l1_strain_products",
+        "parameter_estimation_posterior_or_release",
+        "waveform_or_phase_provenance",
+        "aaa_local_extraction_manifest"
+      ],
+      "supportsRowsMustContain": [
+        "no_hidden_retune_witness"
+      ],
+      "currentBlocker": "hash_backed_same_record_witness_absent"
+    }
+  },
+  "sameRecordBinding": {
+    "requiredSharedFields": [
+      "carrierId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "sharedRecordId"
+    ],
+    "expectedSourceWindowId": "GW150914-v3",
+    "expectedSupportId": "H1L1_GWTC1_PE_v3",
+    "expectedEventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "firstLocalArtifactBundleShape": {
+    "claimLevel": "score-neutral local artifact bundle shape; incomplete until every path exists in-repo and every family has a content hash",
+    "status": "template_only",
+    "mustNotBeCitedAsAcceptedEvidence": true,
+    "bundleId": "gw150914_local_artifact_bundle_v1",
+    "requiredTopLevelFields": [
+      "bundleId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "artifacts",
+      "rowBindings",
+      "extractionManifest"
+    ],
+    "artifactFieldsPerFamily": [
+      "familyId",
+      "localPath",
+      "sha256",
+      "sourceUrlOrSourceReport",
+      "role",
+      "rowsSupported"
+    ],
+    "requiredArtifactFamilies": [
+      "gwosc_event_release_metadata",
+      "h1_l1_strain_products",
+      "parameter_estimation_posterior_or_release",
+      "waveform_or_phase_provenance",
+      "aaa_local_extraction_manifest"
+    ],
+    "rowBindingFieldsPerRow": [
+      "rowId",
+      "carrierId",
+      "sourceWindowId",
+      "supportId",
+      "eventId",
+      "sharedRecordId",
+      "sourceEvidence",
+      "artifactPaths",
+      "artifactHashes"
+    ],
+    "acceptanceGuard": "A future checker input may mark rows accepted-looking only after every required artifact family has a durable in-repo localPath, a sha256 hash, and row-specific sourceEvidence for the exact row.",
+    "failClosedIf": [
+      "any localPath is missing or points outside the repo",
+      "any required sha256 is missing",
+      "the bundle is cited directly as the sourcePath for an accepted row",
+      "rowBindings split carrierId, sourceWindowId, supportId, eventId, or sharedRecordId"
+    ]
+  },
+  "failClosedControls": [
+    "eq11a-gravitational-wave-source-retained-evidence-object-contract-negative-control.v1.json",
+    "eq11a-gravitational-wave-source-artifact-hash-missing-negative-control.v1.json",
+    "eq11a-gravitational-wave-source-artifact-path-missing-negative-control.v1.json",
+    "eq11a-gravitational-wave-source-probe-source-negative-control.v1.json"
+  ],
+  "nextSafeAction": "collect or materialize the local GW150914 event, strain, parameter-estimation, waveform, calibration, analysis-window, and extraction artifacts with hashes before creating any accepted-looking retained evidence packet"
+}

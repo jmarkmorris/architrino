@@ -1,7 +1,7 @@
 # QA: The Sound Remembers
 
 - id: `nature-remembers-motion-spread-07`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-07.png`
 - lesson: Some traces travel before they are noticed.
 - geometry: Rings radiate from Poz's hands to Electra.
 

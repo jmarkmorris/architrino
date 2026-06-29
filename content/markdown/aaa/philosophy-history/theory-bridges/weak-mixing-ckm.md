@@ -114,7 +114,7 @@ $$
 \text{weak-reaction provenance}
 $$
 
-This is stronger than a loose analogy among chapters, but it is still a derivation target. The current accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
+This is stronger than a loose analogy among chapters, but it is still a derivation target. The accepted synthesis is that weak `V-A` selection, flavor mixing, and weak-corridor bookkeeping are three readouts of the same exposure problem. To close the route, the corpus needs one operator-level model that does four jobs without changing definitions between them:
 
 - identify which polar sites are exposed to a charged corridor for a moving assembly,
 - suppress right-handed charged-current docking in the same geometry that allows left-handed docking,
@@ -553,7 +553,7 @@ so once $(\lvert V_{us}\rvert,\lvert V_{cb}\rvert,\lvert V_{ub}\rvert)$ are cali
 - weak-coupling triad & shielding definitions: [assemblies/fermions/quantum-number-mapping.md](../../assemblies/fermions/quantum-number-mapping.md) (Sections on weak isospin, generation hierarchy).
 - Gauge-boson couplings: [assemblies/bosons/electroweak-bosons.md](../../assemblies/bosons/electroweak-bosons.md) (W/Z corridors acting on the weak-coupling triad).
 
-_Status: accepted closure route, not a completed derivation. The chapter now treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating braids, architrino inventory, corridor payload, and event residuals._
+_Status: accepted closure route, not a completed derivation. The chapter treats exposure, overlap, and holonomy as one weak-sector proof target. Provenance language below is illustrative only until a reaction ledger supplies the participating braids, architrino inventory, corridor payload, and event residuals._
 
 ## Future Capability Illustration: Weak-Reaction Provenance
 

@@ -1,7 +1,7 @@
 # QA: New Path
 
 - id: `what-changed-spread-07`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-07.png`
 - lesson: The one change changed the path.
 - geometry: A newer purple path turns left after the one changed piece while the older faint path remains nearby.
 

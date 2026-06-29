@@ -4,9 +4,9 @@
 
 - Kind: `priority`
 - Rank: `3`
-- Value: `24.02`
+- Value: `23.83`
 - Cost: `4.7`
-- ROI: `5.11`
+- ROI: `5.07`
 - Status: `active`
 
 ## Current Stopping Point
@@ -50,12 +50,96 @@ separator slot plus 11 row slots. It receives 0 / 12 external schema inputs,
 accepts 0 / 12 slots for validation, constructs 0 rule-kernel derivation
 payloads, consumes 0 rows, keeps `preledger_pass=false`, keeps
 `updates_live_ledger=false`, and authorizes no branch chart. The next live
-proof-program action is to test one candidate external schema against the
-`Sigma_hf_01` separator slot before the 11 row slots are considered.
+proof-program action is to test one non-local candidate external schema with
+accepted provenance against the `Sigma_hf_01` separator slot before the 11 row
+slots are considered. The
+[Sigma_hf_01 external schema candidate intake checklist](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md)
+now records the current fail-closed separator-slot state, and the generated
+[Sigma_hf_01 external schema candidate intake record](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+plus
+[report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+make that state machine-checkable: the internal locks are fixed,
+the local-source-data partial is screened with
+`candidate_external_schema_received=false`, `external_provenance_accepted=false`,
+5 / 8 required predicate fields are present, and the slot result remains
+`external_input_required`; 11 row slots remain parked, row consumption is 0,
+`preledger_pass=false`,
+`updates_live_ledger=false`, and no branch chart is authorized. The local
+source-data partial supplies those 5 / 8 screen fields for the same slot
+without becoming an external proof-grade schema. The
+[placeholder-rejection intake record](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.placeholder-rejection-intake-record.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+now proves that local placeholders for `rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement` are supplied but rejected, leaving
+`required_fields_present=5`, `slot_result=external_input_required`, row
+consumption 0, `updates_live_ledger=false`, and branch-chart authorization
+false.
+The [proof-object envelope](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and [report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.proof-object-envelope.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now package that fail-closed target as
+`sigma_hf_01_external_schema_candidate_proof_object_envelope_open_5_of_8_local_locks_bound_3_proof_grade_fields_required_no_schema_validation_intake_no_row_consumption_no_live_ledger_update_no_branch_chart_authorization`:
+five local locks are bound, the three proof-grade fields remain required, no
+candidate external schema is received, no schema-validation intake is
+authorized, no rows are consumed, no live ledger is updated, and no branch
+chart is authorized.
+The [missing proof-grade fields derivation target](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json)
+and [report](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.missing-proof-grade-fields-derivation-target.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now narrow those three missing fields into one target-only proof object:
+`rule_kernel_obligation_binding` must discharge the derivation, soundness, and
+endpoint-application obligations;
+`rule_kernel_derivation_payload_target_binding` must bind `Sigma_hf_01` to a
+constructed rule-kernel derivation payload; and
+`proof_grade_derivation_schema_statement` must supply nonempty hypotheses,
+inference steps, conclusion, and source-data correspondence. This target is
+not a received external schema and keeps schema-validation intake, row
+consumption, live-ledger update, and branch-chart authorization false.
+The
+[local proof-program pool non-reclassification classifier](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.local-proof-program-pool-nonreclassification-classifier.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now screens 282 local certificate JSON objects and records 0 accepted external
+provenance records, 0 schema-validation intake candidates, 0 local objects
+reclassified as external schema, 1 local record with 8 / 8 required fields but
+no external provenance, and 0 external schema inputs received. The
+[external-label decoy negative control](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-label-decoy-negative-control.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+is that complete-looking local record: it supplies external-looking labels and
+8 / 8 structurally present fields, but the intake record rejects it before
+schema-validation intake because accepted external provenance is absent. The
+[external provenance contract replay](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-provenance-contract-replay.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+then replays those 282 local JSON paths as attempted candidate refs, rejects
+all 282 by provenance, records 1 field-complete but provenance-rejected record,
+and makes the first failure
+`external_schema_provenance_required_before_schema_validation_intake`. This
+does not construct proof evidence, authorize schema-validation intake, consume
+rows, update the live ledger, or authorize a branch chart.
+The
+[external provenance source audit](./breather-proof/certificate/sigma_hf_01_external_schema_candidate.external-provenance-source-audit.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305_report.md)
+now tests the broader current proof-program/reference surface for a provenance
+source before intake: 283 proof-program JSON files and 94 reference Markdown
+artifacts, 377 records total. It separates 369 local generated artifacts,
+22 local decoys, 22 source-data partials, 15 external-looking label records,
+and 3 actual external ref records. The actual refs are source leads only:
+they appear in reference text and source-mining rows, not on a same-record
+external schema candidate with accepted provenance. The audit finds 0 accepted
+external provenance records, 0 schema-validation intake candidates, 0 candidate
+external schema received records, and 15 field-complete-without-provenance
+records. The first failure
+remains `external_schema_provenance_required_before_schema_validation_intake`;
+row consumption, `preledger_pass`, live-ledger update, and branch-chart
+authorization remain false.
+The source-mining follow-on
+[Sigma_hf_01 Sieber Engelborghs Mined Schema Packet](../source-mining/archive-analysis/sigma-hf-01-sieber-engelborghs-mined-schema-packet-2026-06-28.md)
+extracts a priority-only hypotheses / inference / conclusion candidate from
+the Sieber state-dependent-delay finite-root equivalence source lead and the
+Engelborghs-Luzyanina-in 't Hout-Roose collocation source family. It sharpens
+the three missing proof-grade fields
+`rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`, but it is not a received external
+schema object, establishes no accepted external provenance, opens no
+schema-validation intake, consumes no rows, and authorizes no branch chart.
 
 ## Task Queue
 
-1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-external-schema-pilot-staged`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot satisfying the external schema acceptance contract, not another current-pool rescan. Depends on: none.
+1. `breather_certificate` — Generate the finite collinear-breather certificate packet and close the conditional Schauder theorem only after the audit passes. Status: `sigma-hf-01-mined-source-schema-packet-fail-closed`; the live continuation is one compatible external proof-grade derivation schema or derivation proof for the `Sigma_hf_01` separator slot with accepted external provenance and the eight schema fields required by the external schema acceptance contract, not another local placeholder, local proof-object envelope, missing-fields target, local-pool reclassification, current-pool rescan, source-mining packet, or reference-text provenance mention. Depends on: none.
 2. `planar_bridge` — Develop the first planar delayed-bridge closure as the higher-dimensional extension of the breather proof architecture. Status: `queued`; do not promote ahead of the collinear certificate unless that certificate fails with an explicit obstruction that the planar bridge is meant to resolve. Depends on: `breather_certificate`.
 3. `proof_program_handoff` — Keep theorem-program chapters, certificate artifacts, and downstream priority links aligned as proof targets are promoted or retired. Status: `active`. Depends on: `breather_certificate`, `planar_bridge`.
 
@@ -473,7 +557,13 @@ source packets, 0 derivation proofs, 0 rule-kernel derivation payloads, and 0
 proof-grade derivation schemata, makes no route, proof-rule,
 primitive-acceptance, or source-packet acceptance decision, consumes 0 rows,
 and leaves `preledger_pass=false`, `updates_live_ledger=false`, and
-branch-chart authorization false.
+branch-chart authorization false. The follow-on `Sigma_hf_01` local
+proof-program pool non-reclassification classifier then applies the same
+eight-field external schema intake predicate to 282 local certificate JSON
+objects and finds 0 schema-validation intake candidates, 0 local objects
+reclassified as external schema, 1 local record with 8 / 8 required fields but
+no external provenance, and 0 external schema inputs received. The blocker remains
+`source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema_external_input_required`.
 
 Promotion-gate update: the ref/value non-domain carrier-pair theorem attempt is
 now the latest endpoint proof packet after the independent constructed

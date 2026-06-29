@@ -1,7 +1,7 @@
 # QA: Near And Far
 
 - id: `nature-remembers-motion-spread-05`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-05.png`
 - lesson: Spacing helps tell the story of a path.
 - geometry: One trace section has close spacing, another has wider spacing.
 

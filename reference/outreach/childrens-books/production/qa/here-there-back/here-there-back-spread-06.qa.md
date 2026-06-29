@@ -1,7 +1,7 @@
 # QA: Go
 
 - id: `here-there-back-spread-06`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-06.png`
 - lesson: A body moves through places.
 - geometry: Poz's body path is visible as a simple crawl route through space.
 

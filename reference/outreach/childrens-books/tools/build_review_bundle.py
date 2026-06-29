@@ -6,6 +6,7 @@ from __future__ import annotations
 import argparse
 import html
 import json
+import os
 from pathlib import Path
 
 from PIL import Image, ImageDraw, ImageFont, ImageOps
@@ -85,6 +86,10 @@ def figure(src: str, alt: str, caption: str) -> str:
     )
 
 
+def repo_relative_link(output: Path, repo_path: str) -> str:
+    return Path(os.path.relpath(REPO / repo_path, start=output.parent)).as_posix()
+
+
 def review_index(book: dict, entries: list[dict], output: Path) -> None:
     slug = book["slug"]
     title = book["title"]
@@ -93,7 +98,7 @@ def review_index(book: dict, entries: list[dict], output: Path) -> None:
     contact_name = f"{slug}-landscape-contact-sheet.jpg"
     landscape_figures = "\n".join(
         figure(
-            f"../../pages/{slug}/landscape/{Path(entry['paths']['page_landscape_png']).name}",
+            repo_relative_link(output, entry["paths"]["page_landscape_png"]),
             entry["label"],
             entry["id"].replace(f"{slug}-", ""),
         )
@@ -101,7 +106,7 @@ def review_index(book: dict, entries: list[dict], output: Path) -> None:
     )
     source_figures = "\n".join(
         figure(
-            f"../../source/{slug}/{Path(entry['paths']['source_png']).name}",
+            repo_relative_link(output, entry["paths"]["source_png"]),
             f"Source {entry['label']}",
             f"source {entry['id'].replace(f'{slug}-', '')}",
         )
@@ -222,7 +227,7 @@ def review_index(book: dict, entries: list[dict], output: Path) -> None:
     <h1>{html.escape(title)} - Book {book_number} Review</h1>
     <p>First-draft source images and page layouts are generated. QA is intentionally pending until operator review.</p>
     <div class="links">
-      <a href="../../pages/{slug}/{slug}-first-draft.pdf">Open first-draft PDF</a>
+      <a href="{repo_relative_link(output, f'content/assets/books/childrens-books/{slug}/{slug}-first-draft.pdf')}">Open first-draft PDF</a>
       <a href="{contact_name}">Open contact sheet</a>
       <a href="../../qa/{slug}/{slug}-qa-summary.json">Open QA summary</a>
       <a href="../../generation-manifest.json">Open manifest</a>

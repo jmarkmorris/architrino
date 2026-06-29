@@ -1,7 +1,7 @@
 # QA: Again
 
 - id: `here-there-back-spread-08`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-08.png`
 - lesson: Repeating makes the path familiar.
 - geometry: Two gentle path loops show repeated here-there-back motion.
 

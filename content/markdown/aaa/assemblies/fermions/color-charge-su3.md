@@ -1,6 +1,6 @@
 # Color Charge and SU(3)
 
-This chapter gives the current assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
+This chapter gives the assembly-level interpretation of color charge and effective `SU(3)` structure. Its purpose is to explain how quark color bookkeeping, confinement language, and nested shell braid scaffold geometry are meant to fit together before the full topological confinement derivation is closed. It is the fermion-side companion to [Gluons and the Strong Force: Geometric Origins](../bosons/gluons.md) and [Quarks](./quarks.md).
 
 ---
 
@@ -121,7 +121,7 @@ This does not derive the full color algebra by itself, but it gives a clean geom
 
 ### Neutrinos: near-photon colorless neutral pairs
 
-Neutrinos are now treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
+Neutrinos are treated as near-photon neutral assemblies rather than ordinary six-site axial-layer fermions. The working picture is a near-planar pro/anti Noether braid pairing close to the photon channel, but not fully locked into the photon mode.
 
 This makes the color statement sharper:
 

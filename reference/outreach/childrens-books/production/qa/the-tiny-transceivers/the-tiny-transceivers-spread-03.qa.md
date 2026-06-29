@@ -1,7 +1,7 @@
 # QA: A Second Kind
 
 - id: `the-tiny-transceivers-spread-03`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-03.png`
 - lesson: The ontology has two fundamental polarities.
 - geometry: Comparable red and blue point transceivers sit on the same lab screen with distinct simple path traces.
 

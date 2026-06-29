@@ -1,0 +1,48 @@
+{
+  "schema": "aaa-equation-map-eq11a-peters-decay-row-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A peters_decay_row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "peters_decay_row_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "peters_decay_row"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_peters_decay_row_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "petersDecayFields": {
+    "orbitalDecayReadout": [
+      "semiMajorAxisDerivative",
+      "orbitalPeriodDerivative"
+    ],
+    "sourceMassState": [
+      "m1",
+      "m2",
+      "separation",
+      "eccentricity",
+      "orbitalPeriod"
+    ],
+    "requiredConsumers": [
+      "source_event_ledger",
+      "chirp_mass_row",
+      "quadrupole_source_row",
+      "effective_metric_tensor_channel"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "Peters-Mathews dot a and dot P_b",
+    "aaaGeometricReadout": "orbital-decay readout from the same source masses, orbital state, chirp row, source event ledger, and effective metric tensor-radiation channel",
+    "requiredCarrierOrRow": "peters_decay_row",
+    "sameRecordBinding": "the Peters-decay row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, source_event_ledger, chirp_mass_row, quadrupole_source_row, and effective_metric_tensor_channel before orbital-decay residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-peters-decay-row-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed peters_decay_row bound to the GW150914 source ledger, chirp row, quadrupole row, and tensor channel; score remains neutral until detector strain, ringdown, provenance, and no-retune rows are accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

@@ -1,0 +1,59 @@
+{
+  "schema": "aaa-equation-map-eq11a-source-provenance-source-contract/v1",
+  "claimLevel": "source-contract boundary for the EQ-11A source_provenance row; score-neutral and not accepted retained evidence by itself",
+  "sourceRole": "source_provenance_source_contract",
+  "supportsEquationRows": [
+    "EQ-11A"
+  ],
+  "supportsRows": [
+    "source_provenance"
+  ],
+  "sourceWindowId": "GW150914-v3",
+  "supportId": "H1L1_GWTC1_PE_v3",
+  "eventId": "GWTC-1-confident/GW150914/v3",
+  "requiredSameRecordBinding": {
+    "carrierId": "theta_gwsrc_source_provenance_source_contract_attempt_0001",
+    "sourceWindowId": "GW150914-v3",
+    "supportId": "H1L1_GWTC1_PE_v3",
+    "eventId": "GWTC-1-confident/GW150914/v3"
+  },
+  "sourceProvenanceFields": {
+    "publicSourceReadout": [
+      "GWOSC_event_page",
+      "GWTC_release",
+      "event_uid",
+      "GPS_time",
+      "UTC_time",
+      "PE_data_url",
+      "strain_data_urls",
+      "discovery_paper",
+      "properties_paper",
+      "minimal_assumptions_paper"
+    ],
+    "requiredArtifactState": [
+      "source_field_manifest",
+      "artifact_hashes",
+      "event_version_record",
+      "sourceWindowId",
+      "supportId",
+      "eventId"
+    ],
+    "requiredConsumers": [
+      "gw_source_carrier",
+      "detector_strain_record",
+      "source_event_ledger",
+      "strain_flux_row",
+      "ringdown_label_row",
+      "no_hidden_retune_witness"
+    ]
+  },
+  "directGeometryLayer": {
+    "standardComparisonTerm": "GWOSC/LVK event provenance and source-version record",
+    "aaaGeometricReadout": "retained source-provenance row binding the GW150914 event page, release/version identity, parameter-estimation data, strain products, and source papers to the same gravitational-wave source carrier",
+    "requiredCarrierOrRow": "source_provenance",
+    "sameRecordBinding": "the source_provenance row shares the EQ-11A carrierId, sourceWindowId, supportId, eventId, source-field manifest, artifact hashes, detector_strain_record, source_event_ledger, strain_flux_row, and ringdown_label_row before provenance or no-retune residuals can count",
+    "failClosedNegativeControl": "eq11a-gravitational-wave-source-source-provenance-mismatch-negative-control.v1.json",
+    "smallestAcceptedEvidenceObject": "source-backed source_provenance row with the GWOSC event page, PE/data URLs, strain-product URLs, source-paper URLs, event-version record, extracted source fields, and artifact hashes bound to the GW150914 carrier; score remains neutral until no_hidden_retune_witness is accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

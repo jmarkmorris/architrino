@@ -4,9 +4,9 @@
 
 - Kind: `priority-app`
 - Rank: `26`
-- Value: `1.35`
+- Value: `1.32`
 - Cost: `3.4`
-- ROI: `0.40`
+- ROI: `0.39`
 - Status: `release-prep`
 
 ## Purpose

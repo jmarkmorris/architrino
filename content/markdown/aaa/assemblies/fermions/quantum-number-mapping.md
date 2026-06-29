@@ -13,7 +13,7 @@ This is a charged-fermion working model, not a proof that every six-unit charge 
 
 The six-unit inventory has seven possible net charge sums. The table records the charge bookkeeping before stability, chirality, color, weak exposure, and null-result exclusions are applied:
 
-| Axial inventory | Net electric bookkeeping | Current interpretation |
+| Axial inventory | Net electric bookkeeping | Interpretation |
 | --- | ---: | --- |
 | $0P,6E$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
 | $1P,5E$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
@@ -25,7 +25,7 @@ The six-unit inventory has seven possible net charge sums. The table records the
 
 This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
 
-Neutrinos are the current exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
+Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
@@ -52,7 +52,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 ### The Axial Layer
 This is the charged-fermion working realization of the more general six-unit polarity inventory.
 *   **Sites:** 6 polar sites available for axial occupancy.
-*   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in the current architecture.
+*   **Occupancy:** Stable charged leptons and quarks have all 6 sites filled. Neutrinos do not carry a stable charged-fermion-style axial layer in this architecture.
 *   **Function:** This layer interacts through external effective-field channels (EM, Weak).
 *   **Association picture:** The axial architrinos occupy polar attachment sites defined by the binary axes. These poles are the natural seats where axial potentials associate with the Noether braid scaffold.
 
@@ -60,10 +60,10 @@ This is the charged-fermion working realization of the more general six-unit pol
 
 The Noether braid plus axial layer should be read as a selected stability candidate, not as an arbitrary list of parts. The working model has a ladder of rejection and selection pressures:
 
-| Candidate assembly stage | Selection pressure | Current status |
+| Candidate assembly stage | Selection pressure | Status |
 | :--- | :--- | :--- |
 | Opposite-polarity binary | Causal-wake attraction and opposite-polarity locking make a neutral two-body branch dynamically available across many energy regimes. | Natural assembly seed, but too externally reactive to serve as a stable low-energy fermion by itself. |
-| Two-binary nest | A larger, lower-energy binary can partially shield a smaller, higher-energy binary. | Partial shielding is not enough for the charged-fermion scaffold; this branch still lacks the full three-dimensional angular-momentum accommodation required by the current model. |
+| Two-binary nest | A larger, lower-energy binary can partially shield a smaller, higher-energy binary. | Partial shielding is not enough for the charged-fermion scaffold; this branch still lacks the full three-dimensional angular-momentum accommodation required by the model. |
 | Three-binary Noether braid | Three nested binaries supply a neutral core, retained internal causal history, a shielding hierarchy, and rotational accommodation across three spatial directions. | Working charged-fermion scaffold. Its stability, mass scale, and generation hierarchy remain derivation targets rather than asserted facts. |
 | Six-site axial layer | The binary axes provide six polar sites where a protected polarity inventory can phase-lock to the scaffold. | Working realization of charged-fermion electric bookkeeping and weak/color exposure. Non-SM low-energy inventories must still be dynamically excluded. |
 
@@ -71,7 +71,7 @@ This makes selection a closure burden. A viable fermion branch must pass branch 
 
 ### Why Polar Sites Are Plausible Dwell Regions
 
-The current geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
+The geometric picture needs a reason that the axial layer prefers the poles rather than wandering arbitrarily around the Noether braid. The most conservative working hypothesis is that each binary axis creates a **polar calm region**: a local saddle or relative minimum in the rapidly varying superposed potential generated by the surrounding binary circulation.
 
 In plain terms, most of the core volume is a storm of whipping delayed potentials. Near the axis-defined poles, opposing contributions from the rotating binaries can partially cancel in the transverse directions while still preserving axial attachment. That does not mean the poles are force-free. It means they are the places where an axial architrino can remain phase-locked to the core with the least continual lateral correction.
 
@@ -330,7 +330,7 @@ for every tested baryon-violating channel $\mathcal{C}_{\Delta B\ne0}$, while th
 
 ## Gauge Representation Bookkeeping: $SU(3)_c \times SU(2)_L \times U(1)_Y$
 
-At the representation and charge-bookkeeping layer, the current dictionary recovers the Standard Model labels as:
+At the representation and charge-bookkeeping layer, the dictionary recovers the Standard Model labels as:
 
 - **$SU(3)_c$ (color):** axis-exceptionality of the Noether braid plus axial layer. Quarks occupy the triplet basis $|q_H\rangle, |q_M\rangle, |q_L\rangle$ (conventionally Red, Green, Blue), while charged leptons remain axis-uniform singlets and neutrinos remain singlets by the near-photon neutral-pair route. Gluons are axis-reconfiguration ribbons or corridor modes forming the octet.
 - **$SU(2)_L$ (weak isospin):** polarity of the **weak-coupling triad** (three exposed polar sites, or the effective near-photon weak projection for neutrinos). Left-handed fermions are doublets; right-handed fermions are singlets (weak-coupling triad hidden).
@@ -355,7 +355,7 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 | $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
 | $e_R$ | 1 | 1 | -2 | -1 | weak-coupling triad hidden; axial layer 6E |
-| (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in current architecture; would require a sterile near-photon singlet branch |
+| (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in the minimal architecture; would require a sterile near-photon singlet branch |
 
 ### Gauge boson summary
 
@@ -531,7 +531,7 @@ $$
 =0
 $$
 
-So the present geometry-to-quantum-number dictionary already matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
+So the geometry-to-quantum-number dictionary matches the Standard Model's per-generation gauge-anomaly cancellation. This is a nontrivial consistency check, not just a notation match.
 
 If a sterile right-handed neutrino is added with
 $$
@@ -545,11 +545,11 @@ $$
 \qquad
 \sum(B-L)^3=-1
 $$
-while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restores both to zero. So in the current minimal architecture, $B-L$ works as a global label, but not yet as an independently gauged anomaly-free channel.
+while adding $\nu_R$ (equivalently $\nu^c_L$ in left-chiral bookkeeping) restores both to zero. So in the minimal architecture, $B-L$ works as a global label, but not yet as an independently gauged anomaly-free channel.
 
 ### Right-handed neutrino stance and mass eigenstates (hypothesis)
 
-- **Current stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
+- **Stance:** We do **not** include a $\nu_R$ in the minimal architecture. Left-handed neutrinos are the only active SU(2) doublet partners; omitting $\nu_R$ preserves the usual anomaly cancellation pattern.
 - **If added:** A $\nu_R$ would be a colorless, SU(2)-singlet, $Y=0$ sterile branch of the near-photon neutral-pair sector; it would couple only via mixing terms (Dirac/Majorana choice left open).
 - **Empirical gate:** Precision bounds on $\sum_i m_i$, the lightest-neutrino mass, direct kinematic mass, and neutrinoless double-beta searches are allowed to revise the neutral sector, not the charged-fermion axial-layer rule. A positive $0\nu\beta\beta$ result would force a lepton-number-violating neutral-pair provenance channel; null results tighten the allowed Majorana-like or sterile mixing channel without canonizing a separate interpretation.
 - **Mass eigenstates (hypothesis):** The neutrino assembly is taken to be a near-photon pro/anti braid pair whose residual internal-binary exposure defines three nearby mass modes. Oscillation is the changing weak projection of those modes over propagation. Other fermions have much stiffer charged axial-layer architectures, so their mass eigenstates are effectively fixed; observed mixing (CKM) is then a basis rotation, not time-domain oscillation of a single assembly.

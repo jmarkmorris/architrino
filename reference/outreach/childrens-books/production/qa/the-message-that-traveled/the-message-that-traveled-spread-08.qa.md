@@ -1,7 +1,7 @@
 # QA: Far
 
 - id: `the-message-that-traveled-spread-08`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-08.png`
 - lesson: Far messages take longer.
 - geometry: Sound rings cross a larger gap from a far bell to Electra.
 

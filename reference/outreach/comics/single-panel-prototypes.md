@@ -231,7 +231,7 @@ Mia and Sophia stand beside a simple demonstration track. At the right end, a to
 
 ### Keeper Decision
 
-`signals-from-earlier-prototype-v2-present-inbox.png` is the selected keeper direction. It works because the public joke reads first: the present has an inbox and the mail is still arriving. The $\mathbb{A}\mathbb{A}\mathbb{A}$ causal-delay geometry then becomes the second read instead of the whole entry requirement.
+`present-has-an-inbox-prototype.png` is the selected keeper direction. It works because the public joke reads first: the present has an inbox and the mail is still arriving. The $\mathbb{A}\mathbb{A}\mathbb{A}$ causal-delay geometry then becomes the second read instead of the whole entry requirement.
 
 ## 9. New Theory, Same Budget
 
@@ -288,6 +288,120 @@ Rachel sits at office hours beside a whiteboard headed `claim level ladder`: `id
 - Whiteboard note: `Change is not evidence. Fear is not a falsifier.`
 - Small seminar sign: `$\mathbb{A}\mathbb{A}\mathbb{A}$: proof burden welcome.`
 
+## 11. First Page Problem
+
+| Field | Direction |
+| --- | --- |
+| Series | `First Page Problem` |
+| Main cast | Mia Quinn and Rachel Stone |
+| Surface joke | A student treats page one of the cosmology binder as the beginning of everything. |
+| Hidden academic joke | The effective $\Lambda\mathrm{CDM}$ chronology is powerful, but page-one language can smuggle in an ontic birth certificate. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | The Big Bang timeline is an effective observer-era reconstruction, not a required beginning of the Euclidean void, absolute time, or the full substrate inventory. |
+| Claim level | Working hypothesis plus comparison discipline. |
+
+### Panel
+
+Mia stands beside a large binder labeled `Lambda-CDM observer calendar`. Its first page is labeled `Big Bang`. The binder has tidy tabs for `CMB`, `BBN`, `BAO`, and `growth`. Rachel holds a long scroll labeled `fixed-void candidate history` that extends off both sides of the table, with only a highlighted middle window aligned to the binder. The scene should first read like a student confusing the first page of a class packet with the start of reality.
+
+### Bubble Text
+
+- Student speech bubble, rounded with smooth tapered tail: `So page one is the beginning of everything?`
+- Mia speech bubble, rounded with smooth tapered tail: `Page one is where this reconstruction starts.`
+- Rachel thought bubble, cloud-like with dot trail: `Birth-certificate language causes paperwork.`
+
+### Background Text
+
+- Binder tabs: `CMB`, `BBN`, `BAO`, `growth`.
+- Scroll label: `unbounded candidate history`.
+- Sticky note: `Recover the data before rewriting the ontology.`
+- Board note: `Calendar boundary != container boundary.`
+
+## 12. The Observable Edge Receipt
+
+| Field | Direction |
+| --- | --- |
+| Series | `The Observable Edge Receipt` |
+| Main cast | Sophia Calder and Rachel Stone |
+| Surface joke | A student mistakes the edge of a receipt or map for the edge of the store. |
+| Hidden academic joke | The observable horizon is a visibility and inference boundary, not automatically an ontological edge of space. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | In fixed-void cosmology, the observer receives a finite record through causal transport, while the Euclidean void is not bounded by that record. |
+| Claim level | Outreach analogy plus validation discipline. |
+
+### Panel
+
+Sophia points at a round observable-universe map taped to a long checkout receipt. The receipt is labeled `photons that reached us`. A student has drawn a thick red line at the edge and labeled it `end of space?`. Rachel stands nearby with a small stamp labeled `claim level`, ready to stamp the red line as `visibility limit`. The scene should first read as a map-and-receipt joke before the cosmology layer appears.
+
+### Bubble Text
+
+- Student speech bubble, rounded with smooth tapered tail: `The map ends here?`
+- Sophia speech bubble, rounded with smooth tapered tail: `The photons do. The universe need not.`
+- Rachel thought bubble, cloud-like with dot trail: `Visibility limits keep applying for promotion.`
+
+### Background Text
+
+- Receipt label: `photons that reached us`.
+- Map label: `observable horizon`.
+- Stamp label: `visibility limit`.
+- Board note: `A boundary in the data product is not automatically a boundary in ontology.`
+
+## 13. Opening Scene, Not Building Permit
+
+| Field | Direction |
+| --- | --- |
+| Series | `Opening Scene, Not Building Permit` |
+| Main cast | Mia Quinn and Sophia Calder |
+| Surface joke | Someone thinks a movie's opening scene proves when the theater was built. |
+| Hidden academic joke | A hot dense early phase can be a real effective exposure or release event without proving an absolute beginning of the substrate. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Bang language is admissible as an effective exposure/release event; it is not by itself a claim that Euclidean space, absolute time, or substrate inventory began there. |
+| Claim level | Playful analogy plus open cosmology proof burden. |
+
+### Panel
+
+A classroom has been staged like a small movie theater. A poster reads `Opening scene: hot dense phase`. A ticket booth label reads `Lambda-CDM timeline`. Behind the stage, Sophia reveals backstage machinery labeled `source history`, `thermalization`, `transport`, and `decoupling`. Mia points at the difference between the visible opening scene and the theater building around it. The scene should first read as a theater joke.
+
+### Bubble Text
+
+- Student speech bubble, rounded with smooth tapered tail: `So the first scene is the universe's birth certificate?`
+- Mia speech bubble, rounded with smooth tapered tail: `No. It's where the camera finally has footage.`
+- Sophia thought bubble, cloud-like with dot trail: `Backstage is older than the trailer.`
+
+### Background Text
+
+- Poster: `Opening scene: hot dense phase`.
+- Ticket booth or marquee: `Lambda-CDM timeline`.
+- Backstage labels: `source history`, `thermalization`, `transport`, `decoupling`.
+- Board note: `Start of movie != start of theater`.
+- Popcorn label: `Evidence popcorn`.
+- Small note: `effective description`.
+
+## 14. Birthday Cake For The Observer Era
+
+| Field | Direction |
+| --- | --- |
+| Series | `Birthday Cake For The Observer Era` |
+| Main cast | Rachel Stone and Mia Quinn |
+| Surface joke | The class wants candles for the whole universe, but Rachel labels the cake more carefully. |
+| Hidden academic joke | The familiar $\sim13.8$ billion-year age scale constrains the current observer-era reconstruction and material record, not necessarily the ontic age of the fixed container. |
+| $\mathbb{A}\mathbb{A}\mathbb{A}$ point | Effective observer-era age is a convergence pressure from records; it should not be silently promoted into a substrate birth date. |
+| Claim level | Outreach analogy plus comparison discipline. |
+
+### Panel
+
+Rachel sets a cake on a seminar table. The cake is labeled `current observer-era reconstruction`. A student holds a box of candles labeled `13.8 billion-ish`. Behind the room, an absurdly long archive shelf labeled `fixed-void history` disappears beyond the panel edges. Mia holds a checklist of dating methods: `CMB fit`, `stellar clocks`, `white dwarfs`, and `material record`.
+
+### Bubble Text
+
+- Student speech bubble, rounded with smooth tapered tail: `How many candles for the whole universe?`
+- Rachel speech bubble, rounded with smooth tapered tail: `Start with the era we can date.`
+- Mia thought bubble, cloud-like with dot trail: `Do not frost over the proof burden.`
+
+### Background Text
+
+- Cake label: `current observer-era reconstruction`.
+- Candle box: `13.8 billion-ish`.
+- Archive shelf: `fixed-void history`.
+- Checklist: `CMB fit`, `stellar clocks`, `white dwarfs`, `material record`.
+
 ## First Image-Test Candidates
 
 For image generation, start with:
@@ -301,12 +415,28 @@ For image generation, start with:
 
 First rough visual prototypes:
 
-- [Group Project Assumption](assets/group-project-assumption-prototype.png)
-- [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png)
+- [Group Project Assumption](assets/group-project-assumption-prototype.png) - selected keeper direction.
+- [Present Has An Inbox](assets/present-has-an-inbox-prototype.png) - selected keeper direction.
 
 Second rough visual prototypes:
 
-- [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png)
-- [Citation Needed](assets/citation-needed-prototype-v2-no-just.png)
-- [Show The Residuals](assets/show-the-residuals-prototype.png)
-- [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png)
+- [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png) - selected keeper direction.
+- [Citation Needed](assets/citation-needed-prototype.png) - selected keeper direction.
+- [Show The Residuals](assets/show-the-residuals-prototype.png) - selected keeper direction.
+- [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png) - selected keeper direction.
+
+Cosmology comparison rough visual prototypes:
+
+- [First Page Is Not The Beginning](assets/first-page-is-not-the-beginning-prototype.png) - selected keeper direction.
+- [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png) - selected keeper direction.
+- [First Footage, Not A Birth Certificate](assets/first-footage-not-birth-certificate-prototype.png) - selected keeper direction; shifts the joke from building-permit wording to first-scene versus first-footage wording.
+- [Birthday Cake For The Observer Era](assets/birthday-cake-for-observer-era-prototype.png) - selected keeper direction.
+
+Prior-comic reinterpretation rough visual prototypes:
+
+- [Four Theories, One Oval](assets/four-theories-one-oval-prototype.png) - selected keeper direction.
+- [Acknowledgements In Architrino's Room](assets/acknowledgements-in-architrinos-room-prototype.png) - selected keeper direction; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
+- [We Need To Talk](assets/we-need-to-talk-prototype.png) - selected keeper direction.
+- [Old Alchemy, New Apparatus](assets/old-alchemy-new-apparatus-prototype.png) - selected keeper direction.
+- [What Counts As Evidence?](assets/what-counts-as-evidence-prototype.png) - selected keeper direction.
+- [Candidate, Not A Throne](assets/candidate-not-a-throne-prototype.png) - selected keeper direction.

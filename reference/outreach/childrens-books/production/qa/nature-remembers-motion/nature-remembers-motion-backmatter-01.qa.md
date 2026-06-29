@@ -1,7 +1,7 @@
 # QA: Back Matter Activity 1
 
 - id: `nature-remembers-motion-backmatter-01`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-backmatter-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-backmatter-01.png`
 - lesson: Back-matter activity image.
 - geometry: Use the geometry already introduced in the story at activity scale.
 

@@ -1,7 +1,7 @@
 # QA: Too Much
 
 - id: `patterns-that-hold-spread-02`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-02.png`
 - lesson: Not every motion holds together.
 - geometry: One overlarge swing breaks the comparable spacing and opens the three-bead relation unevenly.
 

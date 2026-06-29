@@ -2168,7 +2168,7 @@ Pure circular self-hit is therefore not tangentially neutral branchwise. It supp
 
 #### Large-$\beta$ partner/self circular residual
 
-The exact partner branch can now be combined with the self-hit sums to get a high-speed obstruction for the equal-magnitude bare circular binary. Let $\xi_p(\beta)$ solve
+The exact partner branch combines with the self-hit sums to give a high-speed obstruction for the equal-magnitude bare circular binary. Let $\xi_p(\beta)$ solve
 $$
 \cos\xi_p=\frac{\xi_p}{\beta},
 \qquad
@@ -2286,7 +2286,7 @@ is an unstable mode.
 > $$
 > space until the net signed tangential balance and transverse eigenvalues are certified.
 
-This is the intended dynamical interpretation. Stable particles in the present architecture are Noether braid assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
+This is the intended dynamical interpretation. Stable particles in the Noether braid architecture are Noether braid assemblies; a bare MCB, if it exists, is a high-curvature component or limiting scaffold whose instability explains why additional locking structure is needed.
 
 This would be an “analytic scaffold + numerical check” situation, not full closed forms.
 
@@ -2461,7 +2461,7 @@ S_T^{s}(\theta,\Delta)
 -p(1-\rho\cos\Delta)+\rho\sin\Delta
 $$
 
-The circular obstruction is now converted into a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
+The circular obstruction yields a branch-chart test. A non-circular spiral can beat the isolated circular tangential obstruction only if the certified active roots satisfy a negative weighted tangential sum on enough of the controlled cycle:
 $$
 \sum_{\mathrm{part}}
 \frac{|q_1q_2|\,S_T^p}{\Lambda_p^3 |J_{12}|}
@@ -2674,11 +2674,11 @@ This regime is analytically tractable and important for:
 
 ### Analytic footholds and remaining targets
 
-Several formerly open checks are now footholds rather than blank targets:
+Several analytic checks provide footholds for the remaining closure targets:
 
-1. **Partner-only circular orbit with causal delay ($v<c_f$)** now has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
-2. **Uniform circular self-hit ($v>c_f$)** now has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
-3. **Variable-pitch spiral retained-chart benchmarks** now expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is now sharpened as a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, its endpoint constraints cancel the first off-center derivative of $H/b$ at $\theta=0$, and sampled endpoint-slope freedom can cancel the leading transported radial jet. The remaining burden is finite-interval transport and radial control of that profile class inside a certified branch chart rather than a pointwise or first-order algebraic obstruction.
+1. **Partner-only circular orbit with causal delay ($v<c_f$)** has explicit radial and tangential components, including the positive tangential-drive obstruction for a bare constant-speed circle.
+2. **Uniform circular self-hit ($v>c_f$)** has principal-root onset asymptotics, signed higher-winding branch birth, branchwise radial/tangential projections, and large-$\beta$ self-hit estimates.
+3. **Variable-pitch spiral retained-chart benchmarks** expose both branch-chart rows and prescribed-history compatibility rows. The fixed A1 constant-$\Omega$ history has certified active-root, inactive-gap, Jacobian-floor, finite-memory, and root-transport rows; its exact radial kinematics fix $\Gamma$ in the accepted normalization and pass the minimum-turn inequality, while the exact turn-center tangential residual excludes zero. A1 is therefore a replayable constant-$\Omega$ kinematic-balance no-go for that prescribed isolated two-body history, not a closure result and not a global no-go for non-circular histories. The same calculation turns the failure into a local continuation equation: a variable-angular-rate A1 turn would need $\ddot\theta(0)/\dot\theta(0)^2\in[-1.0072833846320208,\ -1.007249363114164]$ before the delayed-root chart is recomputed for the new time law. The recomputation is a finite-memory problem: the root equation uses $H(\Delta)=\omega_\ast\int_{-\Delta}^{0}d\phi/\dot\theta(\phi)$, so any viable nonconstant A1 history must match branch-memory averages as well as the local turn slope. A retained-root inverse-rate profile can satisfy those turn-center memory equations, its endpoint constraints cancel the first off-center derivative of $H/b$ at $\theta=0$, and sampled endpoint-slope freedom can cancel the leading transported radial jet. The remaining burden is finite-interval transport and radial control of that profile class inside a certified branch chart rather than a pointwise or first-order algebraic obstruction.
 
 The remaining analytic targets are sharper:
 
@@ -3579,7 +3579,7 @@ Thus:
 - The scalar $1/r$ action above is a nonlocal variational scaffold for the delayed dynamics under the stated branch and regularization assumptions,
 - It becomes an exact action derivation of the Master EOM only on branch charts where the constraint residual vanishes or is cancelled by an invariant action-level counterterm,
 - A finite same-support local scalar or delta-jet counterterm has been ruled out because it cancels the derivative residual only by disturbing the inverse-square scale term,
-- The remaining minimal action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, and its normalized wake-history boundary increments are now explicit,
+- The remaining minimal action repair is the delayed-interior characteristic-tail kernel above; its receiver Euler derivative has the desired inverse-square identity, and its normalized wake-history boundary increments are explicit,
 - Without such closure, the pure scalar action is falsified as the universal exact action for the Master EOM and should be treated as a diagnostic scaffold,
 - Any $\delta_\eta$ replacement must preserve the symmetries that supply the Noether charges if conservation claims are to remain exact.
 
@@ -3587,7 +3587,7 @@ Thus:
 
 #### Total Energy for an Isolated Set
 
-Given the kinetic energy definition, we now address the most useful history-aware total energy for an isolated architrino set.
+Given the kinetic energy definition, the next object is the most useful history-aware total energy for an isolated architrino set.
 
 ##### General structure
 

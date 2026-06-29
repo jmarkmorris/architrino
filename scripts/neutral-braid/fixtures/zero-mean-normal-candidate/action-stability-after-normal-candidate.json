@@ -1,0 +1,1003 @@
+{
+  "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-action-stability-after-normal-candidate-intake/v1",
+  "claim_scope": "bounded-speed-action-stability-after-normal-candidate-intake",
+  "promotion_status": "priority-only",
+  "source_intake_schema": "neutral-braid-octahedral-zero-mean-correction-intake/v1",
+  "source_artifact_id": "neutral_braid_octahedral_zero_mean_correction_intake.frozen_constant_vector.v1",
+  "source_bounded_speed_normal_reconstruction_candidate_schema": "neutral-braid-octahedral-zero-mean-bounded-speed-normal-reconstruction-candidate/v1",
+  "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+  "action_stability_intake_id": "after-normal-action-stability-intake-fixture",
+  "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+  "force_checksum_id": "force-checksum-fixture",
+  "consumer_checksum_id": "consumer-checksum-fixture",
+  "live_ledger_identity": {
+    "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+    "force_checksum_id": "force-checksum-fixture",
+    "consumer_checksum_id": "consumer-checksum-fixture",
+    "certification_status": "bounded-speed-live-ledger-open"
+  },
+  "bounded_speed_live_ledger": {
+    "claim_scope": "bounded-speed-live-ledger-target-after-normal-candidate",
+    "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+    "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+    "force_checksum_id": "force-checksum-fixture",
+    "consumer_checksum_id": "consumer-checksum-fixture",
+    "intake_status": "bounded-speed-live-ledger-open",
+    "first_failure_row": "bounded-speed-live-ledger-open",
+    "required_same_ledger_rows": {
+      "action_derived_scale": {
+        "downstream_row": "action_scale",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "action_curl": {
+        "downstream_row": "action_curl",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "speed_factor_storage_exchange": {
+        "downstream_row": "speed_factor_storage_exchange",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "noether_event_exchange": {
+        "downstream_row": "noether_event_exchange",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "tail_refinement_persistence": {
+        "downstream_row": "tail_refinement_persistence",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "bounded_speed_stability": {
+        "downstream_row": "bounded_speed_stability",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "observer_export_eligibility": {
+        "downstream_row": "observer_export_eligibility",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      },
+      "coupled_fixed_point": {
+        "downstream_row": "coupled_fixed_point",
+        "same_ledger_binding": "same-normal-candidate-ledger-checksum",
+        "status": "blocked:bounded-speed-live-ledger-open"
+      }
+    },
+    "live_ledger_identity_target": {
+      "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-live-ledger-identity-target/v0",
+      "claim_scope": "bounded-speed-live-ledger-identity-target-after-normal-candidate",
+      "promotion_status": "priority-only",
+      "status": "target-only",
+      "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+      "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+      "force_checksum_id": "force-checksum-fixture",
+      "consumer_checksum_id": "consumer-checksum-fixture",
+      "required_identity_tuple": {
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+      },
+      "required_closed_rows": [
+        "bounded_speed_normal_reconstruction_candidate",
+        "action_derived_scale",
+        "action_curl",
+        "speed_factor_storage_exchange",
+        "noether_event_exchange",
+        "tail_refinement_persistence",
+        "bounded_speed_stability",
+        "observer_export_eligibility",
+        "coupled_fixed_point"
+      ],
+      "closed_rows_supplied_by_current_packet": [
+        "bounded_speed_normal_reconstruction_candidate"
+      ],
+      "missing_closed_rows": [
+        "action_derived_scale",
+        "action_curl",
+        "speed_factor_storage_exchange",
+        "noether_event_exchange",
+        "tail_refinement_persistence",
+        "bounded_speed_stability",
+        "observer_export_eligibility",
+        "coupled_fixed_point"
+      ],
+      "first_missing_closed_row": "action_derived_scale",
+      "negative_control_status": "same-ledger-id-tuple-without-closed-downstream-rows-not-live-ledger",
+      "certifies_bounded_speed_live_ledger": false,
+      "retention": "not_retained",
+      "retained_branch": false
+    },
+    "action_derived_scale_target": {
+      "schema": "neutral-braid-octahedral-zero-mean-bounded-speed-action-derived-scale-target/v0",
+      "claim_scope": "bounded-speed-action-derived-scale-target-after-normal-candidate",
+      "promotion_status": "priority-only",
+      "status": "target-only",
+      "row": "action_derived_scale",
+      "downstream_row": "action_scale",
+      "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+      "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+      "force_checksum_id": "force-checksum-fixture",
+      "consumer_checksum_id": "consumer-checksum-fixture",
+      "required_identity_tuple": {
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+      },
+      "required_variables": [
+        "gamma_B_nu",
+        "action_functional_A_nu",
+        "scale_parameter",
+        "speed_factor_profile_nu",
+        "force_action_pairing",
+        "scale_margin"
+      ],
+      "required_rows": [
+        "bounded_speed_normal_reconstruction_candidate",
+        "action_measure_row",
+        "scale_derivative_row",
+        "force_action_pairing_row",
+        "normal_speed_pullback_row",
+        "scale_margin_row"
+      ],
+      "current_fixture_supplied_rows": [
+        "bounded_speed_normal_reconstruction_candidate"
+      ],
+      "missing_rows": [
+        "action_measure_row",
+        "scale_derivative_row",
+        "force_action_pairing_row",
+        "normal_speed_pullback_row",
+        "scale_margin_row"
+      ],
+      "first_missing_required_row": "action_measure_row",
+      "negative_control_status": "same-ledger-tuple-without-action-scale-rows-not-action-derived-scale",
+      "rejected_current_fixture": true,
+      "action_measure_row_target": {
+        "schema": "neutral-braid-octahedral-zero-mean-action-measure-row-target/v0",
+        "claim_scope": "bounded-speed-action-measure-row-target-after-normal-candidate",
+        "promotion_status": "priority-only",
+        "status": "target-only",
+        "row": "action_measure_row",
+        "source_action_derived_scale_row": "action_derived_scale",
+        "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+        "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+        "force_checksum_id": "force-checksum-fixture",
+        "consumer_checksum_id": "consumer-checksum-fixture",
+        "required_identity_tuple": {
+          "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+          "force_checksum_id": "force-checksum-fixture",
+          "consumer_checksum_id": "consumer-checksum-fixture",
+          "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+        },
+        "required_variables": [
+          "action_functional_A_nu",
+          "branch_scope",
+          "period_rows",
+          "root_support_event_rows",
+          "normalization_scale_R_star",
+          "finite_chart"
+        ],
+        "required_measure_fields": [
+          "same_ledger_identity_tuple",
+          "branch_scope",
+          "period_rows",
+          "action_functional",
+          "root_support_event_rows"
+        ],
+        "current_fixture_supplied_measure_fields": [
+          "same_ledger_identity_tuple"
+        ],
+        "missing_measure_fields": [
+          "branch_scope",
+          "period_rows",
+          "action_functional",
+          "root_support_event_rows"
+        ],
+        "first_missing_measure_field": "branch_scope",
+        "branch_scope_source_audit": {
+          "schema": "neutral-braid-octahedral-zero-mean-action-measure-branch-scope-source-audit/v0",
+          "claim_scope": "bounded-speed-action-measure-branch-scope-source-audit-after-normal-candidate",
+          "promotion_status": "priority-only",
+          "status": "no-same-ledger-branch-scope-source",
+          "audited_measure_field": "branch_scope",
+          "source_action_measure_row": "action_measure_row",
+          "required_identity_tuple": {
+            "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+            "force_checksum_id": "force-checksum-fixture",
+            "consumer_checksum_id": "consumer-checksum-fixture",
+            "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+          },
+          "candidate_count": 8,
+          "accepted_count": 0,
+          "accepted_branch_scope_source": null,
+          "first_failure": "same_ledger_branch_scope_source_missing",
+          "negative_control_status": "branch-scope-artifacts-without-same-ledger-action-measure-row-not-bound",
+          "nearest_candidate_lineage_readout": {
+            "status": "fail-closed-nearest-candidate-lineage",
+            "readiness_status": "fixed-speed-root-ledger-branch-scope-provenance-only",
+            "closest_rejected_branch_scope_source": {
+              "source_path": "scripts/neutral-braid/octahedral-root-ledger.mjs",
+              "artifact_schema": "neutral-braid-octahedral-root-ledger/v1",
+              "artifact_id": "neutral_braid_octahedral_root_ledger.certified.v1",
+              "branch_scope_role": "certified fixed-speed all-pairs root ledger",
+              "first_rejection_code": "root-ledger-branch-scope-lacks-action-measure-row"
+            },
+            "closest_candidate_reason": "certified fixed-speed all-pairs root ledger carries branch_scope and certified root rows, but it is provenance only for the bounded-speed action-measure target",
+            "present_fields": [
+              "branch_scope"
+            ],
+            "missing_same_ledger_fields": [
+              "bounded_speed_ledger_id",
+              "force_checksum_id",
+              "consumer_checksum_id",
+              "source_normal_reconstruction_candidate_id"
+            ],
+            "missing_action_measure_fields": [
+              "same_ledger_identity_tuple",
+              "action_measure_row",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "required_acceptance_bindings": [
+              "same_ledger_identity_tuple",
+              "action_measure_row"
+            ],
+            "smallest_next_evidence_object": "same-ledger-action-measure-row-with-branch-scope"
+          },
+          "candidate_branch_scope_sources": [
+            {
+              "source_path": "scripts/neutral-braid/octahedral-root-ledger.mjs",
+              "artifact_schema": "neutral-braid-octahedral-root-ledger/v1",
+              "artifact_id": "neutral_braid_octahedral_root_ledger.certified.v1",
+              "branch_scope_role": "certified fixed-speed all-pairs root ledger",
+              "first_rejection_code": "root-ledger-branch-scope-lacks-action-measure-row",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-fixed-speed-witness.mjs",
+              "artifact_schema": "neutral-braid-octahedral-fixed-speed-witness/v1",
+              "artifact_id": "neutral_braid_octahedral_fixed_speed_witness.deterministic_nodes.v1",
+              "branch_scope_role": "fixed-speed tangential residual no-go witness",
+              "first_rejection_code": "fixed-speed-witness-branch-scope-lacks-live-ledger-tuple",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-force-residual.mjs",
+              "artifact_schema": "neutral-braid-octahedral-force-residual/v1",
+              "artifact_id": "neutral_braid_octahedral_force_residual.sampled_diagnostic.v1",
+              "branch_scope_role": "sampled fixed-speed force residual diagnostic",
+              "first_rejection_code": "force-residual-branch-scope-is-diagnostic-not-action-measure",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-root-force-closure-witness.mjs",
+              "artifact_schema": "neutral-braid-octahedral-root-force-closure-witness/v1",
+              "artifact_id": "neutral_braid_octahedral_root_force_closure_witness.narrow_no_go.v1",
+              "branch_scope_role": "resolved-root force-closure overread rejection",
+              "first_rejection_code": "root-force-no-go-branch-scope-not-same-ledger-action-measure",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-inventory-closure-witness.mjs",
+              "artifact_schema": "neutral-braid-octahedral-inventory-closure-witness/v1",
+              "artifact_id": "neutral_braid_octahedral_inventory_closure_witness.narrow_no_go.v1",
+              "branch_scope_role": "inventory-bias closure overread rejection",
+              "first_rejection_code": "inventory-witness-branch-scope-not-action-functional-row",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-phase-offset-scan.mjs",
+              "artifact_schema": "neutral-braid-octahedral-phase-offset-scan/v1",
+              "artifact_id": "neutral_braid_octahedral_phase_offset_scan.sampled_diagnostic.v1",
+              "branch_scope_role": "phase-offset sampled diagnostic",
+              "first_rejection_code": "phase-offset-branch-scope-not-bounded-speed-live-ledger",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/octahedral-polarity-phase-retention-witness.mjs",
+              "artifact_schema": "neutral-braid-octahedral-polarity-phase-retention-witness/v1",
+              "artifact_id": "neutral_braid_octahedral_polarity_phase_retention_witness.best_row_consumption.v1",
+              "branch_scope_role": "polarity-phase retention overread rejection",
+              "first_rejection_code": "polarity-phase-branch-scope-retention-rejected",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            },
+            {
+              "source_path": "scripts/neutral-braid/finite-mode-artifact.mjs",
+              "artifact_schema": "neutral-braid-finite-mode-artifact/v1",
+              "artifact_id": "neutral_braid_finite_mode_search.audit_shape.v1",
+              "branch_scope_role": "finite-mode open search contract",
+              "first_rejection_code": "finite-mode-branch-scope-open-placeholders-not-action-measure",
+              "branch_scope_status": "present",
+              "observed_identity_fields": {
+                "bounded_speed_ledger_id": null,
+                "force_checksum_id": null,
+                "consumer_checksum_id": null,
+                "source_normal_reconstruction_candidate_id": null
+              },
+              "same_ledger_tuple_match": false,
+              "action_measure_row_status": "absent",
+              "accepted_for_action_measure_branch_scope": false,
+              "observed_fields": [
+                "branch_scope"
+              ],
+              "missing_required_identity_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_action_measure_fields": [
+                "same_ledger_identity_tuple",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows"
+              ],
+              "rejection_summary": "branch_scope provenance is present, but no same-ledger identity tuple or action_measure_row binds it to the bounded-speed normal-candidate ledger",
+              "action_measure_field_statuses": [
+                {
+                  "field": "branch_scope",
+                  "candidate_source_status": "present",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_off_ledger",
+                  "blocker": "same_ledger_branch_scope_source_missing"
+                },
+                {
+                  "field": "period_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "conditional_blocked_until_branch_scope_binds",
+                  "blocker": "same_ledger_branch_scope_source_missing",
+                  "conditional_next_failure": "same_ledger_period_rows_source_missing"
+                },
+                {
+                  "field": "action_functional",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_action_functional_source_missing"
+                },
+                {
+                  "field": "root_support_event_rows",
+                  "candidate_source_status": "absent",
+                  "normal_candidate_ledger_status": "missing_same_ledger_binding",
+                  "acceptance_status": "rejected_missing_same_ledger_binding",
+                  "blocker": "same_ledger_root_support_event_rows_source_missing"
+                }
+              ]
+            }
+          ],
+          "search_basis": {
+            "searched_roots": [
+              "scripts/neutral-braid",
+              "reference/priorities/braid-retained-branch-closure"
+            ],
+            "searched_terms": [
+              "branch_scope",
+              "action_measure_row",
+              "same_ledger_action_measure_row_with_branch_scope",
+              "accepted_branch_scope_source",
+              "period_rows"
+            ],
+            "result": "no-accepted-same-ledger-action-measure-branch-scope-source"
+          },
+          "acceptance_criteria": {
+            "required_identity_tuple": {
+              "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+              "force_checksum_id": "force-checksum-fixture",
+              "consumer_checksum_id": "consumer-checksum-fixture",
+              "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+            },
+            "required_same_ledger_fields": [
+              "bounded_speed_ledger_id",
+              "force_checksum_id",
+              "consumer_checksum_id",
+              "source_normal_reconstruction_candidate_id"
+            ],
+            "required_action_measure_fields": [
+              "same_ledger_identity_tuple",
+              "branch_scope",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "required_acceptance_bindings": [
+              "same_ledger_identity_tuple",
+              "action_measure_row"
+            ]
+          }
+        },
+        "same_ledger_action_measure_row_with_branch_scope_attempt": {
+          "schema": "neutral-braid-octahedral-zero-mean-same-ledger-action-measure-row-with-branch-scope-attempt/v0",
+          "claim_scope": "bounded-speed-same-ledger-action-measure-row-with-branch-scope-attempt-after-normal-candidate",
+          "promotion_status": "priority-only",
+          "status": "fail-closed-target",
+          "attempted_evidence_object": "same-ledger-action-measure-row-with-branch-scope",
+          "source_action_measure_row_target": "action_measure_row",
+          "required_identity_tuple": {
+            "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+            "force_checksum_id": "force-checksum-fixture",
+            "consumer_checksum_id": "consumer-checksum-fixture",
+            "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+          },
+          "current_fixture_supplied_measure_fields": [
+            "same_ledger_identity_tuple"
+          ],
+          "attempted_measure_fields": [
+            "same_ledger_identity_tuple",
+            "branch_scope"
+          ],
+          "missing_measure_fields_if_branch_scope_bound": [
+            "period_rows",
+            "action_functional",
+            "root_support_event_rows"
+          ],
+          "branch_scope_binding_status": "not_accepted",
+          "branch_scope_source_audit_first_failure": "same_ledger_branch_scope_source_missing",
+          "first_missing_subfield_after_branch_scope": "period_rows",
+          "constructed_action_measure_row": null,
+          "fail_closed_action_measure_row_target": {
+            "row": "action_measure_row",
+            "status": "absent-fail-closed",
+            "candidate_row_status": "not_constructed",
+            "accepted_row_status": "absent",
+            "required_row_fields": [
+              "bounded_speed_ledger_id",
+              "force_checksum_id",
+              "consumer_checksum_id",
+              "source_normal_reconstruction_candidate_id",
+              "branch_scope",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "supplied_fields_on_normal_candidate_ledger": [
+              "bounded_speed_ledger_id",
+              "force_checksum_id",
+              "consumer_checksum_id",
+              "source_normal_reconstruction_candidate_id"
+            ],
+            "missing_fields_on_normal_candidate_ledger": [
+              "branch_scope",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "missing_same_ledger_bindings": [
+              {
+                "field": "branch_scope",
+                "required_binding": "same-normal-candidate-ledger-branch-scope-source",
+                "blocker": "same_ledger_branch_scope_source_missing"
+              },
+              {
+                "field": "period_rows",
+                "required_binding": "same-normal-candidate-ledger-period-rows",
+                "blocker": "same_ledger_period_rows_source_missing"
+              },
+              {
+                "field": "action_functional",
+                "required_binding": "same-normal-candidate-ledger-action-functional",
+                "blocker": "same_ledger_action_functional_source_missing"
+              },
+              {
+                "field": "root_support_event_rows",
+                "required_binding": "same-normal-candidate-ledger-root-support-event-rows",
+                "blocker": "same_ledger_root_support_event_rows_source_missing"
+              }
+            ],
+            "first_blocker": "same_ledger_branch_scope_source_missing",
+            "certifies_action_measure_row": false,
+            "retention": "not_retained",
+            "retained_branch": false,
+            "field_statuses_on_normal_candidate_ledger": [
+              {
+                "field": "bounded_speed_ledger_id",
+                "status": "supplied_on_normal_candidate_ledger",
+                "blocker": null
+              },
+              {
+                "field": "force_checksum_id",
+                "status": "supplied_on_normal_candidate_ledger",
+                "blocker": null
+              },
+              {
+                "field": "consumer_checksum_id",
+                "status": "supplied_on_normal_candidate_ledger",
+                "blocker": null
+              },
+              {
+                "field": "source_normal_reconstruction_candidate_id",
+                "status": "supplied_on_normal_candidate_ledger",
+                "blocker": null
+              },
+              {
+                "field": "branch_scope",
+                "status": "missing_same_ledger_binding",
+                "blocker": "same_ledger_branch_scope_source_missing"
+              },
+              {
+                "field": "period_rows",
+                "status": "missing_same_ledger_binding",
+                "blocker": "same_ledger_period_rows_source_missing"
+              },
+              {
+                "field": "action_functional",
+                "status": "missing_same_ledger_binding",
+                "blocker": "same_ledger_action_functional_source_missing"
+              },
+              {
+                "field": "root_support_event_rows",
+                "status": "missing_same_ledger_binding",
+                "blocker": "same_ledger_root_support_event_rows_source_missing"
+              }
+            ]
+          },
+          "period_rows_target": {
+            "field": "period_rows",
+            "status": "target-only-blocked-by-branch-scope",
+            "source_action_measure_row": "action_measure_row",
+            "blocking_failure": "same_ledger_branch_scope_source_missing",
+            "first_failure": "same_ledger_period_rows_source_missing",
+            "accepted_period_rows_source": null,
+            "candidate_count": 0,
+            "negative_control_status": "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row",
+            "smallest_next_evidence_object": "same-ledger-action-measure-row-with-branch-scope-and-period-rows"
+          },
+          "certifies_action_measure_row": false,
+          "certifies_action_derived_scale": false,
+          "certifies_bounded_speed_live_ledger": false,
+          "retention": "not_retained",
+          "retained_branch": false
+        },
+        "negative_control_status": "same-ledger-tuple-without-action-functional-not-action-measure-row",
+        "rejected_current_fixture": true,
+        "certifies_action_measure_row": false,
+        "certifies_action_derived_scale": false,
+        "certifies_bounded_speed_live_ledger": false,
+        "certifies_action_stability": false,
+        "certifies_observer_export": false,
+        "retention": "not_retained",
+        "retained_branch": false
+      },
+      "certifies_action_derived_scale": false,
+      "certifies_bounded_speed_live_ledger": false,
+      "certifies_action_stability": false,
+      "certifies_observer_export": false,
+      "retention": "not_retained",
+      "retained_branch": false
+    },
+    "certifies_bounded_speed_live_ledger": false,
+    "certifies_action_stability": false,
+    "certifies_observer_export": false,
+    "retention": "not_retained",
+    "retained_branch": false
+  },
+  "normal_candidate_status": "bounded-speed-normal-reconstruction-candidate",
+  "live_ledger_status": "bounded-speed-live-ledger-open",
+  "first_failure_row": "bounded-speed-live-ledger-open",
+  "downstream_row_statuses": {
+    "action_scale": "blocked:bounded-speed-live-ledger-open",
+    "action_curl": "blocked:bounded-speed-live-ledger-open",
+    "speed_factor_storage_exchange": "blocked:bounded-speed-live-ledger-open",
+    "noether_event_exchange": "blocked:bounded-speed-live-ledger-open",
+    "tail_refinement_persistence": "blocked:bounded-speed-live-ledger-open",
+    "bounded_speed_stability": "blocked:bounded-speed-live-ledger-open",
+    "observer_export_eligibility": "blocked:bounded-speed-live-ledger-open",
+    "coupled_fixed_point": "blocked:bounded-speed-live-ledger-open"
+  },
+  "certifies_live_derivative_matrix": true,
+  "certifies_correction_direction": true,
+  "certifies_speed_primitive_feasibility": true,
+  "certifies_speed_clock_length": true,
+  "certifies_normal_reconstruction": true,
+  "certifies_bounded_speed_live_ledger": false,
+  "certifies_action_stability": false,
+  "certifies_observer_export": false,
+  "retention": "not_retained",
+  "retained_branch": false
+}

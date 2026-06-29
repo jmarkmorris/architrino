@@ -1,7 +1,7 @@
 # QA: The Path Between
 
 - id: `the-message-that-traveled-spread-09`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-09.png`
 - lesson: A message connects where it began and where it arrives.
 - geometry: A soft source-to-arrival path connects the bell to Electra's ear.
 

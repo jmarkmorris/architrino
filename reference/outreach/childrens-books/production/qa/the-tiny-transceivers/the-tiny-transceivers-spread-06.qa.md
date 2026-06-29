@@ -1,7 +1,7 @@
 # QA: Answer
 
 - id: `the-tiny-transceivers-spread-06`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-06.png`
 - lesson: Reception changes future motion.
 - geometry: A red wake reaches a blue point, and the blue path bends after the arrival.
 

@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `here-there-back-cover`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-cover.png`
 - lesson: Cover key art introduces Electra, Poz, the red ball, the blue ball, and the here-there-back loop.
 - geometry: Use a simple visible path loop with earlier and later ball positions, but keep the children as natural human children rather than polarity symbols.
 

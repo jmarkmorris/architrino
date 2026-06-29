@@ -247,7 +247,8 @@
             "order": {
               "type": "string",
               "enum": ["objects"]
-            }
+            },
+            "allowInnerRings": { "type": "boolean" }
           }
         },
         "source": {

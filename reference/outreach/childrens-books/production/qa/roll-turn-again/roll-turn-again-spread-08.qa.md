@@ -1,7 +1,7 @@
 # QA: Blue Ball
 
 - id: `roll-turn-again-spread-08`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-08.png`
 - lesson: Trying again makes a question.
 - geometry: The blue ball is still at the start of the route, with the old red-ball path only as a faint memory.
 

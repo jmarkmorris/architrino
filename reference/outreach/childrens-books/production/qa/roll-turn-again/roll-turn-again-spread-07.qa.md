@@ -1,7 +1,7 @@
 # QA: Stop
 
 - id: `roll-turn-again-spread-07`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-07.png`
 - lesson: A hand can end the path.
 - geometry: The dotted path ends at Poz's hands as he catches the red ball.
 
