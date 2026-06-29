@@ -102,7 +102,7 @@ The certificate must report the following constants outward, not sampled:
 | $q_{\min},q_{\max}$ | Lower and upper bounds for $q_p$ on the past collar and transported $Q_p$ on $I_c$. | Sample convention only: $0.2\le q_p,Q_p\le3.0$. |
 | $\kappa_\alpha$ | Seed-root clearance from $\Delta_{\alpha,0}(\theta)$ to the endpoints of $W_\alpha$. | Not outward on the endpoint-slope-cancelled finite collar. |
 | $\nu_\alpha$ | Source-speed Jacobian floor on $I_c\times W_\alpha$. | Fixed-history sidecar has a floor; nonconstant finite-collar class needs its own outward row. |
-| $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ | Receiver-crossing bounds $c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i$ for action/wake-history pullback on $I_c\times W_\alpha$. | Newly required for action-ready rows; absent for current A1 outward constants. |
+| $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ | Receiver-normal bounds $c_f-\hat{\mathbf r}_\alpha\cdot\mathbf v_i$ for the action/wake-history receiver-normal factor on $I_c\times W_\alpha$. | Newly required for action-ready rows; absent for current A1 outward constants. |
 | $g_P,g_S$ | Partner and self inactive-complement gaps on the finite collar. | Fixed-history sidecar has gaps; nonconstant class needs its own outward row. |
 | $H_b$ | Past-profile perturbation envelope on $[-\Delta_R,0]$. | Algebraic target from $N$ and $b$, not yet outward-certified with positivity. |
 | $E_Q^+(b)$ | Transported future-profile envelope on $I_c$. | Conditional on branch-sum and transport bounds. |
@@ -117,7 +117,7 @@ All constants must be emitted for the same radius $b$, the same collar boxes
 $\Theta_i\subset I_c$, the same active windows $W_\alpha$, and the same inactive
 complement cover. A row computed on different boxes is diagnostic-only. If the
 certificate is consumed as an action or wake-history row, the same-box family
-must also bind the receiver-crossing factor
+must also bind the receiver-normal factor
 $$
 \frac{ds_\alpha}{d\theta}
 \quad\text{or equivalently}\quad

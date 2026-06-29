@@ -1450,6 +1450,7 @@ function isEvidenceSourcePath(filePath) {
     lowerBasename.includes("toy") ||
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("negative-control")
   );
 }

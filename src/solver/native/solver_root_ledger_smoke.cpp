@@ -80,7 +80,7 @@ ArchitrinoSolverCausalRootRequestF64 make_c_request(double hitTime = 10.0) {
 }  // namespace
 
 int main() {
-  static_assert(sizeof(architrino::solver::RootLedgerDetailRowF64) == 192);
+  static_assert(sizeof(architrino::solver::RootLedgerDetailRowF64) == 248);
 
   const architrino::solver::CausalRootRequest request = make_request();
   const architrino::solver::CausalRootResult roots =
@@ -139,6 +139,11 @@ int main() {
       nearly_equal(ledger[0].hitTime, 10.0) &&
       nearly_equal(ledger[0].delay, 10.0) &&
       nearly_equal(ledger[0].jacobian, 1.0) &&
+      nearly_equal(ledger[0].sourceNormalDenominator, 1.0) &&
+      nearly_equal(ledger[0].receiverNormalNumerator, 1.0) &&
+      nearly_equal(ledger[0].receiverNormalFactor, 1.0) &&
+      ledger[0].receiverNormalStatusCode ==
+          static_cast<std::uint32_t>(architrino::solver::StatusCode::Ok) &&
       has_entry_kind(ledger, architrino::solver::RootLedgerEntryKind::TailBoundary) &&
       noRoots.validation.ok &&
       noRootLedger.size() == 2 &&
@@ -157,13 +162,16 @@ int main() {
           static_cast<std::uint32_t>(architrino::solver::StatusCode::InsufficientHistoryDepth) &&
       (failureLedger[0].stateFlags & architrino::solver::kRootLedgerFirstFailureFlag) != 0 &&
       has_entry_kind(failureLedger, architrino::solver::RootLedgerEntryKind::TailBoundary) &&
-      abiInfo.root_ledger_detail_row_f64_bytes == 192 &&
+      abiInfo.root_ledger_detail_row_f64_bytes == 248 &&
       abiStatus == 0 &&
       abiRowCount == static_cast<int>(ledger.size()) &&
       abiRows[0].entry_kind ==
           static_cast<std::uint32_t>(architrino::solver::RootLedgerEntryKind::ActiveRoot) &&
       abiRows[0].root_key != 0 &&
       nearly_equal(abiRows[0].jacobian, 1.0) &&
+      nearly_equal(abiRows[0].receiver_normal_factor, 1.0) &&
+      abiRows[0].receiver_normal_status_code ==
+          static_cast<std::uint32_t>(architrino::solver::StatusCode::Ok) &&
       abiFailureStatus == 0 &&
       abiFailureRowCount == static_cast<int>(failureLedger.size()) &&
       abiFailureRows[0].entry_kind ==

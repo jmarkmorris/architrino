@@ -22,6 +22,10 @@ function rowById(artifact, rowId) {
   return artifact.event_rows.find((row) => row.row_id === rowId);
 }
 
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 test("event wake-history pullback diagnostic emits a priority-only closed boundary fixture", () => {
   const artifact = buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput());
   const errors = validateEventWakeHistoryPullbackArtifact(artifact);
@@ -79,6 +83,21 @@ test("event wake-history accepted metadata without derivation proof object stays
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+});
+
+test("event wake-history validator rejects accepted summary drift", () => {
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput());
+  const tampered = deepClone(artifact);
+  tampered.accepted_evidence_summary.accepted_row_count = 4;
+  tampered.accepted_evidence_summary.accepted_for_wake_history_closure = true;
+  tampered.result.accepted_event_evidence_for_closure = true;
+  for (const rowEvidence of tampered.accepted_evidence_summary.row_evidence) {
+    rowEvidence.accepted_for_wake_history_closure = true;
+  }
+
+  const errors = validateEventWakeHistoryPullbackArtifact(tampered);
+  assert.equal(errors.includes("energy_wake accepted flag must match event row"), true);
+  assert.equal(errors.includes("momentum_wake accepted flag must match event row"), true);
 });
 
 test("event wake-history pullback diagnostic fails missing angular momentum rows", () => {

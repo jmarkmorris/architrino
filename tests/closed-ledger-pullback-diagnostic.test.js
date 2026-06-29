@@ -93,6 +93,7 @@ test("closed-ledger pullback diagnostic fails closed on default active-root rout
   );
   assert.equal(rowById(artifact, "partial_S_B_eta").status, "fail");
   assert.equal(rowById(artifact, "C_AAA").status, "fail");
+  assert.equal(rowById(artifact, "C_AAA").cross_sector_acceptance_status, "blocked_by_boundary_rows");
   assert.equal(rowById(artifact, "C_AAA").accepted_evidence_ready, false);
   assert.deepEqual(
     rowById(artifact, "C_AAA").accepted_evidence_statuses.map((entry) => [
@@ -108,6 +109,7 @@ test("closed-ledger pullback diagnostic fails closed on default active-root rout
   );
   assert.equal(artifact.result.first_failed_row, "partial_R_act");
   assert.equal(artifact.result.failure_code, "residual.photon_constituent_unrouted");
+  assert.equal(artifact.result.branch_retention_status, "not_retained; boundary_rows_failed");
   assert.deepEqual(
     artifact.blocker_order.map((entry) => [entry.row_id, entry.status]),
     [
@@ -172,12 +174,17 @@ test("closed-ledger pullback diagnostic can validate a fully populated priority-
     4
   );
   assert.equal(rowById(artifact, "C_AAA").status, "pass");
+  assert.equal(
+    rowById(artifact, "C_AAA").cross_sector_acceptance_status,
+    "row_logic_passed_priority_only; accepted_evidence_missing"
+  );
   assert.equal(rowById(artifact, "C_AAA").accepted_evidence_ready, false);
   assert.deepEqual(
     rowById(artifact, "C_AAA").accepted_evidence_blockers.map((entry) => entry.row_id),
     ["partial_R_act", "partial_L_EpJ", "partial_S_B_eta", "partial_M_sea"]
   );
   assert.equal(artifact.result.first_failure_status, "closed_ledger_pullback_compatible_priority_only; branch_still_not_retained");
+  assert.equal(artifact.result.branch_retention_status, "not_retained; accepted_evidence_missing");
 });
 
 test("closed-ledger pullback diagnostic exposes action endpoint and multiplier blockers after active-root routes are populated", () => {
@@ -322,6 +329,66 @@ test("closed-ledger pullback diagnostic rejects swapped route sample rows outsid
   );
 });
 
+test("closed-ledger pullback diagnostic rejects forged action accepted summary", () => {
+  const baselineInput = buildDefaultClosedLedgerPullbackInput({
+    photonRoute: syntheticPhotonRoute(),
+    middleHingeRoute: thresholdMiddleHingeRoute(),
+    actionPullback: buildActionBoundaryPullbackDiagnostic(buildSyntheticActionBoundaryPullbackInput()),
+    eventPullback: buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput()),
+  });
+  const forgedAction = deepClone(baselineInput.action_pullback);
+  forgedAction.accepted_evidence_summary.accepted_row_count = 4;
+  forgedAction.accepted_evidence_summary.accepted_for_action_closure = true;
+  forgedAction.result.accepted_action_evidence_for_closure = true;
+  for (const rowEvidence of forgedAction.accepted_evidence_summary.row_evidence) {
+    rowEvidence.accepted_for_action_closure = true;
+  }
+  const artifact = buildClosedLedgerPullbackDiagnostic({
+    ...baselineInput,
+    action_pullback: forgedAction,
+  });
+  const actionRow = rowById(artifact, "partial_S_B_eta");
+
+  assert.deepEqual(validateClosedLedgerPullbackArtifact(artifact), []);
+  assert.equal(actionRow.status, "fail");
+  assert.equal(actionRow.accepted_action_evidence_status, "action_evidence_summary_invalid");
+  assert.equal(
+    actionRow.validation_errors.includes("action_endpoint_row accepted flag must match action row"),
+    true
+  );
+  assert.equal(rowById(artifact, "C_AAA").status, "fail");
+});
+
+test("closed-ledger pullback diagnostic rejects forged event accepted summary", () => {
+  const baselineInput = buildDefaultClosedLedgerPullbackInput({
+    photonRoute: syntheticPhotonRoute(),
+    middleHingeRoute: thresholdMiddleHingeRoute(),
+    actionPullback: buildActionBoundaryPullbackDiagnostic(buildSyntheticActionBoundaryPullbackInput()),
+    eventPullback: buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput()),
+  });
+  const forgedEvent = deepClone(baselineInput.event_pullback);
+  forgedEvent.accepted_evidence_summary.accepted_row_count = 4;
+  forgedEvent.accepted_evidence_summary.accepted_for_wake_history_closure = true;
+  forgedEvent.result.accepted_event_evidence_for_closure = true;
+  for (const rowEvidence of forgedEvent.accepted_evidence_summary.row_evidence) {
+    rowEvidence.accepted_for_wake_history_closure = true;
+  }
+  const artifact = buildClosedLedgerPullbackDiagnostic({
+    ...baselineInput,
+    event_pullback: forgedEvent,
+  });
+  const eventRow = rowById(artifact, "partial_L_EpJ");
+
+  assert.deepEqual(validateClosedLedgerPullbackArtifact(artifact), []);
+  assert.equal(eventRow.status, "fail");
+  assert.equal(eventRow.accepted_event_evidence_status, "event_evidence_summary_invalid");
+  assert.equal(
+    eventRow.validation_errors.includes("energy_wake accepted flag must match event row"),
+    true
+  );
+  assert.equal(rowById(artifact, "C_AAA").status, "fail");
+});
+
 test("closed-ledger pullback diagnostic CLI writes, validates, and reports schema", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "closed-ledger-pullback-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -370,4 +437,6 @@ test("closed-ledger pullback diagnostic CLI writes, validates, and reports schem
   assert.equal(schema.noether_accepted_evidence_summary, true);
   assert.equal(schema.event_accepted_evidence_summary, true);
   assert.equal(schema.action_accepted_evidence_summary, true);
+  assert.equal(schema.cross_sector_acceptance_status, true);
+  assert.equal(schema.branch_retention_status, true);
 });

@@ -297,8 +297,13 @@ function createDelayedHitRow({
   const displacement = vectorSubtract(receiverPosition, emissionPosition);
   const distance = vectorNorm(displacement);
   const unitDirection = unitVector(displacement, distance);
-  const radialReceiverSpeed = vectorDot(intersection.segment.velocity, unitDirection);
-  const jacobian = 1 - radialReceiverSpeed / emission.fieldSpeed;
+  const receiverNormalSpeed = vectorDot(intersection.segment.velocity, unitDirection);
+  const sourceNormalSpeed = 0;
+  const sourceNormalDenominator = emission.fieldSpeed - sourceNormalSpeed;
+  const receiverNormalNumerator = emission.fieldSpeed - receiverNormalSpeed;
+  const receiverNormalCrossingFactor = receiverNormalNumerator / emission.fieldSpeed;
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const jacobian = receiverNormalCrossingFactor;
   const strength = Math.abs(jacobian) > SMALL_JACOBIAN ? 1 / Math.abs(jacobian) : 0;
   const displayStrength = distance > 0 ? 1 / (distance * distance) : 0;
   const emitterId = emission.emitterId;
@@ -318,6 +323,14 @@ function createDelayedHitRow({
     distance,
     jacobian,
     strength,
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor: Math.abs(receiverNormalFactor),
+    receiverNormalStatusCode: Number.isFinite(receiverNormalFactor) ? 0 : 25,
     emissionPoint: emissionPosition,
     receiverPoint: receiverPosition,
     unitDirection,
@@ -334,7 +347,7 @@ function createDelayedHitRow({
       residual: intersection.residual,
       iterationCount: intersection.iterations,
       fieldSpeed: emission.fieldSpeed,
-      radialReceiverSpeed,
+      receiverNormalSpeed,
       displayStrength,
       ...(emission.metadata && typeof emission.metadata === "object"
         ? { emissionMetadata: { ...emission.metadata } }

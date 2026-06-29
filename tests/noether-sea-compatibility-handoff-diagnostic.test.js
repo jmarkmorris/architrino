@@ -22,6 +22,10 @@ function rowById(artifact, rowId) {
   return artifact.boundary_rows.find((row) => row.row_id === rowId);
 }
 
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 test("Noether sea handoff diagnostic emits all priority-only boundary rows", () => {
   const input = buildDefaultNoetherSeaCompatibilityHandoffInput();
   const artifact = buildNoetherSeaCompatibilityHandoffDiagnostic(input);
@@ -89,6 +93,30 @@ test("Noether sea accepted medium-response metadata without derivation proof obj
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_response_count, 0);
   assert.equal(artifact.result.accepted_medium_response_evidence_for_closure, false);
+});
+
+test("Noether sea validator rejects accepted summary drift", () => {
+  const artifact = buildNoetherSeaCompatibilityHandoffDiagnostic(
+    buildDefaultNoetherSeaCompatibilityHandoffInput()
+  );
+  const tampered = deepClone(artifact);
+  tampered.accepted_evidence_summary.accepted_response_count = 1;
+  tampered.accepted_evidence_summary.accepted_for_medium_response_closure = true;
+  tampered.result.accepted_medium_response_evidence_for_closure = true;
+
+  const errors = validateNoetherSeaCompatibilityHandoffArtifact(tampered);
+  assert.equal(
+    errors.includes(
+      "accepted_evidence_summary.accepted_response_count must match response evidence"
+    ),
+    true
+  );
+  assert.equal(
+    errors.includes(
+      "accepted_evidence_summary.accepted_for_medium_response_closure must match accepted response count"
+    ),
+    true
+  );
 });
 
 test("Noether sea handoff diagnostic CLI writes, validates, and reports schema", () => {

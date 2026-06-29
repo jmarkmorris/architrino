@@ -828,7 +828,15 @@ backed by accepted evidence rather than same-record compatibility alone. The
 cross-sector $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ row now reports
 `accepted_evidence_ready` plus per-sector accepted-evidence blockers, so a
 fully populated synthetic fixture can pass row logic while still showing that
-accepted cross-sector closure has not been reached.
+accepted cross-sector closure has not been reached. It also reports
+`cross_sector_acceptance_status`, and the compositor result reports
+`branch_retention_status`, so priority-only row-logic compatibility remains
+explicitly separate from accepted evidence and never implies branch retention.
+The sector validators now reject accepted-summary drift, and the compositor
+runs the wake-history and action validators before consuming imported accepted
+summaries; forged action or event accepted summaries therefore report
+`action_evidence_summary_invalid` or `event_evidence_summary_invalid` and block
+the cross-sector row.
 
 ## What This Could Advance
 

@@ -30,9 +30,9 @@ static_assert(sizeof(ArchitrinoSolverLinearPathSegmentF64) == 72);
 static_assert(sizeof(ArchitrinoSolverCircularPathSegmentF64) == 120);
 static_assert(sizeof(ArchitrinoSolverCausalRootRequestF64) == 176);
 static_assert(sizeof(ArchitrinoSolverCircularSourceCausalRootRequestF64) == 224);
-static_assert(sizeof(ArchitrinoSolverCausalRootRowF64) == 112);
-static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 192);
-static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 128);
+static_assert(sizeof(ArchitrinoSolverCausalRootRowF64) == 176);
+static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 248);
+static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 192);
 static_assert(sizeof(ArchitrinoSolverCausalRootBatchItemRowF64) == 24);
 static_assert(sizeof(ArchitrinoSolverPrecisionDiagnosticRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPrecisionSolveOptions) == 16);
@@ -96,12 +96,18 @@ static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);
 static_assert(offsetof(ArchitrinoSolverCircularSourceCausalRootRequestF64, hit_time) == 192);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_z) == 104);
+static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, source_normal_speed) == 112);
+static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_normal_status_code) == 168);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, interval_start) == 32);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, source_x) == 112);
-static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, entry_kind) == 160);
-static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, state_flags) == 184);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, source_normal_speed) == 160);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, entry_kind) == 216);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, state_flags) == 240);
+static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, receiver_normal_status_code) == 244);
 static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, emission_time) == 16);
 static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, unit_z) == 120);
+static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, source_normal_speed) == 128);
+static_assert(offsetof(ArchitrinoSolverDelayedHitRowF64, receiver_normal_status_code) == 184);
 static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_offset) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootBatchItemRowF64, root_count) == 12);
 static_assert(offsetof(ArchitrinoSolverPrecisionDiagnosticRowF64, time_orders) == 16);
@@ -348,6 +354,15 @@ ArchitrinoSolverCausalRootRowF64 to_row(const architrino::solver::CausalRoot& ro
       root.receiverPoint.x,
       root.receiverPoint.y,
       root.receiverPoint.z,
+      root.sourceNormalSpeed,
+      root.receiverNormalSpeed,
+      root.sourceNormalDenominator,
+      root.receiverNormalNumerator,
+      root.receiverNormalCrossingFactor,
+      root.receiverNormalFactor,
+      root.unsignedReceiverNormalFactor,
+      static_cast<int>(root.receiverNormalStatusCode),
+      0,
   };
 }
 
@@ -374,6 +389,13 @@ ArchitrinoSolverRootLedgerDetailRowF64 to_root_ledger_detail_row(
       row.receiverX,
       row.receiverY,
       row.receiverZ,
+      row.sourceNormalSpeed,
+      row.receiverNormalSpeed,
+      row.sourceNormalDenominator,
+      row.receiverNormalNumerator,
+      row.receiverNormalCrossingFactor,
+      row.receiverNormalFactor,
+      row.unsignedReceiverNormalFactor,
       row.entryKind,
       row.rootKind,
       row.statusCode,
@@ -381,7 +403,7 @@ ArchitrinoSolverRootLedgerDetailRowF64 to_root_ledger_detail_row(
       row.sequenceIndex,
       row.iterationCount,
       row.stateFlags,
-      row.reserved0,
+      row.receiverNormalStatusCode,
   };
 }
 
@@ -398,12 +420,20 @@ architrino::solver::CausalRoot to_root(const ArchitrinoSolverCausalRootRowF64& r
       row.residual,
       row.jacobian,
       row.branch_weight,
+      row.source_normal_speed,
+      row.receiver_normal_speed,
+      row.source_normal_denominator,
+      row.receiver_normal_numerator,
+      row.receiver_normal_crossing_factor,
+      row.receiver_normal_factor,
+      row.unsigned_receiver_normal_factor,
       0.0,
       0.0,
       0,
       architrino::solver::Vector3{row.source_x, row.source_y, row.source_z},
       architrino::solver::Vector3{row.receiver_x, row.receiver_y, row.receiver_z},
       static_cast<architrino::solver::StatusCode>(row.status_code),
+      static_cast<architrino::solver::StatusCode>(row.receiver_normal_status_code),
   };
 }
 
@@ -428,6 +458,15 @@ ArchitrinoSolverDelayedHitRowF64 to_row(const architrino::solver::DelayedHitEven
       hit.unitDirection.x,
       hit.unitDirection.y,
       hit.unitDirection.z,
+      hit.sourceNormalSpeed,
+      hit.receiverNormalSpeed,
+      hit.sourceNormalDenominator,
+      hit.receiverNormalNumerator,
+      hit.receiverNormalCrossingFactor,
+      hit.receiverNormalFactor,
+      hit.unsignedReceiverNormalFactor,
+      static_cast<int>(hit.receiverNormalStatusCode),
+      0,
   };
 }
 
@@ -458,6 +497,15 @@ ArchitrinoSolverDelayedHitRowF64 to_delayed_hit_row_from_root(
       unitDirection.x,
       unitDirection.y,
       unitDirection.z,
+      root.sourceNormalSpeed,
+      root.receiverNormalSpeed,
+      root.sourceNormalDenominator,
+      root.receiverNormalNumerator,
+      root.receiverNormalCrossingFactor,
+      root.receiverNormalFactor,
+      root.unsignedReceiverNormalFactor,
+      static_cast<int>(root.receiverNormalStatusCode),
+      0,
   };
 }
 
@@ -2428,7 +2476,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      13,
+      14,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),

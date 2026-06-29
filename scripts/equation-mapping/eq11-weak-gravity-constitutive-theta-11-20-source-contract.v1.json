@@ -1,0 +1,61 @@
+{
+  "schema": "aaa-equation-map-eq11-weak-gravity-constitutive-source-contract/v1",
+  "claimLevel": "score-neutral EQ-11 theta_11_20 source-contract boundary; contract metadata only, not retained evidence",
+  "row": "EQ-11",
+  "sourceRole": "theta_11_20_source_contract",
+  "evidenceBoundary": {
+    "ordinaryFirstBlocker": "missing_accepted_theta_11_20",
+    "boundaryExercisedBy": "scripts/equation-mapping/eq11-weak-gravity-constitutive-theta-11-20-source-contract-negative-control.v1.json",
+    "expectedStatus": "blocked_missing_rows",
+    "expectedNextBlocker": "missing_accepted_theta_11_20",
+    "scoreDecision": "no_score_increase",
+    "acceptedEvidenceObjectLanded": false
+  },
+  "sourceIdentity": {
+    "carrierId": "theta_11_20_source_contract_0001",
+    "windowId": "weak_window_theta_11_20_source_contract_0001",
+    "noetherSeaRecordId": "theta_sea_theta_11_20_source_contract_0001",
+    "sourceLoadingRecordId": "theta_src_theta_11_20_source_contract_0001"
+  },
+  "requiredRows": [
+    "theta_11_20",
+    "theta_sea",
+    "theta_src",
+    "constitutive_response",
+    "source_branch_ledger",
+    "wake_ledger",
+    "mass_loading_row",
+    "metric_projection",
+    "effective_coupling_row",
+    "poisson_handoff_row",
+    "sea_stress_pressure_source_row",
+    "curvature_readout_row",
+    "stress_energy_readout_row",
+    "effective_coupling_continuity_row",
+    "ppn_metric_handoff",
+    "source_provenance",
+    "no_hidden_retune_witness"
+  ],
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "Poisson weak-gravity benchmark",
+      "aaaGeometricReadout": "theta_11_20 carrier with one Noether sea and source-loading record",
+      "requiredCarrierOrRow": "theta_11_20",
+      "sameRecordBinding": "same carrierId, windowId, noetherSeaRecordId, and sourceLoadingRecordId",
+      "failClosedNegativeControl": "source_contract_path or accepted_without_evidence_source",
+      "smallestAcceptedEvidenceObject": "durable non-contract theta_11_20 source with accepted constitutive and source-loading rows"
+    },
+    {
+      "standardComparisonTerm": "Effective curvature and stress-energy readout",
+      "aaaGeometricReadout": "metric, curvature, stress-energy, PPN, and coupling rows read from one constitutive response",
+      "requiredCarrierOrRow": "curvature_readout_row, stress_energy_readout_row, ppn_metric_handoff, effective_coupling_continuity_row",
+      "sameRecordBinding": "same carrierId, constitutive response, and source provenance across every weak-gravity row",
+      "failClosedNegativeControl": "split_effective_coupling, poisson_only_scalar_half_test, hidden_gravity_retune",
+      "smallestAcceptedEvidenceObject": "accepted same-window weak-gravity constitutive packet with no-hidden-retune witness"
+    }
+  ],
+  "failClosedNegativeControls": [
+    "scripts/equation-mapping/eq11-weak-gravity-constitutive-coordination-source-negative-control.v1.json",
+    "scripts/equation-mapping/eq11-weak-gravity-constitutive-theta-11-20-source-contract-negative-control.v1.json"
+  ]
+}

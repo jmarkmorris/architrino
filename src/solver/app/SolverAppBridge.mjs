@@ -96,9 +96,9 @@ const BINARY_LAYOUT_ROW_SIZE_BYTES = new Map([
   ["assembly_hierarchy.v1", 56],
   ["assembly_events.v1", 88],
   ["path_chunk.v1", 104],
-  ["root_ledger.v1", 112],
-  ["root_ledger_detail.v1", 192],
-  ["delayed_hit_events.v1", 128],
+  ["root_ledger.v1", 176],
+  ["root_ledger_detail.v1", 248],
+  ["delayed_hit_events.v1", 192],
   ["field_shell_events.v1", 160],
   ["phase_at_hit.v1", 104],
   ["spacetime_index.v1", 128],
@@ -441,6 +441,7 @@ const STATUS_CODE_BY_ID = [
   "validation_replay_mismatch",
   "app_contract_error",
   "internal_solver_error",
+  "receiver_normal_degenerate",
 ];
 const STATUS_SEVERITY_BY_ID = ["ok", "info", "warning", "halt", "error"];
 const STATUS_TAXONOMY_METADATA = {
@@ -619,6 +620,13 @@ const STATUS_TAXONOMY_METADATA = {
     stageHints: ["solver_core"],
     description: "Solver encountered an internal error outside caller-correctable contract input.",
   },
+  receiver_normal_degenerate: {
+    category: "root-solving",
+    defaultSeverity: "warning",
+    recoverableByDefault: true,
+    stageHints: ["root_solving", "delayed_hits", "receiver_normal"],
+    description: "Receiver-normal crossing geometry is degenerate for this causal root.",
+  },
 };
 const STATUS_TAXONOMY = createStatusTaxonomy();
 const DEFAULT_CAPABILITY_ENVELOPE = {
@@ -637,9 +645,9 @@ const ADMISSION_STRESS_SUMMARY_F64_BYTES = 96;
 const STATUS_ROW_BYTES = 24;
 const ADMISSION_REPORT_F64_BYTES = 112;
 const CAUSAL_ROOT_REQUEST_F64_BYTES = 176;
-const CAUSAL_ROOT_ROW_F64_BYTES = 112;
-const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 192;
-const DELAYED_HIT_ROW_F64_BYTES = 128;
+const CAUSAL_ROOT_ROW_F64_BYTES = 176;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
 const CAUSAL_ROOT_BATCH_ITEM_ROW_F64_BYTES = 24;
 const PRECISION_DIAGNOSTIC_ROW_F64_BYTES = 96;
 const PRECISION_SOLVE_OPTIONS_BYTES = 16;
@@ -9347,8 +9355,8 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
   const sourceVelocity = bridgeVector(branch.sourceVelocity);
   const chargeSign = bridgeFiniteNumber(branch.chargeSign, 0);
   const distance = Math.max(1e-12, bridgeFiniteNumber(branch.distance, 0));
-  const sourceRadialSpeed = bridgeDot(sourceVelocity, direction);
-  const jacobian = 1 - sourceRadialSpeed / signalSpeed;
+  const sourceNormalSpeed = bridgeDot(sourceVelocity, direction);
+  const jacobian = 1 - sourceNormalSpeed / signalSpeed;
   const jacobianAbs = Math.abs(jacobian);
   const jacobianWeight = 1 / Math.max(jacobianFloor, jacobianAbs);
   const electric = bridgeScaleVector(
@@ -9367,7 +9375,7 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
     jacobian,
     jacobianAbs,
     jacobianWeight,
-    sourceRadialSpeed,
+    sourceNormalSpeed,
     sourceSpeedRatio: bridgeMagnitude(sourceVelocity) / signalSpeed,
     receiverAcceleration: electric,
     electric,
@@ -10143,6 +10151,23 @@ function checkRootInvariant(root, index, options, statuses) {
       })
     );
   }
+  if (!closeScaled(root.sourceNormalDenominator, root.jacobian, options.branchWeightTolerance)) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root source normal denominator does not match Jacobian",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            sourceNormalDenominator: root.sourceNormalDenominator,
+            jacobian: root.jacobian,
+          },
+        }
+      )
+    );
+  }
 
   if (Math.abs(root.jacobian) <= options.smallJacobianTolerance) {
     if (root.statusCode !== STATUS_CODE_BY_ID.indexOf("small_jacobian")) {
@@ -10167,6 +10192,48 @@ function checkRootInvariant(root, index, options, statuses) {
           stage,
           recoverable: false,
           details: { expectedBranchWeight, actualBranchWeight: root.branchWeight },
+        }
+      )
+    );
+  }
+  const expectedReceiverNormalFactor =
+    root.receiverNormalNumerator / root.sourceNormalDenominator;
+  if (
+    !Number.isFinite(root.receiverNormalFactor) ||
+    !closeScaled(root.receiverNormalFactor, expectedReceiverNormalFactor, options.branchWeightTolerance)
+  ) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root receiver normal factor does not match numerator over denominator",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            expectedReceiverNormalFactor,
+            actualReceiverNormalFactor: root.receiverNormalFactor,
+          },
+        }
+      )
+    );
+  }
+  if (
+    !Number.isFinite(root.unsignedReceiverNormalFactor) ||
+    !closeScaled(root.unsignedReceiverNormalFactor, Math.abs(root.receiverNormalFactor), options.branchWeightTolerance)
+  ) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "root unsigned receiver normal factor does not match magnitude",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            expectedUnsignedReceiverNormalFactor: Math.abs(root.receiverNormalFactor),
+            actualUnsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
+          },
         }
       )
     );
@@ -10201,6 +10268,23 @@ function checkHitInvariant(hit, index, options, statuses) {
         stage,
         recoverable: false,
       })
+    );
+  }
+  if (!closeScaled(hit.sourceNormalDenominator, hit.jacobian, options.branchWeightTolerance)) {
+    statuses.push(
+      createStatus(
+        "validation_replay_mismatch",
+        "error",
+        "delayed-hit source normal denominator does not match Jacobian",
+        {
+          stage,
+          recoverable: false,
+          details: {
+            sourceNormalDenominator: hit.sourceNormalDenominator,
+            jacobian: hit.jacobian,
+          },
+        }
+      )
     );
   }
 
@@ -10252,6 +10336,48 @@ function checkHitInvariant(hit, index, options, statuses) {
             stage,
             recoverable: false,
             details: { expectedStrength, actualStrength: hit.strength },
+          }
+        )
+      );
+    }
+    const expectedReceiverNormalFactor =
+      hit.receiverNormalNumerator / hit.sourceNormalDenominator;
+    if (
+      !Number.isFinite(hit.receiverNormalFactor) ||
+      !closeScaled(hit.receiverNormalFactor, expectedReceiverNormalFactor, options.branchWeightTolerance)
+    ) {
+      statuses.push(
+        createStatus(
+          "validation_replay_mismatch",
+          "error",
+          "delayed-hit receiver normal factor does not match numerator over denominator",
+          {
+            stage,
+            recoverable: false,
+            details: {
+              expectedReceiverNormalFactor,
+              actualReceiverNormalFactor: hit.receiverNormalFactor,
+            },
+          }
+        )
+      );
+    }
+    if (
+      !Number.isFinite(hit.unsignedReceiverNormalFactor) ||
+      !closeScaled(hit.unsignedReceiverNormalFactor, Math.abs(hit.receiverNormalFactor), options.branchWeightTolerance)
+    ) {
+      statuses.push(
+        createStatus(
+          "validation_replay_mismatch",
+          "error",
+          "delayed-hit unsigned receiver normal factor does not match magnitude",
+          {
+            stage,
+            recoverable: false,
+            details: {
+              expectedUnsignedReceiverNormalFactor: Math.abs(hit.receiverNormalFactor),
+              actualUnsignedReceiverNormalFactor: hit.unsignedReceiverNormalFactor,
+            },
           }
         )
       );
@@ -13076,6 +13202,13 @@ function validateRootLedgerDetailRow(row, label) {
   requireFiniteNumber(row.bracketEnd, `${label}.bracketEnd`);
   validateVector(row.sourcePoint, `${label}.sourcePoint`);
   validateVector(row.receiverPoint, `${label}.receiverPoint`);
+  requireFiniteNumber(row.sourceNormalSpeed, `${label}.sourceNormalSpeed`);
+  requireFiniteNumber(row.receiverNormalSpeed, `${label}.receiverNormalSpeed`);
+  requireFiniteNumber(row.sourceNormalDenominator, `${label}.sourceNormalDenominator`);
+  requireFiniteNumber(row.receiverNormalNumerator, `${label}.receiverNormalNumerator`);
+  requireFiniteNumber(row.receiverNormalCrossingFactor, `${label}.receiverNormalCrossingFactor`);
+  requireFiniteNumber(row.receiverNormalFactor, `${label}.receiverNormalFactor`);
+  requireFiniteNumber(row.unsignedReceiverNormalFactor, `${label}.unsignedReceiverNormalFactor`);
   requireUint32(row.entryKind, `${label}.entryKind`);
   requireUint32(row.rootKind, `${label}.rootKind`);
   requireUint32(row.statusCode, `${label}.statusCode`);
@@ -13083,6 +13216,7 @@ function validateRootLedgerDetailRow(row, label) {
   requireUint32(row.sequenceIndex, `${label}.sequenceIndex`);
   requireUint32(row.iterationCount, `${label}.iterationCount`);
   requireUint32(row.stateFlags, `${label}.stateFlags`);
+  requireUint32(row.receiverNormalStatusCode, `${label}.receiverNormalStatusCode`);
   requireUint32(row.firstFailureCode, `${label}.firstFailureCode`);
 }
 
@@ -13619,6 +13753,14 @@ function validatePlaybackRoot(root, index) {
   requireFiniteNumber(root.residual, `roots[${index}].residual`);
   requireFiniteNumber(root.jacobian, `roots[${index}].jacobian`);
   requireFiniteNumber(root.branchWeight, `roots[${index}].branchWeight`);
+  requireFiniteNumber(root.sourceNormalSpeed, `roots[${index}].sourceNormalSpeed`);
+  requireFiniteNumber(root.receiverNormalSpeed, `roots[${index}].receiverNormalSpeed`);
+  requireFiniteNumber(root.sourceNormalDenominator, `roots[${index}].sourceNormalDenominator`);
+  requireFiniteNumber(root.receiverNormalNumerator, `roots[${index}].receiverNormalNumerator`);
+  requireFiniteNumber(root.receiverNormalCrossingFactor, `roots[${index}].receiverNormalCrossingFactor`);
+  requireFiniteNumber(root.receiverNormalFactor, `roots[${index}].receiverNormalFactor`);
+  requireFiniteNumber(root.unsignedReceiverNormalFactor, `roots[${index}].unsignedReceiverNormalFactor`);
+  requireUint32(root.receiverNormalStatusCode, `roots[${index}].receiverNormalStatusCode`);
   validateVector(root.sourcePoint, `roots[${index}].sourcePoint`);
   validateVector(root.receiverPoint, `roots[${index}].receiverPoint`);
 }
@@ -13639,6 +13781,14 @@ function validatePlaybackHit(hit, index) {
   requireNonnegativeFiniteNumber(hit.distance, `hits[${index}].distance`);
   requireFiniteNumber(hit.jacobian, `hits[${index}].jacobian`);
   requireFiniteNumber(hit.strength, `hits[${index}].strength`);
+  requireFiniteNumber(hit.sourceNormalSpeed, `hits[${index}].sourceNormalSpeed`);
+  requireFiniteNumber(hit.receiverNormalSpeed, `hits[${index}].receiverNormalSpeed`);
+  requireFiniteNumber(hit.sourceNormalDenominator, `hits[${index}].sourceNormalDenominator`);
+  requireFiniteNumber(hit.receiverNormalNumerator, `hits[${index}].receiverNormalNumerator`);
+  requireFiniteNumber(hit.receiverNormalCrossingFactor, `hits[${index}].receiverNormalCrossingFactor`);
+  requireFiniteNumber(hit.receiverNormalFactor, `hits[${index}].receiverNormalFactor`);
+  requireFiniteNumber(hit.unsignedReceiverNormalFactor, `hits[${index}].unsignedReceiverNormalFactor`);
+  requireUint32(hit.receiverNormalStatusCode, `hits[${index}].receiverNormalStatusCode`);
   validateVector(hit.emissionPoint, `hits[${index}].emissionPoint`);
   validateVector(hit.receiverPoint, `hits[${index}].receiverPoint`);
   validateVector(hit.unitDirection, `hits[${index}].unitDirection`);
@@ -13859,7 +14009,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 13,
+    abiMinor: 14,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -13912,7 +14062,7 @@ function defaultAbiInfo() {
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 13 ||
+    abiInfo.abiMinor !== 14 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -15340,6 +15490,15 @@ function writeCausalRootRowF64(module, ptr, root) {
   module.setValue(ptr + 56, root.branchWeight ?? 0, "double");
   writeVector(module, ptr + 64, root.sourcePoint ?? { x: 0, y: 0, z: 0 });
   writeVector(module, ptr + 88, root.receiverPoint ?? { x: 0, y: 0, z: 0 });
+  module.setValue(ptr + 112, root.sourceNormalSpeed ?? 0, "double");
+  module.setValue(ptr + 120, root.receiverNormalSpeed ?? 0, "double");
+  module.setValue(ptr + 128, root.sourceNormalDenominator ?? root.jacobian ?? 0, "double");
+  module.setValue(ptr + 136, root.receiverNormalNumerator ?? 0, "double");
+  module.setValue(ptr + 144, root.receiverNormalCrossingFactor ?? 0, "double");
+  module.setValue(ptr + 152, root.receiverNormalFactor ?? 0, "double");
+  module.setValue(ptr + 160, root.unsignedReceiverNormalFactor ?? Math.abs(root.receiverNormalFactor ?? 0), "double");
+  module.setValue(ptr + 168, root.receiverNormalStatusCode ?? root.statusCode ?? 0, "i32");
+  module.setValue(ptr + 172, 0, "i32");
 }
 
 function writePhaseClockF64(module, ptr, clock) {
@@ -15732,6 +15891,14 @@ function readCausalRootRowF64(module, ptr) {
     branchWeight: module.getValue(ptr + 56, "double"),
     sourcePoint: readVector(module, ptr + 64),
     receiverPoint: readVector(module, ptr + 88),
+    sourceNormalSpeed: module.getValue(ptr + 112, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 120, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 128, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 136, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 144, "double"),
+    receiverNormalFactor: module.getValue(ptr + 152, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 160, "double"),
+    receiverNormalStatusCode: module.getValue(ptr + 168, "i32"),
   };
 }
 
@@ -15753,13 +15920,21 @@ function readRootLedgerDetailRowF64(module, ptr, rootTolerance = 0) {
     bracketEnd: module.getValue(ptr + 104, "double"),
     sourcePoint: readVector(module, ptr + 112),
     receiverPoint: readVector(module, ptr + 136),
-    entryKind: module.getValue(ptr + 160, "i32") >>> 0,
-    rootKind: module.getValue(ptr + 164, "i32") >>> 0,
-    statusCode: module.getValue(ptr + 168, "i32") >>> 0,
-    jacobianSignStratum: module.getValue(ptr + 172, "i32") >>> 0,
-    sequenceIndex: module.getValue(ptr + 176, "i32") >>> 0,
-    iterationCount: module.getValue(ptr + 180, "i32") >>> 0,
-    stateFlags: module.getValue(ptr + 184, "i32") >>> 0,
+    sourceNormalSpeed: module.getValue(ptr + 160, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 168, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 176, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 184, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 192, "double"),
+    receiverNormalFactor: module.getValue(ptr + 200, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 208, "double"),
+    entryKind: module.getValue(ptr + 216, "i32") >>> 0,
+    rootKind: module.getValue(ptr + 220, "i32") >>> 0,
+    statusCode: module.getValue(ptr + 224, "i32") >>> 0,
+    jacobianSignStratum: module.getValue(ptr + 228, "i32") >>> 0,
+    sequenceIndex: module.getValue(ptr + 232, "i32") >>> 0,
+    iterationCount: module.getValue(ptr + 236, "i32") >>> 0,
+    stateFlags: module.getValue(ptr + 240, "i32") >>> 0,
+    receiverNormalStatusCode: module.getValue(ptr + 244, "i32") >>> 0,
   };
   return addRootLedgerDetailPrecisionForensics(row, rootTolerance);
 }
@@ -15795,6 +15970,14 @@ function readDelayedHitRowF64(module, ptr) {
     emissionPoint: readVector(module, ptr + 56),
     receiverPoint: readVector(module, ptr + 80),
     unitDirection: readVector(module, ptr + 104),
+    sourceNormalSpeed: module.getValue(ptr + 128, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 136, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 144, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 152, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 160, "double"),
+    receiverNormalFactor: module.getValue(ptr + 168, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 176, "double"),
+    receiverNormalStatusCode: module.getValue(ptr + 184, "i32"),
   };
 }
 

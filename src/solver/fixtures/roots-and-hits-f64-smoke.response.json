@@ -23,7 +23,15 @@
           "x": 10,
           "y": 0,
           "z": 0
-        }
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": 0,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1,
+        "receiverNormalCrossingFactor": 1,
+        "receiverNormalFactor": 1,
+        "unsignedReceiverNormalFactor": 1,
+        "receiverNormalStatusCode": 0
       }
     ],
     "hits": [
@@ -50,7 +58,15 @@
           "x": 1,
           "y": 0,
           "z": 0
-        }
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": 0,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1,
+        "receiverNormalCrossingFactor": 1,
+        "receiverNormalFactor": 1,
+        "unsignedReceiverNormalFactor": 1,
+        "receiverNormalStatusCode": 0
       }
     ],
     "buffers": [
@@ -58,7 +74,7 @@
         "bufferId": "root-ledger",
         "layout": "root_ledger.v1",
         "byteOffset": 0,
-        "byteLength": 112,
+        "byteLength": 176,
         "rowCount": 1,
         "numericType": "f64"
       },
@@ -66,7 +82,7 @@
         "bufferId": "delayed-hit-events",
         "layout": "delayed_hit_events.v1",
         "byteOffset": 0,
-        "byteLength": 128,
+        "byteLength": 192,
         "rowCount": 1,
         "numericType": "f64"
       }
@@ -88,7 +104,7 @@
             },
             "byteRange": {
               "start": 0,
-              "end": 112
+              "end": 176
             }
           },
           {
@@ -101,15 +117,15 @@
               "end": 0
             },
             "byteRange": {
-              "start": 112,
-              "end": 240
+              "start": 176,
+              "end": 368
             }
           }
         ],
         "storagePolicy": {
           "target": "caller-buffer",
           "durable": false,
-          "maxBytes": 240
+          "maxBytes": 368
         },
         "metadata": {
           "schema": "solver-path-history-stream-metadata.v1",

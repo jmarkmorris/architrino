@@ -18,11 +18,13 @@ import {
   EVENT_WAKE_HISTORY_PULLBACK_SCHEMA,
   buildDefaultEventWakeHistoryPullbackInput,
   buildEventWakeHistoryPullbackDiagnostic,
+  validateEventWakeHistoryPullbackArtifact,
 } from "./event-wake-history-pullback-diagnostic.mjs";
 import {
   ACTION_BOUNDARY_PULLBACK_SCHEMA,
   buildActionBoundaryPullbackDiagnostic,
   buildDefaultActionBoundaryPullbackInput,
+  validateActionBoundaryPullbackArtifact,
 } from "./action-boundary-pullback-diagnostic.mjs";
 import {
   CLOSED_LEDGER_SOURCE_RECORD_CONTRACT_SCHEMA,
@@ -114,7 +116,10 @@ function acceptedRouteEvidenceStatus(routeSummaries) {
     : "not_accepted_for_branch_retention";
 }
 
-function acceptedActionEvidenceStatus(actionPullback) {
+function acceptedActionEvidenceStatus(actionPullback, validationErrors = []) {
+  if (validationErrors.length > 0) {
+    return "action_evidence_summary_invalid";
+  }
   if (!actionPullback?.accepted_evidence_summary) {
     return "action_evidence_summary_missing";
   }
@@ -123,7 +128,10 @@ function acceptedActionEvidenceStatus(actionPullback) {
     : "not_accepted_for_action_closure";
 }
 
-function acceptedEventEvidenceStatus(eventPullback) {
+function acceptedEventEvidenceStatus(eventPullback, validationErrors = []) {
+  if (validationErrors.length > 0) {
+    return "event_evidence_summary_invalid";
+  }
   if (!eventPullback?.accepted_evidence_summary) {
     return "event_evidence_summary_missing";
   }
@@ -294,13 +302,14 @@ function evaluateTopological(topological, photonRoute, middleHingeRoute, sourceR
 
 function evaluateEventPullback(eventPullback, sourceRecordId) {
   const present = eventPullback && typeof eventPullback === "object" && !Array.isArray(eventPullback);
+  const validationErrors = present ? validateEventWakeHistoryPullbackArtifact(eventPullback) : [];
   const schemaOk =
     eventPullback?.schema === EVENT_PULLBACK_SCHEMA ||
     eventPullback?.artifact_schema === EVENT_PULLBACK_SCHEMA;
   const sourceOk = eventPullback?.source_record_id === sourceRecordId;
   const statusOk = eventPullback?.boundary_status === "closed";
   const residualOk = eventPullback?.residual_norm === 0;
-  const passed = present && schemaOk && sourceOk && statusOk && residualOk;
+  const passed = present && validationErrors.length === 0 && schemaOk && sourceOk && statusOk && residualOk;
   return row(
     "partial_L_EpJ",
     "\\partial\\mathcal{L}_{E\\mathbf{p}\\mathbf{J}}",
@@ -311,7 +320,8 @@ function evaluateEventPullback(eventPullback, sourceRecordId) {
       artifact: artifactSummary(eventPullback),
       required_source_record_id: sourceRecordId,
       accepted_evidence_summary: eventPullback?.accepted_evidence_summary ?? null,
-      accepted_event_evidence_status: acceptedEventEvidenceStatus(eventPullback),
+      accepted_event_evidence_status: acceptedEventEvidenceStatus(eventPullback, validationErrors),
+      validation_errors: validationErrors,
       checks: [
         { field: "artifact_present", ok: present },
         { field: "artifact_schema", ok: schemaOk },
@@ -325,13 +335,14 @@ function evaluateEventPullback(eventPullback, sourceRecordId) {
 
 function evaluateActionPullback(actionPullback, sourceRecordId) {
   const present = actionPullback && typeof actionPullback === "object" && !Array.isArray(actionPullback);
+  const validationErrors = present ? validateActionBoundaryPullbackArtifact(actionPullback) : [];
   const schemaOk =
     actionPullback?.schema === ACTION_PULLBACK_SCHEMA ||
     actionPullback?.artifact_schema === ACTION_PULLBACK_SCHEMA;
   const sourceOk = actionPullback?.source_record_id === sourceRecordId;
   const statusOk = actionPullback?.boundary_status === "closed";
   const residualOk = actionPullback?.residual_norm === 0;
-  const passed = present && schemaOk && sourceOk && statusOk && residualOk;
+  const passed = present && validationErrors.length === 0 && schemaOk && sourceOk && statusOk && residualOk;
   return row(
     "partial_S_B_eta",
     "\\partial S_{\\mathfrak B}^{(\\eta)}",
@@ -343,7 +354,8 @@ function evaluateActionPullback(actionPullback, sourceRecordId) {
       required_source_record_id: sourceRecordId,
       evidence_level_summary: actionPullback?.evidence_level_summary ?? null,
       accepted_evidence_summary: actionPullback?.accepted_evidence_summary ?? null,
-      accepted_action_evidence_status: acceptedActionEvidenceStatus(actionPullback),
+      accepted_action_evidence_status: acceptedActionEvidenceStatus(actionPullback, validationErrors),
+      validation_errors: validationErrors,
       checks: [
         { field: "artifact_present", ok: present },
         { field: "artifact_schema", ok: schemaOk },
@@ -391,6 +403,26 @@ function acceptedEvidenceStatusEntries(rows) {
   });
 }
 
+function crossSectorAcceptanceStatus(failedRows, acceptedEvidenceReady) {
+  if (failedRows.length > 0) {
+    return "blocked_by_boundary_rows";
+  }
+  if (!acceptedEvidenceReady) {
+    return "row_logic_passed_priority_only; accepted_evidence_missing";
+  }
+  return "accepted_evidence_ready_priority_only; branch_still_not_retained";
+}
+
+function branchRetentionStatus(failedRows, acceptedEvidenceReady) {
+  if (failedRows.length > 0) {
+    return "not_retained; boundary_rows_failed";
+  }
+  if (!acceptedEvidenceReady) {
+    return "not_retained; accepted_evidence_missing";
+  }
+  return "not_retained; priority_only_diagnostic";
+}
+
 function evaluateCrossSector(rows) {
   const failedRows = rows.filter((entry) => entry.status === "fail");
   const acceptedEvidenceStatuses = acceptedEvidenceStatusEntries(rows);
@@ -406,6 +438,7 @@ function evaluateCrossSector(rows) {
         row_id: entry.row_id,
         failure_code: entry.failure_code,
       })),
+      cross_sector_acceptance_status: crossSectorAcceptanceStatus(failedRows, acceptedEvidenceReady),
       accepted_evidence_ready: acceptedEvidenceReady,
       accepted_evidence_statuses: acceptedEvidenceStatuses,
       accepted_evidence_blockers: acceptedEvidenceStatuses
@@ -431,6 +464,7 @@ export function buildClosedLedgerPullbackDiagnostic(input = buildDefaultClosedLe
   ];
   boundaryRows.push(evaluateCrossSector(boundaryRows));
   const failedRows = boundaryRows.filter((entry) => entry.status === "fail");
+  const crossSectorRow = boundaryRows.find((entry) => entry.row_id === "C_AAA");
   const blockerOrder = boundaryRows.map((entry) => ({
     row_id: entry.row_id,
     status: entry.status,
@@ -470,6 +504,10 @@ export function buildClosedLedgerPullbackDiagnostic(input = buildDefaultClosedLe
     result: {
       diagnostic_status: failedRows.length === 0 ? "diagnostic_passed_priority_only" : "diagnostic_failed",
       retained_branch: false,
+      branch_retention_status: branchRetentionStatus(
+        failedRows,
+        crossSectorRow?.accepted_evidence_ready === true
+      ),
       updates_live_validation_gate: false,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
@@ -499,6 +537,12 @@ export function validateClosedLedgerPullbackArtifact(artifact) {
   assertField(artifact.packet_id === PACKET_ID, `packet_id must be ${PACKET_ID}`, errors);
   assertField(artifact.promotion_status === PROMOTION_STATUS, `promotion_status must be ${PROMOTION_STATUS}`, errors);
   assertField(artifact.result?.retained_branch === false, "artifact must declare retained_branch=false", errors);
+  assertField(
+    typeof artifact.result?.branch_retention_status === "string" &&
+      artifact.result.branch_retention_status.startsWith("not_retained;"),
+    "artifact must declare a not-retained branch_retention_status",
+    errors
+  );
   assertField(artifact.result?.updates_live_validation_gate === false, "artifact must not update a live validation gate", errors);
 
   const rows = artifact.boundary_rows;
@@ -641,6 +685,8 @@ function main() {
           noether_accepted_evidence_summary: true,
           event_accepted_evidence_summary: true,
           action_accepted_evidence_summary: true,
+          cross_sector_acceptance_status: true,
+          branch_retention_status: true,
           promotion_status: PROMOTION_STATUS,
           packet_id: PACKET_ID,
         },

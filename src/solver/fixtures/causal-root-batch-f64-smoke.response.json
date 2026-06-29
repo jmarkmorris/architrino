@@ -29,7 +29,15 @@
               "x": 10,
               "y": 0,
               "z": 0
-            }
+            },
+            "sourceNormalSpeed": 0,
+            "receiverNormalSpeed": 0,
+            "sourceNormalDenominator": 1,
+            "receiverNormalNumerator": 1,
+            "receiverNormalCrossingFactor": 1,
+            "receiverNormalFactor": 1,
+            "unsignedReceiverNormalFactor": 1,
+            "receiverNormalStatusCode": 0
           }
         ]
       },
@@ -58,7 +66,15 @@
               "x": 6,
               "y": 0,
               "z": 0
-            }
+            },
+            "sourceNormalSpeed": 0,
+            "receiverNormalSpeed": 0,
+            "sourceNormalDenominator": 1,
+            "receiverNormalNumerator": 1,
+            "receiverNormalCrossingFactor": 1,
+            "receiverNormalFactor": 1,
+            "unsignedReceiverNormalFactor": 1,
+            "receiverNormalStatusCode": 0
           }
         ]
       }
@@ -83,7 +99,15 @@
           "x": 10,
           "y": 0,
           "z": 0
-        }
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": 0,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1,
+        "receiverNormalCrossingFactor": 1,
+        "receiverNormalFactor": 1,
+        "unsignedReceiverNormalFactor": 1,
+        "receiverNormalStatusCode": 0
       },
       {
         "rootId": 0,
@@ -104,7 +128,15 @@
           "x": 6,
           "y": 0,
           "z": 0
-        }
+        },
+        "sourceNormalSpeed": 0,
+        "receiverNormalSpeed": 0,
+        "sourceNormalDenominator": 1,
+        "receiverNormalNumerator": 1,
+        "receiverNormalCrossingFactor": 1,
+        "receiverNormalFactor": 1,
+        "unsignedReceiverNormalFactor": 1,
+        "receiverNormalStatusCode": 0
       }
     ],
     "buffers": [
@@ -112,7 +144,7 @@
         "bufferId": "batch-root-ledger",
         "layout": "root_ledger.v1",
         "byteOffset": 0,
-        "byteLength": 224,
+        "byteLength": 352,
         "rowCount": 2,
         "numericType": "f64"
       }

@@ -55,6 +55,13 @@ struct RootLedgerDetailRowF64 {
   double receiverX = 0.0;
   double receiverY = 0.0;
   double receiverZ = 0.0;
+  double sourceNormalSpeed = 0.0;
+  double receiverNormalSpeed = 0.0;
+  double sourceNormalDenominator = 0.0;
+  double receiverNormalNumerator = 0.0;
+  double receiverNormalCrossingFactor = 0.0;
+  double receiverNormalFactor = 0.0;
+  double unsignedReceiverNormalFactor = 0.0;
   std::uint32_t entryKind = 0;
   std::uint32_t rootKind = 0;
   std::uint32_t statusCode = 0;
@@ -62,7 +69,7 @@ struct RootLedgerDetailRowF64 {
   std::uint32_t sequenceIndex = 0;
   std::uint32_t iterationCount = 0;
   std::uint32_t stateFlags = 0;
-  std::uint32_t reserved0 = 0;
+  std::uint32_t receiverNormalStatusCode = 0;
 };
 
 std::uint64_t stable_root_ledger_key(std::string_view value);

@@ -17,6 +17,10 @@ const bridgeContractSource = fs.readFileSync(path.join(rootDir, bridgeContractPa
 const request = readJson(requestPath);
 const batchResponse = readJson(batchResponsePath);
 const response = readJson(responsePath);
+
+const ROOT_LEDGER_ROW_F64_BYTES = 176;
+const DELAYED_HIT_ROW_F64_BYTES = 192;
+const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
 const initRequest = createInitRequestEnvelope();
 const initResponse = createInitResponseEnvelope();
 const capabilitiesRequest = createCapabilitiesRequestEnvelope();
@@ -1361,7 +1365,9 @@ function assertCapabilities(value, label) {
   );
   assert(
     value.binaryLayouts.layouts.some(
-      (layout) => layout.layout === "root_ledger_detail.v1" && layout.rowSizeBytes === 192
+      (layout) =>
+        layout.layout === "root_ledger_detail.v1" &&
+        layout.rowSizeBytes === ROOT_LEDGER_DETAIL_ROW_F64_BYTES
     ),
     `${label} root ledger detail binary layout mismatch`
   );
@@ -1428,7 +1434,7 @@ function assertCapabilities(value, label) {
   assert(value.validation.invariantChecks.includes("root_hit_f64"), `${label} validation capability mismatch`);
   assert(value.maxTransferBytes === 67108864, `${label} max transfer mismatch`);
   assert(value.wasmModuleFactory === true, `${label} wasm factory mismatch`);
-  assert(value.abiInfo.rootRowF64Bytes === 112, `${label} ABI root row mismatch`);
+  assert(value.abiInfo.rootRowF64Bytes === ROOT_LEDGER_ROW_F64_BYTES, `${label} ABI root row mismatch`);
   assert(value.abiInfo.motionIntegrationRequestF64Bytes === 120, `${label} ABI motion integration mismatch`);
   assert(value.abiInfo.pairInteractionRequestF64Bytes === 88, `${label} ABI pair request mismatch`);
 }
@@ -1458,7 +1464,13 @@ function validateBatchResponseEnvelope(value) {
   assert(responseValue.items[1].rootCount === 1, "second batch root count mismatch");
   assertClose(responseValue.items[0].roots[0].distance, 10, "first batch root distance");
   assertClose(responseValue.items[1].roots[0].distance, 6, "second batch root distance");
-  assertBuffer(responseValue.buffers[0], "batch-root-ledger", "root_ledger.v1", 224, 2);
+  assertBuffer(
+    responseValue.buffers[0],
+    "batch-root-ledger",
+    "root_ledger.v1",
+    ROOT_LEDGER_ROW_F64_BYTES * 2,
+    2
+  );
   assert(responseValue.status.code === "ok", "batch status code mismatch");
 }
 
@@ -1503,13 +1515,22 @@ function validateResponseEnvelope(value) {
   assertClose(responseValue.roots[0].distance, 10, "root distance");
   assertClose(responseValue.hits[0].unitDirection.x, 1, "hit unit direction x");
   assertClose(responseValue.hits[0].strength, 1, "hit strength");
-  assertBuffer(responseValue.buffers[0], "root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "delayed-hit-events", "delayed_hit_events.v1", 128, 1);
+  assertBuffer(responseValue.buffers[0], "root-ledger", "root_ledger.v1", ROOT_LEDGER_ROW_F64_BYTES, 1);
+  assertBuffer(
+    responseValue.buffers[1],
+    "delayed-hit-events",
+    "delayed_hit_events.v1",
+    DELAYED_HIT_ROW_F64_BYTES,
+    1
+  );
   assert(responseValue.streams.length === 1, "expected one transient stream");
   const stream = responseValue.streams[0];
   assert(stream.indexLayout === "stream_index.v1", "stream index layout mismatch");
   assert(stream.availableRanges.length === 2, "stream ranges mismatch");
-  assert(stream.storagePolicy.maxBytes === 240, "stream storage byte count mismatch");
+  assert(
+    stream.storagePolicy.maxBytes === ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+    "stream storage byte count mismatch"
+  );
   assert(responseValue.status.code === "ok", "status code mismatch");
 }
 
@@ -2132,8 +2153,20 @@ function validateEmissionShellRootRefinementResponseEnvelope(value) {
   assert(responseValue.items[0].hitOffset === 0, "emission-shell refinement hit offset mismatch");
   assert(responseValue.roots.length === 1, "emission-shell refinement roots mismatch");
   assert(responseValue.hits.length === 1, "emission-shell refinement hits mismatch");
-  assertBuffer(responseValue.buffers[0], "packet-refine-a:emission-shell-refined-root-ledger", "root_ledger.v1", 112, 1);
-  assertBuffer(responseValue.buffers[1], "packet-refine-a:emission-shell-refined-delayed-hits", "delayed_hit_events.v1", 128, 1);
+  assertBuffer(
+    responseValue.buffers[0],
+    "packet-refine-a:emission-shell-refined-root-ledger",
+    "root_ledger.v1",
+    ROOT_LEDGER_ROW_F64_BYTES,
+    1
+  );
+  assertBuffer(
+    responseValue.buffers[1],
+    "packet-refine-a:emission-shell-refined-delayed-hits",
+    "delayed_hit_events.v1",
+    DELAYED_HIT_ROW_F64_BYTES,
+    1
+  );
   assert(responseValue.status.code === "ok", "emission-shell refinement status mismatch");
 }
 
@@ -2415,6 +2448,19 @@ function assertSameSet(left, right, leftLabel, rightLabel) {
   assert(extra.length === 0, `${rightLabel} has extra value(s) not in ${leftLabel}: ${extra.join(", ")}`);
 }
 
+function createNeutralReceiverNormalFields() {
+  return {
+    sourceNormalSpeed: 0,
+    receiverNormalSpeed: 0,
+    sourceNormalDenominator: 1,
+    receiverNormalNumerator: 1,
+    receiverNormalCrossingFactor: 1,
+    receiverNormalFactor: 1,
+    unsignedReceiverNormalFactor: 1,
+    receiverNormalStatusCode: 0,
+  };
+}
+
 function createCausalRootsResponseEnvelope() {
   return {
     schema: "solver-app-bridge/v1",
@@ -2562,7 +2608,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-root-ledger",
     layout: "root_ledger.v1",
     byteOffset: 0,
-    byteLength: 112,
+    byteLength: ROOT_LEDGER_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2570,7 +2616,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-delayed-hit-events",
     layout: "delayed_hit_events.v1",
     byteOffset: 0,
-    byteLength: 128,
+    byteLength: DELAYED_HIT_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2578,7 +2624,7 @@ function createCircularSourceRootsHitsLedgerResponseFixture() {
     bufferId: "circular-source-root-ledger-detail",
     layout: "root_ledger_detail.v1",
     byteOffset: 0,
-    byteLength: 192,
+    byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
     rowCount: 1,
     numericType: "f64",
   };
@@ -2776,6 +2822,7 @@ function createRootLedgerDetailFixture(options = {}) {
     bracketEnd: 0,
     sourcePoint: { x: 0, y: 0, z: 0 },
     receiverPoint: { x: 10, y: 0, z: 0 },
+    ...createNeutralReceiverNormalFields(),
     entryKind: 1,
     rootKind: 1,
     statusCode: 0,
@@ -2801,7 +2848,7 @@ function createCausalRootsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2851,7 +2898,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2859,7 +2906,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-delayed-hit-events",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
-          byteLength: 128,
+          byteLength: DELAYED_HIT_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2867,7 +2914,7 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
           bufferId: "precision-root-ledger-detail",
           layout: "root_ledger_detail.v1",
           byteOffset: 0,
-          byteLength: 192,
+          byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
         },
@@ -2881,23 +2928,33 @@ function createRootsAndHitsPrecisionResponseEnvelope() {
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 0, end: 112 },
+              byteRange: { start: 0, end: ROOT_LEDGER_ROW_F64_BYTES },
             },
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 112, end: 240 },
+              byteRange: {
+                start: ROOT_LEDGER_ROW_F64_BYTES,
+                end: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+              },
             },
             {
               timeRange: { start: 10, end: 10 },
               frameRange: { start: 0, end: 0 },
-              byteRange: { start: 240, end: 432 },
+              byteRange: {
+                start: ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES,
+                end:
+                  ROOT_LEDGER_ROW_F64_BYTES +
+                  DELAYED_HIT_ROW_F64_BYTES +
+                  ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
+              },
             },
           ],
           storagePolicy: {
             target: "caller-buffer",
             durable: false,
-            maxBytes: 432,
+            maxBytes:
+              ROOT_LEDGER_ROW_F64_BYTES + DELAYED_HIT_ROW_F64_BYTES + ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
           },
           metadata: createRunStreamMetadataFixture(),
         },
@@ -2931,7 +2988,12 @@ function createRootLedgerDetailResponseEnvelope() {
     response: {
       rows: [createRootLedgerDetailFixture()],
       buffers: [
-        createBufferDescriptorFixture("root-ledger-detail-contract-buffer", "root_ledger_detail.v1", 192, 1),
+        createBufferDescriptorFixture(
+          "root-ledger-detail-contract-buffer",
+          "root_ledger_detail.v1",
+          ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
+          1
+        ),
       ],
       status: createStatusFixture("ok", "ok", "root-ledger detail fixture"),
     },
@@ -4046,9 +4108,9 @@ function createBinaryLayoutCatalogFixture() {
     ["assembly_hierarchy.v1", "assembly-graph", 56, false],
     ["assembly_events.v1", "assembly-graph", 88, false],
     ["path_chunk.v1", "path-history-index", 104, true],
-    ["root_ledger.v1", "root-ledger", 112, false],
-    ["root_ledger_detail.v1", "root-ledger", 192, false],
-    ["delayed_hit_events.v1", "delayed-hit", 128, false],
+    ["root_ledger.v1", "root-ledger", ROOT_LEDGER_ROW_F64_BYTES, false],
+    ["root_ledger_detail.v1", "root-ledger", ROOT_LEDGER_DETAIL_ROW_F64_BYTES, false],
+    ["delayed_hit_events.v1", "delayed-hit", DELAYED_HIT_ROW_F64_BYTES, false],
     ["field_shell_events.v1", "field-shell-event", 160, true],
     ["phase_at_hit.v1", "phase-diagnostic", 104, false],
     ["spacetime_index.v1", "spacetime-index", 128, false],
@@ -4359,11 +4421,11 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 13,
+    abiMinor: 14,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
-    rootRowF64Bytes: 112,
-    delayedHitRowF64Bytes: 128,
+    rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,
+    delayedHitRowF64Bytes: DELAYED_HIT_ROW_F64_BYTES,
     motionSampleRequestF64Bytes: 112,
     motionFrameRowF64Bytes: 88,
     phaseClockF64Bytes: 24,
@@ -4389,7 +4451,7 @@ function createAbiInfoFixture() {
     emissionShellBroadPhaseSummaryBytes: 32,
     emissionShellNarrowPhaseRequestF64Bytes: 208,
     emissionShellNarrowPhaseRowF64Bytes: 40,
-    rootLedgerDetailRowF64Bytes: 192,
+    rootLedgerDetailRowF64Bytes: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
     errorBudgetF64Bytes: 64,
     errorBudgetStageInputF64Bytes: 16,
     errorBudgetStageRowF64Bytes: 40,
@@ -5111,7 +5173,7 @@ function createRunBuffers() {
       bufferId: "run-contract:root-ledger",
       layout: "root_ledger.v1",
       byteOffset: 0,
-      byteLength: 112,
+      byteLength: ROOT_LEDGER_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "5555555555555555",
@@ -5120,7 +5182,7 @@ function createRunBuffers() {
       bufferId: "run-contract:delayed-hit-events",
       layout: "delayed_hit_events.v1",
       byteOffset: 0,
-      byteLength: 128,
+      byteLength: DELAYED_HIT_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "6666666666666666",
@@ -5129,7 +5191,7 @@ function createRunBuffers() {
       bufferId: "run-contract:root-ledger-detail",
       layout: "root_ledger_detail.v1",
       byteOffset: 0,
-      byteLength: 192,
+      byteLength: ROOT_LEDGER_DETAIL_ROW_F64_BYTES,
       rowCount: 1,
       numericType: "f64",
       checksum: "7777777777777777",
@@ -6679,7 +6741,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           bufferId: "packet-refine-a:emission-shell-refined-root-ledger",
           layout: "root_ledger.v1",
           byteOffset: 0,
-          byteLength: 112,
+          byteLength: ROOT_LEDGER_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
           checksum: "cccccccccccccccc",
@@ -6688,7 +6750,7 @@ function createEmissionShellRootRefinementResponseEnvelope() {
           bufferId: "packet-refine-a:emission-shell-refined-delayed-hits",
           layout: "delayed_hit_events.v1",
           byteOffset: 0,
-          byteLength: 128,
+          byteLength: DELAYED_HIT_ROW_F64_BYTES,
           rowCount: 1,
           numericType: "f64",
           checksum: "dddddddddddddddd",
@@ -6740,7 +6802,7 @@ function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCou
         layout: "root_ledger.v1",
         numericType: "f64",
         byteOffset: 0,
-        byteLength: rowCount * 112,
+        byteLength: rowCount * ROOT_LEDGER_ROW_F64_BYTES,
         rowOffset: 0,
         rowCount,
         checksum: "cccccccccccccccc",
@@ -6750,7 +6812,7 @@ function createRootRefinementPacketResult(packetId, mergeOrder, mergeKey, rowCou
         layout: "delayed_hit_events.v1",
         numericType: "f64",
         byteOffset: 0,
-        byteLength: rowCount * 128,
+        byteLength: rowCount * DELAYED_HIT_ROW_F64_BYTES,
         rowOffset: 0,
         rowCount,
         checksum: "dddddddddddddddd",

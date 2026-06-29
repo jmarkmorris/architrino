@@ -18,7 +18,7 @@
 - Exact first blocker: `missing_accepted_raw_labeled_rows_preserved_on_retained_history`.
 - First accepted route: source-backed positive-width invariant-cell source report for `S_eq`, with matching `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"` across support, row bindings, witnesses, coframe extraction, and retained-record consumption.
 - Smallest accepted evidence object: one durable retained-geometry evidence object whose raw-row, invariant-cell, refinement-step, connection, residual, and negative-control provenance is accepted by the producer, same-branch checker, and retained-record evaluator on the same carrier.
-- Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, negative controls, synthetic provenance shells, and accepted-looking row labels are not accepted retained evidence.
+- Score-neutral exclusions: priority prose, generated files, mocks, attempt fixtures, source-contract shells, negative controls, synthetic provenance shells, and accepted-looking row labels are not accepted retained evidence.
 
 ## Coordinator Decision
 
@@ -101,9 +101,9 @@ The first score-review-eligible row object is eligible only if both the source p
 | Carrier binding | `commonCarrierId` equals the retained-domain packet `commonCarrierId`. |
 | Domain binding | `domainId` equals the retained-domain packet `domainId`. |
 | Support binding | `supportId` equals the certified invariant support id. |
-| Source reference | `sourcePath` or `source` resolves to an existing durable retained-evidence file in the repository; priority prose, review packets, authored AAA prose, attempts, mocks, probes, and negative controls do not count as evidence sources. |
+| Source reference | `sourcePath` or `source` resolves to an existing durable retained-evidence file in the repository; priority prose, review packets, authored AAA prose, attempts, mocks, probes, source-contract shells, and negative controls do not count as evidence sources. |
 
-The same-branch checker then reads that row as accepted only if its accepted status, source-evidence reference, retained-row-set identity, support identity, and common-carrier identity all match the retained-domain packet. Therefore the first accepted row must be emitted from the same positive-width invariant-cell source report that emits the support; it cannot be copied from priority prose, a review packet, a generated reading copy, a temp file, an attempt fixture, a negative control, or a row-only fixture.
+The same-branch checker then reads that row as accepted only if its accepted status, source-evidence reference, retained-row-set identity, support identity, and common-carrier identity all match the retained-domain packet. Therefore the first accepted row must be emitted from the same positive-width invariant-cell source report that emits the support; it cannot be copied from priority prose, a review packet, a generated reading copy, a temp file, an attempt fixture, a source-contract shell, a negative control, or a row-only fixture.
 
 ## Direct Geometry Layer
 

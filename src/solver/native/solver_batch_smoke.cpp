@@ -131,6 +131,8 @@ int main() {
       itemRows[1].root_offset == 1 &&
       itemRows[1].root_count == 1 &&
       nearly_equal(rootRows[0].distance, 3.0) &&
+      nearly_equal(rootRows[0].source_normal_denominator, 1.0) &&
+      nearly_equal(rootRows[0].receiver_normal_factor, 1.0) &&
       nearly_equal(rootRows[1].hit_time, 6.0);
   if (!cAbiOk) {
     std::cerr << "causal-root batch C ABI smoke failed\n";
@@ -166,6 +168,8 @@ int main() {
       nearly_equal(hitRootRows[0].distance, 3.0) &&
       nearly_equal(hitRows[0].distance, 3.0) &&
       nearly_equal(hitRows[0].strength, 1.0) &&
+      nearly_equal(hitRows[0].source_normal_denominator, 1.0) &&
+      nearly_equal(hitRows[0].receiver_normal_factor, 1.0) &&
       nearly_equal(hitRows[0].unit_x, 1.0) &&
       nearly_equal(hitRows[1].hit_time, 6.0);
   if (!cHitAbiOk) {

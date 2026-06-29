@@ -13,7 +13,8 @@
   },
   "expectedBoundary": {
     "status": "blocked_missing_rows",
-    "nextBlocker": "missing_accepted_spin_lift",
+    "nextBlocker": "accepted_without_evidence_source",
+    "nextBlockerAfterDurableParentSource": "missing_accepted_spin_lift",
     "scoreDecision": "no_score_increase",
     "acceptedEvidenceObjectLanded": false
   },

@@ -2663,6 +2663,7 @@ function createBridgeDelayedHitsFromReplayDataset(replayDataset) {
       distance,
       jacobian: 1,
       strength: normalizeUnitNumber(link.weight, 1, `wakeLinks[${index}].weight`),
+      ...neutralReceiverNormalFields(1),
       emissionPoint: toBridgeVector(source),
       receiverPoint: toBridgeVector(receiver),
       unitDirection: toUnitDirection(source, receiver, distance),
@@ -2699,6 +2700,16 @@ function createBridgeDelayedHitsFromDelayedHitRuns(runHandles, replayDataset) {
       distance: solverHit?.distance ?? fallback.distance,
       jacobian: solverHit?.jacobian ?? fallback.jacobian,
       strength: solverHit?.strength ?? fallback.strength,
+      sourceNormalSpeed: solverHit?.sourceNormalSpeed ?? fallback.sourceNormalSpeed,
+      receiverNormalSpeed: solverHit?.receiverNormalSpeed ?? fallback.receiverNormalSpeed,
+      sourceNormalDenominator: solverHit?.sourceNormalDenominator ?? fallback.sourceNormalDenominator,
+      receiverNormalNumerator: solverHit?.receiverNormalNumerator ?? fallback.receiverNormalNumerator,
+      receiverNormalCrossingFactor:
+        solverHit?.receiverNormalCrossingFactor ?? fallback.receiverNormalCrossingFactor,
+      receiverNormalFactor: solverHit?.receiverNormalFactor ?? fallback.receiverNormalFactor,
+      unsignedReceiverNormalFactor:
+        solverHit?.unsignedReceiverNormalFactor ?? fallback.unsignedReceiverNormalFactor,
+      receiverNormalStatusCode: solverHit?.receiverNormalStatusCode ?? fallback.receiverNormalStatusCode,
       ...(solverHit?.emissionTime != null ? { solverEmissionTime: solverHit.emissionTime } : {}),
       ...(solverHit?.hitTime != null ? { solverHitTime: solverHit.hitTime } : {}),
       ...(solverHit?.distance != null ? { solverDistance: solverHit.distance } : {}),
@@ -2737,6 +2748,7 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
     distance,
     jacobian: 0,
     strength: normalizeUnitNumber(link.weight, 1, `wakeLinks[${index}].weight`),
+    ...neutralReceiverNormalFields(0),
     emissionPoint: toBridgeVector(source),
     receiverPoint: toBridgeVector(receiver),
     unitDirection: toUnitDirection(source, receiver, distance),
@@ -2749,6 +2761,21 @@ function createBridgeDelayedHitFromWakeLink(replayDataset, link, index) {
     weight: link.weight,
     mode: replayDataset.wakeArcDisplayMode,
     rootStatus: { code: "solver_no_delayed_hit", severity: "warn" },
+  };
+}
+
+function neutralReceiverNormalFields(jacobian = 1) {
+  const sourceNormalDenominator = Number.isFinite(Number(jacobian)) ? Number(jacobian) : 1;
+  const healthy = sourceNormalDenominator !== 0;
+  return {
+    sourceNormalSpeed: 0,
+    receiverNormalSpeed: 0,
+    sourceNormalDenominator,
+    receiverNormalNumerator: sourceNormalDenominator,
+    receiverNormalCrossingFactor: healthy ? 1 : 0,
+    receiverNormalFactor: healthy ? 1 : 0,
+    unsignedReceiverNormalFactor: healthy ? 1 : 0,
+    receiverNormalStatusCode: healthy ? 0 : 14,
   };
 }
 

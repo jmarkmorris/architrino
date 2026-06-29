@@ -305,7 +305,7 @@ The first builder indexes `path_segment.v1` rows and `assembly_state.v1` rows, s
 
 ## First Analytic Validation
 
-`solver_analytic_smoke.cpp` adds a manufactured moving-source case with a closed-form causal root. It verifies the root time, delay, distance, residual, Jacobian, branch weight, delayed-hit strength, and unit direction, so the native solver is checked against an analytic target in addition to app-facing baseline fixtures.
+`solver_analytic_smoke.cpp` adds a manufactured moving-source case with a closed-form causal root. It verifies the root time, delay, distance, residual, Jacobian, branch weight, receiver-normal factor, delayed-hit strength, and unit direction, so the native solver is checked against an analytic target in addition to app-facing baseline fixtures.
 
 ## First Runtime Benchmark
 

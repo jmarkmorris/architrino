@@ -1,8 +1,8 @@
 import { addAcceleration, addForce, zeroAccelerations } from "./T3State.mjs";
 
-export const T3_RECEIVER_WAKE_PULLBACK_SCHEMA = "t3-receiver-wake-pullback.v1";
+export const T3_RECEIVER_NORMAL_FACTOR_SCHEMA = "t3-receiver-normal-factor.v1";
 
-export function computeReceiverWakePullback(input = {}) {
+export function computeReceiverNormalFactor(input = {}) {
   const causalSpeed = positiveFiniteNumber(input.causalSpeed ?? input.fieldSpeed ?? 1, "causalSpeed");
   const tolerance = nonnegativeFiniteNumber(
     input.tolerance ?? input.smallDenominatorTolerance ?? 1e-12,
@@ -14,38 +14,38 @@ export function computeReceiverWakePullback(input = {}) {
   );
   const sourceVelocity = vector3(input.sourceVelocity ?? [0, 0, 0], "sourceVelocity");
   const receiverVelocity = vector3(input.receiverVelocity ?? [0, 0, 0], "receiverVelocity");
-  const sourceRadialSpeed = dot3(direction, sourceVelocity);
-  const receiverRadialSpeed = dot3(direction, receiverVelocity);
-  const sourceDenominator = causalSpeed - sourceRadialSpeed;
-  const receiverNumerator = causalSpeed - receiverRadialSpeed;
-  const rootTransportFactor = receiverNumerator / sourceDenominator;
-  const sourceJacobian = sourceDenominator / causalSpeed;
-  const receiverCrossingFactor = receiverNumerator / causalSpeed;
+  const sourceNormalSpeed = dot3(direction, sourceVelocity);
+  const receiverNormalSpeed = dot3(direction, receiverVelocity);
+  const sourceNormalDenominator = causalSpeed - sourceNormalSpeed;
+  const receiverNormalNumerator = causalSpeed - receiverNormalSpeed;
+  const receiverNormalFactor = receiverNormalNumerator / sourceNormalDenominator;
+  const sourceJacobian = sourceNormalDenominator / causalSpeed;
+  const receiverNormalCrossingFactor = receiverNormalNumerator / causalSpeed;
   let status = "ok";
   if (
-    !Number.isFinite(rootTransportFactor) ||
+    !Number.isFinite(receiverNormalFactor) ||
     !Number.isFinite(sourceJacobian) ||
-    !Number.isFinite(receiverCrossingFactor)
+    !Number.isFinite(receiverNormalCrossingFactor)
   ) {
     status = "nonfinite";
-  } else if (Math.abs(sourceDenominator) <= tolerance) {
+  } else if (Math.abs(sourceNormalDenominator) <= tolerance) {
     status = "small-source-denominator";
-  } else if (Math.abs(receiverNumerator) <= tolerance) {
+  } else if (Math.abs(receiverNormalNumerator) <= tolerance) {
     status = "small-receiver-numerator";
   }
   return {
-    schema: T3_RECEIVER_WAKE_PULLBACK_SCHEMA,
+    schema: T3_RECEIVER_NORMAL_FACTOR_SCHEMA,
     causalSpeed,
     direction,
-    sourceRadialSpeed,
-    receiverRadialSpeed,
-    sourceDenominator,
-    receiverNumerator,
+    sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
     sourceJacobian,
-    receiverCrossingFactor,
-    rootTransportFactor,
-    unsignedRootTransportWeight: Math.abs(rootTransportFactor),
-    orientation: Math.sign(rootTransportFactor),
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor: Math.abs(receiverNormalFactor),
+    orientation: Math.sign(receiverNormalFactor),
     status,
   };
 }
@@ -260,8 +260,8 @@ function createPairContext(input) {
     displacement: [...input.displacement],
     distance: input.distance,
     distanceSquared: input.distanceSquared,
-    receiverWakePullback: (sourceIndex, receiverIndex, options = {}) =>
-      computeReceiverWakePullback({
+    receiverNormalFactor: (sourceIndex, receiverIndex, options = {}) =>
+      computeReceiverNormalFactor({
         displacement: input.topology.nearestImageDisplacement(
           input.state.positions,
           sourceIndex,

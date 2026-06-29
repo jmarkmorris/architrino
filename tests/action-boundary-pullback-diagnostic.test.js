@@ -24,6 +24,10 @@ function rowById(artifact, rowId) {
   return artifact.action_rows.find((row) => row.row_id === rowId);
 }
 
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
 test("action boundary pullback diagnostic fails closed without action rows", () => {
   const artifact = buildActionBoundaryPullbackDiagnostic(buildDefaultActionBoundaryPullbackInput());
   const errors = validateActionBoundaryPullbackArtifact(artifact);
@@ -105,6 +109,27 @@ test("action boundary accepted metadata without derivation proof object stays no
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_action_evidence_for_closure, false);
+});
+
+test("action boundary validator rejects accepted summary drift", () => {
+  const artifact = buildActionBoundaryPullbackDiagnostic(buildSyntheticActionBoundaryPullbackInput());
+  const tampered = deepClone(artifact);
+  tampered.accepted_evidence_summary.accepted_row_count = 4;
+  tampered.accepted_evidence_summary.accepted_for_action_closure = true;
+  tampered.result.accepted_action_evidence_for_closure = true;
+  for (const rowEvidence of tampered.accepted_evidence_summary.row_evidence) {
+    rowEvidence.accepted_for_action_closure = true;
+  }
+
+  const errors = validateActionBoundaryPullbackArtifact(tampered);
+  assert.equal(
+    errors.includes("action_endpoint_row accepted flag must match action row"),
+    true
+  );
+  assert.equal(
+    errors.includes("action_multiplier_row accepted flag must match action row"),
+    true
+  );
 });
 
 test("action boundary pullback diagnostic separates regulator-only row population from action closure", () => {

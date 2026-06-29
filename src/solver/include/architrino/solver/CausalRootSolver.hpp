@@ -73,20 +73,20 @@ struct CausalRoot {
   double residual = 0.0;
   double jacobian = 0.0;
   double branchWeight = 0.0;
-  double sourceRadialSpeed = 0.0;
-  double receiverRadialSpeed = 0.0;
-  double sourceWakeDenominator = 0.0;
-  double receiverWakeNumerator = 0.0;
-  double receiverCrossingFactor = 0.0;
-  double receiverModulator = 0.0;
-  double unsignedReceiverModulator = 0.0;
+  double sourceNormalSpeed = 0.0;
+  double receiverNormalSpeed = 0.0;
+  double sourceNormalDenominator = 0.0;
+  double receiverNormalNumerator = 0.0;
+  double receiverNormalCrossingFactor = 0.0;
+  double receiverNormalFactor = 0.0;
+  double unsignedReceiverNormalFactor = 0.0;
   double bracketStart = 0.0;
   double bracketEnd = 0.0;
   int iterations = 0;
   Vector3 sourcePoint;
   Vector3 receiverPoint;
   StatusCode statusCode = StatusCode::Ok;
-  StatusCode receiverModulatorStatusCode = StatusCode::Ok;
+  StatusCode receiverNormalStatusCode = StatusCode::Ok;
 };
 
 struct CausalRootResult {
@@ -105,18 +105,18 @@ struct DelayedHitEvent {
   double distance = 0.0;
   double jacobian = 0.0;
   double strength = 0.0;
-  double sourceRadialSpeed = 0.0;
-  double receiverRadialSpeed = 0.0;
-  double sourceWakeDenominator = 0.0;
-  double receiverWakeNumerator = 0.0;
-  double receiverCrossingFactor = 0.0;
-  double receiverModulator = 0.0;
-  double unsignedReceiverModulator = 0.0;
+  double sourceNormalSpeed = 0.0;
+  double receiverNormalSpeed = 0.0;
+  double sourceNormalDenominator = 0.0;
+  double receiverNormalNumerator = 0.0;
+  double receiverNormalCrossingFactor = 0.0;
+  double receiverNormalFactor = 0.0;
+  double unsignedReceiverNormalFactor = 0.0;
   Vector3 emissionPoint;
   Vector3 receiverPoint;
   Vector3 unitDirection;
   StatusCode statusCode = StatusCode::Ok;
-  StatusCode receiverModulatorStatusCode = StatusCode::Ok;
+  StatusCode receiverNormalStatusCode = StatusCode::Ok;
 };
 
 struct DelayedHitResult {

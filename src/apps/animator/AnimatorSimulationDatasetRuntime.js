@@ -105,6 +105,14 @@ function normalizeDelayedHit(rawHit = {}, index = 0) {
     strength: normalizeNumber(rawHit.strength, 0),
     branchId: normalizeString(rawHit.branchId, ""),
     jacobian: normalizeNumber(rawHit.jacobian, 0),
+    sourceNormalSpeed: normalizeNumber(rawHit.sourceNormalSpeed, 0),
+    receiverNormalSpeed: normalizeNumber(rawHit.receiverNormalSpeed, 0),
+    sourceNormalDenominator: normalizeNumber(rawHit.sourceNormalDenominator, 0),
+    receiverNormalNumerator: normalizeNumber(rawHit.receiverNormalNumerator, 0),
+    receiverNormalCrossingFactor: normalizeNumber(rawHit.receiverNormalCrossingFactor, 0),
+    receiverNormalFactor: normalizeNumber(rawHit.receiverNormalFactor, 0),
+    unsignedReceiverNormalFactor: normalizeNumber(rawHit.unsignedReceiverNormalFactor, 0),
+    receiverNormalStatusCode: normalizeNumber(rawHit.receiverNormalStatusCode, 0),
     status: normalizeString(rawHit.status, "recorded"),
     metadata:
       rawHit.metadata && typeof rawHit.metadata === "object"

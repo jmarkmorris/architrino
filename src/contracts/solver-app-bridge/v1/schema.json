@@ -2891,7 +2891,8 @@
             "unsupported_wasm_threads",
             "validation_replay_mismatch",
             "app_contract_error",
-            "internal_solver_error"
+            "internal_solver_error",
+            "receiver_normal_degenerate"
           ]
         },
         "category": {
@@ -6054,6 +6055,14 @@
         "residual",
         "jacobian",
         "branchWeight",
+        "sourceNormalSpeed",
+        "receiverNormalSpeed",
+        "sourceNormalDenominator",
+        "receiverNormalNumerator",
+        "receiverNormalCrossingFactor",
+        "receiverNormalFactor",
+        "unsignedReceiverNormalFactor",
+        "receiverNormalStatusCode",
         "sourcePoint",
         "receiverPoint",
         "coordinateFrame"
@@ -6102,6 +6111,31 @@
         "branchWeight": {
           "type": "number"
         },
+        "sourceNormalSpeed": {
+          "type": "number"
+        },
+        "receiverNormalSpeed": {
+          "type": "number"
+        },
+        "sourceNormalDenominator": {
+          "type": "number"
+        },
+        "receiverNormalNumerator": {
+          "type": "number"
+        },
+        "receiverNormalCrossingFactor": {
+          "type": "number"
+        },
+        "receiverNormalFactor": {
+          "type": "number"
+        },
+        "unsignedReceiverNormalFactor": {
+          "type": "number"
+        },
+        "receiverNormalStatusCode": {
+          "type": "integer",
+          "minimum": 0
+        },
         "sourcePoint": {
           "$ref": "#/$defs/vector3F64"
         },
@@ -6126,6 +6160,14 @@
         "residual",
         "jacobian",
         "branchWeight",
+        "sourceNormalSpeed",
+        "receiverNormalSpeed",
+        "sourceNormalDenominator",
+        "receiverNormalNumerator",
+        "receiverNormalCrossingFactor",
+        "receiverNormalFactor",
+        "unsignedReceiverNormalFactor",
+        "receiverNormalStatusCode",
         "sourcePoint",
         "receiverPoint",
         "coordinateFrame",
@@ -6160,6 +6202,31 @@
         },
         "branchWeight": {
           "type": "number"
+        },
+        "sourceNormalSpeed": {
+          "type": "number"
+        },
+        "receiverNormalSpeed": {
+          "type": "number"
+        },
+        "sourceNormalDenominator": {
+          "type": "number"
+        },
+        "receiverNormalNumerator": {
+          "type": "number"
+        },
+        "receiverNormalCrossingFactor": {
+          "type": "number"
+        },
+        "receiverNormalFactor": {
+          "type": "number"
+        },
+        "unsignedReceiverNormalFactor": {
+          "type": "number"
+        },
+        "receiverNormalStatusCode": {
+          "type": "integer",
+          "minimum": 0
         },
         "sourcePoint": {
           "$ref": "#/$defs/vector3F64"
@@ -11023,6 +11090,14 @@
         "residual",
         "jacobian",
         "branchWeight",
+        "sourceNormalSpeed",
+        "receiverNormalSpeed",
+        "sourceNormalDenominator",
+        "receiverNormalNumerator",
+        "receiverNormalCrossingFactor",
+        "receiverNormalFactor",
+        "unsignedReceiverNormalFactor",
+        "receiverNormalStatusCode",
         "sourcePoint",
         "receiverPoint"
       ],
@@ -11053,6 +11128,31 @@
         },
         "branchWeight": {
           "type": "number"
+        },
+        "sourceNormalSpeed": {
+          "type": "number"
+        },
+        "receiverNormalSpeed": {
+          "type": "number"
+        },
+        "sourceNormalDenominator": {
+          "type": "number"
+        },
+        "receiverNormalNumerator": {
+          "type": "number"
+        },
+        "receiverNormalCrossingFactor": {
+          "type": "number"
+        },
+        "receiverNormalFactor": {
+          "type": "number"
+        },
+        "unsignedReceiverNormalFactor": {
+          "type": "number"
+        },
+        "receiverNormalStatusCode": {
+          "type": "integer",
+          "minimum": 0
         },
         "sourcePoint": {
           "$ref": "#/$defs/vector3F64"
@@ -11086,6 +11186,13 @@
         "bracketEnd",
         "sourcePoint",
         "receiverPoint",
+        "sourceNormalSpeed",
+        "receiverNormalSpeed",
+        "sourceNormalDenominator",
+        "receiverNormalNumerator",
+        "receiverNormalCrossingFactor",
+        "receiverNormalFactor",
+        "unsignedReceiverNormalFactor",
         "entryKind",
         "rootKind",
         "statusCode",
@@ -11093,6 +11200,7 @@
         "sequenceIndex",
         "iterationCount",
         "stateFlags",
+        "receiverNormalStatusCode",
         "firstFailureCode"
       ],
       "properties": {
@@ -11164,6 +11272,27 @@
         "receiverPoint": {
           "$ref": "#/$defs/vector3F64"
         },
+        "sourceNormalSpeed": {
+          "type": "number"
+        },
+        "receiverNormalSpeed": {
+          "type": "number"
+        },
+        "sourceNormalDenominator": {
+          "type": "number"
+        },
+        "receiverNormalNumerator": {
+          "type": "number"
+        },
+        "receiverNormalCrossingFactor": {
+          "type": "number"
+        },
+        "receiverNormalFactor": {
+          "type": "number"
+        },
+        "unsignedReceiverNormalFactor": {
+          "type": "number"
+        },
         "entryKind": {
           "type": "integer",
           "minimum": 0
@@ -11193,6 +11322,10 @@
           "minimum": 0,
           "maximum": 4294967295
         },
+        "receiverNormalStatusCode": {
+          "type": "integer",
+          "minimum": 0
+        },
         "firstFailureCode": {
           "type": "integer",
           "minimum": 0
@@ -11211,6 +11344,14 @@
         "distance",
         "jacobian",
         "strength",
+        "sourceNormalSpeed",
+        "receiverNormalSpeed",
+        "sourceNormalDenominator",
+        "receiverNormalNumerator",
+        "receiverNormalCrossingFactor",
+        "receiverNormalFactor",
+        "unsignedReceiverNormalFactor",
+        "receiverNormalStatusCode",
         "emissionPoint",
         "receiverPoint",
         "unitDirection"
@@ -11239,6 +11380,31 @@
         },
         "strength": {
           "type": "number"
+        },
+        "sourceNormalSpeed": {
+          "type": "number"
+        },
+        "receiverNormalSpeed": {
+          "type": "number"
+        },
+        "sourceNormalDenominator": {
+          "type": "number"
+        },
+        "receiverNormalNumerator": {
+          "type": "number"
+        },
+        "receiverNormalCrossingFactor": {
+          "type": "number"
+        },
+        "receiverNormalFactor": {
+          "type": "number"
+        },
+        "unsignedReceiverNormalFactor": {
+          "type": "number"
+        },
+        "receiverNormalStatusCode": {
+          "type": "integer",
+          "minimum": 0
         },
         "emissionPoint": {
           "$ref": "#/$defs/vector3F64"

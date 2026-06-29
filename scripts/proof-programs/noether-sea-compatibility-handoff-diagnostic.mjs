@@ -564,6 +564,36 @@ function assertField(condition, message, errors) {
   }
 }
 
+function validateAcceptedEvidenceSummary(artifact, errors) {
+  const summary = artifact.accepted_evidence_summary;
+  assertField(summary && typeof summary === "object" && !Array.isArray(summary), "accepted_evidence_summary must be an object", errors);
+  if (!summary || typeof summary !== "object" || Array.isArray(summary)) {
+    return;
+  }
+  assertField(summary.required_response_count === 1, "accepted_evidence_summary.required_response_count must be 1", errors);
+  assertField(Array.isArray(summary.response_evidence), "accepted_evidence_summary.response_evidence must be an array", errors);
+  if (!Array.isArray(summary.response_evidence)) {
+    return;
+  }
+
+  const acceptedResponseCount = summary.response_evidence.filter(
+    (entry) => entry.accepted_for_medium_response_closure === true
+  ).length;
+  assertField(summary.response_evidence.length === 1, "accepted_evidence_summary.response_evidence must contain one response", errors);
+  assertField(summary.accepted_response_count === acceptedResponseCount, "accepted_evidence_summary.accepted_response_count must match response evidence", errors);
+  assertField(
+    summary.accepted_for_medium_response_closure === (acceptedResponseCount === 1),
+    "accepted_evidence_summary.accepted_for_medium_response_closure must match accepted response count",
+    errors
+  );
+  assertField(
+    artifact.result?.accepted_medium_response_evidence_for_closure ===
+      summary.accepted_for_medium_response_closure,
+    "result.accepted_medium_response_evidence_for_closure must match accepted_evidence_summary",
+    errors
+  );
+}
+
 export function validateNoetherSeaCompatibilityHandoffArtifact(artifact) {
   const errors = [];
   assertField(artifact && typeof artifact === "object" && !Array.isArray(artifact), "artifact must be an object", errors);
@@ -611,6 +641,7 @@ export function validateNoetherSeaCompatibilityHandoffArtifact(artifact) {
       errors
     );
   }
+  validateAcceptedEvidenceSummary(artifact, errors);
 
   return errors;
 }

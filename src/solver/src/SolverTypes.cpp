@@ -87,8 +87,8 @@ std::string_view to_string(StatusCode value) {
       return "app_contract_error";
     case StatusCode::InternalSolverError:
       return "internal_solver_error";
-    case StatusCode::ReceiverModulatorDegenerate:
-      return "receiver_modulator_degenerate";
+    case StatusCode::ReceiverNormalDegenerate:
+      return "receiver_normal_degenerate";
   }
   return "unknown";
 }

@@ -1,16 +1,16 @@
-# Receiver-Path Wake-Action Pullback
+# Receiver-Normal Wake-Action Factor
 
 Status. Priority-only model-change audit for master-equation closure, A1
 outward constants, action/wake-history closure, and solver support. This packet
 does not replace the canonical event-local Master EOM force row. It records the
-receiver-path factor that must be audited whenever a proof consumes accumulated
+receiver-normal factor that must be audited whenever a proof consumes accumulated
 action, power, wake-history charge, or finite-window conservation rather than
 only an instantaneous branch force.
 
 Claim level. Candidate correction to action-measure usage; exact geometry
 identity for smooth retained roots; not yet promoted as a changed force law.
 
-## Root-Transport Identity
+## Receiver-Normal Identity
 
 For source $j$, receiver $i$, and causal constraint
 $$
@@ -28,23 +28,24 @@ $$
 \frac{ds_\ell}{dt}=\frac{D_{t,ij}}{D_{s,ij}}.
 $$
 
-Interpretation. $D_{s,ij}^{-1}$ is the source-side causal-root Jacobian already
-used in the event-local branch law. $D_{t,ij}$ is the receiver-crossing factor:
+Interpretation. $D_{s,ij}^{-1}$ is the source-normal causal-root Jacobian already
+used in the event-local branch law. $D_{t,ij}$ is the receiver-normal numerator:
 it says how fast the receiver path cuts through the source-emitted causal wake
 sequence. If the receiver is stationary in the Euclidean-void rest frame, then
 $D_{t,ij}=c_f$ and the effect can be absorbed into the chosen normalization. If
-the receiver has radial motion relative to the source-emission direction, the
-factor is geometry-dependent and cannot be replaced by one constant.
+the receiver has normal motion relative to the source-emission direction, the
+receiver-normal factor $D_{t,ij}/D_{s,ij}$ is geometry-dependent and cannot be
+replaced by one constant.
 
 ## Proof Impact
 
 | Proof lane | Immediate impact |
 | --- | --- |
-| Event-local Master EOM force rows | Do not restart automatically. These rows remain source-side Jacobian-weighted line-of-action targets unless a later variational proof shows the receiver factor belongs in the force row itself. |
-| Action / wake-history / power rows | Must be audited. Any row that interprets received branch density as an accumulated action rate must declare whether it uses $D_{s,ij}^{-1}$ alone or the receiver-path pullback $D_{t,ij}/D_{s,ij}$. |
-| A1 outward constants | Not ready for action closure until each selected retained row either emits receiver-crossing bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same boxes or proves the stationary/constant-normalization exemption. |
-| Noether wake-history closure | Needs same-record binding between active roots, source-side Jacobian floors, receiver-crossing factors, and boundary wake-history charges. |
-| Solver packets | Need an explicit receiver-pullback diagnostic so simulations can vary receiver radial velocity independently of $\kappa$. |
+| Event-local Master EOM force rows | Do not restart automatically. These rows remain source-normal Jacobian-weighted line-of-action targets unless a later variational proof shows the receiver-normal factor belongs in the force row itself. |
+| Action / wake-history / power rows | Must be audited. Any row that interprets received branch density as an accumulated action rate must declare whether it uses $D_{s,ij}^{-1}$ alone or the receiver-normal factor $D_{t,ij}/D_{s,ij}$. |
+| A1 outward constants | Not ready for action closure until each selected retained row either emits receiver-normal bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same boxes or proves the stationary/constant-normalization exemption. |
+| Noether wake-history closure | Needs same-record binding between active roots, source-normal Jacobian floors, receiver-normal factors, and boundary wake-history charges. |
+| Solver packets | Need explicit receiver-normal fields so simulations can vary receiver normal velocity independently of $\kappa$. |
 
 ## A1-Specific Target
 
@@ -62,14 +63,14 @@ but does not by itself falsify an event-local force row.
 
 ## Solver Acceptance Target
 
-A solver-side receiver-pullback row is accepted only when it reports:
+A solver-side receiver-normal row is accepted only when it reports:
 
 - source-to-receiver unit direction,
-- source radial speed $\hat{\mathbf r}\cdot\mathbf v_j$,
-- receiver radial speed $\hat{\mathbf r}\cdot\mathbf v_i$,
-- source-side denominator $D_s$,
-- receiver-side numerator $D_t$,
-- root-transport factor $D_t/D_s$,
+- source normal speed $\hat{\mathbf r}\cdot\mathbf v_j$,
+- receiver normal speed $\hat{\mathbf r}\cdot\mathbf v_i$,
+- source-normal denominator $D_s$,
+- receiver-normal numerator $D_t$,
+- receiver-normal factor $D_t/D_s$,
 - fail-closed status for nonfinite values, small $D_s$, or small $D_t$ when the selected proof requires monotone receiver sampling.
 
 This should be consumed as a diagnostic/action row first. Promotion to a

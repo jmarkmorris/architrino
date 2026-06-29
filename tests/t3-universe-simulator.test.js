@@ -3,7 +3,7 @@ import test from "node:test";
 
 import {
   createInitialT3State,
-  computeReceiverWakePullback,
+  computeReceiverNormalFactor,
   createSoftSphereRepulsionInteraction,
   createInteractionPipeline,
   createT3SpatialIndex,
@@ -109,38 +109,38 @@ test("adaptive reference solver accepts deterministic free-flight steps", async 
   assert.ok(Math.abs(simulator.state.positions[0] - 1.05) < 1e-12);
 });
 
-test("receiver wake pullback separates source and receiver radial cadence", () => {
-  const stationary = computeReceiverWakePullback({
+test("receiver normal factor separates source and receiver normal cadence", () => {
+  const stationary = computeReceiverNormalFactor({
     direction: [1, 0, 0],
     sourceVelocity: [0, 0, 0],
     receiverVelocity: [0, 0, 0],
     causalSpeed: 1,
   });
   assert.equal(stationary.status, "ok");
-  assert.equal(stationary.rootTransportFactor, 1);
+  assert.equal(stationary.receiverNormalFactor, 1);
 
-  const moving = computeReceiverWakePullback({
+  const moving = computeReceiverNormalFactor({
     direction: [1, 0, 0],
     sourceVelocity: [0.25, 0, 0],
     receiverVelocity: [-0.5, 0, 0],
     causalSpeed: 1,
   });
   assert.equal(moving.status, "ok");
-  assert.equal(moving.sourceDenominator, 0.75);
-  assert.equal(moving.receiverNumerator, 1.5);
+  assert.equal(moving.sourceNormalDenominator, 0.75);
+  assert.equal(moving.receiverNormalNumerator, 1.5);
   assert.equal(moving.sourceJacobian, 0.75);
-  assert.equal(moving.receiverCrossingFactor, 1.5);
-  assert.equal(moving.rootTransportFactor, 2);
+  assert.equal(moving.receiverNormalCrossingFactor, 1.5);
+  assert.equal(moving.receiverNormalFactor, 2);
 
-  const sameRadialDrift = computeReceiverWakePullback({
+  const sameNormalDrift = computeReceiverNormalFactor({
     direction: [1, 0, 0],
     sourceVelocity: [0.2, 0, 0],
     receiverVelocity: [0.2, 0, 0],
     causalSpeed: 1,
   });
-  assert.equal(sameRadialDrift.rootTransportFactor, 1);
+  assert.equal(sameNormalDrift.receiverNormalFactor, 1);
 
-  const grazingSource = computeReceiverWakePullback({
+  const grazingSource = computeReceiverNormalFactor({
     direction: [1, 0, 0],
     sourceVelocity: [1, 0, 0],
     receiverVelocity: [0, 0, 0],
@@ -149,7 +149,7 @@ test("receiver wake pullback separates source and receiver radial cadence", () =
   assert.equal(grazingSource.status, "nonfinite");
 });
 
-test("pair interaction context exposes receiver wake pullback rows", () => {
+test("pair interaction context exposes receiver normal factor rows", () => {
   const topology = createT3Topology({ sideLength: 10 });
   const state = createInitialT3State({
     topology: { sideLength: 10 },
@@ -164,10 +164,10 @@ test("pair interaction context exposes receiver wake pullback rows", () => {
   const rows = [];
   const pipeline = createInteractionPipeline([
     {
-      id: "receiver-wake-pullback-probe",
+      id: "receiver-normal-factor-probe",
       schema: "t3-interaction.v1",
       applyPair(context) {
-        rows.push(context.receiverWakePullback(context.i, context.j, { causalSpeed: 1 }));
+        rows.push(context.receiverNormalFactor(context.i, context.j, { causalSpeed: 1 }));
       },
     },
   ]);
@@ -182,7 +182,7 @@ test("pair interaction context exposes receiver wake pullback rows", () => {
 
   assert.equal(rows.length, 1);
   assert.equal(rows[0].status, "ok");
-  assert.equal(rows[0].rootTransportFactor, 2);
+  assert.equal(rows[0].receiverNormalFactor, 2);
 });
 
 test("central solver engine advances particles through existing solver client", async () => {

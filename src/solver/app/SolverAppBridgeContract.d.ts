@@ -1418,7 +1418,7 @@ export interface SolverMovingCircularObserverFieldContributionF64 {
   jacobian: number;
   jacobianAbs: number;
   jacobianWeight: number;
-  sourceRadialSpeed: number;
+  sourceNormalSpeed: number;
   sourceSpeedRatio: number;
   receiverAcceleration: SolverVector3F64;
   electric: SolverVector3F64;
@@ -1548,6 +1548,14 @@ export interface SolverCausalRootF64 {
   residual: number;
   jacobian: number;
   branchWeight: number;
+  sourceNormalSpeed: number;
+  receiverNormalSpeed: number;
+  sourceNormalDenominator: number;
+  receiverNormalNumerator: number;
+  receiverNormalCrossingFactor: number;
+  receiverNormalFactor: number;
+  unsignedReceiverNormalFactor: number;
+  receiverNormalStatusCode: number;
   sourcePoint: SolverVector3F64;
   receiverPoint: SolverVector3F64;
 }
@@ -1573,6 +1581,13 @@ export interface SolverRootLedgerDetailF64 {
   bracketEnd: number;
   sourcePoint: SolverVector3F64;
   receiverPoint: SolverVector3F64;
+  sourceNormalSpeed: number;
+  receiverNormalSpeed: number;
+  sourceNormalDenominator: number;
+  receiverNormalNumerator: number;
+  receiverNormalCrossingFactor: number;
+  receiverNormalFactor: number;
+  unsignedReceiverNormalFactor: number;
   entryKind: number;
   rootKind: number;
   statusCode: number;
@@ -1580,6 +1595,7 @@ export interface SolverRootLedgerDetailF64 {
   sequenceIndex: number;
   iterationCount: number;
   stateFlags: number;
+  receiverNormalStatusCode: number;
   firstFailureCode: number;
 }
 
@@ -1592,6 +1608,14 @@ export interface SolverDelayedHitF64 {
   distance: number;
   jacobian: number;
   strength: number;
+  sourceNormalSpeed: number;
+  receiverNormalSpeed: number;
+  sourceNormalDenominator: number;
+  receiverNormalNumerator: number;
+  receiverNormalCrossingFactor: number;
+  receiverNormalFactor: number;
+  unsignedReceiverNormalFactor: number;
+  receiverNormalStatusCode: number;
   emissionPoint: SolverVector3F64;
   receiverPoint: SolverVector3F64;
   unitDirection: SolverVector3F64;
@@ -2365,7 +2389,8 @@ export type SolverStatusCode =
   | "unsupported_wasm_threads"
   | "validation_replay_mismatch"
   | "app_contract_error"
-  | "internal_solver_error";
+  | "internal_solver_error"
+  | "receiver_normal_degenerate";
 
 export interface SolverStatusRecord {
   code: SolverStatusCode;
@@ -2533,7 +2558,8 @@ export type SolverStatusCode =
   | "unsupported_wasm_threads"
   | "validation_replay_mismatch"
   | "app_contract_error"
-  | "internal_solver_error";
+  | "internal_solver_error"
+  | "receiver_normal_degenerate";
 
 export interface SolverStatusTaxonomyCode {
   id: number;

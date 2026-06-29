@@ -66,6 +66,15 @@ struct ArchitrinoSolverCausalRootRowF64 {
   double receiver_x;
   double receiver_y;
   double receiver_z;
+  double source_normal_speed;
+  double receiver_normal_speed;
+  double source_normal_denominator;
+  double receiver_normal_numerator;
+  double receiver_normal_crossing_factor;
+  double receiver_normal_factor;
+  double unsigned_receiver_normal_factor;
+  int receiver_normal_status_code;
+  int reserved0;
 };
 
 struct ArchitrinoSolverRootLedgerDetailRowF64 {
@@ -89,6 +98,13 @@ struct ArchitrinoSolverRootLedgerDetailRowF64 {
   double receiver_x;
   double receiver_y;
   double receiver_z;
+  double source_normal_speed;
+  double receiver_normal_speed;
+  double source_normal_denominator;
+  double receiver_normal_numerator;
+  double receiver_normal_crossing_factor;
+  double receiver_normal_factor;
+  double unsigned_receiver_normal_factor;
   std::uint32_t entry_kind;
   std::uint32_t root_kind;
   std::uint32_t status_code;
@@ -96,7 +112,7 @@ struct ArchitrinoSolverRootLedgerDetailRowF64 {
   std::uint32_t sequence_index;
   std::uint32_t iteration_count;
   std::uint32_t state_flags;
-  std::uint32_t reserved0;
+  std::uint32_t receiver_normal_status_code;
 };
 
 struct ArchitrinoSolverDelayedHitRowF64 {
@@ -118,6 +134,15 @@ struct ArchitrinoSolverDelayedHitRowF64 {
   double unit_x;
   double unit_y;
   double unit_z;
+  double source_normal_speed;
+  double receiver_normal_speed;
+  double source_normal_denominator;
+  double receiver_normal_numerator;
+  double receiver_normal_crossing_factor;
+  double receiver_normal_factor;
+  double unsigned_receiver_normal_factor;
+  int receiver_normal_status_code;
+  int reserved1;
 };
 
 struct ArchitrinoSolverCausalRootBatchItemRowF64 {

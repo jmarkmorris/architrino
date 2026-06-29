@@ -85,7 +85,7 @@ bool solver_contract_smoke() {
       binary_layout_descriptor(BinaryLayoutId::EmissionShellCandidateV1);
   const BinaryLayoutDescriptor emissionNarrowLayout =
       binary_layout_descriptor(BinaryLayoutId::EmissionShellNarrowPhaseV1);
-  if (rootLayout.rowSizeBytes != 112 || hitLayout.rowSizeBytes != 128 ||
+  if (rootLayout.rowSizeBytes != 176 || hitLayout.rowSizeBytes != 192 ||
       emissionCandidateLayout.rowSizeBytes != 112 || emissionNarrowLayout.rowSizeBytes != 40 ||
       rootLayout.name != "root_ledger.v1" || hitLayout.name != "delayed_hit_events.v1" ||
       emissionCandidateLayout.name != "emission_shell_candidate.v1" ||
@@ -99,8 +99,8 @@ bool solver_contract_smoke() {
   const SolverStreamDescriptor transientStream =
       make_transient_stream_descriptor("causal-root-smoke", 0.0, 10.0, {rootBuffer, hitBuffer});
   if (transientStream.buffers.size() != 2 || transientStream.ranges.size() != 2 ||
-      transientStream.ranges[0].byteLength != 112 || transientStream.ranges[1].byteOffset != 112 ||
-      transientStream.ranges[1].byteLength != 128) {
+      transientStream.ranges[0].byteLength != 176 || transientStream.ranges[1].byteOffset != 176 ||
+      transientStream.ranges[1].byteLength != 192) {
     return false;
   }
 
@@ -251,8 +251,8 @@ bool causal_root_smoke() {
   int cRootCount = 0;
   int cHitCount = 0;
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
-  if (abiInfo.root_request_f64_bytes != 176 || abiInfo.root_row_f64_bytes != 112 ||
-      abiInfo.delayed_hit_row_f64_bytes != 128) {
+  if (abiInfo.root_request_f64_bytes != 176 || abiInfo.root_row_f64_bytes != 176 ||
+      abiInfo.delayed_hit_row_f64_bytes != 192) {
     return false;
   }
   ArchitrinoSolverAbiInfo outAbiInfo{};

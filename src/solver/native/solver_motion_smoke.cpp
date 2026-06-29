@@ -680,7 +680,7 @@ int main() {
       abiPairCausalDelayBoundarySummary.max_boundary_relaxation_residual_after > 0.0 &&
       (abiPairCausalDelayBoundarySummary.boundary_relaxation_candidate_kind_mask &
        kCausalDelayNumericalNewtonCandidateMask) == kCausalDelayNumericalNewtonCandidateMask &&
-      abiInfo.abi_minor == 13 &&
+      abiInfo.abi_minor == 14 &&
       abiInfo.motion_integration_request_f64_bytes == 120 &&
       abiInfo.pair_interaction_request_f64_bytes == 88;
 

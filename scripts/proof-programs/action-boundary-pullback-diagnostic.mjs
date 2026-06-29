@@ -346,6 +346,61 @@ function assertField(condition, message, errors) {
   }
 }
 
+function sameStringArray(left, right) {
+  const leftStable = Array.isArray(left) ? left : [];
+  const rightStable = Array.isArray(right) ? right : [];
+  return (
+    leftStable.length === rightStable.length &&
+    leftStable.every((value, index) => value === rightStable[index])
+  );
+}
+
+function validateAcceptedEvidenceSummary(artifact, errors) {
+  const summary = artifact.accepted_evidence_summary;
+  assertField(summary && typeof summary === "object" && !Array.isArray(summary), "accepted_evidence_summary must be an object", errors);
+  if (!summary || typeof summary !== "object" || Array.isArray(summary)) {
+    return;
+  }
+  assertField(summary.required_row_count === REQUIRED_ACTION_ROWS.length, "accepted_evidence_summary.required_row_count must match required action rows", errors);
+  assertField(Array.isArray(summary.row_evidence), "accepted_evidence_summary.row_evidence must be an array", errors);
+  if (!Array.isArray(summary.row_evidence) || !Array.isArray(artifact.action_rows)) {
+    return;
+  }
+
+  let acceptedRowCount = 0;
+  for (const rowId of REQUIRED_ACTION_ROWS) {
+    const actionRow = artifact.action_rows.find((entry) => entry.row_id === rowId);
+    const evidence = summary.row_evidence.find((entry) => entry.row_id === rowId);
+    assertField(Boolean(evidence), `accepted_evidence_summary.row_evidence must include ${rowId}`, errors);
+    if (!evidence) {
+      continue;
+    }
+    const rowEvidenceLevel = actionRow?.evidence_level ?? "missing";
+    const rowAccepted = actionRow?.accepted_for_action_closure === true;
+    const rowAttempted = actionRow?.accepted_evidence_contract_attempted === true;
+    const rowMismatches = actionRow?.accepted_evidence_mismatches ?? [];
+    if (evidence.accepted_for_action_closure === true) {
+      acceptedRowCount += 1;
+    }
+    assertField(evidence.evidence_level === rowEvidenceLevel, `${rowId} accepted evidence level must match action row`, errors);
+    assertField(evidence.accepted_for_action_closure === rowAccepted, `${rowId} accepted flag must match action row`, errors);
+    assertField(evidence.accepted_evidence_contract_attempted === rowAttempted, `${rowId} accepted attempt flag must match action row`, errors);
+    assertField(sameStringArray(evidence.accepted_evidence_mismatches, rowMismatches), `${rowId} accepted mismatches must match action row`, errors);
+  }
+
+  assertField(summary.accepted_row_count === acceptedRowCount, "accepted_evidence_summary.accepted_row_count must match row evidence", errors);
+  assertField(
+    summary.accepted_for_action_closure === (acceptedRowCount === REQUIRED_ACTION_ROWS.length),
+    "accepted_evidence_summary.accepted_for_action_closure must match accepted row count",
+    errors
+  );
+  assertField(
+    artifact.result?.accepted_action_evidence_for_closure === summary.accepted_for_action_closure,
+    "result.accepted_action_evidence_for_closure must match accepted_evidence_summary",
+    errors
+  );
+}
+
 export function validateActionBoundaryPullbackArtifact(artifact) {
   const errors = [];
   assertField(artifact && typeof artifact === "object" && !Array.isArray(artifact), "artifact must be an object", errors);
@@ -386,6 +441,7 @@ export function validateActionBoundaryPullbackArtifact(artifact) {
       assertField(Array.isArray(actionRow?.checks), `${rowId} must include checks`, errors);
     }
   }
+  validateAcceptedEvidenceSummary(artifact, errors);
 
   return errors;
 }

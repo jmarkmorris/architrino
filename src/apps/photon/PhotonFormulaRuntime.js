@@ -1490,8 +1490,8 @@ function dedupePhotonDelayedRoots(roots) {
 
 function computePhotonDelayedContribution(root, measurement) {
   const n = root.direction;
-  const sourceRadialSpeed = dotVector(root.kinematics.velocity, n);
-  const jacobian = 1 - sourceRadialSpeed / Math.max(EPSILON, measurement.emissionSpeedCf);
+  const sourceNormalSpeed = dotVector(root.kinematics.velocity, n);
+  const jacobian = 1 - sourceNormalSpeed / Math.max(EPSILON, measurement.emissionSpeedCf);
   const jacobianAbs = Math.abs(jacobian);
   const jacobianWeight = 1 / Math.max(JACOBIAN_FLOOR, jacobianAbs);
   const sourceSpeedRatio = vectorMagnitude(root.kinematics.velocity) / Math.max(EPSILON, measurement.emissionSpeedCf);
@@ -1508,7 +1508,7 @@ function computePhotonDelayedContribution(root, measurement) {
     jacobian,
     jacobianAbs,
     jacobianWeight,
-    sourceRadialSpeed,
+    sourceNormalSpeed,
     sourceSpeedRatio,
     receiverAcceleration,
     electric,
