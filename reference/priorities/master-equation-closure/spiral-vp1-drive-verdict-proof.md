@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Drive Verdict Target
 
-Status. Current-law restart target. This file no longer supplies a VP-1 drive
+Status. Receiver-normal restart target. This file no longer supplies a VP-1 drive
 verdict, tangential failure, radial threshold, or force/action proof.
 
 Claim level. Priority-only restart target.

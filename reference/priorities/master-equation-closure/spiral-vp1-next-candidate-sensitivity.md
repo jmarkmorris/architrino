@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Next-Candidate Sensitivity Target
 
-Status. Current-law restart target. This file no longer preserves source-normal
+Status. Receiver-normal restart target. This file no longer preserves source-normal
 VP-1 sensitivity or next-candidate exclusion results.
 
 Claim level. Priority-only restart target.

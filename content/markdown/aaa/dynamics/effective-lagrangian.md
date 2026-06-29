@@ -8,7 +8,7 @@ roots as the Master EOM. Source-normal denominators remain transversality
 diagnostics until paired with the receiver-normal numerator and checked by the
 stated residuals.
 
-Variational proof work restarts from this current-law target. No prior action
+Variational proof work restarts from this canonical receiver-normal target. No prior action
 stationarity, energy balance, or Noether wake-history verdict is inherited
 unless the same derivation reproduces the receiver-normal branch law on the
 retained record.
@@ -263,7 +263,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below gives the scale-only Master EOM; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](./master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -277,15 +277,19 @@ $$
 
 where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
 
-On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the scale-only result is the delayed force law
+On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
 $$
 \mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
-{r_{ij}(t;t_0)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
+\frac{
+W_{ij}^{\mathrm{rec}}(t;t_0)\,
+\hat{\mathbf{r}}_{ij}(t;t_0)
+}
+{r_{ij}(t;t_0)^2}
 $$
+where $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
 including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
@@ -345,9 +349,9 @@ $$
 \varepsilon
 }
 $$
-The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
+The scale-only receiver-normal branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
-The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](energy.md#wake-escapement).
+The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only receiver-normal branch target; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](energy.md#wake-escapement).
 
 The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
 
@@ -572,7 +576,7 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 =
 \left|1-\frac{\mathbf{u}(\mathbf{x}',t')\cdot\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')}{c_f}\right|
 $$
-This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. Under the current Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
+This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. In the canonical Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
 The source-normal denominator is also one continuum location of the per-hit third-law defect. The corrected branch factor must additionally include the receiver-normal numerator, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 

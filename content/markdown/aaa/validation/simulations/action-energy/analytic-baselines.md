@@ -6,7 +6,7 @@ Purpose:
 
 Models:
 - Fixed center (test particle, source stationary):
-  - The causal root is explicit, but the current-law acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a current-law moving-receiver baseline.
+  - The causal root is explicit, but the canonical receiver-normal acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a receiver-normal moving-receiver baseline.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{rec}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
@@ -215,7 +215,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
-- Cross-references to sections with current-law baseline equations and status notes.
+- Cross-references to sections with receiver-normal baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,

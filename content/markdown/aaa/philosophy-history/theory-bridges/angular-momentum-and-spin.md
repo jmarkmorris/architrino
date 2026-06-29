@@ -3082,10 +3082,13 @@ $$
 \sum_{a\in\mathscr A_{\hat{\mathbf{m}}}}
 \sum_{s\in\mathcal C_{ia}^{A}(t)}
 \sigma_{ia}
-\frac{|q_iq_a|}
-{r_{ia}^2(t;s)|J_{ia}(t;s)|}
+|q_iq_a|
+\frac{W_{ia}^{\mathrm{rec}}(t;s)}
+{r_{ia}^2(t;s)}
 \hat{\mathbf r}_{ia}(t;s)
 $$
+
+where $W_{ia}^{\mathrm{rec}}(t;s)=\lvert D_{t,ia}/D_{s,ia}\rvert$ is evaluated on the same active branch as the angular-momentum row.
 
 and the force-like bookkeeping variable is
 

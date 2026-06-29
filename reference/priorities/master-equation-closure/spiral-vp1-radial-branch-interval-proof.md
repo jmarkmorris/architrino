@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Radial Branch Target
 
-Status. Current-law restart target for the VP-1 radial branch row at
+Status. Receiver-normal restart target for the VP-1 radial branch row at
 $\theta_\ast=0$ on the retained $P_1,P_2,P_3,S_1$ chart. This packet no longer
 supplies a radial pass, failure, branch-sum interval, or force-ratio decision.
 
@@ -22,7 +22,7 @@ $$
 The existing root-window and Jacobian-floor packets may still constrain the
 retained chart. They do not determine radial force strength by themselves.
 
-## Current-Law Row
+## Receiver-Normal Row
 
 For each retained label $\alpha$, the radial contribution must be recomputed
 from the same retained record using

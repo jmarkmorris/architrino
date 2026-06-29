@@ -1,6 +1,6 @@
 # Receiver-Normal Master Equation Restart Ledger
 
-Status. Mandatory current-law restart ledger. The canonical Master EOM uses the
+Status. Mandatory receiver-normal restart ledger. The canonical Master EOM uses the
 receiver-normal branch factor
 $$
 D_{s,ij}=c_f-\hat{\mathbf r}_{ij}\cdot\mathbf v_j(s),
@@ -14,16 +14,16 @@ this same-record receiver-normal branch strength before it can move closure.
 Rows that do not expose $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the retained
 branch record are not force/action evidence.
 
-Clean-slate proof-process rule. If a proof path consumed any pre-receiver-normal
-force, action, finite-certificate, no-go, margin, or pass/fail row, restart that
-proof path from its first current-law branch table. Do not promote a prior
-margin, constant, no-go, fixed-point claim, or pass/fail verdict by patching in
-$D_t$ later. The only admissible carryover is explicitly non-force geometry:
-root existence, retained branch labels, inactive gaps, finite-memory depth, and
-source-normal transversality. Even those rows must be re-bound to the same
-current-law record before a restarted proof consumes them.
+Clean-slate proof-process rule. If a proof path consumed any force, action,
+finite-certificate, no-go, margin, or pass/fail row lacking same-record $D_t$,
+restart that proof path from its first receiver-normal branch table. Do not
+promote a prior margin, constant, no-go, fixed-point claim, or pass/fail verdict
+by patching in $D_t$ later. The only admissible carryover is explicitly non-force
+geometry: root existence, retained branch labels, inactive gaps, finite-memory
+depth, and source-normal transversality. Even those rows must be re-bound to the
+same receiver-normal EOM record before a restarted proof consumes them.
 
-## Current-Law Promotion Rule
+## Receiver-Normal Promotion Rule
 
 The source-normal denominator $D_s$ is root-transversality data. It is not by
 itself branch strength. Stationary, fixed-source, or fixed-receiver reductions
@@ -53,9 +53,9 @@ Rows that must restart:
 - app or solver rows that reconstruct branch strength without $D_t$,
 - any proof process whose conclusion depended on one of those rows.
 
-## Active Equation
+## Canonical Equation
 
-The force-level branch contribution is now
+The force-level branch contribution is
 $$
 \mathbf a_i(t)
 =
@@ -70,7 +70,7 @@ not be collapsed.
 
 ## Global Impact Ledger
 
-| Surface | Current disposition | Required restart |
+| Surface | Receiver-normal disposition | Required restart |
 | --- | --- | --- |
 | `content/markdown/aaa/dynamics/master-equation.md` | Canonical equation uses receiver-normal branch strength. Action and circular rows that lack same-record $D_t$ are restart targets only. | Redrive action functional and circular branch asymptotics with $W^{\mathrm{rec}}$. |
 | `reference/priorities/master-equation-closure/receiver-normal-wake-action-factor.md` | Accepted correction packet. | Use as the local law for every restarted force/action row. |
@@ -79,7 +79,7 @@ not be collapsed.
 | Action / Noether wake-history | Scalar action scaffolds are restart targets unless their variation produces the receiver-normal branch law. | Rebuild the constrained-branch action target and Noether balance rows using $W^{\mathrm{rec}}$ on the same retained branch chart. |
 | Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that omit $D_t$. |
 | Photon / Animator / Ideal Braid app-local formulas | App-local physical contribution reconstruction remains suspect until each path consumes solver-owned receiver-normal rows. | Move contribution rows behind solver output before using app-local summaries as physics evidence. |
-| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of force/action strength. | Redrive only after core Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
+| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of force/action strength. | Redrive only after the canonical Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
 
 ## Reinitiation Decisions
 
@@ -95,7 +95,7 @@ Reinitiate action and Noether wake-history closure from the constrained branch
 scaffold with $W^{\mathrm{rec}}$. Do not replay branch-strength rows that omit
 $D_t$ as live proof steps.
 
-Pause equation-mapping score movement until the restarted Master EOM rows exist.
+Pause equation-mapping score movement until the receiver-normal Master EOM rows exist.
 Equation-mapping can still audit which rows lack receiver-normal branch
 strength, but numeric pass/fail without $D_t$ is not proof evidence.
 

@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Parameter-Sensitivity Target
 
-Status. Current-law restart target. This file no longer preserves sampled
+Status. Receiver-normal restart target. This file no longer preserves sampled
 parameter-sensitivity rows as active drive evidence.
 
 Claim level. Priority-only restart target.

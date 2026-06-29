@@ -2,10 +2,10 @@
 
 Status. Mandatory model-change audit for master-equation closure, A1 outward
 constants, action/wake-history closure, and solver support. This packet records
-the receiver-normal factor now required by the canonical Master EOM branch law.
+the receiver-normal factor required by the canonical Master EOM branch law.
 Rows without the receiver-normal numerator are not force/action evidence.
 Stationary, fixed-source, or fixed-receiver reductions must be recomputed from
-this identity inside the current retained row.
+this identity inside the selected retained row.
 
 Claim level. Accepted correction to the Master EOM branch-strength law; exact
 geometry identity for smooth retained roots; downstream proof paths must restart
@@ -34,7 +34,7 @@ It remains the transversality floor that makes a simple root legal. $D_{t,ij}$
 is the receiver-normal numerator: it says how fast the receiver path cuts
 through the source-emitted causal wake sequence. If a receiver is stationary in
 the Euclidean-void rest frame, then $D_{t,ij}=c_f$ follows by substitution in
-this equation. That reduction is a current-law sanity check, not a promotion
+this equation. That reduction is a receiver-normal sanity check, not a promotion
 route for rows that omit $D_t$. In every nontrivial receiver-normal case,
 $D_{t,ij}/D_{s,ij}$ is geometry-dependent and cannot be replaced by one
 constant.
@@ -47,7 +47,7 @@ constant.
 | Action / wake-history / power rows | Restart required. Each row must use $D_{t,ij}/D_{s,ij}$ on the same retained record. |
 | A1 outward constants | Invalid as closure evidence until each selected retained row emits receiver-normal bounds $D_{t,\alpha}^{-},D_{t,\alpha}^{+}$ on the same boxes. |
 | Noether wake-history closure | Needs same-record binding between active roots, source-normal Jacobian floors, receiver-normal factors, and boundary wake-history charges. |
-| Solver packets | Central branch weight / delayed-hit strength now consume the unsigned receiver-normal factor, while the source-normal denominator remains a transversality field. |
+| Solver packets | Central branch weight / delayed-hit strength consumes the unsigned receiver-normal factor, while the source-normal denominator remains a transversality field. |
 
 ## A1-Specific Target
 
@@ -76,6 +76,6 @@ A solver-side receiver-normal row is accepted only when it reports:
 - receiver-normal factor $D_t/D_s$,
 - fail-closed status for nonfinite values, small $D_s$, or small $D_t$ when the selected proof requires monotone receiver sampling.
 
-This is now consumed as the branch-strength row. A separate variational proof is
+This is consumed as the branch-strength row. A separate variational proof is
 still required for action derivation, but not for using receiver-normal branch
 strength in the Master EOM.

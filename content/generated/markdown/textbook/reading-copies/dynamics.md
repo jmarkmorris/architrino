@@ -1498,7 +1498,7 @@ An important open problem is to map the phase-space attractor landscape for self
 **Symmetry:** By polarity symmetry, both fall toward their common center of mass.
 
 **Equations:** On a retained partner branch, the radial coordinate
-$r(t)=\|\mathbf{x}_2(t)-\mathbf{x}_1(t)\|$ has the current-law schematic form
+$r(t)=\|\mathbf{x}_2(t)-\mathbf{x}_1(t)\|$ has the canonical receiver-normal schematic form
 with receiver-normal branch strength:
 
 $$
@@ -1528,7 +1528,7 @@ same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row.
 - No self-hits (sub-field-speed regime)
 
 **Partner contribution:** The circular source-normal geometry nominates an
-inward radial diagnostic and a tangential-sign diagnostic. Under the current
+inward radial diagnostic and a tangential-sign diagnostic. In the canonical
 Master EOM, those rows are not force verdicts until the same partner branch
 emits $D_s$, $D_t$, and $W^{\mathrm{rec}}$.
 
@@ -1538,7 +1538,7 @@ branch row plus finite-window work, wake-flux, recoil, and multi-root ledger
 checks on the same retained record.
 
 **Conclusion within this circular benchmark:** The sub-field circular row is
-unclosed under the current Master EOM. No stable-orbit or no-stable-orbit verdict is
+unclosed against the canonical Master EOM. No stable-orbit or no-stable-orbit verdict is
 promoted until the receiver-normal proof process is restarted.
 
 ##### Maximum-Curvature Orbit (Self-Hit Stabilization)
@@ -2118,7 +2118,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > \sqrt{\frac{2\mu}{\beta_n^\star}}
 > +O(\mu).
 > $$
-> Thus a higher-winding fold creates a signed root pair on a Jacobian-null boundary. Since $r_{n,\pm}\to 2R\xi_n^\star/\beta_n^\star\neq0$, the master-equation force-law weight scales as
+> Thus a higher-winding fold creates a signed root pair on a Jacobian-null boundary. Since $r_{n,\pm}\to 2R\xi_n^\star/\beta_n^\star\neq0$, the source-normal diagnostic part of the branch kernel scales as
 > $$
 > \frac{1}{r_{n,\pm}^2|J_{n,\pm}|}
 > =
@@ -2132,7 +2132,7 @@ So each new circular self branch is born directly on a Jacobian-null boundary: b
 > =
 > -\frac{J_{n,\pm}}{\beta},
 > $$
-> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the receiver-normal law this coarea factor must be combined with the receiver-normal branch factor on the same circular root before any action or force row is promoted.
+> so the action-counting density carries an additional $|g_{\beta,s_n}'|^{-1}$ and scales as $O(\mu^{-1})$ at fixed nonzero $r_n^\star$. Under the receiver-normal law this source-normal scaling is not a force/action certificate by itself; it must be combined with the same-row receiver-normal numerator through $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before any action or force row is promoted.
 >
 > Consequently the circular self-hit combinatorics remain linearly bounded in $\beta$. A one-sign subchart has
 > $$
@@ -2255,7 +2255,7 @@ a_r^{|\sin|}(\xi)=C\,W_s^{\mathrm{rec}}(\xi)\frac{\beta}{\xi},
 \qquad
 a_\theta^{|\sin|}(\xi)=C\,W_s^{\mathrm{rec}}(\xi)\frac{\beta^2s\cos\xi}{\xi^2}
 $$
-The radial contribution is still outward on every active self root. The tangential contribution is forward on each left sheet and backward on each right sheet, independent of the sine-lobe sign. Current-law asymptotic bounds require same-sheet bounds for $W_s^{\mathrm{rec}}(\xi)$ before any signed cancellation estimate is promoted. Pure circular self-hit is therefore not tangentially neutral branchwise; it supplies outward radial support and signed forward/backward tangential activity that must be summed on the retained receiver-normal ledger. This corrects the stronger blanket statement that self branches are always positive-tangential, without by itself proving or disproving full binary closure.
+The radial contribution is still outward on every active self root. The tangential contribution is forward on each left sheet and backward on each right sheet, independent of the sine-lobe sign. Receiver-normal asymptotic bounds require same-sheet bounds for $W_s^{\mathrm{rec}}(\xi)$ before any signed cancellation estimate is promoted. Pure circular self-hit is therefore not tangentially neutral branchwise; it supplies outward radial support and signed forward/backward tangential activity that must be summed on the retained receiver-normal ledger. This corrects the stronger blanket statement that self branches are always positive-tangential, without by itself proving or disproving full binary closure.
 
 ##### Large-$\beta$ partner/self circular residual
 
@@ -2543,14 +2543,15 @@ For self-hit, $\sigma_{11}=+1$, so
 $$
 \mathbf{a}_{11}
 =
-\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^2 |J_{11}|}\,
+\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^2}\,
+W_{11}^{\mathrm{rec}}\,
 \hat{\mathbf{r}}_{11}
 $$
 The self-branch tangential projection is
 $$
 a_T^{s}
 =
-\frac{\kappa q_1^2}{r(\theta)^2\Lambda_s^3 |J_{11}|\,\sqrt{1+p^2}}
+\frac{\kappa q_1^2 W_{11}^{\mathrm{rec}}}{r(\theta)^2\Lambda_s^3 \sqrt{1+p^2}}
 \Big[-p(1-\rho\cos\Delta)+\rho\sin\Delta\Big]
 $$
 so
@@ -2590,15 +2591,15 @@ $$
 r_\ast\dot\theta_\ast^2
 -
 \sum_{\mathrm{part}}
-\frac{\kappa |q_1q_2|\,(1+\rho_p\cos\Delta_p)}
-{r_\ast^2\Lambda_{p}^3 |J_{12,p}|}
+\frac{\kappa |q_1q_2|\,W_{12,p}^{\mathrm{rec}}(1+\rho_p\cos\Delta_p)}
+{r_\ast^2\Lambda_{p}^3}
 +
 \sum_{\mathrm{self}}
-\frac{\kappa q_1^2\,(1-\rho_s\cos\Delta_s)}
-{r_\ast^2\Lambda_{s}^3 |J_{11,s}|}
+\frac{\kappa q_1^2\,W_{11,s}^{\mathrm{rec}}(1-\rho_s\cos\Delta_s)}
+{r_\ast^2\Lambda_{s}^3}
 >0
 $$
-This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their Jacobian floors, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
+This is a theorem target, not a closure proof. It supplies the concrete falsification gate: enumerate the admissible partner and self roots on a variable-pitch candidate, certify their source-normal floors and same-row receiver-normal branch-strength intervals, and test both the radial turn inequality and the weighted tangential sum. If all admissible roots keep the weighted tangential sum nonnegative on every candidate turn corridor, the bare isolated spiral does not beat the circular obstruction.
 
 For a retained chart at a turn center, the radial row can be normalized by the common force factor, but that normalization separates the branch sum from the independent force ratio. In the equal-magnitude opposite-polarity case, one may write
 $$
@@ -2618,7 +2619,7 @@ $$
 $$
 The retained branch chart must emit same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows before $B_r^{\mathrm{rec}}$ exists as force evidence. It does not determine $\Gamma$ from $b_\ast=\Omega r_\ast/c_f$, from the delayed-root offsets, or from a branch-sum threshold. A branch certificate must therefore either supply an independently derived force-ratio interval after the receiver-normal branch sum exists or report the radial row as blocked.
 
-A fixed retained-chart benchmark is now a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not current Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
+A fixed retained-chart benchmark is a receiver-normal restart target. For the $a_{\mathrm{A1}}=0.204$, $b_\ast=7/2$ constant-$\Omega$ variable-pitch spiral on $I_\ast=[-\pi/6,\pi/6]$, the retained $3+1$ chart has active-root, inactive-gap, source-normal floor, finite-memory, and root-transport rows. Its radial, tangential, action, and pass/fail rows are not canonical Master EOM evidence until the same retained boxes emit $D_t/D_s$ branch-strength intervals for $P_1,P_2,P_3,S_1$.
 
 If the same turn-center radial curve is allowed a variable angular rate, with $\omega_\ast=\dot\theta(0)>0$ and $\alpha_\ast=\ddot\theta(0)$, then $r'(0)=0$ and the local kinematic targets become
 $$
@@ -3128,7 +3129,7 @@ $$
 \frac{\hat{\mathbf r}_{ij}}{c_f r_{ij}J_{ij}}
 \right]
 $$
-The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. Under the current Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
+The first term is an endpoint or excluded-coincidence contribution; the second is the root-chart interior derivative that must be accounted for before the pure scalar kernel can be claimed to derive any branch-resolved force law. Therefore the action proof does not license dropping $\delta_\eta'(g_{ij})$ by fiat. It requires the symmetry-preserving regularization to make this interior derivative vanish, become a boundary/source-side contribution under the allowed variations, or be cancelled by an explicit counterterm. In the canonical Master EOM the branch-resolved target is $W_{ij}^{\mathrm{rec}}\hat{\mathbf r}_{ij}/r_{ij}^2$, so this residual must be rebuilt inside the receiver-normal proof rather than reused as closure evidence.
 
 The source-side variation narrows the issue further. Holding the receiver point fixed and varying the emission point gives
 $$
@@ -3196,7 +3197,7 @@ $$
 \right|_{t'=t_0}
 $$
 Thus the scalar $1/r$ causal kernel produces the inverse-square scale term as
-a current-law proof ingredient only if the admitted branch also satisfies the
+a receiver-normal proof ingredient only if the admitted branch also satisfies the
 residual-vanishing condition
 $$
 \left.
@@ -3340,7 +3341,7 @@ The conclusion is narrow but decisive for local repairs: no finite same-support 
 
 The terminal common-center inter-layer chart gives a concrete obstruction to the remaining per-branch stationarity route. In that specialization, stationarity of $\hat{\mathbf r}/(rJ)$ forces the source tangent to be parallel to the source-receiver separation. The scalar part then reduces to $\rho_\delta(1-\rho_\delta)=0$: the first factor collapses a positive-delay branch when the source speed is nonzero, and the second factor is $J=0$, a grazing branch excluded by the Jacobian floor. Thus terminal inter-layer charts should not expect the scalar scaffold to close by per-branch stationarity. The remaining local target is either branch-summed residual closure for a scale-only scaffold, or a recoil-inclusive action ledger that retains the residual as wake-emission resistance.
 
-For the scale-only Master EOM, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
+For the scale-only receiver-normal branch target, the branch-summed residual target is the vanishing of the signed receiver-side interior Euler derivative after the direct inverse-square term is removed:
 $$
 \sum_{b:\,o_b=i}
 \kappa\,
@@ -3430,7 +3431,7 @@ D_{ij}R_{+}=0,
 \right\|dt
 =0
 $$
-for the declared branch chart and fixed endpoint convention. In that admissible case the endpoint contributes only a boundary wake-history flux, not a new receiver force. In the generic non-characteristic case, the repair is a no-go for the current Master EOM because it adds an extra interior action force.
+for the declared branch chart and fixed endpoint convention. In that admissible case the endpoint contributes only a boundary wake-history flux, not a new receiver force. In the generic non-characteristic case, the repair is a no-go for the canonical Master EOM because it adds an extra interior action force.
 
 In the sharp-support limit, the outgoing form is supported on
 $$
@@ -4473,7 +4474,7 @@ $$
 \delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
 \longrightarrow 0
 $$
-on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
+on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the canonical Master EOM.
 
 The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$
@@ -5732,7 +5733,7 @@ Purpose:
 
 Models:
 - Fixed center (test particle, source stationary):
-  - The causal root is explicit, but the current-law acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a current-law moving-receiver baseline.
+  - The causal root is explicit, but the canonical receiver-normal acceleration is $\ddot r=-K W^{\mathrm{rec}}/r^2$ with $K=\kappa |q q'|>0$ and $W^{\mathrm{rec}}=\lvert 1-\dot r\rvert$ in field-speed units on the outward radial sign convention. The classical closed-form inverse-square fall is not a receiver-normal moving-receiver baseline.
 - Two-body mutual interaction (opposite or equal charges):
   - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{rec}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
@@ -5941,7 +5942,7 @@ Solution techniques (toolbox for delayed, radial DDEs):
 
 Deliverables:
 - Precise DDE forms and causal-root conditions for use in analysis and computation.
-- Cross-references to sections with current-law baseline equations and status notes.
+- Cross-references to sections with receiver-normal baseline equations and status notes.
 - A minimal benchmark ladder for closure tests:
   - fixed-center ODE recovery,
   - symmetric two-body delayed dynamics,
@@ -6508,7 +6509,7 @@ Setup:
 - The interaction is delayed; the causal emission time exists uniquely for a fixed source, but the receiver-normal factor makes the acceleration depend on receiver radial velocity as well as current separation.
 
 Objectives:
-- Current-law baseline equations for $r(t)$ and $v_r(t)$.
+- Receiver-normal baseline equations for $r(t)$ and $v_r(t)$.
 - Energy balance and integral expressions suitable for comparison.
 
 Delay differential equation and exact reduction:
@@ -6526,16 +6527,16 @@ Delay differential equation and exact reduction:
   on the outward radial sign convention and field-speed units.
 
 Solvability status:
-- The classical inverse-square fall formulas are not a current-law baseline for a moving receiver. They apply only to the frozen instant where $W^{\mathrm{rec}}=1$ and do not describe the subsequent receiver-normal evolution.
-- No closed-form solution is presently asserted for the velocity-dependent current-law radial fall.
+- The classical inverse-square fall formulas are not a canonical receiver-normal baseline for a moving receiver. They apply only to the frozen instant where $W^{\mathrm{rec}}=1$ and do not describe the subsequent receiver-normal evolution.
+- No closed-form solution is presently asserted for the velocity-dependent receiver-normal radial fall.
 
 Notes:
-- For a fixed source, $D_s=1$ in field-speed units. The nontrivial current-law factor is $D_t=1-\dot r(t)$ on the outward radial sign convention.
+- For a fixed source, $D_s=1$ in field-speed units. The nontrivial receiver-normal factor is $D_t=1-\dot r(t)$ on the outward radial sign convention.
 
 Use:
-- A simple ground-truth current-law root geometry against which delayed-law simulations can check receiver-normal modulation.
+- A simple ground-truth receiver-normal root geometry against which delayed-law simulations can check receiver-normal modulation.
 
-Plain language: A fixed center still gives an easy causal root, but a moving receiver crosses the wake differently as it falls. The hit strength changes with that crossing speed, so the familiar closed-form inverse-square fall is not the current-law benchmark.
+Plain language: A fixed center still gives an easy causal root, but a moving receiver crosses the wake differently as it falls. The hit strength changes with that crossing speed, so the familiar closed-form inverse-square fall is not the receiver-normal benchmark.
 
 ### Receiver Velocity and Work
 
@@ -7778,7 +7779,7 @@ $$
 $$
 A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
 
-In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper fact: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart; it is not implied by the principal circular sign.
+In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 
 Standard central-force mechanics conserves angular momentum because the force at time $t$ is collinear with the equal-time separation vector. The partner-hit branch does not have that geometry. Define the equal-time separation and delayed line of action by
 $$
@@ -7810,7 +7811,7 @@ T_p^{\mathrm{src}}
 \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
 \quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. This is not a current force verdict. The current-law row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
+where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
 -  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
@@ -7935,7 +7936,7 @@ Receiver-normal restart notice. The circular MCB branch topology, root labels,
 and source-normal Jacobian formulas remain useful geometry. Force components,
 stability criteria, action rows, and any branch-weighted verdicts in this
 section must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
-they can serve as current Master EOM evidence.
+they can serve as canonical Master EOM evidence.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -7943,7 +7944,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and receiver-normal branch strength.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). Under the current law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). In the canonical receiver-normal law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
 
 #### Foundational Context (Ontological Clarification)
 
@@ -8277,7 +8278,7 @@ These formulas make the asymmetry between the two branch types explicit:
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
 
 The projections in this subsection are source-normal circular diagnostics. They
-record branch orientation and root geometry, but they are not current Master EOM
+record branch orientation and root geometry, but they are not canonical Master EOM
 acceleration rows until the same retained branches are recomputed with
 $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
@@ -8336,7 +8337,7 @@ $$
 T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. Under the current Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. In the canonical Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
 
 ---
 
@@ -8403,7 +8404,7 @@ T_{\mathrm{net}}
 \sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
 >0
 $$
-where $w_{p,m},w_{s,m}\ge 0$ are receiver-normal branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
+where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-normal branch weights induced by $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
 *Proof.*
 For any active partner branch, the tangential contribution is
@@ -8411,7 +8412,7 @@ $$
 T_{p,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)\,|J_{p,m}|}
+\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)}
 >0,
 \qquad \tilde{\delta}_{p,m}\in(0,\pi)
 $$
@@ -8420,7 +8421,7 @@ $$
 T_{s,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)\,|J_{s,m}|}
+\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)}
 >0,
 \qquad \tilde{\delta}_{s,m}\in(0,\pi)
 $$
@@ -10012,7 +10013,7 @@ It is the phase-bundle analogue of the basis-conditioning and aperture floors in
 Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
 
 This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, middle-caustic impulse record, and finite-$\eta$ return map.
-The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-Jacobian floors, and the speed bounds assigned to the exterior/horizon regime.
+The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
 
 In this branch, the middle binary is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At the regularized middle caustics, the connection acquires concentrated curvature,
 
@@ -10034,26 +10035,26 @@ $$
 S_L(t)
 =
 \sum_{k\in\{O,M,I\}}\sum_{a=1}^{L}
-A_{k,a}(\beta_k,r_k,\eta,J)\,
+A_{k,a}(\beta_k,r_k,\eta,D_s,D_t,W^{\mathrm{rec}},J)\,
 e^{ia(q_k\Omega t+\phi_k)}
 $$
-The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and causal-wake ledger used to test the candidate lock.
+The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
 They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the Jacobian weight of the caustic window, schematically
+For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal force/action strength on the same retained record, schematically
 
 $$
 A_{M,a}
 =
 \int_0^{2\pi}
 \frac{
-w_{M,a}(\theta_M)
+w_{M,a}^{\mathrm{rec}}(\theta_M)
 }{
 |J_M(\theta_M)|+\eta_J
 }
 e^{-ia\theta_M}\,d\theta_M
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}$ the branch-derived numerator for that harmonic channel. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
 The cycle-averaged cancellation score is
 $$
 C_L(m,n;\phi)
@@ -10332,7 +10333,7 @@ $$
 $$
 off the neutral symmetry directions $G$.
 
-Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-Jacobian floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
+Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
 
 $$
 G
@@ -10745,7 +10746,7 @@ The chapter should therefore be read as the canonical definition and proof targe
 
 ### Problem Statement and Goal
 
-This chapter gives the action-functional side of the current Master EOM. Its
+This chapter gives the action-functional side of the canonical receiver-normal Master EOM. Its
 job is not to preserve a separate scalar law. Its job is to define which
 retained branch records may be used for action, stability, mass-response, and
 transition-cost calculations after the branch has been rebuilt with
@@ -10907,7 +10908,7 @@ A branch certificate that consumes this chapter must report:
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
 | Noether pullback | energy, momentum, and angular-momentum wake-history rows |
-| negative controls | rejection of missing, mismatched, or source-only strength rows |
+| negative controls | rejection of missing, mismatched, or receiver-normal-incomplete rows |
 
 The branch certificate is not promoted if any of those rows are supplied by
 different root boxes, different regulator states, or different history records.
@@ -10932,7 +10933,7 @@ roots as the Master EOM. Source-normal denominators remain transversality
 diagnostics until paired with the receiver-normal numerator and checked by the
 stated residuals.
 
-Variational proof work restarts from this current-law target. No prior action
+Variational proof work restarts from this canonical receiver-normal target. No prior action
 stationarity, energy balance, or Noether wake-history verdict is inherited
 unless the same derivation reproduces the receiver-normal branch law on the
 retained record.
@@ -11187,7 +11188,7 @@ $$
 \right]
 $$
 
-This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below gives the scale-only Master EOM; if not, the same variation points to a recoil-inclusive force law.
+This receiver-side gradient is one ingredient in the full first variation, but it is not the complete Euler-Lagrange expression. In the double-time action, each varied worldline appears both as a receiver coordinate $\mathbf{x}_i(t)$ and as a source coordinate inside transposed kernels. The full branch-resolved variation is carried out in [master-equation](../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian). The term proportional to $\phi_\eta'(g_{ij})$ is not an algebraic nuisance to discard: on a purely delayed branch it is the local signature of wake-emission recoil. If a chart proves that this term is boundary-only, the scale term below can derive the receiver-normal branch target without a recoil term; if not, the same variation points to a recoil-inclusive force law.
 
 On an effective spatial chart this split can be read as a Hodge-type decomposition of the kernel-gradient current. Schematically,
 
@@ -11201,15 +11202,19 @@ $$
 
 where $d\Phi_{ij}^{(\eta)}$ denotes the exact scalar-potential channel and $\delta_{\mathrm H}\mathcal A_{ij}^{(\eta)}$ denotes the co-exact recoil-current channel in the effective chart. The notation is schematic, not a new substrate ontology. Its use is to make the no-go sharp: a scale-only scalar counterterm can repair the exact part, but it cannot cancel a co-exact recoil current without changing the branch force or adding a richer action-level term.
 
-On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the scale-only result is the delayed force law
+On charts where the constraint-variation residual is boundary-only, or is cancelled by an explicitly declared regularized action-level term, the branch-reduced target is the receiver-normal delayed force law
 $$
 \mu_{\text{arch}}\ddot{\mathbf{x}}_i(t)
 =
 \sum_j \kappa \, \sigma_{ij}|q_i q_j|
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
-\frac{\hat{\mathbf{r}}_{ij}(t;t_0)}
-{r_{ij}(t;t_0)^2\,\left|1-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)/c_f\right|}
+\frac{
+W_{ij}^{\mathrm{rec}}(t;t_0)\,
+\hat{\mathbf{r}}_{ij}(t;t_0)
+}
+{r_{ij}(t;t_0)^2}
 $$
+where $W_{ij}^{\mathrm{rec}}=\lvert D_{t,ij}/D_{s,ij}\rvert$ is computed on the same retained root record.
 including self-hit branches $j=i$ when the trivial coincidence root is excluded.
 
 The branch collapse used here is an $\eta\to0^+$ simple-root statement, not an identity at arbitrary finite $\eta$. Since
@@ -11269,9 +11274,9 @@ $$
 \varepsilon
 }
 $$
-The scale-only branch law is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
+The scale-only receiver-normal branch target is theorem-grade on $W$ only when this residual tends to zero with the declared branch floors and boundary convention. The broader action-derived dynamics may instead be theorem-grade with nonzero $\mathbf{C}_{ij}^{(\eta)}$ if that term is retained as mechanical recoil and the same action closes the energy, momentum, and angular-momentum ledgers. If neither condition is reported, the local effective Lagrangian remains a fitted chart.
 
-The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only Master EOM; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
+The resulting status is a conditional theorem schema, not a universal action theorem. The pure scalar $1/r$ action is not a universal exact action for the scale-only receiver-normal branch target; it is valid as that derivation only on residual-closed charts. On charts where the interior residual survives, $\mathbf{C}_{ij}^{(\eta)}$ is the strict mechanical recoil (wake-emission resistance) required by a purely delayed action. It is the same bookkeeping channel that balances the positive tangential drive and wake escapement described in [Binary Dynamics](../../../../markdown/aaa/dynamics/binary-dynamics.md#tangential-drive-and-wake-escapement) and [Energy](../../../../markdown/aaa/dynamics/energy.md#wake-escapement).
 
 The recoil-inclusive reading also supplies the native seed of effective gauge structure. The scale term is a spatial gradient of the causal scale kernel and coarse-grains into an effective scalar wake potential. The derivative-of-constraint term is different: it differentiates the causal phase function $g_{ij}$ itself. On an effective product chart with coordinates $(t,\mathbf{x})$, write the recoil current schematically as
 
@@ -11496,7 +11501,7 @@ J_{\mathrm{eff}}(\mathbf{x},t;\mathbf{x}',t')
 =
 \left|1-\frac{\mathbf{u}(\mathbf{x}',t')\cdot\hat{\mathbf{n}}(\mathbf{x},\mathbf{x}')}{c_f}\right|
 $$
-This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. Under the current Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
+This functional is a continuum inheritance target for the discrete delayed causal $1/r$ action kernel. In the canonical Master EOM, it must be built so the received coarse flux is compressed or dilated by the receiver-normal factor. Differentiating a corrected delayed action with respect to receiver coordinates must reproduce the receiver-normal inverse-square force density plus velocity-dependent correction terms. Any quasi-static reduction must be obtained by substituting the fixed receiver and source velocities into $W^{\mathrm{rec}}$, not by dropping the receiver-normal numerator.
 
 The source-normal denominator is also one continuum location of the per-hit third-law defect. The corrected branch factor must additionally include the receiver-normal numerator, so the receiver/source exchange is not represented by a symmetric mechanical stress alone. Translation invariance still protects total momentum when the wake momentum is included, but the mechanical current must split as
 
@@ -11869,7 +11874,7 @@ under the receiver-normal Master EOM branch factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 
-The breather proof process therefore starts over from the current-law branch
+The breather proof process therefore starts over from the receiver-normal branch
 table. The architecture can be reused; no previous force margin, return verdict,
 finite certificate, or action conclusion is inherited.
 
@@ -19022,13 +19027,29 @@ $$
 
 To connect this directly to the master equation, write
 $$
+D_{s,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s),
+\qquad
+D_{t,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t),
+$$
+and
+$$
+W_{ij}^{\mathrm{rec}}(t;s)
+=
+\left|D_{t,ij}(t;s)/D_{s,ij}(t;s)\right|.
+$$
+The receiver-normal branch law is
+$$
 \ddot{\mathbf{x}}_i(t)
 =
 \sum_{j=1}^3
 \sum_{s\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}\,
-\frac{|q_i q_j|}
-{r_{ij}(t;s)^2\,|J_{ij}(t;s)|}
+\frac{|q_i q_j|W_{ij}^{\mathrm{rec}}(t;s)}
+{r_{ij}(t;s)^2}
 \hat{\mathbf{r}}_{ij}(t;s),
 $$
 with the usual convention that the
@@ -19085,7 +19106,12 @@ where:
   3
   $$
 
-The explicit unresolved theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
+The explicit unresolved theorem burden is to prove, on the recapture windows,
+that the opposite-sign core term dominates the same-sign and self-driven
+widening after all admissible fold-tube and deep-past ceilings are paid. Any
+margin lacking same-record $D_t$ is restart-only: the margin becomes force
+evidence only after the same retained record reports $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ for every consumed branch family.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as
 $$
@@ -21563,7 +21589,7 @@ retained branch record.
 The proof process restarts at the receiver-normal branch table. Earlier margins,
 constants, candidate cycles, and finite certificates are not inherited as proof
 steps; at most, their root-topology and history-space structure become input
-obligations that must be rebound to the same current-law record.
+obligations that must be rebound to the same receiver-normal EOM record.
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 
@@ -32244,7 +32270,7 @@ Here "closed-form solution" means an elementary formula for the orbit. It does n
 ### Closed-Form Collinear Breather Ansatz
 
 Receiver-normal restart notice. Candidate ansatz packets, collocation rows, and
-finite certificates are closure evidence under the current Master EOM only if
+finite certificates are closure evidence for the canonical Master EOM only if
 they carry receiver-normal branch strength. The ansatz program may reuse
 history-space, root-ledger, inactive-gap, finite-memory, and source-normal
 transversality structure, but every force, action, returned-history, and margin

@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Gamma Source Audit Target
 
-Status. Current-law restart target. This file no longer searches for a
+Status. Receiver-normal restart target. This file no longer searches for a
 source-normal gamma/branch-sum decision row.
 
 Claim level. Priority-only restart target.

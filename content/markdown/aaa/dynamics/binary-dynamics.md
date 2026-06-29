@@ -26,7 +26,7 @@ $$
 $$
 A symmetric set of equations governs the Positrino's motion based on the Electrino's emissions.
 
-In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper fact: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart; it is not implied by the principal circular sign.
+In the strictly sub-field-speed regime (no self-interaction, $\|\mathbf{v}\|\le c_f$), a stable, circular orbit is impossible. Because the attractive force on each architrino points to the *past* position of its partner, it is not a true central force. The principal circular branch proves a sharper direction diagnostic: the partner line of action has a forward tangential projection, so the partner-only near-circular ledger is anti-damped rather than a contraction proof. This diagnostic is not a receiver-normal force-balance certificate. A logarithmic inward spiral can still be used as a separate non-circular ansatz or capture target, but its radial tightening must be certified by solving that branch chart with same-record receiver-normal branch strength; it is not implied by the principal circular sign.
 
 Standard central-force mechanics conserves angular momentum because the force at time $t$ is collinear with the equal-time separation vector. The partner-hit branch does not have that geometry. Define the equal-time separation and delayed line of action by
 $$
@@ -58,7 +58,7 @@ T_p^{\mathrm{src}}
 \frac{\sin(\delta_p/2)}{\cos^2(\delta_p/2)}
 \quad (0<\delta_p<\pi)
 $$
-where $\delta_p$ is the partner delay angle. This is not a current force verdict. The current-law row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
+where $\delta_p$ is the partner delay angle. This is not a canonical force verdict. The receiver-normal row must recompute the partner contribution with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, then test finite-window work and wake-history balance before any constant-speed circular conclusion is promoted.
 
 -  The source-normal circular geometry nominates a tangential-sign diagnostic for the partner-only ledger.
 -  The radial component points inward, but inward radial pull plus positive tangential work does not by itself prove a tightening spiral.
@@ -183,7 +183,7 @@ Receiver-normal restart notice. The circular MCB branch topology, root labels,
 and source-normal Jacobian formulas remain useful geometry. Force components,
 stability criteria, action rows, and any branch-weighted verdicts in this
 section must be redriven with $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ before
-they can serve as current Master EOM evidence.
+they can serve as canonical Master EOM evidence.
 
 Once self-hit turns on, the natural question is whether the dynamics converge to a limiting curvature. We call the candidate limit the **maximum-curvature binary (MCB)**. This section collects the full two-body, self-hit analysis for that candidate, including delay geometry, force components, and stability criteria. It is the canonical reference for MCB attractor status.
 
@@ -191,7 +191,7 @@ MCB stability claims rely on the well-posedness of the regularized SD-NDDE. In t
 
 **Goal**: Characterize the circular, constant-speed, constant-radius configuration of two opposite-polarity architrinos and investigate where curvature $1/R$ is maximized. We work in units with field speed $c_f = 1$ and use the canonical delayed per-hit law with radial line of action and receiver-normal branch strength.
 
-**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). Under the current law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
+**Plain language**: We seek the tightest (smallest-$R$) steady circle an opposite-polarity pair can trace when the only forces come from delayed line-of-action interactions with the partner (partner hits, possibly multiple at higher speed) and from each architrino's own past emissions (self-hits, accepted by same-source roots; in the circular branch these require the super-field-speed side). In the canonical receiver-normal law, each retained hit must carry both the source-normal denominator and the receiver-normal factor.
 
 ### Foundational Context (Ontological Clarification)
 
@@ -525,7 +525,7 @@ These formulas make the asymmetry between the two branch types explicit:
 Define **inward radial** as positive (toward center) and **tangential** as positive in direction of motion.
 
 The projections in this subsection are source-normal circular diagnostics. They
-record branch orientation and root geometry, but they are not current Master EOM
+record branch orientation and root geometry, but they are not canonical Master EOM
 acceleration rows until the same retained branches are recomputed with
 $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 
@@ -584,7 +584,7 @@ $$
 T^{\mathrm{src}}(s < 1) = \frac{\kappa \epsilon^2 s^2}{R^2} \frac{\sin(\delta_p / 2)}{\delta_p^2\,|J_p|}
 $$
 
-Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. Under the current Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
+Because $J_p = 1+s\sin(\delta_p/2) > 1$, the source-normal delay geometry weakens the partner diagnostic relative to a stripped inverse-square surrogate. That sign row no longer proves a net tangential force or excludes a constant-speed circular orbit. In the canonical Master EOM, the sub-field partner row restarts with the same-record receiver-normal factor and the finite-window energy and wake-history balances below.
 
 ---
 
@@ -651,7 +651,7 @@ T_{\mathrm{net}}
 \sum_{m\in\mathcal{M}_s} w_{s,m} T_{s,m}
 >0
 $$
-where $w_{p,m},w_{s,m}\ge 0$ are receiver-normal branch weights induced by regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
+where $w_{p,m},w_{s,m}\ge 0$ are same-row receiver-normal branch weights induced by $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and any declared regularization/time averaging, and $\mathcal{M}_p,\mathcal{M}_s$ are active partner/self root sets.
 
 *Proof.*  
 For any active partner branch, the tangential contribution is
@@ -659,7 +659,7 @@ $$
 T_{p,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)\,|J_{p,m}|}
+\frac{\sin(\tilde{\delta}_{p,m}/2)}{\cos^2(\tilde{\delta}_{p,m}/2)}
 >0,
 \qquad \tilde{\delta}_{p,m}\in(0,\pi)
 $$
@@ -668,7 +668,7 @@ $$
 T_{s,m}
 =
 \frac{\kappa\epsilon^2}{4R^2}
-\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)\,|J_{s,m}|}
+\frac{\cos(\tilde{\delta}_{s,m}/2)}{\sin^2(\tilde{\delta}_{s,m}/2)}
 >0,
 \qquad \tilde{\delta}_{s,m}\in(0,\pi)
 $$

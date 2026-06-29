@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Tangential Evaluator Review
 
-Status. Current-law restart target. The tangential evaluator review no longer
+Status. Receiver-normal restart target. The tangential evaluator review no longer
 accepts source-normal pointwise sums or sampled weighted-drive signs as
 theorem-grade evidence.
 

@@ -1,7 +1,7 @@
 # Closed-Form Collinear Breather Ansatz
 
 Receiver-normal restart notice. Candidate ansatz packets, collocation rows, and
-finite certificates are closure evidence under the current Master EOM only if
+finite certificates are closure evidence for the canonical Master EOM only if
 they carry receiver-normal branch strength. The ansatz program may reuse
 history-space, root-ledger, inactive-gap, finite-memory, and source-normal
 transversality structure, but every force, action, returned-history, and margin

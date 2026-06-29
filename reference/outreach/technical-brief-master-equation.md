@@ -116,32 +116,34 @@ $$
 \sum_j
 \sum_{t_0\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}
-\frac{|q_iq_j|}
-{r_{ij}^2(t;t_0)\,|J_{ij}(t;t_0)|}
+\frac{|q_iq_j|}{r_{ij}^2(t;t_0)}
+W_{ij}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf{r}}_{ij}(t;t_0),
 $$
 
-where the causal Jacobian is
+where the source-normal denominator, receiver-normal numerator, and receiver-normal branch strength are
 
 $$
-J_{ij}(t;t_0)
-=
-1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij}(t;t_0)}{c_f}.
+D_{s,ij}=c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{ij},
+\qquad
+D_{t,ij}=c_f-\mathbf{v}_i(t)\cdot\hat{\mathbf{r}}_{ij},
+\qquad
+W_{ij}^{\mathrm{rec}}=\left|\frac{D_{t,ij}}{D_{s,ij}}\right|.
 $$
 
-The Jacobian is not a decorative correction. It measures how source motion compresses or dilates the arrival rate of causal wake contributions at the receiver. Formally, it comes from
+The source-normal denominator is not a decorative correction. It measures how source motion compresses or dilates the causal-root spacing. Formally, it comes from
 
 $$
 \partial_{t_0}g_{ij}(t;t_0)
 =
 c_f-\hat{\mathbf{r}}_{ij}(t;t_0)\cdot\mathbf{v}_j(t_0)
 =
-c_fJ_{ij}(t;t_0),
+D_{s,ij}(t;t_0),
 $$
 
 with the factor $c_f^{-1}$ absorbed into the normalization convention for $\kappa$.
 
-The branch-resolved form is the most useful technical entry point because it exposes what a simulation or proof must track. For each receiver $i$, each source $j$, and each receiver time $t$, one must identify the active causal roots, check the Jacobian floor, evaluate the radial vector, and sum the signed inverse-square contributions.
+The branch-resolved form is the most useful technical entry point because it exposes what a simulation or proof must track. For each receiver $i$, each source $j$, and each receiver time $t$, one must identify the active causal roots, check the source-normal floor, evaluate the receiver-normal numerator on the same row, evaluate the radial vector, and sum the signed inverse-square contributions weighted by $W^{\mathrm{rec}}$.
 
 ## Relation To Familiar Equations
 

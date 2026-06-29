@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Gamma Dimensional Closure Target
 
-Status. Current-law restart target. This file no longer treats a source-normal
+Status. Receiver-normal restart target. This file no longer treats a source-normal
 branch threshold as the branch side of a dimensional gamma closure.
 
 Claim level. Priority-only restart target.

@@ -1,6 +1,6 @@
 # Spiral A1 Receiver-Normal Force-Ratio Decision Target
 
-Status. Current-law decision target for the A1 radial force-ratio row. This file
+Status. Receiver-normal decision target for the A1 radial force-ratio row. This file
 does not supply a pass, failure, or $\Gamma$ interval.
 
 Claim level. Restart target, not closure evidence.

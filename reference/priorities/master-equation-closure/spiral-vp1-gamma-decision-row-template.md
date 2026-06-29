@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Radial Decision Template
 
-Status. Current-law template for a future VP-1 radial decision row. This file no
+Status. Receiver-normal template for a future VP-1 radial decision row. This file no
 longer defines a gamma/branch-sum shortcut and does not provide a pass or
 failure fixture.
 

@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Tangential-Drive Target
 
-Status. Current-law restart target for the VP-1 weighted tangential-drive row on
+Status. Receiver-normal restart target for the VP-1 weighted tangential-drive row on
 the retained $P_1,P_2,P_3,S_1$ chart. This packet no longer supplies a
 tangential pass, failure, pointwise sign certificate, or weighted-drive verdict.
 
@@ -22,7 +22,7 @@ $$
 P_1,\ P_2,\ P_3,\ S_1.
 $$
 
-## Current-Law Row
+## Receiver-Normal Row
 
 For each retained label $\alpha$, the tangential contribution must be recomputed
 with

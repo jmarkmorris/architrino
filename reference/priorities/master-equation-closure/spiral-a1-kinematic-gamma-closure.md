@@ -1,6 +1,6 @@
 # Spiral A1 Receiver-Normal Kinematic Balance Target
 
-Status. Current-law kinematic-balance target for the A1 retained chart. This
+Status. Receiver-normal kinematic-balance target for the A1 retained chart. This
 file does not certify a radial-turn row. It records the kinematic demand that a
 receiver-normal force row must satisfy after the A1 branch contributions are
 redriven with $W^{\mathrm{rec}}$.

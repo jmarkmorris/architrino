@@ -1,6 +1,6 @@
 # Spiral A1 Receiver-Normal Tangential Compatibility Target
 
-Status. Current-law tangential compatibility target for the A1 retained chart.
+Status. Receiver-normal tangential compatibility target for the A1 retained chart.
 This file does not reject or accept the prescribed A1 history.
 
 Claim level. Restart target, not closure evidence.

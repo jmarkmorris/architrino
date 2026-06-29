@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Radial Gamma Routing Target
 
-Status. Current-law restart target for radial gamma routing. This file no longer
+Status. Receiver-normal restart target for radial gamma routing. This file no longer
 routes source-normal branch sums into pass/fail sidecar rows.
 
 Claim level. Priority-only restart target.

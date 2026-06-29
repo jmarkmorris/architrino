@@ -11,7 +11,7 @@ retained branch record.
 The proof process restarts at the receiver-normal branch table. Earlier margins,
 constants, candidate cycles, and finite certificates are not inherited as proof
 steps; at most, their root-topology and history-space structure become input
-obligations that must be rebound to the same current-law record.
+obligations that must be rebound to the same receiver-normal EOM record.
 
 This chapter isolates the simplest reduced dynamical problem that can test a self-hit-assisted bounded-recapture mechanism without tangential geometry. Its purpose is to provide a mathematically tractable bridge between the full delayed master equation and the first rigorous existence question for bounded two-body motion.
 

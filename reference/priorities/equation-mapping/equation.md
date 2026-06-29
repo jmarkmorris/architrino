@@ -128,17 +128,19 @@ $$
 \mathbf{a}_{o'\leftarrow o}(t;t_0)
 =
 \kappa\,\sigma_{q_o q_{o'}}
-\frac{|q_o q_{o'}|}
-{r^2|J_{o'\leftarrow o}(t;t_0)|}
+\frac{|q_o q_{o'}|}{r^2}
+W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf r},
 $$
 
-with causal-root Jacobian
+with source-normal denominator, receiver-normal numerator, and branch strength
 
 $$
-J_{o'\leftarrow o}(t;t_0)
-=
-1-\frac{\mathbf v_o(t_0)\cdot\hat{\mathbf r}}{c_f}.
+D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
+\qquad
+D_{t,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+\qquad
+W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{t,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
 $$
 
 ### AAA Mapping
@@ -147,6 +149,7 @@ This is the root equation from which the rest of the mapping must not drift. It 
 
 - finite causal delay;
 - inverse-square causal wake dilution;
+- receiver-normal branch strength;
 - line-of-action direction;
 - source polarity and receiver polarity;
 - Jacobian bunching or dilution;

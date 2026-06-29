@@ -184,7 +184,7 @@ u\hat{\mathbf e}
 \cdot\hat{\mathbf r}_{\sigma\sigma'}
 }{c_f}
 $$
-where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the source emission point to the receiver-now point. This is structurally the same source-normal denominator that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the current Master EOM has the radial inverse-square line of action and receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
+where $\hat{\mathbf r}_{\sigma\sigma'}$ is the unit vector from the source emission point to the receiver-now point. This is structurally the same source-normal denominator that appears in Lienard-Wiechert delay geometry. The analogy is useful only at the level of causal-root flux: the canonical Master EOM has the radial inverse-square line of action and receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, but not the full electrodynamic velocity-field and acceleration-field terms. The Lorentz answer therefore cannot be imported from classical electrodynamics; it must be computed on this branch.
 
 The leading/trailing asymmetry in this translating ledger is already visible in the pure drift part of the same Jacobian. For a uniformly moving source with drift ratio $\beta=u/c_f$ and $\theta$ the angle between the drift direction and the source-to-receiver line of action, the simple-root wake-density factor is
 $$

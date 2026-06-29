@@ -1,6 +1,6 @@
 # Spiral A1 Receiver-Normal Drive Target
 
-Status. Current-law drive target for the A1 retained chart. This file carries no
+Status. Receiver-normal drive target for the A1 retained chart. This file carries no
 active radial-threshold, tangential-drive, force/action, or pass/fail verdict.
 It defines only the candidate row and the receiver-normal evidence needed before
 drive rows can be recomputed.

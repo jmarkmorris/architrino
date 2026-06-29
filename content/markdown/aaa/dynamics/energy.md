@@ -392,7 +392,7 @@ $$
 \delta_\eta'\!\left(u-\frac{R_{+}}{c_f}\right)
 \longrightarrow 0
 $$
-on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the current Master EOM.
+on the retained branch chart. If $D_{ij}R_{+}\ne0$ and this residual does not vanish, the endpoint is an interior Euler source rather than a conservation-boundary term. In that case the characteristic-tail action changes the accepted branch force and cannot be used to close exact energy conservation for the canonical Master EOM.
 
 The analogous momentum and angular-momentum closures must also remain tied to the same window and boundary data. The finite-window momentum functional $P_W^i$ contains the mechanical momentum retained in $W$ plus the retained wake-history momentum record:
 $$

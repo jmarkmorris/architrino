@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Interval Integration Plan
 
-Status. Current-law restart target. The interval integration plan no longer
+Status. Receiver-normal restart target. The interval integration plan no longer
 accepts sampled drive signs, source-normal branch intervals, or superseded sidecar
 status transitions as theorem-grade evidence.
 

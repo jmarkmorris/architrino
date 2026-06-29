@@ -1288,6 +1288,15 @@ export interface SolverMovingCircularObserverFieldBranchF64 {
   distance: number;
   residual?: number;
   delay?: number;
+  branchWeight?: number;
+  sourceNormalSpeed?: number;
+  receiverNormalSpeed?: number;
+  sourceNormalDenominator?: number;
+  receiverNormalNumerator?: number;
+  receiverNormalCrossingFactor?: number;
+  receiverNormalFactor?: number;
+  unsignedReceiverNormalFactor?: number;
+  receiverNormalStatusCode?: number;
 }
 
 export interface SolverMovingCircularObserverFieldF64Request {
@@ -1496,8 +1505,19 @@ export interface SolverMovingCircularObserverFieldContributionF64 {
   delaySolveGap: number;
   jacobian: number;
   jacobianAbs: number;
-  jacobianWeight: number;
+  branchWeight: number;
   sourceNormalSpeed: number;
+  receiverNormalSpeed: number;
+  sourceNormalDenominator: number;
+  receiverNormalNumerator: number;
+  receiverNormalCrossingFactor: number;
+  receiverNormalFactor: number;
+  unsignedReceiverNormalFactor: number;
+  receiverNormalStatusCode: number;
+  receiverNormalEvidenceStatus:
+    | "ok"
+    | "receiver_normal_branch_rows_missing"
+    | "receiver_normal_branch_rows_invalid";
   sourceSpeedRatio: number;
   receiverAcceleration: SolverVector3F64;
   electric: SolverVector3F64;

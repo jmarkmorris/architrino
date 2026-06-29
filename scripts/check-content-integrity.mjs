@@ -28,6 +28,10 @@ const CHECKS = [
     args: ["scripts/export-ios-textbook-package.mjs", "--check", "--strict"],
   },
   {
+    name: "Check receiver-normal Master EOM clean slate",
+    args: ["scripts/check-receiver-normal-clean-slate.mjs"],
+  },
+  {
     name: "Check frequency-triplet notation drift",
     args: ["scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs"],
   },

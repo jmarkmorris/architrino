@@ -41,6 +41,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Define success in terms of observable behavior, passing check, equation recovered, or text promoted.
 - [ ] Preserve the returned `Closure goal:` line when restarting, splitting, or refocusing a thread.
 - [ ] Before broad terminology migrations, ask for a scan of git history and current usage, then name accepted terms and frozen labels before editing.
+- [ ] Avoid temporal phrasing for theory claims; use canonical definition/status language such as `canonical Master EOM`.
 
 ## Multi-Agent Use
 

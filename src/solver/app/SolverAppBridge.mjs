@@ -811,6 +811,16 @@ const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_BOUNDARY_RESIDUA
   "retained_knot_boundary_residual_not_preserved";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED =
   "physical_boundary_solver_not_implemented";
+const PAIR_INTERACTION_EOM_EVIDENCE_STATUS_NONCANONICAL_PREVIEW =
+  "noncanonical_preview_not_master_eom_evidence";
+const PAIR_INTERACTION_EOM_EVIDENCE_REASON_RECEIVER_NORMAL_BRANCH_ROWS_MISSING =
+  "receiver_normal_branch_rows_missing";
+const PAIR_INTERACTION_EOM_EVIDENCE_METADATA = Object.freeze({
+  canonicalEomEvidence: false,
+  eomEvidenceStatus: PAIR_INTERACTION_EOM_EVIDENCE_STATUS_NONCANONICAL_PREVIEW,
+  eomEvidenceReason:
+    PAIR_INTERACTION_EOM_EVIDENCE_REASON_RECEIVER_NORMAL_BRANCH_ROWS_MISSING,
+});
 const PAIR_INTERACTION_DERIVED_BOUNDARY_POSITION_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const PAIR_INTERACTION_BOUNDARY_RESIDUAL_STATUS_UNCHECKED = "unchecked";
@@ -3998,6 +4008,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         frameCount: pair.frames.length,
         pathCount: pair.pathCount,
         interactionLaw: pair.interactionLaw,
+        canonicalEomEvidence: pair.summary?.canonicalEomEvidence === true,
+        eomEvidenceStatus: pair.summary?.eomEvidenceStatus,
+        eomEvidenceReason: pair.summary?.eomEvidenceReason,
         pathConstraintFrameRefinementSampleCount:
           pair.summary?.pathConstraintFrameRefinementSampleCount,
         pathConstraintPositionResidualSampleCount:
@@ -4110,6 +4123,9 @@ function runSimulationWithModule(state, module, request, abiInfo) {
         chunkCount: pathHistory?.summary.chunkCount ?? 0,
         stepCount: pair.stepCount,
         interactionLaw: pair.interactionLaw,
+        canonicalEomEvidence: pair.summary?.canonicalEomEvidence === true,
+        eomEvidenceStatus: pair.summary?.eomEvidenceStatus,
+        eomEvidenceReason: pair.summary?.eomEvidenceReason,
         ...(Number.isFinite(Number(pair.summary?.signalSpeed))
           ? { signalSpeed: Number(pair.summary.signalSpeed) }
           : {}),
@@ -4578,6 +4594,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       requestedPrecisionPath: options.requestedPrecisionPath,
       precisionPath: options.precisionPath,
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -4659,6 +4676,7 @@ function solvePairInteractionPathF64(request, options = {}) {
       pathConstraintFrameRefinementSampleCount:
         sampleSchedule.pathConstraintFrameRefinementSampleCount,
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -4718,6 +4736,7 @@ function solvePairInteractionPathF64(request, options = {}) {
     pathCount: normalized.initialStates.length,
     stepCount: Math.max(0, times.length - 1),
     interactionLaw: normalized.interactionLaw,
+    ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
     ...(Number.isFinite(normalized.signalSpeed)
       ? { signalSpeed: normalized.signalSpeed }
       : {}),
@@ -9362,20 +9381,88 @@ function bridgeMagnitude(vector) {
   return Math.sqrt(bridgeDot(vector, vector));
 }
 
+function bridgeOptionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function resolveBridgeReceiverNormalRows(branch = {}) {
+  const branchWeight = bridgeOptionalFiniteNumber(branch.branchWeight);
+  const sourceNormalDenominator = bridgeOptionalFiniteNumber(branch.sourceNormalDenominator);
+  const receiverNormalNumerator = bridgeOptionalFiniteNumber(branch.receiverNormalNumerator);
+  const receiverNormalFactor = bridgeOptionalFiniteNumber(branch.receiverNormalFactor);
+  const unsignedReceiverNormalFactor = bridgeOptionalFiniteNumber(branch.unsignedReceiverNormalFactor);
+  if (
+    branchWeight === null ||
+    sourceNormalDenominator === null ||
+    receiverNormalNumerator === null ||
+    receiverNormalFactor === null ||
+    unsignedReceiverNormalFactor === null
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator: sourceNormalDenominator ?? 0,
+      receiverNormalNumerator: receiverNormalNumerator ?? 0,
+      receiverNormalFactor: receiverNormalFactor ?? 0,
+      unsignedReceiverNormalFactor: unsignedReceiverNormalFactor ?? 0,
+      evidenceStatus: "receiver_normal_branch_rows_missing",
+    };
+  }
+  const expectedReceiverNormalFactor =
+    receiverNormalNumerator / sourceNormalDenominator;
+  if (
+    branchWeight < 0 ||
+    unsignedReceiverNormalFactor < 0 ||
+    Math.abs(sourceNormalDenominator) <= 1e-12 ||
+    !Number.isFinite(expectedReceiverNormalFactor) ||
+    !closeScaled(receiverNormalFactor, expectedReceiverNormalFactor, 1e-9) ||
+    !closeScaled(unsignedReceiverNormalFactor, Math.abs(receiverNormalFactor), 1e-9) ||
+    !closeScaled(branchWeight, unsignedReceiverNormalFactor, 1e-9)
+  ) {
+    return {
+      branchWeight: 0,
+      sourceNormalDenominator,
+      receiverNormalNumerator,
+      receiverNormalFactor,
+      unsignedReceiverNormalFactor,
+      evidenceStatus: "receiver_normal_branch_rows_invalid",
+    };
+  }
+  return {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus: "ok",
+  };
+}
+
 function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, request = {}) {
   const signalSpeed = Math.max(1e-12, bridgeFiniteNumber(request.signalSpeed, 1));
-  const jacobianFloor = Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4));
   const direction = bridgeVector(branch.direction);
   const sourceVelocity = bridgeVector(branch.sourceVelocity);
   const chargeSign = bridgeFiniteNumber(branch.chargeSign, 0);
   const distance = Math.max(1e-12, bridgeFiniteNumber(branch.distance, 0));
-  const sourceNormalSpeed = bridgeDot(sourceVelocity, direction);
-  const jacobian = 1 - sourceNormalSpeed / signalSpeed;
+  const sourceNormalSpeed = bridgeFiniteNumber(
+    branch.sourceNormalSpeed,
+    bridgeDot(sourceVelocity, direction)
+  );
+  const receiverNormalSpeed = bridgeFiniteNumber(branch.receiverNormalSpeed, 0);
+  const receiverNormalCrossingFactor = bridgeFiniteNumber(branch.receiverNormalCrossingFactor, 0);
+  const {
+    branchWeight,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    evidenceStatus,
+  } = resolveBridgeReceiverNormalRows(branch);
+  const jacobian = sourceNormalDenominator;
   const jacobianAbs = Math.abs(jacobian);
-  const jacobianWeight = 1 / Math.max(jacobianFloor, jacobianAbs);
   const electric = bridgeScaleVector(
     direction,
-    chargeSign * jacobianWeight / (distance * distance)
+    chargeSign * branchWeight / (distance * distance)
   );
   const comparisonB = bridgeScaleVector(
     bridgeCrossVector({ x: 1, y: 0, z: 0 }, electric),
@@ -9388,8 +9475,18 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
     delaySolveGap: Math.abs(bridgeFiniteNumber(branch.residual, 0)),
     jacobian,
     jacobianAbs,
-    jacobianWeight,
+    branchWeight,
     sourceNormalSpeed,
+    receiverNormalSpeed,
+    sourceNormalDenominator,
+    receiverNormalNumerator,
+    receiverNormalCrossingFactor,
+    receiverNormalFactor,
+    unsignedReceiverNormalFactor,
+    receiverNormalStatusCode: Number.isFinite(Number(branch.receiverNormalStatusCode))
+      ? Number(branch.receiverNormalStatusCode)
+      : evidenceStatus === "ok" ? 0 : -1,
+    receiverNormalEvidenceStatus: evidenceStatus,
     sourceSpeedRatio: bridgeMagnitude(sourceVelocity) / signalSpeed,
     receiverAcceleration: electric,
     electric,
@@ -9429,13 +9526,23 @@ function computeMovingCircularObserverFieldF64(request = {}) {
   );
   const unstableContributionCount = contributions.filter(
     (contribution) =>
+      contribution.receiverNormalEvidenceStatus !== "ok" ||
       contribution.delaySolveGap > bridgeFiniteNumber(request.unstableGapThreshold, 0.05) ||
       contribution.jacobianAbs <= Math.max(1e-12, bridgeFiniteNumber(request.jacobianFloor, 1e-4))
   ).length;
+  const missingReceiverNormalCount = contributions.filter(
+    (contribution) => contribution.receiverNormalEvidenceStatus !== "ok"
+  ).length;
+  const receiverNormalFailureCode = contributions.find(
+    (contribution) => contribution.receiverNormalEvidenceStatus !== "ok"
+  )?.receiverNormalEvidenceStatus;
   const status = createStatus(
-    "ok",
-    "ok",
-    "moving-circular observer field computed"
+    receiverNormalFailureCode ?? "ok",
+    missingReceiverNormalCount > 0 ? "warn" : "ok",
+    missingReceiverNormalCount > 0
+      ? "moving-circular observer field has branches without complete receiver-normal branch rows"
+      : "moving-circular observer field computed",
+    missingReceiverNormalCount > 0 ? { details: { missingReceiverNormalCount } } : {}
   );
   return {
     schema: "solver-moving-circular-observer-field-f64.v1",
@@ -11448,6 +11555,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         requestedPrecisionPath: options.requestedPrecisionPath,
         precisionPath: options.precisionPath,
         interactionLaw: normalized.interactionLaw,
+        ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
         ...(Number.isFinite(normalized.signalSpeed)
           ? { signalSpeed: normalized.signalSpeed }
           : {}),
@@ -11538,6 +11646,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
         pathConstraintFrameRefinementSampleCount:
           nativeSummary.frameRefinementSampleCount,
         interactionLaw: normalized.interactionLaw,
+        ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
         ...(Number.isFinite(normalized.signalSpeed)
           ? { signalSpeed: normalized.signalSpeed }
           : {}),
@@ -11605,6 +11714,7 @@ function integratePairInteractionMotionF64WithModule(module, request, options = 
       pathCount: stateCount,
       stepCount: Math.max(0, times.length - 1),
       interactionLaw: normalized.interactionLaw,
+      ...PAIR_INTERACTION_EOM_EVIDENCE_METADATA,
       ...(Number.isFinite(normalized.signalSpeed)
         ? { signalSpeed: normalized.signalSpeed }
         : {}),
@@ -15832,7 +15942,7 @@ function writeCausalRootRowF64(module, ptr, root) {
   writeVector(module, ptr + 88, root.receiverPoint ?? { x: 0, y: 0, z: 0 });
   module.setValue(ptr + 112, root.sourceNormalSpeed ?? 0, "double");
   module.setValue(ptr + 120, root.receiverNormalSpeed ?? 0, "double");
-  module.setValue(ptr + 128, root.sourceNormalDenominator ?? root.jacobian ?? 0, "double");
+  module.setValue(ptr + 128, root.sourceNormalDenominator ?? 0, "double");
   module.setValue(ptr + 136, root.receiverNormalNumerator ?? 0, "double");
   module.setValue(ptr + 144, root.receiverNormalCrossingFactor ?? 0, "double");
   module.setValue(ptr + 152, root.receiverNormalFactor ?? 0, "double");

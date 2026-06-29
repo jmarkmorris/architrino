@@ -218,7 +218,7 @@ It is the phase-bundle analogue of the basis-conditioning and aperture floors in
 Among the admissible integer locks $(1:m:n)$, the physically selected lock is assumed to be the one whose phase bundle admits the flattest replayable connection while minimizing exposed causal-wake leakage. The cycle-averaged cancellation of a low-order causal-wake multipole or effective potential signal is the effective diagnostic for that deeper bundle condition.
 
 This is a selection principle, not yet a theorem. Its role is to explain why one exact integer lock might be preferred over nearby commensurate alternatives. The primary object is the branch bundle; the cancellation score is accepted only when it is computed from the same holonomy data, middle-caustic impulse record, and finite-$\eta$ return map.
-The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-Jacobian floors, and the speed bounds assigned to the exterior/horizon regime.
+The admissible class must be declared before minimization: positive radii, $1 < m < n$, a fixed finite-$\eta$ branch chart, nonzero branch-transversality floors, and the speed bounds assigned to the exterior/horizon regime.
 
 In this branch, the middle binary is the curvature carrier. Between caustic events the locked triple is modeled as flat phase transport. At the regularized middle caustics, the connection acquires concentrated curvature,
 
@@ -240,26 +240,26 @@ $$
 S_L(t)
 =
 \sum_{k\in\{O,M,I\}}\sum_{a=1}^{L}
-A_{k,a}(\beta_k,r_k,\eta,J)\,
+A_{k,a}(\beta_k,r_k,\eta,D_s,D_t,W^{\mathrm{rec}},J)\,
 e^{ia(q_k\Omega t+\phi_k)}
 $$
-The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ branch-strength, branch-Jacobian, and causal-wake ledger used to test the candidate lock.
+The coefficients $A_{k,a}$ are not free fit parameters. They must be extracted from the same finite-$\eta$ receiver-normal branch-strength, branch-transversality, and causal-wake ledger used to test the candidate lock.
 They therefore belong to the dynamics of the causal-wake branch chart, even when the resulting signal is later summarized as an effective potential.
-For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the Jacobian weight of the caustic window, schematically
+For the caustic-grazing middle carrier this extraction is not an ordinary smooth Fourier coefficient. A middle harmonic must carry the caustic transversality weight of the window while keeping receiver-normal force/action strength on the same retained record, schematically
 
 $$
 A_{M,a}
 =
 \int_0^{2\pi}
 \frac{
-w_{M,a}(\theta_M)
+w_{M,a}^{\mathrm{rec}}(\theta_M)
 }{
 |J_M(\theta_M)|+\eta_J
 }
 e^{-ia\theta_M}\,d\theta_M
 $$
 
-with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}$ the branch-derived numerator for that harmonic channel. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
+with $\eta_J$ the declared Jacobian-floor regularization and $w_{M,a}^{\mathrm{rec}}$ the branch-derived numerator computed from the same retained $D_s$, $D_t$, and $W^{\mathrm{rec}}$ row for that harmonic channel. The $J_M$ factor is a caustic-window transversality weight, not a substitute for receiver-normal branch strength. As $\eta_J$ is lowered, the coefficient is dominated by neighborhoods of the caustic phases $\theta_{M,n}^{\ast}$, while the integrated impulse remains finite under the simple-caustic rule in [Master Equation](master-equation.md#caustic-transit-and-finite-impulse). Thus the selection question is not whether three generic Fourier amplitudes cancel, but whether the finite middle-caustic impulse deposits the right spectral weight into the first common resonance block.
 The cycle-averaged cancellation score is
 $$
 C_L(m,n;\phi)
@@ -538,7 +538,7 @@ $$
 $$
 off the neutral symmetry directions $G$.
 
-Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-Jacobian floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
+Here $\mathcal{S}_{m,n}$ is a finite-$\eta$ reduced phase-amplitude branch chart: it retains the layer phases, relative phase offsets, orbital-plane normals, radii, speeds, active branch data, branch-transversality floors, caustic-impulse rows, and history variables needed to evaluate one outer-period return. The neutral directions $G$ are not an arbitrary hand list. They are the tangent directions that preserve the same flat connection and branch identity:
 
 $$
 G

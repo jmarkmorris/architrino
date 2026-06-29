@@ -1,6 +1,6 @@
 # Spiral A1 Receiver-Normal Variable-Rate Turn Target
 
-Status. Current-law restart target for variable-rate A1 turn-center analysis.
+Status. Receiver-normal restart target for variable-rate A1 turn-center analysis.
 This file does not supply an angular-rate slope, force-ratio interval, or
 tangential compatibility verdict.
 
@@ -15,5 +15,4 @@ The variable-rate turn problem is now:
    factors;
 4. only then compare the rebuilt sums to the selected kinematic time law.
 
-No superseded slope or force-ratio value is active evidence under the current
-Master EOM.
+No superseded slope or force-ratio value is canonical Master EOM evidence.

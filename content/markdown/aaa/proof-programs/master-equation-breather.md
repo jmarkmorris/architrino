@@ -7,7 +7,7 @@ under the receiver-normal Master EOM branch factor
 $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ while preserving root-topology and
 source-normal transversality rows only as conditional inputs.
 
-The breather proof process therefore starts over from the current-law branch
+The breather proof process therefore starts over from the receiver-normal branch
 table. The architecture can be reused; no previous force margin, return verdict,
 finite certificate, or action conclusion is inherited.
 
@@ -7160,13 +7160,29 @@ $$
 
 To connect this directly to the master equation, write
 $$
+D_{s,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_j(s),
+\qquad
+D_{t,ij}(t;s)
+=
+c_f-\hat{\mathbf r}_{ij}(t;s)\cdot\mathbf v_i(t),
+$$
+and
+$$
+W_{ij}^{\mathrm{rec}}(t;s)
+=
+\left|D_{t,ij}(t;s)/D_{s,ij}(t;s)\right|.
+$$
+The receiver-normal branch law is
+$$
 \ddot{\mathbf{x}}_i(t)
 =
 \sum_{j=1}^3
 \sum_{s\in\mathcal{C}_{ij}(t)}
 \kappa\,\sigma_{ij}\,
-\frac{|q_i q_j|}
-{r_{ij}(t;s)^2\,|J_{ij}(t;s)|}
+\frac{|q_i q_j|W_{ij}^{\mathrm{rec}}(t;s)}
+{r_{ij}(t;s)^2}
 \hat{\mathbf{r}}_{ij}(t;s),
 $$
 with the usual convention that the
@@ -7223,7 +7239,12 @@ where:
   3
   $$
 
-The explicit unresolved theorem burden is to prove, on the recapture windows, that the opposite-sign core term dominates the same-sign and self-driven widening after all admissible fold-tube and deep-past ceilings are paid.
+The explicit unresolved theorem burden is to prove, on the recapture windows,
+that the opposite-sign core term dominates the same-sign and self-driven
+widening after all admissible fold-tube and deep-past ceilings are paid. Any
+margin lacking same-record $D_t$ is restart-only: the margin becomes force
+evidence only after the same retained record reports $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ for every consumed branch family.
 
 Accordingly, a first branch-sum ceiling for the residual widening term should be written as
 $$

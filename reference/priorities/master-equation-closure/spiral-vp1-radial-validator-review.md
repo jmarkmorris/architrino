@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Radial Validator Review
 
-Status. Current-law validator review target. The previous radial sidecar
+Status. Receiver-normal validator review target. The previous radial sidecar
 validator contract is invalid as force/action evidence unless it is rebuilt
 around same-record receiver-normal branch strength.
 
@@ -16,7 +16,7 @@ The validator must reject any nonblocked radial row that lacks:
 | same root boxes | row cannot import a different root chart |
 | $D_s$ interval | row cannot omit source-normal transversality |
 | $D_t$ interval | row cannot omit receiver-normal motion |
-| $W^{\mathrm{rec}}$ interval | row cannot use source-normal branch strength |
+| $W^{\mathrm{rec}}$ interval | row fails if branch strength is replaced by source-normal data |
 | receiver-normal radial sum | row cannot compare kinematics to a stale branch sum |
 | negative control | row cannot pass when $D_t$ is removed or mismatched |
 

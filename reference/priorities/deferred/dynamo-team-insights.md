@@ -14,7 +14,7 @@ This separation enables a hierarchy of dynamical atlases: local charts of assemb
 
 ### Core Mathematical Challenge
 
-The current Master EOM defines acceleration via intersections with past causal
+The canonical Master EOM defines acceleration via intersections with past causal
 wake surfaces and same-record receiver-normal branch strength:
 $$
 \frac{d^2 \mathbf{x}_i}{dt^2}

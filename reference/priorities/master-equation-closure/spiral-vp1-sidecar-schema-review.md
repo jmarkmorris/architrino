@@ -1,6 +1,6 @@
 # VP-1 Receiver-Normal Sidecar Schema Review
 
-Status. Current-law schema review target. The sidecar schema must no longer
+Status. Receiver-normal schema review target. The sidecar schema must no longer
 accept source-normal radial or tangential drive rows as theorem-grade evidence.
 
 Claim level. Restart target, not schema closure.

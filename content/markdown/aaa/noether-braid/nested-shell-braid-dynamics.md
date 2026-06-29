@@ -450,7 +450,7 @@ K_{\perp}^{(q)}
 \sqrt{\frac{K_{\perp}^{(q)}}{K_{\parallel}^{(q)}}}
 <1
 $$
-The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. Under the current Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any stiffness estimate that lacks same-record $D_t/D_s$ branch strength is a restart target.
+The physical squash into an oblate $R_{\parallel}<R_{\perp}$ branch is therefore not imported from a relativistic metric. In the canonical Master EOM it must be read as the mechanical response to receiver-normal wake-flux asymmetry created by translating the same causal-root ledger through the Euclidean void; any stiffness estimate that lacks same-record $D_t/D_s$ branch strength is a restart target.
 
 A one-$h$ closed-cycle action transaction is a candidate map between stable branch states,
 $$

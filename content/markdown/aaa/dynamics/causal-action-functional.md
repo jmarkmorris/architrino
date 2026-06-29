@@ -2,7 +2,7 @@
 
 ## Problem Statement and Goal
 
-This chapter gives the action-functional side of the current Master EOM. Its
+This chapter gives the action-functional side of the canonical receiver-normal Master EOM. Its
 job is not to preserve a separate scalar law. Its job is to define which
 retained branch records may be used for action, stability, mass-response, and
 transition-cost calculations after the branch has been rebuilt with
@@ -164,7 +164,7 @@ A branch certificate that consumes this chapter must report:
 | scalar stationarity | first-variation or discrete comparison row for $\bar{\mathcal A}_{\mathrm{rec}}$ |
 | vector consistency | Master EOM residual on the same retained record |
 | Noether pullback | energy, momentum, and angular-momentum wake-history rows |
-| negative controls | rejection of missing, mismatched, or source-only strength rows |
+| negative controls | rejection of missing, mismatched, or receiver-normal-incomplete rows |
 
 The branch certificate is not promoted if any of those rows are supplied by
 different root boxes, different regulator states, or different history records.

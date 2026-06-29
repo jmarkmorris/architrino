@@ -48,17 +48,19 @@ $$
 \mathbf{a}_{o'\leftarrow o}(t;t_0)
 =
 \kappa\,\sigma_{q_o q_{o'}}
-\frac{|q_o q_{o'}|}
-{r^2|J_{o'\leftarrow o}(t;t_0)|}
+\frac{|q_o q_{o'}|}{r^2}
+W_{o'\leftarrow o}^{\mathrm{rec}}(t;t_0)
 \hat{\mathbf r},
 $$
 
-with causal-root Jacobian
+with source-normal denominator, receiver-normal numerator, and branch strength
 
 $$
-J_{o'\leftarrow o}(t;t_0)
-=
-1-\frac{\mathbf v_o(t_0)\cdot\hat{\mathbf r}}{c_f}.
+D_{s,o'\leftarrow o}=c_f-\mathbf v_o(t_0)\cdot\hat{\mathbf r},
+\qquad
+D_{t,o'\leftarrow o}=c_f-\mathbf v_{o'}(t)\cdot\hat{\mathbf r},
+\qquad
+W_{o'\leftarrow o}^{\mathrm{rec}}=\left|\frac{D_{t,o'\leftarrow o}}{D_{s,o'\leftarrow o}}\right|.
 $$
 
 On a retained branch chart
@@ -101,12 +103,13 @@ $$
 \sum_o
 \sum_{\alpha\in\mathcal{A}_{o'o}^{\mathfrak{B}}(t;h)}
 \kappa\,\sigma_{q_o q_{o'}}
-\frac{|q_o q_{o'}|}
-{r_{o'o,\alpha}^{2}|J_{o'o,\alpha}|}
+|q_o q_{o'}|
+\frac{W_{o'o,\alpha}^{\mathrm{rec}}}
+{r_{o'o,\alpha}^{2}}
 \hat{\mathbf r}_{o'o,\alpha}.
 $$
 
-This row is already native. The open conservation burden is to build energy, momentum, angular-momentum, wake, event, and boundary rows from this same retained active-root ledger rather than from a separate fitted potential or observer-level field.
+This row is native only when the same retained active-root ledger carries $D_s$, $D_t$, and $W^{\mathrm{rec}}$ for each branch. The open conservation burden is to build energy, momentum, angular-momentum, wake, event, and boundary rows from that same retained active-root ledger rather than from a separate fitted potential or observer-level field.
 
 ## Same-Root Conservation Contract
 
