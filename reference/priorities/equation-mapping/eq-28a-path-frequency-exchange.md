@@ -136,7 +136,7 @@ The carrier requires:
 
 ## Direct Geometry Layer
 
-This table is priority-only. It maps the comparison terms to the native geometry, carrier rows, same-record bindings, fail-closed controls, and smallest accepted evidence objects that must exist before any inverse-Compton or SZ comparison can count as equation evidence. It does not move the score, and it does not treat frequency change as pure photon energy loss, void expansion, source emission, or a private thermal calibration.
+This table is priority-only. It maps the comparison terms to the native geometry, carrier rows, same-record bindings, fail-closed controls, and smallest accepted evidence objects that must exist before any inverse-Compton or SZ comparison can count as equation evidence. It does not change scores, and it does not treat frequency change as pure photon energy loss, void expansion, source emission, or a private thermal calibration.
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |

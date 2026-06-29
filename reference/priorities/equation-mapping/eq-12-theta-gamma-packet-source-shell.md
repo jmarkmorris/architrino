@@ -128,7 +128,7 @@ No score changes.
 
 [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json) is the first checker-consumable row map for one candidate photon event window `W_gamma_0_source_candidate_0001`. It adds candidate source-path slots, stable row ids, source/receiver/window identity fields, and common event-ledger/provenance keys while keeping every row at `status: attempt`.
 
-The expected checker result remains `missing_accepted_theta_gamma_packet`; this fixture exists to make the next evidence search concrete, not to move the score.
+The expected checker result remains `missing_accepted_theta_gamma_packet`; this fixture exists to make the next evidence search concrete, not to change scores.
 
 Run the source-attempt fixture and priority-source negative control before treating the photon packet route as advanced:
 

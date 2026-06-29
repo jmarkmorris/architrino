@@ -11,7 +11,7 @@
 
 ## Boundary
 
-This map does not populate accepted retained evidence. It names the smallest source-backed object that could move `EQ-24` beyond the current score `3` state and preserves the live checker blocker `missing_accepted_theta_sea_rho_NS`.
+This map does not populate accepted retained evidence. It names the smallest source-backed object that could make `EQ-24` score-review eligible beyond the current score `3` state only after the checker accepts `theta_sea_rho_NS`; the live blocker remains `missing_accepted_theta_sea_rho_NS`.
 
 The retained-attempt fixture already supplies the arithmetic shape of the density-compression slice, but every retained row remains attempt-level with `sourcePath=pending-retained-source`. Changing a status field, pointing a row back to this packet, or pointing a row back to the attempt fixture does not count as accepted evidence.
 

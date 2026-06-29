@@ -522,4 +522,4 @@ Promote only after the shared residual above is populated for at least one decla
 - Corpus promotion status: priority-only.
 - Promote now: no.
 - Defer with blocker: branch/population derivation of $\mathbf{b}_N$, shared ADM/Cartan coefficients, path-history energy exchange, and effective source provenance.
-- Next safe action: define and populate $\mathcal{R}_{07\text{-}10,17\text{-}19}(\theta;W,X)$ for a weak solar-system benchmark window before attempting a cosmology-wide score increase.
+- Next safe action: define and populate $\mathcal{R}_{07\text{-}10,17\text{-}19}(\theta;W,X)$ for a weak solar-system benchmark window before attempting cosmology-wide score-change review.

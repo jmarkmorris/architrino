@@ -58,12 +58,13 @@ test("Noether sea handoff diagnostic emits all priority-only boundary rows", () 
   assert.equal(artifact.boundary_rows.every((row) => row.status === "pass"), true);
 });
 
-test("Noether sea accepted medium-response label without evidence id stays non-accepted", () => {
+test("Noether sea accepted medium-response metadata without derivation proof object stays non-accepted", () => {
   const input = buildDefaultNoetherSeaCompatibilityHandoffInput();
   const source = input.retained_branch_source_record;
   input.accepted_medium_response_evidence = {
     evidence_level: "accepted_for_medium_response_closure",
     accepted_for_medium_response_closure: true,
+    accepted_evidence_id: "accepted_medium_response_q0",
     source_record_id: source.record_id,
     response_object_id: input.handoff.medium_response.response_object_id,
     branch_class: source.branch_class,
@@ -80,7 +81,11 @@ test("Noether sea accepted medium-response label without evidence id stays non-a
   assert.equal(responseEvidence.accepted_evidence_contract_attempted, true);
   assert.equal(responseEvidence.accepted_for_medium_response_closure, false);
   assert.deepEqual(responseEvidence.accepted_evidence_mismatches, [
-    "accepted_medium_response_evidence.accepted_evidence_id",
+    "accepted_medium_response_evidence.derivation_proof_object.role",
+    "accepted_medium_response_evidence.derivation_proof_object.accepted_evidence_id",
+    "accepted_medium_response_evidence.derivation_proof_object.source_record_id",
+    "accepted_medium_response_evidence.derivation_proof_object.response_object_id",
+    "accepted_medium_response_evidence.derivation_proof_object.status",
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_response_count, 0);
   assert.equal(artifact.result.accepted_medium_response_evidence_for_closure, false);
@@ -108,6 +113,7 @@ test("Noether sea handoff diagnostic CLI writes, validates, and reports schema",
     "counts_by_evidence_level",
     "accepted_evidence_contract_attempted",
     "accepted_evidence_mismatches",
+    "derivation_proof_object",
     "accepted_for_medium_response_closure",
   ]);
   assert.deepEqual(schema.controls, ["retained-history-mismatch", "speed-conflation", "hidden-tuning"]);

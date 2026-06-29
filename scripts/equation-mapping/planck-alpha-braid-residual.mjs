@@ -872,6 +872,7 @@ function evaluateSourceReference(row) {
     basename.includes("attempt") ||
     basename.includes("toy") ||
     basename.includes("source-evidence-probe") ||
+    basename.includes("source-contract") ||
     basename.includes("probe") ||
     basename.includes("mock") ||
     basename.includes("negative-control")

@@ -17,6 +17,7 @@ const PACKET_ID = "event_wake_history_pullback_diagnostic";
 const PROMOTION_STATUS = "priority-only diagnostic";
 const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
 const REQUIRED_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
+const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -77,6 +78,7 @@ function acceptedEvidenceAttempted(evidence) {
 
 function acceptedEvidenceMismatches(input, rowId, rowPresent) {
   const evidence = eventEvidenceById(input, rowId);
+  const proofObject = evidence?.derivation_proof_object ?? {};
   const checks = [
     { field: "row_present", ok: rowPresent },
     {
@@ -92,6 +94,28 @@ function acceptedEvidenceMismatches(input, rowId, rowPresent) {
       ok:
         typeof evidence?.accepted_evidence_id === "string" &&
         evidence.accepted_evidence_id.length > 0,
+    },
+    {
+      field: "event_evidence.derivation_proof_object.role",
+      ok: proofObject.role === ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+    },
+    {
+      field: "event_evidence.derivation_proof_object.accepted_evidence_id",
+      ok:
+        typeof evidence?.accepted_evidence_id === "string" &&
+        proofObject.accepted_evidence_id === evidence.accepted_evidence_id,
+    },
+    {
+      field: "event_evidence.derivation_proof_object.row_id",
+      ok: proofObject.row_id === rowId,
+    },
+    {
+      field: "event_evidence.derivation_proof_object.source_record_id",
+      ok: proofObject.source_record_id === evidence?.source_record_id,
+    },
+    {
+      field: "event_evidence.derivation_proof_object.status",
+      ok: proofObject.status === "accepted",
     },
     {
       field: "event_evidence.source_record_id",
@@ -351,6 +375,7 @@ function main() {
             "counts_by_evidence_level",
             "accepted_evidence_contract_attempted",
             "accepted_evidence_mismatches",
+            "derivation_proof_object",
             "accepted_for_wake_history_closure",
           ],
           controls: ["missing-angular-momentum-row", "source-record-mismatch"],

@@ -652,6 +652,7 @@ function sourceReferenceRejectionReason(filePath) {
     basename.includes("attempt") ||
     basename.includes("mock") ||
     basename.includes("toy") ||
+    basename.includes("source-contract") ||
     basename.includes("probe") ||
     basename.includes("negative-control") ||
     basename.includes(".tmp")

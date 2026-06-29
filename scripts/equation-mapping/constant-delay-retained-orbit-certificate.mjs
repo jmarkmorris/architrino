@@ -384,6 +384,7 @@ function isEvidenceSourcePath(filePath) {
   const lowerBasename = path.basename(normalized).toLowerCase();
   return !(
     lowerBasename.includes("attempt") ||
+    lowerBasename.includes("source-contract") ||
     lowerBasename.includes("mock") ||
     lowerBasename.includes("negative-control")
   );

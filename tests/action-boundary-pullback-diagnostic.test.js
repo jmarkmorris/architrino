@@ -81,11 +81,12 @@ test("action boundary pullback diagnostic validates a synthetic closed row-logic
   assert.equal(artifact.result.accepted_action_evidence_for_closure, false);
 });
 
-test("action boundary accepted label without evidence id stays non-accepted", () => {
+test("action boundary accepted metadata without derivation proof object stays non-accepted", () => {
   const input = buildSyntheticActionBoundaryPullbackInput();
   const endpoint = input.action_rows.find((row) => row.row_id === "action_endpoint_row");
   endpoint.evidence_level = "accepted_for_action_closure";
   endpoint.accepted_for_action_closure = true;
+  endpoint.accepted_evidence_id = "accepted_action_endpoint_q0";
   const artifact = buildActionBoundaryPullbackDiagnostic(input);
   const endpointEvidence = artifact.accepted_evidence_summary.row_evidence.find(
     (row) => row.row_id === "action_endpoint_row"
@@ -95,7 +96,13 @@ test("action boundary accepted label without evidence id stays non-accepted", ()
   assert.equal(artifact.boundary_status, "closed");
   assert.equal(endpointEvidence.accepted_evidence_contract_attempted, true);
   assert.equal(endpointEvidence.accepted_for_action_closure, false);
-  assert.deepEqual(endpointEvidence.accepted_evidence_mismatches, ["accepted_evidence_id"]);
+  assert.deepEqual(endpointEvidence.accepted_evidence_mismatches, [
+    "derivation_proof_object.role",
+    "derivation_proof_object.accepted_evidence_id",
+    "derivation_proof_object.row_id",
+    "derivation_proof_object.source_record_id",
+    "derivation_proof_object.status",
+  ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_action_evidence_for_closure, false);
 });
@@ -201,6 +208,7 @@ test("action boundary pullback diagnostic CLI writes, validates, and reports sch
     "counts_by_evidence_level",
     "accepted_evidence_contract_attempted",
     "accepted_evidence_mismatches",
+    "derivation_proof_object",
     "accepted_for_action_closure",
   ]);
   assert.deepEqual(schema.controls, [

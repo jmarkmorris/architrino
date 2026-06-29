@@ -103,11 +103,17 @@ test("photon constituent route diagnostic validates a toy helical self-hit repla
   );
 });
 
-test("photon route accepted flag without same-record evidence stays non-accepted", () => {
+test("photon route accepted metadata without derivation proof object stays non-accepted", () => {
   const input = buildSelfHitReplayPhotonConstituentRootRouteInput();
   const replayRow = input.sample_rows.find((sample) => sample.route_evidence);
+  const sourceRecord = input.topological.source_record_contract;
   replayRow.route_evidence.accepted_for_branch_retention = true;
   replayRow.route_evidence.evidence_level = "accepted_for_branch_retention";
+  replayRow.route_evidence.accepted_evidence_id = "accepted_route_attempt_q0";
+  replayRow.route_evidence.source_record_id = replayRow.source_record_id;
+  replayRow.route_evidence.retained_chart_id = sourceRecord.retained_chart_id;
+  replayRow.route_evidence.retained_window_id = sourceRecord.retained_window.id;
+  replayRow.route_evidence.regulator_state = sourceRecord.regulator_state;
   const artifact = buildPhotonConstituentRootRouteDiagnostic(input);
   const routeSample = artifact.route_evidence_summary.sample_evidence.find(
     (sample) => sample.route_required
@@ -117,7 +123,12 @@ test("photon route accepted flag without same-record evidence stays non-accepted
   assert.equal(routeSample.evidence_level, "accepted_evidence_contract_mismatch");
   assert.equal(routeSample.accepted_evidence_contract_attempted, true);
   assert.equal(routeSample.accepted_for_branch_retention, false);
-  assert.ok(routeSample.accepted_evidence_mismatches.includes("route_evidence.source_record_id"));
+  assert.deepEqual(routeSample.accepted_evidence_mismatches, [
+    "route_evidence.derivation_proof_object.role",
+    "route_evidence.derivation_proof_object.accepted_evidence_id",
+    "route_evidence.derivation_proof_object.source_record_id",
+    "route_evidence.derivation_proof_object.status",
+  ]);
   assert.equal(artifact.route_evidence_summary.accepted_sample_count, 0);
   assert.equal(artifact.result.accepted_route_evidence_for_branch_retention, false);
 });
@@ -211,6 +222,7 @@ test("photon constituent route CLI writes, validates, and reports schema", () =>
     "counts_by_evidence_level",
     "accepted_evidence_contract_attempted",
     "accepted_evidence_mismatches",
+    "derivation_proof_object",
     "accepted_for_branch_retention",
   ]);
   assert.deepEqual(schema.controls, [

@@ -27,6 +27,7 @@ const REQUIRED_ROW_IDS = [
 const SUPER_FIELD_ROUTE_KINDS = ["self-hit", "inactive-root"];
 const CAUSTIC_ROUTE_KINDS = ["caustic", "finite-eta"];
 const NOT_REQUIRED_ROUTE_KIND = "not-required";
+const ACCEPTED_ROUTE_PROOF_OBJECT_ROLE = "active_root_route_derivation_proof_object";
 const CONTROLS = [
   "literal-communication",
   "sample-source-record-mismatch",
@@ -88,6 +89,7 @@ function acceptedEvidenceContractChecks(sample, sourceRecordContract) {
   const retainedWindow = sourceRecordContract?.retained_window ?? {};
   const regulatorState = sourceRecordContract?.regulator_state ?? {};
   const evidenceRegulator = evidence.regulator_state ?? {};
+  const proofObject = evidence.derivation_proof_object ?? {};
   return [
     {
       field: "route_evidence.accepted_for_branch_retention",
@@ -102,6 +104,24 @@ function acceptedEvidenceContractChecks(sample, sourceRecordContract) {
       ok:
         typeof evidence.accepted_evidence_id === "string" &&
         evidence.accepted_evidence_id.length > 0,
+    },
+    {
+      field: "route_evidence.derivation_proof_object.role",
+      ok: proofObject.role === ACCEPTED_ROUTE_PROOF_OBJECT_ROLE,
+    },
+    {
+      field: "route_evidence.derivation_proof_object.accepted_evidence_id",
+      ok:
+        typeof evidence.accepted_evidence_id === "string" &&
+        proofObject.accepted_evidence_id === evidence.accepted_evidence_id,
+    },
+    {
+      field: "route_evidence.derivation_proof_object.source_record_id",
+      ok: proofObject.source_record_id === evidence.source_record_id,
+    },
+    {
+      field: "route_evidence.derivation_proof_object.status",
+      ok: proofObject.status === "accepted",
     },
     {
       field: "route_evidence.source_record_id",
@@ -766,6 +786,7 @@ function main() {
             "counts_by_evidence_level",
             "accepted_evidence_contract_attempted",
             "accepted_evidence_mismatches",
+            "derivation_proof_object",
             "accepted_for_branch_retention",
           ],
           controls: CONTROLS,

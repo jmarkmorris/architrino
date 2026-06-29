@@ -43,6 +43,7 @@ enum class StatusCode {
   ValidationReplayMismatch,
   AppContractError,
   InternalSolverError,
+  ReceiverModulatorDegenerate,
 };
 
 enum class PrecisionPath {

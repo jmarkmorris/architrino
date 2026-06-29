@@ -624,7 +624,8 @@ synthetic row logic, toy self-hit replay, and any future
 toy fixtures all report `accepted_for_branch_retention: false`. A future
 accepted route cannot be supplied by a bare label; the route evidence must also
 match the same source record, retained chart, retained window, and regulator
-state carried by the source-record contract.
+state carried by the source-record contract and carry an active-root route
+`derivation_proof_object` with the same accepted evidence id and source record.
 
 The near-$c_f$ middle-hinge route diagnostic now lives at
 `scripts/proof-programs/middle-hinge-root-status-diagnostic.mjs`, with coverage
@@ -654,7 +655,8 @@ routes, toy threshold finite-$\eta$ routes, and any future
 `accepted_for_branch_retention` evidence. The current synthetic and toy
 fixtures remain non-accepted for branch retention. The summary records
 `accepted_evidence_mismatches` when an accepted route is asserted without the
-same-record evidence fields required by the source-record contract.
+same-record evidence fields and active-root route derivation proof object
+required by the source-record contract.
 
 The companion Noether sea compatibility diagnostic is
 `scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`. It
@@ -680,7 +682,7 @@ closed upstream bridge populates the residual rows. It now emits
 `medium_response` row is `source_record_medium_response_declared`, not
 accepted medium-response closure; accepted closure must carry an
 `accepted_evidence_id`, the source record, response object, retained chart,
-retained window, and regulator state.
+retained window, regulator state, and medium-response `derivation_proof_object`.
 
 The same-retained-history contract now has an explicit diagnostic at
 `scripts/proof-programs/closed-ledger-source-record-contract-diagnostic.mjs`,
@@ -752,6 +754,8 @@ ledger rows count as `source_record_event_ledger_declared`, not accepted
 wake-history closure. A row must carry `accepted_for_wake_history_closure`,
 an `accepted_evidence_id`, the retained source record, and the retained event
 ledger id before the compositor can report accepted wake-history evidence.
+The wake-history derivation proof object must bind the same row, accepted
+evidence id, and source record.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
@@ -774,9 +778,9 @@ rows cannot be confused. They now also emit `accepted_evidence_summary`; a row
 counts as accepted for action closure only when it has an
 `accepted_evidence_id`, declares `accepted_for_action_closure`, and still
 matches the same source record, retained chart, retained window, regulator
-state, and boundary symbol. Synthetic action rows and regulator-only rows
-therefore remain `not_accepted_for_action_closure` even when their row contracts
-pass.
+state, boundary symbol, and action-boundary `derivation_proof_object`.
+Synthetic action rows and regulator-only rows therefore remain
+`not_accepted_for_action_closure` even when their row contracts pass.
 
 ## Current Executable Frontier
 
@@ -787,10 +791,10 @@ default fixture has the following blocker order:
 | Diagnostic row | Default status | Next accepted evidence needed |
 | --- | --- | --- |
 | `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
-| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples. |
-| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids on the same retained event ledger. |
-| $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, and accepted evidence ids. |
-| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id and the same retained source record. |
+| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples and require active-root route derivation proof objects. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, and the same retained event ledger. |
+| $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, accepted evidence ids, and derivation proof objects. |
+| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, and a medium-response derivation proof object. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
 
 Thus the next mathematical artifact should not try to promote the closed-ledger

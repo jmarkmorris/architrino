@@ -22,6 +22,17 @@ struct EvalState {
   Real dz = 0;
 };
 
+struct ReceiverModulatorFields {
+  double sourceRadialSpeed = 0.0;
+  double receiverRadialSpeed = 0.0;
+  double sourceWakeDenominator = 0.0;
+  double receiverWakeNumerator = 0.0;
+  double receiverCrossingFactor = 0.0;
+  double receiverModulator = 0.0;
+  double unsignedReceiverModulator = 0.0;
+  StatusCode statusCode = StatusCode::Ok;
+};
+
 Real to_real(double value) {
   return Real(value);
 }
@@ -127,6 +138,53 @@ bool has_opposite_sign(const Real& lhs, const Real& rhs) {
   return (lhs < 0 && rhs > 0) || (lhs > 0 && rhs < 0);
 }
 
+ReceiverModulatorFields compute_receiver_modulator(const EvalState& eval,
+                                                    double signalSpeed,
+                                                    Vector3 sourceVelocity,
+                                                    Vector3 receiverVelocity,
+                                                    double tolerance) {
+  ReceiverModulatorFields fields;
+  Real sourceRadialSpeed = std::numeric_limits<double>::infinity();
+  Real receiverRadialSpeed = std::numeric_limits<double>::infinity();
+  if (eval.distance > 0) {
+    sourceRadialSpeed = (eval.dx * to_real(sourceVelocity.x) +
+                         eval.dy * to_real(sourceVelocity.y) +
+                         eval.dz * to_real(sourceVelocity.z)) /
+                        eval.distance;
+    receiverRadialSpeed = (eval.dx * to_real(receiverVelocity.x) +
+                           eval.dy * to_real(receiverVelocity.y) +
+                           eval.dz * to_real(receiverVelocity.z)) /
+                          eval.distance;
+  }
+
+  const Real sourceWakeDenominator = to_real(signalSpeed) - sourceRadialSpeed;
+  const Real receiverWakeNumerator = to_real(signalSpeed) - receiverRadialSpeed;
+  const Real receiverCrossingFactor = receiverWakeNumerator / to_real(signalSpeed);
+  const Real receiverModulator = receiverWakeNumerator / sourceWakeDenominator;
+
+  fields.sourceRadialSpeed = sourceRadialSpeed.convert_to<double>();
+  fields.receiverRadialSpeed = receiverRadialSpeed.convert_to<double>();
+  fields.sourceWakeDenominator = sourceWakeDenominator.convert_to<double>();
+  fields.receiverWakeNumerator = receiverWakeNumerator.convert_to<double>();
+  fields.receiverCrossingFactor = receiverCrossingFactor.convert_to<double>();
+  fields.receiverModulator = receiverModulator.convert_to<double>();
+  fields.unsignedReceiverModulator = abs(receiverModulator).convert_to<double>();
+
+  if (!std::isfinite(fields.sourceWakeDenominator) ||
+      !std::isfinite(fields.receiverWakeNumerator) ||
+      !std::isfinite(fields.receiverCrossingFactor) ||
+      !std::isfinite(fields.receiverModulator) ||
+      !std::isfinite(fields.unsignedReceiverModulator)) {
+    fields.statusCode = StatusCode::ReceiverModulatorDegenerate;
+  } else if (std::abs(fields.sourceWakeDenominator) <= tolerance) {
+    fields.statusCode = StatusCode::SmallJacobian;
+  } else if (std::abs(fields.receiverWakeNumerator) <= tolerance) {
+    fields.statusCode = StatusCode::ReceiverModulatorDegenerate;
+  }
+
+  return fields;
+}
+
 CausalRoot make_root(const CausalRootRequest& request,
                      double emissionTime,
                      double bracketStart,
@@ -139,18 +197,15 @@ CausalRoot make_root(const CausalRootRequest& request,
   const double distance = eval.distance.convert_to<double>();
   const double delay = request.hitTime - emissionTime;
   const double residual = eval.residual.convert_to<double>();
-  Real jacobianReal = std::numeric_limits<double>::infinity();
-  if (eval.distance > 0) {
-    jacobianReal = to_real(request.signalSpeed) -
-                   (eval.dx * to_real(request.source.velocity.x) +
-                    eval.dy * to_real(request.source.velocity.y) +
-                    eval.dz * to_real(request.source.velocity.z)) /
-                       eval.distance;
-  }
+  const ReceiverModulatorFields modulator = compute_receiver_modulator(
+      eval, request.signalSpeed, request.source.velocity, request.receiver.velocity, request.rootTolerance);
+  const Real jacobianReal = to_real(modulator.sourceWakeDenominator);
   const double jacobian = jacobianReal.convert_to<double>();
   const double branchWeight = std::isfinite(jacobian) && std::abs(jacobian) > 0.0
                                   ? (Real(1) / abs(jacobianReal)).convert_to<double>()
                                   : std::numeric_limits<double>::infinity();
+  const StatusCode rootStatus =
+      std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok;
 
   return CausalRoot{
       request.receiverId,
@@ -164,12 +219,20 @@ CausalRoot make_root(const CausalRootRequest& request,
       residual,
       jacobian,
       branchWeight,
+      modulator.sourceRadialSpeed,
+      modulator.receiverRadialSpeed,
+      modulator.sourceWakeDenominator,
+      modulator.receiverWakeNumerator,
+      modulator.receiverCrossingFactor,
+      modulator.receiverModulator,
+      modulator.unsignedReceiverModulator,
       bracketStart,
       bracketEnd,
       iterations,
       sourcePoint,
       receiverPoint,
-      std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok,
+      rootStatus,
+      rootStatus == StatusCode::SmallJacobian ? StatusCode::SmallJacobian : modulator.statusCode,
   };
 }
 
@@ -190,18 +253,15 @@ CausalRoot make_root(const CircularSourceCausalRootRequest& request,
   const double distance = eval.distance.convert_to<double>();
   const double delay = request.hitTime - emissionTime;
   const double residual = eval.residual.convert_to<double>();
-  Real jacobianReal = std::numeric_limits<double>::infinity();
-  if (eval.distance > 0) {
-    jacobianReal = to_real(request.signalSpeed) -
-                   (eval.dx * to_real(sourceVelocity.x) +
-                    eval.dy * to_real(sourceVelocity.y) +
-                    eval.dz * to_real(sourceVelocity.z)) /
-                       eval.distance;
-  }
+  const ReceiverModulatorFields modulator = compute_receiver_modulator(
+      eval, request.signalSpeed, sourceVelocity, request.receiver.velocity, request.rootTolerance);
+  const Real jacobianReal = to_real(modulator.sourceWakeDenominator);
   const double jacobian = jacobianReal.convert_to<double>();
   const double branchWeight = std::isfinite(jacobian) && std::abs(jacobian) > 0.0
                                   ? (Real(1) / abs(jacobianReal)).convert_to<double>()
                                   : std::numeric_limits<double>::infinity();
+  const StatusCode rootStatus =
+      std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok;
 
   return CausalRoot{
       request.receiverId,
@@ -215,12 +275,20 @@ CausalRoot make_root(const CircularSourceCausalRootRequest& request,
       residual,
       jacobian,
       branchWeight,
+      modulator.sourceRadialSpeed,
+      modulator.receiverRadialSpeed,
+      modulator.sourceWakeDenominator,
+      modulator.receiverWakeNumerator,
+      modulator.receiverCrossingFactor,
+      modulator.receiverModulator,
+      modulator.unsignedReceiverModulator,
       bracketStart,
       bracketEnd,
       iterations,
       sourcePoint,
       receiverPoint,
-      std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok,
+      rootStatus,
+      rootStatus == StatusCode::SmallJacobian ? StatusCode::SmallJacobian : modulator.statusCode,
   };
 }
 
@@ -569,10 +637,18 @@ DelayedHitResult solve_delayed_hits(const CausalRootRequest& request) {
         root.distance,
         root.jacobian,
         strength,
+        root.sourceRadialSpeed,
+        root.receiverRadialSpeed,
+        root.sourceWakeDenominator,
+        root.receiverWakeNumerator,
+        root.receiverCrossingFactor,
+        root.receiverModulator,
+        root.unsignedReceiverModulator,
         root.sourcePoint,
         root.receiverPoint,
         unit_or_zero(displacement),
         root.statusCode,
+        root.receiverModulatorStatusCode,
     });
   }
 

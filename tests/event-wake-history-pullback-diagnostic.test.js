@@ -49,13 +49,14 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
 });
 
-test("event wake-history accepted label without evidence id stays non-accepted", () => {
+test("event wake-history accepted metadata without derivation proof object stays non-accepted", () => {
   const input = buildDefaultEventWakeHistoryPullbackInput();
   input.event_evidence_rows = [
     {
       row_id: "energy_wake",
       evidence_level: "accepted_for_wake_history_closure",
       accepted_for_wake_history_closure: true,
+      accepted_evidence_id: "accepted_energy_wake_q0",
       source_record_id: input.source_record_id,
       event_ledger_id: input.event_ledger.ledger_id,
     },
@@ -70,7 +71,11 @@ test("event wake-history accepted label without evidence id stays non-accepted",
   assert.equal(energyEvidence.accepted_evidence_contract_attempted, true);
   assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
   assert.deepEqual(energyEvidence.accepted_evidence_mismatches, [
-    "event_evidence.accepted_evidence_id",
+    "event_evidence.derivation_proof_object.role",
+    "event_evidence.derivation_proof_object.accepted_evidence_id",
+    "event_evidence.derivation_proof_object.row_id",
+    "event_evidence.derivation_proof_object.source_record_id",
+    "event_evidence.derivation_proof_object.status",
   ]);
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
@@ -124,6 +129,7 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "counts_by_evidence_level",
     "accepted_evidence_contract_attempted",
     "accepted_evidence_mismatches",
+    "derivation_proof_object",
     "accepted_for_wake_history_closure",
   ]);
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);

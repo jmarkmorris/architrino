@@ -21,6 +21,7 @@ const REQUIRED_ACTION_ROWS = [
   "eta_regulator_row",
   "epsilon_c_core_row",
 ];
+const ACCEPTED_ACTION_PROOF_OBJECT_ROLE = "action_boundary_derivation_proof_object";
 const REQUIRED_ACTION_ROW_CONTRACTS = {
   action_endpoint_row: {
     boundary_symbol: "\\partial_{\\mathrm{end}}S_{\\mathfrak B}^{(\\eta)}",
@@ -179,6 +180,7 @@ function evaluateActionRowContract(input, sourceRecord, rowId) {
   const acceptedAttempted =
     declaredRow?.accepted_for_action_closure === true ||
     declaredRow?.evidence_level === "accepted_for_action_closure";
+  const proofObject = declaredRow?.derivation_proof_object ?? {};
   const acceptedMismatches = acceptedAttempted
     ? [
         ...mismatches,
@@ -192,6 +194,18 @@ function evaluateActionRowContract(input, sourceRecord, rowId) {
         declaredRow.accepted_evidence_id.length > 0
           ? []
           : ["accepted_evidence_id"]),
+        ...(proofObject.role === ACCEPTED_ACTION_PROOF_OBJECT_ROLE
+          ? []
+          : ["derivation_proof_object.role"]),
+        ...(typeof declaredRow?.accepted_evidence_id === "string" &&
+        proofObject.accepted_evidence_id === declaredRow.accepted_evidence_id
+          ? []
+          : ["derivation_proof_object.accepted_evidence_id"]),
+        ...(proofObject.row_id === rowId ? [] : ["derivation_proof_object.row_id"]),
+        ...(proofObject.source_record_id === declaredRow?.source_record_id
+          ? []
+          : ["derivation_proof_object.source_record_id"]),
+        ...(proofObject.status === "accepted" ? [] : ["derivation_proof_object.status"]),
       ]
     : [];
   return row(
@@ -458,6 +472,7 @@ function main() {
             "counts_by_evidence_level",
             "accepted_evidence_contract_attempted",
             "accepted_evidence_mismatches",
+            "derivation_proof_object",
             "accepted_for_action_closure",
           ],
           controls: [

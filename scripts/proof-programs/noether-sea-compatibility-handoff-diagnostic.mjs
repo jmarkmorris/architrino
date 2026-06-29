@@ -35,6 +35,8 @@ const REQUIRED_PROJECTIONS = [
   "c_gamma",
 ];
 const COEFFICIENT_FAMILIES = ["clock", "ruler", "photon", "ppn", "sme"];
+const ACCEPTED_MEDIUM_RESPONSE_PROOF_OBJECT_ROLE =
+  "medium_response_derivation_proof_object";
 
 function deepClone(value) {
   return JSON.parse(JSON.stringify(value));
@@ -390,6 +392,7 @@ function acceptedMediumResponseMismatches(source, handoff, evidence) {
   const sourceWindow = source.retained_window ?? {};
   const sourceRegulator = source.regulator_state ?? {};
   const evidenceRegulator = evidence?.regulator_state ?? {};
+  const proofObject = evidence?.derivation_proof_object ?? {};
   const checks = [
     {
       field: "accepted_medium_response_evidence.accepted_for_medium_response_closure",
@@ -404,6 +407,28 @@ function acceptedMediumResponseMismatches(source, handoff, evidence) {
       ok:
         typeof evidence?.accepted_evidence_id === "string" &&
         evidence.accepted_evidence_id.length > 0,
+    },
+    {
+      field: "accepted_medium_response_evidence.derivation_proof_object.role",
+      ok: proofObject.role === ACCEPTED_MEDIUM_RESPONSE_PROOF_OBJECT_ROLE,
+    },
+    {
+      field: "accepted_medium_response_evidence.derivation_proof_object.accepted_evidence_id",
+      ok:
+        typeof evidence?.accepted_evidence_id === "string" &&
+        proofObject.accepted_evidence_id === evidence.accepted_evidence_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.derivation_proof_object.source_record_id",
+      ok: proofObject.source_record_id === evidence?.source_record_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.derivation_proof_object.response_object_id",
+      ok: proofObject.response_object_id === evidence?.response_object_id,
+    },
+    {
+      field: "accepted_medium_response_evidence.derivation_proof_object.status",
+      ok: proofObject.status === "accepted",
     },
     {
       field: "accepted_medium_response_evidence.source_record_id",
@@ -664,6 +689,7 @@ function main() {
             "counts_by_evidence_level",
             "accepted_evidence_contract_attempted",
             "accepted_evidence_mismatches",
+            "derivation_proof_object",
             "accepted_for_medium_response_closure",
           ],
           controls: ["retained-history-mismatch", "speed-conflation", "hidden-tuning"],

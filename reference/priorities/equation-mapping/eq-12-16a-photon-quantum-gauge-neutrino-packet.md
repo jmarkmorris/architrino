@@ -16,7 +16,7 @@ This packet keeps photon, quantum, spinor, gauge, and neutrino equations in the 
 | Rows served | `EQ-12`, `EQ-12A`, `EQ-13`, `EQ-14`, `EQ-15`, `EQ-16`, and `EQ-16A` |
 | Closure driver | Convert photon, action, Maxwell, Born-current, spinor, gauge, and neutrino comparison equations into retained finite-window records with declared branch ledgers, Noether sea rows, event ledgers, sector projections, and fail-closed residuals. |
 | Shared first blocker family | No row in this packet should score from a numeric residual alone; each needs an accepted branch/event/domain carrier before the comparison equation counts. |
-| Deepest current executable blockers | `EQ-12` stops at `missing_accepted_theta_gamma_packet`; `EQ-12A` stops at retained-orbit/action-period rows; `EQ-14` stops at `missing_accepted_W`; `EQ-15`/`EQ-27` stops at `missing_accepted_ordered_frame_loop`; `EQ-16` stops at `missing_accepted_weak_visible_branch_ledger`; `EQ-16A` stops at the missing retained neutral-lepton branch. |
+| Deepest current executable blockers | `EQ-12`: `missing_accepted_theta_gamma_packet`; `EQ-12A`: `missing_accepted_retained_orbit_reduction_row` with shared photon-support blocker `missing_accepted_theta_gamma_packet`; `EQ-14`: `missing_accepted_W`; `EQ-15`/`EQ-27`: `missing_accepted_ordered_frame_loop`; `EQ-16`: `missing_accepted_weak_visible_branch_ledger`; `EQ-16A`: `missing_accepted_neutral_lepton_retained_branch` with inherited `S_eq` blocker `missing_accepted_raw_labeled_rows_preserved_on_retained_history`. |
 | Smallest shared accepted evidence object | One row-local retained carrier whose parent branch, Noether sea state, event ledger, sector projection, source provenance, and no-hidden-retune witness are accepted from durable evidence and bound to one record. |
 | Smallest next artifact | Choose one lane among $\Theta_\gamma$, weak-visible branch ledger, or $\Theta_{\nu,16A}$ and replace its source-attempt shell with one durable carrier source that keeps all required row ids on the same event or branch record. |
 | Fail-closed method | Reject observer equations, imported field summaries, toy/probe fixtures, priority prose, authored prose, and split carriers before residual arithmetic can change scores. |
@@ -690,7 +690,7 @@ Score decision: `no_score_increase`. `EQ-15` remains `2` until a retained non-co
 | Conservation and return row | $\mathcal J_{\mathrm{tot}}^{\mathrm{path}}(s)$, $\Delta_{\mathbf J}^{2\pi}$, $\Delta_{\mathbf J}^{4\pi}$, doubled-path return map | `missing_retained_row` |
 | Downstream exchange/sign pullback | $\Pi_{W,r_\star}^{2\pi}=1$, $\Pi_{W,r_\star}^{4\pi}=0$, gauge-control pass, quotient witness, angular-momentum residual pass | `blocked_until_same_row_passes` |
 
-The populated null-control material only shows ordinary visible $SO(3)$ closure. It is not spinor support. A score move to `3` requires a retained row with odd $2\pi$ parity, $4\pi$ restoration, gauge-control pass, quotient witness, and angular-momentum residuals on the same branch record.
+The populated null-control material only shows ordinary visible $SO(3)$ closure. It is not spinor support. A score-review claim toward `3` requires a retained row with odd $2\pi$ parity, $4\pi$ restoration, gauge-control pass, quotient witness, and angular-momentum residuals on the same branch record.
 
 ### Executable Spin-To-Magnetic Certificate Status
 

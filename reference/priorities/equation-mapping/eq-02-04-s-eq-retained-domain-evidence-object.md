@@ -64,7 +64,7 @@ This row is first because the accepted support and row identity must be proven b
 
 The current score-neutral executable state is:
 
-| Evaluator | Current status | Reason no score moves |
+| Evaluator | Current status | Reason no score changes |
 | --- | --- | --- |
 | [check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs) | `blocked_missing_retained_event_or_domain` | The direct retained-domain attempt has no accepted retained identity requirements. |
 | [eq02-04-translating-binary-retained-record.mjs](../../../scripts/equation-mapping/eq02-04-translating-binary-retained-record.mjs) | `blocked_same_branch_identity` | The retained-record rows and witnesses remain attempt-level, and `coframeExtraction` is not evaluated. |

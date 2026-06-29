@@ -605,6 +605,6 @@ function disallowedEvidencePath(sourcePath) {
     lower.includes("/content/generated/") ||
     lower.includes("/tmp/") ||
     lower.includes("/private/tmp/") ||
-    /(?:^|[-_])(attempt|mock|toy|probe|source-evidence-probe|negative-control)(?:[-_.]|$)/.test(basename)
+    /(?:^|[-_])(attempt|mock|toy|probe|source-contract|source-evidence-probe|negative-control)(?:[-_.]|$)/.test(basename)
   );
 }

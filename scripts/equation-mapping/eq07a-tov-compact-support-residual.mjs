@@ -527,6 +527,9 @@ function evaluateSourcePath(sourcePath) {
   if (sourcePath.includes("content/generated/")) {
     return { accepted: false, reason: "generated_source_path" };
   }
+  if (path.basename(sourcePath).toLowerCase().includes("source-contract")) {
+    return { accepted: false, reason: "source_contract_path" };
+  }
   const resolved = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath.replace(/#.*/, ""));
