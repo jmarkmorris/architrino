@@ -31,13 +31,13 @@ Core symbols:
 
 - Polarity-unit magnitude ($\epsilon>0$):
   - $\epsilon$ is the fundamental polarity scale of an architrino (Electrino $q=-\epsilon$, Positrino $q=+\epsilon$). In this framework $\epsilon$ is often identified with $|e|/6$, making observer-level quark electric charges integer multiples of $\epsilon$.
-  - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the branch Jacobian $|J|^{-1}$, which depends on source motion along the line of action.
+  - Per-wavefront amplitude and emission cadence are constant at the source. The received force magnitude is additionally modulated by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$, where $D_s$ records source-normal root transversality and $D_t$ records receiver-normal crossing.
 
 - Sign of interaction ($\sigma_{q q'}$):
   - $\sigma_{q q'}=\mathrm{sign}(q\,q')$ selects attraction vs repulsion while keeping the acceleration strictly collinear with $\hat{\mathbf{r}}$. Like-on-like ($\sigma$=+1) points along +$\hat{\mathbf{r}}$ (repulsion); unlike ($\sigma$=-1) points along -$\hat{\mathbf{r}}$ (attraction).
 
-- Line of action ($r$, $\hat{\mathbf{r}}$, $J$):
-  - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector, and $J=1-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}/v$ is the causal Jacobian. All per-hit actions are directed along this line; no transverse or right-hand-rule terms appear.
+- Line of action ($r$, $\hat{\mathbf{r}}$, $D_s$, $D_t$, $W^{\mathrm{rec}}$):
+  - $r=\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|$ is the separation between the receiver “now” and the source at its causal emission time. $\hat{\mathbf{r}}$ is the corresponding unit vector. The source-normal denominator is $D_s=c_f-\mathbf{v}_o(t_0)\cdot\hat{\mathbf{r}}$, the receiver-normal numerator is $D_t=c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}}$, and the active branch strength is $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$. All per-hit actions are directed along this line; no transverse or right-hand-rule terms appear.
 
 - Combined role in assembly scales:
   - The trio $(\kappa,\epsilon,\eta)$, together with the $1/r^2$ law, determines emergent scales such as the smallest sustainable orbit $d_0$ and fastest natural frequency $2\pi/t_0$. Intuitively, stronger coupling (larger $\kappa\epsilon^2$) and sharper wake surfaces (smaller $\eta$) favor tighter, faster structures until self-interaction and delay balance inward trends.

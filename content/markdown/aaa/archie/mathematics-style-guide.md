@@ -95,7 +95,7 @@ Plain language: Each emission is a razor-thin causal wake surface; when needed, 
 
 ---
 
-## Master Equation of Motion (EOM; line of action with Jacobian weighting)
+## Master Equation of Motion (EOM; line of action with receiver-normal branch strength)
 
 Given a receiver $o'$ at time $t$ and a source $j$ at causal emission time $t_0 \in \mathcal{C}_{o'j}(t)$, let
 $$
@@ -109,12 +109,29 @@ Canonical per-hit acceleration:
 $$
 \mathbf{a}_{o'\leftarrow j}(t; t_0)
 = \kappa\,\sigma_{q_j q_{o'}}\,
-\frac{|q_j q_{o'}|}{r_{o'j}^2(t;t_0)\,|J_{o'j}(t;t_0)|}\,\hat{\mathbf{r}}_{o'j}(t;t_0)
+\frac{|q_j q_{o'}|}{r_{o'j}^2(t;t_0)}
+W_{o'j}^{\mathrm{rec}}(t;t_0)\,\hat{\mathbf{r}}_{o'j}(t;t_0)
 $$
 where
 $$
-J_{o'j}(t;t_0)\equiv 1-\frac{\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)}{c_f}
+D_{s,o'j}(t;t_0)
+\equiv
+c_f-\mathbf{v}_j(t_0)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0),
+\qquad
+D_{t,o'j}(t;t_0)
+\equiv
+c_f-\mathbf{v}_{o'}(t)\cdot\hat{\mathbf{r}}_{o'j}(t;t_0)
 $$
+and
+$$
+W_{o'j}^{\mathrm{rec}}(t;t_0)
+\equiv
+\left|
+\frac{D_{t,o'j}(t;t_0)}
+{D_{s,o'j}(t;t_0)}
+\right|.
+$$
+The source-normal denominator $D_s$ controls root transversality and wake-front compression or dilation from source motion. The receiver-normal numerator $D_t$ controls how the moving receiver cuts through the same emitted wake sequence. The unsigned ratio $W^{\mathrm{rec}}$ is the branch-strength factor in the acceleration magnitude.
 
 Total acceleration:
 $$
@@ -128,10 +145,10 @@ $$
 with $\Delta_j$ determined implicitly by $\|\mathbf{s}(t)-\mathbf{s}_j(t-\Delta_j)\| = v\,\Delta_j$, and per-hit contributions summed over all roots. In the $\eta\to 0$ limit interpret in the weak sense.
 
 Notes:
-- Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the Jacobian factor $|J|^{-1}$.
+- Emission cadence and per-wavefront amplitude are constant at the source; the received force magnitude is modulated by the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$.
 - No cross products, no right-hand-rule magnetism; every per-hit action is along $\hat{\mathbf{r}}$.
 
-Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff and Jacobian flux weighting, then add all pushes.
+Plain language: For each past emission that can reach the receiver now, push along the line back to where it came from, with inverse-square falloff multiplied by how the source laid down the wake and how the receiver crosses it, then add all pushes.
 
 Receiver velocity decomposition (instantaneous):
 - Decompose the receiver velocity relative to $\hat{\mathbf{r}}_{o'j}$:
@@ -176,7 +193,7 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 - $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
-- Emission cadence and per-wavefront amplitude are constant. Receiver velocity affects only instantaneous power $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
+- Emission cadence and per-wavefront amplitude are constant. Receiver-normal velocity enters the branch strength through $D_t$ and enters instantaneous power through $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.
 - $r$, $\hat{\mathbf{r}}$ as above; $H$ is the Heaviside step function with $H(0)=0$.
 
 Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic polarity unit; emission cadence and per-wavefront amplitude are constant; receiver motion affects only instantaneous power.
@@ -194,9 +211,9 @@ Plain language: Fix units so the field speed is one; use $\epsilon$ as the basic
 ## Editorial micro-style
 
 - After formal definitions, add a brief “Plain language” sentence.
-- Use consistent symbol set: $\mathcal{C}_{o'j}(t)$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$, $J$.
+- Use consistent symbol set: $\mathcal{C}_{o'j}(t)$, $r$, $\hat{\mathbf{r}}$, $v$, $\epsilon$, $\kappa$, $D_s$, $D_t$, and $W^{\mathrm{rec}}$; reserve $J^{\mathrm{src}}$ for source-normal causal-Jacobian diagnostics.
 - Equation tags (optional): (CT) causal-time, (EOM) equation of motion, (REG) regularization, (ENER) energetics.
-- Emission cadence and per-wavefront amplitude are constant.
+- Emission cadence and per-wavefront amplitude are constant; receiver-normal motion changes the crossing cadence of the emitted wake sequence.
 - Notation for “now”: use $t_{\text{now}}$ for a fixed current evaluation time; use $t_{\text{obs}}$ for observation time. Avoid Tnow/`T_now`; keep $t$ as the running variable elsewhere.
 - Canonical universe-now notation: use $\mathbb{U}_{\text{now}} \equiv S(t)$ for the complete ontic universe state; do not substitute alternate labels or glyph variants.
 - Emitters/receivers are individual architrinos; composite assemblies never emit or receive as wholes; their behavior emerges from constituent architrinos.

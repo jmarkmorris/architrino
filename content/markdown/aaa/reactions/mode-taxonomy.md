@@ -192,7 +192,7 @@ Observer channel: $e^\pm + Z \rightarrow e^\pm + Z + \gamma$.
 
 Step map:
 1. Incoming charged assembly follows a deflected trajectory in target potential.
-2. Deflection induces wake-strain concentration in local Noether sea coupling, with received forcing sharpened or diluted by the branch Jacobian during the scattering history.
+2. Deflection induces wake-strain concentration in local Noether sea coupling, with received forcing sharpened or diluted by receiver-normal branch strength during the scattering history.
 3. If wake-strain crosses planar-mode threshold, a photon mode nucleates as a coaxial contra-rotating pro/anti planar pair.
 4. If not crossed, energy stays in non-radiative channels (heating/collective excitation).
 5. Event closure requires recoil plus emitted-photon momentum balance at vertex level.
@@ -224,7 +224,7 @@ Observer channels:
 - pair channel: $\gamma + \gamma \rightarrow e^+ + e^-$.
 
 Step map:
-1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with the delayed branch geometry and Jacobian weighting that generate observer-level transverse forcing.
+1. Directional magnetic state $B$ is represented as observer shorthand for the effective Noether sea anisotropy/vorticity map $\mathcal{V}_{\mathrm{NS}}$ together with delayed branch geometry, source-normal denominators, and receiver-normal branch strengths that generate observer-level transverse forcing.
 2. Curved charged-assembly transport drives repeated planar-mode opportunities.
 3. Emitted photons propagate and may enter pair threshold windows in dense radiation zones.
 4. Pair nucleation relocks local substrate content into $e^+e^-$ assemblies with provenance updates.

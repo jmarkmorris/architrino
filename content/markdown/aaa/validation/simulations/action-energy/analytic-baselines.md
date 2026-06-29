@@ -8,7 +8,7 @@ Models:
 - Fixed center (test particle, source stationary):
   - DDE reduces exactly to the ODE $\ddot{r}=-K/r^2$ with $K=\kappa |q q'|>0$; exact closed forms exist.
 - Two-body mutual interaction (opposite or equal charges):
-  - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2/(r^2 |J|)$ along the line of action.
+  - Coupled DDEs with causal roots $t_0$ defined by $|x_i(t)-x_j(t_0)|=t-t_0$ (v=1); accelerations superpose as $\pm \kappa \epsilon^2 W^{\mathrm{rec}}/r^2$ along the line of action.
   - No exact closed-form solutions are presently known for the coupled DDEs in general.
 
 Methodological priority:
@@ -160,7 +160,7 @@ Methodological priority:
   diagnostic only until it supplies the same-domain scale generator, homogeneity
   degree, and branch coordinate needed for this stronger reduction.
 - Velocity-regime scope for the branch-virial target:
-  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits and Jacobian weighting still remain in the acceleration term.
+  - Strict sub-field-speed branch windows are the closest to the classical comparison because nontrivial self-hit roots are excluded on the strictly sub-field-speed interval; delayed partner hits, source-normal denominators, and receiver-normal branch factors still remain in the acceleration term.
   - Field-speed or near-field-speed windows are threshold-sensitive. They require an explicit Jacobian floor, inactive-root gap floor, and unchanged causal-root ledger before the virial residual is meaningful.
   - Super-field-speed history requires the retained self-hit and multi-root rows to be included in $\mathbf{a}_{i,b}^{(\eta)}(t)$. A speed label alone never certifies the branch; root existence, transversality, and bounded endpoint virial drift do the work.
 - Failure modes:

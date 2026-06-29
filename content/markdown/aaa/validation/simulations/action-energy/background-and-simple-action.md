@@ -27,11 +27,11 @@ The background is fixed absolute time times Euclidean space. Free paths are stra
     \frac{\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)}
     {\|\mathbf{s}_{o'}(t)-\mathbf{s}_o(t_0)\|}
     $$
-    No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the branch Jacobian $|J|^{-1}$, which captures causal-flux bunching or dilation due to source motion.
+    No cross products or right-hand-rule terms appear; the action is collinear with $\hat{\mathbf{r}}$. Its magnitude is weighted by the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$: $D_s$ captures source-normal wake spacing and root transversality, while $D_t$ captures how the receiver cuts through that wake sequence.
 
 - “Simple action” in precise terms:
-  - The law is event-driven: acceleration is a sum of per-hit line-of-action contributions, each scaled by $1/(r^2 |J|)$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
+  - The law is event-driven: acceleration is a sum of per-hit line-of-action contributions, each scaled by $W^{\mathrm{rec}}/r^2$. Between hits (as $\eta\to 0$) motion is inertial; with mollification ($\eta>0$) the impulses become short, smooth pushes.
   - The background adds no force; departures from straight motion arise only from these intersections with emitted causal wakes, including self-hits when kinematics allow.
 
 - Physical picture:
-  - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay and an additional Jacobian weight set by the source motion on that branch.
+  - Picture many continuously expanding wake surfaces (causal isochrons). A push occurs whenever one of those surfaces intersects the receiver, directed straight along the radius back to its emission point, with inverse-square geometric decay multiplied by the receiver-normal branch strength set by both source-normal wake spacing and receiver crossing rate on that branch.

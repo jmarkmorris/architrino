@@ -11,7 +11,7 @@ Objectives:
 
 Canonical delayed-law considerations:
 - Delay enters through the implicit emission times $t_0$ satisfying $\lvert x_1(t) - x_2(t_0)\rvert = t - t_0$ (and its counterpart).
-- All per-hit actions are radial along the line of action and carry the branch Jacobian factor $|J|^{-1}$; $H(0)=0$ excludes $t_0=t$.
+- All per-hit actions are radial along the line of action and carry the receiver-normal branch strength $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; $H(0)=0$ excludes $t_0=t$.
 
 Equations of motion (canonical delayed law; two-body, v=1):
 - Definitions:
