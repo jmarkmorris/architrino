@@ -399,11 +399,27 @@ non-authorizing:
 
 The boundary's first missing producer field remains
 `source_map_provider_object_branch_split_map_available_terminal_row_count`.
+The precise missing pre-aggregate row family is
+`source_term_provider_probe_rows[].source_term_residual_rows[]` with
+same-domain branch-bearing provider-object payload before
+$P=\sum_j S_j$ is emitted. The required payload fields are `branch_label`,
+`source_term_branch_projection_coefficient`, `source_term_branch_interval`,
+`source_map_provider_object_branch_split_map`,
+`provider_object_branch_projection_map`,
+`same_domain_pushforward_operator_identity`, and
+`same_domain_pushforward_normalization_identity` across the five source cells,
+15 terminal rows, and 45 terminal feed rows. The branch identity must also keep
+`same_domain_record_ref`, terminal row id fields, source term, branch label,
+$P_b$, $A_P=P_- - P_+$, both interval payloads, projection or alpha data,
+pushforward reference, and normalization reference on the same provider row.
 Aggregate $P$ is too late because it only supplies $P_-+P_+=P$ on each
 terminal row; without a same-domain branch split map, $A_P=P_- - P_+$,
 explicit `P_-` / `P_+` rows, or a $P_b$ pushforward/normalization identity,
 one antisymmetric branch coordinate remains free and branch identity is erased
-before downstream replay.
+before downstream replay. Even a complete non-fixture split-map producer would
+remain non-authorizing for receiver-normal consumers until the accepted
+provider-object branch rows are bound to one retained causal-root force/action
+record through `retained_causal_root_record_ref`.
 
 Producer-side branch-row target:
 `h39-producer-side-provider-object-branch-row-target/v0`.

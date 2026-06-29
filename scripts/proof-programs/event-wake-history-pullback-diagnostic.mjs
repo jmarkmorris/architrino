@@ -20,6 +20,13 @@ const REQUIRED_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
 const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
+const RECEIVER_NORMAL_CONTROLS = [
+  "receiver-normal-derivative-contract-row-logic",
+  "receiver-normal-missing-derivative-bundle",
+  "receiver-normal-reconstruction-drift",
+  "receiver-normal-record-mismatch",
+  "receiver-normal-branch-family-checksum-mismatch",
+];
 const NUMERIC_TOLERANCE = 1e-12;
 
 function deepClone(value) {
@@ -52,10 +59,192 @@ export function buildDefaultEventWakeHistoryPullbackInput() {
   };
 }
 
-export function applyEventWakeHistoryControl(input, controlName) {
+function assertValidEventRowId(rowId) {
+  if (rowId === "all") {
+    return;
+  }
+  if (!REQUIRED_EVENT_ROWS.includes(rowId)) {
+    throw new Error(`unknown event row: ${rowId}`);
+  }
+}
+
+function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
+  const retainedRecord = {
+    record_id: "linear-moving-receiver-root-0",
+    branch_family_id: "linear-moving-receiver-smoke",
+    retained_root_id: "rootId=0",
+    branch_label: "alpha0",
+    source_receiver_ids: { receiver: "receiver", source: "source" },
+    direction_convention: "source-emission-point-to-receiver-now",
+    receiver_time: 10,
+    source_time: 5,
+    retained_box: "linear-moving-receiver-singleton",
+    regulator_state: "simple-root-analytic-no-regulator",
+    source_artifact_hash: "sha256:receiver-normal-wake-history-row-logic-v0",
+    source_record_id: input.source_record_id,
+    variation_key: "v=t",
+    ...(overrides.retained_record_key ?? {}),
+  };
+  const receiverNormalFields = {
+    D_s: 1,
+    D_t: 1.5,
+    zeta_s: 1,
+    zeta_t: 1,
+    W_rec: 1.5,
+    ...(overrides.receiver_normal_fields ?? {}),
+  };
+  const receiverNormalDerivatives = {
+    D_vD_s: 0.1,
+    D_vD_t: 0.4,
+    D_vW_rec: 0.25,
+    ...(overrides.receiver_normal_derivatives ?? {}),
+  };
+  const branchFamilyChecksum = {
+    retained_record_ids: [retainedRecord.record_id],
+    consumer_row_ids: [rowId],
+    source_artifact_hash: retainedRecord.source_artifact_hash,
+    ...(overrides.branch_family_checksum ?? {}),
+  };
+
+  return {
+    artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
+    source_record_id: input.source_record_id,
+    event_ledger_id: input.event_ledger?.ledger_id ?? null,
+    consumer_row_id: rowId,
+    retained_record_key: retainedRecord,
+    receiver_normal_fields: receiverNormalFields,
+    receiver_normal_derivatives: receiverNormalDerivatives,
+    branch_family_checksum: branchFamilyChecksum,
+    ...Object.fromEntries(
+      Object.entries(overrides).filter(
+        ([key]) =>
+          ![
+            "retained_record_key",
+            "receiver_normal_fields",
+            "receiver_normal_derivatives",
+            "branch_family_checksum",
+          ].includes(key)
+      )
+    ),
+  };
+}
+
+function acceptedWakeHistoryEvidence(input, rowId, options = {}) {
+  const acceptedEvidenceId = `accepted_${rowId}_same_record_receiver_normal_derivative_v0`;
+  const evidence = {
+    row_id: rowId,
+    evidence_level: "accepted_for_wake_history_closure",
+    accepted_for_wake_history_closure: true,
+    accepted_evidence_id: acceptedEvidenceId,
+    source_record_id: input.source_record_id,
+    event_ledger_id: input.event_ledger?.ledger_id ?? null,
+    derivation_proof_object: {
+      role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+      accepted_evidence_id: acceptedEvidenceId,
+      row_id: rowId,
+      source_record_id: input.source_record_id,
+      status: "accepted",
+    },
+  };
+  if (options.includeDerivativeBundle !== false) {
+    evidence.receiver_normal_derivative_bundle =
+      options.receiver_normal_derivative_bundle ??
+      buildSameRecordReceiverNormalDerivativeBundle(
+        input,
+        rowId,
+        options.receiver_normal_derivative_bundle_overrides ?? {}
+      );
+  }
+  return evidence;
+}
+
+function rowIdsForControl(eventRow) {
+  assertValidEventRowId(eventRow);
+  return eventRow === "all" ? REQUIRED_EVENT_ROWS : [eventRow];
+}
+
+function applyReceiverNormalControl(packet, controlName, eventRow) {
+  const rowIds = rowIdsForControl(eventRow);
+  if (controlName === "receiver-normal-derivative-contract-row-logic") {
+    packet.event_evidence_rows = rowIds.map((rowId) =>
+      acceptedWakeHistoryEvidence(packet, rowId)
+    );
+    return packet;
+  }
+  const evidenceByRow = new Map(
+    REQUIRED_EVENT_ROWS.map((rowId) => [
+      rowId,
+      acceptedWakeHistoryEvidence(packet, rowId),
+    ])
+  );
+  if (controlName === "receiver-normal-missing-derivative-bundle") {
+    for (const rowId of rowIds) {
+      evidenceByRow.set(
+        rowId,
+        acceptedWakeHistoryEvidence(packet, rowId, {
+          includeDerivativeBundle: false,
+        })
+      );
+    }
+    packet.event_evidence_rows = [...evidenceByRow.values()];
+    return packet;
+  }
+  if (controlName === "receiver-normal-reconstruction-drift") {
+    for (const rowId of rowIds) {
+      evidenceByRow.set(
+        rowId,
+        acceptedWakeHistoryEvidence(packet, rowId, {
+          receiver_normal_derivative_bundle_overrides: {
+            receiver_normal_derivatives: { D_vW_rec: 0.5 },
+          },
+        })
+      );
+    }
+    packet.event_evidence_rows = [...evidenceByRow.values()];
+    return packet;
+  }
+  if (controlName === "receiver-normal-record-mismatch") {
+    for (const rowId of rowIds) {
+      evidenceByRow.set(
+        rowId,
+        acceptedWakeHistoryEvidence(packet, rowId, {
+          receiver_normal_derivative_bundle_overrides: {
+            source_record_id: "theta_sea_branch_q1_v0",
+          },
+        })
+      );
+    }
+    packet.event_evidence_rows = [...evidenceByRow.values()];
+    return packet;
+  }
+  if (controlName === "receiver-normal-branch-family-checksum-mismatch") {
+    for (const rowId of rowIds) {
+      evidenceByRow.set(
+        rowId,
+        acceptedWakeHistoryEvidence(packet, rowId, {
+          receiver_normal_derivative_bundle_overrides: {
+            branch_family_checksum: { retained_record_ids: ["other-root"] },
+          },
+        })
+      );
+    }
+    packet.event_evidence_rows = [...evidenceByRow.values()];
+    return packet;
+  }
+  throw new Error(`unknown receiver-normal control: ${controlName}`);
+}
+
+export function applyEventWakeHistoryControl(input, controlName, options = {}) {
   const packet = deepClone(input);
   if (!controlName || controlName === "none") {
     return packet;
+  }
+  if (RECEIVER_NORMAL_CONTROLS.includes(controlName)) {
+    return applyReceiverNormalControl(
+      packet,
+      controlName,
+      options.eventRow ?? "energy_wake"
+    );
   }
   if (controlName === "missing-angular-momentum-row") {
     packet.event_ledger.rows = packet.event_ledger.rows.filter((rowId) => rowId !== "angular_momentum_wake");
@@ -695,7 +884,8 @@ function usage() {
     "",
     "Options:",
     "  --input <path>       Read event pullback input JSON instead of the default fixture",
-    "  --control <name>     Apply a negative control: missing-angular-momentum-row, source-record-mismatch",
+    "  --control <name>     Apply a negative control or receiver-normal replay control",
+    "  --event-row <row>    Select receiver-normal control row: energy_wake, momentum_wake, angular_momentum_wake, medium_update, all",
     "  --out <path>         Write artifact JSON to path instead of stdout",
     "  --validate <path>    Validate an existing diagnostic artifact JSON file",
     "  --schema             Print the artifact schema identifier",
@@ -710,6 +900,7 @@ function parseArgs(argv) {
     control: null,
     out: null,
     validate: null,
+    eventRow: "energy_wake",
     schema: false,
     pretty: false,
     help: false,
@@ -721,6 +912,8 @@ function parseArgs(argv) {
       args.input = argv[++index];
     } else if (arg === "--control") {
       args.control = argv[++index];
+    } else if (arg === "--event-row") {
+      args.eventRow = argv[++index];
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -775,6 +968,8 @@ function main() {
             "row_contracts",
           ],
           controls: ["missing-angular-momentum-row", "source-record-mismatch"],
+          receiver_normal_controls: RECEIVER_NORMAL_CONTROLS,
+          receiver_normal_event_rows: [...REQUIRED_EVENT_ROWS, "all"],
         },
         args.pretty
       )
@@ -802,7 +997,9 @@ function main() {
   const baseInput = args.input
     ? JSON.parse(fs.readFileSync(args.input, "utf8"))
     : buildDefaultEventWakeHistoryPullbackInput();
-  const input = args.control ? applyEventWakeHistoryControl(baseInput, args.control) : baseInput;
+  const input = args.control
+    ? applyEventWakeHistoryControl(baseInput, args.control, { eventRow: args.eventRow })
+    : baseInput;
   const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
   const output = printJson(artifact, args.pretty);
   if (args.out) {

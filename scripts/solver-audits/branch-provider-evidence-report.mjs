@@ -267,6 +267,52 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_DOWNSTREAM_BLOCKED_FIELDS 
     "normalization_identity_ref",
     "aggregate_erasure_negative_control_ref",
   ]);
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY =
+  Object.freeze({
+    row_family:
+      "source_term_provider_probe_rows[].source_term_residual_rows[] with same-domain branch-bearing provider-object payload before P=sum_j S_j",
+    raw_source_cell_row_count_required: SOURCE_MAP_PROVIDER_OBJECT_SOURCE_CELL_IDS.length,
+    terminal_row_count_required: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    source_term_family:
+      "S_delta_squared_speed, S_sin_phi, S_sin_delta",
+    terminal_feed_row_count_required:
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length * 3,
+    missing_payload_fields: Object.freeze([
+      "branch_label",
+      "source_term_branch_projection_coefficient",
+      "source_term_branch_interval",
+      "source_map_provider_object_branch_split_map",
+      "provider_object_branch_projection_map",
+      "same_domain_pushforward_operator_identity",
+      "same_domain_pushforward_normalization_identity",
+    ]),
+  });
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS =
+  Object.freeze([
+    "same_domain_record_ref",
+    "terminal_graph_cell_id",
+    "terminal_h_index",
+    "source_y_order",
+    "required_xi_derivative_order",
+    "source_term",
+    "branch_label",
+    "provider_object_branch_target",
+    "provider_object_branch_moment_target",
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_coefficients_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ]);
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_RETAINED_CAUSAL_ROOT_BINDING_REQUIREMENT =
+  Object.freeze({
+    required: true,
+    binding_field: "retained_causal_root_record_ref",
+    required_after_provider_object_branch_rows: true,
+    reason:
+      "Even a complete non-fixture branch split-map producer cannot authorize receiver-normal or downstream retained-branch use until the accepted P_- / P_+ provider-object rows are consumed by one retained causal-root force/action record carrying the required receiver-normal fields, derivative reconstruction, geometry derivatives, and branch-family checksum.",
+  });
 
 const COMMON_REQUIRED_FIELDS = [
   {
@@ -1402,6 +1448,12 @@ function buildH39SourceMapProviderObjectBranchSplitMapSourceAbsenceBoundary(
         .length,
     inspected_h39_diagnostic_surfaces: inspectedDiagnosticSurfaces,
     first_missing_producer_field: firstMissingProducerField,
+    precise_missing_pre_aggregate_row_family:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY,
+    required_branch_identity_fields:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS,
+    retained_causal_root_binding_requirement:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_RETAINED_CAUSAL_ROOT_BINDING_REQUIREMENT,
     required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
     required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
     observed_source_map_provider_object_branch_split_map_available_terminal_row_count:
@@ -1766,6 +1818,35 @@ function h39SourceMapProviderObjectBranchSplitMapProducerTargetValidationErrors(
     ) ||
     sourceAbsenceBoundary?.first_missing_producer_field !==
       "source_map_provider_object_branch_split_map_available_terminal_row_count" ||
+    sourceAbsenceBoundary?.precise_missing_pre_aggregate_row_family
+      ?.row_family !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY
+        .row_family ||
+    sourceAbsenceBoundary?.precise_missing_pre_aggregate_row_family
+      ?.raw_source_cell_row_count_required !==
+      SOURCE_MAP_PROVIDER_OBJECT_SOURCE_CELL_IDS.length ||
+    sourceAbsenceBoundary?.precise_missing_pre_aggregate_row_family
+      ?.terminal_row_count_required !==
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length ||
+    sourceAbsenceBoundary?.precise_missing_pre_aggregate_row_family
+      ?.terminal_feed_row_count_required !==
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length * 3 ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.precise_missing_pre_aggregate_row_family
+        ?.missing_payload_fields,
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY
+        .missing_payload_fields
+    ) ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.required_branch_identity_fields,
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS
+    ) ||
+    sourceAbsenceBoundary?.retained_causal_root_binding_requirement
+      ?.required !== true ||
+    sourceAbsenceBoundary?.retained_causal_root_binding_requirement
+      ?.binding_field !== "retained_causal_root_record_ref" ||
+    sourceAbsenceBoundary?.retained_causal_root_binding_requirement
+      ?.required_after_provider_object_branch_rows !== true ||
     sourceAbsenceBoundary
       ?.observed_source_map_provider_object_branch_split_map_available_terminal_row_count !==
       0 ||

@@ -421,6 +421,107 @@ test("event wake-history pullback diagnostic fails source-record mismatch", () =
   assert.equal(rowById(artifact, "source_record_id").status, "fail");
 });
 
+test("event wake-history CLI reports branch-family checksum mismatch control", () => {
+  const artifact = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--control",
+        "receiver-normal-branch-family-checksum-mismatch",
+        "--event-row",
+        "momentum_wake",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+  const rowContract = artifact.receiver_normal_derivative_contract_summary.row_contracts.find(
+    (row) => row.row_id === "momentum_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(artifact.result.updates_live_validation_gate, false);
+  assert.equal(artifact.result.receiver_normal_derivative_contract_ready, false);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_blocked_row_id,
+    "momentum_wake"
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "branch-family-consumer-checksum-mismatch"
+  );
+  assert.equal(rowContract.failure_code, "branch-family-consumer-checksum-mismatch");
+  assert.equal(rowContract.receiver_normal_derivative_bundle_accepted, false);
+});
+
+test("event wake-history CLI reports missing receiver-normal derivative bundle control", () => {
+  const artifact = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--control",
+        "receiver-normal-missing-derivative-bundle",
+        "--event-row",
+        "angular_momentum_wake",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+  const rowContract = artifact.receiver_normal_derivative_contract_summary.row_contracts.find(
+    (row) => row.row_id === "angular_momentum_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_blocked_row_id,
+    "angular_momentum_wake"
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "receiver-normal-first-derivative-row-missing"
+  );
+  assert.deepEqual(rowContract.required_object_blockers, [
+    "receiver_normal_derivative_bundle",
+  ]);
+});
+
+test("event wake-history CLI reports receiver-normal reconstruction drift control", () => {
+  const artifact = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--control",
+        "receiver-normal-reconstruction-drift",
+        "--event-row",
+        "medium_update",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+  const rowContract = artifact.receiver_normal_derivative_contract_summary.row_contracts.find(
+    (row) => row.row_id === "medium_update"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_blocked_row_id,
+    "medium_update"
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "receiver-normal-derivative-reconstruction-failed"
+  );
+  assert.equal(
+    rowContract.accepted_evidence_mismatches.includes(
+      "event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction"
+    ),
+    true
+  );
+});
+
 test("event wake-history pullback diagnostic CLI writes, validates, and reports schema", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "event-wake-history-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -456,4 +557,18 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "row_contracts",
   ]);
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);
+  assert.deepEqual(schema.receiver_normal_controls, [
+    "receiver-normal-derivative-contract-row-logic",
+    "receiver-normal-missing-derivative-bundle",
+    "receiver-normal-reconstruction-drift",
+    "receiver-normal-record-mismatch",
+    "receiver-normal-branch-family-checksum-mismatch",
+  ]);
+  assert.deepEqual(schema.receiver_normal_event_rows, [
+    "energy_wake",
+    "momentum_wake",
+    "angular_momentum_wake",
+    "medium_update",
+    "all",
+  ]);
 });

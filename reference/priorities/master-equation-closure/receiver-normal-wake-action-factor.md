@@ -219,6 +219,26 @@ Executable fail-closed controls now include:
 | Branch-family checksum drift | The contract summary reports `branch-family-consumer-checksum-mismatch`. |
 | Missing derivation proof object | The row lists `wake_history_derivation_proof_object` in `required_object_blockers`. |
 
+CLI replay/falsification. The same cases can be emitted from the command line
+through the existing diagnostic:
+
+```bash
+node scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs \
+  --control receiver-normal-branch-family-checksum-mismatch \
+  --event-row momentum_wake
+```
+
+The receiver-normal controls are
+`receiver-normal-derivative-contract-row-logic`,
+`receiver-normal-missing-derivative-bundle`,
+`receiver-normal-reconstruction-drift`,
+`receiver-normal-record-mismatch`, and
+`receiver-normal-branch-family-checksum-mismatch`. The `--event-row` selector
+accepts `energy_wake`, `momentum_wake`, `angular_momentum_wake`,
+`medium_update`, or `all`. Negative controls populate the surrounding four-row
+row-logic fixture and falsify the selected row, so the reported first blocked
+row and failure code identify the intended receiver-normal contract break.
+
 This is the first same-record wake-history derivative consumer contract. It is
 not an A1, VP-1, breather, circular, H39/theta3minus, eigen-braid, assembly, or
 Noether-closure pass, and it is not accepted retained evidence. H39/theta3minus

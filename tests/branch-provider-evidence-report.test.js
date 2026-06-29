@@ -1715,6 +1715,68 @@ test("branch-provider evidence report emits the H39 split-map producer target fa
     "source_map_provider_object_branch_split_map_available_terminal_row_count"
   );
   assert.equal(
+    sourceAbsenceBoundary.precise_missing_pre_aggregate_row_family.row_family,
+    "source_term_provider_probe_rows[].source_term_residual_rows[] with same-domain branch-bearing provider-object payload before P=sum_j S_j"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.precise_missing_pre_aggregate_row_family
+      .raw_source_cell_row_count_required,
+    5
+  );
+  assert.equal(
+    sourceAbsenceBoundary.precise_missing_pre_aggregate_row_family
+      .terminal_row_count_required,
+    15
+  );
+  assert.equal(
+    sourceAbsenceBoundary.precise_missing_pre_aggregate_row_family
+      .terminal_feed_row_count_required,
+    45
+  );
+  assert.deepEqual(
+    sourceAbsenceBoundary.precise_missing_pre_aggregate_row_family
+      .missing_payload_fields,
+    [
+      "branch_label",
+      "source_term_branch_projection_coefficient",
+      "source_term_branch_interval",
+      "source_map_provider_object_branch_split_map",
+      "provider_object_branch_projection_map",
+      "same_domain_pushforward_operator_identity",
+      "same_domain_pushforward_normalization_identity",
+    ]
+  );
+  assert.deepEqual(sourceAbsenceBoundary.required_branch_identity_fields, [
+    "same_domain_record_ref",
+    "terminal_graph_cell_id",
+    "terminal_h_index",
+    "source_y_order",
+    "required_xi_derivative_order",
+    "source_term",
+    "branch_label",
+    "provider_object_branch_target",
+    "provider_object_branch_moment_target",
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+    "same-domain-branch-bearing-P_b-map",
+    "branch_projection_coefficients_or_alpha_map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ]);
+  assert.equal(
+    sourceAbsenceBoundary.retained_causal_root_binding_requirement.required,
+    true
+  );
+  assert.equal(
+    sourceAbsenceBoundary.retained_causal_root_binding_requirement.binding_field,
+    "retained_causal_root_record_ref"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.retained_causal_root_binding_requirement
+      .required_after_provider_object_branch_rows,
+    true
+  );
+  assert.equal(
     sourceAbsenceBoundary
       .observed_source_map_provider_object_branch_split_map_available_terminal_row_count,
     0

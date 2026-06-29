@@ -1028,6 +1028,17 @@ evidence only; the closed-ledger compositor still reports the wake-history
 sector as not accepted until all required event rows carry accepted evidence
 and proof objects from an accepted retained branch.
 
+The diagnostic also exposes CLI replay controls for this receiver-normal
+contract. `--control receiver-normal-missing-derivative-bundle`,
+`--control receiver-normal-reconstruction-drift`,
+`--control receiver-normal-record-mismatch`, and
+`--control receiver-normal-branch-family-checksum-mismatch`, combined with
+`--event-row`, emit the corresponding fail-closed artifact for a selected
+event row. These controls do not add a validation gate and do not promote the
+row-logic fixture; they only make the wake-history accepted-evidence contract
+replayable and falsifiable before the closed-ledger compositor consumes a
+future artifact.
+
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
 in `tests/action-boundary-pullback-diagnostic.test.js`. It names the required
