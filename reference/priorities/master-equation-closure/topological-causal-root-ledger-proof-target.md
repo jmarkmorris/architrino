@@ -524,6 +524,17 @@ It is a population check for the existing `medium_response`, `event_ledger`,
 This test promotes no coefficient. It only decides whether the proposed
 medium-response row is compatible with the same retained causal-root ledger.
 
+The executable population check for this handoff now lives at
+`scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`, with
+focused coverage in `tests/noether-sea-compatibility-handoff-diagnostic.test.js`.
+It builds or accepts a Lorentz/GR handoff-like JSON object and emits rows for
+the seven components of $\partial\mathcal{M}_{\mathrm{sea}}$, plus the
+speed-convention row that prevents premature identification of $c_f$,
+$c_\gamma$, $c_{\text{eff}}$, and $c_0$. Its negative controls route the
+current blocker to `residual.retained_history_mismatch`,
+`residual.speed_conflation`, or `gravity.hidden_tuning` without promoting any
+Lorentz/GR coefficient.
+
 ## Large-Box Limit
 
 The $T_L^3$ proof is useful only if its compactness assumptions are explicit.
@@ -580,6 +591,64 @@ The checker currently reports the requested rows and then stops at
 the correct fail-closed boundary: root topology is now executable at toy level,
 but action, wake-history, Noether sea, and cross-sector pullbacks are still the
 open proof burden.
+
+The companion Noether sea compatibility diagnostic is
+`scripts/proof-programs/noether-sea-compatibility-handoff-diagnostic.mjs`. It
+does not sample causal roots. Instead, it tests whether a proposed Lorentz/GR
+`medium_response` handoff is read from the same
+$\Theta_{\mathrm{sea}}(\mathfrak B)$ record:
+
+| Output | Requirement |
+| --- | --- |
+| `delta_id` | Same branch class, retained chart, and source record. |
+| `delta_W` | Same retained comparison window and memory depth. |
+| `delta_reg` | Same $\eta$, $\epsilon_c$, and regulator status. |
+| `delta_root` | Same active roots, inactive gaps, Jacobian floor, and caustic routes. |
+| `delta_event` | Same $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ rows. |
+| `delta_proj` | One $\mathcal{M}_{\mathrm{sea}}^{ab}$ object supplies all response projections. |
+| `delta_coef` | Clock, ruler, photon, PPN, and SME rows do not refit coefficients independently. |
+| `speed_convention` | Primitive $c_f$ is not silently substituted for observer-facing channel speeds. |
+
+This second checker is also priority-only. A passing artifact reports
+handoff compatibility only; it still leaves `lorentz_gr_bridge` blocked until a
+closed upstream bridge populates the residual rows.
+
+The closed-ledger pullback compositor now lives at
+`scripts/proof-programs/closed-ledger-pullback-diagnostic.mjs`, with focused
+coverage in `tests/closed-ledger-pullback-diagnostic.test.js`. It consumes the
+topological causal-root diagnostic, the Noether sea compatibility diagnostic,
+and optional action / wake-history pullback artifacts, then emits the boundary
+rows
+$$
+\partial\mathcal{R}^{\mathrm{act}},\quad
+\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}},\quad
+\partial S_{\mathfrak B}^{(\eta)},\quad
+\partial\mathcal{M}_{\mathrm{sea}},\quad
+\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}.
+$$
+Its default fixture now consumes the root-topology, Noether handoff,
+wake-history event, and action-boundary diagnostics. The root-topology,
+Noether handoff, and wake-history event rows pass at diagnostic level, while the
+action-boundary row fails closed. That is the precise current blocker: the
+closed-ledger equation is executable as a compositor, but not populated by an
+accepted action-boundary artifact on the same retained history record.
+
+The wake-history side now has its own priority-only population diagnostic at
+`scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`, with
+coverage in `tests/event-wake-history-pullback-diagnostic.test.js`. It checks
+that `energy_wake`, `momentum_wake`, `angular_momentum_wake`, and
+`medium_update` rows are present on the same retained event ledger. This
+narrows the next open compositor blocker to the action boundary unless a future
+event artifact fails one of the same-source or missing-row negative controls.
+
+The action side now has a fail-closed population diagnostic at
+`scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
+in `tests/action-boundary-pullback-diagnostic.test.js`. It names the required
+`action_endpoint_row`, `action_multiplier_row`, `eta_regulator_row`, and
+`epsilon_c_core_row` entries for $\partial S_{\mathfrak B}^{(\eta)}$. Its
+default artifact fails with `residual.provenance_gap`, because those rows are
+not accepted action-boundary evidence yet. A synthetic closed fixture exists
+only to test row logic; it is not a proof of action closure.
 
 ## What This Could Advance
 

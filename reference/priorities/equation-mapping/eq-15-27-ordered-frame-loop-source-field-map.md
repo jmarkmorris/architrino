@@ -56,7 +56,13 @@ First blockers remain unchanged: `EQ-27` still blocks at `missing_accepted_order
 | `EQ-15` | `2` | Retained ordered-frame spinor-label pullback on one branch record. | `missing_accepted_ordered_frame_loop` | One accepted, durable, non-gauge `ordered_frame_loop` proving nontrivial $\mathbb Z/2$ holonomy, $4\pi$ restoration, gauge-control, and same-record angular-momentum residuals. |
 | `EQ-27` | `2` | Same ordered-frame/exposure quotient plus moment-map magnetic row. | `missing_accepted_ordered_frame_loop` | Same accepted `ordered_frame_loop`, then same-record `moment_map_magnetic` from $\boldsymbol\mu=\int_{\mathfrak D_R}(\mathbf r\times\mathbf j_{\mathrm{exp}})\,d\mathcal E_S$, not assigned spin notation. |
 
-Safe implementation target for this pass: priority packet refinement only. No checker semantics, fixtures, scores, or reader-facing corpus files are changed.
+| Shared coordinate | Current answer |
+| --- | --- |
+| Existing scripts/fixtures/packets | [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs), [spin-magnetic-moment-certificate-attempt.v1.json](../../../scripts/equation-mapping/spin-magnetic-moment-certificate-attempt.v1.json), [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json), [eq15-27-ordered-frame-loop-source-contract-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-contract-attempt.v1.json), and the priority-source, record-split, assigned-spin, and assigned-spin durable-source controls listed in metadata. |
+| Fail-closed negative control | Priority/source-map rows fail at `accepted_without_evidence_source`; valid durable source metadata with a split `sameRecordId` fails at `record_split`; assigned-spin or imported $g(q/2m)\mathbf S$ support fails at `eq27.assigned_spin_label` once durable source evidence exists. |
+| Smaller next action | Replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record before any moment-map or leading-$g$ comparison is reviewed. |
+
+Current safe implementation target: replace the carrier-shell source-contract boundary with a durable non-priority `ordered_frame_loop` evidence object on one `sameRecordId`, then populate `spin_lift` on that same record. The existing source-attempt, source-contract boundary, priority-source, record-split, and assigned-spin controls remain score-neutral guardrails; they do not change scores or count as retained evidence.
 
 ## EQ-15 Direct Geometry Layer
 

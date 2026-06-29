@@ -203,6 +203,8 @@ The coframe-source attempt still fails first at `source_status`, and its leading
 | `connection-holonomy-transport-negative-control` | `connection_holonomy_transport_residual_bound` |
 | `connection-phase-holonomy-negative-control` | `connection_phase_holonomy_bound` |
 | `connection-torsion-negative-control` | `connection_torsion_bound` |
+| `durable-source-shell` | `source_support_field_evidence_sources` |
+| `external-provider-shell` | `source_support_field_evidence_sources` |
 | `extraction-basis-gamma-negative-control` | `extraction_basis_gamma_free` |
 | `margin-negative-control` | `negative_control_window_length_margin_calibrated` |
 | `refinement-negative-control` | `refinement_persistence` |
@@ -210,6 +212,7 @@ The coframe-source attempt still fails first at `source_status`, and its leading
 | `refinement-support-id-negative-control` | `refinement_persistence_support_id_stability` |
 | `row-binding-negative-control` | `row_binding_raw_labeled_rows_preserved_on_retained_history` |
 | `shell-negative-control` | `support_B_N_certified` |
+| `source-evidence-negative-control` | `source_path_evidence` |
 
 The inventory found `status: accepted` raw-row-looking objects only inside fixtures whose `claimLevel` explicitly says negative control, score-neutral, and not evidence. Those objects cannot be transplanted into the retained-domain shell because they do not supply an accepted positive-width invariant support with the same `domainId`, `commonCarrierId`, `supportId`, and `retainedRowSetId: "S_eq"`, and each fixture is already caught by a deliberate fail-closed producer check.
 
@@ -244,6 +247,8 @@ The accepted retained-domain fixture must include these top-level fields:
 | Connection source | $\omega^A{}_{B,u}$ status, torsion bound, phase holonomy $\Phi_{T^2}(u)$, support-transport residual, and holonomy-transport residual on the same support. |
 
 Every accepted row binding must include concrete `rowId`, `status`, matching `retainedRowSetId`, matching `commonCarrierId`, matching `domainId`, matching `supportId`, and a durable source reference that resolves to an evidence file in the repository.
+
+The producer now distinguishes a durable source reference from an evidence source reference. A retained-domain source path is not evidence if it lives under `reference/priorities/`, `reference/entourage/`, or `content/markdown/aaa/`, or if the basename marks an attempt, toy, probe, mock, or negative control. It is also not evidence when a support field, row binding, or refinement step points back to the source report being evaluated; self-referential source shells fail with `source_path_is_input_report` rather than counting their own accepted-looking fields as retained geometry. Separate JSON files are not enough either: backing sources for support fields, row bindings, and refinement steps must be retained-geometry evidence records with their own raw-row, invariant-cell, and refinement-step provenance records rather than arbitrary durable provider shells or syntactic payloads. This preserves focused negative-control fixtures while preventing an accepted-looking shell from passing merely because its JSON file exists.
 
 ## Missing Accepted Rows
 
@@ -306,10 +311,21 @@ node scripts/equation-mapping/produce-eq02-04-coframe-extraction-certificate.mjs
 | `eq02-04-invariant-cell-coframe-source-refinement-support-id-negative-control.v1.json` | `blocked` | `refinement_persistence_support_id_stability` |
 | `eq02-04-invariant-cell-coframe-source-row-binding-negative-control.v1.json` | `blocked` | `row_binding_raw_labeled_rows_preserved_on_retained_history` |
 | `eq02-04-invariant-cell-coframe-source-shell-negative-control.v1.json` | `blocked` | `support_B_N_certified` |
+| `eq02-04-invariant-cell-coframe-source-durable-source-shell.v1.json` | `blocked` | `source_support_field_evidence_sources` |
+| `eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json` | `blocked` | `source_support_field_evidence_sources` |
+| `eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json` | `blocked` | `source_path_evidence` |
+
+Before the source-evidence guard, [eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-source-evidence-negative-control.v1.json) returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null` even though every support, row-binding, and refinement-step source path pointed at a negative-control file. After the guard, the same command returns `status: blocked`, `nextBlocker: source_path_evidence`, and `sourceEvidenceReferenceExists: false` while the older gamma, refinement, and holonomy controls keep their intended first blockers.
+
+The next producer loophole was a rename/self-source shell: [eq02-04-invariant-cell-coframe-source-durable-source-shell.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-durable-source-shell.v1.json) used accepted statuses, concrete ids, populated invariant-cell fields, accepted row bindings, accepted refinement steps, zero connection residuals, and source paths that all pointed back to the same source report. Before the self-reference guard, the producer returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`. After the guard, it returns `status: blocked`, `nextBlocker: source_support_field_evidence_sources`, with support-field source details reporting `sourceSelfReference: true` and `reason: source_path_is_input_report`.
+
+The next shell class was a non-self external provider: [eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-invariant-cell-coframe-source-external-provider-shell.v1.json) points all support fields, row bindings, and refinement steps to [eq02-04-retained-geometry-provider-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provider-shell.v1.json). Before content-aware source validation, the producer returned `status: accepted`, `failedChecks: []`, and `nextBlocker: null`; [same-branch-retained-domain-external-provider-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-external-provider-shell.v1.json) also returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. The provider was then sharpened to use the retained-geometry source schema, accepted identity fields, accepted-looking raw retained rows, positive-width invariant-cell fields, and three refinement steps. Before the provenance guard, that syntactic payload again made the producer and same-branch checker accept the route. The provider was then pointed at [eq02-04-retained-geometry-provenance-shell.v1.json](../../../scripts/equation-mapping/eq02-04-retained-geometry-provenance-shell.v1.json), which uses the retained-geometry provenance schema and accepted identity fields but has no target-specific provenance records. Before provenance-payload hardening, that shell again let the route accept. After hardening, the producer returns `status: blocked`, `nextBlocker: source_support_field_evidence_sources`, and source details report `reason: source_retained_geometry_provenance_payload_missing`. The same-branch packet now returns `status: blocked_missing_retained_event_or_domain`, `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`, and propagates the producer blocker `source_support_field_evidence_sources`.
 
 This sweep confirms that the accepted-looking row objects inside the negative controls are not retained evidence. They remain useful only as fail-closed controls for the future positive-width `S_eq` invariant-cell fixture.
 
 The same-branch source-evidence guardrail is separate from the producer sweep. The fixture [same-branch-retained-domain-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-coordination-source-negative-control.v1.json) proves that accepted-looking `S_eq` rows and witnesses still fail when their source path is a priority coordination file rather than retained evidence. Its first blocker is still `missing_accepted_raw_labeled_rows_preserved_on_retained_history`, with `reason: accepted_without_evidence_source`.
+
+The sibling fixture [same-branch-retained-domain-durable-source-shell.v1.json](../../../scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json) proves that the same-branch checker cannot accept an otherwise accepted-looking `S_eq` packet merely because its rows point to a JSON source report under `scripts/equation-mapping/`. Before the producer-backed source check, that fixture returned `status: accepted`, `retainedBranchClaim: true`, and `nextBlocker: null`. After hardening, it returns `status: blocked_missing_retained_event_or_domain` and `nextBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_history`; the blocker detail reports `sourceEvidenceReason: source_report_not_producer_accepted` and `sourceEvidenceProducerNextBlocker: source_support_field_evidence_sources`.
 
 ## Score-Moving Evidence
 

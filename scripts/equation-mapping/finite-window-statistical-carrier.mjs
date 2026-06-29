@@ -2158,7 +2158,7 @@ function firstBlocker({
     if (!eq14.currentReferencePass) {
       return "eq14_current_reference_residual";
     }
-    return null;
+    return topCarrierNotRetainedBlocker(carrier);
   }
   if (carrier.row === "EQ-30") {
     if (eq30Acceptance.missingAcceptedRows.length > 0) {
@@ -2185,7 +2185,7 @@ function firstBlocker({
     if (!eq30.regimePurityPass) {
       return "regime_purity";
     }
-    return null;
+    return topCarrierNotRetainedBlocker(carrier);
   }
   if (carrier.row === "EQ-31" && !eq31SameRecordBinding.passed) {
     return eq31SameRecordBinding.reason;
@@ -2201,7 +2201,7 @@ function firstBlocker({
       return "refinement_cocycle_defect";
     }
   }
-  return null;
+  return topCarrierNotRetainedBlocker(carrier);
 }
 
 function firstBlockerDetails(nextBlocker, context) {
@@ -2237,6 +2237,17 @@ function firstBlockerDetails(nextBlocker, context) {
         ? carrier.exitCorridors.length
         : 0,
       eq31Computed: eq31.computed,
+    };
+  }
+  if (nextBlocker === "top_carrier_not_retained") {
+    return {
+      reason: nextBlocker,
+      row: carrier.row ?? null,
+      carrierId: carrier.id ?? null,
+      retainedStatus: carrier.retainedStatus ?? carrier.status ?? null,
+      sourcePath: carrierAcceptance.sourcePath,
+      sourceReferenceExists: carrierAcceptance.sourceReferenceExists,
+      sourceEvidenceReferenceExists: carrierAcceptance.sourceEvidenceReferenceExists,
     };
   }
   if (
@@ -2357,6 +2368,14 @@ function firstBlockerDetails(nextBlocker, context) {
     blocker: nextBlocker,
     reason: "first_blocker_without_row_detail",
   };
+}
+
+function topCarrierNotRetainedBlocker(carrier) {
+  const status = carrier?.retainedStatus ?? carrier?.status ?? null;
+  if (status && status !== "toy" && !isAcceptedStatus(status)) {
+    return "top_carrier_not_retained";
+  }
+  return null;
 }
 
 function missingIdFor(nextBlocker, missingAcceptedRows) {

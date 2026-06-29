@@ -1362,6 +1362,7 @@ def shared_interval_boxes_target_row(
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
     retained_root_inactive_cover_interval_box_target: dict | None = None,
+    inactive_cover_interval_box_certificate_bridge: dict | None = None,
 ) -> dict:
     required_box_ids = [
         "past_profile_interval_box",
@@ -1375,15 +1376,21 @@ def shared_interval_boxes_target_row(
             "required_box_ids": required_box_ids,
         }
     local_certificate_box_ids = []
+    local_bridge_box_ids = []
     if past_profile_interval_box_certificate is not None:
         local_certificate_box_ids.append(past_profile_interval_box_certificate["box_id"])
     if future_transport_interval_box_certificate is not None:
         local_certificate_box_ids.append(
             future_transport_interval_box_certificate["box_id"]
         )
+    if inactive_cover_interval_box_certificate_bridge is not None:
+        local_bridge_box_ids.append(
+            inactive_cover_interval_box_certificate_bridge["box_id"]
+        )
     present_box_ids = {
         past_profile_interval_box_attempt["box_id"],
         *local_certificate_box_ids,
+        *local_bridge_box_ids,
     }
     if (
         past_profile_interval_box_certificate is not None
@@ -1430,6 +1437,8 @@ def shared_interval_boxes_target_row(
         )
     if local_certificate_box_ids:
         row["local_certificate_box_ids_present"] = local_certificate_box_ids
+    if local_bridge_box_ids:
+        row["local_bridge_box_ids_present"] = local_bridge_box_ids
     if future_transport_interval_box_certificate is not None:
         row.update(
             {
@@ -1502,6 +1511,32 @@ def shared_interval_boxes_target_row(
         row["retained_root_inactive_cover_interval_box_target"] = (
             retained_root_inactive_cover_interval_box_target
         )
+    if inactive_cover_interval_box_certificate_bridge is not None:
+        row["inactive_cover_interval_box_certificate_bridge"] = {
+            key: inactive_cover_interval_box_certificate_bridge[key]
+            for key in (
+                "schema",
+                "artifact_id",
+                "box_id",
+                "method",
+                "claim_level",
+                "status",
+                "theta_interval",
+                "theta_slab_count",
+                "delta_slab_count_per_inactive_interval",
+                "inactive_cover_interval_row_count",
+                "subbox_count",
+                "min_signed_gap",
+                "all_subboxes_strictly_signed",
+                "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes",
+                "bounds_selected_finite_collar_inactive_cover_interval_boxes",
+                "same_box_inactive_cover_binding_present",
+                "used_as_certificate",
+                "used_as_local_certificate",
+                "used_as_shared_certificate",
+                "certificate_digest",
+            )
+        }
     return row
 
 
@@ -1710,6 +1745,27 @@ def a1_directed_rounding_runtime_identity_absence_probe(
         "spiral_directed_rounding_interval_backend",
         "spiral_branch_chart_certificate",
     ]
+    provider_evidence_object_symbol = (
+        "A1_DIRECTED_ROUNDING_RUNTIME_IDENTITY_PROVIDER"
+    )
+    provider_acceptance_required_evidence_fields = [
+        "identity_fields",
+        "rounding_mode_transition_log_modes",
+        "operations_bound_to_backend_runtime_id",
+        "shared_interval_box_family_bound_to_backend_runtime_id",
+        "source_artifact_hash",
+    ]
+    provider_acceptance_rule = {
+        "provider_evidence_object_symbol": provider_evidence_object_symbol,
+        "required_evidence_fields": provider_acceptance_required_evidence_fields,
+        "requires_required_identity_symbols": required_runtime_symbols,
+        "requires_identity_fields_non_null": required_identity_fields,
+        "requires_rounding_mode_transition_log_modes": required_rounding_modes,
+        "requires_operations_bound_to_backend_runtime_id": True,
+        "requires_shared_interval_box_family_bound_to_backend_runtime_id": True,
+        "rejects_symbol_presence_without_provider_evidence_object": True,
+        "rejects_local_interval_helpers_without_runtime_identity": True,
+    }
     module_probe_rows = []
     for module_name in module_candidates:
         row: dict = {"module_name": module_name}
@@ -1758,13 +1814,89 @@ def a1_directed_rounding_runtime_identity_absence_probe(
             for symbol, present in required_symbol_status.items()
             if not present
         ]
+        provider_evidence_object = (
+            getattr(module, provider_evidence_object_symbol, None)
+            if module is not None
+            else None
+        )
+        provider_evidence_object_present = isinstance(
+            provider_evidence_object,
+            dict,
+        )
+        provider_identity_fields = (
+            provider_evidence_object.get("identity_fields", {})
+            if provider_evidence_object_present
+            else {}
+        )
+        provider_identity_field_status = {
+            field: bool(provider_identity_fields.get(field))
+            for field in required_identity_fields
+        }
+        provider_rounding_modes = (
+            provider_evidence_object.get("rounding_mode_transition_log_modes", [])
+            if provider_evidence_object_present
+            else []
+        )
+        provider_acceptance_checks = {
+            "provider_evidence_object_present": provider_evidence_object_present,
+            "required_identity_symbols_present": not row[
+                "missing_required_symbols"
+            ],
+            "required_identity_fields_non_null": all(
+                provider_identity_field_status.values()
+            ),
+            "rounding_mode_transition_log_binds_required_modes": all(
+                mode in provider_rounding_modes
+                for mode in required_rounding_modes
+            ),
+            "operations_bound_to_backend_runtime_id": bool(
+                provider_evidence_object.get(
+                    "operations_bound_to_backend_runtime_id",
+                )
+                if provider_evidence_object_present
+                else False
+            ),
+            "shared_interval_box_family_bound_to_backend_runtime_id": bool(
+                provider_evidence_object.get(
+                    "shared_interval_box_family_bound_to_backend_runtime_id",
+                )
+                if provider_evidence_object_present
+                else False
+            ),
+            "source_artifact_hash_bound": (
+                provider_evidence_object.get("source_artifact_hash")
+                == source_digest
+                if provider_evidence_object_present
+                else False
+            ),
+        }
+        provider_evidence_accepts_runtime_identity = all(
+            provider_acceptance_checks.values()
+        )
+        row["provider_acceptance_rule"] = {
+            "provider_evidence_object_symbol": provider_evidence_object_symbol,
+            "required_evidence_fields": (
+                provider_acceptance_required_evidence_fields
+            ),
+            "rejects_symbol_presence_without_provider_evidence_object": True,
+        }
+        row["provider_evidence_object_present"] = (
+            provider_evidence_object_present
+        )
+        row["provider_identity_field_status"] = provider_identity_field_status
+        row["provider_acceptance_checks"] = provider_acceptance_checks
+        row["provider_evidence_accepts_runtime_identity"] = (
+            provider_evidence_accepts_runtime_identity
+        )
         row["available_helper_symbols"] = (
             available_helper_symbols
             if module_name == "spiral_branch_chart_certificate"
             else []
         )
         row["satisfies_runtime_identity_provider"] = (
-            module is not None and not row["missing_required_symbols"]
+            module is not None
+            and not row["missing_required_symbols"]
+            and provider_evidence_accepts_runtime_identity
         )
         module_probe_rows.append(row)
 
@@ -1775,6 +1907,7 @@ def a1_directed_rounding_runtime_identity_absence_probe(
             "present"
             if any(
                 all(row["required_symbol_status"][symbol] for symbol in symbols)
+                and row["provider_evidence_accepts_runtime_identity"]
                 for row in module_probe_rows
             )
             else "absent"
@@ -1803,6 +1936,7 @@ def a1_directed_rounding_runtime_identity_absence_probe(
         "required_capabilities": required_capabilities,
         "required_identity_fields": required_identity_fields,
         "probe_method": "python_import_spec_and_capability_symbol_probe",
+        "provider_acceptance_rule": provider_acceptance_rule,
         "module_candidates": module_candidates,
         "module_probe_rows": module_probe_rows,
         "current_a1_helper_capabilities": {
@@ -1875,6 +2009,7 @@ def a1_directed_rounding_runtime_identity_absence_probe(
         "negative_control": {
             "local_interval_helpers_do_not_satisfy_backend_identity": True,
             "float64_nextafter_probe_does_not_satisfy_backend_identity": True,
+            "symbol_presence_without_provider_evidence_object_fails_closed": True,
             "missing_backend_runtime_id_fails_closed": (
                 "backend_runtime_id" in missing_identity_fields
             ),
@@ -1953,6 +2088,7 @@ def a1_directed_rounding_interval_backend_runtime_identity_target(
         ),
         "operation_trace_consumer": "source_q_derivative_composition",
         "required_identity_fields": required_identity_fields,
+        "provider_acceptance_rule": absence_probe["provider_acceptance_rule"],
         "identity_fields": identity_fields,
         "identity_field_status": (
             absence_probe["identity_field_provider_status"]
@@ -2024,6 +2160,7 @@ def a1_directed_rounding_interval_backend_runtime_identity_target(
             "float64_nextafter_probe_does_not_satisfy_runtime_identity": True,
             "decimal_tolerances_do_not_satisfy_runtime_identity": True,
             "local_envelope_checks_do_not_satisfy_runtime_identity": True,
+            "symbol_presence_without_provider_evidence_object_fails_closed": True,
             "missing_rounding_mode_transition_log_fails_closed": True,
             "missing_operation_trace_digest_fails_closed": True,
             "missing_shared_interval_box_family_digest_fails_closed": True,
@@ -4459,6 +4596,776 @@ def a1_one_slot_formula_dependency_audit(
     }
 
 
+def a1_p1_tangential_summand_partial_interval_row(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    slot: dict,
+    formula_dependency_audit: dict,
+    sampled_rows: list[dict],
+) -> dict:
+    formula_probe = formula_dependency_audit["local_interval_formula_probe"]
+    delta_source = formula_dependency_audit["delta_interval_source"]
+    q_source = formula_dependency_audit["q_source_interval_source"]
+    retained_root_attempt = formula_dependency_audit[
+        "P_1_retained_root_delta_alpha_interval_box_attempt"
+    ]
+    q_source_attempt = formula_dependency_audit[
+        "P_1_q_source_alpha_interval_box_attempt"
+    ]
+    shared_audit = formula_dependency_audit[
+        "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+    ]
+    partial_row = formula_probe.get(
+        "partial_T_alpha_partial_delta_alpha_interval"
+    )
+    partial_interval_box = (
+        fixed.Interval(partial_row["lower"], partial_row["upper"])
+        if partial_row is not None
+        else None
+    )
+    sampled_partials = [row["sampled_partial"] for row in sampled_rows]
+    sampled_partials_inside_row_interval = (
+        partial_interval_box is not None
+        and interval_contains_all(partial_interval_box, sampled_partials)
+    )
+    sampled_reference_enclosure = (
+        float64_nextafter_bounds(sampled_partials) if sampled_partials else None
+    )
+    local_retained_root_delta_box_present = bool(
+        delta_source["satisfies_retained_root_delta_alpha_interval_box"]
+    )
+    local_q_source_box_present = bool(
+        q_source["satisfies_P_1_q_source_alpha_interval_box"]
+    )
+    source_theta_inside_past_profile_domain = bool(
+        q_source["source_theta_interval_inside_past_profile_domain"]
+    )
+    formula_available = bool(formula_probe.get("formula_available"))
+    formula_first_failure = (
+        formula_probe.get("first_failure")
+        or "partial_T_alpha_partial_delta_alpha_interval_formula"
+    )
+    emits_priority_local_interval_row = (
+        formula_available
+        and local_retained_root_delta_box_present
+        and local_q_source_box_present
+        and source_theta_inside_past_profile_domain
+    )
+    shared_audit_trail_present = bool(shared_audit["shared_audit_trail_present"])
+    same_box_inactive_cover_binding_present = False
+    emits_selected_slot_interval_box = (
+        emits_priority_local_interval_row
+        and shared_audit_trail_present
+        and same_box_inactive_cover_binding_present
+    )
+    first_failure = (
+        None
+        if emits_selected_slot_interval_box
+        else (
+            "P_1_retained_root_delta_alpha_interval_box"
+            if not local_retained_root_delta_box_present
+            else (
+                "P_1_q_source_alpha_interval_box"
+                if not local_q_source_box_present
+                else (
+                    formula_first_failure
+                    if not formula_available
+                    else (
+                        "source_theta_interval_inside_past_profile_domain"
+                        if not source_theta_inside_past_profile_domain
+                        else (
+                            "shared_directed_rounding_audit_trail_for_"
+                            "source_q_derivative_composition"
+                            if not shared_audit_trail_present
+                            else "same_box_inactive_cover_binding"
+                        )
+                    )
+                )
+            )
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_tangential_summand_partial_interval_row.v0"
+        ),
+        "artifact_id": "a1_p1_tangential_summand_partial_interval_row.v0",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "priority_local_interval_formula_row_for_P_1_"
+            "tangential_summand_partial"
+        ),
+        "claim_level": (
+            "priority-only local interval row for the selected P_1 tangential "
+            "summand partial; not a selected-slot, shared, or outward "
+            "certificate"
+        ),
+        "radius_b": radius_b,
+        "slot": slot,
+        "row_identity": {
+            "slot_label": slot["label"],
+            "family_id": slot["family_id"],
+            "summand": slot["summand"],
+            "partial": slot["required_partial"],
+            "required_interval_row": slot["required_interval_row"],
+            "required_output_row": slot["required_output_row"],
+            "row": "partial_T_alpha_partial_delta_alpha",
+            "row_artifact_id": (
+                "a1_p1_tangential_summand_partial_interval_row.v0"
+            ),
+        },
+        "same_box_binding": {
+            "source_artifact_hash": source_digest,
+            "radius_b": radius_b,
+            "theta_interval": theta_interval,
+            "retained_root_delta_alpha_box_id": (
+                "P_1_retained_root_delta_alpha_interval_box"
+            ),
+            "q_source_alpha_box_id": "P_1_q_source_alpha_interval_box",
+            "inactive_cover_id": "inactive_cover_interval_boxes",
+            "requires_same_theta_box_family": True,
+            "requires_same_source_artifact_hash": True,
+            "same_box_inactive_cover_binding_present": (
+                same_box_inactive_cover_binding_present
+            ),
+        },
+        "interval_inputs": {
+            "theta_interval": (
+                formula_probe.get("theta_interval")
+                or interval_row(fixed.Interval(theta_interval[0], theta_interval[1]))
+            ),
+            "delta_interval_source_row": delta_source["row"],
+            "delta_alpha_interval": delta_source["delta_interval"],
+            "delta_interval_attempt_digest": retained_root_attempt[
+                "attempt_digest"
+            ],
+            "delta_interval_used_as_local_certificate": retained_root_attempt[
+                "used_as_local_certificate"
+            ],
+            "delta_interval_used_as_shared_certificate": retained_root_attempt[
+                "used_as_shared_certificate"
+            ],
+            "q_source_interval_source_row": q_source["row"],
+            "q_source_alpha_interval": q_source["q_interval"],
+            "q_source_interval_attempt_digest": q_source_attempt["attempt_digest"],
+            "q_source_control_point_interval_payload_digest": (
+                q_source_attempt["control_point_interval_payload_digest"]
+            ),
+            "q_source_interval_used_as_local_certificate": q_source_attempt[
+                "used_as_local_certificate"
+            ],
+            "q_source_interval_used_as_shared_certificate": q_source_attempt[
+                "used_as_shared_certificate"
+            ],
+            "past_profile_certificate_used_as_shared_certificate": (
+                q_source_attempt[
+                    "past_profile_certificate_used_as_shared_certificate"
+                ]
+            ),
+            "source_theta_interval": q_source_attempt["source_theta_interval"],
+            "source_x_interval": q_source_attempt["source_x_interval"],
+            "source_theta_interval_inside_past_profile_domain": (
+                source_theta_inside_past_profile_domain
+            ),
+        },
+        "formula_rows": {
+            "partial_delta_tangential_numerator_interval_formula": (
+                formula_probe.get(
+                    "partial_delta_tangential_numerator_interval"
+                )
+            ),
+            "partial_delta_lambda_partner_interval_formula": (
+                formula_probe.get("lambda_delta_interval")
+            ),
+            "partial_delta_J_partner_with_source_q_interval_formula": (
+                formula_probe.get(
+                    "partial_delta_J_partner_with_source_q_interval"
+                )
+            ),
+            "J_partner_interval": formula_probe.get("J_partner_interval"),
+            "J_partner_sign": formula_probe.get("J_partner_sign"),
+            "abs_J_partner_interval_floor": formula_probe.get(
+                "abs_J_partner_interval_floor"
+            ),
+            "partial_T_alpha_partial_delta_alpha_interval": partial_row,
+        },
+        "sampled_reference_readout": {
+            "sampled_method": (
+                "central_float64_finite_difference_not_interval_box"
+            ),
+            "sampled_row_count": len(sampled_rows),
+            "sampled_partial_path": "partials.tangential_delta",
+            "sampled_reference_enclosure": sampled_reference_enclosure,
+            "sampled_partials_inside_row_interval": (
+                sampled_partials_inside_row_interval
+            ),
+            "accepted_as_interval_evidence": False,
+        },
+        "shared_certificate_blockers": {
+            "shared_directed_rounding_audit_trail_present": (
+                shared_audit_trail_present
+            ),
+            "shared_directed_rounding_audit_trail_digest": (
+                shared_audit["audit_trail_digest"]
+            ),
+            "shared_directed_rounding_audit_trail_status": (
+                shared_audit["status"]
+            ),
+            "missing_shared_backend_or_source_box_identity_fields": (
+                shared_audit[
+                    "missing_shared_backend_or_source_box_identity_fields"
+                ]
+            ),
+            "first_missing_shared_backend_or_source_box_identity_field": (
+                shared_audit[
+                    "first_missing_shared_backend_or_source_box_identity_field"
+                ]
+            ),
+            "same_box_inactive_cover_binding_present": (
+                same_box_inactive_cover_binding_present
+            ),
+            "next_required_rows_ordered": formula_dependency_audit[
+                "next_required_rows_ordered"
+            ],
+            "formula_dependency_audit_digest": formula_dependency_audit[
+                "audit_digest"
+            ],
+        },
+        "emits_priority_local_interval_row": emits_priority_local_interval_row,
+        "emits_selected_slot_interval_box": emits_selected_slot_interval_box,
+        "satisfies_selected_slot": emits_selected_slot_interval_box,
+        "satisfies_summand_partial_interval_boxes": False,
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "first_failure": first_failure,
+        "used_as_certificate": False,
+        "used_as_local_certificate": emits_priority_local_interval_row,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    status = (
+        "selected_slot_P_1_tangential_summand_partial_interval_box_present"
+        if emits_selected_slot_interval_box
+        else (
+            "priority_local_P_1_tangential_summand_partial_interval_row_"
+            "present_shared_audit_missing"
+            if emits_priority_local_interval_row and not shared_audit_trail_present
+            else (
+                "priority_local_P_1_tangential_summand_partial_interval_row_"
+                "present_same_box_inactive_cover_binding_missing"
+                if emits_priority_local_interval_row
+                else "P_1_tangential_summand_partial_interval_row_failed_closed"
+            )
+        )
+    )
+    return {
+        **payload,
+        "row_digest": canonical_json_digest(payload),
+        "status": status,
+    }
+
+
+def a1_p1_source_q_derivative_composition_shared_audit_candidate(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    slot: dict,
+    formula_dependency_audit: dict,
+    p1_tangential_summand_partial_interval_row: dict,
+    inactive_cover_interval_box_certificate_bridge: dict | None = None,
+) -> dict:
+    shared_audit = formula_dependency_audit[
+        "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+    ]
+    row = p1_tangential_summand_partial_interval_row
+    interval_inputs = row["interval_inputs"]
+    formula_rows = row["formula_rows"]
+    runtime_identity_target = shared_audit["backend_identity"][
+        "backend_runtime_availability_audit"
+    ]["runtime_identity_target"]
+    operation_trace_candidate = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_source_q_derivative_composition_operation_trace_manifest.v0"
+        ),
+        "artifact_id": (
+            "a1_source_q_derivative_composition_operation_trace_manifest.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "composition_id": "source_q_derivative_composition",
+        "claim_level": (
+            "priority-only local operation-trace manifest candidate; not a "
+            "backend-owned per-operation directed-rounding audit trail"
+        ),
+        "operation_trace_status": "local_manifest_not_backend_trace",
+        "supports_row_digest": row["row_digest"],
+        "supports_local_audit_digest": shared_audit["audit_trail_digest"],
+        "supports_formula_dependency_audit_digest": (
+            formula_dependency_audit["audit_digest"]
+        ),
+        "backend_target_digest": shared_audit["backend_identity"][
+            "backend_target_digest"
+        ],
+        "backend_self_audit_digest": shared_audit["backend_identity"][
+            "backend_self_audit_digest"
+        ],
+        "input_interval_rows": {
+            "theta_interval": interval_inputs["theta_interval"],
+            "P_1_retained_root_delta_alpha_interval_box": {
+                "row": interval_inputs["delta_interval_source_row"],
+                "delta_alpha_interval": interval_inputs["delta_alpha_interval"],
+                "attempt_digest": interval_inputs[
+                    "delta_interval_attempt_digest"
+                ],
+                "used_as_shared_certificate": interval_inputs[
+                    "delta_interval_used_as_shared_certificate"
+                ],
+            },
+            "P_1_q_source_alpha_interval_box": {
+                "row": interval_inputs["q_source_interval_source_row"],
+                "q_source_alpha_interval": interval_inputs[
+                    "q_source_alpha_interval"
+                ],
+                "source_theta_interval": interval_inputs[
+                    "source_theta_interval"
+                ],
+                "attempt_digest": interval_inputs[
+                    "q_source_interval_attempt_digest"
+                ],
+                "used_as_shared_certificate": interval_inputs[
+                    "q_source_interval_used_as_shared_certificate"
+                ],
+            },
+        },
+        "formula_operation_ids": [
+            "theta_minus_delta",
+            "rho_interval",
+            "lambda_partner_interval",
+            "p_theta_interval",
+            "p_source_interval",
+            "p_source_delta_interval",
+            "rho_delta_interval",
+            "sin_delta_interval",
+            "cos_delta_interval",
+            "T_alpha_numerator_interval",
+            "partial_delta_tangential_numerator_interval",
+            "partial_delta_radicand_interval",
+            "partial_delta_lambda_partner_interval",
+            "sigma_interval",
+            "source_speed_interval",
+            "partial_delta_source_speed_interval",
+            "J_bracket_interval",
+            "partial_delta_J_bracket_interval",
+            "J_partner_interval",
+            "partial_delta_J_partner_with_source_q_interval",
+            "abs_away_from_zero_J_partner_sign_branch",
+            "lambda_cubed_interval",
+            "denominator_interval",
+            "partial_delta_denominator_interval",
+            "quotient_rule_partial_T_alpha_partial_delta_alpha",
+        ],
+        "ordered_operation_rows": [
+            {
+                "operation_id": "rho_interval",
+                "expression": "rho(theta, delta_alpha)",
+                "result_row": formula_dependency_audit[
+                    "local_interval_formula_probe"
+                ].get("rho_interval"),
+            },
+            {
+                "operation_id": "lambda_partner_interval",
+                "expression": "lambda_partner(theta, delta_alpha)",
+                "result_row": formula_dependency_audit[
+                    "local_interval_formula_probe"
+                ].get("lambda_interval"),
+            },
+            {
+                "operation_id": "partial_delta_lambda_partner",
+                "expression": "partial_delta_alpha lambda_partner",
+                "result_row": formula_rows[
+                    "partial_delta_lambda_partner_interval_formula"
+                ],
+            },
+            {
+                "operation_id": "partial_delta_tangential_numerator",
+                "expression": "partial_delta_alpha N_T_partner",
+                "result_row": formula_rows[
+                    "partial_delta_tangential_numerator_interval_formula"
+                ],
+            },
+            {
+                "operation_id": "partial_delta_J_partner_with_source_q",
+                "expression": (
+                    "partial_delta_alpha J_partner(theta, delta_alpha, "
+                    "q_source_alpha)"
+                ),
+                "result_row": formula_rows[
+                    "partial_delta_J_partner_with_source_q_interval_formula"
+                ],
+            },
+            {
+                "operation_id": "abs_J_partner_floor",
+                "expression": "abs(J_partner) sign-stable interval floor",
+                "J_partner_interval": formula_rows["J_partner_interval"],
+                "J_partner_sign": formula_rows["J_partner_sign"],
+                "abs_J_partner_interval_floor": formula_rows[
+                    "abs_J_partner_interval_floor"
+                ],
+            },
+            {
+                "operation_id": "partial_T_alpha_partial_delta_alpha",
+                "expression": (
+                    "partial_delta_alpha "
+                    "T_alpha(theta, delta_alpha, q_source_alpha)"
+                ),
+                "result_row": formula_rows[
+                    "partial_T_alpha_partial_delta_alpha_interval"
+                ],
+            },
+        ],
+        "operation_count": 7,
+        "requires_per_operation_rounding_mode_transition_log": True,
+        "requires_backend_runtime_id_binding": True,
+        "per_operation_rounding_mode_transition_log_present": False,
+        "backend_runtime_id_bound_to_operations": False,
+        "candidate_digest_must_not_fill_runtime_identity_operation_trace_digest": (
+            True
+        ),
+        "used_as_certificate": False,
+        "used_as_shared_certificate": False,
+    }
+    operation_trace_candidate_digest = canonical_json_digest(
+        operation_trace_candidate
+    )
+    shared_interval_box_family_candidate = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_source_q_derivative_composition_interval_box_family_"
+            "candidate.v0"
+        ),
+        "artifact_id": (
+            "a1_p1_source_q_derivative_composition_interval_box_family_"
+            "candidate.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "claim_level": (
+            "local interval-box-family digest candidate for selected P_1; "
+            "not a shared interval-box family certificate"
+        ),
+        "bound_rows": {
+            "P_1_retained_root_delta_alpha_interval_box_attempt_digest": (
+                interval_inputs["delta_interval_attempt_digest"]
+            ),
+            "P_1_retained_root_delta_alpha_interval": (
+                interval_inputs["delta_alpha_interval"]
+            ),
+            "P_1_q_source_alpha_interval_box_attempt_digest": (
+                interval_inputs["q_source_interval_attempt_digest"]
+            ),
+            "P_1_q_source_alpha_interval": (
+                interval_inputs["q_source_alpha_interval"]
+            ),
+            "P_1_q_source_control_point_interval_payload_digest": (
+                interval_inputs[
+                    "q_source_control_point_interval_payload_digest"
+                ]
+            ),
+            "P_1_tangential_summand_partial_interval_row_digest": (
+                row["row_digest"]
+            ),
+            "inactive_cover_interval_box_certificate_bridge_digest": (
+                inactive_cover_interval_box_certificate_bridge[
+                    "certificate_digest"
+                ]
+                if inactive_cover_interval_box_certificate_bridge is not None
+                else None
+            ),
+            "source_theta_interval": interval_inputs["source_theta_interval"],
+            "source_x_interval": interval_inputs["source_x_interval"],
+        },
+        "same_box_requirements": {
+            "requires_same_source_artifact_hash": True,
+            "requires_same_admissible_profile_radius": True,
+            "requires_same_theta_box_family": True,
+            "requires_same_backend_runtime_id": True,
+            "requires_past_profile_shared_certificate": True,
+            "requires_retained_root_shared_certificate": True,
+            "requires_q_source_shared_certificate": True,
+            "requires_inactive_cover_binding": True,
+        },
+        "same_box_status": {
+            "same_source_artifact_hash_bound": True,
+            "same_admissible_profile_radius_bound": True,
+            "same_theta_box_family_bound_locally": True,
+            "same_backend_runtime_id_bound": False,
+            "past_profile_shared_certificate_present": interval_inputs[
+                "past_profile_certificate_used_as_shared_certificate"
+            ],
+            "retained_root_shared_certificate_present": interval_inputs[
+                "delta_interval_used_as_shared_certificate"
+            ],
+            "q_source_shared_certificate_present": interval_inputs[
+                "q_source_interval_used_as_shared_certificate"
+            ],
+            "inactive_cover_binding_present": row["same_box_binding"][
+                "same_box_inactive_cover_binding_present"
+            ],
+            "inactive_cover_interval_box_bridge_present_locally": bool(
+                inactive_cover_interval_box_certificate_bridge is not None
+                and inactive_cover_interval_box_certificate_bridge[
+                    "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes"
+                ]
+            ),
+            "inactive_cover_interval_box_bridge_used_as_shared_certificate": (
+                inactive_cover_interval_box_certificate_bridge[
+                    "used_as_shared_certificate"
+                ]
+                if inactive_cover_interval_box_certificate_bridge is not None
+                else False
+            ),
+        },
+        "negative_control": {
+            "local_digest_does_not_satisfy_shared_interval_box_family": True,
+            "missing_backend_runtime_id_fails_closed": True,
+            "missing_past_profile_shared_certificate_fails_closed": True,
+            "missing_retained_root_shared_certificate_fails_closed": True,
+            "missing_q_source_shared_certificate_fails_closed": True,
+            "missing_inactive_cover_binding_fails_closed": True,
+            "local_fixed_sidecar_inactive_cover_bridge_does_not_satisfy_same_box_binding": True,
+        },
+        "used_as_certificate": False,
+        "used_as_shared_certificate": False,
+    }
+    shared_interval_box_family_candidate_digest = canonical_json_digest(
+        shared_interval_box_family_candidate
+    )
+    same_box_inactive_cover_binding_absence_row = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_same_box_inactive_cover_binding_absence_row.v0"
+        ),
+        "artifact_id": "a1_p1_same_box_inactive_cover_binding_absence_row.v0",
+        "source_artifact_hash": source_digest,
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "slot_label": slot["label"],
+        "retained_root_delta_alpha_box_id": (
+            "P_1_retained_root_delta_alpha_interval_box"
+        ),
+        "q_source_alpha_box_id": "P_1_q_source_alpha_interval_box",
+        "inactive_cover_id": "inactive_cover_interval_boxes",
+        "required_box_id": "inactive_cover_interval_boxes",
+        "inactive_cover_certificate_digest": None,
+        "inactive_cover_interval_box_certificate_bridge_digest": (
+            inactive_cover_interval_box_certificate_bridge["certificate_digest"]
+            if inactive_cover_interval_box_certificate_bridge is not None
+            else None
+        ),
+        "inactive_cover_interval_box_certificate_bridge_status": (
+            inactive_cover_interval_box_certificate_bridge["status"]
+            if inactive_cover_interval_box_certificate_bridge is not None
+            else None
+        ),
+        "inactive_cover_interval_box_bridge_present_locally": bool(
+            inactive_cover_interval_box_certificate_bridge is not None
+            and inactive_cover_interval_box_certificate_bridge[
+                "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes"
+            ]
+        ),
+        "inactive_cover_interval_box_bridge_scope": (
+            "fixed_A1_sidecar_only_not_selected_finite_collar_same_box_binding"
+            if inactive_cover_interval_box_certificate_bridge is not None
+            else None
+        ),
+        "inactive_cover_no_root_interval_boxes_present": False,
+        "same_box_inactive_cover_binding_present": False,
+        "blocked_by": "inactive_cover_interval_boxes_absent",
+        "sample_replay_accepted_as_interval_evidence": False,
+        "bounds_inactive_cover_interval_boxes": False,
+        "bounds_retained_root_interval_boxes": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": False,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    same_box_inactive_cover_binding_absence_digest = canonical_json_digest(
+        same_box_inactive_cover_binding_absence_row
+    )
+    candidate_present = bool(
+        row["emits_priority_local_interval_row"]
+        and operation_trace_candidate_digest
+        and shared_interval_box_family_candidate_digest
+        and same_box_inactive_cover_binding_absence_digest
+    )
+    missing_runtime_identity_fields = runtime_identity_target.get(
+        "missing_identity_fields",
+        [],
+    )
+    missing_shared_fields = row["shared_certificate_blockers"][
+        "missing_shared_backend_or_source_box_identity_fields"
+    ]
+    first_failure = (
+        missing_shared_fields[0]
+        if missing_shared_fields
+        else (
+            "same_box_inactive_cover_binding"
+            if not row["same_box_binding"]["same_box_inactive_cover_binding_present"]
+            else "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
+        )
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_p1_source_q_derivative_composition_shared_audit_candidate.v0"
+        ),
+        "artifact_id": (
+            "a1_p1_source_q_derivative_composition_shared_audit_candidate.v0"
+        ),
+        "source_artifact_hash": source_digest,
+        "method": (
+            "fail_closed_local_operation_trace_and_box_family_candidate_for_"
+            "selected_P_1_source_q_derivative_composition"
+        ),
+        "claim_level": (
+            "strongest safe shared-audit candidate currently available; "
+            "priority-only and not a shared directed-rounding audit trail"
+        ),
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "slot": slot,
+        "selected_local_row": {
+            "artifact_id": row["artifact_id"],
+            "row_digest": row["row_digest"],
+            "status": row["status"],
+            "emits_priority_local_interval_row": row[
+                "emits_priority_local_interval_row"
+            ],
+            "emits_selected_slot_interval_box": row[
+                "emits_selected_slot_interval_box"
+            ],
+        },
+        "operation_trace_candidate": operation_trace_candidate,
+        "operation_trace_manifest_candidate_digest": (
+            operation_trace_candidate_digest
+        ),
+        "shared_interval_box_family_candidate": (
+            shared_interval_box_family_candidate
+        ),
+        "shared_interval_box_family_candidate_digest": (
+            shared_interval_box_family_candidate_digest
+        ),
+        "same_box_inactive_cover_binding_absence_row": (
+            same_box_inactive_cover_binding_absence_row
+        ),
+        "same_box_inactive_cover_binding_absence_digest": (
+            same_box_inactive_cover_binding_absence_digest
+        ),
+        "runtime_identity_requirement": {
+            "target_artifact_id": runtime_identity_target.get("artifact_id"),
+            "target_digest": runtime_identity_target.get("target_digest"),
+            "status": runtime_identity_target.get("status"),
+            "runtime_identity_provider_absence_artifact": {
+                "artifact_id": runtime_identity_target.get(
+                    "executable_absence_probe",
+                    {},
+                ).get("artifact_id"),
+                "digest": runtime_identity_target.get("absence_probe_digest"),
+                "status": runtime_identity_target.get("absence_probe_status"),
+                "provider_acceptance_rule": runtime_identity_target.get(
+                    "provider_acceptance_rule"
+                ),
+                "identity_field_status": runtime_identity_target.get(
+                    "identity_field_status"
+                ),
+                "missing_identity_fields": missing_runtime_identity_fields,
+                "first_missing_identity_field": runtime_identity_target.get(
+                    "first_missing_identity_field"
+                ),
+                "used_as_certificate": False,
+                "used_as_shared_certificate": False,
+            },
+            "missing_identity_fields": missing_runtime_identity_fields,
+            "first_missing_identity_field": runtime_identity_target.get(
+                "first_missing_identity_field"
+            ),
+            "runtime_identity_present": runtime_identity_target.get(
+                "runtime_identity_present"
+            ),
+        },
+        "shared_source_box_requirements": {
+            "P_1_retained_root_delta_alpha_interval_box_used_as_shared_certificate": (
+                interval_inputs["delta_interval_used_as_shared_certificate"]
+            ),
+            "P_1_q_source_alpha_interval_box_used_as_shared_certificate": (
+                interval_inputs["q_source_interval_used_as_shared_certificate"]
+            ),
+            "past_profile_certificate_used_as_shared_certificate": (
+                interval_inputs[
+                    "past_profile_certificate_used_as_shared_certificate"
+                ]
+            ),
+            "same_box_inactive_cover_binding_present": row["same_box_binding"][
+                "same_box_inactive_cover_binding_present"
+            ],
+        },
+        "candidate_present": candidate_present,
+        "shared_audit_trail_present": False,
+        "remaining_shared_blockers_ranked": [
+            "directed_rounding_backend_target.current_runtime_probe."
+            "directed_rounding_backend_available",
+            "directed_rounding_backend_target.current_runtime_probe."
+            "directed_rounding_mode_audit_trail_available",
+            "P_1_retained_root_delta_alpha_interval_box_attempt."
+            "used_as_shared_certificate",
+            "P_1_q_source_alpha_interval_box_attempt.used_as_shared_certificate",
+            "P_1_q_source_alpha_interval_box_attempt."
+            "past_profile_certificate_used_as_shared_certificate",
+            "same_box_inactive_cover_binding",
+        ],
+        "negative_control": {
+            "candidate_operation_trace_does_not_satisfy_runtime_identity": True,
+            "candidate_box_family_digest_does_not_satisfy_shared_box_family": True,
+            "local_P_1_rows_do_not_satisfy_shared_certificate_rows": True,
+            "missing_inactive_cover_binding_fails_closed": True,
+            "missing_backend_runtime_identity_fails_closed": True,
+        },
+        "first_failure": first_failure,
+        "emits_strongest_safe_shared_audit_candidate": candidate_present,
+        "emits_selected_slot_interval_box": False,
+        "satisfies_selected_slot": False,
+        "satisfies_summand_partial_interval_boxes": False,
+        "bounds_outward_summand_derivative_boxes": False,
+        "emits_branch_sum_constants": False,
+        "emits_K_Q": False,
+        "emits_E_Q_plus_b": False,
+        "used_as_certificate": False,
+        "used_as_local_certificate": candidate_present,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "candidate_digest": canonical_json_digest(payload),
+        "status": (
+            "local_P_1_source_q_derivative_composition_shared_audit_"
+            "candidate_present_backend_runtime_identity_missing"
+            if candidate_present
+            else "P_1_source_q_derivative_composition_shared_audit_"
+            "candidate_failed_closed"
+        ),
+    }
+
+
 def a1_summand_partial_interval_box_one_slot_construction_attempt(
     source_digest: str,
     *,
@@ -4469,6 +5376,7 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
     profile: Profile,
     directed_rounding_backend_target: dict | None,
     directed_rounding_backend_self_audit: dict | None,
+    inactive_cover_interval_box_certificate_bridge: dict | None,
     sample_rows: list[dict],
 ) -> dict:
     slot = {
@@ -4518,6 +5426,31 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
     shared_source_q_derivative_composition_audit = formula_dependency_audit[
         "shared_directed_rounding_audit_trail_for_source_q_derivative_composition"
     ]
+    p1_tangential_summand_partial_interval_row = (
+        a1_p1_tangential_summand_partial_interval_row(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            slot=slot,
+            formula_dependency_audit=formula_dependency_audit,
+            sampled_rows=sampled_rows,
+        )
+    )
+    p1_source_q_derivative_composition_shared_audit_candidate = (
+        a1_p1_source_q_derivative_composition_shared_audit_candidate(
+            source_digest,
+            radius_b=radius_b,
+            theta_interval=theta_interval,
+            slot=slot,
+            formula_dependency_audit=formula_dependency_audit,
+            p1_tangential_summand_partial_interval_row=(
+                p1_tangential_summand_partial_interval_row
+            ),
+            inactive_cover_interval_box_certificate_bridge=(
+                inactive_cover_interval_box_certificate_bridge
+            ),
+        )
+    )
     backend_runtime_availability_audit = (
         shared_source_q_derivative_composition_audit["backend_identity"][
             "backend_runtime_availability_audit"
@@ -4670,8 +5603,40 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
                 not local_q_source_box_present
             ),
             "shared_q_source_interval_box_for_P_1_missing": True,
+            "inactive_cover_interval_box_bridge_present_locally": bool(
+                inactive_cover_interval_box_certificate_bridge is not None
+                and inactive_cover_interval_box_certificate_bridge[
+                    "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes"
+                ]
+            ),
+            "same_box_inactive_cover_binding_present": False,
         },
         "formula_dependency_audit": formula_dependency_audit,
+        "a1_p1_tangential_summand_partial_interval_row": (
+            p1_tangential_summand_partial_interval_row
+        ),
+        "a1_p1_source_q_derivative_composition_shared_audit_candidate": (
+            p1_source_q_derivative_composition_shared_audit_candidate
+        ),
+        "inactive_cover_interval_box_certificate_bridge": (
+            {
+                key: inactive_cover_interval_box_certificate_bridge[key]
+                for key in (
+                    "schema",
+                    "artifact_id",
+                    "box_id",
+                    "status",
+                    "certificate_digest",
+                    "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes",
+                    "bounds_selected_finite_collar_inactive_cover_interval_boxes",
+                    "same_box_inactive_cover_binding_present",
+                    "used_as_local_certificate",
+                    "used_as_shared_certificate",
+                )
+            }
+            if inactive_cover_interval_box_certificate_bridge is not None
+            else None
+        ),
         "sampled_reference_readout": {
             "sampled_method": "central_float64_finite_difference_not_interval_box",
             "sampled_row_count": len(sampled_rows),
@@ -4689,6 +5654,39 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         "construction_status": {
             "emits_one_slot_interval_box": False,
             "emits_local_formula_interval_probe": True,
+            "emits_priority_local_interval_row": (
+                p1_tangential_summand_partial_interval_row[
+                    "emits_priority_local_interval_row"
+                ]
+            ),
+            "p1_tangential_summand_partial_interval_row_status": (
+                p1_tangential_summand_partial_interval_row["status"]
+            ),
+            "p1_tangential_summand_partial_interval_row_digest": (
+                p1_tangential_summand_partial_interval_row["row_digest"]
+            ),
+            "p1_source_q_derivative_composition_shared_audit_candidate_status": (
+                p1_source_q_derivative_composition_shared_audit_candidate[
+                    "status"
+                ]
+            ),
+            "p1_source_q_derivative_composition_shared_audit_candidate_digest": (
+                p1_source_q_derivative_composition_shared_audit_candidate[
+                    "candidate_digest"
+                ]
+            ),
+            "inactive_cover_interval_box_bridge_status": (
+                inactive_cover_interval_box_certificate_bridge["status"]
+                if inactive_cover_interval_box_certificate_bridge is not None
+                else None
+            ),
+            "inactive_cover_interval_box_bridge_digest": (
+                inactive_cover_interval_box_certificate_bridge[
+                    "certificate_digest"
+                ]
+                if inactive_cover_interval_box_certificate_bridge is not None
+                else None
+            ),
             "satisfies_selected_slot": False,
             "satisfies_summand_partial_interval_boxes": False,
             "first_missing_interval_input": first_missing_interval_input,
@@ -4749,6 +5747,11 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
                 )
             )
         ),
+        "emits_priority_local_interval_row": (
+            p1_tangential_summand_partial_interval_row[
+                "emits_priority_local_interval_row"
+            ]
+        ),
         "bounds_outward_summand_derivative_boxes": False,
         "emits_branch_sum_constants": False,
         "emits_K_Q": False,
@@ -4763,9 +5766,11 @@ def a1_summand_partial_interval_box_one_slot_construction_attempt(
         **payload,
         "construction_attempt_digest": canonical_json_digest(payload),
         "status": (
-            "one_slot_formula_and_P_1_local_interval_inputs_present_"
-            "shared_backend_missing"
-            if local_retained_root_delta_box_present and local_q_source_box_present
+            "one_slot_priority_local_P_1_tangential_summand_partial_"
+            "interval_row_present_shared_backend_missing"
+            if p1_tangential_summand_partial_interval_row[
+                "emits_priority_local_interval_row"
+            ]
             else (
                 "one_slot_formula_and_P_1_retained_root_delta_interval_present_"
                 "q_source_interval_missing"
@@ -4788,6 +5793,7 @@ def a1_branch_sum_feedback_bound_attempt(
     past_profile_interval_box_certificate: dict,
     directed_rounding_backend_target: dict | None,
     directed_rounding_backend_self_audit: dict | None,
+    inactive_cover_interval_box_certificate_bridge: dict | None,
     constraint_rows: list[list[float]],
     future_continuous_transport_bounds_attempt: dict,
     panels: int,
@@ -5010,8 +6016,21 @@ def a1_branch_sum_feedback_bound_attempt(
             directed_rounding_backend_self_audit=(
                 directed_rounding_backend_self_audit
             ),
+            inactive_cover_interval_box_certificate_bridge=(
+                inactive_cover_interval_box_certificate_bridge
+            ),
             sample_rows=sample_rows,
         )
+    )
+    p1_tangential_summand_partial_interval_row = (
+        summand_partial_one_slot_construction_attempt[
+            "a1_p1_tangential_summand_partial_interval_row"
+        ]
+    )
+    p1_source_q_derivative_composition_shared_audit_candidate = (
+        summand_partial_one_slot_construction_attempt[
+            "a1_p1_source_q_derivative_composition_shared_audit_candidate"
+        ]
     )
     payload = {
         "schema": (
@@ -5100,6 +6119,27 @@ def a1_branch_sum_feedback_bound_attempt(
             ),
             "summand_partial_interval_box_one_slot_construction_attempt_status": (
                 summand_partial_one_slot_construction_attempt["status"]
+            ),
+            "p1_tangential_summand_partial_interval_row_digest": (
+                p1_tangential_summand_partial_interval_row["row_digest"]
+            ),
+            "p1_tangential_summand_partial_interval_row_status": (
+                p1_tangential_summand_partial_interval_row["status"]
+            ),
+            "p1_tangential_summand_partial_interval_row_emitted_locally": (
+                p1_tangential_summand_partial_interval_row[
+                    "emits_priority_local_interval_row"
+                ]
+            ),
+            "p1_source_q_derivative_composition_shared_audit_candidate_digest": (
+                p1_source_q_derivative_composition_shared_audit_candidate[
+                    "candidate_digest"
+                ]
+            ),
+            "p1_source_q_derivative_composition_shared_audit_candidate_status": (
+                p1_source_q_derivative_composition_shared_audit_candidate[
+                    "status"
+                ]
             ),
         },
         "target_constants": {
@@ -5270,6 +6310,7 @@ def a1_shared_interval_box_certificate_target(
     retained_root_window_bracket_replay: dict | None = None,
     inactive_cover_exclusion_replay: dict | None = None,
     retained_root_inactive_cover_interval_box_target: dict | None = None,
+    inactive_cover_interval_box_certificate_bridge: dict | None = None,
 ) -> dict:
     return {
         "schema": (
@@ -5290,6 +6331,7 @@ def a1_shared_interval_box_certificate_target(
             retained_root_window_bracket_replay,
             inactive_cover_exclusion_replay,
             retained_root_inactive_cover_interval_box_target,
+            inactive_cover_interval_box_certificate_bridge,
         ),
         "directed_rounding_backend": directed_rounding_backend_target_row(
             directed_rounding_backend_target,
@@ -6129,6 +7171,190 @@ def a1_retained_root_inactive_cover_interval_box_target(
         "target_digest": canonical_json_digest(payload),
         "status": (
             "target_only_retained_root_inactive_cover_interval_boxes_absent"
+        ),
+    }
+
+
+def a1_inactive_cover_interval_box_certificate_bridge(
+    source_digest: str,
+    *,
+    radius_b: float,
+    theta_interval: list[float],
+    theta_slab_count: int = 4,
+    delta_slab_count: int = 16,
+) -> dict:
+    inactive_intervals = inactive_cover_intervals_by_kind()
+    theta_lo, theta_hi = theta_interval
+    theta_step = (theta_hi - theta_lo) / theta_slab_count
+    bridge_rows: list[dict] = []
+    subbox_count = 0
+    failures: list[dict] = []
+    min_signed_gap = math.inf
+
+    for kind, intervals in inactive_intervals.items():
+        for inactive_interval in intervals:
+            delta_lo, delta_hi = inactive_interval
+            delta_step = (delta_hi - delta_lo) / delta_slab_count
+            subbox_rows: list[dict] = []
+            subbox_signs: set[int] = set()
+            whole_box_interval = fixed.root_function_interval(
+                kind,
+                fixed.Interval(theta_lo, theta_hi),
+                fixed.Interval(delta_lo, delta_hi),
+            )
+            for theta_index in range(theta_slab_count):
+                slab_theta_lo = theta_lo + theta_index * theta_step
+                slab_theta_hi = (
+                    theta_hi
+                    if theta_index == theta_slab_count - 1
+                    else theta_lo + (theta_index + 1) * theta_step
+                )
+                theta_box = fixed.Interval(slab_theta_lo, slab_theta_hi)
+                for delta_index in range(delta_slab_count):
+                    slab_delta_lo = delta_lo + delta_index * delta_step
+                    slab_delta_hi = (
+                        delta_hi
+                        if delta_index == delta_slab_count - 1
+                        else delta_lo + (delta_index + 1) * delta_step
+                    )
+                    delta_box = fixed.Interval(slab_delta_lo, slab_delta_hi)
+                    value_interval = fixed.root_function_interval(
+                        kind,
+                        theta_box,
+                        delta_box,
+                    )
+                    sign = fixed.strict_interval_sign(value_interval)
+                    subbox_signs.add(sign)
+                    signed_gap = (
+                        value_interval.lo
+                        if sign > 0
+                        else (-value_interval.hi if sign < 0 else 0.0)
+                    )
+                    if sign == 0:
+                        failures.append(
+                            {
+                                "kind": kind,
+                                "inactive_interval": inactive_interval,
+                                "theta_slab_index": theta_index,
+                                "delta_slab_index": delta_index,
+                                "root_function_interval": interval_row(
+                                    value_interval
+                                ),
+                                "failure": "subbox_root_function_interval_touches_zero",
+                            }
+                        )
+                    else:
+                        min_signed_gap = min(min_signed_gap, signed_gap)
+                    subbox_count += 1
+                    subbox_rows.append(
+                        {
+                            "theta_slab_index": theta_index,
+                            "delta_slab_index": delta_index,
+                            "theta_interval": interval_row(theta_box),
+                            "delta_interval": interval_row(delta_box),
+                            "root_function_interval": interval_row(
+                                value_interval
+                            ),
+                            "strict_interval_sign": sign,
+                            "signed_gap": signed_gap,
+                        }
+                    )
+            nonzero_signs = sorted(sign for sign in subbox_signs if sign != 0)
+            uniform_sign = (
+                nonzero_signs[0]
+                if len(set(nonzero_signs)) == 1 and 0 not in subbox_signs
+                else 0
+            )
+            bridge_rows.append(
+                {
+                    "kind": kind,
+                    "inactive_interval": inactive_interval,
+                    "theta_interval": theta_interval,
+                    "theta_slab_count": theta_slab_count,
+                    "delta_slab_count": delta_slab_count,
+                    "whole_box_root_function_interval": interval_row(
+                        whole_box_interval
+                    ),
+                    "whole_box_strict_interval_sign": (
+                        fixed.strict_interval_sign(whole_box_interval)
+                    ),
+                    "subbox_uniform_strict_sign": uniform_sign,
+                    "subbox_rows": subbox_rows,
+                    "subbox_count": len(subbox_rows),
+                    "strictly_signed_subboxes": all(
+                        row["strict_interval_sign"] != 0
+                        for row in subbox_rows
+                    ),
+                }
+            )
+
+    all_subboxes_strictly_signed = not failures and all(
+        row["strictly_signed_subboxes"] and row["subbox_uniform_strict_sign"] != 0
+        for row in bridge_rows
+    )
+    payload = {
+        "schema": (
+            "architrino.priority.master_equation_closure."
+            "a1_inactive_cover_interval_box_certificate_bridge.v0"
+        ),
+        "artifact_id": "a1_inactive_cover_interval_box_certificate_bridge.v0",
+        "box_id": "inactive_cover_interval_boxes",
+        "source_artifact_hash": source_digest,
+        "method": (
+            "fixed_a1_sidecar_root_function_interval_subdivision_bridge"
+        ),
+        "claim_level": (
+            "local fixed-A1 sidecar inactive-cover interval bridge; not a "
+            "shared finite-collar same-box certificate"
+        ),
+        "source_evidence": {
+            "path": (
+                "reference/priorities/master-equation-closure/"
+                "spiral-a1-root-window-certificate.md"
+            ),
+            "row": "inactive_gaps",
+            "reading": (
+                "imports fixed-history A1 inactive complement sign rows and "
+                "confirms them by local interval subdivision over the selected "
+                "theta interval"
+            ),
+        },
+        "radius_b": radius_b,
+        "theta_interval": theta_interval,
+        "theta_slab_count": theta_slab_count,
+        "delta_slab_count_per_inactive_interval": delta_slab_count,
+        "inactive_cover_intervals_by_kind": inactive_intervals,
+        "inactive_cover_interval_rows": bridge_rows,
+        "inactive_cover_interval_row_count": len(bridge_rows),
+        "subbox_count": subbox_count,
+        "min_signed_gap": min_signed_gap if math.isfinite(min_signed_gap) else None,
+        "all_subboxes_strictly_signed": all_subboxes_strictly_signed,
+        "bounds_fixed_a1_sidecar_inactive_cover_interval_boxes": (
+            all_subboxes_strictly_signed
+        ),
+        "bounds_selected_finite_collar_inactive_cover_interval_boxes": False,
+        "same_box_inactive_cover_binding_present": False,
+        "failures": failures,
+        "negative_control": {
+            "fixed_sidecar_inactive_cover_does_not_satisfy_finite_collar_same_box_binding": True,
+            "local_interval_subdivision_does_not_satisfy_shared_backend_identity": True,
+            "missing_retained_root_interval_boxes_still_fails_shared_family": True,
+            "missing_runtime_identity_still_fails_shared_family": True,
+        },
+        "used_as_certificate": False,
+        "used_as_local_certificate": all_subboxes_strictly_signed,
+        "used_as_shared_certificate": False,
+        "authorizes_outward_certificate": False,
+        "authorizes_obstruction_or_channel_decision": False,
+    }
+    return {
+        **payload,
+        "certificate_digest": canonical_json_digest(payload),
+        "status": (
+            "local_fixed_a1_sidecar_inactive_cover_interval_bridge_present_"
+            "not_shared_finite_collar_certificate"
+            if all_subboxes_strictly_signed
+            else "local_fixed_a1_sidecar_inactive_cover_interval_bridge_failed_closed"
         ),
     }
 
@@ -10089,6 +11315,13 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
     theta_samples = theta_grid(
         0.0, attempt_args.theta_hi, attempt_args.theta_samples
     )
+    inactive_cover_interval_box_certificate_bridge = (
+        a1_inactive_cover_interval_box_certificate_bridge(
+            source_identity["digest"],
+            radius_b=args.admissible_profile_radius_b,
+            theta_interval=[0.0, attempt_args.theta_hi],
+        )
+    )
     branch_sum_feedback_bound_attempt = a1_branch_sum_feedback_bound_attempt(
         source_identity["digest"],
         radius_b=args.admissible_profile_radius_b,
@@ -10101,6 +11334,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         ),
         directed_rounding_backend_target=directed_rounding_backend_target,
         directed_rounding_backend_self_audit=directed_rounding_backend_self_audit,
+        inactive_cover_interval_box_certificate_bridge=(
+            inactive_cover_interval_box_certificate_bridge
+        ),
         constraint_rows=constraint_rows,
         future_continuous_transport_bounds_attempt=(
             future_continuous_transport_bounds_attempt
@@ -10147,6 +11383,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
         inactive_cover_exclusion_replay=inactive_cover_exclusion_replay,
         retained_root_inactive_cover_interval_box_target=(
             retained_root_inactive_cover_interval_box_target
+        ),
+        inactive_cover_interval_box_certificate_bridge=(
+            inactive_cover_interval_box_certificate_bridge
         ),
     )
     certificate_composition_readiness = a1_certificate_composition_readiness(
@@ -10262,6 +11501,9 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             future_continuous_transport_bounds_attempt
         ),
         "branch_sum_feedback_bound_attempt": branch_sum_feedback_bound_attempt,
+        "inactive_cover_interval_box_certificate_bridge": (
+            inactive_cover_interval_box_certificate_bridge
+        ),
         "past_profile": {
             "kind": past_profile.kind,
             "degree": len(past_profile.coefficients),
@@ -10449,7 +11691,7 @@ def a1_admissible_profile_bounds_attempt(args: argparse.Namespace) -> dict:
             "future_continuous_transport_bounds_attempt_not_shared_certificate",
             "branch_sum_feedback_bound_attempt_not_certificate",
             "branch_sum_feedback_bound_missing",
-            "inactive_cover_interval_boxes_absent",
+            "same_box_inactive_cover_binding_absent",
             "source_identity_digest_not_shared_interval_box_certificate",
             "directed_rounding_runtime_identity_absent",
             "directed_rounding_backend_self_audit_not_shared_certificate",

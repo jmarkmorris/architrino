@@ -426,7 +426,7 @@ Bernstein subdivision control points, shared past/future/root/inactive-cover
 interval-box family, and rounding-mode audit trail for the next
 certificate-grade pass. Its current runtime probe now nests
 `a1_directed_rounding_runtime_backend_availability_audit.v0` with digest
-`sha256:bdc26567645a833e546e8f74019e3b222c5395e8114a3113c441636e310c77dc`
+`sha256:09b744e5acee6172144e093761aa49ea42f69afb2c50f85555e5c662a7c21873`
 and status `directed_rounding_runtime_backend_unavailable_fail_closed`.
 That availability audit records `float64_nextafter_probe_present=true`, but
 `hardware_rounding_mode_control_available=false`,
@@ -441,16 +441,20 @@ and shared interval-box-family digest. The nested runtime-identity row now
 carries executable absence probe
 `a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0` with
 digest
-`sha256:4f3e76a84211159347b32c1e23585f68a8f8a41cbe58ce17eefeb717af541776`
+`sha256:12853a3f9a69957dbfa09b8f2837be09e9b61314feb3c88e9e44df93d77d7406`
 and status
 `directed_rounding_runtime_identity_absence_probe_backend_identity_missing_fail_closed`.
 That probe checks candidate backend modules and the current
-`spiral_branch_chart_certificate` helpers; it finds local interval helpers and
-float64 `nextafter`, but no backend runtime id provider, build/version digest
-provider, rounding-mode transition-log provider,
+`spiral_branch_chart_certificate` helpers. It now rejects symbol-only backend
+modules unless they expose
+`A1_DIRECTED_ROUNDING_RUNTIME_IDENTITY_PROVIDER` with non-null identity fields,
+required rounding-mode transition modes, operation rows bound to the backend
+runtime id, and a shared interval-box family bound to the same backend runtime.
+It finds local interval helpers and float64 `nextafter`, but no backend runtime
+id provider, build/version digest provider, rounding-mode transition-log provider,
 `source_q_derivative_composition` operation-trace provider, or shared
 interval-box-family digest provider. The runtime-identity row has digest
-`sha256:bd0d384370bdee28bdb676795f365ee31158827b99bad724908f4ea4c93f11d1`
+`sha256:1da9412a496d1cdac218185473f5540aca764ae0e59c337709a48ae983b24dc4`
 and status
 `runtime_identity_absence_probe_executed_backend_identity_missing_fail_closed`;
 all five required identity fields remain explicitly absent and the row has
@@ -502,13 +506,13 @@ memory integrals remain point-sample evidence, so the object has
 control, not an interval certificate.
 A narrower one-slot construction attempt is now nested beside that matrix:
 `a1_summand_partial_interval_box_one_slot_construction_attempt.v0` with digest
-`sha256:463eccb6373c193ec801ee3e79cd88038494dde586f02f4527f482f287846bd3`.
+`sha256:d0e8490e23bba2c4b2df22169ba0bd7ac665b9ee77afe7b74dfc671ccf7ec120`.
 It targets only `P_1` / `tangential_summand_partials` /
 `partial_T_alpha_partial_delta_alpha` and fixes the intended formula row as
 `partial_delta_alpha T_alpha(theta, delta_alpha, q_source_alpha)` with
 `theta` and `q_source_alpha` held fixed. The nested
 `a1_one_slot_formula_dependency_audit.v0` now has audit digest
-`sha256:f970c06929a507177c422c7531ef6be665aaba207842bab6486eea6d587bb727`.
+`sha256:319a27596db0d3bdadc019e7b84c91380a371a1456b543af57fe4be18bf4cdc4`.
 It now nests
 `a1_p1_retained_root_delta_alpha_interval_box_attempt.v0` with digest
 `sha256:461557ae07eb1669a0e91740e591b413eff4e5a1d85158a0192e5f0fc157bacb`.
@@ -540,10 +544,54 @@ Consuming the local retained-root delta box and the local q-source box narrows
 the selected-partial formula probe to `partial_T_alpha_partial_delta_alpha` in
 `[0.578120456576599,1.0825200208208012]` and records
 `partial_delta_J_partner_with_source_q_interval_formula` as locally evaluated.
+The selected-slot attempt now emits the named priority-only row
+`a1_p1_tangential_summand_partial_interval_row.v0` with row digest
+`sha256:c6c106272dae72e9a8102823c59bc82006f5799b4d2b72a49289032f7939cf0d`
+and status
+`priority_local_P_1_tangential_summand_partial_interval_row_present_shared_audit_missing`.
+That row packages the same $\theta$, local `P_1` retained-root
+`delta_alpha`, local `P_1` q-source, `J_partner`, and source-theta interval
+inputs with the formula interval
+`partial_T_alpha_partial_delta_alpha=[0.578120456576599,1.0825200208208012]`.
+It records `emits_priority_local_interval_row=true` and
+`used_as_local_certificate=true`, but still has
+`emits_selected_slot_interval_box=false`,
+`satisfies_summand_partial_interval_boxes=false`,
+`emits_E_Q_plus_b=false`, `emits_K_Q=false`, and
+`authorizes_outward_certificate=false`. Its first failure remains
+`shared_directed_rounding_audit_trail_for_source_q_derivative_composition`, with
+the first missing shared backend/source-box identity field
+`directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available`.
+The same selected-slot attempt now also records the strongest safe shared-audit
+candidate currently available:
+`a1_p1_source_q_derivative_composition_shared_audit_candidate.v0` with digest
+`sha256:1eb3f217c4d6ce0daf846b518fa7539a8700d990d44b9720e6e442bd34ab45f7`
+and status
+`local_P_1_source_q_derivative_composition_shared_audit_candidate_present_backend_runtime_identity_missing`.
+That candidate packages three fail-closed subrows and now exposes the
+`a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0`
+provider-absence artifact directly, including its provider-acceptance rule and
+digest `sha256:12853a3f9a69957dbfa09b8f2837be09e9b61314feb3c88e9e44df93d77d7406`.
+The operation-trace manifest
+candidate `a1_source_q_derivative_composition_operation_trace_manifest.v0` has
+digest `sha256:491669640b6a3c053e4375da6936c72f465185e4586022aa2ea9502e6578de5e`
+and records the local formula-operation sequence for
+`source_q_derivative_composition`; it is not a backend-owned per-operation
+rounding trace and it does not fill
+`source_q_derivative_composition_operation_trace_digest` in the runtime identity
+row. The local shared interval-box-family candidate has digest
+`sha256:a2bc226849698f7f1837ae3c83d649e682610df109c332d2118ac48f1714b5e5`
+and binds the current local `P_1` delta, q-source, control-point, and
+summand-partial row digests under the same source digest, radius, and
+$\theta$ interval; it does not satisfy the real `shared_interval_box_family_digest`
+field. The same-box inactive-cover absence row has digest
+`sha256:0801839c64c2923217dd43e23dfc0afcca4579c2f6f14ca1001ff9ff67ecd08e`
+and records `inactive_cover_interval_boxes_absent` with
+`same_box_inactive_cover_binding_present=false`.
 The dependency audit also nests
 `a1_shared_directed_rounding_audit_trail_for_source_q_derivative_composition.v0`
 with digest
-`sha256:3954eeb32ae9d3a2d65a105bfd9d4eb16769fca76794b6f79ab45032ca6bd2cc`.
+`sha256:caa4f2ad6d6f91e1f9ee0603d3b5c19f9d75ef3fdf6d75ac7933bfac58f447d4`.
 That object checks the selected $\theta$ interval, the local retained-root
 `P_1` delta box, the local `P_1` q-source box, the local formula rows, and the
 existing directed-rounding backend target/self-audit. It records
@@ -553,12 +601,12 @@ priority-only readout with `used_as_shared_certificate=false`. Its first
 missing shared backend/source-box identity field is
 `directed_rounding_backend_target.current_runtime_probe.directed_rounding_backend_available`;
 the selected-slot audit also carries the runtime availability audit digest
-`sha256:bdc26567645a833e546e8f74019e3b222c5395e8114a3113c441636e310c77dc`
+`sha256:09b744e5acee6172144e093761aa49ea42f69afb2c50f85555e5c662a7c21873`
 and names
 `a1_directed_rounding_interval_backend_runtime_identity.v0` as the next
 required runtime/backend evidence object. The nested runtime-identity row now
 records executable absence probe digest
-`sha256:4f3e76a84211159347b32c1e23585f68a8f8a41cbe58ce17eefeb717af541776`
+`sha256:12853a3f9a69957dbfa09b8f2837be09e9b61314feb3c88e9e44df93d77d7406`
 and still records `backend_runtime_id`, `backend_version_or_build_digest`,
 `rounding_mode_transition_log_digest`,
 `source_q_derivative_composition_operation_trace_digest`, and
@@ -571,24 +619,30 @@ the remaining missing shared fields are the directed rounding mode audit-trail
 probe, `P_1_retained_root_delta_alpha_interval_box_attempt.used_as_shared_certificate`,
 `P_1_q_source_alpha_interval_box_attempt.used_as_shared_certificate`, and
 `P_1_q_source_alpha_interval_box_attempt.past_profile_certificate_used_as_shared_certificate`.
-The attempt still does not emit a selected slot interval box: the first missing
-dependency row remains
+Even with the named row and the shared-audit candidate, the attempt still does
+not emit a selected-slot interval box: the first missing dependency row remains
 `shared_directed_rounding_audit_trail_for_source_q_derivative_composition`.
-The backend row and the new audit-trail row remain local nextafter readouts,
-not shared directed-rounding audit trails over shared retained-root,
-source-profile, and inactive-cover boxes. They record the central-float64
-`P_1` sampled partials only as rejected diagnostic reference values, so
+The backend row, audit-trail row, named summand-partial row, operation-trace
+manifest candidate, interval-box-family candidate, and inactive-cover absence
+row remain local fail-closed readouts, not shared directed-rounding audit trails
+over shared retained-root, source-profile, and inactive-cover boxes. They record
+the central-float64 `P_1` sampled partials only as rejected diagnostic reference
+values, so
 `satisfies_selected_slot=false`, `emits_E_Q_plus_b=false`, `emits_K_Q=false`,
 and `authorizes_outward_certificate=false`. The selected-slot first failure is
 `one_slot_shared_directed_rounding_audit_trail_for_source_q_derivative_composition_missing`.
 
-Coordinator note, 2026-06-28. The next priority-only artifact is
-`a1_p1_tangential_summand_partial_interval_row/v0`: a directed-rounding
-interval row for `partial_T_alpha_partial_delta_alpha` on the selected `P_1`
-tangential summand, with the same retained-root, source-profile,
-inactive-cover, backend identity, operation-trace, and shared interval-box
-family fields. It may only advance the first branch-sum constant row; it does
-not certify A1 obstruction, channel existence, or the outward certificate.
+Coordinator note. The next smallest closure target is a real directed-rounding
+runtime identity provider for the `source_q_derivative_composition` path. It
+must provide `backend_runtime_id`, `backend_version_or_build_digest`,
+`rounding_mode_transition_log_digest`,
+`source_q_derivative_composition_operation_trace_digest`, and
+`shared_interval_box_family_digest`, with the shared interval-box family bound
+to the existing local `P_1` retained-root, q-source, named summand-partial, and
+inactive-cover rows. Until those provider fields exist, the current manifest and
+box-family digests are candidate-only records. They may only advance the first
+branch-sum constant row; they do not certify A1 obstruction, channel existence,
+or the outward certificate.
 
 The top-level row identity now carries
 `inactive_cover_id=inactive_cover_interval_boxes`, so the live blocker is no

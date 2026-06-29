@@ -1,0 +1,439 @@
+#!/usr/bin/env node
+
+import fs from "node:fs";
+import path from "node:path";
+import { fileURLToPath } from "node:url";
+
+import {
+  buildTopologicalCausalRootLedgerArtifact,
+  validateTopologicalCausalRootLedgerArtifact,
+} from "./topological-causal-root-ledger-checker.mjs";
+import {
+  applyNoetherSeaCompatibilityControl,
+  buildDefaultNoetherSeaCompatibilityHandoffInput,
+  buildNoetherSeaCompatibilityHandoffDiagnostic,
+  validateNoetherSeaCompatibilityHandoffArtifact,
+} from "./noether-sea-compatibility-handoff-diagnostic.mjs";
+import {
+  EVENT_WAKE_HISTORY_PULLBACK_SCHEMA,
+  buildDefaultEventWakeHistoryPullbackInput,
+  buildEventWakeHistoryPullbackDiagnostic,
+} from "./event-wake-history-pullback-diagnostic.mjs";
+import {
+  ACTION_BOUNDARY_PULLBACK_SCHEMA,
+  buildActionBoundaryPullbackDiagnostic,
+  buildDefaultActionBoundaryPullbackInput,
+} from "./action-boundary-pullback-diagnostic.mjs";
+
+const SCRIPT_PATH = fileURLToPath(import.meta.url);
+
+export const CLOSED_LEDGER_PULLBACK_SCHEMA =
+  "aaa-proof/closed-ledger-pullback-diagnostic/v1";
+
+const PACKET_ID = "closed_ledger_pullback_diagnostic";
+const PROMOTION_STATUS = "priority-only diagnostic";
+const REQUIRED_ROW_IDS = [
+  "partial_R_act",
+  "partial_L_EpJ",
+  "partial_S_B_eta",
+  "partial_M_sea",
+  "C_AAA",
+];
+const ACTION_PULLBACK_SCHEMA = ACTION_BOUNDARY_PULLBACK_SCHEMA;
+const EVENT_PULLBACK_SCHEMA = EVENT_WAKE_HISTORY_PULLBACK_SCHEMA;
+
+function deepClone(value) {
+  return JSON.parse(JSON.stringify(value));
+}
+
+function row(rowId, boundarySymbol, zeroCondition, passed, failureCode, details = {}) {
+  return {
+    row_id: rowId,
+    boundary_symbol: boundarySymbol,
+    zero_condition: zeroCondition,
+    status: passed ? "pass" : "fail",
+    failure_code: passed ? null : failureCode,
+    ...details,
+  };
+}
+
+function statusPassed(artifact) {
+  return artifact?.result?.diagnostic_status === "diagnostic_passed_priority_only";
+}
+
+function sourceRecordIdFromNoether(noetherArtifact) {
+  return noetherArtifact?.input_summary?.source_record_id ?? null;
+}
+
+function artifactSummary(artifact) {
+  return {
+    schema: artifact?.schema ?? artifact?.artifact_schema ?? null,
+    packet_id: artifact?.packet_id ?? null,
+    diagnostic_status: artifact?.result?.diagnostic_status ?? artifact?.boundary_status ?? null,
+    failure_code: artifact?.result?.failure_code ?? artifact?.failure_code ?? null,
+  };
+}
+
+export function buildDefaultClosedLedgerPullbackInput(options = {}) {
+  const noetherInput = buildDefaultNoetherSeaCompatibilityHandoffInput();
+  const noetherControlledInput = options.noetherControl
+    ? applyNoetherSeaCompatibilityControl(noetherInput, options.noetherControl)
+    : noetherInput;
+  return {
+    topological: buildTopologicalCausalRootLedgerArtifact({
+      subdivisions: options.subdivisions ?? 300,
+      windingRadius: options.windingRadius ?? 1,
+    }),
+    noether: buildNoetherSeaCompatibilityHandoffDiagnostic(noetherControlledInput),
+    action_pullback:
+      options.actionPullback ??
+      buildActionBoundaryPullbackDiagnostic(buildDefaultActionBoundaryPullbackInput()),
+    event_pullback:
+      options.eventPullback ??
+      buildEventWakeHistoryPullbackDiagnostic(buildDefaultEventWakeHistoryPullbackInput()),
+  };
+}
+
+function evaluateTopological(topological) {
+  const validationErrors = validateTopologicalCausalRootLedgerArtifact(topological);
+  const passed = validationErrors.length === 0 && statusPassed(topological);
+  return row(
+    "partial_R_act",
+    "\\partial\\mathcal{R}^{\\mathrm{act}}",
+    "active causal-root rows are executable, winding-owned, and separated from caustic candidates",
+    passed,
+    topological?.result?.first_failure_status ?? "residual.provenance_gap",
+    {
+      artifact: artifactSummary(topological),
+      validation_errors: validationErrors,
+      blocker:
+        passed && topological?.result?.first_failure_status
+          ? topological.result.first_failure_status
+          : null,
+    }
+  );
+}
+
+function evaluateEventPullback(eventPullback, sourceRecordId) {
+  const present = eventPullback && typeof eventPullback === "object" && !Array.isArray(eventPullback);
+  const schemaOk =
+    eventPullback?.schema === EVENT_PULLBACK_SCHEMA ||
+    eventPullback?.artifact_schema === EVENT_PULLBACK_SCHEMA;
+  const sourceOk = eventPullback?.source_record_id === sourceRecordId;
+  const statusOk = eventPullback?.boundary_status === "closed";
+  const residualOk = eventPullback?.residual_norm === 0;
+  const passed = present && schemaOk && sourceOk && statusOk && residualOk;
+  return row(
+    "partial_L_EpJ",
+    "\\partial\\mathcal{L}_{E\\mathbf{p}\\mathbf{J}}",
+    "energy, momentum, and angular-momentum wake-history boundary is closed on the same retained source record",
+    passed,
+    present ? "event.ledger_residual" : "residual.provenance_gap",
+    {
+      artifact: artifactSummary(eventPullback),
+      required_source_record_id: sourceRecordId,
+      checks: [
+        { field: "artifact_present", ok: present },
+        { field: "artifact_schema", ok: schemaOk },
+        { field: "source_record_id", ok: sourceOk },
+        { field: "boundary_status", ok: statusOk },
+        { field: "residual_norm", ok: residualOk },
+      ],
+    }
+  );
+}
+
+function evaluateActionPullback(actionPullback, sourceRecordId) {
+  const present = actionPullback && typeof actionPullback === "object" && !Array.isArray(actionPullback);
+  const schemaOk =
+    actionPullback?.schema === ACTION_PULLBACK_SCHEMA ||
+    actionPullback?.artifact_schema === ACTION_PULLBACK_SCHEMA;
+  const sourceOk = actionPullback?.source_record_id === sourceRecordId;
+  const statusOk = actionPullback?.boundary_status === "closed";
+  const residualOk = actionPullback?.residual_norm === 0;
+  const passed = present && schemaOk && sourceOk && statusOk && residualOk;
+  return row(
+    "partial_S_B_eta",
+    "\\partial S_{\\mathfrak B}^{(\\eta)}",
+    "variational endpoint and multiplier residual boundary is closed on the same retained branch chart",
+    passed,
+    "residual.provenance_gap",
+    {
+      artifact: artifactSummary(actionPullback),
+      required_source_record_id: sourceRecordId,
+      checks: [
+        { field: "artifact_present", ok: present },
+        { field: "artifact_schema", ok: schemaOk },
+        { field: "source_record_id", ok: sourceOk },
+        { field: "boundary_status", ok: statusOk },
+        { field: "residual_norm", ok: residualOk },
+      ],
+    }
+  );
+}
+
+function evaluateNoether(noether) {
+  const validationErrors = validateNoetherSeaCompatibilityHandoffArtifact(noether);
+  const passed = validationErrors.length === 0 && statusPassed(noether);
+  return row(
+    "partial_M_sea",
+    "\\partial\\mathcal{M}_{\\mathrm{sea}}",
+    "Noether sea response handoff is compatible with the same retained causal-root source record",
+    passed,
+    noether?.result?.failure_code ?? "residual.medium_response_missing",
+    {
+      artifact: artifactSummary(noether),
+      validation_errors: validationErrors,
+    }
+  );
+}
+
+function evaluateCrossSector(rows) {
+  const failedRows = rows.filter((entry) => entry.status === "fail");
+  return row(
+    "C_AAA",
+    "\\mathcal{C}_{\\mathbb{A}\\mathbb{A}\\mathbb{A}}",
+    "all closed-ledger boundary terms vanish on the same retained history record",
+    failedRows.length === 0,
+    "residual.provenance_gap",
+    {
+      blocked_by: failedRows.map((entry) => ({
+        row_id: entry.row_id,
+        failure_code: entry.failure_code,
+      })),
+    }
+  );
+}
+
+export function buildClosedLedgerPullbackDiagnostic(input = buildDefaultClosedLedgerPullbackInput()) {
+  const topological = deepClone(input.topological);
+  const noether = deepClone(input.noether);
+  const sourceRecordId = sourceRecordIdFromNoether(noether);
+  const boundaryRows = [
+    evaluateTopological(topological),
+    evaluateEventPullback(input.event_pullback ?? null, sourceRecordId),
+    evaluateActionPullback(input.action_pullback ?? null, sourceRecordId),
+    evaluateNoether(noether),
+  ];
+  boundaryRows.push(evaluateCrossSector(boundaryRows));
+  const failedRows = boundaryRows.filter((entry) => entry.status === "fail");
+
+  return {
+    schema: CLOSED_LEDGER_PULLBACK_SCHEMA,
+    packet_id: PACKET_ID,
+    promotion_status: PROMOTION_STATUS,
+    claim_level:
+      "diagnostic-only priority artifact; does not prove the closed-ledger conjecture, retain a branch, or update a validation gate",
+    input_summary: {
+      topological: artifactSummary(topological),
+      noether: artifactSummary(noether),
+      action_pullback: artifactSummary(input.action_pullback),
+      event_pullback: artifactSummary(input.event_pullback),
+      source_record_id: sourceRecordId,
+    },
+    boundary_equation:
+      "\\partial\\mathcal{R}^{\\mathrm{act}}+\\partial\\mathcal{L}_{E\\mathbf{p}\\mathbf{J}}+\\partial S_{\\mathfrak B}^{(\\eta)}+\\partial\\mathcal{M}_{\\mathrm{sea}}=0",
+    boundary_rows: boundaryRows,
+    result: {
+      diagnostic_status: failedRows.length === 0 ? "diagnostic_passed_priority_only" : "diagnostic_failed",
+      retained_branch: false,
+      updates_live_validation_gate: false,
+      failure_code: failedRows[0]?.failure_code ?? null,
+      first_failed_row: failedRows[0]?.row_id ?? null,
+      first_failure_status:
+        failedRows[0]?.failure_code ??
+        "closed_ledger_pullback_compatible_priority_only; branch_still_not_retained",
+      strongest_artifact:
+        "closed-ledger pullback compositor for causal-root, wake-history, action, and Noether sea boundary rows",
+    },
+  };
+}
+
+function assertField(condition, message, errors) {
+  if (!condition) {
+    errors.push(message);
+  }
+}
+
+export function validateClosedLedgerPullbackArtifact(artifact) {
+  const errors = [];
+  assertField(artifact && typeof artifact === "object" && !Array.isArray(artifact), "artifact must be an object", errors);
+  if (errors.length > 0) {
+    return errors;
+  }
+
+  assertField(artifact.schema === CLOSED_LEDGER_PULLBACK_SCHEMA, `schema must be ${CLOSED_LEDGER_PULLBACK_SCHEMA}`, errors);
+  assertField(artifact.packet_id === PACKET_ID, `packet_id must be ${PACKET_ID}`, errors);
+  assertField(artifact.promotion_status === PROMOTION_STATUS, `promotion_status must be ${PROMOTION_STATUS}`, errors);
+  assertField(artifact.result?.retained_branch === false, "artifact must declare retained_branch=false", errors);
+  assertField(artifact.result?.updates_live_validation_gate === false, "artifact must not update a live validation gate", errors);
+
+  const rows = artifact.boundary_rows;
+  assertField(Array.isArray(rows), "boundary_rows must be an array", errors);
+  if (Array.isArray(rows)) {
+    const rowIds = rows.map((entry) => entry.row_id);
+    for (const rowId of REQUIRED_ROW_IDS) {
+      assertField(rowIds.includes(rowId), `boundary_rows must include ${rowId}`, errors);
+    }
+    for (const entry of rows) {
+      assertField(entry.status === "pass" || entry.status === "fail", `${entry.row_id} must have pass/fail status`, errors);
+      assertField(
+        entry.status === "pass" ? entry.failure_code === null : typeof entry.failure_code === "string",
+        `${entry.row_id} must carry failure_code only when failed`,
+        errors
+      );
+    }
+    const failedRows = rows.filter((entry) => entry.status === "fail");
+    assertField(
+      artifact.result?.diagnostic_status ===
+        (failedRows.length === 0 ? "diagnostic_passed_priority_only" : "diagnostic_failed"),
+      "result.diagnostic_status must match boundary row failures",
+      errors
+    );
+    assertField(
+      artifact.result?.failure_code === (failedRows[0]?.failure_code ?? null),
+      "result.failure_code must match first failed row",
+      errors
+    );
+  }
+
+  return errors;
+}
+
+function readJsonIfPath(filePath) {
+  return filePath ? JSON.parse(fs.readFileSync(filePath, "utf8")) : null;
+}
+
+function usage() {
+  return [
+    "Usage: node scripts/proof-programs/closed-ledger-pullback-diagnostic.mjs [options]",
+    "",
+    "Options:",
+    "  --topological <path>       Read topological causal-root diagnostic JSON",
+    "  --noether <path>           Read Noether sea compatibility diagnostic JSON",
+    "  --action-pullback <path>   Read action boundary pullback JSON",
+    "  --event-pullback <path>    Read wake-history event pullback JSON",
+    "  --noether-control <name>   Build default Noether diagnostic with a negative control",
+    "  --out <path>               Write artifact JSON to path instead of stdout",
+    "  --validate <path>          Validate an existing diagnostic artifact JSON file",
+    "  --schema                   Print the artifact schema identifier",
+    "  --pretty                   Pretty-print JSON output",
+    "  --help                     Print this help text",
+  ].join("\n");
+}
+
+function parseArgs(argv) {
+  const args = {
+    topological: null,
+    noether: null,
+    actionPullback: null,
+    eventPullback: null,
+    noetherControl: null,
+    out: null,
+    validate: null,
+    schema: false,
+    pretty: false,
+    help: false,
+  };
+
+  for (let index = 0; index < argv.length; index += 1) {
+    const arg = argv[index];
+    if (arg === "--topological") {
+      args.topological = argv[++index];
+    } else if (arg === "--noether") {
+      args.noether = argv[++index];
+    } else if (arg === "--action-pullback") {
+      args.actionPullback = argv[++index];
+    } else if (arg === "--event-pullback") {
+      args.eventPullback = argv[++index];
+    } else if (arg === "--noether-control") {
+      args.noetherControl = argv[++index];
+    } else if (arg === "--out") {
+      args.out = argv[++index];
+    } else if (arg === "--validate") {
+      args.validate = argv[++index];
+    } else if (arg === "--schema") {
+      args.schema = true;
+    } else if (arg === "--pretty") {
+      args.pretty = true;
+    } else if (arg === "--help" || arg === "-h") {
+      args.help = true;
+    } else {
+      throw new Error(`unknown argument: ${arg}`);
+    }
+  }
+
+  return args;
+}
+
+function printJson(value, pretty) {
+  return `${JSON.stringify(value, null, pretty ? 2 : 0)}\n`;
+}
+
+function main() {
+  const args = parseArgs(process.argv.slice(2));
+  if (args.help) {
+    process.stdout.write(`${usage()}\n`);
+    return;
+  }
+  if (args.schema) {
+    process.stdout.write(
+      printJson(
+        {
+          schema: "aaa-proof/closed-ledger-pullback-diagnostic-schema/v1",
+          artifact_schema: CLOSED_LEDGER_PULLBACK_SCHEMA,
+          action_pullback_schema: ACTION_PULLBACK_SCHEMA,
+          event_pullback_schema: EVENT_PULLBACK_SCHEMA,
+          promotion_status: PROMOTION_STATUS,
+          packet_id: PACKET_ID,
+        },
+        args.pretty
+      )
+    );
+    return;
+  }
+  if (args.validate) {
+    const artifact = JSON.parse(fs.readFileSync(args.validate, "utf8"));
+    const errors = validateClosedLedgerPullbackArtifact(artifact);
+    process.stdout.write(
+      printJson(
+        {
+          valid: errors.length === 0,
+          errors,
+          schema: artifact.schema,
+          result: artifact.result ?? null,
+        },
+        args.pretty
+      )
+    );
+    process.exitCode = errors.length === 0 ? 0 : 1;
+    return;
+  }
+
+  const defaults = buildDefaultClosedLedgerPullbackInput({
+    noetherControl: args.noetherControl,
+  });
+  const input = {
+    topological: readJsonIfPath(args.topological) ?? defaults.topological,
+    noether: readJsonIfPath(args.noether) ?? defaults.noether,
+    action_pullback: readJsonIfPath(args.actionPullback) ?? defaults.action_pullback,
+    event_pullback: readJsonIfPath(args.eventPullback) ?? defaults.event_pullback,
+  };
+  const artifact = buildClosedLedgerPullbackDiagnostic(input);
+  const output = printJson(artifact, args.pretty);
+  if (args.out) {
+    fs.mkdirSync(path.dirname(args.out), { recursive: true });
+    fs.writeFileSync(args.out, output);
+  } else {
+    process.stdout.write(output);
+  }
+}
+
+if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
+  try {
+    main();
+  } catch (error) {
+    process.stderr.write(`${error.message}\n`);
+    process.exitCode = 1;
+  }
+}

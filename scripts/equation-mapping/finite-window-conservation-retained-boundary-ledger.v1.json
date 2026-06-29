@@ -1,0 +1,15 @@
+{
+  "schema": "aaa-equation-map-finite-window-conservation-boundary-ledger/v1",
+  "claimLevel": "durable-looking boundary ledger for finite-window conservation negative-control branch tests; not retained evidence by itself",
+  "rows": [
+    "branch_chart",
+    "active_root_ledger",
+    "force_row",
+    "action_or_work_route",
+    "wake_charge_route",
+    "event_ledger",
+    "boundary_flux",
+    "same_root_checksum",
+    "no_double_count_witness"
+  ]
+}

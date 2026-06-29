@@ -742,6 +742,29 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     runtimeIdentityAbsenceProbe.probe_method,
     "python_import_spec_and_capability_symbol_probe"
   );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.provider_acceptance_rule
+      .provider_evidence_object_symbol,
+    "A1_DIRECTED_ROUNDING_RUNTIME_IDENTITY_PROVIDER"
+  );
+  assert.deepEqual(
+    runtimeIdentityAbsenceProbe.provider_acceptance_rule
+      .requires_identity_fields_non_null,
+    requiredRuntimeIdentityFields
+  );
+  assert.deepEqual(
+    runtimeIdentityAbsenceProbe.provider_acceptance_rule
+      .requires_rounding_mode_transition_log_modes,
+    [
+      "round_toward_negative_infinity",
+      "round_toward_positive_infinity",
+    ]
+  );
+  assert.equal(
+    runtimeIdentityAbsenceProbe.provider_acceptance_rule
+      .rejects_symbol_presence_without_provider_evidence_object,
+    true
+  );
   assert.equal(runtimeIdentityAbsenceProbe.runtime_identity_present, false);
   assert.equal(
     runtimeIdentityAbsenceProbe.capability_status
@@ -789,6 +812,21 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   );
   assert.equal(
     spiralHelperProbe.required_symbol_status.backend_runtime_id,
+    false
+  );
+  assert.equal(spiralHelperProbe.provider_evidence_object_present, false);
+  assert.equal(
+    spiralHelperProbe.provider_evidence_accepts_runtime_identity,
+    false
+  );
+  assert.equal(
+    spiralHelperProbe.provider_acceptance_checks
+      .provider_evidence_object_present,
+    false
+  );
+  assert.equal(
+    spiralHelperProbe.provider_acceptance_checks
+      .operations_bound_to_backend_runtime_id,
     false
   );
   assert.equal(
@@ -855,6 +893,10 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     runtimeIdentityTarget.first_missing_identity_field,
     "backend_runtime_id"
   );
+  assert.deepEqual(
+    runtimeIdentityTarget.provider_acceptance_rule,
+    runtimeIdentityAbsenceProbe.provider_acceptance_rule
+  );
   assert.equal(
     runtimeIdentityTarget.required_operation_trace.composition_id,
     "source_q_derivative_composition"
@@ -890,6 +932,11 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
   assert.equal(
     runtimeIdentityTarget.negative_control
       .missing_shared_interval_box_family_digest_fails_closed,
+    true
+  );
+  assert.equal(
+    runtimeIdentityTarget.negative_control
+      .symbol_presence_without_provider_evidence_object_fails_closed,
     true
   );
   assert.equal(
@@ -2005,6 +2052,59 @@ test("A1 admissible profile bounds attempt remains fail-closed and priority-only
     oneSlotConstructionAttempt.construction_status
       .first_missing_runtime_identity_field,
     "backend_runtime_id"
+  );
+  const sharedAuditCandidate =
+    oneSlotConstructionAttempt
+      .a1_p1_source_q_derivative_composition_shared_audit_candidate;
+  assert.equal(
+    sharedAuditCandidate.schema,
+    "architrino.priority.master_equation_closure.a1_p1_source_q_derivative_composition_shared_audit_candidate.v0"
+  );
+  assert.equal(
+    sharedAuditCandidate.status,
+    "local_P_1_source_q_derivative_composition_shared_audit_candidate_present_backend_runtime_identity_missing"
+  );
+  assert.equal(sharedAuditCandidate.candidate_present, true);
+  assert.equal(sharedAuditCandidate.shared_audit_trail_present, false);
+  assert.equal(
+    sharedAuditCandidate.runtime_identity_requirement.target_digest,
+    runtimeIdentityTarget.target_digest
+  );
+  assert.deepEqual(
+    sharedAuditCandidate.runtime_identity_requirement.missing_identity_fields,
+    requiredRuntimeIdentityFields
+  );
+  const providerAbsenceArtifact =
+    sharedAuditCandidate.runtime_identity_requirement
+      .runtime_identity_provider_absence_artifact;
+  assert.equal(
+    providerAbsenceArtifact.artifact_id,
+    "a1_directed_rounding_interval_backend_runtime_identity_absence_probe.v0"
+  );
+  assert.equal(
+    providerAbsenceArtifact.digest,
+    runtimeIdentityAbsenceProbe.absence_probe_digest
+  );
+  assert.equal(providerAbsenceArtifact.status, runtimeIdentityAbsenceProbeStatus);
+  assert.deepEqual(
+    providerAbsenceArtifact.provider_acceptance_rule,
+    runtimeIdentityTarget.provider_acceptance_rule
+  );
+  assert.equal(
+    providerAbsenceArtifact.provider_acceptance_rule
+      .rejects_symbol_presence_without_provider_evidence_object,
+    true
+  );
+  assert.deepEqual(
+    providerAbsenceArtifact.identity_field_status,
+    runtimeIdentityTarget.identity_field_status
+  );
+  assert.equal(providerAbsenceArtifact.used_as_certificate, false);
+  assert.equal(providerAbsenceArtifact.used_as_shared_certificate, false);
+  assert.equal(
+    sharedAuditCandidate.negative_control
+      .candidate_operation_trace_does_not_satisfy_runtime_identity,
+    true
   );
   assert.equal(
     oneSlotConstructionAttempt.first_failure,

@@ -1,0 +1,223 @@
+{
+  "schema": "aaa-equation-map-photon-packet-transfer-input/v1",
+  "claimLevel": "EQ-12 photon packet transfer priority-source negative control; accepted-looking rows are score-neutral and not retained evidence",
+  "residualId": "R_EQ12_photon_packet_transfer_photon_packet_transfer_priority_source_negative_control_0001",
+  "commonCarrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "energyFrequency": 1e-12,
+    "nullEikonal": 1e-12,
+    "helicity": 1e-12,
+    "eventBalance": 1e-12,
+    "pathFrequency": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12,
+    "negativeControl": 1e-12
+  },
+  "weights": {
+    "energyFrequency": 1,
+    "nullEikonal": 1,
+    "helicity": 1,
+    "eventBalance": 1,
+    "pathFrequency": 1
+  },
+  "packet": {
+    "id": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+    "commonCarrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+    "sourceIdentity": {
+      "packetId": "P_gamma_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "windowId": "W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "sourceEndpointId": "E_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "receiverEndpointId": "R_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "eventLedgerId": "L_EpJ_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "noetherSeaPathId": "N_sea_path_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+      "retuneWitnessId": "S_retune_gamma_0_photon_packet_transfer_priority_source_negative_control_0001"
+    },
+    "rows": {
+      "theta_gamma_packet": {
+        "id": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "theta-gamma-packet-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "photon_branch_packet": {
+        "id": "P_gamma_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "photon-branch-packet-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "gate_a_kinematics_row": {
+        "id": "gate_a_kinematics_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "gate-a-kinematics-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "gate_b_transverse_row": {
+        "id": "gate_b_transverse_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "gate-b-transverse-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "gate_c_event_routing_row": {
+        "id": "gate_c_event_routing_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "gate-c-event-routing-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "emission_source_row": {
+        "id": "emission_source_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "emission-source-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "path_history_transfer_row": {
+        "id": "path_history_transfer_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "path-history-transfer-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "receiver_coupling_row": {
+        "id": "receiver_coupling_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "receiver-coupling-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "energy_frequency_row": {
+        "id": "energy_frequency_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "energy-frequency-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "null_eikonal_row": {
+        "id": "null_eikonal_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "null-eikonal-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "helicity_ledger_row": {
+        "id": "helicity_ledger_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "helicity-ledger-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "event_balance_row": {
+        "id": "event_balance_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "event-balance-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "source_depletion_row": {
+        "id": "source_depletion_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "source-depletion-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "recoil_wake_remnant_row": {
+        "id": "recoil_wake_remnant_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "recoil-wake-remnant-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "noether_sea_path_row": {
+        "id": "noether_sea_path_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "noether-sea-path-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "source_provenance": {
+        "id": "source_provenance_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "source-provenance-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      },
+      "no_hidden_retune_witness": {
+        "id": "no_hidden_retune_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "rowId": "no-hidden-retune-W-gamma-0-source-candidate-row",
+        "status": "accepted",
+        "carrierId": "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12-theta-gamma-packet-source-shell.md"
+      }
+    },
+    "photonPacket": {
+      "energyFrequency": {
+        "energy": 6.62607015e-19,
+        "planckConstant": 6.62607015e-34,
+        "frequency": 1000000000000000,
+        "epsilonEnergy": 1e-30
+      },
+      "nullEikonal": {
+        "maxResidual": 0
+      },
+      "helicity": {
+        "maxResidual": 0
+      },
+      "eventBalance": {
+        "components": [
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0,
+          0
+        ]
+      },
+      "pathFrequency": {
+        "emittedFrequency": 1000000000000000,
+        "receivedFrequency": 950000000000000,
+        "transferFactor": 0.95,
+        "residual": 0
+      },
+      "sourceProvenance": {
+        "maxResidual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "energy_frequency_detuned",
+        "kind": "energy_frequency_detuned",
+        "energyFrequency": {
+          "energy": 6.72607015e-19
+        }
+      },
+      {
+        "id": "longitudinal_leakage",
+        "kind": "longitudinal_leakage",
+        "longitudinalLeakage": 0.01
+      },
+      {
+        "id": "split_packet_carrier",
+        "kind": "split_packet_carrier",
+        "carrierIds": [
+          "theta_gamma_packet_W_gamma_0_photon_packet_transfer_priority_source_negative_control_0001",
+          "theta_gamma_path_photon_packet_transfer_priority_source_negative_control_split"
+        ]
+      },
+      {
+        "id": "hidden_retune",
+        "kind": "hidden_retune",
+        "retuneResidual": 0.01
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "schema": "aaa-equation-map-eq02-04-retained-geometry-provenance/v1",
+  "claimLevel": "retained-geometry provenance schema fixture with accepted identity fields and an intentionally empty provenance payload",
+  "status": "accepted",
+  "provenanceId": "eq02_04_retained_geometry_provenance_shell_0001",
+  "retainedRowSetId": "S_eq",
+  "commonCarrierId": "C_02_04_bin_u_external_provider_shell_0001",
+  "domainId": "D_02_04_bin_u_external_provider_shell_0001",
+  "supportId": "S_eq_retained_domain_external_provider_shell_0001",
+  "notes": [
+    "This file exists only to prove that a separate durable provenance path and accepted identity fields are not retained geometry provenance by themselves."
+  ]
+}

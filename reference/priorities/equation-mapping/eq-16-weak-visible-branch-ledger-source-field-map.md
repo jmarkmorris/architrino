@@ -31,8 +31,10 @@ No score changes.
 | Primary AAA carrier | `weak_visible_branch_ledger` on one fixed weak-visible retained domain. |
 | Smallest score-moving evidence object | One accepted weak-visible branch ledger with projection, quotient, exposure, `V-A`, CKM/PMNS readouts, provenance, covariance, reaction-event, Noether sea rows, and no-retune on the same domain. |
 | Exact first blocker | `missing_accepted_weak_visible_branch_ledger`. |
+| Existing scripts/fixtures/packets | [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs), [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json), [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json), [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json), [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json), and [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json). |
 | Candidate breakthrough angle | Use `EQ-16A` PMNS/common-clock as a consumer clue only; PMNS must read from the same weak-exposure domain, but the neutral-lepton branch cannot substitute for the weak-visible ledger. |
 | Fail-closed negative control | Durable-source numeric rows with `pmns_overlap_readout.domainId` on a different domain must fail before score review at hidden domain split. |
+| Smaller next action | Replace the ledger-only source-attempt and carrier-shell boundary with one durable non-priority `weak_visible_branch_ledger` row on `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then require the checker to advance only to `missing_accepted_weak_projection` with no score movement. |
 
 ## Accepted-Object Contract
 

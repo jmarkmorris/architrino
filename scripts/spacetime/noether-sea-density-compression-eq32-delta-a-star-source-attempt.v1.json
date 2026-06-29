@@ -1,0 +1,151 @@
+{
+  "schema": "aaa-noether-sea-density-compression-surface-slice-input/v1",
+  "claimLevel": "EQ-32 delta_a_star projected-output source attempt; score-neutral and not accepted retained evidence",
+  "window": {
+    "windowId": "theta-sea-density-compression-eq32-delta-a-star-source-attempt-0001",
+    "ell": "ell_eq32_delta_a_star_source_attempt",
+    "sourceAttempt": {
+      "sourceAttemptId": "theta-sea-rho-ns-eq32-delta-a-star-source-attempt-0001",
+      "retainedInventoryId": "noether-sea-retained-inventory-eq32-delta-a-star-source-attempt-0001",
+      "smoothingKernelId": "W_ell_eq32_delta_a_star_source_attempt_0001",
+      "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+      "refinementFamilyId": "density-compression-refinement-family-eq32-delta-a-star-source-attempt-0001",
+      "eventLedgerId": "event-ledger-eq32-delta-a-star-source-attempt-0001",
+      "status": "attempt"
+    },
+    "thetaSeaRows": {
+      "rho_NS": {
+        "status": "attempt",
+        "rowId": "rho-NS-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001",
+        "retainedInventoryId": "noether-sea-retained-inventory-eq32-delta-a-star-source-attempt-0001",
+        "smoothingKernelId": "W_ell_eq32_delta_a_star_source_attempt_0001",
+        "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+        "refinementFamilyId": "density-compression-refinement-family-eq32-delta-a-star-source-attempt-0001"
+      },
+      "n": {
+        "status": "attempt",
+        "rowId": "n-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001"
+      },
+      "u_sea": {
+        "status": "attempt",
+        "rowId": "u-sea-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001"
+      },
+      "e_sea": {
+        "status": "attempt",
+        "rowId": "e-sea-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001"
+      },
+      "theta_sea": {
+        "status": "attempt",
+        "rowId": "theta-sea-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001"
+      },
+      "f_N": {
+        "status": "attempt",
+        "rowId": "f-N-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+        "eventLedgerRef": "event-ledger-eq32-delta-a-star-source-attempt-0001"
+      },
+      "event_ledger_ref": {
+        "status": "attempt",
+        "eventId": "event-ledger-eq32-delta-a-star-source-attempt-0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+      }
+    }
+  },
+  "channel": {
+    "id": "X_density_compression_eq32_low_acceleration_source_attempt_0001",
+    "type": "low_acceleration"
+  },
+  "delta_ln_n": 0.001,
+  "jacobian": {
+    "delta_c_X_squared": 2.5,
+    "delta_C_ij_kl": {
+      "bulk": 1
+    },
+    "delta_N": null,
+    "delta_gamma_ij": null,
+    "delta_G_eff": null,
+    "delta_P_eff": null,
+    "delta_a_star": 1.2
+  },
+  "coefficientChecks": {
+    "acousticElasticAgreement": {
+      "status": "attempt",
+      "rowId": "acoustic-elastic-agreement-eq32-delta-a-star-source-attempt-0001",
+      "windowId": "theta-sea-density-compression-eq32-delta-a-star-source-attempt-0001",
+      "ell": "ell_eq32_delta_a_star_source_attempt",
+      "channelId": "X_density_compression_eq32_low_acceleration_source_attempt_0001",
+      "responseKernelId": "chi-AB-density-compression-eq32-delta-a-star-source-attempt-0001",
+      "speedRowId": "speed-row-eq32-delta-a-star-source-attempt-0001",
+      "stressStrainRowId": "stress-strain-row-eq32-delta-a-star-source-attempt-0001",
+      "rhoRowId": "rho-NS-eq32-delta-a-star-source-attempt-0001",
+      "retuneWitnessId": "retune-witness-eq32-delta-a-star-source-attempt-0001",
+      "c_X_disp_squared": 2.5,
+      "C1111_X": 2.49,
+      "rho_NS": 1,
+      "epsilon_ref": 0.02,
+      "refinementFamilyId": "density-compression-refinement-family-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+    }
+  },
+  "rows": {
+    "channel_declaration_row": {
+      "status": "attempt",
+      "rowId": "channel-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "channelId": "X_density_compression_eq32_low_acceleration_source_attempt_0001"
+    },
+    "speed_row": {
+      "status": "attempt",
+      "rowId": "speed-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "output": "delta_c_X_squared"
+    },
+    "stress_strain_row": {
+      "status": "attempt",
+      "rowId": "stress-strain-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "output": "delta_C_ij_kl"
+    },
+    "causality_row": {
+      "status": "attempt",
+      "rowId": "causality-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "residual": 0
+    },
+    "metric_embedding_row": {
+      "status": "declared_missing_output",
+      "rowId": "metric-embedding-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "missingOutput": "delta_gamma_ij"
+    },
+    "correlation_row": {
+      "status": "attempt",
+      "rowId": "correlation-row-eq32-delta-a-star-source-attempt-0001",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+      "sameWindow": true
+    }
+  },
+  "missing_outputs": [
+    "delta_N",
+    "delta_gamma_ij",
+    "delta_G_eff",
+    "delta_P_eff"
+  ],
+  "retune": {
+    "status": "attempt",
+    "witnessId": "retune-witness-eq32-delta-a-star-source-attempt-0001",
+    "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md",
+    "residual": 0,
+    "changedRows": []
+  }
+}

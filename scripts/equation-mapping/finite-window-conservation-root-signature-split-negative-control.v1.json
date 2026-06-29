@@ -1,0 +1,208 @@
+{
+  "schema": "aaa-equation-map-finite-window-conservation-input/v1",
+  "claimLevel": "EQ-05 finite-window conservation root-signature split negative control; accepted-looking rows remain score-neutral",
+  "residualId": "R_01_05_branch_window_root_signature_split_negative_control",
+  "tolerances": {
+    "sameRoot": 0,
+    "energy": 1e-12,
+    "momentum": 1e-12,
+    "angularMomentum": 1e-12,
+    "event": 1e-12,
+    "boundary": 1e-12,
+    "crosswalk": 1e-12,
+    "noDoubleCount": 1e-12,
+    "epsilon": 1e-12
+  },
+  "packet": {
+    "id": "eq05_same_root_conservation_root_signature_split_negative_control",
+    "row": "EQ-05",
+    "rows": {
+      "branch_chart": {
+        "id": "branch_chart_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "active_root_ledger": {
+        "id": "active_root_ledger_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "force_row": {
+        "id": "force_row_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "action_or_work_route": {
+        "id": "action_or_work_route_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "wake_charge_route": {
+        "id": "wake_charge_route_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "event_ledger": {
+        "id": "event_ledger_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "boundary_flux": {
+        "id": "boundary_flux_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "same_root_checksum": {
+        "id": "same_root_checksum_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      },
+      "no_double_count_witness": {
+        "id": "no_double_count_witness_root_signature_split_negative_control",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/finite-window-conservation-retained-boundary-ledger.v1.json"
+      }
+    },
+    "rootSignatures": {
+      "force": {
+        "orderedPairPolicy": "ordered_all_pairs",
+        "activeRootLabels": [
+          "root_01",
+          "root_10"
+        ],
+        "inactiveGapCover": "gap_cover_attempt",
+        "memoryDepth": "h_attempt",
+        "regularization": "epsilon_c_attempt",
+        "jacobianFloor": "J0_attempt",
+        "endpointConvention": "half_open_window",
+        "tailConvention": "causal_wake_tail_attempt",
+        "branchLabel": "B_eq05_attempt",
+        "noetherSeaState": "N_sea_eq05_attempt"
+      },
+      "wakeCharge": {
+        "orderedPairPolicy": "ordered_all_pairs",
+        "activeRootLabels": [
+          "root_01",
+          "root_10"
+        ],
+        "inactiveGapCover": "gap_cover_attempt",
+        "memoryDepth": "h_attempt",
+        "regularization": "epsilon_c_attempt",
+        "jacobianFloor": "J0_attempt",
+        "endpointConvention": "half_open_window",
+        "tailConvention": "causal_wake_tail_attempt",
+        "branchLabel": "B_eq05_attempt",
+        "noetherSeaState": "N_sea_eq05_attempt"
+      },
+      "eventLedger": {
+        "orderedPairPolicy": "ordered_all_pairs",
+        "activeRootLabels": [
+          "root_01",
+          "root_10"
+        ],
+        "inactiveGapCover": "gap_cover_attempt",
+        "memoryDepth": "h_attempt",
+        "regularization": "epsilon_c_attempt",
+        "jacobianFloor": "J0_attempt",
+        "endpointConvention": "half_open_window",
+        "tailConvention": "causal_wake_tail_attempt",
+        "branchLabel": "B_eq05_attempt",
+        "noetherSeaState": "N_sea_eq05_attempt"
+      },
+      "boundaryFlux": {
+        "orderedPairPolicy": "ordered_all_pairs",
+        "activeRootLabels": [
+          "root_01",
+          "root_10"
+        ],
+        "inactiveGapCover": "gap_cover_attempt",
+        "memoryDepth": "h_attempt",
+        "regularization": "epsilon_c_attempt",
+        "jacobianFloor": "J0_attempt",
+        "endpointConvention": "half_open_window",
+        "tailConvention": "causal_wake_tail_attempt",
+        "branchLabel": "B_eq05_split_boundary_negative_control",
+        "noetherSeaState": "N_sea_eq05_attempt"
+      },
+      "actionRoute": {
+        "orderedPairPolicy": "ordered_all_pairs",
+        "activeRootLabels": [
+          "root_01",
+          "root_10"
+        ],
+        "inactiveGapCover": "gap_cover_attempt",
+        "memoryDepth": "h_attempt",
+        "regularization": "epsilon_c_attempt",
+        "jacobianFloor": "J0_attempt",
+        "endpointConvention": "half_open_window",
+        "tailConvention": "causal_wake_tail_attempt",
+        "branchLabel": "B_eq05_attempt",
+        "noetherSeaState": "N_sea_eq05_attempt"
+      }
+    },
+    "charges": {
+      "energy": {
+        "deltaRetained": 0.5,
+        "boundaryFlux": -0.2,
+        "external": 0,
+        "event": 0.3
+      },
+      "momentum": {
+        "deltaRetained": [
+          0.2,
+          -0.1,
+          0
+        ],
+        "boundaryFlux": [
+          -0.1,
+          0.1,
+          0
+        ],
+        "external": [
+          0,
+          0,
+          0
+        ],
+        "event": [
+          0.1,
+          0,
+          0
+        ]
+      },
+      "angularMomentum": {
+        "deltaRetained": [
+          0,
+          0.04,
+          -0.02
+        ],
+        "boundaryFlux": [
+          0,
+          -0.01,
+          0.02
+        ],
+        "external": [
+          0,
+          0,
+          0
+        ],
+        "event": [
+          0,
+          0.03,
+          0
+        ]
+      }
+    },
+    "eventLedger": {
+      "maxResidual": 0
+    },
+    "boundaryFlux": {
+      "residual": 0
+    },
+    "wakeCrosswalk": {
+      "residual": 0
+    },
+    "noDoubleCount": {
+      "residual": 0
+    }
+  }
+}

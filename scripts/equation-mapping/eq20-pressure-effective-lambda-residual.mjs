@@ -668,8 +668,9 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
-    return { accepted: false, reason: "row_source_not_found" };
+  const sourceCheck = firstSourceReferenceCheck(row.sourcePath, row.source);
+  if (!sourceCheck.accepted) {
+    return { accepted: false, reason: sourceCheck.reason };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -716,41 +717,82 @@ function concreteString(value) {
 }
 
 function sourceReferenceExists(value) {
+  return sourceReferenceCheck(value).accepted;
+}
+
+function firstSourceReferenceCheck(...values) {
+  let firstFailure = { accepted: false, reason: "missing_source_path" };
+  for (const value of values) {
+    const check = sourceReferenceCheck(value);
+    if (check.accepted) {
+      return check;
+    }
+    if (firstFailure.reason === "missing_source_path") {
+      firstFailure = check;
+    }
+  }
+  return firstFailure;
+}
+
+function sourceReferenceCheck(value) {
   if (!concreteString(value)) {
-    return false;
+    return { accepted: false, reason: "missing_source_path" };
   }
   const sourcePath = value.trim().replace(/#.*/, "");
   const resolvedPath = path.isAbsolute(sourcePath)
     ? sourcePath
     : path.resolve(REPO_ROOT, sourcePath);
-  if (isNonDurableSourcePath(resolvedPath)) {
-    return false;
+  const rejectionReason = sourceReferenceRejectionReason(resolvedPath);
+  if (rejectionReason) {
+    return { accepted: false, reason: rejectionReason };
   }
   try {
-    return fs.statSync(resolvedPath).isFile();
+    if (!fs.statSync(resolvedPath).isFile()) {
+      return { accepted: false, reason: "source_not_file" };
+    }
   } catch {
-    return false;
+    return { accepted: false, reason: "source_not_found" };
   }
+  return { accepted: true, reason: "accepted" };
 }
 
 function isNonDurableSourcePath(filePath) {
+  return sourceReferenceRejectionReason(filePath) !== null;
+}
+
+function sourceReferenceRejectionReason(filePath) {
   const normalized = path.normalize(filePath);
+  const tempRoot = path.normalize("/tmp");
+  const privateTempRoot = path.normalize("/private/tmp");
+  if (
+    normalized.startsWith(`${tempRoot}${path.sep}`) ||
+    normalized.startsWith(`${privateTempRoot}${path.sep}`)
+  ) {
+    return "temp_source_path";
+  }
   const relative = path.relative(REPO_ROOT, normalized);
   const basename = path.basename(normalized).toLowerCase();
-  return (
-    relative === "" ||
-    relative.startsWith("..") ||
-    path.isAbsolute(relative) ||
-    normalized.startsWith(`${path.normalize("/tmp")}${path.sep}`) ||
-    normalized.startsWith(`${path.normalize("/private/tmp")}${path.sep}`) ||
-    relative.startsWith(`reference${path.sep}priorities${path.sep}`) ||
-    relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`) ||
-    relative.startsWith(`content${path.sep}generated${path.sep}`) ||
+  if (relative === "" || relative.startsWith("..") || path.isAbsolute(relative)) {
+    return "source_outside_repo";
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return "coordination_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return "authored_prose_source_path";
+  }
+  if (relative.startsWith(`content${path.sep}generated${path.sep}`)) {
+    return "generated_source_path";
+  }
+  if (
     basename.includes("attempt") ||
     basename.includes("mock") ||
     basename.includes("toy") ||
     basename.includes("probe") ||
     basename.includes("negative-control") ||
     basename.includes(".tmp")
-  );
+  ) {
+    return "control_or_attempt_source_path";
+  }
+  return null;
 }

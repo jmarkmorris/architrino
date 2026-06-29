@@ -677,8 +677,9 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id ?? row.key)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  if (!sourceReferenceExists(row.sourcePath) && !sourceReferenceExists(row.source)) {
-    return { accepted: false, reason: "row_source_not_found" };
+  const sourceReason = firstSourceEvidenceReason(row.sourcePath, row.source);
+  if (sourceReason !== "accepted") {
+    return { accepted: false, reason: sourceReason };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -721,6 +722,20 @@ function concreteString(value) {
 
 function sourceReferenceExists(value) {
   return sourceEvidenceReason(value) === "accepted";
+}
+
+function firstSourceEvidenceReason(...values) {
+  let firstReason = "missing_source_path";
+  for (const value of values) {
+    const reason = sourceEvidenceReason(value);
+    if (reason === "accepted") {
+      return "accepted";
+    }
+    if (firstReason === "missing_source_path") {
+      firstReason = reason;
+    }
+  }
+  return firstReason;
 }
 
 function sourceEvidenceReason(value) {

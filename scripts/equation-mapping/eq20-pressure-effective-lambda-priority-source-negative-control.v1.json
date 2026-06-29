@@ -1,0 +1,302 @@
+{
+  "schema": "aaa-equation-map-eq20-pressure-effective-lambda-input/v1",
+  "claimLevel": "EQ-20 pressure/effective-Lambda priority-source negative control; accepted-looking rows are score-neutral and not retained evidence",
+  "residualId": "R_EQ20_pressure_effective_lambda_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+  "constants": {
+    "c0": 1,
+    "pi": 3.141592653589793
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "pressure": 1e-12,
+    "equationOfState": 1e-12,
+    "lambda": 1e-12,
+    "frwHandoff": 1e-12,
+    "sharedKey": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "Theta_11_20_pressure_lambda_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+    "commonCarrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+    "rows": {
+      "theta_sea_rho_NS": {
+        "id": "theta_sea_rho_NS_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "theta_11_20": {
+        "id": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "noether_sea_window": {
+        "id": "W_NS_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "constitutive_response": {
+        "id": "C_NS_pressure_lambda_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "pressure_law_row": {
+        "id": "P_law_sea_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "sea_pressure_row": {
+        "id": "p_sea_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "sea_tension_row": {
+        "id": "T_sea_ab_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "relaxation_memory_row": {
+        "id": "tau_rel_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "effective_density_row": {
+        "id": "rho_DE_eff_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "effective_pressure_row": {
+        "id": "p_DE_eff_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "effective_coupling_row": {
+        "id": "G_eff_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "effective_lambda_row": {
+        "id": "Lambda_eff_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "frw_handoff": {
+        "id": "frw_handoff_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "source_provenance": {
+        "id": "P_lambda_source_provenance_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      },
+      "no_hidden_retune_witness": {
+        "id": "S_retune_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "status": "accepted",
+        "carrierId": "theta_11_20_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md"
+      }
+    },
+    "pressureLaw": {
+      "pSeaProjected": -0.7,
+      "p_DE_eff": -0.7
+    },
+    "equationOfState": {
+      "p_DE_eff": -0.7,
+      "rho_DE_eff": 0.7,
+      "w_eff": -1,
+      "wBench": -1
+    },
+    "lambdaProjection": {
+      "G_eff": 1,
+      "rho_DE_eff": 0.7,
+      "Lambda_eff": 17.59291886010284
+    },
+    "frwHandoff": {
+      "id": "frw_handoff_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+      "status": "accepted",
+      "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+      "thetaCosId": "theta_cos_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+      "inheritedBlocker": "missing_accepted_theta_cos",
+      "P_eff_residual": 0,
+      "G_eff_residual": 0,
+      "Lambda_eff_residual": 0
+    },
+    "sourceProvenance": {
+      "residual": 0,
+      "rows": [
+        {
+          "id": "p_sea_tension_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+          "kind": "sea_tension",
+          "contribution": -0.35,
+          "provenanceId": "P_lambda_source_provenance_eq20_pressure_effective_lambda_priority_source_negative_control_0001"
+        },
+        {
+          "id": "p_sea_relaxation_eq20_pressure_effective_lambda_priority_source_negative_control_0001",
+          "kind": "relaxation_memory",
+          "contribution": -0.35,
+          "provenanceId": "P_lambda_source_provenance_eq20_pressure_effective_lambda_priority_source_negative_control_0001"
+        }
+      ]
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_11_20_id",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "constitutive": 1,
+          "pressure": 1,
+          "lambda": 1
+        }
+      },
+      {
+        "key": "theta_cos_id",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "frw": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "rho_NS",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "density": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "n",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "density": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "chi_sea",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "clock": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "Gamma_N",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "cadence": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "u_sea",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "flow": 0,
+          "pressure": 0
+        }
+      },
+      {
+        "key": "M_sea_ab",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "metric": 1,
+          "pressure": 1
+        }
+      },
+      {
+        "key": "G_eff",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "local": 1,
+          "frw": 1,
+          "pressure": 1,
+          "lambda": 1
+        }
+      },
+      {
+        "key": "rho_DE_eff",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "eos": 0.7,
+          "lambda": 0.7,
+          "readout": 0.7
+        }
+      },
+      {
+        "key": "p_sea",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "constitutive": -0.7,
+          "pressure": -0.7
+        }
+      },
+      {
+        "key": "p_DE_eff",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "pressure": -0.7,
+          "eos": -0.7,
+          "frw": -0.7
+        }
+      },
+      {
+        "key": "w_eff",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "eos": -1,
+          "benchmark": -1
+        }
+      },
+      {
+        "key": "Lambda_eff",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "lambda": 17.59291886010284,
+          "frw": 17.59291886010284
+        }
+      },
+      {
+        "key": "tau_rel",
+        "status": "accepted",
+        "sourcePath": "reference/priorities/equation-mapping/eq-11-20-gravity-dark-energy-packet.md",
+        "projectionValues": {
+          "relaxation": 1,
+          "pressure": 1
+        }
+      }
+    ],
+    "noHiddenRetune": {
+      "residual": 0
+    }
+  }
+}

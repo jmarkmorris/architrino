@@ -3,12 +3,18 @@
 import fs from "node:fs";
 import path from "node:path";
 
+const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
+const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
 const SOURCE_SCHEMA =
   "aaa-equation-map-eq02-04-invariant-cell-coframe-source/v1";
 const OUTPUT_SCHEMA =
   "aaa-equation-map-eq02-04-coframe-extraction-certificate/v1";
 const PRODUCER_SCHEMA =
   "aaa-equation-map-eq02-04-coframe-extraction-producer/v1";
+const RETAINED_GEOMETRY_EVIDENCE_SCHEMA =
+  "aaa-equation-map-eq02-04-retained-geometry-source/v1";
+const RETAINED_GEOMETRY_PROVENANCE_SCHEMA =
+  "aaa-equation-map-eq02-04-retained-geometry-provenance/v1";
 const DEFAULT_RETAINED_RECORD =
   "scripts/equation-mapping/eq02-04-translating-binary-retained-record-attempt.v1.json";
 const ACCEPTED_STATUSES = new Set(["accepted", "populated", "passed"]);
@@ -418,6 +424,27 @@ function produceCertificate({ source, inputPath, retainedRecord }) {
       negativeControl.details,
     );
   }
+  const sourceEvidence = evaluateSourceEvidence({ source, inputPath, ids });
+  check(
+    "source_path_evidence",
+    sourceEvidence.sourcePathEvidencePassed,
+    sourceEvidence.details.sourcePath,
+  );
+  check(
+    "source_support_field_evidence_sources",
+    sourceEvidence.supportFieldSourcesPassed,
+    sourceEvidence.details.supportFields,
+  );
+  check(
+    "source_row_binding_evidence_sources",
+    sourceEvidence.rowBindingSourcesPassed,
+    sourceEvidence.details.rowBindings,
+  );
+  check(
+    "source_refinement_step_evidence_sources",
+    sourceEvidence.refinementStepSourcesPassed,
+    sourceEvidence.details.refinementSteps,
+  );
 
   const accepted = checks.every((item) => item.passed);
   const status = accepted ? "accepted" : "blocked";
@@ -576,8 +603,459 @@ function sourceReferenceExists(value) {
   if (!concreteString(value)) {
     return false;
   }
-  const resolved = path.isAbsolute(value) ? value : path.resolve(process.cwd(), value);
+  const resolved = resolveSourcePath(value);
   return durableSourcePath(resolved);
+}
+
+function sourceEvidenceReferenceExists(value, options = {}) {
+  return sourceEvidenceReferenceStatus(value, options).accepted;
+}
+
+function sourceEvidenceReferenceStatus(
+  value,
+  {
+    inputPath = null,
+    requireRetainedGeometryEvidence = false,
+    expectedIds = null,
+  } = {},
+) {
+  if (!sourceReferenceExists(value)) {
+    return {
+      accepted: false,
+      sourceReferenceExists: false,
+      sourceSelfReference: false,
+      reason: "source_reference_not_found_or_not_durable",
+    };
+  }
+  const resolvedPath = resolveSourcePath(value);
+  const sourceSelfReference =
+    concreteString(inputPath) && resolvedPath === path.normalize(inputPath);
+  if (!isEvidenceSourcePath(resolvedPath)) {
+    return {
+      accepted: false,
+      sourceReferenceExists: true,
+      sourceSelfReference,
+      reason: "source_path_not_evidence_path",
+    };
+  }
+  if (sourceSelfReference) {
+    return {
+      accepted: false,
+      sourceReferenceExists: true,
+      sourceSelfReference: true,
+      reason: "source_path_is_input_report",
+    };
+  }
+  if (!requireRetainedGeometryEvidence) {
+    return {
+      accepted: true,
+      sourceReferenceExists: true,
+      sourceSelfReference: false,
+      reason: "accepted_path_evidence",
+    };
+  }
+  const recordStatus = retainedGeometryEvidenceRecordStatus(resolvedPath, expectedIds);
+  return {
+    accepted: recordStatus.accepted,
+    sourceReferenceExists: true,
+    sourceSelfReference: false,
+    reason: recordStatus.reason,
+    evidenceSchema: recordStatus.schema ?? null,
+  };
+}
+
+function resolveSourcePath(value) {
+  const source = value.trim();
+  return path.isAbsolute(source)
+    ? path.normalize(source)
+    : path.resolve(REPO_ROOT, source);
+}
+
+function isEvidenceSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`reference${path.sep}entourage${path.sep}`)) {
+    return false;
+  }
+  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
+    return false;
+  }
+  const lowerBasename = path.basename(normalized).toLowerCase();
+  return !(
+    lowerBasename.includes("attempt") ||
+    lowerBasename.includes("toy") ||
+    lowerBasename.includes("probe") ||
+    lowerBasename.includes("mock") ||
+    lowerBasename.includes("negative-control")
+  );
+}
+
+function evaluateSourceEvidence({ source, inputPath, ids }) {
+  const support = source.support ?? source.invariantCell ?? {};
+  const supportFieldDetails = ["B_N", "Sigma_N", "P_N", "K_P_N"].map((field) => ({
+    field,
+    ...sourceEvidenceDetail(support[field]?.sourcePath ?? support[field]?.source, {
+      inputPath,
+      requireRetainedGeometryEvidence: true,
+      expectedIds: ids,
+    }),
+  }));
+  const rowBindingDetails = REQUIRED_ROW_BINDINGS.map((id) => ({
+    id,
+    ...sourceEvidenceDetail(
+      source.rowBindings?.[id]?.sourcePath ?? source.rowBindings?.[id]?.source,
+      {
+        inputPath,
+        requireRetainedGeometryEvidence: true,
+        expectedIds: ids,
+      },
+    ),
+  }));
+  const refinementSteps = Array.isArray(support.refinementPersistence?.steps)
+    ? support.refinementPersistence.steps
+    : [];
+  const refinementStepDetails = refinementSteps.map((step, index) => ({
+    index,
+    ...sourceEvidenceDetail(step?.sourcePath ?? step?.source, {
+      inputPath,
+      requireRetainedGeometryEvidence: true,
+      expectedIds: ids,
+    }),
+  }));
+  return {
+    sourcePathEvidencePassed: sourceEvidenceReferenceExists(inputPath),
+    supportFieldSourcesPassed:
+      supportFieldDetails.length === 4 &&
+      supportFieldDetails.every((detail) => detail.sourceEvidenceReferenceExists),
+    rowBindingSourcesPassed:
+      rowBindingDetails.length === REQUIRED_ROW_BINDINGS.length &&
+      rowBindingDetails.every((detail) => detail.sourceEvidenceReferenceExists),
+    refinementStepSourcesPassed:
+      refinementStepDetails.length >= 3 &&
+      refinementStepDetails.every((detail) => detail.sourceEvidenceReferenceExists),
+    details: {
+      sourcePath: sourceEvidenceDetail(inputPath),
+      supportFields: supportFieldDetails,
+      rowBindings: rowBindingDetails,
+      refinementSteps: refinementStepDetails,
+    },
+  };
+}
+
+function sourceEvidenceDetail(
+  value,
+  {
+    inputPath = null,
+    requireRetainedGeometryEvidence = false,
+    expectedIds = null,
+  } = {},
+) {
+  const status = sourceEvidenceReferenceStatus(value, {
+    inputPath,
+    requireRetainedGeometryEvidence,
+    expectedIds,
+  });
+  return {
+    sourcePath: value ?? null,
+    sourceReferenceExists: status.sourceReferenceExists,
+    sourceEvidenceReferenceExists: status.accepted,
+    sourceSelfReference: status.sourceSelfReference,
+    evidenceSchema: status.evidenceSchema ?? null,
+    reason: status.reason,
+  };
+}
+
+function retainedGeometryEvidenceRecordStatus(filePath, expectedIds) {
+  if (path.extname(filePath) !== ".json") {
+    return {
+      accepted: false,
+      reason: "source_evidence_json_required",
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(filePath);
+  } catch (error) {
+    return {
+      accepted: false,
+      reason: "source_evidence_json_invalid",
+      detail: String(error?.message ?? error),
+    };
+  }
+  const claimText = [
+    parsed.claimLevel,
+    parsed.claim,
+    parsed.description,
+    ...(Array.isArray(parsed.notes) ? parsed.notes : []),
+  ]
+    .filter((item) => typeof item === "string")
+    .join(" ")
+    .toLowerCase();
+  if (
+    /\b(not evidence|not retained evidence|not retained geometry evidence|score-neutral|negative control|attempt|toy|probe|mock|shell)\b/.test(
+      claimText,
+    )
+  ) {
+    return {
+      accepted: false,
+      reason: "source_claim_disclaims_retained_evidence",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (parsed.schema !== RETAINED_GEOMETRY_EVIDENCE_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "source_schema_not_retained_geometry_evidence",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (!ACCEPTED_STATUSES.has(normalizeStatus(parsed))) {
+    return {
+      accepted: false,
+      reason: "source_evidence_status_not_accepted",
+      schema: parsed.schema ?? null,
+    };
+  }
+  const identityChecks = {
+    retainedRowSetId: parsed.retainedRowSetId === expectedIds?.retainedRowSetId,
+    commonCarrierId: parsed.commonCarrierId === expectedIds?.commonCarrierId,
+    domainId: parsed.domainId === expectedIds?.domainId,
+    supportId: parsed.supportId === expectedIds?.supportId,
+  };
+  if (!Object.values(identityChecks).every(Boolean)) {
+    return {
+      accepted: false,
+      reason: "source_identity_mismatch",
+      schema: parsed.schema ?? null,
+      identityChecks,
+    };
+  }
+  const payloadStatus = retainedGeometryEvidencePayloadStatus(parsed, filePath);
+  if (!payloadStatus.accepted) {
+    return {
+      accepted: false,
+      reason: payloadStatus.reason,
+      schema: parsed.schema ?? null,
+      details: payloadStatus.details,
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_evidence",
+    schema: parsed.schema,
+  };
+}
+
+function retainedGeometryEvidencePayloadStatus(source, filePath) {
+  const geometry = source.retainedGeometry ?? source.geometry ?? {};
+  const rawRows =
+    geometry.rawLabeledRowsPreservedOnRetainedHistory ??
+    source.rawLabeledRowsPreservedOnRetainedHistory ??
+    {};
+  const rawRowList = rawRows.rows ?? rawRows.rawRows ?? [];
+  const invariantCell =
+    geometry.positiveWidthInvariantCell ??
+    source.positiveWidthInvariantCell ??
+    source.invariantCell ??
+    {};
+  const refinementTrace =
+    geometry.refinementTrace ??
+    source.refinementTrace ??
+    invariantCell.refinementTrace ??
+    {};
+  const payloadPresent =
+    acceptedLike(rawRows) &&
+    Array.isArray(rawRowList) &&
+    rawRowList.length > 0 &&
+    acceptedLike(invariantCell) &&
+    ["B_N", "Sigma_N", "P_N", "K_P_N"].every((field) =>
+      Boolean(invariantCell[field] ?? source[field]),
+    ) &&
+    acceptedLike(refinementTrace) &&
+    Array.isArray(refinementTrace.steps) &&
+    refinementTrace.steps.length >= 3;
+  if (!payloadPresent) {
+    return {
+      accepted: false,
+      reason: "source_retained_geometry_payload_missing",
+    };
+  }
+  const provenanceDetails = [
+    sourceProvenanceDetail(
+      "raw_labeled_rows_preserved_on_retained_history",
+      rawRows.sourcePath ?? rawRows.source,
+      filePath,
+      source,
+    ),
+    ...["B_N", "Sigma_N", "P_N", "K_P_N"].map((field) => {
+      const value = invariantCell[field] ?? source[field] ?? {};
+      return sourceProvenanceDetail(
+        field,
+        value.sourcePath ?? value.source,
+        filePath,
+        source,
+      );
+    }),
+    ...refinementTrace.steps.map((step, index) =>
+      sourceProvenanceDetail(
+        `refinement_step_${index}`,
+        step?.sourcePath ?? step?.source,
+        filePath,
+        source,
+      ),
+    ),
+  ];
+  if (!provenanceDetails.every((detail) => detail.accepted)) {
+    const failedReasons = [
+      ...new Set(
+        provenanceDetails
+          .filter((detail) => !detail.accepted)
+          .map((detail) => detail.reason)
+          .filter(concreteString),
+      ),
+    ];
+    return {
+      accepted: false,
+      reason:
+        failedReasons.length === 1
+          ? failedReasons[0]
+          : "source_retained_geometry_provenance_missing",
+      details: provenanceDetails,
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_evidence",
+  };
+}
+
+function sourceProvenanceDetail(id, value, ownerPath, expectedIds) {
+  const sourceReferenceFound = sourceReferenceExists(value);
+  const resolvedPath = sourceReferenceFound ? resolveSourcePath(value) : null;
+  const selfReference =
+    resolvedPath !== null && resolvedPath === path.normalize(ownerPath);
+  const evidenceSource =
+    resolvedPath !== null && !selfReference && isEvidenceSourcePath(resolvedPath);
+  const provenanceStatus =
+    evidenceSource && resolvedPath !== null
+      ? retainedGeometryProvenanceStatus(resolvedPath, id, expectedIds)
+      : {
+          accepted: false,
+          reason: !sourceReferenceFound
+            ? "source_provenance_reference_not_found_or_not_durable"
+            : selfReference
+              ? "source_provenance_path_is_owner_record"
+              : "source_provenance_path_not_evidence_path",
+        };
+  return {
+    id,
+    sourcePath: value ?? null,
+    sourceReferenceExists: sourceReferenceFound,
+    sourceSelfReference: selfReference,
+    sourceEvidenceReferenceExists: evidenceSource,
+    sourceProvenanceReferenceExists: provenanceStatus.accepted,
+    evidenceSchema: provenanceStatus.schema ?? null,
+    reason: provenanceStatus.reason,
+    accepted: provenanceStatus.accepted,
+    details: provenanceStatus.details ?? null,
+  };
+}
+
+function retainedGeometryProvenanceStatus(filePath, targetId, expectedIds) {
+  if (path.extname(filePath) !== ".json") {
+    return {
+      accepted: false,
+      reason: "source_provenance_json_required",
+    };
+  }
+  let parsed;
+  try {
+    parsed = readJson(filePath);
+  } catch (error) {
+    return {
+      accepted: false,
+      reason: "source_provenance_json_invalid",
+      detail: String(error?.message ?? error),
+    };
+  }
+  if (parsed.schema !== RETAINED_GEOMETRY_PROVENANCE_SCHEMA) {
+    return {
+      accepted: false,
+      reason: "source_provenance_schema_not_retained_geometry_provenance",
+      schema: parsed.schema ?? null,
+    };
+  }
+  if (!ACCEPTED_STATUSES.has(normalizeStatus(parsed))) {
+    return {
+      accepted: false,
+      reason: "source_provenance_status_not_accepted",
+      schema: parsed.schema ?? null,
+    };
+  }
+  const identityChecks = {
+    retainedRowSetId: parsed.retainedRowSetId === expectedIds?.retainedRowSetId,
+    commonCarrierId: parsed.commonCarrierId === expectedIds?.commonCarrierId,
+    domainId: parsed.domainId === expectedIds?.domainId,
+    supportId: parsed.supportId === expectedIds?.supportId,
+  };
+  if (!Object.values(identityChecks).every(Boolean)) {
+    return {
+      accepted: false,
+      reason: "source_provenance_identity_mismatch",
+      schema: parsed.schema ?? null,
+      details: identityChecks,
+    };
+  }
+  const records =
+    parsed.provenanceRecords ??
+    parsed.retainedGeometryProvenance?.records ??
+    parsed.provenance?.records ??
+    [];
+  const matchingRecord = Array.isArray(records)
+    ? records.find((record) => {
+        const id = record?.id ?? record?.targetId ?? record?.field ?? null;
+        return id === targetId && ACCEPTED_STATUSES.has(normalizeStatus(record));
+      })
+    : null;
+  const hasPayload =
+    matchingRecord &&
+    concreteNonPlaceholderString(
+      matchingRecord.traceId ??
+        matchingRecord.sourceHash ??
+        matchingRecord.rawDatasetId ??
+        matchingRecord.derivationId ??
+        matchingRecord.certificateId,
+    ) &&
+    (Array.isArray(matchingRecord.rows) ||
+      Array.isArray(matchingRecord.observations) ||
+      Array.isArray(matchingRecord.steps) ||
+      concreteString(matchingRecord.statement));
+  if (!hasPayload) {
+    return {
+      accepted: false,
+      reason: "source_retained_geometry_provenance_payload_missing",
+      schema: parsed.schema ?? null,
+      details: {
+        targetId,
+        recordCount: Array.isArray(records) ? records.length : null,
+      },
+    };
+  }
+  return {
+    accepted: true,
+    reason: "accepted_retained_geometry_provenance",
+    schema: parsed.schema,
+  };
 }
 
 function supportObjectIsCertified(value) {

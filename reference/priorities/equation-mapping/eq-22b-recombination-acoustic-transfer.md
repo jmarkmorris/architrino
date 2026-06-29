@@ -154,7 +154,7 @@ The carrier requires:
 | Probe-exposed next blocker | `missing_accepted_theta_src` after the carrier-shell probe marks only the top carrier accepted-looking. |
 | Existing scripts/fixtures/packets | [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs), [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json), [eq22b-recombination-acoustic-source-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-source-attempt.v1.json), [eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-carrier-source-evidence-probe.v1.json) |
 | Fail-closed controls | Generic/source and `theta_src` coordination-source controls reject priority packets, authored prose, fixture files, private source windows, split readout clocks, and child-row source substitutions. |
-| Safe implementation target | Priority-packet refinement only: make the Direct Geometry Layer explicit before attempting a source-backed shared observation row. |
+| Safe implementation target | Replace the carrier-shell probe with a durable non-priority `recombination_acoustic_carrier` source object, then populate the first child `theta_src` row on the same shared observation record. The existing source-attempt, carrier-shell probe, `theta_src` coordination-source control, and generic/source negative control remain score-neutral guardrails; they do not count as retained evidence. |
 
 ## Direct Geometry Layer
 

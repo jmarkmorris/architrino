@@ -19,7 +19,7 @@ This shell defines the smallest source-backed $\Theta_\gamma$ object that can re
 | Primary AAA carrier | $\Theta_\gamma(W;E,R)$, a finite-window photon packet transfer record. |
 | Smallest score-moving evidence object | Accepted retained rows for `theta_gamma_packet`, `photon_branch_packet`, Gate A/B/C, source/path/receiver, event balance, Noether sea path, provenance, and no-hidden-retune on one carrier. |
 | Exact first blocker | `missing_accepted_theta_gamma_packet` |
-| Existing scripts/fixtures/packets | [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json), [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json), [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json), [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md), [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md) |
+| Existing scripts/fixtures/packets | [photon-packet-transfer-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-attempt.v1.json), [photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json), [photon-packet-transfer-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-priority-source-negative-control.v1.json), [planck-alpha-braid-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-attempt.v1.json), [EQ-12 Through EQ-16A Photon, Quantum, Gauge, And Neutrino Packet](eq-12-16a-photon-quantum-gauge-neutrino-packet.md), [Equation Closure Pass 2026-06-23 AM](equation-closure-pass-2026-06-23-am.md) |
 | Breakthrough angle | Treat solved-wave families as acceptance tests for causal support, dispersion, mode counting, and scattering consistency, while keeping the native carrier in photon packet and Noether sea rows. |
 | Fail-closed negative control | `solved_wave_import_without_native_packet`: an effective wave solution may satisfy dispersion and boundary checks, but it fails if it lacks photon branch identity, event balance, source/path/receiver provenance, or no-hidden-retune. |
 | Next action | Build one row-by-row source-field map for the first candidate photon packet event; do not create accepted rows until durable sources and checker-consumable row bindings exist. |
@@ -62,7 +62,7 @@ where $W$ is the retained finite window, $E$ is the emission/source endpoint, an
 | `source_depletion_row` | Source-side depletion or transition row with explicit remnant accounting. | blocked |
 | `recoil_wake_remnant_row` | Recoil, wake, medium update, and remnant rows, including explicit zero rows when a channel is absent. | blocked |
 | `noether_sea_path_row` | Noether sea density/cadence/path response used by the photon path and null/eikonal checks. | blocked |
-| `source_provenance` | Durable source path or source URL for each accepted row; generated markdown, temp paths, placeholders, and directories fail. | blocked |
+| `source_provenance` | Durable source path or source URL for each accepted row; priority prose, authored AAA prose, generated files, temp paths, placeholders, directories, attempts, mocks, toys, probes, and negative controls fail. | blocked |
 | `no_hidden_retune_witness` | One witness that $h$, $c_\gamma$, transfer factor, detector coupling, and path response were not separately retuned per observable. | blocked |
 
 Malus-law analyzer intensity $I(\theta)=I_0\cos^2\theta$ is a Gate B analyzer benchmark for `helicity_ledger_row` and `gate_b_transverse_row`. It should consume analyzer basis, incoming polarization ledger, transmitted-intensity readout, and longitudinal-leakage residual on the same $\Theta_\gamma$ carrier, and it fails if it imports the cosine-squared law without packet identity and event-ledger provenance.
@@ -116,6 +116,7 @@ These tests fail closed if they are imported as the photon packet ontology witho
 | `solved_wave_import_without_native_packet` | `missing_accepted_theta_gamma_packet` |
 | `same_packet_absorption_reemission_collapse` | Gate C/event balance failure because absorption and re-emission were mislabeled as one unchanged packet identity |
 | `mu_dependent_action_period` | Planck/alpha no-hidden-retune failure; $\Theta_\gamma$ cannot make $h_\vartheta$ scale-dependent |
+| `photon_packet_transfer_priority_source_negative_control` | `missing_accepted_theta_gamma_packet` with row reasons `coordination_source_path` |
 
 ## Current Disposition
 
@@ -125,6 +126,6 @@ No score changes.
 
 ## Source-Attempt Fixture
 
-[photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json) is the first checker-consumable row map for one candidate photon event window `W_gamma_0_source_candidate_0001`. It adds durable source-path slots, stable row ids, source/receiver/window identity fields, and common event-ledger/provenance keys while keeping every row at `status: attempt`.
+[photon-packet-transfer-source-attempt.v1.json](../../../scripts/equation-mapping/photon-packet-transfer-source-attempt.v1.json) is the first checker-consumable row map for one candidate photon event window `W_gamma_0_source_candidate_0001`. It adds candidate source-path slots, stable row ids, source/receiver/window identity fields, and common event-ledger/provenance keys while keeping every row at `status: attempt`.
 
 The expected checker result remains `missing_accepted_theta_gamma_packet`; this fixture exists to make the next evidence search concrete, not to move the score.

@@ -4,7 +4,7 @@
 
 This is the corrected restart prompt for the interrupted 2026-06-26 equation-mapping breakthrough search. The previous durable checkpoint claimed about 10h53 elapsed time, but that was not active runtime: the thread hit a token-limit interruption and did not automatically restart. Treat the earlier run as interrupted before the hard runtime requirement was satisfied.
 
-Use the prior artifacts as score-neutral starting evidence. Do not redo broad first-pass work that already produced source-field maps, source-attempt fixtures, negative controls, or Equation Attack Cards unless a row needs a second substantive pass or a narrower blocker attack.
+Use the prior artifacts as score-neutral starting artifacts and search context, not accepted retained evidence. Do not redo broad first-pass work that already produced source-field maps, source-attempt fixtures, negative controls, or Equation Attack Cards unless a row needs a second substantive pass or a narrower blocker attack.
 
 ## Updated Prompt
 
@@ -34,6 +34,7 @@ Previously landed score-neutral work to preserve:
 - `EQ-07B` and `EQ-23A` now have priority-only packets; they remain absent from the main score table and score ladder. `EQ-28B` remains deferred unless a concrete high-energy propagation consumer appears.
 - `EQ-04A` has a score-neutral Koide residual checker and direct-fit negative control; it still inherits the `EQ-02` through `EQ-04` retained-domain blocker.
 - `EQ-12` has a `theta_gamma_packet` source shell and source-attempt fixture; it still blocks at `missing_accepted_theta_gamma_packet`.
+- `EQ-17` has a `theta_transfer` source-field map, default attempt, and priority-source negative control; it still blocks at `missing_accepted_theta_transfer`, and numeric/path-quality/segment-energy passes remain score-neutral.
 - `EQ-22A` has a `theta_bb` source-field map and source-attempt fixture; it still blocks behind `missing_accepted_theta_gamma_packet`.
 - `EQ-26A` has a `theta_alpha` source-field map; it still needs scheme-pinned charge/exposure evidence and remains score-neutral.
 - `EQ-28A` has a `Theta_nu-ex` source-field map and source-attempt fixture; it still blocks at `missing_accepted_path_frequency_exchange_carrier`.
@@ -87,7 +88,8 @@ Team-agent structure:
 Restart priorities for the first two coordinator cycles:
 1. Correct the prior runtime record and create this restart prompt/checkpoint.
 2. Re-attack the highest-value remaining evidence objects:
-   - `theta_sea_rho_NS` retained-window evidence source for `EQ-24`, `EQ-20`, and `EQ-32`.
+   - `theta_sea_rho_NS` retained-window evidence source for `EQ-24`, `EQ-20`, `EQ-11`, and `EQ-32`, with `EQ-06` consuming the same density/cadence projection route.
+   - `theta_transfer` for signed-frequency / `EQ-17`, `theta_cos` for effective-FRW / `EQ-18` and `EQ-19`, `neutral_lepton_retained_branch` for `EQ-16A`, `theta_obs` for shared-observation rows, `branch_chart` for `EQ-05`, and `theta_gamma_packet` for photon rows; keep these as live first blockers, not score-moving evidence.
    - finite-window `W` for `EQ-31`, especially the charged-pion route from guard-passing source paths.
    - compact-region `Theta_cs_07A` source-attempt fixture and source-evidence guard.
    - `EQ-12A` retained action-period source-attempt fixture and dedicated source-evidence guard.
@@ -154,6 +156,7 @@ Breakthrough search posture:
 No-score-change rule:
 - Scores may change only if accepted retained evidence actually lands and validation/checkers support the score movement.
 - If only contracts, packets, attempt fixtures, toy fixtures, or closure cards are added, state `no score changes`.
+- Priority prose, authored AAA prose, generated files/copies, mocks, toys, attempts, probes, source-evidence probes, negative controls, temporary paths, directory paths, self-source shells, and source-contract shells do not count as accepted retained evidence.
 
 Validation:
 Run at the end, and after any substantial edit batch:

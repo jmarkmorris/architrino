@@ -211,18 +211,20 @@ The new work is the explosive-window delta: shock jump/blast, neutrino heating, 
 
 The current identity shell implements the pre-residual subset of those controls as executable identity failures: `explosive.source_window_split`, `explosive.neutrino_private_heating`, `explosive.radioactive_inventory_split`, `explosive.photon_output_private_carrier`, `explosive.remnant_medium_update_split`, and `explosive.retune_witness_private`. They are score-neutral guardrails; they do not populate accepted retained evidence.
 
-## Attack Card Summary
+## Equation Attack Card
 
-- Current score and closure driver: unscored; prove or fail one explosive source-window residual before adding `EQ-23A` to the main score table.
-- Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier: $\Theta_{\mathrm{expl}}(\Omega,W_{\mathrm{expl}},T)$ consuming $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{therm/prov}}$, $\mathcal L_{E\mathbf p\mathbf J}$, and Noether sea update rows.
-- Smallest score-moving evidence object: accepted `explosive_source_window_carrier` with shock, neutrino, reaction-yield, radioactive, photon, remnant/medium, event-ledger, provenance, and no-retune rows.
-- Exact first blocker: `missing_accepted_explosive_source_window_carrier`.
-- Existing scripts/fixtures/packets found: [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json) is the score-neutral identity shell, and [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs) enforces source-window and thermal/provenance identity before residual arithmetic; related consumers include shared-observation, thermodynamic-record, and radiation source-ledger runners.
-- Direct Geometry Layer: present in this packet; it binds shock, blast, neutrino heating, reaction yields, radioactive heating, photon output, remnant/medium update, event ledger, and no-hidden-retune witness to one explosive source-window carrier.
-- Candidate breakthrough angle: reuse BBN source-window grammar while adding only explosive-window deltas.
-- Fail-closed negative control: the identity shell now embeds six pre-residual controls covering source-window split, private neutrino thermal/provenance, radioactive-inventory ledger split, private photon-output carrier, remnant/medium Noether sea update split, and private retune witness; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`.
-- Next action smaller than broad report: replace the carrier-shell source contract with a real source-backed parent carrier, then populate the first child `shock_jump_blast_row` on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
-- Current implementation target: the identity shell, six fail-closed identity controls, probe-source guard, and carrier-shell source-contract boundary now exist. The next smaller action is a retained `shock_jump_blast_row` evidence object, not a broader shock/yield report.
+| Field | Current answer |
+| --- | --- |
+| Current score and closure driver | Unscored; prove or fail one explosive source-window residual before adding `EQ-23A` to the main score table. |
+| Primary $\mathbb{A}\mathbb{A}\mathbb{A}$ carrier | $\Theta_{\mathrm{expl}}(\Omega,W_{\mathrm{expl}},T)$ consuming $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{therm/prov}}$, $\mathcal L_{E\mathbf p\mathbf J}$, and Noether sea update rows. |
+| Smallest score-moving evidence object | Accepted `explosive_source_window_carrier` with shock, neutrino, reaction-yield, radioactive, photon, remnant/medium, event-ledger, provenance, and no-retune rows. |
+| Exact first blocker | `missing_accepted_explosive_source_window_carrier`. |
+| Existing scripts/fixtures/packets found | [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json) is the score-neutral identity shell, and [eq23a-explosive-source-window-identity-check.mjs](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-check.mjs) enforces source-window and thermal/provenance identity before residual arithmetic; related consumers include shared-observation, thermodynamic-record, and radiation source-ledger runners. |
+| Direct Geometry Layer | Present in this packet; it binds shock, blast, neutrino heating, reaction yields, radioactive heating, photon output, remnant/medium update, event ledger, and no-hidden-retune witness to one explosive source-window carrier. |
+| Candidate breakthrough angle | Reuse BBN source-window grammar while adding only explosive-window deltas. |
+| Fail-closed negative control | The identity shell embeds six pre-residual controls covering source-window split, private neutrino thermal/provenance, radioactive-inventory ledger split, private photon-output carrier, remnant/medium Noether sea update split, and private retune witness; accepted-looking rows sourced only to a probe/source-evidence-probe file fail at `accepted_without_evidence_source`. |
+| Smaller next action | Replace the carrier-shell source contract with a real source-backed parent carrier, then populate the first child `shock_jump_blast_row` on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId`. |
+| Current implementation target | The identity shell, six fail-closed identity controls, probe-source guard, and carrier-shell source-contract boundary now exist. The next smaller action is a retained `shock_jump_blast_row` evidence object, not a broader shock/yield report. |
 
 ## Promotion Classification
 
