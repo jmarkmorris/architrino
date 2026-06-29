@@ -114,6 +114,7 @@
 5. `lorentz_test_residual_handoff` — Export RMS, PPN, and SME-style residual rows from the Lorentz/GR bridge packet. Status: `pending`. Depends on: `lorentz_gr_bridge`.
 6. `emission_flux_jacobian_conservation` — Prove that source-provenanced constant causal-wake emission over an expanding wake surface preserves emitted polarity weight and collapses to the current $r^{-2}|J|^{-1}$ branch law on a simple-root chart, without importing legacy potential-sphere language or treating the wake as an autonomous field substance. Status: `priority-only`. Depends on: dual-mollified law; branch promotion depends on the retained branch-chart packet.
 7. `binary_perturbation_projection_classifier` — Split finite binary perturbations into radial and tangential projection rows, then decide whether the response is same-branch phase, radius/cadence retuning, or branch transition. Status: `priority-only`. Depends on: `certified_eigen_braid`.
+8. `topological_causal_root_ledger_proof_target` — Work out whether causal-root topology on a neutral 3-torus can supply a closed-ledger admissibility theorem that ties pair contact, multi-hit, self-hit, branch-chart boundaries, action residuals, Noether wake-history charges, Noether sea response, and cross-sector acceptance to one retained history record. Status: `priority-only theorem target`; see [topological-causal-root-ledger-proof-target](topological-causal-root-ledger-proof-target.md). Depends on: Master Equation branch-chart closure grammar; branch promotion still depends on `certified_eigen_braid`.
 
 ## Scope
 
