@@ -231,7 +231,7 @@ Mia and Sophia stand beside a simple demonstration track. At the right end, a to
 
 ### Keeper Decision
 
-`signals-from-earlier-prototype-v2-present-inbox.png` is the selected keeper direction. It works because the public joke reads first: the present has an inbox and the mail is still arriving. The $\mathbb{A}\mathbb{A}\mathbb{A}$ causal-delay geometry then becomes the second read instead of the whole entry requirement.
+`present-has-an-inbox-prototype.png` is the selected keeper direction. It works because the public joke reads first: the present has an inbox and the mail is still arriving. The $\mathbb{A}\mathbb{A}\mathbb{A}$ causal-delay geometry then becomes the second read instead of the whole entry requirement.
 
 ## 9. New Theory, Same Budget
 
@@ -416,27 +416,27 @@ For image generation, start with:
 First rough visual prototypes:
 
 - [Group Project Assumption](assets/group-project-assumption-prototype.png) - selected keeper direction.
-- [Signals From Earlier](assets/signals-from-earlier-prototype-v2-present-inbox.png) - selected keeper direction.
+- [Present Has An Inbox](assets/present-has-an-inbox-prototype.png) - selected keeper direction.
 
 Second rough visual prototypes:
 
 - [New Theory, Same Budget](assets/new-theory-same-budget-prototype.png) - selected keeper direction.
-- [Citation Needed](assets/citation-needed-prototype-v2-no-just.png) - selected keeper direction.
+- [Citation Needed](assets/citation-needed-prototype.png) - selected keeper direction.
 - [Show The Residuals](assets/show-the-residuals-prototype.png) - selected keeper direction.
 - [Office Hours For A Claim](assets/office-hours-for-a-claim-prototype.png) - selected keeper direction.
 
 Cosmology comparison rough visual prototypes:
 
-- [First Page Problem](assets/first-page-problem-prototype-v4-snail-gaze.png) - selected keeper direction.
+- [First Page Is Not The Beginning](assets/first-page-is-not-the-beginning-prototype.png) - selected keeper direction.
 - [The Observable Edge Receipt](assets/observable-edge-receipt-prototype.png) - selected keeper direction.
-- [Opening Scene, Not Building Permit v2, First Footage](assets/opening-scene-not-building-permit-prototype-v2-first-footage.png) - selected keeper direction; shifts the joke from building-permit wording to first-scene versus first-footage wording.
-- [Birthday Cake For The Observer Era](assets/birthday-cake-observer-era-prototype.png) - selected keeper direction.
+- [First Footage, Not A Birth Certificate](assets/first-footage-not-birth-certificate-prototype.png) - selected keeper direction; shifts the joke from building-permit wording to first-scene versus first-footage wording.
+- [Birthday Cake For The Observer Era](assets/birthday-cake-for-observer-era-prototype.png) - selected keeper direction.
 
-Prior-comic remake rough visual prototypes:
+Prior-comic reinterpretation rough visual prototypes:
 
-- [Curvefit Remake](assets/curvefit-remake-prototype.png) - selected keeper direction.
-- [Acknowledgements Remake v3, Architrinos Room](assets/acknowledgements-remake-prototype-v3-architrinos-room.png) - selected keeper direction; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
-- [We Need To Talk Remake](assets/we-need-to-talk-remake-prototype.png) - selected keeper direction.
-- [Alchemy Remake](assets/alchemy-remake-prototype.png) - selected keeper direction.
-- [Jets Remake](assets/jets-remake-prototype.png) - selected keeper direction.
-- [SMBH Remake](assets/smbh-remake-prototype.png) - selected keeper direction.
+- [Four Theories, One Oval](assets/four-theories-one-oval-prototype.png) - selected keeper direction.
+- [Acknowledgements In Architrino's Room](assets/acknowledgements-in-architrinos-room-prototype.png) - selected keeper direction; uses the architrinos-in-this-room Sophia bubble, replaces the banner words with red and blue architrinos, and keeps the slide list inside the screen.
+- [We Need To Talk](assets/we-need-to-talk-prototype.png) - selected keeper direction.
+- [Old Alchemy, New Apparatus](assets/old-alchemy-new-apparatus-prototype.png) - selected keeper direction.
+- [What Counts As Evidence?](assets/what-counts-as-evidence-prototype.png) - selected keeper direction.
+- [Candidate, Not A Throne](assets/candidate-not-a-throne-prototype.png) - selected keeper direction.

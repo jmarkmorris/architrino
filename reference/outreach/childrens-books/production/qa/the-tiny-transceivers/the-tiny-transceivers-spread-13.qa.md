@@ -1,7 +1,7 @@
 # QA: Send And Receive
 
 - id: `the-tiny-transceivers-spread-13`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-13.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-13.png`
 - lesson: Transceiver means both sender and receiver.
 - geometry: A sparse web shows some red/blue points sending from older positions while other points receive and bend their paths.
 

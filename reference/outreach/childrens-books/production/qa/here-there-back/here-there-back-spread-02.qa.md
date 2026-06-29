@@ -1,7 +1,7 @@
 # QA: Look
 
 - id: `here-there-back-spread-02`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-02.png`
 - lesson: There can be different from here.
 - geometry: The red ball and blue ball are distinct objects at distinct positions.
 

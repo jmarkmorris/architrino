@@ -1,7 +1,7 @@
 # QA: First Roll
 
 - id: `again-makes-a-pattern-spread-02`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-02.png`
 - lesson: One run can be seen as one path.
 - geometry: One purple dotted path follows one red-ball run.
 

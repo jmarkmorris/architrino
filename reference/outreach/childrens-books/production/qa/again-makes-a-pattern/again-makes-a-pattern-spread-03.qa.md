@@ -1,7 +1,7 @@
 # QA: Second Roll
 
 - id: `again-makes-a-pattern-spread-03`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-03.png`
 - lesson: Two paths can be near each other.
 - geometry: A newer purple path comes close to an older paler path while both remain separately visible.
 

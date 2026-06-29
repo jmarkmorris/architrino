@@ -1,7 +1,7 @@
 # QA: The Water Remembers
 
 - id: `nature-remembers-motion-spread-06`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-06.png`
 - lesson: Water can show where motion began.
 - geometry: Concentric ripple rings mark the water source point.
 

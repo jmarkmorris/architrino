@@ -1,7 +1,7 @@
 # QA: Bigger Pattern
 
 - id: `patterns-that-hold-spread-11`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-11.png`
 - lesson: Assemblies can grow in complexity.
 - geometry: Five beads form a larger open relation, with the first three still readable and two more joining with softer arcs.
 

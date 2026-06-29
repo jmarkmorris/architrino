@@ -2255,12 +2255,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "outreach__comics__first_page_problem",
-      "name": "First Page Problem",
-      "path": "content/scenes/outreach/comics/first_page_problem.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "outreach__comics__group_project_assumption",
       "name": "Group Project Assumption",
       "path": "content/scenes/outreach/comics/group_project_assumption.json",
@@ -2285,51 +2279,9 @@
       "nodeType": "scene"
     },
     {
-      "id": "outreach__comics__signals_from_earlier",
-      "name": "Signals From Earlier",
-      "path": "content/scenes/outreach/comics/signals_from_earlier.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__curvefit_remake",
-      "name": "Four Theories, One Oval",
-      "path": "content/scenes/outreach/comics/curvefit_remake.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__we_need_to_talk_remake",
-      "name": "We Need To Talk",
-      "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "outreach__comics__citation_needed",
       "name": "Citation Needed",
       "path": "content/scenes/outreach/comics/citation_needed.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__alchemy_remake",
-      "name": "Old Alchemy, New Apparatus",
-      "path": "content/scenes/outreach/comics/alchemy_remake.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__smbh_remake",
-      "name": "Candidate, Not A Throne",
-      "path": "content/scenes/outreach/comics/smbh_remake.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__birthday_cake_observer_era",
-      "name": "Birthday Cake For The Observer Era",
-      "path": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "outreach__comics__jets_remake",
-      "name": "What Counts As Evidence?",
-      "path": "content/scenes/outreach/comics/jets_remake.json",
       "nodeType": "scene"
     },
     {
@@ -2339,15 +2291,63 @@
       "nodeType": "scene"
     },
     {
-      "id": "outreach__comics__opening_scene_not_building_permit",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "id": "outreach__comics__acknowledgements_in_architrinos_room",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "nodeType": "scene"
     },
     {
-      "id": "outreach__comics__acknowledgements_remake",
-      "name": "Acknowledgements In Architrino's Room",
-      "path": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "id": "outreach__comics__birthday_cake_for_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__candidate_not_a_throne",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/candidate_not_a_throne.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__first_footage_not_birth_certificate",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__first_page_is_not_the_beginning",
+      "name": "First Page Problem",
+      "path": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__four_theories_one_oval",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/four_theories_one_oval.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__old_alchemy_new_apparatus",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__present_has_an_inbox",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/present_has_an_inbox.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__we_need_to_talk",
+      "name": "We Need To Talk",
+      "path": "content/scenes/outreach/comics/we_need_to_talk.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "outreach__comics__what_counts_as_evidence",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/what_counts_as_evidence.json",
       "nodeType": "scene"
     },
     {
@@ -2759,21 +2759,21 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "name": "Acknowledgements In Architrino's Room",
-      "path": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
-      "name": "Old Alchemy, New Apparatus",
-      "path": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "id": "content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
       "name": "Birthday Cake For The Observer Era",
-      "path": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "path": "content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
+      "name": "Candidate, Not A Throne",
+      "path": "content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2783,27 +2783,27 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
-      "name": "Four Theories, One Oval",
-      "path": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "id": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
       "name": "First Page Problem",
-      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "path": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
+      "name": "Four Theories, One Oval",
+      "path": "content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
       "nodeType": "markdown_doc"
     },
     {
       "id": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "name": "Group Project Assumption",
       "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/outreach/comics/jets-remake.md",
-      "name": "What Counts As Evidence?",
-      "path": "content/markdown/aaa/outreach/comics/jets-remake.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2825,9 +2825,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "id": "content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2837,21 +2843,15 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
-      "name": "Signals From Earlier",
-      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "name": "Candidate, Not A Throne",
-      "path": "content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk.md",
       "name": "We Need To Talk",
-      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
+      "name": "What Counts As Evidence?",
+      "path": "content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5431,30 +5431,30 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
+      "nodeId": "scene:content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "nodeType": "scene",
-      "id": "outreach__comics__acknowledgements_remake",
+      "id": "outreach__comics__acknowledgements_in_architrinos_room",
       "name": "Acknowledgements In Architrino's Room",
-      "path": "content/scenes/outreach/comics/acknowledgements_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "path": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
+      "searchTarget": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/alchemy_remake.json",
+      "nodeId": "scene:content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
       "nodeType": "scene",
-      "id": "outreach__comics__alchemy_remake",
-      "name": "Old Alchemy, New Apparatus",
-      "path": "content/scenes/outreach/comics/alchemy_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/alchemy_remake.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
-      "nodeType": "scene",
-      "id": "outreach__comics__birthday_cake_observer_era",
+      "id": "outreach__comics__birthday_cake_for_observer_era",
       "name": "Birthday Cake For The Observer Era",
-      "path": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
-      "searchTarget": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "path": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
+      "searchTarget": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/candidate_not_a_throne.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__candidate_not_a_throne",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/outreach/comics/candidate_not_a_throne.json",
+      "searchTarget": "content/scenes/outreach/comics/candidate_not_a_throne.json",
       "implicit": false
     },
     {
@@ -5467,21 +5467,30 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/curvefit_remake.json",
+      "nodeId": "scene:content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
       "nodeType": "scene",
-      "id": "outreach__comics__curvefit_remake",
-      "name": "Four Theories, One Oval",
-      "path": "content/scenes/outreach/comics/curvefit_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/curvefit_remake.json",
+      "id": "outreach__comics__first_footage_not_birth_certificate",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
+      "searchTarget": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/first_page_problem.json",
+      "nodeId": "scene:content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
       "nodeType": "scene",
-      "id": "outreach__comics__first_page_problem",
+      "id": "outreach__comics__first_page_is_not_the_beginning",
       "name": "First Page Problem",
-      "path": "content/scenes/outreach/comics/first_page_problem.json",
-      "searchTarget": "content/scenes/outreach/comics/first_page_problem.json",
+      "path": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
+      "searchTarget": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/four_theories_one_oval.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__four_theories_one_oval",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/outreach/comics/four_theories_one_oval.json",
+      "searchTarget": "content/scenes/outreach/comics/four_theories_one_oval.json",
       "implicit": false
     },
     {
@@ -5491,15 +5500,6 @@
       "name": "Group Project Assumption",
       "path": "content/scenes/outreach/comics/group_project_assumption.json",
       "searchTarget": "content/scenes/outreach/comics/group_project_assumption.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/outreach/comics/jets_remake.json",
-      "nodeType": "scene",
-      "id": "outreach__comics__jets_remake",
-      "name": "What Counts As Evidence?",
-      "path": "content/scenes/outreach/comics/jets_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/jets_remake.json",
       "implicit": false
     },
     {
@@ -5530,12 +5530,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "nodeId": "scene:content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
       "nodeType": "scene",
-      "id": "outreach__comics__opening_scene_not_building_permit",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
-      "searchTarget": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "id": "outreach__comics__old_alchemy_new_apparatus",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
+      "searchTarget": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/present_has_an_inbox.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__present_has_an_inbox",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/outreach/comics/present_has_an_inbox.json",
+      "searchTarget": "content/scenes/outreach/comics/present_has_an_inbox.json",
       "implicit": false
     },
     {
@@ -5548,30 +5557,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
+      "nodeId": "scene:content/scenes/outreach/comics/we_need_to_talk.json",
       "nodeType": "scene",
-      "id": "outreach__comics__signals_from_earlier",
-      "name": "Signals From Earlier",
-      "path": "content/scenes/outreach/comics/signals_from_earlier.json",
-      "searchTarget": "content/scenes/outreach/comics/signals_from_earlier.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/outreach/comics/smbh_remake.json",
-      "nodeType": "scene",
-      "id": "outreach__comics__smbh_remake",
-      "name": "Candidate, Not A Throne",
-      "path": "content/scenes/outreach/comics/smbh_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/smbh_remake.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
-      "nodeType": "scene",
-      "id": "outreach__comics__we_need_to_talk_remake",
+      "id": "outreach__comics__we_need_to_talk",
       "name": "We Need To Talk",
-      "path": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
-      "searchTarget": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "path": "content/scenes/outreach/comics/we_need_to_talk.json",
+      "searchTarget": "content/scenes/outreach/comics/we_need_to_talk.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/outreach/comics/what_counts_as_evidence.json",
+      "nodeType": "scene",
+      "id": "outreach__comics__what_counts_as_evidence",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/outreach/comics/what_counts_as_evidence.json",
+      "searchTarget": "content/scenes/outreach/comics/what_counts_as_evidence.json",
       "implicit": false
     },
     {
@@ -7384,30 +7384,30 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "name": "Acknowledgements In Architrino's Room",
-      "path": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "path": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
-      "name": "Old Alchemy, New Apparatus",
-      "path": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/alchemy-remake.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "id": "content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
       "name": "Birthday Cake For The Observer Era",
-      "path": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "path": "content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
+      "name": "Candidate, Not A Throne",
+      "path": "content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
       "implicit": false
     },
     {
@@ -7420,21 +7420,30 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
-      "name": "Four Theories, One Oval",
-      "path": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "id": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
       "name": "First Page Problem",
-      "path": "content/markdown/aaa/outreach/comics/first-page-problem.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "path": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
+      "name": "Four Theories, One Oval",
+      "path": "content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
       "implicit": false
     },
     {
@@ -7444,15 +7453,6 @@
       "name": "Group Project Assumption",
       "path": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "searchTarget": "content/markdown/aaa/outreach/comics/group-project-assumption.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/jets-remake.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/jets-remake.md",
-      "name": "What Counts As Evidence?",
-      "path": "content/markdown/aaa/outreach/comics/jets-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/jets-remake.md",
       "implicit": false
     },
     {
@@ -7483,12 +7483,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "id": "content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "name": "Signals From Earlier",
+      "path": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
       "implicit": false
     },
     {
@@ -7501,30 +7510,21 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
-      "name": "Signals From Earlier",
-      "path": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/signals-from-earlier.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "name": "Candidate, Not A Throne",
-      "path": "content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/smbh-remake.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "id": "content/markdown/aaa/outreach/comics/we-need-to-talk.md",
       "name": "We Need To Talk",
-      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
-      "searchTarget": "content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
+      "path": "content/markdown/aaa/outreach/comics/we-need-to-talk.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/we-need-to-talk.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
+      "name": "What Counts As Evidence?",
+      "path": "content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
+      "searchTarget": "content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
       "implicit": false
     },
     {
@@ -11926,24 +11926,24 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
+      "to": "scene:content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/alchemy_remake.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "to": "scene:content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[13]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/candidate_not_a_throne.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11954,17 +11954,24 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/curvefit_remake.json",
+      "to": "scene:content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[14]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/first_page_problem.json",
+      "to": "scene:content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/four_theories_one_oval.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[14]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -11972,13 +11979,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[1]"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/jets_remake.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -12003,10 +12003,17 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "to": "scene:content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/present_has_an_inbox.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
@@ -12017,24 +12024,17 @@
     },
     {
       "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/smbh_remake.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/outreach/comics.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics.json",
-      "to": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "to": "scene:content/scenes/outreach/comics/we_need_to_talk.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/comics.json",
       "field": "scene.children[15]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics.json",
+      "to": "scene:content/scenes/outreach/comics/what_counts_as_evidence.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/comics.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/outreach/outreach.json",
@@ -13521,24 +13521,24 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/acknowledgements_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-remake.md",
+      "from": "scene:content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/acknowledgements-in-architrinos-room.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/acknowledgements_remake.json",
+      "source": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/alchemy_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/alchemy-remake.md",
+      "from": "scene:content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-for-observer-era.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/alchemy_remake.json",
+      "source": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/birthday_cake_observer_era.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/birthday-cake-observer-era.md",
+      "from": "scene:content/scenes/outreach/comics/candidate_not_a_throne.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/candidate-not-a-throne.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/birthday_cake_observer_era.json",
+      "source": "content/scenes/outreach/comics/candidate_not_a_throne.json",
       "field": "scene.source.path"
     },
     {
@@ -13549,17 +13549,24 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/curvefit_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/curvefit-remake.md",
+      "from": "scene:content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-footage-not-birth-certificate.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/curvefit_remake.json",
+      "source": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/first_page_problem.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-problem.md",
+      "from": "scene:content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/first-page-is-not-the-beginning.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/first_page_problem.json",
+      "source": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/four_theories_one_oval.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/four-theories-one-oval.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/four_theories_one_oval.json",
       "field": "scene.source.path"
     },
     {
@@ -13567,13 +13574,6 @@
       "to": "markdown_doc:content/markdown/aaa/outreach/comics/group-project-assumption.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/outreach/comics/group_project_assumption.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics/jets_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/jets-remake.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/jets_remake.json",
       "field": "scene.source.path"
     },
     {
@@ -13598,10 +13598,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/opening_scene_not_building_permit.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/opening-scene-not-building-permit.md",
+      "from": "scene:content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/old-alchemy-new-apparatus.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/opening_scene_not_building_permit.json",
+      "source": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/outreach/comics/present_has_an_inbox.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/present-has-an-inbox.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/outreach/comics/present_has_an_inbox.json",
       "field": "scene.source.path"
     },
     {
@@ -13612,24 +13619,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/signals_from_earlier.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/signals-from-earlier.md",
+      "from": "scene:content/scenes/outreach/comics/we_need_to_talk.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/signals_from_earlier.json",
+      "source": "content/scenes/outreach/comics/we_need_to_talk.json",
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/outreach/comics/smbh_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/smbh-remake.md",
+      "from": "scene:content/scenes/outreach/comics/what_counts_as_evidence.json",
+      "to": "markdown_doc:content/markdown/aaa/outreach/comics/what-counts-as-evidence.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/smbh_remake.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/outreach/comics/we_need_to_talk_remake.json",
-      "to": "markdown_doc:content/markdown/aaa/outreach/comics/we-need-to-talk-remake.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/outreach/comics/we_need_to_talk_remake.json",
+      "source": "content/scenes/outreach/comics/what_counts_as_evidence.json",
       "field": "scene.source.path"
     },
     {

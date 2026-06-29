@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `the-tiny-transceivers-cover`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-cover.png`
 - lesson: The cover introduces red and blue point transceivers as trackable tiny senders and receivers.
 - geometry: Small red and blue point transceivers keep paths, send from earlier positions, and receive cues that bend later paths.
 

@@ -1,7 +1,7 @@
 # QA: Nearer Start
 
 - id: `again-makes-a-pattern-spread-06`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-06.png`
 - lesson: Near starts can make overlapping paths.
 - geometry: A near starting place makes the new purple path gently meet or overlap an older path.
 

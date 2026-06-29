@@ -1,7 +1,7 @@
 # QA: One Change
 
 - id: `what-changed-spread-06`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-06.png`
 - lesson: Changing one thing makes the test clearer.
 - geometry: One low purple guide piece changes while the star start, balls, and most of the play surface stay fixed.
 

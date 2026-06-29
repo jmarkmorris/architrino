@@ -1,7 +1,7 @@
 # QA: Many Tiny Paths
 
 - id: `the-tiny-transceivers-spread-12`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-12.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-12.png`
 - lesson: Many entities can be tracked together.
 - geometry: Several red and blue point transceivers each keep their own short path trace on the lab screen.
 

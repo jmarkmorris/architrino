@@ -1,7 +1,7 @@
 # QA: Messages Fit
 
 - id: `patterns-that-hold-spread-07`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-07.png`
 - lesson: Mutual influence can fit into a pattern.
 - geometry: Soft purple timing cues travel from one bead to the next and arrive as the next bead begins to swing.
 

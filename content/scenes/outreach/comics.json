@@ -14,8 +14,8 @@
     },
     "children": [
       {
-        "nodeId": "signals_from_earlier",
-        "scenePath": "content/scenes/outreach/comics/signals_from_earlier.json"
+        "nodeId": "present_has_an_inbox",
+        "scenePath": "content/scenes/outreach/comics/present_has_an_inbox.json"
       },
       {
         "nodeId": "group_project_assumption",
@@ -26,20 +26,20 @@
         "scenePath": "content/scenes/outreach/comics/citation_needed.json"
       },
       {
-        "nodeId": "alchemy_remake",
-        "scenePath": "content/scenes/outreach/comics/alchemy_remake.json"
+        "nodeId": "old_alchemy_new_apparatus",
+        "scenePath": "content/scenes/outreach/comics/old_alchemy_new_apparatus.json"
       },
       {
-        "nodeId": "acknowledgements_remake",
-        "scenePath": "content/scenes/outreach/comics/acknowledgements_remake.json"
+        "nodeId": "acknowledgements_in_architrinos_room",
+        "scenePath": "content/scenes/outreach/comics/acknowledgements_in_architrinos_room.json"
       },
       {
-        "nodeId": "smbh_remake",
-        "scenePath": "content/scenes/outreach/comics/smbh_remake.json"
+        "nodeId": "candidate_not_a_throne",
+        "scenePath": "content/scenes/outreach/comics/candidate_not_a_throne.json"
       },
       {
-        "nodeId": "jets_remake",
-        "scenePath": "content/scenes/outreach/comics/jets_remake.json"
+        "nodeId": "what_counts_as_evidence",
+        "scenePath": "content/scenes/outreach/comics/what_counts_as_evidence.json"
       },
       {
         "nodeId": "new_theory_same_budget",
@@ -54,39 +54,39 @@
         "scenePath": "content/scenes/outreach/comics/office_hours_for_a_claim.json"
       },
       {
-        "nodeId": "first_page_problem",
-        "scenePath": "content/scenes/outreach/comics/first_page_problem.json"
+        "nodeId": "first_page_is_not_the_beginning",
+        "scenePath": "content/scenes/outreach/comics/first_page_is_not_the_beginning.json"
       },
       {
         "nodeId": "observable_edge_receipt",
         "scenePath": "content/scenes/outreach/comics/observable_edge_receipt.json"
       },
       {
-        "nodeId": "opening_scene_not_building_permit",
-        "scenePath": "content/scenes/outreach/comics/opening_scene_not_building_permit.json"
+        "nodeId": "first_footage_not_birth_certificate",
+        "scenePath": "content/scenes/outreach/comics/first_footage_not_birth_certificate.json"
       },
       {
-        "nodeId": "birthday_cake_observer_era",
-        "scenePath": "content/scenes/outreach/comics/birthday_cake_observer_era.json"
+        "nodeId": "birthday_cake_for_observer_era",
+        "scenePath": "content/scenes/outreach/comics/birthday_cake_for_observer_era.json"
       },
       {
-        "nodeId": "curvefit_remake",
-        "scenePath": "content/scenes/outreach/comics/curvefit_remake.json"
+        "nodeId": "four_theories_one_oval",
+        "scenePath": "content/scenes/outreach/comics/four_theories_one_oval.json"
       },
       {
-        "nodeId": "we_need_to_talk_remake",
-        "scenePath": "content/scenes/outreach/comics/we_need_to_talk_remake.json"
+        "nodeId": "we_need_to_talk",
+        "scenePath": "content/scenes/outreach/comics/we_need_to_talk.json"
       }
     ]
   },
   "objects": [
     {
-      "id": "signals_from_earlier",
+      "id": "present_has_an_inbox",
       "title": "Signals From Earlier",
       "radius": 1.8,
       "color": "#2f6b6f",
       "labelTitle": "Signals From Earlier",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/signals-from-earlier-present-inbox-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/present-has-an-inbox-thumb.png",
       "labelBadgeAlt": "Signals From Earlier thumbnail"
     },
     {
@@ -108,39 +108,39 @@
       "labelBadgeAlt": "Citation Needed thumbnail"
     },
     {
-      "id": "alchemy_remake",
+      "id": "old_alchemy_new_apparatus",
       "title": "Old Alchemy, New Apparatus",
       "radius": 1.8,
       "color": "#80623c",
       "labelTitle": "Old Alchemy, New Apparatus",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/alchemy-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/old-alchemy-new-apparatus-thumb.png",
       "labelBadgeAlt": "Old Alchemy, New Apparatus thumbnail"
     },
     {
-      "id": "acknowledgements_remake",
+      "id": "acknowledgements_in_architrinos_room",
       "title": "Acknowledgements In Architrino's Room",
       "radius": 1.8,
       "color": "#6e5a46",
       "labelTitle": "Acknowledgements In Architrino's Room",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/acknowledgements-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/acknowledgements-in-architrinos-room-thumb.png",
       "labelBadgeAlt": "Acknowledgements In Architrino's Room thumbnail"
     },
     {
-      "id": "smbh_remake",
+      "id": "candidate_not_a_throne",
       "title": "Candidate, Not A Throne",
       "radius": 1.8,
       "color": "#5f5b77",
       "labelTitle": "Candidate, Not A Throne",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/smbh-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/candidate-not-a-throne-thumb.png",
       "labelBadgeAlt": "Candidate, Not A Throne thumbnail"
     },
     {
-      "id": "jets_remake",
+      "id": "what_counts_as_evidence",
       "title": "What Counts As Evidence?",
       "radius": 1.8,
       "color": "#3e6672",
       "labelTitle": "What Counts As Evidence?",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/jets-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/what-counts-as-evidence-thumb.png",
       "labelBadgeAlt": "What Counts As Evidence? thumbnail"
     },
     {
@@ -171,12 +171,12 @@
       "labelBadgeAlt": "Office Hours For A Claim thumbnail"
     },
     {
-      "id": "first_page_problem",
+      "id": "first_page_is_not_the_beginning",
       "title": "First Page Problem",
       "radius": 1.8,
       "color": "#3c6a7a",
       "labelTitle": "First Page Problem",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-problem-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-page-is-not-the-beginning-thumb.png",
       "labelBadgeAlt": "First Page Problem thumbnail"
     },
     {
@@ -189,39 +189,39 @@
       "labelBadgeAlt": "The Observable Edge Receipt thumbnail"
     },
     {
-      "id": "opening_scene_not_building_permit",
+      "id": "first_footage_not_birth_certificate",
       "title": "Opening Scene, Not Building Permit",
       "radius": 1.8,
       "color": "#74513d",
       "labelTitle": "Opening Scene, Not Building Permit",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/opening-scene-not-building-permit-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/first-footage-not-birth-certificate-thumb.png",
       "labelBadgeAlt": "Opening Scene, Not Building Permit thumbnail"
     },
     {
-      "id": "birthday_cake_observer_era",
+      "id": "birthday_cake_for_observer_era",
       "title": "Birthday Cake For The Observer Era",
       "radius": 1.8,
       "color": "#7a5f3d",
       "labelTitle": "Birthday Cake For The Observer Era",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/birthday-cake-observer-era-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/birthday-cake-for-observer-era-thumb.png",
       "labelBadgeAlt": "Birthday Cake For The Observer Era thumbnail"
     },
     {
-      "id": "curvefit_remake",
+      "id": "four_theories_one_oval",
       "title": "Four Theories, One Oval",
       "radius": 1.8,
       "color": "#6c4f8d",
       "labelTitle": "Four Theories, One Oval",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/curvefit-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/four-theories-one-oval-thumb.png",
       "labelBadgeAlt": "Four Theories, One Oval thumbnail"
     },
     {
-      "id": "we_need_to_talk_remake",
+      "id": "we_need_to_talk",
       "title": "We Need To Talk",
       "radius": 1.8,
       "color": "#4f6f58",
       "labelTitle": "We Need To Talk",
-      "labelBadgeImage": "content/assets/images/comics/thumbnails/we-need-to-talk-remake-thumb.png",
+      "labelBadgeImage": "content/assets/images/comics/thumbnails/we-need-to-talk-thumb.png",
       "labelBadgeAlt": "We Need To Talk thumbnail"
     }
   ]

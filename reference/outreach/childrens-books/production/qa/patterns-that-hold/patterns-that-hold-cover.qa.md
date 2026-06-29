@@ -1,7 +1,7 @@
 # QA: Cover
 
 - id: `patterns-that-hold-cover`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-cover.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-cover.png`
 - lesson: The cover introduces moving parts that keep returning to a relation.
 - geometry: Four beads move on strings while older/fainter and newer/fresher purple traces show a calm repeated relation.
 

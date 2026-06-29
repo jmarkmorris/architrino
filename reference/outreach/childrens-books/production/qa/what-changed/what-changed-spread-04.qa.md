@@ -1,7 +1,7 @@
 # QA: Predict
 
 - id: `what-changed-spread-04`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-04.png`
 - lesson: A prediction is a careful guess.
 - geometry: The same start-and-dip setup is ready, with an open route that invites a careful prediction.
 

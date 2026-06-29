@@ -2,7 +2,7 @@
   {
     "id": "here-there-back-cover",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-cover.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-cover.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -22,7 +22,7 @@
   {
     "id": "here-there-back-spread-01",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-01.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-01.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -42,7 +42,7 @@
   {
     "id": "here-there-back-spread-02",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-02.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-02.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -62,7 +62,7 @@
   {
     "id": "here-there-back-spread-03",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-03.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-03.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -82,7 +82,7 @@
   {
     "id": "here-there-back-spread-04",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-04.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-04.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -102,7 +102,7 @@
   {
     "id": "here-there-back-spread-05",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-05.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-05.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -122,7 +122,7 @@
   {
     "id": "here-there-back-spread-06",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-06.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-06.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -142,7 +142,7 @@
   {
     "id": "here-there-back-spread-07",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-07.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-07.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -162,7 +162,7 @@
   {
     "id": "here-there-back-spread-08",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-08.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-08.png",
     "exists": true,
     "automated": {
       "width": 1536,
@@ -182,7 +182,7 @@
   {
     "id": "here-there-back-backmatter-01",
     "book_slug": "here-there-back",
-    "source_png": "reference/outreach/childrens-books/production/source/here-there-back/here-there-back-backmatter-01.png",
+    "source_png": "content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-backmatter-01.png",
     "exists": true,
     "automated": {
       "width": 1536,

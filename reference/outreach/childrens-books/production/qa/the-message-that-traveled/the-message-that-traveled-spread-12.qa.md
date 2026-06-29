@@ -1,7 +1,7 @@
 # QA: The Discovery
 
 - id: `the-message-that-traveled-spread-12`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-12.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-12.png`
 - lesson: Causal delay becomes a child-facing idea.
 - geometry: A message is visibly between its source and Electra's arrival place.
 

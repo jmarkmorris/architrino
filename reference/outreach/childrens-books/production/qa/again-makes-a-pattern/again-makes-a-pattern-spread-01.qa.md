@@ -1,7 +1,7 @@
 # QA: The Wonder
 
 - id: `again-makes-a-pattern-spread-01`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-01.png`
 - lesson: A repeated action can become a question.
 - geometry: A faint older purple trail remains visible as yesterday's path.
 

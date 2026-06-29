@@ -1,7 +1,7 @@
 # QA: The Puddle
 
 - id: `the-message-that-traveled-spread-05`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-05.png`
 - lesson: A starting event can send an outward message.
 - geometry: Concentric purple-blue rings run away from the pebble splash point.
 

@@ -1,7 +1,7 @@
 # QA: Toward
 
 - id: `the-tiny-transceivers-spread-09`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-09.png`
 - lesson: Reception can pull a path inward.
 - geometry: A received cue makes a point path bend inward and narrow the separation from another point.
 

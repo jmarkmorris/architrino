@@ -1,7 +1,7 @@
 # QA: The Clap
 
 - id: `the-message-that-traveled-spread-02`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-02.png`
 - lesson: Seeing and hearing can arrive at different times.
 - geometry: Soft purple sound rings travel outward from Poz's clap source toward Electra.
 

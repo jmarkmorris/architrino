@@ -1,7 +1,7 @@
 # QA: Before
 
 - id: `nature-remembers-motion-spread-04`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-04.png`
 - lesson: A trail can show order.
 - geometry: One part of a continuous trail is older and lighter, the next part is fresher and stronger.
 

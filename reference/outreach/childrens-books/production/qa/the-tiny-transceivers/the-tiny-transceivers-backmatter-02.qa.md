@@ -1,7 +1,7 @@
 # QA: Back Matter Activity 2
 
 - id: `the-tiny-transceivers-backmatter-02`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.png`
 - lesson: Back-matter activity image.
 - geometry: Use the geometry already introduced in the story at activity scale.
 

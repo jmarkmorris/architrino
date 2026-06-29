@@ -1,7 +1,7 @@
 # QA: New Spacing
 
 - id: `patterns-that-hold-spread-09`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-09.png`
 - lesson: Restoring relation can restore the pattern.
 - geometry: Fresh traces begin fitting back over older repeated arcs after the changed bead returns toward the working spacing.
 

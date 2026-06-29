@@ -1,7 +1,7 @@
 # QA: Two Answers
 
 - id: `the-tiny-transceivers-spread-08`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-08.png`
 - lesson: Polarity matters.
 - geometry: Two sparse response examples show different path bends from different red/blue received cues on one continuous lab surface.
 

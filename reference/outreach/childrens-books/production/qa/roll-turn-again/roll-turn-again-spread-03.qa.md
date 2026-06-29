@@ -1,7 +1,7 @@
 # QA: The Path
 
 - id: `roll-turn-again-spread-03`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-03.png`
 - lesson: The route matters.
 - geometry: The red ball follows a smooth route on the floor, with a dotted purple path behind it.
 

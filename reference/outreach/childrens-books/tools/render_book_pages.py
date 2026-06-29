@@ -136,7 +136,7 @@ def main() -> None:
                 landscape_pages.append(target)
 
     if landscape_pages:
-        pdf_path = REPO / "reference/outreach/childrens-books/production/pages" / args.book / f"{args.book}-first-draft.pdf"
+        pdf_path = REPO / "content/assets/books/childrens-books" / args.book / f"{args.book}-first-draft.pdf"
         pdf_path.parent.mkdir(parents=True, exist_ok=True)
         pdf_images = [Image.open(path).convert("RGB") for path in landscape_pages]
         pdf_images[0].save(pdf_path, save_all=True, append_images=pdf_images[1:])

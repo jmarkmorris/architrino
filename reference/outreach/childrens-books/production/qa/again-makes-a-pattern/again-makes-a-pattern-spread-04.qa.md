@@ -1,7 +1,7 @@
 # QA: Almost Same
 
 - id: `again-makes-a-pattern-spread-04`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-04.png`
 - lesson: Similar paths can be compared.
 - geometry: Two similar purple paths almost share a route, with small visible differences.
 

@@ -1,7 +1,7 @@
 # QA: The First Line
 
 - id: `nature-remembers-motion-spread-01`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-01.png`
 - lesson: A moving thing can leave something behind.
 - geometry: Electra pulls a purple ribbon so the purple line becomes a visible history of the ribbon movement.
 

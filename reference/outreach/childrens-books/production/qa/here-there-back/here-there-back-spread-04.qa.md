@@ -1,7 +1,7 @@
 # QA: Roll
 
 - id: `here-there-back-spread-04`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-04.png`
 - lesson: Motion has a route.
 - geometry: The red ball has a short visible path behind it.
 

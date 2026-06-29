@@ -1,7 +1,7 @@
 # QA: The Name
 
 - id: `the-tiny-transceivers-spread-04`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-04.png`
 - lesson: The child meets the canonical term.
 - geometry: A blank lab card or blank screen area is reserved for later layout text while red and blue point paths remain visible.
 

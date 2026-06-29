@@ -1,7 +1,7 @@
 # QA: The Question
 
 - id: `what-changed-spread-01`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-01.png`
 - lesson: Wonder begins with noticing.
 - geometry: A faint purple path behind the red ball shows the route that led to the resting place.
 

@@ -1,7 +1,7 @@
 # QA: The Discovery
 
 - id: `the-tiny-transceivers-spread-14`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-14.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-14.png`
 - lesson: The deep actors of the series are now named.
 - geometry: A simplified lab view gathers one kept path, one old-source wake, and one received path bend.
 

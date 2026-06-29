@@ -1,7 +1,7 @@
 # QA: The Trail Stays
 
 - id: `nature-remembers-motion-spread-03`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-03.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-03.png`
 - lesson: A trace can remain after motion has moved on.
 - geometry: The red ball has moved on; the trail remains nearer to Electra and Poz.
 

@@ -1,7 +1,7 @@
 # QA: Again
 
 - id: `roll-turn-again-spread-10`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-10.png`
 - lesson: Repeated play reveals the route.
 - geometry: A calm repeated path shows roll, turn, and return, with older and newer dotted traces.
 

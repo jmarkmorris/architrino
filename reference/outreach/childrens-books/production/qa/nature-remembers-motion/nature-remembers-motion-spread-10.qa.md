@@ -1,7 +1,7 @@
 # QA: Follow It
 
 - id: `nature-remembers-motion-spread-10`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-10.png`
 - lesson: A trace can guide later attention.
 - geometry: Continuous purple trail guides attention from the children to ball/ribbon end.
 

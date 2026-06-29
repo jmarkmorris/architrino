@@ -1,7 +1,7 @@
 # QA: Just Enough
 
 - id: `patterns-that-hold-spread-04`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-04.png`
 - lesson: Some conditions support repeated relation.
 - geometry: Three bead arcs begin lining up as the motion becomes comparable across the setup.
 

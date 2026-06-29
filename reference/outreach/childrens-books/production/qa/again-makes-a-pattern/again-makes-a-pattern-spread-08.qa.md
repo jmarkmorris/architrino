@@ -1,7 +1,7 @@
 # QA: Many Tries
 
 - id: `again-makes-a-pattern-spread-08`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-08.png`
 - lesson: Many runs can reveal structure.
 - geometry: Several older and newer purple path traces cross the white floor while staying readable.
 

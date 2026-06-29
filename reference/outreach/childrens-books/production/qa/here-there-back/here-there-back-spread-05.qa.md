@@ -1,7 +1,7 @@
 # QA: There
 
 - id: `here-there-back-spread-05`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-05.png`
 - lesson: Here and there can both be held in attention.
 - geometry: The children remain at the starting place while the ball is visibly elsewhere.
 

@@ -1,7 +1,7 @@
 # QA: Here
 
 - id: `here-there-back-spread-01`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-01.png`
 - lesson: The children and the ball are somewhere.
 - geometry: Electra, Poz, and one ball each occupy clear, separate places.
 

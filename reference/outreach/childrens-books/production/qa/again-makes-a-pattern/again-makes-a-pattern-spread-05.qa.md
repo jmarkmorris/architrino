@@ -1,7 +1,7 @@
 # QA: Farther Start
 
 - id: `again-makes-a-pattern-spread-05`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-05.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-05.png`
 - lesson: Starting place matters.
 - geometry: A farther starting place produces a changed purple path beside the old path.
 

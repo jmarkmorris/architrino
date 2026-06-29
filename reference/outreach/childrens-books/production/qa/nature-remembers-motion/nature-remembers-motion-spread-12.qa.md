@@ -1,7 +1,7 @@
 # QA: The World Remembered
 
 - id: `nature-remembers-motion-spread-12`
-- source: `reference/outreach/childrens-books/production/source/nature-remembers-motion/nature-remembers-motion-spread-12.png`
+- source: `content/assets/images/outreach/childrens-books/source/nature-remembers-motion/nature-remembers-motion-spread-12.png`
 - lesson: Motion can leave readable history.
 - geometry: All traces remain visible after movement stops.
 

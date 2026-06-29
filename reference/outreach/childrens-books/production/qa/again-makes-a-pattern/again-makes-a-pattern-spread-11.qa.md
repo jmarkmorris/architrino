@@ -1,7 +1,7 @@
 # QA: Test
 
 - id: `again-makes-a-pattern-spread-11`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-11.png`
 - lesson: A prediction can be tested.
 - geometry: A newer purple path joins the earlier quiet shape in the place that fits the pattern.
 

@@ -1,7 +1,7 @@
 # QA: Again
 
 - id: `again-makes-a-pattern-spread-12`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-12.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-12.png`
 - lesson: Repeated motion can reveal nature's order.
 - geometry: The finished set of repeated paths shows near sections, far sections, one simple crossing, and one gentle overlap.
 

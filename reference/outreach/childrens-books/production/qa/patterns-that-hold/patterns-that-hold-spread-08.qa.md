@@ -1,7 +1,7 @@
 # QA: One Part Changed
 
 - id: `patterns-that-hold-spread-08`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-08.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-08.png`
 - lesson: Spacing matters for stable pattern.
 - geometry: One bead moves farther away while the old traces remain near the original spacing and the new trace no longer lines up.
 

@@ -1,7 +1,7 @@
 # QA: Try A Flat
 
 - id: `what-changed-spread-10`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-10.png`
 - lesson: Flat places can preserve a simpler path.
 - geometry: A fresh purple path runs straight through a flat white path piece.
 

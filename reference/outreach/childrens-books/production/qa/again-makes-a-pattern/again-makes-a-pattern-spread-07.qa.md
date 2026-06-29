@@ -1,7 +1,7 @@
 # QA: Over And Under
 
 - id: `again-makes-a-pattern-spread-07`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-07.png`
 - lesson: Patterns can include crossings.
 - geometry: One purple path line crosses another as a gentle overlap from repeated rolling.
 

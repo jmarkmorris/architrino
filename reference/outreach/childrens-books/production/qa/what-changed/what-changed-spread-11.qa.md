@@ -1,7 +1,7 @@
 # QA: Tell The Rule
 
 - id: `what-changed-spread-11`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-11.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-11.png`
 - lesson: A child can state a rule from evidence.
 - geometry: Old and new paths meet the changed place so the rule is visible from evidence.
 

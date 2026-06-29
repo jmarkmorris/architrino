@@ -1,7 +1,7 @@
 # QA: First Try
 
 - id: `what-changed-spread-02`
-- source: `reference/outreach/childrens-books/production/source/what-changed/what-changed-spread-02.png`
+- source: `content/assets/images/outreach/childrens-books/source/what-changed/what-changed-spread-02.png`
 - lesson: A first try gives a result.
 - geometry: One purple path connects a purple star-shaped start mark to a shallow purple dip where the red ball stops.
 

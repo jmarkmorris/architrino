@@ -1,7 +1,7 @@
 # QA: Away
 
 - id: `the-tiny-transceivers-spread-10`
-- source: `reference/outreach/childrens-books/production/source/the-tiny-transceivers/the-tiny-transceivers-spread-10.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-spread-10.png`
 - lesson: Reception can push a path outward.
 - geometry: A received cue makes a point path bend outward and open the separation from another point.
 

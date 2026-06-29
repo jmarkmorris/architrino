@@ -1,7 +1,7 @@
 # QA: Near
 
 - id: `the-message-that-traveled-spread-07`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-07.png`
 - lesson: Near messages have shorter travel.
 - geometry: A short set of sound rings travels from a near bell to Electra.
 

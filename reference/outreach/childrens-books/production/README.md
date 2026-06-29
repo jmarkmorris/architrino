@@ -3,10 +3,10 @@
 Production assets for the children's book line.
 
 - `generation-manifest.json` tracks source illustrations.
-- `source/<book>/` contains text-free source illustrations.
+- `../../../../content/assets/images/outreach/childrens-books/source/<book>/` contains text-free source illustrations.
 - `qa/<book>/` contains per-image QA records for palette, no text, one continuous scene, and lesson geometry.
-- `pages/<book>/landscape/` contains reverse-band book pages.
-- `pages/<book>/<book>-first-draft.pdf` combines the landscape review pages.
+- `../../../../content/assets/images/outreach/childrens-books/pages/<book>/landscape/` contains reverse-band book pages.
+- `../../../../content/assets/books/childrens-books/<book>/<book>-first-draft.pdf` combines the landscape review pages.
 - `derivatives/<book>/4x5/` contains feed portrait exports.
 - `derivatives/<book>/9x16/` contains YouTube Shorts/TikTok exports.
 

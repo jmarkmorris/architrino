@@ -1,7 +1,7 @@
 # QA: The Dip
 
 - id: `roll-turn-again-spread-06`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-06.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-06.png`
 - lesson: A dip can hold motion for a moment.
 - geometry: The red ball rolls down into a shallow purple dip and follows a small curved path inside it.
 

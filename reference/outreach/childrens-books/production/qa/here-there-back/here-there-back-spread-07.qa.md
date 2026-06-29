@@ -1,7 +1,7 @@
 # QA: Back
 
 - id: `here-there-back-spread-07`
-- source: `reference/outreach/childrens-books/production/source/here-there-back/here-there-back-spread-07.png`
+- source: `content/assets/images/outreach/childrens-books/source/here-there-back/here-there-back-spread-07.png`
 - lesson: Return is part of path.
 - geometry: The blue ball's returning path comes back toward the children.
 

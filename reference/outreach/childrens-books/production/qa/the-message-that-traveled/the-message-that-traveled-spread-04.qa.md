@@ -1,7 +1,7 @@
 # QA: Where It Started
 
 - id: `the-message-that-traveled-spread-04`
-- source: `reference/outreach/childrens-books/production/source/the-message-that-traveled/the-message-that-traveled-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/the-message-that-traveled/the-message-that-traveled-spread-04.png`
 - lesson: The source place matters.
 - geometry: Sound rings begin at Poz's hands by a simple location marker.
 

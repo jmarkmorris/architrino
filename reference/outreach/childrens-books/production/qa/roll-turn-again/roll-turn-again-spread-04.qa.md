@@ -1,7 +1,7 @@
 # QA: The Hill
 
 - id: `roll-turn-again-spread-04`
-- source: `reference/outreach/childrens-books/production/source/roll-turn-again/roll-turn-again-spread-04.png`
+- source: `content/assets/images/outreach/childrens-books/source/roll-turn-again/roll-turn-again-spread-04.png`
 - lesson: A small hill can change motion.
 - geometry: The red ball is partway up a low rounded purple hill, making slowing visible.
 

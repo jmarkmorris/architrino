@@ -1,7 +1,7 @@
 # QA: The Bead Table
 
 - id: `patterns-that-hold-spread-01`
-- source: `reference/outreach/childrens-books/production/source/patterns-that-hold/patterns-that-hold-spread-01.png`
+- source: `content/assets/images/outreach/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-01.png`
 - lesson: Many moving parts can be watched together.
 - geometry: Three beads on strings begin as a readable multi-part moving setup.
 

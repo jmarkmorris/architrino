@@ -1,7 +1,7 @@
 # QA: The Quiet Shape
 
 - id: `again-makes-a-pattern-spread-09`
-- source: `reference/outreach/childrens-books/production/source/again-makes-a-pattern/again-makes-a-pattern-spread-09.png`
+- source: `content/assets/images/outreach/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-09.png`
 - lesson: A pattern can appear from repetition.
 - geometry: Repeated purple paths form a simple quiet shape without a separate outline.
 
