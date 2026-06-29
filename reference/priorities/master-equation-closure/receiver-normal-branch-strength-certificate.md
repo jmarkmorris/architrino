@@ -8,12 +8,12 @@ Master EOM. A retained branch cannot supply force balance, action, power,
 Noether wake-history, A1 outward constants, breather margin, or pass/fail
 evidence until it reports the rows below on the same retained record.
 
-Pure changeover blocker. This file defines the certificate shape; it does not
-yet populate an accepted retained branch. A solver, vendor proposal, or proof
-packet satisfies the changeover only when it fills this schema for one retained
-A1, VP-1, breather, circular, or equivalent branch and shows that the
-force/action row uses receiver-normal $W^{\mathrm{rec}}$ rather than a
-source-normal proxy.
+Pure changeover blocker. This file defines the certificate shape and includes
+one accepted analytic row-shape certificate. It does not yet populate an A1,
+VP-1, breather, circular, or assembly-closure branch pass. A solver, vendor
+proposal, or proof packet satisfies the full changeover only when it fills this
+schema for one retained branch family and shows that the force/action row uses
+receiver-normal $W^{\mathrm{rec}}$ rather than a source-normal proxy.
 
 Vendor/proof intake rule. A proposal may choose the smallest branch family that
 can be reproduced independently, but its first force/action deliverable is this
@@ -70,6 +70,103 @@ sampling field. $W^{\mathrm{rec}}$ is the branch-strength field.
 | Negative controls | Fail-closed controls listed below. |
 | Source artifact hash | Stable input artifact, solver version, or proof packet identifier. |
 | Regulator state | Declared $\eta$, $\epsilon_c$, fold, caustic, or simple-root status. |
+
+## First Accepted Row-Shape Certificate
+
+Status. Accepted analytic row-shape certificate for the receiver-normal fields
+emitted by `solveRootsAndHitsF64` on the static/static single-root fixture. This
+is validation evidence for same-record row binding, not an A1, VP-1, breather,
+circular, eigen-braid, or assembly-closure pass.
+
+Claim level. `validation-evidence` for receiver-normal branch-strength row
+shape and fail-closed invariant enforcement. The certificate proves that the
+row reports $D_s$, $D_t$, and $W^{\mathrm{rec}}$ on the same analytic root and
+that the invariant consumer rejects rows whose branch strength is not
+$\lvert D_t/D_s\rvert$.
+
+Source artifacts:
+
+| Artifact | SHA-256 |
+| --- | --- |
+| `src/solver/fixtures/causal-roots-f64-smoke.request.json` | `d0cd79de26351c850b391ae9d29814812951fcff74f8f55e6205cd5624ed6196` |
+| `src/solver/fixtures/roots-and-hits-f64-smoke.response.json` | `ca3f84edb1bcccfaab998cac0ec0164a8628eeeb879df8caeb6c5305c61a15fd` |
+| `src/solver/src/InvariantChecks.cpp` | `0e1d356b13544a13ad0f20b901655d58c848e79d142ba475cab3b7b4edfe9712` |
+| `scripts/check-solver-contract-fixtures.mjs` | `fbf117ae8082d51a0d33633ff7137c5df47326bdb81ed5a0bc487260797f2b36` |
+
+Validation command:
+
+```bash
+node scripts/check-solver-contract-fixtures.mjs
+```
+
+The command passed for this row.
+
+### Static/Static Single-Root Row
+
+The fixture uses solver units with $c_f=1$. The source block is fixed at
+$\mathbf{x}_j(t)=(0,0,0)$ and the receiver block is fixed at
+$\mathbf{x}_i(t)=(10,0,0)$ over $0\le t\le10$. At hit time $t=10$, the retained
+root has emission time $s_\alpha=0$, distance $r_\alpha=10$, and
+$$
+\hat{\mathbf r}_{\alpha}=(1,0,0).
+$$
+Because both source and receiver velocities vanish,
+$$
+D_{s,\alpha}
+=
+1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_j(s_\alpha)
+=
+1,
+\qquad
+D_{t,\alpha}
+=
+1-\hat{\mathbf r}_{\alpha}\cdot\mathbf v_i(t)
+=
+1,
+$$
+and therefore
+$$
+W_{\alpha}^{\mathrm{rec}}
+=
+\left|D_{t,\alpha}/D_{s,\alpha}\right|
+=
+1.
+$$
+
+The corresponding certified force/action row shape is
+$$
+\mathbf a_{i,\alpha}^{\mathrm{rec}}
+=
+\frac{\kappa\,\sigma_{ij}|q_iq_j|}{\mu_{\mathrm{arch}}}
+\frac{1}{100}
+(1,0,0).
+$$
+The scalar prefactor remains symbolic because this row certifies the
+receiver-normal branch-strength binding, not a calibrated branch-family
+force-balance verdict.
+
+| Required field | Populated row |
+| --- | --- |
+| Retained root id | `rootId=0`, singleton retained analytic root. |
+| Source and receiver ids | Certificate labels `static-source-0` and `static-receiver-0`, corresponding to the request's `source` and `receiver` blocks. |
+| Time row | $t=10$, $s_\alpha=0$, $\Delta=10$. |
+| Geometry row | $r_\alpha=10$, $\hat{\mathbf r}_\alpha=(1,0,0)$, source-emission point to receiver-now convention. |
+| Source-normal row | $D_{s,\alpha}=1$; transversality status `ok`. |
+| Receiver-normal row | $D_{t,\alpha}=1$ on the same root row. |
+| Branch-strength row | `branchWeight=1`, `receiverNormalFactor=1`, `unsignedReceiverNormalFactor=1`. |
+| Projection rows | Radial projection equals the symbolic prefactor above; tangential projection is $0$. |
+| Aggregation row | Singleton aggregation over `{rootId=0}`. |
+| Scalar statistic row | $W_{\alpha}^{\mathrm{rec}}=1$ and invariant status `ok`. |
+| Negative controls | `InvariantChecks.cpp` rejects completed rows when root `branchWeight` or delayed-hit `strength` differs from $\lvert D_t/D_s\rvert$, and rejects non-finite receiver-normal fields. |
+| Source artifact hash | The request, response, invariant-consumer, and contract-check hashes listed above. |
+| Regulator state | Simple-root analytic fixture; no fold, caustic, $\eta$, or $\epsilon_c$ regulator row is active. |
+
+Changeover consequence. This row satisfies the minimum same-record
+receiver-normal branch-strength shape for one analytic simple root. It only
+authorizes row-shape and invariant-consumer reuse. Any A1, VP-1, breather,
+circular, or vendor/proof proposal must still populate its own retained branch
+identity, source/receiver ids, branch-family aggregation, regulator state, and
+negative controls before it can supply force/action evidence.
 
 ## Fail-Closed Controls
 

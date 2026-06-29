@@ -34,11 +34,13 @@ verdict is inherited.
 ## Task Queue
 
 1. `certified_eigen_braid` — Exhibit one certified eigen-braid branch with a populated retained packet: dual-mollified law, signed causal-root complex $(C_+,C_-)$, positive Jacobian floor $\nu_J>0$, inactive-gap and finite-memory rows, bounded $\mathcal R_{\mathrm{EOM}}$ and $\mathcal R_{\mathrm{per}}$, closed energy/action and Noether wake-history rows, and a projected non-symmetry Floquet or Conley margin. Status: `active`. Depends on: none.
-2. `receiver_normal_branch_strength_certificate` — Emit the first same-record
+2. `receiver_normal_branch_strength_certificate` — Upgrade the accepted
+   analytic row-shape certificate into the first branch-family same-record
    branch-strength certificate with retained root id, source/receiver ids,
    $D_s$, $D_t$, $W^{\mathrm{rec}}$, radial/tangential projection rows,
    aggregation row, scalar statistic row, source artifact hash, regulator
-   state, and fail-closed negative controls. Status: `active`. Depends on:
+   state, and fail-closed negative controls. Status:
+   `active-branch-family-restart`; analytic row-shape accepted. Depends on:
    none.
 3. `spiral_branch_chart_test` — Rebuild the variable-pitch spiral branch-chart
    test from the receiver-normal Master EOM. Root-topology subrows may survive
@@ -126,7 +128,7 @@ set.
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
 | `certified_eigen_braid` | This file, [Tri-Binary Configuration Space](../../../content/markdown/aaa/dynamics/tri-binary-configuration-space.md), [assembly topological charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [tri-binary-configuration-space](../../../content/markdown/aaa/dynamics/tri-binary-configuration-space.md), [assembly-topological-charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
-| `receiver_normal_branch_strength_certificate` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [receiver-normal-master-equation-restart-ledger](receiver-normal-master-equation-restart-ledger.md), and [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and the active proof-program packet that emits the first row | One retained branch row reports same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, projection, aggregation, scalar statistic, artifact hash, regulator state, and fail-closed negative controls. |
+| `receiver_normal_branch_strength_certificate` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [receiver-normal-master-equation-restart-ledger](receiver-normal-master-equation-restart-ledger.md), and [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and the active proof-program packet that emits the first branch-family row | The accepted analytic row-shape certificate is populated. Promotion still requires one branch-family retained row reporting same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, projection, aggregation, scalar statistic, artifact hash, regulator state, and fail-closed negative controls. |
 | `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular rows restart from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals before any self-force or tangential no-go is promoted. |
 | `spiral_branch_chart_test` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [spiral-vp1-drive-verdict-proof](spiral-vp1-drive-verdict-proof.md), [spiral-vp1-tangential-interval-proof](spiral-vp1-tangential-interval-proof.md), [spiral-vp1-radial-branch-interval-proof](spiral-vp1-radial-branch-interval-proof.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md), and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md) | One admissible variable-pitch candidate must report retained root topology plus same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and negative-control rows before any drive verdict is promoted. |
 | `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
@@ -155,8 +157,9 @@ outward constants, radial closure, or tangential transport be redriven.
 
 ## Live Targets
 
-- First same-record receiver-normal branch-strength certificate for any retained
-  branch candidate.
+- First branch-family receiver-normal branch-strength certificate for a
+  retained branch candidate, using the accepted analytic row-shape certificate
+  as the minimum row contract.
 - First certified eigen-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
 - Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
