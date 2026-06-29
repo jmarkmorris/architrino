@@ -172,6 +172,48 @@
       "source_status": "toy_strain_coefficient_not_branch_emitted"
     }
   },
+  "receiver_normal_weight_record": {
+    "D_s": {
+      "value": "target-required",
+      "row_id": "retained-pressure-row-branch-intake-provider-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+      "source_status": "provider_target_metadata_not_branch_emitted"
+    },
+    "D_t": {
+      "value": "target-required",
+      "row_id": "retained-pressure-row-branch-intake-provider-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+      "source_status": "provider_target_metadata_not_branch_emitted"
+    },
+    "W_rec": {
+      "value": "target-required",
+      "row_id": "retained-pressure-row-branch-intake-provider-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+      "source_status": "provider_target_metadata_not_branch_emitted"
+    },
+    "retained_root_row_ids": {
+      "value": [
+        "a0-compact-fixture-root-row"
+      ],
+      "row_id": "a0-compact-fixture-branch-source-frontier-partial",
+      "source_ref": "reference/priorities/braid-mass-response-map/a0-reduced-branch-certificate.md",
+      "source_status": "tier0_continuation_ready_not_accepted_history"
+    }
+  },
+  "noether_sea_response_record": {
+    "theta_sea": {
+      "value": "target-required",
+      "row_id": "retained-pressure-row-branch-intake-provider-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+      "source_status": "provider_target_metadata_not_branch_emitted"
+    },
+    "M_plus_ab": {
+      "value": "target-required",
+      "row_id": "retained-pressure-row-branch-intake-provider-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md",
+      "source_status": "provider_target_metadata_not_branch_emitted"
+    }
+  },
   "reversible_domain": {
     "R_tr": {
       "value": 0.18,

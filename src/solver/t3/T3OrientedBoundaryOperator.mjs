@@ -11,10 +11,17 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
   const seamOwnershipRows = createSeamOwnershipRows(runSummary.periodicWrapEvidence);
   const neighborPairBoundaryRows = createNeighborPairBoundaryRows(runSummary.neighborPairCounts);
   const eventBoundaryRows = createEventBoundaryRows(runSummary.eventSummary);
+  const retainedBoundaryTarget = createRetainedBoundaryTarget({
+    seamOwnershipRows,
+    neighborPairBoundaryRows,
+    eventBoundaryRows,
+  });
+  const negativeControlMatrix = createNegativeControlMatrix(retainedBoundaryTarget);
   const boundarySignalCounts = {
     seamOwnershipRowCount: seamOwnershipRows.filter((row) => row.status !== "absent").length,
     neighborPairTransitionCount: neighborPairBoundaryRows.filter((row) => row.signedNeighborPairDelta !== 0).length,
     eventBoundaryLikeCount: nonnegativeInteger(runSummary.eventSummary?.boundaryLikeEventCount ?? 0),
+    unresolvedBoundaryTargetRowCount: retainedBoundaryTarget.summary.unresolvedRowCount,
   };
 
   return {
@@ -44,6 +51,8 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     seamOwnershipRows,
     neighborPairBoundaryRows,
     eventBoundaryRows,
+    retainedBoundaryTarget,
+    negativeControlMatrix,
     boundarySignalCounts,
     discipline: {
       imageDeltas:
@@ -69,9 +78,218 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
       retainedBranch: false,
       provesBranchAdmissibility: false,
       updatesLiveValidationGate: false,
+      boundaryMatrixStatus: retainedBoundaryTarget.summary.matrixStatus,
+      firstFailureStatus:
+        retainedBoundaryTarget.summary.firstUnresolvedRowId == null
+          ? "no_summary_boundary_signal"
+          : `retained_boundary_target_unresolved:${retainedBoundaryTarget.summary.firstUnresolvedRowId}`,
+      firstRequiredEvidence:
+        retainedBoundaryTarget.rows.find(
+          (row) => row.rowId === retainedBoundaryTarget.summary.firstUnresolvedRowId
+        )?.requiredRetainedEvidence ?? null,
     },
     metadata: clonePlainObject(options.metadata ?? {}),
   };
+}
+
+function createRetainedBoundaryTarget(input) {
+  const rows = [
+    ...input.seamOwnershipRows.map(seamBoundaryTargetRow),
+    ...input.neighborPairBoundaryRows.map(neighborBoundaryTargetRow),
+    ...input.eventBoundaryRows.map(eventBoundaryTargetRow),
+    unresolvedRootBoundaryTargetRow(),
+  ];
+  const unresolvedRows = rows.filter((row) => row.closureStatus !== "absent");
+  const coefficientBalance = rows.reduce(
+    (balance, row) => {
+      if (row.orientedCoefficient == null) {
+        balance.unsignedOrUnorientedRowCount += row.closureStatus === "absent" ? 0 : 1;
+      } else {
+        balance.signedCoefficientTotal += row.orientedCoefficient;
+        balance.absoluteCoefficientTotal += Math.abs(row.orientedCoefficient);
+      }
+      if (Number.isFinite(row.evidenceMagnitude)) {
+        balance.evidenceMagnitudeTotal += row.evidenceMagnitude;
+      }
+      return balance;
+    },
+    {
+      signedCoefficientTotal: 0,
+      absoluteCoefficientTotal: 0,
+      evidenceMagnitudeTotal: 0,
+      unsignedOrUnorientedRowCount: 0,
+    }
+  );
+  const signedBalanceStatus = boundarySignedBalanceStatus(coefficientBalance, unresolvedRows.length);
+  return {
+    schema: "t3-retained-boundary-target.v1",
+    targetExpression:
+      "partial_top R_act = Delta_seam_T3 + Delta_neighbor_T3 + Delta_event_T3 + Delta_unresolved_root",
+    rowDomainRequired: "retained winding-labeled causal-root rows with same-record boundary routing",
+    rows,
+    coefficientBalance,
+    summary: {
+      rowCount: rows.length,
+      unresolvedRowCount: unresolvedRows.length,
+      matrixStatus:
+        unresolvedRows.length === 0 ? "no_boundary_signal_in_summary" : "fail_closed_priority_only",
+      signedBalanceStatus,
+      firstUnresolvedRowId: unresolvedRows[0]?.rowId ?? null,
+    },
+  };
+}
+
+function seamBoundaryTargetRow(row) {
+  if (row.status === "absent") {
+    return {
+      rowId: `seam_${row.axis}`,
+      sourceChannel: "periodicWrapEvidence",
+      boundaryStratum: row.boundaryStratum,
+      orientedCoefficient: 0,
+      evidenceMagnitude: 0,
+      requiredRetainedEvidence: "none for this axis in the run summary",
+      negativeControl: "zero_absolute_image_delta_has_no_seam_boundary_signal",
+      closureStatus: "absent",
+    };
+  }
+  return {
+    rowId: `seam_${row.axis}`,
+    sourceChannel: "periodicWrapEvidence",
+    boundaryStratum: row.boundaryStratum,
+    orientedCoefficient: row.orientedBoundaryCoefficient,
+    evidenceMagnitude: row.absoluteImageDelta,
+    requiredRetainedEvidence:
+      row.status === "paired_seam_transfer_candidate"
+        ? "same-record pairing map proving the cancelling image deltas are the same retained seam transfer"
+        : "same-record winding-owner row for the signed seam-transfer demand",
+    negativeControl:
+      row.status === "paired_seam_transfer_candidate"
+        ? "cancelled_image_delta_without_same_record_pairing"
+        : "signed_image_delta_without_winding_owner",
+    closureStatus: "unresolved_boundary_target",
+  };
+}
+
+function neighborBoundaryTargetRow(row) {
+  if (row.status === "neighbor_population_unchanged") {
+    return {
+      rowId: `neighbor_${row.fromStep}_${row.toStep}`,
+      sourceChannel: "neighborPairCounts",
+      boundaryStratum: "native-neighbor-population",
+      orientedCoefficient: 0,
+      evidenceMagnitude: 0,
+      requiredRetainedEvidence: "none from this transition in the run summary",
+      negativeControl: "unchanged_neighbor_count_has_no_population_boundary_signal",
+      closureStatus: "absent",
+    };
+  }
+  return {
+    rowId: `neighbor_${row.fromStep}_${row.toStep}`,
+    sourceChannel: "neighborPairCounts",
+    boundaryStratum: "native-neighbor-population",
+    orientedCoefficient: row.signedNeighborPairDelta,
+    evidenceMagnitude:
+      row.signedNeighborPairDelta == null ? null : Math.abs(row.signedNeighborPairDelta),
+    requiredRetainedEvidence:
+      "retained causal-root row delta with winding owner, Jacobian floor or declared stratum, and same-record source identity",
+    negativeControl: "neighbor_pair_delta_without_retained_causal_root_rows",
+    closureStatus:
+      row.status === "neighbor_count_missing"
+        ? "unresolved_missing_summary_row"
+        : "unresolved_boundary_target",
+  };
+}
+
+function eventBoundaryTargetRow(row) {
+  if (row.status === "absent" || row.count === 0) {
+    return {
+      rowId: `event_${stableRowId(row.eventType)}`,
+      sourceChannel: "eventSummary",
+      boundaryStratum: "detector-event",
+      orientedCoefficient: null,
+      evidenceMagnitude: 0,
+      requiredRetainedEvidence: "none from this event row in the run summary",
+      negativeControl: "zero_event_count_has_no_event_boundary_signal",
+      closureStatus: "absent",
+    };
+  }
+  return {
+    rowId: `event_${stableRowId(row.eventType)}`,
+    sourceChannel: "eventSummary",
+    boundaryStratum: "detector-event",
+    orientedCoefficient: null,
+    evidenceMagnitude: row.count,
+    requiredRetainedEvidence:
+      "same-record retained event row with explicit orientation sign before any wake-history event-ledger consumer may use it",
+    negativeControl:
+      row.status === "boundary_like_event_type" || row.status === "boundary_like_event_rows_present"
+        ? "boundary_like_detector_event_without_retained_event_row"
+        : "generic_event_count_without_boundary_stratum",
+    closureStatus: "unresolved_boundary_target",
+  };
+}
+
+function unresolvedRootBoundaryTargetRow() {
+  return {
+    rowId: "unresolved_root_rows",
+    sourceChannel: "t3-run-summary-envelope",
+    boundaryStratum: "retained-causal-root-ledger",
+    orientedCoefficient: null,
+    evidenceMagnitude: null,
+    requiredRetainedEvidence:
+      "retained winding-labeled causal-root rows with endpoint, memory-window, caustic, collision/core, omitted-row, and seam routing",
+    negativeControl: "run_summary_without_retained_causal_root_rows",
+    closureStatus: "unresolved_boundary_target",
+  };
+}
+
+function createNegativeControlMatrix(retainedBoundaryTarget) {
+  const controls = retainedBoundaryTarget.rows
+    .filter((row) => row.closureStatus !== "absent")
+    .map((row) => ({
+      controlId: row.negativeControl,
+      rowId: row.rowId,
+      expectedFailure:
+        "must remain priority-only unless the required retained evidence is supplied on the same retained source record",
+      requiredEvidence: row.requiredRetainedEvidence,
+      promotionBlocked: true,
+    }));
+  if (retainedBoundaryTarget.summary.signedBalanceStatus === "signed_balance_is_not_boundary_closure") {
+    controls.push({
+      controlId: "zero_signed_boundary_sum_without_same_record_routing",
+      rowId: "coefficient_balance",
+      expectedFailure:
+        "zero signed coefficient total must not be treated as closure while unresolved retained-boundary rows remain",
+      requiredEvidence:
+        "same-record absent, paired, or routed map for every unresolved retained-boundary target row",
+      promotionBlocked: true,
+    });
+  }
+  return {
+    schema: "t3-oriented-boundary-negative-control-matrix.v1",
+    controls,
+    summary: {
+      controlCount: controls.length,
+      promotionBlocked: controls.length > 0,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function boundarySignedBalanceStatus(coefficientBalance, unresolvedRowCount) {
+  if (unresolvedRowCount === 0) {
+    return "no_unresolved_boundary_rows";
+  }
+  if (
+    coefficientBalance.signedCoefficientTotal === 0 &&
+    (coefficientBalance.absoluteCoefficientTotal > 0 ||
+      coefficientBalance.evidenceMagnitudeTotal > 0 ||
+      coefficientBalance.unsignedOrUnorientedRowCount > 0)
+  ) {
+    return "signed_balance_is_not_boundary_closure";
+  }
+  return "unresolved_boundary_rows_not_closed_by_summary";
 }
 
 function createSeamOwnershipRows(periodicWrapEvidence = {}) {
@@ -172,6 +390,14 @@ function neighborPairDeltaOrientation(delta) {
     return "pair_contact_death_candidate";
   }
   return "none";
+}
+
+function stableRowId(value) {
+  return String(value ?? "row")
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, "_")
+    .replace(/^_+|_+$/g, "") || "row";
 }
 
 function nullableFiniteNumber(value) {

@@ -339,6 +339,10 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(result.runSummary.orientedBoundaryPrototype.result.masterEomDependency, false);
   assert.equal(result.runSummary.orientedBoundaryPrototype.result.provesBranchAdmissibility, false);
   assert.equal(result.runSummary.orientedBoundaryPrototype.result.retainedBranch, false);
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.result.firstFailureStatus,
+    "retained_boundary_target_unresolved:seam_x"
+  );
   assert.deepEqual(result.runSummary.orientedBoundaryPrototype.seamOwnershipRows[0], {
     axis: "x",
     signedImageDelta: 2,
@@ -355,6 +359,29 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.eventBoundaryRows[0].status,
     "absent"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryTarget.summary.matrixStatus,
+    "fail_closed_priority_only"
+  );
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.retainedBoundaryTarget.rows.map((row) => row.rowId),
+    [
+      "seam_x",
+      "seam_y",
+      "seam_z",
+      "neighbor_0_1",
+      "neighbor_1_2",
+      "event_boundary_like_event_aggregate",
+      "unresolved_root_rows",
+    ]
+  );
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.negativeControlMatrix.controls.map((row) => row.controlId),
+    [
+      "signed_image_delta_without_winding_owner",
+      "run_summary_without_retained_causal_root_rows",
+    ]
   );
   assert.equal(simulator.solver.solverCallCount, 3);
   assert.equal(simulator.state.imageOffsets[0], 2);
@@ -387,6 +414,11 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
   assert.equal(prototype.result.masterEomDependency, false);
   assert.equal(prototype.result.retainedBranch, false);
   assert.equal(prototype.result.provesBranchAdmissibility, false);
+  assert.equal(prototype.result.firstFailureStatus, "retained_boundary_target_unresolved:seam_x");
+  assert.equal(
+    prototype.result.firstRequiredEvidence,
+    "same-record pairing map proving the cancelling image deltas are the same retained seam transfer"
+  );
   assert.deepEqual(
     prototype.seamOwnershipRows.map((row) => [row.axis, row.status, row.orientedBoundaryCoefficient]),
     [
@@ -405,6 +437,42 @@ test("oriented boundary prototype consumes T3 run-summary evidence without branc
   assert.equal(
     prototype.remainingUnproven.includes(
       "retained winding-labeled causal-root rows are not constructed from the run envelope"
+    ),
+    true
+  );
+  assert.equal(prototype.retainedBoundaryTarget.summary.matrixStatus, "fail_closed_priority_only");
+  assert.equal(prototype.retainedBoundaryTarget.summary.unresolvedRowCount, 8);
+  assert.deepEqual(prototype.retainedBoundaryTarget.coefficientBalance, {
+    signedCoefficientTotal: 0,
+    absoluteCoefficientTotal: 4,
+    evidenceMagnitudeTotal: 11,
+    unsignedOrUnorientedRowCount: 4,
+  });
+  assert.equal(
+    prototype.retainedBoundaryTarget.summary.signedBalanceStatus,
+    "signed_balance_is_not_boundary_closure"
+  );
+  assert.deepEqual(
+    prototype.retainedBoundaryTarget.rows
+      .filter((row) => row.closureStatus !== "absent")
+      .map((row) => [row.rowId, row.negativeControl]),
+    [
+      ["seam_x", "cancelled_image_delta_without_same_record_pairing"],
+      ["seam_y", "signed_image_delta_without_winding_owner"],
+      ["neighbor_0_1", "neighbor_pair_delta_without_retained_causal_root_rows"],
+      ["neighbor_1_2", "neighbor_pair_delta_without_retained_causal_root_rows"],
+      ["event_boundary_like_event_aggregate", "boundary_like_detector_event_without_retained_event_row"],
+      ["event_collision", "generic_event_count_without_boundary_stratum"],
+      ["event_periodic_seam_boundary", "boundary_like_detector_event_without_retained_event_row"],
+      ["unresolved_root_rows", "run_summary_without_retained_causal_root_rows"],
+    ]
+  );
+  assert.equal(prototype.negativeControlMatrix.summary.promotionBlocked, true);
+  assert.equal(prototype.negativeControlMatrix.summary.retainedBranch, false);
+  assert.equal(prototype.negativeControlMatrix.summary.provesBranchAdmissibility, false);
+  assert.equal(
+    prototype.negativeControlMatrix.controls.some(
+      (row) => row.controlId === "zero_signed_boundary_sum_without_same_record_routing"
     ),
     true
   );

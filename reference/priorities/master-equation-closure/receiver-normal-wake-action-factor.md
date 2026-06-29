@@ -157,23 +157,34 @@ diagnostics, coefficient-series source-map residual provider candidates,
 source-map residual envelopes, provider-fit diagnostics, and signed-radius
 targets remain negative controls until that preimage row exists.
 
-## First Executable Wake-History Consumer Row
+## First Executable Wake-History Consumer Contract
 
 Status. Priority-only executable row-logic artifact. The wake-history consumer
-lane now has one concrete same-record derivative fixture in
+lane now has one concrete same-record derivative contract in
 `scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`, with
 coverage in `tests/event-wake-history-pullback-diagnostic.test.js`.
 
-The first populated consumer row is `energy_wake`. It remains non-promotional:
-the whole event pullback still reports `not_accepted_for_wake_history_closure`
-until every required wake-history row carries accepted evidence. The value of
-the row is narrower. It proves that a declared accepted wake-history row is
-rejected unless its `wake_history_derivation_proof_object` also carries the
-existing `receiver-normal-retained-branch-family-first-derivative/v0` artifact
-on the same retained source record, retained event ledger, retained record key,
-source artifact hash, and consumer row.
+The first populated consumer was `energy_wake`. The contract has now been
+extended to each required event row:
 
-The fixture uses the nontrivial linear moving-receiver row-shape values
+| Event row | Receiver-normal derivative status |
+| --- | --- |
+| `energy_wake` | Same-record derivative bundle accepted at row-logic level. |
+| `momentum_wake` | Same-record derivative bundle accepted at row-logic level. |
+| `angular_momentum_wake` | Same-record derivative bundle accepted at row-logic level. |
+| `medium_update` | Same-record derivative bundle accepted at row-logic level. |
+
+This remains non-promotional. The diagnostic reports
+`receiver_normal_derivative_contract_ready` only for a row-logic fixture that
+populates all four event rows, and the artifact still declares
+`retained_branch: false` and `updates_live_validation_gate: false`. The value
+is narrower: any declared accepted wake-history row is rejected unless its
+`wake_history_derivation_proof_object` also carries the existing
+`receiver-normal-retained-branch-family-first-derivative/v0` artifact on the
+same retained source record, retained event ledger, retained record key, source
+artifact hash, and consumer row.
+
+Each fixture row uses the nontrivial linear moving-receiver row-shape values
 $$
 D_s=1,
 \qquad
@@ -201,13 +212,16 @@ Executable fail-closed controls now include:
 
 | Control | Failure surface |
 | --- | --- |
-| Missing receiver-normal derivative bundle | Accepted wake-history metadata remains `accepted_evidence_contract_mismatch`. |
+| Missing receiver-normal derivative bundle | The contract summary reports `receiver-normal-first-derivative-row-missing` and lists `receiver_normal_derivative_bundle` in `required_object_blockers`. |
 | Source-record drift inside the derivative bundle | The row reports `event_evidence.receiver_normal_derivative_bundle.source_record_id`. |
 | Reconstruction drift for $D_vW^{\mathrm{rec}}$ | The row reports `event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction`. |
+| Incomplete event-row set | `receiver_normal_derivative_contract_summary.blocked_row_ids` names the remaining missing rows. |
+| Branch-family checksum drift | The contract summary reports `branch-family-consumer-checksum-mismatch`. |
+| Missing derivation proof object | The row lists `wake_history_derivation_proof_object` in `required_object_blockers`. |
 
-This is the first same-record wake-history derivative consumer artifact. It is
+This is the first same-record wake-history derivative consumer contract. It is
 not an A1, VP-1, breather, circular, H39/theta3minus, eigen-braid, assembly, or
-Noether-closure pass. H39/theta3minus quotient rows remain excluded unless a
-future regenerated provider-object preimage row is bound to an accepted
-retained causal-root force/action record carrying the same receiver-normal
-derivative bundle.
+Noether-closure pass, and it is not accepted retained evidence. H39/theta3minus
+quotient rows remain excluded unless a future regenerated provider-object
+preimage row is bound to an accepted retained causal-root force/action record
+carrying the same receiver-normal derivative bundle.

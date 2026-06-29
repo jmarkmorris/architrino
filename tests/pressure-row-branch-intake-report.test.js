@@ -107,6 +107,16 @@ test("pressure-row branch intake report accepts a complete same-row synthetic re
       C_chi_aniso: "source:Caniso",
       m_S: "source:mS"
     },
+    receiver_normal_weight_record: {
+      D_s: "source:Ds",
+      D_t: "source:Dt",
+      W_rec: "source:Wrec",
+      retained_root_row_ids: ["source:root-row-1"]
+    },
+    noether_sea_response_record: {
+      theta_sea: "source:theta-sea",
+      M_plus_ab: "source:M-plus"
+    },
     reversible_domain: {
       R_tr: "source:Rtr",
       R_tr_star: "source:RtrStar",
@@ -156,6 +166,8 @@ test("pressure-row branch intake report records Fe/silicate toy row fields witho
   assert.equal(report.missing_or_rejected_fields.includes("exposure_source_record.E_internal"), true);
   assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.partial_P_M0_src"), true);
   assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_aniso"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("receiver_normal_weight_record.D_s"), true);
+  assert.equal(report.missing_or_rejected_fields.includes("noether_sea_response_record.theta_sea"), true);
   assert.equal(report.missing_or_rejected_fields.includes("reversible_domain.loss_channels_closed"), true);
   assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.preferred_frame"), true);
   assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.directional_tensor"), true);
@@ -294,6 +306,8 @@ test("pressure-row branch intake report rejects target-only same-row provider/in
       "pressure_record",
       "exposure_source_record",
       "pressure_response_record",
+      "receiver_normal_weight_record",
+      "noether_sea_response_record",
       "reversible_domain",
       "null_sector_record",
     ]
@@ -360,6 +374,8 @@ test("pressure-row branch intake report rejects nested target-only provenance on
     rejectedPaths.includes("pressure_response_record.partial_P_M0_src.source_status"),
     true
   );
+  assert.equal(rejectedPaths.includes("receiver_normal_weight_record.D_s.source_status"), true);
+  assert.equal(rejectedPaths.includes("noether_sea_response_record.theta_sea.source_status"), true);
   assert.equal(rejectedPaths.includes("null_sector_record.transport.source_status"), true);
 });
 
@@ -385,6 +401,8 @@ test("pressure-row branch intake report rejects cross-row bundle negative contro
   assert.equal(report.missing_or_rejected_fields.includes("same_row_binding"), true);
   assert.equal(report.missing_or_rejected_fields.includes("branch_id"), false);
   assert.equal(report.missing_or_rejected_fields.includes("pressure_response_record.C_chi_iso"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("receiver_normal_weight_record.D_s"), false);
+  assert.equal(report.missing_or_rejected_fields.includes("noether_sea_response_record.theta_sea"), false);
   assert.equal(report.missing_or_rejected_fields.includes("null_sector_record.transport"), false);
 
   const rowConflict = report.same_row_binding_evidence.conflicting_bindings.find(
@@ -564,9 +582,9 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     "scripts/mass-map/fixtures/pressure-row-branch-intake-nested-source-status-probe.json"
   );
   assert.equal(provenanceDepth.accepted_non_fixture_source_provenance_pass, false);
-  assert.equal(provenanceDepth.field_count, 27);
-  assert.equal(provenanceDepth.target_or_probe_only_required_field_count, 26);
-  assert.equal(provenanceDepth.unaccepted_required_field_count, 27);
+  assert.equal(provenanceDepth.field_count, 33);
+  assert.equal(provenanceDepth.target_or_probe_only_required_field_count, 32);
+  assert.equal(provenanceDepth.unaccepted_required_field_count, 33);
   assert.equal(provenanceDepth.first_unaccepted_required_field.field_path, "branch_id");
   assert.equal(
     provenanceDepth.first_unaccepted_required_field.source_status,
@@ -591,14 +609,14 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
   assert.deepEqual(provenanceDepth.provenance_reading_counts, [
     {
       key: "target_or_probe_only_not_accepted_source",
-      count: 26,
+      count: 32,
     },
     {
       key: "literal_or_row_value_without_source_provenance",
       count: 1,
     },
   ]);
-  assert.equal(provenanceDepth.target_or_probe_only_required_field_paths.length, 26);
+  assert.equal(provenanceDepth.target_or_probe_only_required_field_paths.length, 32);
   assert.deepEqual(provenanceDepth.missing_required_field_paths, []);
   assert.deepEqual(provenanceDepth.literal_or_row_value_without_source_provenance_field_paths, [
     "reversible_domain.loss_channels_closed",

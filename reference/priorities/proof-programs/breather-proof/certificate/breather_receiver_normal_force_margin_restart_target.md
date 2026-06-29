@@ -186,6 +186,43 @@ and all same-record and derivative-reconstruction checks pass. If the branch
 chart is absent or unauthorized, the fixture may still be emitted as a target
 or diagnostic input, but its verdict is blocked before margin arithmetic.
 
+## Executable Validator
+
+The narrow executable evaluator is
+[`check-breather-receiver-normal-force-margin-fixture.mjs`](../../../../../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs).
+It validates only the fixture target above. It does not certify a branch chart,
+consume a row, or promote a breather packet.
+
+The evaluator emits
+`receiver_normal_breather_force_margin_missing` when no fixture object is
+supplied. With `--fixture <fixture.json>`, it exits successfully only when the
+fixture passes all priority-only checks. Use `--allow-fail-closed` when a
+diagnostic run should return a JSON fail-closed report without failing the
+shell command. Use `--schema` to emit the required fixture contract for packet
+generators before they attempt a candidate fixture.
+
+The checked fixture shape is intentionally narrow:
+
+| Check | Fail-closed status |
+| --- | --- |
+| Missing fixture, artifact id, packet identity, retained rows, consumers, or margin intervals | `receiver_normal_breather_force_margin_missing` |
+| Unauthorized same-packet branch chart | `breather-force-margin-branch-chart-unauthorized` |
+| Branch-family checksum drift between receiver rows, derivative rows, consumers, and margin intervals | `breather-force-margin-branch-family-checksum-mismatch` |
+| Any declared substitution for $W^{\mathrm{rec}}$ | `breather-force-margin-source-normal-substitution` |
+| Any declared legacy shell-braid residue consumption | `breather-force-margin-old-shell-braid-residue` |
+| Consumer without retained record keys | `breather-force-margin-aggregate-only` |
+| Missing $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, geometry derivative, or force-kernel derivative row | `breather-force-margin-derivative-row-missing` |
+| Emitted $D_vW^{\mathrm{rec}}$ interval does not contain the same-record reconstruction | `breather-force-margin-derivative-reconstruction-failed` |
+| Open $D_s,D_t$ sign stratum or zero-crossing $D_s$ interval | `breather-force-margin-sign-stratum-open` |
+| Nonpositive lower interval for any required $\gamma_m^{\mathrm{rec}}$ | `breather-force-margin-nonpositive` |
+
+Focused validator tests live at
+[`breather-receiver-normal-force-margin-fixture.test.js`](../../../../../tests/breather-receiver-normal-force-margin-fixture.test.js).
+They include a complete synthetic same-record fixture plus negative controls
+for branch-chart absence, checksum drift, derivative-row absence, derivative
+reconstruction failure, forbidden $W^{\mathrm{rec}}$ substitution,
+aggregate-only consumers, and nonpositive margins.
+
 ## Fail-Closed Ledger
 
 | Status | Meaning |
@@ -206,7 +243,7 @@ or diagnostic input, but its verdict is blocked before margin arithmetic.
 Status:
 `receiver_normal_breather_force_margin_missing`.
 
-No breather certificate file emits
+The validator exists, but no breather certificate or fixture file emits
 `breather-receiver-normal-force-margin-restart/v0`, no same-packet branch chart
 is authorized, and no recapture, self-drive, action, power, wake-history, or
 Schauder-envelope margin row consumes same-record $D_s$, $D_t$,
@@ -214,4 +251,4 @@ $W^{\mathrm{rec}}$, and derivative rows on the retained branch family. Existing
 root topology, null-coordinate preledger, strict-gap, source-cover, endpoint,
 fold-layer, and higher-fold artifacts remain priority-only topology,
 candidate-repair, or proof-burden evidence until this receiver-normal margin
-fixture exists and passes.
+fixture exists and passes the executable evaluator.

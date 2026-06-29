@@ -700,15 +700,16 @@ rather than accepted non-fixture source evidence. The minimal positive source
 object is therefore still one accepted retained pressure row carrying
 `branch_id`, `accepted_history_segment_id`, `source_path`, `quotient_chart_id`,
 the pressure-record entries, the exposure-source entries, the pressure-response
-entries, the reversible-domain row, and the null-sector row as accepted source
-evidence on that same row. The provider-boundary candidate reads the shared
+entries, the receiver-normal weight entries, the Noether sea response entries,
+the reversible-domain row, and the null-sector row as accepted source evidence
+on that same row. The provider-boundary candidate reads the shared
 branch-provider report as `provider_verdict=same_domain_branch_provider_missing`,
 `first_failure=accepted_non_fixture_source_missing`, and
 `provider_ready_consumer_count=0`; it is not a retained pressure-row source.
 
 The scout also emits
 `pressure_row_nearest_candidate_provenance_depth_readout/v0` for the nearest
-nested-source-status probe. The readout checks 27 retained pressure-row source
+nested-source-status probe. The readout checks 33 retained pressure-row source
 fields and keeps `accepted_non_fixture_source_provenance_pass=false`. The first
 unaccepted required field, and the first target/probe-only required field, is
 `branch_id`: `branch_id.source_status` is still
@@ -720,9 +721,14 @@ shows that the current nearest row must first replace target-required branch
 identity with accepted source provenance, then replace the literal
 loss-channel flag with an accepted reversible-domain source row.
 
-The provenance distribution is exact for this nearest row: 26 required fields
+The provenance distribution is exact for this nearest row: 32 required fields
 are `target_or_probe_only_not_accepted_source`, no required fields are missing,
-and only `reversible_domain.loss_channels_closed` is
+including `receiver_normal_weight_record.D_s`,
+`receiver_normal_weight_record.D_t`, `receiver_normal_weight_record.W_rec`,
+`receiver_normal_weight_record.retained_root_row_ids`,
+`noether_sea_response_record.theta_sea`, and
+`noether_sea_response_record.M_plus_ab`; only
+`reversible_domain.loss_channels_closed` is
 `literal_or_row_value_without_source_provenance`.
 
 The scout now also emits
@@ -817,10 +823,16 @@ status fixture
 [pressure-row-branch-intake-current-status.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-current-status.json)
 returns `finite_branch_evidence_missing` because no retained pressure row
 supplies accepted branch identity, source path, pressure record, exposure
-source record, pressure-response record, reversible-domain row, and null-sector
-record together. A complete synthetic row may pass the checker only as
-`accepted_retained_pressure_row`; the checker still authorizes no empirical
-mass response and no retained-branch claim.
+source record, pressure-response record, receiver-normal weight record,
+Noether sea response record, reversible-domain row, and null-sector record
+together. The executable contract now names the missing receiver-normal fields
+as `receiver_normal_weight_record.D_s`, `receiver_normal_weight_record.D_t`,
+`receiver_normal_weight_record.W_rec`, and
+`receiver_normal_weight_record.retained_root_row_ids`, and names the same-row
+Noether sea fields as `noether_sea_response_record.theta_sea` and
+`noether_sea_response_record.M_plus_ab`. A complete synthetic row may pass the
+checker only as `accepted_retained_pressure_row`; the checker still authorizes
+no empirical mass response and no retained-branch claim.
 
 The cross-row bundle negative-control fixture
 [pressure-row-branch-intake-cross-row-bundle-negative-control.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-cross-row-bundle-negative-control.json)
@@ -846,7 +858,9 @@ $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, and
 $\mathcal{N}_{\mathrm{tf},ab}(A)$ on the same row, and pressure replay must
 replace the toy residual and toy coefficients with branch-emitted
 $\partial_PM_0^{\mathrm{src}}(A)$, $C_{\chi}^{\mathrm{iso}}$,
-$C_{\chi}^{\mathrm{aniso}}$, $m_S$, loss-channel closure, preferred-frame, and
+$C_{\chi}^{\mathrm{aniso}}$, $m_S$, same-row $D_s$, $D_t$,
+$W^{\mathrm{rec}}$, retained root-row identities, $\theta_{\mathrm{sea}}$,
+$\mathcal{M}_{+}^{ab}$, loss-channel closure, preferred-frame, and
 directional-tensor records.
 
 The first branch-source frontier candidate is
@@ -863,8 +877,9 @@ same-branch persistence across the declared $\eta$ ladder, finite
 envelope-Hessian evidence, exposure-source descent, and branch-emitted pressure
 response. The checker therefore still returns `finite_branch_evidence_missing`
 and keeps `branch_id`, `accepted_history_segment_id`, `source_path`,
-`quotient_chart_id`, `exposure_source_record`, and `pressure_response_record`
-unpopulated in the contract fields.
+`quotient_chart_id`, `exposure_source_record`, `pressure_response_record`,
+`receiver_normal_weight_record`, and `noether_sea_response_record` unpopulated
+in the contract fields.
 
 The first empirical or toy replay boundary is therefore narrow: a toy row may populate $\Pi$, $A$, $Q_{\chi}^{ab}$, $S_{\mathrm{dev}}^{ab}$, and masked $\mathcal{V}_{P,A}$ to exercise the algebra, but it must mark `pending_source_descent` until an accepted branch emits $E_{\text{internal}}(A)$, $\zeta(A)$, $M_0^{\mathrm{src}}(A)$, $\mathcal{N}_{\mathrm{tf},ab}(A)$, and the derivative $\partial_P M_0^{\mathrm{src}}(A)$. A real Fe/Cr or Ni/Co replay can at most upgrade the status from `tf_bound_only` to a retained-span test unless the same branch-side source record is present.
 
@@ -972,8 +987,10 @@ The pass/fail status vector is:
 
 The static validation precheck remains
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs).
-It must report both same-row binding and accepted non-fixture source evidence
-before this simulation target can claim branch-derived pressure response. A
+It must report every pressure, exposure, receiver-normal, Noether sea,
+reversible-domain, and null-sector intake field on one row, then report both
+same-row binding and accepted non-fixture source evidence before this
+simulation target can claim branch-derived pressure response. A
 simulation that passes the finite-difference trace but fails that precheck
 remains `finite_branch_evidence_missing`.
 

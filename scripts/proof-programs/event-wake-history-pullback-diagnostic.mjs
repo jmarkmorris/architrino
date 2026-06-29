@@ -301,6 +301,121 @@ function acceptedEvidenceSummary(eventRows) {
   };
 }
 
+function receiverNormalFailureCode(eventRow) {
+  if (eventRow?.status === "fail") {
+    return eventRow.failure_code ?? "event.ledger_residual";
+  }
+  if (eventRow?.accepted_for_wake_history_closure === true) {
+    return null;
+  }
+  const mismatches = eventRow?.accepted_evidence_mismatches ?? [];
+  if (
+    eventRow?.accepted_evidence_contract_attempted !== true ||
+    mismatches.includes("event_evidence.receiver_normal_derivative_bundle")
+  ) {
+    return "receiver-normal-first-derivative-row-missing";
+  }
+  if (
+    mismatches.some((field) =>
+      [
+        "event_evidence.receiver_normal_derivative_bundle.receiver_normal_fields.W_rec_reconstruction",
+        "event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction",
+      ].includes(field)
+    )
+  ) {
+    return "receiver-normal-derivative-reconstruction-failed";
+  }
+  if (
+    mismatches.some((field) =>
+      field.startsWith("event_evidence.receiver_normal_derivative_bundle.branch_family_checksum.")
+    )
+  ) {
+    return "branch-family-consumer-checksum-mismatch";
+  }
+  if (
+    mismatches.some((field) =>
+      field.startsWith("event_evidence.receiver_normal_derivative_bundle.")
+    )
+  ) {
+    return "receiver-normal-derivative-record-mismatch";
+  }
+  return "accepted_evidence_contract_mismatch";
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.filter((value) => typeof value === "string" && value.length > 0))];
+}
+
+function requiredObjectBlockers(eventRow) {
+  if (eventRow?.status === "fail") {
+    return ["retained_event_ledger_row"];
+  }
+  if (eventRow?.accepted_for_wake_history_closure === true) {
+    return [];
+  }
+  const blockers = [];
+  const mismatches = eventRow?.accepted_evidence_mismatches ?? [];
+  if (eventRow?.accepted_evidence_contract_attempted !== true) {
+    blockers.push("wake_history_derivation_proof_object");
+    blockers.push("receiver_normal_derivative_bundle");
+  }
+  for (const field of mismatches) {
+    if (field === "event_evidence.accepted_evidence_id") {
+      blockers.push("accepted_evidence_id");
+    } else if (field === "event_evidence.source_record_id") {
+      blockers.push("retained_source_record_id");
+    } else if (field === "event_evidence.event_ledger_id") {
+      blockers.push("retained_event_ledger_id");
+    } else if (field.startsWith("event_evidence.derivation_proof_object.")) {
+      blockers.push("wake_history_derivation_proof_object");
+    } else if (field.startsWith("event_evidence.receiver_normal_derivative_bundle")) {
+      blockers.push("receiver_normal_derivative_bundle");
+    }
+  }
+  return uniqueStrings(blockers);
+}
+
+function receiverNormalDerivativeContractSummary(eventRows) {
+  const row_contracts = REQUIRED_EVENT_ROWS.map((rowId) => {
+    const eventRow = eventRows.find((entry) => entry.row_id === rowId);
+    const failureCode = receiverNormalFailureCode(eventRow);
+    return {
+      row_id: rowId,
+      row_present: eventRow?.status === "pass",
+      derivative_contract_attempted:
+        eventRow?.accepted_evidence_contract_attempted === true,
+      receiver_normal_derivative_bundle_accepted:
+        eventRow?.accepted_for_wake_history_closure === true,
+      failure_code: failureCode,
+      required_object_blockers: requiredObjectBlockers(eventRow),
+      accepted_evidence_mismatches:
+        eventRow?.accepted_evidence_mismatches ?? [],
+    };
+  });
+  const acceptedRowIds = row_contracts
+    .filter((entry) => entry.receiver_normal_derivative_bundle_accepted)
+    .map((entry) => entry.row_id);
+  const blockedRows = row_contracts.filter(
+    (entry) => !entry.receiver_normal_derivative_bundle_accepted
+  );
+  const failureCounts = {};
+  for (const entry of blockedRows) {
+    failureCounts[entry.failure_code] = (failureCounts[entry.failure_code] ?? 0) + 1;
+  }
+  return {
+    artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
+    required_row_ids: REQUIRED_EVENT_ROWS,
+    accepted_row_ids: acceptedRowIds,
+    blocked_row_ids: blockedRows.map((entry) => entry.row_id),
+    first_blocked_row_id: blockedRows[0]?.row_id ?? null,
+    first_failure_code: blockedRows[0]?.failure_code ?? null,
+    failure_counts: failureCounts,
+    all_required_rows_bound:
+      acceptedRowIds.length === REQUIRED_EVENT_ROWS.length,
+    row_contracts,
+  };
+}
+
 export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEventWakeHistoryPullbackInput()) {
   const eventRows = evaluateRows(input);
   const sourceRecordOk = input.source_record_id === REQUIRED_SOURCE_RECORD_ID;
@@ -315,6 +430,7 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
   }
   const boundaryClosed = sourceRecordOk && expectedRowsOk && eventRowsOk;
   const acceptedSummary = acceptedEvidenceSummary(eventRows);
+  const derivativeContractSummary = receiverNormalDerivativeContractSummary(eventRows);
 
   return {
     schema: EVENT_WAKE_HISTORY_PULLBACK_SCHEMA,
@@ -329,6 +445,7 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
     residual_norm: boundaryClosed ? 0 : null,
     row_refs: input.event_ledger?.rows ?? [],
     accepted_evidence_summary: acceptedSummary,
+    receiver_normal_derivative_contract_summary: derivativeContractSummary,
     event_rows: [
       row(
         "source_record_id",
@@ -352,6 +469,8 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
       updates_live_validation_gate: false,
       accepted_event_evidence_for_closure:
         acceptedSummary.accepted_for_wake_history_closure,
+      receiver_normal_derivative_contract_ready:
+        derivativeContractSummary.all_required_rows_bound,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
       first_failure_status:
@@ -423,6 +542,114 @@ function validateAcceptedEvidenceSummary(artifact, errors) {
   );
 }
 
+function validateReceiverNormalDerivativeContractSummary(artifact, errors) {
+  const summary = artifact.receiver_normal_derivative_contract_summary;
+  assertField(
+    summary && typeof summary === "object" && !Array.isArray(summary),
+    "receiver_normal_derivative_contract_summary must be an object",
+    errors
+  );
+  if (!summary || typeof summary !== "object" || Array.isArray(summary)) {
+    return;
+  }
+  assertField(
+    summary.artifact_id === RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
+    "receiver_normal_derivative_contract_summary.artifact_id must match receiver-normal derivative artifact id",
+    errors
+  );
+  assertField(
+    sameStringArray(summary.required_row_ids, REQUIRED_EVENT_ROWS),
+    "receiver_normal_derivative_contract_summary.required_row_ids must match required event rows",
+    errors
+  );
+  assertField(
+    Array.isArray(summary.row_contracts),
+    "receiver_normal_derivative_contract_summary.row_contracts must be an array",
+    errors
+  );
+  if (!Array.isArray(summary.row_contracts) || !Array.isArray(artifact.event_rows)) {
+    return;
+  }
+
+  const acceptedRowIds = [];
+  const blockedRowIds = [];
+  const failureCounts = {};
+  for (const rowId of REQUIRED_EVENT_ROWS) {
+    const eventRow = artifact.event_rows.find((entry) => entry.row_id === rowId);
+    const rowContract = summary.row_contracts.find((entry) => entry.row_id === rowId);
+    assertField(Boolean(rowContract), `receiver_normal_derivative_contract_summary.row_contracts must include ${rowId}`, errors);
+    if (!rowContract) {
+      continue;
+    }
+    const rowAccepted = eventRow?.accepted_for_wake_history_closure === true;
+    const failureCode = receiverNormalFailureCode(eventRow);
+    if (rowAccepted) {
+      acceptedRowIds.push(rowId);
+    } else {
+      blockedRowIds.push(rowId);
+      failureCounts[failureCode] = (failureCounts[failureCode] ?? 0) + 1;
+    }
+    assertField(rowContract.row_present === (eventRow?.status === "pass"), `${rowId} derivative row_present must match event row`, errors);
+    assertField(
+      rowContract.derivative_contract_attempted ===
+        (eventRow?.accepted_evidence_contract_attempted === true),
+      `${rowId} derivative attempt flag must match event row`,
+      errors
+    );
+    assertField(rowContract.receiver_normal_derivative_bundle_accepted === rowAccepted, `${rowId} derivative accepted flag must match event row`, errors);
+    assertField(rowContract.failure_code === failureCode, `${rowId} derivative failure code must match event row`, errors);
+    assertField(
+      sameStringArray(rowContract.required_object_blockers ?? [], requiredObjectBlockers(eventRow)),
+      `${rowId} derivative required object blockers must match event row`,
+      errors
+    );
+    assertField(
+      sameStringArray(rowContract.accepted_evidence_mismatches ?? [], eventRow?.accepted_evidence_mismatches ?? []),
+      `${rowId} derivative mismatches must match event row`,
+      errors
+    );
+  }
+
+  assertField(
+    sameStringArray(summary.accepted_row_ids, acceptedRowIds),
+    "receiver_normal_derivative_contract_summary.accepted_row_ids must match row contracts",
+    errors
+  );
+  assertField(
+    sameStringArray(summary.blocked_row_ids, blockedRowIds),
+    "receiver_normal_derivative_contract_summary.blocked_row_ids must match row contracts",
+    errors
+  );
+  assertField(
+    summary.first_blocked_row_id === (blockedRowIds[0] ?? null),
+    "receiver_normal_derivative_contract_summary.first_blocked_row_id must match blocked rows",
+    errors
+  );
+  assertField(
+    summary.first_failure_code ===
+      (blockedRowIds.length > 0
+        ? summary.row_contracts.find((entry) => entry.row_id === blockedRowIds[0])?.failure_code
+        : null),
+    "receiver_normal_derivative_contract_summary.first_failure_code must match first blocked row",
+    errors
+  );
+  assertField(
+    JSON.stringify(summary.failure_counts ?? {}) === JSON.stringify(failureCounts),
+    "receiver_normal_derivative_contract_summary.failure_counts must match row contracts",
+    errors
+  );
+  assertField(
+    summary.all_required_rows_bound === (acceptedRowIds.length === REQUIRED_EVENT_ROWS.length),
+    "receiver_normal_derivative_contract_summary.all_required_rows_bound must match accepted rows",
+    errors
+  );
+  assertField(
+    artifact.result?.receiver_normal_derivative_contract_ready === summary.all_required_rows_bound,
+    "result.receiver_normal_derivative_contract_ready must match receiver_normal_derivative_contract_summary",
+    errors
+  );
+}
+
 export function validateEventWakeHistoryPullbackArtifact(artifact) {
   const errors = [];
   assertField(artifact && typeof artifact === "object" && !Array.isArray(artifact), "artifact must be an object", errors);
@@ -457,6 +684,7 @@ export function validateEventWakeHistoryPullbackArtifact(artifact) {
     );
   }
   validateAcceptedEvidenceSummary(artifact, errors);
+  validateReceiverNormalDerivativeContractSummary(artifact, errors);
 
   return errors;
 }
@@ -537,6 +765,14 @@ function main() {
             "derivation_proof_object",
             "receiver_normal_derivative_bundle",
             "accepted_for_wake_history_closure",
+          ],
+          receiver_normal_derivative_contract_summary: [
+            "required_row_ids",
+            "accepted_row_ids",
+            "blocked_row_ids",
+            "first_failure_code",
+            "required_object_blockers",
+            "row_contracts",
           ],
           controls: ["missing-angular-momentum-row", "source-record-mismatch"],
         },

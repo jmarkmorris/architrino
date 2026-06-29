@@ -745,6 +745,41 @@ promotion and discipline future proof objects, but it cannot certify branch
 admissibility or substitute for any downstream Master Equation, action,
 wake-history, Noether sea, or cross-sector consumer.
 
+The prototype now also emits a fail-closed `retainedBoundaryTarget` plus a
+`negativeControlMatrix`. This is the priority-only matrix form of the same
+operator target:
+
+| Target row source | Required retained evidence | Negative control |
+| --- | --- | --- |
+| Signed image-delta row | Same-record winding-owner row for the signed seam-transfer demand. | `signed_image_delta_without_winding_owner` |
+| Cancelling image-delta row | Same-record pairing map proving the cancelling image deltas are one retained seam transfer. | `cancelled_image_delta_without_same_record_pairing` |
+| Neighbor-pair delta row | Retained causal-root row delta with winding owner, Jacobian floor or declared stratum, and same-record source identity. | `neighbor_pair_delta_without_retained_causal_root_rows` |
+| Boundary-like detector event | Same-record retained event row with explicit orientation sign before any wake-history event-ledger consumer may use it. | `boundary_like_detector_event_without_retained_event_row` |
+| Generic detector event | Declared boundary stratum before the event can enter $\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}$. | `generic_event_count_without_boundary_stratum` |
+| Run-summary envelope alone | Retained winding-labeled causal-root rows with endpoint, memory-window, caustic, collision/core, omitted-row, and seam routing. | `run_summary_without_retained_causal_root_rows` |
+
+The matrix deliberately fails closed whenever any required retained evidence is
+missing. A clean T3 run summary can therefore be a useful executable witness
+for seam, neighbor, and detector-event discipline while still blocking
+promotion to branch retention, action closure, wake-history closure, or
+cross-sector acceptance.
+
+One additional negative control prevents a common false closure: a zero signed
+coefficient total is not the same as
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}=0.
+$$
+If image-delta, neighbor, or detector-event rows remain unresolved, the
+prototype emits `signed_balance_is_not_boundary_closure` and adds
+`zero_signed_boundary_sum_without_same_record_routing`. This blocks the
+inference that algebraic cancellation in the run-summary envelope supplies the
+same-record absent, paired, or routed map required by the retained
+causal-root ledger. The result also reports an exact first blocker as
+`retained_boundary_target_unresolved:<rowId>` plus the first required retained
+evidence string, so a downstream report can point at the missing seam-owner,
+pairing-map, root-delta, event-row, or unresolved-root object without promoting
+the T3 envelope itself.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
@@ -921,16 +956,26 @@ declared event ledger without those rows remains
 quotient row, source-normal-only denominator, or old shell-braid force residue
 fails as `receiver-normal-first-derivative-row-missing`.
 
-The first same-record receiver-normal derivative consumer is now explicit in
-that diagnostic. The `energy_wake` accepted-evidence fixture binds
+The first same-record receiver-normal derivative contract is now explicit in
+that diagnostic. `energy_wake`, `momentum_wake`, `angular_momentum_wake`, and
+`medium_update` can each bind
 `receiver-normal-retained-branch-family-first-derivative/v0` to the same source
 record, event ledger, retained record key, source artifact hash, and consumer
-row, then recomputes $D_vW^{\mathrm{rec}}$ from $D_s$, $D_t$, $D_vD_s$, and
-$D_vD_t$. Missing derivative bundles, source-record drift, and reconstruction
-drift remain `accepted_evidence_contract_mismatch` rather than accepted
-wake-history closure. This is row-logic evidence only; the closed-ledger
-compositor still reports the wake-history sector as not accepted until all
-required event rows carry accepted evidence and proof objects.
+row, then recompute $D_vW^{\mathrm{rec}}$ from $D_s$, $D_t$, $D_vD_s$, and
+$D_vD_t$. The artifact emits
+`receiver_normal_derivative_contract_summary`, which names accepted row ids,
+blocked row ids, the first failure code, and `required_object_blockers` for
+each row. Missing derivative bundles now surface as
+`receiver-normal-first-derivative-row-missing`; missing accepted derivation
+proof objects are named as `wake_history_derivation_proof_object`; source-record
+drift surfaces as `receiver-normal-derivative-record-mismatch`,
+reconstruction drift surfaces as
+`receiver-normal-derivative-reconstruction-failed`, and branch-list drift
+surfaces as `branch-family-consumer-checksum-mismatch`. These remain
+fail-closed rather than accepted wake-history closure. This is row-logic
+evidence only; the closed-ledger compositor still reports the wake-history
+sector as not accepted until all required event rows carry accepted evidence
+and proof objects from an accepted retained branch.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
@@ -967,15 +1012,16 @@ default fixture has the following blocker order:
 | --- | --- | --- |
 | `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
 | $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the route summaries report zero accepted route samples and require active-root route derivation proof objects. |
-| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; one `energy_wake` row-logic fixture now exercises the receiver-normal derivative bundle, but accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the same-record receiver-normal derivative bundle. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; row-logic fixtures now exercise the receiver-normal derivative bundle for all four required event rows, but accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the same-record receiver-normal derivative bundle. |
 | $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, accepted evidence ids, and derivation proof objects. |
 | $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, receiver-normal branch-strength rows for any force/action consumer, and a medium-response derivation proof object. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
 
-The `energy_wake` receiver-normal derivative fixture sharpens the accepted
-wake-history evidence contract, but it does not change this blocker order:
+The receiver-normal derivative contract sharpens accepted wake-history evidence
+for all four event rows, but it does not change this blocker order:
 wake-history row population still passes only at diagnostic level, and accepted
-closure still waits for the full event-row set with derivation proof objects.
+closure still waits for accepted retained-branch evidence with derivation proof
+objects.
 
 Thus the next mathematical artifact should not try to promote the closed-ledger
 equation. It should replace one toy active-root route row or populate one

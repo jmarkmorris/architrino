@@ -60,11 +60,13 @@ restart-only even when its topology or preledger rows pass.
 Concrete restart object. The priority-only theorem and fixture target is now
 [Breather Receiver-Normal Force-Margin Restart Target](./certificate/breather_receiver_normal_force_margin_restart_target.md).
 It defines the receiver-normal force-margin closure equation, the required
-same-record derivative reconstruction, the executable fixture schema, and the
-negative controls for source-normal-only, aggregate-only, and old shell-braid
-force-residue substitutions. The current exact blocker remains
-`receiver_normal_breather_force_margin_missing`: no current breather fixture
-emits that object, no same-packet branch chart is authorized, and no recapture,
+same-record derivative reconstruction, the executable fixture schema, the
+focused validator
+[`check-breather-receiver-normal-force-margin-fixture.mjs`](../../../../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs),
+and the negative controls for source-normal-only, aggregate-only, and old
+shell-braid force-residue substitutions. The exact blocker remains
+`receiver_normal_breather_force_margin_missing`: no breather fixture emits that
+object, no same-packet branch chart is authorized, and no recapture,
 self-drive, action, power, wake-history, or Schauder-envelope margin row
 consumes same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, and derivative rows on
 the retained branch family.

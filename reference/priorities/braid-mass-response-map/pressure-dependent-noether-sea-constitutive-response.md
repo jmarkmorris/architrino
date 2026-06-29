@@ -290,6 +290,16 @@ packet, the target is admissible only when one retained pressure row supplies:
 | `noether_sea_response_record` | $\theta_{\mathrm{sea}}$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, $\mathcal{M}_{+}^{ab}$, reversible-domain row, and null-sector bounds |
 | `trace_validation` | finite-difference $m_{\mathrm{tr}}^{\mathrm{rec}}(\Delta P)-m_{\mathrm{tr}}^{\mathrm{rec}}(0)$ compared to the receiver-normal pressure trace equation |
 
+The executable intake precheck now exposes those requirements as
+`receiver_normal_weight_record.D_s`, `receiver_normal_weight_record.D_t`,
+`receiver_normal_weight_record.W_rec`,
+`receiver_normal_weight_record.retained_root_row_ids`,
+`noether_sea_response_record.theta_sea`, and
+`noether_sea_response_record.M_plus_ab`. These fields are intake obligations,
+not evidence: target-only, fixture, toy, empirical, H39/theta3minus, or
+cross-row population still fails at `finite_branch_evidence_missing` or
+`accepted_non_fixture_source_missing`.
+
 The current reading is `defer with blocker`: no accepted retained branch row
 currently binds these records. Fe/Cr, Ni/Co, Earth-core iron, toy pressure,
 Hessian, H39/theta3minus, or empirical rows may screen or falsify side

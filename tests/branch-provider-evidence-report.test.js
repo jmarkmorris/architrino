@@ -44,6 +44,11 @@ function h39RetainedRecordPreimageFixture(report) {
     .h39_receiver_normal_retained_record_preimage_fixture;
 }
 
+function h39ProducerSideProviderObjectBranchRowTarget(report) {
+  return h39SourceMapProviderObjectReadout(report)
+    .h39_producer_side_provider_object_branch_row_target;
+}
+
 test("branch-provider evidence report rejects current fixture, toy, proxy, status-shell, and target candidates", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
@@ -1090,6 +1095,52 @@ test("branch-provider evidence report rejects current fixture, toy, proxy, statu
       .fourth_jet_or_taylor_rows_rejected_as_receiver_normal_derivative_evidence,
     true
   );
+  const producerSideProviderObjectBranchRowTarget =
+    sourceMapProviderObjectReadout
+      .h39_producer_side_provider_object_branch_row_target;
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.schema,
+    "h39-producer-side-provider-object-branch-row-target/v0"
+  );
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.claim_level,
+    "priority-only executable target, not provider acceptance"
+  );
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.status,
+    "h39-producer-side-provider-object-branch-row-target-fail-closed"
+  );
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.provider_ready_authorized_by_this_target,
+    false
+  );
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.retained_record_preimage_authorized_by_this_target,
+    false
+  );
+  assert.deepEqual(
+    producerSideProviderObjectBranchRowTarget.required_terminal_row_ids,
+    sourceMapProviderObjectReadout.required_terminal_row_ids
+  );
+  assert.deepEqual(
+    producerSideProviderObjectBranchRowTarget.required_branch_row_ids,
+    sourceMapProviderObjectReadout.required_branch_row_ids
+  );
+  assert.deepEqual(
+    producerSideProviderObjectBranchRowTarget.required_producer_fields,
+    [
+      "same_domain_record_ref",
+      "terminal_row_id",
+      "branch_label",
+      "producer_object_formula",
+      "source_map_provider_branch_intervals",
+      "provider_object_branch_intervals",
+      "same-domain-branch-bearing-P_b-map",
+      "branch_projection_or_alpha_map",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+    ]
+  );
   assert.equal(
     h39ConstructionAttemptDetails.source_contract_readout
       .source_provenance_refinement.latest_candidate_boundary,
@@ -1541,6 +1592,174 @@ test("branch-provider evidence report keeps a partial producer-side branch-row o
     false
   );
   assert.equal(currentAbsenceRow.downstream_consumer_authorization, false);
+  const producerSideProviderObjectBranchRowTarget =
+    h39ProducerSideProviderObjectBranchRowTarget(report);
+  const currentProducerAbsence =
+    producerSideProviderObjectBranchRowTarget.target_rows.find(
+      (row) => row.row_id === "current_h39_producer_absence"
+    );
+  assert.equal(
+    producerSideProviderObjectBranchRowTarget.status,
+    "h39-producer-side-provider-object-branch-row-target-fail-closed"
+  );
+  assert.equal(
+    currentProducerAbsence.available_provider_object_terminal_row_count,
+    14
+  );
+  assert.equal(
+    currentProducerAbsence.explicit_provider_object_branch_row_count,
+    28
+  );
+  assert.deepEqual(
+    currentProducerAbsence.missing_terminal_row_ids,
+    missingTerminalRowIds
+  );
+  assert.deepEqual(
+    currentProducerAbsence.missing_branch_row_ids,
+    missingBranchRowIds
+  );
+});
+
+test("branch-provider evidence report emits the H39 producer-side branch-row target fail-closed", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
+  const target = h39ProducerSideProviderObjectBranchRowTarget(report);
+  const rowsById = Object.fromEntries(
+    target.target_rows.map((row) => [row.row_id, row])
+  );
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(
+    target.schema,
+    "h39-producer-side-provider-object-branch-row-target/v0"
+  );
+  assert.equal(
+    target.status,
+    "h39-producer-side-provider-object-branch-row-target-fail-closed"
+  );
+  assert.equal(target.row_count, 5);
+  assert.equal(target.provider_ready_authorized_by_this_target, false);
+  assert.equal(target.downstream_consumer_authorization, false);
+  assert.equal(target.retained_record_preimage_authorized_by_this_target, false);
+  assert.equal(
+    target.source_field_blocker,
+    "source_map_provider_object_branch_split_map_available_terminal_row_count"
+  );
+
+  assert.equal(
+    rowsById.current_h39_producer_absence.status,
+    "h39-producer-side-provider-object-branch-rows-missing"
+  );
+  assert.equal(
+    rowsById.current_h39_producer_absence.first_missing_producer_field,
+    "provider_object_branch_antisymmetric_equation_available_terminal_row_count"
+  );
+  assert.equal(
+    rowsById.current_h39_producer_absence.available_provider_object_terminal_row_count,
+    0
+  );
+  assert.equal(
+    rowsById.current_h39_producer_absence.explicit_provider_object_branch_row_count,
+    0
+  );
+  assert.equal(rowsById.current_h39_producer_absence.missing_terminal_row_ids.length, 15);
+  assert.equal(rowsById.current_h39_producer_absence.missing_branch_row_ids.length, 30);
+
+  assert.equal(
+    rowsById.partial_producer_side_branch_rows.status,
+    "h39-producer-side-provider-object-branch-rows-missing"
+  );
+  assert.equal(
+    rowsById.partial_producer_side_branch_rows.available_provider_object_terminal_row_count,
+    14
+  );
+  assert.equal(
+    rowsById.partial_producer_side_branch_rows.explicit_provider_object_branch_row_count,
+    28
+  );
+  assert.deepEqual(
+    rowsById.partial_producer_side_branch_rows.missing_terminal_row_ids,
+    ["speed.4.first-y:h35"]
+  );
+  assert.deepEqual(
+    rowsById.partial_producer_side_branch_rows.missing_branch_row_ids,
+    ["speed.4.first-y:h35:P_-", "speed.4.first-y:h35:P_+"]
+  );
+
+  assert.equal(
+    rowsById.complete_branch_rows_missing_interval_payloads.status,
+    "h39-producer-side-provider-object-branch-interval-payloads-missing"
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_interval_payloads.all_terminal_rows_present,
+    true
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_interval_payloads.all_branch_rows_present,
+    true
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_interval_payloads.interval_payloads_present,
+    false
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_interval_payloads.first_missing_producer_field,
+    "source_map_provider_branch_intervals"
+  );
+
+  assert.equal(
+    rowsById.complete_branch_rows_missing_identity_payloads.status,
+    "h39-producer-side-provider-object-branch-identity-payloads-missing"
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_identity_payloads.interval_payloads_present,
+    true
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_identity_payloads.identity_payloads_present,
+    false
+  );
+  assert.equal(
+    rowsById.complete_branch_rows_missing_identity_payloads.first_missing_producer_field,
+    "same-domain-branch-bearing-P_b-map"
+  );
+
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.status,
+    "h39-producer-side-provider-object-branch-row-review-required"
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.all_terminal_rows_present,
+    true
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.all_branch_rows_present,
+    true
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.interval_payloads_present,
+    true
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.identity_payloads_present,
+    true
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.same_record_binding_verified,
+    true
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.accepted_provider_object_branch_row_ref,
+    "h39-producer-side-provider-object-branch-rows:review-candidate"
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.provider_ready_authorized_by_this_row,
+    false
+  );
+  assert.equal(
+    rowsById.producer_side_branch_row_review_candidate.retained_record_preimage_authorized_by_this_row,
+    false
+  );
 });
 
 test("branch-provider evidence report emits the H39 retained-record preimage fixture fail-closed", () => {
@@ -1766,6 +1985,16 @@ test("branch-provider evidence CLI emits and validates current fixture report", 
   assert.equal(
     report.provider_object_construction_attempt.status,
     "same_domain_branch_provider_object_construction_blocked"
+  );
+  const h39ReportTarget = h39ProducerSideProviderObjectBranchRowTarget(report);
+  assert.equal(
+    h39ReportTarget.status,
+    "h39-producer-side-provider-object-branch-row-target-fail-closed"
+  );
+  assert.equal(h39ReportTarget.provider_ready_authorized_by_this_target, false);
+  assert.equal(
+    h39ReportTarget.retained_record_preimage_authorized_by_this_target,
+    false
   );
 
   const validation = JSON.parse(

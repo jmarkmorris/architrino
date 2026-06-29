@@ -101,6 +101,42 @@
       "source_status": "target_required_not_accepted_source"
     }
   },
+  "receiver_normal_weight_record": {
+    "D_s": {
+      "value": "candidate:D_s",
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "D_t": {
+      "value": "candidate:D_t",
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "W_rec": {
+      "value": "candidate:W_rec",
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "retained_root_row_ids": {
+      "value": [
+        "candidate:retained_root_row"
+      ],
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    }
+  },
+  "noether_sea_response_record": {
+    "theta_sea": {
+      "value": "candidate:theta_sea",
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "M_plus_ab": {
+      "value": "candidate:M_plus_ab",
+      "row_id": "rank4-retained-pressure-row-nested-source-status-probe",
+      "source_status": "target_required_not_accepted_source"
+    }
+  },
   "reversible_domain": {
     "R_tr": {
       "value": "candidate:R_tr",

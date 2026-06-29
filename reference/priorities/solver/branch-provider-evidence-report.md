@@ -361,6 +361,33 @@ handoff inherits that invariant: every one of the 15 terminal rows and all 30
 `P_-` / `P_+` branch rows must be accepted before the receiver-normal
 derivative fields can be considered for the same retained record.
 
+Producer-side target:
+`h39-producer-side-provider-object-branch-row-target/v0`.
+
+This executable target now sits between the emitted absence readout and the
+retained-record preimage fixture. It is priority-only and fail-closed: it does
+not authorize provider readiness, downstream consumers, or retained-record
+preimage use. It tests the smallest producer-side progression toward accepted
+`P_-` / `P_+` provider-object branch rows before aggregate $P$ erases branch
+identity:
+
+| Target row | Required setup | Expected status |
+| --- | --- | --- |
+| `current_h39_producer_absence` | The producer-side extractor reports `0 / 15` available $A_P$ terminal rows and `0 / 30` explicit `P_-` / `P_+` branch rows. | `h39-producer-side-provider-object-branch-rows-missing` |
+| `partial_producer_side_branch_rows` | The extractor reports 14 available $A_P$ terminal rows and 28 explicit branch rows, leaving one terminal row and its two branch rows missing. | `h39-producer-side-provider-object-branch-rows-missing` |
+| `complete_branch_rows_missing_interval_payloads` | All 15 $A_P$ terminal rows and all 30 explicit branch rows exist, but `source_map_provider_branch_intervals` and `provider_object_branch_intervals` are absent. | `h39-producer-side-provider-object-branch-interval-payloads-missing` |
+| `complete_branch_rows_missing_identity_payloads` | All producer rows and both interval payloads exist, but the $P_b$ map, branch projection or alpha map, `pushforward_operator_ref`, or `normalization_identity_ref` is absent. | `h39-producer-side-provider-object-branch-identity-payloads-missing` |
+| `producer_side_branch_row_review_candidate` | All producer rows, both interval payloads, all identity payloads, and same-record binding fields are present. | `h39-producer-side-provider-object-branch-row-review-required`; still not provider readiness or retained-record evidence |
+
+The next positive producer-side object is therefore sharper than "some branch
+rows exist." It must carry same-domain terminal row id, branch label,
+$A_P=P_- - P_+$ or explicit `P_-` / `P_+`, both interval payloads, the $P_b$
+map, branch projection or alpha map, `pushforward_operator_ref`,
+`normalization_identity_ref`, and same-record binding across the required 15
+terminal rows and 30 branch rows. Aggregate-$P$ rows, lambda terminal witnesses,
+row-local expression feeds, and source-map residual candidates remain rejected
+by this target.
+
 Fixture target:
 `h39-receiver-normal-retained-record-preimage-fixture/v0`.
 

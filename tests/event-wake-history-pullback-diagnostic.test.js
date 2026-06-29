@@ -28,6 +28,7 @@ function deepClone(value) {
 
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
+const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
 
 function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
   const retainedRecord = {
@@ -146,6 +147,27 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, false);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+  assert.equal(artifact.result.receiver_normal_derivative_contract_ready, false);
+  assert.deepEqual(
+    artifact.receiver_normal_derivative_contract_summary.blocked_row_ids,
+    REQUIRED_EVENT_ROWS
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "receiver-normal-first-derivative-row-missing"
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.failure_counts[
+      "receiver-normal-first-derivative-row-missing"
+    ],
+    4
+  );
+  for (const rowContract of artifact.receiver_normal_derivative_contract_summary.row_contracts) {
+    assert.deepEqual(rowContract.required_object_blockers, [
+      "wake_history_derivation_proof_object",
+      "receiver_normal_derivative_bundle",
+    ]);
+  }
 });
 
 test("event wake-history accepts one same-record receiver-normal derivative consumer row", () => {
@@ -164,6 +186,58 @@ test("event wake-history accepts one same-record receiver-normal derivative cons
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 1);
   assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, false);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
+  assert.deepEqual(artifact.receiver_normal_derivative_contract_summary.accepted_row_ids, [
+    "energy_wake",
+  ]);
+  assert.deepEqual(artifact.receiver_normal_derivative_contract_summary.blocked_row_ids, [
+    "momentum_wake",
+    "angular_momentum_wake",
+    "medium_update",
+  ]);
+});
+
+test("event wake-history accepts same-record receiver-normal derivative bundles for each consumer row", () => {
+  for (const rowId of REQUIRED_EVENT_ROWS) {
+    const input = buildDefaultEventWakeHistoryPullbackInput();
+    input.event_evidence_rows = [acceptedWakeHistoryEvidence(input, rowId)];
+    const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+    const rowEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+      (row) => row.row_id === rowId
+    );
+
+    assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+    assert.equal(rowEvidence.evidence_level, "accepted_for_wake_history_closure");
+    assert.equal(rowEvidence.accepted_for_wake_history_closure, true);
+    assert.deepEqual(rowEvidence.accepted_evidence_mismatches, []);
+    assert.deepEqual(artifact.receiver_normal_derivative_contract_summary.accepted_row_ids, [
+      rowId,
+    ]);
+    assert.equal(artifact.receiver_normal_derivative_contract_summary.all_required_rows_bound, false);
+    assert.equal(artifact.result.receiver_normal_derivative_contract_ready, false);
+  }
+});
+
+test("event wake-history row-logic fixture binds all required receiver-normal derivative rows without retaining a branch", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = REQUIRED_EVENT_ROWS.map((rowId) =>
+    acceptedWakeHistoryEvidence(input, rowId)
+  );
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(artifact.boundary_status, "closed");
+  assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 4);
+  assert.equal(artifact.accepted_evidence_summary.accepted_for_wake_history_closure, true);
+  assert.equal(artifact.result.accepted_event_evidence_for_closure, true);
+  assert.equal(artifact.result.receiver_normal_derivative_contract_ready, true);
+  assert.equal(artifact.result.retained_branch, false);
+  assert.equal(artifact.result.updates_live_validation_gate, false);
+  assert.deepEqual(
+    artifact.receiver_normal_derivative_contract_summary.accepted_row_ids,
+    REQUIRED_EVENT_ROWS
+  );
+  assert.deepEqual(artifact.receiver_normal_derivative_contract_summary.blocked_row_ids, []);
+  assert.equal(artifact.receiver_normal_derivative_contract_summary.first_failure_code, null);
 });
 
 test("event wake-history accepted metadata without derivation proof object stays non-accepted", () => {
@@ -195,6 +269,12 @@ test("event wake-history accepted metadata without derivation proof object stays
     "event_evidence.derivation_proof_object.status",
     "event_evidence.receiver_normal_derivative_bundle",
   ]);
+  assert.deepEqual(
+    artifact.receiver_normal_derivative_contract_summary.row_contracts.find(
+      (row) => row.row_id === "energy_wake"
+    ).required_object_blockers,
+    ["wake_history_derivation_proof_object", "receiver_normal_derivative_bundle"]
+  );
   assert.equal(artifact.accepted_evidence_summary.accepted_row_count, 0);
   assert.equal(artifact.result.accepted_event_evidence_for_closure, false);
 });
@@ -218,6 +298,10 @@ test("event wake-history rejects receiver-normal derivative record mismatch", ()
   assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
   assert.equal(energyEvidence.evidence_level, "accepted_evidence_contract_mismatch");
   assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "receiver-normal-derivative-record-mismatch"
+  );
   assert.equal(
     energyEvidence.accepted_evidence_mismatches.includes(
       "event_evidence.receiver_normal_derivative_bundle.source_record_id"
@@ -246,8 +330,43 @@ test("event wake-history rejects receiver-normal derivative reconstruction drift
   assert.equal(energyEvidence.evidence_level, "accepted_evidence_contract_mismatch");
   assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
   assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "receiver-normal-derivative-reconstruction-failed"
+  );
+  assert.equal(
     energyEvidence.accepted_evidence_mismatches.includes(
       "event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction"
+    ),
+    true
+  );
+});
+
+test("event wake-history rejects branch-family checksum drift", () => {
+  const input = buildDefaultEventWakeHistoryPullbackInput();
+  input.event_evidence_rows = [
+    acceptedWakeHistoryEvidence(input, "energy_wake", {
+      receiver_normal_derivative_bundle: buildSameRecordReceiverNormalDerivativeBundle(
+        input,
+        "energy_wake",
+        { branch_family_checksum: { retained_record_ids: ["other-root"] } }
+      ),
+    }),
+  ];
+  const artifact = buildEventWakeHistoryPullbackDiagnostic(input);
+  const energyEvidence = artifact.accepted_evidence_summary.row_evidence.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(energyEvidence.evidence_level, "accepted_evidence_contract_mismatch");
+  assert.equal(energyEvidence.accepted_for_wake_history_closure, false);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "branch-family-consumer-checksum-mismatch"
+  );
+  assert.equal(
+    energyEvidence.accepted_evidence_mismatches.includes(
+      "event_evidence.receiver_normal_derivative_bundle.branch_family_checksum.retained_record_ids"
     ),
     true
   );
@@ -262,10 +381,18 @@ test("event wake-history validator rejects accepted summary drift", () => {
   for (const rowEvidence of tampered.accepted_evidence_summary.row_evidence) {
     rowEvidence.accepted_for_wake_history_closure = true;
   }
+  tampered.receiver_normal_derivative_contract_summary.all_required_rows_bound = true;
+  tampered.result.receiver_normal_derivative_contract_ready = true;
 
   const errors = validateEventWakeHistoryPullbackArtifact(tampered);
   assert.equal(errors.includes("energy_wake accepted flag must match event row"), true);
   assert.equal(errors.includes("momentum_wake accepted flag must match event row"), true);
+  assert.equal(
+    errors.includes(
+      "receiver_normal_derivative_contract_summary.all_required_rows_bound must match accepted rows"
+    ),
+    true
+  );
 });
 
 test("event wake-history pullback diagnostic fails missing angular momentum rows", () => {
@@ -319,6 +446,14 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "derivation_proof_object",
     "receiver_normal_derivative_bundle",
     "accepted_for_wake_history_closure",
+  ]);
+  assert.deepEqual(schema.receiver_normal_derivative_contract_summary, [
+    "required_row_ids",
+    "accepted_row_ids",
+    "blocked_row_ids",
+    "first_failure_code",
+    "required_object_blockers",
+    "row_contracts",
   ]);
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);
 });
