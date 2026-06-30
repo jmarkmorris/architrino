@@ -11,7 +11,7 @@ The app is a design target until native-backed runs and retained same-record evi
 1. The native central solver is the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, T3 stepping, and solver-owned geometry.
 2. The app must not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
 3. JavaScript-only paths may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code.
-4. Architrino primitives do not have physical mass. A `mass` or mass-like field is not architrino ontology; it is a numerical integration weight, comparison-kernel parameter, or legacy/toy interaction coefficient.
+4. Architrino primitives do not have physical mass. In the T3 native/bridge contract, `integrationWeight` / `integrationWeights` is a numerical integration scalar, not architrino ontology; any remaining `mass` or mass-like field outside that T3 contract is a comparison-kernel parameter or legacy/toy interaction coefficient.
 5. The app must model architrino primitives directly. Assemblies may appear later only as derived diagnostics or corpus-bound comparison objects, not as the base entity type for this app.
 6. T3 output is candidate-level unless the run binds same-record retained evidence for source histories, receiver histories, causal roots, branch rows, wake rows, and diagnostics.
 
@@ -67,7 +67,7 @@ The app should support several initial-condition families while preserving expli
 | `explicit` | Per-architrino position, velocity, identity, and optional path segment input | Best first path for reproducible fixtures. |
 | `imported` | Manifest id, schema version, source hash, units, and scale normalization | Must preserve source provenance and schema version. |
 
-No initial-condition editor should ask the operator for architrino physical mass.
+No initial-condition editor should ask the operator for architrino physical mass. If the T3 app exposes the numerical integration scalar, it must label it as `integrationWeight` and must keep the physical-mass interpretation forbidden.
 
 ## Path-History Retention
 
@@ -98,6 +98,154 @@ Required wake-history records:
 | Failure row | Missing path history, unresolved root, insufficient history depth, missing winding label, precision failure, branch-row mismatch, or simulation-envelope overflow. |
 
 Silent wake truncation is not allowed. If the requested scale makes individual wakes smaller than the declared `wakeFloor`, the run must record that boundary as a background/noise row with a claim-level downgrade.
+
+### T3 Wake-History Row
+
+The first resolved wake-history row schema is `t3-wake-history-row.v1`. It is a retained row, not a visualization shell. A displayed wake stream, acceleration contribution, winding label, or selected wake diagnostic must trace back to this row or to an explicit background/noise or failure row.
+
+| Field | Required content |
+| --- | --- |
+| `schema` | `t3-wake-history-row.v1`. |
+| `wakeRowId` | Stable row id unique inside the run manifest. |
+| `runId` | Source T3 run id. |
+| `sourceArchitrinoId` | Source architrino identity. |
+| `receiverArchitrinoId` | Receiver architrino identity. |
+| `sourcePathId` | Solver-owned source path-history id. |
+| `receiverPathId` | Solver-owned receiver path-history id. |
+| `sourceSegmentId` | Source path segment used by the causal-root solve. |
+| `receiverSegmentId` | Receiver path segment used by the causal-root solve. |
+| `emissionTime` | Source time $t_0$. |
+| `hitTime` | Receiver time $t$. |
+| `fieldSpeed` | Causal field speed $c_f$ used by the row. |
+| `sideLength` | T3 side length $L$ used by the row. |
+| `windingLabel` | Integer triple $\mathbf n=(n_x,n_y,n_z)\in\mathbb Z^3$ used in the universal-cover root. The local label is `(0, 0, 0)`. |
+| `sourcePositionAtEmission` | Source position at $t_0$ in the fundamental-domain chart plus any source image offset required by the path-history stream. |
+| `receiverPositionAtHit` | Receiver position at $t$ in the fundamental-domain chart plus any receiver image offset required by the path-history stream. |
+| `coverSourcePosition` | $\mathbf x_i(t_0)+L\mathbf n$, the source position used by the universal-cover causal-root equation. |
+| `causalRootId` | Root-ledger or causal-root row id. |
+| `rootResidual` | Residual of the causal-root equation. |
+| `wakeStrength` | Solver-owned wake strength or acceleration contribution before display transforms. |
+| `receiverAccelerationContribution` | Vector contribution to receiver acceleration when the solver emits row-resolved acceleration. |
+| `branchRowId` | Branch row id when a branch diagnostic depends on this wake row; otherwise null. |
+| `evidenceStatus` | `local-pre-wrap-evidence`, `global-periodic-wrap-evidence`, or `fail-closed-value`. |
+| `valueAuthority` | Diagnostic status for the row value, using the app value-authority vocabulary. |
+| `errorBudget` | Row-level root, wake-strength, and acceleration-contribution error bounds. |
+| `rowStatus` | Retained, background-ineligible, missing winding label, insufficient history depth, exceeded error budget, or another first-failure status. |
+
+The row is valid only if the stored `windingLabel` is the same integer vector used in the causal-root equation:
+
+$$
+\left\|
+\mathbf x_j(t)
+-
+\left(\mathbf x_i(t_0)+L\mathbf n\right)
+\right\|
+=
+c_f(t-t_0).
+$$
+
+A row that omits `windingLabel` is not a weaker local row. It is a failure row for wrap-aware diagnostics because the app cannot distinguish an unwrapped local hit from a wrapped hit whose image label was lost.
+
+### Local and Periodic-Wrap Evidence Split
+
+The app must separate local pre-wrap evidence from global periodic-wrap evidence.
+
+| Evidence status | Admission rule | Claim limit |
+| --- | --- | --- |
+| `local-pre-wrap-evidence` | `windingLabel = (0, 0, 0)`; the row is inside the declared `historyDepth`; no selected diagnostic requires nonzero winding rows; and the manifest records either `wakeHorizon < sideLength` for the accepted envelope or a local-only `wrapMode` that marks nonzero winding rows out of scope. | Supports local T3 sandbox diagnostics only. It does not prove global periodic-wrap behavior and cannot stand in for explicit-wrap evidence. |
+| `global-periodic-wrap-evidence` | The run is wrap-aware; every retained wrapped row records an explicit `windingLabel`; nonzero labels are counted by winding vector; zero-label rows are retained alongside nonzero rows in the same manifest; and receiver acceleration records whether it used local rows, wrapped rows, background/noise rows, or a mixture. | Supports periodic-wrap diagnostics inside the declared envelope. It remains candidate-level unless same-record retained evidence binds the relevant source histories, receiver histories, causal roots, branch rows, wake rows, and diagnostics. |
+| `fail-closed-value` | The run needs wrap-aware interpretation but any required wake row has a missing winding label, insufficient `historyDepth`, unresolved causal root, missing same-record path binding, exceeded error budget, or silent-truncation violation. | Blocks authoritative acceleration, branch evidence, retained wake evidence, and periodic-wrap claims for the affected receiver, region, or run. |
+
+The zero winding label is data, not absence of data. A local pre-wrap row must still store `windingLabel = (0, 0, 0)` so that later tooling can count it separately from nonzero periodic-wrap rows. Conversely, a nonzero `windingLabel` is required but not sufficient for global periodic-wrap evidence; the manifest must also prove that the row was solved, retained, error-bounded, and not substituted by display-only visualization or outbound face replay.
+
+## Simulation-Envelope Wake Row Rule
+
+Every T3 run must declare a simulation envelope before wake-history output can be interpreted. The envelope is a run-manifest object with at least:
+
+| Field | Meaning |
+| --- | --- |
+| `sideLength` | T3 fundamental-domain side length $L$. |
+| `historyDepth` | Active causal-history time window $h$. |
+| `wakeHorizon` | Wake travel length $c_f h$. |
+| `wakeFloor` | Declared per-row wake-strength or acceleration-contribution floor. |
+| `errorBudget` | Declared numeric error allowance for root solving, wake-strength evaluation, aggregation, and replay. |
+| `wrapMode` | Local, wrap-aware, or diagnostic-cover interpretation policy. |
+| `aggregationBins` | Time, winding, face, source population, receiver population, and strength bins used for background/noise rows. |
+
+For a receiver `j` at time $t$, the solver-facing candidate wake set is
+
+$$
+\mathcal C_j(t;E)
+=
+\left\{
+r :
+0 \le t-t_0 \le h,\quad
+\left\|
+\mathbf x_j(t)
+-
+\left(\mathbf x_i(t_0)+L\mathbf n\right)
+\right\|
+=
+c_f(t-t_0)
+\right\},
+$$
+
+where $E$ is the declared simulation envelope. The app may not display receiver acceleration as authoritative unless every candidate row in $\mathcal C_j(t;E)$ is classified as exactly one of these records:
+
+| Class | Admission condition | Required record |
+| --- | --- | --- |
+| Resolved wake row | Same-record source and receiver path history exists; the causal root is solved inside `errorBudget`; the row has the required winding vector or image label; the wake contribution is at or above `wakeFloor`, or the selected diagnostic/branch depends on the individual row. | A retained wake row with source id, receiver id, source path id, receiver path id, emission time, hit time, winding vector, causal-root id, residual, wake strength or acceleration contribution, value authority, and status. |
+| Aggregated wake-noise/background row | The individual row is below `wakeFloor`; it is not selected; no branch row, retained record, or selected-object diagnostic depends on that individual row; and the aggregate bin can be bounded inside `errorBudget`. | A background/noise row with threshold, bin definition, omitted-row count, aggregate magnitude, error bound, source population, receiver population or region, winding/face summary when relevant, and claim-level downgrade. |
+| Failure row | The run cannot prove either resolved-row retention or admissible aggregation. This includes missing path history, unresolved root, insufficient `historyDepth`, missing winding label in a wrap-aware run, precision failure, branch-row mismatch, selected-row dependence, exceeded `errorBudget`, or simulation-envelope overflow. | A fail-closed row with first-failure code, affected receiver or region, missing field or exceeded bound, and value-authority downgrade. |
+
+The classification is exclusive and exhaustive inside the declared envelope:
+
+$$
+\mathcal C_j(t;E)
+=
+\mathcal W_j^{\mathrm{resolved}}(t)
+\;\dot\cup\;
+\mathcal W_j^{\mathrm{background}}(t)
+\;\dot\cup\;
+\mathcal W_j^{\mathrm{failure}}(t).
+$$
+
+Receiver acceleration may be displayed as authoritative only when $\mathcal W_j^{\mathrm{failure}}(t)$ is empty and the manifest records the decomposition
+
+$$
+\mathbf a_j(t)
+=
+\sum_{r\in\mathcal W_j^{\mathrm{resolved}}(t)}
+\mathbf a_{j,r}^{\mathrm{wake}}(t)
++
+\mathbf a_j^{\mathrm{background}}(t)
++
+\mathbf a_j^{\mathrm{unresolved}}(t),
+$$
+
+with $\mathbf a_j^{\mathrm{unresolved}}(t)=0$ inside the accepted envelope. If any failure row exists, the affected acceleration value must be `fail-closed-value` or `missing-error-budget`, not `authoritative-solver-output`.
+
+Forbidden silent truncation means:
+
+1. no candidate wake row inside $\mathcal C_j(t;E)$ may be dropped without increasing either a resolved-row count, an omitted-row count in a background/noise row, or a failure-row count;
+2. a below-floor row may be aggregated only when the row is not selected and is not needed by any retained branch row, same-record binding, or selected-object diagnostic;
+3. a missing winding label in a wrap-aware envelope is a failure row, not a background/noise row;
+4. insufficient `historyDepth` is a failure row for affected receiver acceleration unless the manifest explicitly downgrades that acceleration to display-only or missing-error-budget;
+5. outbound face replay may consume background/noise rows only after its validation row passes; it may not replace retained wake rows or repair missing same-record evidence.
+
+The first build target for this rule is a manifest check that proves row conservation:
+
+$$
+N_{\mathrm{candidate}}
+=
+N_{\mathrm{resolved}}
++
+N_{\mathrm{aggregated}}
++
+N_{\mathrm{failure}},
+$$
+
+where $N_{\mathrm{aggregated}}$ is the omitted-row count carried by background/noise rows, not merely the number of aggregate records.
 
 ## Outbound Face Background/Noise Replay
 
@@ -404,7 +552,9 @@ The first app design pass should fail closed if any of these occur:
 
 ## Next Exact Proof/Build Burden
 
-The next exact burden is to audit the current native T3 bridge and classify each requirement in this packet as one of:
+The next exact burden is to define `t3-app-dataset-manifest.v1` so app-facing runs can record topology, simulation envelope, initial conditions, current-state frames, trajectory/path-history sources, native bridge status, diagnostic status, value authority, explicit wake-history gap rows, winding-label status, outbound-face replay status, error budget, wake-row conservation status, and local-pre-wrap versus global-periodic-wrap evidence status.
+
+The manifest must use this requirement classification vocabulary when a value is not yet fully native-backed:
 
 | Status | Meaning |
 | --- | --- |

@@ -1891,6 +1891,30 @@ p_i
 $$
 up to the metastability, leakage, escape, and coarse-state errors declared for that same finite window. A weight assignment that is not this basin measure introduces an untracked kernel between the substrate flow and the recorded outcome.
 
+Finite record resolution can export a probability interval before it exports a point probability. Let a finite partition $\mathcal{P}_N=\{C_a\}$ cover the retained history chart $\Gamma_{\eta,h}$ for the same setup $\theta$, and let
+$$
+E_k(\theta)
+=
+\pi^{-1}(R_k)\cap\mathsf R_\theta^{-1}(1)
+$$
+be the eligible record event. The lower and upper record weights at that resolution are
+$$
+p_{k,N}^-
+=
+\sum_{\substack{C_a\in\mathcal{P}_N\\ C_a\subset E_k(\theta)}}
+\mu_*(C_a),
+\qquad
+p_{k,N}^+
+=
+\sum_{\substack{C_a\in\mathcal{P}_N\\ C_a\cap E_k(\theta)\ne\varnothing}}
+\mu_*(C_a).
+$$
+The Born-rule closure target is not merely to name a formal projector, but to show that the finite-window width
+$$
+\Delta p_{k,N}=p_{k,N}^+-p_{k,N}^-
+$$
+falls below apparatus tolerance while the calibrated central value matches the Born weight. Low-amplitude or unresolved branch labels that remain inside the boundary cells of this finite partition do not yet count as independent record probabilities; they remain unresolved measure until the apparatus channel and record partition separate them.
+
 The same restriction applies to branch language. If a branch or record class is emergent from later apparatus/environment dynamics, its probability cannot be inserted as an axiom before the record map, basin family, and measure source have been fixed. Assigning weights to emergent branches without that pullback repeats the measurement cut in probabilistic form. A valid branch probability must be a derived property of the same deterministic flow that creates and preserves the record, not a label attached after the ontology has already been compressed.
 
 ### External Penrose-Diosi Benchmark

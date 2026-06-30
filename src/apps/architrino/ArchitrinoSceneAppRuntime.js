@@ -8827,6 +8827,7 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
 sceneImageGalleryRuntime = createSceneImageGalleryRuntime({
   document: globalThis.document,
   window: globalThis.window,
+  appendCacheBust,
 });
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {

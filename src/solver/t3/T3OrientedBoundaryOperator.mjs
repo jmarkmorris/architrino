@@ -450,6 +450,13 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
         "hitTime",
         "signalSpeed",
         "rootTolerance",
+        "sameRecordReplayId",
+        "retainedSourceRecordId",
+        "retainedCausalRootRowId",
+        "rootLedgerRecordId",
+        "sourcePathSegmentId",
+        "receiverPathSegmentId",
+        "sameRecordRetainedBinding",
         "retainedSourceBindingStatus",
         "sameRecordReplayStatus",
         "causticRouteStatus",
@@ -479,7 +486,7 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
       "position",
       "velocity",
       "acceleration",
-      "mass",
+      "integrationWeight",
       "imageDelta",
       "stateFlags",
     ],
@@ -505,12 +512,14 @@ function replayMissingLocalFieldOrSourceConditions(chronologyRow, missingFields)
       "solver-t3-step-response.v1 does not expose a same-record caustic route or declared no-caustic route for this unresolved-root chronology row",
     sourcePathSegmentId:
       "solver-t3-step-response.v1 does not expose a source path segment id bound to this unresolved-root chronology row",
+    receiverPathSegmentId:
+      "solver-t3-step-response.v1 does not expose a receiver path segment id bound to this unresolved-root chronology row",
   };
   return missingFields.map((field) => ({
     field,
     sourceCondition: sourceConditions[field] ?? null,
     requiredSameRecordSource:
-      "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, and sourcePathSegmentId before run-summary aggregation",
+      "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, sourcePathSegmentId, and receiverPathSegmentId before run-summary aggregation",
   }));
 }
 
@@ -533,7 +542,7 @@ function familySpecificReplayFields(rowFamily) {
     return ["retainedEventRowId", "eventRowOrientation", "declaredBoundaryStratum"];
   }
   if (rowFamily === "unresolved-root") {
-    return ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"];
+    return ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"];
   }
   if (rowFamily === "signed-balance") {
     return ["sameRecordCancellationPairingMap", "absentPairedOrRoutedRowMap"];

@@ -62,7 +62,7 @@ static_assert(sizeof(ArchitrinoSolverT3ParticleStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverT3ParticleStepRowF64) == 104);
 static_assert(sizeof(ArchitrinoSolverT3StepSummaryF64) == 88);
 static_assert(sizeof(ArchitrinoSolverT3UnresolvedRootSegmentRowF64) == 208);
-static_assert(sizeof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64) == 80);
+static_assert(sizeof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64) == 112);
 static_assert(sizeof(ArchitrinoSolverMotionFrameRowF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPathHistoryRowF64) == 96);
 static_assert(sizeof(ArchitrinoSolverPathHistoryIndexRow) == 64);
@@ -204,9 +204,10 @@ static_assert(offsetof(ArchitrinoSolverT3StepSummaryF64, interaction_law) == 72)
 static_assert(offsetof(ArchitrinoSolverT3UnresolvedRootSegmentRowF64, source_position) == 40);
 static_assert(offsetof(ArchitrinoSolverT3UnresolvedRootSegmentRowF64, receiver_velocity) == 112);
 static_assert(offsetof(ArchitrinoSolverT3UnresolvedRootSegmentRowF64, source_state_flags) == 192);
-static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, root_ledger_record_id) == 40);
-static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, retained_source_binding_status) == 56);
-static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, row_status) == 72);
+static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, same_record_replay_id) == 40);
+static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, root_ledger_record_id) == 64);
+static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, retained_source_binding_status) == 88);
+static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, row_status) == 104);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -629,7 +630,7 @@ architrino::solver::T3ParticleState to_t3_particle_state(
       state.path_key,
       to_vector(state.position),
       to_vector(state.velocity),
-      state.mass,
+      state.integration_weight,
       state.charge,
       state.state_flags,
       state.reserved0,
@@ -643,7 +644,7 @@ ArchitrinoSolverT3ParticleStepRowF64 to_c_t3_particle_step_row(
       ArchitrinoSolverVector3F64{row.position.x, row.position.y, row.position.z},
       ArchitrinoSolverVector3F64{row.velocity.x, row.velocity.y, row.velocity.z},
       ArchitrinoSolverVector3F64{row.acceleration.x, row.acceleration.y, row.acceleration.z},
-      row.mass,
+      row.integrationWeight,
       row.imageDeltaX,
       row.imageDeltaY,
       row.imageDeltaZ,
@@ -760,8 +761,12 @@ ArchitrinoSolverT3RetainedCausalRootReplayRowF64 to_c_t3_retained_causal_root_re
       row.receiverPathKey,
       row.sourceSegmentIndex,
       row.receiverSegmentIndex,
+      row.sameRecordReplayId,
+      row.retainedSourceRecordId,
+      row.retainedCausalRootRowId,
       row.rootLedgerRecordId,
       row.sourcePathSegmentId,
+      row.receiverPathSegmentId,
       row.retainedSourceBindingStatus,
       row.sameRecordReplayStatus,
       row.causticRouteStatus,
@@ -2684,7 +2689,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      18,
+      19,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),

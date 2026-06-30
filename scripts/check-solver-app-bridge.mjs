@@ -213,13 +213,13 @@ const t3StepResponse = await client.stepT3UniverseF64({
       pathKey: 1,
       position: { x: 9.8, y: 5, z: 5 },
       velocity: { x: 0, y: 0, z: 0 },
-      mass: 1,
+      integrationWeight: 1,
     },
     {
       pathKey: 2,
       position: { x: 0.2, y: 5, z: 5 },
       velocity: { x: 0, y: 0, z: 0 },
-      mass: 1,
+      integrationWeight: 1,
     },
   ],
 });
@@ -227,6 +227,11 @@ assert(t3StepResponse.status.code === "ok", "expected native T3 step status ok")
 assert(t3StepResponse.executionPath === "native_c_abi", "expected native T3 execution path");
 assert(t3StepResponse.rows.length === 2, "expected native T3 rows for both particles");
 assert(t3StepResponse.summary.neighborPairCount === 1, "expected periodic T3 neighbor pair");
+assert(
+  t3StepResponse.unresolvedRootSegmentRows.length === 0 &&
+    t3StepResponse.retainedCausalRootReplayRows.length === 0,
+  "expected T3 sidecar rows to stay disabled unless requested"
+);
 assert(
   t3StepResponse.rows[0].acceleration.x < 0 &&
     t3StepResponse.rows[1].acceleration.x > 0 &&

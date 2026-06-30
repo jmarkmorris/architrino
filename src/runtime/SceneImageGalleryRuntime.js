@@ -6,6 +6,8 @@ export function createSceneImageGalleryRuntime(options = {}) {
     documentRef?.getElementById?.("app") ??
     documentRef?.body ??
     null;
+  const appendCacheBust =
+    typeof options.appendCacheBust === "function" ? options.appendCacheBust : (value) => value;
 
   let root = null;
   let grid = null;
@@ -166,7 +168,7 @@ export function createSceneImageGalleryRuntime(options = {}) {
         const title = item.title || item.alt || `Image ${index + 1}`;
         return `
           <button class="scene-image-gallery-tile" type="button" data-gallery-index="${index}" aria-label="Open ${escapeAttr(title)}">
-            <img src="${escapeAttr(item.thumbnail)}" alt="${escapeAttr(item.alt || title)}" loading="lazy" />
+            <img src="${escapeAttr(appendCacheBust(item.thumbnail))}" alt="${escapeAttr(item.alt || title)}" loading="lazy" />
             <span>${escapeHtml(title)}</span>
           </button>
         `;
@@ -206,7 +208,7 @@ export function createSceneImageGalleryRuntime(options = {}) {
       setCarouselOpen(false);
       return;
     }
-    carouselImage.src = item.src;
+    carouselImage.src = appendCacheBust(item.src);
     carouselImage.alt = item.alt || item.title || "";
     if (carouselTitle) {
       carouselTitle.textContent = item.title || "";

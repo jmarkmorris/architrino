@@ -667,7 +667,7 @@ const T3_PARTICLE_STATE_F64_BYTES = 80;
 const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
 const T3_STEP_SUMMARY_F64_BYTES = 88;
 const T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES = 208;
-const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES = 80;
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES = 112;
 const T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID = Object.freeze({
   disabled: 0,
   neighbor_pruned_v1: 1,
@@ -683,10 +683,12 @@ const T3_UNRESOLVED_ROOT_SEGMENT_ROW_STATUS_BY_CODE = Object.freeze({
 const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE = Object.freeze({
   0: "disabled",
   1: "missing_retained_replay_source",
+  2: "candidate_same_record_binding",
 });
 const T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE = Object.freeze({
   0: "missing",
   1: "candidate_sidecar_shape_evidence",
+  2: "candidate_same_record_binding",
 });
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
@@ -12124,7 +12126,10 @@ function normalizeT3ParticleStates(particles) {
       pathKey,
       position: t3Vector(particle.position ?? particle.initialPosition, `T3 particle ${index} position`),
       velocity: t3Vector(particle.velocity ?? particle.initialVelocity ?? [0, 0, 0], `T3 particle ${index} velocity`),
-      mass: t3PositiveFinite(particle.mass ?? 1, `T3 particle ${index} mass`),
+      integrationWeight: t3PositiveFinite(
+        particle.integrationWeight ?? 1,
+        `T3 particle ${index} integrationWeight`
+      ),
       charge: t3Finite(particle.charge ?? particle.electrineFraction ?? 0, `T3 particle ${index} charge`),
       stateFlags: t3NonnegativeInteger(particle.stateFlags ?? pathKey, `T3 particle ${index} stateFlags`),
     };
@@ -14622,7 +14627,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 18,
+    abiMinor: 19,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14681,7 +14686,7 @@ function defaultAbiInfo() {
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 18 ||
+    abiInfo.abiMinor !== 19 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -16361,7 +16366,7 @@ function writeT3ParticleStateF64(module, ptr, state) {
   writeUint64(module, ptr, state.pathKey);
   writeVector(module, ptr + 8, state.position);
   writeVector(module, ptr + 32, state.velocity);
-  module.setValue(ptr + 56, state.mass, "double");
+  module.setValue(ptr + 56, state.integrationWeight, "double");
   module.setValue(ptr + 64, state.charge ?? 0, "double");
   module.setValue(ptr + 72, state.stateFlags ?? state.pathKey, "i32");
   module.setValue(ptr + 76, 0, "i32");
@@ -16980,7 +16985,7 @@ function readT3ParticleStepRowF64(module, ptr) {
     position: readVector(module, ptr + 8),
     velocity: readVector(module, ptr + 32),
     acceleration: readVector(module, ptr + 56),
-    mass: module.getValue(ptr + 80, "double"),
+    integrationWeight: module.getValue(ptr + 80, "double"),
     imageDelta: {
       x: module.getValue(ptr + 88, "i32"),
       y: module.getValue(ptr + 92, "i32"),
@@ -17097,13 +17102,17 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
   const receiverPathKey = readUint64(module, ptr + 16);
   const sourceSegmentIndex = readUint64(module, ptr + 24);
   const receiverSegmentIndex = readUint64(module, ptr + 32);
-  const rootLedgerRecordIdValue = readUint64(module, ptr + 40);
-  const sourcePathSegmentIdValue = readUint64(module, ptr + 48);
-  const retainedSourceBindingStatusCode = module.getValue(ptr + 56, "i32") >>> 0;
-  const sameRecordReplayStatusCode = module.getValue(ptr + 60, "i32") >>> 0;
-  const causticRouteStatusCode = module.getValue(ptr + 64, "i32") >>> 0;
-  const proofObjectProvenanceStatusCode = module.getValue(ptr + 68, "i32") >>> 0;
-  const rowStatusCode = module.getValue(ptr + 72, "i32") >>> 0;
+  const sameRecordReplayIdValue = readUint64(module, ptr + 40);
+  const retainedSourceRecordIdValue = readUint64(module, ptr + 48);
+  const retainedCausalRootRowIdValue = readUint64(module, ptr + 56);
+  const rootLedgerRecordIdValue = readUint64(module, ptr + 64);
+  const sourcePathSegmentIdValue = readUint64(module, ptr + 72);
+  const receiverPathSegmentIdValue = readUint64(module, ptr + 80);
+  const retainedSourceBindingStatusCode = module.getValue(ptr + 88, "i32") >>> 0;
+  const sameRecordReplayStatusCode = module.getValue(ptr + 92, "i32") >>> 0;
+  const causticRouteStatusCode = module.getValue(ptr + 96, "i32") >>> 0;
+  const proofObjectProvenanceStatusCode = module.getValue(ptr + 100, "i32") >>> 0;
+  const rowStatusCode = module.getValue(ptr + 104, "i32") >>> 0;
   const rowStatus =
     T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown";
   const retainedSourceBindingStatus =
@@ -17132,9 +17141,28 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
     receiverPathKey,
     sourceSegmentIndex,
     receiverSegmentIndex,
+    sameRecordReplayId: sameRecordReplayIdValue === 0 ? null : sameRecordReplayIdValue,
+    retainedSourceRecordId: retainedSourceRecordIdValue === 0 ? null : retainedSourceRecordIdValue,
+    retainedCausalRootRowId:
+      retainedCausalRootRowIdValue === 0 ? null : retainedCausalRootRowIdValue,
     rootLedgerRecordId: rootLedgerRecordIdValue === 0 ? null : rootLedgerRecordIdValue,
     causticRoute: null,
     sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
+    receiverPathSegmentId:
+      receiverPathSegmentIdValue === 0 ? null : receiverPathSegmentIdValue,
+    sameRecordRetainedBinding: {
+      sameRecordReplayId: sameRecordReplayIdValue === 0 ? null : sameRecordReplayIdValue,
+      retainedSourceRecordId:
+        retainedSourceRecordIdValue === 0 ? null : retainedSourceRecordIdValue,
+      retainedCausalRootRowId:
+        retainedCausalRootRowIdValue === 0 ? null : retainedCausalRootRowIdValue,
+      rootLedgerRecordId: rootLedgerRecordIdValue === 0 ? null : rootLedgerRecordIdValue,
+      sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
+      receiverPathSegmentId:
+        receiverPathSegmentIdValue === 0 ? null : receiverPathSegmentIdValue,
+      bindingStatus: sameRecordReplayStatus,
+      valueAuthority: "candidate-native-same-record-binding",
+    },
     retainedSourceBindingStatusCode,
     retainedSourceBindingStatus,
     sameRecordReplayStatusCode,

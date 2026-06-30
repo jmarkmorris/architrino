@@ -25,11 +25,13 @@ enum class T3UnresolvedRootSegmentRowStatus : std::uint32_t {
 enum class T3RetainedCausalRootReplayRowStatus : std::uint32_t {
   Disabled = 0,
   MissingRetainedReplaySource = 1,
+  CandidateSameRecordBinding = 2,
 };
 
 enum class T3RetainedCausalRootReplayFieldStatus : std::uint32_t {
   Missing = 0,
   CandidateSidecarShapeEvidence = 1,
+  CandidateSameRecordBinding = 2,
 };
 
 struct T3BulkStepRequest {
@@ -57,7 +59,7 @@ struct T3ParticleState {
   std::uint64_t pathKey = 0;
   Vector3 position{};
   Vector3 velocity{};
-  double mass = 1.0;
+  double integrationWeight = 1.0;
   double charge = 0.0;
   std::uint32_t stateFlags = 0;
   std::uint32_t reserved0 = 0;
@@ -68,7 +70,7 @@ struct T3ParticleStepRowF64 {
   Vector3 position{};
   Vector3 velocity{};
   Vector3 acceleration{};
-  double mass = 1.0;
+  double integrationWeight = 1.0;
   std::int32_t imageDeltaX = 0;
   std::int32_t imageDeltaY = 0;
   std::int32_t imageDeltaZ = 0;
@@ -122,8 +124,12 @@ struct T3RetainedCausalRootReplayRowF64 {
   std::uint64_t receiverPathKey = 0;
   std::uint64_t sourceSegmentIndex = 0;
   std::uint64_t receiverSegmentIndex = 0;
+  std::uint64_t sameRecordReplayId = 0;
+  std::uint64_t retainedSourceRecordId = 0;
+  std::uint64_t retainedCausalRootRowId = 0;
   std::uint64_t rootLedgerRecordId = 0;
   std::uint64_t sourcePathSegmentId = 0;
+  std::uint64_t receiverPathSegmentId = 0;
   std::uint32_t retainedSourceBindingStatus =
       static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
   std::uint32_t sameRecordReplayStatus =

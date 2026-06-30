@@ -112,11 +112,11 @@ bool validate_request(
   }
   for (const T3ParticleState& state : initialStates) {
     if (!finite_vector(state.position) || !finite_vector(state.velocity) ||
-        !std::isfinite(state.mass) || state.mass <= 0.0 ||
+        !std::isfinite(state.integrationWeight) || state.integrationWeight <= 0.0 ||
         !std::isfinite(state.charge)) {
       validation.add(StatusCode::AppContractError,
                      StatusSeverity::Error,
-                     "T3 particle states must be finite with positive mass",
+                     "T3 particle states must be finite with positive integrationWeight",
                      "t3-bulk-step",
                      false);
       return false;
@@ -184,6 +184,28 @@ void add_acceleration(Vector3& target, Vector3 value) {
   target.x += value.x;
   target.y += value.y;
   target.z += value.z;
+}
+
+std::uint64_t mix_t3_candidate_id(
+    std::uint64_t tag,
+    std::uint64_t stepIndex,
+    std::uint64_t sourcePathKey,
+    std::uint64_t receiverPathKey,
+    std::uint64_t sourceSegmentIndex,
+    std::uint64_t receiverSegmentIndex) {
+  std::uint64_t value = 1469598103934665603ULL ^ tag;
+  const std::uint64_t fields[] = {
+      stepIndex,
+      sourcePathKey,
+      receiverPathKey,
+      sourceSegmentIndex,
+      receiverSegmentIndex,
+  };
+  for (const std::uint64_t field : fields) {
+    value ^= field + 0x9e3779b97f4a7c15ULL + (value << 6U) + (value >> 2U);
+    value *= 1099511628211ULL;
+  }
+  return value == 0 ? tag : value;
 }
 
 }  // namespace
@@ -320,24 +342,63 @@ T3BulkStepResult step_t3_universe(
                       T3UnresolvedRootSegmentRowStatus::CandidateShapeEvidence),
               };
               result.unresolvedRootSegmentRows.push_back(segmentRow);
+              const std::uint64_t sameRecordReplayId =
+                  mix_t3_candidate_id(0x74337265706c6179ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t retainedSourceRecordId =
+                  mix_t3_candidate_id(0x7433736f75726365ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t retainedCausalRootRowId =
+                  mix_t3_candidate_id(0x7433726f6f74726fULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t sourcePathSegmentId =
+                  mix_t3_candidate_id(0x7433737263706174ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      0,
+                                      segmentRow.sourceSegmentIndex,
+                                      0);
+              const std::uint64_t receiverPathSegmentId =
+                  mix_t3_candidate_id(0x7433726376706174ULL,
+                                      segmentRow.stepIndex,
+                                      0,
+                                      segmentRow.receiverPathKey,
+                                      0,
+                                      segmentRow.receiverSegmentIndex);
               result.retainedCausalRootReplayRows.push_back(T3RetainedCausalRootReplayRowF64{
                   segmentRow.stepIndex,
                   segmentRow.sourcePathKey,
                   segmentRow.receiverPathKey,
                   segmentRow.sourceSegmentIndex,
                   segmentRow.receiverSegmentIndex,
-                  0,
-                  0,
+                  sameRecordReplayId,
+                  retainedSourceRecordId,
+                  retainedCausalRootRowId,
+                  retainedCausalRootRowId,
+                  sourcePathSegmentId,
+                  receiverPathSegmentId,
                   static_cast<std::uint32_t>(
-                      T3RetainedCausalRootReplayFieldStatus::Missing),
+                      T3RetainedCausalRootReplayFieldStatus::CandidateSameRecordBinding),
                   static_cast<std::uint32_t>(
-                      T3RetainedCausalRootReplayRowStatus::MissingRetainedReplaySource),
+                      T3RetainedCausalRootReplayRowStatus::CandidateSameRecordBinding),
                   static_cast<std::uint32_t>(
                       T3RetainedCausalRootReplayFieldStatus::Missing),
                   static_cast<std::uint32_t>(
                       T3RetainedCausalRootReplayFieldStatus::CandidateSidecarShapeEvidence),
                   static_cast<std::uint32_t>(
-                      T3RetainedCausalRootReplayRowStatus::MissingRetainedReplaySource),
+                      T3RetainedCausalRootReplayRowStatus::CandidateSameRecordBinding),
                   0,
               });
             }
@@ -358,15 +419,15 @@ T3BulkStepResult step_t3_universe(
             };
             add_acceleration(accelerations[i],
                              Vector3{
-                                 force.x / states[i].mass,
-                                 force.y / states[i].mass,
-                                 force.z / states[i].mass,
+                                 force.x / states[i].integrationWeight,
+                                 force.y / states[i].integrationWeight,
+                                 force.z / states[i].integrationWeight,
                              });
             add_acceleration(accelerations[j],
                              Vector3{
-                                 -force.x / states[j].mass,
-                                 -force.y / states[j].mass,
-                                 -force.z / states[j].mass,
+                                 -force.x / states[j].integrationWeight,
+                                 -force.y / states[j].integrationWeight,
+                                 -force.z / states[j].integrationWeight,
                              });
             interactionEnergy += 0.5 * request.softSphereStrength * overlap * overlap;
           }
@@ -411,7 +472,7 @@ T3BulkStepResult step_t3_universe(
         position,
         velocity,
         acceleration,
-        states[index].mass,
+        states[index].integrationWeight,
         imageDeltaX,
         imageDeltaY,
         imageDeltaZ,

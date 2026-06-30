@@ -132,16 +132,23 @@ int main() {
       abiReplayRowCount == 1 &&
       abiReplayRows[0].source_path_key == 1 &&
       abiReplayRows[0].receiver_path_key == 2 &&
-      abiReplayRows[0].root_ledger_record_id == 0 &&
-      abiReplayRows[0].source_path_segment_id == 0 &&
-      abiReplayRows[0].row_status == 1 &&
-      abiInfo.abi_minor == 18 &&
+      abiReplayRows[0].same_record_replay_id != 0 &&
+      abiReplayRows[0].retained_source_record_id != 0 &&
+      abiReplayRows[0].retained_causal_root_row_id != 0 &&
+      abiReplayRows[0].root_ledger_record_id == abiReplayRows[0].retained_causal_root_row_id &&
+      abiReplayRows[0].source_path_segment_id != 0 &&
+      abiReplayRows[0].receiver_path_segment_id != 0 &&
+      abiReplayRows[0].retained_source_binding_status == 2 &&
+      abiReplayRows[0].same_record_replay_status == 2 &&
+      abiReplayRows[0].caustic_route_status == 0 &&
+      abiReplayRows[0].row_status == 2 &&
+      abiInfo.abi_minor == 19 &&
       abiInfo.t3_step_request_f64_bytes == 120 &&
       abiInfo.t3_particle_state_f64_bytes == 80 &&
       abiInfo.t3_particle_step_row_f64_bytes == 104 &&
       abiInfo.t3_step_summary_f64_bytes == 88 &&
       abiInfo.t3_unresolved_root_segment_row_f64_bytes == 208 &&
-      abiInfo.t3_retained_causal_root_replay_row_f64_bytes == 80;
+      abiInfo.t3_retained_causal_root_replay_row_f64_bytes == 112;
 
   if (!ok) {
     std::cerr << "solver T3 smoke failed\n";

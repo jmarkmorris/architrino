@@ -1,8 +1,8 @@
 # Absolute Time Defense
 
-This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../dynamics/master-equation.md) from the derived proper time read out by physical clock assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
+This chapter states the case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../dynamics/master-equation.md) from the complete substrate state on a simultaneity slice and from the derived proper time read out by physical clock assemblies.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](./ontology.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
+The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution on those simultaneity slices. Only after those claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](./ontology.md), [Proper Time and Time Dilation](../spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../spacetime/lorentz-kinematics.md).
 
 ## The Case for Absolute Time ($t$)
 
@@ -16,6 +16,10 @@ The teaching sequence is deliberately layered. First comes the ontological claim
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell braid internal phase dynamics.
 
 The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+
+A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $t$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(t)$ is substrate-level: it is the full universe state at one value of $t$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
+
+A cosmological frame such as the CMB rest frame can be a useful effective foliation for data reduction, but it is not absolute time itself and does not expose the substrate clock form. It supplies a large-scale observer record only after photon transport, source evolution, and receiver cadence are modeled; it cannot by itself license an exact observer-readable global present.
 
 ## Absolute Time, Global Foliation, and Proper Time
 

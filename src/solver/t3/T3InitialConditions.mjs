@@ -18,7 +18,12 @@ export function createInitialT3State(config = {}) {
   const state = createT3State({
     particleCount,
     electrineFraction: config.particles?.electrineFraction ?? config.electrineFraction ?? 0.5,
-    masses: config.particles?.mass ?? config.mass ?? 1,
+    integrationWeights:
+      config.particles?.integrationWeights ??
+      config.particles?.integrationWeight ??
+      config.integrationWeights ??
+      config.integrationWeight ??
+      1,
     metadata: {
       initialCondition: initial.kind ?? initial.distribution ?? "random",
       seed: initial.seed ?? config.seed ?? 1,
@@ -172,7 +177,12 @@ function createStateFromUserParticles(particles, config, topology) {
   const state = createT3State({
     particleCount: particles.length,
     electrineFraction: config.particles?.electrineFraction ?? config.electrineFraction ?? 0.5,
-    masses: config.particles?.mass ?? config.mass ?? 1,
+    integrationWeights:
+      config.particles?.integrationWeights ??
+      config.particles?.integrationWeight ??
+      config.integrationWeights ??
+      config.integrationWeight ??
+      1,
   });
   particles.forEach((particle, index) => {
     const vectorOffset = index * 3;
@@ -181,7 +191,10 @@ function createStateFromUserParticles(particles, config, topology) {
     const velocity = normalizeVector(particle.velocity ?? [0, 0, 0], Number.POSITIVE_INFINITY, `particles[${index}].velocity`);
     state.positions.set(position, vectorOffset);
     state.velocities.set(velocity, vectorOffset);
-    state.masses[index] = positiveFiniteNumber(particle.mass ?? state.masses[index], `particles[${index}].mass`);
+    state.integrationWeights[index] = positiveFiniteNumber(
+      particle.integrationWeight ?? state.integrationWeights[index],
+      `particles[${index}].integrationWeight`
+    );
     state.electrineFractions[index] = normalizeFraction(
       particle.electrineFraction ?? particle.electrinePercentage ?? state.electrineFractions[index]
     );

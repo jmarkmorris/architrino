@@ -255,7 +255,7 @@ export interface SolverT3ParticleStateF64 {
   pathKey: number;
   position: SolverVector3F64;
   velocity: SolverVector3F64;
-  mass: number;
+  integrationWeight: number;
   charge?: number;
   stateFlags?: number;
 }
@@ -265,7 +265,7 @@ export interface SolverT3ParticleStepF64 {
   position: SolverVector3F64;
   velocity: SolverVector3F64;
   acceleration: SolverVector3F64;
-  mass: number;
+  integrationWeight: number;
   imageDelta: SolverVector3I32;
   stateFlags: number;
 }
@@ -295,11 +295,83 @@ export interface SolverT3StepSummaryF64 {
 export interface SolverT3StepF64Response {
   schema: "solver-t3-step-response.v1";
   rows: SolverT3ParticleStepF64[];
+  unresolvedRootSegmentRows: SolverT3UnresolvedRootSegmentRowF64[];
+  retainedCausalRootReplayRows: SolverT3RetainedCausalRootReplayRowF64[];
   summary: SolverT3StepSummaryF64;
   particleCount: number;
   interactionLaw: "none" | "soft_sphere_repel_v1";
   executionPath: "native_c_abi";
   status: SolverStatusRecord;
+}
+
+export interface SolverT3UnresolvedRootSegmentRowF64 {
+  schema: "t3-unresolved-root-segment-row.v1";
+  chronologyRowId: string;
+  stepIndex: number;
+  sourcePathKey: number;
+  receiverPathKey: number;
+  sourceSegmentIndex: number;
+  receiverSegmentIndex: number;
+  sourceSegment: SolverT3PathSegmentBindingF64;
+  receiverSegment: SolverT3PathSegmentBindingF64;
+  sameRecordSegmentBinding: SolverT3SameRecordSegmentBindingF64;
+  hitTime: number;
+  signalSpeed: number;
+  rootTolerance: number;
+  rowStatus: string;
+}
+
+export interface SolverT3PathSegmentBindingF64 {
+  pathKey: number;
+  segmentIndex: number;
+  startTime: number;
+  endTime: number;
+  position: SolverVector3F64;
+  velocity: SolverVector3F64;
+  errorBound: number;
+}
+
+export interface SolverT3SameRecordSegmentBindingF64 {
+  sourcePathKey: number;
+  receiverPathKey: number;
+  sourceSegmentIndex: number;
+  receiverSegmentIndex: number;
+  bindingStatus: string;
+}
+
+export interface SolverT3RetainedCausalRootReplayRowF64 {
+  schema: "t3-retained-causal-root-replay-native-row.v1";
+  chronologyRowId: string;
+  stepIndex: number;
+  sourcePathKey: number;
+  receiverPathKey: number;
+  sourceSegmentIndex: number;
+  receiverSegmentIndex: number;
+  sameRecordReplayId: number | null;
+  retainedSourceRecordId: number | null;
+  retainedCausalRootRowId: number | null;
+  rootLedgerRecordId: number | null;
+  sourcePathSegmentId: number | null;
+  receiverPathSegmentId: number | null;
+  sameRecordRetainedBinding: SolverT3SameRecordRetainedBindingF64;
+  retainedSourceBindingStatus: string;
+  sameRecordReplayStatus: string;
+  causticRouteStatus: string;
+  proofObjectProvenanceStatus: string;
+  rowStatus: string;
+  replayAuthorization: false;
+  acceptedReplayEvidence: false;
+}
+
+export interface SolverT3SameRecordRetainedBindingF64 {
+  sameRecordReplayId: number | null;
+  retainedSourceRecordId: number | null;
+  retainedCausalRootRowId: number | null;
+  rootLedgerRecordId: number | null;
+  sourcePathSegmentId: number | null;
+  receiverPathSegmentId: number | null;
+  bindingStatus: string;
+  valueAuthority: "candidate-native-same-record-binding";
 }
 
 export interface SolverMotionFrameF64 {

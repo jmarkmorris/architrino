@@ -149,7 +149,8 @@ export function normalizeT3UniverseConfig(input = {}) {
     particles: {
       count: particleInput.count ?? input.architrinoCount ?? input.particleCount,
       spatialDensity: particleInput.spatialDensity ?? input.spatialDensity,
-      mass: particleInput.mass ?? input.mass ?? 1,
+      integrationWeight: particleInput.integrationWeight ?? input.integrationWeight ?? 1,
+      integrationWeights: particleInput.integrationWeights ?? input.integrationWeights,
       electrineFraction: particleInput.electrineFraction ?? input.electrineFraction ?? 0.5,
       items: particleInput.items,
     },

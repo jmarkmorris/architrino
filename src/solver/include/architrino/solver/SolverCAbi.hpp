@@ -473,7 +473,7 @@ struct ArchitrinoSolverT3ParticleStateF64 {
   std::uint64_t path_key;
   ArchitrinoSolverVector3F64 position;
   ArchitrinoSolverVector3F64 velocity;
-  double mass;
+  double integration_weight;
   double charge;
   std::uint32_t state_flags;
   std::uint32_t reserved0;
@@ -484,7 +484,7 @@ struct ArchitrinoSolverT3ParticleStepRowF64 {
   ArchitrinoSolverVector3F64 position;
   ArchitrinoSolverVector3F64 velocity;
   ArchitrinoSolverVector3F64 acceleration;
-  double mass;
+  double integration_weight;
   std::int32_t image_delta_x;
   std::int32_t image_delta_y;
   std::int32_t image_delta_z;
@@ -536,8 +536,12 @@ struct ArchitrinoSolverT3RetainedCausalRootReplayRowF64 {
   std::uint64_t receiver_path_key;
   std::uint64_t source_segment_index;
   std::uint64_t receiver_segment_index;
+  std::uint64_t same_record_replay_id;
+  std::uint64_t retained_source_record_id;
+  std::uint64_t retained_causal_root_row_id;
   std::uint64_t root_ledger_record_id;
   std::uint64_t source_path_segment_id;
+  std::uint64_t receiver_path_segment_id;
   std::uint32_t retained_source_binding_status;
   std::uint32_t same_record_replay_status;
   std::uint32_t caustic_route_status;

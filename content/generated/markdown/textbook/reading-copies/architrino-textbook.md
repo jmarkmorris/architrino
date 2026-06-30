@@ -1917,9 +1917,9 @@ Absolute timespace is the formal product background in which all architrino dyna
 
 ### Absolute Time Defense
 
-This chapter states the substrate-level case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../../../../markdown/aaa/dynamics/master-equation.md) from the derived proper time read out by physical clock assemblies, and to show why the framework treats foliation as real structure rather than coordinate gauge.
+This chapter states the case for absolute time as the fundamental evolution parameter of the theory. Its purpose is to distinguish the exact absolute-time variable used by the [master equation](../../../../markdown/aaa/dynamics/master-equation.md) from the complete substrate state on a simultaneity slice and from the derived proper time read out by physical clock assemblies.
 
-The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution. Only after those substrate claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
+The teaching sequence is deliberately layered. First comes the ontological claim about absolute time and the Euclidean void. Then comes the dynamical claim about universe-state evolution on those simultaneity slices. Only after those claims are fixed does the chapter introduce proper time, clock-rate extraction, and relativistic observer inferences. It is the argumentative companion to [Ontology](../../../../markdown/aaa/foundations/ontology.md), [Proper Time and Time Dilation](../../../../markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [Lorentz Kinematics](../../../../markdown/aaa/spacetime/lorentz-kinematics.md).
 
 #### The Case for Absolute Time ($t$)
 
@@ -1933,6 +1933,10 @@ The teaching sequence is deliberately layered. First comes the ontological claim
 5. **Derived clock time**: Proper time $\tau$ is not fundamental; it is a derived functional of nested shell braid internal phase dynamics.
 
 The list separates ontology from effective description. Absolute time, the Euclidean void, and the slices $\Sigma_t$ are substrate commitments. Proper time, clock synchronization, and relativistic simultaneity judgments are effective readouts produced by assemblies embedded in the Noether sea. The defense of absolute time therefore does not deny observed clock dilation; it relocates clock dilation from fundamental temporal ontology to derived assembly dynamics.
+
+A useful comparison with relativistic block-universe arguments is the distinction between absolute time, the substrate-level simultaneity slice, and the observer-readable present. Absolute time $t$ is fundamental. The complete slice $\mathbb{U}_{\text{now}}\equiv S(t)$ is substrate-level: it is the full universe state at one value of $t$, not a clock reading available to embedded observers. Special relativity correctly removes any observer-accessible global three-space: a Physical Observer cannot synchronize distant records into one public present without using clocks, rulers, and signal conventions that must themselves satisfy Lorentz tests. The observer-facing obligation is therefore to show why attempts to read the absolute foliation through matter clocks, photon synchronization, CMB rest-frame comparison, or gravitational channels collapse to an effective Lorentz or metric reconstruction with preferred-frame leakage below the declared bounds.
+
+A cosmological frame such as the CMB rest frame can be a useful effective foliation for data reduction, but it is not absolute time itself and does not expose the substrate clock form. It supplies a large-scale observer record only after photon transport, source evolution, and receiver cadence are modeled; it cannot by itself license an exact observer-readable global present.
 
 #### Absolute Time, Global Foliation, and Proper Time
 
@@ -25163,6 +25167,66 @@ $$
 
 Because $q_2q_2>0$, each self branch is repulsive.
 
+###### Receiver-normal branch-row admissibility target
+
+A simple-root branch row is not admissible as force evidence merely because it
+has a source-normal Jacobian floor. For each retained branch row
+$$
+b=(r,t,t_0),
+\qquad
+r\in\{p,s\},
+$$
+the same retained record must carry the causal-root replay, the source-normal
+transversality denominator, the receiver-normal numerator, and the resulting
+receiver-normal branch strength.
+
+For partner rows set
+$$
+r_p(t;t_0)=|x(t)+x(t_0)|,
+\qquad
+D_{s,p}(t;t_0)=c_f+\dot x(t_0)\hat r_p(t;t_0),
+$$
+$$
+D_{t,p}(t;t_0)=c_f-\dot x(t)\hat r_p(t;t_0),
+\qquad
+W_p^{\mathrm{rec}}(t;t_0)
+=
+\left|\frac{D_{t,p}(t;t_0)}{D_{s,p}(t;t_0)}\right|.
+$$
+For self rows set
+$$
+r_s(t;t_0)=|x(t)-x(t_0)|,
+\qquad
+D_{s,s}(t;t_0)=c_f-\dot x(t_0)\hat r_s(t;t_0),
+$$
+$$
+D_{t,s}(t;t_0)=c_f-\dot x(t)\hat r_s(t;t_0),
+\qquad
+W_s^{\mathrm{rec}}(t;t_0)
+=
+\left|\frac{D_{t,s}(t;t_0)}{D_{s,s}(t;t_0)}\right|.
+$$
+Thus
+$$
+D_{s,p}=c_fJ_p,
+\qquad
+D_{s,s}=c_fJ_s,
+$$
+so $J_p$ and $J_s$ remain source-normal transversality diagnostics rather
+than standalone force weights.
+
+The row passes the receiver-normal admissibility target only if these fields
+are bound to the same branch row as the root identity and the sign data:
+$$
+\left(
+t_0,\hat r_r,r_r,D_{s,r},D_{t,r},W_r^{\mathrm{rec}}
+\right)
+$$
+on one retained record. A source-normal denominator, a root-topology row, or a
+pre-ledger interval without that same-record binding is diagnostic only. It
+cannot feed the corridor, monodromy, returned-sample, certified topology, or
+Schauder rows.
+
 ###### Reduced branch-resolved equation
 
 On the exact root-selected model, the right-particle acceleration is
@@ -25171,18 +25235,18 @@ $$
 =
 -\,\kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\hat r_p(t;t_0)}
-{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+\frac{\hat r_p(t;t_0)W_p^{\mathrm{rec}}(t;t_0)}
+{r_p(t;t_0)^2}
 +
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s(t)}
-\frac{\hat r_s(t;t_0)}
-{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{\hat r_s(t;t_0)W_s^{\mathrm{rec}}(t;t_0)}
+{r_s(t;t_0)^2}
 $$
 
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
 
-Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with the same retained record carrying both the source-normal transversality denominator and the receiver-normal branch strength.
+Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with each active branch row carrying both the source-normal transversality denominator and the receiver-normal branch strength on the same retained record.
 
 ##### Regularized 1D Equation
 
@@ -25283,6 +25347,9 @@ $$
 \delta_\eta\!\big(|x(t)-x(s)|-c_f(t-s)\big)\,ds
 $$
 The branch-sum equations used throughout the proof scaffold are simple-root reductions of this law. Across causal folds, caustic transit, and certified topology arguments, the integral law is the primary object.
+After the receiver-normal restart, any simple-root reduction that is used as
+force evidence must pass the receiver-normal branch-row admissibility target
+above; otherwise it remains a root-topology or transversality diagnostic only.
 
 The regularized formulation is the one best suited to:
 
@@ -25404,7 +25471,8 @@ A_p(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}}{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}W_p^{\mathrm{rec}}(t;t_0)}
+{r_p(t;t_0)^2}
 \ge 0
 $$
 
@@ -25454,14 +25522,14 @@ A_s^{\text{out}}(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s^{\text{out}}(t)}
-\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
 $$
 $$
 A_s^{\text{in}}(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s^{\text{in}}(t)}
-\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
 $$
 
 On the tame exterior-root class where all active partner roots are inward exterior roots, the total acceleration on the exterior branch is
@@ -26279,13 +26347,20 @@ $$
 \left|w(t_s)-w(t)\right|\le \eta
 $$
 
-On the full initial tube one only assumes the class-wide transversality and branch-count bounds. Therefore
+On the full initial tube one assumes the class-wide branch-count bound and a
+same-record receiver-normal branch-strength ceiling
+$$
+W_s^{\mathrm{rec}}(t;t_s)
+\le
+\overline W_s^{\mathrm{rec}}
+$$
+for every retained self row in the tube. Therefore
 $$
 A_s^{\rho}(t)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
-\frac{c_f}{\nu}\,
+\overline W_s^{\mathrm{rec}}\,
 \frac{1}{\epsilon_c^2}
 \equiv
 \overline A_s^{\rho}
@@ -26363,7 +26438,7 @@ A_s^{\rho}(t)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
-\frac{c_f}{\nu}\,
+\overline W_s^{\mathrm{rec}}\,
 \frac{4}{\rho_{\mathrm{zero}}^2}
 \equiv
 \overline A_{s,\mathrm{geom}}^{\rho}
@@ -26374,14 +26449,14 @@ Proof.
 On the full initial tube, each active self branch contributes a radial acceleration of the form
 $$
 \kappa\epsilon^2\,
-\frac{1}{|J_s|}\,
+W_s^{\mathrm{rec}}\,
 \frac{1}{r_s^2+\epsilon_c^2}
 $$
 with
 $$
-|J_s|\ge \frac{\nu}{c_f}
+W_s^{\mathrm{rec}}\le \overline W_s^{\mathrm{rec}}
 $$
-by the class definition and
+by the same-record branch-strength ceiling and
 $$
 r_s^2+\epsilon_c^2\ge \epsilon_c^2
 $$
@@ -35148,7 +35223,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
 - **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
-- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
@@ -35163,7 +35238,7 @@ The existence capstone of the manuscript is the Schauder theorem target above. I
 > **Theorem Target (Dual-Mollified Collinear Breather).**
 > For some nonempty parameter regime
 > $$
-> (\kappa,\epsilon,c_f,\eta,h,x_\ast)
+> (\kappa,\epsilon,c_f,\eta,\epsilon_c,h,x_\ast)
 > $$
 > and some closed convex tame envelope
 > $$
@@ -35195,19 +35270,21 @@ This model should be attacked before the full circular MCB or full nested shell 
 
 The circular binary has a tangential no-go problem. The 1D model has no tangential channel at all. That removes the main obstruction already visible in the planar circular analysis.
 
-###### 2. Exact scalar Jacobians
+###### 2. Exact scalar branch factors
 
 In 1D,
 $$
 \hat r \in \{-1,+1\}
 $$
-so the delay-map Jacobians reduce to explicit scalar factors
+so the source-normal delay-map diagnostics reduce to explicit scalar factors
 $$
 J_p = 1+\frac{\dot x(t_0)\hat r_p}{c_f},
 \qquad
 J_s = 1-\frac{\dot x(t_0)\hat r_s}{c_f}
 $$
-This makes the branch geometry much easier to track analytically.
+The receiver-normal numerators $D_t$ are scalar factors as well. This makes
+the same-record binding of root identity, source-normal transversality, and
+receiver-normal branch strength much easier to track analytically.
 
 ###### 3. Direct test of the self-hit mechanism
 
@@ -56273,6 +56350,38 @@ $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
+The standard hydrogen derivation supplies the ordered comparison packet for the ideal central limit. After the electron-proton channel is reduced to a central effective envelope, the observer-level solution separates as
+
+$$
+\Psi_{\mathrm{env}}(r,\theta,\phi)
+=
+R_{n\ell}(r)Y_\ell^m(\theta,\phi)
++
+\delta\Psi_{\mathrm{nonsep}},
+\qquad
+\left\|\delta\Psi_{\mathrm{nonsep}}\right\|_\theta
+\le
+\varepsilon_{\mathrm{sep}}
+$$
+
+The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
+
+$$
+\int_0^\infty
+\left|R_{n\ell}(r)\right|^2
+r^2\,dr
+<
+\infty,
+\qquad
+N_{\mathrm{rad}}
+=
+n-\ell-1
+\in
+\mathbb N_0.
+$$
+
+In the standard Schrödinger calculation, the second condition is enforced by terminating the radial power series into the associated Laguerre family; that is the mathematical source of discrete principal labels in the ideal Coulomb problem. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an input postulate: the same hydrogen spectral channel must first supply the effective central envelope, its non-separable residual, and the radial energy functional from the electron branch, proton source envelope, and local Noether sea record.
+
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:
@@ -62089,6 +62198,30 @@ p_i
 \mu_*(B_i)
 $$
 up to the metastability, leakage, escape, and coarse-state errors declared for that same finite window. A weight assignment that is not this basin measure introduces an untracked kernel between the substrate flow and the recorded outcome.
+
+Finite record resolution can export a probability interval before it exports a point probability. Let a finite partition $\mathcal{P}_N=\{C_a\}$ cover the retained history chart $\Gamma_{\eta,h}$ for the same setup $\theta$, and let
+$$
+E_k(\theta)
+=
+\pi^{-1}(R_k)\cap\mathsf R_\theta^{-1}(1)
+$$
+be the eligible record event. The lower and upper record weights at that resolution are
+$$
+p_{k,N}^-
+=
+\sum_{\substack{C_a\in\mathcal{P}_N\\ C_a\subset E_k(\theta)}}
+\mu_*(C_a),
+\qquad
+p_{k,N}^+
+=
+\sum_{\substack{C_a\in\mathcal{P}_N\\ C_a\cap E_k(\theta)\ne\varnothing}}
+\mu_*(C_a).
+$$
+The Born-rule closure target is not merely to name a formal projector, but to show that the finite-window width
+$$
+\Delta p_{k,N}=p_{k,N}^+-p_{k,N}^-
+$$
+falls below apparatus tolerance while the calibrated central value matches the Born weight. Low-amplitude or unresolved branch labels that remain inside the boundary cells of this finite partition do not yet count as independent record probabilities; they remain unresolved measure until the apparatus channel and record partition separate them.
 
 The same restriction applies to branch language. If a branch or record class is emergent from later apparatus/environment dynamics, its probability cannot be inserted as an axiom before the record map, basin family, and measure source have been fixed. Assigning weights to emergent branches without that pullback repeats the measurement cut in probabilistic form. A valid branch probability must be a derived property of the same deterministic flow that creates and preserves the record, not a label attached after the ontology has already been compressed.
 

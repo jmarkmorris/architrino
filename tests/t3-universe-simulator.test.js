@@ -247,6 +247,8 @@ test("central solver engine advances particles through bulk T3 solver client", a
   assert.equal(calls[0].particles.length, 1);
   assert.deepEqual(calls[0].particles[0].position, { x: 9.8, y: 1, z: 1 });
   assert.deepEqual(calls[0].particles[0].velocity, { x: 0.5, y: 0, z: 0 });
+  assert.equal(calls[0].particles[0].integrationWeight, 1);
+  assert.equal("mass" in calls[0].particles[0], false);
   assert.equal(calls[0].interaction.law, "none");
   assert.ok(Math.abs(simulator.state.positions[0] - 0.3) < 1e-12);
   assert.equal(simulator.state.imageOffsets[0], 1);
@@ -370,11 +372,25 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
             receiverPathKey: request.particles[1].pathKey,
             sourceSegmentIndex: request.stepIndex,
             receiverSegmentIndex: request.stepIndex,
-            rootLedgerRecordId: null,
+            sameRecordReplayId: 1001,
+            retainedSourceRecordId: 1002,
+            retainedCausalRootRowId: 1003,
+            rootLedgerRecordId: 1003,
             causticRoute: null,
-            sourcePathSegmentId: null,
-            retainedSourceBindingStatus: "missing",
-            sameRecordReplayStatus: "missing_retained_replay_source",
+            sourcePathSegmentId: 1004,
+            receiverPathSegmentId: 1005,
+            sameRecordRetainedBinding: {
+              sameRecordReplayId: 1001,
+              retainedSourceRecordId: 1002,
+              retainedCausalRootRowId: 1003,
+              rootLedgerRecordId: 1003,
+              sourcePathSegmentId: 1004,
+              receiverPathSegmentId: 1005,
+              bindingStatus: "candidate_same_record_binding",
+              valueAuthority: "candidate-native-same-record-binding",
+            },
+            retainedSourceBindingStatus: "candidate_same_record_binding",
+            sameRecordReplayStatus: "candidate_same_record_binding",
             causticRouteStatus: "missing",
             proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
             proofObjectProvenance: {
@@ -385,7 +401,7 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
                 "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
               provenanceStatus: "candidate_sidecar_shape_evidence",
             },
-            rowStatus: "missing_retained_replay_source",
+            rowStatus: "candidate_same_record_binding",
             replayAuthorization: false,
             acceptedReplayEvidence: false,
             retainedBranch: false,
@@ -446,9 +462,10 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   });
   assert.equal(result.unresolvedRootSegmentRows.length, 1);
   assert.equal(result.retainedCausalRootReplayRows.length, 1);
-  assert.equal(result.retainedCausalRootReplayRows[0].rootLedgerRecordId, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].rootLedgerRecordId, 1003);
   assert.equal(result.retainedCausalRootReplayRows[0].causticRoute, null);
-  assert.equal(result.retainedCausalRootReplayRows[0].sourcePathSegmentId, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].sourcePathSegmentId, 1004);
+  assert.equal(result.retainedCausalRootReplayRows[0].receiverPathSegmentId, 1005);
   assert.equal(result.retainedCausalRootReplayRows[0].replayAuthorization, false);
   assert.equal(result.retainedCausalRootReplayRows[0].acceptedReplayEvidence, false);
   assert.equal(result.unresolvedRootSegmentSidecar.replayAuthorization, false);
@@ -462,16 +479,17 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.chronologyRowId, "step_0_unresolved_root_rows");
   assert.equal(sidecarReplayRow.acceptedReplayEvidence, false);
   assert.equal(sidecarReplayRow.replayAuthorization, false);
-  assert.equal(sidecarReplayRow.rootLedgerRecordId, null);
+  assert.equal(sidecarReplayRow.rootLedgerRecordId, 1003);
   assert.equal(sidecarReplayRow.causticRoute, null);
-  assert.equal(sidecarReplayRow.sourcePathSegmentId, null);
+  assert.equal(sidecarReplayRow.sourcePathSegmentId, 1004);
+  assert.equal(sidecarReplayRow.receiverPathSegmentId, 1005);
   assert.equal(
     sidecarReplayRow.nativeReplayRowSchema,
     "t3-retained-causal-root-replay-native-row.v1"
   );
-  assert.equal(sidecarReplayRow.nativeReplayRowStatus, "missing_retained_replay_source");
-  assert.equal(sidecarReplayRow.retainedSourceBindingStatus, "missing");
-  assert.equal(sidecarReplayRow.sameRecordReplayStatus, "missing_retained_replay_source");
+  assert.equal(sidecarReplayRow.nativeReplayRowStatus, "candidate_same_record_binding");
+  assert.equal(sidecarReplayRow.retainedSourceBindingStatus, "candidate_same_record_binding");
+  assert.equal(sidecarReplayRow.sameRecordReplayStatus, "candidate_same_record_binding");
   assert.equal(sidecarReplayRow.causticRouteStatus, "missing");
   assert.equal(
     sidecarReplayRow.proofObjectProvenance.nativeRow,
@@ -491,24 +509,30 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   );
   assert.deepEqual(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.requiredReplaySourceFields,
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"]
   );
   assert.deepEqual(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.missingReplaySourceFields,
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["causticRoute"]
   );
   assert.deepEqual(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.rejectedSyntheticFields,
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["causticRoute"]
   );
   assert.deepEqual(sidecarReplayRow.retainedCausalRootReplayProducerContract.sameRecordBinding, {
-    bindingStatus: "candidate_same_step_segment_shape_evidence",
+    bindingStatus: "candidate_same_record_binding",
     chronologyRowId: "step_0_unresolved_root_rows",
     stepIndex: 0,
     sourcePathKey: 1,
     receiverPathKey: 2,
     sourceSegmentIndex: 0,
     receiverSegmentIndex: 0,
+    sameRecordReplayId: 1001,
+    retainedSourceRecordId: 1002,
+    retainedCausalRootRowId: 1003,
+    rootLedgerRecordId: 1003,
+    sourcePathSegmentId: 1004,
+    receiverPathSegmentId: 1005,
   });
   assert.deepEqual(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.companionNativeReplayRow,
@@ -520,9 +544,9 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
       bridgeReader:
         "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
-      rowStatus: "missing_retained_replay_source",
-      retainedSourceBindingStatus: "missing",
-      sameRecordReplayStatus: "missing_retained_replay_source",
+      rowStatus: "candidate_same_record_binding",
+      retainedSourceBindingStatus: "candidate_same_record_binding",
+      sameRecordReplayStatus: "candidate_same_record_binding",
       causticRouteStatus: "missing",
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
@@ -532,6 +556,22 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
         bridgeReader:
           "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
+      },
+      sameRecordReplayId: 1001,
+      retainedSourceRecordId: 1002,
+      retainedCausalRootRowId: 1003,
+      rootLedgerRecordId: 1003,
+      sourcePathSegmentId: 1004,
+      receiverPathSegmentId: 1005,
+      sameRecordRetainedBinding: {
+        sameRecordReplayId: 1001,
+        retainedSourceRecordId: 1002,
+        retainedCausalRootRowId: 1003,
+        rootLedgerRecordId: 1003,
+        sourcePathSegmentId: 1004,
+        receiverPathSegmentId: 1005,
+        bindingStatus: "candidate_same_record_binding",
+        valueAuthority: "candidate-native-same-record-binding",
       },
     }
   );
@@ -546,12 +586,14 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.providedFields.includes("sourceSegment"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("receiverSegment"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("sourceIdentityBinding"), true);
-  assert.equal(sidecarReplayRow.providedFields.includes("rootLedgerRecordId"), false);
+  assert.equal(sidecarReplayRow.providedFields.includes("rootLedgerRecordId"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("sourcePathSegmentId"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("receiverPathSegmentId"), true);
   assert.deepEqual(
     sidecarReplayRow.missingFields.filter((field) =>
-      ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"].includes(field)
+      ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"].includes(field)
     ),
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["causticRoute"]
   );
   assert.equal(replaySource.acceptedReplayEvidence, false);
   assert.equal(replaySource.replayAuthorization, false);
@@ -1073,13 +1115,13 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(unresolvedRootReplayRow.replayAuthorization, false);
   assert.deepEqual(
     unresolvedRootReplayRow.fieldSourceBoundary.missingFamilySpecificFields,
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"]
   );
   assert.deepEqual(
     unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.map(
       (row) => row.field
     ),
-    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"]
   );
   assert.deepEqual(
     unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.map(
@@ -1089,6 +1131,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       "solver-t3-step-response.v1 does not expose a retained root-ledger record id for this unresolved-root chronology row",
       "solver-t3-step-response.v1 does not expose a same-record caustic route or declared no-caustic route for this unresolved-root chronology row",
       "solver-t3-step-response.v1 does not expose a source path segment id bound to this unresolved-root chronology row",
+      "solver-t3-step-response.v1 does not expose a receiver path segment id bound to this unresolved-root chronology row",
     ]
   );
   assert.deepEqual(unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource, {
@@ -1103,11 +1146,11 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       "position",
       "velocity",
       "acceleration",
-      "mass",
+      "integrationWeight",
       "imageDelta",
       "stateFlags",
     ],
-    missingNativeBridgeFields: ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"],
+    missingNativeBridgeFields: ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"],
     requiredUpstreamObject:
       "solver-t3-step-response.v1 same-step retained root-ledger fields on T3ParticleStepRowF64 before t3-run-summary.v1 aggregation",
     replayAuthorization: false,
@@ -1116,7 +1159,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.every(
       (row) =>
         row.requiredSameRecordSource ===
-        "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, and sourcePathSegmentId before run-summary aggregation"
+        "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, sourcePathSegmentId, and receiverPathSegmentId before run-summary aggregation"
     ),
     true
   );
@@ -1133,7 +1176,13 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
 });
 
 test("oriented boundary exposes unresolved-root sidecar replay producer contract fail-closed", () => {
-  const missingReplaySourceFields = ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"];
+  const requiredReplaySourceFields = [
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+    "receiverPathSegmentId",
+  ];
+  const missingReplaySourceFields = ["causticRoute"];
   const sidecarReplayProducerContract = {
     schema: "t3-retained-causal-root-replay-producer-contract.v1",
     contractId: "step_0_unresolved_root_rows:segment:1:2:0:producer-contract",
@@ -1152,9 +1201,9 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       bridgeReader:
         "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
       rowSchema: "t3-retained-causal-root-replay-native-row.v1",
-      rowStatus: "missing_retained_replay_source",
-      retainedSourceBindingStatus: "missing",
-      sameRecordReplayStatus: "missing_retained_replay_source",
+      rowStatus: "candidate_same_record_binding",
+      retainedSourceBindingStatus: "candidate_same_record_binding",
+      sameRecordReplayStatus: "candidate_same_record_binding",
       causticRouteStatus: "missing",
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
@@ -1165,15 +1214,37 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
           "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
         provenanceStatus: "candidate_sidecar_shape_evidence",
       },
+      sameRecordReplayId: 1001,
+      retainedSourceRecordId: 1002,
+      retainedCausalRootRowId: 1003,
+      rootLedgerRecordId: 1003,
+      sourcePathSegmentId: 1004,
+      receiverPathSegmentId: 1005,
+      sameRecordRetainedBinding: {
+        sameRecordReplayId: 1001,
+        retainedSourceRecordId: 1002,
+        retainedCausalRootRowId: 1003,
+        rootLedgerRecordId: 1003,
+        sourcePathSegmentId: 1004,
+        receiverPathSegmentId: 1005,
+        bindingStatus: "candidate_same_record_binding",
+        valueAuthority: "candidate-native-same-record-binding",
+      },
     },
     sameRecordBinding: {
-      bindingStatus: "candidate_same_step_segment_shape_evidence",
+      bindingStatus: "candidate_same_record_binding",
       chronologyRowId: "step_0_unresolved_root_rows",
       stepIndex: 0,
       sourcePathKey: 1,
       receiverPathKey: 2,
       sourceSegmentIndex: 0,
       receiverSegmentIndex: 0,
+      sameRecordReplayId: 1001,
+      retainedSourceRecordId: 1002,
+      retainedCausalRootRowId: 1003,
+      rootLedgerRecordId: 1003,
+      sourcePathSegmentId: 1004,
+      receiverPathSegmentId: 1005,
     },
     availableShapeFields: [
       "chronologyRowId",
@@ -1190,14 +1261,21 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       "signalSpeed",
       "rootTolerance",
       "rowFamilyIdentity",
+      "sameRecordReplayId",
+      "retainedSourceRecordId",
+      "retainedCausalRootRowId",
+      "rootLedgerRecordId",
+      "sourcePathSegmentId",
+      "receiverPathSegmentId",
+      "sameRecordRetainedBinding",
     ],
-    requiredReplaySourceFields: missingReplaySourceFields,
+    requiredReplaySourceFields,
     missingReplaySourceFields,
     rejectedSyntheticFields: missingReplaySourceFields,
     sourceAcquisitionStatus: "blocked_missing_retained_causal_root_replay_source_fields",
-    firstMissingReplaySourceField: "rootLedgerRecordId",
+    firstMissingReplaySourceField: "causticRoute",
     requiredUpstreamObject:
-      "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 and emits rootLedgerRecordId, causticRoute, and sourcePathSegmentId before t3-run-summary.v1 aggregation",
+      "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 and emits same-record retained path-history segment ids, retained causal-root row id, rootLedgerRecordId, and causticRoute before t3-run-summary.v1 aggregation",
     replayAuthorization: false,
     acceptedReplayEvidence: false,
     retainedBranch: false,
@@ -1244,9 +1322,6 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
           replayAuthorization: false,
           providedFields: sidecarReplayProducerContract.availableShapeFields,
           missingFields: [
-            "sameRecordReplayId",
-            "retainedSourceRecordId",
-            "retainedCausalRootRowId",
             "boundaryOrientation",
             "windingLabel",
             "jacobianFloorOrDeclaredStratum",
@@ -1311,7 +1386,7 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
   assert.equal(
     unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.companionNativeReplayRow
       .sameRecordReplayStatus,
-    "missing_retained_replay_source"
+    "candidate_same_record_binding"
   );
   assert.equal(prototype.sameRecordReplayBoundary.summary.retainedBranch, false);
   assert.equal(prototype.sameRecordReplayBoundary.summary.provesBranchAdmissibility, false);
