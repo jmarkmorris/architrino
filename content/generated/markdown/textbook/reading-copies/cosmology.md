@@ -193,6 +193,28 @@ This framework does not treat cosmology as "$\mathbb{A}\mathbb{A}\mathbb{A}$ vs 
 
 This decomposition prevents hidden dependency loops where one assumed foundation silently fixes another observable domain.
 
+#### Big Bang Evidence Chain as Data-Product Pipeline
+
+The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints. The sequence is therefore:
+
+1. calibrated flux and distance ladder,
+2. spectral-line identity and redshift,
+3. redshift-distance slope,
+4. hot, dense, optically thick thermal record,
+5. CMB blackbody, anisotropy, and BBN comparison surfaces.
+
+For a source family $X$, the minimal observer-side chain can be written
+$$
+m-M=5\log_{10}(D_{\mathrm{pc}})-5,
+\qquad
+z_X=\frac{\lambda_{\mathrm{obs},X}-\lambda_{0,X}}{\lambda_{0,X}},
+\qquad
+H_{\mathrm{eff,ladder}}
+\sim
+c_0\left.\frac{\partial z_X}{\partial D}\right|_{D\to0}.
+$$
+These are retained comparison quantities. They do not say that the Euclidean void expands, that absolute time began, or that the full architrino inventory was created at the observer-era boundary. They say that a successful fixed-void branch must reproduce the calibrated distance ladder, redshift catalogue, effective Hubble slope, CMB thermal record, and BBN yields through one shared Noether sea and assembly record. A unique global origin becomes a promoted claim only if the same record removes the ambiguity described in the global-reconstruction test below.
+
 #### Effective Observer-Era Age Boundary
 
 The familiar $13$-$14\ \mathrm{Gyr}$ age scale is treated here as a convergence pressure on the current observer-era reconstruction, not as a primitive age assigned to the Euclidean void. Stellar ages, white-dwarf cooling, radioactive clocks, interstellar grains, CMB fits, and redshift-distance histories all have to converge in the accessible material record. A fixed-void branch may interpret that convergence as the age of the current effective observer era, dominant recycling/thermalization history, or accessible star-forming material record, but it must not silently convert the convergence into a proof that the underlying container began at that time.

@@ -98,12 +98,15 @@ test("textbook TOC page navigation resolves current page by scene path", () => {
   assert.equal(navigation.next.title, "Architrino");
 });
 
-test("textbook TOC page entries fall back to runtime markdown document targets", () => {
+test("textbook TOC page entries target runtime markdown documents", () => {
   const sequence = buildTextbookTocPageSequence(tocFixture.tocRoot);
-  const fallbackEntry = sequence.pages[2];
 
   assert.equal(
-    fallbackEntry.targetPath,
+    sequence.pages[0].targetPath,
+    `${RUNTIME_MARKDOWN_DOC_PREFIX}content/markdown/aaa/foundations/ontology.md`
+  );
+  assert.equal(
+    sequence.pages[2].targetPath,
     `${RUNTIME_MARKDOWN_DOC_PREFIX}content/markdown/aaa/validation/validation-protocols.md`
   );
 });

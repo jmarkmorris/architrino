@@ -143,9 +143,9 @@ test("center context sphere uses a dark-purple context shell instead of a halo r
   });
 
   assert.equal(centerSphere.ring, undefined);
-  assert.deepEqual(centerSphere.shell.geometry.args, [2.16, 32, 20]);
+  assert.deepEqual(centerSphere.shell.geometry.args, [2.32, 32, 20]);
   assert.equal(centerSphere.shell.material.color, "#25143a");
-  assert.equal(centerSphere.shell.material.opacity, 0.18);
+  assert.equal(centerSphere.shell.material.opacity, 0.3);
   assert.equal(centerSphere.shell.material.blending, THREE.NormalBlending);
   assert.equal(centerSphere.shell.material.side, THREE.DoubleSide);
   assert.equal(centerSphere.mesh.material.materialType, "MeshPhongMaterial");
@@ -184,7 +184,7 @@ test("center context update removes any legacy inner rim", (t) => {
 
   assert.equal(centerSphere.ring, null);
   assert.equal(centerSphere.group.children.includes(legacyRing), false);
-  assert.equal(centerSphere.shell.geometry.args[0], 3.24);
+  assert.ok(Math.abs(centerSphere.shell.geometry.args[0] - 3.48) < 1e-9);
   assert.equal(legacyRing.geometry.disposed, true);
   assert.equal(legacyRing.material.disposed, true);
   assert.equal(legacyInnerRim.geometry.disposed, true);

@@ -27,7 +27,7 @@ function createPageEntry(node, index) {
     kind: cleanText(node?.kind),
     markdownPath,
     scenePath,
-    targetPath: scenePath ?? `${RUNTIME_MARKDOWN_DOC_PREFIX}${markdownPath}`,
+    targetPath: `${RUNTIME_MARKDOWN_DOC_PREFIX}${markdownPath}`,
   };
 }
 

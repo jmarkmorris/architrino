@@ -14,8 +14,8 @@ export function createNodeFactory(deps) {
   const staticSphereInnerRimOpacity = 0.4;
   const glowRingMinThickness = 0.028;
   const glowRingRadiusThicknessFactor = 0.06;
-  const centerContextShellScale = 1.08;
-  const centerContextShellOpacity = 0.18;
+  const centerContextShellScale = 1.16;
+  const centerContextShellOpacity = 0.3;
 
   function createPremiumSphereMaterial(
     nodeData,
