@@ -28857,6 +28857,10 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       directInteriorPresenceProbeTarget,
       dynamicPresenceMeasureLawTarget,
     });
+  const selectedDirectAbsenceTransportSourceTarget =
+    createSelectedDirectAbsenceTransportSourceTarget({
+      selectedActiveDomainBoundedGapFillSourceAudit,
+    });
 
   return {
     schema:
@@ -29237,6 +29241,15 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
     firstSelectedActiveDomainDirectAbsenceRowDependentTransportLawSearchBlocker:
       selectedActiveDomainBoundedGapFillSourceAudit
         .firstDirectAbsenceRowDependentTransportLawSearchBlocker,
+    selectedDirectAbsenceTransportSourceTargetStatus:
+      selectedDirectAbsenceTransportSourceTarget.status,
+    selectedDirectAbsenceTransportSourceTarget,
+    selectedDirectAbsenceTransportSourceAcceptedPass:
+      selectedDirectAbsenceTransportSourceTarget
+        .acceptedSelectedDirectAbsenceTransportSourcePass,
+    firstSelectedDirectAbsenceTransportSourceBlocker:
+      selectedDirectAbsenceTransportSourceTarget
+        .firstSelectedDirectAbsenceTransportSourceBlocker,
     selectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus:
       selectedActiveDomainBoundedGapFillSourceAudit
         .directAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus,
@@ -29585,6 +29598,222 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
     rows: auditRows,
     retainedLimitation:
       "The selected bounded touching-boundary gaps cannot be filled by local direct support alone: some selected gaps have only direct absence under the current replay, while the supported gaps are competitor-bearing partial-support rows without retained row-set binding.",
+  };
+}
+
+function createSelectedDirectAbsenceTransportSourceTarget({
+  selectedActiveDomainBoundedGapFillSourceAudit = null,
+} = {}) {
+  const dispositionTarget =
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceCurrentRouteDispositionTarget ?? null;
+  const rowDependentTransportLawSearchTarget =
+    dispositionTarget?.rowDependentTransportLawSearchTarget ??
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceRowDependentTransportLawSearchTarget ??
+    null;
+  const affinePhysicalStatusTarget =
+    dispositionTarget?.affinePriorSideTransportPhysicalStatusTarget ?? null;
+  const outOfSampleValidationAudit =
+    affinePhysicalStatusTarget?.outOfSampleValidationAudit ?? null;
+  const coefficientSourceAudit =
+    affinePhysicalStatusTarget?.coefficientSourceAudit ?? null;
+  const sourceBindingProofBaseAudit =
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceSourceBindingProofBaseAudit ?? null;
+  const sourceRows =
+    rowDependentTransportLawSearchTarget?.sourceOffsetTargetRows ?? [];
+  const selectedBoundedRowsByKey = new Map(
+    (selectedActiveDomainBoundedGapFillSourceAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const routeRootKeys = [
+    ...new Set(
+      sourceRows
+        .map((row) =>
+          row.eventRootKey ??
+          selectedBoundedRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`)
+            ?.eventRootKey
+        )
+        .filter((eventRootKey) => eventRootKey != null)
+        .map(String)
+    ),
+  ].sort();
+  const affineFit =
+    rowDependentTransportLawSearchTarget?.affinePriorSideFit ?? null;
+  const fittedCoefficients =
+    affinePhysicalStatusTarget?.fittedCoefficients ??
+    affineFit?.fittedCoefficients ??
+    null;
+  const acceptedOutOfSampleValidationPass =
+    (outOfSampleValidationAudit?.acceptedValidationCandidateRowCount ?? 0) > 0;
+  const acceptedNonTargetCoefficientPass =
+    (coefficientSourceAudit?.acceptedCoefficientSourceCandidateCount ?? 0) > 0;
+  const acceptedRetainedSourceBindingPass =
+    (sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0) >
+    0;
+  const acceptedSameRouteRootKeyRowSetIdentityPass =
+    acceptedRetainedSourceBindingPass &&
+    routeRootKeys.length === 1 &&
+    sourceRows.length > 0;
+  const acceptedSelectedDirectAbsenceTransportSourcePass =
+    acceptedOutOfSampleValidationPass &&
+    acceptedNonTargetCoefficientPass &&
+    acceptedRetainedSourceBindingPass &&
+    acceptedSameRouteRootKeyRowSetIdentityPass &&
+    affinePhysicalStatusTarget?.acceptedPhysicalTransportLawPass === true;
+  const requiredSourceFields = [
+    {
+      fieldId: "out_of_sample_selected_direct_absence_rows",
+      fieldPass: acceptedOutOfSampleValidationPass,
+      populatedRowCount:
+        outOfSampleValidationAudit?.validationCandidateRowCount ?? 0,
+      acceptedRowCount:
+        outOfSampleValidationAudit?.acceptedValidationCandidateRowCount ?? 0,
+      sourceStatus: outOfSampleValidationAudit?.status ?? null,
+      firstFieldBlocker:
+        outOfSampleValidationAudit?.firstOutOfSampleValidationBlocker ??
+        "add_out_of_sample_selected_direct_absence_rows",
+    },
+    {
+      fieldId: "non_target_affine_prior_side_coefficient_provenance",
+      fieldPass: acceptedNonTargetCoefficientPass,
+      populatedRowCount:
+        coefficientSourceAudit?.coefficientSourceCandidateCount ?? 0,
+      exactTargetDerivedRowCount:
+        coefficientSourceAudit
+          ?.exactTargetDerivedCoefficientSourceCandidateCount ?? 0,
+      independentRejectedRowCount:
+        coefficientSourceAudit
+          ?.independentRejectedCoefficientSourceCandidateCount ?? 0,
+      acceptedRowCount:
+        coefficientSourceAudit?.acceptedCoefficientSourceCandidateCount ?? 0,
+      sourceStatus: coefficientSourceAudit?.status ?? null,
+      firstFieldBlocker:
+        coefficientSourceAudit?.firstCoefficientSourceAuditBlocker ??
+        "derive_non_target_affine_prior_side_coefficient_source",
+    },
+    {
+      fieldId: "retained_source_binding",
+      fieldPass: acceptedRetainedSourceBindingPass,
+      populatedRowCount:
+        sourceBindingProofBaseAudit?.sourceBindingProofBaseRowCount ?? 0,
+      acceptedRowCount:
+        sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0,
+      sourceStatus: sourceBindingProofBaseAudit?.status ?? null,
+      firstFieldBlocker:
+        sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+        "bind_selected_direct_absence_sources_to_retained_row_set",
+    },
+    {
+      fieldId: "same_route_root_key_global_retained_row_set_identity",
+      fieldPass: acceptedSameRouteRootKeyRowSetIdentityPass,
+      populatedRouteRootKeyCount: routeRootKeys.length,
+      routeRootKeys,
+      acceptedRowCount:
+        acceptedSameRouteRootKeyRowSetIdentityPass ? sourceRows.length : 0,
+      sourceStatus:
+        routeRootKeys.length === 1
+          ? "same_route_root_key_populated_global_row_set_identity_missing"
+          : "same_route_root_key_missing_or_nonunique",
+      firstFieldBlocker:
+        sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+        "same_route_root_key_global_retained_row_set_identity_missing",
+    },
+  ];
+  const firstMissingField =
+    requiredSourceFields.find((field) => field.fieldPass !== true) ?? null;
+  const selectedRows = sourceRows.map((row) => ({
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    side: row.side,
+    eventRootKey:
+      row.eventRootKey ??
+      selectedBoundedRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`)
+        ?.eventRootKey ??
+      null,
+    priorDistanceUnits: row.priorDistanceUnits ?? null,
+    sideSign: row.sideSign ?? null,
+    requiredOffsetUnits: row.requiredOffsetUnits ?? null,
+    supportSourceKind: row.supportSourceKind ?? null,
+    supportSourcePairKey: row.supportSourcePairKey ?? null,
+    supportSourceEdgeIndex: row.supportSourceEdgeIndex ?? null,
+    supportSourceStartOffsetUnits:
+      row.supportSourceStartOffsetUnits ?? null,
+    supportSourceAcceptedFillPass:
+      row.supportSourceAcceptedFillPass === true,
+    supportSourceRetainedBindingBlockedPass:
+      row.supportSourceRetainedBindingBlockedPass === true,
+    crossPairOnlySupportSourcePass:
+      row.crossPairOnlySupportSourcePass === true,
+  }));
+
+  return {
+    schema:
+      "aaa-tri-binary-selected-direct-absence-transport-source-target.v1",
+    status: sourceRows.length === 0
+      ? "selected_direct_absence_transport_source_target_no_domain"
+      : acceptedSelectedDirectAbsenceTransportSourcePass
+        ? "selected_direct_absence_transport_source_target_accepted"
+        : affinePhysicalStatusTarget?.firstPhysicalStatusBlocker ===
+            "add_out_of_sample_selected_direct_absence_rows_or_derive_non_target_coefficients"
+          ? "selected_direct_absence_transport_source_target_blocked_saturated_affine_fit_no_holdout_or_non_target_coefficients"
+        : "selected_direct_absence_transport_source_target_blocked_required_source_fields_missing",
+    claimLevel:
+      "fail-closed source target for deciding whether selected direct-absence affine transport can serve derive_event_root_absence_bridge_fill_law; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentProofSource: "derive_event_root_absence_bridge_fill_law",
+    acceptedSelectedDirectAbsenceTransportSourcePass,
+    selectedDirectAbsenceRowCount: sourceRows.length,
+    routeRootKeys,
+    affineTransportFormula:
+      fittedCoefficients == null
+        ? null
+        : `Delta k = ${fittedCoefficients.constant} + ${fittedCoefficients.priorDistanceUnits} p + ${fittedCoefficients.sideSign} s`,
+    fittedCoefficients,
+    fittedFromSelectedRowCount:
+      affinePhysicalStatusTarget?.fittedFromSelectedRowCount ??
+      affineFit?.fittedFromSelectedRowCount ??
+      0,
+    fittedCoefficientCount:
+      affinePhysicalStatusTarget?.fittedCoefficientCount ?? null,
+    degreesOfFreedom: affinePhysicalStatusTarget?.degreesOfFreedom ?? null,
+    saturatedFitPass:
+      affinePhysicalStatusTarget?.saturatedFitPass === true,
+    targetDerivedFitPass:
+      affinePhysicalStatusTarget?.targetDerivedFitPass === true,
+    exactFormalFitPass:
+      affinePhysicalStatusTarget?.exactFormalFitPass === true,
+    affinePriorSideTransportPhysicalStatusTargetStatus:
+      affinePhysicalStatusTarget?.status ?? null,
+    outOfSampleValidationAuditStatus:
+      outOfSampleValidationAudit?.status ?? null,
+    coefficientSourceAuditStatus: coefficientSourceAudit?.status ?? null,
+    sourceBindingProofBaseAuditStatus:
+      sourceBindingProofBaseAudit?.status ?? null,
+    requiredSourceFields,
+    firstMissingSourceField: firstMissingField?.fieldId ?? null,
+    firstSelectedDirectAbsenceTransportSourceBlocker:
+      firstMissingField?.firstFieldBlocker ??
+      affinePhysicalStatusTarget?.firstPhysicalStatusBlocker ??
+      null,
+    smallestNextProducerObject:
+      firstMissingField?.fieldId === "out_of_sample_selected_direct_absence_rows"
+        ? "out_of_sample_selected_direct_absence_validation_row"
+        : firstMissingField?.fieldId ===
+            "non_target_affine_prior_side_coefficient_provenance"
+          ? "non_target_affine_prior_side_coefficient_source"
+          : firstMissingField?.fieldId === "retained_source_binding"
+            ? "selected_direct_absence_retained_source_binding"
+            : firstMissingField?.fieldId ===
+                "same_route_root_key_global_retained_row_set_identity"
+              ? "same_route_root_key_global_retained_row_set_identity_provider"
+              : null,
+    selectedRows,
+    retainedLimitation:
+      "The selected direct-absence affine formula remains a saturated, target-derived current-source fit. It cannot serve the event-root absence-bridge fill law until a holdout selected direct-absence row or non-target coefficient source, accepted retained source binding, and same route/root-key global retained row-set identity are supplied.",
   };
 }
 

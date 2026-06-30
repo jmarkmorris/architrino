@@ -57,7 +57,7 @@ import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
-import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js";
+import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js?v=2026-06-29-gallery-overlay-hide-scene";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import { normalizeAnimatorSceneDocument } from "../../runtime/Animator2SceneDocumentRuntime.js";
 import {
@@ -6327,23 +6327,41 @@ function levelHasImageGalleryItems(level) {
   );
 }
 
+function setImageGalleryLevelVisible(level, visible) {
+  if (!level?.group) {
+    return;
+  }
+  level.group.visible = visible;
+  level.nodes?.forEach((node) => {
+    if (node.labelObject?.element) {
+      node.labelObject.element.style.visibility = visible ? "" : "hidden";
+    }
+    if (node.chapterLabelObject?.element) {
+      node.chapterLabelObject.element.style.visibility = visible ? "" : "hidden";
+    }
+  });
+  if (level.centerContextSphere?.labelObject?.element) {
+    level.centerContextSphere.labelObject.element.style.visibility = visible ? "" : "hidden";
+  }
+}
+
 function syncSceneImageGalleryLevel(level = currentLevel) {
   if (hiddenImageGalleryLevel && hiddenImageGalleryLevel !== level) {
-    hiddenImageGalleryLevel.group.visible = true;
+    setImageGalleryLevelVisible(hiddenImageGalleryLevel, true);
     hiddenImageGalleryLevel = null;
   }
   sceneImageGalleryRuntime?.syncLevel(level);
   if (levelHasImageGalleryItems(level)) {
-    level.group.visible = false;
+    setImageGalleryLevelVisible(level, false);
     hiddenImageGalleryLevel = level;
   } else if (level?.group) {
-    level.group.visible = true;
+    setImageGalleryLevelVisible(level, true);
   }
 }
 
 function hideSceneImageGallery() {
   if (hiddenImageGalleryLevel) {
-    hiddenImageGalleryLevel.group.visible = true;
+    setImageGalleryLevelVisible(hiddenImageGalleryLevel, true);
     hiddenImageGalleryLevel = null;
   }
   sceneImageGalleryRuntime?.syncLevel(null);

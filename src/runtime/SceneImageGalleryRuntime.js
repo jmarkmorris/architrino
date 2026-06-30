@@ -176,6 +176,7 @@ export function createSceneImageGalleryRuntime(options = {}) {
 
   function setGridVisible(visible) {
     ensureElements();
+    documentRef?.body?.classList.toggle("has-scene-image-gallery", visible);
     if (!root) {
       return;
     }

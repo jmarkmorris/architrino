@@ -15,6 +15,10 @@
         "scenePath": "content/scenes/archie/licenses_attributions.json"
       },
       {
+        "nodeId": "website_stats",
+        "scenePath": "content/scenes/archie/website_stats.json"
+      },
+      {
         "nodeId": "software_architecture_and_maintenance",
         "scenePath": "content/scenes/archie/software_architecture_and_maintenance.json"
       }
@@ -28,6 +32,14 @@
       "color": "#6a3c3c",
       "labelTitle": "Licenses & Attributions",
       "labelBadge": "doc"
+    },
+    {
+      "id": "website_stats",
+      "title": "Website Stats",
+      "radius": 2.2,
+      "color": "#0f766e",
+      "labelTitle": "Website Stats",
+      "labelBadge": "stats"
     },
     {
       "id": "software_architecture_and_maintenance",

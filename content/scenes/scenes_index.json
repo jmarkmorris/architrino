@@ -1834,6 +1834,11 @@
       "id": "outreach__comics__what_counts_as_evidence",
       "name": "What Counts As Evidence?",
       "path": "content/scenes/outreach/comics/what_counts_as_evidence.json"
+    },
+    {
+      "id": "archie__website_stats",
+      "name": "Website Stats",
+      "path": "content/scenes/archie/website_stats.json"
     }
   ]
 }

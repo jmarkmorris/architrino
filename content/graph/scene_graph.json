@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 566,
-      "edges": 1319,
-      "scenes": 367,
+      "nodes": 567,
+      "edges": 1320,
+      "scenes": 368,
       "markdownIndexes": 0,
       "markdownDocs": 186,
       "runtimeEdges": 476,
@@ -2351,6 +2351,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__website_stats",
+      "name": "Website Stats",
+      "path": "content/scenes/archie/website_stats.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3673,6 +3679,15 @@
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
       "searchTarget": "content/scenes/archie/user_interface.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/website_stats.json",
+      "nodeType": "scene",
+      "id": "archie__website_stats",
+      "name": "Website Stats",
+      "path": "content/scenes/archie/website_stats.json",
+      "searchTarget": "content/scenes/archie/website_stats.json",
       "implicit": false
     },
     {
@@ -8686,6 +8701,13 @@
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[1]"

@@ -1073,6 +1073,14 @@ blocked consumer. This is a provider-source map, not an accepted provider
 object: the closed-ledger compositor remains blocked until a non-fixture
 accepted retained branch supplies `wake_history_derivation_proof_object` for
 all four wake-history rows on the same retained record.
+The boundary now exposes this source-acquisition blocker directly as
+`provider_source_acquisition_blocker`: the scoped wake-history candidate file
+family is diagnostic-and-priority-only, the accepted provider source status is
+`absent_non_fixture_accepted_retained_provider`, and the missing field groups
+remain the retained record, receiver-normal derivative rows, proof object, and
+provenance for that provider object. Downstream causal-root replay for
+`partial_L_EpJ` stays blocked until those fields arrive from an accepted
+retained provider source.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage

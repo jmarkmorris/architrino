@@ -258,6 +258,13 @@ boundary now emits `same_record_identity_boundary`,
 `proof_object_provenance_boundary`, and `downstream_consumer_boundary`; the
 last keeps `partial_L_EpJ` blocked until an accepted retained provider object
 satisfies that target.
+It also emits `provider_source_acquisition_blocker`, which records the scoped
+candidate file family inspected for this lane, the absent
+non-fixture accepted retained provider status, the exact retained-record,
+receiver-normal derivative, proof-object, and provenance field groups still
+required, and the next source target: a non-fixture accepted retained
+wake-history provider object carrying `wake_history_derivation_proof_object`
+for all four wake-history rows on the same retained record.
 This keeps a complete four-row derivative row-logic replay distinct from an
 accepted retained wake-history proof-object provider.
 

@@ -49,6 +49,21 @@ test("Molecule scene ids and paths resolve to the standalone app path", () => {
   );
 });
 
+test("Website Stats scene resolves to the standalone app path", () => {
+  assert.equal(getStandaloneAppPathForScene("archie__website_stats"), "website-stats.html");
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/website_stats.json"),
+    "website-stats.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "archie__website_stats",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fwebsite_stats.json"
+    ),
+    "http://127.0.0.1:5173/website-stats.html"
+  );
+});
+
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
   assert.equal(getStandaloneAppPathForScene("animator"), null);
@@ -73,9 +88,9 @@ test("standalone app entrypoints stay outside root app.js", () => {
   const animatorEntrypoint = readRepoFile("src/apps/animator/main.js");
   const pdgeditEntrypoint = readRepoFile("src/apps/pdgedit/main.js");
 
-  assert.equal(
+  assert.match(
     rootEntrypoint,
-    'import "./src/apps/architrino/ArchitrinoSceneAppRuntime.js";'
+    /^import "\.\/src\/apps\/architrino\/ArchitrinoSceneAppRuntime\.js(?:\?[^"]*)?";$/
   );
   assert.equal(animatorEntrypoint.includes("../../../app.js"), false);
   assert.equal(animatorEntrypoint.includes("../architrino/ArchitrinoSceneAppRuntime.js"), true);

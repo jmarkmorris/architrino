@@ -75,6 +75,13 @@ body {
   z-index: 0;
 }
 
+body.has-scene-image-gallery #viz,
+body.has-scene-image-gallery .label,
+body.has-scene-image-gallery .label-chapter-marker,
+body.has-scene-image-gallery .label-center-context {
+  visibility: hidden !important;
+}
+
 #scene-focus-sphere {
   --scene-sphere-diameter: min(98svh, calc(100vw - 28px));
   position: absolute;
