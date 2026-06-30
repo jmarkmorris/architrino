@@ -203,6 +203,20 @@ generators before they attempt a candidate fixture.
 Use `--absence-boundary` to emit the machine-readable non-fixture source
 boundary when the breather certificate directory lacks the producer objects
 needed to construct a real fixture candidate.
+Use `--sigma-hf-01-schema-intake-target` to emit the narrow external-schema
+intake contract for the first non-local `Sigma_hf_01` proof-grade derivation
+schema candidate. Use `--sigma-hf-01-schema-intake <candidate.json>` only for
+a received external candidate. That mode fails closed for refs outside the
+required candidate filename pattern, local proof-program pool JSON,
+self-authored placeholders, external-label decoys, fixture-shaped
+receiver-normal force-margin inputs, or candidates without accepted external
+provenance and the three proof-grade fields
+`rule_kernel_obligation_binding`,
+`rule_kernel_derivation_payload_target_binding`, and
+`proof_grade_derivation_schema_statement`. A passed schema-intake screen
+authorizes only schema-validation intake; it still authorizes no row
+consumption, no accepted source packet, no branch chart, and no
+receiver-normal force-margin fixture.
 
 The checked fixture shape is intentionally narrow:
 
@@ -219,6 +233,7 @@ The checked fixture shape is intentionally narrow:
 | Open $D_s,D_t$ sign stratum or zero-crossing $D_s$ interval | `breather-force-margin-sign-stratum-open` |
 | Nonpositive lower interval for any required $\gamma_m^{\mathrm{rec}}$ | `breather-force-margin-nonpositive` |
 | Missing authorized branch chart, fixture producer, retained receiver-normal rows, derivative bundle, or margin interval producer in the scanned breather certificate source root | `accepted_non_fixture_source_missing` |
+| Missing, wrong-pattern, local/provisional, fixture-shaped, provenance-rejected, or required-field-rejected `Sigma_hf_01` external schema candidate | `sigma_hf_01_external_schema_candidate_*` fail-closed schema-intake statuses |
 
 Focused validator tests live at
 [`breather-receiver-normal-force-margin-fixture.test.js`](../../../../../tests/breather-receiver-normal-force-margin-fixture.test.js).
@@ -226,7 +241,10 @@ They include a complete synthetic same-record fixture plus negative controls
 for branch-chart absence, checksum drift, derivative-row absence, derivative
 reconstruction failure, forbidden $W^{\mathrm{rec}}$ substitution,
 aggregate-only consumers, nonpositive margins, and the breather source absence
-boundary.
+boundary. They also include the `Sigma_hf_01` schema-intake target, a
+synthetic accepted external candidate that passes only the schema-validation
+screen, and negative controls for local/provisional, missing proof-grade, and
+fixture-shaped candidates.
 
 ## Fail-Closed Ledger
 
@@ -243,6 +261,13 @@ boundary.
 | `breather-force-margin-sign-stratum-open` | The row does not fix $D_s,D_t$ signs or declare an accepted nonsmooth crossing convention. |
 | `breather-force-margin-nonpositive` | At least one required lower margin interval is nonpositive after the same-record checks pass. |
 | `accepted_non_fixture_source_missing` | The evaluator scanned the breather certificate source root and found no real fixture producer, no authorized branch chart, no same-record retained receiver-normal row source, no derivative-bundle source, or no margin interval producer. This is an accepted absence boundary only, not fixture evidence. |
+| `sigma_hf_01_external_schema_candidate_missing` | No external schema candidate object was supplied to the schema-intake screen. |
+| `sigma_hf_01_external_schema_candidate_fixture_shape_rejected` | The supplied object is shaped like a receiver-normal force-margin fixture and cannot enter rule-kernel schema-validation intake. |
+| `sigma_hf_01_external_schema_candidate_file_pattern_rejected` | The supplied candidate ref does not match `sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`. |
+| `sigma_hf_01_external_schema_candidate_local_or_provisional_rejected` | The supplied object is local proof-program JSON, a placeholder, a decoy, or a non-reclassification packet. |
+| `sigma_hf_01_external_schema_candidate_external_provenance_rejected` | The supplied object lacks accepted external provenance under `external_proof_grade_derivation_schema_candidate`. |
+| `sigma_hf_01_external_schema_candidate_required_field_rejected` | The supplied object lacks one of the eight required schema fields or one of the three proof-grade fields. |
+| `sigma_hf_01_external_schema_candidate_schema_validation_intake_passed_priority_only` | A received external candidate passed the schema-validation intake screen only. It remains priority-only and authorizes no downstream row consumption, accepted source packet, branch chart, or force-margin fixture. |
 
 ## Exact Blocker
 
@@ -320,3 +345,23 @@ compatible source-packet acceptance evidence, accepted same-packet fold
 impulse/direct-quadrature source packet, higher-fold separator layer
 certificate, `branch_chart.json`, receiver-normal retained rows, derivative
 bundle, and margin interval source remain blocked.
+
+Schema-intake target. The rule-kernel payload boundary now names a concrete
+`sigma_hf_01_external_schema_candidate_schema_validation_intake_target/v0`
+object. Its expected input file pattern is
+`sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json`.
+The required provenance fields are
+`external_schema_provenance.provenance_class`,
+`external_schema_provenance.source_ref`,
+`external_schema_provenance.acceptance_contract_ref`,
+`external_schema_provenance.received_for_schema_validation`,
+`external_schema_provenance.authored_inside_local_proof_program_pool`,
+`external_schema_provenance.derived_from_local_certificate_json`,
+`external_schema_provenance.self_authored_placeholder`, and
+`external_schema_provenance.local_path_treated_as_external_evidence`. The
+candidate must also supply the eight rule-kernel schema fields, including the
+three proof-grade fields listed above. Passing this target is only the first
+non-local rule-kernel intake screen; it still leaves the derivation-proof
+object, source-packet acceptance rule, higher-fold separator layer certificate,
+`branch_chart.json`, receiver-normal retained rows, derivative bundle, margin
+interval source, and fixture producer blocked.

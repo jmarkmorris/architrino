@@ -791,7 +791,8 @@ The nearest pressure-specific partial is
 `pressure-row-a0-branch-source-frontier-partial`, which supplies
 `same_domain_record_ref`, `active_root_or_live_ledger_identity`, and
 `branch_local_projection_or_normalization_identity`, but still lacks
-`provider_source_status=accepted_non_fixture_source` and `branch_certificate_ref`.
+`provider_source_status=accepted_non_fixture_source`, a non-fixture `source_ref`,
+and `branch_certificate_ref`.
 The target fixture
 [pressure-row-branch-intake-provider-target.json](../../../scripts/mass-map/fixtures/pressure-row-branch-intake-provider-target.json)
 therefore records `pressure_row_same_domain_provider_object_target/v0` as a
@@ -822,8 +823,9 @@ requirement. The boundary reports
 the same nearest partial to replace
 `provider_source_status=tier0_continuation_ready_not_accepted_history` with
 `provider_source_status=accepted_non_fixture_source` and to populate
-`branch_certificate_ref` on that same non-fixture provider row. Its pressure-row
-side requires the nearest same-row pressure probe to replace all 33
+`branch_certificate_ref` on that same non-fixture provider row. Its
+fixture-backed `source_ref` is also rejected as provider provenance. Its
+pressure-row side requires the nearest same-row pressure probe to replace all 33
 target-required or literal fields with accepted non-fixture source provenance,
 including the receiver-normal and Noether sea fields. The boundary explicitly
 keeps cross-candidate joins unauthorized and rejects H39/theta3minus
@@ -837,11 +839,15 @@ report carrying `provider_source_status`, `source_ref`,
 `branch_certificate_ref`, `same_domain_record_ref`,
 `active_root_or_live_ledger_identity`, and
 `branch_local_projection_or_normalization_identity` on one provider row. The
-nearest candidate instead still points to the fixture-backed
-`pressure-row-a0-branch-source-frontier-partial`; its missing provider fields
-are exactly `provider_source_status` at the observed value
-`tier0_continuation_ready_not_accepted_history`, and
-`branch_certificate_ref` at the observed value `null`. The expected
+expected provider file family is a non-fixture generated branch-provider report
+or priority-source report outside `scripts/**/fixtures/**`. The nearest
+candidate instead still points to the fixture-backed
+`pressure-row-a0-branch-source-frontier-partial`; its missing or rejected
+provider fields are exactly `provider_source_status` at the observed value
+`tier0_continuation_ready_not_accepted_history`, `source_ref` at the observed
+fixture path
+`scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json`,
+and `branch_certificate_ref` at the observed value `null`. The expected
 pressure-row producer is then an accepted retained pressure-row report emitted
 by that same provider source, carrying all 33 source fields. The blocked field
 families are retained branch identity, exposure quotient, pressure record,

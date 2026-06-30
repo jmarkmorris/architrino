@@ -29,6 +29,21 @@ function deepClone(value) {
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
 const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
+const REQUIRED_RETAINED_RECORD_FIELDS = [
+  "retained_record_key.record_id",
+  "retained_record_key.branch_family_id",
+  "retained_record_key.retained_root_id",
+  "retained_record_key.branch_label",
+  "retained_record_key.source_receiver_ids",
+  "retained_record_key.direction_convention",
+  "retained_record_key.receiver_time",
+  "retained_record_key.source_time",
+  "retained_record_key.retained_box",
+  "retained_record_key.regulator_state",
+  "retained_record_key.source_artifact_hash",
+  "retained_record_key.source_record_id",
+  "retained_record_key.variation_key",
+];
 
 function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
   const retainedRecord = {
@@ -168,6 +183,26 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
       "receiver_normal_derivative_bundle",
     ]);
   }
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.expected_proof_object_role,
+    "wake_history_derivation_proof_object"
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.accepted_retained_provider_ready,
+    false
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.provider_status,
+    "wake_history_derivation_proof_object_missing"
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.first_blocked_downstream_consumer,
+    "partial_L_EpJ"
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.required_retained_record_fields,
+    REQUIRED_RETAINED_RECORD_FIELDS
+  );
 });
 
 test("event wake-history accepts one same-record receiver-normal derivative consumer row", () => {
@@ -455,6 +490,56 @@ test("event wake-history CLI reports branch-family checksum mismatch control", (
   assert.equal(rowContract.receiver_normal_derivative_bundle_accepted, false);
 });
 
+test("event wake-history CLI reports missing proof-object provider with derivative bundle present", () => {
+  const artifact = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--control",
+        "receiver-normal-missing-proof-object-provider",
+        "--event-row",
+        "energy_wake",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+  const rowContract = artifact.receiver_normal_derivative_contract_summary.row_contracts.find(
+    (row) => row.row_id === "energy_wake"
+  );
+
+  assert.deepEqual(validateEventWakeHistoryPullbackArtifact(artifact), []);
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_blocked_row_id,
+    "energy_wake"
+  );
+  assert.equal(
+    artifact.receiver_normal_derivative_contract_summary.first_failure_code,
+    "wake-history-derivation-proof-object-missing"
+  );
+  assert.deepEqual(rowContract.required_object_blockers, [
+    "wake_history_derivation_proof_object",
+  ]);
+  assert.equal(
+    rowContract.accepted_evidence_mismatches.includes(
+      "event_evidence.derivation_proof_object.role"
+    ),
+    true
+  );
+  assert.equal(
+    rowContract.required_object_blockers.includes("receiver_normal_derivative_bundle"),
+    false
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.first_blocked_event_row_id,
+    "energy_wake"
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.first_blocked_downstream_consumer,
+    "partial_L_EpJ"
+  );
+});
+
 test("event wake-history CLI reports missing receiver-normal derivative bundle control", () => {
   const artifact = JSON.parse(
     execFileSync(
@@ -548,6 +633,17 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "receiver_normal_derivative_bundle",
     "accepted_for_wake_history_closure",
   ]);
+  assert.deepEqual(schema.wake_history_derivation_proof_object_boundary, [
+    "expected_proof_object_role",
+    "expected_derivative_artifact_id",
+    "accepted_retained_provider_ready",
+    "provider_status",
+    "first_blocked_event_row_id",
+    "first_blocked_downstream_consumer",
+    "required_retained_record_fields",
+    "required_receiver_normal_derivative_fields",
+    "required_provenance_fields",
+  ]);
   assert.deepEqual(schema.receiver_normal_derivative_contract_summary, [
     "required_row_ids",
     "accepted_row_ids",
@@ -559,6 +655,7 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
   assert.deepEqual(schema.controls, ["missing-angular-momentum-row", "source-record-mismatch"]);
   assert.deepEqual(schema.receiver_normal_controls, [
     "receiver-normal-derivative-contract-row-logic",
+    "receiver-normal-missing-proof-object-provider",
     "receiver-normal-missing-derivative-bundle",
     "receiver-normal-reconstruction-drift",
     "receiver-normal-record-mismatch",

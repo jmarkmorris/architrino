@@ -331,6 +331,57 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(result.runSummary.periodicWrapEvidence.wrappedParticleStepCount, 2);
   assert.deepEqual(result.runSummary.periodicWrapEvidence.imageDeltaTotals, { x: 2, y: 0, z: 0 });
   assert.deepEqual(result.runSummary.periodicWrapEvidence.absoluteImageDeltaTotals, { x: 2, y: 0, z: 0 });
+  assert.equal(
+    result.runSummary.retainedCausalRootReplaySource.schema,
+    "t3-retained-causal-root-replay.v1"
+  );
+  assert.equal(
+    result.runSummary.retainedCausalRootReplaySource.summary.status,
+    "candidate_rows_missing_required_same_record_fields"
+  );
+  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.candidateRowCount, 2);
+  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.acceptedReplayRowCount, 0);
+  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.replayAuthorization, false);
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows.map((row) => [
+      row.chronologyRowId,
+      row.retainedSourceRecordId,
+      row.rowFamilyIdentity,
+      row.boundaryOrientation,
+      row.windingLabel,
+      row.replayAuthorization,
+    ]),
+    [
+      [
+        "step_0_seam_x",
+        "t3-step-0:pathKey-1",
+        "seam",
+        "positive_boundary_orientation_candidate",
+        "x:+1",
+        false,
+      ],
+      [
+        "step_2_seam_x",
+        "t3-step-2:pathKey-1",
+        "seam",
+        "positive_boundary_orientation_candidate",
+        "x:+1",
+        false,
+      ],
+    ]
+  );
+  assert.equal(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields.includes(
+      "retainedCausalRootRowId"
+    ),
+    true
+  );
+  assert.equal(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields.includes(
+      "endpointRoute"
+    ),
+    true
+  );
   assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.schema,
@@ -424,11 +475,19 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.producerRowSourceStatus,
-    "missing_retained_causal_root_replay_source"
+    "candidate_source_rows_missing_required_same_record_fields"
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.observedSourceObject.sourceStatus,
-    "aggregate_and_step_summary_only"
+    "candidate_rows_missing_required_same_record_fields"
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.summary.retainedProducerRowSourcePresent,
+    true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.summary.retainedProducerRowCount,
+    2
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.expectedSourceObject.schema,
@@ -456,11 +515,28 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     "step_0_seam_x"
   );
   assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].producerCandidateRowCount,
+    1
+  );
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].producerCandidateRowIds,
+    ["t3-step-0:pathKey-1:seam-x"]
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].availableProducerFields.includes(
+      "retainedSourceRecordId"
+    ),
+    true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].availableProducerFields.includes(
+      "windingLabel"
+    ),
+    true
+  );
+  assert.equal(
     [
       "retainedCausalRootRowId",
-      "rowFamilyIdentity",
-      "boundaryOrientation",
-      "windingLabel",
       "endpointRoute",
       "memoryWindowRoute",
     ].every((field) =>
@@ -469,6 +545,12 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       )
     ),
     true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "windingLabel"
+    ),
+    false
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.negativeControls.some(

@@ -1040,8 +1040,20 @@ evidence only; the closed-ledger compositor still reports the wake-history
 sector as not accepted until all required event rows carry accepted evidence
 and proof objects from an accepted retained branch.
 
+A repository search found no local accepted retained provider object supplying
+`wake_history_derivation_proof_object` for those four rows. The event diagnostic
+therefore emits `wake_history_derivation_proof_object_boundary` with
+`provider_status: wake_history_derivation_proof_object_missing`,
+`accepted_retained_provider_ready: false`, the required retained-record,
+receiver-normal derivative, and provenance fields, and
+`first_blocked_downstream_consumer: partial_L_EpJ`. A selected row can also be
+replayed with the derivative bundle present but the proof object absent; that
+fails as `wake-history-derivation-proof-object-missing`, not as accepted
+wake-history evidence.
+
 The diagnostic also exposes CLI replay controls for this receiver-normal
 contract. `--control receiver-normal-missing-derivative-bundle`,
+`--control receiver-normal-missing-proof-object-provider`,
 `--control receiver-normal-reconstruction-drift`,
 `--control receiver-normal-record-mismatch`, and
 `--control receiver-normal-branch-family-checksum-mismatch`, combined with

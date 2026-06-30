@@ -872,6 +872,18 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.provider_boundary.expected_provider_source_producer,
     /accepted non-fixture same-domain branch-provider report/
   );
+  assert.match(
+    acceptedSourceBoundary.provider_boundary.expected_provider_file_family,
+    /non-fixture generated branch-provider report/
+  );
+  assert.deepEqual(acceptedSourceBoundary.provider_boundary.required_provider_report_fields, [
+    "provider_source_status",
+    "source_ref",
+    "branch_certificate_ref",
+    "same_domain_record_ref",
+    "active_root_or_live_ledger_identity",
+    "branch_local_projection_or_normalization_identity",
+  ]);
   assert.equal(
     acceptedSourceBoundary.provider_boundary.nearest_provider_candidate_source_ref,
     "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json"
@@ -892,6 +904,15 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
         first_failure: "provider_source_status.accepted_non_fixture_source_missing",
       },
       {
+        field: "source_ref",
+        path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
+        required_value: "non-fixture source_ref for accepted provider report",
+        observed_value:
+          "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json",
+        pass: false,
+        first_failure: "source_ref.fixture_source_ref_not_accepted_provenance",
+      },
+      {
         field: "branch_certificate_ref",
         path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
         required_value:
@@ -906,8 +927,25 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.provider_boundary.exact_missing_provider_source_paths,
     [
       "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+      "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
       "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
     ]
+  );
+  assert.deepEqual(
+    acceptedSourceBoundary.provider_boundary.missing_or_rejected_provider_report_fields,
+    ["provider_source_status", "source_ref", "branch_certificate_ref"]
+  );
+  const providerReportReadouts = new Map(
+    acceptedSourceBoundary.provider_boundary.provider_row_field_readouts.map((field) => [
+      field.field,
+      field,
+    ])
+  );
+  assert.equal(providerReportReadouts.get("same_domain_record_ref").pass, true);
+  assert.equal(providerReportReadouts.get("active_root_or_live_ledger_identity").pass, true);
+  assert.equal(
+    providerReportReadouts.get("branch_local_projection_or_normalization_identity").pass,
+    true
   );
   assert.equal(
     acceptedSourceBoundary.pressure_row_boundary.nearest_pressure_row_candidate_path,

@@ -212,6 +212,8 @@ Executable fail-closed controls now include:
 
 | Control | Failure surface |
 | --- | --- |
+| Missing accepted wake-history proof-object provider | The proof-object boundary reports `provider_status: wake_history_derivation_proof_object_missing`, `accepted_retained_provider_ready: false`, and `first_blocked_downstream_consumer: partial_L_EpJ`. |
+| Missing proof object with the derivative bundle present | The selected row reports `wake-history-derivation-proof-object-missing` and lists only `wake_history_derivation_proof_object` in `required_object_blockers`. |
 | Missing receiver-normal derivative bundle | The contract summary reports `receiver-normal-first-derivative-row-missing` and lists `receiver_normal_derivative_bundle` in `required_object_blockers`. |
 | Source-record drift inside the derivative bundle | The row reports `event_evidence.receiver_normal_derivative_bundle.source_record_id`. |
 | Reconstruction drift for $D_vW^{\mathrm{rec}}$ | The row reports `event_evidence.receiver_normal_derivative_bundle.receiver_normal_derivatives.D_vW_rec_reconstruction`. |
@@ -230,6 +232,7 @@ node scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs \
 
 The receiver-normal controls are
 `receiver-normal-derivative-contract-row-logic`,
+`receiver-normal-missing-proof-object-provider`,
 `receiver-normal-missing-derivative-bundle`,
 `receiver-normal-reconstruction-drift`,
 `receiver-normal-record-mismatch`, and
@@ -238,6 +241,17 @@ accepts `energy_wake`, `momentum_wake`, `angular_momentum_wake`,
 `medium_update`, or `all`. Negative controls populate the surrounding four-row
 row-logic fixture and falsify the selected row, so the reported first blocked
 row and failure code identify the intended receiver-normal contract break.
+
+Provider boundary. A local search found no non-fixture accepted retained
+wake-history provider object for `wake_history_derivation_proof_object`. The
+diagnostic therefore emits
+`wake_history_derivation_proof_object_boundary` as the accepted-provider
+boundary: it names the expected proof-object role, the expected
+`receiver-normal-retained-branch-family-first-derivative/v0` artifact, required
+retained-record fields, required receiver-normal derivative/provenance fields,
+and `partial_L_EpJ` as the first downstream consumer that remains blocked.
+This keeps a complete four-row derivative row-logic replay distinct from an
+accepted retained wake-history proof-object provider.
 
 This is the first same-record wake-history derivative consumer contract. It is
 not an A1, VP-1, breather, circular, H39/theta3minus, eigen-braid, assembly, or

@@ -399,6 +399,15 @@ non-authorizing:
 
 The boundary's first missing producer field remains
 `source_map_provider_object_branch_split_map_available_terminal_row_count`.
+The expected producer source is
+`scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs`
+via
+`buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate`,
+reading
+`source_map_residual_shared_stream_five_node_source_term_provider_probe.source_term_provider_probe_rows[].source_term_residual_rows[]`.
+That source is still classified as
+`aggregate-P-provider-probe-born-aggregate-only` and does not authorize
+provider-object $P_b$ rows.
 The precise missing pre-aggregate row family is
 `source_term_provider_probe_rows[].source_term_residual_rows[]` with
 same-domain branch-bearing provider-object payload before
@@ -412,6 +421,23 @@ $P=\sum_j S_j$ is emitted. The required payload fields are `branch_label`,
 `same_domain_record_ref`, terminal row id fields, source term, branch label,
 $P_b$, $A_P=P_- - P_+$, both interval payloads, projection or alpha data,
 pushforward reference, and normalization reference on the same provider row.
+The exact pushforward/normalization identity fields still missing from the
+same-domain payload are `same_domain_pushforward_operator_identity`,
+`same_domain_pushforward_normalization_identity`,
+`provider_object_pb_pushforward_operator_identity_available`,
+`same_domain_pushforward_operator_identity_available_terminal_row_count`,
+`same_domain_pushforward_normalization_identity_available_terminal_row_count`,
+`pushforward_operator_ref`, and `normalization_identity_ref`. Until those
+fields exist on the same pre-aggregate branch-bearing payload, the blocked
+provider-object $P_b$ fields remain
+`source_map_provider_object_branch_split_map`,
+`provider_object_branch_projection_map`,
+`same-domain-branch-bearing-P_b-map`,
+`P_- provider_object_branch_interval`,
+`P_+ provider_object_branch_interval`,
+`provider_object_branch_sum_identity`,
+`provider_object_A_P_materialization`, and
+`terminal_row_provider_object_replay_certification`.
 Aggregate $P$ is too late because it only supplies $P_-+P_+=P$ on each
 terminal row; without a same-domain branch split map, $A_P=P_- - P_+$,
 explicit `P_-` / `P_+` rows, or a $P_b$ pushforward/normalization identity,

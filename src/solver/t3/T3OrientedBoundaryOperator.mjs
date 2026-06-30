@@ -36,7 +36,10 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
     runSummary,
     negativeControlMatrix,
   });
-  const sameRecordReplayBoundary = createSameRecordReplayBoundary(retainedBoundaryChronology);
+  const sameRecordReplayBoundary = createSameRecordReplayBoundary({
+    retainedBoundaryChronology,
+    retainedCausalRootReplaySource: runSummary.retainedCausalRootReplaySource,
+  });
   const boundarySignalCounts = {
     seamOwnershipRowCount: seamOwnershipRows.filter((row) => row.status !== "absent").length,
     neighborPairTransitionCount: neighborPairBoundaryRows.filter((row) => row.signedNeighborPairDelta !== 0).length,
@@ -123,14 +126,21 @@ export function createT3OrientedBoundaryPrototype(runSummary, options = {}) {
   };
 }
 
-function createSameRecordReplayBoundary(retainedBoundaryChronology) {
+function createSameRecordReplayBoundary(input) {
+  const { retainedBoundaryChronology, retainedCausalRootReplaySource } = input;
   const replayCandidateRows = retainedBoundaryChronology.rows.filter(
     (row) => row.closureStatus !== "absent"
   );
-  const rows = replayCandidateRows.map(sameRecordReplayBoundaryRow);
+  const producerRowsByChronologyRowId = groupProducerRowsByChronologyRowId(
+    retainedCausalRootReplaySource
+  );
+  const rows = replayCandidateRows.map((row) =>
+    sameRecordReplayBoundaryRow(row, producerRowsByChronologyRowId.get(row.rowId) ?? [])
+  );
   const negativeControls = createReplayNegativeControls(retainedBoundaryChronology);
   const producerRowSourceBoundary = createProducerRowSourceBoundary({
     retainedBoundaryChronology,
+    retainedCausalRootReplaySource,
     rows,
     negativeControls,
   });
@@ -193,26 +203,33 @@ function createSameRecordReplayBoundary(retainedBoundaryChronology) {
 }
 
 function createProducerRowSourceBoundary(input) {
-  const { retainedBoundaryChronology, rows, negativeControls } = input;
+  const { retainedBoundaryChronology, retainedCausalRootReplaySource, rows, negativeControls } = input;
+  const sourceRows = Array.isArray(retainedCausalRootReplaySource?.rows)
+    ? retainedCausalRootReplaySource.rows
+    : [];
   const activeFamilies = Array.from(
     new Set(rows.map((row) => row.rowFamily))
   ).sort();
+  const availableProducerFields = Array.from(
+    new Set(sourceRows.flatMap((row) => row.providedFields ?? []))
+  ).sort();
+  const unavailableRequiredFields = COMMON_REPLAY_FIELDS_REQUIRED.filter(
+    (field) => !availableProducerFields.includes(field)
+  );
+  const sourcePresent = sourceRows.length > 0;
   return {
     schema: "t3-retained-causal-root-replay-source-boundary.v1",
     observedSourceObject: {
-      schema: "t3-run-summary.v1",
-      retainedProducerRowSourcePresent: false,
-      retainedProducerRowCount: 0,
-      sourceStatus: "aggregate_and_step_summary_only",
-      availableChronologyFields: [
-        "stepIndex",
-        "rowFamily",
-        "rowKind",
-        "evidenceMagnitude",
-        "signedBalance",
-        "candidateBoundaryOrientation",
-        "firstBlocker",
-      ],
+      schema: sourcePresent ? retainedCausalRootReplaySource.schema : "t3-run-summary.v1",
+      sourceObjectSchema:
+        retainedCausalRootReplaySource?.sourceObjectSchema ?? "aggregate-run-summary",
+      retainedProducerRowSourcePresent: sourcePresent,
+      retainedProducerRowCount: sourceRows.length,
+      sourceStatus: sourcePresent
+        ? retainedCausalRootReplaySource.summary.status
+        : "aggregate_and_step_summary_only",
+      availableProducerFields,
+      unavailableRequiredFields,
       aggregateOrStepOnlyChannels: [
         "periodicWrapEvidence.imageDeltaTotals",
         "periodicWrapEvidence.absoluteImageDeltaTotals",
@@ -264,14 +281,17 @@ function createProducerRowSourceBoundary(input) {
       negativeControlIds: negativeControls.map((row) => row.controlId),
     },
     summary: {
-      status: "missing_retained_causal_root_replay_source",
+      status: sourcePresent
+        ? "candidate_source_rows_missing_required_same_record_fields"
+        : "missing_retained_causal_root_replay_source",
       activeChronologyRowCount: rows.length,
       activeChronologyFamilies: activeFamilies,
       observedChronologyRowCount: retainedBoundaryChronology.summary.rowCount,
-      retainedProducerRowSourcePresent: false,
-      retainedProducerRowCount: 0,
+      retainedProducerRowSourcePresent: sourcePresent,
+      retainedProducerRowCount: sourceRows.length,
       acceptedReplayRowCount: 0,
-      firstMissingProducerField: COMMON_REPLAY_FIELDS_REQUIRED[0],
+      firstMissingProducerField:
+        unavailableRequiredFields[0] ?? sourceRows[0]?.missingFields?.[0] ?? null,
       firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
       retainedBranch: false,
       provesBranchAdmissibility: false,
@@ -279,7 +299,10 @@ function createProducerRowSourceBoundary(input) {
   };
 }
 
-function sameRecordReplayBoundaryRow(chronologyRow) {
+function sameRecordReplayBoundaryRow(chronologyRow, producerRows = []) {
+  const availableProducerFields = Array.from(
+    new Set(producerRows.flatMap((row) => row.providedFields ?? []))
+  ).sort();
   return {
     rowId: `same_record_replay_boundary_${chronologyRow.rowId}`,
     chronologyRowId: chronologyRow.rowId,
@@ -290,8 +313,14 @@ function sameRecordReplayBoundaryRow(chronologyRow) {
     signedBalance: chronologyRow.signedBalance,
     boundaryOrientation: replayBoundaryOrientation(chronologyRow),
     chronologyFirstBlocker: chronologyRow.firstBlocker,
-    replayStatus: "blocked_missing_same_record_replay",
+    replayStatus:
+      producerRows.length > 0
+        ? "blocked_candidate_source_missing_required_same_record_fields"
+        : "blocked_missing_same_record_replay",
     producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    producerCandidateRowCount: producerRows.length,
+    producerCandidateRowIds: producerRows.map((row) => row.rowId),
+    availableProducerFields,
     availableChronologyFields: [
       "stepIndex",
       "rowFamily",
@@ -301,7 +330,7 @@ function sameRecordReplayBoundaryRow(chronologyRow) {
       "candidateBoundaryOrientation",
       "firstBlocker",
     ],
-    missingFields: replayMissingFields(chronologyRow),
+    missingFields: replayMissingFields(chronologyRow, availableProducerFields),
     retainedBoundaryTargetRow: chronologyRow.retainedBoundaryTargetRow,
     detectorRow: chronologyRow.detectorRow,
     neighborRow: chronologyRow.neighborRow,
@@ -309,7 +338,7 @@ function sameRecordReplayBoundaryRow(chronologyRow) {
   };
 }
 
-function replayMissingFields(chronologyRow) {
+function replayMissingFields(chronologyRow, availableProducerFields = []) {
   const fields = [...COMMON_REPLAY_FIELDS_REQUIRED];
   if (chronologyRow.rowFamily === "seam") {
     fields.push(
@@ -330,7 +359,23 @@ function replayMissingFields(chronologyRow) {
   } else if (chronologyRow.rowFamily === "signed-balance") {
     fields.push("sameRecordCancellationPairingMap", "absentPairedOrRoutedRowMap");
   }
-  return fields;
+  return fields.filter((field) => !availableProducerFields.includes(field));
+}
+
+function groupProducerRowsByChronologyRowId(retainedCausalRootReplaySource) {
+  const rows = Array.isArray(retainedCausalRootReplaySource?.rows)
+    ? retainedCausalRootReplaySource.rows
+    : [];
+  const groups = new Map();
+  for (const row of rows) {
+    if (!row?.chronologyRowId) {
+      continue;
+    }
+    const group = groups.get(row.chronologyRowId) ?? [];
+    group.push(row);
+    groups.set(row.chronologyRowId, group);
+  }
+  return groups;
 }
 
 function replayBoundaryOrientation(chronologyRow) {

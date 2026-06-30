@@ -10,9 +10,13 @@ import {
   BREATHER_FORCE_MARGIN_STATUSES,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA,
+  SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA,
+  SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES,
   buildBreatherReceiverNormalForceMarginAbsenceBoundary,
   buildBreatherReceiverNormalForceMarginFixtureSchema,
+  buildSigmaHf01ExternalSchemaIntakeTarget,
   validateBreatherReceiverNormalForceMarginFixture,
+  validateSigmaHf01ExternalSchemaIntakeCandidate,
 } from "../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs";
 
 const scriptPath = fileURLToPath(
@@ -96,6 +100,72 @@ function buildPassingFixture(overrides = {}) {
   };
 }
 
+function buildAcceptedSigmaHf01Candidate(overrides = {}) {
+  const candidateRef =
+    "sigma_hf_01_external_schema_candidate.test-source.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json";
+  return {
+    schema: "sigma_hf_01_external_schema_candidate/v0",
+    packet_id: "fresh-v10-higher-fold-12-root-rebuild-v0",
+    proof_interval: "proof-interval-v6",
+    lambda_branch: "lambda0305",
+    target_slot: "Sigma_hf_01",
+    fold_interval: "F01",
+    candidate_external_schema_ref: candidateRef,
+    external_schema_provenance: {
+      provenance_class: "external_proof_grade_derivation_schema_candidate",
+      source_ref: candidateRef,
+      acceptance_contract_ref:
+        "reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md",
+      received_for_schema_validation: true,
+      authored_inside_local_proof_program_pool: false,
+      derived_from_local_certificate_json: false,
+      self_authored_placeholder: false,
+      local_path_treated_as_external_evidence: false,
+    },
+    compatible_schema_role_lock:
+      "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema",
+    compatible_proof_object_role_lock: "source_packet_acceptance_rule_derivation_proof_object",
+    derivation_proof_target_lock:
+      "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+    derivation_proof_source_data_record_lock: {
+      separator_event: "Sigma_hf_01",
+      fold_interval: "F01",
+      derivation_proof_target:
+        "source_packet_acceptance_rule_derivation_proof_for_live_same_packet_separator_aggregate_family",
+      derivation_proof_source_data_record_declared: true,
+      derivation_proof_source_data_ready: true,
+    },
+    rule_kernel_obligation_binding: {
+      derivation_proof_obligation: "discharged",
+      soundness_proof_obligation: "discharged",
+      endpoint_application_proof_obligation: "discharged",
+    },
+    rule_kernel_derivation_payload_target_binding: {
+      slot: "Sigma_hf_01",
+      payload_target_declared: true,
+      proof_binds_to_payload_target: true,
+      rule_kernel_derivation_payload_constructed: true,
+    },
+    proof_grade_derivation_schema_statement: {
+      hypotheses: ["external proof-grade hypothesis"],
+      inference_steps: ["external proof-grade inference"],
+      conclusion: "external proof-grade conclusion",
+      source_data_correspondence: "external proof-grade source-data correspondence",
+    },
+    non_reinterpretation_guard: {
+      forbidden_reinterpretations: [
+        "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
+        "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
+        "rule_kernel_payload_proof_grade_derivation_schema_target_packet_as_proof_grade_derivation_schema",
+        "rule_kernel_payload_construction_attempt_as_proof_grade_derivation_schema",
+        "source_packet_acceptance_rule_derivation_proof_object_contract_target_satisfaction_attempt_as_proof_grade_derivation_schema",
+        "source_packet_acceptance_rule_kernel_binding_split_classifier_as_proof_grade_derivation_schema",
+      ],
+    },
+    ...overrides,
+  };
+}
+
 test("breather force-margin fixture validator emits absent-fixture blocker", () => {
   const report = validateBreatherReceiverNormalForceMarginFixture(null);
 
@@ -133,6 +203,110 @@ test("breather force-margin fixture CLI emits the fixture contract", () => {
   assert.equal(schema.artifact_schema, BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA);
   assert.equal(schema.margin_consumer_contract.includes("retained_record_keys"), true);
   assert.equal(schema.margin_interval_contract.includes("gamma_rec_interval"), true);
+});
+
+test("Sigma_hf_01 schema-intake target exposes external-only contract", () => {
+  const target = buildSigmaHf01ExternalSchemaIntakeTarget();
+
+  assert.equal(target.schema, SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA);
+  assert.equal(
+    target.expected_candidate_file,
+    "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  assert.equal(target.required_proof_grade_fields.includes("rule_kernel_obligation_binding"), true);
+  assert.equal(
+    target.expected_candidate_file_regex,
+    "^sigma_hf_01_external_schema_candidate\\.[^/]+\\.fresh-v10-higher-fold-12-root-rebuild-v0\\.proof-interval-v6\\.lambda0305\\.json$",
+  );
+  assert.equal(
+    target.required_proof_grade_fields.includes("rule_kernel_derivation_payload_target_binding"),
+    true,
+  );
+  assert.equal(
+    target.required_proof_grade_fields.includes("proof_grade_derivation_schema_statement"),
+    true,
+  );
+  assert.equal(target.authorization_after_schema_intake.row_consumption, false);
+  assert.equal(target.authorization_after_schema_intake.branch_chart, false);
+});
+
+test("Sigma_hf_01 schema-intake validator accepts only priority-only external intake", () => {
+  const report = validateSigmaHf01ExternalSchemaIntakeCandidate(buildAcceptedSigmaHf01Candidate());
+
+  assert.equal(report.schema, SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA);
+  assert.equal(report.pass, true);
+  assert.equal(report.status, SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.passed);
+  assert.equal(report.authorization.schema_validation_intake, true);
+  assert.equal(report.authorization.row_consumption, false);
+  assert.equal(report.authorization.branch_chart, false);
+  assert.equal(report.required_fields_accepted, 8);
+});
+
+test("Sigma_hf_01 schema-intake validator rejects local, provisional, and fixture-shaped candidates", () => {
+  const local = buildAcceptedSigmaHf01Candidate({
+    external_schema_provenance: {
+      ...buildAcceptedSigmaHf01Candidate().external_schema_provenance,
+      authored_inside_local_proof_program_pool: true,
+      derived_from_local_certificate_json: true,
+    },
+  });
+  const localReport = validateSigmaHf01ExternalSchemaIntakeCandidate(local);
+  assert.equal(localReport.pass, false);
+  assert.equal(
+    localReport.status,
+    SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.localOrProvisionalRejected,
+  );
+
+  const missingProofGrade = buildAcceptedSigmaHf01Candidate({
+    rule_kernel_obligation_binding: {
+      derivation_proof_obligation: "open",
+      soundness_proof_obligation: "open",
+      endpoint_application_proof_obligation: "open",
+    },
+  });
+  const missingProofGradeReport =
+    validateSigmaHf01ExternalSchemaIntakeCandidate(missingProofGrade);
+  assert.equal(missingProofGradeReport.pass, false);
+  assert.equal(
+    missingProofGradeReport.status,
+    SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.requiredFieldRejected,
+  );
+  assert.deepEqual(missingProofGradeReport.proof_grade_fields_failed, [
+    "rule_kernel_obligation_binding",
+  ]);
+
+  const fixtureReport = validateSigmaHf01ExternalSchemaIntakeCandidate({
+    ...buildAcceptedSigmaHf01Candidate(),
+    artifact_id: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
+    receiver_normal_rows: [],
+  });
+  assert.equal(fixtureReport.pass, false);
+  assert.equal(
+    fixtureReport.status,
+    SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.fixtureShapeRejected,
+  );
+});
+
+test("Sigma_hf_01 schema-intake CLI emits target and screens candidate JSON", () => {
+  const target = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--sigma-hf-01-schema-intake-target"], {
+      encoding: "utf8",
+    }),
+  );
+  assert.equal(target.schema, SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA);
+  assert.equal(target.accepted_provenance_required, true);
+
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "sigma-hf-01-schema-intake-"));
+  const candidatePath = path.join(tempDir, "sigma_hf_01_external_candidate.json");
+  fs.writeFileSync(candidatePath, JSON.stringify(buildAcceptedSigmaHf01Candidate()), "utf8");
+
+  const report = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--sigma-hf-01-schema-intake", candidatePath], {
+      encoding: "utf8",
+    }),
+  );
+  assert.equal(report.pass, true);
+  assert.equal(report.authorization.row_consumption, false);
 });
 
 test("breather force-margin fixture validator emits breather source absence boundary", () => {
@@ -198,6 +372,11 @@ test("breather force-margin fixture validator emits breather source absence boun
   assert.equal(
     boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.schema,
     `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.rule-kernel-payload-boundary/v0`,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary
+      .schema_validation_intake_target.schema,
+    SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA,
   );
   assert.equal(
     boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.required_schema_fields.includes(

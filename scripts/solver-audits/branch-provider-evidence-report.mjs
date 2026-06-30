@@ -287,6 +287,41 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_
       "same_domain_pushforward_normalization_identity",
     ]),
   });
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE =
+  Object.freeze({
+    expected_source_file:
+      "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs",
+    expected_producer:
+      "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate",
+    expected_input_row_family:
+      "source_map_residual_shared_stream_five_node_source_term_provider_probe.source_term_provider_probe_rows[].source_term_residual_rows[]",
+    expected_preaggregate_position:
+      "before P=sum_j S_j is emitted by the source-map provider construction",
+    current_source_status:
+      "aggregate-P-provider-probe-born-aggregate-only",
+    current_source_authorizes_provider_object_p_b: false,
+  });
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PUSHFORWARD_NORMALIZATION_IDENTITY_FIELDS =
+  Object.freeze([
+    "same_domain_pushforward_operator_identity",
+    "same_domain_pushforward_normalization_identity",
+    "provider_object_pb_pushforward_operator_identity_available",
+    "same_domain_pushforward_operator_identity_available_terminal_row_count",
+    "same_domain_pushforward_normalization_identity_available_terminal_row_count",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+  ]);
+const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BLOCKED_PROVIDER_OBJECT_P_B_FIELDS =
+  Object.freeze([
+    "source_map_provider_object_branch_split_map",
+    "provider_object_branch_projection_map",
+    "same-domain-branch-bearing-P_b-map",
+    "P_- provider_object_branch_interval",
+    "P_+ provider_object_branch_interval",
+    "provider_object_branch_sum_identity",
+    "provider_object_A_P_materialization",
+    "terminal_row_provider_object_replay_certification",
+  ]);
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS =
   Object.freeze([
     "same_domain_record_ref",
@@ -1450,6 +1485,12 @@ function buildH39SourceMapProviderObjectBranchSplitMapSourceAbsenceBoundary(
     first_missing_producer_field: firstMissingProducerField,
     precise_missing_pre_aggregate_row_family:
       H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY,
+    expected_pre_aggregate_payload_source:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE,
+    missing_pushforward_normalization_identity_fields:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PUSHFORWARD_NORMALIZATION_IDENTITY_FIELDS,
+    blocked_provider_object_p_b_fields:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BLOCKED_PROVIDER_OBJECT_P_B_FIELDS,
     required_branch_identity_fields:
       H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS,
     retained_causal_root_binding_requirement:
@@ -1836,6 +1877,27 @@ function h39SourceMapProviderObjectBranchSplitMapProducerTargetValidationErrors(
         ?.missing_payload_fields,
       H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY
         .missing_payload_fields
+    ) ||
+    sourceAbsenceBoundary?.expected_pre_aggregate_payload_source
+      ?.expected_source_file !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE
+        .expected_source_file ||
+    sourceAbsenceBoundary?.expected_pre_aggregate_payload_source
+      ?.expected_producer !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE
+        .expected_producer ||
+    sourceAbsenceBoundary?.expected_pre_aggregate_payload_source
+      ?.current_source_status !==
+      "aggregate-P-provider-probe-born-aggregate-only" ||
+    sourceAbsenceBoundary?.expected_pre_aggregate_payload_source
+      ?.current_source_authorizes_provider_object_p_b !== false ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.missing_pushforward_normalization_identity_fields,
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PUSHFORWARD_NORMALIZATION_IDENTITY_FIELDS
+    ) ||
+    !sameStringSet(
+      sourceAbsenceBoundary?.blocked_provider_object_p_b_fields,
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BLOCKED_PROVIDER_OBJECT_P_B_FIELDS
     ) ||
     !sameStringSet(
       sourceAbsenceBoundary?.required_branch_identity_fields,

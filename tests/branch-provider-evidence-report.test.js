@@ -1746,6 +1746,53 @@ test("branch-provider evidence report emits the H39 split-map producer target fa
       "same_domain_pushforward_normalization_identity",
     ]
   );
+  assert.equal(
+    sourceAbsenceBoundary.expected_pre_aggregate_payload_source
+      .expected_source_file,
+    "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.expected_pre_aggregate_payload_source
+      .expected_producer,
+    "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.expected_pre_aggregate_payload_source
+      .expected_input_row_family,
+    "source_map_residual_shared_stream_five_node_source_term_provider_probe.source_term_provider_probe_rows[].source_term_residual_rows[]"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.expected_pre_aggregate_payload_source
+      .current_source_status,
+    "aggregate-P-provider-probe-born-aggregate-only"
+  );
+  assert.equal(
+    sourceAbsenceBoundary.expected_pre_aggregate_payload_source
+      .current_source_authorizes_provider_object_p_b,
+    false
+  );
+  assert.deepEqual(
+    sourceAbsenceBoundary.missing_pushforward_normalization_identity_fields,
+    [
+      "same_domain_pushforward_operator_identity",
+      "same_domain_pushforward_normalization_identity",
+      "provider_object_pb_pushforward_operator_identity_available",
+      "same_domain_pushforward_operator_identity_available_terminal_row_count",
+      "same_domain_pushforward_normalization_identity_available_terminal_row_count",
+      "pushforward_operator_ref",
+      "normalization_identity_ref",
+    ]
+  );
+  assert.deepEqual(sourceAbsenceBoundary.blocked_provider_object_p_b_fields, [
+    "source_map_provider_object_branch_split_map",
+    "provider_object_branch_projection_map",
+    "same-domain-branch-bearing-P_b-map",
+    "P_- provider_object_branch_interval",
+    "P_+ provider_object_branch_interval",
+    "provider_object_branch_sum_identity",
+    "provider_object_A_P_materialization",
+    "terminal_row_provider_object_replay_certification",
+  ]);
   assert.deepEqual(sourceAbsenceBoundary.required_branch_identity_fields, [
     "same_domain_record_ref",
     "terminal_graph_cell_id",

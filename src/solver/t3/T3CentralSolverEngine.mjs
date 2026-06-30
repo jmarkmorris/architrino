@@ -50,7 +50,7 @@ export class T3CentralSolverEngine {
     const response = await this.solverClient.stepT3UniverseF64(request);
     const rows = response?.rows ?? [];
     const bulkStepSummary = response?.summary ?? {};
-    const periodicWrapEvidence = summarizeT3ImageDeltas(rows);
+    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, { stepIndex: state.stepIndex });
     applyT3BulkStepRows(state, rows);
     state.time = bulkStepSummary.endTime ?? state.time + dt;
     state.stepIndex += 1;
@@ -211,7 +211,7 @@ export function applyT3BulkStepRows(state, rows) {
   }
 }
 
-export function summarizeT3ImageDeltas(rows = []) {
+export function summarizeT3ImageDeltas(rows = [], options = {}) {
   if (!Array.isArray(rows)) {
     throw new TypeError("T3 image delta summary requires solver rows");
   }
@@ -242,7 +242,119 @@ export function summarizeT3ImageDeltas(rows = []) {
     totalAbsoluteImageDelta,
     wrappedParticleCount,
     hasPeriodicWrap: wrappedParticleCount > 0,
+    retainedCausalRootReplaySource: createRetainedCausalRootReplaySource(rows, options),
   };
+}
+
+function createRetainedCausalRootReplaySource(rows, options = {}) {
+  const stepIndex = Number.isInteger(options.stepIndex) ? options.stepIndex : null;
+  const candidateRows = [];
+  for (let rowIndex = 0; rowIndex < rows.length; rowIndex += 1) {
+    const row = rows[rowIndex];
+    for (const axis of ["x", "y", "z"]) {
+      const signedImageDelta = integerImageDelta(row?.imageDelta?.[axis]);
+      if (signedImageDelta === 0) {
+        continue;
+      }
+      candidateRows.push(createRetainedCausalRootReplayCandidateRow({
+        row,
+        rowIndex,
+        stepIndex,
+        axis,
+        signedImageDelta,
+      }));
+    }
+  }
+  return {
+    schema: "t3-retained-causal-root-replay.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    rows: candidateRows,
+    negativeControls: [
+      {
+        controlId: "candidate_step_row_without_retained_causal_root_id",
+        expectedFailure:
+          "solver step rows can identify a source pathKey and image-delta axis but cannot authorize replay without a retained causal-root row id",
+        promotionBlocked: true,
+      },
+      {
+        controlId: "candidate_step_row_without_endpoint_memory_or_omitted_row_routes",
+        expectedFailure:
+          "solver step rows cannot authorize replay until endpoint, memory-window, collision/core, and omitted-row routes are declared on the same retained record",
+        promotionBlocked: true,
+      },
+    ],
+    summary: {
+      status:
+        candidateRows.length > 0
+          ? "candidate_rows_missing_required_same_record_fields"
+          : "no_candidate_replay_rows",
+      candidateRowCount: candidateRows.length,
+      acceptedReplayRowCount: 0,
+      replayAuthorization: false,
+      firstCandidateRowId: candidateRows[0]?.rowId ?? null,
+      firstMissingField: candidateRows[0]?.missingFields?.[0] ?? null,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function createRetainedCausalRootReplayCandidateRow(input) {
+  const { row, rowIndex, stepIndex, axis, signedImageDelta } = input;
+  const sourceRecordId = retainedSourceRecordId(row, rowIndex, stepIndex);
+  const rowId = `${sourceRecordId}:seam-${axis}`;
+  return {
+    schema: "t3-retained-causal-root-replay-row.v1",
+    rowId,
+    sameRecordReplayId: `candidate-replay:${rowId}`,
+    retainedSourceRecordId: sourceRecordId,
+    retainedCausalRootRowId: null,
+    stepIndex,
+    sourcePathKey: row?.pathKey ?? rowIndex + 1,
+    rowFamilyIdentity: "seam",
+    chronologyRowId: stepIndex == null ? null : `step_${stepIndex}_seam_${axis}`,
+    boundaryOrientation:
+      signedImageDelta > 0
+        ? "positive_boundary_orientation_candidate"
+        : "negative_boundary_orientation_candidate",
+    windingLabel: `${axis}:${signedImageDelta > 0 ? "+1" : "-1"}`,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    jacobianFloorOrDeclaredStratum: null,
+    endpointRoute: null,
+    memoryWindowRoute: null,
+    collisionCoreRoute: null,
+    omittedRowRoute: null,
+    rowStatus: "candidate_missing_required_same_record_fields",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    providedFields: [
+      "sameRecordReplayId",
+      "retainedSourceRecordId",
+      "rowFamilyIdentity",
+      "boundaryOrientation",
+      "windingLabel",
+      "imageDeltaAxis",
+      "signedImageDeltaWitness",
+    ],
+    missingFields: [
+      "retainedCausalRootRowId",
+      "jacobianFloorOrDeclaredStratum",
+      "endpointRoute",
+      "memoryWindowRoute",
+      "collisionCoreRoute",
+      "omittedRowRoute",
+      "seamPairingMapOrWindingOwnerRowId",
+    ],
+  };
+}
+
+function retainedSourceRecordId(row, rowIndex, stepIndex) {
+  const stepToken = stepIndex == null ? "step-unknown" : `step-${stepIndex}`;
+  const pathKey = row?.pathKey ?? rowIndex + 1;
+  return `t3-${stepToken}:pathKey-${pathKey}`;
 }
 
 export function createT3FallbackMotionIntegrationRequest(state, particleIndex, startTime, timestep, options = {}) {

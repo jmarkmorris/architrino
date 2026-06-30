@@ -314,6 +314,7 @@ function createT3RunSummary(input) {
     occupiedCellCounts: summarizeNumericSeries(stepResults.map((result) => result.occupiedCellCount)),
     cellCounts: summarizeNumericSeries(stepResults.map((result) => result.cellCount)),
     periodicWrapEvidence: summarizePeriodicWrapEvidence(stepResults),
+    retainedCausalRootReplaySource: summarizeRetainedCausalRootReplaySource(stepResults),
     eventSummary: summarizeRunEvents(stepResults),
   };
   return {
@@ -392,6 +393,52 @@ function summarizePeriodicWrapEvidence(stepResults) {
     absoluteImageDeltaTotals,
     totalAbsoluteImageDelta,
     perStep,
+  };
+}
+
+function summarizeRetainedCausalRootReplaySource(stepResults) {
+  const perStep = [];
+  const rows = [];
+  for (const result of stepResults) {
+    const source = result.periodicWrapEvidence?.retainedCausalRootReplaySource ?? null;
+    if (!source) {
+      perStep.push(null);
+      continue;
+    }
+    const sourceRows = Array.isArray(source.rows) ? source.rows : [];
+    const sourceSummary = source.summary ?? {};
+    rows.push(...sourceRows);
+    perStep.push({
+      schema: source.schema,
+      sourceObjectSchema: source.sourceObjectSchema,
+      replayAuthorization: source.replayAuthorization,
+      acceptedReplayEvidence: source.acceptedReplayEvidence,
+      candidateRowCount: sourceSummary.candidateRowCount ?? sourceRows.length,
+      acceptedReplayRowCount: sourceSummary.acceptedReplayRowCount ?? 0,
+      firstCandidateRowId: sourceSummary.firstCandidateRowId ?? null,
+      firstMissingField: sourceSummary.firstMissingField ?? null,
+    });
+  }
+  return {
+    schema: "t3-retained-causal-root-replay.v1",
+    sourceObjectSchema: "t3-run-summary-packaged-step-row-source",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    rows,
+    perStep,
+    summary: {
+      status:
+        rows.length > 0
+          ? "candidate_rows_missing_required_same_record_fields"
+          : "no_candidate_replay_rows",
+      candidateRowCount: rows.length,
+      acceptedReplayRowCount: 0,
+      replayAuthorization: false,
+      firstCandidateRowId: rows[0]?.rowId ?? null,
+      firstMissingField: rows[0]?.missingFields?.[0] ?? null,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
   };
 }
 
