@@ -440,6 +440,15 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
     "sourcePathSegmentId",
   ];
   const missingFields = requiredFields.filter((field) => !providedFields.includes(field));
+  const retainedCausalRootReplayProducerContract =
+    createUnresolvedRootSegmentReplayProducerContract({
+      row,
+      rowId,
+      chronologyRowId,
+      effectiveStepIndex,
+      providedFields,
+      missingFields,
+    });
   return {
     schema: "t3-retained-causal-root-replay-row.v1",
     rowId,
@@ -473,6 +482,71 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
     provesBranchAdmissibility: false,
     providedFields,
     missingFields,
+    retainedCausalRootReplayProducerContract,
+  };
+}
+
+function createUnresolvedRootSegmentReplayProducerContract(input) {
+  const { row, rowId, chronologyRowId, effectiveStepIndex, providedFields, missingFields } = input;
+  const requiredReplaySourceFields = [
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+  ];
+  const missingReplaySourceFields = requiredReplaySourceFields.filter((field) =>
+    missingFields.includes(field)
+  );
+  return {
+    schema: "t3-retained-causal-root-replay-producer-contract.v1",
+    contractId: `${rowId}:producer-contract`,
+    targetSchema: "t3-retained-causal-root-replay.v1",
+    targetRowSchema: "t3-retained-causal-root-replay-row.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
+    nativeRow: "T3UnresolvedRootSegmentRowF64",
+    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    sameRecordBinding: {
+      bindingStatus: "candidate_same_step_segment_shape_evidence",
+      chronologyRowId,
+      stepIndex: effectiveStepIndex,
+      sourcePathKey: row?.sourcePathKey ?? null,
+      receiverPathKey: row?.receiverPathKey ?? null,
+      sourceSegmentIndex: row?.sourceSegmentIndex ?? null,
+      receiverSegmentIndex: row?.receiverSegmentIndex ?? null,
+    },
+    availableShapeFields: providedFields.filter((field) =>
+      [
+        "chronologyRowId",
+        "sourcePathKey",
+        "receiverPathKey",
+        "sourceSegmentIndex",
+        "receiverSegmentIndex",
+        "sourceSegment",
+        "receiverSegment",
+        "sameRecordSegmentBinding",
+        "sourceIdentityBinding",
+        "receiverIdentityBinding",
+        "hitTime",
+        "signalSpeed",
+        "rootTolerance",
+        "rowFamilyIdentity",
+      ].includes(field)
+    ),
+    requiredReplaySourceFields,
+    missingReplaySourceFields,
+    rejectedSyntheticFields: requiredReplaySourceFields,
+    sourceAcquisitionStatus:
+      missingReplaySourceFields.length === 0
+        ? "retained_causal_root_replay_source_fields_available"
+        : "blocked_missing_retained_causal_root_replay_source_fields",
+    firstMissingReplaySourceField: missingReplaySourceFields[0] ?? null,
+    requiredUpstreamObject:
+      "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 and emits rootLedgerRecordId, causticRoute, and sourcePathSegmentId before t3-run-summary.v1 aggregation",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
   };
 }
 

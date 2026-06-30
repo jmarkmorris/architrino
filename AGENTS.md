@@ -143,6 +143,14 @@ This document distinguishes three audience scopes:
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a small dedicated module or helper so later extraction is straightforward instead of leaving another layer of spaghetti.
 
+### Solver Ownership
+
+- Use the native central solver as the production solver for architrino motion, causal roots, delayed hits, path histories, wake history, T3 stepping, and solver-owned geometry. Do not create a new production solver, parallel solver stack, app-local solver, or alternate default engine.
+- Route app, T3, Animator, Photon, Ideal Braid, and future simulation work through the shared central solver bridge and existing native ABI surfaces. If a required capability is missing, extend the central solver contract, native implementation, bridge schema, and validation fixtures instead of adding a separate solver.
+- JavaScript-only solver code may exist only as explicitly named `reference`, `fallback`, `test`, fixture, or comparison code. It must not be presented as the production path, promoted to default runtime behavior, or used to bypass a missing native solver capability.
+- Architrino primitives do not have physical mass. If a solver or legacy T3 row contains a `mass` or mass-like field, treat it as a numerical integration weight, comparison-kernel parameter, or legacy/toy interaction coefficient only; do not describe it as architrino ontology, and do not use it as evidence for mass-map or assembly mass claims.
+- Keep solver boundaries modular: topology, native solver/ABI, bridge request/response, interaction law, path-history storage, wake-history/event rows, output datasets, and visualization remain separate responsibilities under the central solver architecture.
+
 ### Debugging Discipline
 
 - Always inspect the relevant code paths and rendered structure before proposing or applying a fix. Find the actual code causing the issue rather than inferring the solution from symptoms or screenshots alone when the implementation can be examined directly.

@@ -24,6 +24,10 @@ const SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_AVAILABILITY_SCHEMA =
   "branch_provider_candidate_source_map_provider_object_branch_split_map_availability/v0";
 const PRODUCER_SIDE_SAME_DOMAIN_BRANCH_ROW_EVIDENCE_TARGET_SCHEMA =
   "branch_provider_candidate_producer_side_same_domain_branch_row_evidence_target/v0";
+const H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_SCHEMA =
+  "h39-preaggregate-provider-object-branch-row-producer-target/v0";
+const H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_ROW_SCHEMA =
+  "h39-preaggregate-provider-object-branch-row-producer-target-row/v0";
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_PRODUCER_TARGET_SCHEMA =
   "h39-source-map-provider-object-branch-split-map-producer-target/v0";
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_PRODUCER_TARGET_ROW_SCHEMA =
@@ -339,6 +343,53 @@ const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_BRANCH_IDENTITY_FIELDS =
     "branch_projection_coefficients_or_alpha_map",
     "pushforward_operator_ref",
     "normalization_identity_ref",
+  ]);
+const H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REQUIRED_FIELDS =
+  Object.freeze([
+    "same_domain_record_ref",
+    "terminal_row_id",
+    "terminal_graph_cell_id",
+    "terminal_h_index",
+    "source_y_order",
+    "required_xi_derivative_order",
+    "branch_label",
+    "provider_object_branch_target",
+    "producer_object_formula",
+    "provider_object_branch_moment_target",
+    "source_term_branch_interval",
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+    "source_map_provider_object_branch_split_map",
+    "provider_object_branch_projection_map",
+    "branch_projection_or_alpha_map",
+    "same-domain-branch-bearing-P_b-map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+    "same_domain_pushforward_operator_identity",
+    "same_domain_pushforward_normalization_identity",
+    "accepted_source_status",
+  ]);
+const H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_DOWNSTREAM_BLOCKED_FIELDS =
+  Object.freeze([
+    "accepted_provider_object_branch_row_ref",
+    ...H39_RETAINED_RECORD_PREIMAGE_REQUIRED_FIELDS.filter(
+      (field) => field !== "accepted_provider_object_branch_row_ref"
+    ),
+  ]);
+const H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REJECTED_SOURCE_KINDS =
+  Object.freeze([
+    "fourth-jet-or-Taylor-derivative-row",
+    "quotient-source-denominator-machinery",
+    "aggregate-P-only-provider-row",
+    "sampled-row",
+    "diagnostic-only-row",
+    "fixture-only-row",
+    "current-proxy-row",
+    "cross-row-bundle",
+    "lambda-terminal-witness-branch-interval",
+    "variable-owned-alpha-candidate",
+    "row-local-expression-branch-feed",
+    "source-map-residual-provider-candidate",
   ]);
 const H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_RETAINED_CAUSAL_ROOT_BINDING_REQUIREMENT =
   Object.freeze({
@@ -1334,6 +1385,517 @@ function buildProducerSideSameDomainBranchRowEvidenceTarget(
     provider_ready_authorized_by_this_target: false,
     downstream_consumer_authorization: false,
   };
+}
+
+function evaluateH39PreaggregateProviderObjectBranchRowProducerTargetRow(row) {
+  const branchPayloadRowCount = Number(
+    row.preaggregate_provider_object_branch_payload_row_count ?? 0
+  );
+  const terminalIdentityBranchRowCount = Number(
+    row.terminal_row_identity_branch_row_count ?? 0
+  );
+  const branchFormulaRowCount = Number(
+    row.provider_object_branch_formula_row_count ?? 0
+  );
+  const branchPayloadsPresent =
+    branchPayloadRowCount === SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length;
+  const terminalIdentityPresent =
+    terminalIdentityBranchRowCount === SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length;
+  const branchFormulaPresent =
+    branchFormulaRowCount === SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length;
+  const intervalPayloadsPresent =
+    row.source_term_branch_interval_present === true &&
+    row.source_map_provider_branch_intervals_present === true &&
+    row.provider_object_branch_intervals_present === true;
+  const projectionPayloadsPresent =
+    row.source_map_provider_object_branch_split_map_present === true &&
+    row.provider_object_branch_projection_map_present === true &&
+    row.branch_projection_or_alpha_map_present === true &&
+    row.same_domain_branch_bearing_p_b_map_present === true;
+  const pushforwardNormalizationPresent =
+    row.pushforward_operator_ref_present === true &&
+    row.normalization_identity_ref_present === true &&
+    row.same_domain_pushforward_operator_identity_present === true &&
+    row.same_domain_pushforward_normalization_identity_present === true;
+  const acceptedSourceStatusPresent =
+    row.accepted_non_fixture_source === true &&
+    row.accepted_source_status === ACCEPTED_SOURCE_STATUS;
+  const firstMissingProducerField = !branchPayloadsPresent
+    ? "branch_label"
+    : !terminalIdentityPresent
+      ? "terminal_row_id"
+      : !branchFormulaPresent
+        ? "producer_object_formula"
+        : !intervalPayloadsPresent
+          ? "source_term_branch_interval"
+          : !projectionPayloadsPresent
+            ? "source_map_provider_object_branch_split_map"
+            : !pushforwardNormalizationPresent
+              ? "pushforward_operator_ref"
+              : !acceptedSourceStatusPresent
+                ? "accepted_source_status"
+                : null;
+  const status = !branchPayloadsPresent
+    ? "h39-preaggregate-provider-object-branch-labels-missing"
+    : !terminalIdentityPresent
+      ? "h39-preaggregate-provider-object-terminal-identity-missing"
+      : !branchFormulaPresent
+        ? "h39-preaggregate-provider-object-branch-formula-missing"
+        : !intervalPayloadsPresent
+          ? "h39-preaggregate-provider-object-branch-interval-payloads-missing"
+          : !projectionPayloadsPresent
+            ? "h39-preaggregate-provider-object-branch-projection-payloads-missing"
+            : !pushforwardNormalizationPresent
+              ? "h39-preaggregate-provider-object-pushforward-normalization-missing"
+              : !acceptedSourceStatusPresent
+                ? "h39-preaggregate-provider-object-accepted-source-status-missing"
+                : "h39-preaggregate-provider-object-branch-row-review-required";
+  const expectedStatus = row.expected_status ?? status;
+
+  return {
+    schema:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_ROW_SCHEMA,
+    row_id: row.row_id,
+    setup: row.setup,
+    status,
+    expected_status: expectedStatus,
+    status_matches_expected: status === expectedStatus,
+    first_missing_producer_field: firstMissingProducerField,
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    missing_terminal_row_ids: row.missing_terminal_row_ids ?? [],
+    missing_branch_row_ids: row.missing_branch_row_ids ?? [],
+    preaggregate_position:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE
+        .expected_preaggregate_position,
+    producer_object_formula: "A_P=P_- - P_+; u_P=A_P/2",
+    preaggregate_provider_object_branch_payload_row_count: branchPayloadRowCount,
+    terminal_row_identity_branch_row_count: terminalIdentityBranchRowCount,
+    provider_object_branch_formula_row_count: branchFormulaRowCount,
+    branch_payloads_present: branchPayloadsPresent,
+    terminal_identity_present: terminalIdentityPresent,
+    branch_formula_present: branchFormulaPresent,
+    interval_payloads_present: intervalPayloadsPresent,
+    projection_payloads_present: projectionPayloadsPresent,
+    pushforward_normalization_present: pushforwardNormalizationPresent,
+    accepted_source_status_present: acceptedSourceStatusPresent,
+    accepted_source_status: acceptedSourceStatusPresent
+      ? ACCEPTED_SOURCE_STATUS
+      : row.accepted_source_status ?? null,
+    required_producer_fields:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REQUIRED_FIELDS,
+    downstream_blocked_fields:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_DOWNSTREAM_BLOCKED_FIELDS,
+    provider_ready_authorized_by_this_row: false,
+    downstream_consumer_authorization: false,
+    producer_side_branch_row_authorized_by_this_row: false,
+    retained_record_preimage_authorized_by_this_row: false,
+  };
+}
+
+function buildH39PreaggregateProviderObjectBranchRowProducerTarget(
+  producerSideBranchRowEvidenceTarget
+) {
+  const currentBranchPayloadRowCount = Number(
+    producerSideBranchRowEvidenceTarget?.current_source_counts
+      ?.source_term_provider_branch_attributed_term_row_count ?? 0
+  );
+  const currentMissingBranchRowIds =
+    producerSideBranchRowEvidenceTarget?.current_missing_branch_row_ids ??
+    sourceMapProviderObjectBranchRowIds();
+  const targetRows = [
+    {
+      row_id: "current_preaggregate_branch_payload_absent",
+      setup:
+        "The pre-aggregate source-term provider probe is aggregate-only before P=sum_j S_j and emits no same-domain P_- / P_+ branch payload rows.",
+      preaggregate_provider_object_branch_payload_row_count:
+        currentBranchPayloadRowCount,
+      missing_branch_row_ids: currentMissingBranchRowIds,
+      expected_status: "h39-preaggregate-provider-object-branch-labels-missing",
+    },
+    {
+      row_id: "branch_labels_without_terminal_identity",
+      setup:
+        "Branch labels reach all required P_- / P_+ rows, but those rows do not carry same-domain terminal row identity.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      expected_status:
+        "h39-preaggregate-provider-object-terminal-identity-missing",
+    },
+    {
+      row_id: "terminal_identity_without_branch_formula",
+      setup:
+        "Branch labels and terminal identities are present, but the P_- / P_+ or A_P=P_- - P_+ branch formula is absent.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      expected_status: "h39-preaggregate-provider-object-branch-formula-missing",
+    },
+    {
+      row_id: "branch_formula_without_interval_payloads",
+      setup:
+        "Branch labels, terminal identities, and the branch formula are present, but source-term, source-map, and provider-object branch interval payloads are absent.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      provider_object_branch_formula_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      expected_status:
+        "h39-preaggregate-provider-object-branch-interval-payloads-missing",
+    },
+    {
+      row_id: "interval_payloads_without_projection_payloads",
+      setup:
+        "Branch rows and interval payloads are present, but the source-map branch split map, provider-object projection map, branch projection or alpha map, and P_b map are absent.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      provider_object_branch_formula_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      source_term_branch_interval_present: true,
+      source_map_provider_branch_intervals_present: true,
+      provider_object_branch_intervals_present: true,
+      expected_status:
+        "h39-preaggregate-provider-object-branch-projection-payloads-missing",
+    },
+    {
+      row_id: "projection_payloads_without_pushforward_normalization",
+      setup:
+        "Branch rows, intervals, and projection payloads are present, but pushforward and normalization identities are absent.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      provider_object_branch_formula_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      source_term_branch_interval_present: true,
+      source_map_provider_branch_intervals_present: true,
+      provider_object_branch_intervals_present: true,
+      source_map_provider_object_branch_split_map_present: true,
+      provider_object_branch_projection_map_present: true,
+      branch_projection_or_alpha_map_present: true,
+      same_domain_branch_bearing_p_b_map_present: true,
+      expected_status:
+        "h39-preaggregate-provider-object-pushforward-normalization-missing",
+    },
+    {
+      row_id: "identity_payloads_without_accepted_source_status",
+      setup:
+        "All pre-aggregate branch payloads and identity payloads are present, but the candidate is not an accepted non-fixture source.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      provider_object_branch_formula_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      source_term_branch_interval_present: true,
+      source_map_provider_branch_intervals_present: true,
+      provider_object_branch_intervals_present: true,
+      source_map_provider_object_branch_split_map_present: true,
+      provider_object_branch_projection_map_present: true,
+      branch_projection_or_alpha_map_present: true,
+      same_domain_branch_bearing_p_b_map_present: true,
+      pushforward_operator_ref_present: true,
+      normalization_identity_ref_present: true,
+      same_domain_pushforward_operator_identity_present: true,
+      same_domain_pushforward_normalization_identity_present: true,
+      accepted_source_status: "target_only_not_accepted_source",
+      expected_status:
+        "h39-preaggregate-provider-object-accepted-source-status-missing",
+    },
+    {
+      row_id: "preaggregate_branch_row_review_candidate",
+      setup:
+        "The pre-aggregate producer row carries complete same-domain P_- / P_+ payloads and accepted non-fixture source status; retained-record binding remains downstream.",
+      preaggregate_provider_object_branch_payload_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      terminal_row_identity_branch_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      provider_object_branch_formula_row_count:
+        SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+      source_term_branch_interval_present: true,
+      source_map_provider_branch_intervals_present: true,
+      provider_object_branch_intervals_present: true,
+      source_map_provider_object_branch_split_map_present: true,
+      provider_object_branch_projection_map_present: true,
+      branch_projection_or_alpha_map_present: true,
+      same_domain_branch_bearing_p_b_map_present: true,
+      pushforward_operator_ref_present: true,
+      normalization_identity_ref_present: true,
+      same_domain_pushforward_operator_identity_present: true,
+      same_domain_pushforward_normalization_identity_present: true,
+      accepted_non_fixture_source: true,
+      accepted_source_status: ACCEPTED_SOURCE_STATUS,
+      expected_status:
+        "h39-preaggregate-provider-object-branch-row-review-required",
+    },
+  ].map(evaluateH39PreaggregateProviderObjectBranchRowProducerTargetRow);
+
+  return {
+    schema: H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_SCHEMA,
+    artifact_id: "h39-preaggregate-provider-object-branch-row-producer-target",
+    claim_level: "priority-only executable target, not provider acceptance",
+    status: targetRows.every(
+      (row) =>
+        row.status_matches_expected === true &&
+        row.provider_ready_authorized_by_this_row === false &&
+        row.downstream_consumer_authorization === false &&
+        row.producer_side_branch_row_authorized_by_this_row === false &&
+        row.retained_record_preimage_authorized_by_this_row === false
+    )
+      ? "h39-preaggregate-provider-object-branch-row-producer-target-fail-closed"
+      : "h39-preaggregate-provider-object-branch-row-producer-target-review-required",
+    target_row_schema:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_ROW_SCHEMA,
+    expected_pre_aggregate_payload_source:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_EXPECTED_PRE_AGGREGATE_PAYLOAD_SOURCE,
+    precise_missing_pre_aggregate_row_family:
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY,
+    required_terminal_row_count: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length,
+    required_branch_row_count: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length,
+    required_terminal_rows: SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS,
+    required_terminal_row_ids: sourceMapProviderObjectTerminalRowIds(),
+    required_branch_rows: SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS,
+    required_branch_row_ids: sourceMapProviderObjectBranchRowIds(),
+    required_producer_fields:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REQUIRED_FIELDS,
+    downstream_blocked_fields:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_DOWNSTREAM_BLOCKED_FIELDS,
+    rejected_candidate_source_kinds:
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REJECTED_SOURCE_KINDS,
+    first_downstream_consumer_after_target:
+      "h39-source-map-provider-object-branch-split-map-producer-target/v0",
+    row_count: targetRows.length,
+    target_rows: targetRows,
+    negative_control: {
+      ref: SOURCE_MAP_PROVIDER_OBJECT_AGGREGATE_ERASURE_NEGATIVE_CONTROL_REF,
+      aggregate_p_only_rejected: true,
+      fourth_jet_or_taylor_rows_rejected: true,
+      quotient_source_denominator_machinery_rejected: true,
+      sampled_rows_rejected: true,
+      diagnostic_only_rows_rejected: true,
+      fixture_only_rows_rejected: true,
+      current_proxy_rows_rejected: true,
+      cross_row_bundles_rejected: true,
+      provider_ready_authorized_by_negative_control: false,
+    },
+    provider_ready_authorized_by_this_target: false,
+    downstream_consumer_authorization: false,
+    producer_side_branch_row_authorized_by_this_target: false,
+    retained_record_preimage_authorized_by_this_target: false,
+  };
+}
+
+function h39PreaggregateProviderObjectBranchRowProducerTargetValidationErrors(
+  target,
+  label
+) {
+  if (!isObject(target)) {
+    return [`${label} must include h39 preaggregate provider-object branch-row producer target`];
+  }
+  const errors = [];
+  const expectedRows = new Map([
+    [
+      "current_preaggregate_branch_payload_absent",
+      "h39-preaggregate-provider-object-branch-labels-missing",
+    ],
+    [
+      "branch_labels_without_terminal_identity",
+      "h39-preaggregate-provider-object-terminal-identity-missing",
+    ],
+    [
+      "terminal_identity_without_branch_formula",
+      "h39-preaggregate-provider-object-branch-formula-missing",
+    ],
+    [
+      "branch_formula_without_interval_payloads",
+      "h39-preaggregate-provider-object-branch-interval-payloads-missing",
+    ],
+    [
+      "interval_payloads_without_projection_payloads",
+      "h39-preaggregate-provider-object-branch-projection-payloads-missing",
+    ],
+    [
+      "projection_payloads_without_pushforward_normalization",
+      "h39-preaggregate-provider-object-pushforward-normalization-missing",
+    ],
+    [
+      "identity_payloads_without_accepted_source_status",
+      "h39-preaggregate-provider-object-accepted-source-status-missing",
+    ],
+    [
+      "preaggregate_branch_row_review_candidate",
+      "h39-preaggregate-provider-object-branch-row-review-required",
+    ],
+  ]);
+  const rows = Array.isArray(target.target_rows) ? target.target_rows : [];
+  const rowsById = new Map(rows.map((row) => [row.row_id, row]));
+  if (
+    target.schema !==
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_SCHEMA ||
+    target.claim_level !==
+      "priority-only executable target, not provider acceptance" ||
+    target.status !==
+      "h39-preaggregate-provider-object-branch-row-producer-target-fail-closed" ||
+    target.target_row_schema !==
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_ROW_SCHEMA ||
+    target.required_terminal_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_TERMINAL_ROWS.length ||
+    target.required_branch_row_count !==
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length ||
+    !sameStringSet(
+      target.required_terminal_row_ids,
+      sourceMapProviderObjectTerminalRowIds()
+    ) ||
+    !sameStringSet(
+      target.required_branch_row_ids,
+      sourceMapProviderObjectBranchRowIds()
+    ) ||
+    !sameStringSet(
+      target.required_producer_fields,
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REQUIRED_FIELDS
+    ) ||
+    !sameStringSet(
+      target.downstream_blocked_fields,
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_DOWNSTREAM_BLOCKED_FIELDS
+    ) ||
+    !sameStringSet(
+      target.rejected_candidate_source_kinds,
+      H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_REJECTED_SOURCE_KINDS
+    ) ||
+    target.row_count !== expectedRows.size ||
+    rows.length !== expectedRows.size ||
+    target.provider_ready_authorized_by_this_target !== false ||
+    target.downstream_consumer_authorization !== false ||
+    target.producer_side_branch_row_authorized_by_this_target !== false ||
+    target.retained_record_preimage_authorized_by_this_target !== false
+  ) {
+    errors.push(`${label} h39 preaggregate branch-row producer target is invalid`);
+  }
+  for (const [rowId, expectedStatus] of expectedRows) {
+    const row = rowsById.get(rowId);
+    if (
+      !isObject(row) ||
+      row.schema !==
+        H39_PREAGGREGATE_PROVIDER_OBJECT_BRANCH_ROW_PRODUCER_TARGET_ROW_SCHEMA ||
+      row.status !== expectedStatus ||
+      row.expected_status !== expectedStatus ||
+      row.status_matches_expected !== true ||
+      row.provider_ready_authorized_by_this_row !== false ||
+      row.downstream_consumer_authorization !== false ||
+      row.producer_side_branch_row_authorized_by_this_row !== false ||
+      row.retained_record_preimage_authorized_by_this_row !== false
+    ) {
+      errors.push(`${label} h39 preaggregate target row ${rowId} is invalid`);
+      break;
+    }
+  }
+  const currentAbsence = rowsById.get(
+    "current_preaggregate_branch_payload_absent"
+  );
+  const branchLabelsOnly = rowsById.get("branch_labels_without_terminal_identity");
+  const terminalIdentityOnly = rowsById.get(
+    "terminal_identity_without_branch_formula"
+  );
+  const branchFormulaOnly = rowsById.get(
+    "branch_formula_without_interval_payloads"
+  );
+  const intervalsOnly = rowsById.get(
+    "interval_payloads_without_projection_payloads"
+  );
+  const projectionOnly = rowsById.get(
+    "projection_payloads_without_pushforward_normalization"
+  );
+  const identityNoAcceptedStatus = rowsById.get(
+    "identity_payloads_without_accepted_source_status"
+  );
+  const reviewCandidate = rowsById.get("preaggregate_branch_row_review_candidate");
+  if (
+    currentAbsence?.preaggregate_provider_object_branch_payload_row_count !== 0 ||
+    currentAbsence?.first_missing_producer_field !== "branch_label" ||
+    currentAbsence?.missing_branch_row_ids?.length !==
+      SOURCE_MAP_PROVIDER_OBJECT_BRANCH_ROWS.length
+  ) {
+    errors.push(`${label} current preaggregate absence row is invalid`);
+  }
+  if (
+    branchLabelsOnly?.branch_payloads_present !== true ||
+    branchLabelsOnly?.terminal_identity_present !== false ||
+    branchLabelsOnly?.first_missing_producer_field !== "terminal_row_id"
+  ) {
+    errors.push(`${label} branch-label row must still require terminal identity`);
+  }
+  if (
+    terminalIdentityOnly?.terminal_identity_present !== true ||
+    terminalIdentityOnly?.branch_formula_present !== false ||
+    terminalIdentityOnly?.first_missing_producer_field !==
+      "producer_object_formula"
+  ) {
+    errors.push(`${label} terminal-identity row must still require branch formula`);
+  }
+  if (
+    branchFormulaOnly?.branch_formula_present !== true ||
+    branchFormulaOnly?.interval_payloads_present !== false ||
+    branchFormulaOnly?.first_missing_producer_field !==
+      "source_term_branch_interval"
+  ) {
+    errors.push(`${label} branch-formula row must still require intervals`);
+  }
+  if (
+    intervalsOnly?.interval_payloads_present !== true ||
+    intervalsOnly?.projection_payloads_present !== false ||
+    intervalsOnly?.first_missing_producer_field !==
+      "source_map_provider_object_branch_split_map"
+  ) {
+    errors.push(`${label} interval row must still require projection payloads`);
+  }
+  if (
+    projectionOnly?.projection_payloads_present !== true ||
+    projectionOnly?.pushforward_normalization_present !== false ||
+    projectionOnly?.first_missing_producer_field !== "pushforward_operator_ref"
+  ) {
+    errors.push(`${label} projection row must still require pushforward identities`);
+  }
+  if (
+    identityNoAcceptedStatus?.pushforward_normalization_present !== true ||
+    identityNoAcceptedStatus?.accepted_source_status_present !== false ||
+    identityNoAcceptedStatus?.first_missing_producer_field !==
+      "accepted_source_status"
+  ) {
+    errors.push(`${label} identity row must still require accepted source status`);
+  }
+  if (
+    reviewCandidate?.accepted_source_status_present !== true ||
+    reviewCandidate?.accepted_source_status !== ACCEPTED_SOURCE_STATUS ||
+    reviewCandidate?.provider_ready_authorized_by_this_row !== false ||
+    reviewCandidate?.retained_record_preimage_authorized_by_this_row !== false
+  ) {
+    errors.push(`${label} preaggregate review candidate must remain non-authorizing`);
+  }
+  if (
+    target.expected_pre_aggregate_payload_source?.expected_producer !==
+      "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate" ||
+    target.precise_missing_pre_aggregate_row_family?.row_family !==
+      H39_SOURCE_MAP_PROVIDER_OBJECT_BRANCH_SPLIT_MAP_MISSING_PRE_AGGREGATE_ROW_FAMILY
+        .row_family ||
+    target.negative_control?.aggregate_p_only_rejected !== true ||
+    target.negative_control?.fourth_jet_or_taylor_rows_rejected !== true ||
+    target.negative_control?.quotient_source_denominator_machinery_rejected !==
+      true ||
+    target.negative_control?.sampled_rows_rejected !== true ||
+    target.negative_control?.diagnostic_only_rows_rejected !== true ||
+    target.negative_control?.fixture_only_rows_rejected !== true ||
+    target.negative_control?.current_proxy_rows_rejected !== true ||
+    target.negative_control?.cross_row_bundles_rejected !== true ||
+    target.negative_control?.provider_ready_authorized_by_negative_control !==
+      false
+  ) {
+    errors.push(`${label} h39 preaggregate negative control is invalid`);
+  }
+  return errors;
 }
 
 function evaluateH39SourceMapProviderObjectBranchSplitMapProducerTargetRow(row) {
@@ -2810,6 +3372,10 @@ function enrichSourceMapProviderObjectBranchIntervalReadout(
       branchSplitMapAvailability,
       sourceFieldAvailabilityAudit
     );
+  const h39PreaggregateProviderObjectBranchRowProducerTarget =
+    buildH39PreaggregateProviderObjectBranchRowProducerTarget(
+      producerSideBranchRowEvidenceTarget
+    );
   const h39SourceMapProviderObjectBranchSplitMapProducerTarget =
     buildH39SourceMapProviderObjectBranchSplitMapProducerTarget(
       branchSplitMapAvailability,
@@ -2852,6 +3418,8 @@ function enrichSourceMapProviderObjectBranchIntervalReadout(
     source_field_availability_audit: sourceFieldAvailabilityAudit,
     producer_side_same_domain_branch_row_evidence_target:
       producerSideBranchRowEvidenceTarget,
+    h39_preaggregate_provider_object_branch_row_producer_target:
+      h39PreaggregateProviderObjectBranchRowProducerTarget,
     h39_source_map_provider_object_branch_split_map_producer_target:
       h39SourceMapProviderObjectBranchSplitMapProducerTarget,
     h39_producer_side_provider_object_branch_row_target:
@@ -3104,6 +3672,9 @@ function sourceContractReadoutValidationErrors(readout, label) {
       const producerSideBranchRowEvidenceTarget =
         sourceMapProviderObjectReadout
           .producer_side_same_domain_branch_row_evidence_target;
+      const h39PreaggregateProviderObjectBranchRowProducerTarget =
+        sourceMapProviderObjectReadout
+          .h39_preaggregate_provider_object_branch_row_producer_target;
       const h39SourceMapProviderObjectBranchSplitMapProducerTarget =
         sourceMapProviderObjectReadout
           .h39_source_map_provider_object_branch_split_map_producer_target;
@@ -3383,6 +3954,14 @@ function sourceContractReadoutValidationErrors(readout, label) {
         errors.push(
           `${label} source_map_provider_object_branch_interval_readout producer-side same-domain branch-row evidence target must stay fail-closed`
         );
+      }
+      const preaggregateProviderObjectBranchRowProducerTargetErrors =
+        h39PreaggregateProviderObjectBranchRowProducerTargetValidationErrors(
+          h39PreaggregateProviderObjectBranchRowProducerTarget,
+          `${label} source_map_provider_object_branch_interval_readout`
+        );
+      if (preaggregateProviderObjectBranchRowProducerTargetErrors.length > 0) {
+        errors.push(...preaggregateProviderObjectBranchRowProducerTargetErrors);
       }
       const splitMapProducerTargetErrors =
         h39SourceMapProviderObjectBranchSplitMapProducerTargetValidationErrors(

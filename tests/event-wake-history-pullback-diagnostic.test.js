@@ -50,6 +50,41 @@ const REQUIRED_RETAINED_RECORD_FIELDS = [
   "retained_record_key.source_record_id",
   "retained_record_key.variation_key",
 ];
+const REQUIRED_RECEIVER_NORMAL_BRANCH_STRENGTH_FIELDS = [
+  "receiver_normal_fields.D_s",
+  "receiver_normal_fields.D_t",
+  "receiver_normal_fields.W_rec",
+];
+const REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS = [
+  "receiver_normal_derivatives.D_vD_s",
+  "receiver_normal_derivatives.D_vD_t",
+  "receiver_normal_derivatives.D_vW_rec",
+  "receiver_normal_derivatives.D_vW_rec_reconstruction",
+];
+const REQUIRED_SAME_RECORD_BINDING_FIELDS = [
+  "row_id",
+  "source_record_id",
+  "event_ledger_id",
+  "retained_record_key.record_id",
+  "retained_record_key.source_record_id",
+  "retained_record_key.source_artifact_hash",
+  "receiver_normal_derivative_bundle.consumer_row_id",
+  "receiver_normal_derivative_bundle.branch_family_checksum.retained_record_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
+];
+const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
+  "H39/theta3minus quotient rows",
+  "shell-braid residue rows",
+  "old force-weight rows",
+  "terminal aggregates",
+  "source-normal denominators",
+  "row-logic fixtures",
+  "diagnostic rows",
+  "sampled rows",
+  "current-proxy rows",
+  "cross-row bundles",
+];
 
 function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
   const retainedRecord = {
@@ -210,14 +245,46 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     "wake-history-derivation-proof-object-provider-target/v0"
   );
   assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target.target_status,
+    "fail_closed_provider_target"
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target.provider_object_required,
+    true
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .accepted_non_fixture_provider_required,
+    true
+  );
+  assert.equal(
     artifact.wake_history_derivation_proof_object_boundary.provider_target.accepts_row_logic_fixture,
     false
   );
-  assert.equal(
-    artifact.wake_history_derivation_proof_object_boundary.provider_target.disallowed_accepted_evidence_sources.includes(
-      "row-logic fixtures"
-    ),
-    true
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .disallowed_accepted_evidence_sources,
+    DISALLOWED_ACCEPTED_EVIDENCE_SOURCES
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .required_provider_object_field_groups.receiver_normal_branch_strength,
+    REQUIRED_RECEIVER_NORMAL_BRANCH_STRENGTH_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .required_provider_object_field_groups.receiver_normal_derivatives,
+    REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .required_provider_object_field_groups.same_record_binding,
+    REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .required_provider_object_field_groups.wake_history_rows,
+    REQUIRED_EVENT_ROWS
   );
   assert.equal(
     artifact.wake_history_derivation_proof_object_boundary.first_missing_field_family,
@@ -266,6 +333,16 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
       .missing_provider_field_groups.retained_record,
     REQUIRED_RETAINED_RECORD_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
+      .missing_provider_field_groups.same_record_binding,
+    REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
+      .missing_provider_field_groups.wake_history_rows,
+    REQUIRED_EVENT_ROWS
   );
 });
 
@@ -746,6 +823,40 @@ test("event wake-history CLI reports receiver-normal reconstruction drift contro
   );
 });
 
+test("event wake-history CLI emits the fail-closed provider target", () => {
+  const target = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--provider-target"], { encoding: "utf8" })
+  );
+
+  assert.equal(target.schema, "wake-history-derivation-proof-object-provider-target/v0");
+  assert.equal(target.target_status, "fail_closed_provider_target");
+  assert.equal(target.provider_object_required, true);
+  assert.equal(target.accepted_non_fixture_provider_required, true);
+  assert.equal(target.executable_replay_flag, "--provider-target");
+  assert.equal(target.proof_object_role, "wake_history_derivation_proof_object");
+  assert.equal(target.retained_provider_status_required, "accepted");
+  assert.equal(target.accepts_row_logic_fixture, false);
+  assert.deepEqual(target.required_wake_history_row_ids, REQUIRED_EVENT_ROWS);
+  assert.deepEqual(target.disallowed_accepted_evidence_sources, DISALLOWED_ACCEPTED_EVIDENCE_SOURCES);
+  assert.deepEqual(
+    target.required_provider_object_field_groups.receiver_normal_branch_strength,
+    REQUIRED_RECEIVER_NORMAL_BRANCH_STRENGTH_FIELDS
+  );
+  assert.deepEqual(
+    target.required_provider_object_field_groups.receiver_normal_derivatives,
+    REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS
+  );
+  assert.deepEqual(
+    target.required_provider_object_field_groups.same_record_binding,
+    REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.deepEqual(
+    target.required_provider_object_field_groups.wake_history_rows,
+    REQUIRED_EVENT_ROWS
+  );
+  assert.equal(target.first_downstream_consumer, "partial_L_EpJ");
+});
+
 test("event wake-history pullback diagnostic CLI writes, validates, and reports schema", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "event-wake-history-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -785,11 +896,13 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "required_receiver_normal_derivative_fields",
     "required_proof_object_fields",
     "required_provenance_fields",
+    "required_provider_object_field_groups",
     "same_record_identity_boundary",
     "proof_object_provenance_boundary",
     "provider_source_acquisition_blocker",
     "downstream_consumer_boundary",
   ]);
+  assert.equal(schema.provider_target_cli, "--provider-target");
   assert.deepEqual(schema.receiver_normal_derivative_contract_summary, [
     "required_row_ids",
     "accepted_row_ids",

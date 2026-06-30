@@ -1,4 +1,5 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import {
@@ -400,6 +401,7 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   const result = await simulator.step();
 
   assert.equal(calls.length, 1);
+  assert.equal(result.engine, "solver");
   assert.equal(calls[0].stepIndex, 0);
   assert.equal(calls[0].signalSpeed, 3);
   assert.equal(calls[0].rootTolerance, 1e-7);
@@ -424,6 +426,47 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.rootLedgerRecordId, null);
   assert.equal(sidecarReplayRow.causticRoute, null);
   assert.equal(sidecarReplayRow.sourcePathSegmentId, null);
+  assert.equal(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.schema,
+    "t3-retained-causal-root-replay-producer-contract.v1"
+  );
+  assert.equal(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.sourceObjectRowSchema,
+    "t3-unresolved-root-segment-row.v1"
+  );
+  assert.equal(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.sourceAcquisitionStatus,
+    "blocked_missing_retained_causal_root_replay_source_fields"
+  );
+  assert.deepEqual(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.requiredReplaySourceFields,
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.deepEqual(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.missingReplaySourceFields,
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.deepEqual(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.rejectedSyntheticFields,
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.deepEqual(sidecarReplayRow.retainedCausalRootReplayProducerContract.sameRecordBinding, {
+    bindingStatus: "candidate_same_step_segment_shape_evidence",
+    chronologyRowId: "step_0_unresolved_root_rows",
+    stepIndex: 0,
+    sourcePathKey: 1,
+    receiverPathKey: 2,
+    sourceSegmentIndex: 0,
+    receiverSegmentIndex: 0,
+  });
+  assert.equal(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.replayAuthorization,
+    false
+  );
+  assert.equal(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.acceptedReplayEvidence,
+    false
+  );
   assert.equal(sidecarReplayRow.providedFields.includes("sourceSegment"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("receiverSegment"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("sourceIdentityBinding"), true);
@@ -438,6 +481,23 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(replaySource.replayAuthorization, false);
   assert.equal(replaySource.summary.retainedBranch, false);
   assert.equal(replaySource.summary.provesBranchAdmissibility, false);
+
+  const t3BulkStepHeader = readFileSync(
+    new URL("../src/solver/include/architrino/solver/T3BulkStep.hpp", import.meta.url),
+    "utf8"
+  );
+  const particleStepRowMatch = t3BulkStepHeader.match(
+    /struct T3ParticleStepRowF64 \{([\s\S]*?)\n\};/
+  );
+  assert.ok(particleStepRowMatch);
+  for (const forbiddenField of [
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+    "unresolvedRootSegment",
+  ]) {
+    assert.equal(particleStepRowMatch[1].includes(forbiddenField), false);
+  }
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {
@@ -994,6 +1054,159 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.equal(simulator.solver.solverCallCount, 3);
   assert.equal(simulator.state.imageOffsets[0], 2);
+});
+
+test("oriented boundary exposes unresolved-root sidecar replay producer contract fail-closed", () => {
+  const missingReplaySourceFields = ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"];
+  const sidecarReplayProducerContract = {
+    schema: "t3-retained-causal-root-replay-producer-contract.v1",
+    contractId: "step_0_unresolved_root_rows:segment:1:2:0:producer-contract",
+    targetSchema: "t3-retained-causal-root-replay.v1",
+    targetRowSchema: "t3-retained-causal-root-replay-row.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: "candidate_shape_evidence",
+    nativeRow: "T3UnresolvedRootSegmentRowF64",
+    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    sameRecordBinding: {
+      bindingStatus: "candidate_same_step_segment_shape_evidence",
+      chronologyRowId: "step_0_unresolved_root_rows",
+      stepIndex: 0,
+      sourcePathKey: 1,
+      receiverPathKey: 2,
+      sourceSegmentIndex: 0,
+      receiverSegmentIndex: 0,
+    },
+    availableShapeFields: [
+      "chronologyRowId",
+      "sourcePathKey",
+      "receiverPathKey",
+      "sourceSegmentIndex",
+      "receiverSegmentIndex",
+      "sourceSegment",
+      "receiverSegment",
+      "sameRecordSegmentBinding",
+      "sourceIdentityBinding",
+      "receiverIdentityBinding",
+      "hitTime",
+      "signalSpeed",
+      "rootTolerance",
+      "rowFamilyIdentity",
+    ],
+    requiredReplaySourceFields: missingReplaySourceFields,
+    missingReplaySourceFields,
+    rejectedSyntheticFields: missingReplaySourceFields,
+    sourceAcquisitionStatus: "blocked_missing_retained_causal_root_replay_source_fields",
+    firstMissingReplaySourceField: "rootLedgerRecordId",
+    requiredUpstreamObject:
+      "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 and emits rootLedgerRecordId, causticRoute, and sourcePathSegmentId before t3-run-summary.v1 aggregation",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
+  };
+  const prototype = createT3OrientedBoundaryPrototype({
+    schema: "t3-run-summary.v1",
+    stepCount: 1,
+    particleCount: 2,
+    solverEngine: "solver",
+    interactionPreset: "soft_sphere_repel_v1",
+    executionPath: "native_c_abi",
+    neighborPairCounts: { perStep: [1] },
+    periodicWrapEvidence: {
+      imageDeltaTotals: { x: 0, y: 0, z: 0 },
+      absoluteImageDeltaTotals: { x: 0, y: 0, z: 0 },
+      perStep: [
+        {
+          imageDeltaTotals: { x: 0, y: 0, z: 0 },
+          absoluteImageDeltaTotals: { x: 0, y: 0, z: 0 },
+        },
+      ],
+    },
+    eventSummary: {
+      totalEventCount: 0,
+      boundaryLikeEventCount: 0,
+      eventTypeCounts: {},
+      perStep: [{ eventCount: 0, boundaryLikeEventCount: 0, eventTypeCounts: {} }],
+    },
+    retainedCausalRootReplaySource: {
+      schema: "t3-retained-causal-root-replay.v1",
+      sourceObjectSchema: "solver-t3-step-response.v1",
+      replayAuthorization: false,
+      acceptedReplayEvidence: false,
+      rows: [
+        {
+          schema: "t3-retained-causal-root-replay-row.v1",
+          rowId: "step_0_unresolved_root_rows:segment:1:2:0",
+          sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
+          sourceObjectRowStatus: "candidate_shape_evidence",
+          rowFamilyIdentity: "unresolved-root",
+          chronologyRowId: "step_0_unresolved_root_rows",
+          acceptedReplayEvidence: false,
+          replayAuthorization: false,
+          providedFields: sidecarReplayProducerContract.availableShapeFields,
+          missingFields: [
+            "sameRecordReplayId",
+            "retainedSourceRecordId",
+            "retainedCausalRootRowId",
+            "boundaryOrientation",
+            "windingLabel",
+            "jacobianFloorOrDeclaredStratum",
+            "endpointRoute",
+            "memoryWindowRoute",
+            "collisionCoreRoute",
+            "omittedRowRoute",
+            ...missingReplaySourceFields,
+          ],
+          retainedCausalRootReplayProducerContract: sidecarReplayProducerContract,
+        },
+      ],
+      summary: {
+        status: "candidate_rows_missing_required_same_record_fields",
+        candidateRowCount: 1,
+        acceptedReplayRowCount: 0,
+        replayAuthorization: false,
+      },
+    },
+  });
+
+  const unresolvedRootReplayRow =
+    prototype.sameRecordReplayBoundary.rows.find(
+      (row) => row.chronologyRowId === "step_0_unresolved_root_rows"
+    );
+  assert.equal(
+    unresolvedRootReplayRow.replayStatus,
+    "blocked_candidate_source_missing_required_same_record_fields"
+  );
+  assert.equal(unresolvedRootReplayRow.producerCandidateRowCount, 1);
+  assert.deepEqual(
+    unresolvedRootReplayRow.fieldSourceBoundary.missingFamilySpecificFields,
+    missingReplaySourceFields
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.nativeRow,
+    "T3UnresolvedRootSegmentRowF64"
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.producerContractSchema,
+    "t3-retained-causal-root-replay-producer-contract.v1"
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.producerContractCount,
+    1
+  );
+  assert.deepEqual(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.firstProducerContract
+      .missingReplaySourceFields,
+    missingReplaySourceFields
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.firstProducerContract
+      .replayAuthorization,
+    false
+  );
+  assert.equal(prototype.sameRecordReplayBoundary.summary.retainedBranch, false);
+  assert.equal(prototype.sameRecordReplayBoundary.summary.provesBranchAdmissibility, false);
 });
 
 test("oriented boundary prototype consumes T3 run-summary evidence without branch retention", () => {

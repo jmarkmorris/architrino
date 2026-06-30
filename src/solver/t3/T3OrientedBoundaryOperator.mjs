@@ -426,6 +426,9 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
     (row) => row?.sourceObjectRowSchema === "t3-unresolved-root-segment-row.v1"
   );
   if (sidecarProducerRows.length > 0) {
+    const producerContracts = sidecarProducerRows
+      .map((row) => row.retainedCausalRootReplayProducerContract)
+      .filter(Boolean);
     return {
       schema: "t3-native-bridge-field-source-boundary.v1",
       sourceObjectSchema: "solver-t3-step-response.v1",
@@ -450,7 +453,11 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
       ],
       missingNativeBridgeFields: missingFields,
       requiredUpstreamObject:
-        "same-step retained root-ledger replay producer fields on T3UnresolvedRootSegmentRowF64 before t3-run-summary.v1 aggregation",
+        "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 before t3-run-summary.v1 aggregation",
+      producerContractSchema:
+        producerContracts[0]?.schema ?? "t3-retained-causal-root-replay-producer-contract.v1",
+      producerContractCount: producerContracts.length,
+      firstProducerContract: producerContracts[0] ?? null,
       sidecarRowCount: sidecarProducerRows.length,
       replayAuthorization: false,
     };

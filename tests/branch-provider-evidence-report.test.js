@@ -54,6 +54,11 @@ function h39SourceMapProviderObjectBranchSplitMapProducerTarget(report) {
     .h39_source_map_provider_object_branch_split_map_producer_target;
 }
 
+function h39PreaggregateProviderObjectBranchRowProducerTarget(report) {
+  return h39SourceMapProviderObjectReadout(report)
+    .h39_preaggregate_provider_object_branch_row_producer_target;
+}
+
 test("branch-provider evidence report rejects current fixture, toy, proxy, status-shell, and target candidates", () => {
   const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
   const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
@@ -1677,6 +1682,166 @@ test("branch-provider evidence report keeps a partial producer-side branch-row o
   assert.deepEqual(
     currentSplitMapAbsence.missing_branch_row_ids,
     missingBranchRowIds
+  );
+});
+
+test("branch-provider evidence report emits the H39 preaggregate branch-row producer target fail-closed", () => {
+  const fixture = JSON.parse(fs.readFileSync(CURRENT_FIXTURE, "utf8"));
+  const report = buildReport(fixture, { sourceRef: CURRENT_FIXTURE });
+  const target = h39PreaggregateProviderObjectBranchRowProducerTarget(report);
+  const rowsById = Object.fromEntries(
+    target.target_rows.map((row) => [row.row_id, row])
+  );
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(
+    target.schema,
+    "h39-preaggregate-provider-object-branch-row-producer-target/v0"
+  );
+  assert.equal(
+    target.status,
+    "h39-preaggregate-provider-object-branch-row-producer-target-fail-closed"
+  );
+  assert.equal(target.row_count, 8);
+  assert.equal(target.provider_ready_authorized_by_this_target, false);
+  assert.equal(target.downstream_consumer_authorization, false);
+  assert.equal(target.producer_side_branch_row_authorized_by_this_target, false);
+  assert.equal(target.retained_record_preimage_authorized_by_this_target, false);
+  assert.equal(
+    target.expected_pre_aggregate_payload_source.expected_producer,
+    "buildH39RequestedY44TerminalAggregatePProviderPreaggregationBranchBearingAuditCandidate"
+  );
+  assert.equal(
+    target.expected_pre_aggregate_payload_source.expected_preaggregate_position,
+    "before P=sum_j S_j is emitted by the source-map provider construction"
+  );
+  assert.equal(
+    target.precise_missing_pre_aggregate_row_family.row_family,
+    "source_term_provider_probe_rows[].source_term_residual_rows[] with same-domain branch-bearing provider-object payload before P=sum_j S_j"
+  );
+  assert.deepEqual(target.required_producer_fields, [
+    "same_domain_record_ref",
+    "terminal_row_id",
+    "terminal_graph_cell_id",
+    "terminal_h_index",
+    "source_y_order",
+    "required_xi_derivative_order",
+    "branch_label",
+    "provider_object_branch_target",
+    "producer_object_formula",
+    "provider_object_branch_moment_target",
+    "source_term_branch_interval",
+    "source_map_provider_branch_intervals",
+    "provider_object_branch_intervals",
+    "source_map_provider_object_branch_split_map",
+    "provider_object_branch_projection_map",
+    "branch_projection_or_alpha_map",
+    "same-domain-branch-bearing-P_b-map",
+    "pushforward_operator_ref",
+    "normalization_identity_ref",
+    "same_domain_pushforward_operator_identity",
+    "same_domain_pushforward_normalization_identity",
+    "accepted_source_status",
+  ]);
+  assert.deepEqual(target.downstream_blocked_fields, [
+    "accepted_provider_object_branch_row_ref",
+    "retained_causal_root_record_ref",
+    "branch_family_checksum",
+    "receiver_normal_fields",
+    "receiver_normal_derivative_fields",
+    "geometry_derivative_fields",
+  ]);
+  assert.deepEqual(target.rejected_candidate_source_kinds, [
+    "fourth-jet-or-Taylor-derivative-row",
+    "quotient-source-denominator-machinery",
+    "aggregate-P-only-provider-row",
+    "sampled-row",
+    "diagnostic-only-row",
+    "fixture-only-row",
+    "current-proxy-row",
+    "cross-row-bundle",
+    "lambda-terminal-witness-branch-interval",
+    "variable-owned-alpha-candidate",
+    "row-local-expression-branch-feed",
+    "source-map-residual-provider-candidate",
+  ]);
+
+  assert.equal(
+    rowsById.current_preaggregate_branch_payload_absent.status,
+    "h39-preaggregate-provider-object-branch-labels-missing"
+  );
+  assert.equal(
+    rowsById.current_preaggregate_branch_payload_absent.first_missing_producer_field,
+    "branch_label"
+  );
+  assert.equal(
+    rowsById.current_preaggregate_branch_payload_absent
+      .preaggregate_provider_object_branch_payload_row_count,
+    0
+  );
+  assert.equal(
+    rowsById.current_preaggregate_branch_payload_absent.missing_branch_row_ids.length,
+    30
+  );
+  assert.equal(
+    rowsById.branch_labels_without_terminal_identity.first_missing_producer_field,
+    "terminal_row_id"
+  );
+  assert.equal(
+    rowsById.terminal_identity_without_branch_formula.first_missing_producer_field,
+    "producer_object_formula"
+  );
+  assert.equal(
+    rowsById.branch_formula_without_interval_payloads.first_missing_producer_field,
+    "source_term_branch_interval"
+  );
+  assert.equal(
+    rowsById.interval_payloads_without_projection_payloads
+      .first_missing_producer_field,
+    "source_map_provider_object_branch_split_map"
+  );
+  assert.equal(
+    rowsById.projection_payloads_without_pushforward_normalization
+      .first_missing_producer_field,
+    "pushforward_operator_ref"
+  );
+  assert.equal(
+    rowsById.identity_payloads_without_accepted_source_status
+      .first_missing_producer_field,
+    "accepted_source_status"
+  );
+  assert.equal(
+    rowsById.preaggregate_branch_row_review_candidate.status,
+    "h39-preaggregate-provider-object-branch-row-review-required"
+  );
+  assert.equal(
+    rowsById.preaggregate_branch_row_review_candidate.accepted_source_status_present,
+    true
+  );
+  assert.equal(
+    rowsById.preaggregate_branch_row_review_candidate
+      .provider_ready_authorized_by_this_row,
+    false
+  );
+  assert.equal(
+    rowsById.preaggregate_branch_row_review_candidate
+      .retained_record_preimage_authorized_by_this_row,
+    false
+  );
+  assert.equal(target.negative_control.aggregate_p_only_rejected, true);
+  assert.equal(target.negative_control.fourth_jet_or_taylor_rows_rejected, true);
+  assert.equal(
+    target.negative_control.quotient_source_denominator_machinery_rejected,
+    true
+  );
+  assert.equal(target.negative_control.sampled_rows_rejected, true);
+  assert.equal(target.negative_control.diagnostic_only_rows_rejected, true);
+  assert.equal(target.negative_control.fixture_only_rows_rejected, true);
+  assert.equal(target.negative_control.current_proxy_rows_rejected, true);
+  assert.equal(target.negative_control.cross_row_bundles_rejected, true);
+  assert.equal(
+    target.negative_control.provider_ready_authorized_by_negative_control,
+    false
   );
 });
 

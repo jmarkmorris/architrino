@@ -70,6 +70,12 @@ const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   printUsage(0);
 }
+if (args.schema === "continuous-interval-witness-producer-target") {
+  console.log(
+    JSON.stringify(createContinuousIntervalWitnessProducerTargetSchema(), null, 2)
+  );
+  process.exit(0);
+}
 
 const rootDir = process.cwd();
 const outputPath = path.resolve(rootDir, args.output ?? DEFAULT_OUTPUT_PATH);
@@ -28913,6 +28919,20 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       directInteriorPresenceProbeTarget.acceptedDirectInteriorPresenceRowCount,
     firstDirectInteriorPresenceProbeBlocker:
       directInteriorPresenceProbeTarget.firstDirectInteriorPresenceProbeBlocker,
+    continuousIntervalWitnessProducerTargetStatus:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessRowProducerTargetStatus ??
+      null,
+    continuousIntervalWitnessRequiredFieldIds:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessRequiredFieldIds ??
+      createContinuousIntervalWitnessRequiredFieldIds(),
+    continuousIntervalWitnessAcceptedRowCount:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessAcceptedRowCount ?? 0,
+    firstContinuousIntervalWitnessProducerBlocker:
+      directInteriorPresenceProbeTarget
+        .firstContinuousIntervalWitnessProducerBlocker ?? null,
     absenceBridgeFillLawSearchTargetStatus:
       absenceBridgeFillLawSearchTarget.status,
     absenceBridgeFillLawSearchTarget,
@@ -33601,6 +33621,21 @@ async function createEventRootAffineBracketAbsenceBridgeDirectInteriorPresencePr
     firstContinuousIntervalLawSourceBlocker:
       continuousIntervalLawSourceAudit
         ?.firstContinuousIntervalLawSourceBlocker ?? null,
+    partialSupportContinuousIntervalWitnessRowProducerTargetStatus:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessRowProducerTargetStatus,
+    partialSupportContinuousIntervalWitnessRequiredFieldIds:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessRequiredFieldIds,
+    partialSupportContinuousIntervalWitnessAcceptedRowCount:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessAcceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      threePointDirectInteriorReplayAudit
+        .firstContinuousIntervalWitnessProducerBlocker ??
+      continuousIntervalLawSourceAudit
+        ?.firstContinuousIntervalWitnessProducerBlocker ??
+      null,
     directMidpointIntervalRouteClassificationAuditStatus:
       directMidpointIntervalRouteClassificationAudit.status,
     directMidpointIntervalRouteRejectedPass:
@@ -33803,6 +33838,16 @@ async function createEventRootAffineBracketAbsenceBridgeThreePointDirectInterior
       partialSupportIntervalWitnessAudit.nonzeroJacobianDenseSupportRowCount,
     partialSupportAcceptedIntervalWitnessRowCount:
       partialSupportIntervalWitnessAudit.acceptedPartialSupportIntervalWitnessRowCount,
+    partialSupportContinuousIntervalWitnessRowProducerTargetStatus:
+      partialSupportIntervalWitnessAudit
+        .continuousIntervalWitnessRowProducerTargetStatus,
+    partialSupportContinuousIntervalWitnessRequiredFieldIds:
+      partialSupportIntervalWitnessAudit.continuousIntervalWitnessRequiredFieldIds,
+    partialSupportContinuousIntervalWitnessAcceptedRowCount:
+      partialSupportIntervalWitnessAudit.continuousIntervalWitnessAcceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      partialSupportIntervalWitnessAudit
+        .firstContinuousIntervalWitnessProducerBlocker,
     firstPartialSupportIntervalWitnessBlocker:
       partialSupportIntervalWitnessAudit.firstPartialSupportIntervalWitnessBlocker,
     acceptedDirectInteriorPresenceRowCount: acceptedRows.length,
@@ -33879,6 +33924,12 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
   const missingWitnessFieldIds = unionStrings(
     rows.flatMap((row) => row.missingWitnessFieldIds ?? [])
   );
+  const continuousIntervalWitnessRowProducerTarget =
+    createContinuousIntervalWitnessRowProducerTarget({
+      sourceObjectId:
+        "partial_support_interval_proof_field_audit",
+      rows: intervalProofFieldAudit.rows,
+    });
   return {
     schema:
       "aaa-tri-binary-event-root-affine-bracket-non-midpoint-partial-support-interval-witness-audit.v1",
@@ -33940,6 +33991,18 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
       intervalProofFieldAudit.retainedRowSetBindingProofRowCount,
     firstIntervalProofFieldBlocker:
       intervalProofFieldAudit.firstIntervalProofFieldBlocker,
+    continuousIntervalWitnessRowProducerTargetStatus:
+      continuousIntervalWitnessRowProducerTarget.status,
+    continuousIntervalWitnessRequiredFieldIds:
+      continuousIntervalWitnessRowProducerTarget.requiredFieldIds,
+    continuousIntervalWitnessCandidateRowCount:
+      continuousIntervalWitnessRowProducerTarget.candidateRowCount,
+    continuousIntervalWitnessAcceptedRowCount:
+      continuousIntervalWitnessRowProducerTarget.acceptedRowCount,
+    continuousIntervalWitnessCompetitorBearingRowCount:
+      continuousIntervalWitnessRowProducerTarget.competitorBearingRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      continuousIntervalWitnessRowProducerTarget.firstProducerBlocker,
     acceptedPartialSupportIntervalWitnessRowCount: acceptedRows.length,
     missingWitnessFieldIds,
     firstPartialSupportIntervalWitnessBlocker:
@@ -33965,6 +34028,7 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
     rows,
     boundaryBracketAudit,
     intervalProofFieldAudit,
+    continuousIntervalWitnessRowProducerTarget,
     retainedLimitation:
       "Dense support near a non-midpoint sample only localizes a possible subinterval. Acceptance still requires explicit interval-witness fields, endpoint or derivative control, and retained row-set binding before any positive-width absence bridge can be filled.",
   };
@@ -37176,6 +37240,12 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
   const missingWitnessFieldIds = unionStrings(
     auditRows.flatMap((row) => row.missingWitnessFieldIds ?? [])
   );
+  const continuousIntervalWitnessRowProducerTarget =
+    createContinuousIntervalWitnessRowProducerTarget({
+      sourceObjectId:
+        "midpoint_presence_continuous_interval_law_source_audit",
+      rows: auditRows,
+    });
   return {
     schema:
       "aaa-tri-binary-event-root-affine-bracket-midpoint-presence-continuous-interval-law-source-audit.v1",
@@ -37198,6 +37268,16 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
     missingWitnessFieldIds,
     certifiedIntervalWitnessRowCount: certifiedRows.length,
     acceptedContinuousIntervalLawRowCount: acceptedRows.length,
+    continuousIntervalWitnessRowProducerTargetStatus:
+      continuousIntervalWitnessRowProducerTarget.status,
+    continuousIntervalWitnessRequiredFieldIds:
+      continuousIntervalWitnessRowProducerTarget.requiredFieldIds,
+    continuousIntervalWitnessCandidateRowCount:
+      continuousIntervalWitnessRowProducerTarget.candidateRowCount,
+    continuousIntervalWitnessAcceptedRowCount:
+      continuousIntervalWitnessRowProducerTarget.acceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      continuousIntervalWitnessRowProducerTarget.firstProducerBlocker,
     rowsWithNonzeroJacobianMarginCount: auditRows.filter(
       (row) => row.nonzeroJacobianMarginPass
     ).length,
@@ -37221,6 +37301,7 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
         : []),
       "bind_any_interval_law_to_retained_row_set",
     ],
+    continuousIntervalWitnessRowProducerTarget,
     rowSamples: auditRows.slice(0, 24),
     rows: auditRows,
     retainedLimitation:
@@ -37353,6 +37434,236 @@ function createDirectMidpointIntervalRouteClassificationAudit({
     ],
     retainedLimitation:
       "The current direct midpoint evidence is split between dense-supported diagonal zero-delay rows and a non-diagonal row that has a dense event-root gap. Since no row combines dense support with a nonzero-Jacobian interval source, the current direct midpoint interval route is rejected as a global absence-bridge fill law under present evidence.",
+  };
+}
+
+function createContinuousIntervalWitnessRowProducerTarget({
+  sourceObjectId,
+  rows,
+}) {
+  const targetRows = (rows ?? []).map((row) =>
+    createContinuousIntervalWitnessProducerRow({
+      row,
+      sourceObjectId,
+    })
+  );
+  const acceptedRows = targetRows.filter(
+    (row) => row.acceptedContinuousIntervalWitnessRowPass
+  );
+  const sampledOnlyRows = targetRows.filter(
+    (row) => row.sampledDenseSupportNegativeControlPass
+  );
+  const competitorRows = targetRows.filter(
+    (row) => row.competitorBearingPartialRowNegativeControlPass
+  );
+  const missingRequiredFieldIds = unionStrings(
+    targetRows.flatMap((row) => row.missingRequiredFieldIds)
+  );
+  return {
+    schema:
+      "aaa-tri-binary-continuous-interval-witness-row-producer-target.v1",
+    status: targetRows.length === 0
+      ? "continuous_interval_witness_row_producer_target_no_candidate_rows"
+      : acceptedRows.length === targetRows.length
+        ? "continuous_interval_witness_row_producer_target_accepted"
+        : competitorRows.length > 0
+          ? "continuous_interval_witness_row_producer_target_blocked_competitor_bearing_partial_support"
+          : sampledOnlyRows.length > 0
+            ? "continuous_interval_witness_row_producer_target_blocked_sampled_dense_support_not_accepted"
+            : "continuous_interval_witness_row_producer_target_blocked_required_fields_missing",
+    claimLevel:
+      "fail-closed producer target for continuous_interval_witness_row; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "continuous_interval_witness_row",
+    sourceObjectId,
+    eventRootKey: 2856731379702547500,
+    requiredFieldIds: createContinuousIntervalWitnessRequiredFieldIds(),
+    candidateRowCount: targetRows.length,
+    acceptedRowCount: acceptedRows.length,
+    sampledDenseSupportNegativeControlRowCount: sampledOnlyRows.length,
+    competitorBearingRowCount: competitorRows.length,
+    missingRequiredFieldIds,
+    firstProducerBlocker:
+      acceptedRows.length === targetRows.length && targetRows.length > 0
+        ? null
+        : competitorRows[0]?.firstProducerRowBlocker ??
+          sampledOnlyRows[0]?.firstProducerRowBlocker ??
+          targetRows.find((row) => row.firstProducerRowBlocker)
+            ?.firstProducerRowBlocker ??
+          "continuous_interval_witness_required_fields_missing",
+    rowSamples: targetRows.slice(0, 8),
+    rows: targetRows,
+    retainedLimitation:
+      "Sampled dense support and sampled root-sheet or derivative-sign candidates do not produce an accepted continuous_interval_witness_row. A producer row must carry the required same route/root-key retained fields, an accepted nonlocal transport law, and retained source binding on the same row.",
+  };
+}
+
+function createContinuousIntervalWitnessProducerRow({ row, sourceObjectId }) {
+  const boundedGapRowId =
+    row.boundedGapRowId ??
+    (row.pairKey != null && Number.isFinite(row.edgeIndex)
+      ? `${row.pairKey}:edge-${row.edgeIndex}`
+      : null);
+  const positiveWidthIntervalWitnessCandidatePass =
+    (Number.isFinite(row.supportStartTime) &&
+      Number.isFinite(row.supportEndTime) &&
+      row.supportEndTime - row.supportStartTime > ROOT_TOLERANCE) ||
+    (Number.isFinite(row.width) && row.width > ROOT_TOLERANCE);
+  const sampledDenseSupportCandidatePass =
+    row.denseSampleSupportCandidatePass === true ||
+    row.sampledRootSheetEnclosureCandidatePass === true ||
+    row.sampledDerivativeSignMarginCandidatePass === true ||
+    (row.eventRootPresenceDenseInteriorSampleRowCount ?? 0) > 0;
+  const competitorBearingPartialRowNegativeControlPass =
+    (row.competitorRootKeys ?? []).length > 0 ||
+    row.competitorRootPresentPass === true ||
+    row.allSupportSamplesHaveCompetitorDetailPass === true;
+  const sampledDenseSupportNegativeControlPass =
+    sampledDenseSupportCandidatePass &&
+    row.acceptedContinuousIntervalLawRowPass !== true &&
+    row.acceptedIntervalProofFieldRowPass !== true;
+  const evidenceByFieldId = {
+    bounded_gap_row_id: boundedGapRowId != null,
+    pair_key: row.pairKey != null,
+    edge_index: Number.isFinite(row.edgeIndex),
+    side: row.side != null,
+    prior_event_root_boundary_distance:
+      Number.isFinite(row.priorEventRootBoundaryDistance) ||
+      Number.isFinite(row.priorDistanceUnits),
+    next_event_root_boundary_distance:
+      Number.isFinite(row.nextEventRootBoundaryDistance) ||
+      Number.isFinite(row.nextDistanceUnits),
+    affine_bracket_span:
+      Number.isFinite(row.affineBracketSpan) ||
+      Number.isFinite(row.bracketSpanUnits),
+    inactive_interval:
+      Array.isArray(row.inactiveInterval) ||
+      (Number.isFinite(row.start) &&
+        Number.isFinite(row.end) &&
+        Number.isFinite(row.width)),
+    positive_width_interval_witness:
+      row.acceptedContinuousIntervalLawRowPass === true ||
+      row.acceptedIntervalProofFieldRowPass === true,
+    endpoint_sign_or_derivative_monotonic_bound:
+      row.endpointSignBracketPass === true ||
+      row.derivativeOrMonotonicBoundPass === true ||
+      row.continuousDerivativeOrMonotonicityBoundPass === true,
+    root_sheet_enclosure:
+      row.rootSheetIntervalEnclosurePass === true ||
+      row.continuousRootSheetEnclosurePass === true,
+    nonzero_jacobian_margin:
+      row.nonzeroJacobianMarginPass === true ||
+      row.sampledDerivativeSignMarginCandidatePass === true ||
+      (Number.isFinite(row.minAbsJacobian) &&
+        row.minAbsJacobian > ROOT_TOLERANCE),
+    lattice_alignment: row.latticeAlignmentPass === true,
+    retained_source_binding:
+      row.retainedSourceBindingPass === true ||
+      row.retainedRowSetBindingProofPass === true,
+    accepted_nonlocal_transport_law:
+      row.acceptedNonlocalTransportLawPass === true,
+    event_root_key: row.eventRootKey === 2856731379702547500,
+    same_route_root_key_row_set_identity:
+      row.sameRouteRootKeyRowSetIdentityPass === true ||
+      row.retainedRowSetBindingProofPass === true,
+  };
+  const missingRequiredFieldIds =
+    createContinuousIntervalWitnessRequiredFieldIds().filter(
+      (fieldId) => evidenceByFieldId[fieldId] !== true
+    );
+  const acceptedContinuousIntervalWitnessRowPass =
+    missingRequiredFieldIds.length === 0 &&
+    sampledDenseSupportNegativeControlPass !== true &&
+    competitorBearingPartialRowNegativeControlPass !== true;
+  const firstProducerRowBlocker = acceptedContinuousIntervalWitnessRowPass
+    ? null
+    : competitorBearingPartialRowNegativeControlPass
+      ? "competitor_bearing_partial_support_not_accepted_interval_witness"
+      : sampledDenseSupportNegativeControlPass
+        ? "sampled_dense_support_not_accepted_interval_witness"
+        : missingRequiredFieldIds[0] ??
+          "continuous_interval_witness_required_fields_missing";
+  return {
+    producerRowId:
+      boundedGapRowId == null
+        ? null
+        : `continuous_interval_witness_row:${boundedGapRowId}`,
+    sourceObjectId,
+    boundedGapRowId,
+    pairKey: row.pairKey ?? null,
+    edgeIndex: row.edgeIndex ?? null,
+    side: row.side ?? null,
+    eventRootKey: row.eventRootKey ?? null,
+    supportStartTime: row.supportStartTime ?? row.start ?? null,
+    supportEndTime: row.supportEndTime ?? row.end ?? null,
+    supportSampleCount: row.supportSampleCount ?? null,
+    minAbsJacobian: row.minAbsJacobian ?? null,
+    sampledDenseSupportCandidatePass,
+    sampledDenseSupportNegativeControlPass,
+    positiveWidthIntervalWitnessCandidatePass,
+    sampledRootSheetEnclosureCandidatePass:
+      row.sampledRootSheetEnclosureCandidatePass === true,
+    sampledDerivativeSignMarginCandidatePass:
+      row.sampledDerivativeSignMarginCandidatePass === true,
+    competitorBearingPartialRowNegativeControlPass,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    retainedRowSetBindingProofPass:
+      row.retainedRowSetBindingProofPass === true,
+    acceptedNonlocalTransportLawPass:
+      row.acceptedNonlocalTransportLawPass === true,
+    requiredFieldChecks: Object.entries(evidenceByFieldId).map(
+      ([fieldId, fieldPresent]) => ({ fieldId, fieldPresent })
+    ),
+    missingRequiredFieldIds,
+    acceptedContinuousIntervalWitnessRowPass,
+    firstProducerRowBlocker,
+  };
+}
+
+function createContinuousIntervalWitnessRequiredFieldIds() {
+  return [
+    "bounded_gap_row_id",
+    "pair_key",
+    "edge_index",
+    "side",
+    "prior_event_root_boundary_distance",
+    "next_event_root_boundary_distance",
+    "affine_bracket_span",
+    "inactive_interval",
+    "positive_width_interval_witness",
+    "endpoint_sign_or_derivative_monotonic_bound",
+    "root_sheet_enclosure",
+    "nonzero_jacobian_margin",
+    "lattice_alignment",
+    "retained_source_binding",
+    "accepted_nonlocal_transport_law",
+    "event_root_key",
+    "same_route_root_key_row_set_identity",
+  ];
+}
+
+function createContinuousIntervalWitnessProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-continuous-interval-witness-row-producer-target.schema.v1",
+    targetObjectId: "continuous_interval_witness_row",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed producer target; not retained branch acceptance",
+    requiredFieldIds: createContinuousIntervalWitnessRequiredFieldIds(),
+    negativeControls: [
+      {
+        id: "sampled_dense_support_not_accepted_interval_witness",
+        rejects:
+          "dense sampled support without accepted interval-witness fields and retained row-set binding",
+      },
+      {
+        id: "competitor_bearing_partial_support_not_accepted_interval_witness",
+        rejects:
+          "partial support rows carrying a competitor active root before accepted retained source binding or a same route/root-key row-set identity exists",
+      },
+    ],
   };
 }
 
@@ -62256,5 +62567,6 @@ function printUsage(exitCode) {
   );
   console.log(`  --output <path>   JSON report path. Default: ${DEFAULT_OUTPUT_PATH}`);
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");
+  console.log("  --schema continuous-interval-witness-producer-target  Print the fail-closed interval-witness producer schema and exit");
   process.exit(exitCode);
 }

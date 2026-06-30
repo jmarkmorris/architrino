@@ -49,10 +49,14 @@ const RANK4_PROVIDER_CANDIDATE_ID =
 
 const PRESSURE_PROVIDER_OBJECT_REQUIRED_FIELDS = [
   "provider_source_status",
+  "source_ref",
   "same_domain_record_ref",
   "branch_certificate_ref",
   "active_root_or_live_ledger_identity",
   "branch_local_projection_or_normalization_identity",
+  "receiver_normal_branch_strength",
+  "retained_source_binding",
+  "accepted_status",
 ];
 
 const ACCEPTED_PROVIDER_REPORT_FIELDS = [
@@ -62,6 +66,9 @@ const ACCEPTED_PROVIDER_REPORT_FIELDS = [
   "same_domain_record_ref",
   "active_root_or_live_ledger_identity",
   "branch_local_projection_or_normalization_identity",
+  "receiver_normal_branch_strength",
+  "retained_source_binding",
+  "accepted_status",
 ];
 
 const RETAINED_PRESSURE_ROW_SOURCE_FIELDS = [
@@ -461,6 +468,37 @@ function pressureProviderObjectFieldReadout(candidate, field) {
             : "provider_source_status.accepted_non_fixture_source_missing",
     };
   }
+  if (field === "source_ref") {
+    const sourceRefMissing = !present(value);
+    const sourceRefIsFixture = isFixturePath(value);
+    const providerSourceAccepted =
+      candidate.provider_source_status === "accepted_non_fixture_source";
+    const sourceRefAccepted =
+      !sourceRefMissing && !sourceRefIsFixture && providerSourceAccepted;
+    return {
+      field,
+      value,
+      present: present(value),
+      pass: sourceRefAccepted,
+      failure: sourceRefAccepted
+        ? null
+        : sourceRefMissing
+          ? "source_ref.missing"
+          : sourceRefIsFixture
+            ? "source_ref.fixture_source_ref_not_accepted_provenance"
+            : "source_ref.source_ref_present_but_provider_source_status_not_accepted",
+    };
+  }
+  if (field === "accepted_status") {
+    const acceptedStatus = value === "accepted";
+    return {
+      field,
+      value,
+      present: present(value),
+      pass: acceptedStatus,
+      failure: acceptedStatus ? null : "accepted_status.accepted_missing",
+    };
+  }
 
   return {
     field,
@@ -530,6 +568,17 @@ function buildProviderSourceStatusAndCertificatePathProbe(
   const providerSourceAccepted =
     providerSourceStatusAccepted && sourceRefStatus === "accepted_non_fixture_source_ref";
   const branchCertificateRefPresent = present(candidate.branch_certificate_ref);
+  const receiverNormalBranchStrengthPresent = present(candidate.receiver_normal_branch_strength);
+  const retainedSourceBindingPresent = present(candidate.retained_source_binding);
+  const acceptedStatusAccepted = candidate.accepted_status === "accepted";
+  const missingOrRejectedProviderSourceFields = [
+    ...(providerSourceAccepted ? [] : ["provider_source_status"]),
+    ...(sourceRefStatus === "accepted_non_fixture_source_ref" ? [] : ["source_ref"]),
+    ...(branchCertificateRefPresent ? [] : ["branch_certificate_ref"]),
+    ...(receiverNormalBranchStrengthPresent ? [] : ["receiver_normal_branch_strength"]),
+    ...(retainedSourceBindingPresent ? [] : ["retained_source_binding"]),
+    ...(acceptedStatusAccepted ? [] : ["accepted_status"]),
+  ];
 
   return {
     schema: "pressure_row_provider_source_status_and_certificate_path_probe/v0",
@@ -567,15 +616,46 @@ function buildProviderSourceStatusAndCertificatePathProbe(
         ? null
         : "branch_certificate_ref.present_without_accepted_non_fixture_provider_source"
       : "branch_certificate_ref.missing",
-    exact_missing_provider_source_paths: [
-      ...(providerSourceAccepted ? [] : [providerCandidatePath(candidate, "provider_source_status")]),
-      ...(branchCertificateRefPresent ? [] : [providerCandidatePath(candidate, "branch_certificate_ref")]),
-    ],
-    required_next_provider_paths: [
-      providerCandidatePath(candidate, "provider_source_status"),
-      providerCandidatePath(candidate, "source_ref"),
-      providerCandidatePath(candidate, "branch_certificate_ref"),
-    ],
+    receiver_normal_branch_strength_path: providerCandidatePath(
+      candidate,
+      "receiver_normal_branch_strength"
+    ),
+    receiver_normal_branch_strength_required_value:
+      "receiver-normal branch strength on the same accepted provider row",
+    receiver_normal_branch_strength_observed_value:
+      candidate.receiver_normal_branch_strength ?? null,
+    receiver_normal_branch_strength_pass:
+      receiverNormalBranchStrengthPresent && providerSourceAccepted,
+    receiver_normal_branch_strength_first_failure: receiverNormalBranchStrengthPresent
+      ? providerSourceAccepted
+        ? null
+        : "receiver_normal_branch_strength.present_without_accepted_non_fixture_provider_source"
+      : "receiver_normal_branch_strength.missing",
+    retained_source_binding_path: providerCandidatePath(candidate, "retained_source_binding"),
+    retained_source_binding_required_value:
+      "retained source binding on the same accepted provider row",
+    retained_source_binding_observed_value: candidate.retained_source_binding ?? null,
+    retained_source_binding_pass: retainedSourceBindingPresent && providerSourceAccepted,
+    retained_source_binding_first_failure: retainedSourceBindingPresent
+      ? providerSourceAccepted
+        ? null
+        : "retained_source_binding.present_without_accepted_non_fixture_provider_source"
+      : "retained_source_binding.missing",
+    accepted_status_path: providerCandidatePath(candidate, "accepted_status"),
+    accepted_status_required_value: "accepted",
+    accepted_status_observed_value: candidate.accepted_status ?? null,
+    accepted_status_pass: acceptedStatusAccepted && providerSourceAccepted,
+    accepted_status_first_failure: acceptedStatusAccepted
+      ? providerSourceAccepted
+        ? null
+        : "accepted_status.present_without_accepted_non_fixture_provider_source"
+      : "accepted_status.accepted_missing",
+    exact_missing_provider_source_paths: missingOrRejectedProviderSourceFields.map((field) =>
+      providerCandidatePath(candidate, field)
+    ),
+    required_next_provider_paths: missingOrRejectedProviderSourceFields.map((field) =>
+      providerCandidatePath(candidate, field)
+    ),
   };
 }
 
@@ -733,7 +813,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(
         }
       : null,
     required_next_provider_object:
-      "one same-domain provider object with provider_source_status=accepted_non_fixture_source, same_domain_record_ref, branch_certificate_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity",
+      "one same-domain provider object with provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status=accepted",
     required_next_pressure_row_binding:
       "one accepted non-fixture retained pressure row whose branch_id and branch_certificate_ref-backed provider object bind to the same row as accepted history, quotient chart, pressure, exposure, pressure-response, reversible-domain, and null-sector records",
     accepted_branch_certificate_ref_candidates: acceptedCertificateCandidates,
@@ -1101,7 +1181,11 @@ function providerReportFieldPath(providerSourcePathProbe, field) {
   }
   return providerSourcePathProbe.same_candidate_populated_field_paths?.find((fieldPath) =>
     fieldPath.endsWith(`.${field}`)
-  ) ?? null;
+  ) ?? (
+    providerSourcePathProbe.nearest_partial_id
+      ? `${BRANCH_PROVIDER_CURRENT_CANDIDATES_PATH}#/candidates[id=${providerSourcePathProbe.nearest_partial_id}].${field}`
+      : null
+  );
 }
 
 function providerReportFieldReadout(nearestProviderReadout, providerSourcePathProbe, field) {
@@ -1145,6 +1229,48 @@ function providerReportFieldReadout(nearestProviderReadout, providerSourcePathPr
       first_failure: pass
         ? null
         : providerSourcePathProbe?.branch_certificate_ref_first_failure ?? `${field}.missing`,
+    };
+  }
+  if (field === "receiver_normal_branch_strength") {
+    const pass = providerSourcePathProbe?.receiver_normal_branch_strength_pass === true;
+    return {
+      field,
+      path,
+      required_value:
+        "receiver-normal branch strength on the same accepted non-fixture provider row",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.receiver_normal_branch_strength_first_failure ??
+          `${field}.missing`,
+    };
+  }
+  if (field === "retained_source_binding") {
+    const pass = providerSourcePathProbe?.retained_source_binding_pass === true;
+    return {
+      field,
+      path,
+      required_value: "retained source binding on the same accepted non-fixture provider row",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.retained_source_binding_first_failure ?? `${field}.missing`,
+    };
+  }
+  if (field === "accepted_status") {
+    const pass = providerSourcePathProbe?.accepted_status_pass === true;
+    return {
+      field,
+      path,
+      required_value: "accepted",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.accepted_status_first_failure ??
+          "accepted_status.accepted_missing",
     };
   }
 
@@ -1225,7 +1351,7 @@ function buildAcceptedNonFixtureSameDomainProviderSourceTarget(
       h39_theta3minus_diagnostic_authorized_as_pressure_evidence: false,
     },
     expected_producer:
-      "non-fixture same-domain branch-provider report for pressure-row-a0-branch-source-frontier-partial carrying provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity on one provider row",
+      "non-fixture same-domain branch-provider report for pressure-row-a0-branch-source-frontier-partial carrying provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status=accepted on one provider row",
     authorization: {
       retained_pressure_row_source: false,
       branch_derived_pressure_response: false,
@@ -1279,7 +1405,7 @@ function buildAcceptedSourceObjectBoundary(
       required_provider_fields: PRESSURE_PROVIDER_OBJECT_REQUIRED_FIELDS,
       required_provider_report_fields: ACCEPTED_PROVIDER_REPORT_FIELDS,
       expected_provider_source_producer:
-        "accepted non-fixture same-domain branch-provider report carrying provider_source_status, source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity on one provider row",
+        "accepted non-fixture same-domain branch-provider report carrying provider_source_status, source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status on one provider row",
       expected_provider_file_family:
         "non-fixture generated branch-provider report or priority-source report outside scripts/**/fixtures/**",
       nearest_provider_candidate_id: nearestProviderPartial?.id ?? null,
