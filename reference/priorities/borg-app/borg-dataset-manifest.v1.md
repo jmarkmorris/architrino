@@ -205,6 +205,10 @@ Face-boundary replay is reduced-model boundary input. Boundary-generated inbound
 | `faceSummarySetIds` | Sets of `borg-face-summary.v1` rows. |
 | `faceSummaryIds` | Individual face summary row ids consumed by this manifest. |
 | `faceReplaySourceIds` | `borg-face-replay-source.v1` ids consumed by this manifest. |
+| `sixFaceBoundaryNoisePolicyIds` | `borg-six-face-boundary-noise-policy.v1` ids consumed by this manifest. |
+| `faceCoverageStatus` | `six-face-complete`, `missing-face`, `missing-time-bin`, or `fail-closed`. |
+| `faceSourceMixtureIds` | Source-face and time-bin mixture rows used to generate inbound path seeds. |
+| `faceSourceMixtureStatus` | `measured`, `unmeasured`, `display-only`, or `fail-closed`. |
 | `timeMapPolicyIds` | Time-map policy ids mapping target replay bins to observed source face bins. |
 | `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
 | `faceInputTraceabilityRowIds` | Rows linking replayed inbound samples to source face summaries, source time bins, path segments or path streams, and face influence model ids. |
@@ -224,10 +228,11 @@ Face-boundary replay is reduced-model boundary input. Boundary-generated inbound
 | `velocitySamplingErrorBudgetIds` | Error-budget rows for velocity sampling and its contribution to face replay and central-volume residuals. |
 | `inboundReplayRowIds` | Boundary-generated inbound architrino and wake-history rows. |
 | `faceReplayValidationResultIds` | Validation result ids containing $R_{\mathrm{face\ replay}}$ and `R_boundary->central`. |
+| `benignNoiseStatus` | `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
 | `retainedLocalEvidenceStatus` | Status for same-record local path and wake evidence. |
 | `boundaryGeneratedEvidenceStatus` | Status for boundary-generated architrinos and reconstructed wake history. |
 
-Face-boundary replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed face-input samples or resampled observed bins with traceability to recorded path-derived face data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget. Face influence values are authoritative only through native path streams and `borg-face-influence-model.v1`; per-point face projection caches are display/debug artifacts and must not become source evidence.
+Face-boundary replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed face-input samples or resampled observed bins with traceability to recorded path-derived face data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget. Face influence values are authoritative only through native path streams and `borg-face-influence-model.v1`; per-point face projection caches are display/debug artifacts and must not become source evidence. A six-face boundary replay becomes `benign noise` only when the manifest reports `benignNoiseStatus = measured-reduced-pass`.
 
 ## Boundary-To-Central Residual
 
@@ -434,6 +439,9 @@ The manifest must report the first applicable failure before displaying affected
 | `face_influence_model_missing` | Replay needs a path-derived face influence model but no `borg-face-influence-model.v1` row is available. |
 | `face_projection_used_as_authority` | A per-point face projection cache is used as source evidence instead of path history and a path-derived model. |
 | `face_influence_model_mapping_failed` | The path-derived face influence model cannot be mapped to the target face inside the declared budget. |
+| `six_face_boundary_policy_missing` | Replay-affected diagnostics are requested without a `borg-six-face-boundary-noise-policy.v1` row. |
+| `six_face_coverage_incomplete` | The source summary set lacks complete six-face coverage for the declared source window. |
+| `face_source_mixture_unmeasured` | Source-face mixture weights are used without measured residuals and traceability. |
 | `velocity_sampling_protocol_missing` | Replay-affected diagnostics are requested without a `borg-velocity-sampling-protocol.v1` row. |
 | `velocity_sampling_research_open` | Velocity-scale-aware sampling has not been measured, so affected values cannot receive experimental authority. |
 | `velocity_sampling_precision_insufficient` | The selected sampling policy cannot represent the declared velocity scale range inside the replay error budget. |

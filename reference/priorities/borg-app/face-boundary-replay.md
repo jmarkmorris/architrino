@@ -226,6 +226,56 @@ The first schema is `borg-face-influence-model.v1`:
 
 Per-point face projections may be cached for rendering or debugging, but they must not become source evidence. Replay on another face must consume the path-derived model through `faceMapping`, the target face coordinate chart, and the declared error budget. If the model cannot be mapped to a target face without exceeding budget, replay is `display-only` or `fail-closed`.
 
+## Six-Face Boundary Noise Policy v1
+
+The first concrete six-face policy is `borg-six-face-boundary-noise-policy.v1`. Its job is to turn observed outbound path material from all six cube faces into boundary-generated inbound path seeds while preserving the path-only authority rule. It does not store or replay per-point face projections as evidence, does not create a new solver, and does not allow synthetic input to affect experimental diagnostics.
+
+The policy treats the six faces as one observed boundary population with per-face labels, face-local coordinate charts, and time-bin structure. A target face may draw from the pooled six-face source population only through declared face maps and error budgets. The policy is self-similar in the reduced-model sense: the inbound boundary population must remain statistically similar to the observed outbound six-face population after history hiding, coordinate mapping, velocity sampling, polarity sampling, and wake reconstruction from paths.
+
+The policy row is:
+
+| Field | Meaning |
+| --- | --- |
+| `schema` | Literal `borg-six-face-boundary-noise-policy.v1`. |
+| `sixFaceBoundaryNoisePolicyId` | Stable policy id. |
+| `sourceRunId` | Native source run that produced the outbound path rows. |
+| `summarySetId` | Six-face `borg-face-summary.v1` set consumed by the policy. |
+| `faceCoverageStatus` | `six-face-complete`, `missing-face`, `missing-time-bin`, or `fail-closed`. |
+| `faceInfluenceModelIds` | Path-derived `borg-face-influence-model.v1` rows consumed by the policy. |
+| `faceInfluenceModelAuthority` | `path-derived-model`, `display-only`, `missing-model`, or `fail-closed`. |
+| `sourcePopulationPolicy` | `observed-six-face-pool`; no synthetic source population is allowed for value authority. |
+| `targetFaceSet` | Target face ids receiving boundary-generated inbound path seeds. |
+| `faceSourceMixture` | Per-target-face weights over observed source faces and time bins. |
+| `faceMappingPolicy` | Face-local coordinate and orientation mapping from source face charts to target face charts. |
+| `timeMappingPolicyId` | Observed-bin time map used by the policy. |
+| `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `untraceable-source`, or `fail-closed-synthetic-input`. |
+| `velocitySamplingResultId` | `borg-velocity-sampling-result.v1` row used for velocity-scale sampling. |
+| `polaritySamplingPolicy` | Policy preserving electrino/positrino inventory and polarity correlations. |
+| `pathSeedPolicy` | Policy for generating inbound path seeds from observed face summaries and face influence models. |
+| `historyHidingPolicy` | Rule assigning new inbound architrino ids and stripping outbound same-record identity. |
+| `wakeReconstructionPolicy` | Reconstruct wakes from boundary-generated inbound paths through the declared path index. |
+| `correlationPolicy` | Time, opposite-face, adjacent-face, polarity, velocity-band, and recurrence correlation policy. |
+| `projectionCacheAuthority` | Must be `not-authoritative` when projection caches exist. |
+| `boundaryReplayDecisionPolicyId` | Decision policy used for pass, display-only, or fail-closed status. |
+| `benignNoiseStatus` | `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
+| `valueAuthority` | `reduced-model-boundary`, `display-only`, or `fail-closed`. |
+| `firstFailureCode` | First fail-closed code, or null when the policy passes for the declared envelope. |
+
+The v1 policy steps are:
+
+1. require complete six-face source coverage for the declared source window, or fail closed for replay authority;
+2. consume only native path streams, face summaries, path indices, and `borg-face-influence-model.v1` rows;
+3. build target-face inbound path seeds from the observed six-face pool using declared source-face weights, source time bins, target face charts, and deterministic replay seeds;
+4. preserve measured source correlations when they are inside budget, and fail closed when a detected correlation is above budget but unavailable to the replay policy;
+5. preserve electrino/positrino inventory, velocity-scale distribution, rare high-speed tails, and face/time-bin structure according to the measured velocity-sampling result;
+6. assign new inbound architrino identities with `historyHidingPolicy`; source traceability is retained for audit, but same-record outbound identity is not retained;
+7. reconstruct wake-background effects from the generated inbound paths through the declared path index and wake reconstruction policy;
+8. evaluate self-similarity, face replay, and central-volume residuals before any replay-affected diagnostic receives value authority.
+
+The first `faceSourceMixture` default is `six-face-uniform-observed`: every target face draws from all six observed source faces with equal starting weights, then records measured deviations and correlation errors. A later policy may use empirical weights by face, time bin, polarity, or velocity band only after the corresponding residuals are measured. If the uniform policy fails the declared residual budget, the run remains display-only or fail-closed; the app must not tune an unmeasured synthetic driver to force a pass.
+
+`benign noise` means `measured-reduced-pass` for the declared simulation envelope. It does not mean visually random input, small wake magnitude, or invented environmental texture. The policy is benign only when source traceability, path-derived face influence models, velocity sampling, history hiding, wake reconstruction, and $R_{\mathrm{boundary\to central}}$ all pass under the declared error budget.
+
 The hard computational part is that each face is pierced by many such vector-potential contributions from many emission points. The first policy should therefore avoid storing those contributions as primitive face rows. It should:
 
 1. use an `absolute-time-index` or equivalent optimized path index to find path segments that can contribute to each face time bin;
@@ -323,12 +373,14 @@ A replay source row declares how one or more face summaries are sampled into a l
 | `replaySourceId` | Stable replay-source identifier. |
 | `summarySetId` | Identifier for the consumed face-summary set. |
 | `targetRunId` | Run id receiving the replayed boundary input. |
+| `sixFaceBoundaryNoisePolicyId` | `borg-six-face-boundary-noise-policy.v1` id used to generate this replay source. |
 | `samplingSeed` | Declared seed for self-similar replay. |
 | `samplingPolicy` | `matched-bin`, `stationary-face`, `correlated-face`, or `display-only-preview`. |
 | `timeMapping` | Mapping from target time bins to observed source summary bins; the first policy is observed face-input only. |
 | `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
 | `inputTraceabilityRowIds` | Rows linking replayed inbound samples to source face summaries, source time bins, path segments or path streams, and `faceInfluenceModelId`. |
 | `faceMapping` | Mapping from target faces to source faces. |
+| `faceSourceMixture` | Per-target-face source-face and time-bin weights consumed by the replay source. |
 | `faceInfluenceModelIds` | Path-derived `borg-face-influence-model.v1` ids used to bottle the face superposition pattern. |
 | `faceInfluenceModelReplayPolicy` | `same-face`, `mapped-face`, `any-face`, `display-only`, or `fail-closed`. |
 | `velocityScaleRange` | Declared minimum and maximum sampled velocity magnitudes, units, and normalization chart. |
@@ -344,6 +396,7 @@ A replay source row declares how one or more face summaries are sampled into a l
 | `wakeReconstructionPolicy` | Policy for reconstructing wake history from replayed inbound paths; not a stored wake-stream source. |
 | `correlationPolicy` | `independent`, `time-correlated`, `face-correlated`, or `correlation-unavailable`. |
 | `valueAuthority` | `reduced-model-boundary` or `display-only`. |
+| `benignNoiseStatus` | `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
 | `claimLevelDowngrade` | Required downgrade applied to target-run interpretation. |
 | `errorBudgetId` | Replay error budget. |
 
@@ -488,6 +541,9 @@ The first-failure code must be one of:
 | `face_influence_model_missing` | Replay needs a path-derived face influence model but no `borg-face-influence-model.v1` row is available. |
 | `face_projection_used_as_authority` | A per-point face projection cache is used as source evidence instead of path history and a path-derived model. |
 | `face_influence_model_mapping_failed` | The path-derived face influence model cannot be mapped to the target face inside the declared budget. |
+| `six_face_boundary_policy_missing` | Replay-affected diagnostics are requested without a `borg-six-face-boundary-noise-policy.v1` row. |
+| `six_face_coverage_incomplete` | The source summary set lacks complete six-face coverage for the declared source window. |
+| `face_source_mixture_unmeasured` | Source-face mixture weights are used without measured residuals and traceability. |
 | `velocity_sampling_protocol_missing` | Replay-affected diagnostics are requested without a `borg-velocity-sampling-protocol.v1` row. |
 | `velocity_sampling_research_open` | Velocity-scale-aware sampling has not been measured, so affected values cannot receive experimental authority. |
 | `velocity_sampling_precision_insufficient` | The selected sampling policy cannot represent the declared velocity scale range inside the replay error budget. |

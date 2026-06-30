@@ -93,6 +93,19 @@ if (args.schema === "event-root-absence-bridge-fill-law-producer-target") {
   process.exit(0);
 }
 if (
+  args.schema ===
+  "active-domain-extension-two-sheet-global-binding-producer-target"
+) {
+  console.log(
+    JSON.stringify(
+      createActiveDomainExtensionTwoSheetGlobalBindingProducerTargetSchema(),
+      null,
+      2
+    )
+  );
+  process.exit(0);
+}
+if (
   args.schema === "accepted-nonlocal-transport-global-row-set-producer-target"
 ) {
   console.log(
@@ -25720,6 +25733,14 @@ function createEventRootAbsenceBridgeFillLawProducerStep({
   const selectedDirectAbsenceTransportSourceTarget =
     absenceBridgeFillRuleTarget?.selectedDirectAbsenceTransportSourceTarget ??
     null;
+  const twoSheetGlobalBindingProducerStep =
+    createActiveDomainExtensionTwoSheetGlobalBindingProducerStep({
+      rowManifest,
+      absenceBridgeFillRuleTarget,
+      transportLawTarget,
+      identityConservationTarget,
+      candidatePassFields,
+    });
   const sameEndpointBoundariesPass =
     candidatePassFields.find(
       (field) => field.field === "same_event_root_endpoint_boundaries"
@@ -25875,6 +25896,9 @@ function createEventRootAbsenceBridgeFillLawProducerStep({
     selectedDirectAbsenceFirstBlocker:
       selectedDirectAbsenceTransportSourceTarget
         ?.firstSelectedDirectAbsenceTransportSourceBlocker ?? null,
+    twoSheetGlobalBindingProducerStepStatus:
+      twoSheetGlobalBindingProducerStep.status,
+    twoSheetGlobalBindingProducerStep,
     requiredFieldRows,
     firstUnresolvedField: firstMissingField?.fieldId ?? null,
     firstUnresolvedProducer: firstMissingField?.firstFieldBlocker ?? null,
@@ -25895,6 +25919,209 @@ function createEventRootAbsenceBridgeFillLawProducerStep({
       firstUnresolvedRowField:
         "event_root_identity_conservation_on_affine_bracket_interval",
     })),
+  };
+}
+
+function createActiveDomainExtensionTwoSheetGlobalBindingProducerStep({
+  rowManifest,
+  absenceBridgeFillRuleTarget,
+  transportLawTarget,
+  identityConservationTarget,
+  candidatePassFields,
+}) {
+  const selectedSourceAudit =
+    absenceBridgeFillRuleTarget?.selectedActiveDomainBoundedGapFillSourceAudit ??
+    null;
+  const sourceBindingDependencyAudit =
+    selectedSourceAudit?.directAbsenceSourceBindingDependencyAudit ?? null;
+  const sourceBindingProofBaseAudit =
+    sourceBindingDependencyAudit?.sourceBindingProofBaseAudit ?? null;
+  const twoSheetDependencyAudit =
+    sourceBindingProofBaseAudit?.sourceBindingTwoSheetDependencyAudit ?? null;
+  const rows = twoSheetDependencyAudit?.rows ?? [];
+  const activeDomainRows = rows.filter(
+    (row) => row.activeDomainExtensionRequiredPass === true
+  );
+  const innerConversionRows = rows.filter(
+    (row) => row.innerBothActiveConversionRequiredPass === true
+  );
+  const pointEventRows = rows.filter(
+    (row) => row.fullPointEventRuleRequiredPass === true
+  );
+  const payloadEnergyRows = rows.filter(
+    (row) => row.payloadEnergyTransportBindingRequiredPass === true
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSourceBindingTwoSheetDependencyPass === true
+  );
+  const acceptedIdentityConservationPass =
+    identityConservationTarget?.acceptedEventRootIdentityConservationPass === true;
+  const acceptedNonlocalTransportPass =
+    transportLawTarget?.acceptedTransportLawPass === true;
+  const acceptedTwoSheetGlobalBindingPass =
+    rows.length > 0 &&
+    acceptedRows.length === rows.length &&
+    acceptedIdentityConservationPass &&
+    acceptedNonlocalTransportPass;
+  const sameEndpointBoundariesPass =
+    candidatePassFields.find(
+      (field) => field.field === "same_event_root_endpoint_boundaries"
+    )?.fieldPass === true;
+  const affineBracketGeometryPass =
+    candidatePassFields.find(
+      (field) => field.field === "affine_lattice_bracket_equation"
+    )?.fieldPass === true;
+  const latticeAlignmentPass =
+    candidatePassFields.find(
+      (field) => field.field === "bounded_gap_lattice_alignment"
+    )?.fieldPass === true;
+  const firstInternalBlocker =
+    twoSheetDependencyAudit?.firstSourceBindingTwoSheetDependencyBlocker ??
+    sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+    sourceBindingDependencyAudit?.firstSourceBindingDependencyBlocker ??
+    selectedSourceAudit?.firstSelectedActiveDomainBoundedGapFillSourceBlocker ??
+    null;
+  const firstSelectedActiveDomainExtensionDependencyBlocker =
+    rows.find((row) => row.selectedActiveDomainFirstRowBlocker)
+      ?.selectedActiveDomainFirstRowBlocker ?? null;
+  const firstUnresolvedField =
+    rows.length === 0
+      ? "source_binding_two_sheet_dependency_rows"
+      : activeDomainRows.length > 0
+        ? "active_domain_extension_status_for_both_inactive_gaps"
+        : innerConversionRows.length > 0
+          ? "inner_both_active_conversion_status_for_two_sheet_global_binding"
+          : pointEventRows.length > 0
+            ? "full_point_event_rule_for_two_sheet_global_binding"
+            : payloadEnergyRows.length > 0
+              ? "payload_energy_transport_binding_for_two_sheet_global_binding"
+              : acceptedIdentityConservationPass !== true
+                ? "event_root_identity_conservation_on_affine_bracket_interval"
+                : acceptedNonlocalTransportPass !== true
+                  ? "accepted_nonlocal_event_root_bracket_transport_law"
+                  : acceptedTwoSheetGlobalBindingPass
+                    ? null
+                    : "derive_two_sheet_global_binding_acceptance_law";
+  const status =
+    acceptedTwoSheetGlobalBindingPass
+      ? "active_domain_extension_two_sheet_global_binding_producer_step_accepted"
+      : rows.length === 0
+        ? "active_domain_extension_two_sheet_global_binding_producer_step_no_dependency_rows"
+        : activeDomainRows.length > 0 && innerConversionRows.length > 0
+          ? "active_domain_extension_two_sheet_global_binding_producer_step_blocked_active_domain_extension_and_inner_conversion"
+          : activeDomainRows.length > 0
+            ? "active_domain_extension_two_sheet_global_binding_producer_step_blocked_active_domain_extension"
+            : innerConversionRows.length > 0
+              ? "active_domain_extension_two_sheet_global_binding_producer_step_blocked_inner_conversion"
+              : pointEventRows.length > 0
+                ? "active_domain_extension_two_sheet_global_binding_producer_step_blocked_point_event_rule"
+                : payloadEnergyRows.length > 0
+                  ? "active_domain_extension_two_sheet_global_binding_producer_step_blocked_payload_energy_transport_binding"
+                  : "active_domain_extension_two_sheet_global_binding_producer_step_blocked_acceptance_law_missing";
+
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-two-sheet-global-binding-producer-step.v1",
+    status,
+    claimLevel:
+      "fail-closed executable producer step for active_domain_extension_required_before_two_sheet_global_binding; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentProducerStepId: "derive_event_root_absence_bridge_fill_law",
+    targetObjectId: "active_domain_extension_required_before_two_sheet_global_binding",
+    producerStepId: "active_domain_extension_required_before_two_sheet_global_binding",
+    eventRootKeys: [
+      ...new Set(
+        rows
+          .map((row) => row.eventRootKey)
+          .filter((eventRootKey) => eventRootKey != null)
+          .map(String)
+      ),
+    ].sort(),
+    acceptedTwoSheetGlobalBindingProducerStepPass:
+      acceptedTwoSheetGlobalBindingPass,
+    emitsBranchCertificateRef: false,
+    emitsAcceptedBranchChart: false,
+    emitsMovingRetainedBranchCertificate: false,
+    emitsAcceptedTransitionSource: false,
+    emitsRetainedBranchClosure: false,
+    emitsGlobalRetainedRowSetIdentity: false,
+    emitsAcceptedNonlocalTransport: false,
+    emitsIdentityConservation: false,
+    sourceBindingTwoSheetDependencyAuditStatus:
+      twoSheetDependencyAudit?.status ?? null,
+    sourceBindingTwoSheetDependencyRowCount:
+      twoSheetDependencyAudit?.sourceBindingTwoSheetDependencyRowCount ?? 0,
+    twoSheetDependencyRowPresentCount:
+      twoSheetDependencyAudit?.twoSheetDependencyRowPresentCount ?? 0,
+    activeDomainExtensionRequiredRowCount:
+      twoSheetDependencyAudit?.activeDomainExtensionRequiredRowCount ?? 0,
+    innerBothActiveConversionRequiredRowCount:
+      twoSheetDependencyAudit?.innerBothActiveConversionRequiredRowCount ?? 0,
+    fullPointEventRuleRequiredRowCount:
+      twoSheetDependencyAudit?.fullPointEventRuleRequiredRowCount ?? 0,
+    payloadEnergyTransportBindingRequiredRowCount:
+      twoSheetDependencyAudit?.payloadEnergyTransportBindingRequiredRowCount ??
+      0,
+    acceptedSourceBindingTwoSheetDependencyRowCount:
+      twoSheetDependencyAudit
+        ?.acceptedSourceBindingTwoSheetDependencyRowCount ?? 0,
+    boundedGapRowCount: rowManifest.length,
+    selectedActiveDomainBoundedGapRowCount:
+      twoSheetDependencyAudit?.selectedActiveDomainBoundedGapRowCount ?? 0,
+    selectedActiveDomainOneSidedEndpointGapRowCount:
+      twoSheetDependencyAudit
+        ?.selectedActiveDomainOneSidedEndpointGapRowCount ?? 0,
+    selectedActiveDomainPointOnlyContactCount:
+      twoSheetDependencyAudit?.selectedActiveDomainPointOnlyContactCount ?? 0,
+    endpointBracketEvidence: {
+      sameEndpointBoundariesPass,
+      pairKeys: [...new Set(rowManifest.map((row) => row.pairKey))].sort(),
+      eventRootKeys: [
+        ...new Set(
+          rowManifest
+            .map((row) => row.eventRootKey)
+            .filter((eventRootKey) => eventRootKey != null)
+            .map(String)
+        ),
+      ].sort(),
+    },
+    affineBracketEvidence: {
+      affineBracketGeometryPass,
+      latticeAlignmentPass,
+    },
+    activeDomainExtensionStatus:
+      activeDomainRows.length > 0
+        ? "active_domain_extension_required_before_two_sheet_global_binding"
+        : "active_domain_extension_not_first_blocker_for_two_sheet_global_binding",
+    identityConservationStatus: identityConservationTarget?.status ?? null,
+    acceptedIdentityConservationPass,
+    acceptedNonlocalTransportStatus: transportLawTarget?.status ?? null,
+    acceptedNonlocalTransportPass,
+    firstUnresolvedField,
+    firstInternalBlocker,
+    firstSelectedActiveDomainExtensionDependencyBlocker,
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createActiveDomainExtensionTwoSheetGlobalBindingNegativeControls(),
+    rows: rows.map((row) => ({
+      ...row,
+      acceptedTwoSheetGlobalBindingProducerRowPass: false,
+      firstUnresolvedRowField:
+        row.activeDomainExtensionRequiredPass === true
+          ? "active_domain_extension_status_for_both_inactive_gaps"
+          : row.firstSourceBindingTwoSheetDependencyRowBlocker,
+    })),
+    retainedLimitation:
+      "The route has concrete same-root selected source rows and two-sheet dependency rows, but those rows remain unauthorized until active-domain extension closes on the same route/root key and the downstream identity-conservation and accepted nonlocal transport rows are supplied on that same record.",
   };
 }
 
@@ -38406,6 +38633,108 @@ function createEventRootAbsenceBridgeFillLawProducerTargetSchema() {
       "global_retained_row_set_identity",
     ],
     negativeControls: createEventRootAbsenceBridgeFillLawNegativeControls(),
+  };
+}
+
+function createActiveDomainExtensionTwoSheetGlobalBindingNegativeControls() {
+  return [
+    {
+      id: "endpoint_only_gaps_not_two_sheet_global_binding",
+      rejects:
+        "event-root endpoint brackets without same-record active-domain extension and two-sheet dependency acceptance",
+    },
+    {
+      id: "affine_geometry_without_identity_conservation_not_two_sheet_global_binding",
+      rejects:
+        "affine bracket geometry without event-root identity conservation on the same bracket interval",
+    },
+    {
+      id: "sampled_dense_support_not_two_sheet_global_binding",
+      rejects:
+        "sampled dense-support rows before active-domain extension and retained source binding",
+    },
+    {
+      id: "phase_cancellation_rows_not_two_sheet_global_binding",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without accepted two-sheet/global retained binding",
+    },
+    {
+      id: "aggregate_rows_not_two_sheet_global_binding",
+      rejects:
+        "aggregate summaries that erase the required same-record route/root-key binding",
+    },
+    {
+      id: "target_only_rows_not_two_sheet_global_binding",
+      rejects:
+        "target-only rows or derived affine fits without independent source evidence",
+    },
+    {
+      id: "route_only_rows_not_two_sheet_global_binding",
+      rejects:
+        "route-only endpoint rows without active-domain extension and accepted nonlocal transport",
+    },
+    {
+      id: "cross_row_bundles_not_two_sheet_global_binding",
+      rejects:
+        "cross-row bundles that assemble active-domain, identity-conservation, and transport fields from separate records",
+    },
+    {
+      id: "one_sheet_or_cross_root_joins_not_two_sheet_global_binding",
+      rejects:
+        "one-sheet rows or cross-root joins that do not bind both sheets on the same route/root-key record",
+    },
+  ];
+}
+
+function createActiveDomainExtensionTwoSheetGlobalBindingProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-two-sheet-global-binding-producer-target.schema.v1",
+    parentProducerStepId: "derive_event_root_absence_bridge_fill_law",
+    targetObjectId: "active_domain_extension_required_before_two_sheet_global_binding",
+    producerStepSchema:
+      "aaa-tri-binary-active-domain-extension-two-sheet-global-binding-producer-step.v1",
+    producerStepId: "active_domain_extension_required_before_two_sheet_global_binding",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed two-sheet active-domain binding producer step; not retained branch acceptance",
+    requiredFieldIds: [
+      "source_binding_two_sheet_dependency_rows",
+      "same_route_root_key_2856731379702547500",
+      "bounded_gap_row_family",
+      "endpoint_bracket_evidence",
+      "affine_bracket_evidence",
+      "active_domain_extension_status_for_both_inactive_gaps",
+      "event_root_identity_conservation_on_affine_bracket_interval",
+      "accepted_nonlocal_event_root_bracket_transport_law",
+      "same_record_binding",
+    ],
+    firstUnresolvedField:
+      "active_domain_extension_status_for_both_inactive_gaps",
+    firstInternalBlocker:
+      "active_domain_extension_required_before_source_binding_two_sheet_global_binding",
+    sameRecordBindingRequirements: [
+      "one_retained_record",
+      "one_route_root_key",
+      "one_event_root_key",
+      "one_source_binding_two_sheet_dependency_row_family",
+      "one_active_domain_extension_status",
+      "one_identity_conservation_status",
+      "one_accepted_nonlocal_transport_status",
+    ],
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createActiveDomainExtensionTwoSheetGlobalBindingNegativeControls(),
   };
 }
 
@@ -63413,5 +63742,6 @@ function printUsage(exitCode) {
   console.log("  --schema continuous-interval-witness-producer-target  Print the fail-closed interval-witness producer schema and exit");
   console.log("  --schema active-domain-extension-row-set-producer-target  Print the fail-closed active-domain extension producer schema and exit");
   console.log("  --schema event-root-absence-bridge-fill-law-producer-target  Print the fail-closed absence-bridge fill-law producer schema and exit");
+  console.log("  --schema active-domain-extension-two-sheet-global-binding-producer-target  Print the fail-closed two-sheet active-domain binding producer schema and exit");
   process.exit(exitCode);
 }

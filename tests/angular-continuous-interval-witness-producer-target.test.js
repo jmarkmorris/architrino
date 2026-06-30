@@ -273,6 +273,95 @@ test("event-root absence-bridge fill-law producer schema stays fail closed", () 
   );
 });
 
+test("active-domain two-sheet global-binding producer schema stays fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "active-domain-extension-two-sheet-global-binding-producer-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-active-domain-extension-two-sheet-global-binding-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.parentProducerStepId,
+    "derive_event_root_absence_bridge_fill_law"
+  );
+  assert.equal(
+    schema.targetObjectId,
+    "active_domain_extension_required_before_two_sheet_global_binding"
+  );
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-active-domain-extension-two-sheet-global-binding-producer-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "active_domain_extension_required_before_two_sheet_global_binding"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "source_binding_two_sheet_dependency_rows",
+    "same_route_root_key_2856731379702547500",
+    "bounded_gap_row_family",
+    "endpoint_bracket_evidence",
+    "affine_bracket_evidence",
+    "active_domain_extension_status_for_both_inactive_gaps",
+    "event_root_identity_conservation_on_affine_bracket_interval",
+    "accepted_nonlocal_event_root_bracket_transport_law",
+    "same_record_binding",
+  ]);
+  assert.equal(
+    schema.firstUnresolvedField,
+    "active_domain_extension_status_for_both_inactive_gaps"
+  );
+  assert.equal(
+    schema.firstInternalBlocker,
+    "active_domain_extension_required_before_source_binding_two_sheet_global_binding"
+  );
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "one_retained_record",
+    "one_route_root_key",
+    "one_event_root_key",
+    "one_source_binding_two_sheet_dependency_row_family",
+    "one_active_domain_extension_status",
+    "one_identity_conservation_status",
+    "one_accepted_nonlocal_transport_status",
+  ]);
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+    "global_retained_row_set_identity",
+    "accepted_nonlocal_transport",
+    "event_root_identity_conservation",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_only_gaps_not_two_sheet_global_binding",
+      "affine_geometry_without_identity_conservation_not_two_sheet_global_binding",
+      "sampled_dense_support_not_two_sheet_global_binding",
+      "phase_cancellation_rows_not_two_sheet_global_binding",
+      "aggregate_rows_not_two_sheet_global_binding",
+      "target_only_rows_not_two_sheet_global_binding",
+      "route_only_rows_not_two_sheet_global_binding",
+      "cross_row_bundles_not_two_sheet_global_binding",
+      "one_sheet_or_cross_root_joins_not_two_sheet_global_binding",
+    ]
+  );
+});
+
 test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
   const schema = JSON.parse(
     execFileSync(
