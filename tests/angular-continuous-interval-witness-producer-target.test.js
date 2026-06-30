@@ -109,6 +109,86 @@ test("active-domain extension producer schema rejects local row-set proxies", ()
   );
 });
 
+test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "accepted-nonlocal-transport-global-row-set-producer-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-accepted-nonlocal-transport-global-row-set-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.targetObjectId,
+    "accepted_nonlocal_transport_same_route_root_key_global_retained_row_set_identity_row"
+  );
+  assert.equal(
+    schema.firstProducerObject,
+    "prove_active_domain_extension_for_both_inactive_gaps"
+  );
+  assert.equal(
+    schema.parentRoute,
+    "same_route_root_key_global_retained_row_set_identity_provider"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "route_root_key_2856731379702547500",
+    "same_route_root_key_global_retained_row_set_identity",
+    "all_layer_pair_chronological_replay_identity",
+    "active_domain_extension_status_for_both_inactive_gaps",
+    "accepted_nonlocal_transport_law",
+    "retained_source_binding",
+    "payload_transport_binding",
+    "energy_transport_binding",
+    "positive_width_or_full_point_event_domain_coverage",
+    "selected_direct_absence_source_rows_if_used",
+  ]);
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "one_retained_record",
+    "one_route_root_key",
+    "one_global_retained_row_set_identity",
+    "one_active_domain_extension_status",
+    "one_accepted_nonlocal_transport_law",
+    "one_retained_source_binding",
+    "one_payload_energy_transport_binding",
+  ]);
+  assert.equal(
+    schema.firstBlockingProducerField,
+    "active_domain_extension_status_for_both_inactive_gaps"
+  );
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "continuous_interval_witness_row",
+    "derive_presence_measure_source_from_signed_transition_balance",
+    "acceptedNonlocalTransportLawPass",
+    "retainedBranchClaim",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_provider_route_only_rows_not_accepted_nonlocal_transport",
+      "hinge_point_replay_not_accepted_nonlocal_transport",
+      "route_authorized_point_events_not_accepted_nonlocal_transport",
+      "target_derived_affine_fits_not_accepted_nonlocal_transport",
+      "sampled_dense_support_not_accepted_nonlocal_transport",
+      "phase_cancellation_rows_not_accepted_nonlocal_transport",
+      "aggregate_rows_not_accepted_nonlocal_transport",
+      "cross_row_bundles_not_accepted_nonlocal_transport",
+      "current_proxy_rows_not_accepted_nonlocal_transport",
+      "generated_decoys_not_accepted_nonlocal_transport",
+      "tautological_unit_density_width_identity_not_accepted_nonlocal_transport",
+    ]
+  );
+});
+
 const reportPath = path.resolve(
   ".tmp/angular-momentum-spin/frequency-candidate-current-report-v76.json"
 );

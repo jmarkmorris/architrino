@@ -35,6 +35,10 @@
         "scenePath": "content/scenes/archie/support_architrino_research.json"
       },
       {
+        "nodeId": "system_card",
+        "scenePath": "content/scenes/archie/system_card.json"
+      },
+      {
         "nodeId": "github_presence_and_community",
         "scenePath": "content/scenes/archie/github_presence_and_community.json"
       },
@@ -92,6 +96,13 @@
       "color": "#7a5a2f",
       "labelTitle": "Support Architrino Research",
       "labelBadge": "doc"
+    },
+    {
+      "id": "system_card",
+      "title": "System Card",
+      "radius": 2.6,
+      "color": "#4b5e2f",
+      "labelTitle": "System Card"
     },
     {
       "id": "github_presence_and_community",

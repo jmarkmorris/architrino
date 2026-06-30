@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 569,
-      "edges": 1323,
-      "scenes": 369,
+      "nodes": 572,
+      "edges": 1332,
+      "scenes": 371,
       "markdownIndexes": 0,
-      "markdownDocs": 187,
+      "markdownDocs": 188,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2363,6 +2363,18 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__system_card",
+      "name": "System Card",
+      "path": "content/scenes/archie/system_card.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__system_card__overview",
+      "name": "System Card Overview",
+      "path": "content/scenes/archie/system_card_overview.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2552,6 +2564,12 @@
       "id": "content/markdown/aaa/archie/support-architrino-research.md",
       "name": "Support Architrino Research",
       "path": "content/markdown/aaa/archie/support-architrino-research.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/system-card.md",
+      "name": "Archie System Card",
+      "path": "content/markdown/aaa/archie/system-card.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3799,6 +3817,24 @@
       "name": "Support Architrino Research",
       "path": "content/scenes/archie/support_architrino_research.json",
       "searchTarget": "content/scenes/archie/support_architrino_research.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/system_card_overview.json",
+      "nodeType": "scene",
+      "id": "archie__system_card__overview",
+      "name": "System Card Overview",
+      "path": "content/scenes/archie/system_card_overview.json",
+      "searchTarget": "content/scenes/archie/system_card_overview.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/system_card.json",
+      "nodeType": "scene",
+      "id": "archie__system_card",
+      "name": "System Card",
+      "path": "content/scenes/archie/system_card.json",
+      "searchTarget": "content/scenes/archie/system_card.json",
       "implicit": false
     },
     {
@@ -7096,6 +7132,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/system-card.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/system-card.md",
+      "name": "Archie System Card",
+      "path": "content/markdown/aaa/archie/system-card.md",
+      "searchTarget": "content/markdown/aaa/archie/system-card.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/terminology-usage.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/terminology-usage.md",
@@ -8670,7 +8715,7 @@
       "to": "scene:content/scenes/archie/comics.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -8684,7 +8729,7 @@
       "to": "scene:content/scenes/archie/github_presence_and_community.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -8699,6 +8744,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
       "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/archie.json",
+      "to": "scene:content/scenes/archie/system_card.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/archie.json",
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -8719,7 +8771,7 @@
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/comics.json",
@@ -8895,6 +8947,55 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/archie/system_card_overview.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[0]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/closure_scorecard.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/failure_criteria.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/known_tensions.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/no_go_theorems.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/parameter_ledger.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card.json",
+      "to": "scene:content/scenes/validation/validation_protocols.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/system_card.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/user_interface.json",
@@ -13332,6 +13433,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/support-architrino-research.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/support_architrino_research.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/system_card_overview.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/system-card.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/system_card_overview.json",
       "field": "scene.source.path"
     },
     {

@@ -39,6 +39,13 @@ function sourceAuditField(report, field) {
   );
 }
 
+function producerTargetField(report, field) {
+  return report.branch_certificate_ref_source_availability_audit
+    .next_retained_active_row_evidence_object.producer_target.field_results.find(
+      (entry) => entry.field === field
+    );
+}
+
 function missingAcceptedRef(target, field) {
   return target.missing_accepted_refs.find((entry) => entry.field === field);
 }
@@ -133,6 +140,96 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
   assert.equal(
     report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object.schema,
     "torque_wake_retained_active_row_branch_certificate_evidence_object/v0"
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.schema,
+    "torque_wake_retained_active_row_branch_certificate_producer_target/v0"
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.target_status,
+    "fail_closed_producer_target"
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.provider_source_status_required,
+    "accepted_non_fixture_source"
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.retained_record_required,
+    true
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.accepted_transition_source_authorized,
+    false
+  );
+  assert.deepEqual(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.required_same_retained_active_row_ids,
+    fixture.sampled_active_row_ids
+  );
+  assert.deepEqual(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.retained_source_binding_required_fields,
+    [
+      "retained_source_binding.retained_record_id",
+      "retained_source_binding.retained_source_ref",
+      "retained_source_binding.source_artifact_hash",
+      "retained_source_binding.source_status",
+    ]
+  );
+  assert.deepEqual(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.provider_provenance_required_fields,
+    [
+      "provider_provenance.provider_object_ref",
+      "provider_provenance.provider_source_status",
+      "provider_provenance.proof_object_provenance_ref",
+    ]
+  );
+  assert.deepEqual(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.same_record_binding_required_fields,
+    [
+      "same_record_binding.retained_record_id",
+      "same_record_binding.branch_certificate_ref",
+      "same_record_binding.same_retained_active_row_ids",
+      "same_record_binding.accepted_branch_chart_ref",
+      "same_record_binding.moving_retained_branch_certificate_ref",
+      "same_record_binding.active_root_ledger_hash",
+      "same_record_binding.conservation_pullback_hash",
+      "same_record_binding.negative_control_ref",
+    ]
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.first_failure,
+    "branch_certificate_ref_missing"
+  );
+  assert.equal(
+    producerTargetField(report, "retained_source_binding.retained_record_id").failure_code,
+    "retained_source_binding_retained_record_id_missing"
+  );
+  assert.equal(
+    producerTargetField(report, "provider_provenance.provider_object_ref").failure_code,
+    "provider_provenance_provider_object_ref_missing"
+  );
+  assert.equal(
+    producerTargetField(report, "same_record_binding.same_retained_active_row_ids").failure_code,
+    "same_record_binding_same_retained_active_row_ids_missing"
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.disallowed_source_rows.includes("H39/theta3minus quotient rows"),
+    true
+  );
+  assert.equal(
+    report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object
+      .producer_target.downstream_authorization.accepted_transition_source_ref,
+    false
   );
   assert.equal(
     report.branch_certificate_ref_source_availability_audit.fail_closed_bridge_target.schema,

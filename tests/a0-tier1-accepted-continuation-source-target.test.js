@@ -7,6 +7,7 @@ import { execFileSync } from "node:child_process";
 import { fileURLToPath } from "node:url";
 
 import {
+  buildCandidateFromCorrectedAttempt,
   buildAcceptedContinuationSourceTarget,
   validationErrors,
 } from "../scripts/mass-map/a0-tier1-accepted-continuation-source-target.mjs";
@@ -107,6 +108,33 @@ test("A0 Tier 1 accepted-continuation source target keeps positive non-fixture c
   );
 });
 
+test("A0 Tier 1 source target translates corrected rerun residuals without accepting them", () => {
+  const candidate = buildCandidateFromCorrectedAttempt(correctedAttemptArtifact(), {
+    sourceRef: "reports/a0-tier1/corrected-rerun.json",
+  });
+  const report = buildAcceptedContinuationSourceTarget(candidate);
+
+  assert.deepEqual(validationErrors(report), []);
+  assert.equal(report.accepted_source_candidate_available, false);
+  assert.equal(report.authorizes_retained_pressure_row_provider, false);
+  assert.equal(report.provider_source_status, "diagnostic_failed_direct_one_period_residuals");
+  assert.equal(report.first_missing_field, "provider_source_status");
+  assert.equal(report.rejected_source_family_codes.includes("diagnostic_row"), true);
+  assert.equal(
+    report.corrected_rerun_source_boundary.first_failed_proof_field,
+    "direct_one_period_residual_ledger.residuals_below_tolerance"
+  );
+  assert.equal(
+    report.missing_or_rejected_fields_by_group.direct_one_period_residual_ledger.includes(
+      "direct_one_period_residual_ledger.residuals_below_tolerance"
+    ),
+    true
+  );
+  assert.equal(report.corrected_rerun_source_boundary.pass_fail_fields.no_secular_center_drift, true);
+  assert.equal(report.corrected_rerun_source_boundary.pass_fail_fields.Delta_k_positive, false);
+  assert.equal(report.corrected_rerun_source_boundary.measured_residuals.R_root, 40.11722462935903);
+});
+
 test("A0 Tier 1 accepted-continuation source target CLI emits and validates fixture-backed partial report", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "a0-tier1-source-target-"));
   const reportPath = path.join(tempDir, "report.json");
@@ -129,6 +157,34 @@ test("A0 Tier 1 accepted-continuation source target CLI emits and validates fixt
   assert.equal(validation.valid, true);
   assert.equal(validation.first_failure, "accepted_tier1_continuation_source_missing");
   assert.equal(validation.first_missing_field, "provider_source_status");
+});
+
+test("A0 Tier 1 source target CLI emits measured corrected-rerun boundary", () => {
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "a0-tier1-source-target-attempt-"));
+  const attemptPath = path.join(tempDir, "attempt.json");
+  const reportPath = path.join(tempDir, "report.json");
+  fs.writeFileSync(attemptPath, `${JSON.stringify(correctedAttemptArtifact())}\n`);
+
+  execFileSync(
+    process.execPath,
+    [SCRIPT_PATH, "--from-corrected-attempt", attemptPath, "--out", reportPath, "--pretty"],
+    { encoding: "utf8" }
+  );
+
+  const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  assert.equal(report.accepted_source_candidate_available, false);
+  assert.equal(report.first_missing_field, "provider_source_status");
+  assert.equal(
+    report.corrected_rerun_source_boundary.first_failed_proof_field,
+    "direct_one_period_residual_ledger.residuals_below_tolerance"
+  );
+
+  const validation = JSON.parse(
+    execFileSync(process.execPath, [SCRIPT_PATH, "--validate", reportPath, "--pretty"], {
+      encoding: "utf8",
+    })
+  );
+  assert.equal(validation.valid, true);
 });
 
 function completeAcceptedLookingCandidate(overrides = {}) {
@@ -201,5 +257,86 @@ function completeAcceptedLookingCandidate(overrides = {}) {
       ],
     },
     ...overrides,
+  };
+}
+
+function correctedAttemptArtifact() {
+  return {
+    artifact_schema: "a0-tier1-fold-layer-locked-one-period-attempt/v1",
+    metadata: {
+      status: "failed_direct_one_period_residuals",
+    },
+    rows: [
+      {
+        schema: "a0-tier1-fold-layer-locked-one-period-attempt-row/v1",
+        row: 1,
+        status: "failed_direct_one_period_residuals",
+        correction_context: {
+          status: "correction_context_ready",
+          accepted_history_boundary: false,
+        },
+        validation: {
+          source_row_present: true,
+          no_secular_center_drift: true,
+          benchmark_inputs_excluded: true,
+        },
+        source_row: {
+          branch_label: { k: { I: 60, M: 5, O: 1 }, q: { IM: 55, MO: 4, IO: 59 } },
+          z_lambda: null,
+        },
+        active_causal_root_ledger: [{ root_key: "I+|I-|partner|active" }],
+        accepted_history_boundary: {
+          status_is_accepted_history_segment: false,
+          residuals_below_tolerance: false,
+          no_secular_center_drift: true,
+          Delta_k_positive: false,
+          same_branch_persists_across_eta_ladder: false,
+        },
+        residual_ledgers: {
+          state_return: {
+            status: "failed",
+            max_state_return_residual: 0.9417358421826848,
+          },
+          root_closure: {
+            status: "failed",
+            max_root_residual: 40.11722462935903,
+          },
+          phase_closure: {
+            status: "failed",
+            phase_closure_residual: 0.2805922454402012,
+          },
+          energy_like_speed: {
+            status: "failed",
+            energy_like_speed_residual: 0.8721683631666627,
+          },
+          center_drift: {
+            status: "passed",
+            max_center_drift: 9.97938043855093e-17,
+          },
+          speed_ordering: {
+            status: "failed",
+            max_speed_ordering_residual: 1.5917291613135518,
+          },
+          fold_layer_lock: {
+            status: "passed",
+          },
+          monodromy: {
+            status: "not_computed",
+            Delta_k: null,
+            Delta_k_positive: false,
+          },
+          eta_ladder: {
+            status: "not_computed",
+            same_branch_persists_across_eta_ladder: false,
+          },
+          residual_balance: {
+            relative_residual: 0.9925655644010825,
+          },
+          refined_i_receiver_phase_bin_residual_balance: {
+            relative_residual: 0.3500173344435869,
+          },
+        },
+      },
+    ],
   };
 }

@@ -4,7 +4,6 @@ export function createAppSceneChromeRuntime({
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
-  detailInfoButton,
 }) {
   function updateTextbookTocButton(currentLevel, options = {}) {
     if (!textbookTocButton) {
@@ -80,13 +79,6 @@ export function createAppSceneChromeRuntime({
     sceneLabel.removeAttribute("aria-label");
   }
 
-  function updateDetailInfoButton(canOpenInfo, options = {}) {
-    if (!detailInfoButton) {
-      return;
-    }
-    detailInfoButton.disabled = !!options.transitionActive || !canOpenInfo;
-  }
-
   function updateSceneLabel(currentLevel) {
     if (!sceneLabel) {
       return;
@@ -100,7 +92,6 @@ export function createAppSceneChromeRuntime({
     updateMarkdownLayoutToggleButton,
     updateMarkdownPdfButton,
     updateSceneInfoTrigger,
-    updateDetailInfoButton,
     updateSceneLabel,
   };
 }

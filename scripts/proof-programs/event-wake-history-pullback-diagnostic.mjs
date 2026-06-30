@@ -21,6 +21,8 @@ const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
 const FIRST_BLOCKED_DOWNSTREAM_CONSUMER = "partial_L_EpJ";
 const WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA =
   "wake-history-derivation-proof-object-provider-target/v0";
+const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_PRODUCER_TARGET_SCHEMA =
+  "receiver-normal-branch-strength-certificate-producer-target/v0";
 const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID =
   "receiver_normal_branch_strength_certificate/v0";
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
@@ -98,6 +100,14 @@ const REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS = [
   "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
   "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
 ];
+const REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS = [
+  "retained_branch_source.accepted_retained_record_id",
+  "retained_branch_source.retained_branch_chart_ref",
+  "retained_branch_source.retained_branch_row_id",
+  "retained_branch_source.provider_source_status",
+  "retained_branch_source.branch_family_id",
+  "retained_branch_source.source_artifact_hash",
+];
 const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
   "H39/theta3minus quotient rows",
   "shell-braid residue rows",
@@ -149,6 +159,47 @@ const REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS = {
     "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
   ],
   wake_history_rows: REQUIRED_EVENT_ROWS,
+};
+const DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES = [
+  "wake-history-only target rows",
+  "proxy/current branch charts",
+  "fixture rows",
+  "H39/theta3minus quotient rows",
+  "aggregates",
+  "generated decoys",
+  "cross-row bundles",
+  ...DISALLOWED_ACCEPTED_EVIDENCE_SOURCES.filter(
+    (entry) =>
+      ![
+        "H39/theta3minus quotient rows",
+        "cross-row bundles",
+      ].includes(entry)
+  ),
+];
+const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_FIELD_GROUPS = {
+  wake_history_proof_object_provider: [
+    "wake_history_derivation_proof_object_boundary.provider_target",
+    "wake_history_derivation_proof_object_boundary.accepted_retained_provider_ready",
+    "wake_history_derivation_proof_object_boundary.provider_status",
+  ],
+  retained_branch_source: REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS,
+  branch_family_aggregation: REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS,
+  receiver_normal_branch_strength:
+    REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_branch_strength,
+  receiver_normal_derivatives:
+    REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_derivatives,
+  retained_source_binding:
+    REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.same_record_binding,
+  provider_object_provenance: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
+  negative_controls: [
+    "negative_controls.reject_wake_history_only_target_rows",
+    "negative_controls.reject_proxy_current_branch_charts",
+    "negative_controls.reject_fixture_rows",
+    "negative_controls.reject_h39_theta3minus_quotient_rows",
+    "negative_controls.reject_aggregates",
+    "negative_controls.reject_generated_decoys",
+    "negative_controls.reject_cross_row_bundles",
+  ],
 };
 const NUMERIC_TOLERANCE = 1e-12;
 
@@ -829,6 +880,36 @@ function wakeHistoryDerivationProofObjectProviderTarget() {
   };
 }
 
+function receiverNormalBranchStrengthCertificateProducerTarget() {
+  const wakeHistoryProviderTarget = wakeHistoryDerivationProofObjectProviderTarget();
+  return {
+    schema: RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_PRODUCER_TARGET_SCHEMA,
+    target_status: "fail_closed_producer_target",
+    promotion_status: PROMOTION_STATUS,
+    certificate_id: RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID,
+    certificate_ready: false,
+    accepted_retained_record_required: true,
+    accepted_non_fixture_provider_required: true,
+    executable_replay_flag: "--certificate-target",
+    consumes_provider_target_schema:
+      WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+    consumes_provider_target: wakeHistoryProviderTarget,
+    required_wake_history_proof_object_role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+    required_wake_history_row_ids: REQUIRED_EVENT_ROWS,
+    required_same_record_field_groups:
+      RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_FIELD_GROUPS,
+    first_missing_field_family: "retained_branch_source",
+    first_missing_accepted_retained_record_field:
+      "retained_branch_source.accepted_retained_record_id",
+    first_blocked_source_target: NEXT_ACCEPTED_PROVIDER_SOURCE_TARGET,
+    branch_family_aggregation_required: true,
+    downstream_certificate_acceptance_authorized: false,
+    downstream_release_condition:
+      "accepted retained branch-row or branch-chart source binds the wake-history proof object provider, branch-family aggregation, receiver-normal branch strength, derivative rows, retained source binding, provenance, and negative controls on one retained record",
+    disallowed_accepted_evidence_sources: DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES,
+  };
+}
+
 function sameRecordIdentityBoundary(derivativeContractSummary) {
   const blockedRows = derivativeContractSummary.row_contracts.filter((entry) =>
     entry.required_object_blockers.includes("receiver_normal_derivative_bundle")
@@ -1002,6 +1083,8 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
     receiver_normal_derivative_contract_summary: derivativeContractSummary,
     wake_history_derivation_proof_object_boundary:
       wakeHistoryDerivationProofObjectBoundary(derivativeContractSummary),
+    receiver_normal_branch_strength_certificate_producer_target:
+      receiverNormalBranchStrengthCertificateProducerTarget(),
     event_rows: [
       row(
         "source_record_id",
@@ -1027,6 +1110,7 @@ export function buildEventWakeHistoryPullbackDiagnostic(input = buildDefaultEven
         acceptedSummary.accepted_for_wake_history_closure,
       receiver_normal_derivative_contract_ready:
         derivativeContractSummary.all_required_rows_bound,
+      receiver_normal_branch_strength_certificate_ready: false,
       failure_code: failedRows[0]?.failure_code ?? null,
       first_failed_row: failedRows[0]?.row_id ?? null,
       first_failure_status:
@@ -1513,6 +1597,147 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
   }
 }
 
+function validateReceiverNormalBranchStrengthCertificateProducerTarget(artifact, errors) {
+  const target = artifact.receiver_normal_branch_strength_certificate_producer_target;
+  assertField(
+    target && typeof target === "object" && !Array.isArray(target),
+    "receiver_normal_branch_strength_certificate_producer_target must be an object",
+    errors
+  );
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return;
+  }
+  assertField(
+    target.schema === RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_PRODUCER_TARGET_SCHEMA,
+    "receiver_normal_branch_strength_certificate_producer_target.schema must match certificate producer target schema",
+    errors
+  );
+  assertField(
+    target.target_status === "fail_closed_producer_target",
+    "receiver_normal_branch_strength_certificate_producer_target must fail closed",
+    errors
+  );
+  assertField(
+    target.certificate_id === RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID,
+    "receiver_normal_branch_strength_certificate_producer_target.certificate_id must match rank-1 certificate id",
+    errors
+  );
+  assertField(
+    target.certificate_ready === false,
+    "receiver_normal_branch_strength_certificate_producer_target.certificate_ready must remain false",
+    errors
+  );
+  assertField(
+    target.accepted_retained_record_required === true,
+    "receiver_normal_branch_strength_certificate_producer_target must require an accepted retained record",
+    errors
+  );
+  assertField(
+    target.accepted_non_fixture_provider_required === true,
+    "receiver_normal_branch_strength_certificate_producer_target must require a non-fixture provider",
+    errors
+  );
+  assertField(
+    target.consumes_provider_target_schema ===
+      WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+    "receiver_normal_branch_strength_certificate_producer_target must consume the wake-history provider target",
+    errors
+  );
+  assertField(
+    target.consumes_provider_target?.schema ===
+      WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+    "receiver_normal_branch_strength_certificate_producer_target.consumes_provider_target must carry the wake-history provider target",
+    errors
+  );
+  assertField(
+    target.required_wake_history_proof_object_role === ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+    "receiver_normal_branch_strength_certificate_producer_target proof-object role must match",
+    errors
+  );
+  assertField(
+    sameStringArray(target.required_wake_history_row_ids, REQUIRED_EVENT_ROWS),
+    "receiver_normal_branch_strength_certificate_producer_target required wake-history rows must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.retained_branch_source,
+      REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target retained_branch_source fields must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.branch_family_aggregation,
+      REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target branch-family aggregation fields must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.receiver_normal_branch_strength,
+      REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_branch_strength
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target branch-strength fields must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.receiver_normal_derivatives,
+      REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_derivatives
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target derivative fields must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.retained_source_binding,
+      REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.same_record_binding
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target retained source binding fields must match",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.required_same_record_field_groups?.provider_object_provenance,
+      REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target provenance fields must match",
+    errors
+  );
+  assertField(
+    target.first_missing_field_family === "retained_branch_source",
+    "receiver_normal_branch_strength_certificate_producer_target first missing family must be retained_branch_source",
+    errors
+  );
+  assertField(
+    target.first_missing_accepted_retained_record_field ===
+      "retained_branch_source.accepted_retained_record_id",
+    "receiver_normal_branch_strength_certificate_producer_target first missing retained record field must match",
+    errors
+  );
+  assertField(
+    target.downstream_certificate_acceptance_authorized === false,
+    "receiver_normal_branch_strength_certificate_producer_target must not authorize certificate acceptance",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      target.disallowed_accepted_evidence_sources,
+      DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES
+    ),
+    "receiver_normal_branch_strength_certificate_producer_target disallowed evidence sources must match",
+    errors
+  );
+  assertField(
+    artifact.result?.receiver_normal_branch_strength_certificate_ready === false,
+    "result.receiver_normal_branch_strength_certificate_ready must remain false",
+    errors
+  );
+}
+
 export function validateEventWakeHistoryPullbackArtifact(artifact) {
   const errors = [];
   assertField(artifact && typeof artifact === "object" && !Array.isArray(artifact), "artifact must be an object", errors);
@@ -1549,6 +1774,7 @@ export function validateEventWakeHistoryPullbackArtifact(artifact) {
   validateAcceptedEvidenceSummary(artifact, errors);
   validateReceiverNormalDerivativeContractSummary(artifact, errors);
   validateWakeHistoryDerivationProofObjectBoundary(artifact, errors);
+  validateReceiverNormalBranchStrengthCertificateProducerTarget(artifact, errors);
 
   return errors;
 }
@@ -1562,6 +1788,7 @@ function usage() {
     "  --control <name>     Apply a negative control or receiver-normal replay control",
     "  --event-row <row>    Select receiver-normal control row: energy_wake, momentum_wake, angular_momentum_wake, medium_update, all",
     "  --provider-target    Print the fail-closed wake_history_derivation_proof_object provider target",
+    "  --certificate-target Print the fail-closed receiver_normal_branch_strength_certificate/v0 producer target",
     "  --out <path>         Write artifact JSON to path instead of stdout",
     "  --validate <path>    Validate an existing diagnostic artifact JSON file",
     "  --schema             Print the artifact schema identifier",
@@ -1578,6 +1805,7 @@ function parseArgs(argv) {
     validate: null,
     eventRow: "energy_wake",
     providerTarget: false,
+    certificateTarget: false,
     schema: false,
     pretty: false,
     help: false,
@@ -1593,6 +1821,8 @@ function parseArgs(argv) {
       args.eventRow = argv[++index];
     } else if (arg === "--provider-target") {
       args.providerTarget = true;
+    } else if (arg === "--certificate-target") {
+      args.certificateTarget = true;
     } else if (arg === "--out") {
       args.out = argv[++index];
     } else if (arg === "--validate") {
@@ -1657,7 +1887,14 @@ function main() {
             "provider_source_acquisition_blocker",
             "downstream_consumer_boundary",
           ],
+          receiver_normal_branch_strength_certificate_producer_target: [
+            "consumes_provider_target",
+            "required_same_record_field_groups",
+            "first_missing_accepted_retained_record_field",
+            "disallowed_accepted_evidence_sources",
+          ],
           provider_target_cli: "--provider-target",
+          certificate_target_cli: "--certificate-target",
           receiver_normal_derivative_contract_summary: [
             "required_row_ids",
             "accepted_row_ids",
@@ -1678,6 +1915,12 @@ function main() {
   if (args.providerTarget) {
     process.stdout.write(
       printJson(wakeHistoryDerivationProofObjectProviderTarget(), args.pretty)
+    );
+    return;
+  }
+  if (args.certificateTarget) {
+    process.stdout.write(
+      printJson(receiverNormalBranchStrengthCertificateProducerTarget(), args.pretty)
     );
     return;
   }

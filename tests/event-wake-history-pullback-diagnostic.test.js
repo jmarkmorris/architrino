@@ -68,6 +68,14 @@ const REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS = [
   "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
   "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
 ];
+const REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS = [
+  "retained_branch_source.accepted_retained_record_id",
+  "retained_branch_source.retained_branch_chart_ref",
+  "retained_branch_source.retained_branch_row_id",
+  "retained_branch_source.provider_source_status",
+  "retained_branch_source.branch_family_id",
+  "retained_branch_source.source_artifact_hash",
+];
 const REQUIRED_SAME_RECORD_BINDING_FIELDS = [
   "row_id",
   "source_record_id",
@@ -91,6 +99,23 @@ const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
   "sampled rows",
   "current-proxy rows",
   "cross-row bundles",
+];
+const DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES = [
+  "wake-history-only target rows",
+  "proxy/current branch charts",
+  "fixture rows",
+  "H39/theta3minus quotient rows",
+  "aggregates",
+  "generated decoys",
+  "cross-row bundles",
+  "shell-braid residue rows",
+  "old force-weight rows",
+  "terminal aggregates",
+  "source-normal denominators",
+  "row-logic fixtures",
+  "diagnostic rows",
+  "sampled rows",
+  "current-proxy rows",
 ];
 
 function buildSameRecordReceiverNormalDerivativeBundle(input, rowId, overrides = {}) {
@@ -365,6 +390,61 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
       .missing_provider_field_groups.wake_history_rows,
     REQUIRED_EVENT_ROWS
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target.schema,
+    "receiver-normal-branch-strength-certificate-producer-target/v0"
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target.target_status,
+    "fail_closed_producer_target"
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target.certificate_id,
+    RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target.certificate_ready,
+    false
+  );
+  assert.equal(
+    artifact.result.receiver_normal_branch_strength_certificate_ready,
+    false
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .consumes_provider_target.schema,
+    "wake-history-derivation-proof-object-provider-target/v0"
+  );
+  assert.deepEqual(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .required_same_record_field_groups.retained_branch_source,
+    REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS
+  );
+  assert.deepEqual(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .required_same_record_field_groups.branch_family_aggregation,
+    REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
+  );
+  assert.deepEqual(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .required_same_record_field_groups.retained_source_binding,
+    REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .first_missing_accepted_retained_record_field,
+    "retained_branch_source.accepted_retained_record_id"
+  );
+  assert.equal(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .downstream_certificate_acceptance_authorized,
+    false
+  );
+  assert.deepEqual(
+    artifact.receiver_normal_branch_strength_certificate_producer_target
+      .disallowed_accepted_evidence_sources,
+    DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES
   );
 });
 
@@ -884,6 +964,57 @@ test("event wake-history CLI emits the fail-closed provider target", () => {
   assert.equal(target.first_downstream_consumer, "partial_L_EpJ");
 });
 
+test("event wake-history CLI emits the fail-closed receiver-normal certificate producer target", () => {
+  const target = JSON.parse(
+    execFileSync(process.execPath, [scriptPath, "--certificate-target"], { encoding: "utf8" })
+  );
+
+  assert.equal(target.schema, "receiver-normal-branch-strength-certificate-producer-target/v0");
+  assert.equal(target.target_status, "fail_closed_producer_target");
+  assert.equal(target.certificate_id, RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID);
+  assert.equal(target.certificate_ready, false);
+  assert.equal(target.accepted_retained_record_required, true);
+  assert.equal(target.accepted_non_fixture_provider_required, true);
+  assert.equal(target.executable_replay_flag, "--certificate-target");
+  assert.equal(
+    target.consumes_provider_target_schema,
+    "wake-history-derivation-proof-object-provider-target/v0"
+  );
+  assert.equal(
+    target.consumes_provider_target.schema,
+    "wake-history-derivation-proof-object-provider-target/v0"
+  );
+  assert.equal(target.required_wake_history_proof_object_role, "wake_history_derivation_proof_object");
+  assert.deepEqual(target.required_wake_history_row_ids, REQUIRED_EVENT_ROWS);
+  assert.deepEqual(
+    target.required_same_record_field_groups.retained_branch_source,
+    REQUIRED_RETAINED_BRANCH_SOURCE_FIELDS
+  );
+  assert.deepEqual(
+    target.required_same_record_field_groups.branch_family_aggregation,
+    REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
+  );
+  assert.deepEqual(
+    target.required_same_record_field_groups.receiver_normal_branch_strength,
+    REQUIRED_RECEIVER_NORMAL_BRANCH_STRENGTH_FIELDS
+  );
+  assert.deepEqual(
+    target.required_same_record_field_groups.receiver_normal_derivatives,
+    REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS
+  );
+  assert.deepEqual(
+    target.required_same_record_field_groups.retained_source_binding,
+    REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.equal(target.first_missing_field_family, "retained_branch_source");
+  assert.equal(
+    target.first_missing_accepted_retained_record_field,
+    "retained_branch_source.accepted_retained_record_id"
+  );
+  assert.equal(target.downstream_certificate_acceptance_authorized, false);
+  assert.deepEqual(target.disallowed_accepted_evidence_sources, DISALLOWED_CERTIFICATE_EVIDENCE_SOURCES);
+});
+
 test("event wake-history pullback diagnostic CLI writes, validates, and reports schema", () => {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "event-wake-history-"));
   const artifactPath = path.join(tempDir, "artifact.json");
@@ -930,6 +1061,13 @@ test("event wake-history pullback diagnostic CLI writes, validates, and reports 
     "downstream_consumer_boundary",
   ]);
   assert.equal(schema.provider_target_cli, "--provider-target");
+  assert.deepEqual(schema.receiver_normal_branch_strength_certificate_producer_target, [
+    "consumes_provider_target",
+    "required_same_record_field_groups",
+    "first_missing_accepted_retained_record_field",
+    "disallowed_accepted_evidence_sources",
+  ]);
+  assert.equal(schema.certificate_target_cli, "--certificate-target");
   assert.deepEqual(schema.receiver_normal_derivative_contract_summary, [
     "required_row_ids",
     "accepted_row_ids",

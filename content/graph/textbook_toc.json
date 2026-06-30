@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 182,
-      "sections": 1446
+      "sections": 1447
     }
   },
   "tocRoot": {
@@ -5274,6 +5274,14 @@
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Why Alpha-Like Structures Should Be Special",
                 "sectionKey": "why alpha like structures should be special",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Alpha-Emission Barrier Benchmark",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Alpha-Emission Barrier Benchmark",
+                "sectionKey": "alpha emission barrier benchmark",
                 "headingLevel": 2
               },
               {

@@ -15,6 +15,45 @@ This contract defines the first safe behavior boundary for a future Archie quest
 
 The assistant is a guide over the corpus, not an oracle. It must never turn priority-only material, app diagnostics, memory, or fluent synthesis into established $\mathbb{A}\mathbb{A}\mathbb{A}$ doctrine.
 
+## Product Objective
+
+Archie should become a public education and outreach service for architrino.com. A reader should be able to type a question, speak a question, or provide an image and receive an answer that explains the topic from the $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective.
+
+The product may support an $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory stance: within that mode, Archie can answer as though the reader has temporarily accepted the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework as the working premise. This is useful for education because it lets the explanation flow without re-litigating every foundation in every answer. The proof-status, caveat, gate, and metric burden should live primarily in a public System Card sphere rather than in repetitive per-answer disclaimers.
+
+## System Card Disclosure Model
+
+The System Card is the public status sphere for Archie. It should be linked from the Archie sphere and from any public question interface. It collects:
+
+- the [Closure Scorecard](../../../content/markdown/aaa/validation/closure-scorecard.md);
+- validation protocols, failure criteria, known tensions, no-go constraints, and parameter status;
+- source-authority policy for answers;
+- enabled input modes: typed questions, speech, and image-grounded questions;
+- launch gates for privacy, logging, cost, citations, and fallback behavior.
+
+Normal answers should remain fluent. They may include source links or source chips, but they do not need to carry the full caveat stack. When a user asks for proof status, validation status, or system limits, Archie should route to the System Card and the relevant validation surface.
+
+## Deployment Boundary
+
+Architrino.com is deployed through GitHub Pages, so the first public Archie question interface must treat static-site delivery as a hard product boundary. The first launch can use committed scene files, generated indexes, authored markdown, static assets, and in-browser routing or local search. It must not depend on server-side code running inside GitHub Pages.
+
+First-launch public code must not include private model API keys, service credentials, direct public model API calls from browser JavaScript, live external-source search, durable user prompt logging, speech processing, or image intake. Those capabilities require a later platform phase with an explicit backend or serverless proxy, source routing, rate limits, privacy and logging policy, cost controls, abuse handling, and failure behavior.
+
+The first launch should therefore prefer a static or local-search Archie prototype that routes users to source documents, shows claim labels, and makes the System Card easy to reach. The UI may reserve clean interaction seams for later server-backed text, speech, and image modes, but those seams should remain inactive until the platform boundary is designed and approved. More capable public AI service work should wait behind the current theory-closure push unless it directly unblocks the deployed site.
+
+## First-Launch Source Policy
+
+| Class | First-launch public policy | Notes |
+| --- | --- | --- |
+| `published_corpus` | Allow as the primary answer and route source. | Use authored markdown as the strongest local authority. |
+| `generated_reading_copy` | Allow for reader routing and convenience only. | Do not treat generated copies as stronger than authored markdown. |
+| `scene_route` | Allow as the primary navigation and source-linking surface. | Scene metadata can route readers but cannot establish theory claims. |
+| `app_guide` | Allow for controls, diagnostics, and app limits. | Keep app outputs in the `app diagnostic` claim class unless an accepted validation artifact supports more. |
+| `archie_reference` | Allow for public-program routing and messaging context. | Do not treat it as published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus authority. |
+| `priority_material` | Exclude from ordinary public answers unless the UI explicitly exposes development-status material. | Always label as `priority-only`; keep it available for operator/developer surfaces. |
+| `external_prior_physics` | Allow only if curated statically into the first-launch source set. | No live search in the GitHub Pages-first prototype. |
+| `model_memory` | Exclude from public answer authority. | Use only for operator continuity, then verify against files before making factual claims. |
+
 ## Source Classes
 
 | Class | Source | Default use | Authority limit |
@@ -39,9 +78,36 @@ Every substantive answer should use one of these labels when the claim level mat
 | `priority-only` | The idea is staged in a priority file or working packet. | Link or cite the priority file only in development/operator surfaces; public UI needs an explicit policy decision first. |
 | `app diagnostic` | The statement describes an app control, visual state, runtime output, or diagnostic. | Link the app guide, scene, or source artifact and state that it is not proof by itself. |
 | `external comparison` | The statement compares $\mathbb{A}\mathbb{A}\mathbb{A}$ with inherited physics or outside literature. | Cite the $\mathbb{A}\mathbb{A}\mathbb{A}$ source and the external source separately. |
+| `AAA-native stance` | The answer explains from inside the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame as a working premise for education. | Route proof-status and caveat burden through the System Card; cite the strongest local source when a specific claim is challenged or precision matters. |
 | `unsupported` | The available sources do not support the requested claim. | Say so directly and route to the nearest relevant source or open question. |
 
 ## Mode Contracts
+
+### `aaa_native_explainer`
+
+Purpose: answer naturally from inside the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework so readers can learn the architecture as a coherent system.
+
+Allowed inputs:
+
+- typed questions;
+- spoken questions once a speech interface exists;
+- image-grounded questions once image intake and source-routing are available.
+
+Allowed sources:
+
+- `published_corpus`
+- `scene_route`
+- `app_guide`
+- `archie_reference` for public education context
+- `priority_material` only when explicitly labeled
+
+Rules:
+
+- Use the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame as the working premise for explanation.
+- Do not say or imply that proof targets are completed when the source status is weaker.
+- Use `AAA-native stance` plus the strongest applicable claim label when a claim level matters.
+- For public UI, link the mode chrome to the System Card instead of turning every answer into a disclaimer.
+- For image-grounded questions, separate what is visible in the image from the $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation of that image.
 
 ### `ask_aaa`
 
@@ -127,7 +193,7 @@ Rules:
 
 ## Citation Behavior
 
-Every answer that explains a theory, claim level, app diagnostic, or prior-physics comparison should end with a compact source list unless the UI design replaces it with inline source chips.
+Every answer that explains a theory, claim level, app diagnostic, or prior-physics comparison may use compact source links or source chips when precision matters. The full proof-status, caveat, gate, and metric burden belongs in the System Card.
 
 Minimum source fields:
 
@@ -163,9 +229,13 @@ Before public AI answer generation launches, the project needs a source-authorit
 3. whether generated textbook reading copies are indexed as answer sources or only route targets;
 4. how citations display in compact mobile layouts;
 5. whether user prompts, answer histories, and failed questions are logged;
-6. what fallback UI appears when answer generation is unavailable.
+6. what fallback UI appears when answer generation is unavailable;
+7. whether speech input, speech output, and image intake are first-launch features or later-stage capabilities;
+8. how the UI links answers and mode chrome to the System Card without making unsupported proof claims.
+9. what backend, proxy, credential, rate-limit, abuse, and failure model is required before any server-backed AI answer generation is exposed publicly.
 
 Until those decisions are made, the safest implementation path is a static or local-search prototype that answers by routing users to source documents rather than generating free-form public claims.
+Under the GitHub Pages-first boundary, this static or local-search prototype is the default first public implementation. Server-backed AI answers, live external search, speech, image intake, and durable answer history are later platform work.
 
 ## Validation Expectations
 
@@ -173,8 +243,12 @@ The first prototype should not be considered launch-ready until it passes:
 
 - scene graph and content validation;
 - source index freshness checks;
+- System Card sphere route and link checks;
 - per-mode fixture questions with expected claim labels;
 - unsupported-answer fixtures;
+- $\mathbb{A}\mathbb{A}\mathbb{A}$-native stance fixtures that confirm fluent explanations still preserve claim labels;
+- image-grounded fixture questions once image intake exists;
 - prior-physics comparison fixtures with separate $\mathbb{A}\mathbb{A}\mathbb{A}$ and external citations;
 - mobile layout review for citations and mode controls;
-- privacy and cost review if any request leaves the browser.
+- privacy and cost review if any request leaves the browser;
+- no browser-side private credentials or direct public model API calls.

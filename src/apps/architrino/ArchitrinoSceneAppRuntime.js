@@ -249,7 +249,6 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const navForwardButton = document.getElementById("nav-forward");
-const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
 const sceneHudTools = document.getElementById("scene-hud-tools");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
@@ -8433,9 +8432,6 @@ function updateNavButton() {
     if (navForwardButton) {
       navForwardButton.disabled = true;
     }
-    appSceneChromeRuntime.updateDetailInfoButton(false, {
-      transitionActive: transitionState.active,
-    });
     appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
       textbookTocScenePath,
       transitionActive: transitionState.active,
@@ -8450,9 +8446,6 @@ function updateNavButton() {
   }
   const canReopenInfo = isElementSceneLevel();
   appSceneChromeRuntime.updateSceneInfoTrigger(canReopenInfo);
-  appSceneChromeRuntime.updateDetailInfoButton(canReopenInfo, {
-    transitionActive: transitionState.active,
-  });
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
@@ -8649,7 +8642,6 @@ const appSceneChromeRuntime = createAppSceneChromeRuntime({
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
-  detailInfoButton,
 });
 const elementNavigationChromeRuntime = createElementNavigationChromeRuntime({
   elementNavOverlay,
@@ -9238,7 +9230,6 @@ const appShellUiRuntime = createAppShellUiRuntime({
   sceneLabel,
   navUpButton,
   navForwardButton,
-  detailInfoButton,
   homeButton,
   periodicOverlayRuntime,
   appDirector,

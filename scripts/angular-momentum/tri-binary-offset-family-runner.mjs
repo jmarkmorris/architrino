@@ -82,6 +82,18 @@ if (args.schema === "active-domain-extension-row-set-producer-target") {
   );
   process.exit(0);
 }
+if (
+  args.schema === "accepted-nonlocal-transport-global-row-set-producer-target"
+) {
+  console.log(
+    JSON.stringify(
+      createAcceptedNonlocalTransportGlobalRowSetProducerTargetSchema(),
+      null,
+      2
+    )
+  );
+  process.exit(0);
+}
 
 const rootDir = process.cwd();
 const outputPath = path.resolve(rootDir, args.output ?? DEFAULT_OUTPUT_PATH);
@@ -37881,6 +37893,107 @@ function createActiveDomainExtensionProducerTargetSchema() {
     sameRecordBindingRequirements:
       createActiveDomainExtensionSameRecordBindingRequirements(),
     negativeControls: createActiveDomainExtensionNegativeControls(),
+  };
+}
+
+function createAcceptedNonlocalTransportGlobalRowSetProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-accepted-nonlocal-transport-global-row-set-producer-target.schema.v1",
+    targetObjectId:
+      "accepted_nonlocal_transport_same_route_root_key_global_retained_row_set_identity_row",
+    firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    parentRoute: "same_route_root_key_global_retained_row_set_identity_provider",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed producer target; not retained branch acceptance",
+    requiredFieldIds: [
+      "route_root_key_2856731379702547500",
+      "same_route_root_key_global_retained_row_set_identity",
+      "all_layer_pair_chronological_replay_identity",
+      "active_domain_extension_status_for_both_inactive_gaps",
+      "accepted_nonlocal_transport_law",
+      "retained_source_binding",
+      "payload_transport_binding",
+      "energy_transport_binding",
+      "positive_width_or_full_point_event_domain_coverage",
+      "selected_direct_absence_source_rows_if_used",
+    ],
+    sameRecordBindingRequirements: [
+      "one_retained_record",
+      "one_route_root_key",
+      "one_global_retained_row_set_identity",
+      "one_active_domain_extension_status",
+      "one_accepted_nonlocal_transport_law",
+      "one_retained_source_binding",
+      "one_payload_energy_transport_binding",
+    ],
+    firstBlockingProducerField:
+      "active_domain_extension_status_for_both_inactive_gaps",
+    downstreamUnauthorizedUntilAccepted: [
+      "continuous_interval_witness_row",
+      "derive_presence_measure_source_from_signed_transition_balance",
+      "acceptedNonlocalTransportLawPass",
+      "retainedBranchClaim",
+    ],
+    negativeControls: [
+      {
+        id: "endpoint_provider_route_only_rows_not_accepted_nonlocal_transport",
+        rejects:
+          "route-only endpoint-provider rows without global retained row-set identity and accepted nonlocal transport",
+      },
+      {
+        id: "hinge_point_replay_not_accepted_nonlocal_transport",
+        rejects:
+          "hinge-point replay before all layer-pair chronological replay identity exists",
+      },
+      {
+        id: "route_authorized_point_events_not_accepted_nonlocal_transport",
+        rejects:
+          "route-authorized point-event rows without full point-event or positive-width retained-domain coverage",
+      },
+      {
+        id: "target_derived_affine_fits_not_accepted_nonlocal_transport",
+        rejects:
+          "selected direct-absence saturated affine fits or target-derived coefficient rows",
+      },
+      {
+        id: "sampled_dense_support_not_accepted_nonlocal_transport",
+        rejects:
+          "sampled dense-support rows without accepted retained source binding and global row-set identity",
+      },
+      {
+        id: "phase_cancellation_rows_not_accepted_nonlocal_transport",
+        rejects:
+          "phase-cancellation rows before transport, payload, and energy bindings are accepted on one retained record",
+      },
+      {
+        id: "aggregate_rows_not_accepted_nonlocal_transport",
+        rejects:
+          "aggregate summaries that do not bind required fields on one retained record",
+      },
+      {
+        id: "cross_row_bundles_not_accepted_nonlocal_transport",
+        rejects:
+          "cross-row joins assembling transport and row-set identity from separate records",
+      },
+      {
+        id: "current_proxy_rows_not_accepted_nonlocal_transport",
+        rejects:
+          "current/proxy rows without accepted retained source status",
+      },
+      {
+        id: "generated_decoys_not_accepted_nonlocal_transport",
+        rejects:
+          "generated decoy rows without same-record retained evidence",
+      },
+      {
+        id: "tautological_unit_density_width_identity_not_accepted_nonlocal_transport",
+        rejects:
+          "unit-density width identities that restate required presence measure without a nonlocal transport law",
+      },
+    ],
   };
 }
 

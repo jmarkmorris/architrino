@@ -13,6 +13,8 @@ const BRANCH_CERTIFICATE_REF_SOURCE_AVAILABILITY_AUDIT_SCHEMA =
   "torque_wake_branch_certificate_ref_source_availability_audit/v0";
 const NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA =
   "torque_wake_retained_active_row_branch_certificate_evidence_object/v0";
+const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_TARGET_SCHEMA =
+  "torque_wake_retained_active_row_branch_certificate_producer_target/v0";
 const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_BRIDGE_TARGET_SCHEMA =
   "torque_wake_retained_active_row_branch_certificate_bridge_target/v0";
 const ACCEPTED_BRANCH_CHART_SOURCE_SCOUT_REF =
@@ -81,6 +83,25 @@ const RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS = [
   "active_root_ledger_hash",
   "conservation_pullback_hash",
   "negative_control_ref",
+];
+
+const RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_FIELDS = [
+  ...RETAINED_ACTIVE_ROW_CERTIFICATE_EVIDENCE_FIELDS,
+  "retained_source_binding.retained_record_id",
+  "retained_source_binding.retained_source_ref",
+  "retained_source_binding.source_artifact_hash",
+  "retained_source_binding.source_status",
+  "provider_provenance.provider_object_ref",
+  "provider_provenance.provider_source_status",
+  "provider_provenance.proof_object_provenance_ref",
+  "same_record_binding.retained_record_id",
+  "same_record_binding.branch_certificate_ref",
+  "same_record_binding.same_retained_active_row_ids",
+  "same_record_binding.accepted_branch_chart_ref",
+  "same_record_binding.moving_retained_branch_certificate_ref",
+  "same_record_binding.active_root_ledger_hash",
+  "same_record_binding.conservation_pullback_hash",
+  "same_record_binding.negative_control_ref",
 ];
 
 const BRANCH_CERTIFICATE_REF_SOURCE_AUDIT_FIELDS = [
@@ -300,6 +321,21 @@ function referenceRejectionPolicy() {
       "accepted_branch_chart_ref",
       "moving_retained_branch_certificate_ref",
       ...SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
+      "retained_source_binding.retained_record_id",
+      "retained_source_binding.retained_source_ref",
+      "retained_source_binding.source_artifact_hash",
+      "retained_source_binding.source_status",
+      "provider_provenance.provider_object_ref",
+      "provider_provenance.provider_source_status",
+      "provider_provenance.proof_object_provenance_ref",
+      "same_record_binding.retained_record_id",
+      "same_record_binding.branch_certificate_ref",
+      "same_record_binding.same_retained_active_row_ids",
+      "same_record_binding.accepted_branch_chart_ref",
+      "same_record_binding.moving_retained_branch_certificate_ref",
+      "same_record_binding.active_root_ledger_hash",
+      "same_record_binding.conservation_pullback_hash",
+      "same_record_binding.negative_control_ref",
       "active_root_ledger_hash",
       "conservation_pullback_hash",
       "negative_control_ref",
@@ -441,6 +477,183 @@ function retainedActiveRowBranchCertificateBridgeTarget(candidate, sampledRows) 
   };
 }
 
+function retainedActiveRowBranchCertificateProducerTarget(candidate, sampledRows) {
+  const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
+  const retainedSourceBinding = isObject(candidate.retained_source_binding)
+    ? candidate.retained_source_binding
+    : {};
+  const providerProvenance = isObject(candidate.provider_provenance)
+    ? candidate.provider_provenance
+    : {};
+  const sameRecordBinding = isObject(candidate.same_record_binding)
+    ? candidate.same_record_binding
+    : {};
+  const rows = RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_FIELDS.map((field) => {
+    if (field === "sampled_active_row_ids") {
+      return providerTargetField(field, sampledRows.length > 0, "sampled_active_row_ids_missing", {
+        value: sampledRows,
+      });
+    }
+    if (field === "same_retained_active_row_ids") {
+      return providerTargetField(
+        field,
+        sameRetainedRows.length > 0 && sameOrderedStrings(sampledRows, sameRetainedRows),
+        sameRetainedRows.length > 0
+          ? "same_retained_active_row_id_mismatch"
+          : "same_retained_active_row_ids_missing",
+        {
+          value: sameRetainedRows,
+          required_same_retained_active_row_ids: sampledRows,
+        }
+      );
+    }
+    if (field === "retained_branch") {
+      return providerTargetField(
+        field,
+        candidate.retained_branch === true,
+        "retained_branch_false_not_retained_source",
+        { value: candidate.retained_branch ?? null }
+      );
+    }
+    if (field === "same_record_binding.same_retained_active_row_ids") {
+      const value = stringArray(sameRecordBinding.same_retained_active_row_ids);
+      return providerTargetField(
+        field,
+        sameRetainedRows.length > 0 &&
+          sameOrderedStrings(sampledRows, sameRetainedRows) &&
+          value.length > 0 &&
+          sameOrderedStrings(sameRetainedRows, value),
+        value.length > 0
+          ? "same_record_binding_same_retained_active_row_id_mismatch"
+          : "same_record_binding_same_retained_active_row_ids_missing",
+        {
+          value,
+          required_same_retained_active_row_ids: sampledRows,
+          expected_value: sameRetainedRows,
+          expected_field: "same_retained_active_row_ids",
+        }
+      );
+    }
+    if (field === "retained_source_binding.source_status") {
+      const value = retainedSourceBinding.source_status;
+      return providerTargetField(
+        field,
+        value === "accepted_non_fixture_source",
+        value
+          ? "retained_source_binding_source_status_not_accepted_non_fixture_source"
+          : "retained_source_binding_source_status_missing",
+        { value: value ?? null, required_value: "accepted_non_fixture_source" }
+      );
+    }
+    if (field === "provider_provenance.provider_source_status") {
+      const value = providerProvenance.provider_source_status;
+      return providerTargetField(
+        field,
+        value === "accepted_non_fixture_source",
+        value
+          ? "provider_provenance_provider_source_status_not_accepted_non_fixture_source"
+          : "provider_provenance_provider_source_status_missing",
+        { value: value ?? null, required_value: "accepted_non_fixture_source" }
+      );
+    }
+    if (field === "same_record_binding.branch_certificate_ref") {
+      return exactBindingRefTargetField(candidate, field, candidate.branch_certificate_ref, "branch_certificate_ref");
+    }
+    if (field === "same_record_binding.accepted_branch_chart_ref") {
+      return exactBindingRefTargetField(candidate, field, candidate.accepted_branch_chart_ref, "accepted_branch_chart_ref");
+    }
+    if (field === "same_record_binding.moving_retained_branch_certificate_ref") {
+      return exactBindingRefTargetField(
+        candidate,
+        field,
+        candidate.moving_retained_branch_certificate_ref,
+        "moving_retained_branch_certificate_ref"
+      );
+    }
+    if (field === "same_record_binding.active_root_ledger_hash") {
+      return exactBindingRefTargetField(candidate, field, candidate.active_root_ledger_hash, "active_root_ledger_hash");
+    }
+    if (field === "same_record_binding.conservation_pullback_hash") {
+      return exactBindingRefTargetField(
+        candidate,
+        field,
+        candidate.conservation_pullback_hash,
+        "conservation_pullback_hash"
+      );
+    }
+    if (field === "same_record_binding.negative_control_ref") {
+      return exactBindingRefTargetField(candidate, field, candidate.negative_control_ref, "negative_control_ref");
+    }
+    return refTargetField(candidate, field);
+  });
+  const missingOrRejectedFields = rows
+    .filter((row) => row.status !== "passed")
+    .map((row) => row.field);
+  const firstFailure = rows.find((row) => row.status !== "passed")?.failure_code ?? null;
+
+  return {
+    schema: RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_TARGET_SCHEMA,
+    target_status: "fail_closed_producer_target",
+    promotion_status: "priority-only",
+    current_family: currentTorqueWakeFamily(candidate),
+    selected_case_id: candidate.selected_case_id ?? null,
+    provider_source_status_required: "accepted_non_fixture_source",
+    retained_record_required: true,
+    accepted_transition_source_authorized: false,
+    required_same_retained_active_row_ids: sampledRows,
+    required_fields: RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_FIELDS,
+    retained_source_binding_required_fields: [
+      "retained_source_binding.retained_record_id",
+      "retained_source_binding.retained_source_ref",
+      "retained_source_binding.source_artifact_hash",
+      "retained_source_binding.source_status",
+    ],
+    provider_provenance_required_fields: [
+      "provider_provenance.provider_object_ref",
+      "provider_provenance.provider_source_status",
+      "provider_provenance.proof_object_provenance_ref",
+    ],
+    same_record_binding_required_fields: [
+      "same_record_binding.retained_record_id",
+      "same_record_binding.branch_certificate_ref",
+      "same_record_binding.same_retained_active_row_ids",
+      "same_record_binding.accepted_branch_chart_ref",
+      "same_record_binding.moving_retained_branch_certificate_ref",
+      "same_record_binding.active_root_ledger_hash",
+      "same_record_binding.conservation_pullback_hash",
+      "same_record_binding.negative_control_ref",
+    ],
+    field_results: rows,
+    present_useful_fields: rows.filter((row) => row.status === "passed").map((row) => row.field),
+    missing_or_rejected_fields: missingOrRejectedFields,
+    first_failure: firstFailure,
+    producer_ready: firstFailure === null,
+    current_retained_source_binding: retainedSourceBinding,
+    current_provider_provenance: providerProvenance,
+    current_same_record_binding: sameRecordBinding,
+    reference_rejection_policy: referenceRejectionPolicy(),
+    disallowed_source_rows: [
+      "fixture rows",
+      "proxy/current branch charts",
+      "sampled diagnostics",
+      "target-only rows",
+      "H39/theta3minus quotient rows",
+      "aggregate rows",
+      "generated decoys",
+      "source-normal rows",
+      "cross-row bundles",
+    ],
+    acceptance_boundary:
+      "This target becomes usable only when the branch certificate, same retained active rows, accepted branch chart, moving retained branch certificate, retained source binding, provider provenance, same-record binding, and negative control all appear on one accepted retained record.",
+    downstream_authorization: {
+      accepted_transition_source_ref: false,
+      field_speed_action_self_hit_scan: false,
+      moving_retained_branch_certificate: false,
+      retained_branch: false,
+    },
+  };
+}
+
 function nextRetainedActiveRowEvidenceObject(candidate, sampledRows) {
   return {
     schema: NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA,
@@ -451,6 +664,7 @@ function nextRetainedActiveRowEvidenceObject(candidate, sampledRows) {
     same_record_identity_required_fields: SAME_RECORD_IDENTITY_REQUIRED_FIELDS,
     reference_rejection_policy: referenceRejectionPolicy(),
     negative_control_contract: retainedActiveRowNegativeControlContract(candidate),
+    producer_target: retainedActiveRowBranchCertificateProducerTarget(candidate, sampledRows),
     fail_closed_bridge_target: retainedActiveRowBranchCertificateBridgeTarget(candidate, sampledRows),
     rank2_follow_on_fields_after_certificate: [
       "accepted_transition_source_ref",
@@ -555,6 +769,24 @@ function refTargetField(candidate, field, detail = {}) {
   return providerTargetField(field, failureCode === null, failureCode, {
     value: value ?? null,
     ...detail,
+  });
+}
+
+function exactBindingRefTargetField(candidate, field, expectedValue, expectedField) {
+  const value = nestedValue(candidate, field);
+  const failureCode = rejectedRefCode(field, value);
+  if (failureCode !== null) {
+    return providerTargetField(field, false, failureCode, {
+      value: value ?? null,
+      expected_value: expectedValue ?? null,
+      expected_field: expectedField,
+    });
+  }
+  const matches = present(expectedValue) && value === expectedValue;
+  return providerTargetField(field, matches, matches ? null : `${field.replaceAll(".", "_")}_mismatch`, {
+    value: value ?? null,
+    expected_value: expectedValue ?? null,
+    expected_field: expectedField,
   });
 }
 
@@ -971,6 +1203,47 @@ export function buildReport(candidate, options = {}) {
   };
 }
 
+function validateProducerTarget(errors, pathLabel, target) {
+  if (!isObject(target)) {
+    errors.push(`${pathLabel} must be an object`);
+    return;
+  }
+  if (target.schema !== RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_TARGET_SCHEMA) {
+    errors.push(`${pathLabel} schema must be ${RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_TARGET_SCHEMA}`);
+  }
+  if (target.target_status !== "fail_closed_producer_target") {
+    errors.push(`${pathLabel} must fail closed`);
+  }
+  if (target.promotion_status !== "priority-only") {
+    errors.push(`${pathLabel} promotion_status must remain priority-only`);
+  }
+  if (target.provider_source_status_required !== "accepted_non_fixture_source") {
+    errors.push(`${pathLabel} must require accepted_non_fixture_source`);
+  }
+  if (target.retained_record_required !== true) {
+    errors.push(`${pathLabel} must require one retained record`);
+  }
+  if (target.accepted_transition_source_authorized !== false) {
+    errors.push(`${pathLabel} must not authorize accepted_transition_source_ref`);
+  }
+  if (!sameOrderedStrings(target.required_fields ?? [], RETAINED_ACTIVE_ROW_BRANCH_CERTIFICATE_PRODUCER_FIELDS)) {
+    errors.push(`${pathLabel} required fields mismatch`);
+  }
+  if (!Array.isArray(target.field_results)) {
+    errors.push(`${pathLabel} field_results must be an array`);
+  }
+  for (const field of [
+    "accepted_transition_source_ref",
+    "field_speed_action_self_hit_scan",
+    "moving_retained_branch_certificate",
+    "retained_branch",
+  ]) {
+    if (target.downstream_authorization?.[field] !== false) {
+      errors.push(`${pathLabel} ${field} authorization must remain false`);
+    }
+  }
+}
+
 function validateBridgeTarget(errors, pathLabel, target) {
   if (!isObject(target)) {
     errors.push(`${pathLabel} must be an object`);
@@ -1167,17 +1440,35 @@ export function validationErrors(report) {
     report.retained_active_row_certificate_contract?.next_retained_active_row_evidence_object
       ?.fail_closed_bridge_target
   );
+  validateProducerTarget(
+    errors,
+    "retained_active_row_certificate_contract next_retained_active_row_evidence_object producer_target",
+    report.retained_active_row_certificate_contract?.next_retained_active_row_evidence_object
+      ?.producer_target
+  );
   validateBridgeTarget(
     errors,
     "branch_certificate_ref_source_availability_audit next_retained_active_row_evidence_object fail_closed_bridge_target",
     report.branch_certificate_ref_source_availability_audit?.next_retained_active_row_evidence_object
       ?.fail_closed_bridge_target
   );
+  validateProducerTarget(
+    errors,
+    "branch_certificate_ref_source_availability_audit next_retained_active_row_evidence_object producer_target",
+    report.branch_certificate_ref_source_availability_audit?.next_retained_active_row_evidence_object
+      ?.producer_target
+  );
   validateBridgeTarget(
     errors,
     "branch_certificate_provider_object_target next_retained_active_row_evidence_object fail_closed_bridge_target",
     report.branch_certificate_provider_object_target?.next_retained_active_row_evidence_object
       ?.fail_closed_bridge_target
+  );
+  validateProducerTarget(
+    errors,
+    "branch_certificate_provider_object_target next_retained_active_row_evidence_object producer_target",
+    report.branch_certificate_provider_object_target?.next_retained_active_row_evidence_object
+      ?.producer_target
   );
   validateSameStepRetainedTorqueWakeProviderTarget(
     errors,

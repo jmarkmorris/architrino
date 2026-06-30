@@ -1844,6 +1844,16 @@
       "id": "archie__comics__what_counts_as_evidence",
       "name": "What Counts As Evidence?",
       "path": "content/scenes/archie/comics/what_counts_as_evidence.json"
+    },
+    {
+      "id": "archie__system_card",
+      "name": "System Card",
+      "path": "content/scenes/archie/system_card.json"
+    },
+    {
+      "id": "archie__system_card__overview",
+      "name": "System Card Overview",
+      "path": "content/scenes/archie/system_card_overview.json"
     }
   ]
 }

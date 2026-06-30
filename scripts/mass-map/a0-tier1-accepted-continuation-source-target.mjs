@@ -103,6 +103,7 @@ const FIRST_MISSING_FIELD_ORDER = [
 function parseArgs(argv) {
   const args = {
     source: null,
+    fromCorrectedAttempt: null,
     pretty: false,
     out: null,
     validate: null,
@@ -114,6 +115,8 @@ function parseArgs(argv) {
       args.help = true;
     } else if (arg === "--source") {
       args.source = argv[++i];
+    } else if (arg === "--from-corrected-attempt") {
+      args.fromCorrectedAttempt = argv[++i];
     } else if (arg === "--pretty") {
       args.pretty = true;
     } else if (arg === "--out") {
@@ -132,6 +135,9 @@ function printHelp() {
 
 Options:
   --source PATH      Candidate A0 Tier 1 continuation/provider source JSON.
+  --from-corrected-attempt PATH
+                     Translate an a0-tier1-fold-layer-locked-one-period-attempt/v1
+                     corrected-rerun artifact into a fail-closed source target.
   --validate PATH    Validate a previously emitted target report.
   --out PATH         Write JSON output to a file instead of stdout.
   --pretty           Pretty-print JSON.
@@ -320,6 +326,183 @@ function groupedMissingFields(results) {
   );
 }
 
+function statusPass(status) {
+  return status === "passed" || status === "pass" || status === "accepted" || status === "closed";
+}
+
+function maxResidual(...values) {
+  const finiteValues = values.filter((value) => Number.isFinite(value));
+  return finiteValues.length > 0 ? Math.max(...finiteValues.map((value) => Math.abs(value))) : null;
+}
+
+function firstCorrectedAttemptRow(attempt) {
+  if (!Array.isArray(attempt?.rows)) {
+    return null;
+  }
+  return (
+    attempt.rows.find((row) => row?.correction_context?.status === "correction_context_ready") ??
+    attempt.rows[0] ??
+    null
+  );
+}
+
+function directResidualLedgerFromAttemptRow(row) {
+  const ledgers = row?.residual_ledgers ?? {};
+  const state = ledgers.state_return ?? {};
+  const root = ledgers.root_closure ?? {};
+  const phase = ledgers.phase_closure ?? {};
+  const energy = ledgers.energy_like_speed ?? {};
+  const drift = ledgers.center_drift ?? {};
+  const speed = ledgers.speed_ordering ?? {};
+  const lock = ledgers.fold_layer_lock ?? {};
+  const residualsBelowTolerance =
+    row?.accepted_history_boundary?.residuals_below_tolerance === true &&
+    statusPass(state.status) &&
+    statusPass(root.status) &&
+    statusPass(phase.status) &&
+    statusPass(energy.status) &&
+    statusPass(drift.status) &&
+    statusPass(speed.status) &&
+    statusPass(lock.status);
+  return {
+    status: residualsBelowTolerance ? "pass" : "failed",
+    residuals_below_tolerance: residualsBelowTolerance,
+    residual_vector: {
+      R_state: maxResidual(state.max_state_return_residual),
+      R_root: maxResidual(root.max_root_residual),
+      R_phase: maxResidual(phase.phase_closure_residual),
+      R_E: maxResidual(energy.energy_like_speed_residual),
+      R_drift: maxResidual(drift.max_center_drift),
+      R_speed: maxResidual(speed.max_speed_ordering_residual),
+      R_lock: statusPass(lock.status) ? 0 : null,
+    },
+  };
+}
+
+function firstFailedCorrectedAttemptProofField(row) {
+  const ledgers = row?.residual_ledgers ?? {};
+  if (row?.accepted_history_boundary?.residuals_below_tolerance !== true) {
+    return "direct_one_period_residual_ledger.residuals_below_tolerance";
+  }
+  if (statusPass(ledgers.center_drift?.status) !== true) {
+    return "no_secular_center_drift.pass";
+  }
+  if (present(row?.source_row?.branch_label) !== true || present(row?.source_row?.z_lambda) !== true) {
+    return "quotient_row_identity.z_lambda";
+  }
+  if (ledgers.monodromy?.Delta_k_positive !== true) {
+    return "quotient_monodromy.Delta_k_positive";
+  }
+  if (ledgers.eta_ladder?.same_branch_persists_across_eta_ladder !== true) {
+    return "eta_ladder_persistence.same_branch_persists_across_eta_ladder";
+  }
+  if (row?.accepted_history_boundary?.status_is_accepted_history_segment !== true) {
+    return "accepted_history_boundary.status_is_accepted_history_segment";
+  }
+  return null;
+}
+
+function correctedAttemptBoundary(attempt, row, sourceRefValue) {
+  const ledgers = row?.residual_ledgers ?? {};
+  return {
+    schema: "a0-tier1-corrected-rerun-source-boundary/v1",
+    source_ref: sourceRefValue,
+    corrected_rerun_artifact_schema: attempt?.artifact_schema ?? null,
+    corrected_rerun_status: row?.status ?? attempt?.metadata?.status ?? null,
+    correction_context_status: row?.correction_context?.status ?? null,
+    accepted_history_boundary: row?.accepted_history_boundary ?? null,
+    measured_residuals: {
+      R_state: ledgers.state_return?.max_state_return_residual ?? null,
+      R_root: ledgers.root_closure?.max_root_residual ?? null,
+      R_phase: ledgers.phase_closure?.phase_closure_residual ?? null,
+      R_E: ledgers.energy_like_speed?.energy_like_speed_residual ?? null,
+      R_drift: ledgers.center_drift?.max_center_drift ?? null,
+      R_speed: ledgers.speed_ordering?.max_speed_ordering_residual ?? null,
+      residual_balance_relative_residual: ledgers.residual_balance?.relative_residual ?? null,
+      refined_i_receiver_phase_bin_relative_residual:
+        ledgers.refined_i_receiver_phase_bin_residual_balance?.relative_residual ?? null,
+    },
+    pass_fail_fields: {
+      status_is_accepted_history_segment: row?.accepted_history_boundary?.status_is_accepted_history_segment === true,
+      direct_one_period_residuals_below_tolerance:
+        row?.accepted_history_boundary?.residuals_below_tolerance === true,
+      no_secular_center_drift: row?.accepted_history_boundary?.no_secular_center_drift === true,
+      quotient_row_identity:
+        present(row?.source_row?.branch_label) === true &&
+        present(row?.source_row?.z_lambda) === true &&
+        row?.validation?.source_row_present === true,
+      Delta_k_positive: ledgers.monodromy?.Delta_k_positive === true,
+      same_branch_persists_across_eta_ladder:
+        ledgers.eta_ladder?.same_branch_persists_across_eta_ladder === true,
+      benchmark_inputs_excluded: row?.validation?.benchmark_inputs_excluded === true,
+    },
+    first_failed_proof_field: firstFailedCorrectedAttemptProofField(row),
+    smallest_next_source_boundary:
+      "branch-chart revision with corrected one-period residual closure before quotient monodromy and eta-ladder persistence",
+  };
+}
+
+function buildCandidateFromCorrectedAttempt(attempt, options = {}) {
+  const row = firstCorrectedAttemptRow(attempt);
+  const sourceRefValue = options.sourceRef ?? null;
+  if (!row) {
+    return {
+      provider_source_status: "corrected_rerun_missing",
+      source_ref: sourceRefValue,
+      accepted_status: false,
+      diagnostic_only: true,
+      notes: "diagnostic corrected rerun source row missing",
+    };
+  }
+  const ledgers = row.residual_ledgers ?? {};
+  return {
+    provider_source_status: `diagnostic_${row.status ?? "corrected_rerun"}`,
+    source_ref: sourceRefValue,
+    accepted_status: false,
+    diagnostic_only: true,
+    notes:
+      "diagnostic corrected rerun measured residual row; not accepted non-fixture A0 Tier 1 continuation evidence",
+    branch_certificate_ref: null,
+    same_domain_record_ref: row.row ?? null,
+    active_root_or_live_ledger_identity: row.active_causal_root_ledger ?? null,
+    branch_local_projection_or_normalization_identity: row.source_row?.branch_label ?? null,
+    direct_one_period_residual_ledger: directResidualLedgerFromAttemptRow(row),
+    no_secular_center_drift: {
+      status: statusPass(ledgers.center_drift?.status) ? "pass" : (ledgers.center_drift?.status ?? null),
+      pass: statusPass(ledgers.center_drift?.status),
+      max_center_drift: ledgers.center_drift?.max_center_drift ?? null,
+    },
+    quotient_row_identity: {
+      status:
+        present(row.source_row?.branch_label) && present(row.source_row?.z_lambda) && row.validation?.source_row_present
+          ? "pass"
+          : "failed",
+      branch_label: row.source_row?.branch_label ?? null,
+      z_lambda: row.source_row?.z_lambda ?? null,
+      source_row_identity_matches:
+        present(row.source_row?.branch_label) && present(row.source_row?.z_lambda) && row.validation?.source_row_present,
+    },
+    quotient_monodromy: {
+      status: ledgers.monodromy?.status ?? "not_computed",
+      Delta_k: ledgers.monodromy?.Delta_k ?? null,
+      Delta_k_positive: ledgers.monodromy?.Delta_k_positive === true,
+    },
+    eta_ladder_persistence: {
+      status: ledgers.eta_ladder?.status ?? "not_computed",
+      same_branch_persists_across_eta_ladder: ledgers.eta_ladder?.same_branch_persists_across_eta_ladder === true,
+      eta_values: ledgers.eta_ladder?.eta_values ?? [],
+      quotient_row_identity_carried: false,
+    },
+    retained_source_binding: null,
+    receiver_normal_branch_strength: null,
+    benchmark_exclusion: {
+      benchmark_inputs_excluded: row.validation?.benchmark_inputs_excluded === true,
+      excluded_source_families: FORBIDDEN_SOURCE_FAMILIES,
+    },
+    corrected_rerun_source_boundary: correctedAttemptBoundary(attempt, row, sourceRefValue),
+  };
+}
+
 function firstMissingField(results) {
   for (const pathPrefix of FIRST_MISSING_FIELD_ORDER) {
     const field = results.find((entry) => !entry.pass && entry.path.startsWith(pathPrefix));
@@ -379,6 +562,7 @@ function buildAcceptedContinuationSourceTarget(candidate = {}, options = {}) {
       ],
       keeps_pressure_row_non_authorizing_until_accepted: true,
     },
+    corrected_rerun_source_boundary: normalizedCandidate.corrected_rerun_source_boundary ?? null,
   };
 }
 
@@ -439,10 +623,21 @@ function runCli() {
     return;
   }
   const sourcePath = args.source ? path.resolve(args.source) : null;
-  const candidate = sourcePath ? readJson(sourcePath) : {};
+  const correctedAttemptPath = args.fromCorrectedAttempt ? path.resolve(args.fromCorrectedAttempt) : null;
+  const candidate = correctedAttemptPath
+    ? buildCandidateFromCorrectedAttempt(readJson(correctedAttemptPath), {
+        sourceRef: path.relative(process.cwd(), correctedAttemptPath),
+      })
+    : sourcePath
+      ? readJson(sourcePath)
+      : {};
   writeOutput(
     buildAcceptedContinuationSourceTarget(candidate, {
-      sourceRef: sourcePath ? path.relative(process.cwd(), sourcePath) : null,
+      sourceRef: correctedAttemptPath
+        ? path.relative(process.cwd(), correctedAttemptPath)
+        : sourcePath
+          ? path.relative(process.cwd(), sourcePath)
+          : null,
     }),
     args
   );
@@ -450,6 +645,7 @@ function runCli() {
 
 export {
   REQUIRED_PROOF_FIELD_GROUPS,
+  buildCandidateFromCorrectedAttempt,
   buildAcceptedContinuationSourceTarget,
   validationErrors,
 };
