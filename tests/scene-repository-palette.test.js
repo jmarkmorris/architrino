@@ -94,6 +94,64 @@ test("fixed-position non-hub diagram nodes keep authored semantic colors", () =>
   );
 });
 
+test("structured sphere palettes assign stable colors by node order", () => {
+  const repository = createRepository();
+  const nodes = [{ id: "alpha" }, { id: "beta" }, { id: "gamma" }];
+
+  repository.applyStructuredSpherePalette(nodes, ["#111111", "#222222"], {});
+
+  assert.deepEqual(
+    nodes.map((node) => node.color),
+    ["#111111", "#222222", "#111111"]
+  );
+});
+
+test("markdown section ring scenes default to stable single-ring order", async () => {
+  let observedSplitRuntimeScene = null;
+  const repository = createRepositoryWithScenes(
+    {},
+    {
+      buildAutoMarkdownNodes: async (scene) => {
+        observedSplitRuntimeScene = scene;
+        return [];
+      },
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/sectioned.json",
+    {
+      scene: {
+        id: "example_sectioned",
+        title: "Example Sectioned",
+        type: "Scene-Markdown-Split",
+        centerOn: "example_overview",
+        layout: {
+          type: "rings",
+        },
+        source: {
+          type: "markdown",
+          path: "content/markdown/example.md",
+          split: {
+            headingLevel: 2,
+            maxDepth: 1,
+          },
+        },
+      },
+      objects: [],
+    }
+  );
+
+  assert.deepEqual(config.layoutConfig, {
+    type: "rings",
+    centerNode: "example_overview",
+    direction: "clockwise",
+    order: "objects",
+    allowInnerRings: false,
+  });
+  assert.equal(observedSplitRuntimeScene.layoutConfig, config.layoutConfig);
+});
+
 test("Archie hub keeps authored colors from the standard sphere palette", async () => {
   const archieSceneData = JSON.parse(
     await readFile(
@@ -118,7 +176,18 @@ test("Archie hub keeps authored colors from the standard sphere palette", async 
 
   assert.deepEqual(
     config.nodes.map((node) => node.color),
-    ["#9d174d", "#1d4ed8", "#a21caf", "#166534"]
+    [
+      "#9d174d",
+      "#1d4ed8",
+      "#a21caf",
+      "#166534",
+      "#7a5a2f",
+      "#7a5a2f",
+      "#4b5e2f",
+      "#3f5f6f",
+      "#be123c",
+      "#243d8f",
+    ]
   );
 });
 

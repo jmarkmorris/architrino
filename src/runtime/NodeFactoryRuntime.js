@@ -12,6 +12,8 @@ export function createNodeFactory(deps) {
   const staticSphereShadowRingColor = "#25143a";
   const staticSphereShadowRingOpacity = 0.34;
   const staticSphereInnerRimOpacity = 0.4;
+  const glowRingMinThickness = 0.028;
+  const glowRingRadiusThicknessFactor = 0.06;
 
   function createPremiumSphereMaterial(nodeData, { hideSphere = false, isReaction = false } = {}) {
     const baseColor = new THREE.Color(nodeData.color ?? "#3a5a8a");
@@ -189,7 +191,10 @@ export function createNodeFactory(deps) {
     const ringScale = nodeData.glowRingScale ?? 1.04;
     const ringThickness =
       nodeData.glowRingThickness ??
-      Math.max(actionable ? 0.028 : 0.022, nodeData.radius * (actionable ? 0.06 : 0.04));
+      Math.max(
+        actionable ? glowRingMinThickness : 0.022,
+        nodeData.radius * (actionable ? glowRingRadiusThicknessFactor : 0.04)
+      );
     const ringColor = actionable
       ? nodeData.glowRingColor ?? premiumSphereGlowRingColor
       : staticSphereShadowRingColor;
@@ -253,18 +258,25 @@ export function createNodeFactory(deps) {
   function getCenterContextRingStyle(radius) {
     return {
       ringScale: 1.04,
-      ringThickness: Math.max(0.022, radius * 0.04),
+      ringThickness: Math.max(glowRingMinThickness, radius * glowRingRadiusThicknessFactor),
       ringColor: staticSphereShadowRingColor,
       ringOpacity: staticSphereShadowRingOpacity,
       blending: THREE.NormalBlending,
-      innerRim: {
-        ringScale: 0.99,
-        ringThickness: Math.max(0.012, radius * 0.018),
-        ringColor: premiumSphereCenterRingColor,
-        ringOpacity: staticSphereInnerRimOpacity,
-        blending: THREE.NormalBlending,
-      },
+      innerRim: null,
     };
+  }
+
+  function removeRingInnerRim(ring) {
+    const innerRim = ring?.userData?.innerRim;
+    if (!innerRim) {
+      return;
+    }
+    ring.remove?.(innerRim);
+    innerRim.geometry?.dispose?.();
+    innerRim.material?.dispose?.();
+    delete ring.userData.innerRim;
+    delete ring.userData.innerRimBaseOpacity;
+    delete ring.userData.innerRimStyle;
   }
 
   function createLabel(node) {
@@ -475,6 +487,8 @@ export function createNodeFactory(deps) {
             ringScale: ringStyle.innerRim.ringScale,
             ringThickness: ringStyle.innerRim.ringThickness,
           };
+        } else if (!ringStyle.innerRim) {
+          removeRingInnerRim(contextSphere.ring);
         }
       }
     }

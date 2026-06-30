@@ -9502,186 +9502,6 @@
             ]
           },
           {
-            "id": "crisis_in_physics",
-            "title": "Crisis in Physics",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Progress vs. Time",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Progress vs. Time",
-                "sectionKey": "progress vs time",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Prediction vs. Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Prediction vs. Ontology",
-                "sectionKey": "prediction vs ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Measurement / Outcome",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Quantum Measurement and Outcome Selection",
-                "sectionKey": "quantum measurement and outcome selection",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nonlocality / Bell",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Nonlocality, Bell, and Causal Structure",
-                "sectionKey": "nonlocality bell and causal structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "GR and Quantum Theory",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "General Relativity and Quantum Theory",
-                "sectionKey": "general relativity and quantum theory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "AdS Control and de Sitter Reality",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "AdS Control and de Sitter Reality",
-                "sectionKey": "ads control and de sitter reality",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Renormalization / UV",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Renormalization, UV Completion, and Continuum Excess",
-                "sectionKey": "renormalization uv completion and continuum excess",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Vacuum / Medium",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Vacuum, Medium, and the Status of Empty Space",
-                "sectionKey": "vacuum medium and the status of empty space",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dark-Sector Inference",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
-                "sectionKey": "dark matter dark energy and cosmological over inference",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Parameters / Patchwork",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Parameter Proliferation and Patchwork Closure",
-                "sectionKey": "parameter proliferation and patchwork closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Math vs. Mechanism",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Mathematical Control vs. Mechanistic Explanation",
-                "sectionKey": "mathematical control vs mechanistic explanation",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "philosophy_history__solving_the_crisis",
-            "title": "Solving the Crisis",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Foundations / Spacetime",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Foundations And Spacetime",
-                "sectionKey": "foundations and spacetime",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Strong-Field Gravity",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Strong-Field Gravity",
-                "sectionKey": "strong field gravity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cosmology / Structure",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Cosmology And Large-Scale Structure",
-                "sectionKey": "cosmology and large scale structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Quantum / Statistics",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Quantum And Statistical Emergence",
-                "sectionKey": "quantum and statistical emergence",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Standard Model / Particles",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Standard Model And Particle Closure",
-                "sectionKey": "standard model and particle closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Astrophysical Engines",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Astrophysical Engines",
-                "sectionKey": "astrophysical engines",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Appendix / Exclusions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "markdownSection": "Appendix And Exclusions",
-                "sectionKey": "appendix and exclusions",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "inherited_theory_interface",
             "title": "Inherited Theory Interface",
             "kind": "scene-index",
@@ -12276,67 +12096,245 @@
             ]
           },
           {
-            "id": "philosophy_history__geometry_and_ontology",
-            "title": "Geometry and Ontology",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+            "id": "philosophy_history__religious_ontologies",
+            "title": "Religious Ontologies",
+            "kind": "markdown-tree",
+            "sceneType": "Scene-Markdown-Tree",
+            "scenePath": "content/scenes/philosophy_history/religious_ontologies.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Geometry Question",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "The Geometry Question",
-                "sectionKey": "the geometry question",
+                "title": "Abrahamic Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Abrahamic Traditions",
+                "sectionKey": "abrahamic traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Judaism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Judaism",
+                    "sectionKey": "judaism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Christianity",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Christianity",
+                    "sectionKey": "christianity",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Islam",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Islam",
+                    "sectionKey": "islam",
+                    "headingLevel": 3
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dharmic Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Dharmic Traditions",
+                "sectionKey": "dharmic traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Hinduism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Hinduism",
+                    "sectionKey": "hinduism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Buddhism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Buddhism",
+                    "sectionKey": "buddhism",
+                    "headingLevel": 3
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "East Asian Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "East Asian Traditions",
+                "sectionKey": "east asian traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Daoism (Taoism)",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Daoism (Taoism)",
+                    "sectionKey": "daoism taoism",
+                    "headingLevel": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "information_computation",
+            "title": "Information / Computation",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/information_computation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Geometry-Layer Map",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Geometry-Layer Map",
-                "sectionKey": "geometry layer map",
+                "title": "Information / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Information as Ontology",
+                "sectionKey": "information as ontology",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "What General Relativity Gets Right",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "What General Relativity Gets Right",
-                "sectionKey": "what general relativity gets right",
+                "title": "Thermodynamic Cost",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Thermodynamic Cost of Computation",
+                "sectionKey": "thermodynamic cost of computation",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
-                "sectionKey": "what mathbb a mathbb a mathbb a adds",
+                "title": "Computation / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Computation as Ontology",
+                "sectionKey": "computation as ontology",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "The Correct Critique",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "The Correct Critique",
-                "sectionKey": "the correct critique",
+                "title": "Digital Physics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Digital Physics and Discrete Substrate Programs",
+                "sectionKey": "digital physics and discrete substrate programs",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Methodological Use",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Methodological Use",
-                "sectionKey": "methodological use",
+                "title": "Observer / Encoding",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Observer, Encoding, and Representation",
+                "sectionKey": "observer encoding and representation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation / Computability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Simulation, Modeling, and Computability Limits",
+                "sectionKey": "simulation modeling and computability limits",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__agency_and_internal_causation",
+            "title": "Agency and Internal Causation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Internal vs External Causation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Internal vs External Causation",
+                "sectionKey": "internal vs external causation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Functional Agency",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Functional Agency",
+                "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Biological and Artificial Embodiments",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Biological and Artificial Embodiments",
+                "sectionKey": "biological and artificial embodiments",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Primitive Metastability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Primitive Metastability",
+                "sectionKey": "primitive metastability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Determinism and Predictability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Determinism and Predictability",
+                "sectionKey": "determinism and predictability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Will as Threshold Setting",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Will as Threshold Setting",
+                "sectionKey": "will as threshold setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Compatibilist Agency",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Compatibilist Agency",
+                "sectionKey": "compatibilist agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closing Statement",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Closing Statement",
+                "sectionKey": "closing statement",
                 "headingLevel": 2
               }
             ]
@@ -12416,115 +12414,67 @@
             ]
           },
           {
-            "id": "historical_context_missed_opportunities",
-            "title": "Historical Context and Missed Opportunities",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+            "id": "philosophy_history__geometry_and_ontology",
+            "title": "Geometry and Ontology",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "sectionKey": "lorentz before einstein the almost substrate moment",
+                "title": "The Geometry Question",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Geometry Question",
+                "sectionKey": "the geometry question",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Geometrization After 1915: Ontology Shift",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Geometrization After 1915: Ontology Shift",
-                "sectionKey": "geometrization after 1915 ontology shift",
+                "title": "Geometry-Layer Map",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Geometry-Layer Map",
+                "sectionKey": "geometry layer map",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Einstein's 1917 Static World: Closure Before Validation",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
-                "sectionKey": "einstein s 1917 static world closure before validation",
+                "title": "What General Relativity Gets Right",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What General Relativity Gets Right",
+                "sectionKey": "what general relativity gets right",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
+                "title": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "sectionKey": "what mathbb a mathbb a mathbb a adds",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Renormalization Era: Warnings Reframed",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Renormalization Era: Warnings Reframed",
-                "sectionKey": "renormalization era warnings reframed",
+                "title": "The Correct Critique",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Correct Critique",
+                "sectionKey": "the correct critique",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
-                "sectionKey": "wheeler s tokyo program particles fields and direct action",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Einstein's Abandoned Steady-State Cosmology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
-                "sectionKey": "einstein s abandoned steady state cosmology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Precision Cosmology: Parameters into Story",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Precision Cosmology: Parameters into Story",
-                "sectionKey": "precision cosmology parameters into story",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Recurrent Narrative Filters",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Recurrent Narrative Filters",
-                "sectionKey": "recurrent narrative filters",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Would Have Needed to Be Different",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "What Would Have Needed to Be Different",
-                "sectionKey": "what would have needed to be different",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Present Use of This History",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Present Use of This History",
-                "sectionKey": "present use of this history",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Falsifiability Constraint",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Falsifiability Constraint",
-                "sectionKey": "falsifiability constraint",
+                "title": "Methodological Use",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Methodological Use",
+                "sectionKey": "methodological use",
                 "headingLevel": 2
               }
             ]
@@ -13032,245 +12982,295 @@
             ]
           },
           {
-            "id": "philosophy_history__religious_ontologies",
-            "title": "Religious Ontologies",
-            "kind": "markdown-tree",
-            "sceneType": "Scene-Markdown-Tree",
-            "scenePath": "content/scenes/philosophy_history/religious_ontologies.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Abrahamic Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Abrahamic Traditions",
-                "sectionKey": "abrahamic traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Judaism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Judaism",
-                    "sectionKey": "judaism",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Christianity",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Christianity",
-                    "sectionKey": "christianity",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Islam",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Islam",
-                    "sectionKey": "islam",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dharmic Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Dharmic Traditions",
-                "sectionKey": "dharmic traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Hinduism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Hinduism",
-                    "sectionKey": "hinduism",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Buddhism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Buddhism",
-                    "sectionKey": "buddhism",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "East Asian Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "East Asian Traditions",
-                "sectionKey": "east asian traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Daoism (Taoism)",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Daoism (Taoism)",
-                    "sectionKey": "daoism taoism",
-                    "headingLevel": 3
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "id": "information_computation",
-            "title": "Information / Computation",
+            "id": "historical_context_missed_opportunities",
+            "title": "Historical Context and Missed Opportunities",
             "kind": "markdown-split",
             "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/information_computation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+            "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
             "sections": [
               {
                 "kind": "markdown-section",
                 "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
                 "markdownSection": "Overview",
                 "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Information / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Information as Ontology",
-                "sectionKey": "information as ontology",
+                "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                "sectionKey": "lorentz before einstein the almost substrate moment",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermodynamic Cost",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Thermodynamic Cost of Computation",
-                "sectionKey": "thermodynamic cost of computation",
+                "title": "Geometrization After 1915: Ontology Shift",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Geometrization After 1915: Ontology Shift",
+                "sectionKey": "geometrization after 1915 ontology shift",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Computation / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Computation as Ontology",
-                "sectionKey": "computation as ontology",
+                "title": "Einstein's 1917 Static World: Closure Before Validation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
+                "sectionKey": "einstein s 1917 static world closure before validation",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Digital Physics",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Digital Physics and Discrete Substrate Programs",
-                "sectionKey": "digital physics and discrete substrate programs",
+                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Observer / Encoding",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Observer, Encoding, and Representation",
-                "sectionKey": "observer encoding and representation",
+                "title": "Renormalization Era: Warnings Reframed",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Renormalization Era: Warnings Reframed",
+                "sectionKey": "renormalization era warnings reframed",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Simulation / Computability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Simulation, Modeling, and Computability Limits",
-                "sectionKey": "simulation modeling and computability limits",
+                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "sectionKey": "wheeler s tokyo program particles fields and direct action",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's Abandoned Steady-State Cosmology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
+                "sectionKey": "einstein s abandoned steady state cosmology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Precision Cosmology: Parameters into Story",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Precision Cosmology: Parameters into Story",
+                "sectionKey": "precision cosmology parameters into story",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recurrent Narrative Filters",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Recurrent Narrative Filters",
+                "sectionKey": "recurrent narrative filters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Would Have Needed to Be Different",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "What Would Have Needed to Be Different",
+                "sectionKey": "what would have needed to be different",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Present Use of This History",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Present Use of This History",
+                "sectionKey": "present use of this history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability Constraint",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Falsifiability Constraint",
+                "sectionKey": "falsifiability constraint",
                 "headingLevel": 2
               }
             ]
           },
           {
-            "id": "philosophy_history__agency_and_internal_causation",
-            "title": "Agency and Internal Causation",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+            "id": "crisis_in_physics",
+            "title": "Crisis in Physics",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Internal vs External Causation",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Internal vs External Causation",
-                "sectionKey": "internal vs external causation",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Functional Agency",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Functional Agency",
-                "sectionKey": "functional agency",
+                "title": "Progress vs. Time",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Progress vs. Time",
+                "sectionKey": "progress vs time",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Biological and Artificial Embodiments",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Biological and Artificial Embodiments",
-                "sectionKey": "biological and artificial embodiments",
+                "title": "Prediction vs. Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Prediction vs. Ontology",
+                "sectionKey": "prediction vs ontology",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Primitive Metastability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Primitive Metastability",
-                "sectionKey": "primitive metastability",
+                "title": "Measurement / Outcome",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Quantum Measurement and Outcome Selection",
+                "sectionKey": "quantum measurement and outcome selection",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Determinism and Predictability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Determinism and Predictability",
-                "sectionKey": "determinism and predictability",
+                "title": "Nonlocality / Bell",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Nonlocality, Bell, and Causal Structure",
+                "sectionKey": "nonlocality bell and causal structure",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Will as Threshold Setting",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Will as Threshold Setting",
-                "sectionKey": "will as threshold setting",
+                "title": "GR and Quantum Theory",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "General Relativity and Quantum Theory",
+                "sectionKey": "general relativity and quantum theory",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Compatibilist Agency",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Compatibilist Agency",
-                "sectionKey": "compatibilist agency",
+                "title": "AdS Control and de Sitter Reality",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "AdS Control and de Sitter Reality",
+                "sectionKey": "ads control and de sitter reality",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
+                "title": "Renormalization / UV",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Renormalization, UV Completion, and Continuum Excess",
+                "sectionKey": "renormalization uv completion and continuum excess",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Closing Statement",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Closing Statement",
-                "sectionKey": "closing statement",
+                "title": "Vacuum / Medium",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Vacuum, Medium, and the Status of Empty Space",
+                "sectionKey": "vacuum medium and the status of empty space",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dark-Sector Inference",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
+                "sectionKey": "dark matter dark energy and cosmological over inference",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Parameters / Patchwork",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Parameter Proliferation and Patchwork Closure",
+                "sectionKey": "parameter proliferation and patchwork closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Math vs. Mechanism",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Mathematical Control vs. Mechanistic Explanation",
+                "sectionKey": "mathematical control vs mechanistic explanation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__solving_the_crisis",
+            "title": "Solving the Crisis",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Foundations / Spacetime",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Foundations And Spacetime",
+                "sectionKey": "foundations and spacetime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Strong-Field Gravity",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Strong-Field Gravity",
+                "sectionKey": "strong field gravity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology / Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Cosmology And Large-Scale Structure",
+                "sectionKey": "cosmology and large scale structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantum / Statistics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Quantum And Statistical Emergence",
+                "sectionKey": "quantum and statistical emergence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model / Particles",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Standard Model And Particle Closure",
+                "sectionKey": "standard model and particle closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Astrophysical Engines",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Astrophysical Engines",
+                "sectionKey": "astrophysical engines",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix / Exclusions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Appendix And Exclusions",
+                "sectionKey": "appendix and exclusions",
                 "headingLevel": 2
               }
             ]
