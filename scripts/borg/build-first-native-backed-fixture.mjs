@@ -671,9 +671,13 @@ async function main() {
   printSummary(manifest);
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1]).href) {
+if (isDirectCliInvocation()) {
   main().catch((error) => {
     console.error(error?.stack || error?.message || String(error));
     process.exitCode = 1;
   });
+}
+
+function isDirectCliInvocation() {
+  return typeof process.argv[1] === "string" && import.meta.url === pathToFileURL(process.argv[1]).href;
 }

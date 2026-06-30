@@ -1018,7 +1018,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He sought equations consistent with both Lorentz structure and quantum behavior while preserving predictive control over electron dynamics.
 
-**What They Got Right:** Dirac correctly produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation.
+**What They Got Right:** Dirac correctly produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation. More specifically, linearizing the relativistic energy-momentum relation made the cost explicit: the electron description required a four-component spinor, with two ordinary spin states and two charge-conjugate sectors that later became positron states after the negative-energy branch was reinterpreted. Anderson's cloud-chamber positron discovery then made the episode a clean historical case where formal consistency found a real sector before direct observation.
 
 **What They Got Wrong or Overstated:** Field-operator and vacuum fluctuation objects were treated in ways that can be ontologically over-read beyond their effective calculational status.
 

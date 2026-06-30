@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 577,
-      "edges": 1338,
-      "scenes": 374,
+      "nodes": 576,
+      "edges": 1336,
+      "scenes": 373,
       "markdownIndexes": 0,
       "markdownDocs": 190,
       "runtimeEdges": 476,
@@ -2387,12 +2387,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "unknowns_paradoxes__problem_map",
-      "name": "Unknowns and Paradoxes: Problem Map",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3102,7 +3096,7 @@
     },
     {
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns and Paradoxes",
+      "name": "Unknowns And Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc"
     },
@@ -6010,15 +6004,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "nodeType": "scene",
-      "id": "unknowns_paradoxes__problem_map",
-      "name": "Unknowns and Paradoxes: Problem Map",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
       "nodeType": "scene",
       "id": "proof_programs__closed_form_collinear_breather_ansatz",
@@ -7966,7 +7951,7 @@
       "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns and Paradoxes",
+      "name": "Unknowns And Paradoxes",
       "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "implicit": false
@@ -12531,13 +12516,6 @@
       "field": "scene.children[0]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "field": "scene.children[1]"
-    },
-    {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
       "to": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
       "edgeType": "subscene",
@@ -14145,13 +14123,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
-      "field": "scene.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
       "field": "scene.source.path"
     },
     {

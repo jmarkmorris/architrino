@@ -588,6 +588,8 @@ Every run should produce a `borg-dataset-manifest.v1` manifest; see [borg-datase
 8. frame-buffer or playback dataset handles;
 9. validation status and claim level.
 
+The first screen-spec consumer is `borg-app-surface-design.v1`; see [borg-app-surface-design.v1](borg-app-surface-design.v1.md). It binds the native-backed manifest fixture into first-screen layout regions, layer defaults, simulation-envelope fields, diagnostics, deployment/render placeholders, value-authority states, and fail-closed rows. The first static page consumer is [borg.html](../../../borg.html), with browser runtime entrypoint [main.js](../../../src/apps/borg/main.js).
+
 ## Pass/Fail Conditions
 
 The first app design pass should fail closed if any of these occur:
@@ -610,4 +612,4 @@ The first app design pass should fail closed if any of these occur:
 
 ## Next Exact Proof/Build Burden
 
-The next exact burden is `app_surface_design`: consume `borg-first-native-backed-fixture` from [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) in the first Borg screen or screen-spec artifact. The consumer must display the outer/central cube split, native current-state frames, path-history availability, diagnostic status vocabulary, fail-closed wake-history gaps, fail-closed face-boundary gaps, deployment budget placeholders, and the 4K UHD render manifest placeholder. It must not promote wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the manifest's value authority and error-budget status.
+The next exact burden is measuring the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The measurement must report static transfer size, browser heap, GPU memory proxy, browser storage, viewport/canvas sizing, and 3840 by 2160 capture status separately from native solver throughput. It must not promote wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the manifest's value authority and error-budget status.

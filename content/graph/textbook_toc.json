@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 183,
-      "sections": 1449
+      "entries": 182,
+      "sections": 1447
     }
   },
   "tocRoot": {
@@ -9718,32 +9718,6 @@
                         "headingLevel": 2
                       }
                     ]
-                  }
-                ]
-              },
-              {
-                "id": "unknowns_paradoxes__problem_map",
-                "title": "Unknowns and Paradoxes: Problem Map",
-                "kind": "markdown-tree",
-                "sceneType": "Scene-Markdown-Tree",
-                "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Overview",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Problem Map",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Problem Map",
-                    "sectionKey": "problem map",
-                    "headingLevel": 2
                   }
                 ]
               }

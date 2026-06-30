@@ -9,6 +9,7 @@
 - Primary requirements: [requirements-and-design](requirements-and-design.md)
 - Face boundary source packet: [face-boundary-replay](face-boundary-replay.md)
 - Native bridge source packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
+- First screen consumer: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
 
 ## Purpose
 
@@ -474,6 +475,20 @@ The fixture uses a two-architrino pair-interaction smoke run because that is the
 
 The fixture intentionally fails closed for replay authority. It emits explicit gap rows for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`. Its valid claim is `developer-test`, not proof evidence and not measured benign-noise authority.
 
+## First App Surface Design Artifact
+
+`borg-app-surface-design.v1` is implemented by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs). It consumes the live dataset manifest and emits the first Borg screen-spec object from the native-backed fixture.
+
+The surface design binds the displayed central cube, optional outer computed cube overlay, native current-state frames, native path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window` and `architrino-position` visible by default, keeps `path-history` and `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist.
+
+The surface design intentionally preserves fail-closed authority for wake history, face-boundary replay, benign-noise status, and central-volume acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
+
+## First Static Page Artifact
+
+[borg.html](../../../borg.html) is the first static page consumer for the dataset manifest and surface design. It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js) as a browser-safe snapshot of the native-backed fixture summary and [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) to render the central cube, current-state positions, frame scrubber, layer controls, render/deployment placeholders, and fail-closed diagnostics.
+
+The page is static and developer-test scoped. It does not replace [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) as the native-backed fixture source, does not run a browser solver, and does not grant authority to replay-affected values.
+
 ## Next Exact Build Burden
 
-The next build burden is `app_surface_design`: consume the emitted `borg-dataset-manifest.v1` fixture in the first Borg app screen or screen-spec artifact. The consumer must show native current-state frames, path-history availability, manifest-backed scale fields, deployment/render placeholders, and fail-closed wake/face-boundary diagnostics without giving authority to boundary replay, benign-noise status, or central-volume acceleration.
+The next build burden is measuring the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The report must separate static transfer, browser heap, GPU memory proxy, browser storage, render/capture dimensions, and native solver throughput, with replay-affected values still fail-closed.

@@ -15,6 +15,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Existing central solver bridge | Current production solver boundary and ABI extension point. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
 | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) | First Borg developer-test fixture that binds native bridge output into `borg-dataset-manifest.v1`. |
+| [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) | First Borg developer-test screen-spec consumer for the native-backed manifest fixture. |
 
 ## Capability Classification
 
@@ -37,7 +38,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The native solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest | `developer-test` fixture complete; app integration remains `manifest-gap` | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows. | The next implementation artifact should consume the manifest in the app surface while keeping missing wake-history rows, face-boundary rows, face influence models, six-face policy rows, velocity sampling rows, residual decisions, and deployment budgets fail-closed or placeholder-only. |
+| Dataset manifest and first-screen consumer | `developer-test` fixture and screen-spec complete; browser page integration remains `manifest-gap` | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows; [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) consumes it into `borg-app-surface-design.v1`. | The next implementation artifact should render the screen spec in a static Borg page while keeping missing wake-history rows, face-boundary rows, face influence models, six-face policy rows, velocity sampling rows, residual decisions, and deployment budgets fail-closed or placeholder-only. |
 
 ## Smallest Elegant First Screen
 
@@ -110,10 +111,11 @@ Minimum timeline:
 ## Implementation Order
 
 1. Use [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) as the first developer-test manifest source. It already distinguishes native-backed frames/path history from explicit wake, face-boundary, face influence, six-face policy, velocity sampling, and residual gap rows.
-2. Add a 3D viewport surface that consumes current visualization frames without changing solver behavior.
-3. Add the layer controller with default-visible `simulation-window` and `architrino-position`; keep velocity rays behind the layer toggle and selected-object editing.
-4. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
-5. Keep wake streams, face-boundary replay, six-face benign-noise status, velocity-sampling promotion, and acceleration decomposition disabled or fail-closed until native and manifest support exists.
+2. Use [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) as the first developer-test first-screen contract.
+3. Add a 3D viewport surface that consumes current visualization frames without changing solver behavior.
+4. Add the layer controller with default-visible `simulation-window` and `architrino-position`; keep velocity rays behind the layer toggle and selected-object editing.
+5. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
+6. Keep wake streams, face-boundary replay, six-face benign-noise status, velocity-sampling promotion, and acceleration decomposition disabled or fail-closed until native and manifest support exists.
 
 ## First Native-Backed Fixture Artifact
 
@@ -129,6 +131,28 @@ Minimum timeline:
 
 The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 
+## First App Surface Design Artifact
+
+`borg-app-surface-design.v1` is implemented by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs). The script consumes the native-backed fixture and validates these screen-spec facts:
+
+1. `schema = borg-app-surface-design.v1`;
+2. source manifest id is `borg-first-native-backed-fixture-manifest`;
+3. `simulation-window` is `on-locked` and `architrino-position` is `on`;
+4. `path-history` and `velocity-vectors` are off by default;
+5. `wake-streams`, `face-boundary-status`, and `outbound-face-background` remain disabled or contextual-disabled;
+6. native current-state frame count is 6 and native path-history row count is 4;
+7. render manifest uses 3840 by 2160 pixels;
+8. central-volume acceleration remains `fail-closed-value`;
+9. fail-closed rows surface missing wake history, missing face influence model, and unmeasured `R_boundary->central`.
+
+The surface design is a `developer-test-screen-spec` artifact. It does not implement the production browser page and does not upgrade replay-affected diagnostics beyond the source manifest.
+
+## First Static Page Artifact
+
+[borg.html](../../../borg.html) implements the first static browser consumer for `borg-app-surface-design.v1`. It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js), [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js), and [main.js](../../../src/apps/borg/main.js). The page renders the displayed central cube with Three.js, consumes the native current-state frame snapshot, exposes path-history and velocity-vector layers as visibility controls, and keeps wake streams, face-boundary status, outbound-face background, benign-noise status, and central-volume acceleration fail-closed.
+
+The page is an app-surface developer test, not native solver integration in the browser. [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) remains the native-backed fixture source.
+
 ## Next Exact Build Burden
 
-Build `app_surface_design`: the first Borg screen or screen-spec consumer for the emitted `borg-dataset-manifest.v1` fixture. The screen must render the displayed central cube, native current-state frames, path-history availability, and fail-closed boundary diagnostics without changing solver state or promoting replay-affected values.
+Measure the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The next artifact must report transfer size, runtime memory observations, GPU/render target proxy, 3840 by 2160 capture status, and any browser integration gaps without changing solver state or promoting replay-affected values.
