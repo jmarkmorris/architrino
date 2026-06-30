@@ -7750,6 +7750,34 @@ where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the 
 
 This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
 
+##### Born-Jordan Commutator Bridge
+
+Born and Jordan's 1925 formalization is useful because it shows how the canonical commutator entered as a recovery from transition-record algebra, not as an unexplained first axiom. Heisenberg's indexed transition quantities already carried the Ritz-style composition rule. Born recognized that the product was matrix multiplication, rewrote the old action rule in Hamiltonian variables, and found the diagonal part of the matrix difference $PQ-QP$. Jordan then proved the missing off-diagonal claim by showing that the relevant matrix is constant and therefore diagonal in the transition-energy chart. In modern notation the result is
+
+$$
+[\widehat P_\theta,\widehat Q_\theta]
+\approx
+-i\hbar I_\theta
+$$
+
+for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is narrow and important. The commutator is not promoted to a substrate object. It is the effective algebra that must be recovered when the same finite-window branch record supplies calibrated transition frequencies, transition amplitudes, action-cycle closure, and apparatus access. In sequence form, the recovery target is
+
+$$
+\text{spectral transition record}
+\longrightarrow
+\widehat M_\theta
+\longrightarrow
+[\widehat P_\theta,\widehat Q_\theta]
+\longrightarrow
+[\widehat H_\theta,\widehat O_\theta]
+\longrightarrow
+\frac{d\widehat O_\theta}{dt}
+$$
+
+where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
+
 ##### Dirac's 1925 Poisson-Bracket Bridge
 
 Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
@@ -19103,6 +19131,8 @@ viewing geometry, analyzer response, photon-channel polarization, and magnetic
 state are bound to one event record.
 
 Matrix mechanics supplied the algebraic version of the same transition-data lesson. Heisenberg's starting point was not a picture of an electron orbit, but the experimentally organized table of transition frequencies and amplitudes. Ritz combination rules made the frequencies compose by matched indices, and line intensities demanded corresponding transition quantities. Heisenberg's recovery move was to replace the classical Fourier components of an orbit with indexed transition amplitudes; once products were required to preserve the same transition-frequency closure, multiplication had to sum through matching intermediate indices. Born and Jordan later recognized that rule as matrix multiplication. The near miss is that this was a genuine structural discovery about the observable transition record, not proof that observables-only formalism is final ontology.
+
+Born and Jordan's follow-on step added the formal lock that later textbooks often present as a starting axiom. Born translated Heisenberg's indexed transition quantities into matrices, rewrote the construction through Hamiltonian variables, and extracted the diagonal part of $PQ-QP$ from the old action rule. Jordan then supplied the missing algebraic proof that the off-diagonal part vanishes, giving the sharpened quantum condition $[P,Q]=-i\hbar I$ in modern notation. From there the Hamiltonian commutator equation supplied a general time-evolution rule. The historical packet is therefore not simply "operators are primitive." It is spectral transition data -> indexed product rule -> matrix recognition -> action-rule commutator -> Hamiltonian evolution -> later operational lock-in.
 
 That sequence matters because it shows the field moving through multiple distinct levels: data product, recovery rule, stability mechanism or rate bridge, coefficient recovery, transition algebra, and later operational closure. Rutherford supplied the data pressure. Bohr supplied a successful but partly postulated recovery rule. De Broglie supplied a physical criterion that looked more like a branch-stability condition. Ladenburg supplied a rate bridge from classical dispersion strengths to Einstein transition probabilities. Zeeman and Lorentz supplied a magnetic splitting and polarization benchmark with a charge-to-mass readout. Heisenberg supplied the indexed algebra of transition quantities. The later Copenhagen lock-in then stabilized the formal practice while discouraging the deeper question of what substrate dynamics actually selects the branch, forms the record, and assigns the observed weights.
 

@@ -175,6 +175,34 @@ where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the 
 
 This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
 
+## Born-Jordan Commutator Bridge
+
+Born and Jordan's 1925 formalization is useful because it shows how the canonical commutator entered as a recovery from transition-record algebra, not as an unexplained first axiom. Heisenberg's indexed transition quantities already carried the Ritz-style composition rule. Born recognized that the product was matrix multiplication, rewrote the old action rule in Hamiltonian variables, and found the diagonal part of the matrix difference $PQ-QP$. Jordan then proved the missing off-diagonal claim by showing that the relevant matrix is constant and therefore diagonal in the transition-energy chart. In modern notation the result is
+
+$$
+[\widehat P_\theta,\widehat Q_\theta]
+\approx
+-i\hbar I_\theta
+$$
+
+for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is narrow and important. The commutator is not promoted to a substrate object. It is the effective algebra that must be recovered when the same finite-window branch record supplies calibrated transition frequencies, transition amplitudes, action-cycle closure, and apparatus access. In sequence form, the recovery target is
+
+$$
+\text{spectral transition record}
+\longrightarrow
+\widehat M_\theta
+\longrightarrow
+[\widehat P_\theta,\widehat Q_\theta]
+\longrightarrow
+[\widehat H_\theta,\widehat O_\theta]
+\longrightarrow
+\frac{d\widehat O_\theta}{dt}
+$$
+
+where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
+
 ## Dirac's 1925 Poisson-Bracket Bridge
 
 Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
