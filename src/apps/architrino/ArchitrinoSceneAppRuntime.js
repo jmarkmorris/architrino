@@ -6345,6 +6345,12 @@ function setImageGalleryLevelVisible(level, visible) {
   }
 }
 
+function hideImageGalleryTransitionLevel(level) {
+  if (levelHasImageGalleryItems(level)) {
+    setImageGalleryLevelVisible(level, false);
+  }
+}
+
 function syncSceneImageGalleryLevel(level = currentLevel) {
   if (hiddenImageGalleryLevel && hiddenImageGalleryLevel !== level) {
     setImageGalleryLevelVisible(hiddenImageGalleryLevel, true);
@@ -6359,9 +6365,12 @@ function syncSceneImageGalleryLevel(level = currentLevel) {
   }
 }
 
-function hideSceneImageGallery() {
+function hideSceneImageGallery(options = {}) {
+  const restoreHiddenLevel = options.restoreHiddenLevel !== false;
   if (hiddenImageGalleryLevel) {
-    setImageGalleryLevelVisible(hiddenImageGalleryLevel, true);
+    if (restoreHiddenLevel) {
+      setImageGalleryLevelVisible(hiddenImageGalleryLevel, true);
+    }
     hiddenImageGalleryLevel = null;
   }
   sceneImageGalleryRuntime?.syncLevel(null);
@@ -7226,7 +7235,7 @@ async function jumpToScene(scenePath, options = {}) {
   if (scenePath !== currentLevel?.id) {
     recordBrowserBackHistory(options);
   }
-  hideSceneImageGallery();
+  hideSceneImageGallery({ restoreHiddenLevel: false });
   const forceInstantAnimatorEntry = isAnimatorOverlaySceneId(config?.sceneId);
   const shouldHideLevelForAnimator = shouldHideLevelForAnimatorOverlayScene(config?.sceneId);
   if (options.mode === "instant" || forceInstantAnimatorEntry) {
@@ -7283,6 +7292,7 @@ async function jumpToScene(scenePath, options = {}) {
     nextLevel.group.position.set(0, 0, 0);
   }
   nextLevel.group.scale.setScalar(options.startScale ?? 1);
+  hideImageGalleryTransitionLevel(nextLevel);
   setLevelOpacity(nextLevel, 0);
   setLevelLabelOpacity(nextLevel, 0);
   setLevelLinkOpacity(nextLevel, 0);
@@ -8156,7 +8166,7 @@ function beginLevelTransition(targetNode, childLevelId, options = {}) {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
-  hideSceneImageGallery();
+  hideSceneImageGallery({ restoreHiddenLevel: false });
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -8206,6 +8216,7 @@ function beginLevelTransition(targetNode, childLevelId, options = {}) {
 
   toLevel.group.position.copy(targetPosition).sub(toLevelCenter);
   toLevel.group.scale.setScalar(toStartScale);
+  hideImageGalleryTransitionLevel(toLevel);
   setLevelOpacity(toLevel, 0);
   setLevelLabelOpacity(toLevel, 0);
   if (useAtomFocusTransition) {
@@ -8256,7 +8267,7 @@ function startLevelTransitionOut() {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
-  hideSceneImageGallery();
+  hideSceneImageGallery({ restoreHiddenLevel: false });
   let parentInfo = null;
   let parentLevel = null;
   let parentNode = null;
@@ -8316,6 +8327,7 @@ function startLevelTransitionOut() {
     .multiplyScalar(-1)
     .sub(worldGroup.position);
   parentLevel.group.scale.setScalar(transitionState.payload.toStartScale);
+  hideImageGalleryTransitionLevel(parentLevel);
   setLevelOpacity(parentLevel, 0);
   setLevelLabelOpacity(parentLevel, 0);
   setLevelOpacity(currentLevel, 1);

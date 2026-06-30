@@ -11,7 +11,7 @@
 
 ## Task Queue
 
-1. `paper_skeleton` - Maintain [solving-open-problems.md](solving-open-problems.md) as a readable technical paper draft grouped by major open-problem domains. Status: `active`. Depends on: none.
+1. `paper_skeleton` - Maintain the deployed draft [solving-open-problems.md](../../../content/markdown/aaa/philosophy-history/solving-open-problems.md) as a readable technical paper draft grouped by major open-problem domains. Status: `active`. Depends on: none.
 2. `claim_level_audit` - For every chapter, classify the candidate as `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`. Status: `next`. Depends on: `paper_skeleton`.
 3. `test_contracts` - Attach at least one recovery target, source family, observable, simulation variable, or falsifier to every `architecture-ready` chapter. Status: `next`. Depends on: `claim_level_audit`.
 4. `corpus_route_map` - Map every retained chapter to its current $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus and priority destinations before promotion. Status: `pending`. Depends on: `test_contracts`.
@@ -22,7 +22,7 @@
 
 This lane organizes a possible paper on open problems in physics, astronomy, astrophysics, and cosmology where $\mathbb{A}\mathbb{A}\mathbb{A}$ already has a plausible or stronger architectural answer.
 
-The lane is priority-only. It does not change the claim level of any reader-facing corpus document. The draft is a selection and routing document: it decides which public open problems are strong enough for a readable technical answer, which are only directional, and which should stay out of the paper until the native proof stack matures.
+The lane is priority-control only. The draft document itself has moved to `content/markdown/aaa/philosophy-history` so it can be surfaced by the Unknowns and Paradoxes scene. This control file decides which public open problems are strong enough for a readable technical answer, which are only directional, and which should stay out of the paper until the native proof stack matures.
 
 ## Selection Rule
 
@@ -56,11 +56,11 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | Astrophysical engines | Use the same reaction, radiation, and medium-response ledger in high-energy astrophysical settings. | Supernovae, nucleosynthesis, jets, outflows, transients. |
 | Appendix and exclusions | Keep weak or data-unstable cases visible without overpromoting them. | FRBs, UHECRs, coronal heating, solar-cycle, planetary, Fermi paradox, one-off anomalies. |
 
-## Detailed Priority Files
+## Deployed Draft
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [solving-open-problems.md](solving-open-problems.md) | Working paper draft with major sections, chapter candidates, $\mathbb{A}\mathbb{A}\mathbb{A}$ architectural answers, test advice, and claim levels. | Later paper manuscript, plus selected promotions into existing corpus and priority workstreams after claim-level audit. |
+| [solving-open-problems.md](../../../content/markdown/aaa/philosophy-history/solving-open-problems.md) | Deployed working paper draft with major sections, chapter candidates, $\mathbb{A}\mathbb{A}\mathbb{A}$ architectural answers, test advice, and claim levels. | Unknowns and Paradoxes scene, later paper manuscript, plus selected promotions into existing corpus and priority workstreams after claim-level audit. |
 
 ## Promotion Map
 

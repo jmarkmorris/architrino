@@ -456,6 +456,8 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
         "rootLedgerRecordId",
         "sourcePathSegmentId",
         "receiverPathSegmentId",
+        "windingLabel",
+        "windingLabelStatus",
         "sameRecordRetainedBinding",
         "retainedSourceBindingStatus",
         "sameRecordReplayStatus",

@@ -153,6 +153,15 @@ double nearest_image_delta(double fromValue, double toValue, double sideLength) 
   return delta - sideLength * std::round(delta / sideLength);
 }
 
+std::int32_t nearest_image_winding_label(double fromValue, double toValue, double sideLength) {
+  const double winding = std::round((toValue - fromValue) / sideLength);
+  if (winding < static_cast<double>(std::numeric_limits<std::int32_t>::min()) ||
+      winding > static_cast<double>(std::numeric_limits<std::int32_t>::max())) {
+    return 0;
+  }
+  return static_cast<std::int32_t>(winding);
+}
+
 Vector3 nearest_image_displacement(Vector3 from, Vector3 to, double sideLength) {
   return Vector3{
       nearest_image_delta(from.x, to.x, sideLength),
@@ -318,6 +327,14 @@ T3BulkStepResult step_t3_universe(
             }
             ++neighborPairCount;
             if (emitUnresolvedRootSegmentRows) {
+              const std::int32_t windingLabelX =
+                  nearest_image_winding_label(states[i].position.x, states[j].position.x, request.sideLength);
+              const std::int32_t windingLabelY =
+                  nearest_image_winding_label(states[i].position.y, states[j].position.y, request.sideLength);
+              const std::int32_t windingLabelZ =
+                  nearest_image_winding_label(states[i].position.z, states[j].position.z, request.sideLength);
+              const bool hasPeriodicWinding =
+                  windingLabelX != 0 || windingLabelY != 0 || windingLabelZ != 0;
               const T3UnresolvedRootSegmentRowF64 segmentRow{
                   request.stepIndex,
                   states[i].pathKey,
@@ -389,6 +406,13 @@ T3BulkStepResult step_t3_universe(
                   retainedCausalRootRowId,
                   sourcePathSegmentId,
                   receiverPathSegmentId,
+                  windingLabelX,
+                  windingLabelY,
+                  windingLabelZ,
+                  static_cast<std::uint32_t>(
+                      hasPeriodicWinding
+                          ? T3WindingLabelStatus::GlobalPeriodicWrapCandidate
+                          : T3WindingLabelStatus::LocalPreWrapCandidate),
                   static_cast<std::uint32_t>(
                       T3RetainedCausalRootReplayFieldStatus::CandidateSameRecordBinding),
                   static_cast<std::uint32_t>(

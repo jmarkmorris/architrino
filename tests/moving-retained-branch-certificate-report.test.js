@@ -324,6 +324,10 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
       "sampled-only rows",
       "aggregate rows",
       "cross-row bundles",
+      "route-only rows",
+      "H39/theta3minus quotient rows",
+      "source-normal denominator machinery",
+      "downstream candidate rows",
       "source scouts",
     ]
   );
@@ -358,6 +362,75 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
       .moving_retained_branch_certificate,
     false
   );
+  const producerTarget = qIndexRatioF2Intake.accepted_same_record_branch_chart_producer_target;
+  assert.equal(
+    producerTarget.schema,
+    "same_record_accepted_branch_chart_producer_target_for_q_index_ratio_f2/v0"
+  );
+  assert.equal(producerTarget.target_status, "producer_target_blocked");
+  assert.equal(producerTarget.required_source_object, "accepted_same_record_branch_chart");
+  assert.equal(producerTarget.required_source_status, "accepted_same_record_branch_chart");
+  assert.equal(producerTarget.selected_candidate_id, "partial-same-record-identity-scout-fixture");
+  assert.equal(
+    producerTarget.first_missing_or_rejected_field,
+    "same_record_identity.accepted_branch_chart_ref"
+  );
+  assert.equal(
+    producerTarget.first_missing_or_rejected_field_code,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.deepEqual(producerTarget.same_record_binding_required, {
+    branch_label: "q:index-ratio:f2",
+    extraction_window_id: "W:index-ratio:f2:sampled-active-row-window",
+    active_root_ledger_hash: "route-root-key:2856731379702547500",
+    required_fields_must_live_on_one_branch_row: true,
+    retained_source_binding_must_match_branch_row: true,
+    cross_row_join_authorized: false,
+  });
+  assert.deepEqual(producerTarget.required_producer_field_groups.branch_row_identity, [
+    "branch_row_id",
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+  ]);
+  assert.deepEqual(producerTarget.required_producer_field_groups.accepted_branch_chart, [
+    "source_status",
+    "same_record_identity.accepted_branch_chart_ref",
+    "same_record_identity.separator_chart_ref",
+    "same_record_identity.positive_gap_record_ref",
+    "same_record_identity.memory_depth_record_ref",
+    "same_record_identity.active_wave_vector_gap_ref",
+  ]);
+  assert.deepEqual(producerTarget.required_producer_field_groups.retained_source_binding, [
+    "retained_source_binding.retained_record_id",
+    "retained_source_binding.source_record_id",
+    "retained_source_binding.source_artifact_hash",
+    "retained_source_binding.causal_root_replay_ref",
+    "provider_object_provenance",
+  ]);
+  assert.deepEqual(producerTarget.exact_blocking_refs, {
+    branch_certificate_ref: "candidate:branch-chart-ref-with-partial-same-record-identity",
+    same_record_identity_accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
+    moving_retained_branch_certificate_ref: null,
+    retained_source_binding_ref: null,
+    provider_object_provenance_ref: null,
+  });
+  for (const rejectedSource of [
+    "proxy refs",
+    "fixture refs",
+    "sampled-only rows",
+    "aggregate rows",
+    "cross-row bundles",
+    "route-only rows",
+    "H39/theta3minus quotient rows",
+    "source-normal denominator machinery",
+    "downstream candidate rows",
+  ]) {
+    assert.ok(producerTarget.rejected_branch_chart_evidence_sources.includes(rejectedSource));
+  }
+  assert.equal(producerTarget.authorization.accepted_same_record_branch_chart, false);
+  assert.equal(producerTarget.authorization.moving_retained_branch_certificate, false);
   assert.deepEqual(qIndexRatioF2Intake.selected_candidate_producer_target, {
     schema: "same_record_accepted_branch_chart_intake_for_q_index_ratio_f2/v0",
     target_status: "target_only_not_accepted_source",

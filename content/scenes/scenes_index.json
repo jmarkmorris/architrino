@@ -1839,6 +1839,21 @@
       "id": "archie__website_stats",
       "name": "Website Stats",
       "path": "content/scenes/archie/website_stats.json"
+    },
+    {
+      "id": "philosophy_history__solving_open_problems",
+      "name": "Solving Open Problems",
+      "path": "content/scenes/philosophy_history/solving_open_problems.json"
+    },
+    {
+      "id": "philosophy_history__solving_open_problems_overview",
+      "name": "Solving Open Problems",
+      "path": "content/scenes/philosophy_history/solving_open_problems/overview.json"
+    },
+    {
+      "id": "unknowns_paradoxes__problem_map",
+      "name": "Unknowns and Paradoxes: Problem Map",
+      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json"
     }
   ]
 }

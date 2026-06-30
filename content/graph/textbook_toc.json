@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 180,
-      "sections": 1463
+      "entries": 183,
+      "sections": 1473
     }
   },
   "tocRoot": {
@@ -9602,240 +9602,348 @@
           {
             "id": "unknowns_paradoxes",
             "title": "Unknowns and Paradoxes",
-            "kind": "markdown-tree",
-            "sceneType": "Scene-Markdown-Tree",
+            "kind": "scene-index",
+            "sceneType": "Scene-Index",
             "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-            "sections": [
+            "children": [
               {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Cosmology / Inference",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "markdownSection": "Cosmology and Large-Scale Inference",
-                "sectionKey": "cosmology and large scale inference",
-                "headingLevel": 2,
+                "id": "philosophy_history__solving_open_problems",
+                "title": "Solving Open Problems",
+                "kind": "scene-index",
+                "sceneType": "Scene-Index",
+                "scenePath": "content/scenes/philosophy_history/solving_open_problems.json",
                 "children": [
                   {
-                    "kind": "markdown-section",
-                    "title": "The Nature of Dark Energy",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Nature of Dark Energy",
-                    "sectionKey": "the nature of dark energy",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Identity of Dark Matter",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Identity of Dark Matter",
-                    "sectionKey": "the identity of dark matter",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Cosmological Constant Problem",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Cosmological Constant Problem",
-                    "sectionKey": "the cosmological constant problem",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Hubble Tension",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Hubble Tension",
-                    "sectionKey": "the hubble tension",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The $S_8$ (Structure Growth) Tension",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The $S_8$ (Structure Growth) Tension",
-                    "sectionKey": "the s 8 structure growth tension",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Mechanism of Inflation",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Mechanism of Inflation",
-                    "sectionKey": "the mechanism of inflation",
-                    "headingLevel": 3
+                    "id": "philosophy_history__solving_open_problems_overview",
+                    "title": "Solving Open Problems",
+                    "kind": "markdown-view",
+                    "sceneType": "Scene-Markdown-View",
+                    "scenePath": "content/scenes/philosophy_history/solving_open_problems/overview.json",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                    "sections": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Paper Thesis",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Paper Thesis",
+                        "sectionKey": "paper thesis",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Paper Section Map",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Paper Section Map",
+                        "sectionKey": "paper section map",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Foundations And Spacetime",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Foundations And Spacetime",
+                        "sectionKey": "foundations and spacetime",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Strong-Field Gravity",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Strong-Field Gravity",
+                        "sectionKey": "strong field gravity",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Cosmology And Large-Scale Structure",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Cosmology And Large-Scale Structure",
+                        "sectionKey": "cosmology and large scale structure",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Quantum And Statistical Emergence",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Quantum And Statistical Emergence",
+                        "sectionKey": "quantum and statistical emergence",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Standard Model And Particle Closure",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Standard Model And Particle Closure",
+                        "sectionKey": "standard model and particle closure",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Astrophysical Engines",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Astrophysical Engines",
+                        "sectionKey": "astrophysical engines",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Appendix And Exclusions",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Appendix And Exclusions",
+                        "sectionKey": "appendix and exclusions",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Main-Body Candidate List",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+                        "markdownSection": "Main-Body Candidate List",
+                        "sectionKey": "main body candidate list",
+                        "headingLevel": 2
+                      }
+                    ]
                   }
                 ]
               },
               {
-                "kind": "markdown-section",
-                "title": "Particle / Field",
+                "id": "unknowns_paradoxes__problem_map",
+                "title": "Unknowns and Paradoxes: Problem Map",
+                "kind": "markdown-tree",
+                "sceneType": "Scene-Markdown-Tree",
+                "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
                 "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "markdownSection": "Particle and Field Microstructure",
-                "sectionKey": "particle and field microstructure",
-                "headingLevel": 2,
-                "children": [
+                "sections": [
                   {
                     "kind": "markdown-section",
-                    "title": "The Hierarchy Problem",
+                    "title": "Overview",
                     "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Hierarchy Problem (Naturalness)",
-                    "sectionKey": "the hierarchy problem naturalness",
-                    "headingLevel": 3
+                    "markdownSection": "Overview",
+                    "sectionKey": "overview",
+                    "headingLevel": 2
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "The UV Catastrophe",
+                    "title": "Cosmology / Inference",
                     "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The UV Catastrophe (Blackbody Divergence)",
-                    "sectionKey": "the uv catastrophe blackbody divergence",
-                    "headingLevel": 3
+                    "markdownSection": "Cosmology and Large-Scale Inference",
+                    "sectionKey": "cosmology and large scale inference",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Nature of Dark Energy",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Nature of Dark Energy",
+                        "sectionKey": "the nature of dark energy",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Identity of Dark Matter",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Identity of Dark Matter",
+                        "sectionKey": "the identity of dark matter",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Cosmological Constant Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Cosmological Constant Problem",
+                        "sectionKey": "the cosmological constant problem",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Hubble Tension",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Hubble Tension",
+                        "sectionKey": "the hubble tension",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The $S_8$ (Structure Growth) Tension",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The $S_8$ (Structure Growth) Tension",
+                        "sectionKey": "the s 8 structure growth tension",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Mechanism of Inflation",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Mechanism of Inflation",
+                        "sectionKey": "the mechanism of inflation",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Baryon Asymmetry",
+                    "title": "Particle / Field",
                     "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Baryon Asymmetry",
-                    "sectionKey": "baryon asymmetry",
-                    "headingLevel": 3
+                    "markdownSection": "Particle and Field Microstructure",
+                    "sectionKey": "particle and field microstructure",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Hierarchy Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Hierarchy Problem (Naturalness)",
+                        "sectionKey": "the hierarchy problem naturalness",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The UV Catastrophe",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The UV Catastrophe (Blackbody Divergence)",
+                        "sectionKey": "the uv catastrophe blackbody divergence",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Baryon Asymmetry",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Baryon Asymmetry",
+                        "sectionKey": "baryon asymmetry",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Neutrino Mass and Nature",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Neutrino Mass and Nature",
+                        "sectionKey": "neutrino mass and nature",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Strong CP Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Strong CP Problem",
+                        "sectionKey": "the strong cp problem",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Flavor Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Flavor Problem",
+                        "sectionKey": "the flavor problem",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Proton Stability",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Proton Stability",
+                        "sectionKey": "proton stability",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Vacuum Instability",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Vacuum Instability",
+                        "sectionKey": "vacuum instability",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Muon g-2 & Lepton Anomalies",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Muon $g-2$ and Lepton Universality Anomalies",
+                        "sectionKey": "the muon g 2 and lepton universality anomalies",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Lithium Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Lithium Problem",
+                        "sectionKey": "the lithium problem",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Confinement and the Mass Gap",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Confinement and the Mass Gap",
+                        "sectionKey": "confinement and the mass gap",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "Neutrino Mass and Nature",
+                    "title": "Quantum / Unification",
                     "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Neutrino Mass and Nature",
-                    "sectionKey": "neutrino mass and nature",
-                    "headingLevel": 3
+                    "markdownSection": "Quantum Foundations and Unification",
+                    "sectionKey": "quantum foundations and unification",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "Quantum Gravity and Renormalizability",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "Quantum Gravity and Renormalizability",
+                        "sectionKey": "quantum gravity and renormalizability",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Black Hole Information Paradox",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Black Hole Information Paradox",
+                        "sectionKey": "the black hole information paradox",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Measurement Problem",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Measurement Problem",
+                        "sectionKey": "the measurement problem",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Arrow of Time",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Arrow of Time",
+                        "sectionKey": "the arrow of time",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Trans-Planckian Censorship",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Trans-Planckian Censorship and the Swampland",
+                        "sectionKey": "the trans planckian censorship and the swampland",
+                        "headingLevel": 3
+                      }
+                    ]
                   },
                   {
                     "kind": "markdown-section",
-                    "title": "The Strong CP Problem",
+                    "title": "Astrobiological Boundary",
                     "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Strong CP Problem",
-                    "sectionKey": "the strong cp problem",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Flavor Problem",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Flavor Problem",
-                    "sectionKey": "the flavor problem",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Proton Stability",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Proton Stability",
-                    "sectionKey": "proton stability",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Vacuum Instability",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Vacuum Instability",
-                    "sectionKey": "vacuum instability",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Muon g-2 & Lepton Anomalies",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Muon $g-2$ and Lepton Universality Anomalies",
-                    "sectionKey": "the muon g 2 and lepton universality anomalies",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Lithium Problem",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Lithium Problem",
-                    "sectionKey": "the lithium problem",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Confinement and the Mass Gap",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Confinement and the Mass Gap",
-                    "sectionKey": "confinement and the mass gap",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Quantum / Unification",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "markdownSection": "Quantum Foundations and Unification",
-                "sectionKey": "quantum foundations and unification",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Quantum Gravity and Renormalizability",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Quantum Gravity and Renormalizability",
-                    "sectionKey": "quantum gravity and renormalizability",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Black Hole Information Paradox",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Black Hole Information Paradox",
-                    "sectionKey": "the black hole information paradox",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Measurement Problem",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Measurement Problem",
-                    "sectionKey": "the measurement problem",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Arrow of Time",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Arrow of Time",
-                    "sectionKey": "the arrow of time",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Trans-Planckian Censorship",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Trans-Planckian Censorship and the Swampland",
-                    "sectionKey": "the trans planckian censorship and the swampland",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Astrobiological Boundary",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "markdownSection": "Astrobiological Boundary Question",
-                "sectionKey": "astrobiological boundary question",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "The Fermi Paradox",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "The Fermi Paradox",
-                    "sectionKey": "the fermi paradox",
-                    "headingLevel": 3
+                    "markdownSection": "Astrobiological Boundary Question",
+                    "sectionKey": "astrobiological boundary question",
+                    "headingLevel": 2,
+                    "children": [
+                      {
+                        "kind": "markdown-section",
+                        "title": "The Fermi Paradox",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+                        "markdownSection": "The Fermi Paradox",
+                        "sectionKey": "the fermi paradox",
+                        "headingLevel": 3
+                      }
+                    ]
                   }
                 ]
               }

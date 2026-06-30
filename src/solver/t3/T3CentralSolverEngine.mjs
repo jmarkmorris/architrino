@@ -439,6 +439,8 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
     "rootLedgerRecordId",
     "sourcePathSegmentId",
     "receiverPathSegmentId",
+    "windingLabel",
+    "windingLabelStatus",
     "sameRecordRetainedBinding",
   ].filter((field) => nativeReplayRow?.[field] != null);
   const requiredFields = [
@@ -499,6 +501,8 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
     causticRoute: nativeReplayRow?.causticRoute ?? null,
     sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
     receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+    windingLabel: nativeReplayRow?.windingLabel ?? null,
+    windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
     rowFamilyIdentity: "unresolved-root",
     chronologyRowId,
     nativeReplayRowSchema: nativeReplayRow?.schema ?? null,
@@ -569,6 +573,8 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
       rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
       sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
       receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+      windingLabel: nativeReplayRow?.windingLabel ?? null,
+      windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
       sameRecordRetainedBinding: nativeReplayRow?.sameRecordRetainedBinding ?? null,
     },
     sameRecordBinding: {
@@ -586,6 +592,8 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
       rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
       sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
       receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+      windingLabel: nativeReplayRow?.windingLabel ?? null,
+      windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
     },
     availableShapeFields: providedFields.filter((field) =>
       [
@@ -609,6 +617,8 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
         "rootLedgerRecordId",
         "sourcePathSegmentId",
         "receiverPathSegmentId",
+        "windingLabel",
+        "windingLabelStatus",
         "sameRecordRetainedBinding",
       ].includes(field)
     ),

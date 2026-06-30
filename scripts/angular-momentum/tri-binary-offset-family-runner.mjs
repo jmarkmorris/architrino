@@ -76,6 +76,12 @@ if (args.schema === "continuous-interval-witness-producer-target") {
   );
   process.exit(0);
 }
+if (args.schema === "active-domain-extension-row-set-producer-target") {
+  console.log(
+    JSON.stringify(createActiveDomainExtensionProducerTargetSchema(), null, 2)
+  );
+  process.exit(0);
+}
 
 const rootDir = process.cwd();
 const outputPath = path.resolve(rootDir, args.output ?? DEFAULT_OUTPUT_PATH);
@@ -24764,6 +24770,12 @@ async function createGlobalRetainedRowSetIdentityLiftTarget({
       midpointReplayContext,
       retainedRowSetBindingContext,
     });
+  const activeDomainExtensionProducerTarget =
+    createActiveDomainExtensionGlobalRowSetProducerTarget({
+      replayTarget,
+      obstructionTarget,
+      activeDomainExtensionFillRuleTarget,
+    });
   const status =
     replayTarget == null
       ? "global_retained_row_set_identity_lift_target_not_populated"
@@ -24833,9 +24845,135 @@ async function createGlobalRetainedRowSetIdentityLiftTarget({
     retainedRowSetBindingContext,
     retainedLimitation:
       "The hinge common root key has partial retained chains in every layer-pair channel, but current replay leaves positive-width both-inactive no-transition gaps before the same root key can be declared as a global chronological retained row set.",
+    activeDomainExtensionProducerTargetStatus:
+      activeDomainExtensionProducerTarget.status,
+    activeDomainExtensionProducerTarget,
     activeDomainExtensionFillStatus:
       activeDomainExtensionFillRuleTarget.status,
     activeDomainExtensionFillRuleTarget,
+  };
+}
+
+function createActiveDomainExtensionGlobalRowSetProducerTarget({
+  replayTarget,
+  obstructionTarget,
+  activeDomainExtensionFillRuleTarget,
+}) {
+  const activeDomainGapCount =
+    obstructionTarget?.noTransitionBothInactiveIntervalCount ?? 0;
+  const boundedInteriorGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootBoundedGapCount ?? 0;
+  const priorOnlyGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootPriorOnlyGapCount ?? 0;
+  const nextOnlyGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootNextOnlyGapCount ?? 0;
+  const pointContactCount =
+    activeDomainExtensionFillRuleTarget?.pointOnlyIntervalCount ?? 0;
+  const allPairsHaveGlobalReplay = replayTarget?.allPairsHaveGlobalReplay === true;
+  const allPairsHavePartialChain = replayTarget?.allPairsHavePartialChain === true;
+  const sameRecordBindingPass =
+    replayTarget?.eventRootKey != null &&
+    allPairsHaveGlobalReplay &&
+    activeDomainGapCount === 0;
+  const acceptedActiveDomainExtensionProducerPass =
+    sameRecordBindingPass &&
+    activeDomainExtensionFillRuleTarget?.status ===
+      "active_domain_extension_fill_rule_no_active_domain_gaps";
+  const requiredFieldRows = [
+    {
+      fieldId: "active_domain_gap_count",
+      fieldPass: activeDomainGapCount === 0,
+      populatedCount: activeDomainGapCount,
+      firstFieldBlocker:
+        activeDomainGapCount === 0
+          ? null
+          : "prove_active_domain_extension_for_both_inactive_gaps",
+    },
+    {
+      fieldId: "bounded_interior_gap_fill_rule",
+      fieldPass: boundedInteriorGapCount === 0,
+      populatedCount: boundedInteriorGapCount,
+      firstFieldBlocker:
+        boundedInteriorGapCount === 0
+          ? null
+          : "prove_event_root_bounded_interior_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "prior_only_endpoint_gap_rule",
+      fieldPass: priorOnlyGapCount === 0,
+      populatedCount: priorOnlyGapCount,
+      firstFieldBlocker:
+        priorOnlyGapCount === 0
+          ? null
+          : "prove_one_sided_endpoint_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "next_only_endpoint_gap_rule",
+      fieldPass: nextOnlyGapCount === 0,
+      populatedCount: nextOnlyGapCount,
+      firstFieldBlocker:
+        nextOnlyGapCount === 0
+          ? null
+          : "prove_one_sided_endpoint_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "point_contact_identity_rule",
+      fieldPass: pointContactCount === 0,
+      populatedCount: pointContactCount,
+      firstFieldBlocker:
+        pointContactCount === 0
+          ? null
+          : "declare_point_contact_identity_rule_for_both_inactive_gap_contacts",
+    },
+    {
+      fieldId: "same_record_binding",
+      fieldPass: sameRecordBindingPass,
+      eventRootKey: replayTarget?.eventRootKey ?? null,
+      allPairsHavePartialChain,
+      allPairsHaveGlobalReplay,
+      firstFieldBlocker: sameRecordBindingPass
+        ? null
+        : "same_route_root_key_global_retained_row_set_identity_missing",
+    },
+  ];
+  const firstMissingField =
+    requiredFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const firstMissingFillRule =
+    activeDomainExtensionFillRuleTarget?.firstActiveDomainExtensionBlocker ??
+    firstMissingField?.firstFieldBlocker ??
+    null;
+
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.v1",
+    status: acceptedActiveDomainExtensionProducerPass
+      ? "active_domain_extension_global_row_set_identity_producer_target_accepted"
+      : activeDomainGapCount > 0
+        ? "active_domain_extension_global_row_set_identity_producer_target_blocked_active_domain_gaps"
+        : "active_domain_extension_global_row_set_identity_producer_target_blocked_required_fields_missing",
+    claimLevel:
+      "fail-closed producer target for same_route_root_key_global_retained_row_set_identity_provider; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
+    firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    parentRowSetLiftBlocker:
+      "extend_active_root_domain_across_both_inactive_no_transition_gaps",
+    acceptedActiveDomainExtensionProducerPass,
+    eventRootKey: replayTarget?.eventRootKey ?? null,
+    activeDomainGapCount,
+    boundedInteriorGapCount,
+    priorOnlyGapCount,
+    nextOnlyGapCount,
+    pointContactCount,
+    firstMissingFillRule,
+    activeDomainExtensionFillStatus:
+      activeDomainExtensionFillRuleTarget?.status ?? null,
+    requiredFieldRows,
+    sameRecordBindingRequirements:
+      createActiveDomainExtensionSameRecordBindingRequirements(),
+    negativeControls: createActiveDomainExtensionNegativeControls(),
+    retainedLimitation:
+      "Hinge-point replay, endpoint-provider route-only rows, and route-authorized point events do not supply global chronological retained row-set identity. The producer must close active-domain extension on the same route/root-key retained row set before selected direct-absence transport or continuous interval witness rows can use it as accepted evidence.",
   };
 }
 
@@ -37664,6 +37802,85 @@ function createContinuousIntervalWitnessProducerTargetSchema() {
           "partial support rows carrying a competitor active root before accepted retained source binding or a same route/root-key row-set identity exists",
       },
     ],
+  };
+}
+
+function createActiveDomainExtensionSameRecordBindingRequirements() {
+  return [
+    "event_root_key_2856731379702547500",
+    "same_route_root_key_retained_row_set",
+    "all_layer_pair_chronological_replay_identity",
+    "active_domain_extension_fill_rule",
+    "global_retained_row_set_identity_provider",
+  ];
+}
+
+function createActiveDomainExtensionNegativeControls() {
+  return [
+    {
+      id: "endpoint_provider_route_only_rows_not_global_row_set_identity",
+      rejects:
+        "route-authorized endpoint-provider point-event rows without global chronological retained row-set identity",
+    },
+    {
+      id: "hinge_point_replay_not_global_row_set_identity",
+      rejects:
+        "hinge-point common-root replay before all layer-pair chronological replay channels carry the same active root key",
+    },
+    {
+      id: "route_authorized_point_events_not_global_row_set_identity",
+      rejects:
+        "route-authorized point-event rows before active-domain extension or an accepted full point-event rule",
+    },
+    {
+      id: "target_derived_affine_fits_not_global_row_set_identity",
+      rejects:
+        "selected direct-absence saturated affine fits and target-derived coefficient rows",
+    },
+    {
+      id: "sampled_dense_support_not_global_row_set_identity",
+      rejects:
+        "sampled dense-support rows without accepted retained row-set binding",
+    },
+    {
+      id: "phase_cancellation_rows_not_global_row_set_identity",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without the same global retained row set",
+    },
+    {
+      id: "aggregate_rows_not_global_row_set_identity",
+      rejects:
+        "aggregate summaries that do not bind every required field on one retained record",
+    },
+    {
+      id: "cross_row_bundles_not_global_row_set_identity",
+      rejects:
+        "cross-row joins that assemble route/root-key identity from separate retained records",
+    },
+  ];
+}
+
+function createActiveDomainExtensionProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.schema.v1",
+    targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
+    firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed producer target; not retained branch acceptance",
+    requiredFieldIds: [
+      "active_domain_gap_count",
+      "bounded_interior_gap_fill_rule",
+      "prior_only_endpoint_gap_rule",
+      "next_only_endpoint_gap_rule",
+      "point_contact_identity_rule",
+      "same_record_binding",
+    ],
+    sameRecordBindingRequirements:
+      createActiveDomainExtensionSameRecordBindingRequirements(),
+    negativeControls: createActiveDomainExtensionNegativeControls(),
   };
 }
 
@@ -62568,5 +62785,6 @@ function printUsage(exitCode) {
   console.log(`  --output <path>   JSON report path. Default: ${DEFAULT_OUTPUT_PATH}`);
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");
   console.log("  --schema continuous-interval-witness-producer-target  Print the fail-closed interval-witness producer schema and exit");
+  console.log("  --schema active-domain-extension-row-set-producer-target  Print the fail-closed active-domain extension producer schema and exit");
   process.exit(exitCode);
 }

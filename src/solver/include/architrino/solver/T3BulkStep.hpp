@@ -34,6 +34,12 @@ enum class T3RetainedCausalRootReplayFieldStatus : std::uint32_t {
   CandidateSameRecordBinding = 2,
 };
 
+enum class T3WindingLabelStatus : std::uint32_t {
+  Missing = 0,
+  LocalPreWrapCandidate = 1,
+  GlobalPeriodicWrapCandidate = 2,
+};
+
 struct T3BulkStepRequest {
   double startTime = 0.0;
   double endTime = 0.0;
@@ -130,6 +136,11 @@ struct T3RetainedCausalRootReplayRowF64 {
   std::uint64_t rootLedgerRecordId = 0;
   std::uint64_t sourcePathSegmentId = 0;
   std::uint64_t receiverPathSegmentId = 0;
+  std::int32_t windingLabelX = 0;
+  std::int32_t windingLabelY = 0;
+  std::int32_t windingLabelZ = 0;
+  std::uint32_t windingLabelStatus =
+      static_cast<std::uint32_t>(T3WindingLabelStatus::Missing);
   std::uint32_t retainedSourceBindingStatus =
       static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
   std::uint32_t sameRecordReplayStatus =

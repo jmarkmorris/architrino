@@ -379,6 +379,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
             causticRoute: null,
             sourcePathSegmentId: 1004,
             receiverPathSegmentId: 1005,
+            windingLabel: { x: 0, y: 0, z: 0 },
+            windingLabelStatus: "local_pre_wrap_candidate",
             sameRecordRetainedBinding: {
               sameRecordReplayId: 1001,
               retainedSourceRecordId: 1002,
@@ -386,6 +388,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
               rootLedgerRecordId: 1003,
               sourcePathSegmentId: 1004,
               receiverPathSegmentId: 1005,
+              windingLabel: { x: 0, y: 0, z: 0 },
+              windingLabelStatus: "local_pre_wrap_candidate",
               bindingStatus: "candidate_same_record_binding",
               valueAuthority: "candidate-native-same-record-binding",
             },
@@ -483,6 +487,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.causticRoute, null);
   assert.equal(sidecarReplayRow.sourcePathSegmentId, 1004);
   assert.equal(sidecarReplayRow.receiverPathSegmentId, 1005);
+  assert.deepEqual(sidecarReplayRow.windingLabel, { x: 0, y: 0, z: 0 });
+  assert.equal(sidecarReplayRow.windingLabelStatus, "local_pre_wrap_candidate");
   assert.equal(
     sidecarReplayRow.nativeReplayRowSchema,
     "t3-retained-causal-root-replay-native-row.v1"
@@ -530,10 +536,12 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
     sameRecordReplayId: 1001,
     retainedSourceRecordId: 1002,
     retainedCausalRootRowId: 1003,
-    rootLedgerRecordId: 1003,
-    sourcePathSegmentId: 1004,
-    receiverPathSegmentId: 1005,
-  });
+      rootLedgerRecordId: 1003,
+      sourcePathSegmentId: 1004,
+      receiverPathSegmentId: 1005,
+      windingLabel: { x: 0, y: 0, z: 0 },
+      windingLabelStatus: "local_pre_wrap_candidate",
+    });
   assert.deepEqual(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.companionNativeReplayRow,
     {
@@ -563,6 +571,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
       rootLedgerRecordId: 1003,
       sourcePathSegmentId: 1004,
       receiverPathSegmentId: 1005,
+      windingLabel: { x: 0, y: 0, z: 0 },
+      windingLabelStatus: "local_pre_wrap_candidate",
       sameRecordRetainedBinding: {
         sameRecordReplayId: 1001,
         retainedSourceRecordId: 1002,
@@ -570,6 +580,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
         rootLedgerRecordId: 1003,
         sourcePathSegmentId: 1004,
         receiverPathSegmentId: 1005,
+        windingLabel: { x: 0, y: 0, z: 0 },
+        windingLabelStatus: "local_pre_wrap_candidate",
         bindingStatus: "candidate_same_record_binding",
         valueAuthority: "candidate-native-same-record-binding",
       },
@@ -589,9 +601,10 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.providedFields.includes("rootLedgerRecordId"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("sourcePathSegmentId"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("receiverPathSegmentId"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("windingLabel"), true);
   assert.deepEqual(
     sidecarReplayRow.missingFields.filter((field) =>
-      ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId"].includes(field)
+      ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId", "windingLabel"].includes(field)
     ),
     ["causticRoute"]
   );
@@ -1220,6 +1233,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       rootLedgerRecordId: 1003,
       sourcePathSegmentId: 1004,
       receiverPathSegmentId: 1005,
+      windingLabel: { x: 0, y: 0, z: 0 },
+      windingLabelStatus: "local_pre_wrap_candidate",
       sameRecordRetainedBinding: {
         sameRecordReplayId: 1001,
         retainedSourceRecordId: 1002,
@@ -1227,6 +1242,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
         rootLedgerRecordId: 1003,
         sourcePathSegmentId: 1004,
         receiverPathSegmentId: 1005,
+        windingLabel: { x: 0, y: 0, z: 0 },
+        windingLabelStatus: "local_pre_wrap_candidate",
         bindingStatus: "candidate_same_record_binding",
         valueAuthority: "candidate-native-same-record-binding",
       },
@@ -1245,6 +1262,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       rootLedgerRecordId: 1003,
       sourcePathSegmentId: 1004,
       receiverPathSegmentId: 1005,
+      windingLabel: { x: 0, y: 0, z: 0 },
+      windingLabelStatus: "local_pre_wrap_candidate",
     },
     availableShapeFields: [
       "chronologyRowId",
@@ -1267,6 +1286,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       "rootLedgerRecordId",
       "sourcePathSegmentId",
       "receiverPathSegmentId",
+      "windingLabel",
+      "windingLabelStatus",
       "sameRecordRetainedBinding",
     ],
     requiredReplaySourceFields,

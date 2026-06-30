@@ -56,6 +56,59 @@ test("continuous interval witness producer schema names required retained fields
   );
 });
 
+test("active-domain extension producer schema rejects local row-set proxies", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [scriptPath, "--schema", "active-domain-extension-row-set-producer-target"],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.targetObjectId,
+    "same_route_root_key_global_retained_row_set_identity_provider"
+  );
+  assert.equal(
+    schema.firstProducerObject,
+    "prove_active_domain_extension_for_both_inactive_gaps"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "active_domain_gap_count",
+    "bounded_interior_gap_fill_rule",
+    "prior_only_endpoint_gap_rule",
+    "next_only_endpoint_gap_rule",
+    "point_contact_identity_rule",
+    "same_record_binding",
+  ]);
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "event_root_key_2856731379702547500",
+    "same_route_root_key_retained_row_set",
+    "all_layer_pair_chronological_replay_identity",
+    "active_domain_extension_fill_rule",
+    "global_retained_row_set_identity_provider",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_provider_route_only_rows_not_global_row_set_identity",
+      "hinge_point_replay_not_global_row_set_identity",
+      "route_authorized_point_events_not_global_row_set_identity",
+      "target_derived_affine_fits_not_global_row_set_identity",
+      "sampled_dense_support_not_global_row_set_identity",
+      "phase_cancellation_rows_not_global_row_set_identity",
+      "aggregate_rows_not_global_row_set_identity",
+      "cross_row_bundles_not_global_row_set_identity",
+    ]
+  );
+});
+
 const reportPath = path.resolve(
   ".tmp/angular-momentum-spin/frequency-candidate-current-report-v76.json"
 );

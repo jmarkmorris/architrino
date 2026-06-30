@@ -667,7 +667,7 @@ const T3_PARTICLE_STATE_F64_BYTES = 80;
 const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
 const T3_STEP_SUMMARY_F64_BYTES = 88;
 const T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES = 208;
-const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES = 112;
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES = 128;
 const T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID = Object.freeze({
   disabled: 0,
   neighbor_pruned_v1: 1,
@@ -689,6 +689,11 @@ const T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE = Object.freeze({
   0: "missing",
   1: "candidate_sidecar_shape_evidence",
   2: "candidate_same_record_binding",
+});
+const T3_WINDING_LABEL_STATUS_BY_CODE = Object.freeze({
+  0: "missing",
+  1: "local_pre_wrap_candidate",
+  2: "global_periodic_wrap_candidate",
 });
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
@@ -14627,7 +14632,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 19,
+    abiMinor: 20,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14686,7 +14691,7 @@ function defaultAbiInfo() {
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 19 ||
+    abiInfo.abiMinor !== 20 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -17108,11 +17113,17 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
   const rootLedgerRecordIdValue = readUint64(module, ptr + 64);
   const sourcePathSegmentIdValue = readUint64(module, ptr + 72);
   const receiverPathSegmentIdValue = readUint64(module, ptr + 80);
-  const retainedSourceBindingStatusCode = module.getValue(ptr + 88, "i32") >>> 0;
-  const sameRecordReplayStatusCode = module.getValue(ptr + 92, "i32") >>> 0;
-  const causticRouteStatusCode = module.getValue(ptr + 96, "i32") >>> 0;
-  const proofObjectProvenanceStatusCode = module.getValue(ptr + 100, "i32") >>> 0;
-  const rowStatusCode = module.getValue(ptr + 104, "i32") >>> 0;
+  const windingLabel = {
+    x: module.getValue(ptr + 88, "i32"),
+    y: module.getValue(ptr + 92, "i32"),
+    z: module.getValue(ptr + 96, "i32"),
+  };
+  const windingLabelStatusCode = module.getValue(ptr + 100, "i32") >>> 0;
+  const retainedSourceBindingStatusCode = module.getValue(ptr + 104, "i32") >>> 0;
+  const sameRecordReplayStatusCode = module.getValue(ptr + 108, "i32") >>> 0;
+  const causticRouteStatusCode = module.getValue(ptr + 112, "i32") >>> 0;
+  const proofObjectProvenanceStatusCode = module.getValue(ptr + 116, "i32") >>> 0;
+  const rowStatusCode = module.getValue(ptr + 120, "i32") >>> 0;
   const rowStatus =
     T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown";
   const retainedSourceBindingStatus =
@@ -17131,6 +17142,8 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
     T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE[
       proofObjectProvenanceStatusCode
     ] ?? "unknown";
+  const windingLabelStatus =
+    T3_WINDING_LABEL_STATUS_BY_CODE[windingLabelStatusCode] ?? "unknown";
   return {
     schema: "t3-retained-causal-root-replay-native-row.v1",
     chronologyRowId: `step_${stepIndex}_unresolved_root_rows`,
@@ -17150,6 +17163,9 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
     sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
     receiverPathSegmentId:
       receiverPathSegmentIdValue === 0 ? null : receiverPathSegmentIdValue,
+    windingLabel,
+    windingLabelStatusCode,
+    windingLabelStatus,
     sameRecordRetainedBinding: {
       sameRecordReplayId: sameRecordReplayIdValue === 0 ? null : sameRecordReplayIdValue,
       retainedSourceRecordId:
@@ -17160,6 +17176,8 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
       sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
       receiverPathSegmentId:
         receiverPathSegmentIdValue === 0 ? null : receiverPathSegmentIdValue,
+      windingLabel,
+      windingLabelStatus,
       bindingStatus: sameRecordReplayStatus,
       valueAuthority: "candidate-native-same-record-binding",
     },

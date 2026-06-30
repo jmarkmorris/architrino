@@ -542,6 +542,10 @@ struct ArchitrinoSolverT3RetainedCausalRootReplayRowF64 {
   std::uint64_t root_ledger_record_id;
   std::uint64_t source_path_segment_id;
   std::uint64_t receiver_path_segment_id;
+  std::int32_t winding_label_x;
+  std::int32_t winding_label_y;
+  std::int32_t winding_label_z;
+  std::uint32_t winding_label_status;
   std::uint32_t retained_source_binding_status;
   std::uint32_t same_record_replay_status;
   std::uint32_t caustic_route_status;

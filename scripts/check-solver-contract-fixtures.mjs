@@ -4563,7 +4563,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 19,
+    abiMinor: 20,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,
@@ -4615,7 +4615,7 @@ function createAbiInfoFixture() {
     t3ParticleStepRowF64Bytes: 104,
     t3StepSummaryF64Bytes: 88,
     t3UnresolvedRootSegmentRowF64Bytes: 208,
-    t3RetainedCausalRootReplayRowF64Bytes: 112,
+    t3RetainedCausalRootReplayRowF64Bytes: 128,
   };
 }
 

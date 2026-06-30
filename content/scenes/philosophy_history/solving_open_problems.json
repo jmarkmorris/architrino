@@ -1,0 +1,161 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "philosophy_history__solving_open_problems",
+    "title": "Solving Open Problems",
+    "type": "Scene-Index",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "solving_open_problems_overview",
+    "layout": {
+      "type": "rings",
+      "centerNode": "solving_open_problems_overview",
+      "order": "objects",
+      "direction": "clockwise"
+    },
+    "children": [
+      {
+        "nodeId": "solving_open_problems_overview",
+        "scenePath": "content/scenes/philosophy_history/solving_open_problems/overview.json"
+      }
+    ]
+  },
+  "objects": [
+    {
+      "id": "solving_open_problems_overview",
+      "title": "Solving Open Problems",
+      "radius": 1.32,
+      "color": "#4f5d75",
+      "labelTitle": "Solving Open Problems (entire)",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "solving_open_problems_foundations_spacetime",
+      "title": "Foundations / Spacetime",
+      "radius": 1.32,
+      "color": "#577590",
+      "labelTitle": "Foundations / Spacetime",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Foundations And Spacetime",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_strong_field_gravity",
+      "title": "Strong-Field Gravity",
+      "radius": 1.32,
+      "color": "#8c5f46",
+      "labelTitle": "Strong-Field Gravity",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Strong-Field Gravity",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_cosmology_structure",
+      "title": "Cosmology / Structure",
+      "radius": 1.32,
+      "color": "#3f7d6a",
+      "labelTitle": "Cosmology / Structure",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Cosmology And Large-Scale Structure",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_quantum_statistics",
+      "title": "Quantum / Statistics",
+      "radius": 1.32,
+      "color": "#6f5f9c",
+      "labelTitle": "Quantum / Statistics",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Quantum And Statistical Emergence",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_standard_model_particle",
+      "title": "Standard Model / Particles",
+      "radius": 1.32,
+      "color": "#8b6f47",
+      "labelTitle": "Standard Model / Particles",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Standard Model And Particle Closure",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_astrophysical_engines",
+      "title": "Astrophysical Engines",
+      "radius": 1.32,
+      "color": "#5f7661",
+      "labelTitle": "Astrophysical Engines",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Astrophysical Engines",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_appendix_exclusions",
+      "title": "Appendix / Exclusions",
+      "radius": 1.32,
+      "color": "#8b4f68",
+      "labelTitle": "Appendix / Exclusions",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Appendix And Exclusions",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_open_problems_main_body_candidates",
+      "title": "Main-Body Candidates",
+      "radius": 1.32,
+      "color": "#6f4a8f",
+      "labelTitle": "Main-Body Candidates",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      },
+      "view": {
+        "section": "Main-Body Candidate List",
+        "columns": 1
+      }
+    }
+  ]
+}

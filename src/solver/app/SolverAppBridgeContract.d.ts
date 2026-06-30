@@ -353,6 +353,8 @@ export interface SolverT3RetainedCausalRootReplayRowF64 {
   rootLedgerRecordId: number | null;
   sourcePathSegmentId: number | null;
   receiverPathSegmentId: number | null;
+  windingLabel: SolverVector3I32;
+  windingLabelStatus: string;
   sameRecordRetainedBinding: SolverT3SameRecordRetainedBindingF64;
   retainedSourceBindingStatus: string;
   sameRecordReplayStatus: string;
@@ -370,6 +372,8 @@ export interface SolverT3SameRecordRetainedBindingF64 {
   rootLedgerRecordId: number | null;
   sourcePathSegmentId: number | null;
   receiverPathSegmentId: number | null;
+  windingLabel: SolverVector3I32;
+  windingLabelStatus: string;
   bindingStatus: string;
   valueAuthority: "candidate-native-same-record-binding";
 }
