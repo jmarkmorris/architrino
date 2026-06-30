@@ -1849,6 +1849,17 @@ $$
 
 with the proportionality, polarization basis, and charge-to-mass readout recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
 
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction
+benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
+measurements used viewing geometry and analyzer response to distinguish the
+longitudinal circularly polarized doublet from the transverse linearly polarized
+components. For this chapter, the recovery target is therefore a same-record map
+from source magnetic state, viewing direction, line family, analyzer response,
+and photon-channel polarization ledger to split line positions and intensities.
+The lab calibration and the solar or stellar inference must consume the same
+effective magnetic-state map; otherwise the inferred field strength is only a
+spectroscopic fit.
+
 Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
 
 $$

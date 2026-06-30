@@ -24,4 +24,3 @@ The [About the Webapp](about-the-webapp.md) page explains the runtime and reader
 ## Operating Standard
 
 Architrino should remain public, inspectable, and claim-disciplined. Its strongest posture is to expose the architecture, the evidence, the remaining proof burdens, and the failure conditions clearly enough that serious readers can help test or improve the work.
-
