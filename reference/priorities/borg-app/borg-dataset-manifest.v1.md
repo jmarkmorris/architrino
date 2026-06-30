@@ -465,13 +465,13 @@ The manifest must report the first applicable failure before displaying affected
 
 ## Claim-Level Status
 
-This manifest contract is `priority-design` and now has a first native-backed `developer-test` fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
+This manifest contract is `priority-design` and now has a first longer native-backed `developer-test` fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
 ## First Native-Backed Fixture Artifact
 
 `borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). It emits a live `borg-dataset-manifest.v1` object from the existing native central bridge rather than from a static JSON hand sketch.
 
-The fixture uses a two-architrino pair-interaction smoke run because that is the smallest current bridge path that emits both native current-state frames and a native path-history stream. The manifest records `executionPath = native_c_abi`, six native frame rows, four native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 2`, `bufferArchitrinoCount = 1`, path bounds crossing the outer x faces, deployment budget placeholders, and a 4K UHD render manifest placeholder.
+The fixture uses a two-architrino pair-interaction run with `fixtureProfileId = borg-first-native-backed-long-fixture.v1`, `duration = 10`, and `sampleInterval = 0.2`. The initial placement and velocities are tuned so both architrinos remain useful inside the displayed central cube across the fixture. The manifest records `executionPath = native_c_abi`, `playbackFrameSource = native-keyframes`, `interpolatedFrameCount = 0`, `nativeKeyframeCount = 51`, `frameCount = 102` native current-state rows, `pathRowCount = 100` native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 2`, `bufferArchitrinoCount = 1`, path bounds that stay inside the outer computed cube, deployment budget placeholders, and a 4K UHD render manifest placeholder.
 
 The fixture intentionally fails closed for replay authority. It emits explicit gap rows for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`. Its valid claim is `developer-test`, not proof evidence and not measured benign-noise authority.
 

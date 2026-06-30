@@ -175,6 +175,32 @@ where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the 
 
 This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
 
+## Dirac's 1925 Poisson-Bracket Bridge
+
+Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
+
+$$
+\text{transition-product data}
+\longrightarrow
+[\widehat O_f,\widehat O_g]_\theta
+\longrightarrow
+i\hbar\,\widehat O_{\{f,g\}_{\mathcal Q}}
+\longrightarrow
+[\widehat Q_\theta,\widehat P_\theta]\approx i\hbar
+$$
+
+for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$ whose effective observables $f,g$ are actually recordable in that chart. The last arrow is a consequence inside the admitted canonical subdomain, not the historical starting axiom and not a global quantization license.
+
+The same route gives the Heisenberg equation only after an effective Hamiltonian record has been admitted:
+
+$$
+i\hbar\,\frac{d\widehat O_f}{dt}
+\approx
+[\widehat O_f,\widehat H_\theta]
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target for reduced observer-level charts. A local Hamiltonian, Poisson bracket, or commutator is accepted only when the retained assembly branch, causal-wake history, apparatus kernel, and record window preserve enough path-history structure for the bracket residual below to be small. Otherwise Dirac's bridge has been used as a calculation recipe rather than recovered as an effective algebra of physical records.
+
 ## Subsystem-Partition Guardrail
 
 Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.

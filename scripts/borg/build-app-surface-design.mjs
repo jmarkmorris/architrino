@@ -37,6 +37,10 @@ export function createBorgAppSurfaceDesign(manifest) {
       nativeSolverVersion: manifest.nativeSolverVersion,
       bridgeSchemaVersion: manifest.bridgeSchemaVersion,
       fixtureStatus: manifest.validation.fixtureStatus,
+      fixtureProfileId: manifest.sourceBridgeRun.fixtureProfileId,
+      nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
+      sampleInterval: manifest.simulationEnvelope.sampleInterval,
+      playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
       sourceClaimLevel: manifest.claimLevel,
     },
     nativeSolverBoundary: {
@@ -181,6 +185,9 @@ export function createBorgAppSurfaceDesign(manifest) {
       timeRange: manifest.pathHistory.streamSummary.timeRange,
       frameRange: manifest.pathHistory.streamSummary.frameRange,
       frameCount: manifest.currentStateAndFrameSources.frameCount,
+      nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
+      sampleInterval: manifest.simulationEnvelope.sampleInterval,
+      playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
       pathRowCount: manifest.pathHistory.streamSummary.rowCount,
       valueAuthority: manifest.pathHistory.streamSummary.valueAuthority,
     },
@@ -240,6 +247,21 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
   assertEqual(surfaceDesign.screenSpecId, SCREEN_SPEC_ID, "screen spec id");
   assertEqual(surfaceDesign.sourceManifest.manifestId, manifest.manifestId, "source manifest id");
   assertEqual(surfaceDesign.sourceManifest.nativeSolverStatus, "native-backed-now", "native solver status");
+  assertEqual(
+    surfaceDesign.sourceManifest.fixtureProfileId,
+    manifest.sourceBridgeRun.fixtureProfileId,
+    "fixture profile id",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.nativeKeyframeCount,
+    manifest.currentStateAndFrameSources.nativeKeyframeCount,
+    "native keyframe count",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.playbackFrameSource,
+    "native-keyframes",
+    "playback frame source",
+  );
   assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
   assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
@@ -402,6 +424,9 @@ function printSummary(surfaceDesign) {
     hiddenLayers: surfaceDesign.firstViewport.defaultHiddenLayers,
     disabledLayers: surfaceDesign.firstViewport.defaultDisabledLayers,
     frameCount: surfaceDesign.viewport.architrinoPositions.frameCount,
+    nativeKeyframeCount: surfaceDesign.sourceManifest.nativeKeyframeCount,
+    sampleInterval: surfaceDesign.sourceManifest.sampleInterval,
+    playbackFrameSource: surfaceDesign.sourceManifest.playbackFrameSource,
     pathRowCount: surfaceDesign.bottomTimeline.pathRowCount,
     renderPixelSize: surfaceDesign.firstViewport.renderPixelSize,
     firstFailureCodes: surfaceDesign.failClosedFirstFailureCodes,

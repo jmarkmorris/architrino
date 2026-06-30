@@ -119,15 +119,18 @@ Minimum timeline:
 
 ## First Native-Backed Fixture Artifact
 
-`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs the existing native central bridge through a two-architrino pair-interaction smoke fixture and validates these manifest facts:
+`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs the existing native central bridge through a two-architrino longer pair-interaction fixture and validates these manifest facts:
 
 1. `nativeSolverStatus = native-backed-now`;
 2. `executionPath = native_c_abi`;
-3. native current-state frame count is 6;
-4. native path-history row count is 4;
-5. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
-6. native path-history bounds cross the outer x faces;
-7. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
+3. `fixtureProfileId = borg-first-native-backed-long-fixture.v1`;
+4. `duration = 10` and `sampleInterval = 0.2`;
+5. native keyframe count is 51, with 102 native current-state frame rows across the two architrinos;
+6. native path-history row count is 100;
+7. `playbackFrameSource = native-keyframes` and `interpolatedFrameCount = 0`;
+8. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
+9. native path-history bounds stay inside the outer computed cube for this fixture;
+10. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
 
 The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 
@@ -140,7 +143,7 @@ The fixture is a `developer-test` artifact. It does not grant authority to repla
 3. `simulation-window` is `on-locked` and `architrino-position` is `on`;
 4. `path-history` and `velocity-vectors` are off by default;
 5. `wake-streams`, `face-boundary-status`, and `outbound-face-background` remain disabled or contextual-disabled;
-6. native current-state frame count is 6 and native path-history row count is 4;
+6. native current-state frame count is 102, native keyframe count is 51, and native path-history row count is 100;
 7. render manifest uses 3840 by 2160 pixels;
 8. central-volume acceleration remains `fail-closed-value`;
 9. fail-closed rows surface missing wake history, missing face influence model, and unmeasured `R_boundary->central`.

@@ -52,8 +52,13 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | --- | --- |
 | `nativeSolverStatus` | `native-backed-now` |
 | `bridgeExecutionPath` | `native_c_abi` |
-| `frameCount` | `6` native current-state frame rows |
-| `pathRowCount` | `4` native path-history rows |
+| `duration` | `10` solver-time units |
+| `sampleInterval` | `0.2` solver-time units |
+| `nativeKeyframeCount` | `51` native keyframes |
+| `frameCount` | `102` native current-state frame rows, two architrino rows per keyframe |
+| `pathRowCount` | `100` native path-history rows |
+| `playbackFrameSource` | `native-keyframes` |
+| `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
 | `renderPixelSize` | `3840x2160` |
 | `centralArchitrinoCount` | `1` |
 | `architrinoCount` | `2` |
@@ -110,7 +115,7 @@ The current screen spec surfaces these first-failure codes from the source manif
 | Code | Surface consequence |
 | --- | --- |
 | `wake_history_gap_unclassified` | `wake-streams` remains disabled and central wake-background authority remains closed. |
-| `missing_face_crossing_coverage` | `face-boundary-status` remains contextual-disabled because native path bounds cross outer faces but no face-crossing event rows are emitted. |
+| `missing_face_crossing_coverage` | `face-boundary-status` remains contextual-disabled because this long fixture keeps the pair inside the outer cube and emits no native face-crossing event rows. |
 | `face_influence_model_missing` | `outbound-face-background` remains disabled and no face influence model can drive replay. |
 | `six_face_boundary_policy_missing` | Six-face benign-noise status cannot receive reduced-model authority. |
 | `velocity_sampling_protocol_missing` | Velocity-scale replay sampling remains research-open. |

@@ -9,5 +9,5 @@ __pycache__/
 **/xcuserdata/
 *.xcuserstate
 
-# Local Cody corpus-exploration coordination cards
-reference/entourage/cody/reports/corpus-exploration-claims/
+# Local Archie corpus-exploration coordination cards
+reference/entourage/archie/reports/corpus-exploration-claims/

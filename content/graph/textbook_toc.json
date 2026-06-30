@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1447
+      "sections": 1448
     }
   },
   "tocRoot": {
@@ -11003,6 +11003,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Transition-Record Matrix Recovery",
                         "sectionKey": "transition record matrix recovery",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dirac's 1925 Poisson-Bracket Bridge",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Dirac's 1925 Poisson-Bracket Bridge",
+                        "sectionKey": "dirac s 1925 poisson bracket bridge",
                         "headingLevel": 2
                       },
                       {

@@ -335,7 +335,7 @@ export function mountBorgApp(options = {}) {
       ["tolerance", manifest.boundaryToCentralResidual.tolerance],
       ["decision", manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus],
       ["benignNoiseStatus", manifest.faceBoundary.benignNoiseStatus],
-      ["path bounds", manifest.pathHistory.pathBoundsFaceCrossing.crossingStatus],
+      ["path bounds", manifest.faceBoundary.pathBoundsFaceCrossing.crossingStatus],
       ["proof claim", manifest.validation.proofClaimStatus],
     ]);
 
