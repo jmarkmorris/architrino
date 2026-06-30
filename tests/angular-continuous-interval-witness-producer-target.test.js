@@ -77,6 +77,14 @@ test("active-domain extension producer schema rejects local row-set proxies", ()
     schema.firstProducerObject,
     "prove_active_domain_extension_for_both_inactive_gaps"
   );
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-active-domain-extension-prove-both-inactive-gaps-producer-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "prove_active_domain_extension_for_both_inactive_gaps"
+  );
   assert.equal(schema.eventRootKey, 2856731379702547500);
   assert.equal(schema.retainedBranchClaim, false);
   assert.deepEqual(schema.requiredFieldIds, [
@@ -87,6 +95,17 @@ test("active-domain extension producer schema rejects local row-set proxies", ()
     "point_contact_identity_rule",
     "same_record_binding",
   ]);
+  assert.deepEqual(schema.producerStepRequiredFieldIds, [
+    "active_domain_gap_count",
+    "both_inactive_no_transition_gap_rows",
+    "point_contact_identity_rule",
+    "same_record_binding",
+    "first_unresolved_active_domain_extension_field",
+  ]);
+  assert.equal(
+    schema.firstUnresolvedActiveDomainExtensionField,
+    "active_domain_extension_status_for_both_inactive_gaps"
+  );
   assert.deepEqual(schema.sameRecordBindingRequirements, [
     "event_root_key_2856731379702547500",
     "same_route_root_key_retained_row_set",
@@ -94,8 +113,83 @@ test("active-domain extension producer schema rejects local row-set proxies", ()
     "active_domain_extension_fill_rule",
     "global_retained_row_set_identity_provider",
   ]);
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+  ]);
   assert.deepEqual(
     schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_provider_route_only_rows_not_global_row_set_identity",
+      "hinge_point_replay_not_global_row_set_identity",
+      "route_authorized_point_events_not_global_row_set_identity",
+      "target_derived_affine_fits_not_global_row_set_identity",
+      "sampled_dense_support_not_global_row_set_identity",
+      "phase_cancellation_rows_not_global_row_set_identity",
+      "aggregate_rows_not_global_row_set_identity",
+      "cross_row_bundles_not_global_row_set_identity",
+    ]
+  );
+});
+
+test("existing angular report exposes active-domain extension producer step fail closed", (t) => {
+  if (!fs.existsSync(reportPath)) {
+    t.skip("local v76 angular report fixture is not present");
+    return;
+  }
+
+  const report = JSON.parse(fs.readFileSync(reportPath, "utf8"));
+  const producerStep =
+    report.retainedEventDomainFork?.retainedRowSetIdentityObstructionTarget
+      ?.globalRetainedRowSetIdentityLiftTarget
+      ?.activeDomainExtensionProducerTarget
+      ?.activeDomainExtensionProducerStep;
+  if (producerStep == null) {
+    t.skip("local v76 angular report fixture predates the producer step");
+    return;
+  }
+
+  assert.equal(
+    producerStep.schema,
+    "aaa-tri-binary-active-domain-extension-prove-both-inactive-gaps-producer-step.v1"
+  );
+  assert.equal(
+    producerStep.producerStepId,
+    "prove_active_domain_extension_for_both_inactive_gaps"
+  );
+  assert.equal(producerStep.routeRootKey, 2856731379702547500);
+  assert.equal(producerStep.retainedBranchClaim, false);
+  assert.equal(producerStep.emitsBranchCertificateRef, false);
+  assert.equal(producerStep.emitsAcceptedBranchChart, false);
+  assert.equal(producerStep.emitsMovingRetainedBranchCertificate, false);
+  assert.equal(producerStep.emitsAcceptedTransitionSource, false);
+  assert.equal(producerStep.emitsRetainedBranchClosure, false);
+  assert.equal(
+    producerStep.firstUnresolvedActiveDomainExtensionField,
+    "active_domain_extension_status_for_both_inactive_gaps"
+  );
+  assert.ok(producerStep.activeDomainGapCount > 0);
+  assert.ok(producerStep.bothInactiveNoTransitionGapRowCount > 0);
+  assert.ok(
+    producerStep.bothInactiveNoTransitionGapRows.every(
+      (row) =>
+        row.producerStepId ===
+          "prove_active_domain_extension_for_both_inactive_gaps" &&
+        row.acceptedGapRowPass === false
+    )
+  );
+  assert.deepEqual(producerStep.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+  ]);
+  assert.deepEqual(
+    producerStep.negativeControls.map((control) => control.id),
     [
       "endpoint_provider_route_only_rows_not_global_row_set_identity",
       "hinge_point_replay_not_global_row_set_identity",

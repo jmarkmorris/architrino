@@ -1,5 +1,6 @@
 {
   "files": [
+    "content/markdown/aaa/archie/about-architrino.md",
     "content/markdown/aaa/archie/about-the-webapp.md",
     "content/markdown/aaa/archie/academic-style-guide.md",
     "content/markdown/aaa/archie/comics.md",
@@ -27,6 +28,7 @@
     "content/markdown/aaa/archie/mathematics-style-guide.md",
     "content/markdown/aaa/archie/mathematics-terminology.md",
     "content/markdown/aaa/archie/navigation-and-controls.md",
+    "content/markdown/aaa/archie/people.md",
     "content/markdown/aaa/archie/photon-guide.md",
     "content/markdown/aaa/archie/research-notebook.md",
     "content/markdown/aaa/archie/software-architecture-and-maintenance.md",

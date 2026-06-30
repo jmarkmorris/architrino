@@ -24954,6 +24954,15 @@ function createActiveDomainExtensionGlobalRowSetProducerTarget({
     activeDomainExtensionFillRuleTarget?.firstActiveDomainExtensionBlocker ??
     firstMissingField?.firstFieldBlocker ??
     null;
+  const activeDomainExtensionProducerStep =
+    createActiveDomainExtensionProducerStep({
+      replayTarget,
+      obstructionTarget,
+      activeDomainExtensionFillRuleTarget,
+      requiredFieldRows,
+      sameRecordBindingPass,
+      acceptedActiveDomainExtensionProducerPass,
+    });
 
   return {
     schema:
@@ -24980,12 +24989,199 @@ function createActiveDomainExtensionGlobalRowSetProducerTarget({
     firstMissingFillRule,
     activeDomainExtensionFillStatus:
       activeDomainExtensionFillRuleTarget?.status ?? null,
+    activeDomainExtensionProducerStep,
     requiredFieldRows,
     sameRecordBindingRequirements:
       createActiveDomainExtensionSameRecordBindingRequirements(),
     negativeControls: createActiveDomainExtensionNegativeControls(),
     retainedLimitation:
       "Hinge-point replay, endpoint-provider route-only rows, and route-authorized point events do not supply global chronological retained row-set identity. The producer must close active-domain extension on the same route/root-key retained row set before selected direct-absence transport or continuous interval witness rows can use it as accepted evidence.",
+  };
+}
+
+function createActiveDomainExtensionProducerStep({
+  replayTarget,
+  obstructionTarget,
+  activeDomainExtensionFillRuleTarget,
+  requiredFieldRows,
+  sameRecordBindingPass,
+  acceptedActiveDomainExtensionProducerPass,
+}) {
+  const boundaryProfile =
+    obstructionTarget?.noTransitionBothInactiveBoundaryNeighborhoodProfile ??
+    null;
+  const sideProfile =
+    obstructionTarget?.noTransitionBothInactiveSideProfile ?? null;
+  const activeDomainGapCount =
+    obstructionTarget?.noTransitionBothInactiveIntervalCount ?? 0;
+  const bothInactiveNoTransitionGapRows =
+    createActiveDomainExtensionBothInactiveNoTransitionGapRows({
+      replayTarget,
+      obstructionTarget,
+      boundaryProfile,
+    });
+  const firstMissingField =
+    requiredFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const firstUnresolvedActiveDomainExtensionField =
+    acceptedActiveDomainExtensionProducerPass
+      ? null
+      : activeDomainGapCount > 0
+        ? "active_domain_extension_status_for_both_inactive_gaps"
+        : firstMissingField?.fieldId ?? "active_domain_extension_required_fields";
+  const status = acceptedActiveDomainExtensionProducerPass
+    ? "active_domain_extension_producer_step_accepted"
+    : activeDomainGapCount > 0
+      ? "active_domain_extension_producer_step_blocked_both_inactive_gaps"
+      : "active_domain_extension_producer_step_blocked_required_fields_missing";
+
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-prove-both-inactive-gaps-producer-step.v1",
+    status,
+    claimLevel:
+      "fail-closed executable producer step for prove_active_domain_extension_for_both_inactive_gaps; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
+    producerStepId: "prove_active_domain_extension_for_both_inactive_gaps",
+    eventRootKey: replayTarget?.eventRootKey ?? null,
+    routeRootKey: replayTarget?.eventRootKey ?? null,
+    acceptedActiveDomainExtensionProducerStepPass:
+      acceptedActiveDomainExtensionProducerPass,
+    emitsBranchCertificateRef: false,
+    emitsAcceptedBranchChart: false,
+    emitsMovingRetainedBranchCertificate: false,
+    emitsAcceptedTransitionSource: false,
+    emitsRetainedBranchClosure: false,
+    activeDomainGapCount,
+    bothInactiveNoTransitionGapRows,
+    bothInactiveNoTransitionGapRowCount:
+      bothInactiveNoTransitionGapRows.length,
+    bothInactiveNoTransitionGapPairKeys:
+      obstructionTarget?.noTransitionBothInactiveGapPairKeys ?? [],
+    totalNoTransitionBothInactiveGapWidth:
+      finiteOrNull(obstructionTarget?.totalNoTransitionBothInactiveGapWidth),
+    maxNoTransitionBothInactiveGapWidth:
+      finiteOrNull(obstructionTarget?.maxNoTransitionBothInactiveGapWidth),
+    pointContactIdentityRule:
+      createActiveDomainExtensionPointContactIdentityRule(sideProfile),
+    sameRecordBinding: {
+      fieldId: "same_record_binding",
+      fieldPass: sameRecordBindingPass,
+      eventRootKey: replayTarget?.eventRootKey ?? null,
+      allPairsHavePartialChain:
+        replayTarget?.allPairsHavePartialChain === true,
+      allPairsHaveGlobalReplay:
+        replayTarget?.allPairsHaveGlobalReplay === true,
+      activeDomainGapCount,
+      requiredBindings:
+        createActiveDomainExtensionSameRecordBindingRequirements(),
+      firstBindingBlocker: sameRecordBindingPass
+        ? null
+        : activeDomainGapCount > 0
+          ? "active_domain_extension_status_for_both_inactive_gaps"
+          : "same_route_root_key_global_retained_row_set_identity_missing",
+    },
+    activeDomainExtensionFillStatus:
+      activeDomainExtensionFillRuleTarget?.status ?? null,
+    firstUnresolvedActiveDomainExtensionField,
+    firstUnresolvedActiveDomainExtensionProducer:
+      activeDomainExtensionFillRuleTarget?.firstActiveDomainExtensionBlocker ??
+      firstMissingField?.firstFieldBlocker ??
+      null,
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+    ],
+    negativeControls: createActiveDomainExtensionNegativeControls(),
+  };
+}
+
+function createActiveDomainExtensionBothInactiveNoTransitionGapRows({
+  replayTarget,
+  obstructionTarget,
+  boundaryProfile,
+}) {
+  const boundaryRows = boundaryProfile?.rows ?? [];
+  if (boundaryRows.length > 0) {
+    return boundaryRows.map((row, index) => ({
+      gapRowId: `active_domain_extension_gap:${row.pairKey ?? "unknown"}:${row.edgeIndex ?? index}`,
+      producerStepId: "prove_active_domain_extension_for_both_inactive_gaps",
+      eventRootKey: row.eventRootKey ?? replayTarget?.eventRootKey ?? null,
+      routeRootKey: replayTarget?.eventRootKey ?? null,
+      pairKey: row.pairKey ?? null,
+      edgeIndex: row.edgeIndex ?? null,
+      side: row.side ?? null,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? "noTransitionBothInactive",
+      start: finiteOrNull(row.start),
+      end: finiteOrNull(row.end),
+      width: finiteOrNull(row.width),
+      priorEventRootBoundaryPass:
+        row.priorEventRootBoundaryPass === true,
+      nextEventRootBoundaryPass:
+        row.nextEventRootBoundaryPass === true,
+      bothEventRootBoundaryPass:
+        row.bothEventRootBoundaryPass === true,
+      immediateBothEventRootBoundaryPass:
+        row.immediateBothEventRootBoundaryPass === true,
+      priorEventRootBoundaryDistance: finiteOrNull(
+        row.priorEventRootBoundary?.distance
+      ),
+      nextEventRootBoundaryDistance: finiteOrNull(
+        row.nextEventRootBoundary?.distance
+      ),
+      acceptedGapRowPass: false,
+      firstUnresolvedGapField:
+        row.bothEventRootBoundaryPass === true
+          ? "bounded_interior_gap_fill_rule"
+          : "event_root_boundary_for_both_inactive_gap",
+    }));
+  }
+  return (obstructionTarget?.noTransitionBothInactiveGapPairKeys ?? []).map(
+    (pairKey, index) => ({
+      gapRowId: `active_domain_extension_gap:${pairKey}:${index}`,
+      producerStepId: "prove_active_domain_extension_for_both_inactive_gaps",
+      eventRootKey: replayTarget?.eventRootKey ?? null,
+      routeRootKey: replayTarget?.eventRootKey ?? null,
+      pairKey,
+      edgeIndex: null,
+      side: null,
+      endpointPresence: null,
+      gapKind: "noTransitionBothInactive",
+      start: null,
+      end: null,
+      width: null,
+      priorEventRootBoundaryPass: false,
+      nextEventRootBoundaryPass: false,
+      bothEventRootBoundaryPass: false,
+      immediateBothEventRootBoundaryPass: false,
+      priorEventRootBoundaryDistance: null,
+      nextEventRootBoundaryDistance: null,
+      acceptedGapRowPass: false,
+      firstUnresolvedGapField:
+        "active_domain_extension_gap_boundary_row_missing",
+    })
+  );
+}
+
+function createActiveDomainExtensionPointContactIdentityRule(sideProfile) {
+  const pointContactCount = sideProfile?.pointOnlyIntervalCount ?? 0;
+  return {
+    fieldId: "point_contact_identity_rule",
+    status:
+      pointContactCount === 0
+        ? "point_contact_identity_rule_not_required"
+        : "point_contact_identity_rule_blocked",
+    fieldPass: pointContactCount === 0,
+    pointContactCount,
+    pointOnlyPairKeys: sideProfile?.pointOnlyPairKeys ?? [],
+    firstPointContactBlocker:
+      pointContactCount === 0
+        ? null
+        : "declare_point_contact_identity_rule_for_both_inactive_gap_contacts",
   };
 }
 
@@ -37878,6 +38074,9 @@ function createActiveDomainExtensionProducerTargetSchema() {
       "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.schema.v1",
     targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
     firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    producerStepSchema:
+      "aaa-tri-binary-active-domain-extension-prove-both-inactive-gaps-producer-step.v1",
+    producerStepId: "prove_active_domain_extension_for_both_inactive_gaps",
     eventRootKey: 2856731379702547500,
     retainedBranchClaim: false,
     claimLevel:
@@ -37890,8 +38089,24 @@ function createActiveDomainExtensionProducerTargetSchema() {
       "point_contact_identity_rule",
       "same_record_binding",
     ],
+    producerStepRequiredFieldIds: [
+      "active_domain_gap_count",
+      "both_inactive_no_transition_gap_rows",
+      "point_contact_identity_rule",
+      "same_record_binding",
+      "first_unresolved_active_domain_extension_field",
+    ],
     sameRecordBindingRequirements:
       createActiveDomainExtensionSameRecordBindingRequirements(),
+    firstUnresolvedActiveDomainExtensionField:
+      "active_domain_extension_status_for_both_inactive_gaps",
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+    ],
     negativeControls: createActiveDomainExtensionNegativeControls(),
   };
 }

@@ -1854,6 +1854,16 @@
       "id": "archie__system_card__overview",
       "name": "System Card Overview",
       "path": "content/scenes/archie/system_card_overview.json"
+    },
+    {
+      "id": "archie__about_architrino",
+      "name": "About Architrino",
+      "path": "content/scenes/archie/about_architrino.json"
+    },
+    {
+      "id": "archie__people",
+      "name": "People",
+      "path": "content/scenes/archie/people.json"
     }
   ]
 }

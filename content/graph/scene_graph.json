@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 572,
-      "edges": 1332,
-      "scenes": 371,
+      "nodes": 576,
+      "edges": 1336,
+      "scenes": 373,
       "markdownIndexes": 0,
-      "markdownDocs": 188,
+      "markdownDocs": 190,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2375,9 +2375,27 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__about_architrino",
+      "name": "About Architrino",
+      "path": "content/scenes/archie/about_architrino.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__people",
+      "name": "People",
+      "path": "content/scenes/archie/people.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/about-architrino.md",
+      "name": "About Architrino",
+      "path": "content/markdown/aaa/archie/about-architrino.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2540,6 +2558,12 @@
       "id": "content/markdown/aaa/archie/navigation-and-controls.md",
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/people.md",
+      "name": "People",
+      "path": "content/markdown/aaa/archie/people.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3505,6 +3529,15 @@
   ],
   "nodes": [
     {
+      "nodeId": "scene:content/scenes/archie/about_architrino.json",
+      "nodeType": "scene",
+      "id": "archie__about_architrino",
+      "name": "About Architrino",
+      "path": "content/scenes/archie/about_architrino.json",
+      "searchTarget": "content/scenes/archie/about_architrino.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/about.json",
       "nodeType": "scene",
       "id": "archie__about",
@@ -3772,6 +3805,15 @@
       "name": "Molecule Visualization",
       "path": "content/scenes/archie/molecule.json",
       "searchTarget": "content/scenes/archie/molecule.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/people.json",
+      "nodeType": "scene",
+      "id": "archie__people",
+      "name": "People",
+      "path": "content/scenes/archie/people.json",
+      "searchTarget": "content/scenes/archie/people.json",
       "implicit": false
     },
     {
@@ -6853,6 +6895,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/about-architrino.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/about-architrino.md",
+      "name": "About Architrino",
+      "path": "content/markdown/aaa/archie/about-architrino.md",
+      "searchTarget": "content/markdown/aaa/archie/about-architrino.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/about-the-webapp.md",
@@ -7093,6 +7144,15 @@
       "name": "Navigation & Controls",
       "path": "content/markdown/aaa/archie/navigation-and-controls.md",
       "searchTarget": "content/markdown/aaa/archie/navigation-and-controls.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/people.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/people.md",
+      "name": "People",
+      "path": "content/markdown/aaa/archie/people.md",
+      "searchTarget": "content/markdown/aaa/archie/people.md",
       "implicit": false
     },
     {
@@ -8929,24 +8989,38 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/licenses_attributions.json",
+      "to": "scene:content/scenes/archie/about_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[0]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/website_stats.json",
+      "to": "scene:content/scenes/archie/people.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
       "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/website_stats.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -13233,6 +13307,13 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/archie/about_architrino.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/about-architrino.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/about_architrino.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/about.json",
       "to": "markdown_doc:content/markdown/aaa/archie/about-the-webapp.md",
       "edgeType": "markdown_doc",
@@ -13405,6 +13486,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/mathematics-terminology.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/mathematical_terminology.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/people.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/people.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/people.json",
       "field": "scene.source.path"
     },
     {

@@ -180,6 +180,52 @@ $$
 
 Here $\mathbf x_i(\tau)$, $\mathbf v_i(\tau)$, and $q_i$ come from retained path history, $h$ is `historyDepth`, $c_f$ is `fieldSpeed`, and $\mathbf K_F$ is the run-declared vector-potential contribution kernel. This equation is a candidate bookkeeping target for the Borg app, not a new solver or a proof-level field equation.
 
+### Path-Only Face Influence Model
+
+The face influence artifact must be path-based. It is uneconomical to store authoritative projections of the path onto every face point. The stored source of authority is the path history, path index, kernel id, and a compact model of the distribution pattern produced by the superposition of all path-derived vector-potential contributions at face points.
+
+In compact form, the model is:
+
+$$
+\mathcal M_F
+=
+\mathsf C_F
+\left[
+\sum_i
+\int
+\mathbf K_F
+\left(
+\mathbf u,t;\ \mathbf x_i(\tau),\mathbf v_i(\tau),q_i
+\right)
+d\tau
+\right],
+$$
+
+where $\mathsf C_F$ is the declared compression, sampling, basis, or sketch policy for the face distribution. $\mathcal M_F$ is not a retained wake stream and not a new solver. It is a path-derived replay model whose source rows remain the native path-history streams.
+
+The first schema is `borg-face-influence-model.v1`:
+
+| Field | Meaning |
+| --- | --- |
+| `schema` | Literal `borg-face-influence-model.v1`. |
+| `faceInfluenceModelId` | Stable model id. |
+| `sourceRunId` | Native source run that emitted the path rows. |
+| `sourcePathHistoryStreamIds` | Path-history streams consumed by the model. |
+| `pathIndexId` | Index used to query contributing path segments by absolute time and face point. |
+| `kernelId` | Declared vector-potential contribution kernel. |
+| `faceCoordinateChart` | Coordinate chart for evaluating points on a source or target face. |
+| `timeBinIds` | Absolute-time bins covered by the model. |
+| `evaluationPointPolicy` | Grid, quadrature, basis, adaptive sample, or query-on-demand policy for face points. |
+| `superpositionPolicy` | Native exact evaluation, sampled evaluation, compressed basis, empirical distribution, or display-only approximation. |
+| `distributionModelType` | Basis coefficients, quantile sketch, mixture samples, low-rank representation, empirical rows, or declared equivalent. |
+| `compressionBudget` | Row, byte, sample, or coefficient budget for the model. |
+| `errorBudgetId` | Error budget carried into face replay and central-volume residuals. |
+| `projectionCacheStatus` | `absent`, `display-cache-only`, or `not-authoritative`. |
+| `portabilityStatus` | `same-face-only`, `mapped-face-ready`, `any-face-ready`, `display-only`, or `fail-closed`. |
+| `valueAuthority` | `path-derived-model`, `display-only`, or `fail-closed`. |
+
+Per-point face projections may be cached for rendering or debugging, but they must not become source evidence. Replay on another face must consume the path-derived model through `faceMapping`, the target face coordinate chart, and the declared error budget. If the model cannot be mapped to a target face without exceeding budget, replay is `display-only` or `fail-closed`.
+
 The hard computational part is that each face is pierced by many such vector-potential contributions from many emission points. The first policy should therefore avoid storing those contributions as primitive face rows. It should:
 
 1. use an `absolute-time-index` or equivalent optimized path index to find path segments that can contribute to each face time bin;
@@ -283,6 +329,8 @@ A replay source row declares how one or more face summaries are sampled into a l
 | `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
 | `inputTraceabilityRowIds` | Rows linking replayed inbound samples to source face summaries, source time bins, path segments or path streams, and `faceInfluenceModelId`. |
 | `faceMapping` | Mapping from target faces to source faces. |
+| `faceInfluenceModelIds` | Path-derived `borg-face-influence-model.v1` ids used to bottle the face superposition pattern. |
+| `faceInfluenceModelReplayPolicy` | `same-face`, `mapped-face`, `any-face`, `display-only`, or `fail-closed`. |
 | `velocityScaleRange` | Declared minimum and maximum sampled velocity magnitudes, units, and normalization chart. |
 | `velocitySamplingProtocolId` | `borg-velocity-sampling-protocol.v1` id used to measure candidate policies. |
 | `velocitySamplingResultId` | `borg-velocity-sampling-result.v1` id for the selected replay policy. |
@@ -437,6 +485,9 @@ The first-failure code must be one of:
 | `history_hiding_failed` | A replayed inbound architrino preserved outbound same-record identity or retained outbound path history. |
 | `time_map_source_untraceable` | A replayed inbound sample cannot be traced to observed face summary bins, path rows, or the face influence model. |
 | `synthetic_boundary_input_used_experimentally` | An invented synthetic boundary input affects receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. |
+| `face_influence_model_missing` | Replay needs a path-derived face influence model but no `borg-face-influence-model.v1` row is available. |
+| `face_projection_used_as_authority` | A per-point face projection cache is used as source evidence instead of path history and a path-derived model. |
+| `face_influence_model_mapping_failed` | The path-derived face influence model cannot be mapped to the target face inside the declared budget. |
 | `velocity_sampling_protocol_missing` | Replay-affected diagnostics are requested without a `borg-velocity-sampling-protocol.v1` row. |
 | `velocity_sampling_research_open` | Velocity-scale-aware sampling has not been measured, so affected values cannot receive experimental authority. |
 | `velocity_sampling_precision_insufficient` | The selected sampling policy cannot represent the declared velocity scale range inside the replay error budget. |

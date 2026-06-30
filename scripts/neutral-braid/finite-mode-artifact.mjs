@@ -16,6 +16,16 @@ const SAME_SOURCE_POLICIES = [
   "regularized-fold-layer",
 ];
 const DEFAULT_SAME_SOURCE_POLICY = "ordinary-same-source-excluded";
+const DEFAULT_CHART_ID = "neutral-braid-finite-mode-concrete-chart.v1";
+const DEFAULT_CHART_PERIOD = 2 * Math.PI;
+const DEFAULT_PERIOD_CONVENTION = "single-winding-common-period";
+const NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS = [
+  "fixture-row",
+  "fixed-speed-off-ledger-provenance",
+  "proxy-row",
+  "cross-row-bundle",
+  "branch-scope-free-summary",
+];
 
 const FINITE_MODE_DECISIONS = [
   "neutral-braid-finite-mode-candidate",
@@ -171,6 +181,7 @@ export const ARTIFACT_SCHEMA = {
     "30 ordered distinct source pairs",
     "same-source policy outside ordinary force rows",
     "hollow support fields and placeholder statuses",
+    "same-run period rows from the selected chart input",
     "all-pairs root-ledger placeholders",
     "residual and status vocabulary",
     "not_retained/search_open result",
@@ -180,6 +191,7 @@ export const ARTIFACT_SCHEMA = {
     "packet_id",
     "promotion_status",
     "branch_scope",
+    "period_rows",
     "site_inventory",
     "hollow_support",
     "all_pairs_root_ledger",
@@ -255,14 +267,67 @@ function residualRows() {
   });
 }
 
+function assertPositiveFiniteNumber(value, label) {
+  if (!Number.isFinite(value) || value <= 0) {
+    throw new Error(`${label} must be a positive finite number.`);
+  }
+}
+
+function assertNonemptyString(value, label) {
+  if (typeof value !== "string" || value.trim().length === 0) {
+    throw new Error(`${label} must be a nonempty string.`);
+  }
+}
+
+function buildChartRun(options) {
+  const chartId = options.chartId ?? DEFAULT_CHART_ID;
+  const chartPeriod = options.chartPeriod ?? DEFAULT_CHART_PERIOD;
+  const periodConvention = options.periodConvention ?? DEFAULT_PERIOD_CONVENTION;
+
+  assertNonemptyString(chartId, "chartId");
+  assertPositiveFiniteNumber(chartPeriod, "chartPeriod");
+  assertNonemptyString(periodConvention, "periodConvention");
+
+  return {
+    run_id: `${chartId}::period-${chartPeriod}`,
+    chart_id: chartId,
+    source_kind: "deterministic-chart-input",
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    cross_row_bundle: false,
+    period_convention: periodConvention,
+    common_period: chartPeriod,
+  };
+}
+
+function buildPeriodRows(chartRun) {
+  return SITE_IDS.map((siteId) => ({
+    row: "period_row",
+    site: siteId,
+    chart_run_id: chartRun.run_id,
+    period_symbol: `H_${siteId}`,
+    winding: 1,
+    period: chartRun.common_period,
+    period_convention: chartRun.period_convention,
+    source_status: "same-run-chart-input",
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    cross_row_bundle: false,
+  }));
+}
+
 export function buildArtifact(options = {}) {
   const sameSourcePolicy = options.sameSourcePolicy ?? DEFAULT_SAME_SOURCE_POLICY;
   if (!SAME_SOURCE_POLICIES.includes(sameSourcePolicy)) {
     throw new Error(`same-source policy must be one of: ${SAME_SOURCE_POLICIES.join(", ")}`);
   }
 
+  const chartRun = buildChartRun(options);
   const pairs = orderedDistinctPairs();
   const inventory = siteInventory();
+  const periodRows = buildPeriodRows(chartRun);
 
   return {
     schema: SCHEMA_ID,
@@ -274,12 +339,18 @@ export function buildArtifact(options = {}) {
       "reference/priorities/braid-retained-branch-closure/neutral-braid/all-pairs-root-ledger.md",
     ],
     artifact_claim: {
-      kind: "audit_emitter_surface",
+      kind: "chart_owned_execution_slice",
       solves_dynamics: false,
+      emits_same_run_branch_scope: true,
+      emits_same_run_period_rows: true,
+      emits_action_measure_row: false,
+      authorizes_rank5_retained_branch_closure: false,
       strongest_claim:
-        "This artifact records the finite-mode search contract and open placeholders; it is not a branch certificate.",
+        "This artifact records the selected finite-mode chart, branch scope, and same-run period rows; it does not solve dynamics or retain a branch.",
     },
+    chart_run: chartRun,
     branch_scope: {
+      chart_run_id: chartRun.run_id,
       sites: SITE_IDS,
       polarity_map: Object.fromEntries(SITE_IDS.map((id) => [String(id), polarityForSite(id)])),
       pair_policy: {
@@ -310,6 +381,31 @@ export function buildArtifact(options = {}) {
         },
         status: "finite-mode-truncation-open",
       },
+      fixture: false,
+      proxy: false,
+      off_ledger: false,
+      cross_row_bundle: false,
+    },
+    period_rows: {
+      status: "same-run-chart-input",
+      chart_run_id: chartRun.run_id,
+      row_family: "period_rows",
+      rows: periodRows,
+      fixture: false,
+      proxy: false,
+      off_ledger: false,
+      cross_row_bundle: false,
+    },
+    same_run_binding: {
+      status: "branch-scope-and-period-rows-bound",
+      chart_run_id: chartRun.run_id,
+      branch_scope_chart_run_id: chartRun.run_id,
+      period_rows_chart_run_id: chartRun.run_id,
+      bound_row_families: ["branch_scope", "period_rows"],
+      non_fixture: true,
+      rejects_fixed_speed_off_ledger_provenance: true,
+      rejects_proxy_rows: true,
+      rejects_cross_row_bundles: true,
     },
     site_inventory: inventory,
     unknown_vector: {
@@ -395,6 +491,22 @@ export function buildArtifact(options = {}) {
       total_force: "not_computed",
       consumer_checksum: null,
     },
+    action_measure_row: {
+      status: "absent-fail-closed",
+      row: "action_measure_row",
+      first_missing_field_after_period_rows: "action_functional",
+      missing_same_ledger_fields: [
+        "action_functional",
+        "root_support_event_rows",
+        "retained_source_binding",
+        "provider_provenance",
+        "receiver_normal_branch_strength_linkage",
+      ],
+      rejected_evidence_kinds: NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS,
+      accepted_same_ledger_action_measure_row: null,
+      certifies_action_measure_row: false,
+      authorizes_rank5_retained_branch_closure: false,
+    },
     residual_vector: {
       symbol: "B_NS_M_nu",
       rows: residualRows(),
@@ -448,7 +560,7 @@ export function buildArtifact(options = {}) {
       finite_mode_candidate: false,
       finite_mode_rejection_certified: false,
       status_note:
-        "The emitted artifact is an open finite-mode search contract. It records required rows but does not solve dynamics or retain a branch.",
+        "The emitted artifact is an open finite-mode execution slice. It records same-run branch scope and period rows but does not solve dynamics, emit an action_measure_row, or retain a branch.",
     },
     not_retained_reason: [
       "all-pairs root ledger is open",
@@ -481,6 +593,22 @@ export function validateArtifact(artifact) {
   assertField(artifact.packet_id === PACKET_ID, `packet_id must be ${PACKET_ID}`, errors);
   assertField(artifact.promotion_status === PROMOTION_STATUS, `promotion_status must be ${PROMOTION_STATUS}`, errors);
   assertField(artifact.artifact_claim?.solves_dynamics === false, "artifact must declare solves_dynamics=false", errors);
+  assertField(artifact.artifact_claim?.emits_same_run_branch_scope === true, "artifact must emit same-run branch_scope", errors);
+  assertField(artifact.artifact_claim?.emits_same_run_period_rows === true, "artifact must emit same-run period_rows", errors);
+  assertField(artifact.artifact_claim?.emits_action_measure_row === false, "artifact must not emit action_measure_row", errors);
+  assertField(
+    artifact.artifact_claim?.authorizes_rank5_retained_branch_closure === false,
+    "artifact must not authorize rank-5 retained branch closure",
+    errors
+  );
+
+  const chartRun = artifact.chart_run;
+  assertField(chartRun?.source_kind === "deterministic-chart-input", "chart_run source_kind must be deterministic-chart-input", errors);
+  assertField(chartRun?.fixture === false, "chart_run must not be fixture evidence", errors);
+  assertField(chartRun?.proxy === false, "chart_run must not be proxy evidence", errors);
+  assertField(chartRun?.off_ledger === false, "chart_run must not be off-ledger evidence", errors);
+  assertField(chartRun?.cross_row_bundle === false, "chart_run must not be a cross-row bundle", errors);
+  assertField(Number.isFinite(chartRun?.common_period) && chartRun.common_period > 0, "chart_run common_period must be positive", errors);
 
   const sites = artifact.site_inventory?.sites ?? [];
   assertField(Array.isArray(sites) && sites.length === 6, "site_inventory.sites must contain six sites", errors);
@@ -510,6 +638,47 @@ export function validateArtifact(artifact) {
   assertField(
     expectedPairs.every((pair) => pairKeys.has(pairKey(pair))),
     "pair_policy must cover every ordered distinct source pair",
+    errors
+  );
+  assertField(
+    artifact.branch_scope?.chart_run_id === chartRun?.run_id,
+    "branch_scope chart_run_id must match chart_run",
+    errors
+  );
+  assertField(artifact.branch_scope?.fixture === false, "branch_scope must not be fixture evidence", errors);
+  assertField(artifact.branch_scope?.proxy === false, "branch_scope must not be proxy evidence", errors);
+  assertField(artifact.branch_scope?.off_ledger === false, "branch_scope must not be off-ledger evidence", errors);
+  assertField(artifact.branch_scope?.cross_row_bundle === false, "branch_scope must not be a cross-row bundle", errors);
+
+  const periodRows = artifact.period_rows?.rows ?? [];
+  assertField(artifact.period_rows?.status === "same-run-chart-input", "period_rows status must be same-run-chart-input", errors);
+  assertField(artifact.period_rows?.chart_run_id === chartRun?.run_id, "period_rows chart_run_id must match chart_run", errors);
+  assertField(Array.isArray(periodRows) && periodRows.length === SITE_IDS.length, "period_rows must contain one row per site", errors);
+  for (const siteId of SITE_IDS) {
+    const row = periodRows.find((candidate) => candidate.site === siteId);
+    assertField(Boolean(row), `period_rows must include site ${siteId}`, errors);
+    assertField(row?.chart_run_id === chartRun?.run_id, `period row ${siteId} chart_run_id must match chart_run`, errors);
+    assertField(row?.source_status === "same-run-chart-input", `period row ${siteId} must be same-run chart input`, errors);
+    assertField(row?.period === chartRun?.common_period, `period row ${siteId} period must match chart_run`, errors);
+    assertField(row?.fixture === false, `period row ${siteId} must not be fixture evidence`, errors);
+    assertField(row?.proxy === false, `period row ${siteId} must not be proxy evidence`, errors);
+    assertField(row?.off_ledger === false, `period row ${siteId} must not be off-ledger evidence`, errors);
+    assertField(row?.cross_row_bundle === false, `period row ${siteId} must not be a cross-row bundle`, errors);
+  }
+  assertField(
+    artifact.same_run_binding?.status === "branch-scope-and-period-rows-bound" &&
+      artifact.same_run_binding?.chart_run_id === chartRun?.run_id &&
+      artifact.same_run_binding?.branch_scope_chart_run_id === chartRun?.run_id &&
+      artifact.same_run_binding?.period_rows_chart_run_id === chartRun?.run_id,
+    "same_run_binding must bind branch_scope and period_rows to one chart_run",
+    errors
+  );
+  assertField(artifact.same_run_binding?.non_fixture === true, "same_run_binding must be non-fixture", errors);
+  assertField(
+    artifact.same_run_binding?.rejects_fixed_speed_off_ledger_provenance === true &&
+      artifact.same_run_binding?.rejects_proxy_rows === true &&
+      artifact.same_run_binding?.rejects_cross_row_bundles === true,
+    "same_run_binding must reject fixed-speed off-ledger, proxy, and cross-row evidence",
     errors
   );
 
@@ -575,6 +744,34 @@ export function validateArtifact(artifact) {
   assertField(artifact.result?.search === "search_open", "result.search must be search_open", errors);
   assertField(artifact.result?.retention === "not_retained", "result.retention must be not_retained", errors);
   assertField(artifact.result?.retained_branch === false, "result.retained_branch must be false", errors);
+  assertField(artifact.action_measure_row?.status === "absent-fail-closed", "action_measure_row must be absent fail-closed", errors);
+  assertField(
+    artifact.action_measure_row?.first_missing_field_after_period_rows === "action_functional",
+    "action_measure_row first missing field after period_rows must be action_functional",
+    errors
+  );
+  assertField(
+    Array.isArray(artifact.action_measure_row?.missing_same_ledger_fields) &&
+      artifact.action_measure_row.missing_same_ledger_fields.includes("retained_source_binding") &&
+      artifact.action_measure_row.missing_same_ledger_fields.includes("provider_provenance") &&
+      artifact.action_measure_row.missing_same_ledger_fields.includes("receiver_normal_branch_strength_linkage"),
+    "action_measure_row must list retained source, provider provenance, and receiver-normal linkage blockers",
+    errors
+  );
+  assertField(
+    NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS.every((kind) =>
+      artifact.action_measure_row?.rejected_evidence_kinds?.includes(kind)
+    ),
+    "action_measure_row rejected evidence list is incomplete",
+    errors
+  );
+  assertField(
+    artifact.action_measure_row?.accepted_same_ledger_action_measure_row === null &&
+      artifact.action_measure_row?.certifies_action_measure_row === false &&
+      artifact.action_measure_row?.authorizes_rank5_retained_branch_closure === false,
+    "action_measure_row must remain non-authorizing",
+    errors
+  );
   assertField(Array.isArray(artifact.not_retained_reason) && artifact.not_retained_reason.length > 0, "not_retained_reason must be nonempty", errors);
 
   return errors;
@@ -586,6 +783,9 @@ function parseArgs(argv) {
     out: null,
     pretty: false,
     sameSourcePolicy: DEFAULT_SAME_SOURCE_POLICY,
+    chartId: DEFAULT_CHART_ID,
+    chartPeriod: DEFAULT_CHART_PERIOD,
+    periodConvention: DEFAULT_PERIOD_CONVENTION,
     validatePath: null,
     help: false,
   };
@@ -605,6 +805,12 @@ function parseArgs(argv) {
       args.pretty = true;
     } else if (arg === "--same-source-policy") {
       args.sameSourcePolicy = argv[++index];
+    } else if (arg === "--chart-id") {
+      args.chartId = argv[++index];
+    } else if (arg === "--chart-period") {
+      args.chartPeriod = Number(argv[++index]);
+    } else if (arg === "--period-convention") {
+      args.periodConvention = argv[++index];
     } else {
       throw new Error(`Unknown argument: ${arg}`);
     }
@@ -616,6 +822,9 @@ function parseArgs(argv) {
   if (!SAME_SOURCE_POLICIES.includes(args.sameSourcePolicy)) {
     throw new Error(`--same-source-policy must be one of: ${SAME_SOURCE_POLICIES.join(", ")}`);
   }
+  assertNonemptyString(args.chartId, "--chart-id");
+  assertPositiveFiniteNumber(args.chartPeriod, "--chart-period");
+  assertNonemptyString(args.periodConvention, "--period-convention");
   return args;
 }
 
@@ -626,14 +835,18 @@ Options:
   --out PATH                         Write emitted JSON to PATH instead of stdout.
   --pretty                           Pretty-print JSON output.
   --same-source-policy POLICY        Same-source policy. Defaults to ordinary-same-source-excluded.
+  --chart-id ID                      Concrete chart input id for this run.
+  --chart-period NUMBER              Positive period value for all same-run period rows.
+  --period-convention NAME           Period convention for emitted period_rows.
   --schema                           Emit the compact artifact schema contract.
   --validate PATH                    Validate an emitted artifact and print an audit summary.
   --help                             Show this help.
 
-This emits or validates the neutral braid finite-mode search artifact shape. It
-records the six-site inventory, all 30 ordered distinct source pairs, hollow
-support placeholders, root-ledger placeholders, residual/status vocabulary, and
-a search_open/not_retained result. It does not solve dynamics or retain a branch.`);
+This emits or validates the neutral braid finite-mode execution artifact slice.
+It records the six-site inventory, all 30 ordered distinct source pairs,
+same-run branch_scope and period_rows, hollow support placeholders, root-ledger
+placeholders, residual/status vocabulary, and a search_open/not_retained result.
+It does not solve dynamics, emit action_measure_row, or retain a branch.`);
 }
 
 function writeJson(value, outPath, pretty) {
@@ -672,6 +885,7 @@ function main() {
       errors,
       packet_id: artifact.packet_id ?? null,
       pair_count: artifact.branch_scope?.pair_policy?.ordered_distinct_pairs?.length ?? null,
+      period_row_count: artifact.period_rows?.rows?.length ?? null,
       result: artifact.result ?? null,
     };
     writeJson(summary, args.out, args.pretty);
@@ -681,7 +895,16 @@ function main() {
     return;
   }
 
-  writeJson(buildArtifact({ sameSourcePolicy: args.sameSourcePolicy }), args.out, args.pretty);
+  writeJson(
+    buildArtifact({
+      sameSourcePolicy: args.sameSourcePolicy,
+      chartId: args.chartId,
+      chartPeriod: args.chartPeriod,
+      periodConvention: args.periodConvention,
+    }),
+    args.out,
+    args.pretty
+  );
 }
 
 if (process.argv[1] && path.resolve(process.argv[1]) === SCRIPT_PATH) {
