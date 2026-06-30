@@ -22,9 +22,26 @@ const DEFAULT_PERIOD_CONVENTION = "single-winding-common-period";
 const NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS = [
   "fixture-row",
   "fixed-speed-off-ledger-provenance",
+  "sampled-diagnostic",
+  "source-normal-row",
+  "h39-theta3minus-quotient-row",
+  "generated-decoy",
   "proxy-row",
   "cross-row-bundle",
   "branch-scope-free-summary",
+  "target-only-row",
+];
+const ROOT_SUPPORT_EVENT_ROW_IDS = [
+  "all_pairs_root_ledger",
+  "root_sheet_rows",
+  "tail_split",
+  "hollow_support",
+  "support_work_rows",
+  "support_event_rows",
+  "period_event_rows",
+  "root_fold_event_rows",
+  "endpoint_event_rows",
+  "source_provenance_event_rows",
 ];
 
 const FINITE_MODE_DECISIONS = [
@@ -182,6 +199,7 @@ export const ARTIFACT_SCHEMA = {
     "same-source policy outside ordinary force rows",
     "hollow support fields and placeholder statuses",
     "same-run period rows from the selected chart input",
+    "same-run root/support/event row ids with open blockers",
     "all-pairs root-ledger placeholders",
     "residual and status vocabulary",
     "not_retained/search_open result",
@@ -192,6 +210,7 @@ export const ARTIFACT_SCHEMA = {
     "promotion_status",
     "branch_scope",
     "period_rows",
+    "root_support_event_rows",
     "site_inventory",
     "hollow_support",
     "all_pairs_root_ledger",
@@ -318,6 +337,120 @@ function buildPeriodRows(chartRun) {
   }));
 }
 
+function buildRootSupportEventRows(chartRun) {
+  return {
+    status: "same-run-open",
+    chart_run_id: chartRun.run_id,
+    row_family: "root_support_event_rows",
+    row_ids: [...ROOT_SUPPORT_EVENT_ROW_IDS],
+    rows: [
+      {
+        row_id: "all_pairs_root_ledger",
+        group: "root",
+        chart_run_id: chartRun.run_id,
+        status: "open_placeholder",
+        first_missing_field: "accepted_active_roots",
+        absence_reason:
+          "no active, assimilated, or excluded all-pairs root ledger has been solved on this chart run",
+      },
+      {
+        row_id: "root_sheet_rows",
+        group: "root",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_root_ledger",
+        first_missing_field: "root_sheet_derivatives",
+        absence_reason:
+          "root sheet derivatives require accepted same-run root labels, delay floors, and Jacobian floors",
+      },
+      {
+        row_id: "tail_split",
+        group: "root",
+        chart_run_id: chartRun.run_id,
+        status: "open_placeholder",
+        first_missing_field: "tail_ownership_map",
+        absence_reason:
+          "tail ownership, terminal predicates, and persistence radius have not been computed for this chart run",
+      },
+      {
+        row_id: "hollow_support",
+        group: "support",
+        chart_run_id: chartRun.run_id,
+        status: "declared_open",
+        first_missing_field: "certified_support_margins",
+        absence_reason:
+          "the artifact declares the support descriptor but does not certify support margins or support complementarity",
+      },
+      {
+        row_id: "support_work_rows",
+        group: "support",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_support_margins",
+        first_missing_field: "support_work_status",
+        absence_reason:
+          "support work needs certified support margins, multipliers or variational inequality, and endpoint convention",
+      },
+      {
+        row_id: "support_event_rows",
+        group: "event",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_support_margins",
+        first_missing_field: "support_boundary_event_surface",
+        absence_reason:
+          "support-boundary events require certified support margins and event-surface checks on this chart run",
+      },
+      {
+        row_id: "period_event_rows",
+        group: "event",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_event_ledger",
+        first_missing_field: "period_event_residual",
+        absence_reason:
+          "period rows are present, but no event ledger has consumed them for conservation or reset status",
+      },
+      {
+        row_id: "root_fold_event_rows",
+        group: "event",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_root_ledger",
+        first_missing_field: "root_fold_event_surface",
+        absence_reason:
+          "root-fold events require same-run root labels, Jacobian signs, and event-surface checks",
+      },
+      {
+        row_id: "endpoint_event_rows",
+        group: "event",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_event_ledger",
+        first_missing_field: "endpoint_jump_status",
+        absence_reason:
+          "endpoint jumps and resets require an event ledger tied to the same branch scope and period rows",
+      },
+      {
+        row_id: "source_provenance_event_rows",
+        group: "event",
+        chart_run_id: chartRun.run_id,
+        status: "absent_blocked_by_provider_provenance",
+        first_missing_field: "source_provenance_binding",
+        absence_reason:
+          "source provenance is not accepted because no provider provenance or retained source binding exists",
+      },
+    ],
+    first_missing_field: "accepted_active_roots",
+    accepted_root_support_event_rows: null,
+    certifies_root_support_event_rows: false,
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    sampled_diagnostic: false,
+    source_normal_row: false,
+    h39_theta3minus_quotient_row: false,
+    generated_decoy: false,
+    cross_row_bundle: false,
+    target_only: false,
+    rejected_evidence_kinds: [...NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS],
+  };
+}
+
 export function buildArtifact(options = {}) {
   const sameSourcePolicy = options.sameSourcePolicy ?? DEFAULT_SAME_SOURCE_POLICY;
   if (!SAME_SOURCE_POLICIES.includes(sameSourcePolicy)) {
@@ -328,6 +461,7 @@ export function buildArtifact(options = {}) {
   const pairs = orderedDistinctPairs();
   const inventory = siteInventory();
   const periodRows = buildPeriodRows(chartRun);
+  const rootSupportEventRows = buildRootSupportEventRows(chartRun);
 
   return {
     schema: SCHEMA_ID,
@@ -343,10 +477,11 @@ export function buildArtifact(options = {}) {
       solves_dynamics: false,
       emits_same_run_branch_scope: true,
       emits_same_run_period_rows: true,
+      emits_same_run_root_support_event_rows: true,
       emits_action_measure_row: false,
       authorizes_rank5_retained_branch_closure: false,
       strongest_claim:
-        "This artifact records the selected finite-mode chart, branch scope, and same-run period rows; it does not solve dynamics or retain a branch.",
+        "This artifact records the selected finite-mode chart, branch scope, same-run period rows, and same-run root/support/event row ids; it does not solve dynamics or retain a branch.",
     },
     chart_run: chartRun,
     branch_scope: {
@@ -407,6 +542,7 @@ export function buildArtifact(options = {}) {
       rejects_proxy_rows: true,
       rejects_cross_row_bundles: true,
     },
+    root_support_event_rows: rootSupportEventRows,
     site_inventory: inventory,
     unknown_vector: {
       symbol: "z_NS_M_nu",
@@ -495,9 +631,10 @@ export function buildArtifact(options = {}) {
       status: "absent-fail-closed",
       row: "action_measure_row",
       first_missing_field_after_period_rows: "action_functional",
+      root_support_event_rows_status: "same-run-open-not-accepted",
       missing_same_ledger_fields: [
         "action_functional",
-        "root_support_event_rows",
+        "accepted_root_support_event_rows",
         "retained_source_binding",
         "provider_provenance",
         "receiver_normal_branch_strength_linkage",
@@ -560,7 +697,7 @@ export function buildArtifact(options = {}) {
       finite_mode_candidate: false,
       finite_mode_rejection_certified: false,
       status_note:
-        "The emitted artifact is an open finite-mode execution slice. It records same-run branch scope and period rows but does not solve dynamics, emit an action_measure_row, or retain a branch.",
+        "The emitted artifact is an open finite-mode execution slice. It records same-run branch scope, period rows, and root/support/event row ids but does not solve dynamics, emit an action_measure_row, or retain a branch.",
     },
     not_retained_reason: [
       "all-pairs root ledger is open",
@@ -595,6 +732,11 @@ export function validateArtifact(artifact) {
   assertField(artifact.artifact_claim?.solves_dynamics === false, "artifact must declare solves_dynamics=false", errors);
   assertField(artifact.artifact_claim?.emits_same_run_branch_scope === true, "artifact must emit same-run branch_scope", errors);
   assertField(artifact.artifact_claim?.emits_same_run_period_rows === true, "artifact must emit same-run period_rows", errors);
+  assertField(
+    artifact.artifact_claim?.emits_same_run_root_support_event_rows === true,
+    "artifact must emit same-run root_support_event_rows",
+    errors
+  );
   assertField(artifact.artifact_claim?.emits_action_measure_row === false, "artifact must not emit action_measure_row", errors);
   assertField(
     artifact.artifact_claim?.authorizes_rank5_retained_branch_closure === false,
@@ -682,6 +824,52 @@ export function validateArtifact(artifact) {
     errors
   );
 
+  const rootSupportEventRows = artifact.root_support_event_rows ?? {};
+  const rootSupportRows = rootSupportEventRows.rows ?? [];
+  assertField(
+    rootSupportEventRows.status === "same-run-open" &&
+      rootSupportEventRows.chart_run_id === chartRun?.run_id &&
+      rootSupportEventRows.row_family === "root_support_event_rows",
+    "root_support_event_rows must be same-run open rows",
+    errors
+  );
+  assertField(
+    ROOT_SUPPORT_EVENT_ROW_IDS.every((rowId) => rootSupportEventRows.row_ids?.includes(rowId)),
+    "root_support_event_rows must list every required row id",
+    errors
+  );
+  assertField(
+    Array.isArray(rootSupportRows) && rootSupportRows.length === ROOT_SUPPORT_EVENT_ROW_IDS.length,
+    "root_support_event_rows rows length mismatch",
+    errors
+  );
+  for (const rowId of ROOT_SUPPORT_EVENT_ROW_IDS) {
+    const row = rootSupportRows.find((candidate) => candidate.row_id === rowId);
+    assertField(Boolean(row), `root_support_event_rows missing ${rowId}`, errors);
+    assertField(row?.chart_run_id === chartRun?.run_id, `root_support_event_rows ${rowId} chart_run_id must match`, errors);
+    assertField(typeof row?.first_missing_field === "string" && row.first_missing_field.length > 0, `${rowId} first_missing_field must be named`, errors);
+    assertField(typeof row?.absence_reason === "string" && row.absence_reason.length > 0, `${rowId} absence_reason must be named`, errors);
+  }
+  assertField(
+    rootSupportEventRows.first_missing_field === "accepted_active_roots" &&
+      rootSupportEventRows.accepted_root_support_event_rows === null &&
+      rootSupportEventRows.certifies_root_support_event_rows === false,
+    "root_support_event_rows must remain open and non-certifying",
+    errors
+  );
+  assertField(
+    rootSupportEventRows.fixture === false &&
+      rootSupportEventRows.off_ledger === false &&
+      rootSupportEventRows.sampled_diagnostic === false &&
+      rootSupportEventRows.source_normal_row === false &&
+      rootSupportEventRows.h39_theta3minus_quotient_row === false &&
+      rootSupportEventRows.generated_decoy === false &&
+      rootSupportEventRows.cross_row_bundle === false &&
+      rootSupportEventRows.target_only === false,
+    "root_support_event_rows must reject fixture/off-ledger/diagnostic/decoy/cross-row/target-only evidence",
+    errors
+  );
+
   const receiverRows = artifact.site_inventory?.source_rows_by_receiver ?? [];
   for (const receiver of SITE_IDS) {
     const row = receiverRows.find((candidate) => candidate.receiver === receiver);
@@ -752,6 +940,8 @@ export function validateArtifact(artifact) {
   );
   assertField(
     Array.isArray(artifact.action_measure_row?.missing_same_ledger_fields) &&
+      artifact.action_measure_row.root_support_event_rows_status === "same-run-open-not-accepted" &&
+      artifact.action_measure_row.missing_same_ledger_fields.includes("accepted_root_support_event_rows") &&
       artifact.action_measure_row.missing_same_ledger_fields.includes("retained_source_binding") &&
       artifact.action_measure_row.missing_same_ledger_fields.includes("provider_provenance") &&
       artifact.action_measure_row.missing_same_ledger_fields.includes("receiver_normal_branch_strength_linkage"),
@@ -845,7 +1035,8 @@ Options:
 This emits or validates the neutral braid finite-mode execution artifact slice.
 It records the six-site inventory, all 30 ordered distinct source pairs,
 same-run branch_scope and period_rows, hollow support placeholders, root-ledger
-placeholders, residual/status vocabulary, and a search_open/not_retained result.
+placeholders, root/support/event row ids, residual/status vocabulary, and a
+search_open/not_retained result.
 It does not solve dynamics, emit action_measure_row, or retain a branch.`);
 }
 
@@ -886,6 +1077,7 @@ function main() {
       packet_id: artifact.packet_id ?? null,
       pair_count: artifact.branch_scope?.pair_policy?.ordered_distinct_pairs?.length ?? null,
       period_row_count: artifact.period_rows?.rows?.length ?? null,
+      root_support_event_row_count: artifact.root_support_event_rows?.rows?.length ?? null,
       result: artifact.result ?? null,
     };
     writeJson(summary, args.out, args.pretty);

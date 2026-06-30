@@ -23,6 +23,7 @@ test("neutral braid finite-mode artifact records six neutral sites and all order
   assert.equal(artifact.promotion_status, "priority-only");
   assert.equal(artifact.artifact_claim.emits_same_run_branch_scope, true);
   assert.equal(artifact.artifact_claim.emits_same_run_period_rows, true);
+  assert.equal(artifact.artifact_claim.emits_same_run_root_support_event_rows, true);
   assert.equal(artifact.artifact_claim.emits_action_measure_row, false);
   assert.equal(artifact.artifact_claim.authorizes_rank5_retained_branch_closure, false);
   assert.equal(artifact.site_inventory.sites.length, 6);
@@ -46,6 +47,28 @@ test("neutral braid finite-mode artifact records six neutral sites and all order
   );
   assert.equal(artifact.same_run_binding.status, "branch-scope-and-period-rows-bound");
   assert.equal(artifact.same_run_binding.non_fixture, true);
+  assert.equal(artifact.root_support_event_rows.status, "same-run-open");
+  assert.equal(artifact.root_support_event_rows.chart_run_id, artifact.chart_run.run_id);
+  assert.deepEqual(artifact.root_support_event_rows.row_ids, [
+    "all_pairs_root_ledger",
+    "root_sheet_rows",
+    "tail_split",
+    "hollow_support",
+    "support_work_rows",
+    "support_event_rows",
+    "period_event_rows",
+    "root_fold_event_rows",
+    "endpoint_event_rows",
+    "source_provenance_event_rows",
+  ]);
+  assert.equal(artifact.root_support_event_rows.rows.length, 10);
+  assert.equal(
+    artifact.root_support_event_rows.rows.every((row) => row.chart_run_id === artifact.chart_run.run_id),
+    true
+  );
+  assert.equal(artifact.root_support_event_rows.first_missing_field, "accepted_active_roots");
+  assert.equal(artifact.root_support_event_rows.accepted_root_support_event_rows, null);
+  assert.equal(artifact.root_support_event_rows.certifies_root_support_event_rows, false);
   assert.equal(artifact.result.search, "search_open");
   assert.equal(artifact.result.retention, "not_retained");
   assert.equal(artifact.result.retained_branch, false);
@@ -60,9 +83,10 @@ test("neutral braid finite-mode artifact keeps action rows and rank-5 authorizat
     artifact.action_measure_row.first_missing_field_after_period_rows,
     "action_functional"
   );
+  assert.equal(artifact.action_measure_row.root_support_event_rows_status, "same-run-open-not-accepted");
   assert.deepEqual(artifact.action_measure_row.missing_same_ledger_fields, [
     "action_functional",
-    "root_support_event_rows",
+    "accepted_root_support_event_rows",
     "retained_source_binding",
     "provider_provenance",
     "receiver_normal_branch_strength_linkage",
@@ -81,15 +105,28 @@ test("neutral braid finite-mode artifact rejects fixture fixed-speed proxy and c
   assert.equal(artifact.branch_scope.fixture, false);
   assert.equal(artifact.period_rows.fixture, false);
   assert.equal(artifact.period_rows.rows.every((row) => row.fixture === false), true);
+  assert.equal(artifact.root_support_event_rows.fixture, false);
+  assert.equal(artifact.root_support_event_rows.off_ledger, false);
+  assert.equal(artifact.root_support_event_rows.sampled_diagnostic, false);
+  assert.equal(artifact.root_support_event_rows.source_normal_row, false);
+  assert.equal(artifact.root_support_event_rows.h39_theta3minus_quotient_row, false);
+  assert.equal(artifact.root_support_event_rows.generated_decoy, false);
+  assert.equal(artifact.root_support_event_rows.cross_row_bundle, false);
+  assert.equal(artifact.root_support_event_rows.target_only, false);
   assert.equal(artifact.same_run_binding.rejects_fixed_speed_off_ledger_provenance, true);
   assert.equal(artifact.same_run_binding.rejects_proxy_rows, true);
   assert.equal(artifact.same_run_binding.rejects_cross_row_bundles, true);
   assert.deepEqual(artifact.action_measure_row.rejected_evidence_kinds, [
     "fixture-row",
     "fixed-speed-off-ledger-provenance",
+    "sampled-diagnostic",
+    "source-normal-row",
+    "h39-theta3minus-quotient-row",
+    "generated-decoy",
     "proxy-row",
     "cross-row-bundle",
     "branch-scope-free-summary",
+    "target-only-row",
   ]);
 });
 
@@ -123,6 +160,7 @@ test("neutral braid finite-mode CLI emits and validates JSON artifacts", () => {
   assert.equal(validation.valid, true);
   assert.equal(validation.pair_count, 30);
   assert.equal(validation.period_row_count, 6);
+  assert.equal(validation.root_support_event_row_count, 10);
   assert.equal(validation.result.search, "search_open");
 
   const schema = JSON.parse(execFileSync(process.execPath, [scriptPath, "--schema"], { encoding: "utf8" }));

@@ -5,6 +5,7 @@ import { createLevelRuntime } from "../../runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { createFileSourceRuntime } from "../../runtime/FileSourceRuntime.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
+import { hasActionableSceneSphereTarget } from "../../runtime/SceneSphereActionRuntime.js";
 import {
   clampAnimatorTimelineSpan,
   ANIMATOR_TIMELINE_MIN_DURATION_SECONDS as animatorTimelineMinDurationSeconds,
@@ -7789,6 +7790,8 @@ const nodeFactory = createNodeFactory({
   THREE,
   CSS2DObject,
   binaryStyle,
+  isActionableSphereNode: (nodeData) =>
+    hasActionableSceneSphereTarget(nodeData, { panelMap: animatorPanelMap }),
 });
 
 function createNode(nodeData) {

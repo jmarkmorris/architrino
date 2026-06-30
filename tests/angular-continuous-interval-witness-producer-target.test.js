@@ -203,6 +203,76 @@ test("existing angular report exposes active-domain extension producer step fail
   );
 });
 
+test("event-root absence-bridge fill-law producer schema stays fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "event-root-absence-bridge-fill-law-producer-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-event-root-absence-bridge-fill-law-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.parentSourceBoundary,
+    "nonlocal_event_root_bracket_fill_rule_source_boundary"
+  );
+  assert.equal(schema.targetObjectId, "event_root_absence_bridge_fill_law");
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-event-root-absence-bridge-fill-law-producer-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "derive_event_root_absence_bridge_fill_law"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "bounded_gap_row_count",
+    "same_event_root_endpoint_boundaries",
+    "affine_bracket_geometry",
+    "event_root_identity_conservation_on_affine_bracket_interval",
+    "accepted_nonlocal_event_root_bracket_transport_law",
+  ]);
+  assert.equal(
+    schema.firstUnresolvedField,
+    "event_root_identity_conservation_on_affine_bracket_interval"
+  );
+  assert.equal(
+    schema.firstUnresolvedProducer,
+    "derive_event_root_absence_bridge_fill_law"
+  );
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+    "global_retained_row_set_identity",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_only_gap_boundaries_not_absence_bridge_fill_law",
+      "affine_bracket_geometry_without_identity_conservation_not_absence_bridge_fill_law",
+      "sampled_dense_support_not_absence_bridge_fill_law",
+      "phase_cancellation_rows_not_absence_bridge_fill_law",
+      "aggregate_rows_not_absence_bridge_fill_law",
+      "target_only_rows_not_absence_bridge_fill_law",
+      "route_only_rows_not_absence_bridge_fill_law",
+      "cross_row_bundles_not_absence_bridge_fill_law",
+    ]
+  );
+});
+
 test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
   const schema = JSON.parse(
     execFileSync(

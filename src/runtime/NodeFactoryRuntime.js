@@ -1,4 +1,5 @@
 import { SCENE_CHAPTER_MARKER_RADIUS_SCALE } from "./SceneLabelSizingRuntime.js";
+import { hasActionableSceneSphereTarget } from "./SceneSphereActionRuntime.js";
 
 export function createNodeFactory(deps) {
   const { THREE, CSS2DObject, binaryStyle } = deps;
@@ -8,6 +9,8 @@ export function createNodeFactory(deps) {
   const premiumSphereOutlineColor = "#b9a8e8";
   const premiumSphereGlowRingColor = "#d8c6ff";
   const premiumSphereCenterRingColor = "#c7b9ff";
+  const staticSphereRingColor = "#000000";
+  const staticSphereRingOpacity = 0.62;
 
   function createPremiumSphereMaterial(nodeData, { hideSphere = false, isReaction = false } = {}) {
     const baseColor = new THREE.Color(nodeData.color ?? "#3a5a8a");
@@ -173,13 +176,25 @@ export function createNodeFactory(deps) {
     return { title: title || raw, subtitle, dates };
   }
 
+  function isActionableSphereNode(nodeData) {
+    if (typeof deps.isActionableSphereNode === "function") {
+      return Boolean(deps.isActionableSphereNode(nodeData));
+    }
+    return hasActionableSceneSphereTarget(nodeData);
+  }
+
   function getRingStyle(nodeData) {
+    const actionable = isActionableSphereNode(nodeData);
     const ringScale = nodeData.glowRingScale ?? 1.04;
     const ringThickness =
       nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
-    const ringColor = nodeData.glowRingColor ?? premiumSphereGlowRingColor;
-    const ringOpacity = nodeData.glowRingOpacity ?? 0.3;
-    return { ringScale, ringThickness, ringColor, ringOpacity };
+    const ringColor = actionable
+      ? nodeData.glowRingColor ?? premiumSphereGlowRingColor
+      : staticSphereRingColor;
+    const ringOpacity =
+      nodeData.glowRingOpacity ?? (actionable ? 0.3 : staticSphereRingOpacity);
+    const blending = actionable ? THREE.AdditiveBlending : THREE.NormalBlending;
+    return { ringScale, ringThickness, ringColor, ringOpacity, blending };
   }
 
   function createRingGeometry(radius, style) {
@@ -205,8 +220,8 @@ export function createNodeFactory(deps) {
     return {
       ringScale: 1.04,
       ringThickness: Math.max(0.028, radius * 0.06),
-      ringColor: premiumSphereCenterRingColor,
-      ringOpacity: 0.5,
+      ringColor: staticSphereRingColor,
+      ringOpacity: staticSphereRingOpacity,
       blending: THREE.NormalBlending,
     };
   }

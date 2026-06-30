@@ -6,16 +6,16 @@ This directory is intended for human-consulted repository guidance and is not ap
 
 ## Documentation Posture
 
-Reference documents should usually describe the current source of truth and the intended forward path. Do not keep drafting history, superseded counts, abandoned names, or "what changed" notes in ordinary reference prose.
+Reference documents should usually describe the current source of truth and the decided next path. Do not keep drafting history, superseded counts, abandoned names, or "what changed" notes in ordinary reference prose.
 
 Use the repo's tracking surfaces for history:
 
 - `reference/priorities/` for active workstream state, priority ledgers, and current next actions;
-- `reference/adr/` for architectural decision rationale;
+- `reference/architectural-decisions/` for architectural decision rationale;
 - GitHub issues and pull requests for collaboration history and review context;
 - git history for exact old text.
 
-Keep historical context inside a reference document only when it is part of the document's purpose, such as an ADR, audit trail, generated-output inventory, or priority ledger.
+Keep historical context inside a reference document only when it is part of the document's purpose, such as an architectural decision record, audit trail, generated-output inventory, or priority ledger.
 
 ## Developer-Meta Storage Guidance
 
@@ -28,5 +28,5 @@ The repo-local best-fit split for developer meta:
 - `reference/design/` for durable developer-facing design documentation;
 - `reference/archie/` for Archie public descriptions, channel planning, and message-testing material;
 - `reference/priorities` for issue tracker / project board for the live backlog.
-- `reference/adr/` for Architecture Decision Records;
+- `reference/architectural-decisions/` for Architecture Decision Records;
 - `content/` for app-facing content, not developer process;

@@ -82,6 +82,16 @@ if (args.schema === "active-domain-extension-row-set-producer-target") {
   );
   process.exit(0);
 }
+if (args.schema === "event-root-absence-bridge-fill-law-producer-target") {
+  console.log(
+    JSON.stringify(
+      createEventRootAbsenceBridgeFillLawProducerTargetSchema(),
+      null,
+      2
+    )
+  );
+  process.exit(0);
+}
 if (
   args.schema === "accepted-nonlocal-transport-global-row-set-producer-target"
 ) {
@@ -25638,6 +25648,15 @@ function createNonlocalEventRootBracketFillRuleSourceBoundary({
         transportLawTarget?.firstTransportLawBlocker ??
         bracketLatticeCandidateTarget?.firstBracketLatticeBlocker ??
         "derive_nonlocal_event_root_bracket_transport_law";
+  const absenceBridgeFillLawProducerStep =
+    createEventRootAbsenceBridgeFillLawProducerStep({
+      rowManifest,
+      candidatePassFields,
+      bracketLatticeCandidateTarget,
+      transportLawTarget,
+      affineLatticeLawTarget,
+      identityConservationTarget,
+    });
 
   return {
     schema:
@@ -25670,6 +25689,9 @@ function createNonlocalEventRootBracketFillRuleSourceBoundary({
     smallestNextProducerObject:
       firstMissingProofSource ??
       "global_retained_row_set_identity_provider",
+    absenceBridgeFillLawProducerStepStatus:
+      absenceBridgeFillLawProducerStep.status,
+    absenceBridgeFillLawProducerStep,
     bracketLatticeCandidateStatus:
       bracketLatticeCandidateTarget?.status ?? null,
     transportLawStatus: transportLawTarget?.status ?? null,
@@ -25678,6 +25700,201 @@ function createNonlocalEventRootBracketFillRuleSourceBoundary({
     rows: rowManifest,
     retainedLimitation:
       "The bounded gap rows have event-root endpoint brackets and sampled lattice geometry, but the current evidence has not supplied a dynamic proof that the event-root identity is conserved across the affine bracket interval and then bound to the global retained row set.",
+  };
+}
+
+function createEventRootAbsenceBridgeFillLawProducerStep({
+  rowManifest,
+  candidatePassFields,
+  bracketLatticeCandidateTarget,
+  transportLawTarget,
+  affineLatticeLawTarget,
+  identityConservationTarget,
+}) {
+  const absenceBridgeFillRuleTarget =
+    identityConservationTarget?.interiorAbsenceBridgeFillRuleTarget ?? null;
+  const routeTarget =
+    absenceBridgeFillRuleTarget?.absenceBridgeFillLawRouteTarget ?? null;
+  const dynamicLawSourceAudit =
+    absenceBridgeFillRuleTarget?.dynamicLawSourceAudit ?? null;
+  const selectedDirectAbsenceTransportSourceTarget =
+    absenceBridgeFillRuleTarget?.selectedDirectAbsenceTransportSourceTarget ??
+    null;
+  const sameEndpointBoundariesPass =
+    candidatePassFields.find(
+      (field) => field.field === "same_event_root_endpoint_boundaries"
+    )?.fieldPass === true;
+  const affineBracketGeometryPass =
+    candidatePassFields.find(
+      (field) => field.field === "affine_lattice_bracket_equation"
+    )?.fieldPass === true;
+  const latticeAlignmentPass =
+    candidatePassFields.find(
+      (field) => field.field === "bounded_gap_lattice_alignment"
+    )?.fieldPass === true;
+  const acceptedIdentityConservationPass =
+    identityConservationTarget?.acceptedEventRootIdentityConservationPass === true;
+  const acceptedNonlocalTransportPass =
+    transportLawTarget?.acceptedTransportLawPass === true;
+  const acceptedAbsenceBridgeFillLawPass =
+    absenceBridgeFillRuleTarget?.acceptedAbsenceBridgeFillRulePass === true;
+  const requiredFieldRows = [
+    {
+      fieldId: "bounded_gap_row_count",
+      fieldPass: rowManifest.length > 0,
+      populatedCount: rowManifest.length,
+      firstFieldBlocker:
+        rowManifest.length > 0
+          ? null
+          : "populate_event_root_bounded_interior_gap_rows",
+    },
+    {
+      fieldId: "same_event_root_endpoint_boundaries",
+      fieldPass: sameEndpointBoundariesPass,
+      populatedCount: rowManifest.length,
+      firstFieldBlocker: sameEndpointBoundariesPass
+        ? null
+        : "populate_same_event_root_endpoint_boundaries",
+    },
+    {
+      fieldId: "affine_bracket_geometry",
+      fieldPass: affineBracketGeometryPass && latticeAlignmentPass,
+      affineBracketGeometryPass,
+      latticeAlignmentPass,
+      firstFieldBlocker:
+        affineBracketGeometryPass && latticeAlignmentPass
+          ? null
+          : "populate_affine_lattice_bracket_geometry",
+    },
+    {
+      fieldId: "event_root_identity_conservation_on_affine_bracket_interval",
+      fieldPass: acceptedIdentityConservationPass,
+      sourceStatus: identityConservationTarget?.status ?? null,
+      firstFieldBlocker: acceptedIdentityConservationPass
+        ? null
+        : identityConservationTarget?.firstIdentityConservationBlocker ??
+          "derive_event_root_absence_bridge_fill_law",
+    },
+    {
+      fieldId: "accepted_nonlocal_event_root_bracket_transport_law",
+      fieldPass: acceptedNonlocalTransportPass,
+      sourceStatus: transportLawTarget?.status ?? null,
+      firstFieldBlocker: acceptedNonlocalTransportPass
+        ? null
+        : transportLawTarget?.firstTransportLawBlocker ??
+          "derive_nonlocal_event_root_bracket_transport_law",
+    },
+  ];
+  const firstMissingField =
+    requiredFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const firstUnresolvedAbsenceBridgeFillLawField =
+    absenceBridgeFillRuleTarget?.firstDynamicLawSourceBlocker ??
+    routeTarget?.firstFillLawRouteBlocker ??
+    dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ??
+    selectedDirectAbsenceTransportSourceTarget
+      ?.firstSelectedDirectAbsenceTransportSourceBlocker ??
+    null;
+  const status = acceptedAbsenceBridgeFillLawPass &&
+    acceptedIdentityConservationPass &&
+    acceptedNonlocalTransportPass
+    ? "event_root_absence_bridge_fill_law_producer_step_accepted"
+    : rowManifest.length === 0
+      ? "event_root_absence_bridge_fill_law_producer_step_no_bounded_rows"
+      : "event_root_absence_bridge_fill_law_producer_step_blocked_required_fields_missing";
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-absence-bridge-fill-law-producer-step.v1",
+    status,
+    claimLevel:
+      "fail-closed executable producer step for derive_event_root_absence_bridge_fill_law; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentSourceBoundary:
+      "nonlocal_event_root_bracket_fill_rule_source_boundary",
+    targetObjectId: "event_root_absence_bridge_fill_law",
+    producerStepId: "derive_event_root_absence_bridge_fill_law",
+    eventRootKeys: [
+      ...new Set(
+        rowManifest
+          .map((row) => row.eventRootKey)
+          .filter((eventRootKey) => eventRootKey != null)
+          .map(String)
+      ),
+    ].sort(),
+    acceptedAbsenceBridgeFillLawProducerStepPass:
+      status === "event_root_absence_bridge_fill_law_producer_step_accepted",
+    emitsBranchCertificateRef: false,
+    emitsAcceptedBranchChart: false,
+    emitsMovingRetainedBranchCertificate: false,
+    emitsAcceptedTransitionSource: false,
+    emitsRetainedBranchClosure: false,
+    emitsGlobalRetainedRowSetIdentity: false,
+    boundedGapRowCount: rowManifest.length,
+    endpointBoundaryEvidence: {
+      sameEndpointBoundariesPass,
+      pairKeys: [...new Set(rowManifest.map((row) => row.pairKey))].sort(),
+      eventRootKeys: [
+        ...new Set(
+          rowManifest
+            .map((row) => row.eventRootKey)
+            .filter((eventRootKey) => eventRootKey != null)
+            .map(String)
+        ),
+      ].sort(),
+    },
+    affineBracketGeometry: {
+      affineBracketGeometryPass,
+      latticeAlignmentPass,
+      bracketLatticeCandidateStatus:
+        bracketLatticeCandidateTarget?.status ?? null,
+      affineLatticeLawStatus: affineLatticeLawTarget?.status ?? null,
+      minBracketSpan: minFinite(
+        rowManifest.map((row) => row.bracketSpan).filter(Number.isFinite)
+      ),
+      maxBracketSpan: maxFinite(
+        rowManifest.map((row) => row.bracketSpan).filter(Number.isFinite)
+      ),
+    },
+    identityConservationStatus: identityConservationTarget?.status ?? null,
+    acceptedIdentityConservationPass,
+    acceptedNonlocalTransportStatus: transportLawTarget?.status ?? null,
+    acceptedNonlocalTransportPass,
+    absenceBridgeFillRuleStatus:
+      absenceBridgeFillRuleTarget?.status ?? null,
+    candidateDomainMatchedPass:
+      absenceBridgeFillRuleTarget?.candidateDomainMatchedPass === true,
+    acceptedAbsenceBridgeFillLawPass,
+    dynamicLawSourceAuditStatus: dynamicLawSourceAudit?.status ?? null,
+    firstDynamicLawSourceBlocker:
+      dynamicLawSourceAudit?.firstDynamicLawSourceBlocker ?? null,
+    selectedDirectAbsenceTransportSourceStatus:
+      selectedDirectAbsenceTransportSourceTarget?.status ?? null,
+    selectedDirectAbsenceFirstMissingSourceField:
+      selectedDirectAbsenceTransportSourceTarget?.firstMissingSourceField ??
+      null,
+    selectedDirectAbsenceFirstBlocker:
+      selectedDirectAbsenceTransportSourceTarget
+        ?.firstSelectedDirectAbsenceTransportSourceBlocker ?? null,
+    requiredFieldRows,
+    firstUnresolvedField: firstMissingField?.fieldId ?? null,
+    firstUnresolvedProducer: firstMissingField?.firstFieldBlocker ?? null,
+    firstUnresolvedAbsenceBridgeFillLawField,
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+    ],
+    negativeControls: createEventRootAbsenceBridgeFillLawNegativeControls(),
+    rows: rowManifest.map((row) => ({
+      ...row,
+      acceptedAbsenceBridgeFillLawRowPass: false,
+      acceptedIdentityConservationRowPass: false,
+      firstUnresolvedRowField:
+        "event_root_identity_conservation_on_affine_bracket_interval",
+    })),
   };
 }
 
@@ -38108,6 +38325,87 @@ function createActiveDomainExtensionProducerTargetSchema() {
       "retained_branch_closure",
     ],
     negativeControls: createActiveDomainExtensionNegativeControls(),
+  };
+}
+
+function createEventRootAbsenceBridgeFillLawNegativeControls() {
+  return [
+    {
+      id: "endpoint_only_gap_boundaries_not_absence_bridge_fill_law",
+      rejects:
+        "event-root endpoint brackets without interior event-root identity conservation",
+    },
+    {
+      id: "affine_bracket_geometry_without_identity_conservation_not_absence_bridge_fill_law",
+      rejects:
+        "affine bracket geometry or lattice alignment without an accepted identity-conservation row",
+    },
+    {
+      id: "sampled_dense_support_not_absence_bridge_fill_law",
+      rejects:
+        "sampled dense support without accepted positive-width interval law and retained row-set binding",
+    },
+    {
+      id: "phase_cancellation_rows_not_absence_bridge_fill_law",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without dynamic event-root presence",
+    },
+    {
+      id: "aggregate_rows_not_absence_bridge_fill_law",
+      rejects:
+        "aggregate summaries that do not bind every required field on one retained record",
+    },
+    {
+      id: "target_only_rows_not_absence_bridge_fill_law",
+      rejects:
+        "target-derived affine fits and target-only rows without independent source evidence",
+    },
+    {
+      id: "route_only_rows_not_absence_bridge_fill_law",
+      rejects:
+        "route-only endpoint or point-event rows before active-domain extension and retained source binding",
+    },
+    {
+      id: "cross_row_bundles_not_absence_bridge_fill_law",
+      rejects:
+        "cross-row joins that assemble absence-bridge fill evidence from separate retained records",
+    },
+  ];
+}
+
+function createEventRootAbsenceBridgeFillLawProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-event-root-absence-bridge-fill-law-producer-target.schema.v1",
+    parentSourceBoundary:
+      "nonlocal_event_root_bracket_fill_rule_source_boundary",
+    targetObjectId: "event_root_absence_bridge_fill_law",
+    producerStepSchema:
+      "aaa-tri-binary-event-root-absence-bridge-fill-law-producer-step.v1",
+    producerStepId: "derive_event_root_absence_bridge_fill_law",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed absence-bridge fill-law producer step; not retained branch acceptance",
+    requiredFieldIds: [
+      "bounded_gap_row_count",
+      "same_event_root_endpoint_boundaries",
+      "affine_bracket_geometry",
+      "event_root_identity_conservation_on_affine_bracket_interval",
+      "accepted_nonlocal_event_root_bracket_transport_law",
+    ],
+    firstUnresolvedField:
+      "event_root_identity_conservation_on_affine_bracket_interval",
+    firstUnresolvedProducer: "derive_event_root_absence_bridge_fill_law",
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+    ],
+    negativeControls: createEventRootAbsenceBridgeFillLawNegativeControls(),
   };
 }
 
@@ -63114,5 +63412,6 @@ function printUsage(exitCode) {
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");
   console.log("  --schema continuous-interval-witness-producer-target  Print the fail-closed interval-witness producer schema and exit");
   console.log("  --schema active-domain-extension-row-set-producer-target  Print the fail-closed active-domain extension producer schema and exit");
+  console.log("  --schema event-root-absence-bridge-fill-law-producer-target  Print the fail-closed absence-bridge fill-law producer schema and exit");
   process.exit(exitCode);
 }
