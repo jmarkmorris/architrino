@@ -11,8 +11,49 @@ function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
 }
 
-test("animator scene no longer resolves to a standalone app path from the main webapp", () => {
-  assert.equal(getStandaloneAppPathForScene("animator"), null);
+test("work-in-progress public app scenes resolve to standalone app paths", () => {
+  assert.equal(getStandaloneAppPathForScene("assembly-explorer"), "assembly-explorer.html");
+  assert.equal(getStandaloneAppPathForScene("causal-delay-feedback"), "causal-delay-feedback.html");
+  assert.equal(getStandaloneAppPathForScene("animator"), "animator.html");
+  assert.equal(getStandaloneAppPathForScene("borg"), "borg.html");
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/assembly_explorer.json"),
+    "assembly-explorer.html"
+  );
+  assert.equal(
+    getStandaloneAppPathForScene("content/scenes/archie/causal_delay_feedback.json"),
+    "causal-delay-feedback.html"
+  );
+  assert.equal(getStandaloneAppPathForScene("content/scenes/archie/animator.json"), "animator.html");
+  assert.equal(getStandaloneAppPathForScene("content/scenes/archie/borg.json"), "borg.html");
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/assembly_explorer.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fassembly_explorer.json"
+    ),
+    "http://127.0.0.1:5173/assembly-explorer.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/causal_delay_feedback.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fcausal_delay_feedback.json"
+    ),
+    "http://127.0.0.1:5173/causal-delay-feedback.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/animator.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fanimator.json"
+    ),
+    "http://127.0.0.1:5173/animator.html"
+  );
+  assert.equal(
+    resolveStandaloneAppHrefForScene(
+      "content/scenes/archie/borg.json",
+      "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fborg.json"
+    ),
+    "http://127.0.0.1:5173/borg.html"
+  );
 });
 
 test("pdgedit scene no longer resolves to a standalone app path from the main webapp", () => {
@@ -66,17 +107,12 @@ test("Website Stats scene resolves to the standalone app path", () => {
 
 test("unknown scene ids do not resolve to a standalone app path", () => {
   assert.equal(getStandaloneAppPathForScene(""), null);
-  assert.equal(getStandaloneAppPathForScene("animator"), null);
   assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
   assert.equal(getStandaloneAppPathForScene("pdgsolve"), null);
   assert.equal(getStandaloneAppPathForScene("not_a_scene"), null);
 });
 
-test("archived PDG scenes no longer resolve to standalone launch hrefs from the main webapp", () => {
-  assert.equal(
-    resolveStandaloneAppHrefForScene("animator", "http://127.0.0.1:5173/index.html"),
-    null
-  );
+test("archived PDG edit scenes no longer resolve to standalone launch hrefs from the main webapp", () => {
   assert.equal(
     resolveStandaloneAppHrefForScene("pdgedit", "http://127.0.0.1:5173/index.html"),
     null

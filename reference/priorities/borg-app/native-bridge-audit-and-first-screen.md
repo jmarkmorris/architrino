@@ -128,9 +128,10 @@ Minimum timeline:
 5. native keyframe count is 51, with 102 native current-state frame rows across the two architrinos;
 6. native path-history row count is 100;
 7. `playbackFrameSource = native-keyframes` and `interpolatedFrameCount = 0`;
-8. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
-9. native path-history bounds stay inside the outer computed cube for this fixture;
-10. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
+8. `initialLinePolicy = non-collinear-curvature-visibility` and `pairAccelerationScale = 1.2`;
+9. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
+10. native path-history bounds stay inside the outer computed cube for this fixture;
+11. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
 
 The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 

@@ -7568,6 +7568,16 @@ The arrow-of-time closure problem is therefore sharper than a generic second-law
 
 The past-hypothesis comparison also depends on the partition. A nearly uniform early matter record can look high entropy under a non-gravitating gas coarse-graining and low entropy under a gravitational coarse-graining, because gravitational clumping, potential-energy release, and horizon labels open far larger compatible records later. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the lesson is not that gravity is entropy. It is that a cosmological entropy statement must name whether its macrostate includes Noether sea state, potential gradients, causal-wake boundary data, and horizon-interface records.
 
+The standard cosmology comparison gives a useful scale check for this distinction. A radiation-only CMB count is often summarized as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe is often estimated as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget is quoted near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
+$$
+f_{\mathrm{early}}
+\sim
+\exp\!\left[-\frac{S_{\max}-S_{\mathrm{early}}}{k_B}\right]
+\approx
+\exp(-10^{123})
+$$
+not proof that an external random draw selected the universe.
+
 Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The packet must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
 
 $$

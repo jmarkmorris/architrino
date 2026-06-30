@@ -1859,6 +1859,26 @@
       "id": "archie__aaa_journey",
       "name": "AAA Journey",
       "path": "content/scenes/archie/aaa_journey.json"
+    },
+    {
+      "id": "animator",
+      "name": "Animator",
+      "path": "content/scenes/archie/animator.json"
+    },
+    {
+      "id": "assembly-explorer",
+      "name": "Assembly Configuration Explorer",
+      "path": "content/scenes/archie/assembly_explorer.json"
+    },
+    {
+      "id": "borg",
+      "name": "Borg App",
+      "path": "content/scenes/archie/borg.json"
+    },
+    {
+      "id": "causal-delay-feedback",
+      "name": "Causal Delay Feedback",
+      "path": "content/scenes/archie/causal_delay_feedback.json"
     }
   ]
 }

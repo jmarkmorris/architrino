@@ -59,6 +59,8 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `pathRowCount` | `100` native path-history rows |
 | `playbackFrameSource` | `native-keyframes` |
 | `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
+| `initialLinePolicy` | `non-collinear-curvature-visibility` |
+| `pairAccelerationScale` | `1.2` |
 | `renderPixelSize` | `3840x2160` |
 | `centralArchitrinoCount` | `1` |
 | `architrinoCount` | `2` |

@@ -10630,6 +10630,16 @@ The arrow-of-time closure problem is therefore sharper than a generic second-law
 
 The past-hypothesis comparison also depends on the partition. A nearly uniform early matter record can look high entropy under a non-gravitating gas coarse-graining and low entropy under a gravitational coarse-graining, because gravitational clumping, potential-energy release, and horizon labels open far larger compatible records later. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the lesson is not that gravity is entropy. It is that a cosmological entropy statement must name whether its macrostate includes Noether sea state, potential gradients, causal-wake boundary data, and horizon-interface records.
 
+The standard cosmology comparison gives a useful scale check for this distinction. A radiation-only CMB count is often summarized as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe is often estimated as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget is quoted near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
+$$
+f_{\mathrm{early}}
+\sim
+\exp\!\left[-\frac{S_{\max}-S_{\mathrm{early}}}{k_B}\right]
+\approx
+\exp(-10^{123})
+$$
+not proof that an external random draw selected the universe.
+
 Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The packet must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
 
 $$
@@ -63144,6 +63154,8 @@ $$
 $$
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
+Penrose-style estimates of early-universe specialness are retained here at exactly this level. The familiar order-of-magnitude claim that a smooth low-gravitational-entropy early record occupies a fraction near $1/10^{10^{123}}$ of a maximum-entropy comparison space is not imported as a literal sampling story for the Euclidean void. It is a scale warning: if a cosmology branch recovers CMB smoothness, low gravitational free-mode content, and later black-hole-dominated entropy only by selecting an exponentially tiny $\mathcal{B}_{\mathrm{obs}}$, then the branch has relocated the arrow-of-time problem into $\theta_{\mathrm{init}}$ rather than deriving it from Noether sea dynamics.
+
 The same burden can be written in a compact conditioned form when the cosmology branch has already declared its constraint set:
 $$
 I_{\mathrm{init}}(\theta)
@@ -65639,6 +65651,10 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
 This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
+
+##### Entropy Split in the CMB Record
+
+The CMB record carries two different entropy lessons that must not be collapsed into one. Its near-blackbody spectrum and uniform temperature show that the radiation sector reached a high-entropy thermal record under the photon/matter coarse-graining. The same smoothness is low entropy under the gravitational and horizon-interface coarse-graining because later clumping, potential-energy release, structure formation, and black-hole records open vastly larger compatible histories. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB branch must therefore keep radiation thermalization, gravitational smoothness, Noether sea state, and horizon-interface entropy as separate projections of one shared source-and-transport record.
 
 #### SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.

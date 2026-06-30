@@ -269,6 +269,11 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
     manifest.initialConditions.initialLinePolicy,
     "initial line policy",
   );
+  assertEqual(
+    surfaceDesign.sourceManifest.pairAccelerationScale,
+    manifest.sourceBridgeRun.pairAccelerationScale,
+    "pair acceleration scale",
+  );
   assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
   assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
