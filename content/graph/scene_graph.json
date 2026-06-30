@@ -8615,13 +8615,6 @@
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
-      "to": "scene:content/scenes/archie/applications.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[2]"
-    },
-    {
-      "from": "scene:content/scenes/archie/archie.json",
       "to": "scene:content/scenes/archie/documentation.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
@@ -8632,7 +8625,7 @@
       "to": "scene:content/scenes/archie/project.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/archie.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/archie.json",
@@ -8674,7 +8667,7 @@
       "to": "scene:content/scenes/archie/research_notebook.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/documentation.json",
@@ -8682,20 +8675,6 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/documentation.json",
       "field": "scene.children[4]"
-    },
-    {
-      "from": "scene:content/scenes/archie/documentation.json",
-      "to": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/documentation.json",
-      "field": "scene.children[5]"
-    },
-    {
-      "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/github_presence_and_community.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/project.json",
-      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -8709,14 +8688,7 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/archie/project.json",
-      "to": "scene:content/scenes/archie/support_architrino_research.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/archie/project.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[1]"
     },
     {
       "from": "scene:content/scenes/archie/user_interface.json",
@@ -12038,6 +12010,34 @@
     },
     {
       "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/archie/applications.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/archie/github_presence_and_community.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[4]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/archie/support_architrino_research.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/outreach.json",
+      "to": "scene:content/scenes/archie/textbook_pdf_snapshots.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/outreach/outreach.json",
+      "field": "scene.children[2]"
+    },
+    {
+      "from": "scene:content/scenes/outreach/outreach.json",
       "to": "scene:content/scenes/cosmology/universe.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/outreach.json",
@@ -12048,7 +12048,7 @@
       "to": "scene:content/scenes/outreach/comics.json",
       "edgeType": "subscene",
       "source": "content/scenes/outreach/outreach.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/inherited_theory_interface.json",

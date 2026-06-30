@@ -405,10 +405,41 @@ function replayFieldSourceBoundary(input) {
     producerRowPresent: producerRows.length > 0,
     missingFields,
     missingFamilySpecificFields,
+    nativeBridgeSource: replayNativeBridgeSourceBoundary(
+      chronologyRow,
+      missingFamilySpecificFields
+    ),
     missingLocalFieldOrSourceConditions: replayMissingLocalFieldOrSourceConditions(
       chronologyRow,
       missingFamilySpecificFields
     ),
+    replayAuthorization: false,
+  };
+}
+
+function replayNativeBridgeSourceBoundary(chronologyRow, missingFields) {
+  if (chronologyRow.rowFamily !== "unresolved-root" || missingFields.length === 0) {
+    return null;
+  }
+  return {
+    schema: "t3-native-bridge-field-source-boundary.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    nativeRow: "T3ParticleStepRowF64",
+    nativeStruct: "src/solver/include/architrino/solver/T3BulkStep.hpp::T3ParticleStepRowF64",
+    nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3ParticleStepRowF64",
+    availableNativeBridgeFields: [
+      "pathKey",
+      "position",
+      "velocity",
+      "acceleration",
+      "mass",
+      "imageDelta",
+      "stateFlags",
+    ],
+    missingNativeBridgeFields: missingFields,
+    requiredUpstreamObject:
+      "solver-t3-step-response.v1 same-step retained root-ledger fields on T3ParticleStepRowF64 before t3-run-summary.v1 aggregation",
     replayAuthorization: false,
   };
 }

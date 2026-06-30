@@ -57,6 +57,7 @@ import { createScenePanelUiRuntime } from "../../runtime/ScenePanelUiRuntime.js"
 import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
+import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import { normalizeAnimatorSceneDocument } from "../../runtime/Animator2SceneDocumentRuntime.js";
 import {
@@ -6315,6 +6316,38 @@ if (animatorHudTrailLifetimeInput && !animatorHudTrailLifetimeInput.dataset.boun
 const levels = new Map();
 const navigationStack = [];
 let currentLevel = null;
+let sceneImageGalleryRuntime = null;
+let hiddenImageGalleryLevel = null;
+
+function levelHasImageGalleryItems(level) {
+  return !!(
+    level?.imageGallery &&
+    Array.isArray(level.nodes) &&
+    level.nodes.some((node) => typeof node?.data?.galleryImage === "string" && node.data.galleryImage.trim())
+  );
+}
+
+function syncSceneImageGalleryLevel(level = currentLevel) {
+  if (hiddenImageGalleryLevel && hiddenImageGalleryLevel !== level) {
+    hiddenImageGalleryLevel.group.visible = true;
+    hiddenImageGalleryLevel = null;
+  }
+  sceneImageGalleryRuntime?.syncLevel(level);
+  if (levelHasImageGalleryItems(level)) {
+    level.group.visible = false;
+    hiddenImageGalleryLevel = level;
+  } else if (level?.group) {
+    level.group.visible = true;
+  }
+}
+
+function hideSceneImageGallery() {
+  if (hiddenImageGalleryLevel) {
+    hiddenImageGalleryLevel.group.visible = true;
+    hiddenImageGalleryLevel = null;
+  }
+  sceneImageGalleryRuntime?.syncLevel(null);
+}
 let textbookTocReturnState = null;
 const sceneStateHashService = createSceneStateHashService({
   rootScenePath,
@@ -6486,6 +6519,7 @@ const transitionEngine = createTransitionEngine(transitionState, {
   getCurrentLevel: () => currentLevel,
   setCurrentLevel: (level) => {
     currentLevel = level;
+    syncSceneImageGalleryLevel(level);
   },
   shouldCenterLevelInFrame: (level) => {
     return isCenteredRingLevel(level);
@@ -7116,6 +7150,7 @@ async function resetToRootScene(options = {}) {
   setLevelLabelOpacity(rootLevel, 0);
   setLevelLinkOpacity(rootLevel, 1);
   currentLevel = rootLevel;
+  syncSceneImageGalleryLevel(currentLevel);
   navigationStack.length = 0;
   searchBackStack.length = 0;
   generationBackStack.length = 0;
@@ -7173,6 +7208,7 @@ async function jumpToScene(scenePath, options = {}) {
   if (scenePath !== currentLevel?.id) {
     recordBrowserBackHistory(options);
   }
+  hideSceneImageGallery();
   const forceInstantAnimatorEntry = isAnimatorOverlaySceneId(config?.sceneId);
   const shouldHideLevelForAnimator = shouldHideLevelForAnimatorOverlayScene(config?.sceneId);
   if (options.mode === "instant" || forceInstantAnimatorEntry) {
@@ -7190,6 +7226,7 @@ async function jumpToScene(scenePath, options = {}) {
     setLevelLabelOpacity(level, 0);
     setLevelLinkOpacity(level, shouldHideLevelForAnimator ? 0 : 1);
     currentLevel = level;
+    syncSceneImageGalleryLevel(currentLevel);
     navigationStack.length = 0;
     if (!options.preserveGenerationBackStack) {
       generationBackStack.length = 0;
@@ -8101,6 +8138,7 @@ function beginLevelTransition(targetNode, childLevelId, options = {}) {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
+  hideSceneImageGallery();
   const toLevel = buildLevel(childLevelId);
   if (!worldGroup.children.includes(toLevel.group)) {
     worldGroup.add(toLevel.group);
@@ -8200,6 +8238,7 @@ function startLevelTransitionOut() {
   closeDetailPanel();
   hideHoverTooltip();
   markdownRuntime.hideMarkdownPanel();
+  hideSceneImageGallery();
   let parentInfo = null;
   let parentLevel = null;
   let parentNode = null;
@@ -8767,6 +8806,10 @@ const scenePanelUiRuntime = createScenePanelUiRuntime({
   isTransitionActive: () => transitionState.active,
   toggleTextbookToc,
 });
+sceneImageGalleryRuntime = createSceneImageGalleryRuntime({
+  document: globalThis.document,
+  window: globalThis.window,
+});
 function focusOnPointer(clientX, clientY) {
   if (!currentLevel || transitionState.active) {
     return false;
@@ -8826,6 +8869,14 @@ function focusOnPointer(clientX, clientY) {
     return false;
   }
   clearSphereHover();
+
+  const galleryNodeId = targetNode.data.id ?? targetNode.data.name;
+  if (sceneImageGalleryRuntime?.openFromNode(currentLevel, galleryNodeId)) {
+    closeDetailPanel();
+    hideHoverTooltip();
+    markdownRuntime.hideMarkdownPanel();
+    return true;
+  }
 
   const hasMarkdownTarget =
     typeof targetNode?.data?.markdownPath === "string" &&
@@ -9132,6 +9183,7 @@ async function init() {
   }
   updateCamera();
   fitCameraToLevel(currentLevel);
+  syncSceneImageGalleryLevel(currentLevel);
   if (
     requestedSceneState.parentLevelId &&
     requestedSceneState.parentFocusNodeId &&
@@ -9149,6 +9201,7 @@ async function init() {
   }
   updateSceneLabel();
   updateSceneMarkdown();
+  syncSceneImageGalleryLevel(currentLevel);
   showZoomToastIfNeeded();
   animate();
 }
@@ -9205,6 +9258,7 @@ appDirector.init();
 appShellUiRuntime.wireListeners();
 sceneHudTooltipRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
+sceneImageGalleryRuntime?.wireListeners();
 animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
 updateAnimatorViewportModeButtons();

@@ -23,6 +23,14 @@ const WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA =
   "wake-history-derivation-proof-object-provider-target/v0";
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
+const PROVIDER_SOURCE_CANDIDATE_FILE_FAMILY = [
+  "scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs",
+  "tests/event-wake-history-pullback-diagnostic.test.js",
+  "reference/priorities/master-equation-closure/receiver-normal-wake-action-factor.md",
+  "reference/priorities/master-equation-closure/topological-causal-root-ledger-proof-target.md",
+];
+const NEXT_ACCEPTED_PROVIDER_SOURCE_TARGET =
+  "non-fixture accepted retained wake-history provider object carrying wake_history_derivation_proof_object for all four wake-history rows on the same retained record";
 const RECEIVER_NORMAL_CONTROLS = [
   "receiver-normal-derivative-contract-row-logic",
   "receiver-normal-missing-proof-object-provider",
@@ -818,6 +826,30 @@ function downstreamConsumerBoundary() {
   };
 }
 
+function providerSourceAcquisitionBlocker(derivativeContractSummary) {
+  return {
+    status: "source_acquisition_required",
+    provider_object_role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+    provider_status_required: "accepted",
+    accepted_provider_source_status:
+      "absent_non_fixture_accepted_retained_provider",
+    searched_candidate_file_family: PROVIDER_SOURCE_CANDIDATE_FILE_FAMILY,
+    candidate_file_family_result:
+      "diagnostic-and-priority-only; no accepted retained provider object found",
+    next_source_target: NEXT_ACCEPTED_PROVIDER_SOURCE_TARGET,
+    first_missing_field_family: firstMissingFieldFamily(derivativeContractSummary),
+    missing_provider_field_groups: {
+      retained_record: REQUIRED_RETAINED_RECORD_FIELDS,
+      receiver_normal_derivative: REQUIRED_RECEIVER_NORMAL_DERIVATIVE_FIELDS,
+      proof_object: REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS,
+      provenance: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
+    },
+    excluded_as_accepted_provider_evidence:
+      DISALLOWED_ACCEPTED_EVIDENCE_SOURCES,
+    downstream_consumer_remaining_blocked: FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+  };
+}
+
 function wakeHistoryDerivationProofObjectBoundary(derivativeContractSummary) {
   const missingProofObjectRows = derivativeContractSummary.row_contracts
     .filter((entry) =>
@@ -855,6 +887,8 @@ function wakeHistoryDerivationProofObjectBoundary(derivativeContractSummary) {
       sameRecordIdentityBoundary(derivativeContractSummary),
     proof_object_provenance_boundary:
       proofObjectProvenanceBoundary(derivativeContractSummary),
+    provider_source_acquisition_blocker:
+      providerSourceAcquisitionBlocker(derivativeContractSummary),
     downstream_consumer_boundary: downstreamConsumerBoundary(),
     accepted_provider_source:
       "absent; local search found no non-fixture accepted retained wake-history provider object",
@@ -1182,6 +1216,80 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
     "wake_history_derivation_proof_object_boundary.downstream_consumer_boundary must fail closed",
     errors
   );
+  const blocker = boundary.provider_source_acquisition_blocker;
+  assertField(
+    blocker && typeof blocker === "object" && !Array.isArray(blocker),
+    "wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker must be an object",
+    errors
+  );
+  if (blocker && typeof blocker === "object" && !Array.isArray(blocker)) {
+    assertField(
+      blocker.status === "source_acquisition_required",
+      "provider_source_acquisition_blocker.status must require source acquisition",
+      errors
+    );
+    assertField(
+      blocker.provider_object_role === ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+      "provider_source_acquisition_blocker.provider_object_role must match wake-history proof object role",
+      errors
+    );
+    assertField(
+      blocker.accepted_provider_source_status ===
+        "absent_non_fixture_accepted_retained_provider",
+      "provider_source_acquisition_blocker.accepted_provider_source_status must fail closed on absent provider source",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.searched_candidate_file_family,
+        PROVIDER_SOURCE_CANDIDATE_FILE_FAMILY
+      ),
+      "provider_source_acquisition_blocker.searched_candidate_file_family must name the scoped wake-history candidate file family",
+      errors
+    );
+    assertField(
+      blocker.next_source_target === NEXT_ACCEPTED_PROVIDER_SOURCE_TARGET,
+      "provider_source_acquisition_blocker.next_source_target must name the accepted retained provider object target",
+      errors
+    );
+    assertField(
+      blocker.downstream_consumer_remaining_blocked === FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+      "provider_source_acquisition_blocker.downstream_consumer_remaining_blocked must keep the compositor blocked",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.missing_provider_field_groups?.retained_record,
+        REQUIRED_RETAINED_RECORD_FIELDS
+      ),
+      "provider_source_acquisition_blocker.missing_provider_field_groups.retained_record must match retained-record requirements",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.missing_provider_field_groups?.receiver_normal_derivative,
+        REQUIRED_RECEIVER_NORMAL_DERIVATIVE_FIELDS
+      ),
+      "provider_source_acquisition_blocker.missing_provider_field_groups.receiver_normal_derivative must match derivative requirements",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.missing_provider_field_groups?.proof_object,
+        REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS
+      ),
+      "provider_source_acquisition_blocker.missing_provider_field_groups.proof_object must match proof-object requirements",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.missing_provider_field_groups?.provenance,
+        REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS
+      ),
+      "provider_source_acquisition_blocker.missing_provider_field_groups.provenance must match provenance requirements",
+      errors
+    );
+  }
 }
 
 export function validateEventWakeHistoryPullbackArtifact(artifact) {
@@ -1320,6 +1428,7 @@ function main() {
             "required_provenance_fields",
             "same_record_identity_boundary",
             "proof_object_provenance_boundary",
+            "provider_source_acquisition_blocker",
             "downstream_consumer_boundary",
           ],
           receiver_normal_derivative_contract_summary: [

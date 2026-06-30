@@ -19,10 +19,6 @@
         "scenePath": "content/scenes/archie/documentation.json"
       },
       {
-        "nodeId": "applications",
-        "scenePath": "content/scenes/archie/applications.json"
-      },
-      {
         "nodeId": "project",
         "scenePath": "content/scenes/archie/project.json"
       }
@@ -42,13 +38,6 @@
       "radius": 2.6,
       "color": "#1d4ed8",
       "labelTitle": "Documentation"
-    },
-    {
-      "id": "applications",
-      "title": "Applications",
-      "radius": 2.6,
-      "color": "#a21caf",
-      "labelTitle": "Applications"
     },
     {
       "id": "project",

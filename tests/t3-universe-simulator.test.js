@@ -765,6 +765,27 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       "solver-t3-step-response.v1 does not expose a source path segment id bound to this unresolved-root chronology row",
     ]
   );
+  assert.deepEqual(unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource, {
+    schema: "t3-native-bridge-field-source-boundary.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    nativeRow: "T3ParticleStepRowF64",
+    nativeStruct: "src/solver/include/architrino/solver/T3BulkStep.hpp::T3ParticleStepRowF64",
+    nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3ParticleStepRowF64",
+    availableNativeBridgeFields: [
+      "pathKey",
+      "position",
+      "velocity",
+      "acceleration",
+      "mass",
+      "imageDelta",
+      "stateFlags",
+    ],
+    missingNativeBridgeFields: ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"],
+    requiredUpstreamObject:
+      "solver-t3-step-response.v1 same-step retained root-ledger fields on T3ParticleStepRowF64 before t3-run-summary.v1 aggregation",
+    replayAuthorization: false,
+  });
   assert.equal(
     unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.every(
       (row) =>

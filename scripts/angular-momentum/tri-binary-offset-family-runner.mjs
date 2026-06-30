@@ -25094,6 +25094,11 @@ async function createEventRootBoundedInteriorGapFillRuleTarget({
       midpointReplayContext,
       retainedRowSetBindingContext,
     });
+  const nonlocalBracketFillRuleSourceBoundary =
+    createNonlocalEventRootBracketFillRuleSourceBoundary({
+      boundedRows,
+      bracketLatticeCandidateTarget,
+    });
   const nonlocalBracketGapCount =
     boundedRows.length - immediateBothEventRootBoundaryCount;
   const proofObligations = [
@@ -25167,12 +25172,160 @@ async function createEventRootBoundedInteriorGapFillRuleTarget({
     pairSummaries: createEventRootBoundedInteriorGapPairSummaries(boundedRows),
     bracketLatticeCandidateStatus: bracketLatticeCandidateTarget.status,
     bracketLatticeCandidateTarget,
+    nonlocalBracketFillRuleSourceBoundaryStatus:
+      nonlocalBracketFillRuleSourceBoundary.status,
+    nonlocalBracketFillRuleSourceBoundary,
     nextInteriorGapFillRoute:
       nonlocalBracketGapCount > 0
         ? "derive_nonlocal_event_root_bracket_fill_rule_with_distance_bounds"
         : "prove_immediate_event_root_boundary_fill_rule",
     retainedLimitation:
       "The bounded inactive gaps have event-root boundaries, but none has immediate event-root boundaries on both sides. A retained replay lift therefore needs a nonlocal bracket fill rule with distance and transport bounds, not only a local adjacency rule.",
+  };
+}
+
+function createNonlocalEventRootBracketFillRuleSourceBoundary({
+  boundedRows,
+  bracketLatticeCandidateTarget,
+}) {
+  const transportLawTarget =
+    bracketLatticeCandidateTarget?.transportLawTarget ?? null;
+  const affineLatticeLawTarget =
+    transportLawTarget?.affineLatticeLawTarget ?? null;
+  const identityConservationTarget =
+    affineLatticeLawTarget?.identityConservationTarget ?? null;
+  const rowManifest = boundedRows.map((row) => {
+    const priorDistance = row.priorEventRootBoundary?.distance ?? null;
+    const nextDistance = row.nextEventRootBoundary?.distance ?? null;
+    const bracketSpan =
+      Number.isFinite(priorDistance) &&
+      Number.isFinite(row.width) &&
+      Number.isFinite(nextDistance)
+        ? priorDistance + row.width + nextDistance
+        : null;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey ?? null,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? null,
+      width: finiteOrNull(row.width),
+      priorEventRootBoundaryDistance: finiteOrNull(priorDistance),
+      nextEventRootBoundaryDistance: finiteOrNull(nextDistance),
+      bracketSpan: finiteOrNull(bracketSpan),
+      immediatePriorEventRootBoundaryPass:
+        row.immediatePriorEventRootPass === true,
+      immediateNextEventRootBoundaryPass:
+        row.immediateNextEventRootPass === true,
+      immediateBothEventRootBoundaryPass:
+        row.immediateBothEventRootBoundaryPass === true,
+      priorBoundaryRootKeys:
+        row.priorEventRootBoundary?.retainedRootKeys ?? [],
+      nextBoundaryRootKeys:
+        row.nextEventRootBoundary?.retainedRootKeys ?? [],
+    };
+  });
+  const widths = rowManifest.map((row) => row.width).filter(Number.isFinite);
+  const priorDistances = rowManifest
+    .map((row) => row.priorEventRootBoundaryDistance)
+    .filter(Number.isFinite);
+  const nextDistances = rowManifest
+    .map((row) => row.nextEventRootBoundaryDistance)
+    .filter(Number.isFinite);
+  const bracketSpans = rowManifest
+    .map((row) => row.bracketSpan)
+    .filter(Number.isFinite);
+  const pairKeys = [...new Set(rowManifest.map((row) => row.pairKey))].sort();
+  const eventRootKeys = [
+    ...new Set(
+      rowManifest
+        .map((row) => row.eventRootKey)
+        .filter((eventRootKey) => eventRootKey != null)
+        .map(String)
+    ),
+  ].sort();
+  const allRowsHaveSameEventRootEndpoints =
+    transportLawTarget?.allRowsHaveSameEventRootEndpoints === true;
+  const allRowsLatticeAligned =
+    transportLawTarget?.allRowsLatticeAligned === true;
+  const affineLatticeLawCandidatePass =
+    affineLatticeLawTarget?.affineLatticeLawCandidatePass === true;
+  const acceptedTransportLawPass =
+    transportLawTarget?.acceptedTransportLawPass === true;
+  const acceptedIdentityConservationPass =
+    identityConservationTarget
+      ?.acceptedEventRootIdentityConservationPass === true;
+  const candidatePassFields = [
+    {
+      field: "same_event_root_endpoint_boundaries",
+      fieldPass: allRowsHaveSameEventRootEndpoints,
+    },
+    {
+      field: "bounded_gap_lattice_alignment",
+      fieldPass: allRowsLatticeAligned,
+    },
+    {
+      field: "affine_lattice_bracket_equation",
+      fieldPass: affineLatticeLawCandidatePass,
+    },
+    {
+      field: "event_root_identity_conservation_on_affine_bracket_interval",
+      fieldPass: acceptedIdentityConservationPass,
+    },
+    {
+      field: "accepted_nonlocal_event_root_bracket_transport_law",
+      fieldPass: acceptedTransportLawPass,
+    },
+  ];
+  const firstMissingProofSource =
+    acceptedTransportLawPass
+      ? null
+      : identityConservationTarget?.firstIdentityConservationBlocker ??
+        affineLatticeLawTarget?.firstAffineLawBlocker ??
+        transportLawTarget?.firstTransportLawBlocker ??
+        bracketLatticeCandidateTarget?.firstBracketLatticeBlocker ??
+        "derive_nonlocal_event_root_bracket_transport_law";
+
+  return {
+    schema:
+      "aaa-tri-binary-nonlocal-event-root-bracket-fill-rule-source-boundary.v1",
+    status: rowManifest.length === 0
+      ? "nonlocal_event_root_bracket_fill_rule_source_boundary_no_rows"
+      : acceptedTransportLawPass
+        ? "nonlocal_event_root_bracket_fill_rule_source_boundary_closed"
+        : "nonlocal_event_root_bracket_fill_rule_source_boundary_open",
+    claimLevel:
+      "machine-readable fail-closed source boundary for deriving the nonlocal event-root bracket fill rule; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentInteriorGapFillBlocker:
+      "derive_nonlocal_event_root_bracket_fill_rule",
+    boundedGapRowCount: rowManifest.length,
+    pairKeys,
+    eventRootKeys,
+    distanceAndSpanBounds: {
+      minWidth: minFinite(widths),
+      maxWidth: maxFinite(widths),
+      minPriorEventRootBoundaryDistance: minFinite(priorDistances),
+      maxPriorEventRootBoundaryDistance: maxFinite(priorDistances),
+      minNextEventRootBoundaryDistance: minFinite(nextDistances),
+      maxNextEventRootBoundaryDistance: maxFinite(nextDistances),
+      minBracketSpan: minFinite(bracketSpans),
+      maxBracketSpan: maxFinite(bracketSpans),
+    },
+    candidatePassFields,
+    firstMissingProofSource,
+    smallestNextProducerObject:
+      firstMissingProofSource ??
+      "global_retained_row_set_identity_provider",
+    bracketLatticeCandidateStatus:
+      bracketLatticeCandidateTarget?.status ?? null,
+    transportLawStatus: transportLawTarget?.status ?? null,
+    affineLatticeLawStatus: affineLatticeLawTarget?.status ?? null,
+    identityConservationStatus: identityConservationTarget?.status ?? null,
+    rows: rowManifest,
+    retainedLimitation:
+      "The bounded gap rows have event-root endpoint brackets and sampled lattice geometry, but the current evidence has not supplied a dynamic proof that the event-root identity is conserved across the affine bracket interval and then bound to the global retained row set.",
   };
 }
 
