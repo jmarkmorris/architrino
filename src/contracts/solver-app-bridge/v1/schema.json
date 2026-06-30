@@ -3331,7 +3331,9 @@
         "t3StepRequestF64Bytes",
         "t3ParticleStateF64Bytes",
         "t3ParticleStepRowF64Bytes",
-        "t3StepSummaryF64Bytes"
+        "t3StepSummaryF64Bytes",
+        "t3UnresolvedRootSegmentRowF64Bytes",
+        "t3RetainedCausalRootReplayRowF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -3385,7 +3387,9 @@
         "t3StepRequestF64Bytes": { "type": "integer", "minimum": 1 },
         "t3ParticleStateF64Bytes": { "type": "integer", "minimum": 1 },
         "t3ParticleStepRowF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3StepSummaryF64Bytes": { "type": "integer", "minimum": 1 }
+        "t3StepSummaryF64Bytes": { "type": "integer", "minimum": 1 },
+        "t3UnresolvedRootSegmentRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "t3RetainedCausalRootReplayRowF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {

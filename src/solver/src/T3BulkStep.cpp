@@ -296,7 +296,7 @@ T3BulkStepResult step_t3_universe(
             }
             ++neighborPairCount;
             if (emitUnresolvedRootSegmentRows) {
-              result.unresolvedRootSegmentRows.push_back(T3UnresolvedRootSegmentRowF64{
+              const T3UnresolvedRootSegmentRowF64 segmentRow{
                   request.stepIndex,
                   states[i].pathKey,
                   states[j].pathKey,
@@ -318,6 +318,27 @@ T3BulkStepResult step_t3_universe(
                   request.unresolvedRootPairPolicy,
                   static_cast<std::uint32_t>(
                       T3UnresolvedRootSegmentRowStatus::CandidateShapeEvidence),
+              };
+              result.unresolvedRootSegmentRows.push_back(segmentRow);
+              result.retainedCausalRootReplayRows.push_back(T3RetainedCausalRootReplayRowF64{
+                  segmentRow.stepIndex,
+                  segmentRow.sourcePathKey,
+                  segmentRow.receiverPathKey,
+                  segmentRow.sourceSegmentIndex,
+                  segmentRow.receiverSegmentIndex,
+                  0,
+                  0,
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::Missing),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayRowStatus::MissingRetainedReplaySource),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::Missing),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::CandidateSidecarShapeEvidence),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayRowStatus::MissingRetainedReplaySource),
+                  0,
               });
             }
             if (!useSoftSphere) {

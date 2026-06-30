@@ -359,6 +359,39 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
             provesBranchAdmissibility: false,
           },
         ],
+        retainedCausalRootReplayRows: [
+          {
+            schema: "t3-retained-causal-root-replay-native-row.v1",
+            chronologyRowId: "step_0_unresolved_root_rows",
+            sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
+            sourceObjectRowStatus: "candidate_shape_evidence",
+            stepIndex: request.stepIndex,
+            sourcePathKey: request.particles[0].pathKey,
+            receiverPathKey: request.particles[1].pathKey,
+            sourceSegmentIndex: request.stepIndex,
+            receiverSegmentIndex: request.stepIndex,
+            rootLedgerRecordId: null,
+            causticRoute: null,
+            sourcePathSegmentId: null,
+            retainedSourceBindingStatus: "missing",
+            sameRecordReplayStatus: "missing_retained_replay_source",
+            causticRouteStatus: "missing",
+            proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
+            proofObjectProvenance: {
+              nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+              nativeRow: "T3RetainedCausalRootReplayRowF64",
+              sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
+              bridgeReader:
+                "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+              provenanceStatus: "candidate_sidecar_shape_evidence",
+            },
+            rowStatus: "missing_retained_replay_source",
+            replayAuthorization: false,
+            acceptedReplayEvidence: false,
+            retainedBranch: false,
+            provesBranchAdmissibility: false,
+          },
+        ],
         unresolvedRootSegmentSidecar: {
           schema: "t3-unresolved-root-segment-sidecar.v1",
           enabled: true,
@@ -412,6 +445,12 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
     maxRows: 1,
   });
   assert.equal(result.unresolvedRootSegmentRows.length, 1);
+  assert.equal(result.retainedCausalRootReplayRows.length, 1);
+  assert.equal(result.retainedCausalRootReplayRows[0].rootLedgerRecordId, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].causticRoute, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].sourcePathSegmentId, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].replayAuthorization, false);
+  assert.equal(result.retainedCausalRootReplayRows[0].acceptedReplayEvidence, false);
   assert.equal(result.unresolvedRootSegmentSidecar.replayAuthorization, false);
   assert.equal(result.unresolvedRootSegmentSidecar.retainedBranch, false);
   assert.equal(result.unresolvedRootSegmentSidecar.provesBranchAdmissibility, false);
@@ -426,6 +465,18 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.rootLedgerRecordId, null);
   assert.equal(sidecarReplayRow.causticRoute, null);
   assert.equal(sidecarReplayRow.sourcePathSegmentId, null);
+  assert.equal(
+    sidecarReplayRow.nativeReplayRowSchema,
+    "t3-retained-causal-root-replay-native-row.v1"
+  );
+  assert.equal(sidecarReplayRow.nativeReplayRowStatus, "missing_retained_replay_source");
+  assert.equal(sidecarReplayRow.retainedSourceBindingStatus, "missing");
+  assert.equal(sidecarReplayRow.sameRecordReplayStatus, "missing_retained_replay_source");
+  assert.equal(sidecarReplayRow.causticRouteStatus, "missing");
+  assert.equal(
+    sidecarReplayRow.proofObjectProvenance.nativeRow,
+    "T3RetainedCausalRootReplayRowF64"
+  );
   assert.equal(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.schema,
     "t3-retained-causal-root-replay-producer-contract.v1"
@@ -459,6 +510,31 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
     sourceSegmentIndex: 0,
     receiverSegmentIndex: 0,
   });
+  assert.deepEqual(
+    sidecarReplayRow.retainedCausalRootReplayProducerContract.companionNativeReplayRow,
+    {
+      rowPresent: true,
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      nativeStruct:
+        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+      bridgeReader:
+        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+      rowSchema: "t3-retained-causal-root-replay-native-row.v1",
+      rowStatus: "missing_retained_replay_source",
+      retainedSourceBindingStatus: "missing",
+      sameRecordReplayStatus: "missing_retained_replay_source",
+      causticRouteStatus: "missing",
+      proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
+      proofObjectProvenance: {
+        nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+        nativeRow: "T3RetainedCausalRootReplayRowF64",
+        sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
+        bridgeReader:
+          "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+        provenanceStatus: "candidate_sidecar_shape_evidence",
+      },
+    }
+  );
   assert.equal(
     sidecarReplayRow.retainedCausalRootReplayProducerContract.replayAuthorization,
     false
@@ -1068,6 +1144,28 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
     sourceObjectRowStatus: "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
     bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    companionNativeReplayRow: {
+      rowPresent: true,
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      nativeStruct:
+        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+      bridgeReader:
+        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+      rowSchema: "t3-retained-causal-root-replay-native-row.v1",
+      rowStatus: "missing_retained_replay_source",
+      retainedSourceBindingStatus: "missing",
+      sameRecordReplayStatus: "missing_retained_replay_source",
+      causticRouteStatus: "missing",
+      proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
+      proofObjectProvenance: {
+        nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+        nativeRow: "T3RetainedCausalRootReplayRowF64",
+        sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
+        bridgeReader:
+          "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+        provenanceStatus: "candidate_sidecar_shape_evidence",
+      },
+    },
     sameRecordBinding: {
       bindingStatus: "candidate_same_step_segment_shape_evidence",
       chronologyRowId: "step_0_unresolved_root_rows",
@@ -1204,6 +1302,16 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
     unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.firstProducerContract
       .replayAuthorization,
     false
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.companionNativeReplayRow
+      .nativeRow,
+    "T3RetainedCausalRootReplayRowF64"
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.nativeBridgeSource.companionNativeReplayRow
+      .sameRecordReplayStatus,
+    "missing_retained_replay_source"
   );
   assert.equal(prototype.sameRecordReplayBoundary.summary.retainedBranch, false);
   assert.equal(prototype.sameRecordReplayBoundary.summary.provesBranchAdmissibility, false);

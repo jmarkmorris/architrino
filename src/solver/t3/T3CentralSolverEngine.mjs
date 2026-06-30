@@ -95,6 +95,9 @@ export class T3CentralSolverEngine {
       unresolvedRootSegmentRows: Array.isArray(response?.unresolvedRootSegmentRows)
         ? response.unresolvedRootSegmentRows
         : [],
+      retainedCausalRootReplayRows: Array.isArray(response?.retainedCausalRootReplayRows)
+        ? response.retainedCausalRootReplayRows
+        : [],
       unresolvedRootSegmentSidecar: response?.unresolvedRootSegmentSidecar ?? {
         schema: "t3-unresolved-root-segment-sidecar.v1",
         enabled: false,
@@ -338,11 +341,17 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
   const unresolvedRootSegmentRows = Array.isArray(options.response?.unresolvedRootSegmentRows)
     ? options.response.unresolvedRootSegmentRows
     : [];
+  const retainedCausalRootReplayRowsBySidecarKey =
+    groupRetainedCausalRootReplayRowsBySidecarKey(
+      options.response?.retainedCausalRootReplayRows
+    );
   unresolvedRootSegmentRows.forEach((row, rowIndex) => {
     candidateRows.push(createUnresolvedRootSegmentReplayCandidateRow({
       row,
       rowIndex,
       stepIndex,
+      nativeReplayRow:
+        retainedCausalRootReplayRowsBySidecarKey.get(unresolvedRootSidecarKey(row)) ?? null,
     }));
   });
   const acceptedRows = candidateRows.filter((row) => row.acceptedReplayEvidence === true);
@@ -396,7 +405,7 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
 }
 
 function createUnresolvedRootSegmentReplayCandidateRow(input) {
-  const { row, rowIndex, stepIndex } = input;
+  const { row, rowIndex, stepIndex, nativeReplayRow = null } = input;
   const effectiveStepIndex = Number.isInteger(row?.stepIndex) ? row.stepIndex : stepIndex;
   const chronologyRowId = row?.chronologyRowId ??
     (effectiveStepIndex == null ? null : `step_${effectiveStepIndex}_unresolved_root_rows`);
@@ -443,6 +452,7 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
   const retainedCausalRootReplayProducerContract =
     createUnresolvedRootSegmentReplayProducerContract({
       row,
+      nativeReplayRow,
       rowId,
       chronologyRowId,
       effectiveStepIndex,
@@ -470,11 +480,19 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
     hitTime: row?.hitTime ?? null,
     signalSpeed: row?.signalSpeed ?? null,
     rootTolerance: row?.rootTolerance ?? null,
-    rootLedgerRecordId: null,
-    causticRoute: null,
-    sourcePathSegmentId: null,
+    rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
+    causticRoute: nativeReplayRow?.causticRoute ?? null,
+    sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
     rowFamilyIdentity: "unresolved-root",
     chronologyRowId,
+    nativeReplayRowSchema: nativeReplayRow?.schema ?? null,
+    nativeReplayRowStatus: nativeReplayRow?.rowStatus ?? null,
+    nativeReplaySourceObjectRowSchema: nativeReplayRow?.sourceObjectRowSchema ?? null,
+    retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,
+    sameRecordReplayStatus: nativeReplayRow?.sameRecordReplayStatus ?? null,
+    causticRouteStatus: nativeReplayRow?.causticRouteStatus ?? null,
+    proofObjectProvenanceStatus: nativeReplayRow?.proofObjectProvenanceStatus ?? null,
+    proofObjectProvenance: nativeReplayRow?.proofObjectProvenance ?? null,
     rowStatus: "candidate_shape_evidence_missing_retained_causal_root_replay",
     replayAuthorization: false,
     acceptedReplayEvidence: false,
@@ -487,7 +505,15 @@ function createUnresolvedRootSegmentReplayCandidateRow(input) {
 }
 
 function createUnresolvedRootSegmentReplayProducerContract(input) {
-  const { row, rowId, chronologyRowId, effectiveStepIndex, providedFields, missingFields } = input;
+  const {
+    row,
+    nativeReplayRow,
+    rowId,
+    chronologyRowId,
+    effectiveStepIndex,
+    providedFields,
+    missingFields,
+  } = input;
   const requiredReplaySourceFields = [
     "rootLedgerRecordId",
     "causticRoute",
@@ -506,6 +532,21 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
     sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
     nativeRow: "T3UnresolvedRootSegmentRowF64",
     bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    companionNativeReplayRow: {
+      rowPresent: nativeReplayRow != null,
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      nativeStruct:
+        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+      bridgeReader:
+        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+      rowSchema: nativeReplayRow?.schema ?? null,
+      rowStatus: nativeReplayRow?.rowStatus ?? null,
+      retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,
+      sameRecordReplayStatus: nativeReplayRow?.sameRecordReplayStatus ?? null,
+      causticRouteStatus: nativeReplayRow?.causticRouteStatus ?? null,
+      proofObjectProvenanceStatus: nativeReplayRow?.proofObjectProvenanceStatus ?? null,
+      proofObjectProvenance: nativeReplayRow?.proofObjectProvenance ?? null,
+    },
     sameRecordBinding: {
       bindingStatus: "candidate_same_step_segment_shape_evidence",
       chronologyRowId,
@@ -548,6 +589,31 @@ function createUnresolvedRootSegmentReplayProducerContract(input) {
     retainedBranch: false,
     provesBranchAdmissibility: false,
   };
+}
+
+function unresolvedRootSidecarKey(row) {
+  const effectiveStepIndex = Number.isInteger(row?.stepIndex) ? row.stepIndex : null;
+  return [
+    row?.chronologyRowId ??
+      (effectiveStepIndex == null
+        ? "step_unknown_unresolved_root_rows"
+        : `step_${effectiveStepIndex}_unresolved_root_rows`),
+    row?.sourcePathKey ?? "source_unknown",
+    row?.receiverPathKey ?? "receiver_unknown",
+    row?.sourceSegmentIndex ?? "source_segment_unknown",
+    row?.receiverSegmentIndex ?? "receiver_segment_unknown",
+  ].join(":");
+}
+
+function groupRetainedCausalRootReplayRowsBySidecarKey(rows = []) {
+  const rowsBySidecarKey = new Map();
+  if (!Array.isArray(rows)) {
+    return rowsBySidecarKey;
+  }
+  for (const row of rows) {
+    rowsBySidecarKey.set(unresolvedRootSidecarKey(row), row);
+  }
+  return rowsBySidecarKey;
 }
 
 function createRetainedCausalRootReplayCandidateRow(input) {

@@ -450,6 +450,10 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
         "hitTime",
         "signalSpeed",
         "rootTolerance",
+        "retainedSourceBindingStatus",
+        "sameRecordReplayStatus",
+        "causticRouteStatus",
+        "proofObjectProvenanceStatus",
       ],
       missingNativeBridgeFields: missingFields,
       requiredUpstreamObject:
@@ -458,6 +462,7 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
         producerContracts[0]?.schema ?? "t3-retained-causal-root-replay-producer-contract.v1",
       producerContractCount: producerContracts.length,
       firstProducerContract: producerContracts[0] ?? null,
+      companionNativeReplayRow: producerContracts[0]?.companionNativeReplayRow ?? null,
       sidecarRowCount: sidecarProducerRows.length,
       replayAuthorization: false,
     };

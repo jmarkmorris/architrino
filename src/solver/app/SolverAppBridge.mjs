@@ -667,6 +667,7 @@ const T3_PARTICLE_STATE_F64_BYTES = 80;
 const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
 const T3_STEP_SUMMARY_F64_BYTES = 88;
 const T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES = 208;
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES = 80;
 const T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID = Object.freeze({
   disabled: 0,
   neighbor_pruned_v1: 1,
@@ -678,6 +679,14 @@ const T3_UNRESOLVED_ROOT_PAIR_POLICY_ID_BY_CODE = Object.freeze({
 const T3_UNRESOLVED_ROOT_SEGMENT_ROW_STATUS_BY_CODE = Object.freeze({
   0: "disabled",
   1: "candidate_shape_evidence",
+});
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE = Object.freeze({
+  0: "disabled",
+  1: "missing_retained_replay_source",
+});
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE = Object.freeze({
+  0: "missing",
+  1: "candidate_sidecar_shape_evidence",
 });
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
@@ -904,7 +913,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 212;
+const ABI_INFO_BYTES = 216;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -11767,6 +11776,7 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
   const maxUnresolvedRootSegmentRows = unresolvedRootSegmentSidecar.enabled
     ? unresolvedRootSegmentSidecar.maxRows
     : 0;
+  const maxRetainedCausalRootReplayRows = maxUnresolvedRootSegmentRows;
   if (maxRows < stateCount) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "T3 bulk step row buffer is too small", {
@@ -11784,8 +11794,14 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
         abiInfo.t3UnresolvedRootSegmentRowF64Bytes * maxUnresolvedRootSegmentRows
       )
     : 0;
+  const retainedCausalRootReplayRowsPtr = maxRetainedCausalRootReplayRows > 0
+    ? module._malloc(
+        abiInfo.t3RetainedCausalRootReplayRowF64Bytes * maxRetainedCausalRootReplayRows
+      )
+    : 0;
   const outRowCountPtr = module._malloc(4);
   const outUnresolvedRootSegmentRowCountPtr = module._malloc(4);
+  const outRetainedCausalRootReplayRowCountPtr = module._malloc(4);
   const summaryPtr = module._malloc(abiInfo.t3StepSummaryF64Bytes);
   try {
     writeT3StepRequestF64(module, requestPtr, normalized);
@@ -11798,8 +11814,12 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
     });
     module.setValue(outRowCountPtr, 0, "i32");
     module.setValue(outUnresolvedRootSegmentRowCountPtr, 0, "i32");
+    module.setValue(outRetainedCausalRootReplayRowCountPtr, 0, "i32");
     writeZeroBytes(module, summaryPtr, abiInfo.t3StepSummaryF64Bytes);
     const stepT3 = module.cwrap("architrino_solver_step_t3_universe_f64", "number", [
+      "number",
+      "number",
+      "number",
       "number",
       "number",
       "number",
@@ -11821,11 +11841,18 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
       summaryPtr,
       unresolvedRootSegmentRowsPtr,
       maxUnresolvedRootSegmentRows,
-      outUnresolvedRootSegmentRowCountPtr
+      outUnresolvedRootSegmentRowCountPtr,
+      retainedCausalRootReplayRowsPtr,
+      maxRetainedCausalRootReplayRows,
+      outRetainedCausalRootReplayRowCountPtr
     );
     const rowCount = module.getValue(outRowCountPtr, "i32");
     const unresolvedRootSegmentRowCount = module.getValue(
       outUnresolvedRootSegmentRowCountPtr,
+      "i32"
+    );
+    const retainedCausalRootReplayRowCount = module.getValue(
+      outRetainedCausalRootReplayRowCountPtr,
       "i32"
     );
     const summary = readT3StepSummaryF64(module, summaryPtr);
@@ -11839,6 +11866,8 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
             maxRows,
             unresolvedRootSegmentRowCount,
             maxUnresolvedRootSegmentRows,
+            retainedCausalRootReplayRowCount,
+            maxRetainedCausalRootReplayRows,
             stateCount,
           },
         })
@@ -11860,10 +11889,19 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
           index * abiInfo.t3UnresolvedRootSegmentRowF64Bytes
       ));
     }
+    const retainedCausalRootReplayRows = [];
+    for (let index = 0; index < retainedCausalRootReplayRowCount; index += 1) {
+      retainedCausalRootReplayRows.push(readT3RetainedCausalRootReplayRowF64(
+        module,
+        retainedCausalRootReplayRowsPtr +
+          index * abiInfo.t3RetainedCausalRootReplayRowF64Bytes
+      ));
+    }
     return {
       schema: "solver-t3-step-response.v1",
       rows,
       unresolvedRootSegmentRows,
+      retainedCausalRootReplayRows,
       unresolvedRootSegmentSidecar: {
         schema: "t3-unresolved-root-segment-sidecar.v1",
         enabled: unresolvedRootSegmentSidecar.enabled,
@@ -11886,6 +11924,7 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
           interactionLaw: normalized.interaction.law,
           neighborPairCount: summary.neighborPairCount,
           unresolvedRootSegmentRowCount: unresolvedRootSegmentRows.length,
+          retainedCausalRootReplayRowCount: retainedCausalRootReplayRows.length,
           occupiedCellCount: summary.occupiedCellCount,
         },
       }),
@@ -11899,8 +11938,12 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
     if (unresolvedRootSegmentRowsPtr !== 0) {
       module._free(unresolvedRootSegmentRowsPtr);
     }
+    if (retainedCausalRootReplayRowsPtr !== 0) {
+      module._free(retainedCausalRootReplayRowsPtr);
+    }
     module._free(outRowCountPtr);
     module._free(outUnresolvedRootSegmentRowCountPtr);
+    module._free(outRetainedCausalRootReplayRowCountPtr);
     module._free(summaryPtr);
   }
 }
@@ -14569,6 +14612,7 @@ function readAbiInfo(module) {
       t3ParticleStepRowF64Bytes: module.getValue(ptr + 200, "i32"),
       t3StepSummaryF64Bytes: module.getValue(ptr + 204, "i32"),
       t3UnresolvedRootSegmentRowF64Bytes: module.getValue(ptr + 208, "i32"),
+      t3RetainedCausalRootReplayRowF64Bytes: module.getValue(ptr + 212, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -14578,7 +14622,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 17,
+    abiMinor: 18,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14630,13 +14674,14 @@ function defaultAbiInfo() {
     t3ParticleStepRowF64Bytes: T3_PARTICLE_STEP_ROW_F64_BYTES,
     t3StepSummaryF64Bytes: T3_STEP_SUMMARY_F64_BYTES,
     t3UnresolvedRootSegmentRowF64Bytes: T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES,
+    t3RetainedCausalRootReplayRowF64Bytes: T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 17 ||
+    abiInfo.abiMinor !== 18 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -14687,7 +14732,9 @@ function assertAbiInfo(abiInfo) {
     abiInfo.t3ParticleStateF64Bytes !== T3_PARTICLE_STATE_F64_BYTES ||
     abiInfo.t3ParticleStepRowF64Bytes !== T3_PARTICLE_STEP_ROW_F64_BYTES ||
     abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES ||
-    abiInfo.t3UnresolvedRootSegmentRowF64Bytes !== T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES
+    abiInfo.t3UnresolvedRootSegmentRowF64Bytes !== T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES ||
+    abiInfo.t3RetainedCausalRootReplayRowF64Bytes !==
+      T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -17037,6 +17084,75 @@ function readT3UnresolvedRootSegmentRowF64(module, ptr) {
     rowStatusCode,
     rowStatus:
       T3_UNRESOLVED_ROOT_SEGMENT_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
+  };
+}
+
+function readT3RetainedCausalRootReplayRowF64(module, ptr) {
+  const stepIndex = readUint64(module, ptr);
+  const sourcePathKey = readUint64(module, ptr + 8);
+  const receiverPathKey = readUint64(module, ptr + 16);
+  const sourceSegmentIndex = readUint64(module, ptr + 24);
+  const receiverSegmentIndex = readUint64(module, ptr + 32);
+  const rootLedgerRecordIdValue = readUint64(module, ptr + 40);
+  const sourcePathSegmentIdValue = readUint64(module, ptr + 48);
+  const retainedSourceBindingStatusCode = module.getValue(ptr + 56, "i32") >>> 0;
+  const sameRecordReplayStatusCode = module.getValue(ptr + 60, "i32") >>> 0;
+  const causticRouteStatusCode = module.getValue(ptr + 64, "i32") >>> 0;
+  const proofObjectProvenanceStatusCode = module.getValue(ptr + 68, "i32") >>> 0;
+  const rowStatusCode = module.getValue(ptr + 72, "i32") >>> 0;
+  const rowStatus =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown";
+  const retainedSourceBindingStatus =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE[
+      retainedSourceBindingStatusCode
+    ] ?? "unknown";
+  const sameRecordReplayStatus =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE[
+      sameRecordReplayStatusCode
+    ] ?? "unknown";
+  const causticRouteStatus =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE[
+      causticRouteStatusCode
+    ] ?? "unknown";
+  const proofObjectProvenanceStatus =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE[
+      proofObjectProvenanceStatusCode
+    ] ?? "unknown";
+  return {
+    schema: "t3-retained-causal-root-replay-native-row.v1",
+    chronologyRowId: `step_${stepIndex}_unresolved_root_rows`,
+    sourceObjectRowSchema: "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: "candidate_shape_evidence",
+    stepIndex,
+    sourcePathKey,
+    receiverPathKey,
+    sourceSegmentIndex,
+    receiverSegmentIndex,
+    rootLedgerRecordId: rootLedgerRecordIdValue === 0 ? null : rootLedgerRecordIdValue,
+    causticRoute: null,
+    sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
+    retainedSourceBindingStatusCode,
+    retainedSourceBindingStatus,
+    sameRecordReplayStatusCode,
+    sameRecordReplayStatus,
+    causticRouteStatusCode,
+    causticRouteStatus,
+    proofObjectProvenanceStatusCode,
+    proofObjectProvenanceStatus,
+    proofObjectProvenance: {
+      nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      sourceNativeRow: "T3UnresolvedRootSegmentRowF64",
+      bridgeReader:
+        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+      provenanceStatus: proofObjectProvenanceStatus,
+    },
+    rowStatusCode,
+    rowStatus,
     replayAuthorization: false,
     acceptedReplayEvidence: false,
     retainedBranch: false,

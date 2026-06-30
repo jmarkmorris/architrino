@@ -2782,6 +2782,12 @@ export interface SolverAbiInfo {
   statusRowBytes: number;
   admissionReportF64Bytes: number;
   pairInteractionRequestF64Bytes: number;
+  t3StepRequestF64Bytes: number;
+  t3ParticleStateF64Bytes: number;
+  t3ParticleStepRowF64Bytes: number;
+  t3StepSummaryF64Bytes: number;
+  t3UnresolvedRootSegmentRowF64Bytes: number;
+  t3RetainedCausalRootReplayRowF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {

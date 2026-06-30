@@ -22,6 +22,16 @@ enum class T3UnresolvedRootSegmentRowStatus : std::uint32_t {
   CandidateShapeEvidence = 1,
 };
 
+enum class T3RetainedCausalRootReplayRowStatus : std::uint32_t {
+  Disabled = 0,
+  MissingRetainedReplaySource = 1,
+};
+
+enum class T3RetainedCausalRootReplayFieldStatus : std::uint32_t {
+  Missing = 0,
+  CandidateSidecarShapeEvidence = 1,
+};
+
 struct T3BulkStepRequest {
   double startTime = 0.0;
   double endTime = 0.0;
@@ -106,9 +116,31 @@ struct T3UnresolvedRootSegmentRowF64 {
       static_cast<std::uint32_t>(T3UnresolvedRootSegmentRowStatus::Disabled);
 };
 
+struct T3RetainedCausalRootReplayRowF64 {
+  std::uint64_t stepIndex = 0;
+  std::uint64_t sourcePathKey = 0;
+  std::uint64_t receiverPathKey = 0;
+  std::uint64_t sourceSegmentIndex = 0;
+  std::uint64_t receiverSegmentIndex = 0;
+  std::uint64_t rootLedgerRecordId = 0;
+  std::uint64_t sourcePathSegmentId = 0;
+  std::uint32_t retainedSourceBindingStatus =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
+  std::uint32_t sameRecordReplayStatus =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayRowStatus::Disabled);
+  std::uint32_t causticRouteStatus =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
+  std::uint32_t proofObjectProvenanceStatus =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
+  std::uint32_t rowStatus =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayRowStatus::Disabled);
+  std::uint32_t reserved0 = 0;
+};
+
 struct T3BulkStepResult {
   std::vector<T3ParticleStepRowF64> rows;
   std::vector<T3UnresolvedRootSegmentRowF64> unresolvedRootSegmentRows;
+  std::vector<T3RetainedCausalRootReplayRowF64> retainedCausalRootReplayRows;
   T3StepSummaryF64 summary{};
   ValidationReport validation;
 };
