@@ -20,7 +20,7 @@ export function createMarkdownRuntime(deps) {
   let markdownPreferredColumnCount = 2;
   let previousDocumentTitle = null;
   const textbookTocMarkdownPath = "content/generated/markdown/textbook/toc.md";
-  const outreachComicsMarkdownPath = "content/markdown/aaa/outreach/comics.md";
+  const archieComicsMarkdownPath = "content/markdown/aaa/archie/comics.md";
   const supportResearchMarkdownPath = "content/markdown/aaa/archie/support-architrino-research.md";
   const liberapayWidgetScriptSrc = "https://liberapay.com/Architrino/widgets/button.js";
   const mathTypesetRetryDelayMs = 120;
@@ -292,8 +292,8 @@ export function createMarkdownRuntime(deps) {
     return normalizeRepoPath(markdownPath) === textbookTocMarkdownPath;
   }
 
-  function isOutreachComicsPath(markdownPath) {
-    return normalizeRepoPath(markdownPath) === outreachComicsMarkdownPath;
+  function isArchieComicsPath(markdownPath) {
+    return normalizeRepoPath(markdownPath) === archieComicsMarkdownPath;
   }
 
   function isSupportResearchPath(markdownPath) {
@@ -308,8 +308,8 @@ export function createMarkdownRuntime(deps) {
     markdownPanel.classList.toggle("is-textbook-toc", isTextbookToc);
     if (isTextbookToc) {
       markdownPanel.dataset.markdownKind = "textbook-toc";
-    } else if (isOutreachComicsPath(markdownPath)) {
-      markdownPanel.dataset.markdownKind = "outreach-comics";
+    } else if (isArchieComicsPath(markdownPath)) {
+      markdownPanel.dataset.markdownKind = "archie-comics";
     } else {
       delete markdownPanel.dataset.markdownKind;
     }

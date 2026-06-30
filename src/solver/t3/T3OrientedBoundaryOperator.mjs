@@ -462,6 +462,8 @@ function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producer
         "retainedSourceBindingStatus",
         "sameRecordReplayStatus",
         "causticRouteStatus",
+        "causticRouteKind",
+        "causticRouteSourceLane",
         "proofObjectProvenanceStatus",
       ],
       missingNativeBridgeFields: missingFields,

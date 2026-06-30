@@ -189,6 +189,8 @@ $$
 \frac{1}{n_a^2}
 $$
 
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a>n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
+
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
 $$

@@ -690,6 +690,11 @@ const T3_RETAINED_CAUSAL_ROOT_REPLAY_FIELD_STATUS_BY_CODE = Object.freeze({
   1: "candidate_sidecar_shape_evidence",
   2: "candidate_same_record_binding",
 });
+const T3_RETAINED_CAUSAL_ROOT_REPLAY_CAUSTIC_ROUTE_KIND_BY_CODE = Object.freeze({
+  0: "missing",
+  1: "declared_no_caustic_route",
+  2: "concrete_caustic_route",
+});
 const T3_WINDING_LABEL_STATUS_BY_CODE = Object.freeze({
   0: "missing",
   1: "local_pre_wrap_candidate",
@@ -17124,6 +17129,7 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
   const causticRouteStatusCode = module.getValue(ptr + 112, "i32") >>> 0;
   const proofObjectProvenanceStatusCode = module.getValue(ptr + 116, "i32") >>> 0;
   const rowStatusCode = module.getValue(ptr + 120, "i32") >>> 0;
+  const causticRouteKindCode = module.getValue(ptr + 124, "i32") >>> 0;
   const rowStatus =
     T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown";
   const retainedSourceBindingStatus =
@@ -17144,6 +17150,19 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
     ] ?? "unknown";
   const windingLabelStatus =
     T3_WINDING_LABEL_STATUS_BY_CODE[windingLabelStatusCode] ?? "unknown";
+  const causticRouteKind =
+    T3_RETAINED_CAUSAL_ROOT_REPLAY_CAUSTIC_ROUTE_KIND_BY_CODE[
+      causticRouteKindCode
+    ] ?? "unknown";
+  const causticRoute =
+    causticRouteKind === "missing"
+      ? null
+      : {
+          schema: "t3-caustic-route-source-lane.v1",
+          routeKind: causticRouteKind,
+          routeStatus: causticRouteStatus,
+          acceptedRouteEvidence: false,
+        };
   return {
     schema: "t3-retained-causal-root-replay-native-row.v1",
     chronologyRowId: `step_${stepIndex}_unresolved_root_rows`,
@@ -17159,7 +17178,20 @@ function readT3RetainedCausalRootReplayRowF64(module, ptr) {
     retainedCausalRootRowId:
       retainedCausalRootRowIdValue === 0 ? null : retainedCausalRootRowIdValue,
     rootLedgerRecordId: rootLedgerRecordIdValue === 0 ? null : rootLedgerRecordIdValue,
-    causticRoute: null,
+    causticRoute,
+    causticRouteKindCode,
+    causticRouteKind,
+    causticRouteSourceLane: {
+      schema: "t3-caustic-route-source-lane.v1",
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      nativeField: "causticRouteKind",
+      cAbiField: "caustic_route_kind",
+      bridgeField: "causticRouteKind",
+      causticRouteKind,
+      causticRouteStatus,
+      routePayloadPresent: causticRoute != null,
+      acceptedRouteEvidence: false,
+    },
     sourcePathSegmentId: sourcePathSegmentIdValue === 0 ? null : sourcePathSegmentIdValue,
     receiverPathSegmentId:
       receiverPathSegmentIdValue === 0 ? null : receiverPathSegmentIdValue,

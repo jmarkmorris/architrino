@@ -11,7 +11,7 @@ const SCAN_TARGETS = [
   "content/markdown/aaa",
   "content/generated/markdown/textbook/reading-copies",
   "reference/priorities",
-  "reference/outreach",
+  "reference/archie",
   "reference/entourage/archie/prompts",
   "scripts",
   "src",

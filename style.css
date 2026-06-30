@@ -883,18 +883,18 @@ body.has-scene-image-gallery .label-center-context {
   margin: 0 auto;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-body {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 18px;
   align-items: start;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block {
   margin: 0;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a {
   display: block;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -902,12 +902,12 @@ body.has-scene-image-gallery .label-center-context {
   background: rgba(255, 255, 255, 0.05);
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a:hover,
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a:focus-visible {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a:hover,
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a:focus-visible {
   border-color: rgba(255, 255, 255, 0.42);
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block img.markdown-image {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block img.markdown-image {
   width: 100%;
   max-width: 100%;
   aspect-ratio: 1;

@@ -23,7 +23,7 @@ The AAA canon represented by this case is:
 
 | Canon source | Claim carried into this mapping |
 | --- | --- |
-| [Unknowns and Paradoxes](../../../content/markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-uv-catastrophe-blackbody-divergence) | The ultraviolet catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain; finite high-frequency behavior must be derived from explicit microscopic degrees of freedom. |
+| [Solving Open Problems](../../../content/markdown/aaa/philosophy-history/solving-open-problems.md#the-uv-catastrophe-blackbody-divergence) | The ultraviolet catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain; finite high-frequency behavior must be derived from explicit microscopic degrees of freedom. |
 | [Crisis in Physics](../../../content/markdown/aaa/philosophy-history/crisis-in-physics.md#renormalization-uv-completion-and-continuum-excess) | UV completion and renormalization pressure are part of the broader continuum-excess problem: successful continuum calculation does not grant infinite primitive mode structure ontological status. |
 | [Radiation](../../../content/markdown/aaa/reactions/radiation.md#blackbody-limit) | Blackbody behavior is a Gate C ensemble theorem target requiring repeated emission, absorption, scattering, mode exchange, detailed balance, and zero effective photon chemical potential. |
 | [CMB](../../../content/markdown/aaa/cosmology/CMB.md#thermalization-depth-and-planck-recovery-target) | Cosmology-facing blackbody claims require thermalization depth, redshift handoff, damping, anisotropy, and polarization transfer through one shared Noether sea state map. |

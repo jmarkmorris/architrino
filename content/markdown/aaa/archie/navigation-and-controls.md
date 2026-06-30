@@ -58,7 +58,7 @@ Sphere labels may also use more than one text row when the scene author provides
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
 4. Open notes with the document icon when available.
-5. Select the `Archie` sphere for app help, project references, downloads, support, public outreach entries, and future guided question modes.
+5. Select the `Archie` sphere for app help, project references, downloads, support, comics, and future guided question modes.
 
 ## Camera and Interaction
 

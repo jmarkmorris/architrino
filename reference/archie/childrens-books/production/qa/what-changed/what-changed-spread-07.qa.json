@@ -1,0 +1,20 @@
+{
+  "id": "what-changed-spread-07",
+  "book_slug": "what-changed",
+  "source_png": "content/assets/images/archie/childrens-books/source/what-changed/what-changed-spread-07.png",
+  "exists": true,
+  "automated": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": 1.5,
+    "saturated_non_palette_fraction": 0.377,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "pending",
+    "no_in_image_text": "pending",
+    "one_continuous_scene": "pending",
+    "correct_geometry": "pending"
+  },
+  "decision": "pending"
+}

@@ -27,6 +27,12 @@ function providerField(report, field) {
   );
 }
 
+function sameStepProviderField(report, field) {
+  return report.same_step_retained_torque_wake_branch_certificate_provider_target.field_results.find(
+    (entry) => entry.field === field
+  );
+}
+
 function sourceAuditField(report, field) {
   return report.branch_certificate_ref_source_availability_audit.field_results.find(
     (entry) => entry.field === field
@@ -120,6 +126,9 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
     "proxy:",
     "candidate:",
     "synthetic:",
+    "route-only:",
+    "aggregate:",
+    "cross-row:",
   ]);
   assert.equal(
     report.branch_certificate_ref_source_availability_audit.next_retained_active_row_evidence_object.schema,
@@ -246,6 +255,44 @@ test("torque/wake same-row diagnostic records useful rows but blocks all authori
   );
   assert.equal(
     report.branch_certificate_provider_object_target.authorization.moving_retained_branch_certificate,
+    false
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.schema,
+    "same_step_retained_torque_wake_branch_certificate_provider/v0"
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.target_status,
+    "fail_closed_provider_target"
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.required_same_step_selected_case_id,
+    "index-ratio:f2"
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.first_failure,
+    "accepted_transition_source_ref_missing"
+  );
+  assert.equal(
+    sameStepProviderField(report, "accepted_transition_source_ref").failure_code,
+    "accepted_transition_source_ref_missing"
+  );
+  assert.equal(
+    sameStepProviderField(report, "retained_branch").failure_code,
+    "retained_branch_false_not_retained_provider"
+  );
+  assert.equal(
+    sameStepProviderField(report, "same_retained_active_row_ids").failure_code,
+    "same_retained_active_row_ids_missing"
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.downstream_authorization
+      .rank2_field_speed_action_self_hit_scan,
+    false
+  );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.downstream_authorization
+      .rank6_moving_retained_branch_certificate,
     false
   );
   assert.deepEqual(
@@ -471,9 +518,17 @@ test("torque/wake branch-certificate provider target rejects reference-complete 
     report.branch_certificate_provider_object_target.first_failure,
     "retained_branch_false_not_retained_provider"
   );
+  assert.equal(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.first_failure,
+    "retained_branch_false_not_retained_provider"
+  );
   assert.deepEqual(report.branch_certificate_provider_object_target.missing_or_rejected_fields, [
     "retained_branch",
   ]);
+  assert.deepEqual(
+    report.same_step_retained_torque_wake_branch_certificate_provider_target.missing_or_rejected_fields,
+    ["retained_branch"]
+  );
   assert.equal(
     report.retained_active_row_certificate_contract.same_retained_active_row_id_binding,
     true

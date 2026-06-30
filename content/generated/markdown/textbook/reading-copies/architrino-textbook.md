@@ -55877,7 +55877,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 #### CP-Odd Neutron Dipole Scaffold
 
-The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-strong-cp-problem).
+The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/solving-open-problems.md#the-strong-cp-problem).
 
 Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell braid center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
@@ -56498,6 +56498,8 @@ $$
 -
 \frac{1}{n_a^2}
 $$
+
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a>n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
 
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
@@ -77088,119 +77090,166 @@ The paper should include a chapter only when the answer can be stated in four la
 3. **Test advice:** the data product, benchmark, simulation, or falsifier that should discipline the claim.
 4. **Claim level:** whether the chapter is ready for the main paper or only for a watchlist.
 
+This document also functions as the unified problem map for the Unknowns and Paradoxes scene.
+
+###### How To Read The Entries
+
+Each problem entry uses the same teaching sequence.
+
+1. **Secure record:** the empirical or theoretical result that already works and must not be discarded.
+2. **Core non-closure:** the missing mechanism, contradictory inference, or layer mistake that keeps the problem open.
+3. **Standard repairs:** the dominant inherited repair attempts and why they remain incomplete.
+4. **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture:** the substrate-level relocation or candidate mechanism.
+5. **Resolution tests:** the falsifier, benchmark, observation, or derivation that would count as closure.
+6. **Claim level:** `architecture-ready`, `direction-ready`, `appendix-watch`, or `exclude-for-now`.
+
+The distinction between secure record and non-closure is essential. A successful theory must preserve what current physics gets right while replacing only the unsupported ontology, the missing mechanism, or the overextended inference.
+
 ###### Paper Section Map
 
 | Section | Main job | Chapter candidates |
 | --- | --- | --- |
-| Foundations and spacetime | Replace incompatible starting postulates with one ontology and one observer-level metric limit. | Quantum gravity, metric emergence, Lorentz recovery, problem of time. |
+| Foundations and spacetime | Replace incompatible starting postulates with one ontology and one observer-level metric limit. | Quantum gravity, metric emergence, Lorentz recovery, problem of time, trans-Planckian cutoff discipline. |
 | Strong-field gravity | Turn singularities, horizons, entropy, and compact radiation into boundary, topology, and event-ledger closure problems. | Black-hole singularities, Big Bang singularity, cosmic censorship, black-hole information, gravitational waves, compact stars. |
-| Cosmology and large-scale structure | Treat cosmological tensions as redshift, Noether sea, transfer-function, and structure-growth questions. | Dark matter, galaxy rotation, dark energy, cosmological constant, $H_0$, $S_8$, inflation, CMB, BBN, structure formation. |
-| Quantum and statistical emergence | Replace collapse and fundamental probability with deterministic basin, path-history, and detector-response structure. | Measurement, Born rule, Bell, no-signaling, entropy, arrow of time, photon ontology. |
-| Standard Model and particle closure | Explain particle families, masses, mixing, confinement, and asymmetry through branch geometry and event provenance. | Higgs/origin of mass, hierarchy, neutrinos, flavor, QCD confinement, matter-antimatter asymmetry. |
-| Astrophysical engines | Apply the same radiation, reaction, and medium-response ledgers to high-energy systems. | Supernovae, nucleosynthesis, jets, outflows, compact-object engines. |
-| Appendix and exclusions | Keep weaker candidates visible without overclaiming. | FRBs, UHECRs, coronal heating, solar-cycle, planetary anomalies, Fermi paradox, single-object anomalies. |
+| Cosmology and large-scale structure | Treat cosmological tensions as redshift, Noether sea, transfer-function, and structure-growth questions. | Dark matter, galaxy rotation, dark energy, cosmological constant, $H_0$, $S_8$, inflation, CMB, BBN, structure formation, large-scale anisotropy. |
+| Quantum and statistical emergence | Replace collapse and fundamental probability with deterministic basin, path-history, and detector-response structure. | Measurement, Born rule, Bell, no-signaling, entropy, arrow of time, photon ontology, UV cutoff behavior. |
+| Standard Model and particle closure | Explain particle families, masses, mixing, confinement, asymmetry, and precision anomalies through branch geometry and event provenance. | Higgs/origin of mass, hierarchy, neutrinos, flavor, QCD confinement, strong CP, proton stability, vacuum stability, muon $g-2$, matter-antimatter asymmetry. |
+| Astrophysical engines | Apply the same radiation, reaction, and medium-response ledgers to high-energy systems. | Supernovae, nucleosynthesis, jets, outflows, compact-object engines, transients. |
+| Appendix and exclusions | Keep weaker candidates visible without overclaiming. | Coronal heating, solar-cycle puzzles, planetary anomalies, one-off anomalies, Fermi paradox, single-object anomalies. |
 
 ###### Foundations And Spacetime
 
 ###### Quantum Gravity And The GR/QM Split
 
-**Problem.** General relativity treats gravity as spacetime geometry. Quantum theory treats matter and fields through states, operators, amplitudes, and probabilities. The two frameworks do not share one ontology, and direct quantization of the metric has not produced a completed experimentally grounded theory.
+**Secure record.** General relativity recovers gravitational redshift, lensing, perihelion precession, Shapiro delay, binary-pulsar decay, black-hole imaging constraints, and gravitational-wave propagation. Quantum theory recovers atomic spectra, scattering, interference, field-theoretic corrections, and detector statistics. The conflict is not that either framework fails everywhere; it is that they do not share one microscopic ontology.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural move is not to quantize an independent spacetime manifold. The native layer is assembly dynamics with path history, causal roots, event ledgers, and Noether sea response. The metric is a recovered observer-level object. Quantum behavior is routed through basin measures, detector response, and path-history phase over the same underlying dynamics. This turns quantum gravity into a recovery problem: one substrate must recover both effective metric behavior and quantum benchmark records.
+**Core non-closure.** Directly quantizing the Einstein-Hilbert metric action is ultraviolet incomplete, and canonical gravity tends to obscure the role of time. Higher-derivative completions can improve power counting, but then must answer ghost, unitarity, and ontology questions. String theory, loop quantum gravity, asymptotic safety, causal-set programs, and holographic programs each supply comparison structures, but no candidate has produced decisive empirical separation.
 
-**Test advice.** Demand one shared closure record for gravitational redshift, Shapiro delay, lensing, perihelion precession, gravitational-wave propagation, quantum phase, and detector records. A fit that uses one set of variables for gravity and unrelated variables for quantum benchmarks fails the paper's standard.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural move is not to quantize an independent spacetime manifold. The native layer is assembly dynamics with path history, causal roots, event ledgers, causal wakes, and Noether sea response. The metric is a recovered observer-level object. Quantum behavior is routed through basin measures, detector response, and path-history phase over the same underlying dynamics. The quantum-gravity problem becomes a recovery problem: one substrate must recover both effective metric behavior and quantum benchmark records.
 
-**Claim level.** `architecture-ready`, with major proof burden in effective metric recovery, basin-measure closure, and shared benchmark recovery.
+**Resolution tests.** Demand one shared closure record for gravitational redshift, Shapiro delay, lensing, perihelion precession, gravitational-wave propagation, quantum phase, detector records, and the controlled low-energy quantum correction to Newtonian gravity. Data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would falsify this route.
+
+**Claim level.** `architecture-ready`, with major proof burden in effective metric recovery, basin-measure closure, ultraviolet cutoff derivation, and shared benchmark recovery.
 
 ###### Emergent Metric And The Nature Of Spacetime
 
-**Problem.** Modern physics uses spacetime as the arena, but open problems arise when spacetime is also treated as a dynamical object, a quantum object, or a singular object. It is unclear whether spacetime is fundamental, emergent, or a bookkeeping device.
+**Secure record.** Operational spacetime measurements work because clocks, rulers, light paths, and gravitational probes agree to high precision in the regimes where general relativity is tested. Any replacement must reproduce that effective metric discipline.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Spacetime enters as an observer-level accounting structure. Proper time, distance, curvature, and null propagation are recovered from moving assemblies, clock/ruler retuning, causal-delay structure, and Noether sea response. The paper can state this as a clean inversion: the metric is not the base object; it is the organized limit seen by assemblies.
+**Core non-closure.** Modern physics often treats spacetime as arena, dynamical field, quantum object, and singular object depending on context. The unresolved point is whether spacetime is fundamental, emergent, or an accounting structure for deeper dynamics.
 
-**Test advice.** Use one effective response object across clock comparisons, null propagation, lensing, weak-field dynamics, and gravitational waves. The falsifier is hidden tuning: if every phenomenon needs a separate response map, the architecture is not doing the work.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Spacetime enters as an observer-level accounting structure. Proper time, distance, curvature, and null propagation are recovered from moving assemblies, clock/ruler retuning, causal-delay structure, and Noether sea response. The inversion is direct: the Euclidean void and absolute time belong to the ontology, while the effective metric belongs to the organized limit seen by physical observers.
+
+**Resolution tests.** Use one effective response object across clock comparisons, null propagation, lensing, weak-field dynamics, and gravitational waves. The falsifier is hidden tuning: if every phenomenon needs a separate response map, the architecture is not doing the work.
 
 **Claim level.** `architecture-ready`, gated by one-metric recovery across weak-field and relativistic benchmarks.
 
 ###### Lorentz Invariance From A Preferred Substrate
 
-**Problem.** Experiments strongly support Lorentz invariance, yet $\mathbb{A}\mathbb{A}\mathbb{A}$ uses a deeper ordering and substrate. The open problem is how to recover Lorentz symmetry without treating the preferred substrate as an observable ether.
+**Secure record.** Lorentz invariance is tightly constrained by Michelson-Morley, Kennedy-Thorndike, Ives-Stilwell, resonator, particle, clock, and astrophysical tests. Ordinary observers do not see a simple ether wind.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Lorentz invariance is an effective symmetry of assemblies whose clocks, rulers, signal paths, and internal dynamics retune under motion through the substrate. The preferred layer is real, but ordinary two-way measurements see the recovered symmetry because the measuring apparatus is made of the same dynamics.
+**Core non-closure.** A substrate-first theory must recover Lorentz symmetry without making the preferred substrate directly observable in ordinary two-way measurements. It must also account for Sagnac and moving-medium cases without treating them as contradictions of the recovered limit.
 
-**Test advice.** Use Michelson-Morley, Kennedy-Thorndike, Ives-Stilwell, modern resonator tests, Sagnac, and Fizeau as a single leakage suite. The chapter should explain why Sagnac and moving-media cases do not refute the recovered Lorentz limit.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Lorentz invariance is an effective symmetry of assemblies whose clocks, rulers, signal paths, and internal dynamics retune under motion through the substrate. The preferred layer is real, but ordinary measurement apparatus is made of the same dynamics, so the apparatus participates in the same retuning. Preferred-frame leakage becomes a bounded theorem target, not a freely visible ether.
+
+**Resolution tests.** Use Michelson-Morley, Kennedy-Thorndike, Ives-Stilwell, modern resonator tests, Sagnac, Fizeau, gravitational-wave speed constraints, and PPN preferred-frame coefficients as a single leakage suite. The closure record must name moving-assembly deformation, clock/ruler retuning, two-way signal synchronization, and bounded leakage.
 
 **Claim level.** `architecture-ready`, with tight leakage bounds and moving-medium handling required.
 
 ###### The Problem Of Time
 
-**Problem.** Quantum theory uses an external time parameter, while canonical gravity tends to bury time inside constraint equations. Cosmology also asks why time has a direction and why the universe appears to have a special temporal boundary condition.
+**Secure record.** Quantum calculations use a time parameter successfully, while relativistic observations use proper time along physical clocks successfully. Thermodynamics and records also impose a strong directionality on observed history.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The ontology separates ordering from experienced time. Absolute ordering governs causal updates, while observer proper time is a recovered assembly clock variable. This removes the need to make observer time fundamental while preserving why physical records are ordered and why clocks can disagree.
+**Core non-closure.** Canonical gravity can bury time inside constraint equations, while quantum theory presumes an external time parameter. Cosmology also asks why time has a direction and why the universe appears to have a special temporal boundary condition.
 
-**Test advice.** The chapter should connect absolute ordering, proper-time recovery, quantum phase evolution, and thermodynamic record growth. It should not rely on philosophical wording alone.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The ontology separates ordering from experienced time. Absolute time orders updates in the Euclidean void, while observer proper time is a recovered clock variable of assemblies embedded in the Noether sea. This preserves ordered physical records while explaining why clocks can disagree.
+
+**Resolution tests.** The chapter should connect absolute ordering, proper-time recovery, quantum phase evolution, and thermodynamic record growth in one compact derivation. A purely philosophical statement is insufficient.
 
 **Claim level.** `direction-ready` until the clock, phase, and entropy routes are shown in one compact derivation.
+
+###### Trans-Planckian Censorship And Swampland Comparisons
+
+**Secure record.** Low-energy effective theories work across vast ranges, but quantum-gravity programs often ask whether apparently consistent effective theories can actually arise from a consistent ultraviolet completion. Swampland conjectures and the Trans-Planckian Censorship Conjecture are influential comparison tools, not accepted empirical facts.
+
+**Core non-closure.** The open question is whether these restrictions are deep features of quantum gravity or artifacts of particular string-theoretic and holographic assumptions. They become cosmologically important when they constrain inflation, stable de Sitter-like behavior, or the promotion of sub-Planckian modes into classical perturbations.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Trans-Planckian censorship becomes a cutoff-derivation target rather than an automatic conclusion. Sub-assembly excitations should not become arbitrary classical modes if nested shell braid structure imposes minimum curvature and phase-coherence constraints. A useful swampland analogue would be an allowed-effective-theory region derived from assembly consistency, not imported as string ontology.
+
+**Resolution tests.** A robust detection of inflationary signatures that demand trans-Planckian mode stretching with no viable assembly-scale cutoff would falsify this route. A successful derivation would recover the allowed effective window from native assembly and Noether sea conditions.
+
+**Claim level.** `appendix-watch` as a comparison framework, with possible promotion if the cutoff proof becomes explicit.
 
 ###### Strong-Field Gravity
 
 ###### Black-Hole Singularities
 
-**Problem.** Classical general relativity predicts singularities where curvature invariants diverge and ordinary evolution ends. The open problem is whether this marks a real physical endpoint or a failure of the effective description.
+**Secure record.** Classical black-hole solutions, compact-object dynamics, accretion signatures, and gravitational-wave ringdowns are powerful effective descriptions. The strong-field evidence must be preserved.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Singularities are treated as failures of the effective metric description, not as substrate endpoints. Strong-field collapse must be expressed through nested shell braid dynamics, terminal alignment, causal-delay ledgers, topology changes, medium loading, and release channels. The endpoint is a boundary-condition and continuation problem in the native variables.
+**Core non-closure.** Classical general relativity predicts singularities where curvature invariants diverge and ordinary evolution ends. The question is whether this marks a real physical endpoint or a failure of the effective metric description.
 
-**Test advice.** Use horizon-scale observables, ringdown, compact-object merger remnants, possible echoes or null results, accretion response, and strong-field simulations. The key test is whether the native boundary conditions close energy, momentum, angular momentum, and event history without a hidden sink.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Singularities are treated as failures of the effective metric description, not as substrate endpoints. Strong-field collapse must be expressed through nested shell braid dynamics, terminal alignment, causal-delay ledgers, topology changes, medium loading, and release channels. The endpoint is a boundary-condition and continuation problem in native variables.
+
+**Resolution tests.** Use horizon-scale observables, ringdown, compact-object merger remnants, echoes or null results, accretion response, and strong-field simulations. The key test is whether native boundary conditions close energy, momentum, angular momentum, and event history without a hidden sink.
 
 **Claim level.** `architecture-ready`, but proof depends on terminal-alignment and strong-field continuation packets.
 
 ###### Big Bang Singularity And One-Time Origin
 
-**Problem.** Standard cosmology extrapolates to an early hot dense state, but the singular origin and initial-condition selection remain unresolved.
+**Secure record.** The hot early universe accounts for the CMB, light-element abundances, early plasma physics, and large-scale structure constraints. The success of early-universe records is not optional.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The paper should avoid treating the Big Bang as creation from nothing. The architectural route is a high-density transition in the Noether sea and assembly ledger: redshift, thermalization, expansion-like observer variables, and early structure emerge from a substrate state change rather than an absolute beginning of spacetime.
+**Core non-closure.** Standard cosmology extrapolates to an early hot dense state, but the singular origin, low-entropy initial condition, and one-time creation reading remain unresolved.
 
-**Test advice.** The chapter must preserve CMB blackbody constraints, acoustic peaks, BBN abundances, time dilation in light curves, and large-scale structure. Any alternative origin story that loses those records is excluded.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The paper should avoid treating the Big Bang as creation from nothing. The route is a high-density transition in the Noether sea and assembly ledger: redshift, thermalization, expansion-like observer variables, and early structure emerge from a substrate state change rather than an absolute beginning of spacetime.
+
+**Resolution tests.** The chapter must preserve CMB blackbody constraints, acoustic peaks, BBN abundances, time dilation in light curves, and large-scale structure. Any alternative origin story that loses those records is excluded.
 
 **Claim level.** `direction-ready`, because the cosmology transfer-function and early-state ledger still need quantitative closure.
 
 ###### Cosmic Censorship And Cauchy-Horizon Continuation
 
-**Problem.** Strong-field solutions can expose singularities or produce horizons beyond which deterministic prediction becomes unstable. The open problem is whether physical collapse protects deterministic evolution.
+**Secure record.** Classical solutions reveal real mathematical pressure in strong-field evolution, and numerical relativity shows that physically relevant collapse often forms horizons.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The native question is not whether the metric hides a singularity; it is whether the assembly and event-ledger dynamics maintain admissible continuation. Censorship becomes a statement about allowed boundary conditions, terminal alignments, and causal-root updates.
+**Core non-closure.** Strong-field solutions can expose singularities or produce horizons beyond which deterministic prediction becomes unstable. The open problem is whether physical collapse protects deterministic evolution.
 
-**Test advice.** Use merger simulations, near-extremal compact-object constraints, stability of inner-horizon analogues, and failure-mode ledgers. The falsifier is an allowed native evolution that produces incompatible observer records.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The native question is not whether the metric hides a singularity. It is whether assembly and event-ledger dynamics maintain admissible continuation. Censorship becomes a statement about allowed boundary conditions, terminal alignments, and causal-root updates.
+
+**Resolution tests.** Use merger simulations, near-extremal compact-object constraints, stability of inner-horizon analogues, and failure-mode ledgers. The falsifier is an allowed native evolution that produces incompatible observer records.
 
 **Claim level.** `direction-ready`.
 
 ###### Black-Hole Information And Entropy
 
-**Problem.** Semiclassical black holes appear to radiate thermally, creating tension between unitary quantum evolution, horizon entropy, and information recovery.
+**Secure record.** Semiclassical Hawking radiation, black-hole thermodynamics, holographic consistency pressure, Page-curve arguments, and horizon entropy all point to a real information-accounting constraint. These results must be treated as high-value comparison mathematics and recovery pressure.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Information is not stored in an abstract wavefunction outside the event ledger. It is carried by path history, causal roots, horizon-scale boundary states, terminal alignment classes, radiation events, and medium updates. Entropy is a count of admissible records or alignments at the relevant boundary, not proof of fundamental information loss.
+**Core non-closure.** Hawking evaporation appears thermal, while quantum unitarity demands that information not be destroyed. If information escapes, one must explain where it is stored, how it is encoded in radiation, and why the local semiclassical horizon description remains valid or only approximate.
 
-**Test advice.** The chapter should ask for a counting scheme, a release-channel grammar, and a Page-curve-compatible or Page-curve-replacing observable story. It should track energy, momentum, angular momentum, recoil, and record provenance in the same ledger.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Information is not stored in an abstract wavefunction outside the event ledger. It is carried by path history, causal roots, horizon-scale boundary states, terminal alignment classes, radiation events, Noether sea updates, and release-channel ledgers. Entropy is a count of admissible records or alignments at the relevant boundary, not proof of fundamental information loss.
+
+**Resolution tests.** The chapter should supply a counting scheme, a release-channel grammar, and a Page-curve-compatible or Page-curve-replacing observable story. It should track energy, momentum, angular momentum, recoil, and record provenance in the same ledger. Island and replica-wormhole results remain comparison pressure, not native ontology.
 
 **Claim level.** `architecture-ready`, with a clear theorem burden for entropy counting and release channels.
 
 ###### Gravitational Waves And Compact-Binary Radiation
 
-**Problem.** Gravitational waves are well described by general relativity, but a deeper theory must explain why the effective wave description works and how radiation reaction arises from the substrate.
+**Secure record.** Binary pulsar decay and LIGO/Virgo/KAGRA waveforms strongly support general relativity in the radiative strong-field regime.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Gravitational waves are effective metric disturbances sourced by changes in assembly configuration and event-ledger updates. Radiation reaction is not a separate add-on; it is the observer-level signature of energy, momentum, angular momentum, recoil, and Noether sea response.
+**Core non-closure.** A deeper theory must explain why the effective wave description works and how radiation reaction arises from substrate dynamics rather than being bolted on as a separate rule.
 
-**Test advice.** Use binary pulsar decay, LIGO/Virgo/KAGRA waveform phase, propagation speed constraints, polarization limits, ringdown, and multi-messenger timing. The chapter should treat agreement with general relativity as a recovery requirement, not as optional.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Gravitational waves are effective metric disturbances sourced by changes in assembly configuration and event-ledger updates. Radiation reaction is the observer-level signature of energy, momentum, angular momentum, recoil, and Noether sea response.
+
+**Resolution tests.** Use binary pulsar decay, waveform phase, propagation speed constraints, polarization limits, ringdown, recoil, and multi-messenger timing. Agreement with general relativity is a recovery requirement, not an optional analogy.
 
 **Claim level.** `architecture-ready` as a recovery chapter.
 
 ###### Compact-Star Support And Dense-Matter Response
 
-**Problem.** Neutron-star interiors, maximum masses, tidal deformabilities, and dense-matter equations of state remain uncertain.
+**Secure record.** Neutron-star masses, radii, tidal deformabilities, cooling behavior, glitches, and merger remnants provide a dense-matter laboratory that current nuclear and relativistic modeling already constrains strongly.
+
+**Core non-closure.** Neutron-star interiors, maximum masses, phase transitions, and dense-matter equations of state remain uncertain.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Dense compact matter becomes a pressure-loading and medium-response problem. The Noether sea, branch packing, nuclear binding, and pressure-dependent constitutive response must explain how assemblies support dense configurations without treating mass as a primitive property of architrino primitives.
 
-**Test advice.** Use pulsar masses, NICER radius constraints, tidal deformability from mergers, cooling curves, glitch behavior, and nuclear benchmarks. The falsifier is a dense-matter response law that cannot connect nuclear binding and compact-star support.
+**Resolution tests.** Use pulsar masses, NICER radius constraints, tidal deformability from mergers, cooling curves, glitch behavior, heavy-ion nuclear benchmarks, and nuclear binding data. The falsifier is a dense-matter response law that cannot connect nuclear binding and compact-star support.
 
 **Claim level.** `direction-ready` until pressure coefficients and nuclear closure mature.
 
@@ -77208,101 +77257,137 @@ The paper should include a chapter only when the answer can be stated in four la
 
 ###### Dark Matter And Missing Mass
 
-**Problem.** Galaxy rotation curves, lensing, clusters, and structure formation imply more gravitating influence than visible matter supplies. Particle dark matter has not been directly detected.
+**Secure record.** Galaxy rotation curves, cluster dynamics, gravitational lensing, the Bullet Cluster class, CMB acoustic structure, and structure formation all show extra gravitating influence beyond visible baryons.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The main route is not to insert a new invisible particle by default. Missing mass is treated as a combined Noether sea response, effective metric, assembly distribution, dark-sector candidate, and structure-growth problem. The paper can present dark matter as a stress test for whether one medium-response architecture can reproduce lensing, dynamics, and growth.
+**Core non-closure.** The gravitational evidence is strong, but the ontic identity of the responsible component remains unknown. WIMPs, axions, sterile neutrinos, primordial black holes, self-interacting dark sectors, and modified-gravity responses each explain part of the evidence but none has closed all scales decisively.
 
-**Test advice.** Use rotation curves, radial acceleration relation data, weak lensing, cluster collisions, CMB constraints, dwarf galaxies, and direct-detection null results. The model must not fit rotation curves while failing lensing or early-universe structure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Missing mass is treated as a combined Noether sea response, effective metric, assembly distribution, dark-sector candidate, and structure-growth problem. Stable neutral assemblies could supply collisionless-matter-like behavior, while a separate elastic-response channel could supply MOND-like low-acceleration behavior. The paper should present dark matter as a stress test for whether one medium-response architecture can reproduce lensing, dynamics, and growth.
+
+**Resolution tests.** Use rotation curves, radial acceleration relation data, weak lensing, cluster collisions, CMB constraints, dwarf galaxies, small-scale structure, and direct-detection null results. The model must not fit rotation curves while failing lensing or early-universe structure. A scale-dependent transition test should distinguish neutral assemblies, elastic response, and constrained hybrids.
 
 **Claim level.** `architecture-ready` for the route, `direction-ready` for quantitative closure.
 
 ###### Galaxy Rotation And The Radial Acceleration Relation
 
-**Problem.** Galaxy rotation curves and acceleration relations show regularities that are not obviously predicted from visible matter in the standard dark-matter picture.
+**Secure record.** Galaxy rotation curves and the radial acceleration relation show regular baryon-linked patterns that remain informative even when embedded in dark-matter halo modeling.
+
+**Core non-closure.** The standard dark-matter picture can fit many galaxies, but the tightness and scale behavior of the baryonic relation create pressure for a deeper response law.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is the cleanest dark-sector test for medium-response behavior. Visible baryonic assemblies load the Noether sea; the effective metric response changes orbital dynamics. The architecture should explain why local baryonic distribution and large-scale environment both matter.
 
-**Test advice.** Use SPARC-like rotation-curve data, low-surface-brightness galaxies, dwarf spheroidals, galaxy clusters, and lensing maps. The falsifier is a baryonic response law that cannot scale across these systems with one response grammar.
+**Resolution tests.** Use SPARC-like rotation-curve data, low-surface-brightness galaxies, dwarf spheroidals, galaxy clusters, and lensing maps. The falsifier is a baryonic response law that cannot scale across these systems with one response grammar.
 
 **Claim level.** `architecture-ready` as a test chapter.
 
 ###### Dark Energy And Late Cosmic Acceleration
 
-**Problem.** Supernovae, BAO, CMB inference, and structure data imply late accelerated expansion in the standard model, usually represented by dark energy or a cosmological constant.
+**Secure record.** Type Ia supernovae, BAO, CMB distance inference, weak lensing, and growth data imply late-time acceleration in the standard model. Current survey pipelines are strong enough to isolate a genuine residual problem.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Late acceleration becomes a question about redshift, clock transport, Noether sea evolution, and distance inference. The paper should not merely replace dark energy with a slogan. It should ask whether the same medium variables that affect clocks, rulers, null paths, and structure growth also shift the inferred expansion history.
+**Core non-closure.** The unresolved point is not whether acceleration is inferred, but why the effective component has its observed magnitude and near-$w=-1$ behavior without a persuasive microphysical account. Vacuum energy, quintessence, coupled sectors, and infrared modifications of gravity remain underdetermined by background expansion alone.
 
-**Test advice.** Use supernova light-curve time dilation, BAO, CMB distance priors, cosmic chronometers, weak lensing, and growth data. The architecture must preserve the successful distance ladder while offering discriminating residuals.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Late acceleration becomes a question about redshift, clock transport, Noether sea evolution, source history, nested shell braid relaxation, and distance inference. The Euclidean void does not expand. The observer-facing quantities $a(t)$, $H(t)$, and $w(z)$ are effective summaries of medium evolution, transport, and clock-rate comparison.
+
+**Resolution tests.** Use supernova light-curve time dilation, BAO, CMB distance priors, cosmic chronometers, weak lensing, growth data, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency. The architecture must preserve the successful distance ladder while offering discriminating residuals.
 
 **Claim level.** `direction-ready` until a transfer-function model exists.
 
 ###### Cosmological Constant And Vacuum Catastrophe
 
-**Problem.** Quantum field estimates of vacuum energy do not naturally match the tiny observed cosmological constant. The mismatch is one of the largest scale-separation problems in physics.
+**Secure record.** Quantum field theory and general relativity are each successful in their tested domains, and cosmological data constrain a tiny effective late-time stress signal.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural answer is level separation. Mode bookkeeping, continuum excess, boundary-sensitive effects, and observer-level vacuum language should not be promoted into a literal gravitating substrate energy density. The Noether sea response is a constitutive object, not a naive sum over field modes.
+**Core non-closure.** Field-theoretic zero-point estimates overshoot the observed dark-energy scale by an enormous factor. The unresolved issue is why vacuum-energy bookkeeping in field theory fails so badly when coupled to gravity, and why the large-scale curvature source is tiny but nonzero instead of naturally huge or exactly absent.
 
-**Test advice.** Use Casimir-style boundary effects, radiative corrections, cosmological expansion constraints, and weak-field gravity. The chapter should distinguish measured boundary phenomena from unrestricted vacuum-energy ontology.
+**Standard repairs.** Supersymmetric cancellations, sequestering, unimodular gravity, anthropic landscape arguments, and modified-gravity decoupling schemes each reduce part of the pressure, but none is widely accepted as a clean mechanism rather than a relocation of the fine-tuning.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The architectural answer is level separation. Mode bookkeeping, continuum excess, boundary-sensitive effects, and observer-level vacuum language should not be promoted into a literal gravitating substrate energy density. The Noether sea response is a constitutive object, not a naive sum over field modes. The hierarchy becomes a quantitative shielding target: inner and middle binary structure must suppress effective large-scale exposure while preserving successful low-energy field calculations.
+
+**Resolution tests.** Use Casimir-style boundary effects, radiative corrections, cosmological expansion constraints, weak-field gravity, and any derived exposure rule for the slow sector. The chapter should distinguish measured boundary phenomena from unrestricted vacuum-energy ontology.
 
 **Claim level.** `architecture-ready` conceptually, `direction-ready` quantitatively.
 
-###### The $H_0$ And $S_8$ Tensions
+###### The Hubble Tension
 
-**Problem.** Late-universe and early-universe inferences of the Hubble constant disagree, and weak-lensing/structure measures can prefer lower clustering amplitude than CMB-inferred values.
+**Secure record.** Early-universe inference from the CMB and late-universe distance-ladder measurements currently prefer different values of $H_0$ beyond what many analyses expect from known uncertainties.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These tensions are ideal transfer-function tests. If redshift, clock transport, Noether sea evolution, and structure growth are all projections of one substrate, then disagreements between early and late inference methods may reveal missing observer-level variables rather than new independent components.
+**Core non-closure.** The open question is whether the discrepancy comes from hidden systematics, an incorrect sound-horizon calibration, or genuinely new physics linking early and late cosmology. Early dark energy, additional relativistic species, interacting dark sectors, modified recombination, and recalibration attempts all face BAO, BBN, CMB, and structure constraints.
 
-**Test advice.** Use Cepheids, TRGB, strong-lens time delays, supernovae, BAO, CMB, cosmic chronometers, weak lensing, cluster counts, and redshift-space distortions. The chapter should demand a joint fit, not isolated relief of one tension.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The Hubble tension is a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders sample different outer-layer relaxation and clock calibration.
+
+**Resolution tests.** Use Cepheids, TRGB, strong-lens time delays, megamasers, supernovae, BAO, CMB, cosmic chronometers, local-flow maps, and environment-linked residuals. The same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, and bulk-flow residuals without tuning each dataset independently.
 
 **Claim level.** `architecture-ready` as a diagnostic chapter; quantitative status remains `direction-ready`.
 
+###### The $S_8$ Structure-Growth Tension
+
+**Secure record.** Weak-lensing and galaxy-clustering surveys often prefer lower late-time structure amplitude than CMB-inferred $\Lambda\mathrm{CDM}$ fits. The signal is modest and survey-sensitive but physically important because it tests growth, not only background expansion.
+
+**Core non-closure.** The missing closure is whether the discrepancy reflects subtle survey systematics, baryonic modeling errors, massive neutrinos, dark-sector interactions, or modified gravity.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The $S_8$ tension is a late-time mismatch between baryonic Noether braid assemblies and a partially decoupled dark-assembly sector in the Noether sea. If dark assemblies exchange momentum through deformation-wave channels weakly coupled to baryonic curvature, structure growth can stall relative to $\Lambda\mathrm{CDM}$ even when the background expansion matches early data.
+
+**Resolution tests.** Use weak lensing, galaxy clustering, cluster counts, redshift-space distortions, CMB lensing, baryonic feedback controls, and redshift-dependent growth maps. A precise lensing+clustering dataset showing scale-independent growth consistent with standard gravity across the predicted dark-sector drag window would falsify the proposal.
+
+**Claim level.** `direction-ready`, with strong value as a transfer-function test.
+
 ###### Inflation, Horizon, And Flatness Problems
 
-**Problem.** Inflation explains horizon, flatness, and primordial perturbation puzzles, but its mechanism, initial conditions, and model space remain unsettled.
+**Secure record.** Inflation explains the horizon and flatness problems and organizes the nearly scale-invariant, nearly Gaussian CMB perturbation spectrum. Tensor bounds, scalar tilt, non-Gaussianity constraints, and reheating uncertainty all remain informative.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The paper can treat inflation as an effective comparison framework rather than a required ontology. Horizon and flatness become early-state connectivity, thermalization, causal-history, and Noether sea transition problems. The architectural question is what native mechanism produces the observed uniformity and perturbation spectrum.
+**Core non-closure.** The particle identity of the inflating sector, the shape of the potential $V(\phi)$, the energy scale, initial conditions, and reheating history remain unsettled. Competing scenarios can mimic some signatures.
 
-**Test advice.** Use CMB acoustic peaks, spectral index, non-Gaussianity, tensor bounds, spatial curvature, and large-angle anomalies. The paper should avoid claiming inflation is refuted unless the native early-state model recovers the data.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The paper can treat inflation as an effective comparison framework rather than a required ontology. Horizon and flatness become early-state connectivity, thermalization, causal-history, and Noether sea transition problems. A candidate stronger route interprets inflation-like behavior as rapid Noether sea disturbance and relaxation driven by maximal-curvature cores, but that mechanism remains a proof target until it recovers the perturbation spectrum and reheating record.
+
+**Resolution tests.** Use CMB acoustic peaks, scalar spectral index, non-Gaussianity, tensor bounds, spatial curvature, reheating constraints, and large-angle anomalies. The paper should avoid claiming inflation is refuted unless the native early-state model recovers the data.
 
 **Claim level.** `direction-ready`.
 
 ###### CMB Origin, Blackbody Preservation, And Acoustic Peaks
 
-**Problem.** Any alternative cosmology must recover the CMB's blackbody spectrum, anisotropy structure, polarization, acoustic peaks, and lensing records.
+**Secure record.** The CMB blackbody spectrum, anisotropies, polarization, acoustic peaks, damping tail, and lensing records are among the hardest constraints on any cosmology.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The CMB is the hard cosmology gate. It must be represented as a thermalized radiation and structure record from an early Noether sea and assembly state, not as decorative evidence attached after the fact. Acoustic features become transfer-function constraints on the same variables used for redshift and growth.
+**Core non-closure.** Any alternative cosmology must recover the CMB's thermodynamic and perturbation records without weakening them into decorative evidence.
 
-**Test advice.** Use FIRAS blackbody limits, Planck/ACT/SPT spectra, polarization, lensing, damping tail, and cross-correlations. A chapter can be readable, but the test standard must be severe.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The CMB is the hard cosmology gate. It must be represented as a thermalized radiation and structure record from an early Noether sea and assembly state. Acoustic features become transfer-function constraints on the same variables used for redshift, growth, dark-sector response, and observer clock maps.
+
+**Resolution tests.** Use FIRAS blackbody limits, Planck/ACT/SPT spectra, polarization, lensing, damping tail, and cross-correlations. A chapter can be readable, but the test standard must be severe.
 
 **Claim level.** `architecture-ready` as a gate, `direction-ready` for the solution.
 
 ###### BBN And The Lithium Problem
 
-**Problem.** Big Bang nucleosynthesis largely succeeds for light elements, but lithium abundance remains a tension and any new cosmology must preserve the successful abundances.
+**Secure record.** Big Bang nucleosynthesis largely succeeds for deuterium, helium-4, and other light-element constraints when combined with the CMB baryon density.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Light-element abundances are early reaction-ledger records. The architecture should connect expansion-like cooling, reaction rates, neutron/proton balance, baryon density, and nuclear binding without using BBN as a loose metaphor.
+**Core non-closure.** Lithium-7 is overpredicted relative to metal-poor halo-star observations. The unresolved point is whether lithium is depleted astrophysically after formation or whether the early-universe nuclear and transport story is missing a selective lithium-destruction mechanism.
 
-**Test advice.** Use deuterium, helium-4, helium-3, lithium-7, baryon-density constraints, nuclear cross sections, and stellar depletion systematics. The lithium problem can be included as a narrow chapter only if the reaction and depletion routes are kept distinct.
+**Standard repairs.** Stellar mixing and diffusion, revised nuclear cross sections, decaying-particle injections, and inhomogeneous nucleosynthesis scenarios remain incomplete because they tend to damage another successful part of BBN or stellar modeling.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Light-element abundances are early reaction-ledger records. A candidate route is assembly-mediated neutron transport through Noether sea channels that selectively changes late lithium destruction without spoiling deuterium and helium. This must remain a mechanism target, not a completed solution.
+
+**Resolution tests.** Use deuterium, helium-4, helium-3, lithium-7, baryon-density constraints, nuclear cross sections, stellar depletion systematics, and possible lithium inhomogeneity signatures.
 
 **Claim level.** `direction-ready`.
 
 ###### Structure Formation, Early Galaxies, And High-Redshift Quasars
 
-**Problem.** Large-scale structure is broadly successful in Lambda-CDM, but early massive galaxies, quasars, and small-scale structure remain active pressure points.
+**Secure record.** Large-scale structure is broadly successful in $\Lambda\mathrm{CDM}$, and surveys give detailed halo, galaxy, lensing, and quasar records.
+
+**Core non-closure.** Early massive galaxies, rapid quasar growth, small-scale structure, and baryonic feedback continue to exert pressure. Some high-redshift claims are data-reduction sensitive and should not be overpromoted.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Structure formation is a Noether sea, assembly growth, and transfer-function problem. The same variables used for redshift, CMB, lensing, and dark-sector response must predict when bound structures form and how they grow.
 
-**Test advice.** Use galaxy surveys, CMB lensing, weak lensing, Lyman-alpha forests, high-redshift JWST populations, quasar growth records, halo mass functions, and small-scale structure. The chapter should separate data revisions from stable anomalies.
+**Resolution tests.** Use galaxy surveys, CMB lensing, weak lensing, Lyman-alpha forests, JWST high-redshift populations, quasar growth records, halo mass functions, and small-scale structure. Separate data revisions from stable anomalies.
 
 **Claim level.** `direction-ready`, with some `appendix-watch` material for rapidly changing high-redshift claims.
 
 ###### Cosmological Principle, Dipoles, And Large-Scale Flows
 
-**Problem.** The standard model assumes large-scale homogeneity and isotropy, but dipoles, bulk-flow claims, hemispherical asymmetries, and large structures keep testing the assumption.
+**Secure record.** Large-scale homogeneity and isotropy are powerful approximations, but dipoles, bulk-flow claims, hemispherical asymmetries, and large structures continue to test the assumption.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** A substrate theory can ask whether observer motion, Noether sea gradients, redshift transport, and survey selection create apparent anisotropies or reveal real large-scale state variables. The chapter should stay cautious because many signals are data-analysis sensitive.
+**Core non-closure.** The unresolved issue is whether apparent anisotropies reflect observer motion, survey selection, local structure, or real large-scale state variables.
 
-**Test advice.** Use CMB dipole, radio-galaxy/quasar dipoles, supernova anisotropy tests, peculiar velocity surveys, and survey masks. The main test is whether one anisotropy model predicts multiple datasets without post hoc selection.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** A substrate theory can ask whether observer motion, Noether sea gradients, redshift transport, and survey selection create apparent anisotropies or reveal actual medium gradients.
+
+**Resolution tests.** Use the CMB dipole, radio-galaxy/quasar dipoles, supernova anisotropy tests, peculiar velocity surveys, and survey masks. The main test is whether one anisotropy model predicts multiple datasets without post hoc selection.
 
 **Claim level.** `appendix-watch` unless a specific shared-gradient model is developed.
 
@@ -77310,479 +77395,133 @@ The paper should include a chapter only when the answer can be stated in four la
 
 ###### Quantum Measurement
 
-**Problem.** Standard quantum mechanics predicts probabilities but does not give a universally accepted physical account of measurement outcomes, collapse, and the emergence of definite records.
+**Secure record.** Quantum mechanics predicts interference, entanglement, spectra, scattering, and detector statistics with extraordinary precision. Decoherence explains why interference becomes inaccessible in many macroscopic settings.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Measurement is a detector-response and basin-selection process in a deterministic substrate. The apparatus is not external to the ontology; it is an assembly with thresholds, response kernels, path-history sensitivity, and record formation. Collapse is replaced by a physical transition into a stable recorded basin.
+**Core non-closure.** Unitary evolution and definite observed outcomes are both successful parts of practice, but the bridge between them remains conceptually incomplete. Decoherence alone does not select a unique outcome.
 
-**Test advice.** Use Stern-Gerlach, photon analyzers, interferometers, weak measurement, decoherence benchmarks, and detector-efficiency records. The chapter should recover ordinary probabilities while exposing where detector kernels enter.
+**Standard repairs.** Copenhagen-style update rules, objective collapse, Bohmian hidden variables, many-worlds branching, and decoherence-based readings each resolve one pressure while shifting cost to ontology, dynamics, or empirical accessibility.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Measurement is a detector-response and basin-selection process in a deterministic substrate. The apparatus is not external to the ontology; it is an assembly with thresholds, response kernels, path-history sensitivity, causal-wake coupling, and record formation. Collapse is replaced by transition into a stable recorded basin.
+
+**Resolution tests.** Use Stern-Gerlach, photon analyzers, interferometers, weak measurement, decoherence benchmarks, detector-efficiency records, and engineered macroscopic superposition tests. If macroscopic assembly environments preserve superpositions beyond predicted self-hit attractor thresholds, the account fails.
 
 **Claim level.** `architecture-ready`, with basin-measure proof burden.
 
 ###### Born Rule, Bell Tests, And No-Signaling
 
-**Problem.** Bell-test violations rule out broad classes of local hidden-variable theories, while quantum theory preserves no-signaling and uses Born-rule probabilities without deriving them from deeper dynamics.
+**Secure record.** Bell-test violations rule out broad classes of local hidden-variable theories, while quantum theory preserves no-signaling and uses Born-rule probabilities successfully.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is not a naive local hidden-variable model. The architecture uses pair provenance, path-history correlation, detector basins, source measures, and no-signaling constraints. Born weights should emerge from invariant or metastable measures over basins, while Bell correlations are reproduced through the shared preparation and response structure.
+**Core non-closure.** The Born rule is not derived from deeper dynamics in the standard formalism, and Bell correlations demand a careful account of preparation, correlation, and detector response.
 
-**Test advice.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. The chapter must show why the model does not allow controllable superluminal signaling.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is not a naive local hidden-variable model. It uses pair provenance, path-history correlation, detector basins, source measures, and no-signaling constraints. Born weights should emerge from invariant or metastable measures over basins, while Bell correlations are reproduced through shared preparation and response structure.
+
+**Resolution tests.** Use loophole-free Bell tests, CHSH values, analyzer-angle dependence, Malus' law, delayed-choice variants, detector efficiencies, and source statistics. The chapter must show why the model does not allow controllable superluminal signaling.
 
 **Claim level.** `architecture-ready`, with one of the hardest theorem burdens in the paper.
 
 ###### Entropy, Thermalization, And The Arrow Of Time
 
-**Problem.** Microscopic laws are often time-reversal symmetric while macroscopic systems show irreversible entropy increase. Cosmology also appears to require a special low-entropy past.
+**Secure record.** Thermodynamics, fluctuation-dissipation, irreversible detector records, blackbody radiation, and statistical mechanics all work within declared coarse-grainings and access windows.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Entropy is a basin-count, record-growth, and coarse-graining object over assembly dynamics. The arrow of time comes from causal ordering, path-history accumulation, medium updates, and stable record formation, not from an unexplained statistical postulate alone.
+**Core non-closure.** Microscopic laws are largely time-symmetric, yet macroscopic history exhibits a direction. Cosmology adds the Past-Hypothesis pressure: why was the early universe so low in entropy?
 
-**Test advice.** Use fluctuation-dissipation, Brownian motion, thermalization, blackbody radiation, irreversible detector records, and cosmological entropy accounting. The chapter should show how coarse-graining arises from native dynamics.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Entropy is a basin-count, record-growth, and coarse-graining object over assembly dynamics. The arrow of time comes from absolute ordering, path-history accumulation, Noether sea updates, wake-phase memory, and stable record formation. A finite subsystem admits ordinary thermodynamic entropy only after a measure, coarse-graining, and access window have been declared.
 
-**Claim level.** `architecture-ready`.
+**Resolution tests.** Use fluctuation-dissipation, Brownian motion, thermalization, blackbody radiation, irreversible detector records, and cosmological entropy accounting. A closed assembly system that exhibits macroscopic reversibility after large entropy production without external intervention would falsify the wake-memory irreversibility account.
+
+**Claim level.** `architecture-ready`, with low-entropy initial structure still `direction-ready`.
 
 ###### Photon Ontology And Electromagnetic Radiation
 
-**Problem.** Photons behave as quanta of electromagnetic radiation, but wave-particle language, emission, absorption, polarization, and single-photon interference still expose interpretive gaps.
+**Secure record.** Photons behave as quanta of electromagnetic radiation with well-tested energy, momentum, polarization, interference, emission, absorption, and scattering behavior.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is not a tiny classical bead; it is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The same chapter should connect blackbody radiation, interference, polarization, and emission/absorption.
+**Core non-closure.** Wave-particle language still mixes ontology with measurement vocabulary. A deeper theory must explain source, propagation, polarization, and detector response without treating the photon as a tiny classical bead or as a purely formal state.
 
-**Test advice.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The paper should separate source mechanism from carrier/channel family.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Radiation is an event-ledger and path-history process. A photon is a stable radiation transaction with source, propagation, polarization, detector response, and energy-momentum accounting. The canonical candidate ontology is a coaxial contra-rotating pro/anti planar pair, with channel details still under closure.
+
+**Resolution tests.** Use double-slit/Mach-Zehnder, single-photon detection, Malus' law, blackbody spectra, atomic spectra, synchrotron/bremsstrahlung, and QED correction benchmarks. The paper should separate source mechanism from carrier/channel family.
 
 **Claim level.** `architecture-ready`, with links to radiation and angular-momentum closure.
+
+###### The UV Catastrophe (Blackbody Divergence)
+
+**Secure record.** Planck's law resolves the historical blackbody divergence, and quantum theory accurately models thermal radiation. The modern lesson is not that blackbody physics remains unsolved, but that continuum mode counting fails outside its domain.
+
+**Core non-closure.** Classical equipartition plus continuum electromagnetic modes predicts ultraviolet divergence. In quantum field theory, analogous ultraviolet divergences reappear in loop integrals and vacuum-energy sums, requiring regularization and renormalization. These procedures work operationally, but they do not by themselves state what the microscopic high-frequency degrees of freedom are.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The UV catastrophe is evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies should impose a geometric cutoff at the maximal-curvature scale, with high-frequency excitations mapping to finite inner-binary configurations rather than arbitrarily small wavelengths.
+
+**Resolution tests.** A successful derivation must recover the Planck spectrum and show why finite-mode geometry supplies the correct saturation without becoming a post hoc quantization rule. It must also connect the blackbody lesson to QFT regularization and vacuum-energy exposure without erasing low-energy successes.
+
+**Claim level.** `architecture-ready` as a cutoff lesson, `direction-ready` as a derivation.
 
 ###### Standard Model And Particle Closure
 
 ###### Origin Of Mass, Higgs, And The Hierarchy Problem
 
-**Problem.** The Higgs mechanism explains electroweak symmetry breaking and particle mass terms within the Standard Model, but it does not explain the deeper origin of mass values, the pattern of masses, or the hierarchy between electroweak and higher scales.
+**Secure record.** The Higgs mechanism, Higgs couplings, electroweak precision tests, collider data, and Standard Model mass terms are real constraints. The Higgs mass is measured, not optional.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Mass is an assembly response, not a primitive property of architrino primitives. The route is branch geometry, exposure maps, Noether sea response, shielding, and energy-ledger accounting. The Higgs is treated as a recovered sector-level mechanism that must be matched, not as the final ontology.
+**Core non-closure.** The Standard Model explains how mass terms enter after electroweak symmetry breaking, but not the deeper origin of the mass values, the generation hierarchy, or why the Higgs scale is stable relative to much higher cutoff scales. Naturalness is an inference pressure, not an independent law, and the absence of expected low-energy stabilizing sectors weakens simple historical repairs.
 
-**Test advice.** Use known particle masses, Higgs couplings, electroweak precision tests, weak mixing, collider bounds, and parameter-ledger constraints. The chapter must not claim mass-map closure before branch constants and exposure maps are certified.
+**Standard repairs.** Supersymmetry, composite Higgs models, neutral naturalness, relaxion scenarios, and anthropic selection each soften the tuning pressure but lack decisive confirmation.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Mass is an assembly response, not a primitive property of architrino primitives. The route is branch geometry, exposure maps, Noether sea response, shielding, and energy-ledger accounting. Standard Model point particles become effective labels for Noether braid assemblies and their axial structures. The Higgs is treated as a recovered sector-level mechanism that must be matched, not as final ontology.
+
+**Resolution tests.** Use known particle masses, Higgs couplings, electroweak precision tests, weak mixing, collider bounds, and parameter-ledger constraints. The chapter must not claim mass-map closure before branch constants and exposure maps are certified.
 
 **Claim level.** `architecture-ready` for the conceptual route, `direction-ready` for numerical closure.
 
 ###### Flavor Generations And CKM/PMNS Mixing
 
-**Problem.** The Standard Model contains three generations of fermions and empirical mixing matrices, but the origin of the generation structure and mixing angles remains unexplained.
+**Secure record.** Three fermion generations, hierarchical masses, CKM mixing, PMNS mixing, rare decays, and CP violation are precise empirical targets.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Generations and mixing are routed to branch families, internal geometry, overlap integrals, weak-corridor exposure, and detector-level reconstruction. CKM and PMNS entries should be recovered from geometry and interaction provenance rather than inserted as arbitrary parameters.
+**Core non-closure.** The Standard Model accommodates fermion masses and mixings through Yukawa matrices but does not explain why there are three generations or why the mass and mixing patterns take their observed form.
 
-**Test advice.** Use quark masses, lepton masses, CKM/PMNS data, CP violation, neutrino oscillations, rare decays, and collider flavor constraints. The falsifier is an arbitrary matrix relabeling without branch-derived structure.
+**Standard repairs.** Horizontal symmetries, Froggatt-Nielsen textures, texture-zero ansatze, GUT relations, and compositeness ideas organize possibilities, but none has produced an accepted, parameter-economical derivation.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Generations and mixing are routed to branch families, internal geometry, overlap integrals, axial-frame relations, weak-corridor exposure, and detector-level reconstruction. Three generations are candidate stable assembly attractor families, with mass hierarchy arising from different coupling to the middle binary layer. CKM versus PMNS structure should follow from geometric overlap in quark versus lepton assemblies, not from arbitrary matrix insertion.
+
+**Resolution tests.** Use quark masses, lepton masses, CKM/PMNS data, CP violation, neutrino oscillations, rare decays, and collider flavor constraints. The falsifier is an arbitrary matrix relabeling without branch-derived structure.
 
 **Claim level.** `direction-ready`.
 
 ###### Neutrino Mass, Oscillations, And Sterile-Neutrino Questions
 
-**Problem.** Neutrinos oscillate, so they have mass and mixing, but absolute masses, ordering, CP violation, Dirac/Majorana status, and sterile-neutrino claims remain unsettled.
+**Secure record.** Solar, atmospheric, reactor, and accelerator oscillation experiments establish neutrino mass splittings and mixing. Kinematic, cosmological, and neutrinoless double-beta searches constrain the absolute scale and Majorana/Dirac status.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Neutrino behavior is a clean phase, path-history, weak-sector, and basin-measure test. Oscillation is routed to internal-state rotation over propagation history, while mass and mixing must be tied to branch geometry and weak exposure. Sterile-neutrino claims stay as watch items unless they become robust.
+**Core non-closure.** Neutrinos have mass, but their absolute scale, ordering, CP phase, and Dirac-versus-Majorana character remain unresolved. Sterile-neutrino claims remain unsettled and should not be imported as core architecture unless the evidence hardens.
 
-**Test advice.** Use solar, atmospheric, reactor, accelerator, beta-decay endpoint, neutrinoless double-beta, cosmological mass-sum, and short-baseline data. Keep oscillation closure separate from speculative sterile additions.
+**Standard repairs.** Tiny Dirac Yukawas, Majorana seesaw mechanisms, radiative mass models, sterile-neutrino extensions, and leptogenesis links organize the parameter space but lack decisive experimental closure.
 
-**Claim level.** `architecture-ready` for oscillation routing, `direction-ready` for mass origin and sterile status.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Neutrinos are treated as near-photon neutral pro/anti Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes over propagation history.
+
+**Resolution tests.** Use solar, atmospheric, reactor, accelerator, beta-decay endpoint, neutrinoless double-beta, cosmological mass-sum, short-baseline data, and long-baseline CP searches. A confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel; null results tighten that channel without proving the current geometry.
+
+**Claim level.** `architecture-ready` for oscillation routing, `direction-ready` for mass origin, Majorana status, and sterile status.
 
 ###### Matter-Antimatter Asymmetry
 
-**Problem.** The observable universe contains far more matter than antimatter. Standard Model CP violation appears insufficient for the observed baryon asymmetry.
+**Secure record.** The baryon-to-photon ratio from CMB and BBN records shows a matter-dominated universe. Standard Model CP violation is too small for the observed asymmetry under ordinary baryogenesis assumptions.
 
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is event provenance, branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. The paper should ask whether matter dominance is a substrate-selection and reaction-history outcome rather than a standalone baryogenesis patch.
+**Core non-closure.** The unresolved point is the source of the extra CP violation and nonequilibrium history needed to produce the observed asymmetry without ruining precision data.
 
-**Test advice.** Use CP violation, EDM bounds, baryon/lepton number constraints, neutrino CP phase, early-universe abundance records, and antimatter searches. The chapter should remain explicit about which standard Sakharov-style requirements are recovered, replaced, or reframed.
+**Standard repairs.** Electroweak baryogenesis, leptogenesis, Affleck-Dine scenarios, and other beyond-standard-model CP sources remain incomplete because the required ingredients have not been directly established.
 
-**Claim level.** `direction-ready`.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** The route is event provenance, branch chirality, weak-sector asymmetry, early-state boundary conditions, and reaction-ledger bias. Matter dominance should be treated as a Noether sea chiral-bias closure target, not as a primitive shortage of one architrino polarity. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent baryonic assemblies, while pro-oriented assemblies stabilize through layered neutral axes.
 
-###### QCD Confinement, Mass Gap, And Hadron Structure
-
-**Problem.** QCD explains strong interactions but confinement, the mass gap, and detailed hadron structure remain deep theoretical and computational problems.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Confinement is routed to branch topology, color exposure, allowed assemblies, energy ledgers, and residual-routing constraints. Hadron mass and structure should emerge from geometry and binding response rather than from primitive constituent masses.
-
-**Test advice.** Use lattice QCD benchmarks, hadron spectra, form factors, parton distribution functions, jets, nuclear binding, and exotic-hadron data. The chapter should treat QCD as a benchmark to recover in its tested domain.
-
-**Claim level.** `direction-ready`, high value but high proof cost.
-
-###### Gauge Structure And Coupling Constants
-
-**Problem.** Gauge symmetry organizes the Standard Model, but the origin of the gauge groups, coupling constants, charges, and anomaly cancellation remains unexplained.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Gauge structure should be recovered as a symmetry of allowed branch transformations, exposure maps, and observer-level bookkeeping. Charges are not arbitrary labels; they should correspond to stable transformation and response classes.
-
-**Test advice.** Use electroweak precision data, charge quantization, anomaly cancellation, running couplings, scattering cross sections, and collider limits. The proof burden is to recover the symmetry grammar rather than merely translate notation.
+**Resolution tests.** Use CP violation, EDM bounds, baryon/lepton number constraints, neutrino CP phase, early-universe abundance records, and antimatter searches. The chapter should remain explicit about which Sakharov-style requirements are recovered, replaced, or reframed.
 
 **Claim level.** `direction-ready`.
-
-###### Astrophysical Engines
-
-###### Core-Collapse Supernova Mechanism
-
-**Problem.** Core-collapse supernovae require detailed neutrino transport, hydrodynamics, magnetic fields, nuclear physics, and explosion asymmetries. The explosion mechanism is understood in broad terms but remains computationally and physically difficult.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is an event-ledger stress test: collapse, bounce, neutrino emission, shock revival, angular momentum, magnetic response, nucleosynthesis, remnant formation, and medium updates must close in one record. The architecture can offer a clean bookkeeping advantage if it connects compact-object support, weak reactions, and radiation.
-
-**Test advice.** Use neutrino burst records, gravitational waves from core collapse, light curves, remnant masses, explosion energies, asymmetries, and nucleosynthetic yields. The chapter should stay tied to observable ledgers.
-
-**Claim level.** `direction-ready`.
-
-###### Explosive Nucleosynthesis And The P-Nuclei Problem
-
-**Problem.** Many nucleosynthesis channels are understood, but some isotope families, including p-nuclei, require better source accounting and reaction-network closure.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Nucleosynthesis is a reaction-ledger problem. Source environment, temperature, density, nuclear binding, weak reactions, radiation fields, and ejecta history must be carried as one provenance record. The paper can present this as a natural extension of event-ledger thinking rather than a standalone astrophysical fix.
-
-**Test advice.** Use solar abundances, meteoritic records, supernova yields, kilonova yields, gamma-ray lines, and nuclear cross-section uncertainties. The falsifier is an isotope story that cannot identify a source environment and reaction path.
-
-**Claim level.** `direction-ready`.
-
-###### AGN Jets, Quasar Engines, ULXs, And Relativistic Outflows
-
-**Problem.** Relativistic jets and extreme accretion systems involve black-hole spin, magnetic fields, plasma, radiation, and feedback across huge scales. Many mechanisms are modeled but not fully derived from one ontology.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These systems are strong-field release and medium-response laboratories. The same boundary, event-ledger, angular-momentum, radiation, and Noether sea response grammar used for black holes should explain launch, collimation, variability, spectra, and feedback.
-
-**Test advice.** Use jet power, polarization, VLBI structure, time variability, accretion state transitions, spectra, neutrino associations, and host-environment feedback. The chapter should not outrun strong-field closure.
-
-**Claim level.** `direction-ready`.
-
-###### Fast Transients, Cosmic Rays, Coronal Heating, And Solar-Cycle Problems
-
-**Problem.** FRBs, ultra-high-energy cosmic rays, coronal heating, solar-cycle details, and related high-energy or plasma puzzles have active models but unresolved source, acceleration, or transport details.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These are useful stress tests for radiation, plasma, magnetic, and medium-response ledgers, but most are not main-paper solution chapters yet. They should be grouped as appendix candidates unless a particular case gains a native mechanism with a discriminating observable.
-
-**Test advice.** Use source localization, spectra, polarization, repetition statistics, composition, arrival directions, magnetic-field constraints, and time-domain surveys. Keep rapidly changing data claims out of the main thesis.
-
-**Claim level.** `appendix-watch`.
-
-###### Appendix And Exclusions
-
-###### Planetary, Stellar-Population, And One-Off Anomalies
-
-**Problem.** Astronomy lists include many narrower puzzles: planetary formation details, stellar initial mass function questions, Tabby's Star-like anomalies, solar-system residuals, the IBEX ribbon, and object-specific mysteries.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Most of these should not be sold as solved by a fundamental theory paper. They can be used as examples of how the ontology might discipline model-building, but they do not usually test the core architecture as directly as spacetime, quantum, Standard Model, strong-field, and cosmology problems.
-
-**Test advice.** Include only if a case touches a core mechanism: radiation ledger, medium response, angular momentum, structure formation, or source provenance. Otherwise leave it out.
-
-**Claim level.** `appendix-watch` or `exclude-for-now`.
-
-###### Fermi Paradox And Life-Distribution Questions
-
-**Problem.** The apparent absence of detected extraterrestrial civilizations is not a physics closure problem in the same sense as quantum gravity, dark matter, or measurement.
-
-**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Exclude from the paper unless the scope changes to astrobiology, observability, or civilization-detection priors. It does not currently have a native $\mathbb{A}\mathbb{A}\mathbb{A}$ solution architecture.
-
-**Test advice.** None for this paper.
-
-**Claim level.** `exclude-for-now`.
-
-###### Main-Body Candidate List
-
-The strongest first draft should probably contain these main chapters:
-
-1. Quantum gravity and the GR/QM split.
-2. Emergent metric and spacetime ontology.
-3. Lorentz invariance from a preferred substrate.
-4. Black-hole singularities.
-5. Black-hole information and entropy.
-6. Dark matter and galaxy rotation.
-7. Dark energy, cosmological constant, and transfer functions.
-8. The $H_0$ and $S_8$ tensions.
-9. CMB as the hard cosmology gate.
-10. Quantum measurement.
-11. Born rule, Bell tests, and no-signaling.
-12. Entropy and the arrow of time.
-13. Photon ontology and radiation.
-14. Origin of mass and the Higgs sector.
-15. Neutrino oscillations and mass routing.
-16. Flavor and mixing.
-17. QCD confinement and hadron structure.
-18. Supernovae and compact astrophysical engines.
-
-The first public version should be shorter than this. The best route is probably a 6-section paper with one or two high-confidence chapters per section, plus a table that lists the deferred chapters and their proof burdens.
-
-#### Unknowns and Paradoxes: Problem Map
-
----
-
-##### Overview
-
-This chapter maps unresolved problems in contemporary physics where predictive success coexists with mechanistic non-closure, ontological ambiguity, or cross-domain inconsistency.
-
-Its closest companion chapters are [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Hubble and $S_8$ Tensions](../../../../markdown/aaa/cosmology/hubble-s8-tensions.md), [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md), [Dark Energy](../../../../markdown/aaa/cosmology/dark-energy.md), [Measurement Ontology](../../../../markdown/aaa/quantum/measurement-ontology.md), and [Bell Theorem](../../../../markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md).
-
-The unit of analysis is the unresolved issue itself, whether it takes the form of an unknown, a paradox, a standing anomaly, or a deeper tension between otherwise successful frameworks. The purpose of the chapter is not to gather puzzles for their own sake. It is to separate three questions that are often run together:
-
-1. What empirical structure is already secure?
-2. What explanatory or ontological gap remains?
-3. What kind of closure would actually count as resolution?
-
-This distinction matters because many unresolved problems in physics are not failures of data or calculation. They are failures of interpretation, mechanism, cross-domain integration, or layer placement. A problem can therefore remain foundationally open even when the surrounding formalism is highly successful.
-
-From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, these issues function as diagnostic sites. Some are direct targets of substrate reinterpretation. Some are likely to remain as effective-level questions even after deeper ontology improves. Others may eventually turn out to be artifacts of over-inference from observational pipelines. The chapter is designed to keep those possibilities distinct.
-
-Paradoxes require the same layer discipline. A paradox is useful when it marks a mismatch among an empirical record, an effective formalism, and an ontological reading; it is not itself a replacement for a mechanism. In this chapter, a paradox becomes progress only after the secure record, the inherited formal move, and the unresolved substrate question are separated. Otherwise a counterintuitive exercise can train familiarity with a puzzle while leaving the closure burden untouched.
-
-###### Unknown/Paradox Entry Template (Unified)
-
-Use this template for each issue section.
-
-- **Issue**: full name of the unknown or paradox.
-- **Short Name**: compact label for scene/cross-reference use.
-- **Core Non-Closure**: exact unresolved contradiction or missing mechanism.
-- **Where It Appears**: theories, pipelines, and datasets where it manifests.
-- **What Still Works**: robust predictive and empirical content that must be preserved.
-- **What Is Unsettled**: ontological or mechanistic gap.
-- **Standard Repair Attempts**: dominant fixes in current literature.
-- **Why Repairs Remain Incomplete**: unresolved residue after standard repairs.
-- **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: targeted, partially clarified, redescribed, or still open.
-- **Transition Relevance**: migration value while legacy frameworks remain active.
-- **Long-Term Relevance**: likely fate as solved closure, standing caution, or substrate signpost.
-- **Falsifier / Closure Target**: concrete condition that would decisively resolve or reject the proposed account.
-
-Default prose flow for each issue section:
-
-1. **Overview**: compact statement of the issue and `Core Non-Closure`.
-2. **Where It Appears**: observational/theoretical footprint.
-3. **What Current Physics Gets Right**: preserved strengths.
-4. **What Remains Unresolved**: precise gap.
-5. **Standard Repairs**: accepted fixes and their limits.
-6. **Assessment from** $\mathbb{A}\mathbb{A}\mathbb{A}$: relocation/reinterpretation status.
-7. **What Would Count As Resolution**: explicit falsifier or closure target.
-
-Template conformance test protocol for each issue section:
-
-1. Confirm all template fields are explicitly addressed in prose.
-2. Confirm all seven prose-flow parts are present in order.
-3. Confirm at least one preserved success (`What Still Works`) is explicit.
-4. Confirm at least one concrete unresolved item is explicit.
-5. Confirm a concrete falsifier/closure target is stated.
-
-Chapter organization note:
-
-This chapter is a multi-level split: `##` thematic buckets and `###` issue entries. The thematic buckets provide problem families; the issue entries provide the actual unit-level analysis.
-
----
-
-##### Cosmology and Large-Scale Inference
-
-###### The Nature of Dark Energy
-
-**Issue:** The Nature of Dark Energy. **Short Name:** Dark Energy. **Core Non-Closure:** Late-time acceleration is well measured, but the mechanism behind the effective negative-pressure component is still underdetermined.
-
-**Overview:** The accelerated expansion of the universe implies the existence of a negative-pressure component dominating the energy budget. While the standard $\Lambda$ CDM model parameterizes this as a cosmological constant ($\Lambda$) with a static equation of state $w = -1$, the physical origin of this energy remains unknown. Distinguishing between a static vacuum energy, a dynamical scalar field (quintessence), or a modification of General Relativity on infrared scales is the primary objective of upcoming surveys like Euclid and LSST. If $w$ is found to evolve with time ($w_a \neq 0$) or cross the phantom divide ($w < -1$), it would necessitate a fundamental reconstruction of our gravitational theories.
-
-**Where It Appears:** Observationally, late-time acceleration is inferred from Type Ia supernovae luminosity distances, CMB+BAO distance ladders, and the integrated growth history encoded in large-scale structure. Within the Friedmann equations, acceleration requires an effective component with negative pressure, but the same data can be fit by very different physical mechanisms (vacuum energy, rolling scalar fields, or modified gravity that changes the relationship between geometry and stress-energy). The tension is sharpened by cross-checks of background expansion versus growth rate measurements (redshift-space distortions, weak lensing), which can distinguish a true cosmological constant from evolving dark energy or infrared gravity modifications. A second pressure comes from inference dependence: supernova standardization, BAO standard-ruler extraction, CMB-frame correction, and the Friedmann sum rule all assume a controlled relation between local observations and an effectively homogeneous, isotropic background.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The unresolved point is not whether acceleration exists, but why the inferred component has its observed magnitude and near-$w=-1$ behavior without a persuasive microphysical account.
-
-**Standard Repairs:** Standard repairs include a bare cosmological constant, dynamical dark-energy fields, coupled dark sectors, and infrared modifications of gravity. None has yet won because the same background data can be fit by more than one mechanism class.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats dark-energy phenomenology as an effective summary of Noether sea evolution, clock-rate comparison, and relaxation of nested shell braid assemblies in the Noether sea rather than as proof that the Euclidean void expands. On this path, high-curvature self-hit cores, source history, and outer-layer relaxation would have to generate the observed distance-redshift and growth signatures without introducing an unconstrained dark-pressure term. The strong version of this proposal remains a closure target: it must derive the measured near-$w=-1$ behavior, specify how local relaxation histories average into observer-facing cosmological parameters, and show which deviations in $w(z)$, supernova directionality, BAO anisotropy, and CMB/matter dipole consistency would diagnose medium evolution rather than a separate dark-energy substance. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require either a stable observational separation among vacuum energy, dynamical fields, and modified gravity, or a deeper derivation showing why only one of those possibilities can generate the measured expansion and growth history.
-
----
-
-###### The Identity of Dark Matter
-
-**Issue:** The Identity of Dark Matter. **Short Name:** Dark Matter. **Core Non-Closure:** Gravitational evidence for missing mass is strong, but the ontic identity of the responsible component remains unknown.
-
-**Overview:** Approximately 27% of the universe’s energy density consists of non-baryonic matter that interacts gravitationally but not electromagnetically. The "WIMP miracle," which posits Weakly Interacting Massive Particles arising from supersymmetry, has been the leading paradigm, but the silence from direct detection experiments (LZ, XENONnT) is deafening. The focus is broadening to a wider mass range and interaction spectrum, including ultralight axions, sterile neutrinos, macroscopic Primordial Black Holes, or complex "dark sectors" with their own gauge forces. The challenge is to identify the particle candidate or prove that the phenomena result from Modified Newtonian Dynamics (MOND).
-
-**Where It Appears:** The case for dark matter comes from galaxy rotation curves, cluster dynamics, gravitational lensing (including the Bullet Cluster separation of mass from baryons), and the acoustic peak structure in the CMB. Structure formation simulations require a cold, non-relativistic component to seed early growth, yet no Standard Model particle fits. Theoretical candidates span thermal relics (WIMPs), non-thermal axions, sterile neutrinos, and primordial black holes, each with distinct predictions for small-scale structure and astrophysical signatures. Direct detection, indirect searches, and collider probes continue to exclude large regions of parameter space, widening the gap between the gravitational evidence and particle-physics identification.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The non-closure lies in the jump from gravitational inference to microscopic identity. Current observations establish that something behaves like additional gravitating matter, but they do not yet single out a particle, compact-object, or medium-response mechanism.
-
-**Standard Repairs:** Standard repairs include WIMPs, axions, sterile neutrinos, primordial black holes, self-interacting dark sectors, and modified-gravity alternatives such as MOND-like responses. Each explains part of the evidence, but none yet provides decisive closure across all scales.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The working $\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation treats dark-sector evidence as a possible mixture of neutral Noether braid assemblies and scale-dependent Noether sea response. Stable neutral clusters could supply collisionless-matter-like behavior, with apparent mass understood as the externally exposed response of a closed internal causal-history ledger, shielding, and Noether sea coupling. A separate elastic-response channel could supply MOND-like behavior at low accelerations without replacing the assembly picture. The closure target is to calibrate three regimes without parameter rescue: neutral assemblies, elastic-response modification, and a constrained hybrid able to meet Bullet-Cluster, CMB, lensing, and small-scale-structure tests. The proposed falsifier should therefore be stated as a scale-dependent transition test: if lensing tomography and structure probes exclude the predicted transition pattern under the same parameter ledger, this dark-matter interpretation fails. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require either direct identification of the dark component, or a cross-scale demonstration that a non-particle mechanism reproduces rotation curves, lensing, cluster dynamics, and CMB structure without hidden parameter rescue.
-
----
-
-###### The Cosmological Constant Problem
-
-**Issue:** The Cosmological Constant Problem. **Short Name:** Cosmological Constant. **Core Non-Closure:** Quantum vacuum estimates overshoot the observed dark-energy scale by an enormous factor, with no accepted cancellation mechanism.
-
-**Overview:** This problem represents the most severe hierarchy issue in physics. Quantum Field Theory predicts that vacuum fluctuations contribute to the energy density of space, scaling with the fourth power of the effective cutoff mass. If this cutoff is the Planck scale, the calculated energy density is $10^{120}$ times larger than the observed value of dark energy. Reconciling this requires either an unprecedented degree of fine-tuning to cancel the radiative corrections or a mechanism (such as the anthropic landscape of String Theory or unimodular gravity) that decouples quantum vacuum energy from the spacetime curvature that drives expansion.
-
-**Where It Appears:** In quantum field theory, each field contributes a zero-point energy, and when these are summed up to a cutoff, the vacuum energy density is enormous; even using electroweak or QCD scales gives values far above observation. General Relativity, however, couples any vacuum energy to spacetime curvature, so the tiny observed $\Lambda$ demands cancellations between unrelated contributions at the level of 1 part in $10^{60}$ to $10^{120}$. Supersymmetry can cancel boson/fermion contributions but is broken at high scales, reintroducing the problem. Proposed resolutions include sequestering mechanisms, anthropic selection in a landscape, or modifying gravity so vacuum energy does not gravitate.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The unresolved issue is why vacuum-energy bookkeeping in field theory fails so badly when coupled to gravity, and why the effective large-scale curvature source is tiny but nonzero instead of naturally huge or exactly absent.
-
-**Standard Repairs:** Standard repairs include supersymmetric cancellations, sequestering, unimodular gravity, anthropic landscape arguments, and modified-gravity decoupling schemes. These reduce parts of the pressure, but none is widely accepted as a clean mechanism rather than a relocation of the fine-tuning.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A possible $\mathbb{A}\mathbb{A}\mathbb{A}$ reframing treats the cosmological constant problem as a mismatch between QFT zero-point bookkeeping and the actual degrees of freedom available in the Noether sea. Space is not an empty stage in this ontology; the relevant question is how nested shell braid assemblies in the Noether sea store, shield, recycle, and expose energy at the effective metric level. Absolute time, global polarity balance, and the field-speed limit $v=c_f$ may constrain how vacuum-like contributions enter outer-layer deformation, but this is not yet a completed solution. The hierarchy problem is reformulated as a quantitative shielding target: the theory must show whether inner and middle binary structure can suppress the effective large-scale energy density by the required $10^{120}$ factor while preserving successful low-energy field calculations. It must also supply an exposure rule for the slow sector, so that shielding does not erase the observed late-time stress signal. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require a theory that explains why vacuum contributions gravitate in exactly the suppressed way observed while still preserving the successful low-energy field theory calculations built on those same vacuum structures.
-
-###### The Hubble Tension
-
-**Issue:** The Hubble Tension. **Short Name:** Hubble Tension. **Core Non-Closure:** Early- and late-universe determinations of $H_0$ remain discrepant beyond the level expected from known uncertainties.
-
-**Overview:** A statistically significant discrepancy ($4\sigma - 6\sigma$) exists between the expansion rate of the universe ($H_0$) inferred from early-universe physics (CMB data via Planck) and local measurements (Cepheids/Supernovae via SH0ES). The early-universe value is lower ($\sim67$ km/s/Mpc) than the local value ($\sim73$ km/s/Mpc). This persistence suggests that the $\Lambda$ CDM model may be missing a crucial ingredient, such as Early Dark Energy (EDE), non-standard neutrino interactions, or a misunderstanding of the sound horizon scale at recombination, rather than merely systematic errors in calibration.
-
-**Where It Appears:** Early-universe inference of $H_0$ uses CMB anisotropies plus a calibrated sound horizon from standard physics, while late-universe measurements use distance ladders anchored by Cepheids or TRGB, plus time-delay lenses and megamasers. The disagreement persists across multiple teams and methodologies, suggesting either unaccounted systematics or new physics that shifts the sound horizon. Models like early dark energy, additional relativistic species, or interacting dark sectors can raise the inferred late-time $H_0$ while preserving other observables, but they are tightly constrained by BAO, BBN, and large-scale structure.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The open question is whether the discrepancy comes from hidden systematics, an incorrect sound-horizon calibration, or genuinely new physics linking early and late cosmology.
-
-**Standard Repairs:** Standard repairs include early dark energy, extra relativistic species, interacting dark sectors, modified recombination histories, and recalibration of the distance ladder. None has yet achieved broad acceptance without generating fresh tension elsewhere.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the Hubble tension as a possible comparison between sampling methods that probe different Noether sea environments and clock-rate histories, rather than as immediate evidence for two literal expansion rates of the Euclidean void. Early-universe inferences could average over a denser or less-relaxed Noether sea state, while local distance ladders could sample regions with different outer-layer relaxation and clock calibration. The required derivation is precise: the same Noether sea evolution model must reproduce the sound horizon, BAO ladder, supernova calibration, CMB-frame correction, bulk-flow residuals, and environment dependence without tuning each dataset independently. A useful falsifier would be the absence of the predicted environment-linked bifurcation and directional residuals after controlling for known survey systematics. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require convergence of the measurement pipelines after systematic control, or a new mechanism that raises one inference route while remaining consistent with BAO, CMB, BBN, and late-time structure data.
-
----
-
-###### The $S_8$ (Structure Growth) Tension
-
-**Issue:** The $S_8$ (Structure Growth) Tension. **Short Name:** S8 Tension. **Core Non-Closure:** Late-time structure growth appears slightly weaker than the value inferred from early-universe fits of $\Lambda$CDM.
-
-**Overview:** Distinct from the Hubble tension, this is a discrepancy in the "clumpiness" of the universe. Weak gravitational lensing surveys (like KiDS and DES) measure the parameter $S_8$ (a combination of matter density and amplitude of fluctuations $\sigma_8$) to be lower than the value predicted by Planck CMB data assuming $\Lambda$ CDM. This suggests that structure in the late universe has grown more slowly than expected. This could imply that General Relativity requires modification on cosmological scales, or that dark matter possesses self-interactions or decay channels that suppress structure formation.
-
-**Where It Appears:** The $S_8$ tension compares late-time structure growth inferred from weak lensing and galaxy clustering with the higher amplitude predicted by CMB-based $\Lambda$ CDM fits. Systematic uncertainties include shear calibration, photometric redshifts, intrinsic alignments, and baryonic feedback in small-scale modeling, but the discrepancy persists across multiple surveys. Physics explanations range from massive neutrinos suppressing growth to modified gravity or dark matter interactions that slow clustering. Because $S_8$ is sensitive to both background expansion and growth, it provides a complementary diagnostic to the Hubble tension.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The missing closure is whether the discrepancy reflects subtle survey systematics, baryonic modeling errors, or real new physics in gravity, neutrino mass, or dark-sector interactions.
-
-**Standard Repairs:** Standard repairs include improved lensing calibration, massive neutrinos, interacting or decaying dark matter, and modified-gravity growth suppression. They remain incomplete because the effect is modest, survey-sensitive, and tightly coupled to other cosmological constraints.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the $S_8$ tension reflects a late-time mismatch between baryonic Noether braid assemblies and a partially decoupled dark-assembly sector in the Noether sea. If dark assemblies exchange momentum through deformation-wave channels that are weakly coupled to baryonic curvature, structure growth stalls relative to $\Lambda\mathrm{CDM}$ even when the background expansion matches Planck. This shows up as suppressed small-scale clustering without requiring a change to early-time CMB physics. A falsifier would be a precise lensing+clustering dataset showing scale-independent growth consistent with standard gravity across the same redshift range where $\mathbb{A}\mathbb{A}\mathbb{A}$ predicts dark-sector drag. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require a stable joint lensing-and-clustering result that either removes the discrepancy under controlled systematics or isolates a specific growth-suppression mechanism consistent with the full cosmological dataset.
-
----
-
-###### The Mechanism of Inflation
-
-**Issue:** The Mechanism of Inflation. **Short Name:** Inflation. **Core Non-Closure:** Inflation explains several large-scale features of the universe, but the identity of the inflating sector and the details of reheating remain unknown.
-
-**Overview:** While inflation solves the horizon and flatness problems, the particle physics identity of the "inflaton" field is unknown. We lack a definitive model for the shape of the potential $V(\phi)$, the energy scale of inflation, and the reheating process that transferred energy from the inflaton to the Standard Model plasma. Furthermore, the detection of primordial B-mode polarization in the CMB—a "smoking gun" for gravitational waves generated during inflation—remains elusive. Without this, or a measurement of non-Gaussianities, we cannot distinguish between single-field slow-roll inflation and multifield or modified gravity alternatives.
-
-**Where It Appears:** Inflation is motivated by the observed near-flatness and homogeneity of the universe and by the nearly scale-invariant, Gaussian spectrum of CMB fluctuations. Data constrain the scalar spectral index and place strong upper bounds on tensor modes ($r$), yet these do not uniquely identify the inflaton potential or field content. Reheating details affect the mapping between model parameters and observables, and many models are sensitive to initial conditions or require fine-tuned potentials. Competing scenarios (ekpyrotic or bounce models) can mimic some signatures, so a clear discriminant remains missing.
-
-**What Current Physics Gets Right:** Current physics already gets something important right here: the survey pipeline, background expansion fits, lensing structure, and large-scale inference machinery are strong enough to isolate a genuine residual problem rather than a purely speculative gap.
-
-**What Remains Unresolved:** The unresolved issue is what field or medium actually drove the accelerated phase, how its potential or equivalent dynamics were structured, and how the universe exited into the observed hot plasma.
-
-**Standard Repairs:** Standard repairs include single-field slow-roll models, multifield variants, axion and plateau models, and alternatives such as ekpyrotic or bounce scenarios. The field remains open because current data constrain broad classes without uniquely selecting the mechanism.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, “inflation” is not driven by a separate inflaton field but by the dynamics of Noether braid assemblies inside supermassive black-hole cores. The interior of an SMBH maps naturally to an AdS-like region populated by maximal-curvature (self-hit) binaries; the event horizon is the AdS/CFT boundary where the middle binary layer locks to $v=c_f$ and mediates energy exchange with the exterior conformal spacetime. As infalling matter feeds the core, the inner binaries are compressed toward the smallest radii they can reach, pumping energy into the middle layer and forcing its radius to grow. Inside the black hole this manifests as coupled inflation/deflation cycles: outbound self-hit energy (inflation) paired with inbound partner energy (deflation), whereas outside the horizon the same energy release shows up as expansion versus contraction of ordinary Noether braid assembly distributions. Primordial inflation is therefore interpreted as the rapid outward propagation of Noether braid disturbances triggered when early-universe Planck cores were driven near their minimal size and then bled energy through the horizon, setting up the near-flat, homogeneous initial conditions without invoking a separate scalar potential $V(\phi)$. Gravitational-wave B-modes or non-Gaussian signatures would then trace back to episodic bursts of self-hit energy escaping the AdS core, providing a falsifiable handle on this black-hole-driven inflationary mechanism. Transition relevance is high because these anomalies will continue to be reported first in legacy cosmological parameters even if their eventual explanation is substrate-level. Long-term relevance is as a discriminator between genuine substrate structure and inference artifacts in large-scale cosmology.
-
-**What Would Count As Resolution:** Resolution would require a discriminating primordial signature, such as a robust tensor or non-Gaussian pattern, together with a model that connects that signature to a concrete reheating history.
-
----
-
-##### Particle and Field Microstructure
-
-###### The Hierarchy Problem (Naturalness)
-
-**Issue:** The Hierarchy Problem (Naturalness). **Short Name:** Hierarchy Problem. **Core Non-Closure:** The Higgs mass is light compared with the highest known cutoff scales, even though scalar masses are quadratically sensitive to ultraviolet physics.
-
-**Overview:** The mass of the Higgs boson (125 GeV) is orders of magnitude lighter than the Planck scale ($10^{19}$ GeV). Because scalar masses in the Standard Model are quadratically sensitive to high-energy quantum corrections, the Higgs mass should naturally be pulled up to the cutoff scale of the theory. The absence of "stabilizing" physics at the LHC—such as Supersymmetric partners (top squarks) or Composite Higgs resonances—suggests that the electroweak scale is technically unnatural. This forces physicists to reconsider the principle of naturalness or investigate relaxion mechanisms and cosmological selection effects.
-
-**Where It Appears:** The Higgs mass receives loop corrections from every heavy particle it couples to, with the top quark giving the largest effect. In a theory valid up to a high cutoff, these corrections are far larger than 125 GeV unless there is a symmetry or partner spectrum to stabilize them. Naturalness motivated predictions for top partners, SUSY, or composite Higgs states at the TeV scale, yet LHC searches have not found them. This forces either tuning of parameters, new symmetry structures (neutral naturalness, twin sectors), or acceptance that the weak scale is environmentally selected.
-
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The unresolved step is whether the weak scale is genuinely protected by hidden structure, environmentally selected, or simply not governed by the naturalness expectations imported from continuum field theory.
-
-**Standard Repairs:** Standard repairs include supersymmetry, composite Higgs models, neutral naturalness, relaxion scenarios, and anthropic selection. They each soften the tuning pressure, but the absence of decisive collider confirmation keeps the problem open.
-
-The methodological lesson is narrower than many historical repairs made it sound. Naturalness is an inference pressure, not an independent law: the absence of expected low-energy stabilizing sectors in tested regimes weakens the move from aesthetic simplicity to ontology, while leaving the Higgs-stability question as a real closure target.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** From the view of the Architrino Assembly Architecture, the Hierarchy Problem is an artifact of assuming point-like particles interacting in a continuous manifold down to the Planck scale ($10^{-35}$ m). In $\mathbb{A}\mathbb{A}\mathbb{A}$, SM point particles do not exist; all SM particles are based upon Noether braid assemblies (possibly fragmented), so the "loop integrals" of QFT correspond to physical summing of potentials and interactions with the background and are truncated at the Maximal Curvature Radius (inner binary radius, $r_{inner}$). The Higgs mass is therefore "natural" at the scale of the Noether braid assembly architecture because geometry screens interactions at that scale. Likewise, "virtual particles" in loops are transient couplings with the Noether sea, which has finite Noether braid density $\rho_{\text{NS}}$, so corrections cannot exceed the local energy density and the integral saturates naturally. In short, the Standard Model expectation $\delta m_H^2 \propto \Lambda^2$ is replaced by an Architrino-model cutoff $\delta m_H^2 \propto \int_{R_{min}}^{\infty} ...$ that is finite and fixed by geometry. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require either direct evidence for a protection mechanism or a deeper derivation showing why the Higgs scale is finite and stable without the symmetry-based rescue structures that naturalness originally predicted.
-
----
-
-###### The UV Catastrophe (Blackbody Divergence)
-
-**Issue:** The UV Catastrophe (Blackbody Divergence). **Short Name:** UV Catastrophe. **Core Non-Closure:** Continuum equipartition predicts ultraviolet divergence, but nature enforces a high-frequency cutoff behavior that classical reasoning does not explain.
-
-**Overview:** Classical physics predicted that a hot object should emit infinite energy at high frequencies: the Rayleigh-Jeans law grows as the square of frequency, so the integral over all modes diverges. This "ultraviolet catastrophe" is historically resolved by Planck's quantization, but it remains a canonical example of how continuum equipartition assumptions break at high frequency. The modern echo is that quantum field theory still relies on renormalization to control UV behavior, leaving the physical meaning of cutoffs and the ontological status of high-frequency degrees of freedom unsettled.
-
-**Where It Appears:** In classical statistical mechanics, each electromagnetic mode carries an average energy $kT$, and the density of modes scales as $\nu^2$, so the predicted energy density $u(\nu)$ diverges as $\nu \to \infty$. Planck introduced quantized energy packets $E=h\nu$, yielding the observed spectral falloff and finite total energy. In QFT, analogous UV divergences reappear in loop integrals and vacuum energy sums, requiring regularization and renormalization; while this procedure is successful, it is an algorithmic fix rather than a direct statement about the microscopic structure of spacetime.
-
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The unresolved residue is no longer the historical blackbody spectrum itself, but the general lesson about why continuum mode counting fails and what high-frequency degrees of freedom really are.
-
-**Standard Repairs:** Standard repairs begin with Planck quantization and continue through quantum field-theoretic regularization and renormalization. These succeed operationally, but they leave open whether the cutoff behavior is a mathematical prescription or evidence of underlying microstructure.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ closure path treats the UV catastrophe as evidence that continuum mode counting has exceeded its substrate-valid domain. Noether braid assemblies would have to impose a geometric cutoff at the maximal curvature radius $R_{\text{minlimit}}$, with high-frequency excitations mapping to finite inner-binary configurations rather than arbitrarily small wavelengths. This remains a derivation target: the theory must recover the Planck spectrum and show why finite-mode geometry supplies the correct saturation without becoming a post hoc quantization rule. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require a derivation of finite high-frequency behavior from explicit microscopic degrees of freedom rather than from a formal rule inserted to repair a divergent continuum approximation.
-
----
-
-###### Baryon Asymmetry
-
-**Issue:** Baryon Asymmetry. **Short Name:** Baryon Asymmetry. **Core Non-Closure:** The universe is matter-dominated even though known microphysics does not provide enough CP violation or nonequilibrium structure to explain the observed asymmetry.
-
-**Overview:** The Big Bang should have produced equal amounts of matter and antimatter, which would have subsequently annihilated into radiation. The existence of a matter-dominated universe requires Baryogenesis, a process satisfying the Sakharov conditions: baryon number violation, C and CP violation, and departure from thermal equilibrium. The Standard Model's CP violation (in the CKM matrix) is insufficient to explain the observed baryon-to-photon ratio. New sources of CP violation are required, potentially linked to the neutrino sector (leptogenesis) or electroweak symmetry breaking, but the specific mechanism remains undiscovered.
-
-**Where It Appears:** The baryon asymmetry is quantified by the baryon-to-photon ratio measured in the CMB and BBN, a precise target for any mechanism. The Standard Model provides baryon number violation via sphalerons but lacks sufficient CP violation and a strong first-order electroweak phase transition. Leptogenesis via heavy Majorana neutrinos can convert a lepton asymmetry into a baryon asymmetry, while electroweak baryogenesis requires new particles to modify the Higgs potential. Searches for electric dipole moments, lepton flavor violation, and collider signatures are direct tests of the new CP sources such mechanisms require.
-
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The unresolved point is the source of the extra CP violation and baryon-number violating history needed to produce the observed baryon-to-photon ratio without ruining other precision data.
-
-**Standard Repairs:** Standard repairs include electroweak baryogenesis, leptogenesis, Affleck-Dine scenarios, and other beyond-standard-model CP sources. They remain incomplete because the required new ingredients have not been directly established.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ route treats baryon asymmetry as a Noether sea chiral-bias closure target. The required mechanism would be an orientation-dependent difference in how pro-aligned and anti-aligned Noether braid assemblies couple to the ambient Noether sea state, not a primitive shortage of one architrino polarity. Anti-oriented assemblies would have to lose coherence or fail stability basins before they seed persistent protons or neutrons, while pro-oriented assemblies would have to stabilize through layered neutral axes. Such a mechanism could supply the effective baryon-number bias required by Sakharov's conditions only if it quantitatively reproduces the baryon-to-photon ratio and remains compatible with CP-violation, neutrino, and electric-dipole-moment bounds. The photon is treated as a coaxial contra-rotating pro/anti planar pair, which constrains whether radiation mediates net polarity leakage between clusters. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require a mechanism that reproduces the observed asymmetry quantitatively and is independently supported by neutrino, EDM, collider, or cosmological evidence rather than by post hoc parameter tuning alone.
-
----
-
-###### Neutrino Mass and Nature
-
-**Issue:** Neutrino Mass and Nature. **Short Name:** Neutrino Mass. **Core Non-Closure:** Neutrinos have mass, but their absolute scale, hierarchy, and Dirac-versus-Majorana character remain unresolved.
-
-**Overview:** Oscillation experiments confirm neutrinos have mass, contradicting the original Standard Model. It is unknown whether they are Dirac fermions (distinct particle/antiparticle) or Majorana fermions (own antiparticle). The Majorana hypothesis allows for the See-Saw Mechanism, linking light neutrino masses to a heavy, unobservable scale, and is testable via neutrinoless double-beta decay ($0\nu\beta\beta$). Furthermore, the absolute mass scale and the ordering of the mass eigenstates (normal vs. inverted hierarchy) are critical unknowns that affect both particle physics models and the formation of large-scale structure in the cosmos.
-
-**Where It Appears:** Neutrino oscillation experiments (solar, atmospheric, reactor, accelerator) measure mass splittings and mixing angles, but not the absolute mass scale or the Majorana/Dirac nature. KATRIN bounds the effective electron-neutrino mass, while cosmological data constrain the sum of masses via structure suppression. Neutrinoless double-beta decay would signal Majorana masses and lepton number violation, directly connecting to leptogenesis scenarios. Long-baseline experiments (DUNE, Hyper-K) aim to resolve mass ordering and possible CP violation in the lepton sector.
-
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The non-closure lies in the origin of neutrino mass and in whether lepton number is fundamentally violated. Oscillation data determine splittings and mixing angles, but not the deeper mass-generating architecture.
-
-**Standard Repairs:** Standard repairs include Dirac masses with tiny Yukawas, Majorana masses with seesaw structure, radiative mass models, and sterile-neutrino extensions. These organize the parameter space, but none has decisive experimental confirmation.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, neutrinos are currently treated as near-photon neutral pro/anti Noether braid pairings, not as ordinary charged-fermion axial-layer assemblies. Their small observer-facing mass is the residual exposed response of an almost locked neutral pair. Oscillation is reinterpreted as changing weak-channel exposure of internal phase and energy modes, not as a stable six-site axial inventory flipping among charged-fermion configurations. The current architecture therefore keeps the Dirac/Majorana question open at the empirical gate: a confirmed neutrinoless double-beta signal would require a lepton-number-violating neutral-pair provenance channel, while null results tighten that channel without proving the current Dirac-like geometry. A sterile or right-handed branch remains optional rather than part of the minimal architecture. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require a consistent account of the mass scale and ordering together with decisive evidence about the Majorana or Dirac nature, most likely through neutrinoless double-beta decay, precision cosmology, or direct kinematic mass measurements. The same resolution should state how $\sum_i m_i$, the lightest-neutrino mass, and any sterile-branch evidence enter the near-photon Hamiltonian without separate flavor-specific fitting.
-
----
 
 ###### The Strong CP Problem
 
-**Issue:** The Strong CP Problem. **Short Name:** Strong CP. **Core Non-Closure:** QCD allows a CP-violating angle, yet experiment forces that angle to be extraordinarily close to zero.
+**Secure record.** QCD permits a CP-violating $\theta$ term, while neutron electric dipole moment bounds force the effective angle to be extraordinarily small.
 
-**Overview:** Quantum Chromodynamics (QCD) admits a topological term $\theta_{QCD}$ that violates CP symmetry. Measurements of the neutron electric dipole moment constrain this angle to be effectively zero ($< 10^{-10}$), representing a fine-tuning problem since there is no symmetry in the Standard Model forcing it to vanish. The most compelling solution is the Peccei-Quinn mechanism, which introduces a dynamic field that relaxes $\theta$ to zero. This predicts the axion, a pseudo-Goldstone boson that is currently a prime candidate for cold dark matter, linking a QCD fine-tuning problem directly to cosmology.
+**Core non-closure.** The unresolved issue is why a parameter permitted by the theory appears dynamically absent in nature. Peccei-Quinn symmetry and axions offer the leading repair, but the axion has not been decisively found, and alternatives are tightly constrained.
 
-**Where It Appears:** The QCD Lagrangian allows a CP-violating $\theta$ term; unless it is tuned to near zero, it induces a neutron electric dipole moment far above experimental limits. The Peccei-Quinn mechanism promotes $\theta$ to a dynamical field, predicting the axion whose mass and couplings are constrained by astrophysical cooling and laboratory searches. Alternative ideas (massless up quark, spontaneous CP) are disfavored by lattice QCD and phenomenology. The paradox is that QCD seems to require a special parameter value with no apparent symmetry explanation unless an axion exists.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** A candidate account treats the smallness of the CP-violating angle as an assembly-stability selection effect rather than a free coincidence. A nonzero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to nested shell braid rotation structure. Sufficiently large asymmetry could destabilize the assembly through torque, Noether sea coupling, or self-hit imbalance.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The unresolved issue is why a parameter permitted by the theory appears dynamically absent in nature. Without a mechanism, the near-vanishing of the neutron electric dipole moment looks like unexplained tuning.
-
-**Standard Repairs:** Standard repairs include the Peccei-Quinn mechanism and its axion consequence, along with less-favored alternatives such as a massless up quark or spontaneous CP structure. The problem remains open because the axion has not been decisively found and the alternatives are increasingly constrained.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ account treats the smallness of the CP-violating angle $\theta$ as a possible assembly-stability selection effect rather than as a free coincidence. On this reading, a non-zero neutron electric dipole moment would correspond to an asymmetric axial-charge distribution relative to the nested shell braid rotation structure, and sufficiently large asymmetry could destabilize the assembly through torque, Noether sea coupling, or self-hit imbalance. This remains a derivation target. The theory must compute the allowed asymmetry, recover the observed electric-dipole-moment bounds, and show whether any Peccei-Quinn-like effective behavior emerges from assembly relaxation rather than from a new fundamental axion field. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**Residual Scaffold:** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. The nucleon-side scaffold in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md#cp-odd-neutron-dipole-scaffold) defines $\vartheta_n$ as the spin-aligned axial first moment of the neutron assembly, with additional flux and Noether sea contributions retained in the same branch record. A minimal comparison residual is
+**Residual scaffold.** The retained observable is the neutron electric dipole moment, not the ontology of any proposed repair. The nucleon-side scaffold in [Nucleon Structure](../../../../markdown/aaa/nuclear-atomic/nucleon-structure.md#cp-odd-neutron-dipole-scaffold) defines $\vartheta_n$ as the spin-aligned axial first moment of the neutron assembly, with additional flux and Noether sea contributions retained in the same branch record. A minimal comparison residual is
 $$
 d_n^{\mathrm{asm}}(\vartheta_n;\theta)
 =
@@ -77798,7 +77537,7 @@ d_n^{\mathrm{asm}}(\vartheta_n;\theta)
 \qquad
 \mathcal{R}_{\mathrm{nEDM}}(\theta)
 =
-\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}
+\frac{|d_n^{\mathrm{asm}}|}{d_n^{\max}}.
 $$
 The closure burden is to derive $\mathcal{R}_{\mathrm{nEDM}}\le1$ from assembly stability rather than parameter choice. A proof route would exhibit a relaxation law of the schematic form
 $$
@@ -77807,255 +77546,183 @@ $$
 -\partial_{\vartheta_n}V_{\mathrm{asm}}(\vartheta_n;\theta)
 -\Gamma_{\mathrm{sea}}(\theta)\,\vartheta_n
 $$
-with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucleon structure, flavor CP phases, and null results for axion-like channels if such channels are predicted. Until that derivation exists, Peccei-Quinn and axion language remains a comparison framework and search surface, not adopted ontology.
+with $\vartheta_n=0$ as a stable attractor in the same record that recovers nucleon structure, flavor CP phases, and null results for axion-like channels if such channels are predicted.
 
-**What Would Count As Resolution:** Resolution would require either direct evidence for the axion or another mechanism that explains the near-zero neutron electric dipole moment without introducing a comparably unexplained parameter elsewhere.
+**Resolution tests.** Direct evidence for an axion, a confirmed neutron electric dipole moment pattern, or a derived assembly relaxation law could resolve the issue. Until that derivation exists, Peccei-Quinn and axion language remains a comparison framework and search surface, not adopted ontology.
 
-###### The Flavor Problem
-
-**Issue:** The Flavor Problem. **Short Name:** Flavor Problem. **Core Non-Closure:** The Standard Model contains hierarchical masses and mixing matrices but does not explain why three generations or those particular patterns occur.
-
-**Overview:** The Standard Model fermions are organized into three generations with identical gauge quantum numbers but vastly different masses and mixing angles. The origin of this structure is unexplained; the Yukawa couplings that determine these masses are free parameters spanning many orders of magnitude (from the electron to the top quark). There is no deep understanding of why three generations exist, or what flavor symmetries might govern the mixing matrices (CKM and PMNS). This puzzle hints at a deeper layer of structure or composite nature of quarks and leptons.
-
-**Where It Appears:** The Standard Model accommodates fermion masses and mixings through arbitrary Yukawa matrices, offering no explanation for observed hierarchies or patterns. The CKM matrix shows small quark mixing while the PMNS matrix shows large lepton mixing, a striking structural contrast. Flavor physics tightly constrains new interactions through rare decays and CP violation, forcing any theory of flavor to align with precision data. Proposed explanations include horizontal symmetries, Froggatt-Nielsen mechanisms, texture zeros, and GUT relations, but none is experimentally confirmed.
-
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
-
-**What Remains Unresolved:** The missing closure is a generative principle for Yukawa structure, family replication, and the contrast between quark and lepton mixing. At present the flavor sector is descriptive rather than explanatory.
-
-**Standard Repairs:** Standard repairs include horizontal symmetries, Froggatt-Nielsen textures, texture-zero ansatze, GUT relations, and compositeness ideas. They organize possibilities, but none has yet produced an accepted, parameter-economical derivation of the observed spectrum.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, flavor is attributed to **Resonant Harmonics** of the nested shell braid structure. Three generations arise as three stable assembly attractor families (Ground State, First Excited, Second Excited) with distinct internal phase-windings. The observed mass hierarchy reflects how strongly each family couples to the middle binary layer. CKM versus PMNS structure follows from the **Geometric Overlap** between these harmonic shapes in quark versus lepton composites. Crucially, the CP-violating phase ($\delta_{CP}$) arises not from an arbitrary parameter but from the **interference of internal winding modes** (spirograph-like patterns), which generates a complex phase factor in the effective Hamiltonian. The falsifier is direct: if precision flavor data and mixing angles can be derived from the geometric ratios of nested binary radii (e.g., $m_\mu/m_e$) without free parameters, $\mathbb{A}\mathbb{A}\mathbb{A}$ is validated. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require a framework that derives masses, mixing angles, and CP phases with substantially fewer free choices than the raw Standard Model Yukawa sector.
-
----
+**Claim level.** `direction-ready`, high value because the observable is sharp.
 
 ###### Proton Stability
 
-**Issue:** Proton Stability. **Short Name:** Proton Stability. **Core Non-Closure:** Many unification schemes predict proton decay, but experiments continue to find no such events.
+**Secure record.** Experiments place very strong lower bounds on the standard label `proton decay`, ruling out minimal unification schemes that predict accessible baryon-number violation.
 
-**Overview:** Grand Unified Theories (GUTs) that unify strong and electroweak forces generally predict baryon number violation, leading to proton decay. The stability of the proton is a key constraint on high-energy physics. Current lower limits on the proton lifetime ($\tau > 10^{34}$ years) from Super-Kamiokande have ruled out the simplest SU(5) GUTs. The observation of proton decay would be direct evidence for unification and a new energy scale, while its continued absence forces GUT models into more complex, fine-tuned territories or higher-dimensional representations.
+**Core non-closure.** Many grand-unified theories predict proton dissociation channels, but experiments continue to find no such events. The unresolved point is whether baryon number is only effectively conserved at accessible energies or protected by a deeper structural principle.
 
-**Where It Appears:** Many GUTs predict proton decay through heavy gauge boson exchange or dimension-5 operators in SUSY GUTs, leading to specific decay modes and lifetimes. Experimental limits from Super-Kamiokande already exclude minimal SU(5) and place strong bounds on supersymmetric unification. Future detectors like Hyper-K and DUNE will extend sensitivity by an order of magnitude, directly testing unification scales near $10^{15}$-$10^{16}$ GeV. The absence of decay forces model builders toward more complex symmetry breaking or protective mechanisms, weakening the simplicity of unification.
+**Standard repairs.** Raising the unification scale, adding protective symmetries, suppressing dangerous operators, or moving to more elaborate GUT breaking patterns keeps models alive, often at the cost of simplicity or predictive sharpness.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Proton stability is a topological and assembly-stability constraint. Baryon number corresponds to a Noether braid assembly motif whose axial ordering and cross-layer bonding are conserved under low-energy interactions in the Noether sea. Proton dissociation would require wholesale rethreading across the self-hit barrier, which should be energetically forbidden outside extreme core conditions.
 
-**What Remains Unresolved:** The unresolved point is whether baryon number is only effectively conserved at accessible energies or protected by a deeper structural principle. Proton longevity therefore remains a decisive filter on ultraviolet model building.
+**Resolution tests.** A confirmed ordinary-regime proton dissociation channel with a lifetime within reach of GUT expectations would contradict the stability claim. A successful theory would instead derive structural protection across accessible ordinary-spacetime regimes while allowing only declared extreme-core exceptions.
 
-**Standard Repairs:** Standard repairs include raising the unification scale, adding protective symmetries, suppressing dangerous operators, or moving to more elaborate GUT breaking patterns. These keep models alive, but often at the cost of simplicity or predictive sharpness.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, proton stability is a topological constraint: baryon number corresponds to a Noether braid assembly motif whose axial ordering and cross-layer bonding are conserved under all low-energy interactions in the Noether sea. Proton dissociation would require a wholesale re-threading of the inner and middle binaries across the self-hit barrier, a process energetically forbidden except in extreme core conditions. This makes the standard `proton decay` channels effectively absent in normal spacetime while allowing baryon number violation only inside maximal-curvature assemblies (e.g., black-hole cores). A falsifier is unambiguous: a confirmed `proton decay` channel under ordinary experimental conditions with a lifetime within reach of GUT expectations would contradict the $\mathbb{A}\mathbb{A}\mathbb{A}$ stability claim. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
-
-**What Would Count As Resolution:** Resolution would require either a confirmed `proton decay` channel with a reproducible lifetime pattern or a deeper theory showing why proton stability is structurally guaranteed across the accessible ordinary-spacetime regime.
-
----
+**Claim level.** `direction-ready`.
 
 ###### Vacuum Instability
 
-**Issue:** Vacuum Instability. **Short Name:** Vacuum Instability. **Core Non-Closure:** Renormalization-group running suggests the electroweak vacuum may be metastable rather than absolutely stable.
+**Secure record.** Given measured Higgs and top-quark inputs, Standard Model renormalization-group running can place the electroweak vacuum near a metastability boundary. The calculation is a precise high-scale probe.
 
-**Overview:** Given the measured masses of the Higgs boson and the top quark, the Standard Model effective potential appears to turn over and become negative at ultra-high energies ($\sim 10^{11}$ GeV). This implies our universe resides in a metastable (false) vacuum, not the absolute minimum. While the tunneling lifetime to the true vacuum is calculated to be longer than the age of the universe, this metastability is highly sensitive to the precise top quark mass and new physics. The existential implication is that a bubble of true vacuum could theoretically nucleate and expand at the speed of light, altering the laws of physics.
+**Core non-closure.** The unresolved question is whether the apparent turnover of the Higgs potential is a real feature of nature or an extrapolation artifact tied to top-mass uncertainty, strong coupling, or missing ultraviolet physics.
 
-**Where It Appears:** Renormalization-group running drives the Higgs quartic coupling toward negative values at high energy, implying the electroweak vacuum is metastable. The boundary between stability and metastability is highly sensitive to the top quark mass and strong coupling, which are measured with finite uncertainties. Early-universe inflation and reheating could have pushed the Higgs field into the unstable region unless new physics stabilizes the potential. This makes vacuum stability a precise probe of physics above the weak scale and motivates searches for stabilizing dynamics.
+**Standard repairs.** Improved top-mass extraction, heavy stabilizing states, inflationary constraints on early Higgs excursions, and alternative ultraviolet completions remain open because the inference is sensitive to inputs.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Vacuum instability is treated as a warning against extrapolating a continuum Higgs potential beyond its domain. The Noether sea and assembly cores impose bounded energy density and a hard microphysical cutoff. What appears as a negative high-energy potential in an effective field theory may instead be a phase-transition boundary between assembly configurations, not a catastrophic lower vacuum of the Euclidean void.
 
-**What Remains Unresolved:** The unresolved question is whether the apparent turnover of the Higgs potential is a real feature of nature or an extrapolation artifact tied to uncertainties in the top mass, strong coupling, or missing ultraviolet physics.
+**Resolution tests.** Evidence of metastable vacuum transition or Higgs-field fluctuations inconsistent with a bounded assembly cutoff would falsify the route. A successful account would derive the cutoff and reproduce the measured Higgs/top constraints.
 
-**Standard Repairs:** Standard repairs include improved top-mass extraction, new heavy states that stabilize the running, inflationary constraints on early Higgs excursions, and alternative UV completions. None closes the issue because the inference is exquisitely sensitive to input assumptions.
+**Claim level.** `appendix-watch` until the Higgs-sector map and cutoff derivation mature.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, "vacuum instability" is an artifact of extrapolating a continuum Higgs potential beyond its domain: the Noether sea has a hard microphysical cutoff at the self-hit scale, and assembly cores enforce a bounded energy density so the effective quartic never runs past the stability envelope. What appears as a negative high-energy potential in the EFT is reinterpreted as a phase-transition boundary between assembly configurations rather than a true catastrophic vacuum. Bubble nucleation is thus suppressed if the Noether sea cannot support a lower-energy phase disconnected from the coupled nested shell braid configuration; transitions require coherent rethreading across layers that is dynamically forbidden outside extreme cores. A falsifier would be unambiguous evidence of metastable vacuum decay or Higgs-field fluctuations inconsistent with a bounded assembly cutoff. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+###### The Muon $g-2$ And Lepton Universality Anomalies
 
-**What Would Count As Resolution:** Resolution would require a stable determination of the high-scale potential together with a consistent account of early-universe history that either forbids dangerous excursions or shows they are physically real.
+**Secure record.** Muon anomalous magnetic moment measurements and lepton-flavor universality probes are precision tests of QED, electroweak, hadronic, and flavor calculations. Some reported deviations have persisted, weakened, or shifted as theory and data improved.
 
----
+**Core non-closure.** The unresolved issue is whether anomalies are telling us about new mediators or exposing underestimated hadronic and flavor-theory uncertainties in the background calculations.
 
-###### The Muon $g-2$ and Lepton Universality Anomalies
+**Standard repairs.** Improved lattice and dispersive hadronic calculations, new vector bosons, leptoquarks, and flavor-sensitive beyond-standard-model sectors remain live but not decisive.
 
-**Issue:** The Muon $g-2$ and Lepton Universality Anomalies. **Short Name:** Muon g-2 / LFU. **Core Non-Closure:** Several lepton-sector observables have shown persistent but not yet definitive deviations from Standard Model expectations.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** A cautious reading treats lepton magnetic moments and universality anomalies as scale-sensitive medium-coupling closure targets, not as established evidence for Noether sea microstructure. The electron, muon, and tau have different assembly scales and shielding patterns, so a completed model could in principle produce distinct residual couplings to Noether sea density, strain, and causal-wake history.
 
-**Overview:** The Fermi National Accelerator Laboratory (Fermilab) experiment has confirmed a discrepancy between the measured anomalous magnetic moment of the muon and the Standard Model prediction at a significance of $4.2\sigma$. Simultaneously, decays of B-mesons (measured by LHCb) have shown hints of violating lepton universality (treating electrons, muons, and taus differently). These anomalies could be the first laboratory evidence of new particles, such as leptoquarks or $Z'$ bosons, interfering in the loops of these processes, or they may point to subtle non-perturbative calculation errors in the Standard Model background.
+**Resolution tests.** The proposal fails if anomaly data and hadronic/flavor calculations converge cleanly to the Standard Model expectation, or if a required correction has a sign, scale, or channel dependence that cannot be produced by the same Noether sea response record used elsewhere.
 
-**Where It Appears:** The muon anomalous magnetic moment is computed from QED, electroweak, and hadronic contributions, with the hadronic vacuum polarization and light-by-light terms dominating the uncertainty. Dispersive data from e+e- to hadrons and lattice QCD calculations currently differ at a level that affects the significance of the anomaly. In parallel, LHCb and B-physics experiments have reported hints of lepton universality violation in rare decays, motivating new mediators such as leptoquarks or $Z'$ bosons. Ongoing FNAL, J-PARC, LHCb, and Belle II measurements will determine whether these anomalies persist or fade with improved statistics.
+**Claim level.** `appendix-watch`, with promotion only if the anomaly landscape stabilizes.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
+###### QCD Confinement, Mass Gap, And Hadron Structure
 
-**What Remains Unresolved:** The unresolved issue is whether the anomalies are telling us about new mediators or are exposing underestimated hadronic and flavor-theory uncertainties in the background calculations.
+**Secure record.** QCD succeeds phenomenologically and computationally across hadron spectra, jets, form factors, lattice calculations, and asymptotic freedom. Lattice QCD gives strong evidence for confinement and a mass gap.
 
-**Standard Repairs:** Standard repairs include improved lattice and dispersive hadronic calculations, new vector bosons, leptoquarks, and other flavor-sensitive beyond-standard-model sectors. They remain incomplete because the statistical picture is still evolving and some anomaly classes have already weakened under new data.
+**Core non-closure.** We still lack a rigorous analytic proof of the Yang-Mills mass gap and confinement, and the physical origin of hadron mass and structure remains deeply nonperturbative.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** A cautious $\mathbb{A}\mathbb{A}\mathbb{A}$ reading treats lepton magnetic moments and universality anomalies as a scale-sensitive medium-coupling closure target, not as established evidence for Noether sea microstructure. The electron, muon, and tau have different assembly scales and shielding patterns, so a completed model could in principle produce distinct residual couplings to Noether sea density, strain, and causal-wake history. That possibility must be derived as a correction to the effective QED and flavor ledger, not inferred from a literal spatial discretization. A falsifier would be convergence of the anomaly data and hadronic/flavor calculations to the Standard Model expectation, or a required correction whose sign, scale, or channel dependence cannot be produced by the same Noether sea response record used elsewhere. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**Standard repairs.** Lattice gauge theory, effective string pictures, large-$N$ reasoning, dual-superconductor models, and nonperturbative continuum truncations illuminate the structure but do not yet constitute accepted closed proof.
 
-**What Would Count As Resolution:** Resolution would require either convergent experimental confirmation across multiple channels or a calculation-level reconciliation that removes the discrepancy without special pleading.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Confinement is routed to branch topology, color exposure, allowed assemblies, energy ledgers, and residual-routing constraints. Quark-like decorations are partial nested shell braid fragments that exist as shared boundary conditions inside larger assemblies. Separating them should stretch middle-binary alignment response and generate a restoring tension. The mass gap follows, if the route succeeds, from the minimum energy required to excite a stable closed nested shell braid loop in the Noether sea.
 
----
+**Resolution tests.** Use lattice benchmarks, hadron spectra, form factors, parton distribution functions, jets, nuclear binding, glueball searches, and exotic-hadron data. The falsifier is confirmed free asymptotic color charge or a pure-gauge spectrum with no finite gap.
 
-###### The Lithium Problem
+**Claim level.** `direction-ready`, high value but high proof cost.
 
-**Issue:** The Lithium Problem. **Short Name:** Lithium Problem. **Core Non-Closure:** Standard Big Bang Nucleosynthesis succeeds for several light elements but overpredicts primordial lithium-7.
+###### Gauge Structure And Coupling Constants
 
-**Overview:** Standard Big Bang Nucleosynthesis (BBN) predicts the abundance of primordial Lithium-7 to be roughly three times higher than what is observed in the atmospheres of metal-poor Population II halo stars (the Spite plateau). While BBN is highly successful for Hydrogen and Helium, the Lithium mismatch persists despite decades of study. It suggests either unknown stellar astrophysics (turbulent mixing depleting Lithium), inaccurate nuclear cross-sections, or non-standard particle physics in the early universe, such as decaying dark matter particles injecting neutrons that destroy Lithium.
+**Secure record.** Gauge symmetry organizes the Standard Model, charge assignments, anomaly cancellation, running couplings, electroweak precision observables, and scattering cross sections.
 
-**Where It Appears:** Big Bang Nucleosynthesis predicts light-element abundances using well-measured nuclear cross sections and the baryon density fixed by the CMB. Deuterium and helium match observations, but lithium-7 remains too high compared to metal-poor halo stars, suggesting either stellar depletion or missing physics. Astration, diffusion, and stellar mixing may reduce surface lithium, yet models struggle to reconcile the plateau with BBN yields. Exotic physics such as decaying particles or varying constants could alter BBN pathways, but must also preserve the successful deuterium and helium predictions.
+**Core non-closure.** The origin of the gauge groups, coupling constants, charges, and anomaly cancellation remains unexplained by the Standard Model itself.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Gauge structure should be recovered as a symmetry of allowed branch transformations, exposure maps, and observer-level bookkeeping. Charges are not arbitrary labels; they should correspond to stable transformation and response classes.
 
-**What Remains Unresolved:** The unresolved point is whether lithium is being depleted astrophysically after formation or whether the early-universe nuclear and transport story is missing some selective lithium-destruction mechanism.
+**Resolution tests.** Use electroweak precision data, charge quantization, anomaly cancellation, running couplings, scattering cross sections, and collider limits. The proof burden is to recover the symmetry grammar rather than merely translate notation.
 
-**Standard Repairs:** Standard repairs include stellar-mixing and diffusion models, revised nuclear cross sections, decaying-particle injections, and inhomogeneous nucleosynthesis scenarios. None has become standard because each tends to damage another successful part of BBN or stellar modeling.
+**Claim level.** `direction-ready`.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the lithium mismatch is attributed to early-universe assembly-mediated neutron transport: deformation-wave channels can move neutrons between dense and diffuse regions during BBN, biasing late-time Li-7 destruction without altering deuterium or helium yields. This is effectively a medium-driven, non-thermal redistribution rather than new-particle reaction channels. A falsifier would be BBN observations showing Li-7 inhomogeneities uncorrelated with any neutron-diffusion signatures or a resolved lithium plateau matching standard nuclear network predictions. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+###### Astrophysical Engines
 
-**What Would Count As Resolution:** Resolution would require a mechanism that lowers lithium without spoiling deuterium and helium, together with observational evidence that the relevant depletion or transport channel actually occurred.
+###### Core-Collapse Supernova Mechanism
 
----
+**Secure record.** Core-collapse supernovae involve observed neutrino bursts, light curves, remnant masses, explosion energies, asymmetries, nucleosynthetic yields, and gravitational-wave prospects. Broad physical ingredients are known.
 
-###### Confinement and the Mass Gap
+**Core non-closure.** The explosion mechanism remains computationally and physically difficult because neutrino transport, hydrodynamics, magnetic fields, nuclear physics, and asymmetry all interact.
 
-**Issue:** Confinement and the Mass Gap. **Short Name:** Mass Gap. **Core Non-Closure:** QCD works phenomenologically, but the nonperturbative origin of confinement and a rigorous Yang-Mills mass-gap proof remain incomplete.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is an event-ledger stress test: collapse, bounce, neutrino emission, shock revival, angular momentum, magnetic response, nucleosynthesis, remnant formation, and Noether sea updates must close in one record.
 
-**Overview:** This is a Millennium Prize problem. While Quantum Chromodynamics (QCD) is the accepted theory of the strong force, we lack a rigorous mathematical proof that the theory generates a mass gap (meaning the lightest particle, the glueball, has positive mass) and that color charge is permanently confined. We rely on Lattice QCD for calculations, but an analytic understanding of the non-perturbative dynamics that generate the vast majority of the mass of the visible universe (via the binding energy of protons and neutrons) remains one of the deepest challenges in theoretical physics.
+**Resolution tests.** Use neutrino burst records, gravitational waves from core collapse, light curves, remnant masses, explosion energies, asymmetries, and nucleosynthetic yields. The chapter should stay tied to observable ledgers.
 
-**Where It Appears:** QCD is asymptotically free, yet quarks and gluons are never observed in isolation, implying confinement and a finite mass gap in pure Yang-Mills theory. Lattice calculations show linear confinement at large distances and predict glueball spectra, but there is no rigorous analytic proof for the mass gap or confinement mechanism. The challenge is to derive these non-perturbative features from first principles and connect them to hadron spectroscopy and chiral symmetry breaking. Resolving this would anchor the mathematical foundations of QCD and explain why most visible mass arises from binding energy rather than bare quark masses.
+**Claim level.** `direction-ready`.
 
-**What Current Physics Gets Right:** Current physics gets a large surrounding body of laboratory, collider, decay, and nuclear data right. The unresolved issue is therefore a constrained microphysical gap inside an otherwise very successful predictive structure.
+###### Explosive Nucleosynthesis And The P-Nuclei Problem
 
-**What Remains Unresolved:** The unresolved question is how to derive confinement and a finite lowest excitation scale from first principles rather than inferring them from lattice calculation and hadron phenomenology alone.
+**Secure record.** Many nucleosynthesis channels are understood well enough to connect stars, supernovae, neutron-star mergers, gamma-ray lines, meteoritic records, and solar abundances.
 
-**Standard Repairs:** Standard repairs are not so much competing theories as competing analytic tools: lattice gauge theory, effective string pictures, large-$N$ reasoning, dual-superconductor models, and various nonperturbative continuum truncations. These illuminate the structure, but none yet counts as the accepted closed proof.
+**Core non-closure.** Some isotope families, including p-nuclei, still require better source accounting, reaction-network closure, and environment provenance.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, confinement is a mechanical constraint: quark-like decorations are partial nested shell braid fragments that only exist as shared boundary conditions within a larger assembly, so separating them forces the Noether sea to stretch the middle-binary alignment response and generates a linear restoring tension. The mass gap follows from the minimum energy required to excite a stable, closed nested shell braid loop in the Noether sea, so there are no arbitrarily soft gluonic modes in isolation. This recasts confinement and the gap as consequences of assembly geometry rather than gauge-field topology. A falsifier would be a confirmed observation of free, asymptotic color charge or a glueball spectrum with no finite gap in the pure-gauge limit. Transition relevance is high because any deeper theory must pass through the same precision constraints now expressed in Standard Model and nuclear-physics language. Long-term relevance is as a derivation target for assembly microphysics; if the substrate account succeeds, these should become worked examples rather than permanent mysteries.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** Nucleosynthesis is a reaction-ledger problem. Source environment, temperature, density, nuclear binding, weak reactions, radiation fields, and ejecta history must be carried as one provenance record.
 
-**What Would Count As Resolution:** Resolution would require a mathematically controlled derivation of confinement and the gap, tied clearly enough to hadron physics that the proof is not merely formal but physically explanatory.
+**Resolution tests.** Use solar abundances, meteoritic records, supernova yields, kilonova yields, gamma-ray lines, and nuclear cross-section uncertainties. The falsifier is an isotope story that cannot identify a source environment and reaction path.
 
----
+**Claim level.** `direction-ready`.
 
-##### Quantum Foundations and Unification
+###### AGN Jets, Quasar Engines, ULXs, And Relativistic Outflows
 
-###### Quantum Gravity and Renormalizability
+**Secure record.** Relativistic jets, quasars, ULXs, and accreting compact systems show structured power, polarization, variability, spectra, feedback, and host-environment interaction.
 
-**Issue:** Quantum Gravity and Renormalizability. **Short Name:** Quantum Gravity. **Core Non-Closure:** Gravity works as a low-energy effective theory, but perturbative quantization of the metric is ultraviolet incomplete.
+**Core non-closure.** The launch, collimation, variability, energy extraction, plasma loading, and feedback mechanisms are modeled but not derived from one ontology.
 
-**Overview:** Perturbative quantization of the Einstein-Hilbert metric action is ultraviolet incomplete; the usual loop expansion produces divergences that cannot be absorbed into a finite set of the original couplings. This is narrower than saying that every modified gravitational action has the same power-counting problem. Higher-derivative or quadratic-curvature actions can improve perturbative power counting, but then they must answer ghost, unitarity, and ontology questions raised by their extra modes. A UV-complete theory is required to describe the quantum behavior of spacetime, particularly at singularities (Big Bang, black holes). String Theory and Loop Quantum Gravity are the leading candidates, but they differ fundamentally on background independence and the nature of dimensionality. The low-energy effective-field-theory treatment of GR is already predictive at long distance; the unresolved problem is ultraviolet completion and microscopic ontology, not a blanket failure of GR and quantum theory to speak to one another. The lack of experimental data at Planckian energies makes it difficult to falsify these theories or check consistency conditions (like the Swampland conjectures) that delineate valid effective field theories from those that cannot be coupled to gravity.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These systems are strong-field release and medium-response laboratories. The same boundary, event-ledger, angular-momentum, radiation, and Noether sea response grammar used for black holes should explain launch, collimation, spectra, and feedback.
 
-**Where It Appears:** Quantizing the Einstein-Hilbert action as a standard field theory leads to non-renormalizable divergences, so General Relativity is only an effective theory below the Planck scale. Black hole thermodynamics and entropy hint that spacetime has microscopic degrees of freedom, but their nature is unknown. Higher-derivative completions change the divergence bookkeeping but must still justify their additional mode content rather than merely shifting the problem. String theory provides a UV-complete framework with extra dimensions and holography, while loop quantum gravity seeks a background-independent quantization of geometry; asymptotic safety and emergent gravity are additional routes. Potential observational windows include quantum corrections to black hole spectra, Lorentz-violation tests, or subtle signatures in primordial cosmology and gravitational waves.
+**Resolution tests.** Use jet power, polarization, VLBI structure, time variability, accretion state transitions, spectra, neutrino associations, and host-environment feedback. The chapter should not outrun strong-field closure.
 
-**What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
+**Claim level.** `direction-ready`.
 
-**What Remains Unresolved:** The unresolved question is what the microscopic degrees of freedom of gravity actually are, and how they yield a finite, testable theory at scales where classical spacetime breaks down.
+###### Fast Transients, Cosmic Rays, Coronal Heating, And Solar-Cycle Problems
 
-**Standard Repairs:** Standard repairs include string theory, loop quantum gravity, asymptotic safety, causal and emergent-spacetime programs, and holographic duality constructions. They remain incomplete because experimental access is limited and no candidate has achieved decisive empirical separation.
+**Secure record.** FRBs, ultra-high-energy cosmic rays, coronal heating, solar-cycle details, and related plasma puzzles have rich data and active source models.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ route would relocate quantum-gravity and renormalizability pressure by denying that the Euclidean void is a continuum field that must itself be quantized. The effective metric called General Relativity would instead be a coarse-grained description of Noether sea middle and outer binary behavior, while gravitons would be collective deformation-wave excitations in an effective limit. That move only becomes closure if it derives the GR limit, recovers the controlled long-distance quantum correction to Newtonian gravity, identifies the ultraviolet cutoff from maximal-curvature assembly structure, and shows how singularity and high-frequency gravitational-wave behavior are replaced by finite substrate dynamics. Concrete falsifiers remain appropriate: data requiring independent degrees of freedom above the self-hit threshold, or preferred-frame tests inconsistent with the allowed leakage scale, would rule out this gravity-as-assembly-mechanics path. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Core non-closure.** Source, acceleration, heating, repetition, transport, and composition details remain unsettled, but many claims change rapidly with new surveys.
 
-**What Would Count As Resolution:** Resolution would require a UV-complete account that reproduces low-energy gravity, controlled low-energy quantum-gravity corrections, black-hole thermodynamics, and cosmological consistency while also generating at least one discriminating observational signature.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These are useful stress tests for radiation, plasma, magnetic, and medium-response ledgers, but most are not main-paper solution chapters yet. They should be grouped as appendix candidates unless a specific case gains a native mechanism with a discriminating observable.
 
----
+**Resolution tests.** Use source localization, spectra, polarization, repetition statistics, composition, arrival directions, magnetic-field constraints, and time-domain surveys. Keep rapidly changing data claims out of the main thesis.
 
-###### The Black Hole Information Paradox
+**Claim level.** `appendix-watch`.
 
-**Issue:** The Black Hole Information Paradox. **Short Name:** Information Paradox. **Core Non-Closure:** Semiclassical Hawking evaporation appears thermal, yet quantum unitarity demands that information not be destroyed.
+###### Appendix And Exclusions
 
-**Overview:** According to Hawking's semiclassical analysis, black holes radiate thermally and evaporate, seemingly destroying the quantum information of the matter that formed them. This violates unitarity, a cornerstone of quantum mechanics ensuring probability conservation. Recent theoretical breakthroughs involving the "island proposal" and the calculation of the Page curve using holographic entanglement entropy suggest information is conserved. However, the exact mechanism by which information is encoded in the Hawking radiation, and how this relates to the smooth structure of the event horizon (firewall paradox), remains a debated frontier.
+###### Planetary, Stellar-Population, And One-Off Anomalies
 
-**Where It Appears:** Hawking's calculation treats matter collapse and evaporation semiclassically, producing thermal radiation that appears independent of the initial state. If taken literally, the final state is mixed, violating unitary quantum evolution; if information escapes, one must explain how it is encoded without violating locality or the equivalence principle. AdS/CFT and replica-wormhole calculations reproduce the expected Page curve, suggesting information recovery, but the microscopic mechanism remains debated (soft hair, islands, or nonlocality). The paradox is sharpened by the firewall argument, which forces a choice between unitarity, smooth horizons, or effective field theory near the horizon.
+**Secure record.** Astronomy lists include narrower puzzles: planetary formation details, stellar initial mass function questions, Tabby's Star-like anomalies, solar-system residuals, the IBEX ribbon, object-specific mysteries, and other local anomalies.
 
-**What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
+**Core non-closure.** Most are real modeling problems but not direct tests of the foundational architecture. They may depend more on local history, data quality, or complex environmental modeling than on substrate ontology.
 
-**What Remains Unresolved:** The tension remains because one must explain how information is stored, what observer-accessible record can recover it, and why the local semiclassical horizon description is either valid or only approximate without sacrificing smooth horizons, effective field theory in its domain, or unitary evolution.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** These should not be sold as solved by a fundamental theory paper. They can be used as examples of how the ontology might discipline model-building, but they do not usually test the core architecture as directly as spacetime, quantum, Standard Model, strong-field, and cosmology problems.
 
-**Standard Repairs:** Standard repairs include black-hole complementarity, soft hair, holographic duality, islands, replica-wormhole arguments, and firewall-style revisions. These strongly suggest information recovery, but the microscopic mechanism is still debated.
+**Resolution tests.** Include only if a case touches a core mechanism: radiation ledger, medium response, angular momentum, structure formation, or source provenance. Otherwise leave it out.
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The candidate $\mathbb{A}\mathbb{A}\mathbb{A}$ closure is that black-hole information is stored and released through structured nested shell braid flows rather than erased. The event-horizon region would correspond to middle-binary behavior near $v=c_f$, while core microstate storage would involve maximal-curvature self-hit structures. Possible dark-photon or deformation-wave cascades should be treated as a mechanism proposal until their provenance, energy budget, and visible-sector handoff are derived. Under the closure-target discipline, island, replica-wormhole, and boundary-unitarity results are comparison mathematics and high-value consistency pressure, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They show the kind of Page-curve or boundary-access recovery a mature black-hole account must match, but they do not decide the native mechanism. The Page curve would have to be recovered by showing how emitted assemblies preserve enough phase and axial-pattern information through declared Physical Observer records, finite boundary wake data, and release-channel ledgers, without invoking firewalls or hiding the mechanism in formal duality. The proposed zero-entropy limiting state is a separate high-risk closure target, not an established result. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+**Claim level.** `appendix-watch` or `exclude-for-now`.
 
-**What Would Count As Resolution:** Resolution would require a transparent account of where the information is stored and how it is released, in a form that recovers the Page curve without hiding the mechanism behind purely formal duality language.
+###### Fermi Paradox And Life-Distribution Questions
 
-###### The Measurement Problem
+**Secure record.** The galaxy is old, habitable worlds appear common, and no unambiguous technosignature has been confirmed. The mismatch between broad probabilistic expectation and observed silence is real but highly prior-sensitive.
 
-**Issue:** The Measurement Problem. **Short Name:** Measurement Problem. **Core Non-Closure:** Unitary quantum evolution and definite observed outcomes are both successful parts of practice, but the bridge between them remains conceptually incomplete.
+**Core non-closure.** The unresolved issue is whether the silence reflects rarity of life, rarity of persistence, non-expansionist behavior, observational blind spots, detection-channel assumptions, or some mixture of these.
 
-**Overview:** Quantum mechanics predicts smooth unitary evolution but assigns definite outcomes only when a measurement occurs. The measurement problem asks what counts as a measurement, how and why a single outcome is selected, and whether collapse is real or only apparent. Competing responses include objective collapse models, hidden variables, and many-worlds branching; none is empirically decisive yet.
+**Standard repairs.** Great Filter arguments, self-limitation scenarios, zoo hypotheses, slow-colonization models, and narrow-search explanations all depend on uncertain priors about life, technology, and detectability.
 
-**Where It Appears:** In the textbook non-relativistic Schrödinger formalism, the wavefunction evolves linearly until a measurement projects it onto an eigenstate. This raises a conceptual gap between linear evolution and probabilistic collapse, and it leaves the boundary between system and observer ill-defined. Decoherence explains why interference disappears for macroscopic systems but does not by itself select a unique outcome. Attempts to resolve the problem introduce new dynamics (GRW), additional variables (Bohm), or branching universes (Everett), each with distinct philosophical costs and limited experimental discrimination.
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ architecture.** This is not a central physics closure problem. A speculative signal-and-medium reading would ask whether advanced technologies couple to non-electromagnetic Noether sea channels, but that is astrobiological detection theory rather than a mature physics solution. It belongs outside the main paper unless the scope changes.
 
-**What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
+**Resolution tests.** A confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability would reshape the problem. It should not drive the current physics paper.
 
-**What Remains Unresolved:** The unresolved point is what physically selects one outcome in a measurement-like interaction, and whether collapse is fundamental, emergent, or only a bookkeeping update on deeper dynamics.
+**Claim level.** `exclude-for-now`.
 
-**Standard Repairs:** Standard repairs include Copenhagen-style collapse rules, decoherence-based approaches, objective-collapse models, Bohmian hidden variables, and Everettian branching. They remain in competition because each resolves one part of the problem while shifting cost to ontology, dynamics, or empirical accessibility.
+###### Main-Body Candidate List
 
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the measurement problem is treated as a physical transition between coherent nested shell braid superpositions and decohered assembly configurations in the Noether sea. "Measurement" corresponds to an irreversible coupling of a system's nested shell braid pattern to a dense, many-assembly environment that enforces a stable attractor state via self-hit dynamics and memory effects. This does not invoke ad hoc collapse; it posits that outcome selection occurs at the level of assembly attractor basins, where **meta-stable branching** reflects deterministic multistability under microstate/wake-phase sensitivity. The falsifier is straightforward: if macroscopic assembly environments can be engineered to preserve superpositions beyond the predicted self-hit attractor thresholds, the $\mathbb{A}\mathbb{A}\mathbb{A}$ account fails. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
+The strongest first draft should probably contain these main chapters:
 
-**What Would Count As Resolution:** Resolution would require a framework that explains definite outcomes, recovers interference and Bell constraints, and identifies what counts as measurement without inserting an observer-exception clause.
+1. Quantum gravity and the GR/QM split.
+2. Emergent metric and spacetime ontology.
+3. Lorentz invariance from a preferred substrate.
+4. Black-hole singularities.
+5. Black-hole information and entropy.
+6. Dark matter and galaxy rotation.
+7. Dark energy, cosmological constant, and transfer functions.
+8. The Hubble and $S_8$ tensions as transfer-function diagnostics.
+9. CMB as the hard cosmology gate.
+10. Quantum measurement.
+11. Born rule, Bell tests, and no-signaling.
+12. Entropy and the arrow of time.
+13. Photon ontology, UV cutoff behavior, and radiation.
+14. Origin of mass and the Higgs sector.
+15. Neutrino oscillations and mass routing.
+16. Flavor and mixing.
+17. Strong CP as a neutron-electric-dipole scaffold.
+18. QCD confinement and hadron structure.
+19. Supernovae and compact astrophysical engines.
 
----
-
-###### The Arrow of Time
-
-**Issue:** The Arrow of Time. **Short Name:** Arrow of Time. **Core Non-Closure:** Microscopic laws are largely time-symmetric, yet macroscopic history exhibits an unmistakable directionality.
-
-**Overview:** The fundamental dynamical laws of physics are time-symmetric, yet our macroscopic universe exhibits a clear irreversibility described by the Second Law of Thermodynamics (entropy increase). This arrow of time is traced back to the "Past Hypothesis": the universe began in an incredibly low-entropy state. The paradox lies in explaining *why* the initial conditions of the Big Bang were so special and ordered, distinct from the generic, high-entropy singularity one might expect from random selection in phase space or gravitational collapse.
-
-**Where It Appears:** Microscopic laws are invariant under time reversal, yet macroscopic irreversibility emerges from statistical mechanics and the growth of entropy. This requires a special low-entropy initial condition for the universe, which is not explained by the dynamical laws themselves. Gravitational systems complicate the story because clumping can increase entropy, suggesting the early smooth universe was extraordinarily ordered. Ideas include inflationary smoothing, multiverse selection, or fundamental cosmological boundary conditions, but none provides a definitive origin of the arrow.
-
-The entropy statement also has a domain-of-validity gate. A finite subsystem admits ordinary thermodynamic entropy only after a measure, coarse-graining, and access window have been declared. In an unbounded cosmology or a source-and-sink medium history, the relevant object is not a bare "entropy of the universe" assertion, but a windowed balance among local production, boundary flux, and record/coarse-graining residuals. This preserves the Second Law as a validated effective limit while preventing it from being used as a primitive definition of time or as an unrestricted cosmological premise.
-
-The arrow problem also separates dynamical relaxation from measure-based typicality. A relaxation account must show a Noether sea or assembly-history map that carries a broad admissible basin into the observed low-defect record and then into higher-defect macroscopic states. A typicality account instead selects a measure over possible histories and argues that the observed record is probable or admissible under that measure. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the first route is a mechanism claim; the second is only an interpretation unless the measure is derived from the same path-history dynamics that produces the record.
-
-**What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
-
-**What Remains Unresolved:** The missing closure is why the universe began in such a special low-entropy state and how that specialness should be understood in a law-governed cosmology rather than merely postulated.
-
-**Standard Repairs:** Standard repairs include Past-Hypothesis appeals, inflationary smoothing, multiverse selection, and various cosmological boundary proposals. They each address part of the puzzle, but none commands consensus as a non-circular origin story for temporal asymmetry.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** The $\mathbb{A}\mathbb{A}\mathbb{A}$ arrow-of-time proposal starts from absolute time, then seeks the thermodynamic arrow in Noether sea history, wake-phase memory, and irreversible self-hit dissipation. The candidate mechanism is that macroscopic reversal would require reconstructing micro-wake phases and assembly histories with inaccessible precision after dissipation has dispersed them. The "Past Hypothesis" would be replaced only if the theory can derive an initially low-defect assembly configuration or equivalent boundary condition and show how it relaxes toward higher-defect, higher-entropy states. A falsifier would be a closed assembly system that exhibits macroscopic reversibility after large entropy production without external intervention, contradicting the predicted wake-memory irreversibility. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
-
-**What Would Count As Resolution:** Resolution would require a framework that explains low-entropy initial structure and irreversible macroscopic behavior without simply restating one of them as an unexplained boundary condition.
-
----
-
-###### The Trans-Planckian Censorship and the Swampland
-
-**Issue:** The Trans-Planckian Censorship and the Swampland. **Short Name:** TCC / Swampland. **Core Non-Closure:** Some quantum-gravity programs claim that apparently sensible low-energy effective theories are not compatible with a consistent ultraviolet completion.
-
-**Overview:** This is a modern theoretical paradox arising from String Theory. The "Swampland" program suggests that most effective field theories that look consistent are actually forbidden when coupled to quantum gravity. The Trans-Planckian Censorship Conjecture (TCC) proposes that sub-Planckian quantum fluctuations can never be stretched by cosmological expansion to become classical, super-horizon modes. If true, this places severe constraints on Inflation, potentially ruling out many standard models and implying that the energy scale of inflation must be much lower than currently sought, fundamentally linking quantum gravity constraints to observable cosmology.
-
-**Where It Appears:** Swampland conjectures propose constraints on effective field theories that can arise from quantum gravity, challenging the existence of stable de Sitter vacua and long-lived slow-roll inflation. The Trans-Planckian Censorship Conjecture further restricts how far sub-Planckian modes can be stretched, limiting the duration and energy scale of inflation. These ideas are motivated by string compactifications and holography, but remain conjectural and are actively debated. If correct, they would force a major revision of early-universe model building and would leave observable imprints in the allowed parameter space of CMB observables.
-
-**What Current Physics Gets Right:** Current physics correctly reproduces the semiclassical, field-theoretic, and information-theoretic behavior that made the problem visible in the first place. Any deeper account must therefore preserve those successes while closing the conceptual gap.
-
-**What Remains Unresolved:** The unresolved issue is whether the conjectured restrictions are deep features of quantum gravity or artifacts of a particular string-theoretic and holographic reading of effective theory space.
-
-**Standard Repairs:** Standard repairs include building inflation and dark-energy models that satisfy swampland bounds, revising compactification assumptions, or rejecting the conjectures as overstrong. The debate persists because the conjectures are influential but still not theorem-level results.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In $\mathbb{A}\mathbb{A}\mathbb{A}$, trans-Planckian censorship becomes a cutoff-derivation target rather than an automatic conclusion. The proposal is that sub-assembly excitations cannot be promoted into arbitrary classical modes because nested shell braid structure imposes minimum curvature and phase-coherence constraints. The "swampland" analogy is therefore useful only if the allowed effective descriptions can be derived from assembly-consistency conditions rather than asserted from analogy with string-theory bounds. A falsifier would be a robust detection of inflationary signatures that demand trans-Planckian mode stretching with no viable assembly-scale cutoff. Transition relevance is very high because these are the cleanest tests of whether a substrate-first replacement actually provides closure rather than merely relabeling the old paradox. Long-term relevance is as a foundational compliance test: a successful theory should turn these from paradoxes into explicit closure demonstrations.
-
-**What Would Count As Resolution:** Resolution would require either a derivation of the conjectures from a broader quantum-gravity framework or decisive observational evidence that forces cosmology outside their allowed window.
-
----
-
-##### Astrobiological Boundary Question
-
-###### The Fermi Paradox
-
-**Issue:** The Fermi Paradox. **Short Name:** Fermi Paradox. **Core Non-Closure:** The age and scale of the galaxy make technological life seem plausible, yet no unambiguous technosignatures have been found.
-
-**Overview:** If technological civilizations are plausible and the galaxy is old, why do we see no evidence of them? The Fermi Paradox juxtaposes high estimates of habitable worlds and the apparent silence of the sky. Proposed resolutions range from the "Great Filter" (rare emergence or survival) to self-limiting civilizations, non-expansionist ethics, or observational blind spots. The paradox intersects physics by tying cosmic timescales, astrophysical hazards, and the detectability of advanced energy use into a single empirical tension.
-
-**Where It Appears:** Simple Drake-equation reasoning suggests the Milky Way could host numerous civilizations, yet the absence of signals or artifacts (radio, megastructures, probes) motivates explanations such as rare abiogenesis, rare intelligence, short technological lifetimes, self-destruction, or slow interstellar expansion. Observationally, infrared searches for Dyson-like waste heat, technosignature surveys, and archival signal searches have all produced null results so far. The puzzle forces a reconciliation between probabilistic expectations and empirical silence.
-
-**What Current Physics Gets Right:** Current reasoning does correctly register a mismatch between broad probabilistic expectation and observed silence, even if the inference remains highly prior-sensitive.
-
-**What Remains Unresolved:** The unresolved issue is whether the silence reflects rarity of life, rarity of persistence, non-expansionist behavior, observational blind spots, or some combination of these factors. The paradox is only sharp if the detection model is itself trustworthy.
-
-**Standard Repairs:** Standard repairs include Great Filter arguments, self-destruction scenarios, zoo hypotheses, slow-colonization models, and claims that our searches are too narrow in band or timescale. None closes the problem because each depends on uncertain priors about life, technology, and detectability.
-
-**Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$:** In the Architrino Assembly Architecture, the Fermi Paradox is reframed as a signal-and-medium problem: if advanced technologies manipulate or traverse the Noether sea via nested shell braid engineering, their emissions may not couple to standard electromagnetic channels or may dissipate into super-field-speed regimes that are invisible to our detectors. The architecture implies that high-energy manipulation could preferentially excite dark-photon or deformation-wave channels that leave little in the EM band, and that expansion strategies may exploit Noether sea corridors rather than broadcastable artifacts. If so, the paradox weakens as a detection-limited selection effect rather than a strong Bayesian constraint on the abundance of life; the falsifier would be a confirmed technosignature in the standard EM spectrum that cannot be reinterpreted through assembly-mediated channels. Transition relevance is moderate because the issue mainly constrains how detection theory, medium assumptions, and prior expectations should be interpreted during expansion of the framework. Long-term relevance is likely cautionary rather than central, unless technosignature evidence forces the issue back into the core ontology stack.
-
-**What Would Count As Resolution:** Resolution would require either a confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability than we currently possess.
-
----
+The first public version should be shorter than this. The best route is probably a six-section paper with one or two high-confidence chapters per section, plus a table that lists the deferred chapters and their proof burdens.
 
 ### Inherited Theory Interface
 

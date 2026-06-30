@@ -15,9 +15,9 @@ const NO_INCOMING_LINK_REPORT_LIMIT = 25;
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
 const IMAGE_MANIFEST_PATH = "content/assets/images/images.json";
-const OUTREACH_COMIC_IMAGE_DIR = "content/assets/images/comics";
-const OUTREACH_COMIC_THUMBNAIL_DIR = "content/assets/images/comics/thumbnails";
-const OUTREACH_COMIC_THUMBNAIL_SIZE = 360;
+const ARCHIE_COMIC_IMAGE_DIR = "content/assets/images/comics";
+const ARCHIE_COMIC_THUMBNAIL_DIR = "content/assets/images/comics/thumbnails";
+const ARCHIE_COMIC_THUMBNAIL_SIZE = 360;
 const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
 const REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES = [
   "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/",
@@ -330,7 +330,7 @@ function readPngDimensions(relativePath) {
   };
 }
 
-function auditOutreachComicReleaseImages() {
+function auditArchieComicReleaseImages() {
   const parsed = readJson(IMAGE_MANIFEST_PATH);
   if (!parsed.ok) {
     errors.push(`${IMAGE_MANIFEST_PATH}: failed to parse JSON (${parsed.error.message})`);
@@ -357,7 +357,7 @@ function auditOutreachComicReleaseImages() {
 
   let auditedComicCount = 0;
   for (const image of parsed.data.images) {
-    if (image?.category !== "outreach-comic" || image?.status !== "approved") {
+    if (image?.category !== "archie-comic" || image?.status !== "approved") {
       continue;
     }
     auditedComicCount += 1;
@@ -365,16 +365,16 @@ function auditOutreachComicReleaseImages() {
     const imagePath = normalizePath(image.path ?? "");
     const label = `${IMAGE_MANIFEST_PATH}: ${imageId}`;
 
-    if (!imagePath.startsWith(`${OUTREACH_COMIC_IMAGE_DIR}/`) || !imagePath.endsWith(".png")) {
-      errors.push(`${label}: released outreach comic path must be a PNG under ${OUTREACH_COMIC_IMAGE_DIR}`);
+    if (!imagePath.startsWith(`${ARCHIE_COMIC_IMAGE_DIR}/`) || !imagePath.endsWith(".png")) {
+      errors.push(`${label}: released comic path must be a PNG under ${ARCHIE_COMIC_IMAGE_DIR}`);
       continue;
     }
-    if (imagePath.startsWith(`${OUTREACH_COMIC_THUMBNAIL_DIR}/`)) {
-      errors.push(`${label}: released outreach comic path must not point at a thumbnail`);
+    if (imagePath.startsWith(`${ARCHIE_COMIC_THUMBNAIL_DIR}/`)) {
+      errors.push(`${label}: released comic path must not point at a thumbnail`);
     }
 
-    if (!asText(image.description).startsWith("Single-panel outreach comic")) {
-      errors.push(`${label}: description must start with "Single-panel outreach comic"`);
+    if (!asText(image.description).startsWith("Single-panel comic")) {
+      errors.push(`${label}: description must start with "Single-panel comic"`);
     }
 
     const width = image?.dimensions?.width;
@@ -382,7 +382,7 @@ function auditOutreachComicReleaseImages() {
     if (!Number.isInteger(width) || !Number.isInteger(height)) {
       errors.push(`${label}: dimensions.width and dimensions.height must be integers`);
     } else if (width !== height) {
-      errors.push(`${label}: released outreach comic must be square (${width}x${height})`);
+      errors.push(`${label}: released comic must be square (${width}x${height})`);
     }
 
     const actual = readPngDimensions(imagePath);
@@ -408,35 +408,35 @@ function auditOutreachComicReleaseImages() {
       continue;
     }
     const thumbnailPath = normalizePath(thumbnail.path ?? "");
-    const expectedThumbnailPath = `${OUTREACH_COMIC_THUMBNAIL_DIR}/${thumbnailId}.png`;
-    if (thumbnail.category !== "outreach-comic-thumbnail") {
-      errors.push(`${label}: ${thumbnailId}.category must be "outreach-comic-thumbnail"`);
+    const expectedThumbnailPath = `${ARCHIE_COMIC_THUMBNAIL_DIR}/${thumbnailId}.png`;
+    if (thumbnail.category !== "archie-comic-thumbnail") {
+      errors.push(`${label}: ${thumbnailId}.category must be "archie-comic-thumbnail"`);
     }
     if (thumbnailPath !== expectedThumbnailPath) {
       errors.push(`${label}: ${thumbnailId}.path must be ${expectedThumbnailPath}`);
     }
     const thumbWidth = thumbnail?.dimensions?.width;
     const thumbHeight = thumbnail?.dimensions?.height;
-    if (thumbWidth !== OUTREACH_COMIC_THUMBNAIL_SIZE || thumbHeight !== OUTREACH_COMIC_THUMBNAIL_SIZE) {
+    if (thumbWidth !== ARCHIE_COMIC_THUMBNAIL_SIZE || thumbHeight !== ARCHIE_COMIC_THUMBNAIL_SIZE) {
       errors.push(
-        `${label}: ${thumbnailId} dimensions must be ${OUTREACH_COMIC_THUMBNAIL_SIZE}x${OUTREACH_COMIC_THUMBNAIL_SIZE}`
+        `${label}: ${thumbnailId} dimensions must be ${ARCHIE_COMIC_THUMBNAIL_SIZE}x${ARCHIE_COMIC_THUMBNAIL_SIZE}`
       );
     }
     const actualThumbnail = readPngDimensions(thumbnailPath);
     if (!actualThumbnail.ok) {
       errors.push(`${label}: ${thumbnailPath}: ${actualThumbnail.error}`);
     } else if (
-      actualThumbnail.width !== OUTREACH_COMIC_THUMBNAIL_SIZE ||
-      actualThumbnail.height !== OUTREACH_COMIC_THUMBNAIL_SIZE
+      actualThumbnail.width !== ARCHIE_COMIC_THUMBNAIL_SIZE ||
+      actualThumbnail.height !== ARCHIE_COMIC_THUMBNAIL_SIZE
     ) {
       errors.push(
-        `${label}: ${thumbnailPath}: PNG must be ${OUTREACH_COMIC_THUMBNAIL_SIZE}x${OUTREACH_COMIC_THUMBNAIL_SIZE} (${actualThumbnail.width}x${actualThumbnail.height})`
+        `${label}: ${thumbnailPath}: PNG must be ${ARCHIE_COMIC_THUMBNAIL_SIZE}x${ARCHIE_COMIC_THUMBNAIL_SIZE} (${actualThumbnail.width}x${actualThumbnail.height})`
       );
     }
   }
 
   if (auditedComicCount) {
-    notes.push(`Outreach comic release image audit: ${auditedComicCount} approved square single-panel comic(s).`);
+    notes.push(`Comic release image audit: ${auditedComicCount} approved square single-panel comic(s).`);
   }
 }
 
@@ -1266,7 +1266,7 @@ if (
   warnings.push(`${MARKDOWN_INDEX_PATH}: index drift detected`);
 }
 
-auditOutreachComicReleaseImages();
+auditArchieComicReleaseImages();
 
 const sceneConfigSet = new Set(sceneConfigs);
 const sceneConfigLower = createLowerMap(sceneConfigs);

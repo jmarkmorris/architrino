@@ -351,6 +351,9 @@ export interface SolverT3RetainedCausalRootReplayRowF64 {
   retainedSourceRecordId: number | null;
   retainedCausalRootRowId: number | null;
   rootLedgerRecordId: number | null;
+  causticRoute: SolverT3CausticRouteSourceLaneF64 | null;
+  causticRouteKind: string;
+  causticRouteSourceLane: SolverT3CausticRouteSourceLaneBridgeF64;
   sourcePathSegmentId: number | null;
   receiverPathSegmentId: number | null;
   windingLabel: SolverVector3I32;
@@ -363,6 +366,25 @@ export interface SolverT3RetainedCausalRootReplayRowF64 {
   rowStatus: string;
   replayAuthorization: false;
   acceptedReplayEvidence: false;
+}
+
+export interface SolverT3CausticRouteSourceLaneF64 {
+  schema: "t3-caustic-route-source-lane.v1";
+  routeKind: string;
+  routeStatus: string;
+  acceptedRouteEvidence: false;
+}
+
+export interface SolverT3CausticRouteSourceLaneBridgeF64 {
+  schema: "t3-caustic-route-source-lane.v1";
+  nativeRow: "T3RetainedCausalRootReplayRowF64";
+  nativeField: "causticRouteKind";
+  cAbiField: "caustic_route_kind";
+  bridgeField: "causticRouteKind";
+  causticRouteKind: string;
+  causticRouteStatus: string;
+  routePayloadPresent: boolean;
+  acceptedRouteEvidence: false;
 }
 
 export interface SolverT3SameRecordRetainedBindingF64 {

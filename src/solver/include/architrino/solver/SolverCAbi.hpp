@@ -551,7 +551,7 @@ struct ArchitrinoSolverT3RetainedCausalRootReplayRowF64 {
   std::uint32_t caustic_route_status;
   std::uint32_t proof_object_provenance_status;
   std::uint32_t row_status;
-  std::uint32_t reserved0;
+  std::uint32_t caustic_route_kind;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {

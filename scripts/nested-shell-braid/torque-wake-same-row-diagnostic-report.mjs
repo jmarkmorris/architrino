@@ -7,6 +7,8 @@ const SCHEMA = "torque_wake_same_row_diagnostic_report/v0";
 const CANDIDATE_SCHEMA = "torque_wake_same_row_diagnostic/v0";
 const BRANCH_CERTIFICATE_PROVIDER_OBJECT_TARGET_SCHEMA =
   "torque_wake_branch_certificate_provider_object_target/v0";
+const SAME_STEP_RETAINED_TORQUE_WAKE_BRANCH_CERTIFICATE_PROVIDER_SCHEMA =
+  "same_step_retained_torque_wake_branch_certificate_provider/v0";
 const BRANCH_CERTIFICATE_REF_SOURCE_AVAILABILITY_AUDIT_SCHEMA =
   "torque_wake_branch_certificate_ref_source_availability_audit/v0";
 const NEXT_RETAINED_ACTIVE_ROW_EVIDENCE_OBJECT_SCHEMA =
@@ -28,6 +30,9 @@ const DISALLOWED_REFERENCE_PREFIXES = [
   "proxy:",
   "candidate:",
   "synthetic:",
+  "route-only:",
+  "aggregate:",
+  "cross-row:",
 ];
 
 const REQUIRED_BINDING_FIELDS = [
@@ -123,6 +128,20 @@ const BRANCH_CERTIFICATE_PROVIDER_OBJECT_FIELDS = [
   "same_record_identity.positive_gap_record_ref",
   "same_record_identity.memory_depth_record_ref",
   "same_record_identity.active_wave_vector_gap_ref",
+  "accepted_branch_chart_ref",
+  "moving_retained_branch_certificate_ref",
+  "active_root_ledger_hash",
+  "conservation_pullback_hash",
+  "negative_control_ref",
+];
+
+const SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS = [
+  "accepted_transition_source_ref",
+  "action_increment_row_id",
+  "retained_branch",
+  "branch_certificate_ref",
+  "same_retained_active_row_ids",
+  "same_record_identity.accepted_branch_chart_ref",
   "accepted_branch_chart_ref",
   "moving_retained_branch_certificate_ref",
   "active_root_ledger_hash",
@@ -657,6 +676,58 @@ function buildBranchCertificateProviderObjectTarget(candidate, binding, retained
   };
 }
 
+function buildSameStepRetainedTorqueWakeBranchCertificateProviderTarget(
+  candidate,
+  binding,
+  branchCertificateProviderObjectTarget
+) {
+  const requiredFieldResults = SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS.map((field) =>
+    branchCertificateProviderObjectTarget.field_results.find((entry) => entry.field === field) ??
+    refTargetField(candidate, field)
+  );
+  const missingOrRejectedFields = requiredFieldResults
+    .filter((row) => row.status !== "passed")
+    .map((row) => row.field);
+  const firstFailure = requiredFieldResults.find((row) => row.status !== "passed")?.failure_code ?? null;
+
+  return {
+    schema: SAME_STEP_RETAINED_TORQUE_WAKE_BRANCH_CERTIFICATE_PROVIDER_SCHEMA,
+    target_status: "fail_closed_provider_target",
+    promotion_status: "priority-only",
+    current_family: currentTorqueWakeFamily(candidate),
+    selected_case_id: candidate.selected_case_id ?? null,
+    provider_object_required: true,
+    accepted_non_fixture_provider_required: true,
+    required_same_step_selected_case_id: "index-ratio:f2",
+    required_same_step_fields: SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS,
+    sampled_active_row_ids: binding.activeRows,
+    sampled_same_row_id_binding: binding.same_row_id_binding,
+    field_results: requiredFieldResults,
+    missing_or_rejected_fields: missingOrRejectedFields,
+    first_failure: firstFailure,
+    provider_ready: firstFailure === null,
+    reference_rejection_policy: referenceRejectionPolicy(),
+    disallowed_provider_sources: [
+      "fixture",
+      "proxy",
+      "synthetic",
+      "route-only",
+      "aggregate",
+      "cross-row",
+      "priority-only diagnostic",
+    ],
+    feeds: ["rank2.accepted_transition_source", "rank6.moving_retained_branch_certificate/v0"],
+    downstream_authorization: {
+      rank2_field_speed_action_self_hit_scan: false,
+      rank6_moving_retained_branch_certificate: false,
+      retained_branch: false,
+      candidate_h_recovery: false,
+    },
+    smallest_next_source_object:
+      "non-fixture same-step retained torque/wake branch certificate provider for index-ratio:f2 with accepted_transition_source_ref, action_increment_row_id, retained_branch=true, branch_certificate_ref, same_retained_active_row_ids, accepted branch-chart refs, moving_retained_branch_certificate_ref, active_root_ledger_hash, conservation_pullback_hash, and negative_control_ref on one retained record",
+  };
+}
+
 function buildBranchCertificateRefSourceAvailabilityAudit(candidate, binding, retainedActiveRowCertificateContract) {
   const sampledRows = binding.activeRows;
   const sameRetainedRows = stringArray(candidate.same_retained_active_row_ids);
@@ -822,6 +893,12 @@ export function buildReport(candidate, options = {}) {
     binding,
     retainedActiveRowCertificateContract
   );
+  const sameStepRetainedTorqueWakeBranchCertificateProviderTarget =
+    buildSameStepRetainedTorqueWakeBranchCertificateProviderTarget(
+      candidate,
+      binding,
+      branchCertificateProviderObjectTarget
+    );
   const branchCertificateRefSourceAvailabilityAudit = buildBranchCertificateRefSourceAvailabilityAudit(
     candidate,
     binding,
@@ -876,6 +953,8 @@ export function buildReport(candidate, options = {}) {
     retained_active_row_certificate_contract: retainedActiveRowCertificateContract,
     branch_certificate_ref_source_availability_audit: branchCertificateRefSourceAvailabilityAudit,
     branch_certificate_provider_object_target: branchCertificateProviderObjectTarget,
+    same_step_retained_torque_wake_branch_certificate_provider_target:
+      sameStepRetainedTorqueWakeBranchCertificateProviderTarget,
     consumer_status: consumerStatus(firstFailure, retainedBranch),
     authorization: {
       candidate_h_recovery: false,
@@ -916,6 +995,47 @@ function validateBridgeTarget(errors, pathLabel, target) {
   ]) {
     if (target.authorization?.[field] !== false) {
       errors.push(`${pathLabel} ${field} authorization must remain false`);
+    }
+  }
+}
+
+function validateSameStepRetainedTorqueWakeProviderTarget(errors, target) {
+  if (!isObject(target)) {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target must be an object");
+    return;
+  }
+  if (target.schema !== SAME_STEP_RETAINED_TORQUE_WAKE_BRANCH_CERTIFICATE_PROVIDER_SCHEMA) {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target schema mismatch");
+  }
+  if (target.target_status !== "fail_closed_provider_target") {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target must fail closed");
+  }
+  if (target.promotion_status !== "priority-only") {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target promotion_status must remain priority-only");
+  }
+  if (target.provider_object_required !== true || target.accepted_non_fixture_provider_required !== true) {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target must require a non-fixture provider object");
+  }
+  if (target.required_same_step_selected_case_id !== "index-ratio:f2") {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target must target index-ratio:f2");
+  }
+  if (!sameOrderedStrings(target.required_same_step_fields ?? [], SAME_STEP_RETAINED_TORQUE_WAKE_PROVIDER_FIELDS)) {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target required fields mismatch");
+  }
+  if (!Array.isArray(target.field_results)) {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target field_results must be an array");
+  }
+  if (typeof target.provider_ready !== "boolean") {
+    errors.push("same_step_retained_torque_wake_branch_certificate_provider_target provider_ready must be boolean");
+  }
+  for (const field of [
+    "rank2_field_speed_action_self_hit_scan",
+    "rank6_moving_retained_branch_certificate",
+    "retained_branch",
+    "candidate_h_recovery",
+  ]) {
+    if (target.downstream_authorization?.[field] !== false) {
+      errors.push(`same_step_retained_torque_wake_branch_certificate_provider_target ${field} authorization must remain false`);
     }
   }
 }
@@ -1058,6 +1178,10 @@ export function validationErrors(report) {
     "branch_certificate_provider_object_target next_retained_active_row_evidence_object fail_closed_bridge_target",
     report.branch_certificate_provider_object_target?.next_retained_active_row_evidence_object
       ?.fail_closed_bridge_target
+  );
+  validateSameStepRetainedTorqueWakeProviderTarget(
+    errors,
+    report.same_step_retained_torque_wake_branch_certificate_provider_target
   );
   if (report.consumer_status?.rank2_field_speed_action_self_hit_scan?.candidate_h_recovery_authorized !== false) {
     errors.push("rank2 candidate_h_recovery_authorized must remain false");

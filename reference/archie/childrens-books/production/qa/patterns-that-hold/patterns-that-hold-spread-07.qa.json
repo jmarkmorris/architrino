@@ -1,0 +1,20 @@
+{
+  "id": "patterns-that-hold-spread-07",
+  "book_slug": "patterns-that-hold",
+  "source_png": "content/assets/images/archie/childrens-books/source/patterns-that-hold/patterns-that-hold-spread-07.png",
+  "exists": true,
+  "automated": {
+    "width": 1536,
+    "height": 1024,
+    "aspect_ratio": 1.5,
+    "saturated_non_palette_fraction": 0.3954,
+    "palette_flag": true
+  },
+  "manual_checklist": {
+    "palette": "approved",
+    "no_in_image_text": "approved",
+    "one_continuous_scene": "approved",
+    "correct_geometry": "approved"
+  },
+  "decision": "approved"
+}

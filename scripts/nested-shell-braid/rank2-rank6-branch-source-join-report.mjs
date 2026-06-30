@@ -328,6 +328,8 @@ function buildSameRecordProviderIntake({
         { source: "rank2/torque_wake", values: commonNegativeControlRow?.values ?? [] }
       ),
     ],
+    same_step_retained_torque_wake_branch_certificate_provider_target:
+      torqueWakeReport.same_step_retained_torque_wake_branch_certificate_provider_target ?? null,
     downstream_missing_or_not_authorized_fields: [
       {
         field: "bounded_speed_live_ledger",
@@ -603,6 +605,27 @@ export function validationErrors(report) {
     }
     if (!isObject(report.same_record_provider_intake.negative_controls)) {
       errors.push("same_record_provider_intake negative_controls must be an object");
+    }
+    const sameStepProviderTarget =
+      report.same_record_provider_intake.same_step_retained_torque_wake_branch_certificate_provider_target;
+    if (!isObject(sameStepProviderTarget)) {
+      errors.push("same_record_provider_intake same-step torque/wake provider target must be an object");
+    } else {
+      if (
+        sameStepProviderTarget.schema !==
+        "same_step_retained_torque_wake_branch_certificate_provider/v0"
+      ) {
+        errors.push("same_record_provider_intake same-step torque/wake provider target schema mismatch");
+      }
+      if (sameStepProviderTarget.target_status !== "fail_closed_provider_target") {
+        errors.push("same_record_provider_intake same-step torque/wake provider target must fail closed");
+      }
+      if (sameStepProviderTarget.downstream_authorization?.rank2_field_speed_action_self_hit_scan !== false) {
+        errors.push("same_record_provider_intake same-step torque/wake rank2 authorization must remain false");
+      }
+      if (sameStepProviderTarget.downstream_authorization?.rank6_moving_retained_branch_certificate !== false) {
+        errors.push("same_record_provider_intake same-step torque/wake rank6 authorization must remain false");
+      }
     }
     for (const field of [
       "candidate_h_recovery",

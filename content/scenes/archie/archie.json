@@ -40,7 +40,7 @@
       },
       {
         "nodeId": "comics",
-        "scenePath": "content/scenes/outreach/comics.json"
+        "scenePath": "content/scenes/archie/comics.json"
       },
       {
         "nodeId": "reductionist_universe",
