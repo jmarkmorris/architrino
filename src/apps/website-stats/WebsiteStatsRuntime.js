@@ -1,3 +1,9 @@
+import {
+  isWebsiteAnalyticsOptedOut,
+  setWebsiteAnalyticsOptOut,
+  WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY,
+} from "./WebsiteAnalyticsOptOutRuntime.js";
+
 const DEFAULT_PERIOD_LABEL = "Aggregate Window";
 const BREAKDOWN_COLORS = ["#d1912d", "#4a9a78", "#b95f6a", "#6385b7", "#bfa354"];
 
@@ -178,7 +184,43 @@ function renderBreakdown(items = [], valueKey = "visits") {
   return wrapper;
 }
 
-function renderShell(data) {
+function renderOptOutControl({ storage = globalThis.localStorage } = {}) {
+  const control = createElement("label", "website-stats-opt-out");
+  const input = createElement("input");
+  const status = createElement("span", "website-stats-opt-out-status");
+  const slider = createElement("span", "website-stats-opt-out-slider");
+  const copy = appendChildren(createElement("span", "website-stats-opt-out-copy"), [
+    createElement("span", "website-stats-opt-out-title", "Exclude this browser"),
+    status,
+  ]);
+
+  input.type = "checkbox";
+  input.checked = isWebsiteAnalyticsOptedOut(storage);
+  input.setAttribute("aria-describedby", "website-stats-opt-out-status");
+  status.id = "website-stats-opt-out-status";
+
+  function syncStatus() {
+    status.textContent = input.checked
+      ? "This browser will not send analytics events."
+      : "This browser can send analytics events when tracking is connected.";
+  }
+
+  input.addEventListener("change", () => {
+    const stored = setWebsiteAnalyticsOptOut(input.checked, storage);
+    if (!stored) {
+      input.checked = isWebsiteAnalyticsOptedOut(storage);
+      status.textContent = "This browser could not save the preference.";
+      return;
+    }
+    syncStatus();
+  });
+
+  syncStatus();
+  control.title = `Stores ${WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY} in this browser.`;
+  return appendChildren(control, [input, slider, copy]);
+}
+
+function renderShell(data, options = {}) {
   const periodLabel = data?.period?.label || DEFAULT_PERIOD_LABEL;
   const periodMeta =
     data?.period?.start && data?.period?.end
@@ -202,6 +244,7 @@ function renderShell(data) {
       createElement("p", "", headerDetail),
     ]),
     appendChildren(createElement("nav", "website-stats-actions"), [
+      renderOptOutControl({ storage: options.storage }),
       createNavLink("./index.html#scene=content%2Fscenes%2Farchie%2Fproject.json", "Archie"),
       createNavLink("./index.html", "Home"),
     ]),
@@ -289,7 +332,7 @@ function createNavIcon(label) {
   return svg;
 }
 
-function renderError(root, message) {
+function renderError(root, message, options = {}) {
   root.replaceChildren(
     appendChildren(createElement("div", "website-stats-shell"), [
       appendChildren(createElement("header", "website-stats-header"), [
@@ -298,6 +341,7 @@ function renderError(root, message) {
           createElement("p", "", "Data unavailable"),
         ]),
         appendChildren(createElement("nav", "website-stats-actions"), [
+          renderOptOutControl({ storage: options.storage }),
           createNavLink("./index.html#scene=content%2Fscenes%2Farchie%2Fproject.json", "Archie"),
         ]),
       ]),
@@ -306,7 +350,12 @@ function renderError(root, message) {
   );
 }
 
-export async function renderWebsiteStatsApp({ root, dataPath, fetchImpl = fetch } = {}) {
+export async function renderWebsiteStatsApp({
+  root,
+  dataPath,
+  fetchImpl = fetch,
+  storage = globalThis.localStorage,
+} = {}) {
   if (!root) {
     throw new Error("Website Stats requires a root element.");
   }
@@ -318,8 +367,8 @@ export async function renderWebsiteStatsApp({ root, dataPath, fetchImpl = fetch 
       throw new Error(`Failed to load ${dataPath}: ${response.status}`);
     }
     const data = await response.json();
-    root.replaceChildren(renderShell(data));
+    root.replaceChildren(renderShell(data, { storage }));
   } catch (error) {
-    renderError(root, String(error?.message || "Failed to load website stats."));
+    renderError(root, String(error?.message || "Failed to load website stats."), { storage });
   }
 }
