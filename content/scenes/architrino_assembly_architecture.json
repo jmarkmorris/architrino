@@ -62,8 +62,8 @@
         "scenePath": "content/scenes/philosophy_history/philosophy_history.json"
       },
       {
-        "nodeId": "outreach",
-        "scenePath": "content/scenes/outreach/outreach.json",
+        "nodeId": "archie",
+        "scenePath": "content/scenes/archie/archie.json",
         "textbookToc": {
           "hideEntry": true
         }
@@ -149,11 +149,11 @@
       "labelTitle": "Philosophy-History"
     },
     {
-      "id": "outreach",
-      "title": "Outreach",
+      "id": "archie",
+      "title": "Archie",
       "radius": 2.688,
-      "color": "#be123c",
-      "labelTitle": "Outreach"
+      "color": "#9d174d",
+      "labelTitle": "Archie"
     }
   ]
 }

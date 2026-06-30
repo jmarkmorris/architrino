@@ -94,7 +94,7 @@ collars as strict-gap targets for a repaired or successor candidate identity.
 
 ## Blocker
 
-Cody could not decide this inside the prior authority without choosing a proof
+The prior pass could not decide this inside its authority without choosing a proof
 strategy. That decision has now been made:
 
 - The immediate proof work is candidate repair or accepted same-packet

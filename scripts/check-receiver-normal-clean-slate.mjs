@@ -12,7 +12,7 @@ const SCAN_TARGETS = [
   "content/generated/markdown/textbook/reading-copies",
   "reference/priorities",
   "reference/outreach",
-  "reference/entourage/cody/prompts",
+  "reference/entourage/archie/prompts",
   "scripts",
   "src",
   "tests",

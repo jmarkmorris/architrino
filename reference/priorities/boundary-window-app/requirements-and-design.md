@@ -404,6 +404,25 @@ The render manifest should record:
 
 The default first-screen interaction target may be `interactive-adaptive`: keep the sparse launch view responsive with `simulation-window` and `architrino-position` visible, velocity rays off, and 256 architrinos as the preferred design target. The required review and production output target is `quality-4k-uhd` or `capture-4k-uhd` at full 3840 by 2160. Resolution quality is display output and not stronger solver evidence.
 
+### Deployment Budget
+
+The app must measure deployment cost separately from native solver throughput. GitHub Pages serves static files; browser runtime work such as solver playback, WebGL/WebGPU rendering, browser heap use, and browser storage pressure happens on the client device unless a future service backend is introduced.
+
+The first deployment budget should report:
+
+| Budget | Meaning | Must not be confused with |
+| --- | --- | --- |
+| `bundleSizeBytes` | JavaScript, CSS, HTML, WASM, and app shell transfer size. | Native solver step throughput. |
+| `staticAssetTransferBytes` | Textures, generated JSON, scene data, captures, fonts, and other static payloads. | Browser heap after decompression or parsing. |
+| `githubPagesBandwidthEstimate` | Expected monthly transfer from Pages based on bundle/assets and visit count. | Client-side compute cost. |
+| `browserHeapBudget` | Expected browser heap for active state, manifests, path history, wake rows, buffers, and parsed assets. | GitHub Pages hosting cost. |
+| `gpuMemoryBudget` | Expected GPU/WebGL/WebGPU memory for 4K UHD rendering, point buffers, line buffers, trails, wake visualization, and render targets. | Solver numeric authority. |
+| `browserStorageBudget` | IndexedDB, Cache Storage, local replay datasets, captures, and downloaded manifests retained by the browser. | Git repository size or Pages published-site size. |
+| `actionsArtifactBudget` | CI/review artifacts, generated captures, benchmark output, and logs retained by GitHub Actions. | Pages bandwidth. |
+| `nativeSolverThroughput` | Steps, rows, candidates, and retained records per second under the native central solver. | Static hosting or browser rendering pressure. |
+
+The deployment budget must fail closed when the app cannot distinguish static transfer, browser runtime memory, GPU memory, browser storage, GitHub Actions artifacts, GitHub Pages bandwidth, and native solver throughput. A beautiful 4K UHD render does not imply the deployment footprint is acceptable, and a small bundle does not imply solver or browser memory is safe.
+
 ## First-Screen Control Layout
 
 The first screen should make camera navigation, viewport layers, and simulation-envelope scale controls physically and visually separate. The operator must not be able to confuse camera zoom with changing the simulation-window side length or solver scale.
