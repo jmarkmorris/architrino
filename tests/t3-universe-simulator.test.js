@@ -380,7 +380,24 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields.includes(
       "endpointRoute"
     ),
-    true
+    false
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].endpointRoute,
+    {
+      schema: "t3-endpoint-route.v1",
+      routeStatus: "declared_from_same_solver_step_record",
+      sourceObjectSchema: "solver-t3-step-request+response.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      startTime: 0,
+      endTime: 1,
+      timestep: 1,
+      initialPosition: { x: 0.75, y: 0.2, z: 0.2 },
+      finalPosition: { x: 0.25, y: 0.2, z: 0.2 },
+      imageDelta: { x: 1, y: 0, z: 0 },
+    }
   );
   assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
   assert.equal(
@@ -535,9 +552,14 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     true
   );
   assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].availableProducerFields.includes(
+      "endpointRoute"
+    ),
+    true
+  );
+  assert.equal(
     [
       "retainedCausalRootRowId",
-      "endpointRoute",
       "memoryWindowRoute",
     ].every((field) =>
       result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
@@ -549,6 +571,12 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
       "windingLabel"
+    ),
+    false
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "endpointRoute"
     ),
     false
   );

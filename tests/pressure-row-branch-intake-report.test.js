@@ -935,6 +935,18 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.provider_boundary.missing_or_rejected_provider_report_fields,
     ["provider_source_status", "source_ref", "branch_certificate_ref"]
   );
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.first_missing_or_rejected_provider_report_field,
+    "provider_source_status"
+  );
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.first_missing_or_rejected_provider_report_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status"
+  );
+  assert.equal(
+    acceptedSourceBoundary.provider_boundary.first_missing_or_rejected_provider_report_failure,
+    "provider_source_status.accepted_non_fixture_source_missing"
+  );
   const providerReportReadouts = new Map(
     acceptedSourceBoundary.provider_boundary.provider_row_field_readouts.map((field) => [
       field.field,
@@ -1000,6 +1012,14 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
     "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
   ]);
+  assert.deepEqual(acceptedSourceBoundary.next_exact_source_target.first_provider_row_blocker, {
+    field: "provider_source_status",
+    path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+    required_value: "accepted_non_fixture_source",
+    observed_value: "tier0_continuation_ready_not_accepted_history",
+    pass: false,
+    first_failure: "provider_source_status.accepted_non_fixture_source_missing",
+  });
   assert.deepEqual(providerObjectAttempt.accepted_same_domain_provider_object_candidates, []);
   assert.equal(
     providerObjectAttempt.candidate_readouts.every(

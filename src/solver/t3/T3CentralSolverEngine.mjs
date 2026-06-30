@@ -50,7 +50,7 @@ export class T3CentralSolverEngine {
     const response = await this.solverClient.stepT3UniverseF64(request);
     const rows = response?.rows ?? [];
     const bulkStepSummary = response?.summary ?? {};
-    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, { stepIndex: state.stepIndex });
+    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, { stepIndex: state.stepIndex, request });
     applyT3BulkStepRows(state, rows);
     state.time = bulkStepSummary.endTime ?? state.time + dt;
     state.stepIndex += 1;
@@ -260,6 +260,7 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
         row,
         rowIndex,
         stepIndex,
+        request: options.request,
         axis,
         signedImageDelta,
       }));
@@ -305,6 +306,24 @@ function createRetainedCausalRootReplayCandidateRow(input) {
   const { row, rowIndex, stepIndex, axis, signedImageDelta } = input;
   const sourceRecordId = retainedSourceRecordId(row, rowIndex, stepIndex);
   const rowId = `${sourceRecordId}:seam-${axis}`;
+  const endpointRoute = createEndpointRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+  });
+  const providedFields = [
+    "sameRecordReplayId",
+    "retainedSourceRecordId",
+    "rowFamilyIdentity",
+    "boundaryOrientation",
+    "windingLabel",
+    "imageDeltaAxis",
+    "signedImageDeltaWitness",
+  ];
+  if (endpointRoute) {
+    providedFields.push("endpointRoute");
+  }
   return {
     schema: "t3-retained-causal-root-replay-row.v1",
     rowId,
@@ -323,32 +342,66 @@ function createRetainedCausalRootReplayCandidateRow(input) {
     imageDeltaAxis: axis,
     signedImageDeltaWitness: signedImageDelta,
     jacobianFloorOrDeclaredStratum: null,
-    endpointRoute: null,
+    endpointRoute,
     memoryWindowRoute: null,
     collisionCoreRoute: null,
     omittedRowRoute: null,
     rowStatus: "candidate_missing_required_same_record_fields",
     replayAuthorization: false,
     acceptedReplayEvidence: false,
-    providedFields: [
-      "sameRecordReplayId",
-      "retainedSourceRecordId",
-      "rowFamilyIdentity",
-      "boundaryOrientation",
-      "windingLabel",
-      "imageDeltaAxis",
-      "signedImageDeltaWitness",
-    ],
+    providedFields,
     missingFields: [
       "retainedCausalRootRowId",
       "jacobianFloorOrDeclaredStratum",
-      "endpointRoute",
       "memoryWindowRoute",
       "collisionCoreRoute",
       "omittedRowRoute",
       "seamPairingMapOrWindingOwnerRowId",
-    ],
+    ].concat(endpointRoute ? [] : ["endpointRoute"]),
   };
+}
+
+function createEndpointRoute(input) {
+  const { row, rowIndex, stepIndex, request } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  return {
+    schema: "t3-endpoint-route.v1",
+    routeStatus: "declared_from_same_solver_step_record",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    timestep: request.timestep,
+    initialPosition: cloneVectorObject(requestParticle.position),
+    finalPosition: cloneVectorObject(row.position),
+    imageDelta: cloneImageDelta(row.imageDelta),
+  };
+}
+
+function cloneVectorObject(value = {}) {
+  return {
+    x: finiteOrNull(value.x),
+    y: finiteOrNull(value.y),
+    z: finiteOrNull(value.z),
+  };
+}
+
+function cloneImageDelta(value = {}) {
+  return {
+    x: integerImageDelta(value.x),
+    y: integerImageDelta(value.y),
+    z: integerImageDelta(value.z),
+  };
+}
+
+function finiteOrNull(value) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) ? numericValue : null;
 }
 
 function retainedSourceRecordId(row, rowIndex, stepIndex) {

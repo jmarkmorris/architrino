@@ -1188,6 +1188,7 @@ function buildAcceptedSourceObjectBoundary(
     providerSourcePathProbe
   );
   const missingProviderFields = providerFieldReadouts.filter((field) => field.pass !== true);
+  const firstMissingProviderField = missingProviderFields[0] ?? null;
   const unacceptedPressureFields =
     provenanceDepthReadout?.field_readouts?.filter(
       (field) => field.accepted_non_fixture_source_provenance !== true
@@ -1223,6 +1224,10 @@ function buildAcceptedSourceObjectBoundary(
         missingProviderFields,
       exact_missing_provider_source_paths:
         missingProviderFields.map((field) => field.path).filter(Boolean),
+      first_missing_or_rejected_provider_report_field: firstMissingProviderField?.field ?? null,
+      first_missing_or_rejected_provider_report_path: firstMissingProviderField?.path ?? null,
+      first_missing_or_rejected_provider_report_failure:
+        firstMissingProviderField?.first_failure ?? null,
       provider_row_field_readouts: providerFieldReadouts,
       missing_or_rejected_provider_report_fields: missingProviderFields.map(
         (field) => field.field
@@ -1278,6 +1283,7 @@ function buildAcceptedSourceObjectBoundary(
       : null,
     next_exact_source_target: {
       provider_paths: providerSourcePathProbe?.required_next_provider_paths ?? [],
+      first_provider_row_blocker: firstMissingProviderField,
       pressure_row_candidate_path: nearestCandidate?.path ?? null,
       pressure_row_source_fields: RETAINED_PRESSURE_ROW_SOURCE_FIELDS,
     },
@@ -1660,6 +1666,20 @@ export function scoutValidationErrors(report) {
       )
     ) {
       errors.push("accepted_source_object_boundary must list missing provider report fields");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      typeof acceptedSourceObjectBoundary.provider_boundary
+        ?.first_missing_or_rejected_provider_report_field !== "string"
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name first provider blocker");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      typeof acceptedSourceObjectBoundary.provider_boundary
+        ?.first_missing_or_rejected_provider_report_path !== "string"
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name first provider blocker path");
     }
     if (
       !Array.isArray(

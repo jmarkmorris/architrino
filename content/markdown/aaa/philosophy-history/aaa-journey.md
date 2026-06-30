@@ -71,9 +71,7 @@ The most recent phase treats inherited general relativity, quantum mechanics, an
 
 The mature theory is therefore less exuberant than the early archive but more ambitious in proof burden. It no longer needs every source-era intuition to be right. It needs the surviving motifs to become equations, invariants, branch certificates, simulations, and falsifiable recovery targets. That is the difference between a journey document and a proof document.
 
-### Provisional Topology Note
 
-A live 2026 discovery note belongs here. Marko had a potentially important topology-oriented idea: perhaps the repeated same-record blockers in the master-equation program are not merely numerical or evidentiary gaps, but symptoms of a missing closed causal-root ledger theorem. The rough thought is that pair contact, multi-hit, self-hit, branch-chart boundaries, action residuals, Noether wake-history charges, Noether sea response, and cross-sector acceptance might be different projections of one topological boundary-accounting problem on retained path history. This remains provisional. It is not a proof and should not be treated as a new canon law. 
 
 ## Seminal Realization Threads
 

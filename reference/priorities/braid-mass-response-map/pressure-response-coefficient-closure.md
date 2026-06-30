@@ -853,6 +853,11 @@ by that same provider source, carrying all 33 source fields. The blocked field
 families are retained branch identity, exposure quotient, pressure record,
 exposure source record, pressure-response record, receiver-normal weight record,
 Noether sea response record, reversible-domain record, and null-sector record.
+The first executable provider-row blocker is
+`provider_source_status` at
+`scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status`;
+it must become `accepted_non_fixture_source` on a non-fixture provider row
+before the `source_ref` and `branch_certificate_ref` blockers can close.
 
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)
