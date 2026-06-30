@@ -45,11 +45,32 @@ export class T3CentralSolverEngine {
       spatialIndex: this.spatialIndex,
       interactionPipeline: this.interactionPipeline,
       integrationTolerance: this.config.solver?.tolerance ?? 0,
+      stepIndex: state.stepIndex,
+      signalSpeed:
+        this.config.model?.causalSpeed ??
+        this.config.solver?.signalSpeed ??
+        this.config.signalSpeed ??
+        1,
+      rootTolerance:
+        this.config.solver?.rootTolerance ??
+        this.config.solver?.tolerance ??
+        1e-6,
+      unresolvedRootSegmentSidecar: {
+        enabled: true,
+        pairPolicy: "neighbor_pruned_v1",
+      },
       maxRows: state.particleCount,
     });
     const response = await this.solverClient.stepT3UniverseF64(request);
-    applyT3BulkStepRows(state, response?.rows ?? []);
-    state.time = response?.summary?.endTime ?? state.time + dt;
+    const rows = response?.rows ?? [];
+    const bulkStepSummary = response?.summary ?? {};
+    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, {
+      stepIndex: state.stepIndex,
+      request,
+      response,
+    });
+    applyT3BulkStepRows(state, rows);
+    state.time = bulkStepSummary.endTime ?? state.time + dt;
     state.stepIndex += 1;
     this.lastAcceptedTimestep = dt;
     this.solverCallCount += 1;
@@ -62,11 +83,33 @@ export class T3CentralSolverEngine {
       time: state.time,
       stepIndex: state.stepIndex,
       solverCallCount: this.solverCallCount,
+      particleCount: bulkStepSummary.particleCount ?? state.particleCount,
       particleSolveCount: state.particleCount,
       nativeStepCount: this.solverCallCount,
       interactionLaw: request.interaction.law,
-      neighborPairCount: response?.summary?.neighborPairCount ?? 0,
-      occupiedCellCount: response?.summary?.occupiedCellCount ?? 0,
+      neighborPairCount: bulkStepSummary.neighborPairCount ?? 0,
+      cellCount: bulkStepSummary.cellCount ?? null,
+      occupiedCellCount: bulkStepSummary.occupiedCellCount ?? 0,
+      maxAcceleration: bulkStepSummary.maxAcceleration ?? 0,
+      interactionEnergy: bulkStepSummary.interactionEnergy ?? 0,
+      unresolvedRootSegmentRows: Array.isArray(response?.unresolvedRootSegmentRows)
+        ? response.unresolvedRootSegmentRows
+        : [],
+      retainedCausalRootReplayRows: Array.isArray(response?.retainedCausalRootReplayRows)
+        ? response.retainedCausalRootReplayRows
+        : [],
+      unresolvedRootSegmentSidecar: response?.unresolvedRootSegmentSidecar ?? {
+        schema: "t3-unresolved-root-segment-sidecar.v1",
+        enabled: false,
+        pairPolicy: "disabled",
+        rowCount: 0,
+        rowStatus: "absent_from_solver_step_response",
+        replayAuthorization: false,
+        retainedBranch: false,
+        provesBranchAdmissibility: false,
+      },
+      bulkStepSummary,
+      periodicWrapEvidence,
       executionPath: response?.executionPath ?? "central_solver_bridge",
     };
     this.interactionPipeline.afterStep(this.createContext(state, result));
@@ -109,6 +152,10 @@ export function createT3BulkStepRequest(input = {}) {
     spatialIndex,
     interactionPipeline,
     integrationTolerance = 0,
+    stepIndex = 0,
+    signalSpeed = 1,
+    rootTolerance = 1e-6,
+    unresolvedRootSegmentSidecar = { enabled: false, pairPolicy: "disabled" },
     maxRows,
   } = input;
   if (!state || !topology || !spatialIndex) {
@@ -128,13 +175,20 @@ export function createT3BulkStepRequest(input = {}) {
       cellSize: spatialIndex.cellSize,
     },
     interaction: createNativeT3InteractionSpec(interactionPipeline),
+    stepIndex: positiveIntegerOrZero(stepIndex, "stepIndex"),
+    signalSpeed: positiveFiniteNumber(signalSpeed, "signalSpeed"),
+    rootTolerance: positiveFiniteNumber(rootTolerance, "rootTolerance"),
+    unresolvedRootSegmentSidecar: normalizeUnresolvedRootSegmentSidecarRequest({
+      ...unresolvedRootSegmentSidecar,
+      particleCount: state.particleCount,
+    }),
     particles: Array.from({ length: state.particleCount }, (_, particleIndex) => {
       const offset = particleIndex * 3;
       return {
         pathKey: particleIndex + 1,
         position: vectorObject(state.positions, offset),
         velocity: vectorObject(state.velocities, offset),
-        mass: state.masses[particleIndex],
+        integrationWeight: state.integrationWeights[particleIndex],
         charge: state.electrineFractions[particleIndex],
         stateFlags: particleIndex + 1,
       };
@@ -142,6 +196,31 @@ export function createT3BulkStepRequest(input = {}) {
     integrationTolerance,
     integrationMethod: 1,
     maxRows: maxRows ?? state.particleCount,
+  };
+}
+
+function normalizeUnresolvedRootSegmentSidecarRequest(input = {}) {
+  const enabled = input.enabled === true;
+  if (!enabled) {
+    return {
+      schema: "t3-unresolved-root-segment-sidecar-request.v1",
+      enabled: false,
+      pairPolicy: "disabled",
+      maxRows: 0,
+    };
+  }
+  if (input.pairPolicy !== "neighbor_pruned_v1") {
+    throw new TypeError("T3 unresolved-root segment sidecar pairPolicy must be neighbor_pruned_v1");
+  }
+  const particleCount = positiveIntegerOrZero(input.particleCount ?? 0, "particleCount");
+  return {
+    schema: "t3-unresolved-root-segment-sidecar-request.v1",
+    enabled: true,
+    pairPolicy: "neighbor_pruned_v1",
+    maxRows: positiveIntegerOrZero(
+      input.maxRows ?? (particleCount * (particleCount - 1)) / 2,
+      "unresolvedRootSegmentSidecar.maxRows"
+    ),
   };
 }
 
@@ -200,6 +279,698 @@ export function applyT3BulkStepRows(state, rows) {
     state.imageOffsets[offset + 1] += row.imageDelta?.y ?? 0;
     state.imageOffsets[offset + 2] += row.imageDelta?.z ?? 0;
   }
+}
+
+export function summarizeT3ImageDeltas(rows = [], options = {}) {
+  if (!Array.isArray(rows)) {
+    throw new TypeError("T3 image delta summary requires solver rows");
+  }
+  const imageDeltaTotals = { x: 0, y: 0, z: 0 };
+  const absoluteImageDeltaTotals = { x: 0, y: 0, z: 0 };
+  let wrappedParticleCount = 0;
+  for (const row of rows) {
+    const x = integerImageDelta(row?.imageDelta?.x);
+    const y = integerImageDelta(row?.imageDelta?.y);
+    const z = integerImageDelta(row?.imageDelta?.z);
+    imageDeltaTotals.x += x;
+    imageDeltaTotals.y += y;
+    imageDeltaTotals.z += z;
+    absoluteImageDeltaTotals.x += Math.abs(x);
+    absoluteImageDeltaTotals.y += Math.abs(y);
+    absoluteImageDeltaTotals.z += Math.abs(z);
+    if (x !== 0 || y !== 0 || z !== 0) {
+      wrappedParticleCount += 1;
+    }
+  }
+  const totalAbsoluteImageDelta =
+    absoluteImageDeltaTotals.x + absoluteImageDeltaTotals.y + absoluteImageDeltaTotals.z;
+  return {
+    schema: "t3-image-delta-summary.v1",
+    particleCount: rows.length,
+    imageDeltaTotals,
+    absoluteImageDeltaTotals,
+    totalAbsoluteImageDelta,
+    wrappedParticleCount,
+    hasPeriodicWrap: wrappedParticleCount > 0,
+    retainedCausalRootReplaySource: createRetainedCausalRootReplaySource(rows, options),
+  };
+}
+
+function createRetainedCausalRootReplaySource(rows, options = {}) {
+  const stepIndex = Number.isInteger(options.stepIndex) ? options.stepIndex : null;
+  const candidateRows = [];
+  for (let rowIndex = 0; rowIndex < rows.length; rowIndex += 1) {
+    const row = rows[rowIndex];
+    for (const axis of ["x", "y", "z"]) {
+      const signedImageDelta = integerImageDelta(row?.imageDelta?.[axis]);
+      if (signedImageDelta === 0) {
+        continue;
+      }
+      candidateRows.push(createRetainedCausalRootReplayCandidateRow({
+        row,
+        rowIndex,
+        rows,
+        stepIndex,
+        request: options.request,
+        response: options.response,
+        axis,
+        signedImageDelta,
+      }));
+    }
+  }
+  const unresolvedRootSegmentRows = Array.isArray(options.response?.unresolvedRootSegmentRows)
+    ? options.response.unresolvedRootSegmentRows
+    : [];
+  const retainedCausalRootReplayRowsBySidecarKey =
+    groupRetainedCausalRootReplayRowsBySidecarKey(
+      options.response?.retainedCausalRootReplayRows
+    );
+  unresolvedRootSegmentRows.forEach((row, rowIndex) => {
+    candidateRows.push(createUnresolvedRootSegmentReplayCandidateRow({
+      row,
+      rowIndex,
+      stepIndex,
+      nativeReplayRow:
+        retainedCausalRootReplayRowsBySidecarKey.get(unresolvedRootSidecarKey(row)) ?? null,
+    }));
+  });
+  const acceptedRows = candidateRows.filter((row) => row.acceptedReplayEvidence === true);
+  const firstBlockedRow = candidateRows.find((row) => row.acceptedReplayEvidence !== true);
+  const allCandidateRowsAccepted =
+    candidateRows.length > 0 && acceptedRows.length === candidateRows.length;
+  return {
+    schema: "t3-retained-causal-root-replay.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    replayAuthorization: allCandidateRowsAccepted,
+    acceptedReplayEvidence: allCandidateRowsAccepted,
+    rows: candidateRows,
+    negativeControls: [
+      {
+        controlId: "candidate_step_row_without_retained_causal_root_id",
+        expectedFailure:
+          "solver step rows can identify a source pathKey and image-delta axis but cannot authorize replay without a retained causal-root row id",
+        promotionBlocked: true,
+      },
+      {
+        controlId: "candidate_step_row_without_endpoint_memory_or_omitted_row_routes",
+        expectedFailure:
+          "solver step rows cannot authorize replay until endpoint, memory-window, collision/core, and omitted-row routes are declared on the same retained record",
+        promotionBlocked: true,
+      },
+      {
+        controlId: "unresolved_root_segment_sidecar_without_retained_root_ledger_fields",
+        expectedFailure:
+          "unresolved-root segment sidecar rows can expose same-step segment shape evidence but cannot authorize replay without same-record retained path-history segment ids, retained causal-root row id, rootLedgerRecordId, and causticRoute",
+        promotionBlocked: true,
+      },
+    ],
+    summary: {
+      status:
+        candidateRows.length === 0
+          ? "no_candidate_replay_rows"
+          : allCandidateRowsAccepted
+            ? "same_record_replay_fields_complete"
+            : acceptedRows.length > 0
+              ? "partial_candidate_rows_missing_required_same_record_fields"
+              : "candidate_rows_missing_required_same_record_fields",
+      candidateRowCount: candidateRows.length,
+      acceptedReplayRowCount: acceptedRows.length,
+      replayAuthorization: allCandidateRowsAccepted,
+      firstCandidateRowId: candidateRows[0]?.rowId ?? null,
+      firstMissingField: firstBlockedRow?.missingFields?.[0] ?? null,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function createUnresolvedRootSegmentReplayCandidateRow(input) {
+  const { row, rowIndex, stepIndex, nativeReplayRow = null } = input;
+  const effectiveStepIndex = Number.isInteger(row?.stepIndex) ? row.stepIndex : stepIndex;
+  const chronologyRowId = row?.chronologyRowId ??
+    (effectiveStepIndex == null ? null : `step_${effectiveStepIndex}_unresolved_root_rows`);
+  const rowId = [
+    chronologyRowId ?? "step_unknown_unresolved_root_rows",
+    "segment",
+    row?.sourcePathKey ?? "source_unknown",
+    row?.receiverPathKey ?? "receiver_unknown",
+    rowIndex,
+  ].join(":");
+  const providedFields = [
+    "chronologyRowId",
+    "sourcePathKey",
+    "receiverPathKey",
+    "sourceSegmentIndex",
+    "receiverSegmentIndex",
+    "sourceSegment",
+    "receiverSegment",
+    "sameRecordSegmentBinding",
+    "sourceIdentityBinding",
+    "receiverIdentityBinding",
+    "hitTime",
+    "signalSpeed",
+    "rootTolerance",
+    "rowFamilyIdentity",
+  ].filter((field) => field === "rowFamilyIdentity" || row?.[field] != null);
+  const nativeReplayProvidedFields = [
+    "sameRecordReplayId",
+    "retainedSourceRecordId",
+    "retainedCausalRootRowId",
+    "rootLedgerRecordId",
+    "sourcePathSegmentId",
+    "receiverPathSegmentId",
+    "windingLabel",
+    "windingLabelStatus",
+    "sameRecordRetainedBinding",
+  ].filter((field) => nativeReplayRow?.[field] != null);
+  const requiredFields = [
+    "sameRecordReplayId",
+    "retainedSourceRecordId",
+    "retainedCausalRootRowId",
+    "rowFamilyIdentity",
+    "boundaryOrientation",
+    "windingLabel",
+    "jacobianFloorOrDeclaredStratum",
+    "endpointRoute",
+    "memoryWindowRoute",
+    "collisionCoreRoute",
+    "omittedRowRoute",
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+    "receiverPathSegmentId",
+  ];
+  const allProvidedFields = [...providedFields, ...nativeReplayProvidedFields];
+  const missingFields = requiredFields.filter((field) => !allProvidedFields.includes(field));
+  const retainedCausalRootReplayProducerContract =
+    createUnresolvedRootSegmentReplayProducerContract({
+      row,
+      nativeReplayRow,
+      rowId,
+      chronologyRowId,
+      effectiveStepIndex,
+      providedFields: allProvidedFields,
+      missingFields,
+    });
+  return {
+    schema: "t3-retained-causal-root-replay-row.v1",
+    rowId,
+    sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
+    sameRecordReplayId: null,
+    retainedSourceRecordId: null,
+    retainedCausalRootRowId: null,
+    stepIndex: effectiveStepIndex,
+    sourcePathKey: row?.sourcePathKey ?? null,
+    receiverPathKey: row?.receiverPathKey ?? null,
+    sourceSegmentIndex: row?.sourceSegmentIndex ?? null,
+    receiverSegmentIndex: row?.receiverSegmentIndex ?? null,
+    sourceSegment: row?.sourceSegment ?? null,
+    receiverSegment: row?.receiverSegment ?? null,
+    sameRecordSegmentBinding: row?.sameRecordSegmentBinding ?? null,
+    sameRecordRetainedBinding: nativeReplayRow?.sameRecordRetainedBinding ?? null,
+    sourceIdentityBinding: row?.sourceIdentityBinding ?? null,
+    receiverIdentityBinding: row?.receiverIdentityBinding ?? null,
+    hitTime: row?.hitTime ?? null,
+    signalSpeed: row?.signalSpeed ?? null,
+    rootTolerance: row?.rootTolerance ?? null,
+    sameRecordReplayId: nativeReplayRow?.sameRecordReplayId ?? null,
+    retainedSourceRecordId: nativeReplayRow?.retainedSourceRecordId ?? null,
+    retainedCausalRootRowId: nativeReplayRow?.retainedCausalRootRowId ?? null,
+    rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
+    causticRoute: nativeReplayRow?.causticRoute ?? null,
+    sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
+    receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+    windingLabel: nativeReplayRow?.windingLabel ?? null,
+    windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
+    rowFamilyIdentity: "unresolved-root",
+    chronologyRowId,
+    nativeReplayRowSchema: nativeReplayRow?.schema ?? null,
+    nativeReplayRowStatus: nativeReplayRow?.rowStatus ?? null,
+    nativeReplaySourceObjectRowSchema: nativeReplayRow?.sourceObjectRowSchema ?? null,
+    retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,
+    sameRecordReplayStatus: nativeReplayRow?.sameRecordReplayStatus ?? null,
+    causticRouteStatus: nativeReplayRow?.causticRouteStatus ?? null,
+    proofObjectProvenanceStatus: nativeReplayRow?.proofObjectProvenanceStatus ?? null,
+    proofObjectProvenance: nativeReplayRow?.proofObjectProvenance ?? null,
+    rowStatus: "candidate_shape_evidence_missing_retained_causal_root_replay",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
+    providedFields: allProvidedFields,
+    missingFields,
+    retainedCausalRootReplayProducerContract,
+  };
+}
+
+function createUnresolvedRootSegmentReplayProducerContract(input) {
+  const {
+    row,
+    nativeReplayRow,
+    rowId,
+    chronologyRowId,
+    effectiveStepIndex,
+    providedFields,
+    missingFields,
+  } = input;
+  const requiredReplaySourceFields = [
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+    "receiverPathSegmentId",
+  ];
+  const missingReplaySourceFields = requiredReplaySourceFields.filter((field) =>
+    missingFields.includes(field)
+  );
+  return {
+    schema: "t3-retained-causal-root-replay-producer-contract.v1",
+    contractId: `${rowId}:producer-contract`,
+    targetSchema: "t3-retained-causal-root-replay.v1",
+    targetRowSchema: "t3-retained-causal-root-replay-row.v1",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
+    nativeRow: "T3UnresolvedRootSegmentRowF64",
+    bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+    companionNativeReplayRow: {
+      rowPresent: nativeReplayRow != null,
+      nativeRow: "T3RetainedCausalRootReplayRowF64",
+      nativeStruct:
+        "src/solver/include/architrino/solver/T3BulkStep.hpp::T3RetainedCausalRootReplayRowF64",
+      bridgeReader:
+        "src/solver/app/SolverAppBridge.mjs::readT3RetainedCausalRootReplayRowF64",
+      rowSchema: nativeReplayRow?.schema ?? null,
+      rowStatus: nativeReplayRow?.rowStatus ?? null,
+      retainedSourceBindingStatus: nativeReplayRow?.retainedSourceBindingStatus ?? null,
+      sameRecordReplayStatus: nativeReplayRow?.sameRecordReplayStatus ?? null,
+      causticRouteStatus: nativeReplayRow?.causticRouteStatus ?? null,
+      proofObjectProvenanceStatus: nativeReplayRow?.proofObjectProvenanceStatus ?? null,
+      proofObjectProvenance: nativeReplayRow?.proofObjectProvenance ?? null,
+      sameRecordReplayId: nativeReplayRow?.sameRecordReplayId ?? null,
+      retainedSourceRecordId: nativeReplayRow?.retainedSourceRecordId ?? null,
+      retainedCausalRootRowId: nativeReplayRow?.retainedCausalRootRowId ?? null,
+      rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
+      sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
+      receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+      windingLabel: nativeReplayRow?.windingLabel ?? null,
+      windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
+      sameRecordRetainedBinding: nativeReplayRow?.sameRecordRetainedBinding ?? null,
+    },
+    sameRecordBinding: {
+      bindingStatus:
+        nativeReplayRow?.sameRecordReplayStatus ?? "candidate_same_step_segment_shape_evidence",
+      chronologyRowId,
+      stepIndex: effectiveStepIndex,
+      sourcePathKey: row?.sourcePathKey ?? null,
+      receiverPathKey: row?.receiverPathKey ?? null,
+      sourceSegmentIndex: row?.sourceSegmentIndex ?? null,
+      receiverSegmentIndex: row?.receiverSegmentIndex ?? null,
+      sameRecordReplayId: nativeReplayRow?.sameRecordReplayId ?? null,
+      retainedSourceRecordId: nativeReplayRow?.retainedSourceRecordId ?? null,
+      retainedCausalRootRowId: nativeReplayRow?.retainedCausalRootRowId ?? null,
+      rootLedgerRecordId: nativeReplayRow?.rootLedgerRecordId ?? null,
+      sourcePathSegmentId: nativeReplayRow?.sourcePathSegmentId ?? null,
+      receiverPathSegmentId: nativeReplayRow?.receiverPathSegmentId ?? null,
+      windingLabel: nativeReplayRow?.windingLabel ?? null,
+      windingLabelStatus: nativeReplayRow?.windingLabelStatus ?? null,
+    },
+    availableShapeFields: providedFields.filter((field) =>
+      [
+        "chronologyRowId",
+        "sourcePathKey",
+        "receiverPathKey",
+        "sourceSegmentIndex",
+        "receiverSegmentIndex",
+        "sourceSegment",
+        "receiverSegment",
+        "sameRecordSegmentBinding",
+        "sourceIdentityBinding",
+        "receiverIdentityBinding",
+        "hitTime",
+        "signalSpeed",
+        "rootTolerance",
+        "rowFamilyIdentity",
+        "sameRecordReplayId",
+        "retainedSourceRecordId",
+        "retainedCausalRootRowId",
+        "rootLedgerRecordId",
+        "sourcePathSegmentId",
+        "receiverPathSegmentId",
+        "windingLabel",
+        "windingLabelStatus",
+        "sameRecordRetainedBinding",
+      ].includes(field)
+    ),
+    requiredReplaySourceFields,
+    missingReplaySourceFields,
+    rejectedSyntheticFields: missingReplaySourceFields,
+    sourceAcquisitionStatus:
+      missingReplaySourceFields.length === 0
+        ? "retained_causal_root_replay_source_fields_available"
+        : "blocked_missing_retained_causal_root_replay_source_fields",
+    firstMissingReplaySourceField: missingReplaySourceFields[0] ?? null,
+    requiredUpstreamObject:
+      "same-step retained causal-root replay producer that consumes T3UnresolvedRootSegmentRowF64 and emits same-record retained path-history segment ids, retained causal-root row id, rootLedgerRecordId, and causticRoute before t3-run-summary.v1 aggregation",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
+  };
+}
+
+function unresolvedRootSidecarKey(row) {
+  const effectiveStepIndex = Number.isInteger(row?.stepIndex) ? row.stepIndex : null;
+  return [
+    row?.chronologyRowId ??
+      (effectiveStepIndex == null
+        ? "step_unknown_unresolved_root_rows"
+        : `step_${effectiveStepIndex}_unresolved_root_rows`),
+    row?.sourcePathKey ?? "source_unknown",
+    row?.receiverPathKey ?? "receiver_unknown",
+    row?.sourceSegmentIndex ?? "source_segment_unknown",
+    row?.receiverSegmentIndex ?? "receiver_segment_unknown",
+  ].join(":");
+}
+
+function groupRetainedCausalRootReplayRowsBySidecarKey(rows = []) {
+  const rowsBySidecarKey = new Map();
+  if (!Array.isArray(rows)) {
+    return rowsBySidecarKey;
+  }
+  for (const row of rows) {
+    rowsBySidecarKey.set(unresolvedRootSidecarKey(row), row);
+  }
+  return rowsBySidecarKey;
+}
+
+function createRetainedCausalRootReplayCandidateRow(input) {
+  const { row, rowIndex, stepIndex, axis, signedImageDelta } = input;
+  const sourceRecordId = retainedSourceRecordId(row, rowIndex, stepIndex);
+  const rowId = `${sourceRecordId}:seam-${axis}`;
+  const retainedCausalRootRowId = `${rowId}:candidate-root`;
+  const endpointRoute = createEndpointRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+  });
+  const memoryWindowRoute = createMemoryWindowRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+  });
+  const omittedRowRoute = createOmittedRowRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    rows: input.rows,
+    request: input.request,
+  });
+  const seamOwnerRoute = createSeamOwnerRoute({
+    row,
+    stepIndex,
+    axis,
+    signedImageDelta,
+    rowId,
+  });
+  const collisionCoreRoute = createCollisionCoreRoute({
+    row,
+    stepIndex,
+    request: input.request,
+  });
+  const jacobianFloorOrDeclaredStratum = createJacobianFloorOrDeclaredStratum({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+    axis,
+    signedImageDelta,
+    rowId,
+  });
+  const providedFields = [
+    "sameRecordReplayId",
+    "retainedSourceRecordId",
+    "retainedCausalRootRowId",
+    "rowFamilyIdentity",
+    "boundaryOrientation",
+    "windingLabel",
+    "imageDeltaAxis",
+    "signedImageDeltaWitness",
+  ];
+  if (endpointRoute) {
+    providedFields.push("endpointRoute");
+  }
+  if (memoryWindowRoute) {
+    providedFields.push("memoryWindowRoute");
+  }
+  if (collisionCoreRoute) {
+    providedFields.push("collisionCoreRoute");
+  }
+  if (omittedRowRoute) {
+    providedFields.push("omittedRowRoute");
+  }
+  if (seamOwnerRoute) {
+    providedFields.push("seamPairingMapOrWindingOwnerRowId");
+  }
+  if (jacobianFloorOrDeclaredStratum) {
+    providedFields.push("jacobianFloorOrDeclaredStratum");
+  }
+  const missingFields = []
+    .concat(jacobianFloorOrDeclaredStratum ? [] : ["jacobianFloorOrDeclaredStratum"])
+    .concat(endpointRoute ? [] : ["endpointRoute"])
+    .concat(memoryWindowRoute ? [] : ["memoryWindowRoute"])
+    .concat(collisionCoreRoute ? [] : ["collisionCoreRoute"])
+    .concat(omittedRowRoute ? [] : ["omittedRowRoute"])
+    .concat(seamOwnerRoute ? [] : ["seamPairingMapOrWindingOwnerRowId"]);
+  const acceptedReplayEvidence = missingFields.length === 0;
+  return {
+    schema: "t3-retained-causal-root-replay-row.v1",
+    rowId,
+    sameRecordReplayId: `candidate-replay:${rowId}`,
+    retainedSourceRecordId: sourceRecordId,
+    retainedCausalRootRowId,
+    stepIndex,
+    sourcePathKey: row?.pathKey ?? rowIndex + 1,
+    rowFamilyIdentity: "seam",
+    chronologyRowId: stepIndex == null ? null : `step_${stepIndex}_seam_${axis}`,
+    boundaryOrientation:
+      signedImageDelta > 0
+        ? "positive_boundary_orientation_candidate"
+        : "negative_boundary_orientation_candidate",
+    windingLabel: `${axis}:${signedImageDelta > 0 ? "+1" : "-1"}`,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    jacobianFloorOrDeclaredStratum,
+    jacobianFloorSourceBoundary: createJacobianFloorSourceBoundary({
+      row,
+      stepIndex,
+      rowId,
+      jacobianFloorOrDeclaredStratum,
+    }),
+    endpointRoute,
+    memoryWindowRoute,
+    collisionCoreRoute,
+    omittedRowRoute,
+    seamPairingMapOrWindingOwnerRowId: seamOwnerRoute?.windingOwnerRowId ?? null,
+    seamOwnerRoute,
+    rowStatus: acceptedReplayEvidence
+      ? "accepted_same_record_replay_evidence"
+      : "candidate_missing_required_same_record_fields",
+    replayAuthorization: acceptedReplayEvidence,
+    acceptedReplayEvidence,
+    providedFields,
+    missingFields,
+  };
+}
+
+function createJacobianFloorSourceBoundary(input) {
+  const { row, stepIndex, rowId, jacobianFloorOrDeclaredStratum } = input;
+  const sourceAvailable = jacobianFloorOrDeclaredStratum != null;
+  return {
+    schema: "t3-jacobian-floor-source-boundary.v1",
+    sourceStatus: sourceAvailable
+      ? "same_record_declared_stratum_available"
+      : "missing_same_record_jacobian_floor_or_declared_stratum",
+    blockerStatus: sourceAvailable ? null : "missing_same_record_jacobian_floor_or_declared_stratum",
+    expectedSourceObject: "solver-t3-step-response.v1",
+    expectedField: "jacobianFloorOrDeclaredStratum",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row?.pathKey ?? null,
+    retainedCausalRootReplayRowId: rowId,
+    declaredStratum: jacobianFloorOrDeclaredStratum?.declaredStratum ?? null,
+    missingLocalFieldOrSourceCondition: sourceAvailable
+      ? null
+      : "solver-t3-step-response.v1 must expose a same-record pathKey row with nonzero imageDelta, and solver-t3-step-request.v1 must expose a finite positive topology sideLength",
+    replayAuthorization: sourceAvailable,
+  };
+}
+
+function createJacobianFloorOrDeclaredStratum(input) {
+  const { row, rowIndex, stepIndex, request, axis, signedImageDelta, rowId } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  const sideLength = finitePositiveOrNull(request?.topology?.sideLength);
+  if (
+    !requestParticle ||
+    requestParticle.pathKey !== row?.pathKey ||
+    sideLength == null ||
+    integerImageDelta(row?.imageDelta?.[axis]) !== signedImageDelta ||
+    signedImageDelta === 0
+  ) {
+    return null;
+  }
+  return {
+    schema: "t3-jacobian-floor-or-declared-stratum.v1",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    retainedCausalRootReplayRowId: rowId,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    declaredStratum: "winding/seam",
+    stratumStatus: "declared_from_same_solver_step_periodic_wrap",
+    jacobianFloor: null,
+    sideLength,
+  };
+}
+
+function createEndpointRoute(input) {
+  const { row, rowIndex, stepIndex, request } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  return {
+    schema: "t3-endpoint-route.v1",
+    routeStatus: "declared_from_same_solver_step_record",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    timestep: request.timestep,
+    initialPosition: cloneVectorObject(requestParticle.position),
+    finalPosition: cloneVectorObject(row.position),
+    imageDelta: cloneImageDelta(row.imageDelta),
+  };
+}
+
+function createMemoryWindowRoute(input) {
+  const { row, rowIndex, stepIndex, request } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  return {
+    schema: "t3-memory-window-route.v1",
+    routeStatus: "declared_from_same_solver_step_interval",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    timestep: request.timestep,
+    memoryWindowStart: request.startTime,
+    memoryWindowEnd: request.endTime,
+  };
+}
+
+function createCollisionCoreRoute(input) {
+  const { row, stepIndex, request } = input;
+  if (request?.interaction?.law !== "none") {
+    return null;
+  }
+  return {
+    schema: "t3-collision-core-route.v1",
+    routeStatus: "declared_no_collision_core_channel_in_solver_step",
+    sourceObjectSchema: "solver-t3-step-request.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row?.pathKey ?? null,
+    interactionLaw: request.interaction.law,
+  };
+}
+
+function createOmittedRowRoute(input) {
+  const { row, rowIndex, rows, stepIndex, request } = input;
+  const requestParticles = Array.isArray(request?.particles) ? request.particles : [];
+  const responseRows = Array.isArray(rows) ? rows : [];
+  const requestParticle = requestParticles[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  const pathKeySequenceMatches = responseRows.every(
+    (responseRow, index) => responseRow?.pathKey === requestParticles[index]?.pathKey
+  );
+  if (requestParticles.length !== responseRows.length || !pathKeySequenceMatches) {
+    return null;
+  }
+  return {
+    schema: "t3-omitted-row-route.v1",
+    routeStatus: "declared_no_omitted_solver_step_rows",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    requestParticleCount: requestParticles.length,
+    responseRowCount: responseRows.length,
+    rowIndex,
+  };
+}
+
+function createSeamOwnerRoute(input) {
+  const { row, stepIndex, axis, signedImageDelta, rowId } = input;
+  if (!row?.pathKey || signedImageDelta === 0) {
+    return null;
+  }
+  return {
+    schema: "t3-seam-owner-route.v1",
+    routeStatus: "declared_from_same_solver_step_image_delta",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    windingOwnerRowId: `${rowId}:winding-owner`,
+  };
+}
+
+function cloneVectorObject(value = {}) {
+  return {
+    x: finiteOrNull(value.x),
+    y: finiteOrNull(value.y),
+    z: finiteOrNull(value.z),
+  };
+}
+
+function cloneImageDelta(value = {}) {
+  return {
+    x: integerImageDelta(value.x),
+    y: integerImageDelta(value.y),
+    z: integerImageDelta(value.z),
+  };
+}
+
+function finiteOrNull(value) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) ? numericValue : null;
+}
+
+function finitePositiveOrNull(value) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : null;
+}
+
+function retainedSourceRecordId(row, rowIndex, stepIndex) {
+  const stepToken = stepIndex == null ? "step-unknown" : `step-${stepIndex}`;
+  const pathKey = row?.pathKey ?? rowIndex + 1;
+  return `t3-${stepToken}:pathKey-${pathKey}`;
 }
 
 export function createT3FallbackMotionIntegrationRequest(state, particleIndex, startTime, timestep, options = {}) {
@@ -305,10 +1076,26 @@ function finiteNumber(value, fieldName) {
   return numericValue;
 }
 
+function integerImageDelta(value) {
+  const numericValue = Number(value ?? 0);
+  if (!Number.isInteger(numericValue)) {
+    throw new TypeError("T3 image delta must be an integer");
+  }
+  return numericValue;
+}
+
 function positiveInteger(value, fieldName) {
   const numericValue = Number(value);
   if (!Number.isInteger(numericValue) || numericValue <= 0) {
     throw new TypeError(`${fieldName} must be a positive integer`);
+  }
+  return numericValue;
+}
+
+function positiveIntegerOrZero(value, fieldName) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue < 0) {
+    throw new TypeError(`${fieldName} must be a nonnegative integer`);
   }
   return numericValue;
 }

@@ -142,17 +142,18 @@ $$
 =
 \sum_{(j,\alpha)\in\mathcal{A}_i(\lambda)}
 \sigma_i\sigma_j
-\frac{
+(\eta_{ij}^{\alpha}(\lambda))^{-2}
+W_{ij,\alpha}^{\mathrm{rec}}(\lambda)
 \widehat{\mathbf{R}}_{ij}^{\alpha}(\lambda)
-}{
-(\eta_{ij}^{\alpha}(\lambda))^2
-|J_{ij}^{\alpha}(\lambda)|
-}
 +\widetilde{\mathbf{F}}_i^{\mathrm{self}}(\lambda)
 +\widetilde{\mathbf{F}}_i^{\mathrm{med}}(\lambda).
 $$
 
-Here $\sigma_i=\pm1$ is the architrino polarity sign. The self and medium terms are zero unless their ledgers are explicitly supplied.
+Here $\sigma_i=\pm1$ is the architrino polarity sign.
+$J_{ij}^{\alpha}$ remains the source-normal root isolation row, while
+$W_{ij,\alpha}^{\mathrm{rec}}$ supplies the same-record receiver-normal branch
+strength for force/action use. The self and medium terms are zero unless their
+ledgers are explicitly supplied.
 
 The dimensionless coupling from force scale to curvature acceleration is
 

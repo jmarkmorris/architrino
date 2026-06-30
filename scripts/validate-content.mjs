@@ -14,6 +14,10 @@ const ROOT_SCENE_PATH = "content/scenes/architrino_assembly_architecture.json";
 const NO_INCOMING_LINK_REPORT_LIMIT = 25;
 const SCENE_SCHEMA_PATH = "scripts/schema/scene.schema.json";
 const STABLE_ID_LABEL_LOCK_PATH = "scripts/config/stable-scene-id-label-lock.json";
+const IMAGE_MANIFEST_PATH = "content/assets/images/images.json";
+const OUTREACH_COMIC_IMAGE_DIR = "content/assets/images/comics";
+const OUTREACH_COMIC_THUMBNAIL_DIR = "content/assets/images/comics/thumbnails";
+const OUTREACH_COMIC_THUMBNAIL_SIZE = 360;
 const REPO_MARKDOWN_AUDIT_IGNORED_DIRS = new Set([".git", "node_modules", "__pycache__"]);
 const REPO_MARKDOWN_AUDIT_IGNORED_PATH_PREFIXES = [
   "apps/ios/ArchitrinoReader/GeneratedTextbookPackage/",
@@ -307,6 +311,133 @@ function writeJsonIfChanged(relativePath, data) {
   }
   fs.writeFileSync(absolutePath, next, "utf8");
   return true;
+}
+
+function readPngDimensions(relativePath) {
+  const absolutePath = path.join(rootDir, relativePath);
+  if (!fs.existsSync(absolutePath)) {
+    return { ok: false, error: "missing file" };
+  }
+  const buffer = fs.readFileSync(absolutePath);
+  const pngSignature = "89504e470d0a1a0a";
+  if (buffer.length < 24 || buffer.subarray(0, 8).toString("hex") !== pngSignature) {
+    return { ok: false, error: "not a PNG file" };
+  }
+  return {
+    ok: true,
+    width: buffer.readUInt32BE(16),
+    height: buffer.readUInt32BE(20),
+  };
+}
+
+function auditOutreachComicReleaseImages() {
+  const parsed = readJson(IMAGE_MANIFEST_PATH);
+  if (!parsed.ok) {
+    errors.push(`${IMAGE_MANIFEST_PATH}: failed to parse JSON (${parsed.error.message})`);
+    return;
+  }
+  if (!Array.isArray(parsed.data?.images)) {
+    errors.push(`${IMAGE_MANIFEST_PATH}: expected { "images": [...] }`);
+    return;
+  }
+
+  const imagesById = new Map();
+  for (const [index, image] of parsed.data.images.entries()) {
+    const imageId = asText(image?.id);
+    if (!imageId) {
+      errors.push(`${IMAGE_MANIFEST_PATH}: images[${index}].id is required`);
+      continue;
+    }
+    if (imagesById.has(imageId)) {
+      errors.push(`${IMAGE_MANIFEST_PATH}: duplicate image id "${imageId}"`);
+      continue;
+    }
+    imagesById.set(imageId, image);
+  }
+
+  let auditedComicCount = 0;
+  for (const image of parsed.data.images) {
+    if (image?.category !== "outreach-comic" || image?.status !== "approved") {
+      continue;
+    }
+    auditedComicCount += 1;
+    const imageId = asText(image.id);
+    const imagePath = normalizePath(image.path ?? "");
+    const label = `${IMAGE_MANIFEST_PATH}: ${imageId}`;
+
+    if (!imagePath.startsWith(`${OUTREACH_COMIC_IMAGE_DIR}/`) || !imagePath.endsWith(".png")) {
+      errors.push(`${label}: released outreach comic path must be a PNG under ${OUTREACH_COMIC_IMAGE_DIR}`);
+      continue;
+    }
+    if (imagePath.startsWith(`${OUTREACH_COMIC_THUMBNAIL_DIR}/`)) {
+      errors.push(`${label}: released outreach comic path must not point at a thumbnail`);
+    }
+
+    if (!asText(image.description).startsWith("Single-panel outreach comic")) {
+      errors.push(`${label}: description must start with "Single-panel outreach comic"`);
+    }
+
+    const width = image?.dimensions?.width;
+    const height = image?.dimensions?.height;
+    if (!Number.isInteger(width) || !Number.isInteger(height)) {
+      errors.push(`${label}: dimensions.width and dimensions.height must be integers`);
+    } else if (width !== height) {
+      errors.push(`${label}: released outreach comic must be square (${width}x${height})`);
+    }
+
+    const actual = readPngDimensions(imagePath);
+    if (!actual.ok) {
+      errors.push(`${label}: ${imagePath}: ${actual.error}`);
+    } else {
+      if (actual.width !== actual.height) {
+        errors.push(`${label}: ${imagePath}: PNG must be square (${actual.width}x${actual.height})`);
+      }
+      if (Number.isInteger(width) && Number.isInteger(height)) {
+        if (actual.width !== width || actual.height !== height) {
+          errors.push(
+            `${label}: manifest dimensions ${width}x${height} do not match PNG ${actual.width}x${actual.height}`
+          );
+        }
+      }
+    }
+
+    const thumbnailId = `${imageId}-thumb`;
+    const thumbnail = imagesById.get(thumbnailId);
+    if (!thumbnail) {
+      errors.push(`${label}: missing thumbnail manifest entry "${thumbnailId}"`);
+      continue;
+    }
+    const thumbnailPath = normalizePath(thumbnail.path ?? "");
+    const expectedThumbnailPath = `${OUTREACH_COMIC_THUMBNAIL_DIR}/${thumbnailId}.png`;
+    if (thumbnail.category !== "outreach-comic-thumbnail") {
+      errors.push(`${label}: ${thumbnailId}.category must be "outreach-comic-thumbnail"`);
+    }
+    if (thumbnailPath !== expectedThumbnailPath) {
+      errors.push(`${label}: ${thumbnailId}.path must be ${expectedThumbnailPath}`);
+    }
+    const thumbWidth = thumbnail?.dimensions?.width;
+    const thumbHeight = thumbnail?.dimensions?.height;
+    if (thumbWidth !== OUTREACH_COMIC_THUMBNAIL_SIZE || thumbHeight !== OUTREACH_COMIC_THUMBNAIL_SIZE) {
+      errors.push(
+        `${label}: ${thumbnailId} dimensions must be ${OUTREACH_COMIC_THUMBNAIL_SIZE}x${OUTREACH_COMIC_THUMBNAIL_SIZE}`
+      );
+    }
+    const actualThumbnail = readPngDimensions(thumbnailPath);
+    if (!actualThumbnail.ok) {
+      errors.push(`${label}: ${thumbnailPath}: ${actualThumbnail.error}`);
+    } else if (
+      actualThumbnail.width !== OUTREACH_COMIC_THUMBNAIL_SIZE ||
+      actualThumbnail.height !== OUTREACH_COMIC_THUMBNAIL_SIZE
+    ) {
+      errors.push(
+        `${label}: ${thumbnailPath}: PNG must be ${OUTREACH_COMIC_THUMBNAIL_SIZE}x${OUTREACH_COMIC_THUMBNAIL_SIZE} (${actualThumbnail.width}x${actualThumbnail.height})`
+      );
+    }
+  }
+
+  if (auditedComicCount) {
+    notes.push(`Outreach comic release image audit: ${auditedComicCount} approved square single-panel comic(s).`);
+  }
 }
 
 function inferSceneId(scenePath) {
@@ -1134,6 +1265,8 @@ if (
 ) {
   warnings.push(`${MARKDOWN_INDEX_PATH}: index drift detected`);
 }
+
+auditOutreachComicReleaseImages();
 
 const sceneConfigSet = new Set(sceneConfigs);
 const sceneConfigLower = createLowerMap(sceneConfigs);

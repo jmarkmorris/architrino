@@ -350,7 +350,7 @@ D_v\widehat{\mathbf{R}}_u
 \right].
 $$
 
-The source-normal denominator $J_{ij}^{\nu}$ enters this derivative only through the receiver-normal weight $W_u^{\mathrm{rec},\nu}$ and the root-sheet sensitivity rows.
+The source-normal root chart $J_{ij}^{\nu}$ enters this derivative only through the receiver-normal weight $W_u^{\mathrm{rec},\nu}$ and the root-sheet sensitivity rows.
 
 The support-complete force derivative must include both geometric and speed-factor directions:
 
@@ -459,7 +459,7 @@ A bounded-speed root-sheet packet must emit:
 | `jacobian` | $J_{ij}^{\nu}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, sign label, and floor |
 | `sheet_slope` | $d\eta_u/du$ and mesh-lift bounds |
 | `coefficient_variations` | $\phi_{v,i}$, $\Xi_i$, $D_v\eta_u$, $D_vJ_{ij}^{\nu}$, and force derivatives |
-| `second_root_variations` | $D^2\eta^\nu$, $D^2J^\nu$, force-weight Hessians, and $L_R^{\mathrm{sheet},\nu}$ from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
+| `second_root_variations` | $D^2\eta^\nu$, $D^2J^\nu$, receiver-normal branch-weight Hessians, and $L_R^{\mathrm{sheet},\nu}$ from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
 | `tail_persistence` | coefficient-box margins for causal-time tail slabs |
 | `krawczyk_envelope` | $L_R^{\nu,+}$ and $\rho_{\mathrm{chart}}^{\nu}$ |
 | `status` | `bounded-speed-root-sheet-certified`, fixed-speed special case, or first failed row |

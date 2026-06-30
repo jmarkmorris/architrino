@@ -206,7 +206,7 @@ The required rows are:
 | $\mathsf{RangeNoncollision}$ | finite range bound, positive noncollision floor, and any declared topology floor; no shell support or nested ordering assumed |
 | $\mathsf{AllPairsRoot}^{\nu}$ | active, excluded, and tail causal-root rows for every ordered pair $i\ne j$, positive delay floor, Jacobian floor, and root-status convention |
 | $\mathsf{Tail}^{\nu}$ | finite owned tail cover, terminal predicate for every tail cell, and tail exclusion or assimilation error carried into every later residual |
-| $\mathsf{ForceDynamics}^{\nu}$ | force ledger, tangential speed row, normal curvature row, and scale convention all computed from the same all-pairs root ledger |
+| $\mathsf{ForceDynamics}^{\nu}$ | force ledger, same-record receiver-normal branch strength, tangential speed row, normal curvature row, and scale convention all computed from the same all-pairs root ledger |
 | $\mathsf{FiniteMode}$ | finite coefficient chart or direct curve-level certificate using site labels $i\in I$, plus convergence, Krawczyk, or rejection status |
 | $\mathsf{ActionNoether}^{\nu}$ | total action or declared action obstruction, work-one-form curl row, action-derived $\Gamma_B^\nu$ or tensorial inertia row, and Noether currents |
 | $\mathsf{Event}^{\nu}$ | endpoint convention, event interval, root-fold, same-source/fold-layer if declared, topology-change, support-boundary if declared, and exchange rows |
@@ -244,6 +244,14 @@ $$
 |J_{ij,\alpha}^{\nu}(u)|\ge J_0>0.
 $$
 
+The Jacobian is the source-normal simple-root witness. The active force ledger consumes same-record receiver-normal branch strength
+
+$$
+W_{ij,\alpha}^{\mathrm{rec},\nu}(u)
+$$
+
+on the same root id, receiver time, source pair, and regulator state. If a candidate cannot emit this row and its required derivative row, the force/action packet exits as `receiver-normal-restart-required`.
+
 The force ledger is
 
 $$
@@ -252,8 +260,9 @@ F_i^\nu(u)
 \sum_{j\ne i}
 \sum_{\alpha\in\mathcal{A}_{ij}^{\nu}(u)}
 \sigma_i\sigma_j
+W_{ij,\alpha}^{\mathrm{rec},\nu}(u)
 \frac{\widehat{\mathbf{R}}_{ij,\alpha}(u)}
-{\eta_{ij,\alpha}(u)^2|J_{ij,\alpha}^{\nu}(u)|}
+{\eta_{ij,\alpha}(u)^2}
 +
 F_{i,\mathrm{self}}^\nu
 +
@@ -261,6 +270,10 @@ F_{i,\mathrm{med}}^\nu
 +
 F_{i,\mathrm{supp}}^\nu.
 $$
+
+Here $W_{ij,\alpha}^{\mathrm{rec},\nu}(u)$ is the same-record
+receiver-normal branch strength. The $|J_{ij,\alpha}^{\nu}(u)|$ floor remains
+a root-chart diagnostic, not receiver-normal branch strength.
 
 The last three terms must be zero or separately action-accounted on the same
 ledger. They cannot be fitted residual-canceling terms.
@@ -464,7 +477,7 @@ $$
 \mathcal{A}_{B}^{0}
 =
 \left\{
-(i,j,\alpha,u,\eta_{ij,\alpha},J_{ij,\alpha}^{\nu})
+(i,j,\alpha,u,\eta_{ij,\alpha},J_{ij,\alpha}^{\nu},W_{ij,\alpha}^{\mathrm{rec},\nu})
 :
 i\ne j
 \right\}

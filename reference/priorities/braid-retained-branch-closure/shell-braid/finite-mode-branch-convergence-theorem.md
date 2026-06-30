@@ -133,11 +133,13 @@ The per-root force is
 $$
 \mathbf{f}_a^{(\nu)}
 =
-\frac{\sigma_i\sigma_j}{(\eta_a^{(\nu)})^2|J_a^{(\nu)}|}
+\sigma_i\sigma_j(\eta_a^{(\nu)})^{-2}
+W_a^{\mathrm{rec},(\nu)}
 \widehat{\mathbf{R}}_a^{(\nu)}.
 $$
 
-The floors $\eta_0,J_0$ and the convergence of root functions imply
+The floors $\eta_0,J_0$, convergence of root functions, and same-record
+convergence of receiver-normal factors imply
 
 $$
 \mathbf{f}_a^{(\nu)}

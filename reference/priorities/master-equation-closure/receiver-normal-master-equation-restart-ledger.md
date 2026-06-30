@@ -48,8 +48,8 @@ Rows that must restart:
 - action, power, energy, and Noether wake-history rows,
 - breather recapture and self-drive margin rows,
 - A1 outward constants,
-- generated pass/fail certificates that lack receiver-normal force/action
-  strength,
+- generated pass/fail certificates that lack receiver-normal branch-strength
+  rows,
 - app or solver rows that reconstruct branch strength without $D_t$,
 - any proof process whose conclusion depended on one of those rows.
 
@@ -79,7 +79,7 @@ not be collapsed.
 | Action / Noether wake-history | Scalar action scaffolds are restart targets unless their variation produces the receiver-normal branch law. | Rebuild the constrained-branch action target and Noether balance rows using $W^{\mathrm{rec}}$ on the same retained branch chart. |
 | Solver and app bridge | Central root rows carry source-normal denominators and receiver-normal factors. Branch weight and delayed-hit strength must equal the unsigned receiver-normal factor. | Keep tests that force moving-receiver asymmetry; reject local helpers that omit $D_t$. |
 | Photon / Animator / Ideal Braid app-local formulas | App-local physical contribution reconstruction remains suspect until each path consumes solver-owned receiver-normal rows. | Move contribution rows behind solver output before using app-local summaries as physics evidence. |
-| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of force/action strength. | Redrive only after the canonical Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
+| Equation-mapping and geometry-bridge packets | Any row that lacks receiver-normal branch strength is score-neutral for proof movement. Provider/root identity lessons remain useful only if independent of branch-strength consumption. | Redrive only after the canonical Master EOM, A1, and breather force rows expose $D_t/D_s$ on the same retained record. |
 
 ## Reinitiation Decisions
 
@@ -110,3 +110,32 @@ for each retained branch row, report the source-normal denominator interval,
 receiver-normal numerator interval, receiver-normal factor interval, branch
 status, and a fail-closed negative control on the same box. That table is the
 minimum object needed before any purged proof path can be rationally restarted.
+
+First-derivative extension. The first derivative-consuming restart object is
+now the priority-only
+`receiver-normal-retained-branch-family-first-derivative/v0` artifact: on the
+same retained branch-family record it must bind $D_s$, $D_t$, fixed sign
+labels, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed
+$D_vW^{\mathrm{rec}}$, geometry derivatives, the force-kernel derivative, and
+the exact retained branch-family checksum consumed downstream.
+
+H39/theta3minus audit status. The nearest H39 provider target names five
+shared source cells, 15 terminal rows, and 30 `P_-` / `P_+` branch rows, but
+the branch-provider audit reports zero accepted provider-object branch
+intervals, zero available provider-object branch antisymmetric equations, zero
+explicit provider-object branch rows, and no same-record receiver-normal
+derivative fields. Its receiver-normal derivative status is therefore
+`h39-receiver-normal-first-derivative-evidence-not-populated`. The proof/evidence
+obligation is first to emit
+`source_map_provider_object_branch_split_map_available_terminal_row_count` for
+all 15 terminal rows, then materialize the same-domain $A_P=P_- - P_+$
+provider-object branch row or explicit `P_-` / `P_+` rows with both interval
+payloads and the $P_b$ map, branch projection or alpha map,
+`pushforward_operator_ref`, and `normalization_identity_ref` before aggregate
+$P$ erases branch identity. Only after that can the accepted provider object be
+bound to the retained causal-root force/action record with the receiver-normal
+derivative bundle above.
+Primitive-vector replays, hybrid prefix-Cauchy diagnostics, coefficient-series
+source-map residual provider candidates, source-map residual envelopes,
+provider-fit diagnostics, and signed-radius targets remain negative controls for
+this restart ledger until they pass through the H39 retained-record preimage row.

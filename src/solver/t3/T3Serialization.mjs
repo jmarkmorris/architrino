@@ -15,7 +15,7 @@ export function serializeT3State(state) {
     imageOffsets: Array.from(state.imageOffsets),
     orientations: Array.from(state.orientations),
     angularVelocities: Array.from(state.angularVelocities),
-    masses: Array.from(state.masses),
+    integrationWeights: Array.from(state.integrationWeights),
     electrineFractions: Array.from(state.electrineFractions),
     ids: [...state.ids],
     metadata: JSON.parse(JSON.stringify(state.metadata ?? {})),

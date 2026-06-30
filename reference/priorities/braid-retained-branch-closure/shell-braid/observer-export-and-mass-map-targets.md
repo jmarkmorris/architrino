@@ -2,7 +2,7 @@
 
 This priority note converts the same-level tri-binary observer-facing claims into export rows that a retained branch packet must compute before any downstream promotion. It is a priority-only theorem-target document. It does not authorize migration into `content/markdown/aaa`, scene assets, simulation defaults, or end-user language.
 
-Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
+Promotion status: `priority-only`. The material below becomes promotion-ready only after a same-level branch certificate supplies active causal roots, positive Jacobian floors, finite memory depth, same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows for every force/action or mass-response contribution, fixed-speed tangent closure or bounded-speed speed-ODE closure, a history-dressed energy/action ledger, exposure and Noether sea response rows, and observer exports marked `passed`, `failed`, or `not_computed`.
 
 If the branch uses the bounded speed factor in [variable-speed-factor-extension.md](variable-speed-factor-extension.md), every observer export below must be recomputed on the bounded-speed ledger. In particular, the moving-assembly clock/ruler row must replace the fixed-speed condition by
 
@@ -21,7 +21,7 @@ Claim discipline:
 | Moving-branch export | theorem target | retained moving branch row with drift, carrier, clock, ruler, and preferred-frame leakage diagnostics |
 | Lorentz recovery | theorem target | derivation from branch existence, carrier retuning, clock extraction, shape extraction, two-way synchronization, and leakage bounds |
 | Photon transition | branch-transition target | planar limit row matching the coaxial contra-rotating pro/anti planar pair requirement |
-| Mass map | theorem target | history-dressed energy, exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
+| Mass map | theorem target | history-dressed energy, receiver-normal exposure tensor, scalar exposure quotient, and Noether sea medium-response tensor on the same branch |
 | Generation hierarchy | theorem target | branch-family rows whose mass ratios come from exposure-dressed energy, not from topological labels alone |
 | Color / $SU(3)$ | theorem target | continuous phase-bundle connection and generators; $\mathcal{S}_3$ remains a discrete scaffold |
 | Strong-field continuation | speculative comparison target | finite-boundary continuation, event-ledger closure, and observer-level recovery residuals |
@@ -153,7 +153,25 @@ $$
 \right|.
 $$
 
-A moving branch export passes only if it is computed on the same retained active-root row as the energy, exposure, and event ledgers. A clock ratio measured on a different branch, different endpoint convention, or different root-selection rule is not an observer export.
+A moving branch export passes only if it is computed on the same retained active-root row as the energy, exposure, receiver-normal branch-strength, and event ledgers. A clock ratio measured on a different branch, different endpoint convention, or different root-selection rule is not an observer export.
+
+Receiver-normal export blocker. Observer exports that feed mass response,
+energy/action comparison, or wake-history accounting must carry
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|
+$$
+on the same retained root row as the exported branch contribution. If the
+export consumes a derivative-sensitive row, it must also carry
+$D_vD_{s,\rho}$, $D_vD_{t,\rho}$, and reconstructed
+$D_vW_{\rho}^{\mathrm{rec}}$ with the same branch-family checksum. H39/theta3minus
+quotient diagnostics, source-normal denominators, old shell-braid force
+residues, and terminal aggregates may remain provider-boundary or
+root-geometry diagnostics, but they are not observer-export or mass-map
+evidence.
 
 ---
 

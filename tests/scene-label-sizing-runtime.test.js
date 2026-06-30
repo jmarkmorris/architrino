@@ -9,6 +9,7 @@ import {
 import {
   formatCenterContextCount,
   resolveCenterContextChapterLabel,
+  shouldAllowCenterContext,
 } from "../src/runtime/SceneCenterContextRuntime.js";
 import {
   enforceSharedSceneSphereRadius,
@@ -140,6 +141,18 @@ test("center context chapter label omits mixed top-level chapter markers", () =>
 test("center context count uses section wording", () => {
   assert.equal(formatCenterContextCount(1), "1 section");
   assert.equal(formatCenterContextCount(13), "13 sections");
+});
+
+test("center context honors explicit ring opt-out only", () => {
+  assert.equal(shouldAllowCenterContext({ layoutConfig: null }), true);
+  assert.equal(
+    shouldAllowCenterContext({ layoutConfig: { centerNode: null } }),
+    true
+  );
+  assert.equal(
+    shouldAllowCenterContext({ layoutConfig: { centerMode: "none" } }),
+    false
+  );
 });
 
 test("scene sphere sizing resolves one shared visible sphere radius", () => {

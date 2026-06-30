@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet sits between the fixed rigid-octahedral all-pairs certificate in [Octahedral Root Ledger Certification Target](../neutral-braid/octahedral-root-ledger-certification-target.md), the general neutral braid ledger in [All Pairs Root Ledger](../neutral-braid/all-pairs-root-ledger.md), the bounded-speed root-sheet formulas in [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md), and the coupled residual object in [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md).
 
-The incremental value is narrow: the fixed-speed octahedral payload now certifies the $30$ ordered distinct source pairs on one rigid carrier, but a bounded-speed solve changes the clocks, delayed source phases, root equations, Jacobians, force weights, derivative columns, tail cells, and event surfaces. This packet prevents that fixed-speed success marker from being consumed as a bounded-speed live ledger. It strengthens the existing `ledger-convention-mismatch`, `root-ledger-persistence-failure`, `implicit-consumer-stale`, and `derivative-block-stale` rows; it does not add an independent retained-branch gate.
+The incremental value is narrow: the fixed-speed octahedral payload now certifies the $30$ ordered distinct source pairs on one rigid carrier, but a bounded-speed solve changes the clocks, delayed source phases, root equations, source-normal root charts, receiver-normal branch weights, derivative columns, tail cells, and event surfaces. This packet prevents that fixed-speed success marker from being consumed as a bounded-speed live ledger. It strengthens the existing `ledger-convention-mismatch`, `root-ledger-persistence-failure`, `implicit-consumer-stale`, and `derivative-block-stale` rows; it does not add an independent retained-branch gate.
 
 ---
 
@@ -105,7 +105,7 @@ $$
 \mathbf{Y}_i=\mathbf{x}_i^{\mathrm{oct}},
 $$
 
-with the fixed support and phase convention. Leaving that slice changes $G_r^{\nu}$ and $J_r^{\nu}$, so the root set and all downstream force weights must be recomputed.
+with the fixed support and phase convention. Leaving that slice changes $G_r^{\nu}$ and $J_r^{\nu}$, so the root set and all downstream receiver-normal branch weights must be recomputed.
 
 ---
 
@@ -207,7 +207,7 @@ The status `fixed-speed-special-case` is not a failure of the fixed-speed certif
 4. a bounded-speed active-root and inactive-gap cover for every ordered distinct source pair on the declared causal-time cells;
 5. positive delay floors, fixed Jacobian sign strata, positive bounded-speed Jacobian floors, and root persistence radii on $X$;
 6. a support-complete memory route or finite tail exclusion/assimilation cover, with rerun instructions whenever tail assimilation changes $\mathcal{A}_{\mathrm{all}}^{\nu,+}$;
-7. full root, Jacobian, delayed-direction, force-weight, support, action, event, and clock derivative columns, or a Schur replacement using the displayed implicit derivative;
+7. full root, Jacobian, delayed-direction, receiver-normal branch-weight, support, action, event, and clock derivative columns, or a Schur replacement using the displayed implicit derivative;
 8. downstream checksums proving that dynamics, support, action, event, Krawczyk, stability, and observer-export rows consume the same $\mathcal{L}_{\mathrm{live}}^{\nu}$.
 
 Then the fixed-speed all-pairs certificate has been validly handed off into a bounded-speed live-ledger candidate on $X$. The coupled residual $\mathfrak{C}_{\mathrm{cpl}}^{\nu}$ may consume that ledger. If any row fails, the solver must stop at the first-failure status above rather than treating the fixed-speed root certificate as a bounded-speed proof row.

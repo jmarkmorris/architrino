@@ -1,0 +1,30 @@
+{
+  "schemaVersion": "0.1",
+  "kind": "architrino.websiteStatsAggregate",
+  "mode": "unconnected",
+  "generatedAt": "2026-06-29T12:00:00-04:00",
+  "sourceStatus": "No live analytics source connected",
+  "period": {
+    "label": "No live data"
+  },
+  "totals": {
+    "visits": 0,
+    "uniqueVisitors": 0,
+    "returningVisitors": 0,
+    "pageViews": 0,
+    "averageEngagedSeconds": 0
+  },
+  "comparisons": {
+    "visits": 0,
+    "uniqueVisitors": 0,
+    "pageViews": 0,
+    "returnRate": 0,
+    "averageEngagedSeconds": 0
+  },
+  "daily": [],
+  "topPages": [],
+  "referrers": [],
+  "devices": [],
+  "trafficChannels": [],
+  "events": []
+}

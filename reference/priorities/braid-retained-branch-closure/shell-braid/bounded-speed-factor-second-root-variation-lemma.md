@@ -250,7 +250,7 @@ where $\Lambda_{\eta,r}$ bounds $|D\eta_r[\cdot]|$ on the same chart ball.
 
 ---
 
-## 4. Second Variation Of The Jacobian And Force Weight
+## 4. Second Variation Of The Jacobian And Receiver-Normal Force Weight
 
 Set
 
@@ -576,11 +576,11 @@ A bounded-speed second root-variation packet must emit:
 
 | Status | Meaning |
 | --- | --- |
-| `bounded-speed-second-root-variation-ready` | all retained roots export first and second sheet variations, force-weight Hessians, and Krawczyk constants on the same bounded-speed ledger |
+| `bounded-speed-second-root-variation-ready` | all retained roots export first and second sheet variations, receiver-normal branch-weight Hessians, and Krawczyk constants on the same bounded-speed ledger |
 | `bounded-speed-second-root-variation-open` | second sheet variations or certified interval equivalents are missing |
 | `bounded-speed-root-second-ad-missing` | the packet relies on interval automatic differentiation but no AD enclosure is emitted |
 | `bounded-speed-hessian-root-ledger-stale` | Hessian/action rows use a different root, support, action, event, or sign ledger |
-| `bounded-speed-force-weight-second-variation-open` | source-normal denominator and receiver-normal branch-strength rows are differentiated only to first order |
+| `bounded-speed-force-weight-second-variation-open` | source-normal root-chart and receiver-normal branch-strength rows are differentiated only to first order |
 | `bounded-speed-second-jacobian-open` | $D^2J_r^{\nu}$ is missing clock, speed, tangent, direction, or second-root terms |
 | `bounded-speed-root-sheet-receiver-normal-sign-open` | $D_{s,r}^{\nu}$ or $D_{t,r}^{\nu}$ has no fixed sign label for differentiating the receiver-normal force weight |
 | `bounded-speed-root-floor-failed` | the delay, Jacobian, inactive-gap, tail, support, event, or noncollision floor fails on the chart ball |

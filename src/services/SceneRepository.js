@@ -99,6 +99,21 @@ export class SceneRepository {
     return null;
   }
 
+  resolveImageGalleryConfig(entry) {
+    const gallery = entry?.imageGallery ?? entry?.gallery ?? null;
+    if (!gallery || typeof gallery !== "object" || Array.isArray(gallery)) {
+      return null;
+    }
+    return {
+      enabled: gallery.enabled !== false,
+      columns:
+        Number.isInteger(gallery.columns) && gallery.columns > 0
+          ? gallery.columns
+          : null,
+      carousel: gallery.carousel !== false,
+    };
+  }
+
   resolveFileConfig(entry) {
     const source = entry?.source ?? null;
     const view = entry?.view ?? null;
@@ -372,6 +387,10 @@ export class SceneRepository {
         this.resolveInferredNodeBadge(obj, context),
       labelBadgeImage: obj.labelBadgeImage ?? null,
       labelBadgeAlt: obj.labelBadgeAlt ?? null,
+      galleryImage: obj.galleryImage ?? null,
+      galleryThumbnail: obj.galleryThumbnail ?? obj.labelBadgeImage ?? null,
+      galleryAlt: obj.galleryAlt ?? obj.labelBadgeAlt ?? null,
+      galleryTitle: obj.galleryTitle ?? obj.labelTitle ?? nodeTitle,
       radius: obj.radius ?? 1,
       color: this.resolveNodeColor({
         ...obj,
@@ -708,6 +727,7 @@ export class SceneRepository {
         ? sceneMeta.layout
         : null;
     const sceneViewportFit = this.resolveViewportFit(sceneMeta);
+    const imageGallery = this.resolveImageGalleryConfig(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
@@ -771,6 +791,7 @@ export class SceneRepository {
       sceneName,
       sceneId,
       animatorDocument,
+      imageGallery,
       markdownPath: sceneMarkdown.markdownPath,
       markdownSection: sceneMarkdown.markdownSection,
       markdownColumns: sceneMarkdown.markdownColumns,

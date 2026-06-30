@@ -54,7 +54,7 @@ The new rows are:
 | $\mathsf{Tail}^{\nu}$ | tail exclusion or assimilation for causal-time roots $G_{ij}(u,\eta)$ using [bounded-speed-factor-tail-krawczyk-certificate.md](bounded-speed-factor-tail-krawczyk-certificate.md) plus finite-cover completeness from [bounded-speed-factor-tail-cover-completeness-lemma.md](bounded-speed-factor-tail-cover-completeness-lemma.md) |
 | $\mathsf{Root}^{\nu}$ | root ledger using $J_{ij}^{\nu}=1-\nu_j^-\mathbf{T}_j^-\cdot\widehat{\mathbf{R}}$, with fixed-speed source ledgers admitted only through [bounded-speed-factor-all-pairs-ledger-handoff-contract.md](bounded-speed-factor-all-pairs-ledger-handoff-contract.md) |
 | $\mathsf{Sheet}^{\nu}$ | sheet slopes, coefficient variations, and force derivatives from [bounded-speed-factor-root-sheet-certificate.md](bounded-speed-factor-root-sheet-certificate.md) |
-| $\mathsf{Sheet2}^{\nu}$ | second root variations, second Jacobian variations, force-weight Hessians, and sheet Lipschitz constants from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
+| $\mathsf{Sheet2}^{\nu}$ | second root variations, second Jacobian variations, receiver-normal branch-weight Hessians, and sheet Lipschitz constants from [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md) |
 | $\mathsf{Dyn}^{\nu}$ | tangential speed evolution and normal curvature rows |
 | $\mathsf{NormalRec}^{\nu}$ | tangent holonomy, position closure, tangent-frame monodromy, support-radial compatibility, and root-ledger persistence from [bounded-speed-factor-normal-reconstruction-theorem.md](bounded-speed-factor-normal-reconstruction-theorem.md) |
 | $\mathsf{CoupledFP}^{\nu}$ | live-ledger coupled fixed point over curves, speed factors, roots, support variables, action scale, and event rows from [bounded-speed-factor-coupled-fixed-point-theorem.md](bounded-speed-factor-coupled-fixed-point-theorem.md) |
@@ -181,7 +181,7 @@ $$
 \texttt{bounded-speed-tail-cover-incomplete}.
 $$
 
-The second sheet row $\mathcal{R}_{\mathrm{sheet2}}^{\nu}$ requires the implicit second root variations $D^2\eta^\nu$, second Jacobian variations $D^2J^\nu$, and force-weight Hessians of [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md). It is optional for a first Newton step but mandatory before Hessian, monodromy, action-stability, or Krawczyk $Z$ rows are certified. If it is missing, those downstream rows inherit
+The second sheet row $\mathcal{R}_{\mathrm{sheet2}}^{\nu}$ requires the implicit second root variations $D^2\eta^\nu$, second Jacobian variations $D^2J^\nu$, and receiver-normal branch-weight Hessians of [bounded-speed-factor-second-root-variation-lemma.md](bounded-speed-factor-second-root-variation-lemma.md). It is optional for a first Newton step but mandatory before Hessian, monodromy, action-stability, or Krawczyk $Z$ rows are certified. If it is missing, those downstream rows inherit
 
 $$
 \texttt{bounded-speed-krawczyk-second-envelope-open}.

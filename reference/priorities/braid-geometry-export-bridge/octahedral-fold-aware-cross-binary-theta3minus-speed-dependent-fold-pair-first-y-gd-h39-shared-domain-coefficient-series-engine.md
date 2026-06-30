@@ -5799,3 +5799,45 @@ transport obligation after that envelope exists. This is a provenance
 factorization only: it does not certify H38 source provenance, $N_{38}$
 derivative bounds, $S_{37}$ division, shifted `R_{\varepsilon,43}`, retained
 branch, or full H39 closure.
+
+## Receiver-Normal Retained-Record Boundary
+
+Boundary row id: `h39-coefficient-series-receiver-normal-preimage-boundary/v0`.
+
+The source-map provider chain above reaches candidate same-domain source-map
+residual rows. It does not yet reach receiver-normal first-derivative evidence.
+For this packet to feed `h39-receiver-normal-retained-record-preimage-row/v0`,
+the candidate source-map residual provider must first be converted into an
+accepted same-domain provider-object branch row, either $A_P=P_- - P_+$ or
+explicit `P_-` / `P_+` rows, and then bound to one retained causal-root
+force/action record.
+
+Required preimage comparison:
+
+| Receiver-normal preimage field | Status in this packet |
+| --- | --- |
+| `accepted_provider_object_branch_row_ref` | Missing. The emitted rows are source-map residual provider candidates, source-map residual envelopes, provider-fit diagnostics, and signed-radius targets, not accepted $A_P$ or explicit `P_-` / `P_+` provider-object branch rows. |
+| `retained_causal_root_record_ref` | Missing. The packet carries H39 coefficient/source-map provenance, not a retained causal-root force/action record. |
+| `receiver_normal_fields` | Missing. No same-record $D_s$, $D_t$, fixed signs, or $W^{\mathrm{rec}}$ are emitted. |
+| `receiver_normal_derivative_fields` | Missing. No $D_vD_s$, $D_vD_t$, or reconstructed $D_vW^{\mathrm{rec}}$ is emitted. |
+| `branch_family_checksum` | Missing. The candidate provider rows do not name the retained branch-family checksum consumed by a receiver-normal derivative packet. |
+
+Failure status:
+`h39-coefficient-series-provider-candidate-not-retained-record-preimage`.
+
+The admissible handoff from this coefficient-series engine to the
+receiver-normal derivative artifact is therefore not "provider-candidate row
+available." It is the stricter row:
+
+$$
+\text{accepted same-domain provider-object branch row}
++
+\text{same retained causal-root derivative record}
+\longrightarrow
+\texttt{h39-receiver-normal-retained-record-preimage-row/v0}.
+$$
+
+Until that row exists, the coefficient-series source-map provider candidates are
+negative-control inputs for
+`receiver-normal-retained-branch-family-first-derivative/v0`, even when their
+same-domain, same-radius, interval-inclusion, or numerator-budget checks pass.

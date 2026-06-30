@@ -11,7 +11,8 @@ quotient coefficients $Q_{G,38}$ and $Q_{D,38}$. It converts the constant term
 of the $T_G^{(38)},T_D^{(38)}$ quotient tails into a directed-rounded
 coefficient row; the remaining quotient tail begins at order $39$.
 
-No fixed speed band is imposed. The certificate uses only the historical positive speed-ratio zero-enclosure diagnostic; receiver-normal restart required
+No fixed speed band is imposed. The certificate is diagnostic-only root-geometry
+and source-provenance material; receiver-normal restart required.
 
 $$
 \nu\in[3.02156,3.02157],
@@ -366,6 +367,24 @@ keeps the route finite but weakens a pure "retile and prove" plan. The stronger
 successor handoff is now a normal-form or producer-image smoothness argument
 that stabilizes the fourth derivative, followed by a directed-rounded $M_4$
 certificate on that stabilized same-domain representation.
+
+Receiver-normal derivative boundary. The H39 derivative-bound rows above are
+expression-level fourth-jet or Taylor-remainder rows for the $N_{38}$ producer
+before the solve $h_{38}=-N_{38}/S_{37}$. They are not receiver-normal
+first-derivative rows. In particular, they do not emit a retained causal-root
+record with $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or
+$D_vW^{\mathrm{rec}}$. Their highest admissible role in the receiver-normal
+restart is producer-side provenance for a future same-domain provider-object
+branch row; the force/action derivative artifact remains open until that
+provider object is bound to the retained causal-root record and
+receiver-normal derivative fields.
+
+The local preimage failure status is
+`h39-thirty-eighth-successor-not-retained-record-preimage`. This row can support
+the producer side of `h39-receiver-normal-retained-record-preimage-row/v0` only
+after the $N_{38}$ source-map material is converted into an accepted
+$A_P=P_- - P_+$ or explicit `P_-` / `P_+` provider-object branch row and then
+bound to the same retained causal-root derivative record.
 
 It does not claim:
 

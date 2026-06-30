@@ -103,7 +103,7 @@ F_{i,\mathrm{med}}^{\nu}(u)
 F_{i,\mathrm{supp}}^{\nu}(u),
 $$
 
-with $F_{i,\mathrm{supp}}^{\nu}$ present only when the support action or variational inequality assigns a support multiplier force. This force is a function of both $\mathbf{Y}$ and $\nu$ through $\Lambda_i$, $\Lambda_j$, $\eta_r$, $J_r^{\nu}$, support variables, and event conventions.
+with $F_{i,\mathrm{supp}}^{\nu}$ present only when the support action or variational inequality assigns a support multiplier force. This force is a function of both $\mathbf{Y}$ and $\nu$ through $\Lambda_i$, $\Lambda_j$, $\eta_r$, the receiver-normal $W_{r,\nu}^{\mathrm{rec}}$ row, root-sheet sensitivity data, support variables, and event conventions.
 
 ---
 
@@ -640,7 +640,7 @@ $$
 
 This block display is organizational, not a claim of independence. The essential off-diagonal columns are:
 
-1. $R_{S,a}$ and $R_{S,r}$, because the speed forcing $T_i\cdot F_i^{\nu}$ changes with curves, roots, Jacobians, and support forces;
+1. $R_{S,a}$ and $R_{S,r}$, because the speed forcing $T_i\cdot F_i^{\nu}$ changes with curves, roots, receiver-normal branch weights, and support forces;
 2. $R_{N,b}$ and $R_{N,r}$, because the normal row contains $\nu_i^2$, $\chi_i$, $\Lambda_i$, root sheets, and force derivatives;
 3. $R_{R,a}$ and $R_{R,b}$, because roots and Jacobians are functions of both geometry and speed clocks;
 4. $R_{A,a}$, $R_{A,b}$, and $R_{A,r}$, because action scale, history work, speed storage, support work, and curl are computed on the same live ledger;

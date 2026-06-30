@@ -10,7 +10,31 @@
     "candidate_source": "torque_wake_same_row_diagnostic:index-ratio:f2 plus current branch-provider report",
     "source_status": "routing_evidence_only",
     "accepted_non_fixture_branch_chart_found": false,
-    "rejection_boundary": "partial/proxy same_record_identity cannot populate moving_retained_branch_certificate/v0"
+    "rejection_boundary": "partial/proxy same_record_identity cannot populate moving_retained_branch_certificate/v0",
+    "producer_target": {
+      "schema": "same_record_accepted_branch_chart_intake_for_q_index_ratio_f2/v0",
+      "target_status": "target_only_not_accepted_source",
+      "first_missing_field": "same_record_identity.accepted_branch_chart_ref",
+      "first_missing_field_code": "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted",
+      "required_same_record_fields": [
+        "branch_certificate_ref",
+        "same_record_identity.branch_label",
+        "same_record_identity.extraction_window_id",
+        "same_record_identity.active_root_ledger_hash",
+        "same_record_identity.accepted_branch_chart_ref",
+        "same_record_identity.separator_chart_ref",
+        "same_record_identity.positive_gap_record_ref",
+        "same_record_identity.memory_depth_record_ref",
+        "same_record_identity.active_wave_vector_gap_ref"
+      ],
+      "authorization": {
+        "moving_retained_branch_certificate": false,
+        "structural_integrity_residual_vector": false,
+        "photon_gate_a": false,
+        "lorentz_rows": false,
+        "observer_export": false
+      }
+    }
   },
   "branch_certificate_ref": "candidate:branch-chart-ref-with-partial-same-record-identity",
   "same_record_identity": {

@@ -40,6 +40,38 @@ $$
 
 Atomic spectra then consume $(n,\ell,m)$ as envelope labels for energy gaps and line strengths. The spectral burden remains the native extraction of the electron-envelope basin, its radial energy functional, and the local clock/rate conversion; the angular lemma does not by itself derive the Rydberg constant or spin-sensitive splittings.
 
+The standard hydrogen derivation supplies the ordered comparison packet for the ideal central limit. After the electron-proton channel is reduced to a central effective envelope, the observer-level solution separates as
+
+$$
+\Psi_{\mathrm{env}}(r,\theta,\phi)
+=
+R_{n\ell}(r)Y_\ell^m(\theta,\phi)
++
+\delta\Psi_{\mathrm{nonsep}},
+\qquad
+\left\|\delta\Psi_{\mathrm{nonsep}}\right\|_\theta
+\le
+\varepsilon_{\mathrm{sep}}
+$$
+
+The angular part is the $S^2$ eigenmode statement above. The radial part must be a normalizable envelope,
+
+$$
+\int_0^\infty
+\left|R_{n\ell}(r)\right|^2
+r^2\,dr
+<
+\infty,
+\qquad
+N_{\mathrm{rad}}
+=
+n-\ell-1
+\in
+\mathbb N_0.
+$$
+
+In the standard Schrödinger calculation, the second condition is enforced by terminating the radial power series into the associated Laguerre family; that is the mathematical source of discrete principal labels in the ideal Coulomb problem. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target, not an input postulate: the same hydrogen spectral channel must first supply the effective central envelope, its non-separable residual, and the radial energy functional from the electron branch, proton source envelope, and local Noether sea record.
+
 The first closure target is the Rydberg constant. In the present notation, a completed model should express $R_\infty$ as a function of the effective nuclear causal-wake envelope $\mathcal W_{\text{nuc}}$, the physical Noether braid density $\rho_{\text{NS}}(\mathbf{x},t)$, the normalized density $n(\mathbf{x},t)$, the Noether sea delay factor $\chi_{\text{sea}}(\mathbf{x},t)$, and the local clock/rate response encoded by $\Gamma_N(\mathbf{x},t)$. The important discipline is to keep $n$ as normalized density, $\chi_{\text{sea}}$ as the delay factor, and $\Gamma_N$ as the cadence-stretch diagnostic.
 
 Spectral lines should then be recovered as transitions between effective envelope basins:

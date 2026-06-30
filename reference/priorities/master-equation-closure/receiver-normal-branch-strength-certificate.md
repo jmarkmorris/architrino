@@ -9,19 +9,27 @@ Noether wake-history, A1 outward constants, breather margin, or pass/fail
 evidence until it reports the rows below on the same retained record.
 
 Pure changeover status. This file defines the certificate shape, includes one
-accepted analytic row-shape certificate, and now includes one accepted
-nontrivial linear moving-receiver branch-family fixture. It does not yet
-populate an A1, VP-1, breather, circular, eigen-braid, or assembly-closure
-branch pass. A solver, vendor proposal, or proof packet satisfies a domain
-changeover only when it fills this schema for its retained branch family and
-shows that the force/action row uses receiver-normal $W^{\mathrm{rec}}$ rather
-than a source-normal proxy.
+accepted analytic row-shape certificate, one accepted nontrivial linear
+moving-receiver branch-family fixture, and a priority-only retained
+branch-family first-derivative evidence target. It does not yet populate an A1,
+VP-1, breather, circular, eigen-braid, or assembly-closure branch pass. A
+solver, vendor proposal, or proof packet satisfies a domain changeover only
+when it fills this schema for its retained branch family and shows that the
+force/action row uses receiver-normal $W^{\mathrm{rec}}$ rather than a
+source-normal proxy.
 
 Vendor/proof intake rule. A proposal may choose the smallest branch family that
 can be reproduced independently, but its first force/action deliverable is this
 certificate packet: branch identity, same-record $D_s$, $D_t$,
 $W^{\mathrm{rec}}$, sign/fold status, retained/rejected branch status, and a
 negative control that fails if receiver-normal branch strength is replaced.
+
+Breather specialization. The breather consumer of this packet is
+[Breather Receiver-Normal Force-Margin Restart Target](../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md).
+It adds no new branch pass. It states the breather recapture/self-drive margin
+equation and keeps the packet fail-closed until the consumed margin rows bind
+same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+$D_vW^{\mathrm{rec}}$ to the same retained branch-family checksum.
 
 ## Branch Row
 
@@ -81,6 +89,11 @@ force/action packets. This is a certificate target, not a branch pass by itself.
 The accepted row-shape and moving-receiver fixtures above remain validation
 evidence for branch-strength binding; a packet that consumes derivatives must
 add the derivative row below on its own retained branch record.
+
+This section is the time-path specialization of
+`receiver-normal-retained-branch-family-first-derivative/v0` with $v=t$ and
+$D_v=d/dt$. The branch-family artifact below is the finite retained-list object
+that derivative-consuming packets must checksum before aggregation.
 
 For a retained simple-root record
 $R_\alpha=(i,j,\alpha,t,s_\alpha(t))$, write
@@ -217,6 +230,207 @@ Failure modes:
   or a branch exchange inside the retained box;
 - radial, tangential, action, power, or wake-history derivative projections that
   consume a derivative row but aggregate a different retained branch list.
+
+## Retained Branch-Family First-Derivative Evidence Artifact
+
+Status. Priority-only evidence target for the first retained branch-family
+derivative row. This is the smallest concrete object that can make a
+receiver-normal derivative-consuming force/action packet more than prose. It is
+not a branch pass by itself and does not promote any A1, VP-1, breather,
+circular, H39/theta3minus, eigen-braid, or assembly-closure row.
+
+Artifact id. `receiver-normal-retained-branch-family-first-derivative/v0`.
+
+Claim level. `certificate-target`. The artifact certifies only same-record
+binding for the receiver-normal first derivative on a declared retained branch
+family. It does not certify force balance, action stationarity, stability,
+observer export, or retained-branch promotion.
+
+For a retained branch family $\mathcal{A}_{\mathcal B}$ and a declared
+variation $v$, the evidence object is the finite row bundle
+$$
+\mathcal{E}_{\mathcal B}^{(1)}(v)
+=
+\left\{
+\left(
+R_a,
+D_{s,a},
+D_{t,a},
+\zeta_{s,a},
+\zeta_{t,a},
+W_a^{\mathrm{rec}},
+D_vD_{s,a},
+D_vD_{t,a},
+D_vW_a^{\mathrm{rec}}
+\right)
+\right\}_{a\in\mathcal{A}_{\mathcal B}},
+$$
+where $R_a$ is the same retained record consumed by the force/action row:
+branch-family id, retained root id, branch label, source/receiver ids,
+source-to-receiver direction, receiver time, source time or delay row,
+retained box, regulator state, source artifact hash, and the declared variation
+coordinate $v$.
+
+On each retained row, fixed sign labels must satisfy
+$$
+\zeta_{s,a}=\operatorname{sign}D_{s,a},
+\qquad
+\zeta_{t,a}=\operatorname{sign}D_{t,a},
+$$
+and
+$$
+\zeta_{s,a}D_{s,a}\ge D_{s,0}>0,
+\qquad
+\zeta_{t,a}D_{t,a}\ge D_{t,0}>0
+$$
+on the same retained box. The receiver-normal branch-strength derivative is
+then not an independent fit; it is reconstructed on the same record as
+$$
+D_vW_a^{\mathrm{rec}}
+=
+\frac{\zeta_{t,a}\zeta_{s,a}}{D_{s,a}^2}
+\left(
+D_{s,a}D_vD_{t,a}
+-
+D_{t,a}D_vD_{s,a}
+\right).
+$$
+Equivalently, on the fixed sign stratum,
+$$
+D_vW_a^{\mathrm{rec}}
+=
+W_a^{\mathrm{rec}}
+\left(
+\frac{D_vD_{t,a}}{D_{t,a}}
+-
+\frac{D_vD_{s,a}}{D_{s,a}}
+\right).
+$$
+
+Lemma target: same-record receiver-normal derivative reconstruction. If the
+retained row fixes $\zeta_s,\zeta_t$ on its box and emits $D_s$, $D_t$,
+$D_vD_s$, and $D_vD_t$ on the same retained record, then the only admissible
+receiver-normal branch-strength derivative for a differentiable consumer is the
+reconstructed $D_vW^{\mathrm{rec}}$ above. A derivative interval that does not
+contain this value exits as
+`receiver-normal-derivative-reconstruction-failed`; a derivative interval
+computed from another record, box, variation, regulator state, or source
+artifact exits as `receiver-normal-derivative-record-mismatch`.
+
+The smallest derivative-consuming force kernel row is
+$$
+\mathbf B_a^{\mathrm{rec}}
+=
+\frac{W_a^{\mathrm{rec}}}{r_a^2}\hat{\mathbf r}_a,
+$$
+with first variation
+$$
+D_v\mathbf B_a^{\mathrm{rec}}
+=
+\frac{D_vW_a^{\mathrm{rec}}}{r_a^2}\hat{\mathbf r}_a
++
+\frac{W_a^{\mathrm{rec}}}{r_a^2}D_v\hat{\mathbf r}_a
+-
+2\frac{W_a^{\mathrm{rec}}D_vr_a}{r_a^3}\hat{\mathbf r}_a.
+$$
+Shell-braid arclength packets use the specialization $r_a=\eta_a$ and
+$\hat{\mathbf r}_a=\widehat{\mathbf R}_a$.
+
+The retained branch-family aggregation row is part of the evidence object, not
+metadata outside it:
+$$
+\mathbf B_{\mathcal B}^{\mathrm{rec}}
+=
+\sum_{a\in\mathcal{A}_{\mathcal B}}\mathbf B_a^{\mathrm{rec}},
+\qquad
+D_v\mathbf B_{\mathcal B}^{\mathrm{rec}}
+=
+\sum_{a\in\mathcal{A}_{\mathcal B}}D_v\mathbf B_a^{\mathrm{rec}}.
+$$
+Every scalar statistic, margin, action residual, power row, wake-history row,
+Lipschitz envelope, or provider handoff that consumes the derivative must name
+this exact retained branch list and the exact source artifact hash. A row built
+from a different branch list, interpolation grid, finite-difference pass,
+terminal aggregate, or replay-only provider surface is not same-record
+evidence.
+
+### Required Rows
+
+| Row | Required payload |
+| --- | --- |
+| `retained_record_key` | Branch-family id, retained root id, branch label, source/receiver ids, direction convention, receiver time, source time or delay row, retained box, regulator state, and source artifact hash. |
+| `variation_key` | Declared variation $v$, coefficient norm or time-branch convention, and the consumer rows allowed to use the derivative. |
+| `receiver_normal_fields` | $D_{s,a}$, $D_{t,a}$, $\zeta_{s,a}$, $\zeta_{t,a}$, $W_a^{\mathrm{rec}}$, and sign-stratum floors on the same retained box. |
+| `receiver_normal_derivatives` | $D_vD_{s,a}$, $D_vD_{t,a}$, and reconstructed $D_vW_a^{\mathrm{rec}}$ with outward intervals. |
+| `geometry_derivatives` | $D_vr_a$ and $D_v\hat{\mathbf r}_a$, or the shell-braid arclength equivalents $D_v\eta_a$ and $D_v\widehat{\mathbf R}_a$. |
+| `force_kernel_derivative` | $\mathbf B_a^{\mathrm{rec}}$ and $D_v\mathbf B_a^{\mathrm{rec}}$ computed from the same rows. |
+| `branch_family_checksum` | Exact retained branch list $\mathcal{A}_{\mathcal B}$, aggregation convention, and consumer checksum tying every downstream statistic to that list. |
+| `negative_controls` | Fail-closed controls below, including aggregate-only and source-normal-diagnostic substitutions. |
+
+### Fail-Closed Ledger
+
+The artifact fails with:
+
+| Status | Meaning |
+| --- | --- |
+| `receiver-normal-first-derivative-row-missing` | A derivative-consuming packet lacks $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$ on the retained row. |
+| `receiver-normal-derivative-record-mismatch` | $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or $D_vW^{\mathrm{rec}}$ come from different retained records, boxes, variation coordinates, regulator states, or source artifact hashes. |
+| `receiver-normal-sign-stratum-open` | The retained row does not fix both $D_s$ and $D_t$ signs or does not declare an accepted nonsmooth crossing convention. |
+| `receiver-normal-derivative-reconstruction-failed` | The emitted $D_vW^{\mathrm{rec}}$ interval does not contain the reconstructed value from $D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. |
+| `aggregate-only-branch-family-derivative-rejected` | A terminal aggregate, provider replay, lambda witness, scalar statistic, or finite-difference table is supplied after branch identity has been erased. |
+| `source-normal-diagnostic-consumed-as-branch-strength` | A row consumes the source-normal transversality diagnostic as receiver-normal branch strength. |
+| `branch-family-consumer-checksum-mismatch` | A force, action, power, wake-history, Lipschitz, or scalar row consumes a different retained branch list from the derivative artifact. |
+
+Wake-history consumer status 2026-06-29. The first executable consumer of this
+derivative target now lives in
+`scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs`. Its
+`energy_wake` fixture is priority-only row-logic evidence: it accepts one
+wake-history row only when the row's accepted proof object carries
+`receiver-normal-retained-branch-family-first-derivative/v0` on the same
+retained source record, event ledger, retained record key, source artifact hash,
+and consumer row, and when reconstructed $D_vW^{\mathrm{rec}}$ agrees with
+$D_s$, $D_t$, $D_vD_s$, and $D_vD_t$. This does not certify wake-history
+closure or promote any domain branch family; it only emits the first concrete
+same-record derivative consumer and the corresponding fail-closed record
+mismatch and reconstruction controls.
+
+H39/theta3minus boundary. The diagnostic $G,D$ and H39 shared-domain packets may
+remain useful as root-geometry, recurrence, or provider-provenance diagnostics.
+They do not satisfy this artifact unless the regenerated retained branch-family
+row emits the fields above on the same retained records. In particular,
+aggregate $P$ provider rows, lambda terminal witness intervals, row-local
+expression feeds, and terminal replay statistics remain rejected unless they
+carry the same retained branch labels, receiver-normal fields, derivative
+fields, projection or normalization identity, and consumer checksum before
+aggregation erases branch identity.
+
+The executable H39 branch-provider audit sharpens this boundary in
+[Branch Provider Evidence Report](../solver/branch-provider-evidence-report.md#receiver-normal-first-derivative-readout):
+the target names five shared source cells, 15 terminal rows, and 30 `P_-` /
+`P_+` branch rows, but the manifest emits zero accepted provider-object branch
+intervals and no same-record $D_s$, $D_t$, $D_vD_s$, $D_vD_t$, or
+$D_vW^{\mathrm{rec}}$ rows. Its first derivative-evidence verdict is therefore
+`h39-receiver-normal-first-derivative-evidence-not-populated`, with the
+provider-object branch rows still missing before receiver-normal derivative
+binding can even be attempted. The precise executable first missing field is
+`source_map_provider_object_branch_split_map_available_terminal_row_count`;
+the next H39 producer-side source surface,
+`terminal-expression-level-source-map-provider-object-branch-antisymmetric-equation-extractor`,
+is emitted only as an absence readout with `0 / 15` available
+$A_P=P_- - P_+$ terminal rows and `0 / 30` explicit `P_-` / `P_+` rows.
+Populated variable-owned alpha, row-local branch-feed, and term-pushforward
+candidate diagnostics remain negative-control evidence until the same-domain
+$P_b$ identity, pushforward operator, and normalization identity are present.
+The H39 primitive-vector replay, hybrid prefix-Cauchy order diagnostic, and
+coefficient-series source-map residual provider candidates fail even earlier as
+`h39-primitive-vector-provider-provenance-only-not-retained-record-preimage` or
+`h39-coefficient-series-provider-candidate-not-retained-record-preimage`: they
+may guide provider-object construction, but they do not emit an accepted
+$A_P=P_- - P_+$ row or a retained causal-root derivative record.
+The H39-specific preimage row target is
+`h39-receiver-normal-retained-record-preimage-row/v0`: it first requires an
+accepted provider-object branch row, then a retained causal-root force/action
+record carrying the receiver-normal fields and derivative fields above.
 
 ## First Accepted Row-Shape Certificate
 
@@ -431,7 +645,10 @@ source-normal-proxy negative control. It authorizes solver-contract and vendor
 intake reuse for the receiver-normal branch-strength field. It does not
 authorize any A1, VP-1, breather, circular, eigen-braid, or assembly-closure
 force/action conclusion; those packets must populate their own retained branch
-families and negative controls.
+families and negative controls. It also does not populate
+`receiver-normal-retained-branch-family-first-derivative/v0`; derivative
+consumers still need same-record $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, and
+the consumer checksum.
 
 ## Fail-Closed Controls
 
@@ -440,13 +657,14 @@ The certificate must reject:
 - a row with missing $D_t$;
 - a row where $D_s$, $D_t$, and $W^{\mathrm{rec}}$ come from different retained
   records or different boxes;
-- a row that substitutes a source-normal denominator for branch strength;
+- a row that substitutes a source-normal diagnostic for receiver-normal branch
+  strength;
 - a topology-only row used as force/action evidence;
 - a stationary-receiver reduction that was not derived by direct substitution
   inside the declared retained row;
 - a derivative-consuming force/action row with missing or non-same-record
-  $\dot s$, $\dot D_s$, $\dot D_t$, $\dot W^{\mathrm{rec}}$, or
-  $\dot{\mathbf B}^{\mathrm{rec}}$;
+  variation key, $D_vD_s$, $D_vD_t$, $D_vW^{\mathrm{rec}}$, or
+  $D_v\mathbf B^{\mathrm{rec}}$;
 - a sign-changing $D_t/D_s$ derivative row treated as differentiable
   force/action evidence without an accepted nonsmooth crossing convention;
 - an aggregation row whose retained-row list differs from the scalar statistic

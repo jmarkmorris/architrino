@@ -144,6 +144,17 @@ $$
 \texttt{receiver-normal-first-derivative-row-missing}.
 $$
 
+This bundle is the shell-braid specialization of the priority-only
+[retained branch-family first-derivative evidence artifact](../../master-equation-closure/receiver-normal-branch-strength-certificate.md#retained-branch-family-first-derivative-evidence-artifact).
+In this packet, $r_a=\eta_a$ and
+$\hat{\mathbf r}_a=\widehat{\mathbf R}_a$. The row is accepted only when the
+same retained record carries $D_{s,a}$, $D_{t,a}$, fixed sign labels,
+$D_vD_{s,a}$, $D_vD_{t,a}$, reconstructed $D_vW_a^{\mathrm{rec}}$,
+$D_v\eta_a$, $D_v\widehat{\mathbf R}_a$, and the exact retained branch list
+consumed by the Lipschitz envelope. A terminal aggregate, replay-only provider
+surface, lambda witness interval, or finite-difference derivative table is not
+accepted unless it reconstructs those fields before branch identity is erased.
+
 The receiver force is
 
 $$
@@ -494,6 +505,7 @@ Future solver packets should emit:
 | --- | --- |
 | `curve_variation_bounds` | $C_0,C_1,C_2$ in the reduced coefficient norm |
 | `receiver_normal_first_derivative_row` | $D_{s,a}$, $D_{t,a}$, fixed sign labels, $D_vD_{s,a}$, $D_vD_{t,a}$, $W_a^{\mathrm{rec}}$, and $D_vW_a^{\mathrm{rec}}$ on the same retained record |
+| `receiver_normal_first_derivative_artifact` | `receiver-normal-retained-branch-family-first-derivative/v0`, branch-family checksum, source artifact hash, and accepted/failure status for the same retained branch list consumed by $L_F$ |
 | `root_derivative_bounds` | $E_\eta$ per retained label and worst-case value |
 | `direction_derivative_bounds` | $E_{\widehat{R}}$ per retained label |
 | `jacobian_derivative_bounds` | $E_J$ per retained label |
@@ -501,6 +513,22 @@ Future solver packets should emit:
 | `projected_force_derivative_bounds` | derivative envelope for $P^\perp\widetilde{\mathbf{F}}$ |
 | `gamma_derivative_status` | `fit-derived`, `action-derived`, or `not_computed` |
 | `certificate_consumers` | which trust, refinement, Newton, and variationality rows used the emitted envelope |
+
+If the upstream packet is an H39/theta3minus provider-object branch row rather
+than a native retained root row, the provider row must first satisfy
+`h39-receiver-normal-retained-record-preimage-row/v0`: an accepted
+provider-object branch row bound to a retained causal-root force/action record
+with the receiver-normal fields, derivative fields, geometry derivative fields,
+and retained branch-family checksum consumed by this envelope.
+
+If the upstream packet is only an H39 primitive-vector replay, coefficient-series
+source-map residual provider candidate, source-map residual envelope, provider-fit
+diagnostic, or signed-radius target, it fails before the preimage row with
+`h39-provider-candidate-consumed-as-retained-record` or the packet-local
+`h39-coefficient-series-provider-candidate-not-retained-record-preimage`.
+Those rows may guide provider-object construction, but they do not supply
+$D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or
+$D_vW^{\mathrm{rec}}$ to this Lipschitz envelope.
 
 Failure/status codes:
 
@@ -510,6 +538,18 @@ $$
 \texttt{receiver-normal-first-derivative-row-missing},
 \qquad
 \texttt{receiver-normal-sign-stratum-open},
+\qquad
+\texttt{receiver-normal-derivative-record-mismatch},
+\qquad
+\texttt{receiver-normal-derivative-reconstruction-failed},
+\qquad
+\texttt{aggregate-only-branch-family-derivative-rejected},
+\qquad
+\texttt{branch-family-consumer-checksum-mismatch},
+\qquad
+\texttt{h39-provider-candidate-consumed-as-retained-record},
+\qquad
+\texttt{h39-coefficient-series-provider-candidate-not-retained-record-preimage},
 \qquad
 \texttt{force-lipschitz-envelope-failed},
 \qquad

@@ -390,24 +390,24 @@ $$
 N_{\mathrm{attr}}(i)-N_{\mathrm{rep}}(i)=1.
 $$
 
-The force ledger must not overread this count. The actual delayed force is weighted by source delay, direction, Jacobian, root multiplicity, and any self-hit/fold row:
+The force ledger must not overread this count. The actual delayed force is weighted by source delay, receiver-normal branch strength, direction, root multiplicity, and any self-hit/fold row:
 
 $$
 \widetilde{\mathbf{F}}_i
 =
 \sum_{j\ne i,\alpha}
 \sigma_i\sigma_j
-\frac{
+(\eta_{ij}^{\alpha})^{-2}
+W_{ij,\alpha}^{\mathrm{rec}}
 \widehat{\mathbf{R}}_{ij}^{\alpha}
-}{
-(\eta_{ij}^{\alpha})^2
-|J_{ij}^{\alpha}|
-}
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{self}}
 +
 \widetilde{\mathbf{F}}_{i,\mathrm{med}}.
 $$
+
+The bounded-speed successor must replace $W_{ij,\alpha}^{\mathrm{rec}}$ with
+the same-record $W_{ij,\alpha}^{\mathrm{rec},\nu}$ row.
 
 The count is therefore a structural bias, not a closure proof. It should be exported as an inventory row beside the analytic force sums.
 

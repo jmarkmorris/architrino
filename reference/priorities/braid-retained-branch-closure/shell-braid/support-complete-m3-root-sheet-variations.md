@@ -255,23 +255,23 @@ For a retained sheet contribution define
 $$
 \mathbf{f}_u(\lambda)
 =
-\frac{\sigma_i\sigma_j}{\eta_u(\lambda)^2|J_u(\lambda)|}
+\sigma_i\sigma_j\eta_u(\lambda)^{-2}W_u^{\mathrm{rec}}(\lambda)
 \widehat{\mathbf{R}}_u(\lambda).
 $$
 
-On a fixed sign stratum for $J_u$,
+On a fixed receiver-normal sign stratum for $W_u^{\mathrm{rec}}$,
 
 $$
 D_v\mathbf{f}_u
 =
-\frac{\sigma_i\sigma_j}{\eta_u^2|J_u|}
+\sigma_i\sigma_j\eta_u^{-2}W_u^{\mathrm{rec}}
 \left[
 D_v\widehat{\mathbf{R}}_u
--
-\left(
-2\frac{D_v\eta_u}{\eta_u}
 +
-\frac{D_vJ_u}{J_u}
+\left(
+\frac{D_vW_u^{\mathrm{rec}}}{W_u^{\mathrm{rec}}}
+-
+2\frac{D_v\eta_u}{\eta_u}
 \right)
 \widehat{\mathbf{R}}_u
 \right].

@@ -230,6 +230,15 @@
           "items": { "type": "number" }
         },
         "wrapLabels": { "type": "boolean" },
+        "imageGallery": {
+          "type": "object",
+          "additionalProperties": true,
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "columns": { "type": "integer", "minimum": 1 },
+            "carousel": { "type": "boolean" }
+          }
+        },
         "centerOn": { "type": "string" },
         "layoutColumns": { "type": "integer", "minimum": 1 },
         "sphereColorScheme": { "type": "string" },
@@ -239,6 +248,10 @@
           "properties": {
             "type": { "type": "string" },
             "centerNode": { "type": ["string", "null"] },
+            "centerMode": {
+              "type": "string",
+              "enum": ["none", "node", "auto"]
+            },
             "centerOn": { "type": "string" },
             "direction": {
               "type": "string",
@@ -345,6 +358,10 @@
           "labelBadge": { "type": "string" },
           "labelBadgeImage": { "type": "string" },
           "labelBadgeAlt": { "type": "string" },
+          "galleryImage": { "type": "string" },
+          "galleryThumbnail": { "type": "string" },
+          "galleryAlt": { "type": "string" },
+          "galleryTitle": { "type": "string" },
           "radius": { "type": "number", "minimum": 0 },
           "color": { "type": "string", "minLength": 1 },
           "position": {

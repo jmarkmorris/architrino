@@ -8,6 +8,19 @@ Each dated section should preserve the reasoning of the moment closely enough th
 
 Entries are maintained in descending date order, with the newest `##` section first.
 
+## 2026-06-30: Original Blog Archive and GitHub Development Home
+
+Relevant links:
+
+- [Architrino](https://architrino.com)
+- [Original Architrino Blog](https://architrino.wordpress.com)
+
+The original development of $\mathbb{A}\mathbb{A}\mathbb{A}$ began on WordPress and produced more than 300 blog posts. Those posts remain historically important because they contain many early insights, candidate mechanisms, conceptual turns, and explanatory fragments that are still useful for source mining even when the current theory now needs stricter notation, proof status, and corpus placement.
+
+New development now happens in GitHub, with the public site deployed at [Architrino](https://architrino.com). The original blog remains available at [Original Architrino Blog](https://architrino.wordpress.com). Its home page has been cleaned up into a simple index that lists posts by year, so the archive can be browsed directly without treating the old front page as the current project home.
+
+The repository now carries extracted blog material for further mining, and the project can also search the live WordPress archive when needed. That keeps the original posts available as a research source without making WordPress the development surface. All tags have been removed from the WordPress posts, so future mining should rely on the year index, post titles, extracted archive records, direct search, and current corpus routing rather than legacy tag navigation.
+
 ## 2026-06-29: EOM Definition Oversight and Conceptual Resilience
 
 Relevant files:

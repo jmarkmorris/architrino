@@ -460,17 +460,20 @@ struct ArchitrinoSolverT3StepRequestF64 {
   double soft_sphere_strength;
   double softening;
   double integration_tolerance;
+  double signal_speed;
+  double root_tolerance;
+  std::uint64_t step_index;
   std::uint32_t interaction_law;
   std::uint32_t integration_method;
-  std::uint32_t reserved0;
-  std::uint32_t reserved1;
+  std::uint32_t unresolved_root_segment_sidecar_enabled;
+  std::uint32_t unresolved_root_pair_policy;
 };
 
 struct ArchitrinoSolverT3ParticleStateF64 {
   std::uint64_t path_key;
   ArchitrinoSolverVector3F64 position;
   ArchitrinoSolverVector3F64 velocity;
-  double mass;
+  double integration_weight;
   double charge;
   std::uint32_t state_flags;
   std::uint32_t reserved0;
@@ -481,7 +484,7 @@ struct ArchitrinoSolverT3ParticleStepRowF64 {
   ArchitrinoSolverVector3F64 position;
   ArchitrinoSolverVector3F64 velocity;
   ArchitrinoSolverVector3F64 acceleration;
-  double mass;
+  double integration_weight;
   std::int32_t image_delta_x;
   std::int32_t image_delta_y;
   std::int32_t image_delta_z;
@@ -501,6 +504,53 @@ struct ArchitrinoSolverT3StepSummaryF64 {
   std::uint32_t interaction_law;
   std::uint32_t integration_method;
   std::uint32_t status_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverT3UnresolvedRootSegmentRowF64 {
+  std::uint64_t step_index;
+  std::uint64_t source_path_key;
+  std::uint64_t receiver_path_key;
+  std::uint64_t source_segment_index;
+  std::uint64_t receiver_segment_index;
+  ArchitrinoSolverVector3F64 source_position;
+  ArchitrinoSolverVector3F64 source_velocity;
+  ArchitrinoSolverVector3F64 receiver_position;
+  ArchitrinoSolverVector3F64 receiver_velocity;
+  double start_time;
+  double end_time;
+  double hit_time;
+  double signal_speed;
+  double root_tolerance;
+  double source_error_bound;
+  double receiver_error_bound;
+  std::uint32_t source_state_flags;
+  std::uint32_t receiver_state_flags;
+  std::uint32_t pair_policy;
+  std::uint32_t row_status;
+};
+
+struct ArchitrinoSolverT3RetainedCausalRootReplayRowF64 {
+  std::uint64_t step_index;
+  std::uint64_t source_path_key;
+  std::uint64_t receiver_path_key;
+  std::uint64_t source_segment_index;
+  std::uint64_t receiver_segment_index;
+  std::uint64_t same_record_replay_id;
+  std::uint64_t retained_source_record_id;
+  std::uint64_t retained_causal_root_row_id;
+  std::uint64_t root_ledger_record_id;
+  std::uint64_t source_path_segment_id;
+  std::uint64_t receiver_path_segment_id;
+  std::int32_t winding_label_x;
+  std::int32_t winding_label_y;
+  std::int32_t winding_label_z;
+  std::uint32_t winding_label_status;
+  std::uint32_t retained_source_binding_status;
+  std::uint32_t same_record_replay_status;
+  std::uint32_t caustic_route_status;
+  std::uint32_t proof_object_provenance_status;
+  std::uint32_t row_status;
   std::uint32_t reserved0;
 };
 
@@ -987,6 +1037,8 @@ struct ArchitrinoSolverAbiInfo {
   int t3_particle_state_f64_bytes;
   int t3_particle_step_row_f64_bytes;
   int t3_step_summary_f64_bytes;
+  int t3_unresolved_root_segment_row_f64_bytes;
+  int t3_retained_causal_root_replay_row_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -1156,7 +1208,13 @@ int architrino_solver_step_t3_universe_f64(
     ArchitrinoSolverT3ParticleStepRowF64* rows,
     int max_rows,
     int* out_row_count,
-    ArchitrinoSolverT3StepSummaryF64* out_summary);
+    ArchitrinoSolverT3StepSummaryF64* out_summary,
+    ArchitrinoSolverT3UnresolvedRootSegmentRowF64* unresolved_root_segment_rows,
+    int max_unresolved_root_segment_rows,
+    int* out_unresolved_root_segment_row_count,
+    ArchitrinoSolverT3RetainedCausalRootReplayRowF64* retained_causal_root_replay_rows,
+    int max_retained_causal_root_replay_rows,
+    int* out_retained_causal_root_replay_row_count);
 
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,

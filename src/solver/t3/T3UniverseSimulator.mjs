@@ -5,6 +5,7 @@ import { computeParticleStatistics } from "./T3Statistics.mjs";
 import { createT3State } from "./T3State.mjs";
 import { createT3Topology } from "./T3Topology.mjs";
 import { createT3CentralSolverEngine } from "./T3CentralSolverEngine.mjs";
+import { createT3OrientedBoundaryPrototype } from "./T3OrientedBoundaryOperator.mjs";
 import { referenceActionSolver } from "./T3ActionSolver.mjs";
 import {
   createT3Checkpoint,
@@ -148,7 +149,8 @@ export function normalizeT3UniverseConfig(input = {}) {
     particles: {
       count: particleInput.count ?? input.architrinoCount ?? input.particleCount,
       spatialDensity: particleInput.spatialDensity ?? input.spatialDensity,
-      mass: particleInput.mass ?? input.mass ?? 1,
+      integrationWeight: particleInput.integrationWeight ?? input.integrationWeight ?? 1,
+      integrationWeights: particleInput.integrationWeights ?? input.integrationWeights,
       electrineFraction: particleInput.electrineFraction ?? input.electrineFraction ?? 0.5,
       items: particleInput.items,
     },
@@ -258,16 +260,261 @@ async function runT3Simulation(simulator, options = {}) {
       }
     }
   }
+  const endTime = simulator.state.time;
+  const runSummary = createT3RunSummary({
+    config: simulator.config,
+    stepResults,
+    stepCount: completedSteps,
+    particleCount: simulator.state.particleCount,
+    startTime,
+    endTime,
+  });
   return {
     schema: "t3-run-result.v1",
     completedSteps,
     startTime,
-    endTime: simulator.state.time,
+    endTime,
+    runSummary,
     trajectoryFrames,
     stepResults,
     statistics: simulator.statistics(),
     checkpoint: simulator.checkpoint({ reason: "run-complete" }),
   };
+}
+
+function createT3RunSummary(input) {
+  const stepResults = input.stepResults;
+  const executionPaths = stepResults.map((result) => result.executionPath ?? "reference");
+  const interactionPresets = stepResults.map((result) => result.interactionLaw ?? "reference");
+  const nativeBulkStepCount = stepResults.filter(
+    (result) => result.mode === "central-solver-bulk-t3" && result.executionPath === "native_c_abi"
+  ).length;
+  const referenceStepCount = stepResults.filter(
+    (result) => result.engine === "reference" || result.executionPath == null
+  ).length;
+  const perParticleFallbackStepCount = stepResults.filter(isPerParticleFallbackStep).length;
+  const summary = {
+    schema: "t3-run-summary.v1",
+    stepCount: input.stepCount,
+    particleCount: input.particleCount,
+    startTime: input.startTime,
+    endTime: input.endTime,
+    duration: input.endTime - input.startTime,
+    timestep: input.config.solver.timestep,
+    solverEngine: input.config.solver.engine,
+    solverMode: input.config.solver.mode,
+    interactionPreset: summarizeStringSeries(interactionPresets),
+    interactionPresetCounts: countStringSeries(interactionPresets),
+    executionPath: summarizeStringSeries(executionPaths),
+    executionPathCounts: countStringSeries(executionPaths),
+    nativeBulkStepCount,
+    referenceStepCount,
+    perParticleFallbackStepCount,
+    usedPerParticleFallback: perParticleFallbackStepCount > 0,
+    neighborPairCounts: summarizeNumericSeries(stepResults.map((result) => result.neighborPairCount)),
+    occupiedCellCounts: summarizeNumericSeries(stepResults.map((result) => result.occupiedCellCount)),
+    cellCounts: summarizeNumericSeries(stepResults.map((result) => result.cellCount)),
+    periodicWrapEvidence: summarizePeriodicWrapEvidence(stepResults),
+    retainedCausalRootReplaySource: summarizeRetainedCausalRootReplaySource(stepResults),
+    eventSummary: summarizeRunEvents(stepResults),
+  };
+  return {
+    ...summary,
+    orientedBoundaryPrototype: createT3OrientedBoundaryPrototype(summary),
+  };
+}
+
+function isPerParticleFallbackStep(result) {
+  const text = [
+    result.mode,
+    result.engine,
+    result.executionPath,
+    result.integrationPath,
+  ].filter(Boolean).join(" ");
+  return /fallback/i.test(text) && !/reference/i.test(text);
+}
+
+function summarizeNumericSeries(values) {
+  const perStep = values.map((value) => {
+    const numericValue = Number(value);
+    return Number.isFinite(numericValue) ? numericValue : null;
+  });
+  const finiteValues = perStep.filter((value) => value != null);
+  if (finiteValues.length === 0) {
+    return {
+      perStep,
+      total: 0,
+      min: null,
+      max: null,
+      mean: null,
+    };
+  }
+  const total = finiteValues.reduce((sum, value) => sum + value, 0);
+  return {
+    perStep,
+    total,
+    min: Math.min(...finiteValues),
+    max: Math.max(...finiteValues),
+    mean: total / finiteValues.length,
+  };
+}
+
+function summarizePeriodicWrapEvidence(stepResults) {
+  const imageDeltaTotals = { x: 0, y: 0, z: 0 };
+  const absoluteImageDeltaTotals = { x: 0, y: 0, z: 0 };
+  let stepCountWithPeriodicWrap = 0;
+  let wrappedParticleStepCount = 0;
+  const perStep = [];
+  for (const result of stepResults) {
+    const summary = result.periodicWrapEvidence ?? null;
+    if (!summary) {
+      perStep.push(null);
+      continue;
+    }
+    perStep.push(summary);
+    imageDeltaTotals.x += summary.imageDeltaTotals?.x ?? 0;
+    imageDeltaTotals.y += summary.imageDeltaTotals?.y ?? 0;
+    imageDeltaTotals.z += summary.imageDeltaTotals?.z ?? 0;
+    absoluteImageDeltaTotals.x += summary.absoluteImageDeltaTotals?.x ?? 0;
+    absoluteImageDeltaTotals.y += summary.absoluteImageDeltaTotals?.y ?? 0;
+    absoluteImageDeltaTotals.z += summary.absoluteImageDeltaTotals?.z ?? 0;
+    if (summary.hasPeriodicWrap) {
+      stepCountWithPeriodicWrap += 1;
+    }
+    wrappedParticleStepCount += summary.wrappedParticleCount ?? 0;
+  }
+  const totalAbsoluteImageDelta =
+    absoluteImageDeltaTotals.x + absoluteImageDeltaTotals.y + absoluteImageDeltaTotals.z;
+  return {
+    schema: "t3-periodic-wrap-evidence.v1",
+    hasPeriodicWrap: totalAbsoluteImageDelta > 0,
+    stepCountWithPeriodicWrap,
+    wrappedParticleStepCount,
+    imageDeltaTotals,
+    absoluteImageDeltaTotals,
+    totalAbsoluteImageDelta,
+    perStep,
+  };
+}
+
+function summarizeRetainedCausalRootReplaySource(stepResults) {
+  const perStep = [];
+  const rows = [];
+  for (const result of stepResults) {
+    const source = result.periodicWrapEvidence?.retainedCausalRootReplaySource ?? null;
+    if (!source) {
+      perStep.push(null);
+      continue;
+    }
+    const sourceRows = Array.isArray(source.rows) ? source.rows : [];
+    const sourceSummary = source.summary ?? {};
+    rows.push(...sourceRows);
+    perStep.push({
+      schema: source.schema,
+      sourceObjectSchema: source.sourceObjectSchema,
+      replayAuthorization: source.replayAuthorization,
+      acceptedReplayEvidence: source.acceptedReplayEvidence,
+      candidateRowCount: sourceSummary.candidateRowCount ?? sourceRows.length,
+      acceptedReplayRowCount: sourceSummary.acceptedReplayRowCount ?? 0,
+      firstCandidateRowId: sourceSummary.firstCandidateRowId ?? null,
+      firstMissingField: sourceSummary.firstMissingField ?? null,
+    });
+  }
+  const acceptedRows = rows.filter((row) => row.acceptedReplayEvidence === true);
+  const blockedRows = rows.filter((row) => row.acceptedReplayEvidence !== true);
+  const allRowsAccepted = rows.length > 0 && acceptedRows.length === rows.length;
+  return {
+    schema: "t3-retained-causal-root-replay.v1",
+    sourceObjectSchema: "t3-run-summary-packaged-step-row-source",
+    replayAuthorization: allRowsAccepted,
+    acceptedReplayEvidence: allRowsAccepted,
+    rows,
+    perStep,
+    summary: {
+      status:
+        rows.length === 0
+          ? "no_candidate_replay_rows"
+          : allRowsAccepted
+            ? "same_record_replay_fields_complete"
+            : acceptedRows.length > 0
+              ? "partial_candidate_rows_missing_required_same_record_fields"
+              : "candidate_rows_missing_required_same_record_fields",
+      candidateRowCount: rows.length,
+      acceptedReplayRowCount: acceptedRows.length,
+      replayAuthorization: allRowsAccepted,
+      firstCandidateRowId: rows[0]?.rowId ?? null,
+      firstMissingField: blockedRows[0]?.missingFields?.[0] ?? null,
+      retainedBranch: false,
+      provesBranchAdmissibility: false,
+    },
+  };
+}
+
+function summarizeRunEvents(stepResults) {
+  const eventTypeCounts = {};
+  let totalEventCount = 0;
+  let boundaryLikeEventCount = 0;
+  const perStep = [];
+  for (const result of stepResults) {
+    const events = Array.isArray(result.events) ? result.events : [];
+    const stepEventTypeCounts = {};
+    let stepBoundaryLikeEventCount = 0;
+    for (const event of events) {
+      totalEventCount += 1;
+      const key = eventSummaryKey(event);
+      eventTypeCounts[key] = (eventTypeCounts[key] ?? 0) + 1;
+      stepEventTypeCounts[key] = (stepEventTypeCounts[key] ?? 0) + 1;
+      if (eventLooksBoundaryLike(event)) {
+        boundaryLikeEventCount += 1;
+        stepBoundaryLikeEventCount += 1;
+      }
+    }
+    perStep.push({
+      eventCount: events.length,
+      boundaryLikeEventCount: stepBoundaryLikeEventCount,
+      eventTypeCounts: stepEventTypeCounts,
+    });
+  }
+  return {
+    schema: "t3-run-event-summary.v1",
+    totalEventCount,
+    boundaryLikeEventCount,
+    eventTypeCounts,
+    perStep,
+  };
+}
+
+function eventSummaryKey(event) {
+  return String(event?.kind ?? event?.type ?? event?.id ?? event?.schema ?? "event");
+}
+
+function eventLooksBoundaryLike(event) {
+  const text = [
+    event?.kind,
+    event?.type,
+    event?.category,
+    event?.id,
+    event?.schema,
+  ].filter(Boolean).join(" ");
+  return /boundary|wrap|periodic|seam|image/i.test(text);
+}
+
+function summarizeStringSeries(values) {
+  const counts = countStringSeries(values);
+  const keys = Object.keys(counts);
+  if (keys.length === 0) {
+    return null;
+  }
+  return keys.length === 1 ? keys[0] : "mixed";
+}
+
+function countStringSeries(values) {
+  const counts = {};
+  for (const value of values) {
+    const key = String(value ?? "unknown");
+    counts[key] = (counts[key] ?? 0) + 1;
+  }
+  return counts;
 }
 
 function clonePlainObject(value) {

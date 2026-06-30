@@ -53,7 +53,14 @@ const NEAREST_BRANCH_CHART_SOURCE_READINESS_SCHEMA =
   "moving_retained_branch_certificate_nearest_branch_chart_source_readiness/v0";
 const BRANCH_CHART_AND_MOVING_CERTIFICATE_REF_PATH_AUDIT_SCHEMA =
   "moving_retained_branch_certificate_branch_chart_and_moving_certificate_ref_path_audit/v0";
+const SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA =
+  "same_record_accepted_branch_chart_intake_for_q_index_ratio_f2/v0";
+const SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_TARGET_Q_INDEX_RATIO_F2_SCHEMA =
+  "same_record_accepted_branch_chart_producer_target_for_q_index_ratio_f2/v0";
 const ACCEPTED_BRANCH_CHART_SOURCE_STATUS = "accepted_same_record_branch_chart";
+const Q_INDEX_RATIO_F2_BRANCH_LABEL = "q:index-ratio:f2";
+const Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID = "W:index-ratio:f2:sampled-active-row-window";
+const Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH = "route-root-key:2856731379702547500";
 
 const DISALLOWED_REFERENCE_PREFIXES = [
   "priority-only:",
@@ -62,6 +69,71 @@ const DISALLOWED_REFERENCE_PREFIXES = [
   "candidate:",
   "synthetic:",
 ];
+
+const DISALLOWED_REFERENCE_SUBSTRINGS = [
+  "synthetic",
+  ":fixture",
+  "fixture-",
+  "sampled-only",
+  "sampled_only",
+  "aggregate",
+  "cross-row",
+  "cross_row",
+];
+
+const REJECTED_BRANCH_CHART_EVIDENCE_SOURCES = [
+  "proxy refs",
+  "fixture refs",
+  "candidate refs",
+  "synthetic refs",
+  "sampled-only rows",
+  "aggregate rows",
+  "cross-row bundles",
+  "route-only rows",
+  "H39/theta3minus quotient rows",
+  "source-normal denominator machinery",
+  "downstream candidate rows",
+  "source scouts",
+];
+
+const SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS = {
+  branch_row_identity: [
+    "branch_row_id",
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+  ],
+  accepted_branch_chart: [
+    "source_status",
+    "same_record_identity.accepted_branch_chart_ref",
+    "same_record_identity.separator_chart_ref",
+    "same_record_identity.positive_gap_record_ref",
+    "same_record_identity.memory_depth_record_ref",
+    "same_record_identity.active_wave_vector_gap_ref",
+  ],
+  retained_source_binding: [
+    "retained_source_binding.retained_record_id",
+    "retained_source_binding.source_record_id",
+    "retained_source_binding.source_artifact_hash",
+    "retained_source_binding.causal_root_replay_ref",
+    "provider_object_provenance",
+  ],
+  same_record_binding: [
+    "branch_row_id",
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+    "same_record_identity.accepted_branch_chart_ref",
+    "same_record_identity.separator_chart_ref",
+    "same_record_identity.positive_gap_record_ref",
+    "same_record_identity.memory_depth_record_ref",
+    "same_record_identity.active_wave_vector_gap_ref",
+    "retained_source_binding.retained_record_id",
+    "retained_source_binding.source_artifact_hash",
+  ],
+};
 
 const SAME_RECORD_IDENTITY_ROWS = [
   {
@@ -212,14 +284,14 @@ function referenceRejectionPolicy() {
   return {
     schema: "accepted_reference_rejection_policy/v0",
     disallowed_prefixes: DISALLOWED_REFERENCE_PREFIXES,
-    disallowed_substrings: ["synthetic", ":fixture", "fixture-"],
+    disallowed_substrings: DISALLOWED_REFERENCE_SUBSTRINGS,
     applies_to_fields: [
       "branch_certificate_ref",
       "same_record_identity.accepted_branch_chart_ref",
       "moving_retained_branch_certificate_ref",
     ],
     rule:
-      "A nonempty reference is not accepted evidence if it is priority-only, fixture, proxy, candidate, or synthetic.",
+      "A nonempty reference is not accepted evidence if it is priority-only, fixture, proxy, candidate, synthetic, sampled-only, aggregate, or cross-row.",
   };
 }
 
@@ -238,6 +310,15 @@ function rejectedRefCode(field, value) {
   }
   if (normalized.includes(":fixture") || normalized.includes("fixture-")) {
     return `${field.replaceAll(".", "_")}_fixture_not_accepted`;
+  }
+  if (normalized.includes("sampled-only") || normalized.includes("sampled_only")) {
+    return `${field.replaceAll(".", "_")}_sampled_only_not_accepted`;
+  }
+  if (normalized.includes("aggregate")) {
+    return `${field.replaceAll(".", "_")}_aggregate_not_accepted`;
+  }
+  if (normalized.includes("cross-row") || normalized.includes("cross_row")) {
+    return `${field.replaceAll(".", "_")}_cross_row_not_accepted`;
   }
   return null;
 }
@@ -301,6 +382,29 @@ function sourceScoutContract() {
     ],
     authorization_boundary: {
       source_scout_accepts_moving_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
+}
+
+function sameRecordAcceptedBranchChartIntakeContract() {
+  return {
+    schema: `${SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA}_contract`,
+    purpose:
+      "Name the first executable same-record accepted branch-chart intake target for q:index-ratio:f2 before moving_retained_branch_certificate/v0 may be consumed.",
+    required_branch_window: {
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+    },
+    accepted_source_status: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    required_same_record_fields: sourceScoutContract().required_candidate_fields,
+    rejected_reference_policy: referenceRejectionPolicy(),
+    authorization_boundary: {
+      moving_retained_branch_certificate: false,
       structural_integrity_residual_vector: false,
       photon_gate_a: false,
       lorentz_rows: false,
@@ -428,6 +532,7 @@ function evaluateSourceScoutCandidate(candidate) {
     missing_or_rejected_fields: failedFields.map((row) => row.path),
     missing_or_rejected_field_codes: failedFields.map((row) => row.failure_code),
     field_results: fieldRows,
+    producer_target: isObject(candidate.producer_target) ? candidate.producer_target : null,
     evidence_note: candidate.evidence_note ?? null,
   };
 }
@@ -467,6 +572,235 @@ function selectNearestSourceScoutCandidate(candidateResults) {
       return String(left.candidate.id ?? "").localeCompare(String(right.candidate.id ?? ""));
     });
   return rankedCandidates[0]?.candidate ?? null;
+}
+
+function qIndexRatioF2WindowMatches(candidate) {
+  const identity = candidate?.same_record_identity ?? {};
+  return (
+    identity.branch_label === Q_INDEX_RATIO_F2_BRANCH_LABEL &&
+    identity.extraction_window_id === Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID &&
+    identity.active_root_ledger_hash === Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH
+  );
+}
+
+function selectQIndexRatioF2BranchWindowCandidate(candidateResults) {
+  const matchingCandidates = candidateResults.filter(qIndexRatioF2WindowMatches);
+  const acceptedMatch = matchingCandidates.find((candidate) => candidate.accepted);
+  if (acceptedMatch) {
+    return acceptedMatch;
+  }
+
+  return matchingCandidates
+    .map(rankSourceScoutCandidate)
+    .sort((left, right) => {
+      if (right.requiredFieldPassCount !== left.requiredFieldPassCount) {
+        return right.requiredFieldPassCount - left.requiredFieldPassCount;
+      }
+      if (right.branchReferencePass !== left.branchReferencePass) {
+        return right.branchReferencePass - left.branchReferencePass;
+      }
+      if (right.acceptedChartRefPresent !== left.acceptedChartRefPresent) {
+        return right.acceptedChartRefPresent - left.acceptedChartRefPresent;
+      }
+      if (right.sourceStatusAccepted !== left.sourceStatusAccepted) {
+        return right.sourceStatusAccepted - left.sourceStatusAccepted;
+      }
+      return String(left.candidate.id ?? "").localeCompare(String(right.candidate.id ?? ""));
+    })[0]?.candidate ?? null;
+}
+
+function buildQIndexRatioF2SourceTarget(selected, missingOrRejectedFields, firstFailure, accepted) {
+  const fieldReadouts = selected?.field_results ?? sourceScoutContract().required_candidate_fields.map(
+    ({ path: rowPath, requirement }) => ({
+      path: rowPath,
+      requirement,
+      value: null,
+      present: false,
+      proxy: false,
+      pass: false,
+      failure_code: rejectionCodeForPath(rowPath, "missing"),
+    })
+  );
+  const rejectedFieldReadouts = fieldReadouts.filter((field) => field.pass !== true);
+
+  return {
+    schema: SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA,
+    target_status: accepted ? "accepted_same_record_branch_chart_available" : "source_target_blocked",
+    accepted_same_record_branch_chart: accepted,
+    selected_candidate_id: selected?.id ?? null,
+    selected_candidate_source_ref: selected?.source_ref ?? null,
+    selected_source_status: selected?.source_status ?? null,
+    selected_source_status_accepted: selected?.source_status_accepted ?? false,
+    required_source_status: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    same_record_binding_required: {
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+      required_fields_must_live_on_one_branch_row: true,
+      cross_row_join_authorized: false,
+    },
+    required_same_record_fields: sourceScoutContract().required_candidate_fields.map((field) => field.path),
+    rejected_branch_chart_evidence_sources: REJECTED_BRANCH_CHART_EVIDENCE_SOURCES,
+    reference_rejection_policy: referenceRejectionPolicy(),
+    field_readouts: fieldReadouts,
+    missing_or_rejected_fields: missingOrRejectedFields,
+    missing_or_rejected_field_codes: rejectedFieldReadouts.map((field) => field.failure_code),
+    first_missing_or_rejected_field: missingOrRejectedFields[0] ?? null,
+    first_missing_or_rejected_field_code: firstFailure,
+    exact_blocking_refs: {
+      branch_certificate_ref: selected?.branch_certificate_ref ?? null,
+      same_record_identity_accepted_branch_chart_ref: selected?.accepted_branch_chart_ref ?? null,
+      moving_retained_branch_certificate_ref: selected?.moving_retained_branch_certificate_ref ?? null,
+    },
+    authorization: {
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
+}
+
+function buildQIndexRatioF2ProducerTarget(selected, missingOrRejectedFields, firstFailure, accepted) {
+  const requiredProducerFields = [
+    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.branch_row_identity,
+    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.accepted_branch_chart,
+    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.retained_source_binding,
+  ];
+
+  return {
+    schema: SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_TARGET_Q_INDEX_RATIO_F2_SCHEMA,
+    target_status: accepted ? "accepted_same_record_branch_chart_available" : "producer_target_blocked",
+    required_source_object: "accepted_same_record_branch_chart",
+    required_source_status: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    selected_candidate_id: selected?.id ?? null,
+    selected_candidate_source_ref: selected?.source_ref ?? null,
+    selected_source_status: selected?.source_status ?? null,
+    first_missing_or_rejected_field: missingOrRejectedFields[0] ?? null,
+    first_missing_or_rejected_field_code: firstFailure,
+    same_record_binding_required: {
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+      required_fields_must_live_on_one_branch_row: true,
+      retained_source_binding_must_match_branch_row: true,
+      cross_row_join_authorized: false,
+    },
+    required_producer_field_groups: SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS,
+    required_producer_fields: requiredProducerFields,
+    downstream_consumers_blocked_until_producer_exists: [
+      "moving_retained_branch_certificate/v0",
+      "structural-integrity residual rows",
+      "Photon Gate A",
+      "Lorentz rows",
+      "observer export rows",
+    ],
+    rejected_branch_chart_evidence_sources: REJECTED_BRANCH_CHART_EVIDENCE_SOURCES,
+    exact_blocking_refs: {
+      branch_certificate_ref: selected?.branch_certificate_ref ?? null,
+      same_record_identity_accepted_branch_chart_ref: selected?.accepted_branch_chart_ref ?? null,
+      moving_retained_branch_certificate_ref: selected?.moving_retained_branch_certificate_ref ?? null,
+      retained_source_binding_ref: selected?.retained_source_binding_ref ?? null,
+      provider_object_provenance_ref: selected?.provider_object_provenance_ref ?? null,
+    },
+    authorization: {
+      accepted_same_record_branch_chart: accepted,
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
+}
+
+function buildSameRecordAcceptedBranchChartIntakeForQIndexRatioF2(candidateResults) {
+  const selected = selectQIndexRatioF2BranchWindowCandidate(candidateResults);
+  const accepted = selected?.accepted === true;
+  const presentNonProxyFields =
+    selected?.field_results.filter((row) => row.pass).map((row) => row.path) ?? [];
+  const missingOrRejectedFields = selected?.missing_or_rejected_fields ?? [
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+    "same_record_identity.accepted_branch_chart_ref",
+    "same_record_identity.separator_chart_ref",
+    "same_record_identity.positive_gap_record_ref",
+    "same_record_identity.memory_depth_record_ref",
+    "same_record_identity.active_wave_vector_gap_ref",
+  ];
+  const missingOrRejectedFieldCodes = selected?.missing_or_rejected_field_codes ?? [
+    "q_index_ratio_f2_branch_window_candidate_missing",
+  ];
+  const firstFailure =
+    accepted
+      ? null
+      : missingOrRejectedFieldCodes[0] ??
+        selected?.source_status_rejection_code ??
+        "accepted_same_record_branch_chart_absent";
+
+  return {
+    schema: SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA,
+    claim_boundary:
+      "Executable source-target only: it preserves the q:index-ratio:f2 same-record branch-window intake and does not accept moving_retained_branch_certificate/v0 without non-proxy accepted branch-chart evidence.",
+    contract: sameRecordAcceptedBranchChartIntakeContract(),
+    selected_candidate_id: selected?.id ?? null,
+    selected_candidate_family: selected?.family ?? null,
+    selected_candidate_source_ref: selected?.source_ref ?? null,
+    selected_source_status: selected?.source_status ?? null,
+    selected_source_status_accepted: selected?.source_status_accepted ?? false,
+    selected_source_status_rejection_code: selected?.source_status_rejection_code ?? null,
+    same_record_binding: {
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+    },
+    candidate_same_record_identity: selected?.same_record_identity ?? null,
+    present_non_proxy_required_field_count: presentNonProxyFields.length,
+    present_non_proxy_required_fields: presentNonProxyFields,
+    missing_or_rejected_fields: missingOrRejectedFields,
+    missing_or_rejected_field_codes: missingOrRejectedFieldCodes,
+    first_failure: firstFailure,
+    accepted_same_record_branch_chart: accepted,
+    accepted_branch_chart_source_target: buildQIndexRatioF2SourceTarget(
+      selected,
+      missingOrRejectedFields,
+      firstFailure,
+      accepted,
+    ),
+    accepted_same_record_branch_chart_producer_target: buildQIndexRatioF2ProducerTarget(
+      selected,
+      missingOrRejectedFields,
+      firstFailure,
+      accepted,
+    ),
+    exact_blocking_refs: {
+      branch_certificate_ref: selected?.branch_certificate_ref ?? null,
+      same_record_identity_accepted_branch_chart_ref: selected?.accepted_branch_chart_ref ?? null,
+      moving_retained_branch_certificate_ref: selected?.moving_retained_branch_certificate_ref ?? null,
+    },
+    selected_candidate_producer_target: selected?.producer_target ?? null,
+    required_next_object: {
+      object: "accepted_same_record_branch_chart",
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+      first_required_field: missingOrRejectedFields[0] ?? null,
+      first_required_field_code: firstFailure,
+      must_replace_proxy_fixture_candidate_synthetic_refs: true,
+      must_upgrade_source_status_to: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+      required_same_record_fields: sourceScoutContract().required_candidate_fields.map((field) => field.path),
+    },
+    authorization: {
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  };
 }
 
 function buildNearestBranchChartSourceReadiness(candidateResults) {
@@ -644,6 +978,8 @@ export function buildAcceptedBranchChartSourceScout(manifest, options = {}) {
   const nearestCandidateReadiness = buildNearestBranchChartSourceReadiness(candidateResults);
   const branchChartAndMovingCertificateRefPathAudit =
     buildBranchChartAndMovingCertificateRefPathAudit(candidateResults);
+  const sameRecordAcceptedBranchChartIntakeForQIndexRatioF2 =
+    buildSameRecordAcceptedBranchChartIntakeForQIndexRatioF2(candidateResults);
 
   return {
     schema: SOURCE_SCOUT_SCHEMA,
@@ -667,6 +1003,8 @@ export function buildAcceptedBranchChartSourceScout(manifest, options = {}) {
     candidate_results: candidateResults,
     nearest_candidate_readiness: nearestCandidateReadiness,
     branch_chart_and_moving_certificate_ref_path_audit: branchChartAndMovingCertificateRefPathAudit,
+    same_record_accepted_branch_chart_intake_for_q_index_ratio_f2:
+      sameRecordAcceptedBranchChartIntakeForQIndexRatioF2,
     required_next_object: {
       object:
         "accepted_same_record_branch_chart on one moving branch window",
@@ -795,6 +1133,182 @@ export function sourceScoutValidationErrors(report) {
         ?.moving_retained_branch_certificate !== false
     ) {
       errors.push("branch_chart_and_moving_certificate_ref_path_audit must not authorize moving_retained_branch_certificate");
+    }
+  }
+  if (!isObject(report.same_record_accepted_branch_chart_intake_for_q_index_ratio_f2)) {
+    errors.push("same_record_accepted_branch_chart_intake_for_q_index_ratio_f2 must be an object");
+  } else {
+    const intake = report.same_record_accepted_branch_chart_intake_for_q_index_ratio_f2;
+    if (intake.schema !== SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA) {
+      errors.push(
+        `same_record_accepted_branch_chart_intake_for_q_index_ratio_f2 schema must be ${SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA}`
+      );
+    }
+    if (intake.same_record_binding?.branch_label !== Q_INDEX_RATIO_F2_BRANCH_LABEL) {
+      errors.push("q:index-ratio:f2 intake must preserve the branch label");
+    }
+    if (intake.same_record_binding?.extraction_window_id !== Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID) {
+      errors.push("q:index-ratio:f2 intake must preserve the extraction window");
+    }
+    if (intake.same_record_binding?.active_root_ledger_hash !== Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH) {
+      errors.push("q:index-ratio:f2 intake must preserve the active-root ledger hash");
+    }
+    if (!isObject(intake.accepted_branch_chart_source_target)) {
+      errors.push("q:index-ratio:f2 intake must emit accepted_branch_chart_source_target");
+    } else {
+      const sourceTarget = intake.accepted_branch_chart_source_target;
+      if (sourceTarget.schema !== SAME_RECORD_ACCEPTED_BRANCH_CHART_INTAKE_Q_INDEX_RATIO_F2_SCHEMA) {
+        errors.push("q:index-ratio:f2 source target schema must match intake schema");
+      }
+      if (sourceTarget.same_record_binding_required?.branch_label !== Q_INDEX_RATIO_F2_BRANCH_LABEL) {
+        errors.push("q:index-ratio:f2 source target must preserve the branch label");
+      }
+      if (
+        sourceTarget.same_record_binding_required?.extraction_window_id !==
+        Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID
+      ) {
+        errors.push("q:index-ratio:f2 source target must preserve the extraction window");
+      }
+      if (
+        sourceTarget.same_record_binding_required?.active_root_ledger_hash !==
+        Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH
+      ) {
+        errors.push("q:index-ratio:f2 source target must preserve the active-root ledger hash");
+      }
+      if (sourceTarget.same_record_binding_required?.cross_row_join_authorized !== false) {
+        errors.push("q:index-ratio:f2 source target must reject cross-row joins");
+      }
+      if (!Array.isArray(sourceTarget.field_readouts)) {
+        errors.push("q:index-ratio:f2 source target must emit field readouts");
+      }
+      if (
+        report.accepted_count === 0 &&
+        sourceTarget.first_missing_or_rejected_field !==
+          "same_record_identity.accepted_branch_chart_ref"
+      ) {
+        errors.push("blocked q:index-ratio:f2 source target must fail first at accepted_branch_chart_ref");
+      }
+      if (
+        report.accepted_count === 0 &&
+        sourceTarget.authorization?.moving_retained_branch_certificate !== false
+      ) {
+        errors.push("blocked q:index-ratio:f2 source target must not authorize moving_retained_branch_certificate");
+      }
+      if (
+        report.accepted_count === 0 &&
+        !sourceTarget.rejected_branch_chart_evidence_sources?.includes("cross-row bundles")
+      ) {
+        errors.push("q:index-ratio:f2 source target must reject cross-row bundles");
+      }
+    }
+    if (!isObject(intake.accepted_same_record_branch_chart_producer_target)) {
+      errors.push("q:index-ratio:f2 intake must emit accepted_same_record_branch_chart_producer_target");
+    } else {
+      const producerTarget = intake.accepted_same_record_branch_chart_producer_target;
+      if (
+        producerTarget.schema !==
+        SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_TARGET_Q_INDEX_RATIO_F2_SCHEMA
+      ) {
+        errors.push(
+          `q:index-ratio:f2 producer target schema must be ${SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_TARGET_Q_INDEX_RATIO_F2_SCHEMA}`
+        );
+      }
+      if (producerTarget.required_source_object !== "accepted_same_record_branch_chart") {
+        errors.push("q:index-ratio:f2 producer target must require accepted_same_record_branch_chart");
+      }
+      if (producerTarget.required_source_status !== ACCEPTED_BRANCH_CHART_SOURCE_STATUS) {
+        errors.push("q:index-ratio:f2 producer target must require accepted_same_record_branch_chart status");
+      }
+      if (producerTarget.same_record_binding_required?.branch_label !== Q_INDEX_RATIO_F2_BRANCH_LABEL) {
+        errors.push("q:index-ratio:f2 producer target must preserve the branch label");
+      }
+      if (
+        producerTarget.same_record_binding_required?.extraction_window_id !==
+        Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID
+      ) {
+        errors.push("q:index-ratio:f2 producer target must preserve the extraction window");
+      }
+      if (
+        producerTarget.same_record_binding_required?.active_root_ledger_hash !==
+        Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH
+      ) {
+        errors.push("q:index-ratio:f2 producer target must preserve the active-root ledger hash");
+      }
+      if (producerTarget.same_record_binding_required?.required_fields_must_live_on_one_branch_row !== true) {
+        errors.push("q:index-ratio:f2 producer target must require one branch row");
+      }
+      if (producerTarget.same_record_binding_required?.retained_source_binding_must_match_branch_row !== true) {
+        errors.push("q:index-ratio:f2 producer target must bind retained source to the branch row");
+      }
+      if (producerTarget.same_record_binding_required?.cross_row_join_authorized !== false) {
+        errors.push("q:index-ratio:f2 producer target must reject cross-row joins");
+      }
+      if (!producerTarget.required_producer_field_groups?.retained_source_binding?.includes(
+        "retained_source_binding.source_artifact_hash"
+      )) {
+        errors.push("q:index-ratio:f2 producer target must require retained source binding fields");
+      }
+      for (const rejectedSource of [
+        "proxy refs",
+        "fixture refs",
+        "sampled-only rows",
+        "aggregate rows",
+        "cross-row bundles",
+        "route-only rows",
+        "H39/theta3minus quotient rows",
+        "source-normal denominator machinery",
+        "downstream candidate rows",
+      ]) {
+        if (!producerTarget.rejected_branch_chart_evidence_sources?.includes(rejectedSource)) {
+          errors.push(`q:index-ratio:f2 producer target must reject ${rejectedSource}`);
+        }
+      }
+      if (
+        report.accepted_count === 0 &&
+        producerTarget.target_status !== "producer_target_blocked"
+      ) {
+        errors.push("blocked q:index-ratio:f2 producer target must remain producer_target_blocked");
+      }
+      if (
+        report.accepted_count === 0 &&
+        producerTarget.first_missing_or_rejected_field !==
+          "same_record_identity.accepted_branch_chart_ref"
+      ) {
+        errors.push("blocked q:index-ratio:f2 producer target must fail first at accepted_branch_chart_ref");
+      }
+      if (
+        report.accepted_count === 0 &&
+        producerTarget.authorization?.moving_retained_branch_certificate !== false
+      ) {
+        errors.push("blocked q:index-ratio:f2 producer target must not authorize moving_retained_branch_certificate");
+      }
+    }
+    if (intake.authorization?.moving_retained_branch_certificate !== false) {
+      errors.push("q:index-ratio:f2 intake must not authorize moving_retained_branch_certificate");
+    }
+    if (intake.authorization?.structural_integrity_residual_vector !== false) {
+      errors.push("q:index-ratio:f2 intake must not authorize structural-integrity residual rows");
+    }
+    if (intake.authorization?.photon_gate_a !== false) {
+      errors.push("q:index-ratio:f2 intake must not authorize Photon Gate A");
+    }
+    if (intake.authorization?.lorentz_rows !== false) {
+      errors.push("q:index-ratio:f2 intake must not authorize Lorentz rows");
+    }
+    if (intake.authorization?.observer_export !== false) {
+      errors.push("q:index-ratio:f2 intake must not authorize observer export");
+    }
+    if (
+      isObject(intake.selected_candidate_producer_target) &&
+      intake.selected_candidate_producer_target.authorization?.moving_retained_branch_certificate !== false
+    ) {
+      errors.push("q:index-ratio:f2 producer target must not authorize moving_retained_branch_certificate");
+    }
+    if (
+      isObject(intake.selected_candidate_producer_target) &&
+      intake.selected_candidate_producer_target.authorization?.structural_integrity_residual_vector !== false
+    ) {
+      errors.push("q:index-ratio:f2 producer target must not authorize structural-integrity residual rows");
     }
   }
   if (report.accepted_count === 0 && report.first_failure !== "accepted_same_record_branch_chart_absent") {

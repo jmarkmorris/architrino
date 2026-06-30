@@ -224,7 +224,7 @@ z_{\mathrm{NS},M}^{\nu}
 \left(
 a,\ell,c,\theta,
 b,\kappa,
-r,j,
+r,j,w,
 s,\mu,
 o,
 h,e,
@@ -247,6 +247,7 @@ The blocks are:
 | $\kappa$ | common period variables $H_*$ or $H_{\mathrm{com}}$ |
 | $r$ | active all-pairs causal root values $\eta_{ij,\beta,n}$ for $i\ne j$ |
 | $j$ | root-sign labels, Jacobian-floor witnesses, and stored $J_{ij,\beta,n}^{\nu}$ values when augmented |
+| $w$ | same-record receiver-normal branch-strength rows $W_{ij,\beta,n}^{\mathrm{rec},\nu}$ for every force, action, or wake-history root consumed downstream |
 | $s$ | hollow support variables $R_{\mathrm{in}}$, $R_{\mathrm{out}}$, support slacks, and support-margin witnesses |
 | $\mu$ | support multipliers or variational-inequality complementarity variables |
 | $o$ | occupancy mesh summaries, smoothing-scale metadata, and derived density witnesses when occupancy is claimed |
@@ -614,14 +615,19 @@ F_{i,\mathrm{all}}^\nu(u_n)
 \cup
 \mathcal{A}_{ij,n}^{\mathrm{tail\text{-}assim},\nu}}
 \sigma_i\sigma_j
-\frac{
-\widehat{\mathbf{R}}_{ij,\beta,n}^{\nu}
-}{
-(\eta_{ij,\beta,n})^2|J_{ij,\beta,n}^{\nu}|
-}
+W_{ij,\beta,n}^{\mathrm{rec},\nu}
+\frac{\widehat{\mathbf{R}}_{ij,\beta,n}^{\nu}}
+{(\eta_{ij,\beta,n})^2}
 +
 E_{i,\mathrm{tail\text{-}excl}}^\nu(u_n),
 $$
+
+where $W_{ij,\beta,n}^{\mathrm{rec},\nu}$ is the same-record receiver-normal
+branch strength. The $|J_{ij,\beta,n}^{\nu}|$ floor remains a root-chart
+diagnostic, not receiver-normal branch strength.
+If a derivative-consuming force/action packet cannot emit this row and its
+required first derivative on the same root record, the branch search exits as
+`receiver-normal-restart-required` or diagnostic-only.
 
 with
 

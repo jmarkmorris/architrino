@@ -26,10 +26,10 @@ export function computeMomentum(state) {
   const value = [0, 0, 0];
   for (let index = 0; index < state.particleCount; index += 1) {
     const offset = index * 3;
-    const mass = state.masses[index];
-    value[0] += mass * state.velocities[offset];
-    value[1] += mass * state.velocities[offset + 1];
-    value[2] += mass * state.velocities[offset + 2];
+    const integrationWeight = state.integrationWeights[index];
+    value[0] += integrationWeight * state.velocities[offset];
+    value[1] += integrationWeight * state.velocities[offset + 1];
+    value[2] += integrationWeight * state.velocities[offset + 2];
   }
   return {
     x: value[0],
@@ -46,7 +46,7 @@ export function computeKineticEnergy(state) {
     const vx = state.velocities[offset];
     const vy = state.velocities[offset + 1];
     const vz = state.velocities[offset + 2];
-    energy += 0.5 * state.masses[index] * (vx * vx + vy * vy + vz * vz);
+    energy += 0.5 * state.integrationWeights[index] * (vx * vx + vy * vy + vz * vz);
   }
   return energy;
 }

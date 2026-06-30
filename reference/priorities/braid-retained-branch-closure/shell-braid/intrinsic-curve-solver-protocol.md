@@ -353,15 +353,16 @@ $$
 =
 \sum_{(j,\alpha)\in\mathcal{A}_{i,n}}
 \sigma_i\sigma_j
-\frac{
-\widehat{\mathbf{R}}_{ij,n}^{\alpha}
-}{
-(\eta_{ij,n}^{\alpha})^2
-|J_{ij,n}^{\alpha}|
-}.
+(\eta_{ij,n}^{\alpha})^{-2}
+W_{ij,n}^{\mathrm{rec},\alpha}
+\widehat{\mathbf{R}}_{ij,n}^{\alpha}.
 $$
 
-Optional self or medium-response terms may be appended only when their regulator, action, and event rows are supplied on the same ledger.
+Optional self or medium-response terms may be appended only when their
+regulator, action, and event rows are supplied on the same ledger. The
+source-normal $J_{ij,n}^{\alpha}$ row is retained only for root isolation and
+root sensitivity; the active force/action row consumes
+$W_{ij,n}^{\mathrm{rec},\alpha}$ from the same retained record.
 
 The tangential row is
 

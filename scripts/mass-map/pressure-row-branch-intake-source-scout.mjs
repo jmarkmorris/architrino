@@ -49,10 +49,26 @@ const RANK4_PROVIDER_CANDIDATE_ID =
 
 const PRESSURE_PROVIDER_OBJECT_REQUIRED_FIELDS = [
   "provider_source_status",
+  "source_ref",
   "same_domain_record_ref",
   "branch_certificate_ref",
   "active_root_or_live_ledger_identity",
   "branch_local_projection_or_normalization_identity",
+  "receiver_normal_branch_strength",
+  "retained_source_binding",
+  "accepted_status",
+];
+
+const ACCEPTED_PROVIDER_REPORT_FIELDS = [
+  "provider_source_status",
+  "source_ref",
+  "branch_certificate_ref",
+  "same_domain_record_ref",
+  "active_root_or_live_ledger_identity",
+  "branch_local_projection_or_normalization_identity",
+  "receiver_normal_branch_strength",
+  "retained_source_binding",
+  "accepted_status",
 ];
 
 const RETAINED_PRESSURE_ROW_SOURCE_FIELDS = [
@@ -74,6 +90,12 @@ const RETAINED_PRESSURE_ROW_SOURCE_FIELDS = [
   "pressure_response_record.C_chi_iso",
   "pressure_response_record.C_chi_aniso",
   "pressure_response_record.m_S",
+  "receiver_normal_weight_record.D_s",
+  "receiver_normal_weight_record.D_t",
+  "receiver_normal_weight_record.W_rec",
+  "receiver_normal_weight_record.retained_root_row_ids",
+  "noether_sea_response_record.theta_sea",
+  "noether_sea_response_record.M_plus_ab",
   "reversible_domain.R_tr",
   "reversible_domain.R_tr_star",
   "reversible_domain.loss_channels_closed",
@@ -446,6 +468,37 @@ function pressureProviderObjectFieldReadout(candidate, field) {
             : "provider_source_status.accepted_non_fixture_source_missing",
     };
   }
+  if (field === "source_ref") {
+    const sourceRefMissing = !present(value);
+    const sourceRefIsFixture = isFixturePath(value);
+    const providerSourceAccepted =
+      candidate.provider_source_status === "accepted_non_fixture_source";
+    const sourceRefAccepted =
+      !sourceRefMissing && !sourceRefIsFixture && providerSourceAccepted;
+    return {
+      field,
+      value,
+      present: present(value),
+      pass: sourceRefAccepted,
+      failure: sourceRefAccepted
+        ? null
+        : sourceRefMissing
+          ? "source_ref.missing"
+          : sourceRefIsFixture
+            ? "source_ref.fixture_source_ref_not_accepted_provenance"
+            : "source_ref.source_ref_present_but_provider_source_status_not_accepted",
+    };
+  }
+  if (field === "accepted_status") {
+    const acceptedStatus = value === "accepted";
+    return {
+      field,
+      value,
+      present: present(value),
+      pass: acceptedStatus,
+      failure: acceptedStatus ? null : "accepted_status.accepted_missing",
+    };
+  }
 
   return {
     field,
@@ -515,6 +568,17 @@ function buildProviderSourceStatusAndCertificatePathProbe(
   const providerSourceAccepted =
     providerSourceStatusAccepted && sourceRefStatus === "accepted_non_fixture_source_ref";
   const branchCertificateRefPresent = present(candidate.branch_certificate_ref);
+  const receiverNormalBranchStrengthPresent = present(candidate.receiver_normal_branch_strength);
+  const retainedSourceBindingPresent = present(candidate.retained_source_binding);
+  const acceptedStatusAccepted = candidate.accepted_status === "accepted";
+  const missingOrRejectedProviderSourceFields = [
+    ...(providerSourceAccepted ? [] : ["provider_source_status"]),
+    ...(sourceRefStatus === "accepted_non_fixture_source_ref" ? [] : ["source_ref"]),
+    ...(branchCertificateRefPresent ? [] : ["branch_certificate_ref"]),
+    ...(receiverNormalBranchStrengthPresent ? [] : ["receiver_normal_branch_strength"]),
+    ...(retainedSourceBindingPresent ? [] : ["retained_source_binding"]),
+    ...(acceptedStatusAccepted ? [] : ["accepted_status"]),
+  ];
 
   return {
     schema: "pressure_row_provider_source_status_and_certificate_path_probe/v0",
@@ -552,15 +616,46 @@ function buildProviderSourceStatusAndCertificatePathProbe(
         ? null
         : "branch_certificate_ref.present_without_accepted_non_fixture_provider_source"
       : "branch_certificate_ref.missing",
-    exact_missing_provider_source_paths: [
-      ...(providerSourceAccepted ? [] : [providerCandidatePath(candidate, "provider_source_status")]),
-      ...(branchCertificateRefPresent ? [] : [providerCandidatePath(candidate, "branch_certificate_ref")]),
-    ],
-    required_next_provider_paths: [
-      providerCandidatePath(candidate, "provider_source_status"),
-      providerCandidatePath(candidate, "source_ref"),
-      providerCandidatePath(candidate, "branch_certificate_ref"),
-    ],
+    receiver_normal_branch_strength_path: providerCandidatePath(
+      candidate,
+      "receiver_normal_branch_strength"
+    ),
+    receiver_normal_branch_strength_required_value:
+      "receiver-normal branch strength on the same accepted provider row",
+    receiver_normal_branch_strength_observed_value:
+      candidate.receiver_normal_branch_strength ?? null,
+    receiver_normal_branch_strength_pass:
+      receiverNormalBranchStrengthPresent && providerSourceAccepted,
+    receiver_normal_branch_strength_first_failure: receiverNormalBranchStrengthPresent
+      ? providerSourceAccepted
+        ? null
+        : "receiver_normal_branch_strength.present_without_accepted_non_fixture_provider_source"
+      : "receiver_normal_branch_strength.missing",
+    retained_source_binding_path: providerCandidatePath(candidate, "retained_source_binding"),
+    retained_source_binding_required_value:
+      "retained source binding on the same accepted provider row",
+    retained_source_binding_observed_value: candidate.retained_source_binding ?? null,
+    retained_source_binding_pass: retainedSourceBindingPresent && providerSourceAccepted,
+    retained_source_binding_first_failure: retainedSourceBindingPresent
+      ? providerSourceAccepted
+        ? null
+        : "retained_source_binding.present_without_accepted_non_fixture_provider_source"
+      : "retained_source_binding.missing",
+    accepted_status_path: providerCandidatePath(candidate, "accepted_status"),
+    accepted_status_required_value: "accepted",
+    accepted_status_observed_value: candidate.accepted_status ?? null,
+    accepted_status_pass: acceptedStatusAccepted && providerSourceAccepted,
+    accepted_status_first_failure: acceptedStatusAccepted
+      ? providerSourceAccepted
+        ? null
+        : "accepted_status.present_without_accepted_non_fixture_provider_source"
+      : "accepted_status.accepted_missing",
+    exact_missing_provider_source_paths: missingOrRejectedProviderSourceFields.map((field) =>
+      providerCandidatePath(candidate, field)
+    ),
+    required_next_provider_paths: missingOrRejectedProviderSourceFields.map((field) =>
+      providerCandidatePath(candidate, field)
+    ),
   };
 }
 
@@ -718,7 +813,7 @@ function buildBranchCertificateRefSourceAvailabilityAudit(
         }
       : null,
     required_next_provider_object:
-      "one same-domain provider object with provider_source_status=accepted_non_fixture_source, same_domain_record_ref, branch_certificate_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity",
+      "one same-domain provider object with provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status=accepted",
     required_next_pressure_row_binding:
       "one accepted non-fixture retained pressure row whose branch_id and branch_certificate_ref-backed provider object bind to the same row as accepted history, quotient chart, pressure, exposure, pressure-response, reversible-domain, and null-sector records",
     accepted_branch_certificate_ref_candidates: acceptedCertificateCandidates,
@@ -1001,6 +1096,418 @@ function minimalMissingRows(candidate) {
   return missing;
 }
 
+function sourceFieldPointer(candidatePath, fieldPath) {
+  return candidatePath ? `${candidatePath}#${fieldPath}` : fieldPath;
+}
+
+function retainedPressureSourceFieldFamily(fieldPath) {
+  if (["branch_id", "accepted_history_segment_id", "source_path"].includes(fieldPath)) {
+    return "retained_branch_identity";
+  }
+  if (fieldPath === "quotient_chart_id") {
+    return "exposure_quotient";
+  }
+  if (fieldPath.startsWith("pressure_record.")) {
+    return "pressure_record";
+  }
+  if (fieldPath.startsWith("exposure_source_record.")) {
+    return "exposure_source_record";
+  }
+  if (fieldPath.startsWith("pressure_response_record.")) {
+    return "pressure_response_record";
+  }
+  if (fieldPath.startsWith("receiver_normal_weight_record.")) {
+    return "receiver_normal_weight_record";
+  }
+  if (fieldPath.startsWith("noether_sea_response_record.")) {
+    return "noether_sea_response_record";
+  }
+  if (fieldPath.startsWith("reversible_domain.")) {
+    return "reversible_domain";
+  }
+  if (fieldPath.startsWith("null_sector_record.")) {
+    return "null_sector_record";
+  }
+  return "unclassified";
+}
+
+function retainedPressureSourceFieldFamilies(fieldReadouts) {
+  const families = new Map();
+  for (const fieldPath of RETAINED_PRESSURE_ROW_SOURCE_FIELDS) {
+    const field_family = retainedPressureSourceFieldFamily(fieldPath);
+    const summary = families.get(field_family) ?? {
+      field_family,
+      required_count: 0,
+      unaccepted_count: 0,
+      required_fields: [],
+      unaccepted_fields: [],
+    };
+    const readout = fieldReadouts.find((field) => field.field_path === fieldPath);
+    summary.required_count += 1;
+    summary.required_fields.push(fieldPath);
+    if (readout?.accepted_non_fixture_source_provenance !== true) {
+      summary.unaccepted_count += 1;
+      summary.unaccepted_fields.push(fieldPath);
+    }
+    families.set(field_family, summary);
+  }
+  return [...families.values()].sort((left, right) =>
+    left.field_family.localeCompare(right.field_family)
+  );
+}
+
+function providerReadoutFieldValue(nearestProviderReadout, field) {
+  if (field === "source_ref") {
+    return nearestProviderReadout?.source_ref ?? null;
+  }
+  return (
+    nearestProviderReadout?.field_readouts?.find((readout) => readout.field === field)?.value ??
+    null
+  );
+}
+
+function providerReportFieldPath(providerSourcePathProbe, field) {
+  if (!providerSourcePathProbe) {
+    return null;
+  }
+  if (field === "provider_source_status") {
+    return providerSourcePathProbe.provider_source_status_path ?? null;
+  }
+  if (field === "source_ref") {
+    return providerSourcePathProbe.nearest_partial_source_ref_path ?? null;
+  }
+  if (field === "branch_certificate_ref") {
+    return providerSourcePathProbe.branch_certificate_ref_path ?? null;
+  }
+  return providerSourcePathProbe.same_candidate_populated_field_paths?.find((fieldPath) =>
+    fieldPath.endsWith(`.${field}`)
+  ) ?? (
+    providerSourcePathProbe.nearest_partial_id
+      ? `${BRANCH_PROVIDER_CURRENT_CANDIDATES_PATH}#/candidates[id=${providerSourcePathProbe.nearest_partial_id}].${field}`
+      : null
+  );
+}
+
+function providerReportFieldReadout(nearestProviderReadout, providerSourcePathProbe, field) {
+  const observedValue = providerReadoutFieldValue(nearestProviderReadout, field);
+  const path = providerReportFieldPath(providerSourcePathProbe, field);
+  if (field === "provider_source_status") {
+    const pass = providerSourcePathProbe?.provider_source_status_pass === true;
+    return {
+      field,
+      path,
+      required_value: "accepted_non_fixture_source",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.provider_source_status_first_failure ?? `${field}.missing`,
+    };
+  }
+  if (field === "source_ref") {
+    const sourceRefStatus =
+      providerSourcePathProbe?.nearest_partial_source_ref_status ?? "source_ref_missing";
+    const pass = sourceRefStatus === "accepted_non_fixture_source_ref";
+    return {
+      field,
+      path,
+      required_value: "non-fixture source_ref for accepted provider report",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass ? null : `source_ref.${sourceRefStatus}`,
+    };
+  }
+  if (field === "branch_certificate_ref") {
+    const pass = providerSourcePathProbe?.branch_certificate_ref_pass === true;
+    return {
+      field,
+      path,
+      required_value:
+        "nonempty branch_certificate_ref on the same accepted non-fixture provider record",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.branch_certificate_ref_first_failure ?? `${field}.missing`,
+    };
+  }
+  if (field === "receiver_normal_branch_strength") {
+    const pass = providerSourcePathProbe?.receiver_normal_branch_strength_pass === true;
+    return {
+      field,
+      path,
+      required_value:
+        "receiver-normal branch strength on the same accepted non-fixture provider row",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.receiver_normal_branch_strength_first_failure ??
+          `${field}.missing`,
+    };
+  }
+  if (field === "retained_source_binding") {
+    const pass = providerSourcePathProbe?.retained_source_binding_pass === true;
+    return {
+      field,
+      path,
+      required_value: "retained source binding on the same accepted non-fixture provider row",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.retained_source_binding_first_failure ?? `${field}.missing`,
+    };
+  }
+  if (field === "accepted_status") {
+    const pass = providerSourcePathProbe?.accepted_status_pass === true;
+    return {
+      field,
+      path,
+      required_value: "accepted",
+      observed_value: observedValue,
+      pass,
+      first_failure: pass
+        ? null
+        : providerSourcePathProbe?.accepted_status_first_failure ??
+          "accepted_status.accepted_missing",
+    };
+  }
+
+  const pass = present(observedValue);
+  return {
+    field,
+    path,
+    required_value: "present on the same provider row",
+    observed_value: observedValue,
+    pass,
+    first_failure: pass ? null : `${field}.missing`,
+  };
+}
+
+function providerReportFieldReadouts(nearestProviderReadout, providerSourcePathProbe) {
+  if (!nearestProviderReadout && !providerSourcePathProbe) {
+    return [];
+  }
+  return ACCEPTED_PROVIDER_REPORT_FIELDS.map((field) =>
+    providerReportFieldReadout(nearestProviderReadout, providerSourcePathProbe, field)
+  );
+}
+
+function providerFieldTarget(fieldReadouts, field, targetKind, expectedProducer) {
+  const readout = fieldReadouts.find((entry) => entry.field === field) ?? null;
+  return {
+    schema: `pressure_row_${targetKind}/v0`,
+    field,
+    status: readout?.pass === true ? "source_target_satisfied" : "source_target_blocked",
+    accepted_promotion_authorized: false,
+    path: readout?.path ?? null,
+    required_value: readout?.required_value ?? null,
+    observed_value: readout?.observed_value ?? null,
+    first_failure: readout?.first_failure ?? null,
+    expected_producer: expectedProducer,
+    same_provider_row_required: true,
+  };
+}
+
+function buildAcceptedNonFixtureSameDomainProviderSourceTarget(
+  providerFieldReadouts,
+  nearestProviderReadout
+) {
+  const missingOrRejectedFields = providerFieldReadouts.filter((field) => field.pass !== true);
+  const satisfiedFields = providerFieldReadouts.filter((field) => field.pass === true);
+  const firstMissingField = missingOrRejectedFields[0] ?? null;
+
+  return {
+    schema: "pressure_row_accepted_non_fixture_same_domain_provider_source_target/v0",
+    claim_scope: "rank4 pressure-row same-domain branch-provider source",
+    target_status:
+      missingOrRejectedFields.length === 0
+        ? "source_target_satisfied"
+        : "source_target_blocked",
+    accepted_provider_source_found: missingOrRejectedFields.length === 0,
+    accepted_promotion_authorized: false,
+    selected_provider_candidate_id: nearestProviderReadout?.id ?? null,
+    selected_provider_claim_scope: nearestProviderReadout?.claim_scope ?? null,
+    selected_provider_source_ref: nearestProviderReadout?.source_ref ?? null,
+    first_missing_or_rejected_field: firstMissingField?.field ?? null,
+    first_missing_or_rejected_path: firstMissingField?.path ?? null,
+    first_missing_or_rejected_failure: firstMissingField?.first_failure ?? null,
+    required_provider_report_fields: ACCEPTED_PROVIDER_REPORT_FIELDS,
+    satisfied_same_row_provider_fields: satisfiedFields.map((field) => field.field),
+    missing_or_rejected_provider_report_fields: missingOrRejectedFields.map(
+      (field) => field.field
+    ),
+    field_readouts: providerFieldReadouts,
+    required_source_ref_rule:
+      "source_ref must be non-fixture provenance for the same accepted provider report row.",
+    required_branch_certificate_rule:
+      "branch_certificate_ref must be nonempty on the same accepted non-fixture provider row.",
+    required_same_record_binding: {
+      same_provider_row_required: true,
+      cross_candidate_join_authorized: false,
+      fixture_source_ref_authorized: false,
+      target_only_source_status_authorized: false,
+      h39_theta3minus_diagnostic_authorized_as_pressure_evidence: false,
+    },
+    expected_producer:
+      "non-fixture same-domain branch-provider report for pressure-row-a0-branch-source-frontier-partial carrying provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status=accepted on one provider row",
+    authorization: {
+      retained_pressure_row_source: false,
+      branch_derived_pressure_response: false,
+      empirical_mass_response: false,
+      retained_branch_claim: false,
+      observer_export: false,
+      export_readiness: false,
+    },
+  };
+}
+
+function buildAcceptedSourceObjectBoundary(
+  nearestCandidate,
+  provenanceDepthReadout,
+  branchCertificateRefAudit,
+  providerBoundaryCandidate
+) {
+  const providerObjectAttempt =
+    branchCertificateRefAudit?.same_domain_provider_object_construction_attempt ?? null;
+  const providerSourcePathProbe =
+    providerObjectAttempt?.provider_source_status_and_certificate_path_probe ?? null;
+  const nearestProviderPartial = providerObjectAttempt?.nearest_pressure_specific_partial ?? null;
+  const nearestProviderReadout =
+    providerObjectAttempt?.candidate_readouts?.find(
+      (candidate) => candidate.id === nearestProviderPartial?.id
+    ) ?? null;
+  const providerFieldReadouts = providerReportFieldReadouts(
+    nearestProviderReadout,
+    providerSourcePathProbe
+  );
+  const missingProviderFields = providerFieldReadouts.filter((field) => field.pass !== true);
+  const firstMissingProviderField = missingProviderFields[0] ?? null;
+  const unacceptedPressureFields =
+    provenanceDepthReadout?.field_readouts?.filter(
+      (field) => field.accepted_non_fixture_source_provenance !== true
+    ) ?? [];
+  const fieldReadouts = provenanceDepthReadout?.field_readouts ?? [];
+
+  return {
+    schema: "pressure_row_accepted_source_object_boundary/v0",
+    claim_scope: "rank4 retained pressure-row accepted-source object",
+    status: "accepted_source_absent_fail_closed",
+    purpose:
+      "Compose the upstream same-domain provider-source requirement with the 33-field retained pressure-row source requirement, without promoting target-only, fixture, toy, empirical, diagnostic, H39/theta3minus, source-normal, shell-braid, or cross-row evidence.",
+    accepted_source_object_found: false,
+    accepted_promotion_authorized: false,
+    first_failure: "accepted_non_fixture_source_missing",
+    provider_boundary: {
+      provider_candidate_path: branchCertificateRefAudit?.provider_candidate_path ?? null,
+      required_provider_source_status: "accepted_non_fixture_source",
+      required_provider_fields: PRESSURE_PROVIDER_OBJECT_REQUIRED_FIELDS,
+      required_provider_report_fields: ACCEPTED_PROVIDER_REPORT_FIELDS,
+      expected_provider_source_producer:
+        "accepted non-fixture same-domain branch-provider report carrying provider_source_status, source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, branch_local_projection_or_normalization_identity, receiver_normal_branch_strength, retained_source_binding, and accepted_status on one provider row",
+      expected_provider_file_family:
+        "non-fixture generated branch-provider report or priority-source report outside scripts/**/fixtures/**",
+      nearest_provider_candidate_id: nearestProviderPartial?.id ?? null,
+      nearest_provider_candidate_missing_or_rejected_fields:
+        nearestProviderPartial?.missing_or_rejected_provider_fields ?? [],
+      nearest_provider_candidate_source_ref:
+        providerSourcePathProbe?.nearest_partial_source_ref ?? null,
+      nearest_provider_candidate_source_ref_status:
+        providerSourcePathProbe?.nearest_partial_source_ref_status ?? null,
+      exact_missing_provider_source_fields:
+        missingProviderFields,
+      exact_missing_provider_source_paths:
+        missingProviderFields.map((field) => field.path).filter(Boolean),
+      first_missing_or_rejected_provider_report_field: firstMissingProviderField?.field ?? null,
+      first_missing_or_rejected_provider_report_path: firstMissingProviderField?.path ?? null,
+      first_missing_or_rejected_provider_report_failure:
+        firstMissingProviderField?.first_failure ?? null,
+      provider_source_status_target: providerFieldTarget(
+        providerFieldReadouts,
+        "provider_source_status",
+        "provider_source_status_target",
+        "same-domain branch-provider report row that marks this provider source as accepted_non_fixture_source"
+      ),
+      provider_source_ref_target: providerFieldTarget(
+        providerFieldReadouts,
+        "source_ref",
+        "provider_source_ref_target",
+        "non-fixture source_ref for the same accepted branch-provider report row, outside scripts/**/fixtures/**"
+      ),
+      provider_branch_certificate_ref_target: providerFieldTarget(
+        providerFieldReadouts,
+        "branch_certificate_ref",
+        "provider_branch_certificate_ref_target",
+        "branch_certificate_ref emitted on the same accepted non-fixture branch-provider report row"
+      ),
+      accepted_non_fixture_same_domain_provider_source_target:
+        buildAcceptedNonFixtureSameDomainProviderSourceTarget(
+          providerFieldReadouts,
+          nearestProviderReadout
+        ),
+      provider_row_field_readouts: providerFieldReadouts,
+      missing_or_rejected_provider_report_fields: missingProviderFields.map(
+        (field) => field.field
+      ),
+      provider_source_status_path: providerSourcePathProbe?.provider_source_status_path ?? null,
+      provider_source_status_observed_value:
+        providerSourcePathProbe?.provider_source_status_observed_value ?? null,
+      branch_certificate_ref_path: providerSourcePathProbe?.branch_certificate_ref_path ?? null,
+      branch_certificate_ref_observed_value:
+        providerSourcePathProbe?.branch_certificate_ref_observed_value ?? null,
+      accepted_same_domain_provider_object_found:
+        providerObjectAttempt?.accepted_same_domain_provider_object_found === true,
+      accepted_branch_certificate_ref_found:
+        branchCertificateRefAudit?.accepted_branch_certificate_ref_found === true,
+    },
+    pressure_row_boundary: {
+      expected_pressure_row_source_producer:
+        "accepted retained pressure-row report emitted by the same provider source, carrying all 33 retained pressure, exposure, receiver-normal, Noether sea, reversible-domain, and null-sector source fields on one row",
+      nearest_pressure_row_candidate_path: nearestCandidate?.path ?? null,
+      nearest_pressure_row_same_row_binding:
+        nearestCandidate?.pressure_row_report?.same_row_binding ?? null,
+      nearest_pressure_row_failed_field_count:
+        nearestCandidate?.pressure_row_report?.failed_field_count ?? null,
+      required_source_field_count: RETAINED_PRESSURE_ROW_SOURCE_FIELDS.length,
+      unaccepted_source_field_count: unacceptedPressureFields.length,
+      source_field_families: retainedPressureSourceFieldFamilies(fieldReadouts),
+      exact_unaccepted_pressure_row_source_paths: unacceptedPressureFields.map((field) =>
+        sourceFieldPointer(nearestCandidate?.path ?? null, field.field_path)
+      ),
+      required_source_fields: RETAINED_PRESSURE_ROW_SOURCE_FIELDS,
+    },
+    required_same_record_binding: {
+      provider_branch_certificate_ref_must_bind_to_pressure_row_branch_id: true,
+      pressure_row_fields_must_share_one_retained_row_identity: true,
+      pressure_row_fields_must_carry_accepted_non_fixture_source_provenance: true,
+      cross_candidate_join_authorized: false,
+    },
+    forbidden_evidence_sources: [
+      "H39/theta3minus diagnostics",
+      "source-normal force residues",
+      "shell-braid rows",
+      "fixtures",
+      "toy rows",
+      "empirical rows without branch source",
+      "cross-row bundles",
+    ],
+    provider_boundary_candidate: providerBoundaryCandidate
+      ? {
+          path: providerBoundaryCandidate.path,
+          source_status: providerBoundaryCandidate.source_status,
+          provider_report_reading: providerBoundaryCandidate.provider_report_reading ?? null,
+        }
+      : null,
+    next_exact_source_target: {
+      provider_paths: providerSourcePathProbe?.required_next_provider_paths ?? [],
+      first_provider_row_blocker: firstMissingProviderField,
+      pressure_row_candidate_path: nearestCandidate?.path ?? null,
+      pressure_row_source_fields: RETAINED_PRESSURE_ROW_SOURCE_FIELDS,
+    },
+  };
+}
+
 function buildFailureFamilyDelta(candidates, acceptedCandidates, repoRoot) {
   if (acceptedCandidates.length > 0) {
     return {
@@ -1009,6 +1516,7 @@ function buildFailureFamilyDelta(candidates, acceptedCandidates, repoRoot) {
       provider_boundary_candidate: null,
       provenance_depth_readout: null,
       branch_id_source_availability_audit: null,
+      accepted_source_object_boundary: null,
     };
   }
 
@@ -1020,6 +1528,18 @@ function buildFailureFamilyDelta(candidates, acceptedCandidates, repoRoot) {
   );
 
   const provenanceDepthReadout = buildProvenanceDepthReadout(nearestCandidate, repoRoot);
+  const branchIdSourceAvailabilityAudit = buildBranchIdSourceAvailabilityAudit(
+    candidates,
+    nearestCandidate,
+    providerBoundaryCandidate,
+    repoRoot
+  );
+  const branchCertificateRefSourceAvailabilityAudit =
+    buildBranchCertificateRefSourceAvailabilityAudit(
+      candidates,
+      providerBoundaryCandidate,
+      repoRoot
+    );
 
   return {
     nearest_candidate: nearestCandidate
@@ -1049,18 +1569,15 @@ function buildFailureFamilyDelta(candidates, acceptedCandidates, repoRoot) {
         }
       : null,
     provenance_depth_readout: provenanceDepthReadout,
-    branch_id_source_availability_audit: buildBranchIdSourceAvailabilityAudit(
-      candidates,
-      nearestCandidate,
-      providerBoundaryCandidate,
-      repoRoot
-    ),
+    branch_id_source_availability_audit: branchIdSourceAvailabilityAudit,
     branch_certificate_ref_source_availability_audit:
-      buildBranchCertificateRefSourceAvailabilityAudit(
-        candidates,
-        providerBoundaryCandidate,
-        repoRoot
-      ),
+      branchCertificateRefSourceAvailabilityAudit,
+    accepted_source_object_boundary: buildAcceptedSourceObjectBoundary(
+      nearestCandidate,
+      provenanceDepthReadout,
+      branchCertificateRefSourceAvailabilityAudit,
+      providerBoundaryCandidate
+    ),
   };
 }
 
@@ -1154,6 +1671,8 @@ export function scoutValidationErrors(report) {
   const branchIdAudit = report.failure_family_delta?.branch_id_source_availability_audit;
   const branchCertificateRefAudit =
     report.failure_family_delta?.branch_certificate_ref_source_availability_audit;
+  const acceptedSourceObjectBoundary =
+    report.failure_family_delta?.accepted_source_object_boundary;
   const providerObjectAttempt =
     branchCertificateRefAudit?.same_domain_provider_object_construction_attempt;
   const providerSourcePathProbe =
@@ -1296,6 +1815,191 @@ export function scoutValidationErrors(report) {
     }
     if (!Array.isArray(providerSourcePathProbe.exact_missing_provider_source_paths)) {
       errors.push("provider source path probe must list exact missing provider source paths");
+    }
+  }
+  if (
+    report.first_failure === "accepted_non_fixture_source_missing" &&
+    !isObject(acceptedSourceObjectBoundary)
+  ) {
+    errors.push("accepted-source scout must emit accepted_source_object_boundary");
+  }
+  if (isObject(acceptedSourceObjectBoundary)) {
+    if (
+      acceptedSourceObjectBoundary.schema !==
+      "pressure_row_accepted_source_object_boundary/v0"
+    ) {
+      errors.push("accepted_source_object_boundary schema is not recognized");
+    }
+    if (acceptedSourceObjectBoundary.accepted_source_object_found !== false) {
+      errors.push("accepted_source_object_boundary must remain fail-closed");
+    }
+    if (acceptedSourceObjectBoundary.accepted_promotion_authorized !== false) {
+      errors.push("accepted_source_object_boundary must not authorize promotion");
+    }
+    if (
+      acceptedSourceObjectBoundary.first_failure !== "accepted_non_fixture_source_missing"
+    ) {
+      errors.push("accepted_source_object_boundary must preserve accepted_non_fixture_source_missing");
+    }
+    if (!Array.isArray(acceptedSourceObjectBoundary.provider_boundary?.required_provider_fields)) {
+      errors.push("accepted_source_object_boundary must list provider fields");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.required_provider_report_fields
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list provider report fields");
+    }
+    if (
+      typeof acceptedSourceObjectBoundary.provider_boundary?.expected_provider_source_producer !==
+      "string"
+    ) {
+      errors.push("accepted_source_object_boundary must name expected provider source producer");
+    }
+    if (
+      typeof acceptedSourceObjectBoundary.provider_boundary?.expected_provider_file_family !==
+      "string"
+    ) {
+      errors.push("accepted_source_object_boundary must name expected provider file family");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.exact_missing_provider_source_fields
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list exact missing provider fields");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.provider_row_field_readouts
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must emit provider row field readouts");
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary
+          ?.missing_or_rejected_provider_report_fields
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list missing provider report fields");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      typeof acceptedSourceObjectBoundary.provider_boundary
+        ?.first_missing_or_rejected_provider_report_field !== "string"
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name first provider blocker");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      typeof acceptedSourceObjectBoundary.provider_boundary
+        ?.first_missing_or_rejected_provider_report_path !== "string"
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name first provider blocker path");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedSourceObjectBoundary.provider_boundary?.provider_source_status_target)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider_source_status target");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedSourceObjectBoundary.provider_boundary?.provider_source_ref_target)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider source_ref target");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(
+        acceptedSourceObjectBoundary.provider_boundary?.provider_branch_certificate_ref_target
+      )
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider branch_certificate_ref target");
+    }
+    const acceptedProviderSourceTarget =
+      acceptedSourceObjectBoundary.provider_boundary
+        ?.accepted_non_fixture_same_domain_provider_source_target;
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedProviderSourceTarget)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit accepted provider source target");
+    }
+    if (isObject(acceptedProviderSourceTarget)) {
+      if (
+        acceptedProviderSourceTarget.schema !==
+        "pressure_row_accepted_non_fixture_same_domain_provider_source_target/v0"
+      ) {
+        errors.push("accepted provider source target schema is not recognized");
+      }
+      if (acceptedProviderSourceTarget.accepted_promotion_authorized !== false) {
+        errors.push("accepted provider source target must not authorize promotion");
+      }
+      if (
+        acceptedProviderSourceTarget.authorization?.branch_derived_pressure_response !== false
+      ) {
+        errors.push("accepted provider source target must not authorize pressure response");
+      }
+      if (
+        report.first_failure === "accepted_non_fixture_source_missing" &&
+        acceptedProviderSourceTarget.accepted_provider_source_found !== false
+      ) {
+        errors.push("blocked accepted provider source target must remain unsatisfied");
+      }
+      if (
+        report.first_failure === "accepted_non_fixture_source_missing" &&
+        acceptedProviderSourceTarget.first_missing_or_rejected_field !==
+          "provider_source_status"
+      ) {
+        errors.push("blocked accepted provider source target must fail first at provider_source_status");
+      }
+      if (
+        acceptedProviderSourceTarget.required_same_record_binding
+          ?.cross_candidate_join_authorized !== false
+      ) {
+        errors.push("accepted provider source target must reject cross-candidate joins");
+      }
+    }
+    if (
+      !Array.isArray(
+        acceptedSourceObjectBoundary.provider_boundary?.exact_missing_provider_source_paths
+      )
+    ) {
+      errors.push("accepted_source_object_boundary must list exact missing provider paths");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      acceptedSourceObjectBoundary.provider_boundary.exact_missing_provider_source_fields.length === 0
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name missing provider fields");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      acceptedSourceObjectBoundary.provider_boundary.missing_or_rejected_provider_report_fields
+        .length === 0
+    ) {
+      errors.push("blocked accepted_source_object_boundary must name rejected provider report fields");
+    }
+    if (
+      typeof acceptedSourceObjectBoundary.pressure_row_boundary
+        ?.expected_pressure_row_source_producer !== "string"
+    ) {
+      errors.push("accepted_source_object_boundary must name expected pressure-row source producer");
+    }
+    if (!Array.isArray(acceptedSourceObjectBoundary.pressure_row_boundary?.required_source_fields)) {
+      errors.push("accepted_source_object_boundary must list pressure-row source fields");
+    }
+    if (!Array.isArray(acceptedSourceObjectBoundary.pressure_row_boundary?.source_field_families)) {
+      errors.push("accepted_source_object_boundary must group pressure-row source field families");
+    }
+    if (
+      acceptedSourceObjectBoundary.required_same_record_binding
+        ?.cross_candidate_join_authorized !== false
+    ) {
+      errors.push("accepted_source_object_boundary must reject cross-candidate joins");
     }
   }
   const knownCodes = new Set(Object.keys(REJECTION_CODE_LEGEND));

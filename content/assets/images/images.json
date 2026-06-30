@@ -532,11 +532,11 @@
       "path": "content/assets/images/comics/citation-needed.png",
       "mediaType": "image/png",
       "dimensions": {
-        "width": 1535,
-        "height": 1024
+        "width": 1536,
+        "height": 1536
       },
-      "fileSizeBytes": 2332001,
-      "sha256": "abbb0929dce3d2c1cbb1a24426c05cb0623197fc94bd13ebb0452d14a813a37c",
+      "fileSizeBytes": 3465613,
+      "sha256": "ac53708cf5efacadd64f59b5a627b1eeb248ca26e9a2914ebe5b36e50aa97b8c",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -545,7 +545,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -585,8 +585,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 217208,
-      "sha256": "addf739e64cb73a01e245afb7a22cc9c8730e3463a1777fd8860a8e0206c7073",
+      "fileSizeBytes": 228090,
+      "sha256": "f0808924bcdb9a68fb60abbefb2f96c47f06c588086942e0bfadf15d4a540c5d",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -595,7 +595,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips centered square crop derivative from citation-needed",
+        "generator": "Pillow derivative from citation-needed",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1223,10 +1223,10 @@
       "mediaType": "image/png",
       "dimensions": {
         "width": 1536,
-        "height": 1024
+        "height": 1536
       },
-      "fileSizeBytes": 2776280,
-      "sha256": "dd01a46055a006356e4be35f1cb8ca8aaab57e1d9627cd2eb48cf6ff87fba058",
+      "fileSizeBytes": 3493887,
+      "sha256": "047befecfe0d91f83c969eddd825bbc106b8bea75c71c662ef0bb6c28a7021b1",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1235,7 +1235,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1274,8 +1274,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 164644,
-      "sha256": "1819464f47b5fcb032e192f1b7663c06697e9588077b235d66cd646692e652cf",
+      "fileSizeBytes": 227444,
+      "sha256": "5235f4f245789ee1192ce81dee5b618a734b272dcc7fbf6bb4d7c7b0188c7859",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1284,7 +1284,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips derivative from first-page-is-not-the-beginning",
+        "generator": "Pillow derivative from first-page-is-not-the-beginning",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1320,11 +1320,11 @@
       "path": "content/assets/images/comics/observable-edge-receipt.png",
       "mediaType": "image/png",
       "dimensions": {
-        "width": 1024,
+        "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2832778,
-      "sha256": "1bfc34b23fc3a450c335b277a04b392650c8dae3e99478eae084fce38b036d68",
+      "fileSizeBytes": 3600444,
+      "sha256": "688fcf3f206f822c04149ddf3bd71676e4870d534828d6a6c8e7cb7e695fb090",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1333,7 +1333,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1373,8 +1373,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 166521,
-      "sha256": "e68a7bbeecc28cf477d3a0dd5e9b39cd55704ef7c3f4206ce36f4fa5953fd3f1",
+      "fileSizeBytes": 231660,
+      "sha256": "a16faa998f14336c0fbec211e05e0c8e7638f63f02c96cb7a88b895b0bcef649",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1383,7 +1383,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips derivative from observable-edge-receipt",
+        "generator": "Pillow derivative from observable-edge-receipt",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1420,10 +1420,10 @@
       "mediaType": "image/png",
       "dimensions": {
         "width": 1536,
-        "height": 1024
+        "height": 1536
       },
-      "fileSizeBytes": 2693048,
-      "sha256": "8032249dadf08bb9459961da9f1f874dcef400ba1746c4fb4a9d0c74a6c4200d",
+      "fileSizeBytes": 3289418,
+      "sha256": "6762818769d59bdba195f8afa7557078baca2302c438a8fc5658f1e31da6852a",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1432,7 +1432,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1472,8 +1472,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 155685,
-      "sha256": "a0354606b55275290e5946014ac4daf0dc98286d97f43710539f00749eb4a1df",
+      "fileSizeBytes": 208312,
+      "sha256": "73490c2da8df68a4576d38591e3fa09b04f1a963bf0962d43a237a0af7ea067f",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1482,7 +1482,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips derivative from first-footage-not-birth-certificate",
+        "generator": "Pillow derivative from first-footage-not-birth-certificate",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1618,11 +1618,11 @@
       "path": "content/assets/images/comics/birthday-cake-for-observer-era.png",
       "mediaType": "image/png",
       "dimensions": {
-        "width": 1024,
+        "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2859594,
-      "sha256": "5d593b7d9b250202bb9ced79c1b985cfb238a7d92aad304eadb4a15fd32a5647",
+      "fileSizeBytes": 3554484,
+      "sha256": "b54cb4a6c3495e3a775e7b0a8adf435da485009187a506ed75828c1befc73bc6",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1631,7 +1631,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1671,8 +1671,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 168316,
-      "sha256": "5356fdbef36393e82c12d53fb8ca9b25fcc9cf4833cfe85ddee926c155d67927",
+      "fileSizeBytes": 235397,
+      "sha256": "be6d7709923e9a072e8086681b0592f411f2015485a60eef0ecf6325703dce7e",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1681,7 +1681,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips derivative from birthday-cake-for-observer-era",
+        "generator": "Pillow derivative from birthday-cake-for-observer-era",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -3336,7 +3336,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/72/Henri_Poincar%C3%A9%2C_PA03199.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q81082",
-        "commonsFile": "File:Henri Poincaré, PA03199.jpg"
+        "commonsFile": "File:Henri Poincar\u00e9, PA03199.jpg"
       },
       "creators": [
         {
@@ -3744,7 +3744,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/0/0b/Carlo_Rovelli_no_Fronteiras_do_Pensamento_S%C3%A3o_Paulo_2017_%2834781380545%29.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q1042470",
-        "commonsFile": "File:Carlo Rovelli no Fronteiras do Pensamento São Paulo 2017 (34781380545).jpg"
+        "commonsFile": "File:Carlo Rovelli no Fronteiras do Pensamento S\u00e3o Paulo 2017 (34781380545).jpg"
       },
       "creators": [
         {
@@ -4154,7 +4154,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/77/Erwin_Schr%C3%B6dinger_-_Narodowe_Archiwum_Cyfrowe_%281-E-939%29.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q9130",
-        "commonsFile": "File:Erwin Schrödinger - Narodowe Archiwum Cyfrowe (1-E-939).jpg"
+        "commonsFile": "File:Erwin Schr\u00f6dinger - Narodowe Archiwum Cyfrowe (1-E-939).jpg"
       },
       "creators": [
         {
@@ -7669,7 +7669,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/7/73/Frans_Hals_-_Portret_van_Ren%C3%A9_Descartes.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q9191",
-        "commonsFile": "File:Frans Hals - Portret van René Descartes.jpg"
+        "commonsFile": "File:Frans Hals - Portret van Ren\u00e9 Descartes.jpg"
       },
       "creators": [
         {
@@ -7975,7 +7975,7 @@
         "fileUrl": "https://upload.wikimedia.org/wikipedia/commons/b/bf/Pierre-Simon%2C_marquis_de_Laplace_%281745-1827%29_-_Gu%C3%A9rin.jpg",
         "accessedDate": "2026-06-28",
         "wikidataId": "Q44481",
-        "commonsFile": "File:Pierre-Simon, marquis de Laplace (1745-1827) - Guérin.jpg"
+        "commonsFile": "File:Pierre-Simon, marquis de Laplace (1745-1827) - Gu\u00e9rin.jpg"
       },
       "creators": [
         {

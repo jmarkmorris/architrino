@@ -30,10 +30,13 @@ int main() {
       2.0,
       1e-6,
       0.0,
+      1.0,
+      1e-6,
+      0,
       static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
       1,
-      0,
-      0,
+      1,
+      1,
   };
   const std::vector<T3ParticleState> states{
       T3ParticleState{1, Vector3{9.8, 5.0, 5.0}, Vector3{0.5, 0.0, 0.0}, 1.0, 0.0, 1, 0},
@@ -77,11 +80,18 @@ int main() {
       2.0,
       1e-6,
       0.0,
+      1.0,
+      1e-6,
+      0,
       static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
       1,
-      0,
-      0,
+      1,
+      1,
   };
+  ArchitrinoSolverT3UnresolvedRootSegmentRowF64 abiSegmentRows[1]{};
+  int abiSegmentRowCount = 0;
+  ArchitrinoSolverT3RetainedCausalRootReplayRowF64 abiReplayRows[1]{};
+  int abiReplayRowCount = 0;
   const int abiStatus = architrino_solver_step_t3_universe_f64(
       &abiRequest,
       abiStates,
@@ -89,7 +99,13 @@ int main() {
       abiRows,
       2,
       &abiRowCount,
-      &abiSummary);
+      &abiSummary,
+      abiSegmentRows,
+      1,
+      &abiSegmentRowCount,
+      abiReplayRows,
+      1,
+      &abiReplayRowCount);
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
 
   const bool ok =
@@ -107,11 +123,36 @@ int main() {
       abiSummary.neighbor_pair_count == 1 &&
       abiRows[0].image_delta_x == 0 &&
       abiRows[1].image_delta_x == 0 &&
-      abiInfo.abi_minor == 16 &&
-      abiInfo.t3_step_request_f64_bytes == 96 &&
+      result.unresolvedRootSegmentRows.size() == 1 &&
+      result.retainedCausalRootReplayRows.size() == 1 &&
+      abiSegmentRowCount == 1 &&
+      abiSegmentRows[0].source_path_key == 1 &&
+      abiSegmentRows[0].receiver_path_key == 2 &&
+      abiSegmentRows[0].row_status == 1 &&
+      abiReplayRowCount == 1 &&
+      abiReplayRows[0].source_path_key == 1 &&
+      abiReplayRows[0].receiver_path_key == 2 &&
+      abiReplayRows[0].same_record_replay_id != 0 &&
+      abiReplayRows[0].retained_source_record_id != 0 &&
+      abiReplayRows[0].retained_causal_root_row_id != 0 &&
+      abiReplayRows[0].root_ledger_record_id == abiReplayRows[0].retained_causal_root_row_id &&
+      abiReplayRows[0].source_path_segment_id != 0 &&
+      abiReplayRows[0].receiver_path_segment_id != 0 &&
+      abiReplayRows[0].winding_label_x == -1 &&
+      abiReplayRows[0].winding_label_y == 0 &&
+      abiReplayRows[0].winding_label_z == 0 &&
+      abiReplayRows[0].winding_label_status == 2 &&
+      abiReplayRows[0].retained_source_binding_status == 2 &&
+      abiReplayRows[0].same_record_replay_status == 2 &&
+      abiReplayRows[0].caustic_route_status == 0 &&
+      abiReplayRows[0].row_status == 2 &&
+      abiInfo.abi_minor == 20 &&
+      abiInfo.t3_step_request_f64_bytes == 120 &&
       abiInfo.t3_particle_state_f64_bytes == 80 &&
       abiInfo.t3_particle_step_row_f64_bytes == 104 &&
-      abiInfo.t3_step_summary_f64_bytes == 88;
+      abiInfo.t3_step_summary_f64_bytes == 88 &&
+      abiInfo.t3_unresolved_root_segment_row_f64_bytes == 208 &&
+      abiInfo.t3_retained_causal_root_replay_row_f64_bytes == 128;
 
   if (!ok) {
     std::cerr << "solver T3 smoke failed\n";

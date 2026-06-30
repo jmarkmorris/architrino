@@ -17,7 +17,12 @@ export function createT3State(input = {}) {
     imageOffsets: createInt32Array(input.imageOffsets, vectorLength, "imageOffsets"),
     orientations: createOrientations(input.orientations, orientationLength),
     angularVelocities: createFloat64Array(input.angularVelocities, vectorLength, "angularVelocities"),
-    masses: createScalarArray(input.masses, particleCount, "masses", 1),
+    integrationWeights: createScalarArray(
+      input.integrationWeights,
+      particleCount,
+      "integrationWeights",
+      1
+    ),
     electrineFractions: createScalarArray(
       input.electrineFractions ?? input.electrineComposition,
       particleCount,
@@ -41,7 +46,7 @@ export function cloneT3State(state) {
     imageOffsets: state.imageOffsets,
     orientations: state.orientations,
     angularVelocities: state.angularVelocities,
-    masses: state.masses,
+    integrationWeights: state.integrationWeights,
     electrineFractions: state.electrineFractions,
     ids: state.ids,
     metadata: state.metadata,
@@ -60,7 +65,7 @@ export function copyT3StateInto(target, source) {
   target.imageOffsets.set(source.imageOffsets);
   target.orientations.set(source.orientations);
   target.angularVelocities.set(source.angularVelocities);
-  target.masses.set(source.masses);
+  target.integrationWeights.set(source.integrationWeights);
   target.electrineFractions.set(source.electrineFractions);
   target.ids = [...source.ids];
   target.metadata = clonePlainObject(source.metadata);
@@ -88,11 +93,11 @@ export function addAcceleration(state, particleIndex, ax, ay, az) {
 }
 
 export function addForce(state, particleIndex, fx, fy, fz) {
-  const mass = state.masses[particleIndex];
-  if (mass <= 0 || !Number.isFinite(mass)) {
-    throw new TypeError(`particle ${particleIndex} mass must be positive`);
+  const integrationWeight = state.integrationWeights[particleIndex];
+  if (integrationWeight <= 0 || !Number.isFinite(integrationWeight)) {
+    throw new TypeError(`particle ${particleIndex} integrationWeight must be positive`);
   }
-  addAcceleration(state, particleIndex, fx / mass, fy / mass, fz / mass);
+  addAcceleration(state, particleIndex, fx / integrationWeight, fy / integrationWeight, fz / integrationWeight);
 }
 
 export function normalizeFraction(value) {

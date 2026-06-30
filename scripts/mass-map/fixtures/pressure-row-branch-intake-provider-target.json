@@ -6,11 +6,15 @@
   "target_status": "same_row_branch_intake_provider_missing",
   "provider_target": {
     "required_provider_fields": [
-      "accepted_non_fixture_source",
+      "provider_source_status",
+      "source_ref",
       "same_domain_record_ref",
       "branch_certificate_ref",
       "active_root_or_live_ledger_identity",
-      "branch_local_projection_or_normalization_identity"
+      "branch_local_projection_or_normalization_identity",
+      "receiver_normal_branch_strength",
+      "retained_source_binding",
+      "accepted_status"
     ],
     "same_domain_provider_object_target": {
       "schema": "pressure_row_same_domain_provider_object_target/v0",
@@ -19,10 +23,14 @@
       "required_provider_source_status": "accepted_non_fixture_source",
       "required_provider_fields": [
         "provider_source_status",
+        "source_ref",
         "same_domain_record_ref",
         "branch_certificate_ref",
         "active_root_or_live_ledger_identity",
-        "branch_local_projection_or_normalization_identity"
+        "branch_local_projection_or_normalization_identity",
+        "receiver_normal_branch_strength",
+        "retained_source_binding",
+        "accepted_status"
       ],
       "required_same_domain_binding": "all provider fields must be carried by one non-fixture provider record before a retained pressure row can bind branch_id to branch_certificate_ref",
       "required_pressure_row_binding": "the pressure row must bind branch_id, accepted_history_segment_id, quotient_chart_id, pressure_record, exposure_source_record, pressure_response_record, reversible_domain, and null_sector_record to the same retained row",
@@ -30,15 +38,23 @@
       "current_best_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
       "current_best_partial_missing_fields": [
         "provider_source_status",
-        "branch_certificate_ref"
+        "source_ref",
+        "branch_certificate_ref",
+        "receiver_normal_branch_strength",
+        "retained_source_binding",
+        "accepted_status"
       ],
       "current_best_partial_source_path_probe_target": {
         "schema": "pressure_row_provider_source_status_and_certificate_path_probe/v0",
         "claim_level": "priority-only fail-closed target, not provider acceptance",
         "nearest_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
         "required_provider_source_status_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+        "required_source_ref_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
         "required_branch_certificate_ref_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
-        "forbidden_shortcut": "Populated same-candidate fields do not become accepted provenance until provider_source_status and branch_certificate_ref are supplied on one accepted non-fixture provider row.",
+        "required_receiver_normal_branch_strength_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].receiver_normal_branch_strength",
+        "required_retained_source_binding_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].retained_source_binding",
+        "required_accepted_status_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].accepted_status",
+        "forbidden_shortcut": "Populated same-candidate fields do not become accepted provenance until provider_source_status, non-fixture source_ref, branch_certificate_ref, receiver_normal_branch_strength, retained_source_binding, and accepted_status are supplied on one accepted non-fixture provider row.",
         "authorizes_pressure_response": false
       },
       "authorizes_pressure_response": false

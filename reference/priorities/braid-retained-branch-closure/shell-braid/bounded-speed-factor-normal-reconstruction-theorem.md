@@ -103,7 +103,7 @@ F_i^{\nu},
 \right)_i.
 $$
 
-Here $\mathcal{A}_i^{\nu}$ is not merely a list of roots. It includes root labels, source identity, sign labels, Jacobian signs, delay brackets, excluded gaps, memory depth, same-source policy, and force normalization. The force $F_i^{\nu}$ must be evaluated on that same bounded speed factor ledger:
+Here $\mathcal{A}_i^{\nu}$ is not merely a list of roots. It includes root labels, source identity, sign labels, Jacobian signs, delay brackets, excluded gaps, memory depth, same-source policy, and receiver-normal branch-weight normalization. The force $F_i^{\nu}$ must be evaluated on that same bounded speed factor ledger:
 
 $$
 F_i^{\nu}(u)
@@ -191,7 +191,7 @@ $$
 
 so unit speed is formally preserved by the differential equation. A certificate must still emit the unit-tangent residual because a finite-mode representation can violate this identity through discretization, mixed clocks, omitted force terms, or stale derivative columns.
 
-For a frozen root/force ledger, $\mathcal{K}_i^{\nu}$ is a known periodic forcing after the speed row closes. For a live bounded-speed ledger, $\mathcal{K}_i^{\nu}$ depends on $\mathbf{Y}$ through the roots, Jacobians, directions, support descriptor, and action scale. The theorem target below is the live-ledger statement. A frozen-ledger solve is only a diagnostic unless it also proves root-ledger persistence in a certified ball.
+For a frozen root/force ledger, $\mathcal{K}_i^{\nu}$ is a known periodic forcing after the speed row closes. For a live bounded-speed ledger, $\mathcal{K}_i^{\nu}$ depends on $\mathbf{Y}$ through the roots, receiver-normal branch weights, directions, support descriptor, and action scale. The theorem target below is the live-ledger statement. A frozen-ledger solve is only a diagnostic unless it also proves root-ledger persistence in a certified ball.
 
 ---
 

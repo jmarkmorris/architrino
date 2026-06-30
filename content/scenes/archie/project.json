@@ -15,12 +15,8 @@
         "scenePath": "content/scenes/archie/licenses_attributions.json"
       },
       {
-        "nodeId": "github_presence_and_community",
-        "scenePath": "content/scenes/archie/github_presence_and_community.json"
-      },
-      {
-        "nodeId": "support_architrino_research",
-        "scenePath": "content/scenes/archie/support_architrino_research.json"
+        "nodeId": "website_stats",
+        "scenePath": "content/scenes/archie/website_stats.json"
       },
       {
         "nodeId": "software_architecture_and_maintenance",
@@ -38,20 +34,12 @@
       "labelBadge": "doc"
     },
     {
-      "id": "github_presence_and_community",
-      "title": "GitHub Presence & Community",
+      "id": "website_stats",
+      "title": "Website Stats",
       "radius": 2.2,
-      "color": "#3f5f6f",
-      "labelTitle": "GitHub Presence & Community",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "support_architrino_research",
-      "title": "Support Architrino Research",
-      "radius": 2.2,
-      "color": "#7a5a2f",
-      "labelTitle": "Support Architrino Research",
-      "labelBadge": "doc"
+      "color": "#0f766e",
+      "labelTitle": "Website Stats",
+      "labelBadge": "stats"
     },
     {
       "id": "software_architecture_and_maintenance",

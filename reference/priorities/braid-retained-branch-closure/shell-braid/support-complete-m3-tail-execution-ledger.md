@@ -594,9 +594,14 @@ $$
 \widetilde{\mathbf{F}}_i^{\mathrm{act}}(\lambda)
 +
 \sum_{u\in\mathcal{U}_i^{\mathrm{tail}}(\lambda)}
-\frac{\sigma_i\sigma_{j(u)}}{\eta_u(\lambda)^2|J_u(\lambda)|}
+\sigma_i\sigma_{j(u)}\eta_u(\lambda)^{-2}
+W_u^{\mathrm{rec}}(\lambda)
 \widehat{\mathbf{R}}_u(\lambda).
 $$
+
+The execution ledger keeps $|J_u|$ as the source-normal root isolation floor.
+It must also report the same-record receiver-normal $W_u^{\mathrm{rec}}$ row
+before the force/action tail contribution is active.
 
 The ledger must also emit derivative envelopes
 

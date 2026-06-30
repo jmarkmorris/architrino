@@ -6,7 +6,7 @@ This priority packet synthesizes the current mass-map advances into one proof ch
 
 - **Status:** priority-side theorem target with a reader-facing compact form promoted into [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md).
 - **Main claim:** in a branch-preserving reversible response record, scalar mass trace factors through a quotient-visible exposed source and the rotational trace of the exposed inertial-response tensor. Antisymmetric response, unlogged transport loss, and pressure-row splits cannot contribute to scalar rest mass. Only the trace-free exposure components visible to the retained reversible response directions can affect the scalar trace.
-- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks.
+- **Open burden:** extract $E_{\text{internal}}(A)$, $\zeta(A)$, $\mathcal{Z}_{\mathrm{tf}}^{ab}(A)$, $\mathcal{M}_{+}^{ab}$, the retained trace-free response directions, and pressure coefficients from accepted branch records rather than benchmarks. For the receiver-normal successor, the same branch records must also carry same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ for the retained roots consumed by the exposed-source and response rows.
 
 ## Inputs
 
@@ -61,6 +61,142 @@ $$
 +
 \mathcal{R}_{\mathcal M,+}^{ab}.
 $$
+
+## Receiver-Normal Successor Target
+
+The generic composition lemma below is not a license to reuse older
+source-normal or quotient-only force weights. The receiver-normal successor
+theorem target replaces the exposed-source and trace-free exposure inputs by
+their same-record receiver-normal versions:
+
+$$
+M_0^{\mathrm{src}}(A)
+\mapsto
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A),
+\qquad
+\mathcal{Z}_{\mathrm{tf}}^{ab}(A)
+\mapsto
+\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A).
+$$
+
+For every retained row $\rho$ used by those objects, the retained branch record
+must carry
+
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}
+=
+\left|
+\frac{D_{t,\rho}}{D_{s,\rho}}
+\right|,
+$$
+
+and the same record must bind the energy ledger, exposure quotient chart,
+Noether sea response record, retained response direction, and null-sector
+status. If any factor is imported from an H39/theta3minus quotient certificate,
+source-normal denominator, shell-braid force residue, fixture, or cross-row
+bundle without that same-record binding, the successor theorem fails with
+`receiver_normal_same_record_missing` rather than producing a mass trace.
+
+The closure equation to prove is therefore the same trace composition with the
+receiver-normal source:
+
+$$
+m_{\mathrm{tr}}^{\mathrm{rec}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+M_{0,\mathrm{rec}}^{\mathrm{src}}(A)(1+\delta\mathcal{M}_{0})
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf,rec},ab}(A)
+\delta\mathcal{M}_{\mathrm{tf}}^{ab}
+\right]
++
+\mathcal{R}_{\mathrm{chain,rec}}.
+$$
+
+### Retained Pressure-Row Receiver-Normal Theorem Target
+
+The receiver-normal successor becomes a concrete theorem target only when the
+pressure perturbation, exposure quotient, energy ledger, Noether sea response,
+and receiver-normal branch weights are all rows of one retained branch identity.
+Equivalently, the theorem assumes one accepted non-fixture retained pressure row
+with common
+
+$$
+\left(
+\mathsf{branch\_id},
+\mathsf{accepted\_history\_segment\_id},
+\mathsf{source\_path},
+\mathsf{quotient\_chart\_id},
+\mathsf{pressure\_row\_id},
+\theta_{\mathrm{sea}},
+\mathcal{M}_{+}^{ab},
+\Pi,
+A,
+D_s,
+D_t,
+W^{\mathrm{rec}}
+\right).
+$$
+
+Under that same-record assumption, the pressure specialization to prove is
+
+$$
+\delta_Pm_{\mathrm{tr}}^{\mathrm{rec}}(A)
+=
+\alpha_{\mathrm{m}}
+\frac{1}{c_{\text{eff},0}^{2}}
+\left[
+\delta_P M_{0,\mathrm{rec}}^{\mathrm{src}}(A)
++
+2M_{0,\mathrm{rec}}^{\mathrm{src}}(A)C_{\chi}^{\mathrm{iso}}\Pi
++
+\frac{1}{3}
+E_{\text{internal}}(A)
+\mathcal{Z}_{\mathrm{tf,rec},ab}(A)
+\left(
+2C_{\chi}^{\mathrm{aniso}}Q_{\chi}^{ab}
++
+m_SS_{\mathrm{dev}}^{ab}
+\right)A
+\right]
++
+\mathcal{R}_{\mathrm{rec}P}.
+$$
+
+The simulation form of the same theorem validates the finite difference
+
+$$
+m_{\mathrm{tr}}^{\mathrm{rec}}(\Delta P)-m_{\mathrm{tr}}^{\mathrm{rec}}(0)
+$$
+
+against the displayed $\delta_Pm_{\mathrm{tr}}^{\mathrm{rec}}(A)$ without
+fitting a new scalar mass row. The theorem fails, rather than demotes into a
+coefficient estimate, if any term comes from a different row, a fixture, an
+H39/theta3minus quotient certificate, a source-normal force residue, or an
+unlogged transport channel.
+
+Pass fields:
+
+| Field | Required condition |
+| --- | --- |
+| `accepted_retained_branch_identity` | the same branch id, history segment, source path, quotient chart, and retained pressure-row id carry every input |
+| `receiver_normal_same_record` | $D_s$, $D_t$, and $W^{\mathrm{rec}}$ are recomputed on the retained roots consumed by exposure and response |
+| `energy_exposure_binding` | $E_{\text{internal}}(A)$, $M_{0,\mathrm{rec}}^{\mathrm{src}}(A)$, and $\mathcal{Z}_{\mathrm{tf,rec}}^{ab}(A)$ descend through the same exposure quotient |
+| `pressure_noether_sea_binding` | $\theta_{\mathrm{sea}}$, $\Pi$, $A$, $C_{\chi}^{\mathrm{iso}}$, $C_{\chi}^{\mathrm{aniso}}$, $m_S$, and $\mathcal{M}_{+}^{ab}$ are branch-emitted on the same pressure row |
+| `trace_prediction` | the finite-difference trace residual is below the declared $\mathcal{R}_{\mathrm{rec}P}$ tolerance |
+| `domain_and_null` | reversible-domain and null-sector records remain below bound with no unlogged loss |
+
+Current status is `priority-only / defer with blocker`: the theorem statement is
+available, but no accepted branch record currently supplies the required
+same-row intake.
 
 ## Composition Lemma
 
@@ -406,12 +542,14 @@ The proof chain fails or must demote its claim level if any of the following occ
 | Failure mode | Meaning |
 | --- | --- |
 | `source-nondescent` | $M_0^{\mathrm{src}}$ changes across representatives identified by the scalar quotient. |
+| `receiver-normal-same-record-missing` | $D_s$, $D_t$, or $W^{\mathrm{rec}}$ is missing from the retained roots used by the same exposure, pressure, and response rows. |
 | `trace-nondescent` | $M_0^{\mathrm{src}}$ descends but the projection of $E_{\text{internal}}\mathcal{Z}_{\mathrm{tf},ab}$ onto $\mathcal{V}_{\mathcal M}(A)$ does not descend. |
 | `scalar-positivity-window-fail` | the trace-free contraction overwhelms the scalar exposed source, so $m_{\mathrm{tr}}(A)$ is zero or negative in the retained response record. |
 | `response-span-escape` | An unretained trace-free response tensor contributes above $\mathcal{R}_{\mathrm{chain}}$ tolerance. |
 | `response-direction-label-drift` | A retained response direction $B_r^{ab}$ depends on the discarded representative label. |
 | `coefficient-fit-contamination` | The retained coefficients are tuned after benchmark mass comparison rather than emitted by the branch record. |
 | `projection-mismatch` | Pressure replay directions and tensor-extraction directions are not the same retained response directions. |
+| `diagnostic-evidence-import` | H39/theta3minus quotient certificates, source-normal force residues, old shell-braid force rows, fixtures, toy rows, empirical rows without branch source, or cross-row bundles are used as pressure or mass evidence. |
 | `antisymmetric-mass-leak` | $\mathcal{M}_{-}^{ab}$ is used to change scalar rest mass. |
 | `loss-below-threshold` | A branch-preserving row below $\mathcal{R}_{\text{tr},*}$ carries unlogged excitation, heating, radiation-like shedding, or branch-transition energy. |
 | `pressure-row-split` | $\delta\mathcal{M}_0$ or $\delta\mathcal{M}_{\mathrm{tf}}^{ab}$ requires pressure coefficients independent of the shared row. |

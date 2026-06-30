@@ -31,10 +31,6 @@
         "scenePath": "content/scenes/archie/terminology_usage.json"
       },
       {
-        "nodeId": "textbook_pdf_snapshots",
-        "scenePath": "content/scenes/archie/textbook_pdf_snapshots.json"
-      },
-      {
         "nodeId": "research_notebook",
         "scenePath": "content/scenes/archie/research_notebook.json"
       }
@@ -79,14 +75,6 @@
       "radius": 2.2,
       "color": "#5a1f2e",
       "labelTitle": "Terminology Usage",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "textbook_pdf_snapshots",
-      "title": "Download Textbook PDF",
-      "radius": 2.2,
-      "color": "#7a5a2f",
-      "labelTitle": "Download Textbook PDF",
       "labelBadge": "doc"
     },
     {

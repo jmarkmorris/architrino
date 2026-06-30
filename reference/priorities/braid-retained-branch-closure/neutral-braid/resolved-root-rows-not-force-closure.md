@@ -50,7 +50,7 @@ $$
 =0.
 $$
 
-This implication is stronger than root-ledger certification. A resolved positive-delay root row supplies source timing and a source-normal denominator. It does not by itself assert cancellation of the delayed, signed, receiver-normal force sum.
+This implication is stronger than root-ledger certification. A resolved positive-delay root row supplies source timing and a source-normal root-chart diagnostic. It does not by itself assert cancellation of the delayed, signed, receiver-normal force sum.
 
 ---
 

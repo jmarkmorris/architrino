@@ -265,13 +265,14 @@ $$
 \widetilde{\mathbf{F}}_i^{\mathrm{act}}(\lambda)
 +
 \sum_{u\in\mathcal{U}_i^{\mathrm{tail}}(\lambda)}
-\frac{\sigma_i\sigma_{j(u)}}{\eta_u(\lambda)^2|J_u(\lambda)|}
+\sigma_i\sigma_{j(u)}\eta_u(\lambda)^{-2}
+W_u^{\mathrm{rec}}(\lambda)
 \widehat{\mathbf{R}}_u(\lambda).
 $$
 
 This is the force row that must feed the off-grid residual, action, Krawczyk, and stability audits.
 
-When any $\mathcal{T}_u^{\mathrm{tail}}$ is retained, the next certificate is the root-sheet variation row. The support-complete force above is not differentiable data for Newton, curl, or Krawczyk purposes until the solver also emits $\eta_u'(\lambda)$, $D_v\eta_u(\lambda)$, $D_v\mathbf{f}_u(\lambda)$, and the corresponding derivative envelopes.
+When any $\mathcal{T}_u^{\mathrm{tail}}$ is retained, the next certificate is the root-sheet variation row. The support-complete force above is not differentiable data for Newton, curl, or Krawczyk purposes until the solver also emits $\eta_u'(\lambda)$, $W_u^{\mathrm{rec}}(\lambda)$, $D_v\eta_u(\lambda)$, $D_vW_u^{\mathrm{rec}}(\lambda)$, $D_v\mathbf{f}_u(\lambda)$, and the corresponding derivative envelopes.
 
 ---
 

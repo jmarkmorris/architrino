@@ -12,7 +12,7 @@ const SCAN_TARGETS = [
   "content/generated/markdown/textbook/reading-copies",
   "reference/priorities",
   "reference/outreach",
-  "reference/entourage/cody/prompts",
+  "reference/entourage/archie/prompts",
   "scripts",
   "src",
   "tests",
@@ -165,6 +165,26 @@ const FORBIDDEN_CODE_PATTERNS = [
   },
 ];
 
+const FORBIDDEN_TEX_FORCE_DENOMINATOR_PATTERNS = [
+  {
+    startPattern: /\\frac/g,
+    snippet: "\\frac{...}{...\\eta^2|J|...}",
+    reason:
+      "multiline TeX force denominators must use receiver-normal branch strength, not source-normal |J|",
+  },
+];
+
+const TEX_FORCE_DENOMINATOR_WINDOW = 900;
+
+const TEX_ETA_SQUARED_JACOBIAN_PRODUCT_PATTERN =
+  /(?:\\eta|eta_)[\s\S]{0,220}?(?:\^\s*(?:\{2\}|2)|(?:\)|\\right\))\s*\^\s*(?:\{2\}|2))[\s\S]{0,220}?(?:\|J|\\left\|J|\\lvert\s*J)/;
+
+const TEX_FORCE_CONTEXT_PATTERN =
+  /(?:\\widehat\s*\{\\mathbf\{[Rr]\}\}|\\mathbf\{f\}|\\widetilde\s*\{\\mathbf\{F\}\}|\\mathbf\{F\}|force|per-root|line-of-action)/i;
+
+const TEX_ALLOWED_DIAGNOSTIC_CONTEXT_PATTERN =
+  /(?:receiver-normal-restart-required|restart-required|diagnostic|coarea|root-flux|root flux|diagnostics-only|diagnostic-only)/i;
+
 function reasonForSnippet(snippet) {
   if (snippet.includes("current") || snippet.includes("active Master")) {
     return "temporal EOM wording forbidden by receiver-normal changeover";
@@ -173,6 +193,11 @@ function reasonForSnippet(snippet) {
     return "missing receiver-normal branch-strength denominator";
   }
   return "purged inactive artifact name";
+}
+
+if (process.argv.includes("--self-test")) {
+  runSelfTest();
+  process.exit(0);
 }
 
 const findings = [];
@@ -211,13 +236,17 @@ function scanPath(entryPath) {
   if (!TEXT_EXTENSIONS.has(path.extname(entryPath))) return;
 
   const text = fs.readFileSync(entryPath, "utf8");
+  scanText(text, path.relative(ROOT_DIR, entryPath), findings);
+}
+
+function scanText(text, relativeFile, targetFindings) {
   for (const { snippet, reason } of FORBIDDEN_SNIPPETS) {
     let start = 0;
     while (true) {
       const index = text.indexOf(snippet, start);
       if (index === -1) break;
-      findings.push({
-        file: path.relative(ROOT_DIR, entryPath),
+      targetFindings.push({
+        file: relativeFile,
         line: lineNumberAt(text, index),
         reason,
         snippet,
@@ -229,13 +258,31 @@ function scanPath(entryPath) {
     pattern.lastIndex = 0;
     let match = pattern.exec(text);
     while (match) {
-      findings.push({
-        file: path.relative(ROOT_DIR, entryPath),
+      targetFindings.push({
+        file: relativeFile,
         line: lineNumberAt(text, match.index),
         reason,
         snippet,
       });
       match = pattern.exec(text);
+    }
+  }
+  for (const { startPattern, reason } of FORBIDDEN_TEX_FORCE_DENOMINATOR_PATTERNS) {
+    startPattern.lastIndex = 0;
+    let match = startPattern.exec(text);
+    while (match) {
+      const index = match.index;
+      if (isForbiddenTexForceDenominator(text, index)) {
+        targetFindings.push({
+          file: relativeFile,
+          line: lineNumberAt(text, index),
+          reason,
+          snippet: compactSnippet(
+            text.slice(index, index + TEX_FORCE_DENOMINATOR_WINDOW),
+          ),
+        });
+      }
+      match = startPattern.exec(text);
     }
   }
 }
@@ -246,6 +293,122 @@ function lineNumberAt(text, index) {
     if (text.charCodeAt(i) === 10) line += 1;
   }
   return line;
+}
+
+function isForbiddenTexForceDenominator(text, index) {
+  const formulaWindow = texFormulaWindow(text, index);
+  if (!TEX_ETA_SQUARED_JACOBIAN_PRODUCT_PATTERN.test(formulaWindow)) {
+    return false;
+  }
+  if (!TEX_FORCE_CONTEXT_PATTERN.test(formulaWindow)) {
+    return false;
+  }
+
+  const diagnosticContext = text.slice(
+    Math.max(0, index - 1200),
+    Math.min(text.length, index + TEX_FORCE_DENOMINATOR_WINDOW),
+  );
+  return !TEX_ALLOWED_DIAGNOSTIC_CONTEXT_PATTERN.test(diagnosticContext);
+}
+
+function texFormulaWindow(text, index) {
+  const displayClose = text.indexOf("$$", index);
+  const windowEnd =
+    displayClose === -1
+      ? index + TEX_FORCE_DENOMINATOR_WINDOW
+      : Math.min(displayClose, index + TEX_FORCE_DENOMINATOR_WINDOW);
+  return text.slice(index, windowEnd);
+}
+
+function compactSnippet(snippet) {
+  const collapsed = snippet.replace(/\s+/g, " ").trim();
+  if (collapsed.length <= 180) return collapsed;
+  return `${collapsed.slice(0, 177)}...`;
+}
+
+function runSelfTest() {
+  const cases = [
+    {
+      name: "active multiline eta-jacobian force denominator fails",
+      text: [
+        "$$",
+        "\\mathbf{f}_u",
+        "=",
+        "\\frac{",
+        "\\sigma_i\\sigma_j\\widehat{\\mathbf{R}}_u",
+        "}{",
+        "\\eta_u(\\lambda)^2|J_u(\\lambda)|",
+        "}.",
+        "$$",
+      ].join("\n"),
+      expectedFindings: 1,
+    },
+    {
+      name: "diagnostic multiline eta-jacobian force denominator passes",
+      text: [
+        "Receiver-normal status: `receiver-normal-restart-required`.",
+        "The old source-normal diagnostic row is",
+        "$$",
+        "\\mathbf{f}_u",
+        "=",
+        "\\frac{",
+        "\\sigma_i\\sigma_j\\widehat{\\mathbf{R}}_u",
+        "}{",
+        "\\eta_u(\\lambda)^2|J_u(\\lambda)|",
+        "}.",
+        "$$",
+      ].join("\n"),
+      expectedFindings: 0,
+    },
+    {
+      name: "parenthesized multiline eta-jacobian force denominator fails",
+      text: [
+        "$$",
+        "\\mathbf{f}_u",
+        "=",
+        "\\frac{",
+        "\\widehat{\\mathbf{R}}_u",
+        "}{",
+        "(\\eta_u(\\lambda))^2|J_u(\\lambda)|",
+        "}.",
+        "$$",
+      ].join("\n"),
+      expectedFindings: 1,
+    },
+    {
+      name: "receiver-normal force row passes",
+      text:
+        "$$\\mathbf{f}_u=\\sigma_i\\sigma_j\\eta_u^{-2}W_u^{\\mathrm{rec}}\\widehat{\\mathbf{R}}_u.$$",
+      expectedFindings: 0,
+    },
+    {
+      name: "root-chart newton denominator passes",
+      text: "$$\\eta_c+\\frac{G(\\eta_c;\\alpha)}{J(Q;\\alpha)}.$$",
+      expectedFindings: 0,
+    },
+  ];
+
+  let failed = false;
+  for (const testCase of cases) {
+    const selfTestFindings = [];
+    scanText(testCase.text, `self-test/${testCase.name}.md`, selfTestFindings);
+    if (selfTestFindings.length !== testCase.expectedFindings) {
+      failed = true;
+      console.error(
+        `[receiver-normal-clean-slate:self-test] ${testCase.name}: expected ${testCase.expectedFindings}, got ${selfTestFindings.length}`,
+      );
+      for (const finding of selfTestFindings) {
+        console.error(
+          `${finding.file}:${finding.line}: ${finding.reason}: ${finding.snippet}`,
+        );
+      }
+    }
+  }
+
+  if (failed) {
+    process.exit(1);
+  }
+  console.log("[receiver-normal-clean-slate:self-test] passed");
 }
 
 function shouldSkipName(name) {

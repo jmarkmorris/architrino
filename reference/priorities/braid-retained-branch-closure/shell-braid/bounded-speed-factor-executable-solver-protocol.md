@@ -137,7 +137,7 @@ D_z\mathcal{M}_i^\nu(z_0)\delta z
 -\mathcal{M}_i^\nu(z_0).
 $$
 
-This row is diagnostic until it consumes the same live roots, Jacobians, force checksum, support convention, action/event convention, and Schur-complemented derivative columns as the bounded-speed ledger handoff.
+This row is diagnostic until it consumes the same live roots, source-normal root charts, receiver-normal force checksum, support convention, action/event convention, and Schur-complemented derivative columns as the bounded-speed ledger handoff.
 
 If this row includes a candidate range/cokernel checker, the candidate matrix must be named separately as $B_{\mathrm{cand}}$ or `candidate_B`. It must be reported with `certifies_live_derivative_matrix=false` unless it is exactly the same-ledger live derivative matrix required by the bounded-speed ledger handoff.
 

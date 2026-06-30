@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__website_stats",
+    "title": "Website Stats",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "layout": {
+      "type": "static"
+    },
+    "wrapLabels": true
+  },
+  "objects": []
+}

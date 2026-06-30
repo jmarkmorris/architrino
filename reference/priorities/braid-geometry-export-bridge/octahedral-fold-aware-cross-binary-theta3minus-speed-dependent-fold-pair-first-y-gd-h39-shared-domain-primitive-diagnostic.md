@@ -117,6 +117,26 @@ bound report, invoke this diagnostic, and immediately see whether the h39
 ratio is closed, still open because provenance is missing, or numerically
 failed.
 
+Receiver-normal derivative boundary. A passing primitive-vector replay is not a
+receiver-normal retained branch-family first-derivative row. The primitive
+tuple $(E_R,\nu_J,L_J,\rho_X,r_X,M_G,M_R)$ tests one shared graph-centered
+H39 domain and may later support provider provenance, but it does not emit the
+retained causal-root fields $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$,
+$D_vD_t$, or $D_vW^{\mathrm{rec}}$. It also does not name the force/action
+branch-family checksum consumed by a receiver-normal derivative packet.
+
+Preimage boundary row id:
+`h39-primitive-vector-receiver-normal-preimage-boundary/v0`. A primitive-vector
+replay can reach `h39-receiver-normal-retained-record-preimage-row/v0` only
+after an accepted same-domain provider-object branch row, either $A_P=P_- - P_+$
+or explicit `P_-` / `P_+` rows, is bound to the same retained causal-root
+force/action record that emits $D_s$, $D_t$, fixed signs, $W^{\mathrm{rec}}$,
+$D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, geometry derivatives,
+and the retained branch-family checksum. Without that binding, the primitive
+diagnostic exits as
+`h39-primitive-vector-provider-provenance-only-not-retained-record-preimage`,
+even when $\Lambda_{39}^{\mathrm R}<1$.
+
 The coefficient-side evaluator now emits a companion profile-vector readiness
 status before the primitive diagnostic is allowed to make a replay decision.
 The vector is

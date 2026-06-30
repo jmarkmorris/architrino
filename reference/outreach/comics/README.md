@@ -88,6 +88,8 @@ The house rule is: the cast stays admirable; the institutions, documents, labels
 
 ## Format Families
 
+Released public gallery comics must use a single-panel, square `1:1` PNG format. The square image is the canonical release asset, not only a thumbnail crop, so the artwork should run to the edge of the square without white or black padding.
+
 ### One-Panel Comics
 
 Use one-panel comics for a single contrast, question, or visual punch.
@@ -103,7 +105,7 @@ Good one-panel engines:
 
 ### Three- Or Four-Panel Comics
 
-Use three- or four-panel comics when the reader needs a small transformation.
+Use three- or four-panel comics as prototype or planning material when the reader needs a small transformation. Do not promote them into the public gallery unless the release format is explicitly changed.
 
 Default structure:
 
@@ -208,6 +210,7 @@ The second read should then route the reaction into disciplined theory testing: 
 ## Production Notes
 
 - Keep scripts, dialogue, captions, prompts, source references, and final images traceable.
+- Released public gallery comics must be single-panel square `1:1` PNGs, and each released comic must have a square thumbnail derived from the square release asset.
 - Keep dense text editable outside generated image assets until the final lettering pass.
 - Do not imitate real people, celebrities, public figures, professors, influencers, or existing fictional characters.
 - Avoid jokes that depend on personal-life details of recurring characters.

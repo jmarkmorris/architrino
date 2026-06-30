@@ -113,6 +113,36 @@ const REQUIRED_FIELDS = [
     failureCode: "finite_branch_evidence_missing",
   },
   {
+    path: "receiver_normal_weight_record.D_s",
+    requirement: "Same-row receiver-normal spatial/root sensitivity for the retained pressure row.",
+    failureCode: "receiver_normal_same_record_missing",
+  },
+  {
+    path: "receiver_normal_weight_record.D_t",
+    requirement: "Same-row receiver-normal time/history sensitivity for the retained pressure row.",
+    failureCode: "receiver_normal_same_record_missing",
+  },
+  {
+    path: "receiver_normal_weight_record.W_rec",
+    requirement: "Same-row receiver-normal weight W_rec recomputed from D_t and D_s.",
+    failureCode: "receiver_normal_same_record_missing",
+  },
+  {
+    path: "receiver_normal_weight_record.retained_root_row_ids",
+    requirement: "Retained root-row identities used by the receiver-normal pressure response.",
+    failureCode: "receiver_normal_same_record_missing",
+  },
+  {
+    path: "noether_sea_response_record.theta_sea",
+    requirement: "Same-row Noether sea state record for pressure response.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
+    path: "noether_sea_response_record.M_plus_ab",
+    requirement: "Same-row reversible symmetric Noether sea response tensor.",
+    failureCode: "finite_branch_evidence_missing",
+  },
+  {
     path: "reversible_domain.R_tr",
     requirement: "Same-row reversible trace residual.",
     failureCode: "finite_branch_evidence_missing",

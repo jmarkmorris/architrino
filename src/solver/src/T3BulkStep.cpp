@@ -79,6 +79,26 @@ bool validate_request(
                    false);
     return false;
   }
+  if (request.unresolvedRootSegmentSidecarEnabled != 0) {
+    if (!std::isfinite(request.signalSpeed) || request.signalSpeed <= 0.0 ||
+        !std::isfinite(request.rootTolerance) || request.rootTolerance <= 0.0) {
+      validation.add(StatusCode::AppContractError,
+                     StatusSeverity::Error,
+                     "T3 unresolved-root segment sidecar requires finite positive signalSpeed and rootTolerance",
+                     "t3-bulk-step",
+                     false);
+      return false;
+    }
+    if (request.unresolvedRootPairPolicy !=
+        static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::NeighborPrunedV1)) {
+      validation.add(StatusCode::AppContractError,
+                     StatusSeverity::Error,
+                     "T3 unresolved-root segment sidecar pair policy is not supported",
+                     "t3-bulk-step",
+                     false);
+      return false;
+    }
+  }
   if (request.interactionLaw == static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1) &&
       (!std::isfinite(request.softSphereRadius) || request.softSphereRadius <= 0.0 ||
        !std::isfinite(request.softSphereStrength) ||
@@ -92,11 +112,11 @@ bool validate_request(
   }
   for (const T3ParticleState& state : initialStates) {
     if (!finite_vector(state.position) || !finite_vector(state.velocity) ||
-        !std::isfinite(state.mass) || state.mass <= 0.0 ||
+        !std::isfinite(state.integrationWeight) || state.integrationWeight <= 0.0 ||
         !std::isfinite(state.charge)) {
       validation.add(StatusCode::AppContractError,
                      StatusSeverity::Error,
-                     "T3 particle states must be finite with positive mass",
+                     "T3 particle states must be finite with positive integrationWeight",
                      "t3-bulk-step",
                      false);
       return false;
@@ -133,6 +153,15 @@ double nearest_image_delta(double fromValue, double toValue, double sideLength) 
   return delta - sideLength * std::round(delta / sideLength);
 }
 
+std::int32_t nearest_image_winding_label(double fromValue, double toValue, double sideLength) {
+  const double winding = std::round((toValue - fromValue) / sideLength);
+  if (winding < static_cast<double>(std::numeric_limits<std::int32_t>::min()) ||
+      winding > static_cast<double>(std::numeric_limits<std::int32_t>::max())) {
+    return 0;
+  }
+  return static_cast<std::int32_t>(winding);
+}
+
 Vector3 nearest_image_displacement(Vector3 from, Vector3 to, double sideLength) {
   return Vector3{
       nearest_image_delta(from.x, to.x, sideLength),
@@ -164,6 +193,28 @@ void add_acceleration(Vector3& target, Vector3 value) {
   target.x += value.x;
   target.y += value.y;
   target.z += value.z;
+}
+
+std::uint64_t mix_t3_candidate_id(
+    std::uint64_t tag,
+    std::uint64_t stepIndex,
+    std::uint64_t sourcePathKey,
+    std::uint64_t receiverPathKey,
+    std::uint64_t sourceSegmentIndex,
+    std::uint64_t receiverSegmentIndex) {
+  std::uint64_t value = 1469598103934665603ULL ^ tag;
+  const std::uint64_t fields[] = {
+      stepIndex,
+      sourcePathKey,
+      receiverPathKey,
+      sourceSegmentIndex,
+      receiverSegmentIndex,
+  };
+  for (const std::uint64_t field : fields) {
+    value ^= field + 0x9e3779b97f4a7c15ULL + (value << 6U) + (value >> 2U);
+    value *= 1099511628211ULL;
+  }
+  return value == 0 ? tag : value;
 }
 
 }  // namespace
@@ -240,6 +291,10 @@ T3BulkStepResult step_t3_universe(
   double interactionEnergy = 0.0;
   std::uint64_t neighborPairCount = 0;
   std::unordered_set<std::uint64_t> seenCells;
+  const bool emitUnresolvedRootSegmentRows =
+      request.unresolvedRootSegmentSidecarEnabled != 0 &&
+      request.unresolvedRootPairPolicy ==
+          static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::NeighborPrunedV1);
 
   for (std::size_t i = 0; i < states.size(); ++i) {
     seenCells.clear();
@@ -271,6 +326,106 @@ T3BulkStepResult step_t3_universe(
               continue;
             }
             ++neighborPairCount;
+            if (emitUnresolvedRootSegmentRows) {
+              const std::int32_t windingLabelX =
+                  nearest_image_winding_label(states[i].position.x, states[j].position.x, request.sideLength);
+              const std::int32_t windingLabelY =
+                  nearest_image_winding_label(states[i].position.y, states[j].position.y, request.sideLength);
+              const std::int32_t windingLabelZ =
+                  nearest_image_winding_label(states[i].position.z, states[j].position.z, request.sideLength);
+              const bool hasPeriodicWinding =
+                  windingLabelX != 0 || windingLabelY != 0 || windingLabelZ != 0;
+              const T3UnresolvedRootSegmentRowF64 segmentRow{
+                  request.stepIndex,
+                  states[i].pathKey,
+                  states[j].pathKey,
+                  request.stepIndex,
+                  request.stepIndex,
+                  states[i].position,
+                  states[i].velocity,
+                  states[j].position,
+                  states[j].velocity,
+                  request.startTime,
+                  request.endTime,
+                  request.endTime,
+                  request.signalSpeed,
+                  request.rootTolerance,
+                  request.integrationTolerance,
+                  request.integrationTolerance,
+                  states[i].stateFlags,
+                  states[j].stateFlags,
+                  request.unresolvedRootPairPolicy,
+                  static_cast<std::uint32_t>(
+                      T3UnresolvedRootSegmentRowStatus::CandidateShapeEvidence),
+              };
+              result.unresolvedRootSegmentRows.push_back(segmentRow);
+              const std::uint64_t sameRecordReplayId =
+                  mix_t3_candidate_id(0x74337265706c6179ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t retainedSourceRecordId =
+                  mix_t3_candidate_id(0x7433736f75726365ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t retainedCausalRootRowId =
+                  mix_t3_candidate_id(0x7433726f6f74726fULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      segmentRow.receiverPathKey,
+                                      segmentRow.sourceSegmentIndex,
+                                      segmentRow.receiverSegmentIndex);
+              const std::uint64_t sourcePathSegmentId =
+                  mix_t3_candidate_id(0x7433737263706174ULL,
+                                      segmentRow.stepIndex,
+                                      segmentRow.sourcePathKey,
+                                      0,
+                                      segmentRow.sourceSegmentIndex,
+                                      0);
+              const std::uint64_t receiverPathSegmentId =
+                  mix_t3_candidate_id(0x7433726376706174ULL,
+                                      segmentRow.stepIndex,
+                                      0,
+                                      segmentRow.receiverPathKey,
+                                      0,
+                                      segmentRow.receiverSegmentIndex);
+              result.retainedCausalRootReplayRows.push_back(T3RetainedCausalRootReplayRowF64{
+                  segmentRow.stepIndex,
+                  segmentRow.sourcePathKey,
+                  segmentRow.receiverPathKey,
+                  segmentRow.sourceSegmentIndex,
+                  segmentRow.receiverSegmentIndex,
+                  sameRecordReplayId,
+                  retainedSourceRecordId,
+                  retainedCausalRootRowId,
+                  retainedCausalRootRowId,
+                  sourcePathSegmentId,
+                  receiverPathSegmentId,
+                  windingLabelX,
+                  windingLabelY,
+                  windingLabelZ,
+                  static_cast<std::uint32_t>(
+                      hasPeriodicWinding
+                          ? T3WindingLabelStatus::GlobalPeriodicWrapCandidate
+                          : T3WindingLabelStatus::LocalPreWrapCandidate),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::CandidateSameRecordBinding),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayRowStatus::CandidateSameRecordBinding),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::Missing),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayFieldStatus::CandidateSidecarShapeEvidence),
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayRowStatus::CandidateSameRecordBinding),
+                  0,
+              });
+            }
             if (!useSoftSphere) {
               continue;
             }
@@ -288,15 +443,15 @@ T3BulkStepResult step_t3_universe(
             };
             add_acceleration(accelerations[i],
                              Vector3{
-                                 force.x / states[i].mass,
-                                 force.y / states[i].mass,
-                                 force.z / states[i].mass,
+                                 force.x / states[i].integrationWeight,
+                                 force.y / states[i].integrationWeight,
+                                 force.z / states[i].integrationWeight,
                              });
             add_acceleration(accelerations[j],
                              Vector3{
-                                 -force.x / states[j].mass,
-                                 -force.y / states[j].mass,
-                                 -force.z / states[j].mass,
+                                 -force.x / states[j].integrationWeight,
+                                 -force.y / states[j].integrationWeight,
+                                 -force.z / states[j].integrationWeight,
                              });
             interactionEnergy += 0.5 * request.softSphereStrength * overlap * overlap;
           }
@@ -341,7 +496,7 @@ T3BulkStepResult step_t3_universe(
         position,
         velocity,
         acceleration,
-        states[index].mass,
+        states[index].integrationWeight,
         imageDeltaX,
         imageDeltaY,
         imageDeltaZ,

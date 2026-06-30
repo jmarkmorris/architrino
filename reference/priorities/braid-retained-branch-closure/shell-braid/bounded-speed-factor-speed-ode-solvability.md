@@ -435,7 +435,7 @@ $$
 \texttt{sampled-speed-ode-zero-mean-failed}.
 $$
 
-This is a diagnostic rejection of the frozen fixed-ledger primitive, not a rejection of bounded-speed continuation. Once $\nu$ becomes an active variable, the clocks, roots, Jacobians, force weights, derivative columns, tail cover, action rows, and event rows must be recomputed on the same live ledger.
+This is a diagnostic rejection of the frozen fixed-ledger primitive, not a rejection of bounded-speed continuation. Once $\nu$ becomes an active variable, the clocks, roots, source-normal root charts, receiver-normal branch weights, derivative columns, tail cover, action rows, and event rows must be recomputed on the same live ledger.
 
 The direct successor is the zero-mean correction target in [bounded-speed-factor-speed-ode-zero-mean-correction-target.md](bounded-speed-factor-speed-ode-zero-mean-correction-target.md). It packages the frozen obstruction as a live mean functional
 
@@ -445,7 +445,7 @@ $$
 \int_0^{H_*}T_i(u;z)\cdot F_i^\nu(u;z)\,du
 $$
 
-and requires derivative columns $D_v\mathcal{M}_i^\nu$ through clock, root, Jacobian, force, support, action, and event terms before a correction direction can be consumed by a bounded-speed solver.
+and requires derivative columns $D_v\mathcal{M}_i^\nu$ through clock, root, receiver-normal branch-weight, support, action, and event terms before a correction direction can be consumed by a bounded-speed solver.
 
 ---
 

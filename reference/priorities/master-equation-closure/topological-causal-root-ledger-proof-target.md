@@ -651,6 +651,198 @@ the correct fail-closed boundary: root topology is now executable at toy level,
 but action, wake-history, Noether sea, and cross-sector pullbacks are still the
 open downstream proof burden.
 
+## Native T3 Run Envelope Handoff 2026-06-29
+
+The neutral T3 simulator now emits a `t3-run-summary.v1` record from
+`src/solver/t3/T3UniverseSimulator.mjs` when `run()` returns. The record is a
+run envelope, not a causal-root proof. In solver mode it
+aggregates the native bulk T3 step summaries returned through
+`solverClient.stepT3UniverseF64` and records:
+
+- step count and particle count,
+- neighbor-pair count series,
+- occupied-cell count series,
+- cell-count series when the native step reports it,
+- periodic image-delta totals and wrapped-particle step counts,
+- interaction preset,
+- execution path counts,
+- native bulk step count,
+- per-particle fallback step count,
+- and already-emitted event counts, including boundary-like event counts only
+  when an existing event detector emits such a row.
+
+The current test coverage in `tests/t3-universe-simulator.test.js` proves the
+solver-engine route for this envelope: a three-step solver run calls
+`stepT3UniverseF64` once per step, reports `executionPath: "native_c_abi"`,
+and does not call `integrateConstantAccelerationMotionF64`. That makes the
+run envelope a useful benchmark record for topology-native work because it can
+show, without choosing a receiver-normal EOM or Master Equation closure, which
+particles crossed periodic images, how many native neighbor pairs were present,
+and whether the execution path stayed on the native bulk T3 route.
+
+What this can discipline: the missing oriented boundary-operator proof must be
+compatible with retained winding and image-delta evidence that appears in
+native bulk T3 runs. In particular, image-delta totals and wrapped-particle
+step counts give a small executable witness for where seam ownership rows would
+have to be declared, paired, or routed in the same retained source record.
+
+What remains unproven: the run envelope does not construct the oriented
+boundary operator on retained winding-labeled causal-root rows, does not supply
+the same-record routing map for absent, paired, or routed boundary
+contributions, and does not prove branch admissibility for any downstream EOM,
+action, wake-history, Noether sea, or cross-sector consumer. Until those proof
+objects exist, this remains priority-only executable evidence.
+
+## T3 Oriented Boundary Prototype 2026-06-29
+
+The smallest executable prototype now lives in
+`src/solver/t3/T3OrientedBoundaryOperator.mjs` and is attached to each
+`t3-run-summary.v1` record as `orientedBoundaryPrototype`. Its schema is
+`t3-oriented-boundary-prototype.v1`, with `promotionStatus:
+priority-only executable evidence`, `masterEomDependency: false`,
+`retainedBranch: false`, and `provesBranchAdmissibility: false`.
+
+The prototype defines the topology-native readout for
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
+$$
+only at the evidence-envelope level. The input domain remains the desired
+retained winding-labeled causal-root rows on $T_L^3$, but the T3 run envelope
+does not yet construct those rows. Therefore the prototype treats the summary
+channels as constraints on any future oriented boundary operator:
+
+| Run-summary channel | Prototype boundary readout | What it can discipline | What it cannot prove |
+| --- | --- | --- | --- |
+| `periodicWrapEvidence.imageDeltaTotals` | Signed seam-transfer coefficient by axis. | Which winding direction would need a seam-owner row. | That the seam owner is a retained causal-root row. |
+| `periodicWrapEvidence.absoluteImageDeltaTotals` | Seam-transfer multiplicity by axis. | Whether the seam evidence is absent, cancelling, or owner-requiring in the run summary. | That cancelling signed totals are paired on the same retained source record. |
+| `neighborPairCounts.perStep` | Finite-difference rows for native neighbor-pair population. | Candidate pair-contact births and deaths in the native T3 run. | Causal-root multiplicity, Jacobian floor, caustic status, or branch admissibility. |
+| `eventSummary.eventTypeCounts` and `boundaryLikeEventCount` | Detector-declared boundary-like event rows with no orientation sign. | Whether existing T3 event detectors emitted seam, wrap, periodic, image, or boundary rows. | Accepted wake-history event-ledger evidence or same-record routing. |
+
+The sign convention is minimal: a positive image delta contributes a
+$+\mathbf e_a$ seam-transfer demand on axis $a$, and a negative image delta
+contributes $-\mathbf e_a$. If the absolute image delta is nonzero while the
+signed total cancels, the row is only a paired seam-transfer candidate until
+the same-record owner rows are supplied. Neighbor-count increases are
+candidate pair-contact births; decreases are candidate pair-contact deaths.
+Event rows are detector declarations and therefore carry no boundary sign until
+a retained event ledger supplies one.
+
+This gives an executable first approximation to the missing
+oriented-boundary object:
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}
+\leadsto
+\Delta_{\mathrm{seam}}^{T3}
++\Delta_{\mathrm{neighbor}}^{T3}
++\Delta_{\mathrm{event}}^{T3}
++\Delta_{\mathrm{unresolved\ root}}.
+$$
+The final term is explicit: the run summary still lacks the retained
+causal-root rows, Jacobian floors, caustic routes, endpoint rows,
+memory-window rows, collision/core rows, omitted-row gaps, and same-record
+absent/paired/routed map. Consequently this prototype can reject premature
+promotion and discipline future proof objects, but it cannot certify branch
+admissibility or substitute for any downstream Master Equation, action,
+wake-history, Noether sea, or cross-sector consumer.
+
+The prototype now also emits a fail-closed `retainedBoundaryTarget` plus a
+`negativeControlMatrix`. This is the priority-only matrix form of the same
+operator target:
+
+| Target row source | Required retained evidence | Negative control |
+| --- | --- | --- |
+| Signed image-delta row | Same-record winding-owner row for the signed seam-transfer demand. | `signed_image_delta_without_winding_owner` |
+| Cancelling image-delta row | Same-record pairing map proving the cancelling image deltas are one retained seam transfer. | `cancelled_image_delta_without_same_record_pairing` |
+| Neighbor-pair delta row | Retained causal-root row delta with winding owner, Jacobian floor or declared stratum, and same-record source identity. | `neighbor_pair_delta_without_retained_causal_root_rows` |
+| Boundary-like detector event | Same-record retained event row with explicit orientation sign before any wake-history event-ledger consumer may use it. | `boundary_like_detector_event_without_retained_event_row` |
+| Generic detector event | Declared boundary stratum before the event can enter $\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}$. | `generic_event_count_without_boundary_stratum` |
+| Run-summary envelope alone | Retained winding-labeled causal-root rows with endpoint, memory-window, caustic, collision/core, omitted-row, and seam routing. | `run_summary_without_retained_causal_root_rows` |
+
+The matrix deliberately fails closed whenever any required retained evidence is
+missing. A clean T3 run summary can therefore be a useful executable witness
+for seam, neighbor, and detector-event discipline while still blocking
+promotion to branch retention, action closure, wake-history closure, or
+cross-sector acceptance.
+
+One additional negative control prevents a common false closure: a zero signed
+coefficient total is not the same as
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}=0.
+$$
+If image-delta, neighbor, or detector-event rows remain unresolved, the
+prototype emits `signed_balance_is_not_boundary_closure` and adds
+`zero_signed_boundary_sum_without_same_record_routing`. This blocks the
+inference that algebraic cancellation in the run-summary envelope supplies the
+same-record absent, paired, or routed map required by the retained
+causal-root ledger. The result also reports an exact first blocker as
+`retained_boundary_target_unresolved:<rowId>` plus the first required retained
+evidence string, so a downstream report can point at the missing seam-owner,
+pairing-map, root-delta, event-row, or unresolved-root object without promoting
+the T3 envelope itself.
+
+The prototype also emits `retainedBoundaryChronology`, a per-step view of the
+same fail-closed evidence. Each row records `stepIndex`, `rowFamily`, `rowKind`,
+`evidenceMagnitude`, `signedBalance`, `firstBlocker`, and booleans that mark
+whether the row is a retained-boundary target row, detector row, neighbor row,
+or negative-control row. The chronology compares three summary channels at
+each step:
+
+| Chronology family | Per-step source | Fail-closed blocker |
+| --- | --- | --- |
+| `seam` | `periodicWrapEvidence.perStep` image-delta rows by axis. | Missing same-record winding owner or same-record seam pairing. |
+| `neighbor` | Finite differences of `neighborPairCounts.perStep`. | Native neighbor-pair delta without retained causal-root rows. |
+| `detector-event` | `eventSummary.perStep` event counts and boundary-like event counts. | Detector event without retained event row or declared boundary stratum. |
+| `unresolved-root` | The run-summary envelope itself. | No retained winding-labeled causal-root replay. |
+| `signed-balance` | Step-local signed sum and evidence magnitude. | Zero signed sum without same-record routing. |
+
+This chronology is a comparison surface, not a proof of closure. Its strongest
+use is to locate the first step where seam evidence, neighbor-population
+evidence, and detector evidence diverge before a causal-root replay exists. The
+remaining blocker is unchanged: the T3 run summary must be replaced or joined
+by same-record retained causal-root rows with winding ownership, Jacobian
+floors or declared strata, endpoint and memory-window routing, collision/core
+handling, omitted-row gaps, and event-row orientation before
+$$
+\partial_{\mathrm{top}}\mathcal{R}^{\mathrm{act}}=0
+$$
+can be asserted.
+
+The replay boundary is now machine-readable as `sameRecordReplayBoundary` with
+schema `t3-same-record-replay-boundary.v1`. It is not accepted replay evidence:
+`acceptedReplayRowCount` remains zero, and the first required producer object is
+`t3-retained-causal-root-replay.v1`. For every active chronology row, the object
+records the chronology row id, step index, row family, evidence magnitude or
+signed balance, candidate orientation when the run summary provides one, and
+the missing retained replay fields: same-record replay id, retained source
+record id, retained causal-root row id, row-family identity, boundary
+orientation, winding label, Jacobian floor or declared stratum, endpoint route,
+memory-window route, collision/core route, and omitted-row route. Family-specific
+fields add seam pairing or winding owner rows, neighbor birth/death routes,
+event-row orientation, unresolved root ledger ids, or same-record cancellation
+maps as needed.
+
+Two replay negative controls keep the chronology priority-only. A cross-step or
+aggregate-only replay attempt fails as
+`cross_step_or_aggregate_only_replay_without_chronology_row_identity`; each
+chronology row must replay against its own retained source record before any
+aggregation can be used. A zero signed-balance replay attempt fails as
+`zero_signed_balance_replay_without_same_record_pairing_map`; algebraic
+cancellation in the run summary is not a same-record absent, paired, or routed
+map. The exact blocker therefore moves from "there is no chronology" to "there
+is no retained causal-root replay producer carrying those same-record fields."
+
+The sharper source boundary is
+`t3-retained-causal-root-replay-source-boundary.v1`: it records that the
+observed `t3-run-summary.v1` source is `aggregate_and_step_summary_only`, with
+zero retained producer rows, and that the expected source object remains one
+`t3-retained-causal-root-replay.v1` row per active chronology row. That source
+object must carry the retained source record id, retained causal-root row id,
+row-family identity, boundary orientation, winding label, Jacobian floor or
+declared stratum, endpoint route, memory-window route, collision/core route,
+omitted-row route, and the family-specific seam, neighbor, event, unresolved
+root, or cancellation-routing fields before chronology rows can become
+same-record replay evidence.
+
 The photon constituent route diagnostic now lives at
 `scripts/proof-programs/photon-constituent-root-route-diagnostic.mjs`, with
 coverage in `tests/photon-constituent-root-route-diagnostic.test.js`. It
@@ -817,7 +1009,78 @@ wake-history closure. A row must carry `accepted_for_wake_history_closure`,
 an `accepted_evidence_id`, the retained source record, and the retained event
 ledger id before the compositor can report accepted wake-history evidence.
 The wake-history derivation proof object must bind the same row, accepted
-evidence id, and source record.
+evidence id, source record, and receiver-normal branch-strength derivative
+bundle. In particular, any wake-history row consumed by
+$\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ must name the same retained
+branch list, $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+reconstructed $D_vW^{\mathrm{rec}}$ rows used by the force/action packet. A
+declared event ledger without those rows remains
+`not_accepted_for_wake_history_closure`; a terminal aggregate, H39/theta3minus
+quotient row, source-normal-only denominator, or old shell-braid force residue
+fails as `receiver-normal-first-derivative-row-missing`.
+
+The first same-record receiver-normal derivative contract is now explicit in
+that diagnostic. `energy_wake`, `momentum_wake`, `angular_momentum_wake`, and
+`medium_update` can each bind
+`receiver-normal-retained-branch-family-first-derivative/v0` to the same source
+record, event ledger, retained record key, source artifact hash, and consumer
+row, then recompute $D_vW^{\mathrm{rec}}$ from $D_s$, $D_t$, $D_vD_s$, and
+$D_vD_t$. The artifact emits
+`receiver_normal_derivative_contract_summary`, which names accepted row ids,
+blocked row ids, the first failure code, and `required_object_blockers` for
+each row. Missing derivative bundles now surface as
+`receiver-normal-first-derivative-row-missing`; missing accepted derivation
+proof objects are named as `wake_history_derivation_proof_object`; source-record
+drift surfaces as `receiver-normal-derivative-record-mismatch`,
+reconstruction drift surfaces as
+`receiver-normal-derivative-reconstruction-failed`, and branch-list drift
+surfaces as `branch-family-consumer-checksum-mismatch`. These remain
+fail-closed rather than accepted wake-history closure. This is row-logic
+evidence only; the closed-ledger compositor still reports the wake-history
+sector as not accepted until all required event rows carry accepted evidence
+and proof objects from an accepted retained branch.
+
+A repository search found no local accepted retained provider object supplying
+`wake_history_derivation_proof_object` for those four rows. The event diagnostic
+therefore emits `wake_history_derivation_proof_object_boundary` with
+`provider_status: wake_history_derivation_proof_object_missing`,
+`accepted_retained_provider_ready: false`, the required retained-record,
+receiver-normal derivative, and provenance fields, and
+`first_blocked_downstream_consumer: partial_L_EpJ`. A selected row can also be
+replayed with the derivative bundle present but the proof object absent; that
+fails as `wake-history-derivation-proof-object-missing`, not as accepted
+wake-history evidence.
+
+The diagnostic also exposes CLI replay controls for this receiver-normal
+contract. `--control receiver-normal-missing-derivative-bundle`,
+`--control receiver-normal-missing-proof-object-provider`,
+`--control receiver-normal-proof-object-provenance-mismatch`,
+`--control receiver-normal-reconstruction-drift`,
+`--control receiver-normal-record-mismatch`, and
+`--control receiver-normal-branch-family-checksum-mismatch`, combined with
+`--event-row`, emit the corresponding fail-closed artifact for a selected
+event row. These controls do not add a validation gate and do not promote the
+row-logic fixture; they only make the wake-history accepted-evidence contract
+replayable and falsifiable before the closed-ledger compositor consumes a
+future artifact.
+
+The same executable boundary now emits
+`wake-history-derivation-proof-object-provider-target/v0` inside
+`wake_history_derivation_proof_object_boundary`. That target names the retained
+record identity fields, receiver-normal derivative fields, proof-object
+provenance fields, excluded source classes, and `partial_L_EpJ` as the first
+blocked consumer. This is a provider-source map, not an accepted provider
+object: the closed-ledger compositor remains blocked until a non-fixture
+accepted retained branch supplies `wake_history_derivation_proof_object` for
+all four wake-history rows on the same retained record.
+The boundary now exposes this source-acquisition blocker directly as
+`provider_source_acquisition_blocker`: the scoped wake-history candidate file
+family is diagnostic-and-priority-only, the accepted provider source status is
+`absent_non_fixture_accepted_retained_provider`, and the missing field groups
+remain the retained record, receiver-normal derivative rows, proof object, and
+provenance for that provider object. Downstream causal-root replay for
+`partial_L_EpJ` stays blocked until those fields arrive from an accepted
+retained provider source.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage
@@ -844,7 +1107,7 @@ state, boundary symbol, and action-boundary `derivation_proof_object`.
 Synthetic action rows and regulator-only rows therefore remain
 `not_accepted_for_action_closure` even when their row contracts pass.
 
-## Current Executable Frontier
+## Executable Frontier
 
 The executable chain now separates same-record compatibility, active-root
 routing, wake-history rows, action rows, and Noether sea handoff rows. The
@@ -853,11 +1116,17 @@ default fixture has the following blocker order:
 | Diagnostic row | Default status | Next accepted evidence needed |
 | --- | --- | --- |
 | `source_record_contract` | pass | None at diagnostic level; it is still only a shared identity contract. |
-| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the current route summaries report zero accepted route samples and require active-root route derivation proof objects. |
-| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, and the same retained event ledger. |
+| $\partial\mathcal{R}^{\mathrm{act}}$ | fail | Promote or replace the toy photon self-hit route and toy middle-hinge threshold replay routes as accepted same-record evidence; the route summaries report zero accepted route samples and require active-root route derivation proof objects. |
+| $\partial\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ | pass | None at diagnostic row-population level; row-logic fixtures now exercise the receiver-normal derivative bundle for all four required event rows, but accepted branch evidence still has to supply accepted wake-history rows with evidence ids, derivation proof objects, the same retained event ledger, and the same-record receiver-normal derivative bundle. |
 | $\partial S_{\mathfrak B}^{(\eta)}$ | fail | The regulator-only fixture can populate `eta_regulator_row` and `epsilon_c_core_row`; real closure still needs `action_endpoint_row` and `action_multiplier_row` evidence with the same source record, retained chart, retained window, regulator state, boundary symbols, accepted evidence ids, and derivation proof objects. |
-| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, and a medium-response derivation proof object. |
+| $\partial\mathcal{M}_{\mathrm{sea}}$ | pass | None at handoff-population level; Lorentz/GR closure still needs accepted medium-response evidence with a derived Noether sea response id, the same retained source record, receiver-normal branch-strength rows for any force/action consumer, and a medium-response derivation proof object. |
 | $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ | fail | All upstream rows must pass on accepted evidence, not only synthetic row-logic fixtures. |
+
+The receiver-normal derivative contract sharpens accepted wake-history evidence
+for all four event rows, but it does not change this blocker order:
+wake-history row population still passes only at diagnostic level, and accepted
+closure still waits for accepted retained-branch evidence with derivation proof
+objects.
 
 Thus the next mathematical artifact should not try to promote the closed-ledger
 equation. It should replace one toy active-root route row or populate one
@@ -927,7 +1196,7 @@ the cross-sector row.
   telegraph signal; it only records the root-count topology that could make
   such pulse patterns meaningful.
 
-## Current Disposition
+## Disposition
 
 Priority-only. This is a strong proof-route candidate because it turns the
 shock-front, pair-contact, multi-hit, self-hit, and six-item admissibility

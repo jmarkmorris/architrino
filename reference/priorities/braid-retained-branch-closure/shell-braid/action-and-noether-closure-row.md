@@ -49,11 +49,54 @@ The same $B$ must be consumed by:
 
 | Row | Consumes |
 | --- | --- |
-| dynamics | $\mathbf{Y}$, $\nu$, $\mathcal{A}^{\nu}$, force weights |
+| dynamics | $\mathbf{Y}$, $\nu$, $\mathcal{A}^{\nu}$, receiver-normal branch weights |
 | action scale | $\mathbf{Y}$, $\nu$, $\mathcal{A}^{\nu}$, support and event variables |
 | support work | $\mathcal{D}_{\mathrm{supp}}$, multipliers, endpoint convention |
 | Noether currents | action symmetries and event endpoints |
 | event ledger | charge, energy, momentum, angular momentum, source provenance |
+
+Receiver-normal purity requirement. Any row above that consumes force,
+virtual work, action variation, power, wake-history, or Noether-current
+exchange must also consume the same retained receiver-normal branch-strength
+record:
+$$
+D_{s,\rho},
+\qquad
+D_{t,\rho},
+\qquad
+W_{\rho}^{\mathrm{rec}}=\left|D_{t,\rho}/D_{s,\rho}\right|,
+\qquad
+D_vD_{s,\rho},
+\qquad
+D_vD_{t,\rho},
+\qquad
+D_vW_{\rho}^{\mathrm{rec}}.
+$$
+The derivative row is not an independent fit. On a fixed $D_s,D_t$ sign
+stratum it must reconstruct
+$$
+D_vW_{\rho}^{\mathrm{rec}}
+=
+\frac{\zeta_{t,\rho}\zeta_{s,\rho}}{D_{s,\rho}^2}
+\left(
+D_{s,\rho}D_vD_{t,\rho}
+-
+D_{t,\rho}D_vD_{s,\rho}
+\right)
+$$
+on the same retained box, source artifact hash, regulator state, and branch
+family checksum. If the action or Noether row consumes only a source-normal
+root-chart denominator, a terminal aggregate, a finite-difference derivative
+table after branch identity is erased, or an old shell-braid force residue, its
+status is `receiver-normal-action-derivative-record-missing` rather than
+`action-noether-closed`.
+
+Breather force-margin consumers use the same rule. The specialized target is
+[Breather Receiver-Normal Force-Margin Restart Target](../../proof-programs/breather-proof/certificate/breather_receiver_normal_force_margin_restart_target.md);
+it keeps recapture, self-drive, action, power, wake-history, and
+Schauder-envelope margin rows fail-closed unless they consume same-record
+$D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, and
+$D_vW^{\mathrm{rec}}$ on the retained branch-family checksum.
 
 If any row is computed on a different active-root ledger, memory depth, support descriptor, or endpoint convention, the status is
 

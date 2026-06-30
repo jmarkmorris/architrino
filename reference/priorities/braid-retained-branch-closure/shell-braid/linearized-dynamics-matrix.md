@@ -4,6 +4,13 @@ Promotion status: `priority-only`. This packet derives a finite-dimensional firs
 
 Claim level: linearized finite-mode balance target. A solution of the matrix system below is evidence that the chosen Fourier deformation space can cancel the rigid tangential, speed, and radial residual rows to first order on a fixed active-root ledger. It becomes branch-retention material only after the same candidate also preserves the support band, noncollision, active-root counts, Jacobian floors, phase/winding rows, and event ledgers under a nonlinear rescreen.
 
+Receiver-normal status: `receiver-normal-restart-required` for active
+force/action use. The displayed $|J|^{-1}$ rows in this packet are retained
+only as source-normal diagnostics for the old linearized matrix snapshot. A
+live matrix must rebuild the force and force derivative with same-record
+$W^{\mathrm{rec}}$, $D_s$, $D_t$, and $DW^{\mathrm{rec}}$ rows before action,
+Krawczyk, or retention consumers may use it.
+
 ---
 
 ## 1. Rigid Reference Row
@@ -131,7 +138,7 @@ J_{ij,n}^{0,\alpha}
 \widehat{\mathbf{r}}_{ij,n}^{\alpha}.
 $$
 
-The dimensionless baseline per-root force is
+The old source-normal diagnostic per-root row used by this matrix snapshot is
 
 $$
 \widetilde{\mathbf{F}}_{ij,n}^{0,\alpha}
@@ -383,7 +390,8 @@ $$
 \delta\widehat{\mathbf{r}}_{ij,n}^{\alpha,[\ell]}.
 $$
 
-The dimensionless per-root force variation is
+The old source-normal diagnostic per-root variation used by this matrix
+snapshot is
 
 $$
 \delta\widetilde{\mathbf{F}}_{ij,n}^{\alpha,[\ell]}
@@ -829,8 +837,8 @@ The nonlinear retained-branch theorem would require a separate step: prove that 
 ## 9. Proof Route
 
 1. **Root differentiability.** The simple-root floor gives the root-shift formula by the implicit function theorem applied to $G_{ij}(t,s)=0$.
-2. **Force differentiability.** The noncollision and Jacobian floors keep $y_{ij}^{\alpha}$ and $J_{ij}^{\alpha}$ away from singular values, so the per-root force is differentiable in the finite-mode coefficients.
-3. **Residual linearization.** Substituting the force variation into the tangential and radial projection equations gives the row formulas in Section 5. The speed row is the linearization of $\|\mathbf{u}_i\|=c_f$.
+2. **Diagnostic force differentiability.** The noncollision and Jacobian floors keep $y_{ij}^{\alpha}$ and $J_{ij}^{\alpha}$ away from singular values, so the old source-normal diagnostic row is differentiable in the finite-mode coefficients. This is not an active force/action derivative until same-record $W^{\mathrm{rec}}$ and $DW^{\mathrm{rec}}$ rows are rebuilt.
+3. **Diagnostic residual linearization.** Substituting the diagnostic force variation into the tangential and radial projection equations gives the row formulas in Section 5. The speed row is the linearization of $\|\mathbf{u}_i\|=c_f$.
 4. **Finite-dimensional reduction.** Fourier truncation and collocation convert the derivative into the matrix $A_M$.
 5. **Gauge quotient.** Multiplication by $N_G$ removes nonphysical null directions before rank is tested.
 6. **Linear algebra.** The augmented-rank equality is necessary and sufficient for first-order residual cancellation in the selected finite space.

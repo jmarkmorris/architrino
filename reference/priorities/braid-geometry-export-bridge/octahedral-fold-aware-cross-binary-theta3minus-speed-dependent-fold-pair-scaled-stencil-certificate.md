@@ -13,8 +13,8 @@ p=\frac{\delta-\delta_f(\nu)}{y},
 $$
 
 Receiver-normal status: restart target. The scaled root geometry still records
-bounded $p,z,J$ rows for the coalescing roots, but the old source-denominator
-$G,D$ quotient evidence is not receiver-normal Master EOM force/action evidence.
+bounded $p,z,J$ rows for the coalescing roots, but the retired $G,D$ fold-pair
+rows are not receiver-normal Master EOM force/action evidence.
 
 ## Scaled Fold-Pair Rows
 
@@ -106,9 +106,9 @@ This remains useful only as root geometry. It converts the singular fold pair
 into bounded sampled variables with a nonzero scaled denominator $J_\pm$, but
 it does not certify force/action closure under the receiver-normal Master EOM.
 
-The next active successor is not another source-denominator quotient row. It is
-the receiver-normal zero-bracket search and then a rederived fold-pair normal
-form with same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ rows.
+The next active successor is the receiver-normal zero-bracket search and then a
+rederived fold-pair normal form with same-record $D_s$, $D_t$, and
+$W^{\mathrm{rec}}$ rows.
 
 ## Closure Burndown
 

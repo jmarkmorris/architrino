@@ -73,6 +73,24 @@
         "required_status": "branch-emitted pressure response",
         "must_bind_to_same_row": true
       },
+      "receiver_normal_weight_record": {
+        "fields": [
+          "receiver_normal_weight_record.D_s",
+          "receiver_normal_weight_record.D_t",
+          "receiver_normal_weight_record.W_rec",
+          "receiver_normal_weight_record.retained_root_row_ids"
+        ],
+        "required_status": "same-row receiver-normal weight recomputed from retained roots",
+        "must_bind_to_same_row": true
+      },
+      "noether_sea_response_record": {
+        "fields": [
+          "noether_sea_response_record.theta_sea",
+          "noether_sea_response_record.M_plus_ab"
+        ],
+        "required_status": "same-row reversible Noether sea response",
+        "must_bind_to_same_row": true
+      },
       "reversible_domain": {
         "fields": [
           "reversible_domain.R_tr",
@@ -243,6 +261,48 @@
     },
     "m_S": {
       "value": "target-required:m_S",
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    }
+  },
+  "receiver_normal_weight_record": {
+    "D_s": {
+      "value": "target-required:D_s",
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "D_t": {
+      "value": "target-required:D_t",
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "W_rec": {
+      "value": "target-required:W_rec",
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "retained_root_row_ids": {
+      "value": [
+        "target-required:retained_root_row"
+      ],
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    }
+  },
+  "noether_sea_response_record": {
+    "theta_sea": {
+      "value": "target-required:theta_sea",
+      "row_id": "rank4-retained-pressure-row-provider-intake-target",
+      "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
+      "source_status": "target_required_not_accepted_source"
+    },
+    "M_plus_ab": {
+      "value": "target-required:M_plus_ab",
       "row_id": "rank4-retained-pressure-row-provider-intake-target",
       "source_ref": "reference/priorities/braid-mass-response-map/pressure-response-coefficient-closure.md#same-row-provider-intake-artifact",
       "source_status": "target_required_not_accepted_source"

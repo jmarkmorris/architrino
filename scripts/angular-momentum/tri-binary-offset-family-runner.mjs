@@ -70,6 +70,18 @@ const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   printUsage(0);
 }
+if (args.schema === "continuous-interval-witness-producer-target") {
+  console.log(
+    JSON.stringify(createContinuousIntervalWitnessProducerTargetSchema(), null, 2)
+  );
+  process.exit(0);
+}
+if (args.schema === "active-domain-extension-row-set-producer-target") {
+  console.log(
+    JSON.stringify(createActiveDomainExtensionProducerTargetSchema(), null, 2)
+  );
+  process.exit(0);
+}
 
 const rootDir = process.cwd();
 const outputPath = path.resolve(rootDir, args.output ?? DEFAULT_OUTPUT_PATH);
@@ -24138,6 +24150,80 @@ function createRetainedGlobalTransportDeclarationTarget({
     retainedRouteCompensationProfile?.routeCompensationRequired === true;
   const globalLawDeclarationFormula =
     "globalLawDeclarationPass = globalRetainedRowSetIdentityPass && (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass) && retainedPayloadRowsPass && acceptedRetainedEnergyRoutingPass && acceptedFullPointEventRulePass";
+  const routeRootKeys = [
+    ...(transportTarget?.rows ?? []),
+    ...(physicalTarget?.rows ?? []),
+  ]
+    .map((row) => row.routeRootKey)
+    .filter((routeRootKey) => routeRootKey != null);
+  const uniqueRouteRootKeys = [...new Set(routeRootKeys.map(String))];
+  const globalDeclarationFieldRows = [
+    {
+      field: "global_retained_row_set_identity",
+      fieldPass: globalRetainedRowSetIdentityPass,
+      producerObject:
+        "same_route_root_key_global_retained_row_set_identity_provider",
+      requiredSameRecordBinding:
+        "same route/root-key row set as the local endpoint-provider point-event row",
+    },
+    {
+      field: "full_point_event_rule_or_positive_width_common_retained_domain",
+      fieldPass: fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass,
+      producerObject:
+        "full_point_event_rule_or_positive_width_common_retained_domain_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and event/domain route",
+    },
+    {
+      field: "retained_force_torque_wake_phase_partition_stability_payloads",
+      fieldPass: retainedPayloadRowsPass,
+      producerObject:
+        "retained_payload_row_family_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and accepted event or positive-width domain",
+    },
+    {
+      field: "accepted_retained_energy_routing",
+      fieldPass: acceptedRetainedEnergyRoutingPass,
+      producerObject:
+        "accepted_retained_energy_routing_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and accepted event or positive-width domain",
+    },
+    {
+      field: "accepted_full_point_event_rule",
+      fieldPass: acceptedFullPointEventRulePass,
+      producerObject:
+        "accepted_full_point_event_rule_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and event/domain route",
+    },
+  ];
+  const firstMissingGlobalDeclarationFieldRow =
+    globalDeclarationFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const globalDeclarationSourceBoundary = {
+    schema:
+      "aaa-tri-binary-retained-global-transport-declaration-source-boundary.v1",
+    status: globalLawDeclarationPass
+      ? "retained_global_transport_declaration_source_boundary_closed"
+      : "retained_global_transport_declaration_source_boundary_open",
+    claimLevel:
+      "machine-readable fail-closed source boundary for the global retained transport declaration; not retained branch acceptance",
+    retainedBranchClaim: false,
+    routeRootKeys: uniqueRouteRootKeys,
+    firstMissingGlobalDeclarationField:
+      firstMissingGlobalDeclarationFieldRow?.field ?? null,
+    firstMissingProducerObject:
+      firstMissingGlobalDeclarationFieldRow?.producerObject ?? null,
+    firstMissingSameRecordBinding:
+      firstMissingGlobalDeclarationFieldRow?.requiredSameRecordBinding ?? null,
+    requiredGlobalDeclarationFields: globalDeclarationFieldRows,
+    smallestNextProducerObject:
+      firstMissingGlobalDeclarationFieldRow?.producerObject ??
+      "retained_branch_selection_residual",
+    noGoInterpretation:
+      "The local endpoint-provider point-event row is not promoted by this boundary. The first missing global declaration field must be produced on the same route/root-key retained row set before provider substitution geometry can be treated as global retained transport.",
+  };
   const declarationBlockers = [
     candidateGlobalTransportLiftPass
       ? null
@@ -24217,6 +24303,13 @@ function createRetainedGlobalTransportDeclarationTarget({
     retainedPayloadRowsPass,
     acceptedRetainedEnergyRoutingPass,
     acceptedFullPointEventRulePass,
+    globalDeclarationSourceBoundary,
+    firstMissingGlobalDeclarationField:
+      globalDeclarationSourceBoundary.firstMissingGlobalDeclarationField,
+    firstMissingProducerObject:
+      globalDeclarationSourceBoundary.firstMissingProducerObject,
+    firstMissingSameRecordBinding:
+      globalDeclarationSourceBoundary.firstMissingSameRecordBinding,
     firstOpenTransportBlocker,
     declarationBlockers,
     globalTransportAcceptanceBlockers,
@@ -24677,6 +24770,12 @@ async function createGlobalRetainedRowSetIdentityLiftTarget({
       midpointReplayContext,
       retainedRowSetBindingContext,
     });
+  const activeDomainExtensionProducerTarget =
+    createActiveDomainExtensionGlobalRowSetProducerTarget({
+      replayTarget,
+      obstructionTarget,
+      activeDomainExtensionFillRuleTarget,
+    });
   const status =
     replayTarget == null
       ? "global_retained_row_set_identity_lift_target_not_populated"
@@ -24746,9 +24845,135 @@ async function createGlobalRetainedRowSetIdentityLiftTarget({
     retainedRowSetBindingContext,
     retainedLimitation:
       "The hinge common root key has partial retained chains in every layer-pair channel, but current replay leaves positive-width both-inactive no-transition gaps before the same root key can be declared as a global chronological retained row set.",
+    activeDomainExtensionProducerTargetStatus:
+      activeDomainExtensionProducerTarget.status,
+    activeDomainExtensionProducerTarget,
     activeDomainExtensionFillStatus:
       activeDomainExtensionFillRuleTarget.status,
     activeDomainExtensionFillRuleTarget,
+  };
+}
+
+function createActiveDomainExtensionGlobalRowSetProducerTarget({
+  replayTarget,
+  obstructionTarget,
+  activeDomainExtensionFillRuleTarget,
+}) {
+  const activeDomainGapCount =
+    obstructionTarget?.noTransitionBothInactiveIntervalCount ?? 0;
+  const boundedInteriorGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootBoundedGapCount ?? 0;
+  const priorOnlyGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootPriorOnlyGapCount ?? 0;
+  const nextOnlyGapCount =
+    activeDomainExtensionFillRuleTarget?.eventRootNextOnlyGapCount ?? 0;
+  const pointContactCount =
+    activeDomainExtensionFillRuleTarget?.pointOnlyIntervalCount ?? 0;
+  const allPairsHaveGlobalReplay = replayTarget?.allPairsHaveGlobalReplay === true;
+  const allPairsHavePartialChain = replayTarget?.allPairsHavePartialChain === true;
+  const sameRecordBindingPass =
+    replayTarget?.eventRootKey != null &&
+    allPairsHaveGlobalReplay &&
+    activeDomainGapCount === 0;
+  const acceptedActiveDomainExtensionProducerPass =
+    sameRecordBindingPass &&
+    activeDomainExtensionFillRuleTarget?.status ===
+      "active_domain_extension_fill_rule_no_active_domain_gaps";
+  const requiredFieldRows = [
+    {
+      fieldId: "active_domain_gap_count",
+      fieldPass: activeDomainGapCount === 0,
+      populatedCount: activeDomainGapCount,
+      firstFieldBlocker:
+        activeDomainGapCount === 0
+          ? null
+          : "prove_active_domain_extension_for_both_inactive_gaps",
+    },
+    {
+      fieldId: "bounded_interior_gap_fill_rule",
+      fieldPass: boundedInteriorGapCount === 0,
+      populatedCount: boundedInteriorGapCount,
+      firstFieldBlocker:
+        boundedInteriorGapCount === 0
+          ? null
+          : "prove_event_root_bounded_interior_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "prior_only_endpoint_gap_rule",
+      fieldPass: priorOnlyGapCount === 0,
+      populatedCount: priorOnlyGapCount,
+      firstFieldBlocker:
+        priorOnlyGapCount === 0
+          ? null
+          : "prove_one_sided_endpoint_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "next_only_endpoint_gap_rule",
+      fieldPass: nextOnlyGapCount === 0,
+      populatedCount: nextOnlyGapCount,
+      firstFieldBlocker:
+        nextOnlyGapCount === 0
+          ? null
+          : "prove_one_sided_endpoint_inactive_gap_fill_rule",
+    },
+    {
+      fieldId: "point_contact_identity_rule",
+      fieldPass: pointContactCount === 0,
+      populatedCount: pointContactCount,
+      firstFieldBlocker:
+        pointContactCount === 0
+          ? null
+          : "declare_point_contact_identity_rule_for_both_inactive_gap_contacts",
+    },
+    {
+      fieldId: "same_record_binding",
+      fieldPass: sameRecordBindingPass,
+      eventRootKey: replayTarget?.eventRootKey ?? null,
+      allPairsHavePartialChain,
+      allPairsHaveGlobalReplay,
+      firstFieldBlocker: sameRecordBindingPass
+        ? null
+        : "same_route_root_key_global_retained_row_set_identity_missing",
+    },
+  ];
+  const firstMissingField =
+    requiredFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const firstMissingFillRule =
+    activeDomainExtensionFillRuleTarget?.firstActiveDomainExtensionBlocker ??
+    firstMissingField?.firstFieldBlocker ??
+    null;
+
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.v1",
+    status: acceptedActiveDomainExtensionProducerPass
+      ? "active_domain_extension_global_row_set_identity_producer_target_accepted"
+      : activeDomainGapCount > 0
+        ? "active_domain_extension_global_row_set_identity_producer_target_blocked_active_domain_gaps"
+        : "active_domain_extension_global_row_set_identity_producer_target_blocked_required_fields_missing",
+    claimLevel:
+      "fail-closed producer target for same_route_root_key_global_retained_row_set_identity_provider; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
+    firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    parentRowSetLiftBlocker:
+      "extend_active_root_domain_across_both_inactive_no_transition_gaps",
+    acceptedActiveDomainExtensionProducerPass,
+    eventRootKey: replayTarget?.eventRootKey ?? null,
+    activeDomainGapCount,
+    boundedInteriorGapCount,
+    priorOnlyGapCount,
+    nextOnlyGapCount,
+    pointContactCount,
+    firstMissingFillRule,
+    activeDomainExtensionFillStatus:
+      activeDomainExtensionFillRuleTarget?.status ?? null,
+    requiredFieldRows,
+    sameRecordBindingRequirements:
+      createActiveDomainExtensionSameRecordBindingRequirements(),
+    negativeControls: createActiveDomainExtensionNegativeControls(),
+    retainedLimitation:
+      "Hinge-point replay, endpoint-provider route-only rows, and route-authorized point events do not supply global chronological retained row-set identity. The producer must close active-domain extension on the same route/root-key retained row set before selected direct-absence transport or continuous interval witness rows can use it as accepted evidence.",
   };
 }
 
@@ -25013,6 +25238,11 @@ async function createEventRootBoundedInteriorGapFillRuleTarget({
       midpointReplayContext,
       retainedRowSetBindingContext,
     });
+  const nonlocalBracketFillRuleSourceBoundary =
+    createNonlocalEventRootBracketFillRuleSourceBoundary({
+      boundedRows,
+      bracketLatticeCandidateTarget,
+    });
   const nonlocalBracketGapCount =
     boundedRows.length - immediateBothEventRootBoundaryCount;
   const proofObligations = [
@@ -25086,12 +25316,160 @@ async function createEventRootBoundedInteriorGapFillRuleTarget({
     pairSummaries: createEventRootBoundedInteriorGapPairSummaries(boundedRows),
     bracketLatticeCandidateStatus: bracketLatticeCandidateTarget.status,
     bracketLatticeCandidateTarget,
+    nonlocalBracketFillRuleSourceBoundaryStatus:
+      nonlocalBracketFillRuleSourceBoundary.status,
+    nonlocalBracketFillRuleSourceBoundary,
     nextInteriorGapFillRoute:
       nonlocalBracketGapCount > 0
         ? "derive_nonlocal_event_root_bracket_fill_rule_with_distance_bounds"
         : "prove_immediate_event_root_boundary_fill_rule",
     retainedLimitation:
       "The bounded inactive gaps have event-root boundaries, but none has immediate event-root boundaries on both sides. A retained replay lift therefore needs a nonlocal bracket fill rule with distance and transport bounds, not only a local adjacency rule.",
+  };
+}
+
+function createNonlocalEventRootBracketFillRuleSourceBoundary({
+  boundedRows,
+  bracketLatticeCandidateTarget,
+}) {
+  const transportLawTarget =
+    bracketLatticeCandidateTarget?.transportLawTarget ?? null;
+  const affineLatticeLawTarget =
+    transportLawTarget?.affineLatticeLawTarget ?? null;
+  const identityConservationTarget =
+    affineLatticeLawTarget?.identityConservationTarget ?? null;
+  const rowManifest = boundedRows.map((row) => {
+    const priorDistance = row.priorEventRootBoundary?.distance ?? null;
+    const nextDistance = row.nextEventRootBoundary?.distance ?? null;
+    const bracketSpan =
+      Number.isFinite(priorDistance) &&
+      Number.isFinite(row.width) &&
+      Number.isFinite(nextDistance)
+        ? priorDistance + row.width + nextDistance
+        : null;
+    return {
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey ?? null,
+      endpointPresence: row.endpointPresence ?? null,
+      gapKind: row.gapKind ?? null,
+      width: finiteOrNull(row.width),
+      priorEventRootBoundaryDistance: finiteOrNull(priorDistance),
+      nextEventRootBoundaryDistance: finiteOrNull(nextDistance),
+      bracketSpan: finiteOrNull(bracketSpan),
+      immediatePriorEventRootBoundaryPass:
+        row.immediatePriorEventRootPass === true,
+      immediateNextEventRootBoundaryPass:
+        row.immediateNextEventRootPass === true,
+      immediateBothEventRootBoundaryPass:
+        row.immediateBothEventRootBoundaryPass === true,
+      priorBoundaryRootKeys:
+        row.priorEventRootBoundary?.retainedRootKeys ?? [],
+      nextBoundaryRootKeys:
+        row.nextEventRootBoundary?.retainedRootKeys ?? [],
+    };
+  });
+  const widths = rowManifest.map((row) => row.width).filter(Number.isFinite);
+  const priorDistances = rowManifest
+    .map((row) => row.priorEventRootBoundaryDistance)
+    .filter(Number.isFinite);
+  const nextDistances = rowManifest
+    .map((row) => row.nextEventRootBoundaryDistance)
+    .filter(Number.isFinite);
+  const bracketSpans = rowManifest
+    .map((row) => row.bracketSpan)
+    .filter(Number.isFinite);
+  const pairKeys = [...new Set(rowManifest.map((row) => row.pairKey))].sort();
+  const eventRootKeys = [
+    ...new Set(
+      rowManifest
+        .map((row) => row.eventRootKey)
+        .filter((eventRootKey) => eventRootKey != null)
+        .map(String)
+    ),
+  ].sort();
+  const allRowsHaveSameEventRootEndpoints =
+    transportLawTarget?.allRowsHaveSameEventRootEndpoints === true;
+  const allRowsLatticeAligned =
+    transportLawTarget?.allRowsLatticeAligned === true;
+  const affineLatticeLawCandidatePass =
+    affineLatticeLawTarget?.affineLatticeLawCandidatePass === true;
+  const acceptedTransportLawPass =
+    transportLawTarget?.acceptedTransportLawPass === true;
+  const acceptedIdentityConservationPass =
+    identityConservationTarget
+      ?.acceptedEventRootIdentityConservationPass === true;
+  const candidatePassFields = [
+    {
+      field: "same_event_root_endpoint_boundaries",
+      fieldPass: allRowsHaveSameEventRootEndpoints,
+    },
+    {
+      field: "bounded_gap_lattice_alignment",
+      fieldPass: allRowsLatticeAligned,
+    },
+    {
+      field: "affine_lattice_bracket_equation",
+      fieldPass: affineLatticeLawCandidatePass,
+    },
+    {
+      field: "event_root_identity_conservation_on_affine_bracket_interval",
+      fieldPass: acceptedIdentityConservationPass,
+    },
+    {
+      field: "accepted_nonlocal_event_root_bracket_transport_law",
+      fieldPass: acceptedTransportLawPass,
+    },
+  ];
+  const firstMissingProofSource =
+    acceptedTransportLawPass
+      ? null
+      : identityConservationTarget?.firstIdentityConservationBlocker ??
+        affineLatticeLawTarget?.firstAffineLawBlocker ??
+        transportLawTarget?.firstTransportLawBlocker ??
+        bracketLatticeCandidateTarget?.firstBracketLatticeBlocker ??
+        "derive_nonlocal_event_root_bracket_transport_law";
+
+  return {
+    schema:
+      "aaa-tri-binary-nonlocal-event-root-bracket-fill-rule-source-boundary.v1",
+    status: rowManifest.length === 0
+      ? "nonlocal_event_root_bracket_fill_rule_source_boundary_no_rows"
+      : acceptedTransportLawPass
+        ? "nonlocal_event_root_bracket_fill_rule_source_boundary_closed"
+        : "nonlocal_event_root_bracket_fill_rule_source_boundary_open",
+    claimLevel:
+      "machine-readable fail-closed source boundary for deriving the nonlocal event-root bracket fill rule; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentInteriorGapFillBlocker:
+      "derive_nonlocal_event_root_bracket_fill_rule",
+    boundedGapRowCount: rowManifest.length,
+    pairKeys,
+    eventRootKeys,
+    distanceAndSpanBounds: {
+      minWidth: minFinite(widths),
+      maxWidth: maxFinite(widths),
+      minPriorEventRootBoundaryDistance: minFinite(priorDistances),
+      maxPriorEventRootBoundaryDistance: maxFinite(priorDistances),
+      minNextEventRootBoundaryDistance: minFinite(nextDistances),
+      maxNextEventRootBoundaryDistance: maxFinite(nextDistances),
+      minBracketSpan: minFinite(bracketSpans),
+      maxBracketSpan: maxFinite(bracketSpans),
+    },
+    candidatePassFields,
+    firstMissingProofSource,
+    smallestNextProducerObject:
+      firstMissingProofSource ??
+      "global_retained_row_set_identity_provider",
+    bracketLatticeCandidateStatus:
+      bracketLatticeCandidateTarget?.status ?? null,
+    transportLawStatus: transportLawTarget?.status ?? null,
+    affineLatticeLawStatus: affineLatticeLawTarget?.status ?? null,
+    identityConservationStatus: identityConservationTarget?.status ?? null,
+    rows: rowManifest,
+    retainedLimitation:
+      "The bounded gap rows have event-root endpoint brackets and sampled lattice geometry, but the current evidence has not supplied a dynamic proof that the event-root identity is conserved across the affine bracket interval and then bound to the global retained row set.",
   };
 }
 
@@ -28623,6 +29001,10 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       directInteriorPresenceProbeTarget,
       dynamicPresenceMeasureLawTarget,
     });
+  const selectedDirectAbsenceTransportSourceTarget =
+    createSelectedDirectAbsenceTransportSourceTarget({
+      selectedActiveDomainBoundedGapFillSourceAudit,
+    });
 
   return {
     schema:
@@ -28675,6 +29057,20 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
       directInteriorPresenceProbeTarget.acceptedDirectInteriorPresenceRowCount,
     firstDirectInteriorPresenceProbeBlocker:
       directInteriorPresenceProbeTarget.firstDirectInteriorPresenceProbeBlocker,
+    continuousIntervalWitnessProducerTargetStatus:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessRowProducerTargetStatus ??
+      null,
+    continuousIntervalWitnessRequiredFieldIds:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessRequiredFieldIds ??
+      createContinuousIntervalWitnessRequiredFieldIds(),
+    continuousIntervalWitnessAcceptedRowCount:
+      directInteriorPresenceProbeTarget
+        .partialSupportContinuousIntervalWitnessAcceptedRowCount ?? 0,
+    firstContinuousIntervalWitnessProducerBlocker:
+      directInteriorPresenceProbeTarget
+        .firstContinuousIntervalWitnessProducerBlocker ?? null,
     absenceBridgeFillLawSearchTargetStatus:
       absenceBridgeFillLawSearchTarget.status,
     absenceBridgeFillLawSearchTarget,
@@ -29003,6 +29399,15 @@ async function createEventRootAffineBracketAbsenceBridgeFillRuleTarget({
     firstSelectedActiveDomainDirectAbsenceRowDependentTransportLawSearchBlocker:
       selectedActiveDomainBoundedGapFillSourceAudit
         .firstDirectAbsenceRowDependentTransportLawSearchBlocker,
+    selectedDirectAbsenceTransportSourceTargetStatus:
+      selectedDirectAbsenceTransportSourceTarget.status,
+    selectedDirectAbsenceTransportSourceTarget,
+    selectedDirectAbsenceTransportSourceAcceptedPass:
+      selectedDirectAbsenceTransportSourceTarget
+        .acceptedSelectedDirectAbsenceTransportSourcePass,
+    firstSelectedDirectAbsenceTransportSourceBlocker:
+      selectedDirectAbsenceTransportSourceTarget
+        .firstSelectedDirectAbsenceTransportSourceBlocker,
     selectedActiveDomainDirectAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus:
       selectedActiveDomainBoundedGapFillSourceAudit
         .directAbsenceIndependentFillLawCurrentSourceExclusionAuditStatus,
@@ -29351,6 +29756,222 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
     rows: auditRows,
     retainedLimitation:
       "The selected bounded touching-boundary gaps cannot be filled by local direct support alone: some selected gaps have only direct absence under the current replay, while the supported gaps are competitor-bearing partial-support rows without retained row-set binding.",
+  };
+}
+
+function createSelectedDirectAbsenceTransportSourceTarget({
+  selectedActiveDomainBoundedGapFillSourceAudit = null,
+} = {}) {
+  const dispositionTarget =
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceCurrentRouteDispositionTarget ?? null;
+  const rowDependentTransportLawSearchTarget =
+    dispositionTarget?.rowDependentTransportLawSearchTarget ??
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceRowDependentTransportLawSearchTarget ??
+    null;
+  const affinePhysicalStatusTarget =
+    dispositionTarget?.affinePriorSideTransportPhysicalStatusTarget ?? null;
+  const outOfSampleValidationAudit =
+    affinePhysicalStatusTarget?.outOfSampleValidationAudit ?? null;
+  const coefficientSourceAudit =
+    affinePhysicalStatusTarget?.coefficientSourceAudit ?? null;
+  const sourceBindingProofBaseAudit =
+    selectedActiveDomainBoundedGapFillSourceAudit
+      ?.directAbsenceSourceBindingProofBaseAudit ?? null;
+  const sourceRows =
+    rowDependentTransportLawSearchTarget?.sourceOffsetTargetRows ?? [];
+  const selectedBoundedRowsByKey = new Map(
+    (selectedActiveDomainBoundedGapFillSourceAudit?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const routeRootKeys = [
+    ...new Set(
+      sourceRows
+        .map((row) =>
+          row.eventRootKey ??
+          selectedBoundedRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`)
+            ?.eventRootKey
+        )
+        .filter((eventRootKey) => eventRootKey != null)
+        .map(String)
+    ),
+  ].sort();
+  const affineFit =
+    rowDependentTransportLawSearchTarget?.affinePriorSideFit ?? null;
+  const fittedCoefficients =
+    affinePhysicalStatusTarget?.fittedCoefficients ??
+    affineFit?.fittedCoefficients ??
+    null;
+  const acceptedOutOfSampleValidationPass =
+    (outOfSampleValidationAudit?.acceptedValidationCandidateRowCount ?? 0) > 0;
+  const acceptedNonTargetCoefficientPass =
+    (coefficientSourceAudit?.acceptedCoefficientSourceCandidateCount ?? 0) > 0;
+  const acceptedRetainedSourceBindingPass =
+    (sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0) >
+    0;
+  const acceptedSameRouteRootKeyRowSetIdentityPass =
+    acceptedRetainedSourceBindingPass &&
+    routeRootKeys.length === 1 &&
+    sourceRows.length > 0;
+  const acceptedSelectedDirectAbsenceTransportSourcePass =
+    acceptedOutOfSampleValidationPass &&
+    acceptedNonTargetCoefficientPass &&
+    acceptedRetainedSourceBindingPass &&
+    acceptedSameRouteRootKeyRowSetIdentityPass &&
+    affinePhysicalStatusTarget?.acceptedPhysicalTransportLawPass === true;
+  const requiredSourceFields = [
+    {
+      fieldId: "out_of_sample_selected_direct_absence_rows",
+      fieldPass: acceptedOutOfSampleValidationPass,
+      populatedRowCount:
+        outOfSampleValidationAudit?.validationCandidateRowCount ?? 0,
+      acceptedRowCount:
+        outOfSampleValidationAudit?.acceptedValidationCandidateRowCount ?? 0,
+      sourceStatus: outOfSampleValidationAudit?.status ?? null,
+      firstFieldBlocker:
+        outOfSampleValidationAudit?.firstOutOfSampleValidationBlocker ??
+        "add_out_of_sample_selected_direct_absence_rows",
+    },
+    {
+      fieldId: "non_target_affine_prior_side_coefficient_provenance",
+      fieldPass: acceptedNonTargetCoefficientPass,
+      populatedRowCount:
+        coefficientSourceAudit?.coefficientSourceCandidateCount ?? 0,
+      exactTargetDerivedRowCount:
+        coefficientSourceAudit
+          ?.exactTargetDerivedCoefficientSourceCandidateCount ?? 0,
+      independentRejectedRowCount:
+        coefficientSourceAudit
+          ?.independentRejectedCoefficientSourceCandidateCount ?? 0,
+      acceptedRowCount:
+        coefficientSourceAudit?.acceptedCoefficientSourceCandidateCount ?? 0,
+      sourceStatus: coefficientSourceAudit?.status ?? null,
+      firstFieldBlocker:
+        coefficientSourceAudit?.firstCoefficientSourceAuditBlocker ??
+        "derive_non_target_affine_prior_side_coefficient_source",
+    },
+    {
+      fieldId: "retained_source_binding",
+      fieldPass: acceptedRetainedSourceBindingPass,
+      populatedRowCount:
+        sourceBindingProofBaseAudit?.sourceBindingProofBaseRowCount ?? 0,
+      acceptedRowCount:
+        sourceBindingProofBaseAudit?.acceptedSourceBindingProofBaseRowCount ?? 0,
+      sourceStatus: sourceBindingProofBaseAudit?.status ?? null,
+      firstFieldBlocker:
+        sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+        "bind_selected_direct_absence_sources_to_retained_row_set",
+    },
+    {
+      fieldId: "same_route_root_key_global_retained_row_set_identity",
+      fieldPass: acceptedSameRouteRootKeyRowSetIdentityPass,
+      populatedRouteRootKeyCount: routeRootKeys.length,
+      routeRootKeys,
+      acceptedRowCount:
+        acceptedSameRouteRootKeyRowSetIdentityPass ? sourceRows.length : 0,
+      sourceStatus:
+        routeRootKeys.length === 1
+          ? "same_route_root_key_populated_global_row_set_identity_missing"
+          : "same_route_root_key_missing_or_nonunique",
+      firstFieldBlocker:
+        sourceBindingProofBaseAudit?.firstSourceBindingProofBaseBlocker ??
+        "same_route_root_key_global_retained_row_set_identity_missing",
+    },
+  ];
+  const firstMissingField =
+    requiredSourceFields.find((field) => field.fieldPass !== true) ?? null;
+  const selectedRows = sourceRows.map((row) => ({
+    pairKey: row.pairKey,
+    edgeIndex: row.edgeIndex,
+    side: row.side,
+    eventRootKey:
+      row.eventRootKey ??
+      selectedBoundedRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`)
+        ?.eventRootKey ??
+      null,
+    priorDistanceUnits: row.priorDistanceUnits ?? null,
+    sideSign: row.sideSign ?? null,
+    requiredOffsetUnits: row.requiredOffsetUnits ?? null,
+    supportSourceKind: row.supportSourceKind ?? null,
+    supportSourcePairKey: row.supportSourcePairKey ?? null,
+    supportSourceEdgeIndex: row.supportSourceEdgeIndex ?? null,
+    supportSourceStartOffsetUnits:
+      row.supportSourceStartOffsetUnits ?? null,
+    supportSourceAcceptedFillPass:
+      row.supportSourceAcceptedFillPass === true,
+    supportSourceRetainedBindingBlockedPass:
+      row.supportSourceRetainedBindingBlockedPass === true,
+    crossPairOnlySupportSourcePass:
+      row.crossPairOnlySupportSourcePass === true,
+  }));
+
+  return {
+    schema:
+      "aaa-tri-binary-selected-direct-absence-transport-source-target.v1",
+    status: sourceRows.length === 0
+      ? "selected_direct_absence_transport_source_target_no_domain"
+      : acceptedSelectedDirectAbsenceTransportSourcePass
+        ? "selected_direct_absence_transport_source_target_accepted"
+        : affinePhysicalStatusTarget?.firstPhysicalStatusBlocker ===
+            "add_out_of_sample_selected_direct_absence_rows_or_derive_non_target_coefficients"
+          ? "selected_direct_absence_transport_source_target_blocked_saturated_affine_fit_no_holdout_or_non_target_coefficients"
+        : "selected_direct_absence_transport_source_target_blocked_required_source_fields_missing",
+    claimLevel:
+      "fail-closed source target for deciding whether selected direct-absence affine transport can serve derive_event_root_absence_bridge_fill_law; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentProofSource: "derive_event_root_absence_bridge_fill_law",
+    acceptedSelectedDirectAbsenceTransportSourcePass,
+    selectedDirectAbsenceRowCount: sourceRows.length,
+    routeRootKeys,
+    affineTransportFormula:
+      fittedCoefficients == null
+        ? null
+        : `Delta k = ${fittedCoefficients.constant} + ${fittedCoefficients.priorDistanceUnits} p + ${fittedCoefficients.sideSign} s`,
+    fittedCoefficients,
+    fittedFromSelectedRowCount:
+      affinePhysicalStatusTarget?.fittedFromSelectedRowCount ??
+      affineFit?.fittedFromSelectedRowCount ??
+      0,
+    fittedCoefficientCount:
+      affinePhysicalStatusTarget?.fittedCoefficientCount ?? null,
+    degreesOfFreedom: affinePhysicalStatusTarget?.degreesOfFreedom ?? null,
+    saturatedFitPass:
+      affinePhysicalStatusTarget?.saturatedFitPass === true,
+    targetDerivedFitPass:
+      affinePhysicalStatusTarget?.targetDerivedFitPass === true,
+    exactFormalFitPass:
+      affinePhysicalStatusTarget?.exactFormalFitPass === true,
+    affinePriorSideTransportPhysicalStatusTargetStatus:
+      affinePhysicalStatusTarget?.status ?? null,
+    outOfSampleValidationAuditStatus:
+      outOfSampleValidationAudit?.status ?? null,
+    coefficientSourceAuditStatus: coefficientSourceAudit?.status ?? null,
+    sourceBindingProofBaseAuditStatus:
+      sourceBindingProofBaseAudit?.status ?? null,
+    requiredSourceFields,
+    firstMissingSourceField: firstMissingField?.fieldId ?? null,
+    firstSelectedDirectAbsenceTransportSourceBlocker:
+      firstMissingField?.firstFieldBlocker ??
+      affinePhysicalStatusTarget?.firstPhysicalStatusBlocker ??
+      null,
+    smallestNextProducerObject:
+      firstMissingField?.fieldId === "out_of_sample_selected_direct_absence_rows"
+        ? "out_of_sample_selected_direct_absence_validation_row"
+        : firstMissingField?.fieldId ===
+            "non_target_affine_prior_side_coefficient_provenance"
+          ? "non_target_affine_prior_side_coefficient_source"
+          : firstMissingField?.fieldId === "retained_source_binding"
+            ? "selected_direct_absence_retained_source_binding"
+            : firstMissingField?.fieldId ===
+                "same_route_root_key_global_retained_row_set_identity"
+              ? "same_route_root_key_global_retained_row_set_identity_provider"
+              : null,
+    selectedRows,
+    retainedLimitation:
+      "The selected direct-absence affine formula remains a saturated, target-derived current-source fit. It cannot serve the event-root absence-bridge fill law until a holdout selected direct-absence row or non-target coefficient source, accepted retained source binding, and same route/root-key global retained row-set identity are supplied.",
   };
 }
 
@@ -33138,6 +33759,21 @@ async function createEventRootAffineBracketAbsenceBridgeDirectInteriorPresencePr
     firstContinuousIntervalLawSourceBlocker:
       continuousIntervalLawSourceAudit
         ?.firstContinuousIntervalLawSourceBlocker ?? null,
+    partialSupportContinuousIntervalWitnessRowProducerTargetStatus:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessRowProducerTargetStatus,
+    partialSupportContinuousIntervalWitnessRequiredFieldIds:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessRequiredFieldIds,
+    partialSupportContinuousIntervalWitnessAcceptedRowCount:
+      threePointDirectInteriorReplayAudit
+        .partialSupportContinuousIntervalWitnessAcceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      threePointDirectInteriorReplayAudit
+        .firstContinuousIntervalWitnessProducerBlocker ??
+      continuousIntervalLawSourceAudit
+        ?.firstContinuousIntervalWitnessProducerBlocker ??
+      null,
     directMidpointIntervalRouteClassificationAuditStatus:
       directMidpointIntervalRouteClassificationAudit.status,
     directMidpointIntervalRouteRejectedPass:
@@ -33340,6 +33976,16 @@ async function createEventRootAffineBracketAbsenceBridgeThreePointDirectInterior
       partialSupportIntervalWitnessAudit.nonzeroJacobianDenseSupportRowCount,
     partialSupportAcceptedIntervalWitnessRowCount:
       partialSupportIntervalWitnessAudit.acceptedPartialSupportIntervalWitnessRowCount,
+    partialSupportContinuousIntervalWitnessRowProducerTargetStatus:
+      partialSupportIntervalWitnessAudit
+        .continuousIntervalWitnessRowProducerTargetStatus,
+    partialSupportContinuousIntervalWitnessRequiredFieldIds:
+      partialSupportIntervalWitnessAudit.continuousIntervalWitnessRequiredFieldIds,
+    partialSupportContinuousIntervalWitnessAcceptedRowCount:
+      partialSupportIntervalWitnessAudit.continuousIntervalWitnessAcceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      partialSupportIntervalWitnessAudit
+        .firstContinuousIntervalWitnessProducerBlocker,
     firstPartialSupportIntervalWitnessBlocker:
       partialSupportIntervalWitnessAudit.firstPartialSupportIntervalWitnessBlocker,
     acceptedDirectInteriorPresenceRowCount: acceptedRows.length,
@@ -33416,6 +34062,12 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
   const missingWitnessFieldIds = unionStrings(
     rows.flatMap((row) => row.missingWitnessFieldIds ?? [])
   );
+  const continuousIntervalWitnessRowProducerTarget =
+    createContinuousIntervalWitnessRowProducerTarget({
+      sourceObjectId:
+        "partial_support_interval_proof_field_audit",
+      rows: intervalProofFieldAudit.rows,
+    });
   return {
     schema:
       "aaa-tri-binary-event-root-affine-bracket-non-midpoint-partial-support-interval-witness-audit.v1",
@@ -33477,6 +34129,18 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
       intervalProofFieldAudit.retainedRowSetBindingProofRowCount,
     firstIntervalProofFieldBlocker:
       intervalProofFieldAudit.firstIntervalProofFieldBlocker,
+    continuousIntervalWitnessRowProducerTargetStatus:
+      continuousIntervalWitnessRowProducerTarget.status,
+    continuousIntervalWitnessRequiredFieldIds:
+      continuousIntervalWitnessRowProducerTarget.requiredFieldIds,
+    continuousIntervalWitnessCandidateRowCount:
+      continuousIntervalWitnessRowProducerTarget.candidateRowCount,
+    continuousIntervalWitnessAcceptedRowCount:
+      continuousIntervalWitnessRowProducerTarget.acceptedRowCount,
+    continuousIntervalWitnessCompetitorBearingRowCount:
+      continuousIntervalWitnessRowProducerTarget.competitorBearingRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      continuousIntervalWitnessRowProducerTarget.firstProducerBlocker,
     acceptedPartialSupportIntervalWitnessRowCount: acceptedRows.length,
     missingWitnessFieldIds,
     firstPartialSupportIntervalWitnessBlocker:
@@ -33502,6 +34166,7 @@ async function createEventRootAffineBracketNonMidpointPartialSupportIntervalWitn
     rows,
     boundaryBracketAudit,
     intervalProofFieldAudit,
+    continuousIntervalWitnessRowProducerTarget,
     retainedLimitation:
       "Dense support near a non-midpoint sample only localizes a possible subinterval. Acceptance still requires explicit interval-witness fields, endpoint or derivative control, and retained row-set binding before any positive-width absence bridge can be filled.",
   };
@@ -36713,6 +37378,12 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
   const missingWitnessFieldIds = unionStrings(
     auditRows.flatMap((row) => row.missingWitnessFieldIds ?? [])
   );
+  const continuousIntervalWitnessRowProducerTarget =
+    createContinuousIntervalWitnessRowProducerTarget({
+      sourceObjectId:
+        "midpoint_presence_continuous_interval_law_source_audit",
+      rows: auditRows,
+    });
   return {
     schema:
       "aaa-tri-binary-event-root-affine-bracket-midpoint-presence-continuous-interval-law-source-audit.v1",
@@ -36735,6 +37406,16 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
     missingWitnessFieldIds,
     certifiedIntervalWitnessRowCount: certifiedRows.length,
     acceptedContinuousIntervalLawRowCount: acceptedRows.length,
+    continuousIntervalWitnessRowProducerTargetStatus:
+      continuousIntervalWitnessRowProducerTarget.status,
+    continuousIntervalWitnessRequiredFieldIds:
+      continuousIntervalWitnessRowProducerTarget.requiredFieldIds,
+    continuousIntervalWitnessCandidateRowCount:
+      continuousIntervalWitnessRowProducerTarget.candidateRowCount,
+    continuousIntervalWitnessAcceptedRowCount:
+      continuousIntervalWitnessRowProducerTarget.acceptedRowCount,
+    firstContinuousIntervalWitnessProducerBlocker:
+      continuousIntervalWitnessRowProducerTarget.firstProducerBlocker,
     rowsWithNonzeroJacobianMarginCount: auditRows.filter(
       (row) => row.nonzeroJacobianMarginPass
     ).length,
@@ -36758,6 +37439,7 @@ function createMidpointPresenceContinuousIntervalLawSourceAudit({ rows }) {
         : []),
       "bind_any_interval_law_to_retained_row_set",
     ],
+    continuousIntervalWitnessRowProducerTarget,
     rowSamples: auditRows.slice(0, 24),
     rows: auditRows,
     retainedLimitation:
@@ -36890,6 +37572,315 @@ function createDirectMidpointIntervalRouteClassificationAudit({
     ],
     retainedLimitation:
       "The current direct midpoint evidence is split between dense-supported diagonal zero-delay rows and a non-diagonal row that has a dense event-root gap. Since no row combines dense support with a nonzero-Jacobian interval source, the current direct midpoint interval route is rejected as a global absence-bridge fill law under present evidence.",
+  };
+}
+
+function createContinuousIntervalWitnessRowProducerTarget({
+  sourceObjectId,
+  rows,
+}) {
+  const targetRows = (rows ?? []).map((row) =>
+    createContinuousIntervalWitnessProducerRow({
+      row,
+      sourceObjectId,
+    })
+  );
+  const acceptedRows = targetRows.filter(
+    (row) => row.acceptedContinuousIntervalWitnessRowPass
+  );
+  const sampledOnlyRows = targetRows.filter(
+    (row) => row.sampledDenseSupportNegativeControlPass
+  );
+  const competitorRows = targetRows.filter(
+    (row) => row.competitorBearingPartialRowNegativeControlPass
+  );
+  const missingRequiredFieldIds = unionStrings(
+    targetRows.flatMap((row) => row.missingRequiredFieldIds)
+  );
+  return {
+    schema:
+      "aaa-tri-binary-continuous-interval-witness-row-producer-target.v1",
+    status: targetRows.length === 0
+      ? "continuous_interval_witness_row_producer_target_no_candidate_rows"
+      : acceptedRows.length === targetRows.length
+        ? "continuous_interval_witness_row_producer_target_accepted"
+        : competitorRows.length > 0
+          ? "continuous_interval_witness_row_producer_target_blocked_competitor_bearing_partial_support"
+          : sampledOnlyRows.length > 0
+            ? "continuous_interval_witness_row_producer_target_blocked_sampled_dense_support_not_accepted"
+            : "continuous_interval_witness_row_producer_target_blocked_required_fields_missing",
+    claimLevel:
+      "fail-closed producer target for continuous_interval_witness_row; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "continuous_interval_witness_row",
+    sourceObjectId,
+    eventRootKey: 2856731379702547500,
+    requiredFieldIds: createContinuousIntervalWitnessRequiredFieldIds(),
+    candidateRowCount: targetRows.length,
+    acceptedRowCount: acceptedRows.length,
+    sampledDenseSupportNegativeControlRowCount: sampledOnlyRows.length,
+    competitorBearingRowCount: competitorRows.length,
+    missingRequiredFieldIds,
+    firstProducerBlocker:
+      acceptedRows.length === targetRows.length && targetRows.length > 0
+        ? null
+        : competitorRows[0]?.firstProducerRowBlocker ??
+          sampledOnlyRows[0]?.firstProducerRowBlocker ??
+          targetRows.find((row) => row.firstProducerRowBlocker)
+            ?.firstProducerRowBlocker ??
+          "continuous_interval_witness_required_fields_missing",
+    rowSamples: targetRows.slice(0, 8),
+    rows: targetRows,
+    retainedLimitation:
+      "Sampled dense support and sampled root-sheet or derivative-sign candidates do not produce an accepted continuous_interval_witness_row. A producer row must carry the required same route/root-key retained fields, an accepted nonlocal transport law, and retained source binding on the same row.",
+  };
+}
+
+function createContinuousIntervalWitnessProducerRow({ row, sourceObjectId }) {
+  const boundedGapRowId =
+    row.boundedGapRowId ??
+    (row.pairKey != null && Number.isFinite(row.edgeIndex)
+      ? `${row.pairKey}:edge-${row.edgeIndex}`
+      : null);
+  const positiveWidthIntervalWitnessCandidatePass =
+    (Number.isFinite(row.supportStartTime) &&
+      Number.isFinite(row.supportEndTime) &&
+      row.supportEndTime - row.supportStartTime > ROOT_TOLERANCE) ||
+    (Number.isFinite(row.width) && row.width > ROOT_TOLERANCE);
+  const sampledDenseSupportCandidatePass =
+    row.denseSampleSupportCandidatePass === true ||
+    row.sampledRootSheetEnclosureCandidatePass === true ||
+    row.sampledDerivativeSignMarginCandidatePass === true ||
+    (row.eventRootPresenceDenseInteriorSampleRowCount ?? 0) > 0;
+  const competitorBearingPartialRowNegativeControlPass =
+    (row.competitorRootKeys ?? []).length > 0 ||
+    row.competitorRootPresentPass === true ||
+    row.allSupportSamplesHaveCompetitorDetailPass === true;
+  const sampledDenseSupportNegativeControlPass =
+    sampledDenseSupportCandidatePass &&
+    row.acceptedContinuousIntervalLawRowPass !== true &&
+    row.acceptedIntervalProofFieldRowPass !== true;
+  const evidenceByFieldId = {
+    bounded_gap_row_id: boundedGapRowId != null,
+    pair_key: row.pairKey != null,
+    edge_index: Number.isFinite(row.edgeIndex),
+    side: row.side != null,
+    prior_event_root_boundary_distance:
+      Number.isFinite(row.priorEventRootBoundaryDistance) ||
+      Number.isFinite(row.priorDistanceUnits),
+    next_event_root_boundary_distance:
+      Number.isFinite(row.nextEventRootBoundaryDistance) ||
+      Number.isFinite(row.nextDistanceUnits),
+    affine_bracket_span:
+      Number.isFinite(row.affineBracketSpan) ||
+      Number.isFinite(row.bracketSpanUnits),
+    inactive_interval:
+      Array.isArray(row.inactiveInterval) ||
+      (Number.isFinite(row.start) &&
+        Number.isFinite(row.end) &&
+        Number.isFinite(row.width)),
+    positive_width_interval_witness:
+      row.acceptedContinuousIntervalLawRowPass === true ||
+      row.acceptedIntervalProofFieldRowPass === true,
+    endpoint_sign_or_derivative_monotonic_bound:
+      row.endpointSignBracketPass === true ||
+      row.derivativeOrMonotonicBoundPass === true ||
+      row.continuousDerivativeOrMonotonicityBoundPass === true,
+    root_sheet_enclosure:
+      row.rootSheetIntervalEnclosurePass === true ||
+      row.continuousRootSheetEnclosurePass === true,
+    nonzero_jacobian_margin:
+      row.nonzeroJacobianMarginPass === true ||
+      row.sampledDerivativeSignMarginCandidatePass === true ||
+      (Number.isFinite(row.minAbsJacobian) &&
+        row.minAbsJacobian > ROOT_TOLERANCE),
+    lattice_alignment: row.latticeAlignmentPass === true,
+    retained_source_binding:
+      row.retainedSourceBindingPass === true ||
+      row.retainedRowSetBindingProofPass === true,
+    accepted_nonlocal_transport_law:
+      row.acceptedNonlocalTransportLawPass === true,
+    event_root_key: row.eventRootKey === 2856731379702547500,
+    same_route_root_key_row_set_identity:
+      row.sameRouteRootKeyRowSetIdentityPass === true ||
+      row.retainedRowSetBindingProofPass === true,
+  };
+  const missingRequiredFieldIds =
+    createContinuousIntervalWitnessRequiredFieldIds().filter(
+      (fieldId) => evidenceByFieldId[fieldId] !== true
+    );
+  const acceptedContinuousIntervalWitnessRowPass =
+    missingRequiredFieldIds.length === 0 &&
+    sampledDenseSupportNegativeControlPass !== true &&
+    competitorBearingPartialRowNegativeControlPass !== true;
+  const firstProducerRowBlocker = acceptedContinuousIntervalWitnessRowPass
+    ? null
+    : competitorBearingPartialRowNegativeControlPass
+      ? "competitor_bearing_partial_support_not_accepted_interval_witness"
+      : sampledDenseSupportNegativeControlPass
+        ? "sampled_dense_support_not_accepted_interval_witness"
+        : missingRequiredFieldIds[0] ??
+          "continuous_interval_witness_required_fields_missing";
+  return {
+    producerRowId:
+      boundedGapRowId == null
+        ? null
+        : `continuous_interval_witness_row:${boundedGapRowId}`,
+    sourceObjectId,
+    boundedGapRowId,
+    pairKey: row.pairKey ?? null,
+    edgeIndex: row.edgeIndex ?? null,
+    side: row.side ?? null,
+    eventRootKey: row.eventRootKey ?? null,
+    supportStartTime: row.supportStartTime ?? row.start ?? null,
+    supportEndTime: row.supportEndTime ?? row.end ?? null,
+    supportSampleCount: row.supportSampleCount ?? null,
+    minAbsJacobian: row.minAbsJacobian ?? null,
+    sampledDenseSupportCandidatePass,
+    sampledDenseSupportNegativeControlPass,
+    positiveWidthIntervalWitnessCandidatePass,
+    sampledRootSheetEnclosureCandidatePass:
+      row.sampledRootSheetEnclosureCandidatePass === true,
+    sampledDerivativeSignMarginCandidatePass:
+      row.sampledDerivativeSignMarginCandidatePass === true,
+    competitorBearingPartialRowNegativeControlPass,
+    competitorRootKeys: row.competitorRootKeys ?? [],
+    retainedRowSetBindingProofPass:
+      row.retainedRowSetBindingProofPass === true,
+    acceptedNonlocalTransportLawPass:
+      row.acceptedNonlocalTransportLawPass === true,
+    requiredFieldChecks: Object.entries(evidenceByFieldId).map(
+      ([fieldId, fieldPresent]) => ({ fieldId, fieldPresent })
+    ),
+    missingRequiredFieldIds,
+    acceptedContinuousIntervalWitnessRowPass,
+    firstProducerRowBlocker,
+  };
+}
+
+function createContinuousIntervalWitnessRequiredFieldIds() {
+  return [
+    "bounded_gap_row_id",
+    "pair_key",
+    "edge_index",
+    "side",
+    "prior_event_root_boundary_distance",
+    "next_event_root_boundary_distance",
+    "affine_bracket_span",
+    "inactive_interval",
+    "positive_width_interval_witness",
+    "endpoint_sign_or_derivative_monotonic_bound",
+    "root_sheet_enclosure",
+    "nonzero_jacobian_margin",
+    "lattice_alignment",
+    "retained_source_binding",
+    "accepted_nonlocal_transport_law",
+    "event_root_key",
+    "same_route_root_key_row_set_identity",
+  ];
+}
+
+function createContinuousIntervalWitnessProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-continuous-interval-witness-row-producer-target.schema.v1",
+    targetObjectId: "continuous_interval_witness_row",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed producer target; not retained branch acceptance",
+    requiredFieldIds: createContinuousIntervalWitnessRequiredFieldIds(),
+    negativeControls: [
+      {
+        id: "sampled_dense_support_not_accepted_interval_witness",
+        rejects:
+          "dense sampled support without accepted interval-witness fields and retained row-set binding",
+      },
+      {
+        id: "competitor_bearing_partial_support_not_accepted_interval_witness",
+        rejects:
+          "partial support rows carrying a competitor active root before accepted retained source binding or a same route/root-key row-set identity exists",
+      },
+    ],
+  };
+}
+
+function createActiveDomainExtensionSameRecordBindingRequirements() {
+  return [
+    "event_root_key_2856731379702547500",
+    "same_route_root_key_retained_row_set",
+    "all_layer_pair_chronological_replay_identity",
+    "active_domain_extension_fill_rule",
+    "global_retained_row_set_identity_provider",
+  ];
+}
+
+function createActiveDomainExtensionNegativeControls() {
+  return [
+    {
+      id: "endpoint_provider_route_only_rows_not_global_row_set_identity",
+      rejects:
+        "route-authorized endpoint-provider point-event rows without global chronological retained row-set identity",
+    },
+    {
+      id: "hinge_point_replay_not_global_row_set_identity",
+      rejects:
+        "hinge-point common-root replay before all layer-pair chronological replay channels carry the same active root key",
+    },
+    {
+      id: "route_authorized_point_events_not_global_row_set_identity",
+      rejects:
+        "route-authorized point-event rows before active-domain extension or an accepted full point-event rule",
+    },
+    {
+      id: "target_derived_affine_fits_not_global_row_set_identity",
+      rejects:
+        "selected direct-absence saturated affine fits and target-derived coefficient rows",
+    },
+    {
+      id: "sampled_dense_support_not_global_row_set_identity",
+      rejects:
+        "sampled dense-support rows without accepted retained row-set binding",
+    },
+    {
+      id: "phase_cancellation_rows_not_global_row_set_identity",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without the same global retained row set",
+    },
+    {
+      id: "aggregate_rows_not_global_row_set_identity",
+      rejects:
+        "aggregate summaries that do not bind every required field on one retained record",
+    },
+    {
+      id: "cross_row_bundles_not_global_row_set_identity",
+      rejects:
+        "cross-row joins that assemble route/root-key identity from separate retained records",
+    },
+  ];
+}
+
+function createActiveDomainExtensionProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-active-domain-extension-global-row-set-identity-producer-target.schema.v1",
+    targetObjectId: "same_route_root_key_global_retained_row_set_identity_provider",
+    firstProducerObject: "prove_active_domain_extension_for_both_inactive_gaps",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed producer target; not retained branch acceptance",
+    requiredFieldIds: [
+      "active_domain_gap_count",
+      "bounded_interior_gap_fill_rule",
+      "prior_only_endpoint_gap_rule",
+      "next_only_endpoint_gap_rule",
+      "point_contact_identity_rule",
+      "same_record_binding",
+    ],
+    sameRecordBindingRequirements:
+      createActiveDomainExtensionSameRecordBindingRequirements(),
+    negativeControls: createActiveDomainExtensionNegativeControls(),
   };
 }
 
@@ -61793,5 +62784,7 @@ function printUsage(exitCode) {
   );
   console.log(`  --output <path>   JSON report path. Default: ${DEFAULT_OUTPUT_PATH}`);
   console.log("  --wasm-dir <path> Solver WASM build directory. Default: .tmp/solver-build/wasm");
+  console.log("  --schema continuous-interval-witness-producer-target  Print the fail-closed interval-witness producer schema and exit");
+  console.log("  --schema active-domain-extension-row-set-producer-target  Print the fail-closed active-domain extension producer schema and exit");
   process.exit(exitCode);
 }
