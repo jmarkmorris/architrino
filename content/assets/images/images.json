@@ -535,8 +535,8 @@
         "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2527294,
-      "sha256": "d24012735e2c0f3dde5888e98e5393dc1c4f89d8f8deb609ee4cedab8526dadf",
+      "fileSizeBytes": 3465613,
+      "sha256": "ac53708cf5efacadd64f59b5a627b1eeb248ca26e9a2914ebe5b36e50aa97b8c",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -545,7 +545,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation with local square edge extension",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -585,8 +585,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 184045,
-      "sha256": "b518db2fa3e22cfcb78191468d1b1d75789cf7313b547d2b0fa346b9b13da1d0",
+      "fileSizeBytes": 228090,
+      "sha256": "f0808924bcdb9a68fb60abbefb2f96c47f06c588086942e0bfadf15d4a540c5d",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1225,8 +1225,8 @@
         "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2803548,
-      "sha256": "cb49f64b430d061ef89f37faca7237f645d34be4a89d5774d62254734d905587",
+      "fileSizeBytes": 3493887,
+      "sha256": "047befecfe0d91f83c969eddd825bbc106b8bea75c71c662ef0bb6c28a7021b1",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1235,7 +1235,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation with local square edge extension",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1274,8 +1274,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 192039,
-      "sha256": "5145f7c861ba090e7f361d84976f8d12fc5aa357afcfa0cc324b7dcbbec5a755",
+      "fileSizeBytes": 227444,
+      "sha256": "5235f4f245789ee1192ce81dee5b618a734b272dcc7fbf6bb4d7c7b0188c7859",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1323,8 +1323,8 @@
         "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2968248,
-      "sha256": "27bb6c2e52c25a65272ba122aae8e01ad2437670c6ecb8595b8e5e78c8d91379",
+      "fileSizeBytes": 3600444,
+      "sha256": "688fcf3f206f822c04149ddf3bd71676e4870d534828d6a6c8e7cb7e695fb090",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1333,7 +1333,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation with local square edge extension",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1373,8 +1373,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 196314,
-      "sha256": "c9fd6998ea4d81050c8c3813805fe2a78847b80175e53dcb4f83e56429dc36f7",
+      "fileSizeBytes": 231660,
+      "sha256": "a16faa998f14336c0fbec211e05e0c8e7638f63f02c96cb7a88b895b0bcef649",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1422,8 +1422,8 @@
         "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2677643,
-      "sha256": "7f29577efd5eba4f0f29b6908902433076c5ea5d597f7e0792a9aa83efee10b0",
+      "fileSizeBytes": 3289418,
+      "sha256": "6762818769d59bdba195f8afa7557078baca2302c438a8fc5658f1e31da6852a",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1432,7 +1432,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation with local square edge extension",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1472,8 +1472,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 178970,
-      "sha256": "658a26a67fbdb8d8e12740f45bdbe5591e89c592f17ced67e86569fe9c7c8966",
+      "fileSizeBytes": 208312,
+      "sha256": "73490c2da8df68a4576d38591e3fa09b04f1a963bf0962d43a237a0af7ea067f",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1621,8 +1621,8 @@
         "width": 1536,
         "height": 1536
       },
-      "fileSizeBytes": 2974996,
-      "sha256": "419f53fad2647c82269963db6c75b6b6dc361ddaf14cd66fe9b79f8cf4666e35",
+      "fileSizeBytes": 3554484,
+      "sha256": "b54cb4a6c3495e3a775e7b0a8adf435da485009187a506ed75828c1befc73bc6",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -1631,7 +1631,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation with local square edge extension",
+        "generator": "OpenAI image edit outpaint from original rectangular comic source",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -1671,8 +1671,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 200522,
-      "sha256": "e32f49af3037531f900e7604d5bb4850452f5ae9c54f73114681fd5637da143f",
+      "fileSizeBytes": 235397,
+      "sha256": "be6d7709923e9a072e8086681b0592f411f2015485a60eef0ecf6325703dce7e",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
