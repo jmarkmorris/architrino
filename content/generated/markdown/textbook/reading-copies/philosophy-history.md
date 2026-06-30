@@ -7859,6 +7859,51 @@ $$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective-mode benchmark, not a statement that the substrate creates or destroys particles when $a^\dagger$ or $a$ is applied. The recovery burden is to identify the retained assembly branch, apparatus kernel, and record window whose coarse variables make the oscillator algebra admissible. If the same chart cannot supply the commutator, level spacing, ground-state lower bound, and generated higher-state record family without changing $\mathcal{Q}$, $\mathcal{K}$, $W$, or $T$, the ladder operators remain a useful calculation chart rather than a closed operator recovery.
 
+##### Orbital-Angular-Momentum Ladder Benchmark
+
+Orbital angular momentum supplies a second operator benchmark with a different ladder structure. The harmonic oscillator ladder is semi-infinite and lower-bounded. The orbital angular-momentum ladder is finite at fixed $\ell$: the same effective chart must recover the $L^2$ value, one chosen projection such as $L_z$, the raising and lowering of that projection, and the top and bottom termination conditions.
+
+For a declared orbital coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $L_x^\theta$, $L_y^\theta$, and $L_z^\theta$ be the effective angular-momentum record operators extracted from one apparatus and envelope chart. The standard comparison algebra is
+$$
+[L_i^\theta,L_j^\theta]\approx i\hbar\,\epsilon_{ijk}L_k^\theta,
+\qquad
+[(L^\theta)^2,L_i^\theta]\approx0
+$$
+with the approximation evaluated in the same record norm used for the operator map. Thus the chart may assign a simultaneous effective record to $(L^\theta)^2$ and one chosen component, but not to all three components at once.
+
+The ladder operators are
+$$
+L_\pm^\theta=L_x^\theta\pm iL_y^\theta
+$$
+and should satisfy
+$$
+[L_z^\theta,L_\pm^\theta]\approx\pm\hbar L_\pm^\theta,
+\qquad
+[(L^\theta)^2,L_\pm^\theta]\approx0.
+$$
+For a validated orbital family $\{|\ell,m\rangle_\theta\}$, the finite ladder comparison is
+$$
+(L^\theta)^2|\ell,m\rangle_\theta
+\approx
+\ell(\ell+1)\hbar^2|\ell,m\rangle_\theta,
+\qquad
+L_z^\theta|\ell,m\rangle_\theta
+\approx
+m\hbar|\ell,m\rangle_\theta,
+$$
+with
+$$
+m\in\{-\ell,-\ell+1,\ldots,\ell\},
+\qquad
+L_+^\theta|\ell,\ell\rangle_\theta\approx0,
+\qquad
+L_-^\theta|\ell,-\ell\rangle_\theta\approx0.
+$$
+
+This is not a claim that the substrate carries preassigned values of all angular-momentum components. The chosen $z$ axis is an apparatus-context and envelope-chart choice, often fixed by an external magnetic-state map in atomic comparisons. The recovery burden is that the same assembly branch, causal-wake history, apparatus kernel, and record window make the noncommuting component algebra, the shared $(L^2,L_z)$ record, the $2\ell+1$ projection count, and the finite ladder endpoints appear together. If these rows require different charts, the construction has reproduced a useful textbook calculation but has not recovered orbital angular momentum as one effective operator record.
+
+The domain is also restricted. In central-envelope problems, this benchmark should agree with the angular-envelope result in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma): regular single-valued functions on $S^2$ give the $\ell(\ell+1)$ spectrum and $m$ range. Atomic spectra may consume those labels as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md#atomic-orbitals-as-lattice-resonances), but the operator algebra does not derive the electron envelope, the radial energy functional, or internal spinor behavior by itself.
+
 ##### Observable-Domain Guardrail
 
 Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.
@@ -14527,6 +14572,8 @@ The bridge should cover the major mathematical families rather than only modern 
 | String, brane, holographic, and AdS/CFT programs | Extended objects, extra dimensions, dual boundary descriptions, and holographic entropy relations. | High-value consistency checks when entropy, unitarity, or horizon accounting becomes unavoidable. AdS/CFT is especially valuable as a controlled anti-de Sitter laboratory, not as direct evidence that our late-time de Sitter-like universe has the same boundary structure. | Comparison framework; do not promote to closure target unless a specific tested benchmark is imported. |
 | de Sitter quantum-gravity and dS/CFT attempts | Positive-curvature late-time comparison geometry, observer horizons, finite-access entropy, and proposed future-boundary or statistical descriptions. | A sharp reminder that the observed universe is not anti-de Sitter and that horizon-limited access must be handled without pretending there is an AdS-style spatial boundary. | Comparison framework only; the native target is a Noether sea observer-horizon ledger, not a literal boundary CFT. |
 
+Compact extra-dimensional programs add a specific difficulty signal. A sufficiently small compact direction can be physically hidden because its first nonzero excitation sits above the reachable experimental energy window. String descriptions can then make apparently different radii observationally equivalent through momentum/winding exchange, while full compactification choices can multiply admissible low-energy worlds. The comparison lesson is not to import extra dimensions. It is to require hidden structure to reduce the recovery problem rather than enlarge it: one shared Noether sea or assembly-state record must recover the observed low-energy constants, excitation spectrum, and null results without per-observable retuning. Otherwise the proposal remains a mathematically consistent preimage family, not a physical solution.
+
 Causal-set programs are strongest here as a discipline on what causal ordering can and cannot buy. Their useful mathematical lesson is that causal relations can carry much of the effective spacetime structure, while local scale still has to be supplied by a separate volume, clock, or ruler channel. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the corresponding recovery burden is not to make spacetime atomic. It is to show that Physical Observers reconstruct the same effective causal order, local clock scale, and bounded preferred-frame leakage from Noether sea signal, density, delay, and ruler-response variables.
 
 A second comparison lesson is the distinction between a continuum approximation and a continuum limit. For this bridge, the correct project phrase is **continuum approximation**: effective fields, metrics, and volumes become valid when many Noether braid degrees of freedom are coarse-grained, but the Euclidean void is not being replaced by an actual continuum-limit geometry and the Noether braid assembly inventory is not erased by taking a regulator to zero.
@@ -14544,6 +14591,7 @@ A third comparison lesson concerns discreteness and symmetry. Causal-set work us
 | General-relativistic metric spacetime | Proper time, geodesic motion, redshift, Shapiro delay, lensing, frame dragging, gravitational waves, and PPN observables. | Effective metric $g^{\text{eff}}_{\mu\nu}$ reconstructed from Noether sea clock, ruler, signal, drift, and compliance channels. | The Euclidean void itself curves. | Derive one constitutive map from Noether sea state to ADM/Cartan fields that recovers GR in tested regimes. |
 | Elastic or continuum-medium spacetime | Stress, strain, compliance, wave propagation, and equation-of-state language. | Coarse Noether sea variables such as density, delay factor, stress, drift, alignment, and spatial compliance. | The medium is a featureless continuum with no assembly microstructure. | Derive continuum stress and compliance tensors from Noether braid population dynamics and identify their valid averaging scale. |
 | Analog-gravity or acoustic-metric models | Effective metrics can emerge from signal propagation through a medium. | Signal cones and clock/ruler maps emerge from Noether sea delay and assembly response. | The analogy proves gravity or fixes the metric by signal speed alone. | Extend scalar speed maps to the full ADM/Cartan handoff $(N,u^i_{\text{sea}},e^a{}_i,\gamma_{ij})$. |
+| Kaluza-Klein, compact extra-dimensional, and string compactification models | Geometry can generate quantized modes, effective gauge bookkeeping, momentum/winding sectors, dual descriptions, and low-energy spectra. | Comparison for hidden-coordinate or internal-cycle bookkeeping only if a native assembly-state or Noether sea variable supplies the coordinate and its excitation spectrum. | A mathematically allowed compactification, T-dual description, or landscape member is a physical explanation. | Recover the observed spectrum and constants from one shared record, keep all extra modes above observational bounds, and provide a no-hidden-retune witness across the null results and recovered low-energy channels. |
 | Superfluid and condensate vacuum models | Coherence, order parameters, critical thresholds, quantized circulation, collective excitations, and low-dissipation transport. | Possible comparison class for coherent Noether sea phases only when the local document supplies a defined order parameter, excitation spectrum, critical threshold, or circulation analogue. | The Noether sea is superfluid merely because it is coherent or low-dissipation. | Derive a concrete constitutive model: order parameter, transport equation, critical-velocity criterion, two-fluid analogue, quantized-vorticity analogue, or explicit reason the analogy fails. |
 | Berezhiani-Khoury-style superfluid dark matter | Phase-dependent behavior: cold-dark-matter-like cosmology and cluster behavior, plus phonon-mediated MOND-like galactic behavior in a superfluid phase. | Comparison for environment-dependent Noether sea phase behavior, excitation channels, two-component response, and galactic-scale effective-force recovery. | Noether sea ontology is dark matter superfluidity, or MOND behavior follows without a native phonon/order-parameter derivation. | Define the Noether sea analogue of condensate fraction, phonon mode, critical temperature/velocity, normal fraction, and baryon-coupling channel, then test whether it recovers or rejects MOND-like scaling. |
 | Berezhiani-Khoury BEC long-range interaction | A complex scalar condensate with contact source coupling can produce a mediated inverse-square force with $\ell^{-1}\propto\sqrt{\lambda n/m}$, and with $\ell\to\infty$ when the self-interaction is removed. | Comparison for coherent-background amplification, derivative phonon-source coupling, source-induced deformation, screening, and instability tests. | A contact-coupled BEC or phonon is the Noether sea, or a native long-range Noether sea force follows without deriving the collective mode and coupling channel. | Define a Noether sea collective response variable, a source coupling, a range residual, a deformation parameter, and a failure condition for dense-source or unstable regimes. |

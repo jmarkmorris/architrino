@@ -1,13 +1,13 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-06-30T20:37:35.854Z",
-  "package_version": "1.0.0-143bb64d",
+  "generated_at": "2026-06-30T21:40:19.190Z",
+  "package_version": "1.0.0-65ffc809",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
     "path": "content/graph/textbook_toc.json",
-    "sha256": "143bb64dc35d1f0d97cef5991d62dabe914e140e9be91ed4480a4a5cdfab65fd",
-    "size": 687385
+    "sha256": "65ffc809f241ac614275e19620dc0fefbf0e956f7e519bc6ec5cd7498613bdfc",
+    "size": 687903
   },
   "chapters": [
     {
@@ -164,8 +164,8 @@
       "sourcePath": "content/graph/textbook_toc.json",
       "role": "toc",
       "type": "json",
-      "size": 687839,
-      "sha256": "143bb64dc35d1f0d97cef5991d62dabe914e140e9be91ed4480a4a5cdfab65fd"
+      "size": 688357,
+      "sha256": "65ffc809f241ac614275e19620dc0fefbf0e956f7e519bc6ec5cd7498613bdfc"
     },
     {
       "path": "reading-copies/atomic-and-nuclear-assemblies.html",
@@ -268,16 +268,16 @@
       "sourcePath": "__generated__/reading-copies/philosophy-history.html",
       "role": "chapter",
       "type": "html",
-      "size": 10380138,
-      "sha256": "f6499b0c653b32a3119bb0337c83dc6e713b6edf6ee6cf32b6ada2b9c4358a83"
+      "size": 10430401,
+      "sha256": "de935a62323c3483de17d7169d2c04b5578741af8997bd8714e61b385ff63ef4"
     },
     {
       "path": "reading-copies/philosophy-history.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 1964362,
-      "sha256": "e6eb0bd1395a80ff98be007d13b2e9e8d2b7703ceeeb4d586ffb8e4ad1778259"
+      "size": 1968429,
+      "sha256": "4afe9871a18b879a16aad5c54c40b2ce795309d4af363a8fac1b7c5bfb71a158"
     },
     {
       "path": "reading-copies/quantum.html",
@@ -316,16 +316,16 @@
       "sourcePath": "__generated__/reading-copies/standard-model-assemblies.html",
       "role": "chapter",
       "type": "html",
-      "size": 4111774,
-      "sha256": "6ac405720fbedb738c50c49f896659a62ad2f4f682ee860cbcee136945d0e77e"
+      "size": 4123157,
+      "sha256": "9adfba3ad9ce79d335dac7085cda69275b06c1b35b9f46c48130b1517d28e762"
     },
     {
       "path": "reading-copies/standard-model-assemblies.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/standard-model-assemblies.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 359419,
-      "sha256": "9aa24f127034d56852fbf4931302b7ef36118d095bd8fc9828e430c1eea460a5"
+      "size": 360853,
+      "sha256": "24b1c97f8ebd8d4c95d2567e9b208ed3a30940a7b93d1bcf89a5969acae3a973"
     },
     {
       "path": "reading-copies/validation.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9623901,
-      "sha256": "fe6b4a1ea0137f5fcdd6dc6a3d5b329fe4e42bec133ada48cc96eb5fc1f3b62a"
+      "size": 9630913,
+      "sha256": "075ccdb41dc5833f96e45928406547412320014f34fdb3ccd8160e51acfc4d31"
     }
   ],
   "links": []

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1446
+      "sections": 1447
     }
   },
   "tocRoot": {
@@ -11035,6 +11035,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Harmonic-Oscillator Ladder Benchmark",
                         "sectionKey": "harmonic oscillator ladder benchmark",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Orbital-Angular-Momentum Ladder Benchmark",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Orbital-Angular-Momentum Ladder Benchmark",
+                        "sectionKey": "orbital angular momentum ladder benchmark",
                         "headingLevel": 2
                       },
                       {

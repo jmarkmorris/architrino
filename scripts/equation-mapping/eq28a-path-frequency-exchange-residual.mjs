@@ -585,6 +585,9 @@ function evaluateSourcePath(sourcePath) {
   if (!isEvidenceSourcePath(resolved)) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
+  if (!sourceSupportsEq28aPathFrequencyExchange(resolved)) {
+    return { accepted: false, reason: "path_frequency_exchange_source_contract_mismatch" };
+  }
   return { accepted: true, reason: "accepted" };
 }
 
@@ -646,6 +649,59 @@ function isRuntimeOrCheckerSourcePath(filePath) {
       lowerBasename.includes("checker") ||
       lowerBasename.includes("check"))
   );
+}
+
+function sourceSupportsEq28aPathFrequencyExchange(filePath) {
+  let source;
+  try {
+    source = JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return false;
+  }
+  const supportValues = collectSourceSupportValues(source);
+  const normalized = supportValues
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = normalized.some(
+    (value) => value.includes("eq-28a") || value.includes("eq28a"),
+  );
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("theta_nu-ex") ||
+      value.includes("theta_nu_ex") ||
+      value.includes("theta nu-ex") ||
+      value.includes("path_frequency_exchange_carrier") ||
+      value.includes("path-frequency exchange carrier") ||
+      value.includes("path-frequency exchange"),
+  );
+  return rowSupported && carrierSupported;
+}
+
+function collectSourceSupportValues(value) {
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => collectSourceSupportValues(entry));
+  }
+  if (value && typeof value === "object") {
+    return [
+      value.row,
+      value.targetRow,
+      value.sourceRole,
+      value.sourceFamily,
+      value.sourceKind,
+      value.sourceSupport,
+      value.sourceSupports,
+      value.requiredSourceSupport,
+      value.evidenceFamily,
+      value.evidenceRole,
+      value.evidenceSupports,
+      value.claimLevel,
+      value.supportedRows,
+      ...Object.values(value).flatMap((entry) =>
+        typeof entry === "object" ? collectSourceSupportValues(entry) : [],
+      ),
+    ].flatMap((entry) => (Array.isArray(entry) ? entry : [entry]));
+  }
+  return typeof value === "string" ? [value] : [];
 }
 
 function decideStatus({ carrier, missingRows, carrierBinding, solver, negativeControls }) {

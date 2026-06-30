@@ -28,14 +28,24 @@ const SIMULATION_ENVELOPE = Object.freeze({
   sideLength: 10,
   centralVolumeSideLength: 8,
   faceBufferMargin: 1,
-  historyDepth: 2,
+  duration: 10,
+  sampleInterval: 0.2,
+  historyDepth: 10,
   fieldSpeed: 3,
-  centralObservationInterval: 2,
+  centralObservationInterval: 10,
   centralBoundaryTolerance: 1e-3,
 });
 
 const POPULATION = Object.freeze({
   centralArchitrinoCount: 1,
+});
+
+const LONG_FIXTURE_PROFILE = Object.freeze({
+  fixtureProfileId: "borg-first-native-backed-long-fixture.v1",
+  playbackFrameSource: "native-keyframes",
+  interpolationAuthority: "display-only-between-native-keyframes",
+  expectedNativeKeyframeRange: [51, 101],
+  rowsPerChunk: 16,
 });
 
 export async function buildBorgFirstNativeBackedFixture() {
@@ -53,12 +63,29 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.claimLevel, "developer-test", "claim level");
   assertEqual(manifest.sourceBridgeRun.executionPath, "native_c_abi", "native execution path");
   assertEqual(manifest.sourceBridgeRun.frameCount, native.run.response.summary.frameCount, "frame count");
+  assertEqual(manifest.currentStateFrames.length, native.run.response.summary.frameCount, "current state frame rows");
   assertEqual(manifest.sourceBridgeRun.pathRowCount, native.run.response.pathHistory.rowCount, "path row count");
   assert(
     manifest.pathHistory.pathHistoryStreamIds.includes(FIXTURE_IDS.pathHistoryStreamId),
     "path-history stream id is bound into the Borg manifest",
   );
   assertEqual(manifest.pathHistory.pathHistoryGapRows.length, 0, "path-history gap rows");
+  assertEqual(manifest.sourceBridgeRun.fixtureProfileId, LONG_FIXTURE_PROFILE.fixtureProfileId, "fixture profile");
+  assertEqual(manifest.simulationEnvelope.duration, SIMULATION_ENVELOPE.duration, "fixture duration");
+  assertEqual(manifest.simulationEnvelope.sampleInterval, SIMULATION_ENVELOPE.sampleInterval, "fixture sample interval");
+  assert(
+    manifest.currentStateAndFrameSources.nativeKeyframeCount >=
+      LONG_FIXTURE_PROFILE.expectedNativeKeyframeRange[0] &&
+      manifest.currentStateAndFrameSources.nativeKeyframeCount <=
+        LONG_FIXTURE_PROFILE.expectedNativeKeyframeRange[1],
+    "long fixture emits the expected native keyframe range",
+  );
+  assertEqual(
+    manifest.currentStateAndFrameSources.playbackFrameSource,
+    LONG_FIXTURE_PROFILE.playbackFrameSource,
+    "playback frame source",
+  );
+  assertEqual(manifest.currentStateAndFrameSources.interpolatedFrameCount, 0, "interpolated frame count");
   assertEqual(manifest.population.centralArchitrinoCount, 1, "central count");
   assertEqual(manifest.population.architrinoCount, 2, "outer computed count");
   assertEqual(manifest.population.bufferArchitrinoCount, 1, "buffer count");
@@ -92,8 +119,8 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.renderManifests[0].renderPixelSize, "3840x2160", "4K UHD render pixel size");
   assertEqual(
     manifest.validation.nativePathBoundsFaceCrossingStatus,
-    "path-bounds-cross-outer-x-faces",
-    "native path face crossing status",
+    "path-bounds-stay-inside-outer-cube-long-fixture",
+    "native path bounds status",
   );
 }
 
@@ -145,7 +172,7 @@ async function runNativePairFixture() {
       appId: "causal-delay-feedback",
       pairInteractionRequest: createPairInteractionRequest(),
       streamId: FIXTURE_IDS.pathHistoryStreamId,
-      rowsPerChunk: 2,
+      rowsPerChunk: LONG_FIXTURE_PROFILE.rowsPerChunk,
       storagePolicy: {
         target: "caller-buffer",
         durable: false,
@@ -155,9 +182,12 @@ async function runNativePairFixture() {
         precisionPath: "scaled_f64_strict",
         units: "solver-si",
         coordinateFrame: "absolute-lab-frame",
-        scaleNormalization: "borg-smoke-units",
+        scaleNormalization: "borg-long-fixture-units",
         interpolationRule: "piecewise-pair-interaction-integration",
-        provenance: { fixture: "borg-first-native-backed-fixture" },
+        provenance: {
+          fixture: "borg-first-native-backed-fixture",
+          fixtureProfileId: LONG_FIXTURE_PROFILE.fixtureProfileId,
+        },
       },
     },
     output: {
@@ -183,6 +213,7 @@ function createBorgDatasetManifest(native) {
   const stream = nativeResponse.streams.find((entry) => entry.streamId === FIXTURE_IDS.pathHistoryStreamId);
   const wakeHorizon = SIMULATION_ENVELOPE.fieldSpeed * SIMULATION_ENVELOPE.historyDepth;
   const centralVelocityBound = maxFrameSpeed(nativeResponse.frames);
+  const nativeKeyframeCount = countNativeKeyframes(nativeResponse.frames);
   const strictBufferLimit = Math.max(
     wakeHorizon,
     centralVelocityBound * SIMULATION_ENVELOPE.centralObservationInterval,
@@ -213,10 +244,15 @@ function createBorgDatasetManifest(native) {
       nativeRunId: native.run.runId,
       nativeDatasetId: native.run.datasetId,
       requestId: native.run.requestId,
+      fixtureProfileId: LONG_FIXTURE_PROFILE.fixtureProfileId,
       acceptedPrecisionPath: native.run.acceptedPrecisionPath,
       executionPath: pairSummary.executionPath,
       statusCode: native.run.status.code,
       frameCount: nativeResponse.summary.frameCount,
+      nativeKeyframeCount,
+      sampleInterval: SIMULATION_ENVELOPE.sampleInterval,
+      playbackFrameSource: LONG_FIXTURE_PROFILE.playbackFrameSource,
+      interpolationAuthority: LONG_FIXTURE_PROFILE.interpolationAuthority,
       pathCount: nativeResponse.summary.pathCount,
       pathRowCount: pathHistory.rowCount,
       chunkCount: pathHistory.chunkCount,
@@ -242,7 +278,8 @@ function createBorgDatasetManifest(native) {
       scaleFactor: 1,
       boundaryMode: "statistical-face-boundary",
       timeStepPolicy: "fixed",
-      duration: 2,
+      duration: SIMULATION_ENVELOPE.duration,
+      sampleInterval: SIMULATION_ENVELOPE.sampleInterval,
       historyDepth: SIMULATION_ENVELOPE.historyDepth,
       fieldSpeed: SIMULATION_ENVELOPE.fieldSpeed,
       wakeHorizon,
@@ -282,6 +319,7 @@ function createBorgDatasetManifest(native) {
       customEditStatus: "accepted",
       integrationWeightAuthority: "legacy-bridge-numeric-weight-only",
     },
+    currentStateFrames: nativeResponse.frames.map(normalizeCurrentStateFrame),
     currentStateAndFrameSources: {
       currentStateFrameIds: nativeResponse.buffers
         .filter((buffer) => buffer.layout === "frame_buffer.v1")
@@ -294,6 +332,11 @@ function createBorgDatasetManifest(native) {
         (frame) => `${FIXTURE_IDS.nativeRunId}:frame:${frame.pathKey}:${frame.frameIndex}`,
       ),
       frameCount: nativeResponse.frames.length,
+      nativeKeyframeCount,
+      sampleInterval: SIMULATION_ENVELOPE.sampleInterval,
+      playbackFrameSource: LONG_FIXTURE_PROFILE.playbackFrameSource,
+      interpolationAuthority: LONG_FIXTURE_PROFILE.interpolationAuthority,
+      interpolatedFrameCount: 0,
       projectionStatus: "authoritative-solver-output",
     },
     pathHistory: {
@@ -381,7 +424,8 @@ function createBorgDatasetManifest(native) {
           gapRowId: "borg-gap:face-crossing-coverage-missing",
           firstFailureCode: "missing_face_crossing_coverage",
           affectedConsumers: ["face-boundary-status", "face-summary-extraction"],
-          message: "Native path bounds cross outer faces, but no native face-crossing event rows are emitted.",
+          message:
+            "The long native fixture keeps the pair inside the outer cube; no native face-crossing event rows are emitted for boundary replay.",
         }),
       ],
       faceInfluenceModelGapRows: [
@@ -500,9 +544,10 @@ function createBorgDatasetManifest(native) {
       },
     ],
     validation: {
-      fixtureStatus: "passed-native-smoke-with-fail-closed-boundary-gaps",
+      fixtureStatus: "passed-native-long-fixture-with-fail-closed-boundary-gaps",
       nativeBridgeStatus: "passed",
       nativePathBoundsFaceCrossingStatus: pathBounds.crossingStatus,
+      longFixtureStatus: "native-keyframes-long-fixture",
       pathHistoryAuthorityStatus: "native-backed-now",
       wakeHistoryAuthorityStatus: "fail-closed-missing-contract",
       faceBoundaryAuthorityStatus: "fail-closed-missing-contract",
@@ -542,9 +587,14 @@ function createNativeAdmissionEnvelope() {
   return {
     entityCount: 2,
     assemblyCount: 0,
-    timeWindow: { start: 0, end: 2, stepHint: 1, units: "solver-time" },
-    timeResolutionHint: 1,
-    interactionPolicy: "pair-interaction-smoke",
+    timeWindow: {
+      start: 0,
+      end: SIMULATION_ENVELOPE.duration,
+      stepHint: SIMULATION_ENVELOPE.sampleInterval,
+      units: "solver-time",
+    },
+    timeResolutionHint: SIMULATION_ENVELOPE.sampleInterval,
+    interactionPolicy: "pair-interaction-long-fixture",
     expectedBranchComplexity: "low",
     outputDetail: "playback",
     memoryBudgetBytes: 64 * 1024 * 1024,
@@ -557,9 +607,9 @@ function createNativeAdmissionEnvelope() {
 function createPairInteractionRequest() {
   return {
     startTime: 0,
-    endTime: 2,
-    step: 1,
-    maxFrames: 3,
+    endTime: SIMULATION_ENVELOPE.duration,
+    step: SIMULATION_ENVELOPE.sampleInterval,
+    maxFrames: Math.floor(SIMULATION_ENVELOPE.duration / SIMULATION_ENVELOPE.sampleInterval) + 1,
     pairAccelerationScale: 0.02,
     softening: 0.01,
     integrationTolerance: 1e-11,
@@ -567,16 +617,16 @@ function createPairInteractionRequest() {
     initialStates: [
       {
         pathKey: 1001,
-        initialPosition: { x: 4.5, y: 5, z: 5 },
-        initialVelocity: { x: 3.2, y: 0, z: 0 },
+        initialPosition: { x: 4.3, y: 5, z: 5 },
+        initialVelocity: { x: 0, y: 0.28, z: 0 },
         charge: 1,
         mass: 1,
         stateFlags: 1,
       },
       {
         pathKey: 1002,
-        initialPosition: { x: 5.5, y: 5, z: 5 },
-        initialVelocity: { x: -3.2, y: 0, z: 0 },
+        initialPosition: { x: 5.7, y: 5, z: 5 },
+        initialVelocity: { x: 0, y: -0.28, z: 0 },
         charge: -1,
         mass: 1,
         stateFlags: 2,
@@ -599,6 +649,30 @@ function maxFrameSpeed(frames) {
   }, 0);
 }
 
+function countNativeKeyframes(frames) {
+  return new Set(frames.map((frame) => frame.frameIndex)).size;
+}
+
+function normalizeCurrentStateFrame(frame) {
+  return {
+    pathKey: frame.pathKey,
+    frameIndex: frame.frameIndex,
+    time: frame.time,
+    position: {
+      x: frame.position.x,
+      y: frame.position.y,
+      z: frame.position.z,
+    },
+    velocity: {
+      x: frame.velocity.x,
+      y: frame.velocity.y,
+      z: frame.velocity.z,
+    },
+    errorBound: frame.errorBound,
+    stateFlags: frame.stateFlags,
+  };
+}
+
 function summarizePathBounds(stream, sideLength) {
   const ranges = stream?.availableRanges ?? [];
   const xMin = Math.min(...ranges.map((range) => range.bounds?.min?.x).filter(Number.isFinite));
@@ -614,7 +688,7 @@ function summarizePathBounds(stream, sideLength) {
     crossingStatus:
       xMinusCrossed && xPlusCrossed
         ? "path-bounds-cross-outer-x-faces"
-        : "path-bounds-do-not-cover-required-face-crossing-smoke",
+        : "path-bounds-stay-inside-outer-cube-long-fixture",
   };
 }
 
@@ -623,7 +697,7 @@ function createGapRow({ gapRowId, firstFailureCode, affectedConsumers, message }
     gapRowId,
     pathId: null,
     timeStart: 0,
-    timeEnd: 2,
+    timeEnd: SIMULATION_ENVELOPE.duration,
     affectedConsumers,
     firstFailureCode,
     diagnosticStatus: "fail-closed-value",
@@ -642,6 +716,10 @@ function printSummary(manifest) {
     pathRowCount: manifest.sourceBridgeRun.pathRowCount,
     architrinoCount: manifest.population.architrinoCount,
     strictCentralBufferStatus: manifest.simulationEnvelope.strictCentralBufferStatus,
+    duration: manifest.simulationEnvelope.duration,
+    sampleInterval: manifest.simulationEnvelope.sampleInterval,
+    nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
+    playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
     boundaryReplayDecisionStatus: manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus,
     benignNoiseStatus: manifest.faceBoundary.benignNoiseStatus,
     fixtureStatus: manifest.validation.fixtureStatus,

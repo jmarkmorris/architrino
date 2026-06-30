@@ -2545,6 +2545,9 @@ function isEvidenceSourcePath(filePath) {
   if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
     return false;
   }
+  if (isRuntimeOrCheckerSourcePath(relative)) {
+    return false;
+  }
   const lowerBasename = path.basename(normalized).toLowerCase();
   return !(
     lowerBasename.includes("attempt") ||
@@ -2554,6 +2557,19 @@ function isEvidenceSourcePath(filePath) {
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||
     lowerBasename.includes("negative-control")
+  );
+}
+
+function isRuntimeOrCheckerSourcePath(relativePath) {
+  const lowerRelative = relativePath.toLowerCase();
+  const lowerBasename = path.basename(relativePath).toLowerCase();
+  return (
+    lowerRelative.startsWith(`scripts${path.sep}`) &&
+    (lowerBasename.endsWith(".mjs") ||
+      lowerBasename.endsWith(".js") ||
+      lowerBasename.includes("residual") ||
+      lowerBasename.includes("checker") ||
+      lowerBasename.includes("check"))
   );
 }
 

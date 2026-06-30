@@ -21,7 +21,7 @@ In $\mathbb{A}\mathbb{A}\mathbb{A}$, a black hole is not a hole in the Euclidean
 | Zone | Nested shell braid role | Speed regime | Effective black-hole language |
 | :--- | :--- | :--- | :--- |
 | Exterior bulk | outer-dominant volumetric assemblies | $v < c_f$ | outside observer region |
-| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v = c_f$ for the locked interface components | event horizon |
+| Horizon interface | middle-layer locking with outer-layer terminal alignment | $v = c_f$ for the locked interface components | event/apparent horizon comparison |
 | Interior core | self-hit-dominant maximal-curvature assemblies | $v > c_f$ | black-hole interior |
 
 This should be read as one constitutive continuum rather than three disconnected objects. The black-hole vocabulary remains useful at the effective level, but the ontic content is a regime map of the Noether sea.
@@ -231,6 +231,36 @@ with the middle and outer binaries becoming coplanar and co-linear with the inne
 
 This condition fixes the local meaning of the horizon in the framework. The horizon is not merely a geometric surface drawn inside an effective metric. It is the constitutive interface where terminal alignment is reached and where ordinary volumetric assemblies are compressed into a boundary-like state. For Planck-language mapping, the rule used throughout the project is that the relevant "Planck scale" is this alignment condition unless a more specific derivation overrides it.
 
+### Event and Apparent Horizon Comparison
+
+Standard horizon language separates two comparison objects that should not be collapsed into one. The event horizon is a global causal boundary: at the effective GR level it is the boundary of the causal past of future null infinity,
+$$
+\mathcal{H}_{\mathrm{event}}^{\mathrm{eff}}
+=
+\partial J^{-}\!\left(\mathscr{I}^{+}\right)
+$$
+
+This definition depends on the full future development of the effective spacetime. It is therefore not a local surface that a finite-time observer or one simulation slice can identify by inspection. In dynamical collapse, accretion, or merger cases, the event horizon can be located only by the global escape structure of null trajectories.
+
+The apparent horizon is the more local comparison surface. On a chosen spatial slice $\Sigma_t$, it is the outer boundary of the trapped region, with outgoing null expansion at the boundary and ingoing null expansion still inward,
+$$
+\theta_+^{\mathrm{eff}}=0,
+\qquad
+\theta_-^{\mathrm{eff}}<0
+$$
+
+This makes apparent horizons useful for simulations and local compact-object diagnostics, but it also makes them slice-dependent. The $\mathbb{A}\mathbb{A}\mathbb{A}$ horizon interface is neither of these GR objects by definition. It is the local constitutive condition $F_H=0$ on a strong-field record. The closure burden is that the same record should export both a local trapped-surface/apparent-horizon comparison and the global finite-access event-horizon comparison when the observer-level regime calls for them:
+$$
+F_H(\theta_{\Omega,W})=0
+\quad\Longrightarrow\quad
+\left(
+\mathcal{H}_{\mathrm{app}}^{\mathrm{eff}}(\Sigma_t;\theta_{\Omega,W}),
+\mathcal{H}_{\mathrm{event}}^{\mathrm{eff}}(\theta_{\Omega,W})
+\right)
+$$
+
+This is a projection target, not a new ontology. If the local interface can match an apparent horizon only by changing the record used for exterior escape, or if the global event-horizon comparison requires a different strong-field record from the local trapped-surface comparison, the black-hole model has split into two fitted stories.
+
 ### Exterior GR Benchmark Packet
 
 Before any horizon-interface reinterpretation is promoted, the observer-level exterior must recover the standard nonrotating compact-object scales
@@ -253,7 +283,7 @@ R_{\alpha\beta\gamma\delta}R^{\alpha\beta\gamma\delta}
 $$
 The native model is expected to replace the $r\to0$ divergence with finite maximum-curvature bookkeeping, while leaving the exterior weak-field and ringdown observables intact.
 
-Horizon language also has a global comparison meaning. In GR, an event horizon is identified by causal accessibility to future null infinity, not by a single local scalar measured on one time slice. The $\mathbb{A}\mathbb{A}\mathbb{A}$ horizon interface supplies a local constitutive condition, but the observer-level black-hole packet must still say how that interface projects to the same finite-access boundary used by exterior signals, lensing, and merger/ringdown inference. For rotating or charged comparison branches, Cauchy-horizon instability, exterior no-hair coarse-graining by $(M,\mathbf{J},Q)$, and ergoregion/frame-dragging records remain comparison constraints on the same strong-field state, not independent ontologies.
+Horizon language also has rotating and charged comparison meanings. For rotating or charged comparison branches, Cauchy-horizon instability, exterior no-hair coarse-graining by $(M,\mathbf{J},Q)$, and ergoregion/frame-dragging records remain comparison constraints on the same strong-field state, not independent ontologies.
 
 Alternative horizon-free gravity proposals are useful here only as stress tests. Their durable challenge is not that their field variables should be imported, but that compact-object energetics, merger dynamics, and accretion feedback are genuinely many-body records. A native black-hole branch must therefore avoid treating a one-body exterior scale as a complete source model. For a retained compact-object window $W$, the same strong-field record $\theta_W$ should supply both the exterior compact labels and the interactive energy ledger,
 $$

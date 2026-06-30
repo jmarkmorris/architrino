@@ -7859,6 +7859,51 @@ $$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective-mode benchmark, not a statement that the substrate creates or destroys particles when $a^\dagger$ or $a$ is applied. The recovery burden is to identify the retained assembly branch, apparatus kernel, and record window whose coarse variables make the oscillator algebra admissible. If the same chart cannot supply the commutator, level spacing, ground-state lower bound, and generated higher-state record family without changing $\mathcal{Q}$, $\mathcal{K}$, $W$, or $T$, the ladder operators remain a useful calculation chart rather than a closed operator recovery.
 
+##### Orbital-Angular-Momentum Ladder Benchmark
+
+Orbital angular momentum supplies a second operator benchmark with a different ladder structure. The harmonic oscillator ladder is semi-infinite and lower-bounded. The orbital angular-momentum ladder is finite at fixed $\ell$: the same effective chart must recover the $L^2$ value, one chosen projection such as $L_z$, the raising and lowering of that projection, and the top and bottom termination conditions.
+
+For a declared orbital coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $L_x^\theta$, $L_y^\theta$, and $L_z^\theta$ be the effective angular-momentum record operators extracted from one apparatus and envelope chart. The standard comparison algebra is
+$$
+[L_i^\theta,L_j^\theta]\approx i\hbar\,\epsilon_{ijk}L_k^\theta,
+\qquad
+[(L^\theta)^2,L_i^\theta]\approx0
+$$
+with the approximation evaluated in the same record norm used for the operator map. Thus the chart may assign a simultaneous effective record to $(L^\theta)^2$ and one chosen component, but not to all three components at once.
+
+The ladder operators are
+$$
+L_\pm^\theta=L_x^\theta\pm iL_y^\theta
+$$
+and should satisfy
+$$
+[L_z^\theta,L_\pm^\theta]\approx\pm\hbar L_\pm^\theta,
+\qquad
+[(L^\theta)^2,L_\pm^\theta]\approx0.
+$$
+For a validated orbital family $\{|\ell,m\rangle_\theta\}$, the finite ladder comparison is
+$$
+(L^\theta)^2|\ell,m\rangle_\theta
+\approx
+\ell(\ell+1)\hbar^2|\ell,m\rangle_\theta,
+\qquad
+L_z^\theta|\ell,m\rangle_\theta
+\approx
+m\hbar|\ell,m\rangle_\theta,
+$$
+with
+$$
+m\in\{-\ell,-\ell+1,\ldots,\ell\},
+\qquad
+L_+^\theta|\ell,\ell\rangle_\theta\approx0,
+\qquad
+L_-^\theta|\ell,-\ell\rangle_\theta\approx0.
+$$
+
+This is not a claim that the substrate carries preassigned values of all angular-momentum components. The chosen $z$ axis is an apparatus-context and envelope-chart choice, often fixed by an external magnetic-state map in atomic comparisons. The recovery burden is that the same assembly branch, causal-wake history, apparatus kernel, and record window make the noncommuting component algebra, the shared $(L^2,L_z)$ record, the $2\ell+1$ projection count, and the finite ladder endpoints appear together. If these rows require different charts, the construction has reproduced a useful textbook calculation but has not recovered orbital angular momentum as one effective operator record.
+
+The domain is also restricted. In central-envelope problems, this benchmark should agree with the angular-envelope result in [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma): regular single-valued functions on $S^2$ give the $\ell(\ell+1)$ spectrum and $m$ range. Atomic spectra may consume those labels as in [Atomic Spectra](../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md#atomic-orbitals-as-lattice-resonances), but the operator algebra does not derive the electron envelope, the radial energy functional, or internal spinor behavior by itself.
+
 ##### Observable-Domain Guardrail
 
 Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.
@@ -18769,6 +18814,8 @@ The opening in each case was similar in form even when different in content. A d
 Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. Classical point-source theory makes the distinction concrete: failure of a primitive source model does not by itself rule out delayed multi-source assembly dynamics or other substrate-first implementations. A historical near-miss analysis should keep that distinction explicit.
 
 Rømer's episode is a useful front-end case because it did not begin as a theory of light ontology. It began as a table-residual problem in a remote clock: Io's eclipses were predicted from an average period, then the observed times drifted with the changing Earth-Jupiter distance. The correction was cumulative, not a one-shot anomaly: successive observed intervals differed from the source clock by the changing light-time term $P_{\mathrm{obs}}=P+(D_2-D_1)/c$. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that finite propagation first entered physics as path-history timing in an observation record. The recovery target is not to identify Rømer's measured light speed with primitive $c_f$, but to keep the levels separated: primitive causal wakes use $c_f$, photon-channel propagation must recover $c_\gamma$, and weak homogeneous observers calibrate $c_0$ only after the channel closure is declared.
+
+Electromagnetic field language contains a second early bridge. Coulomb's inverse-square law made electric force precise while leaving action at a distance conceptually exposed. Faraday's field picture then moved the explanatory burden into the space around charged and magnetic bodies, and Gauss-style flux bookkeeping made that move testable: electric closed-surface flux tracks enclosed charge, while magnetic closed-surface flux vanishes in the no-monopole regime. The missed opportunity was not that field language was wrong; it was that a successful field representation could become the stopping point before the carrier, medium response, and apparatus probe were implemented. The current recovery target is stated in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks): recover the electric source row, magnetic closure row, and measured force response from one branch record rather than treating $\mathbf{E}$ and $\mathbf{B}$ as primitive substances.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|

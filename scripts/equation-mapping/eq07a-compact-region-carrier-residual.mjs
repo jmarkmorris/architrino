@@ -477,6 +477,9 @@ function evaluateAcceptedEvidence(row, rowId = null) {
   if (rowId === "standard_benchmark_row" && !sourceSupportsStandardBenchmarkRow(row)) {
     return { accepted: false, reason: "standard_benchmark_row_source_contract_mismatch" };
   }
+  if (rowId === "electron_inventory_row" && !sourceSupportsElectronInventoryRow(row)) {
+    return { accepted: false, reason: "electron_inventory_row_source_contract_mismatch" };
+  }
   return { accepted: true, reason: "accepted" };
 }
 
@@ -548,6 +551,28 @@ function sourceSupportsStandardBenchmarkRow(row) {
       value.includes("standard compact-star benchmark"),
   );
   return eq07aSupported && rowSupported && carrierSupported && benchmarkSupported;
+}
+
+function sourceSupportsElectronInventoryRow(row) {
+  const normalized = collectSupportMetadata(row);
+  const eq07aSupported = normalized.some(
+    (value) => value.includes("eq-07a") || value.includes("eq07a"),
+  );
+  const rowSupported = normalized.some((value) => value.includes("electron_inventory_row"));
+  const carrierSupported = normalized.some(
+    (value) =>
+      value.includes("compact_region_carrier") ||
+      value.includes("compact-region carrier") ||
+      value.includes("retained compact-region carrier"),
+  );
+  const fermiSupported = normalized.some(
+    (value) =>
+      value.includes("fermi_state_counting_row") ||
+      value.includes("fermi state-counting") ||
+      value.includes("fermi-state counting") ||
+      value.includes("compact-region electron inventory"),
+  );
+  return eq07aSupported && rowSupported && carrierSupported && fermiSupported;
 }
 
 function collectSupportMetadata(row) {
