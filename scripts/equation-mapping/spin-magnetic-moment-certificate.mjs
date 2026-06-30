@@ -26,6 +26,16 @@ const ASSIGNED_SPIN_MARKERS = [
   "gq2ms",
   "spinlabel",
 ];
+const REQUIRED_SOURCE_ROWS = new Set(["EQ-15", "EQ-27"]);
+const REQUIRED_SOURCE_CARRIER_MARKERS = [
+  "Theta_spin_to_mu",
+  "ordered_frame_loop",
+  "spin_magnetic",
+];
+const SOURCE_EVIDENCE_FAILURE_REASONS = new Set([
+  "accepted_without_evidence_source",
+  "source_lacks_eq15_eq27_ordered_frame_loop_support",
+]);
 
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
@@ -107,7 +117,14 @@ function evaluateCertificate(input, inputPath) {
   const rows = input.rows ?? {};
   const tolerances = parseTolerances(input.tolerances ?? {});
   const rowChecks = Object.fromEntries(
-    ROW_ORDER.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    ROW_ORDER.map((rowId) => [
+      rowId,
+      evaluateAcceptedRow(rows[rowId], {
+        rowId,
+        sameRecordId: input.sameRecordId ?? null,
+        sourceIdentity: input.sourceIdentity ?? {},
+      }),
+    ]),
   );
   const missingRows = ROW_ORDER.filter((rowId) => !rowChecks[rowId].accepted);
   const sourceEvidence = evaluateSourceEvidence(rowChecks);
@@ -248,7 +265,7 @@ function parseTolerances(raw) {
   };
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, context) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -267,6 +284,15 @@ function evaluateAcceptedRow(row) {
   if (!sourceCheck.evidence) {
     return { accepted: false, reason: "accepted_without_evidence_source", sourcePath };
   }
+  const sourceSupport = evaluateSourceSupport(sourceCheck.resolvedPath, row, context);
+  if (!sourceSupport.passed) {
+    return {
+      accepted: false,
+      reason: sourceSupport.reason,
+      sourcePath,
+      sourceSupport,
+    };
+  }
   return { accepted: true, reason: "accepted", sourcePath };
 }
 
@@ -279,8 +305,12 @@ function normalizeStatus(row) {
 
 function evaluateSourceEvidence(rowChecks) {
   const failures = Object.entries(rowChecks)
-    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
-    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+    .filter(([, check]) => SOURCE_EVIDENCE_FAILURE_REASONS.has(check.reason))
+    .map(([rowId, check]) => ({
+      rowId,
+      reason: check.reason,
+      sourcePath: check.sourcePath ?? null,
+    }));
   return {
     passed: failures.length === 0,
     failures,
@@ -289,7 +319,7 @@ function evaluateSourceEvidence(rowChecks) {
 
 function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
   return missingRows.some(
-    (rowId) => rowChecks[rowId]?.reason !== "accepted_without_evidence_source",
+    (rowId) => !SOURCE_EVIDENCE_FAILURE_REASONS.has(rowChecks[rowId]?.reason),
   );
 }
 
@@ -488,13 +518,14 @@ function firstBlocker({
     return null;
   }
   if (missingRows.length > 0) {
-    if (rowChecks[missingRows[0]]?.reason === "accepted_without_evidence_source") {
-      return "accepted_without_evidence_source";
+    const missingReason = rowChecks[missingRows[0]]?.reason;
+    if (SOURCE_EVIDENCE_FAILURE_REASONS.has(missingReason)) {
+      return missingReason;
     }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!sourceEvidence.passed) {
-    return "accepted_without_evidence_source";
+    return sourceEvidence.failures[0]?.reason ?? "accepted_without_evidence_source";
   }
   if (!sameRecord.passed) {
     return "record_split";
@@ -575,7 +606,7 @@ function evaluateSourceReference(value) {
     return { exists: false, evidence: false };
   }
   if (/^https?:\/\//.test(value.trim())) {
-    return { exists: true, evidence: true };
+    return { exists: true, evidence: true, resolvedPath: null };
   }
   const resolvedPath = path.resolve(value.trim());
   try {
@@ -583,10 +614,100 @@ function evaluateSourceReference(value) {
     return {
       exists,
       evidence: exists && isEvidenceSourcePath(resolvedPath),
+      resolvedPath,
     };
   } catch {
     return { exists: false, evidence: false };
   }
+}
+
+function evaluateSourceSupport(resolvedPath, row, context) {
+  if (!resolvedPath) {
+    return { passed: true };
+  }
+  const source = readJsonOrNull(resolvedPath);
+  if (!source || typeof source !== "object" || Array.isArray(source)) {
+    return { passed: true };
+  }
+  if (hasExplicitEq1527Support(source)) {
+    const identity = source.sourceIdentity ?? source.eq15Eq27OrderedFrameLoopSupport ?? {};
+    const mismatch = firstIdentityMismatch(identity, row, context);
+    if (mismatch) {
+      return {
+        passed: false,
+        reason: "source_lacks_eq15_eq27_ordered_frame_loop_support",
+        mismatch,
+      };
+    }
+    return { passed: true };
+  }
+  if (declaresUnrelatedSourceFamily(source)) {
+    return {
+      passed: false,
+      reason: "source_lacks_eq15_eq27_ordered_frame_loop_support",
+      sourceFamily: source.targetRow ?? source.retainedRowSetId ?? source.schema ?? null,
+    };
+  }
+  return { passed: true };
+}
+
+function readJsonOrNull(filePath) {
+  try {
+    return readJson(filePath);
+  } catch {
+    return null;
+  }
+}
+
+function hasExplicitEq1527Support(source) {
+  const supportedRows = Array.isArray(source.supportedRows) ? source.supportedRows : [];
+  const rowSupport = REQUIRED_SOURCE_ROWS.size > 0 &&
+    [...REQUIRED_SOURCE_ROWS].every((row) => supportedRows.includes(row));
+  const markerValues = [
+    source.supportedCarrier,
+    source.targetRow,
+    source.requiredCarrierOrRow,
+    source.sourceIdentity?.orderedFrameLoopId,
+    source.eq15Eq27OrderedFrameLoopSupport?.orderedFrameLoopId,
+  ].filter((value) => typeof value === "string");
+  const carrierSupport = markerValues.some((value) =>
+    REQUIRED_SOURCE_CARRIER_MARKERS.some((marker) => value.includes(marker)),
+  );
+  return rowSupport && carrierSupport;
+}
+
+function declaresUnrelatedSourceFamily(source) {
+  if (source.targetRow && source.targetRow !== "ordered_frame_loop") {
+    return true;
+  }
+  if (source.retainedRowSetId && source.retainedRowSetId !== "EQ-15/EQ-27") {
+    return true;
+  }
+  if (Array.isArray(source.supportedRows) && !hasExplicitEq1527Support(source)) {
+    return true;
+  }
+  return false;
+}
+
+function firstIdentityMismatch(identity, row, context) {
+  const expected = {
+    sameRecordId: context.sameRecordId,
+    retainedBranchId: row.retainedBranchId ?? context.sourceIdentity.retainedBranchId,
+    domainId: row.domainId ?? context.sourceIdentity.domainId,
+    orderedFrameLoopId:
+      row.orderedFrameLoopId ?? row.rowId ?? row.id ?? context.sourceIdentity.orderedFrameLoopId,
+  };
+  for (const [field, expectedValue] of Object.entries(expected)) {
+    const actualValue = identity[field];
+    if (
+      concreteString(actualValue) &&
+      concreteString(expectedValue) &&
+      actualValue !== expectedValue
+    ) {
+      return { field, expected: expectedValue, actual: actualValue };
+    }
+  }
+  return null;
 }
 
 function isEvidenceSourcePath(filePath) {

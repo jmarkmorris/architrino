@@ -242,10 +242,10 @@ bool validate_pair_interaction_request(const PairInteractionRequest& request,
                    false);
     return false;
   }
-  if (initialStates.size() != 2) {
+  if (initialStates.size() < 2) {
     validation.add(StatusCode::AppContractError,
                    StatusSeverity::Error,
-                   "pair interaction requires exactly two initial states",
+                   "pair interaction requires at least two initial states",
                    "pair-interaction-integrator",
                    false);
     return false;

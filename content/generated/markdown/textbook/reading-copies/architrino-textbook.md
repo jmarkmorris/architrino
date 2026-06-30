@@ -14425,6 +14425,47 @@ The regularized action $S_\eta$ is invariant under the fundamental symmetry grou
 
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking interactions that are still carried by causal wakes between emission and reception.
 
+Here symmetry means an active transformation of the retained physical record, not merely a passive relabeling of coordinates. A passive relabeling is a representation check: the same assembly, causal-wake history, and Noether sea record should not acquire a different physical meaning because the chart changed. An active transformation asks whether the transformed branch record obeys the same action principle. Only the active question produces a Noether conservation statement.
+
+The ordinary boundary-term identity makes the recovery burden precise. For a local action, the first variation splits into an interior Euler-Lagrange term and an endpoint term,
+$$
+\delta S
+=
+\int_{t_a}^{t_b}
+\left(
+\frac{\partial L}{\partial q^a}
+-
+\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
+\right)\delta q^a\,dt
++
+\left[p_a\delta q^a-H\delta t\right]_{t_a}^{t_b}
+$$
+with
+$$
+p_a=\frac{\partial L}{\partial \dot q^a},
+\qquad
+H=p_a\dot q^a-L.
+$$
+On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is promoted only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum row is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage row is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
+
+The more general local Noether form also matters. For an infinitesimal active transformation
+$$
+q^a\mapsto q^a+\epsilon X^a(q,t)
+$$
+the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
+$$
+\delta L
+=
+\epsilon\frac{dG}{dt}
+$$
+On stationary paths this gives the conserved charge
+$$
+\frac{d}{dt}\left(p_aX^a-G\right)=0
+$$
+Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
+
 **Energy Functional:**
 Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
@@ -14702,6 +14743,32 @@ $$
 This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping variables for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
+
+At the standard local-field level, the action principle changes the object being varied rather than the logic of stationarity. A particle path $q^a(t)$ is replaced by effective fields $\varphi^A(\mathbf{x},t)$, and the local action has the schematic form
+$$
+S[\varphi]
+=
+\int dt\,d^3x\,
+\mathcal{L}
+\left(
+\varphi^A,
+\partial_t\varphi^A,
+\nabla\varphi^A,
+\ldots
+\right).
+$$
+Fixed-boundary variation gives the field Euler-Lagrange expression
+$$
+\frac{\partial \mathcal{L}}{\partial \varphi^A}
+-
+\partial_t
+\frac{\partial \mathcal{L}}{\partial(\partial_t\varphi^A)}
+-
+\partial_i
+\frac{\partial \mathcal{L}}{\partial(\partial_i\varphi^A)}
+=0.
+$$
+This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and receiver-normal branch-strength rows.
 
 ##### Effective Hamiltonian Domain Gate
 
@@ -49656,6 +49723,8 @@ D_\mu^{\theta'}\Psi_\theta'=U D_\mu^\theta\Psi_\theta,
 F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}
 $$
 This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether sea itself has been changed.
+
+The passive/active distinction is load-bearing here. A gauge relabeling is passive when it changes only the effective bookkeeping basis and leaves the retained assembly, causal-wake, axial-layer, and Noether sea record fixed. An active physical change belongs in the branch record $\theta$ itself: it may alter medium response, exposed axial inventory, apparatus coupling, or causal-wake provenance. Gauge covariance is recovered only when passive relabelings preserve the same record. It cannot be used to hide a changed physical branch behind a different chart.
 
 A compact residual for the comparison is
 $$
@@ -88691,7 +88760,9 @@ Einstein, Podolsky, and Rosen (1935) argued from two premises:
 - **Realism**: If, without disturbing a system, the outcome of a measurement can be predicted with certainty, there exists an element of physical reality corresponding to that outcome.
 - **Locality**: No action performed on one system can instantaneously affect a distant system.
 
-Applied to a pair of particles with perfectly anti-correlated spins, EPR concluded that both spin components must possess simultaneous definite values (predetermined by hidden variables $\lambda$), and that quantum mechanics, which assigns no such values, is therefore incomplete.
+Applied to a pair of particles with perfectly anti-correlated records, the EPR argument produced a fork. If Alice's choice among incompatible measurements does not physically disturb Bob's distant system, then Bob's system must already carry enough structure to answer the corresponding measurement. If Alice's choice really changes Bob's distant physical state, the theory has accepted a nonlocal influence. EPR used that fork to argue that quantum mechanics, which does not assign all such values inside the wavefunction, is incomplete.
+
+Schrodinger's later language of steering usefully names the operational tension without turning it into a signal. Alice's measurement context can change which conditional description is assigned to Bob's system, but the no-signaling theorem prevents her from using that dependence to transmit a controllable message. That distinction matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the Bell closure target is not superluminal communication. It is a joint-record law whose one-wing marginals remain setting-independent while the two-wing correlations fail Bell factorizability.
 
 The quantum formalist response (Bohr) rejected the premise that unmeasured observables possess definite values. The debate remained philosophical until Bell (1964) converted it into a quantitative, experimentally testable constraint.
 
@@ -88829,7 +88900,11 @@ The experimental conclusion is unambiguous: at least one of the three Bell assum
 
 ###### The Logical Structure of the Theorem
 
-Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. Its logical skeleton is:
+Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. It also does not show that hidden-variable completions are impossible as a category. Bohmian mechanics was already a counterexample to that reading: empirically adequate in its intended nonrelativistic domain while explicitly nonlocal. Bell's result is sharper and narrower. A completion that retains measurement independence and reduces to local factorizable response functions cannot reproduce the quantum correlations.
+
+That distinction is especially important because Bell's theorem is a physical theorem, not only an abstract mathematical exercise. The mathematical derivation can be sound while its physical force depends on how the premises are mapped onto preparations, detector settings, outcome records, and hidden-variable descriptions. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the proof does not license vague escape language. It fixes the required diagnostic: identify which observer-level compression fails product screening, while separately checking no-signaling, measurement independence, ordering leakage, and the correlation law.
+
+Its logical skeleton is:
 
 $$
 \text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2
@@ -94610,7 +94685,11 @@ Another recurring pattern is failure to revisit earlier assumption sets after la
 
 Rømer's episode is a useful front-end case because it did not begin as a theory of light ontology. It began as a table-residual problem in a remote clock: Io's eclipses were predicted from an average period, then the observed times drifted with the changing Earth-Jupiter distance. The correction was cumulative, not a one-shot anomaly: successive observed intervals differed from the source clock by the changing light-time term $P_{\mathrm{obs}}=P+(D_2-D_1)/c$. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that finite propagation first entered physics as path-history timing in an observation record. The recovery target is not to identify Rømer's measured light speed with primitive $c_f$, but to keep the levels separated: primitive causal wakes use $c_f$, photon-channel propagation must recover $c_\gamma$, and weak homogeneous observers calibrate $c_0$ only after the channel closure is declared.
 
+Early collision mechanics gives a parallel conservation packet. Galileo's attention to speed-squared behavior, Descartes's scalar quantity of motion, Huygens's vector correction for opposing motions, Leibniz's vis viva, and Newton's momentum definition show conservation first appearing as finite-window event bookkeeping before the later symmetry explanation existed. Noether's theorem then supplied the structural bridge: a continuous active symmetry of the action yields a conserved boundary charge, while a passive coordinate relabeling is only a representation check. The retained lesson for $\mathbb{A}\mathbb{A}\mathbb{A}$ is that conservation laws should enter as recovery targets for the whole action-derived ledger, including causal-wake and boundary terms, not as primitive particle-only slogans.
+
 Electromagnetic field language contains a second early bridge. Coulomb's inverse-square law made electric force precise while leaving action at a distance conceptually exposed. Faraday's field picture then moved the explanatory burden into the space around charged and magnetic bodies, and Gauss-style flux bookkeeping made that move testable: electric closed-surface flux tracks enclosed charge, while magnetic closed-surface flux vanishes in the no-monopole regime. The missed opportunity was not that field language was wrong; it was that a successful field representation could become the stopping point before the carrier, medium response, and apparatus probe were implemented. The current recovery target is stated in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks): recover the electric source row, magnetic closure row, and measured force response from one branch record rather than treating $\mathbf{E}$ and $\mathbf{B}$ as primitive substances.
+
+Bell's theorem adds a later physical-theorem caution to the same pattern. The EPR argument posed a fork: either the distant measurement choice really changes the remote system, or the wavefunction is not the complete physical description. Bell's contribution was not a proof that unresolved variables are impossible; it was a proof that any completion compressed into local factorizable response functions, with measurement independence retained, cannot reproduce the tested correlations. The missed opportunity was to treat this as a premise-to-data mapping problem with no-signaling preserved, rather than letting the result harden into the broader slogan that deterministic or substrate-first ontology had been ruled out.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|
@@ -94626,7 +94705,7 @@ Electromagnetic field language contains a second early bridge. Coulomb's inverse
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
 | 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
 | 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
-| 1964-1982 (Bell + Aspect era) | Nonlocal correlations experimentally robust | Absolute-time nonlocal substrate dynamics without signaling | The discourse framed options as "local realism dead" rather than "which nonlocal ontology?" |
+| 1964-1982 (Bell + Aspect era) | EPR's nonlocality-or-incompleteness fork, Bell's local-factorization theorem, no-signaling correlations, and Aspect-era experimental pressure | Treat Bell as a physical theorem whose premises identify the failed observer-level compression: keep measurement independence and no-signaling while deriving a non-product pair-provenance response | The discourse often turned a precise no-go theorem into "hidden variables are impossible" or "local realism is dead," rather than asking which nonlocal or non-factorizable ontology could recover the data |
 | 1970s-1990s (SM success + naturalness programs) | Precision particle physics with many free parameters | Assembly geometry as origin of masses/charges/mixing patterns | Parameter-fit pragmatism displaced geometric micro-construction programs |
 | 1980s-2020s (string, extra dimensions, and landscape cosmology) | GUT, supergravity, string, anomaly-cancellation, and quantum-gravity consistency programs with rich mathematics but limited direct empirical separation | Null results and simple cosmological data could have been read as pressure to revisit assumptions from the 1960s-1980s before adding hidden dimensions, hidden sectors, or ensemble explanations | Mathematical consistency and model-space abundance made auxiliary dimensions, sectors, and multiverse selection look like explanatory depth even where controlled observational recovery lagged |
 | 1998-2010s (Dark energy and precision cosmology) | Accelerated expansion inferred from distance-redshift data | Medium-relaxation / clock-comparison interpretation in fixed void | $\Lambda$ as baseline closure model hardened into ontology, not just effective fit |

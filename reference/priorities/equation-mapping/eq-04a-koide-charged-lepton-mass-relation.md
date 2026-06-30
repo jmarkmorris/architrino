@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority`
-- Status: `draft`
+- Status: `deferred-upstream-blocked`
 - Parent: [Equation Mapping Internal Priority](equation-mapping.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Related corpus material: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
@@ -15,6 +15,8 @@
 This packet adds the Koide charged-lepton mass relation as an equation-mapping target. The intended use is narrow: Koide is a post-prediction benchmark on the charged-lepton generation-by-shielding mass map, not a derivation, not an accepted law, and not a license to fit free parameters until the relation appears.
 
 The useful question is whether one retained charged-lepton branch family and one mass-response map can predict $(m_e,m_\mu,m_\tau)$ and then land near the Koide surface without direct Koide tuning.
+
+Mining triage: do not run standalone Koide source-mining or score work. This packet should resume only as a downstream residual after the shared `EQ-04` mass-shell carrier, charged-lepton generation-by-shielding rows, and no-retune mass map have accepted source-backed evidence.
 
 ## Standard Benchmark
 

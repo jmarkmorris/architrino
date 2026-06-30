@@ -58,17 +58,15 @@ const STATUS_TONE = Object.freeze({
   "not-measured": "warn",
 });
 
-const PARTICLE_STYLES = Object.freeze({
-  1001: Object.freeze({
-    label: "1001",
+const PARTICLE_POLARITY_STYLES = Object.freeze({
+  electrino: Object.freeze({
     color: 0x0000ff,
     pathColor: 0x8fb4ff,
     velocityColor: 0x9fefff,
     edgeColor: "#0000ff",
     polarity: "electrino",
   }),
-  1002: Object.freeze({
-    label: "1002",
+  positrino: Object.freeze({
     color: 0xff0000,
     pathColor: 0xff8f86,
     velocityColor: 0xff9b92,
@@ -143,6 +141,7 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
+  const particleStyles = createParticleStyles(manifest);
 
   const state = {
     activeFrameIndex: frameSets[0]?.frameIndex ?? 0,
@@ -165,7 +164,6 @@ export function mountBorgApp(options = {}) {
     playing: false,
     playFrameRequestId: null,
     playFrameRequestKind: null,
-    playbackDirection: 1,
     playbackFromSetIndex: 0,
     playbackToSetIndex: 0,
     playbackSegmentStartedAt: null,
@@ -208,7 +206,7 @@ export function mountBorgApp(options = {}) {
     outerCubeGroup.visible = false;
 
     getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey);
+      const style = getParticleStyle(pathKey, particleStyles);
       const points = manifest.currentStateFrames
         .filter((frame) => frame.pathKey === pathKey)
         .sort((left, right) => left.frameIndex - right.frameIndex)
@@ -238,7 +236,7 @@ export function mountBorgApp(options = {}) {
     });
 
     getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey);
+      const style = getParticleStyle(pathKey, particleStyles);
       const material = new THREE.PointsMaterial({
         color: style.color,
         map: architrinoPointTexture,
@@ -495,7 +493,7 @@ export function mountBorgApp(options = {}) {
       return;
     }
     applyFrameSet(frameSet, {
-      outputLabel: `t ${formatNumber(frameSet.time)} | frame ${frameSet.frameIndex}`,
+      outputLabel: formatTimelineLabel(frameSet.time, frameSet.frameIndex),
       rangeValue: frameSet.frameIndex,
     });
   }
@@ -562,11 +560,14 @@ export function mountBorgApp(options = {}) {
     if (state.playing || frameSets.length < 2) {
       return;
     }
+    let currentSetIndex = getFrameSetIndex(state.activeFrameIndex);
+    if (currentSetIndex >= frameSets.length - 1) {
+      currentSetIndex = 0;
+      updateFrame(frameSets[0].frameIndex);
+    }
     state.playing = true;
     setPlayButtonPresentation(true);
-    const currentSetIndex = getFrameSetIndex(state.activeFrameIndex);
-    const direction = currentSetIndex >= frameSets.length - 1 ? -1 : 1;
-    startPlaybackSegment(currentSetIndex, direction);
+    startPlaybackSegment(currentSetIndex);
   }
 
   function stopPlayback() {
@@ -605,18 +606,12 @@ export function mountBorgApp(options = {}) {
     togglePlayback();
   }
 
-  function startPlaybackSegment(fromSetIndex, direction, startedAt = null) {
-    let nextDirection = direction;
-    let toSetIndex = fromSetIndex + nextDirection;
-    if (toSetIndex < 0 || toSetIndex >= frameSets.length) {
-      nextDirection *= -1;
-      toSetIndex = fromSetIndex + nextDirection;
-    }
-    if (toSetIndex < 0 || toSetIndex >= frameSets.length) {
+  function startPlaybackSegment(fromSetIndex, startedAt = null) {
+    const toSetIndex = fromSetIndex + 1;
+    if (toSetIndex >= frameSets.length) {
       stopPlayback();
       return;
     }
-    state.playbackDirection = nextDirection;
     state.playbackFromSetIndex = fromSetIndex;
     state.playbackToSetIndex = toSetIndex;
     state.playbackSegmentStartedAt = startedAt;
@@ -642,20 +637,21 @@ export function mountBorgApp(options = {}) {
       1,
     );
     const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
+    const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
     applyFrameSet(displayFrameSet, {
-      outputLabel: `t ${formatNumber(displayFrameSet.time)} | frames ${fromFrameSet.frameIndex}->${toFrameSet.frameIndex}`,
-      rangeValue: progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex,
+      outputLabel: formatTimelineLabel(displayFrameSet.time, currentFrameIndex),
+      rangeValue: currentFrameIndex,
     });
     if (progress >= 1) {
       applyFrameSet(toFrameSet, {
-        outputLabel: `t ${formatNumber(toFrameSet.time)} | frame ${toFrameSet.frameIndex}`,
+        outputLabel: formatTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
         rangeValue: toFrameSet.frameIndex,
       });
-      const nextDirection =
-        state.playbackToSetIndex === 0 || state.playbackToSetIndex === frameSets.length - 1
-          ? state.playbackDirection * -1
-          : state.playbackDirection;
-      startPlaybackSegment(state.playbackToSetIndex, nextDirection, now);
+      if (state.playbackToSetIndex >= frameSets.length - 1) {
+        stopPlayback();
+        return;
+      }
+      startPlaybackSegment(state.playbackToSetIndex, now);
       return;
     }
     queuePlaybackFrame();
@@ -775,7 +771,7 @@ export function mountBorgApp(options = {}) {
       return;
     }
     const speed = vectorLength(frame.velocity);
-    const style = getParticleStyle(state.selectedPathKey);
+    const style = getParticleStyle(state.selectedPathKey, particleStyles);
     const keyframeCount = manifest.currentStateAndFrameSources.nativeKeyframeCount ?? frameSets.length;
     dom.selectedTag.hidden = false;
     dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${keyframeCount} native keyframes`;
@@ -856,8 +852,24 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-function getParticleStyle(pathKey) {
-  return PARTICLE_STYLES[pathKey] ?? {
+function createParticleStyles(manifest) {
+  const styles = new Map();
+  manifest.currentStateFrames.forEach((frame) => {
+    if (styles.has(frame.pathKey)) {
+      return;
+    }
+    const baseStyle =
+      frame.stateFlags === 2 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
+    styles.set(frame.pathKey, {
+      ...baseStyle,
+      label: String(frame.pathKey),
+    });
+  });
+  return styles;
+}
+
+function getParticleStyle(pathKey, particleStyles) {
+  return particleStyles?.get(pathKey) ?? {
     label: String(pathKey),
     color: 0xffffff,
     pathColor: 0xe5f1ff,
@@ -922,6 +934,18 @@ function formatValue(value) {
     return "null";
   }
   return String(value);
+}
+
+function formatTimelineLabel(time, frameIndex) {
+  return `t ${formatTimelineTime(time)} | frame ${frameIndex}`;
+}
+
+function formatTimelineTime(value) {
+  if (!Number.isFinite(value)) {
+    return String(value);
+  }
+  const rounded = Math.abs(value) < 0.05 ? 0 : value;
+  return rounded.toFixed(1);
 }
 
 function formatNumber(value) {

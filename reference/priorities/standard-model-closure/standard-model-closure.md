@@ -18,9 +18,9 @@
 5. `scalar_boson_acceptance` — Add the ATLAS Higgs discovery benchmark as a Standard Model closure target: scalar mass $126.0\pm0.4\text{ (stat)}\pm0.4\text{ (sys)}\,\mathrm{GeV}$, signal strength $\hat{\mu}=1.4\pm0.3$, channel-rate compatibility for $ZZ^{(*)}4\ell$, $\gamma\gamma$, and $WW^{(*)}\ell\nu\ell\nu$, and excluded-scalar-window pressure. Status: `pending`. Depends on: `weak_sector_gauge_closure`, mass-map scalar-response handoff.
 6. `nuclear_potential_derivation` — Consume the promoted nuclear benchmark ladder and derive or constrain the signs, ranges, and saturation behavior of $V_{\text{excl}}$, $V_{\text{Coul}}$, $V_{\pi/\text{corr}}$, and $V_{\text{sea-pol}}$ from hadronic geometry, meson-like corridors, and Noether sea polarization. Status: `derivation-pending`; benchmark gates already promoted. Depends on: `confinement_energetics`.
 7. `hydrogen_fermion_sea_boundary` — Derive the four-fermion hydrogen boundary map that separates exact assembly-ledger membership from dynamic exclusion-envelope and Noether sea coarse-graining boundaries. Status: `tolerance-rule-scaffolded`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`.
-8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `pending`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
+8. `supersymmetry_internal_partner_comparison` — Treat supersymmetry-like organization as a comparison framework for internal branch degrees of freedom and null-result pressure, not as a prediction of external low-energy superpartner particles. Status: `deferred-low-priority`. Depends on: gauge-running residuals, LHC null-result bounds, and branch-record algebra.
 9. `lattice_qcd_direct_assembly_comparison` — Compare lattice-QCD benchmark observables against a future finite-assembly nucleon simulation without claiming lattice QCD is obsolete before masses, form factors, and scattering rows are recovered. Status: `pending`. Depends on: `confinement_energetics`, `nuclear_potential_derivation`, and simulations `direct_nucleon_assembly_monte_carlo`.
-10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `pending`. Depends on: accepted branch-state records and gauge-record rows.
+10. `e8_redundancy_heuristic_audit` — Treat $248=256-8$ only as a speculative quotient/redundancy clue for algebra mapping, not as evidence that E8 is native ontology. Status: `deferred-low-priority`. Depends on: accepted branch-state records and gauge-record rows.
 11. `quark_vortex_coupling_simulation` — Build a finite-assembly quark-era simulation target that tests whether vortex-like wake coupling can recover confinement behavior, quark stability, and gluon-comparison observables without bypassing the color-singlet ledger. Status: `pending`. Depends on: `confinement_energetics`, `lattice_qcd_direct_assembly_comparison`.
 
 ## Scope
@@ -31,7 +31,11 @@ The quark catalog and basic $SU(3)\times SU(2)\times U(1)$ bookkeeping are in pl
 
 The hydrogen boundary question is now a staged standard-model-to-atomic bridge. Its value is not another validation gate; it is the first clean local map between four charged fermion assemblies, the proton's color-singlet closure, the electron resonance envelope, and the ambient Noether sea coarse-graining used as local spacetime.
 
+Current source-mining triage: do not spend Standard Model closure time on raw whole-PDG catalog sweeps, broad beyond-Standard-Model anomaly hunting, E8/supersymmetry numerology, or standalone Koide work. PDG and collider records are downstream benchmark and detector-provenance surfaces. E8, supersymmetry, and Koide become useful only after a live branch-state, gauge-record, mass-map, or event-ledger carrier names the source fields it needs.
+
 ## E8 Redundancy Heuristic Boundary
+
+Mining status: deferred-low-priority comparison boundary.
 
 E8 remains a comparison framework, not a native ontology. The only retained legacy-source signal is the speculative arithmetic clue that a $256$-state branch-pair or sign/velocity inventory might lose eight rows under a reversal, gauge, or branch-record equivalence, leaving a $248$-dimensional comparison surface. That clue is priority-only until a declared $\mathbb{A}\mathbb{A}\mathbb{A}$ branch-state space supplies the $256$ rows, the eight-row quotient, and at least one accepted Standard Model gauge-record recovery.
 
@@ -50,6 +54,8 @@ $$
 where $\mathcal{S}_{256}$ is the candidate branch-state inventory, $\mathcal{E}_8$ is the eight-row equivalence or redundancy, $\pi_{\mathrm{quot}}$ is the quotient map, $\mathcal{G}_{\mathrm{SM}}$ is the Standard Model gauge-record comparison, and $\mathcal{R}_{\mathrm{fit}}$ reports whether any accepted row is recovered. Failure is the default if the number match does not produce a physical branch record.
 
 ## Supersymmetry Comparison Boundary
+
+Mining status: deferred-low-priority comparison boundary.
 
 Supersymmetry is a comparison framework unless a retained $\mathbb{A}\mathbb{A}\mathbb{A}$ branch record supplies the algebra, spectra, and null-result discipline from native variables. The safe legacy-source signal is that some "partner" structure might be internal to a shielded assembly branch rather than a second external particle spectrum. That idea is useful only as a restricted comparison:
 
@@ -140,7 +146,7 @@ The Higgs discovery benchmark is a required Standard Model-facing recovery targe
 
 The Tier 2 CERN Academic Training / CERN Yellow Report source family adds a detector-provenance pressure that mass and width rows do not capture by themselves. The recurring collider pattern is not "a particle appears in the detector." It is an inference chain from incoming beam state, pileup, hard reaction, detector response, reconstruction, calibration, and statistical fit into observer-level quantities. This pressure belongs in the Standard Model closure residual as observer provenance, not as substrate ontology.
 
-Source-mined records for this benchmark include the CERN Academic Training lecture collection, the Academic Training `Particle detectors` lectures, the Academic Training `Standard Model physics at the LHC` record, the CERN Yellow Reports: School Proceedings archive, the 2019 ESHEP `LHC Run-2 and future prospects` lecture, the 2019 ESHEP `Cosmology and dark matter` lecture, the 2023 ESHEP `Flavour physics and CP violation` lecture, the ATLAS jet and missing transverse momentum reconstruction note, the ATLAS Higgs discovery record, and the ATLAS VBF photon plus missing-transverse-momentum invisible-Higgs search.
+Source-mined records for this benchmark include the CERN Academic Training lecture collection, the Academic Training `Particle detectors` lectures, the Academic Training `Standard Model physics at the LHC` record, the CERN Yellow Reports: School Proceedings archive, the 2019 ESHEP `LHC Run-2 and future prospects` lecture, the 2019 ESHEP `Cosmology and dark matter` lecture, the 2023 ESHEP `Flavour physics and CP violation` lecture, the ATLAS jet and missing transverse momentum reconstruction note, the ATLAS Higgs discovery record, and the ATLAS VBF photon plus missing-transverse-momentum invisible-Higgs search. The focused June 30, 2026 detector-provenance pass is recorded in [Collider Detector Provenance And Event Reconstruction](../source-mining/collider-detector-provenance-event-reconstruction.md).
 
 The first detector-provenance record to attach to a Standard Model benchmark is
 
@@ -150,6 +156,7 @@ $$
 \left(
 B_{\mathrm{beam}},
 \mathcal{P}_{\mathrm{pileup}},
+\mathcal{T}_{\mathrm{trig}},
 \mathcal{O}_{\mathrm{reco}},
 \mathbf{p}_T^{\mathrm{miss}},
 \mathcal{V}_{\mathrm{prim/sec}},
@@ -158,7 +165,7 @@ B_{\mathrm{beam}},
 \right).
 $$
 
-Here $B_{\mathrm{beam}}$ records beam species and $\sqrt{s}$, $\mathcal{P}_{\mathrm{pileup}}$ records additional interactions and primary-vertex assignment, $\mathcal{O}_{\mathrm{reco}}$ is the reconstructed object set, $\mathbf{p}_T^{\mathrm{miss}}$ is the transverse imbalance, $\mathcal{V}_{\mathrm{prim/sec}}$ records primary and displaced secondary vertices, $\mathcal{C}_{\mathrm{cal}}$ records calibrations, and $\mathcal{U}_{\mathrm{syst}}$ records nuisance parameters and systematic uncertainties. This is a provenance object for observer evidence. It is not a replacement for the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$.
+Here $B_{\mathrm{beam}}$ records beam species and $\sqrt{s}$, $\mathcal{P}_{\mathrm{pileup}}$ records additional interactions and primary-vertex assignment, $\mathcal{T}_{\mathrm{trig}}$ records online trigger paths, thresholds, rates, and event-retention conditions, $\mathcal{O}_{\mathrm{reco}}$ is the reconstructed object set, $\mathbf{p}_T^{\mathrm{miss}}$ is the transverse imbalance, $\mathcal{V}_{\mathrm{prim/sec}}$ records primary and displaced secondary vertices, $\mathcal{C}_{\mathrm{cal}}$ records calibrations, and $\mathcal{U}_{\mathrm{syst}}$ records nuisance parameters and systematic uncertainties. This is a provenance object for observer evidence. It is not a replacement for the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$.
 
 The reconstructed object set should be treated as
 
@@ -212,6 +219,7 @@ where $\mathcal{R}_{\mathrm{objects}}$ compares reconstructed lepton, photon, ha
 | CERN source signal | Closure use | Failure condition |
 | --- | --- | --- |
 | Particle-flow reconstruction combines tracks and calorimeter clusters into charged hadrons, neutral hadrons, electrons, photons, and muons. | The event ledger must distinguish visible reconstructed objects from invisible or unclustered balance terms. | A reaction map treats a reconstructed particle-flow candidate list as the ontic product list. |
+| Trigger and data-acquisition systems retain only selected events from the collision stream before offline reconstruction. | The detector-provenance row must record how a stored event survived online selection. | A collider benchmark treats the analyzed event sample as the raw collision population. |
 | Jets and $E_T^{\mathrm{miss}}$ summarize hadronic final states and transverse imbalance, with pileup and soft-term corrections. | Missing momentum becomes a provenance equation and nuisance-sensitive residual, not a free invisible-sector input. | Neutrino, dark-matter, or invisible-Higgs claims absorb detector imbalance without the object and soft-term ledger. |
 | Heavy-flavor tags infer $b$ or $c$ jets from displaced secondary vertices, large impact parameters, hadron mass, and semileptonic decays. | Flavor closure must predict a branch that survives reconstruction and tagging efficiencies. | A quark-flavor claim is treated as directly observed rather than tag-calibrated. |
 | Higgs searches combine $\gamma\gamma$, $ZZ^{(*)}4\ell$, $WW^{(*)}\ell\nu\ell\nu$, heavy-fermion channels, and excluded windows. | The scalar-boson acceptance target remains one coupled production, branching, mass, and limit residual. | The scalar mode is fit only by mass or only by one clean channel. |
@@ -220,6 +228,7 @@ where $\mathcal{R}_{\mathrm{objects}}$ compares reconstructed lepton, photon, ha
 New failure modes:
 
 - `sm.detector_ontology_blend`: reconstructed detector objects are treated as substrate products.
+- `sm.trigger_selection_erasure`: online event-retention conditions are erased before comparing stored collider events to native reaction ledgers.
 - `sm.missing_momentum_free_sink`: $\mathbf{p}_T^{\mathrm{miss}}$ is used as an unbalanced energy sink rather than a calibrated transverse-balance residual.
 - `sm.flavor_tag_direct_observation`: a $b$ or $c$ tag is treated as direct quark observation rather than vertex/track/lifetime inference.
 - `sm.scalar_mass_only_fit`: Higgs recovery uses $M_H$ without coupled production, branching, excluded-window, and detector-provenance rows.

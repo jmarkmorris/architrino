@@ -37,7 +37,7 @@ const SIMULATION_ENVELOPE = Object.freeze({
 });
 
 const POPULATION = Object.freeze({
-  centralArchitrinoCount: 1,
+  centralArchitrinoCount: 8,
 });
 
 const LONG_FIXTURE_PROFILE = Object.freeze({
@@ -50,10 +50,25 @@ const LONG_FIXTURE_PROFILE = Object.freeze({
 
 const PAIR_INTERACTION_SETTINGS = Object.freeze({
   interactionLaw: "display_pair_attraction_v1",
-  initialLinePolicy: "non-collinear-curvature-visibility",
-  pairAccelerationScale: 1.2,
+  initialLinePolicy: "seeded-random-interior-cube",
+  pairAccelerationScale: 0.28,
   softening: 0.01,
   integrationTolerance: 1e-11,
+});
+
+const INITIAL_STATE_COUNT = 16;
+const ELECTRINO_COUNT = 8;
+const POSITRINO_COUNT = 8;
+const INITIAL_CONDITION_SEED = "borg-sixteen-random-interior-position-seed.v1";
+const VELOCITY_SEED = "borg-sixteen-random-small-3d-velocity-seed.v1";
+const INTERIOR_RANDOM_LAYOUT = Object.freeze({
+  minCoordinate: 1.35,
+  maxCoordinate: 8.65,
+  minSeparation: 1.05,
+});
+const RANDOM_VELOCITY = Object.freeze({
+  maxComponentMagnitude: 0.035,
+  minSpeed: 0.012,
 });
 
 export async function buildBorgFirstNativeBackedFixture() {
@@ -103,10 +118,16 @@ export function assertBorgFixtureManifest(manifest, native) {
     PAIR_INTERACTION_SETTINGS.pairAccelerationScale,
     "pair acceleration scale",
   );
+  assertEqual(manifest.initialConditions.initialConditionSeed, INITIAL_CONDITION_SEED, "initial-condition seed");
+  assertEqual(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d", "velocity policy");
+  assertEqual(manifest.initialConditions.velocitySeed, VELOCITY_SEED, "velocity seed");
   assertEqual(manifest.currentStateAndFrameSources.interpolatedFrameCount, 0, "interpolated frame count");
-  assertEqual(manifest.population.centralArchitrinoCount, 1, "central count");
-  assertEqual(manifest.population.architrinoCount, 2, "outer computed count");
-  assertEqual(manifest.population.bufferArchitrinoCount, 1, "buffer count");
+  assertEqual(manifest.population.centralArchitrinoCount, 8, "central count");
+  assertEqual(manifest.population.architrinoCount, INITIAL_STATE_COUNT, "outer computed count");
+  assertEqual(manifest.population.bufferArchitrinoCount, 8, "buffer count");
+  assertEqual(manifest.sourceBridgeRun.pathCount, INITIAL_STATE_COUNT, "native path count");
+  assertEqual(manifest.initialConditions.electrinoCount, ELECTRINO_COUNT, "electrino count");
+  assertEqual(manifest.initialConditions.positrinoCount, POSITRINO_COUNT, "positrino count");
   assertEqual(manifest.boundaryToCentralResidual.status, "not-measured", "boundary residual status");
   assertEqual(
     manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus,
@@ -328,15 +349,15 @@ function createBorgDatasetManifest(native) {
       },
     },
     initialConditions: {
-      initialConditionFamily: "explicit",
-      initialConditionSeed: null,
-      electrinoCount: 1,
-      positrinoCount: 1,
-      polarityAssignmentSource: "explicit",
-      velocityPolicy: "explicit",
+      initialConditionFamily: "seeded-random",
+      initialConditionSeed: INITIAL_CONDITION_SEED,
+      electrinoCount: ELECTRINO_COUNT,
+      positrinoCount: POSITRINO_COUNT,
+      polarityAssignmentSource: "seeded-balanced",
+      velocityPolicy: "seeded-random-small-3d",
       initialLinePolicy: PAIR_INTERACTION_SETTINGS.initialLinePolicy,
-      velocitySeed: null,
-      resolvedInitialStateId: `${FIXTURE_IDS.nativeRunId}:explicit-pair-initial-state`,
+      velocitySeed: VELOCITY_SEED,
+      resolvedInitialStateId: `${FIXTURE_IDS.nativeRunId}:seeded-random-sixteen-initial-state`,
       customEditStatus: "accepted",
       integrationWeightAuthority: "legacy-bridge-numeric-weight-only",
     },
@@ -446,7 +467,7 @@ function createBorgDatasetManifest(native) {
           firstFailureCode: "missing_face_crossing_coverage",
           affectedConsumers: ["face-boundary-status", "face-summary-extraction"],
           message:
-            "The long native fixture keeps the pair inside the outer cube; no native face-crossing event rows are emitted for boundary replay.",
+            "The long native fixture keeps the sixteen initial architrinos inside the outer cube; no native face-crossing event rows are emitted for boundary replay.",
         }),
       ],
       faceInfluenceModelGapRows: [
@@ -606,7 +627,7 @@ function createNativeErrorBudget() {
 
 function createNativeAdmissionEnvelope() {
   return {
-    entityCount: 2,
+    entityCount: INITIAL_STATE_COUNT,
     assemblyCount: 0,
     timeWindow: {
       start: 0,
@@ -635,26 +656,101 @@ function createPairInteractionRequest() {
     softening: PAIR_INTERACTION_SETTINGS.softening,
     integrationTolerance: PAIR_INTERACTION_SETTINGS.integrationTolerance,
     interactionLaw: PAIR_INTERACTION_SETTINGS.interactionLaw,
-    initialStates: [
-      {
-        pathKey: 1001,
-        initialPosition: { x: 4.55, y: 4.55, z: 4.9 },
-        initialVelocity: { x: 0.02, y: 0.225, z: 0.018 },
-        charge: 1,
-        mass: 1,
-        stateFlags: 1,
-      },
-      {
-        pathKey: 1002,
-        initialPosition: { x: 5.45, y: 5.35, z: 5.12 },
-        initialVelocity: { x: -0.01, y: -0.175, z: -0.012 },
-        charge: -1,
-        mass: 1,
-        stateFlags: 2,
-      },
-    ],
+    initialStates: createSixteenInitialStates(),
     pathConstraints: [],
   };
+}
+
+function createSixteenInitialStates() {
+  const positions = createRandomInteriorPositions();
+  const velocityRandom = createSeededRandom(VELOCITY_SEED);
+  return positions.map((initialPosition, index) => {
+    const isElectrino = index % 2 === 0;
+    return {
+      pathKey: 1001 + index,
+      initialPosition,
+      initialVelocity: createSmallRandomVelocity(velocityRandom),
+      charge: isElectrino ? 1 : -1,
+      mass: 1,
+      stateFlags: isElectrino ? 1 : 2,
+    };
+  });
+}
+
+function createRandomInteriorPositions() {
+  const random = createSeededRandom(INITIAL_CONDITION_SEED);
+  const positions = [];
+  const minSeparationSquared = INTERIOR_RANDOM_LAYOUT.minSeparation ** 2;
+  let attempts = 0;
+  while (positions.length < INITIAL_STATE_COUNT && attempts < 10000) {
+    attempts += 1;
+    const candidate = {
+      x: randomInRange(random, INTERIOR_RANDOM_LAYOUT.minCoordinate, INTERIOR_RANDOM_LAYOUT.maxCoordinate),
+      y: randomInRange(random, INTERIOR_RANDOM_LAYOUT.minCoordinate, INTERIOR_RANDOM_LAYOUT.maxCoordinate),
+      z: randomInRange(random, INTERIOR_RANDOM_LAYOUT.minCoordinate, INTERIOR_RANDOM_LAYOUT.maxCoordinate),
+    };
+    if (
+      positions.every(
+        (position) => squaredDistance(position, candidate) >= minSeparationSquared,
+      )
+    ) {
+      positions.push(candidate);
+    }
+  }
+  if (positions.length !== INITIAL_STATE_COUNT) {
+    throw new Error("Unable to place Borg random interior initial states with the requested separation.");
+  }
+  return positions;
+}
+
+function createSmallRandomVelocity(random) {
+  for (let attempt = 0; attempt < 100; attempt += 1) {
+    const velocity = {
+      x: randomInRange(random, -RANDOM_VELOCITY.maxComponentMagnitude, RANDOM_VELOCITY.maxComponentMagnitude),
+      y: randomInRange(random, -RANDOM_VELOCITY.maxComponentMagnitude, RANDOM_VELOCITY.maxComponentMagnitude),
+      z: randomInRange(random, -RANDOM_VELOCITY.maxComponentMagnitude, RANDOM_VELOCITY.maxComponentMagnitude),
+    };
+    if (Math.hypot(velocity.x, velocity.y, velocity.z) >= RANDOM_VELOCITY.minSpeed) {
+      return velocity;
+    }
+  }
+  return {
+    x: RANDOM_VELOCITY.minSpeed,
+    y: 0,
+    z: 0,
+  };
+}
+
+function randomInRange(random, min, max) {
+  return min + random() * (max - min);
+}
+
+function squaredDistance(left, right) {
+  return (
+    (left.x - right.x) ** 2 +
+    (left.y - right.y) ** 2 +
+    (left.z - right.z) ** 2
+  );
+}
+
+function createSeededRandom(seed) {
+  let state = hashSeed(seed);
+  return () => {
+    state = (state + 0x6d2b79f5) >>> 0;
+    let value = state;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function hashSeed(seed) {
+  let hash = 0x811c9dc5;
+  for (let index = 0; index < seed.length; index += 1) {
+    hash ^= seed.charCodeAt(index);
+    hash = Math.imul(hash, 0x01000193);
+  }
+  return hash >>> 0;
 }
 
 function deriveOuterArchitrinoCount({ centralArchitrinoCount, centralVolumeSideLength, faceBufferMargin }) {

@@ -11363,6 +11363,47 @@ The regularized action $S_\eta$ is invariant under the fundamental symmetry grou
 
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking interactions that are still carried by causal wakes between emission and reception.
 
+Here symmetry means an active transformation of the retained physical record, not merely a passive relabeling of coordinates. A passive relabeling is a representation check: the same assembly, causal-wake history, and Noether sea record should not acquire a different physical meaning because the chart changed. An active transformation asks whether the transformed branch record obeys the same action principle. Only the active question produces a Noether conservation statement.
+
+The ordinary boundary-term identity makes the recovery burden precise. For a local action, the first variation splits into an interior Euler-Lagrange term and an endpoint term,
+$$
+\delta S
+=
+\int_{t_a}^{t_b}
+\left(
+\frac{\partial L}{\partial q^a}
+-
+\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
+\right)\delta q^a\,dt
++
+\left[p_a\delta q^a-H\delta t\right]_{t_a}^{t_b}
+$$
+with
+$$
+p_a=\frac{\partial L}{\partial \dot q^a},
+\qquad
+H=p_a\dot q^a-L.
+$$
+On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is promoted only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum row is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage row is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
+
+The more general local Noether form also matters. For an infinitesimal active transformation
+$$
+q^a\mapsto q^a+\epsilon X^a(q,t)
+$$
+the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
+$$
+\delta L
+=
+\epsilon\frac{dG}{dt}
+$$
+On stationary paths this gives the conserved charge
+$$
+\frac{d}{dt}\left(p_aX^a-G\right)=0
+$$
+Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
+
 **Energy Functional:**
 Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
 $$
@@ -11640,6 +11681,32 @@ $$
 This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping variables for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
+
+At the standard local-field level, the action principle changes the object being varied rather than the logic of stationarity. A particle path $q^a(t)$ is replaced by effective fields $\varphi^A(\mathbf{x},t)$, and the local action has the schematic form
+$$
+S[\varphi]
+=
+\int dt\,d^3x\,
+\mathcal{L}
+\left(
+\varphi^A,
+\partial_t\varphi^A,
+\nabla\varphi^A,
+\ldots
+\right).
+$$
+Fixed-boundary variation gives the field Euler-Lagrange expression
+$$
+\frac{\partial \mathcal{L}}{\partial \varphi^A}
+-
+\partial_t
+\frac{\partial \mathcal{L}}{\partial(\partial_t\varphi^A)}
+-
+\partial_i
+\frac{\partial \mathcal{L}}{\partial(\partial_i\varphi^A)}
+=0.
+$$
+This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and receiver-normal branch-strength rows.
 
 #### Effective Hamiltonian Domain Gate
 

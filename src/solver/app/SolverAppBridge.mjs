@@ -14149,9 +14149,9 @@ function validatePairInteractionRunConfig(config) {
     );
   }
   requireArray(request.initialStates, "pairInteractionRequest.initialStates");
-  if (request.initialStates.length !== 2) {
+  if (request.initialStates.length < 2) {
     throw new SolverBridgeError(
-      createStatus("app_contract_error", "error", "pairInteractionRequest.initialStates must contain exactly two states", {
+      createStatus("app_contract_error", "error", "pairInteractionRequest.initialStates must contain at least two states", {
         recoverable: false,
       })
     );

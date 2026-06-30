@@ -406,6 +406,8 @@ Source-specific output additions:
 
 Use portals such as PDG, CODATA, NIST, GWOSC, NASA LAMBDA, CERN, LVK, EHT, and similar official archives for provenance and benchmark pressure.
 
+Do not turn a portal into a raw catalog-mining project. For particle-physics portals, especially PDG-style inventories, mine only the scoped table, review section, benchmark value, uncertainty convention, or detector-provenance row that a current closure route can consume. Broad catalog sweeps, broad beyond-Standard-Model anomaly searches, E8/supersymmetry numerology, and standalone Koide searches are deferred unless the operator/developer explicitly selects them or a live carrier/evidence packet names the required source fields.
+
 Acquisition steps:
 
 1. Record release version, update date, data product, review page, tables, uncertainty definitions, and download paths.
