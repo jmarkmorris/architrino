@@ -298,7 +298,7 @@ export function mountBorgApp(options = {}) {
       ["Native keyframes", manifest.currentStateAndFrameSources.nativeKeyframeCount],
       ["Sample interval", manifest.simulationEnvelope.sampleInterval],
       ["Playback source", manifest.currentStateAndFrameSources.playbackFrameSource],
-      ["Initial line", manifest.initialConditions.initialLinePolicy],
+      ["Initial layout", manifest.initialConditions.initialLinePolicy],
       ["Pair action scale", manifest.sourceBridgeRun.pairAccelerationScale],
       ["Path rows", manifest.sourceBridgeRun.pathRowCount],
     ]);
@@ -859,7 +859,7 @@ function createParticleStyles(manifest) {
       return;
     }
     const baseStyle =
-      frame.stateFlags === 2 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
+      frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
     styles.set(frame.pathKey, {
       ...baseStyle,
       label: String(frame.pathKey),

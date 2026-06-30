@@ -109,13 +109,16 @@ The manifest must preserve the exact initial-condition provenance accepted by th
 
 | Field | Required content |
 | --- | --- |
-| `initialConditionFamily` | `random`, `lattice`, `clustered`, `explicit`, or `imported`. |
+| `initialConditionFamily` | `random`, `seeded-random`, `lattice`, `clustered`, `explicit`, or `imported`. |
 | `initialConditionSeed` | Seed used by generated initial conditions; null only for fully explicit source rows. |
 | `electrinoCount` | Requested and resolved electrino inventory. |
 | `positrinoCount` | Requested and resolved positrino inventory. |
-| `polarityAssignmentSource` | `generated`, `explicit`, or `imported`, with source id or checksum. |
-| `velocityPolicy` | `zero`, `scale-mix`, `explicit`, or `drift-v`. |
+| `polarityAssignmentSource` | `generated`, `seeded-balanced`, `explicit`, or `imported`, with source id or checksum. |
+| `velocityPolicy` | `zero`, `scale-mix`, `seeded-random-small-3d`, `explicit`, or `drift-v`. |
 | `velocitySeed` | Seed for generated velocity vectors when applicable. |
+| `randomVelocityMaxComponentMagnitude` | Maximum absolute component magnitude for `seeded-random-small-3d` initial velocities. |
+| `randomVelocityMinSpeed` | Minimum accepted speed for `seeded-random-small-3d` initial velocities. |
+| `velocityBoundScaleFromV1` | Scale factor relative to the first seeded-random velocity-bound profile when applicable. |
 | `resolvedInitialStateId` | Native-accepted initial-state row or stream id. |
 | `customEditStatus` | `not-edited`, `pending-native-acceptance`, `accepted`, `rejected`, or `fail-closed`. |
 
@@ -359,11 +362,14 @@ population:
   bufferArchitrinoCount: integer
   countDerivation: formula_and_inputs
 initialConditions:
-  initialConditionFamily: random | lattice | clustered | explicit | imported
+  initialConditionFamily: random | seeded-random | lattice | clustered | explicit | imported
   initialConditionSeed: string_or_null
   electrinoCount: integer
   positrinoCount: integer
-  velocityPolicy: zero | scale-mix | explicit | drift-v
+  velocityPolicy: zero | scale-mix | seeded-random-small-3d | explicit | drift-v
+  randomVelocityMaxComponentMagnitude: number_or_null
+  randomVelocityMinSpeed: number_or_null
+  velocityBoundScaleFromV1: number_or_null
 pathHistory:
   pathHistoryStreamIds: []
   pathHistoryGapRows: []
@@ -471,7 +477,7 @@ This manifest contract is `priority-design` and now has a first longer native-ba
 
 `borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). It emits a live `borg-dataset-manifest.v1` object from the existing native central bridge rather than from a static JSON hand sketch.
 
-The fixture uses a two-architrino pair-interaction run with `fixtureProfileId = borg-first-native-backed-long-fixture.v1`, `duration = 10`, and `sampleInterval = 0.2`. The initial placement and velocities use `initialLinePolicy = non-collinear-curvature-visibility` and `pairAccelerationScale = 1.2` so both architrinos remain useful inside the displayed central cube while the native interaction bends the path trails visibly. The manifest records `executionPath = native_c_abi`, `playbackFrameSource = native-keyframes`, `interpolatedFrameCount = 0`, `nativeKeyframeCount = 51`, `frameCount = 102` native current-state rows, `pathRowCount = 100` native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 2`, `bufferArchitrinoCount = 1`, path bounds that stay inside the outer computed cube, deployment budget placeholders, and a 4K UHD render manifest placeholder.
+The fixture uses a sixteen-architrino pair-interaction run with `fixtureProfileId = borg-first-native-backed-long-fixture.v2`, `duration = 30`, and `sampleInterval = 0.2`. The initial placement uses `initialLinePolicy = seeded-random-interior-cube` with `initialConditionSeed = borg-sixteen-random-interior-position-seed.v1`; the initial velocity uses `velocityPolicy = seeded-random-small-3d`, `velocitySeed = borg-sixteen-random-small-3d-velocity-seed.v1`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, `velocityBoundScaleFromV1 = 1.2`, and `pairAccelerationScale = 0.28`. The manifest records `executionPath = native_c_abi`, `playbackFrameSource = native-keyframes`, `interpolatedFrameCount = 0`, `nativeKeyframeCount = 151`, `frameCount = 2416` native current-state rows, `pathRowCount = 2400` native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 16`, `bufferArchitrinoCount = 8`, path bounds that stay inside the outer computed cube, deployment budget placeholders, and a 4K UHD render manifest placeholder.
 
 The fixture intentionally fails closed for replay authority. It emits explicit gap rows for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`. Its valid claim is `developer-test`, not proof evidence and not measured benign-noise authority.
 

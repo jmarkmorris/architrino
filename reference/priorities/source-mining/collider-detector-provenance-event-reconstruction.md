@@ -92,6 +92,6 @@ This packet does not advance a retained geometry by itself. Its value is a fail-
 
 ## Immediate Reuse
 
-Use this packet when mapping collider channels such as $Z(\ell\ell)+j$, $\gamma+j$, VBF plus $\mathbf{p}_T^{\mathrm{miss}}$, Higgs visible decays, invisible-Higgs searches, top events, or heavy-flavor final states. The smallest next artifact is one channel-specific event-ledger template that binds visible, hidden, recoil, remnant, and detector rows to the same event record.
+Use this packet when mapping collider channels such as $Z(\ell\ell)+j$, $\gamma+j$, VBF plus $\mathbf{p}_T^{\mathrm{miss}}$, Higgs visible decays, invisible-Higgs searches, top events, or heavy-flavor final states. The first channel-specific consumer is [VBF Photon Missing-Transverse-Momentum Event Ledger](../standard-model-closure/vbf-photon-missing-transverse-momentum-event-ledger.md), which binds visible, hidden, recoil, remnant, and detector rows to the same event record.
 
 No score movement, canon promotion, or Standard Model closure acceptance follows from this mining pass alone.

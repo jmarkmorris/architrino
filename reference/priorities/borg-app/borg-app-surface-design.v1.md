@@ -52,19 +52,20 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | --- | --- |
 | `nativeSolverStatus` | `native-backed-now` |
 | `bridgeExecutionPath` | `native_c_abi` |
-| `duration` | `10` solver-time units |
+| `duration` | `30` solver-time units |
 | `sampleInterval` | `0.2` solver-time units |
-| `nativeKeyframeCount` | `51` native keyframes |
-| `frameCount` | `102` native current-state frame rows, two architrino rows per keyframe |
-| `pathRowCount` | `100` native path-history rows |
+| `nativeKeyframeCount` | `151` native keyframes |
+| `frameCount` | `2416` native current-state frame rows, sixteen architrino rows per keyframe |
+| `pathRowCount` | `2400` native path-history rows |
 | `playbackFrameSource` | `native-keyframes` |
 | `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
-| `initialLinePolicy` | `non-collinear-curvature-visibility` |
-| `pairAccelerationScale` | `1.2` |
+| `initialLinePolicy` | `seeded-random-interior-cube` |
+| `velocityPolicy` | `seeded-random-small-3d`, with `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2` |
+| `pairAccelerationScale` | `0.28` |
 | `renderPixelSize` | `3840x2160` |
-| `centralArchitrinoCount` | `1` |
-| `architrinoCount` | `2` |
-| `bufferArchitrinoCount` | `1` |
+| `centralArchitrinoCount` | `8` |
+| `architrinoCount` | `16` |
+| `bufferArchitrinoCount` | `8` |
 | `strictCentralBufferStatus` | `failed` |
 | `boundaryReplayDecisionStatus` | `fail-closed-missing-contract` |
 | `benignNoiseStatus` | `fail-closed-missing-contract` |

@@ -225,6 +225,8 @@ where $\mathcal{R}_{\mathrm{objects}}$ compares reconstructed lepton, photon, ha
 | Higgs searches combine $\gamma\gamma$, $ZZ^{(*)}4\ell$, $WW^{(*)}\ell\nu\ell\nu$, heavy-fermion channels, and excluded windows. | The scalar-boson acceptance target remains one coupled production, branching, mass, and limit residual. | The scalar mode is fit only by mass or only by one clean channel. |
 | VBF photon plus missing-transverse-momentum events use a photon, forward jets, and transverse imbalance to test $Z\gamma$ production and invisible or partially invisible Higgs channels. | Invisible or dark-sector branches must close through visible recoil objects plus $\mathbf{p}_T^{\mathrm{miss}}$. | An invisible channel is asserted without recoil, trigger, forward-jet, and statistical-limit provenance. |
 
+The first channel-specific detector-provenance consumer is [VBF Photon Missing-Transverse-Momentum Event Ledger](vbf-photon-missing-transverse-momentum-event-ledger.md). It specializes $\mathcal{D}_{\mathrm{LHC}}$ and $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ for the shared $\gamma+jj+\mathbf{p}_T^{\mathrm{miss}}$ signature before any invisible-Higgs, dark-photon, or neutral-current interpretation is treated as closure evidence.
+
 New failure modes:
 
 - `sm.detector_ontology_blend`: reconstructed detector objects are treated as substrate products.

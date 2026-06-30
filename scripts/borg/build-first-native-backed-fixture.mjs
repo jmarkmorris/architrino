@@ -28,11 +28,11 @@ const SIMULATION_ENVELOPE = Object.freeze({
   sideLength: 10,
   centralVolumeSideLength: 8,
   faceBufferMargin: 1,
-  duration: 10,
+  duration: 30,
   sampleInterval: 0.2,
   historyDepth: 10,
   fieldSpeed: 3,
-  centralObservationInterval: 10,
+  centralObservationInterval: 30,
   centralBoundaryTolerance: 1e-3,
 });
 
@@ -41,17 +41,17 @@ const POPULATION = Object.freeze({
 });
 
 const LONG_FIXTURE_PROFILE = Object.freeze({
-  fixtureProfileId: "borg-first-native-backed-long-fixture.v1",
+  fixtureProfileId: "borg-first-native-backed-long-fixture.v3",
   playbackFrameSource: "native-keyframes",
   interpolationAuthority: "display-only-between-native-keyframes",
-  expectedNativeKeyframeRange: [51, 101],
+  expectedNativeKeyframeRange: [151, 151],
   rowsPerChunk: 16,
 });
 
 const PAIR_INTERACTION_SETTINGS = Object.freeze({
   interactionLaw: "display_pair_attraction_v1",
   initialLinePolicy: "seeded-random-interior-cube",
-  pairAccelerationScale: 0.28,
+  pairAccelerationScale: 1.2,
   softening: 0.01,
   integrationTolerance: 1e-11,
 });
@@ -67,8 +67,9 @@ const INTERIOR_RANDOM_LAYOUT = Object.freeze({
   minSeparation: 1.05,
 });
 const RANDOM_VELOCITY = Object.freeze({
-  maxComponentMagnitude: 0.035,
-  minSpeed: 0.012,
+  maxComponentMagnitude: 0.042,
+  minSpeed: 0.0144,
+  velocityBoundScaleFromV1: 1.2,
 });
 
 export async function buildBorgFirstNativeBackedFixture() {
@@ -121,6 +122,21 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.initialConditions.initialConditionSeed, INITIAL_CONDITION_SEED, "initial-condition seed");
   assertEqual(manifest.initialConditions.velocityPolicy, "seeded-random-small-3d", "velocity policy");
   assertEqual(manifest.initialConditions.velocitySeed, VELOCITY_SEED, "velocity seed");
+  assertEqual(
+    manifest.initialConditions.randomVelocityMaxComponentMagnitude,
+    RANDOM_VELOCITY.maxComponentMagnitude,
+    "random velocity max component magnitude",
+  );
+  assertEqual(
+    manifest.initialConditions.randomVelocityMinSpeed,
+    RANDOM_VELOCITY.minSpeed,
+    "random velocity min speed",
+  );
+  assertEqual(
+    manifest.initialConditions.velocityBoundScaleFromV1,
+    RANDOM_VELOCITY.velocityBoundScaleFromV1,
+    "random velocity bound scale",
+  );
   assertEqual(manifest.currentStateAndFrameSources.interpolatedFrameCount, 0, "interpolated frame count");
   assertEqual(manifest.population.centralArchitrinoCount, 8, "central count");
   assertEqual(manifest.population.architrinoCount, INITIAL_STATE_COUNT, "outer computed count");
@@ -128,6 +144,13 @@ export function assertBorgFixtureManifest(manifest, native) {
   assertEqual(manifest.sourceBridgeRun.pathCount, INITIAL_STATE_COUNT, "native path count");
   assertEqual(manifest.initialConditions.electrinoCount, ELECTRINO_COUNT, "electrino count");
   assertEqual(manifest.initialConditions.positrinoCount, POSITRINO_COUNT, "positrino count");
+  assertEqual(
+    manifest.initialConditions.polaritySignConvention,
+    "positrino-positive-electrino-negative",
+    "polarity sign convention",
+  );
+  assertEqual(manifest.initialConditions.positrinoCharge, 1, "positrino charge");
+  assertEqual(manifest.initialConditions.electrinoCharge, -1, "electrino charge");
   assertEqual(manifest.boundaryToCentralResidual.status, "not-measured", "boundary residual status");
   assertEqual(
     manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus,
@@ -354,9 +377,15 @@ function createBorgDatasetManifest(native) {
       electrinoCount: ELECTRINO_COUNT,
       positrinoCount: POSITRINO_COUNT,
       polarityAssignmentSource: "seeded-balanced",
+      polaritySignConvention: "positrino-positive-electrino-negative",
+      positrinoCharge: 1,
+      electrinoCharge: -1,
       velocityPolicy: "seeded-random-small-3d",
       initialLinePolicy: PAIR_INTERACTION_SETTINGS.initialLinePolicy,
       velocitySeed: VELOCITY_SEED,
+      randomVelocityMaxComponentMagnitude: RANDOM_VELOCITY.maxComponentMagnitude,
+      randomVelocityMinSpeed: RANDOM_VELOCITY.minSpeed,
+      velocityBoundScaleFromV1: RANDOM_VELOCITY.velocityBoundScaleFromV1,
       resolvedInitialStateId: `${FIXTURE_IDS.nativeRunId}:seeded-random-sixteen-initial-state`,
       customEditStatus: "accepted",
       integrationWeightAuthority: "legacy-bridge-numeric-weight-only",
@@ -665,14 +694,14 @@ function createSixteenInitialStates() {
   const positions = createRandomInteriorPositions();
   const velocityRandom = createSeededRandom(VELOCITY_SEED);
   return positions.map((initialPosition, index) => {
-    const isElectrino = index % 2 === 0;
+    const isPositrino = index % 2 === 0;
     return {
       pathKey: 1001 + index,
       initialPosition,
       initialVelocity: createSmallRandomVelocity(velocityRandom),
-      charge: isElectrino ? 1 : -1,
+      charge: isPositrino ? 1 : -1,
       mass: 1,
-      stateFlags: isElectrino ? 1 : 2,
+      stateFlags: isPositrino ? 1 : 2,
     };
   });
 }

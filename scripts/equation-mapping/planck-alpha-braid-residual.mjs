@@ -11,6 +11,14 @@ const OUTPUT_SCHEMA = "aaa-equation-map-planck-alpha-braid-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
 const TWO_PI = 2 * Math.PI;
+const SOURCE_REFERENCE_FAILURE_REASONS = new Set([
+  "source_missing",
+  "source_url_not_durable",
+  "generic_source_file_not_evidence",
+  "source_not_durable",
+  "source_not_found",
+  "source_is_directory",
+]);
 
 const REQUIRED_ROWS = [
   "theta_gamma_packet",
@@ -141,11 +149,19 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
+  const commonCarrierId = packet.commonCarrierId ?? input.commonCarrierId;
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [
+      rowId,
+      evaluateAcceptedRow(rows[rowId], {
+        rowId,
+        commonCarrierId,
+      }),
+    ]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
-  const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
+  const sourceEvidence = evaluateSourceEvidence(rowChecks);
+  const carrierBinding = evaluateCarrierBinding(rows, commonCarrierId);
   const residual = evaluateResidualBundle(packet.planckAlpha ?? {}, tolerances);
   const negativeControls = evaluateNegativeControls(
     packet.planckAlpha ?? {},
@@ -183,10 +199,13 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        rowChecks,
+        sourceEvidence,
         carrierBinding,
         residual,
         negativeControls,
       }),
+      sourceEvidenceFailureCount: sourceEvidence.failures.length,
       commonCarrierPass: carrierBinding.passed,
       planckQuantumPass: residual.planckQuantum.passed,
       retainedOrbitReductionPass: residual.planckQuantum.retainedOrbitReduction.passed,
@@ -227,6 +246,7 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
       ]),
     ),
     carrierBinding,
+    sourceEvidenceFailures: sourceEvidence.failures,
     planckAlphaResidual: residual,
     negativeControls,
   };
@@ -827,7 +847,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, context) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -837,7 +857,7 @@ function evaluateAcceptedRow(row) {
   if (!hasConcreteIdentity(row)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  const sourceCheck = evaluateSourceReference(row);
+  const sourceCheck = evaluateSourceReference(row, context);
   if (!sourceCheck.accepted) {
     return { accepted: false, reason: sourceCheck.reason };
   }
@@ -853,12 +873,15 @@ function hasConcreteIdentity(row) {
   return typeof id === "string" && id.trim().length > 0 && !id.includes("attempt");
 }
 
-function evaluateSourceReference(row) {
+function evaluateSourceReference(row, context) {
   const source = row?.sourcePath ?? row?.source;
   if (typeof source !== "string" || source.trim().length === 0) {
     return { accepted: false, reason: "source_missing" };
   }
   if (/^https?:\/\//.test(source)) {
+    if (context.rowId === "theta_gamma_packet") {
+      return { accepted: false, reason: "source_url_not_durable" };
+    }
     return { accepted: true, reason: "source_url" };
   }
   const normalized = source.split(path.sep).join("/");
@@ -886,12 +909,92 @@ function evaluateSourceReference(row) {
   if (fs.statSync(resolved).isDirectory()) {
     return { accepted: false, reason: "source_is_directory" };
   }
+  if (
+    context.rowId === "theta_gamma_packet" &&
+    !hasThetaGammaSourceObjectSupport(resolved, row, context)
+  ) {
+    return { accepted: false, reason: "generic_source_file_not_evidence" };
+  }
   return { accepted: true, reason: "source_file" };
 }
 
-function decideStatus({ missingRows, carrierBinding, residual, negativeControls }) {
-  if (missingRows.length > 0) {
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.entries(rowChecks)
+    .filter(([, check]) => SOURCE_REFERENCE_FAILURE_REASONS.has(check.reason))
+    .map(([rowId, check]) => ({ rowId, reason: check.reason }));
+  return {
+    passed: failures.length === 0,
+    failures,
+  };
+}
+
+function hasThetaGammaSourceObjectSupport(filePath, row, context) {
+  const sourceObject = readJsonOrNull(filePath);
+  if (!sourceObject || typeof sourceObject !== "object" || Array.isArray(sourceObject)) {
+    return false;
+  }
+  const identity =
+    sourceObject.thetaGammaPacket ??
+    sourceObject.theta_gamma_packet ??
+    sourceObject.sourceIdentity ??
+    {};
+  const supportedRows = Array.isArray(sourceObject.supportedRows)
+    ? sourceObject.supportedRows
+    : [];
+  const supportsThetaGamma =
+    supportedRows.includes("theta_gamma_packet") ||
+    supportedRows.includes("EQ-12") ||
+    sourceObject.row === "theta_gamma_packet" ||
+    sourceObject.targetRow === "theta_gamma_packet";
+  if (!supportsThetaGamma) {
+    return false;
+  }
+  return sourceIdentityMatches(identity, row, context);
+}
+
+function readJsonOrNull(filePath) {
+  try {
+    return readJson(filePath);
+  } catch {
+    return null;
+  }
+}
+
+function sourceIdentityMatches(identity, row, context) {
+  const expectedRowIds = new Set([
+    row.rowId,
+    row.id,
+  ].filter((value) => typeof value === "string" && value.trim().length > 0));
+  const actualRowId = identity.rowId ?? identity.id ?? identity.thetaGammaPacketId;
+  if (actualRowId && expectedRowIds.size > 0 && !expectedRowIds.has(actualRowId)) {
+    return false;
+  }
+  const expectedCarrierIds = new Set([
+    row.carrierId,
+    context.commonCarrierId,
+  ].filter((value) => typeof value === "string" && value.trim().length > 0));
+  const actualCarrierId = identity.carrierId ?? identity.commonCarrierId;
+  if (actualCarrierId && expectedCarrierIds.size > 0 && !expectedCarrierIds.has(actualCarrierId)) {
+    return false;
+  }
+  return actualRowId !== undefined || actualCarrierId !== undefined;
+}
+
+function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
+  return missingRows.some(
+    (rowId) => !SOURCE_REFERENCE_FAILURE_REASONS.has(rowChecks[rowId]?.reason),
+  );
+}
+
+function decideStatus({ missingRows, rowChecks, sourceEvidence, carrierBinding, residual, negativeControls }) {
+  if (SOURCE_REFERENCE_FAILURE_REASONS.has(rowChecks[missingRows[0]]?.reason)) {
+    return "blocked_source_evidence";
+  }
+  if (missingRows.length > 0 && hasNonSourceEvidenceMissingRows(missingRows, rowChecks)) {
     return "blocked_missing_rows";
+  }
+  if (!sourceEvidence.passed) {
+    return "blocked_source_evidence";
   }
   if (!carrierBinding.passed) {
     return "blocked_carrier_split";
@@ -905,9 +1008,16 @@ function decideStatus({ missingRows, carrierBinding, residual, negativeControls 
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, carrierBinding, residual, negativeControls }) {
+function firstBlocker({ status, missingRows, rowChecks, sourceEvidence, carrierBinding, residual, negativeControls }) {
   if (missingRows.length > 0) {
+    const firstMissingReason = rowChecks[missingRows[0]]?.reason;
+    if (SOURCE_REFERENCE_FAILURE_REASONS.has(firstMissingReason)) {
+      return firstMissingReason;
+    }
     return `missing_accepted_${missingRows[0]}`;
+  }
+  if (!sourceEvidence.passed) {
+    return sourceEvidence.failures[0]?.reason ?? "source_not_durable";
   }
   if (!carrierBinding.passed) {
     return "carrier_split_or_missing_common_carrier";

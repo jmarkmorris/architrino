@@ -9,6 +9,7 @@ const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
 const SOURCE_EVIDENCE_FAILURE_REASONS = new Set([
   "accepted_without_evidence_source",
+  "raw_url_source_not_mirrored",
   "weak_visible_branch_ledger_source_contract_mismatch",
 ]);
 
@@ -432,7 +433,7 @@ function evaluateDurableSource(sourcePath, row = {}) {
     return { accepted: false, reason: "source_not_durable" };
   }
   if (/^https?:\/\//.test(sourcePath)) {
-    return { accepted: true, reason: "source_url" };
+    return { accepted: false, reason: "raw_url_source_not_mirrored" };
   }
   const resolvedPath = path.resolve(sourcePath);
   if (!fs.existsSync(resolvedPath)) {

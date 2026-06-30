@@ -270,6 +270,8 @@ where $\ell$ is a reconstructed charged lepton, $\mathbf{p}_T^{\mathrm{miss}}$ i
 | Heavy-flavor jets are inferred through displaced secondary vertices, impact parameters, hadron mass, and semileptonic signatures. | The flavor branch must survive detector tagging as a calibrated inference from lifetime and vertex geometry. | A heavy quark branch is declared observed without the tag-efficiency and mistag ledger. |
 | Neutrino lectures frame oscillation data as mass, mixing, flavor projection, and matter-effect phenomenology. | PMNS recovery must couple source reaction, propagation phase, detector flavor projection, and weak exposure in the same domain. | PMNS rows are imported as fit parameters without source and detector weak-reaction ledgers. |
 
+The first concrete channel template for this table is [VBF Photon Missing-Transverse-Momentum Event Ledger](vbf-photon-missing-transverse-momentum-event-ledger.md). It specializes the weak/scalar observer record to one $\gamma+jj+\mathbf{p}_T^{\mathrm{miss}}$ event shape before interpreting the hidden row as $Z(\nu\nu)$, invisible Higgs decay, or a dark-photon benchmark.
+
 The heavy-flavor tag should be modeled as an observer inference functional
 
 $$

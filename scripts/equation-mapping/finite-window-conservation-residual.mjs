@@ -55,6 +55,40 @@ const DEFAULT_TOLERANCES = {
   epsilon: 1e-12,
 };
 
+const NON_EVIDENCE_SOURCE_DECLARATIONS = [
+  [/not\s+(?:accepted\s+)?(?:retained\s+)?evidence/i, "source_declares_non_evidence"],
+  [/not\s+accepted/i, "source_declares_non_evidence"],
+  [/score-neutral/i, "source_declares_score_neutral"],
+  [/negative[- ]control/i, "source_declares_negative_control"],
+  [/source[- ]contract/i, "source_declares_source_contract"],
+  [/source[- ]shell|\bsource shell\b/i, "source_declares_source_shell"],
+  [/\battempt\b/i, "source_declares_attempt"],
+  [/\btoy\b/i, "source_declares_toy"],
+  [/\bprobe\b/i, "source_declares_probe"],
+  [/\bmock\b/i, "source_declares_mock"],
+  [/\bfixture\b/i, "source_declares_fixture"],
+  [/\bshell\b/i, "source_declares_shell"],
+];
+
+const SOURCE_DECLARATION_KEYS = new Set([
+  "claimlevel",
+  "control",
+  "evidence",
+  "evidencestatus",
+  "notes",
+  "producerstatus",
+  "provenance",
+  "scoredecision",
+  "sourceclaim",
+  "sourceevidence",
+  "sourceevidencestatus",
+  "sourcekind",
+  "sourcestatus",
+  "status",
+  "support",
+  "supportstatus",
+]);
+
 const args = parseArgs(process.argv.slice(2));
 if (args.help) {
   printHelp();
@@ -661,6 +695,10 @@ function sourceReferenceCheck(value) {
   } catch {
     return { accepted: false, reason: "source_not_found" };
   }
+  const contentRejectionReason = sourceContentRejectionReason(resolvedPath);
+  if (contentRejectionReason !== null) {
+    return { accepted: false, reason: contentRejectionReason };
+  }
   return { accepted: true, reason: "accepted" };
 }
 
@@ -704,6 +742,54 @@ function sourceReferenceRejectionReason(filePath) {
     return "control_or_attempt_source_path";
   }
   return null;
+}
+
+function sourceContentRejectionReason(filePath) {
+  let text;
+  try {
+    text = fs.readFileSync(filePath, "utf8");
+  } catch {
+    return "source_unreadable";
+  }
+  const declarationText = sourceDeclarationText(text);
+  for (const [pattern, reason] of NON_EVIDENCE_SOURCE_DECLARATIONS) {
+    if (pattern.test(declarationText)) {
+      return reason;
+    }
+  }
+  return null;
+}
+
+function sourceDeclarationText(text) {
+  try {
+    const parsed = JSON.parse(text);
+    const declarations = [];
+    collectSourceDeclarations(parsed, declarations);
+    return declarations.length > 0 ? declarations.join("\n") : text;
+  } catch {
+    return text;
+  }
+}
+
+function collectSourceDeclarations(value, declarations, key = "") {
+  if (value === null || value === undefined) {
+    return;
+  }
+  if (Array.isArray(value)) {
+    for (const entry of value) {
+      collectSourceDeclarations(entry, declarations, key);
+    }
+    return;
+  }
+  if (typeof value === "object") {
+    for (const [childKey, childValue] of Object.entries(value)) {
+      collectSourceDeclarations(childValue, declarations, childKey);
+    }
+    return;
+  }
+  if (typeof value === "string" && SOURCE_DECLARATION_KEYS.has(key.toLowerCase())) {
+    declarations.push(value);
+  }
 }
 
 function stableStringify(value) {
