@@ -266,7 +266,6 @@ const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
 const textbookTocButton = document.getElementById("textbook-toc-button");
-const archieButton = document.getElementById("archie-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
@@ -5360,7 +5359,6 @@ if (markdownRenderer) {
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
-const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
 const animatorScenePath = ANIMATOR_SCENE_PATH;
 const animatorSceneId = "animator";
@@ -5387,7 +5385,6 @@ let appDirector = null;
 const sceneIndexService = new SceneIndexService();
 const periodicTableService = new PeriodicTableService();
 const searchBackStack = [];
-const archieBackStack = [];
 const generationBackStack = [];
 const browserBackStack = [];
 const browserForwardStack = [];
@@ -8649,7 +8646,6 @@ const { animatorUiRuntime } = animatorAppRuntime;
 const appSceneChromeRuntime = createAppSceneChromeRuntime({
   sceneLabel,
   textbookTocButton,
-  archieButton,
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
@@ -8686,9 +8682,6 @@ function updateSceneLabel() {
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
-  });
-  appSceneChromeRuntime.updateArchieButton(currentLevel, {
-    archieScenePath,
   });
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
@@ -8745,33 +8738,6 @@ async function restoreSceneFromBrowserHistory(event) {
     restoreNavStack: targetEntry.navigationStack,
     historyTraversal: true,
   });
-}
-
-function openArchieRing() {
-  if (transitionState.active) {
-    return;
-  }
-  if (currentLevel?.id === archieScenePath) {
-    const backState = archieBackStack.pop();
-    if (backState?.levelId) {
-      jumpToScene(backState.levelId, {
-        restoreNavStack: backState.navigationStack,
-      });
-    } else {
-      resetToRootScene();
-    }
-    return;
-  }
-  if (currentLevel) {
-    archieBackStack.push({
-      levelId: currentLevel.id,
-      navigationStack: navigationStack.map((entry) => ({
-        levelId: entry.levelId,
-        focusNodeId: entry.focusNodeId,
-      })),
-    });
-  }
-  jumpToScene(archieScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
 function toggleTextbookToc() {
@@ -9243,7 +9209,6 @@ if (typeof window !== "undefined") {
       console.warn("[ArchitrinoSceneAppRuntime] Failed to restore browser history state", error);
     });
   });
-  window.openArchieRing = openArchieRing;
 }
 
 appDirector = new AppDirector({
@@ -9263,7 +9228,6 @@ appDirector = new AppDirector({
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
-  getArchieBackStack: () => archieBackStack,
   getGenerationBackStack: () => generationBackStack,
 });
 const appShellUiRuntime = createAppShellUiRuntime({

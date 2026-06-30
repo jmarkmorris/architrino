@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This packet audits the current native solver bridge against the boundary-window app requirements and identifies the smallest elegant first-screen design that still exposes scale, initial conditions, path history, wake history, face-boundary status, and fail-closed diagnostics.
+This packet audits the current native solver bridge against the Borg app requirements and identifies the smallest elegant first-screen design that still exposes scale, initial conditions, path history, wake history, face-boundary status, and fail-closed diagnostics.
 
 The audit is priority-design material. It does not promote app output to proof evidence, and it does not authorize a new solver.
 
@@ -10,7 +10,7 @@ The audit is priority-design material. It does not promote app output to proof e
 
 | Source | Audit use |
 | --- | --- |
-| [requirements-and-design](requirements-and-design.md) | Boundary-window app requirements, first-screen layout, layer defaults, logarithmic UI, diagnostic status vocabulary. |
+| [requirements-and-design](requirements-and-design.md) | Borg app requirements, first-screen layout, layer defaults, logarithmic UI, diagnostic status vocabulary. |
 | [face-boundary-replay](face-boundary-replay.md) | Outbound/inbound face-boundary summary and replay fixture requirements. |
 | Existing central solver bridge | Current production solver boundary and ABI extension point. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
@@ -33,7 +33,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The native solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest | `manifest-gap` | Existing outputs do not emit the app-facing run cover sheet. | The next implementation artifact should be `boundary-window-dataset-manifest.v1`. |
+| Dataset manifest | `priority-design-complete`; implementation remains `manifest-gap` | Existing outputs do not emit the app-facing run cover sheet; the design source is [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md). | The next implementation artifact should emit the manifest from native-backed current-state data plus explicit gap rows for missing path-history, wake-history, face-boundary, and error-budget products. |
 
 ## Smallest Elegant First Screen
 
@@ -105,7 +105,7 @@ Minimum timeline:
 
 ## Implementation Order
 
-1. Define the app dataset manifest so the first screen can distinguish solver-backed values from projections and gaps.
+1. Implement the app dataset manifest from [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md) so the first screen can distinguish solver-backed values from projections and gaps.
 2. Add a 3D viewport surface that consumes current visualization frames without changing solver behavior.
 3. Add the layer controller with default-visible `simulation-window` and `architrino-position`; keep velocity rays behind the layer toggle and selected-object editing.
 4. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
@@ -113,4 +113,4 @@ Minimum timeline:
 
 ## Next Exact Build Burden
 
-Define `boundary-window-dataset-manifest.v1` with fields for topology, simulation envelope, outer computed side length, displayed central volume, buffer margin, central architrino count, outer computed architrino count, buffer architrino count, central-volume velocity bound, central observation interval, initial conditions, current state frames, trajectory/path-history sources, native bridge status, diagnostic status, value authority, and explicit gap rows for wake history, face-boundary replay, and error budget.
+Select `first_native_backed_fixture`: the smallest native central solver run that can emit `borg-dataset-manifest.v1` while exercising scale, face crossings, path-history replay, and at least one wake-history or boundary-status diagnostic. The fixture must include topology, simulation envelope, outer computed side length, displayed central volume, buffer margin, central architrino count, outer computed architrino count, buffer architrino count, central-volume velocity bound, central observation interval, initial conditions, current state frames, trajectory/path-history sources or explicit gap rows, native bridge status, diagnostic status, value authority, wake-history gap rows, face-boundary replay gap rows, error-budget status, deployment budget placeholders, and a 4K UHD render manifest.

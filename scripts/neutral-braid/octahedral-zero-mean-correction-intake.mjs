@@ -46,6 +46,8 @@ export const OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEM
   "neutral-braid-octahedral-zero-mean-action-measure-branch-scope-source-audit/v0";
 export const OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA =
   "neutral-braid-octahedral-zero-mean-same-ledger-action-measure-row-with-branch-scope-attempt/v0";
+export const OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA =
+  "neutral-braid-octahedral-zero-mean-rank5-retained-branch-action-measure-producer-target/v0";
 
 const PACKET_ID = "octahedral_zero_mean_correction_intake";
 const PROMOTION_STATUS = "priority-only";
@@ -263,6 +265,20 @@ const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL =
   "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row";
 const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT =
   "same-ledger-action-measure-row-with-branch-scope-and-period-rows";
+const RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS = [
+  "same_ledger_identity_tuple",
+  "branch_scope",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE = [
+  "proxy-only-branch-scope",
+  "fixed-speed-root-ledger-provenance",
+  "diagnostic-force-residual",
+  "sampled-phase-offset",
+  "finite-mode-open-search-contract",
+];
 const ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES = [
   {
     field: "branch_scope",
@@ -3050,6 +3066,8 @@ function sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(candidate
   const identityTuple = attempt?.required_identity_tuple ?? {};
   const rowTarget = attempt?.fail_closed_action_measure_row_target ?? {};
   const periodRowsTarget = attempt?.period_rows_target ?? {};
+  const rank5ProducerTarget =
+    attempt?.rank5_retained_branch_closure_producer_target ?? {};
 
   assertField(
     isRecordObject(attempt),
@@ -3286,6 +3304,142 @@ function sameLedgerActionMeasureWithBranchScopeAttemptValidationErrors(candidate
       periodRowsTarget?.smallest_next_evidence_object ===
         ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
       "bounded_speed_live_ledger period_rows_target smallest_next_evidence_object mismatch",
+      errors
+    );
+  }
+  assertField(
+    isRecordObject(rank5ProducerTarget),
+    "bounded_speed_live_ledger action_measure_row_with_branch_scope_attempt must declare rank5_retained_branch_closure_producer_target",
+    errors
+  );
+  if (isRecordObject(rank5ProducerTarget)) {
+    assertField(
+      rank5ProducerTarget?.schema ===
+        OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA,
+      `bounded_speed_live_ledger rank5_retained_branch_closure_producer_target schema must be ${OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA}`,
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.claim_scope ===
+        "rank5-retained-branch-action-measure-producer-target-after-normal-candidate",
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target claim_scope mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.promotion_status === PROMOTION_STATUS,
+      `bounded_speed_live_ledger rank5_retained_branch_closure_producer_target promotion_status must be ${PROMOTION_STATUS}`,
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.top_six_rank === 5 &&
+        rank5ProducerTarget?.closure_route === "bounded-speed-live-ledger" &&
+        rank5ProducerTarget?.source_after_normal_packet ===
+          "bounded-speed-normal-reconstruction-candidate",
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target route metadata mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.source_normal_reconstruction_candidate_id ===
+        candidate?.normal_reconstruction_candidate_id &&
+        rank5ProducerTarget?.bounded_speed_ledger_id === candidate?.bounded_speed_ledger_id &&
+        rank5ProducerTarget?.force_checksum_id === candidate?.force_checksum_id &&
+        rank5ProducerTarget?.consumer_checksum_id === candidate?.consumer_checksum_id,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target ledger ids must match the normal candidate",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.required_identity_tuple?.bounded_speed_ledger_id ===
+        candidate?.bounded_speed_ledger_id &&
+        rank5ProducerTarget?.required_identity_tuple?.force_checksum_id ===
+          candidate?.force_checksum_id &&
+        rank5ProducerTarget?.required_identity_tuple?.consumer_checksum_id ===
+          candidate?.consumer_checksum_id &&
+        rank5ProducerTarget?.required_identity_tuple
+          ?.source_normal_reconstruction_candidate_id ===
+          candidate?.normal_reconstruction_candidate_id,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target required_identity_tuple must match the normal candidate ledger tuple",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.attempted_evidence_object ===
+        ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target attempted_evidence_object mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rank5ProducerTarget?.required_producer_fields,
+        RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS
+      ),
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target required producer fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rank5ProducerTarget?.supplied_fields_on_normal_candidate_ledger,
+        CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS
+      ),
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target supplied fields mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rank5ProducerTarget?.missing_producer_fields,
+        MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS
+      ),
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target missing producer fields mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.first_missing_producer_field ===
+        MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS[0] &&
+        rank5ProducerTarget?.first_blocker ===
+          ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target first blocker mismatch",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        rank5ProducerTarget?.rejected_evidence_kinds,
+        RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE
+      ),
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target rejected evidence list mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.nearest_rejected_source?.source_path ===
+        ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.source_path &&
+        rank5ProducerTarget?.nearest_rejected_source?.artifact_schema ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_schema &&
+        rank5ProducerTarget?.nearest_rejected_source?.artifact_id ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.artifact_id &&
+        rank5ProducerTarget?.nearest_rejected_source?.first_rejection_code ===
+          ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE.first_rejection_code,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target nearest rejected source mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.negative_control_status ===
+        "same-ledger-tuple-without-branch-scope-action-measure-not-rank5-retained-branch",
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target negative_control_status mismatch",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.accepted_same_ledger_action_measure_row === null,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target must not accept an action_measure_row",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.certifies_action_measure_row === false &&
+        rank5ProducerTarget?.certifies_rank5_retained_branch_closure === false &&
+        rank5ProducerTarget?.certifies_bounded_speed_live_ledger === false,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target must remain non-certifying",
+      errors
+    );
+    assertField(
+      rank5ProducerTarget?.retention === "not_retained" &&
+        rank5ProducerTarget?.retained_branch === false,
+      "bounded_speed_live_ledger rank5_retained_branch_closure_producer_target must not retain a branch",
       errors
     );
   }
@@ -3638,8 +3792,58 @@ function buildSameLedgerActionMeasureWithBranchScopeAttempt(candidate) {
       smallest_next_evidence_object:
         ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
     },
+    rank5_retained_branch_closure_producer_target:
+      buildRank5RetainedBranchActionMeasureProducerTarget(candidate),
     certifies_action_measure_row: false,
     certifies_action_derived_scale: false,
+    certifies_bounded_speed_live_ledger: false,
+    retention: "not_retained",
+    retained_branch: false,
+  };
+}
+
+function buildRank5RetainedBranchActionMeasureProducerTarget(candidate) {
+  return {
+    schema: OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA,
+    claim_scope:
+      "rank5-retained-branch-action-measure-producer-target-after-normal-candidate",
+    promotion_status: PROMOTION_STATUS,
+    top_six_rank: 5,
+    closure_route: "bounded-speed-live-ledger",
+    source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
+    source_normal_reconstruction_candidate_id:
+      candidate.normal_reconstruction_candidate_id,
+    bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+    force_checksum_id: candidate.force_checksum_id,
+    consumer_checksum_id: candidate.consumer_checksum_id,
+    attempted_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    required_identity_tuple: {
+      bounded_speed_ledger_id: candidate.bounded_speed_ledger_id,
+      force_checksum_id: candidate.force_checksum_id,
+      consumer_checksum_id: candidate.consumer_checksum_id,
+      source_normal_reconstruction_candidate_id:
+        candidate.normal_reconstruction_candidate_id,
+    },
+    required_producer_fields: [
+      ...RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS,
+    ],
+    supplied_fields_on_normal_candidate_ledger: [
+      ...CURRENT_ACTION_MEASURE_ROW_TARGET_FIELDS,
+    ],
+    missing_producer_fields: [...MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS],
+    first_missing_producer_field: MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS[0],
+    first_blocker: ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_FIRST_FAILURE,
+    rejected_evidence_kinds: [
+      ...RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE,
+    ],
+    nearest_rejected_source: {
+      ...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE,
+    },
+    negative_control_status:
+      "same-ledger-tuple-without-branch-scope-action-measure-not-rank5-retained-branch",
+    accepted_same_ledger_action_measure_row: null,
+    certifies_action_measure_row: false,
+    certifies_rank5_retained_branch_closure: false,
     certifies_bounded_speed_live_ledger: false,
     retention: "not_retained",
     retained_branch: false,

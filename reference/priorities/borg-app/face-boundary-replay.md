@@ -2,7 +2,7 @@
 
 ## Purpose
 
-This packet defines the first outbound/inbound face-boundary summary schema and validation fixture for the boundary-window app. The goal is to characterize architrino and wake activity crossing the six faces of the simulation-window cube, then replay a statistically similar inbound boundary population with reconstructed wake history only when the run declares that approximation inside its simulation envelope and measures its effect on the central volume.
+This packet defines the first outbound/inbound face-boundary summary schema and validation fixture for the Borg app. The goal is to characterize architrino and wake activity crossing the six faces of the simulation-window cube, then replay a statistically similar inbound boundary population with reconstructed wake history only when the run declares that approximation inside its simulation envelope and measures its effect on the central volume.
 
 The schema is priority-design material. It is not accepted proof evidence, and it does not replace retained wake rows, causal-root rows, retained path-history rows, or same-record branch evidence.
 
@@ -40,7 +40,7 @@ An outbound face summary row records aggregate activity crossing one face during
 
 | Field | Meaning |
 | --- | --- |
-| `schema` | Literal `boundary-window-face-summary.v1`. |
+| `schema` | Literal `borg-face-summary.v1`. |
 | `summaryId` | Stable row identifier. |
 | `sourceRunId` | Source finite-window run id. |
 | `faceId` | One of `xMinus`, `xPlus`, `yMinus`, `yPlus`, `zMinus`, `zPlus`. |
@@ -92,7 +92,7 @@ A replay source row declares how one or more face summaries are sampled into a l
 
 | Field | Meaning |
 | --- | --- |
-| `schema` | Literal `boundary-window-face-replay-source.v1`. |
+| `schema` | Literal `borg-face-replay-source.v1`. |
 | `replaySourceId` | Stable replay-source identifier. |
 | `summarySetId` | Identifier for the consumed face-summary set. |
 | `targetRunId` | Run id receiving the replayed boundary input. |
@@ -114,8 +114,8 @@ The replay source cannot set `valueAuthority` to an authoritative retained-row s
 The first validation fixture is a three-stage comparison:
 
 1. `reference_window_run` — run the native solver on a larger or higher-retention finite window to provide reference face statistics and retained local rows.
-2. `face_summary_extraction` — extract `boundary-window-face-summary.v1` rows from the reference run, using the declared `wakeFloor`, `historyDepth`, `wakeHorizon`, and error budget.
-3. `statistical_replay_run` — run the target finite window with inbound boundary rows sampled from `boundary-window-face-replay-source.v1`, while retaining all above-floor local wake rows explicitly.
+2. `face_summary_extraction` — extract `borg-face-summary.v1` rows from the reference run, using the declared `wakeFloor`, `historyDepth`, `wakeHorizon`, and error budget.
+3. `statistical_replay_run` — run the target finite window with inbound boundary rows sampled from `borg-face-replay-source.v1`, while retaining all above-floor local wake rows explicitly.
 
 Required fixture records:
 

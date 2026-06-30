@@ -28,6 +28,8 @@ function deepClone(value) {
 
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
+const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID =
+  "receiver_normal_branch_strength_certificate/v0";
 const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_wake", "medium_update"];
 const PROVIDER_SOURCE_CANDIDATE_FILE_FAMILY = [
   "scripts/proof-programs/event-wake-history-pullback-diagnostic.mjs",
@@ -60,6 +62,11 @@ const REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS = [
   "receiver_normal_derivatives.D_vD_t",
   "receiver_normal_derivatives.D_vW_rec",
   "receiver_normal_derivatives.D_vW_rec_reconstruction",
+];
+const REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS = [
+  "receiver_normal_derivative_bundle.branch_family_checksum.retained_record_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
 ];
 const REQUIRED_SAME_RECORD_BINDING_FIELDS = [
   "row_id",
@@ -254,6 +261,11 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
   );
   assert.equal(
     artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .rank_1_closure_object_id,
+    RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID
+  );
+  assert.equal(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
       .accepted_non_fixture_provider_required,
     true
   );
@@ -275,6 +287,11 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     artifact.wake_history_derivation_proof_object_boundary.provider_target
       .required_provider_object_field_groups.receiver_normal_derivatives,
     REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_target
+      .required_provider_object_field_groups.branch_family_aggregation,
+    REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
   );
   assert.deepEqual(
     artifact.wake_history_derivation_proof_object_boundary.provider_target
@@ -338,6 +355,11 @@ test("event wake-history pullback diagnostic emits a priority-only closed bounda
     artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
       .missing_provider_field_groups.same_record_binding,
     REQUIRED_SAME_RECORD_BINDING_FIELDS
+  );
+  assert.deepEqual(
+    artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
+      .missing_provider_field_groups.branch_family_aggregation,
+    REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
   );
   assert.deepEqual(
     artifact.wake_history_derivation_proof_object_boundary.provider_source_acquisition_blocker
@@ -833,6 +855,7 @@ test("event wake-history CLI emits the fail-closed provider target", () => {
   assert.equal(target.provider_object_required, true);
   assert.equal(target.accepted_non_fixture_provider_required, true);
   assert.equal(target.executable_replay_flag, "--provider-target");
+  assert.equal(target.rank_1_closure_object_id, RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID);
   assert.equal(target.proof_object_role, "wake_history_derivation_proof_object");
   assert.equal(target.retained_provider_status_required, "accepted");
   assert.equal(target.accepts_row_logic_fixture, false);
@@ -845,6 +868,10 @@ test("event wake-history CLI emits the fail-closed provider target", () => {
   assert.deepEqual(
     target.required_provider_object_field_groups.receiver_normal_derivatives,
     REQUIRED_RECEIVER_NORMAL_DERIVATIVE_TARGET_FIELDS
+  );
+  assert.deepEqual(
+    target.required_provider_object_field_groups.branch_family_aggregation,
+    REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS
   );
   assert.deepEqual(
     target.required_provider_object_field_groups.same_record_binding,

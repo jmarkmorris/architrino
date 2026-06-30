@@ -338,35 +338,6 @@ body.has-scene-image-gallery .label-center-context {
   height: 18px;
 }
 
-#archie-button {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
-  color: #f5f7ff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
-
-#archie-button svg {
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-}
-
-#archie-button.is-active {
-  border-color: rgba(213, 220, 255, 0.6);
-}
-
 #textbook-toc-button {
   position: relative;
   min-width: 48px;

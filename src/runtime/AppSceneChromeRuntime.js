@@ -1,7 +1,6 @@
 export function createAppSceneChromeRuntime({
   sceneLabel,
   textbookTocButton,
-  archieButton,
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
@@ -22,15 +21,6 @@ export function createAppSceneChromeRuntime({
     );
     textbookTocButton.setAttribute("aria-pressed", String(isTextbookToc));
     textbookTocButton.disabled = !!options.transitionActive || !currentLevel;
-  }
-
-  function updateArchieButton(currentLevel, options = {}) {
-    if (!archieButton) {
-      return;
-    }
-    const isArchie = currentLevel?.id === options.archieScenePath;
-    archieButton.classList.toggle("is-active", isArchie);
-    archieButton.setAttribute("aria-pressed", String(isArchie));
   }
 
   function updateMarkdownDocButton(currentLevel) {
@@ -106,7 +96,6 @@ export function createAppSceneChromeRuntime({
 
   return {
     updateTextbookTocButton,
-    updateArchieButton,
     updateMarkdownDocButton,
     updateMarkdownLayoutToggleButton,
     updateMarkdownPdfButton,

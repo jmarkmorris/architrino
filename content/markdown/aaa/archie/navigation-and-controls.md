@@ -16,7 +16,7 @@ A sphere represents a node in the scene hierarchy and acts as a portal into the 
 - `Back` returns one step in your navigation history.
 - `Forward` moves one step forward when that history exists.
 - `Home` returns to the root scene.
-- `Archie` opens or toggles the Archie ring space.
+- `Archie` is a top-level sphere on the root scene.
 
 ## Hierarchy Structure
 
@@ -58,7 +58,7 @@ Sphere labels may also use more than one text row when the scene author provides
 2. Use `Back` / `Forward` to move through scene history.
 3. Use `Home` to return to root.
 4. Open notes with the document icon when available.
-5. Use `Archie` to open/toggle the Archie ring.
+5. Select the `Archie` sphere for app help, project references, downloads, support, public outreach entries, and future guided question modes.
 
 ## Camera and Interaction
 
@@ -73,7 +73,6 @@ Sphere labels may also use more than one text row when the scene author provides
 - `Home`: jump to root scene
 - `Search` (magnifier): open scene search
 - `Info` (circle-i): reopen element detail panel when supported
-- `Archie` (ring): open/toggle Archie ring
 - `Notes` (document): open scene notes for current scene
 
 ## Markdown Panel
@@ -96,7 +95,7 @@ When a split or tree source is section-based, opening the full document is often
 2. Descend sphere-by-sphere into your topic.
 3. Open notes when you need context.
 4. Shift between section reading and full-document reading as needed.
-5. Use history for local path changes and the Archie ring for orientation or tooling context.
+5. Use history for local path changes and the top-level `Archie` sphere for app help, project references, and public-facing support entries.
 
 ## Element Scene Controls
 

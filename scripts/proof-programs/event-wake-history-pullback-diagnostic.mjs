@@ -21,6 +21,8 @@ const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
 const FIRST_BLOCKED_DOWNSTREAM_CONSUMER = "partial_L_EpJ";
 const WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA =
   "wake-history-derivation-proof-object-provider-target/v0";
+const RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID =
+  "receiver_normal_branch_strength_certificate/v0";
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
 const PROVIDER_SOURCE_CANDIDATE_FILE_FAMILY = [
@@ -91,6 +93,11 @@ const REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS = [
   "derivation_proof_object.source_record_id",
   "derivation_proof_object.status",
 ];
+const REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS = [
+  "receiver_normal_derivative_bundle.branch_family_checksum.retained_record_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
+  "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
+];
 const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
   "H39/theta3minus quotient rows",
   "shell-braid residue rows",
@@ -122,6 +129,7 @@ const REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS = {
     "receiver_normal_derivatives.D_vW_rec",
     "receiver_normal_derivatives.D_vW_rec_reconstruction",
   ],
+  branch_family_aggregation: REQUIRED_BRANCH_FAMILY_AGGREGATION_FIELDS,
   proof_object_status: [
     "derivation_proof_object.role",
     "derivation_proof_object.status",
@@ -800,6 +808,7 @@ function wakeHistoryDerivationProofObjectProviderTarget() {
     provider_object_required: true,
     accepted_non_fixture_provider_required: true,
     executable_replay_flag: "--provider-target",
+    rank_1_closure_object_id: RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID,
     proof_object_role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
     derivative_artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
     required_event_row_ids: REQUIRED_EVENT_ROWS,
@@ -899,6 +908,8 @@ function providerSourceAcquisitionBlocker(derivativeContractSummary) {
         REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_branch_strength,
       receiver_normal_derivative:
         REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_derivatives,
+      branch_family_aggregation:
+        REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.branch_family_aggregation,
       proof_object: REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS,
       provenance: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
       same_record_binding:
@@ -1252,6 +1263,12 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
     errors
   );
   assertField(
+    boundary.provider_target?.rank_1_closure_object_id ===
+      RECEIVER_NORMAL_BRANCH_STRENGTH_CERTIFICATE_ID,
+    "wake_history_derivation_proof_object_boundary.provider_target must name the rank-1 receiver-normal branch-strength certificate",
+    errors
+  );
+  assertField(
     boundary.provider_target?.accepted_non_fixture_provider_required === true,
     "wake_history_derivation_proof_object_boundary.provider_target must require a non-fixture accepted provider",
     errors
@@ -1296,6 +1313,14 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
       REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_derivatives
     ),
     "wake_history_derivation_proof_object_boundary.provider_target.required_provider_object_field_groups.receiver_normal_derivatives must match derivative requirements",
+    errors
+  );
+  assertField(
+    sameStringArray(
+      boundary.provider_target?.required_provider_object_field_groups?.branch_family_aggregation,
+      REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.branch_family_aggregation
+    ),
+    "wake_history_derivation_proof_object_boundary.provider_target.required_provider_object_field_groups.branch_family_aggregation must match branch-family aggregation requirements",
     errors
   );
   assertField(
@@ -1443,6 +1468,14 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
         REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.receiver_normal_derivatives
       ),
       "provider_source_acquisition_blocker.missing_provider_field_groups.receiver_normal_derivative must match derivative requirements",
+      errors
+    );
+    assertField(
+      sameStringArray(
+        blocker.missing_provider_field_groups?.branch_family_aggregation,
+        REQUIRED_WAKE_HISTORY_PROVIDER_FIELD_GROUPS.branch_family_aggregation
+      ),
+      "provider_source_acquisition_blocker.missing_provider_field_groups.branch_family_aggregation must match branch-family aggregation requirements",
       errors
     );
     assertField(
