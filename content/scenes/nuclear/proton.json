@@ -10,7 +10,8 @@
       -14
     ],
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerMode": "none"
     },
     "children": [
       {

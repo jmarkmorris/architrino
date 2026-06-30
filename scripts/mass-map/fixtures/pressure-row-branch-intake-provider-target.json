@@ -30,6 +30,7 @@
       "current_best_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
       "current_best_partial_missing_fields": [
         "provider_source_status",
+        "source_ref",
         "branch_certificate_ref"
       ],
       "current_best_partial_source_path_probe_target": {
@@ -37,8 +38,9 @@
         "claim_level": "priority-only fail-closed target, not provider acceptance",
         "nearest_partial_candidate": "pressure-row-a0-branch-source-frontier-partial",
         "required_provider_source_status_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+        "required_source_ref_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
         "required_branch_certificate_ref_path": "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
-        "forbidden_shortcut": "Populated same-candidate fields do not become accepted provenance until provider_source_status and branch_certificate_ref are supplied on one accepted non-fixture provider row.",
+        "forbidden_shortcut": "Populated same-candidate fields do not become accepted provenance until provider_source_status, non-fixture source_ref, and branch_certificate_ref are supplied on one accepted non-fixture provider row.",
         "authorizes_pressure_response": false
       },
       "authorizes_pressure_response": false

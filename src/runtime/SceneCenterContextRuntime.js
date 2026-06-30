@@ -32,6 +32,14 @@ export function resolveCenterContextChapterLabel(nodes = []) {
   return common.length ? `Ch ${common.join(".")}` : "";
 }
 
+export function shouldAllowCenterContext(level) {
+  const centerMode =
+    typeof level?.layoutConfig?.centerMode === "string"
+      ? level.layoutConfig.centerMode.trim().toLowerCase()
+      : "";
+  return centerMode !== "none";
+}
+
 export function formatCenterContextCount(count) {
   const numericCount = Number.isFinite(count) ? Math.max(0, Math.round(count)) : 0;
   if (numericCount === 1) {

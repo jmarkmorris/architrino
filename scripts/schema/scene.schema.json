@@ -239,6 +239,10 @@
           "properties": {
             "type": { "type": "string" },
             "centerNode": { "type": ["string", "null"] },
+            "centerMode": {
+              "type": "string",
+              "enum": ["none", "node", "auto"]
+            },
             "centerOn": { "type": "string" },
             "direction": {
               "type": "string",

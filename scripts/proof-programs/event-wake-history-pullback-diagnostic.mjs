@@ -19,11 +19,14 @@ const REQUIRED_EVENT_ROWS = ["energy_wake", "momentum_wake", "angular_momentum_w
 const REQUIRED_SOURCE_RECORD_ID = "theta_sea_branch_q0_v0";
 const ACCEPTED_EVENT_PROOF_OBJECT_ROLE = "wake_history_derivation_proof_object";
 const FIRST_BLOCKED_DOWNSTREAM_CONSUMER = "partial_L_EpJ";
+const WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA =
+  "wake-history-derivation-proof-object-provider-target/v0";
 const RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID =
   "receiver-normal-retained-branch-family-first-derivative/v0";
 const RECEIVER_NORMAL_CONTROLS = [
   "receiver-normal-derivative-contract-row-logic",
   "receiver-normal-missing-proof-object-provider",
+  "receiver-normal-proof-object-provenance-mismatch",
   "receiver-normal-missing-derivative-bundle",
   "receiver-normal-reconstruction-drift",
   "receiver-normal-record-mismatch",
@@ -72,6 +75,20 @@ const REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS = [
   "receiver_normal_derivative_bundle.branch_family_checksum.retained_record_ids",
   "receiver_normal_derivative_bundle.branch_family_checksum.consumer_row_ids",
   "receiver_normal_derivative_bundle.branch_family_checksum.source_artifact_hash",
+];
+const REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS = [
+  "derivation_proof_object.role",
+  "derivation_proof_object.accepted_evidence_id",
+  "derivation_proof_object.row_id",
+  "derivation_proof_object.source_record_id",
+  "derivation_proof_object.status",
+];
+const DISALLOWED_ACCEPTED_EVIDENCE_SOURCES = [
+  "H39/theta3minus rows",
+  "shell-braid residue rows",
+  "terminal aggregates",
+  "source-normal denominators",
+  "row-logic fixtures",
 ];
 const NUMERIC_TOLERANCE = 1e-12;
 
@@ -232,6 +249,24 @@ function applyReceiverNormalControl(packet, controlName, eventRow) {
         rowId,
         acceptedWakeHistoryEvidence(packet, rowId, {
           includeProofObject: false,
+        })
+      );
+    }
+    packet.event_evidence_rows = [...evidenceByRow.values()];
+    return packet;
+  }
+  if (controlName === "receiver-normal-proof-object-provenance-mismatch") {
+    for (const rowId of rowIds) {
+      evidenceByRow.set(
+        rowId,
+        acceptedWakeHistoryEvidence(packet, rowId, {
+          derivation_proof_object: {
+            role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+            accepted_evidence_id: `accepted_${rowId}_same_record_receiver_normal_derivative_v0`,
+            row_id: rowId,
+            source_record_id: packet.source_record_id,
+            status: "priority-only diagnostic",
+          },
         })
       );
     }
@@ -594,6 +629,18 @@ function receiverNormalFailureCode(eventRow) {
       field.startsWith("event_evidence.derivation_proof_object.")
     )
   ) {
+    const proofObjectMismatches = mismatches.filter((field) =>
+      field.startsWith("event_evidence.derivation_proof_object.")
+    );
+    if (
+      proofObjectMismatches.length === 1 &&
+      proofObjectMismatches[0] === "event_evidence.derivation_proof_object.status"
+    ) {
+      return "wake-history-derivation-proof-object-status-not-accepted";
+    }
+    if (proofObjectMismatches.length < REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS.length) {
+      return "wake-history-derivation-proof-object-provenance-mismatch";
+    }
     return "wake-history-derivation-proof-object-missing";
   }
   return "accepted_evidence_contract_mismatch";
@@ -673,6 +720,104 @@ function receiverNormalDerivativeContractSummary(eventRows) {
   };
 }
 
+function firstMissingFieldFamily(derivativeContractSummary) {
+  if (
+    derivativeContractSummary.row_contracts.some((entry) =>
+      entry.required_object_blockers.includes("receiver_normal_derivative_bundle")
+    )
+  ) {
+    return "receiver_normal_derivative_bundle";
+  }
+  if (
+    derivativeContractSummary.row_contracts.some((entry) =>
+      entry.required_object_blockers.includes(ACCEPTED_EVENT_PROOF_OBJECT_ROLE)
+    )
+  ) {
+    return ACCEPTED_EVENT_PROOF_OBJECT_ROLE;
+  }
+  if (!derivativeContractSummary.all_required_rows_bound) {
+    return "accepted_wake_history_event_row";
+  }
+  return ACCEPTED_EVENT_PROOF_OBJECT_ROLE;
+}
+
+function wakeHistoryDerivationProofObjectProviderTarget() {
+  return {
+    schema: WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+    proof_object_role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+    derivative_artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
+    required_event_row_ids: REQUIRED_EVENT_ROWS,
+    required_retained_record_fields: REQUIRED_RETAINED_RECORD_FIELDS,
+    required_receiver_normal_derivative_fields:
+      REQUIRED_RECEIVER_NORMAL_DERIVATIVE_FIELDS,
+    required_proof_object_fields: REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS,
+    required_provenance_fields: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
+    disallowed_accepted_evidence_sources: DISALLOWED_ACCEPTED_EVIDENCE_SOURCES,
+    retained_provider_status_required: "accepted",
+    accepts_row_logic_fixture: false,
+    first_downstream_consumer: FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+  };
+}
+
+function sameRecordIdentityBoundary(derivativeContractSummary) {
+  const blockedRows = derivativeContractSummary.row_contracts.filter((entry) =>
+    entry.required_object_blockers.includes("receiver_normal_derivative_bundle")
+  );
+  return {
+    status:
+      blockedRows.length === 0
+        ? "same_record_identity_row_logic_bound"
+        : "same_record_identity_unbound",
+    required_event_row_ids: REQUIRED_EVENT_ROWS,
+    blocked_row_ids: blockedRows.map((entry) => entry.row_id),
+    required_retained_record_fields: REQUIRED_RETAINED_RECORD_FIELDS,
+    required_receiver_normal_derivative_fields:
+      REQUIRED_RECEIVER_NORMAL_DERIVATIVE_FIELDS,
+    required_shared_record_identity_fields: [
+      "source_record_id",
+      "event_ledger_id",
+      "retained_record_key.record_id",
+      "retained_record_key.source_record_id",
+      "receiver_normal_derivative_bundle.consumer_row_id",
+    ],
+    first_missing_field_family:
+      blockedRows.length === 0
+        ? null
+        : "receiver_normal_derivative_bundle.same_retained_record_identity",
+  };
+}
+
+function proofObjectProvenanceBoundary(derivativeContractSummary) {
+  const proofRows = derivativeContractSummary.row_contracts.filter((entry) =>
+    entry.required_object_blockers.includes(ACCEPTED_EVENT_PROOF_OBJECT_ROLE)
+  );
+  return {
+    status:
+      proofRows.length === 0
+        ? "proof_object_provenance_row_logic_bound"
+        : "wake_history_derivation_proof_object_provenance_unbound",
+    blocked_row_ids: proofRows.map((entry) => entry.row_id),
+    required_proof_object_fields: REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS,
+    required_provenance_fields: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
+    required_provider_status: "accepted",
+    first_missing_field_family:
+      proofRows.length === 0
+        ? null
+        : ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
+  };
+}
+
+function downstreamConsumerBoundary() {
+  return {
+    consumer_id: FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+    status: "blocked_by_missing_wake_history_derivation_proof_object_provider",
+    release_condition:
+      "accepted_retained_provider_ready true for wake_history_derivation_proof_object",
+    required_provider_target_schema:
+      WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+  };
+}
+
 function wakeHistoryDerivationProofObjectBoundary(derivativeContractSummary) {
   const missingProofObjectRows = derivativeContractSummary.row_contracts
     .filter((entry) =>
@@ -690,19 +835,27 @@ function wakeHistoryDerivationProofObjectBoundary(derivativeContractSummary) {
     derivativeContractSummary.first_blocked_row_id;
 
   return {
+    provider_target: wakeHistoryDerivationProofObjectProviderTarget(),
     expected_proof_object_role: ACCEPTED_EVENT_PROOF_OBJECT_ROLE,
     expected_derivative_artifact_id: RECEIVER_NORMAL_DERIVATIVE_ARTIFACT_ID,
     accepted_retained_provider_ready: false,
     provider_status: "wake_history_derivation_proof_object_missing",
     first_blocked_event_row_id: firstBlockedRowId ?? null,
     first_blocked_downstream_consumer: FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+    first_missing_field_family: firstMissingFieldFamily(derivativeContractSummary),
     required_event_row_ids: REQUIRED_EVENT_ROWS,
     missing_proof_object_row_ids: missingProofObjectRows,
     missing_derivative_bundle_row_ids: missingDerivativeRows,
     required_retained_record_fields: REQUIRED_RETAINED_RECORD_FIELDS,
     required_receiver_normal_derivative_fields:
       REQUIRED_RECEIVER_NORMAL_DERIVATIVE_FIELDS,
+    required_proof_object_fields: REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS,
     required_provenance_fields: REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS,
+    same_record_identity_boundary:
+      sameRecordIdentityBoundary(derivativeContractSummary),
+    proof_object_provenance_boundary:
+      proofObjectProvenanceBoundary(derivativeContractSummary),
+    downstream_consumer_boundary: downstreamConsumerBoundary(),
     accepted_provider_source:
       "absent; local search found no non-fixture accepted retained wake-history provider object",
   };
@@ -985,6 +1138,17 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
     errors
   );
   assertField(
+    boundary.provider_target?.schema ===
+      WAKE_HISTORY_DERIVATION_PROOF_OBJECT_PROVIDER_TARGET_SCHEMA,
+    "wake_history_derivation_proof_object_boundary.provider_target.schema must match provider target schema",
+    errors
+  );
+  assertField(
+    boundary.provider_target?.accepts_row_logic_fixture === false,
+    "wake_history_derivation_proof_object_boundary.provider_target must reject row-logic fixtures",
+    errors
+  );
+  assertField(
     sameStringArray(boundary.required_retained_record_fields, REQUIRED_RETAINED_RECORD_FIELDS),
     "wake_history_derivation_proof_object_boundary.required_retained_record_fields must match retained-record requirements",
     errors
@@ -1000,6 +1164,22 @@ function validateWakeHistoryDerivationProofObjectBoundary(artifact, errors) {
   assertField(
     sameStringArray(boundary.required_provenance_fields, REQUIRED_WAKE_HISTORY_PROVENANCE_FIELDS),
     "wake_history_derivation_proof_object_boundary.required_provenance_fields must match provenance requirements",
+    errors
+  );
+  assertField(
+    sameStringArray(boundary.required_proof_object_fields, REQUIRED_WAKE_HISTORY_PROOF_OBJECT_FIELDS),
+    "wake_history_derivation_proof_object_boundary.required_proof_object_fields must match proof-object requirements",
+    errors
+  );
+  assertField(
+    boundary.downstream_consumer_boundary?.consumer_id === FIRST_BLOCKED_DOWNSTREAM_CONSUMER,
+    "wake_history_derivation_proof_object_boundary.downstream_consumer_boundary must identify the wake-history consumer",
+    errors
+  );
+  assertField(
+    boundary.downstream_consumer_boundary?.status ===
+      "blocked_by_missing_wake_history_derivation_proof_object_provider",
+    "wake_history_derivation_proof_object_boundary.downstream_consumer_boundary must fail closed",
     errors
   );
 }
@@ -1126,15 +1306,21 @@ function main() {
             "accepted_for_wake_history_closure",
           ],
           wake_history_derivation_proof_object_boundary: [
+            "provider_target",
             "expected_proof_object_role",
             "expected_derivative_artifact_id",
             "accepted_retained_provider_ready",
             "provider_status",
             "first_blocked_event_row_id",
             "first_blocked_downstream_consumer",
+            "first_missing_field_family",
             "required_retained_record_fields",
             "required_receiver_normal_derivative_fields",
+            "required_proof_object_fields",
             "required_provenance_fields",
+            "same_record_identity_boundary",
+            "proof_object_provenance_boundary",
+            "downstream_consumer_boundary",
           ],
           receiver_normal_derivative_contract_summary: [
             "required_row_ids",

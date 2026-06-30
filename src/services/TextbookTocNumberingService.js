@@ -39,7 +39,6 @@ function buildTextbookTocNumbering(tocRoot, helpers) {
   const byScenePath = new Map();
   const byMarkdownPath = new Map();
   const byMarkdownSection = new Map();
-  const byNodeId = new Map();
 
   function addSection(section, numberPath) {
     if (!section || typeof section !== "object") {
@@ -72,11 +71,14 @@ function buildTextbookTocNumbering(tocRoot, helpers) {
       return;
     }
     const label = labelFromNumberPath(numberPath);
-    addFirst(byNodeId, typeof node.id === "string" ? node.id : null, label);
-    addFirst(byScenePath, node.scenePath ? normalizeMarkdownPath(node.scenePath) : null, label);
+    const markdownPath = node.markdownPath ? normalizeMarkdownPath(node.markdownPath) : null;
+    const hasMarkdownTarget = Boolean(markdownPath);
+    if (hasMarkdownTarget) {
+      addFirst(byScenePath, node.scenePath ? normalizeMarkdownPath(node.scenePath) : null, label);
+    }
     addFirst(
       byMarkdownPath,
-      node.markdownPath ? normalizeMarkdownPath(node.markdownPath) : null,
+      markdownPath,
       label
     );
     if (node.markdownPath && node.markdownSection) {
@@ -106,7 +108,6 @@ function buildTextbookTocNumbering(tocRoot, helpers) {
     byScenePath,
     byMarkdownPath,
     byMarkdownSection,
-    byNodeId,
   };
 }
 
@@ -181,8 +182,7 @@ export function createTextbookTocNumberingService(deps = {}) {
       return numbering.byMarkdownPath.get(markdownPath);
     }
 
-    const nodeId = typeof node.id === "string" ? node.id : null;
-    return nodeId ? numbering.byNodeId.get(nodeId) ?? null : null;
+    return null;
   }
 
   return {

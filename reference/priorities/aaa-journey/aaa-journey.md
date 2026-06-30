@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `active`
-- Scope: theory-history reconstruction, discovery-path capture, legacy archive synthesis, and priority-only journey packets
+- Scope: theory-history reconstruction, discovery-path capture, legacy archive synthesis, perspective-commentary staging, and priority-only journey packets
 - Claim level: priority-stage historical reconstruction; not reader-facing canon and not proof closure
 
 ## Purpose
@@ -16,6 +16,7 @@ Use this folder for:
 - source-mined theory-history recaps from the legacy WordPress archive;
 - origin-history notes about parsimony, pruning, failed branches, and discovery method;
 - seminal realization packets for the binary, Noether braid, axial layer, fermion generations, strong-sector links, Noether sea, causal wake, and master-equation direction;
+- historical perspective commentaries, including AI-imagined reconstructions, real statements adapted with permission, lecture-style commentaries, and pasted source material;
 - priority-only staging before any reader-facing promotion.
 
 ## Current Files
@@ -41,6 +42,25 @@ Use this folder for:
 5. `noether_sea_journey_packet` - Separate legacy `spacetime aether` claims from current Noether sea constitutive-response obligations. Status: `queued`.
 6. `journey_signal_coverage_map` - Mark which journey signals are already captured in `content/markdown/aaa` and which remain priority-only. Status: `queued`.
 7. `origin_history_expansion` - Continue origin-history capture around radical parsimony, pruning, failed branches, and the Euclidean void plus architrinos starting constraint. Status: `active`.
+8. `perspective_commentary_staging` - Stage counterfactual, historical, lecture-style, or adapted-perspective commentaries only when their source provenance, interpretive status, and proof burden are explicit. Status: `queued`.
+
+## Perspective Commentary Rules
+
+Use this workstream for perspective pages that can become reader-facing historical commentaries. Each staged perspective should help $\mathbb{A}\mathbb{A}\mathbb{A}$ explain the history of nature-theory without pretending that imagined historical voices are real historical evidence.
+
+- Name each perspective file for the primary historical or contemporary figure when there is one clear voice, for example `william-thurston.md`.
+- State the source provenance near the top: real statement, AI-imagined reconstruction, edited note, pasted source, or mixed source.
+- For AI-imagined reconstructions, state that the text is not a historical quotation, endorsement, attribution, or evidence about the person's actual views.
+- Treat the mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage as a counterfactual interpretive device unless the proof state actually warrants a stronger claim.
+- Shape each perspective as polished public commentary rather than a raw transcript or staged debate.
+- Preserve the figure's known intellectual sensibility without claiming the real person would have endorsed $\mathbb{A}\mathbb{A}\mathbb{A}$.
+- Use the `Questions` section in [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) as the shared prompt all production perspectives answer.
+- Position $\mathbb{A}\mathbb{A}\mathbb{A}$ in relation to prior models of nature, including general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM where relevant.
+- Include missed-opportunity analysis where relevant: why the architecture did not crystallize from available ingredients, why the miss persisted through later successful theories, and which stage-specific habits of thought made the deeper construction harder to see.
+- Refer to the operator/developer as Marko in published perspective text when origin or authorship is discussed.
+- Separate substrate ontology, effective description, mathematical formalism, observational inference, interpretive historical framing, and corpus-ready proof claims.
+- State the proof burden that remains for $\mathbb{A}\mathbb{A}\mathbb{A}$ before the historical reinterpretation is earned.
+- Promote only the distilled result into `content/markdown/aaa` when it becomes reader-facing and defensible.
 
 ## Promotion Policy
 

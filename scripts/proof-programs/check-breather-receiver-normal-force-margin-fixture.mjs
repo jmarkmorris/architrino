@@ -10,6 +10,12 @@ export const BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID =
   "breather-receiver-normal-force-margin-restart/v0";
 export const SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA =
   "sigma_hf_01_external_schema_candidate_schema_validation_intake_target/v0";
+export const SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA =
+  "sigma_hf_01_source_packet_acceptance_rule_derivation_proof_object_target/v0";
+export const SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA =
+  "sigma_hf_01_accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet_target/v0";
+export const BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA =
+  "breather_receiver_normal_branch_chart_and_row_producer_target/v0";
 
 export const BREATHER_FORCE_MARGIN_STATUSES = Object.freeze({
   missing: "receiver_normal_breather_force_margin_missing",
@@ -149,6 +155,79 @@ const SIGMA_HF_01_REQUIRED_PROOF_GRADE_FIELDS = Object.freeze([
   "rule_kernel_derivation_payload_target_binding",
   "proof_grade_derivation_schema_statement",
 ]);
+const SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_REQUIRED_FIELDS = Object.freeze([
+  "source_packet_acceptance_rule_derivation_proof_object",
+  "compatible_schema_role_lock",
+  "compatible_proof_object_role_lock",
+  "derivation_proof_target_lock",
+  "derivation_proof_source_data_record_lock",
+  "rule_kernel_obligation_binding",
+  "rule_kernel_derivation_payload_target_binding",
+  "proof_grade_derivation_schema_statement",
+  "non_reinterpretation_guard",
+  "source_packet_acceptance_rule_derivation_proof",
+  "source_packet_acceptance_rule_soundness_proof",
+  "source_packet_acceptance_rule_endpoint_application_proof",
+]);
+const SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_REQUIRED_FIELDS = Object.freeze([
+  "source_packet_identity",
+  "source_packet_acceptance_rule_derivation_proof",
+  "source_packet_acceptance_rule_soundness_proof",
+  "source_packet_acceptance_rule_endpoint_application_proof",
+  "accepted_constants_conformance",
+  "compatible_source_packet_acceptance_evidence",
+  "mollifier_or_direct_quadrature_route_declaration",
+  "row_projection_source_slice_coverage_certificate",
+  "dual_mollified_row_integrand_interval_enclosure",
+  "full_rectangle_interval_sources",
+  "same_packet_fold_impulse_or_direct_quadrature_bound",
+  "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet",
+]);
+const BREATHER_RECEIVER_NORMAL_BRANCH_CHART_REQUIRED_FIELDS = Object.freeze([
+  "branch_chart_authorized",
+  "branch_family_checksum",
+  "same_packet_history_update_formula_supplied",
+  "candidate_replay_artifacts_present",
+  "accepted_same_packet_fold_layer_rows",
+  "row_consumed",
+]);
+const SIGMA_HF_01_PROOF_GRADE_FIELD_TARGETS = Object.freeze({
+  rule_kernel_obligation_binding: Object.freeze({
+    producer_target: "rule_kernel_obligation_binding",
+    source_target:
+      "source_packet_acceptance_rule_derivation_proof_object.rule_kernel_obligation_binding",
+    required_predicates: Object.freeze([
+      "derivation_proof_obligation=discharged",
+      "soundness_proof_obligation=discharged",
+      "endpoint_application_proof_obligation=discharged",
+    ]),
+    first_downstream_consumer: "rule_kernel_derivation_payload",
+  }),
+  rule_kernel_derivation_payload_target_binding: Object.freeze({
+    producer_target: "rule_kernel_derivation_payload_target_binding",
+    source_target:
+      "source_packet_acceptance_rule_derivation_proof_object.rule_kernel_derivation_payload_target_binding",
+    required_predicates: Object.freeze([
+      "slot=Sigma_hf_01",
+      "payload_target_declared=true",
+      "proof_binds_to_payload_target=true",
+      "rule_kernel_derivation_payload_constructed=true",
+    ]),
+    first_downstream_consumer: "rule_kernel_derivation_payload",
+  }),
+  proof_grade_derivation_schema_statement: Object.freeze({
+    producer_target: "proof_grade_derivation_schema_statement",
+    source_target:
+      "source_packet_acceptance_rule_derivation_proof_object.proof_grade_derivation_schema_statement",
+    required_predicates: Object.freeze([
+      "hypotheses_nonempty",
+      "inference_steps_nonempty",
+      "conclusion_nonempty",
+      "source_data_correspondence_nonempty",
+    ]),
+    first_downstream_consumer: "rule_kernel_derivation_payload",
+  }),
+});
 const SIGMA_HF_01_FORBIDDEN_REINTERPRETATIONS = Object.freeze([
   "rule_kernel_payload_proof_grade_derivation_schema_external_input_obligation_packet_as_proof_grade_derivation_schema",
   "rule_kernel_payload_proof_grade_derivation_schema_current_pool_absence_classifier_as_proof_grade_derivation_schema",
@@ -492,6 +571,8 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
       },
     },
     receiver_normal_route: {
+      branch_chart_and_row_producer_target:
+        buildBreatherReceiverNormalBranchChartAndRowProducerTarget(),
       retained_rows_expected_file:
         BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.retained_rows,
       derivative_bundle_expected_file:
@@ -518,6 +599,8 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
         "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
       source_packet_acceptance_rule_fields:
         BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS,
+      accepted_same_packet_source_packet_target:
+        buildSigmaHf01AcceptedSamePacketSourcePacketTarget(),
       source_packet_rule_derivation_proof_contract_attempt: summarizeRouteJson(sourceRuleContract, [
         "source_material_premise_slots_satisfied",
         "candidate_exact_consistency_premise_slots_satisfied",
@@ -554,6 +637,8 @@ function buildBreatherReceiverNormalForceMarginProducerRouteBoundary(sourceRoot)
           "source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
         schema_validation_intake_target:
           buildSigmaHf01ExternalSchemaIntakeTarget(),
+        source_packet_derivation_proof_object_target:
+          buildSigmaHf01SourcePacketDerivationProofObjectTarget(),
         compatible_schema_role:
           "source_packet_acceptance_rule_derivation_proof_object_rule_kernel_derivation_payload_proof_grade_derivation_schema",
         compatible_proof_object_role: "source_packet_acceptance_rule_derivation_proof_object",
@@ -840,6 +925,89 @@ function hasNonReinterpretationGuard(value) {
   return SIGMA_HF_01_FORBIDDEN_REINTERPRETATIONS.every((entry) => forbidden.has(entry));
 }
 
+function sigmaHf01ProofGradePredicateResults(field, value) {
+  if (field === "rule_kernel_obligation_binding") {
+    return [
+      {
+        predicate: "derivation_proof_obligation=discharged",
+        accepted:
+          isPlainObject(value) && value.derivation_proof_obligation === "discharged",
+      },
+      {
+        predicate: "soundness_proof_obligation=discharged",
+        accepted: isPlainObject(value) && value.soundness_proof_obligation === "discharged",
+      },
+      {
+        predicate: "endpoint_application_proof_obligation=discharged",
+        accepted:
+          isPlainObject(value) && value.endpoint_application_proof_obligation === "discharged",
+      },
+    ];
+  }
+  if (field === "rule_kernel_derivation_payload_target_binding") {
+    return [
+      {
+        predicate: "slot=Sigma_hf_01",
+        accepted: isPlainObject(value) && value.slot === SIGMA_HF_01_EXTERNAL_SCHEMA_TARGET_SLOT,
+      },
+      {
+        predicate: "payload_target_declared=true",
+        accepted: isPlainObject(value) && value.payload_target_declared === true,
+      },
+      {
+        predicate: "proof_binds_to_payload_target=true",
+        accepted: isPlainObject(value) && value.proof_binds_to_payload_target === true,
+      },
+      {
+        predicate: "rule_kernel_derivation_payload_constructed=true",
+        accepted:
+          isPlainObject(value) && value.rule_kernel_derivation_payload_constructed === true,
+      },
+    ];
+  }
+  if (field === "proof_grade_derivation_schema_statement") {
+    return [
+      {
+        predicate: "hypotheses_nonempty",
+        accepted: isPlainObject(value) && Array.isArray(value.hypotheses) && value.hypotheses.length > 0,
+      },
+      {
+        predicate: "inference_steps_nonempty",
+        accepted:
+          isPlainObject(value) &&
+          Array.isArray(value.inference_steps) &&
+          value.inference_steps.length > 0,
+      },
+      {
+        predicate: "conclusion_nonempty",
+        accepted: isPlainObject(value) && present(value.conclusion),
+      },
+      {
+        predicate: "source_data_correspondence_nonempty",
+        accepted: isPlainObject(value) && present(value.source_data_correspondence),
+      },
+    ];
+  }
+  return null;
+}
+
+function sigmaHf01ProofGradePredicateDiagnostics(field, value) {
+  const predicateResults = sigmaHf01ProofGradePredicateResults(field, value);
+  if (predicateResults === null) {
+    return null;
+  }
+  return {
+    field_target: SIGMA_HF_01_PROOF_GRADE_FIELD_TARGETS[field],
+    accepted_predicates: predicateResults
+      .filter((entry) => entry.accepted)
+      .map((entry) => entry.predicate),
+    missing_predicates: predicateResults
+      .filter((entry) => !entry.accepted)
+      .map((entry) => entry.predicate),
+    predicate_results: predicateResults,
+  };
+}
+
 function sigmaHf01RequiredFieldVerdict(candidate, field) {
   const checks = {
     compatible_schema_role_lock: () =>
@@ -856,12 +1024,17 @@ function sigmaHf01RequiredFieldVerdict(candidate, field) {
   };
   const supplied = present(candidate[field]);
   const accepted = checks[field]();
-  return {
+  const verdict = {
     field,
     supplied,
     accepted,
     status: accepted ? "accepted_for_schema_validation_intake" : "external_input_required",
   };
+  const proofGradeDiagnostics = sigmaHf01ProofGradePredicateDiagnostics(field, candidate[field]);
+  if (proofGradeDiagnostics !== null) {
+    verdict.proof_grade_predicate_diagnostics = proofGradeDiagnostics;
+  }
+  return verdict;
 }
 
 function sigmaHf01CandidateRef(candidate, options = {}) {
@@ -1036,6 +1209,7 @@ export function buildSigmaHf01ExternalSchemaIntakeTarget() {
     required_provenance_fields: BREATHER_RULE_KERNEL_PAYLOAD_EXTERNAL_PROVENANCE_FIELDS,
     required_schema_fields: BREATHER_RULE_KERNEL_PAYLOAD_REQUIRED_SCHEMA_FIELDS,
     required_proof_grade_fields: SIGMA_HF_01_REQUIRED_PROOF_GRADE_FIELDS,
+    proof_grade_field_targets: SIGMA_HF_01_PROOF_GRADE_FIELD_TARGETS,
     required_traceability_fields: BREATHER_RULE_KERNEL_PAYLOAD_TRACEABILITY_FIELDS,
     rejected_candidate_classes: [
       "local proof-program pool JSON",
@@ -1061,6 +1235,134 @@ export function buildSigmaHf01ExternalSchemaIntakeTarget() {
       schema_validation_intake: "candidate-dependent",
       row_consumption: false,
       accepted_source_packet: false,
+      branch_chart: false,
+      receiver_normal_force_margin_fixture: false,
+    },
+  };
+}
+
+export function buildSigmaHf01SourcePacketDerivationProofObjectTarget() {
+  return {
+    schema: SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+    claim_level:
+      "priority-only producer target; not proof evidence, not a source packet, and not a force-margin fixture",
+    packet_id: BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID,
+    proof_interval: BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL,
+    lambda_branch: BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG,
+    target_slot: SIGMA_HF_01_EXTERNAL_SCHEMA_TARGET_SLOT,
+    fold_interval: SIGMA_HF_01_EXTERNAL_SCHEMA_FOLD_INTERVAL,
+    expected_proof_object_file:
+      "source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+    required_upstream_schema_intake:
+      "sigma_hf_01_external_schema_candidate_schema_validation_intake_target/v0",
+    required_upstream_schema_candidate:
+      "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+    required_object_fields:
+      SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_REQUIRED_FIELDS,
+    required_rule_kernel_field_targets: SIGMA_HF_01_PROOF_GRADE_FIELD_TARGETS,
+    source_packet_acceptance_rule_fields:
+      BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS.slice(0, 3),
+    blocked_downstream_until_proof_object: [
+      "accepted_constants_conformance",
+      "compatible_source_packet_acceptance_evidence",
+      "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet",
+      "higher_fold_separator_layer_certificate",
+      "branch_chart.json",
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.retained_rows,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.derivative_bundle,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.margin_intervals,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.fixture,
+    ],
+    authorization_after_proof_object_target: {
+      source_packet_acceptance_rule: false,
+      accepted_source_packet: false,
+      row_consumption: false,
+      branch_chart: false,
+      receiver_normal_force_margin_fixture: false,
+    },
+  };
+}
+
+export function buildSigmaHf01AcceptedSamePacketSourcePacketTarget() {
+  return {
+    schema: SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
+    claim_level:
+      "priority-only source-packet producer target; not accepted proof evidence and not a force-margin fixture",
+    packet_id: BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID,
+    proof_interval: BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL,
+    lambda_branch: BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG,
+    target_slot: SIGMA_HF_01_EXTERNAL_SCHEMA_TARGET_SLOT,
+    expected_source_packet_file:
+      "accepted_same_packet_fold_impulse_or_direct_quadrature_source_packet.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+    required_upstream_proof_object_target:
+      SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+    required_acceptance_rule_fields:
+      BREATHER_SOURCE_PACKET_ACCEPTANCE_RULE_BLOCKER_FIELDS,
+    required_same_packet_source_fields:
+      SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_REQUIRED_FIELDS,
+    first_source_packet_field_still_blocked:
+      "row_projection_source_slice_coverage_certificate",
+    same_packet_scope_lock: {
+      packet_id: BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID,
+      proof_interval: BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL,
+      lambda_branch: BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG,
+      target_slot: SIGMA_HF_01_EXTERNAL_SCHEMA_TARGET_SLOT,
+    },
+    blocked_downstream_until_accepted_source_packet: [
+      "higher_fold_separator_layer_certificate",
+      "branch_chart.json",
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.retained_rows,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.derivative_bundle,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.margin_intervals,
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES.fixture,
+    ],
+    authorization_after_source_packet_target: {
+      accepted_source_packet: false,
+      higher_fold_separator_layer_certificate: false,
+      row_consumption: false,
+      branch_chart: false,
+      receiver_normal_force_margin_fixture: false,
+    },
+  };
+}
+
+export function buildBreatherReceiverNormalBranchChartAndRowProducerTarget() {
+  return {
+    schema: BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA,
+    claim_level:
+      "priority-only downstream producer target; not a branch-chart certificate and not a force-margin fixture",
+    packet_id: BREATHER_FORCE_MARGIN_ROUTE_PACKET_ID,
+    proof_interval: BREATHER_FORCE_MARGIN_ROUTE_PROOF_INTERVAL,
+    lambda_branch: BREATHER_FORCE_MARGIN_ROUTE_LAMBDA_TAG,
+    required_upstream_targets: [
+      SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
+      "higher_fold_separator_layer_certificate",
+    ],
+    expected_producer_files: BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_EXPECTED_PRODUCER_FILES,
+    branch_chart_required_fields:
+      BREATHER_RECEIVER_NORMAL_BRANCH_CHART_REQUIRED_FIELDS,
+    retained_record_required_fields:
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.retained_record_fields,
+    derivative_bundle_required_fields:
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_REQUIRED_SOURCE_BOUNDARY.derivative_fields,
+    margin_interval_required_fields: [
+      "consumer_id",
+      "branch_family_checksum",
+      "gamma_rec_interval",
+    ],
+    same_record_consumption_rule:
+      "fixture construction remains blocked unless D_s_interval, D_t_interval, W_rec_interval, D_vD_s_interval, D_vD_t_interval, reconstructed D_vW_rec_interval, branch_family_checksum, and gamma_rec_interval are consumed from the same packet",
+    forbidden_source_classes: [
+      "old shell-braid 1/|J| force weights",
+      "source-normal denominator rows",
+      "aggregate-only force-margin summaries",
+      "cross-packet branch charts",
+      "target-only or absence-boundary JSON",
+    ],
+    first_downstream_fixture_consumer:
+      BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
+    authorization_after_producer_target: {
+      row_consumption: false,
       branch_chart: false,
       receiver_normal_force_margin_fixture: false,
     },
@@ -1137,6 +1439,9 @@ export function validateSigmaHf01ExternalSchemaIntakeCandidate(candidate, option
   );
   const failedFields = fieldResults.filter((entry) => !entry.accepted).map((entry) => entry.field);
   if (failedFields.length > 0) {
+    const failedProofGradeDiagnostics = fieldResults
+      .filter((entry) => !entry.accepted && entry.proof_grade_predicate_diagnostics)
+      .map((entry) => entry.proof_grade_predicate_diagnostics);
     return sigmaHf01Fail(
       SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.requiredFieldRejected,
       [`required Sigma_hf_01 schema fields failed: ${failedFields.join(", ")}`],
@@ -1149,6 +1454,10 @@ export function validateSigmaHf01ExternalSchemaIntakeCandidate(candidate, option
         proof_grade_fields_failed: failedFields.filter((field) =>
           SIGMA_HF_01_REQUIRED_PROOF_GRADE_FIELDS.includes(field),
         ),
+        first_failed_proof_grade_field: failedProofGradeDiagnostics[0]?.field_target?.producer_target ?? null,
+        first_missing_proof_grade_predicate:
+          failedProofGradeDiagnostics[0]?.missing_predicates?.[0] ?? null,
+        proof_grade_field_diagnostics: failedProofGradeDiagnostics,
         field_results: fieldResults,
       },
     );
@@ -1590,6 +1899,9 @@ function parseArgs(argv) {
     schema: false,
     absenceBoundary: false,
     sigmaHf01SchemaIntakeTarget: false,
+    sigmaHf01SourcePacketDerivationProofObjectTarget: false,
+    sigmaHf01AcceptedSamePacketSourcePacketTarget: false,
+    breatherReceiverNormalBranchChartAndRowProducerTarget: false,
     sigmaHf01SchemaIntakePath: null,
     sourceRoot: DEFAULT_CERTIFICATE_SOURCE_ROOT,
   };
@@ -1606,6 +1918,12 @@ function parseArgs(argv) {
       args.schema = true;
     } else if (arg === "--sigma-hf-01-schema-intake-target") {
       args.sigmaHf01SchemaIntakeTarget = true;
+    } else if (arg === "--sigma-hf-01-source-packet-derivation-proof-object-target") {
+      args.sigmaHf01SourcePacketDerivationProofObjectTarget = true;
+    } else if (arg === "--sigma-hf-01-accepted-same-packet-source-packet-target") {
+      args.sigmaHf01AcceptedSamePacketSourcePacketTarget = true;
+    } else if (arg === "--breather-receiver-normal-branch-chart-and-row-producer-target") {
+      args.breatherReceiverNormalBranchChartAndRowProducerTarget = true;
     } else if (arg === "--sigma-hf-01-schema-intake") {
       const next = argv[index + 1];
       if (next && !next.startsWith("--")) {
@@ -1640,6 +1958,9 @@ function usage() {
     `  node ${SCRIPT_PATH} --allow-fail-closed [--pretty]`,
     `  node ${SCRIPT_PATH} --schema [--pretty]`,
     `  node ${SCRIPT_PATH} --sigma-hf-01-schema-intake-target [--pretty]`,
+    `  node ${SCRIPT_PATH} --sigma-hf-01-source-packet-derivation-proof-object-target [--pretty]`,
+    `  node ${SCRIPT_PATH} --sigma-hf-01-accepted-same-packet-source-packet-target [--pretty]`,
+    `  node ${SCRIPT_PATH} --breather-receiver-normal-branch-chart-and-row-producer-target [--pretty]`,
     `  node ${SCRIPT_PATH} --sigma-hf-01-schema-intake <candidate.json> [--allow-fail-closed] [--pretty]`,
     `  node ${SCRIPT_PATH} --absence-boundary [source-root] [--pretty]`,
   ].join("\n");
@@ -1682,6 +2003,36 @@ if (process.argv[1] === SCRIPT_PATH) {
       console.log(
         JSON.stringify(
           buildSigmaHf01ExternalSchemaIntakeTarget(),
+          null,
+          args.pretty ? 2 : 0,
+        ),
+      );
+      process.exit(0);
+    }
+    if (args.sigmaHf01SourcePacketDerivationProofObjectTarget) {
+      console.log(
+        JSON.stringify(
+          buildSigmaHf01SourcePacketDerivationProofObjectTarget(),
+          null,
+          args.pretty ? 2 : 0,
+        ),
+      );
+      process.exit(0);
+    }
+    if (args.sigmaHf01AcceptedSamePacketSourcePacketTarget) {
+      console.log(
+        JSON.stringify(
+          buildSigmaHf01AcceptedSamePacketSourcePacketTarget(),
+          null,
+          args.pretty ? 2 : 0,
+        ),
+      );
+      process.exit(0);
+    }
+    if (args.breatherReceiverNormalBranchChartAndRowProducerTarget) {
+      console.log(
+        JSON.stringify(
+          buildBreatherReceiverNormalBranchChartAndRowProducerTarget(),
           null,
           args.pretty ? 2 : 0,
         ),

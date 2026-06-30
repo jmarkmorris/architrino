@@ -95922,7 +95922,7 @@ This is not a story about foolish predecessors. Classical mechanics, field theor
 
 The witnesses below are grouped by area rather than by a single timeline. Within each area the order is roughly historical, but the story is not strictly linear. Geometry, dynamics, measurement, quantum records, stellar spectra, stellar nucleosynthesis, distance calibration, redshift, black holes, and cosmology repeatedly cross one another.
 
-The chronology nevertheless has a ratchet structure. Michelson and Morley narrowed the admissible medium picture; Lienard and Wiechert left causal delay inside field calculation; the quantum settlement made operational success feel sufficient; particle physics turned hidden structure into representation data; stellar astronomy turned spectra, element formation, periodic light curves, and calibration pipelines into reliable records; cosmology converted redshift and background radiation into an origin chart; inflation repaired that chart rather than reopening its ontology. None of those moves was foolish in isolation. Together they pushed the assembly question into no recognized discipline.
+The chronology nevertheless has a ratchet structure in this retrospective reading. That structure is a reconstruction of how later constraints narrowed the available ontology, not a claim that physics was destined to converge on the Architrino architecture. Michelson and Morley narrowed the admissible medium picture; Lienard and Wiechert left causal delay inside field calculation; the quantum settlement made operational success feel sufficient; particle physics turned hidden structure into representation data; stellar astronomy turned spectra, element formation, periodic light curves, and calibration pipelines into reliable records; cosmology converted redshift and background radiation into an origin chart; inflation repaired that chart rather than reopening its ontology. None of those moves was foolish in isolation. Together they pushed the assembly question into no recognized discipline.
 
 The recurring clues fall into four arcs. Methodological witnesses show how successful abstractions can protect the wrong primitives, normalize open fractures, and reward beautiful form before source provenance has been supplied. Source-and-dynamics witnesses keep returning to finite propagation, recurrence, retained causal history, and the possibility that stable matter is an assembly rather than a given particle.
 
@@ -96147,7 +96147,7 @@ That same novelty is also the well-posedness threat. A self-hit branch is not ac
 
 The invariant at stake is an energy-like branch functional, not a merely numerical tolerance: accepted self-hit dynamics must keep the particle, causal-wake, and retained-history terms finite or monotone under same-source causal-root updates.
 
-That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, receiver-normal reception, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
+That makes the Lienard-Wiechert inheritance strongest as an acceptance condition rather than as a finished result. A deeper assembly law must preserve causal-root selection, receiver-normal branch strength, and finite same-source updates while changing the ontology from point charge and field to point transceiver, causal wake, and assembly.
 
 The later failure of classical electron theory then overgeneralized the verdict. One failed point-source model made the whole neoclassical design space look exhausted, even though the damaging assumptions were narrower: primitive source = observed electron charge, primitive wake speed = measured photon speed, and photon-channel speed = universal constituent speed limit. The Architrino architecture reverses those assumptions: charge is an assembly-level polarity inventory, photon speed is recovered channel behavior, and point transceivers may enter regimes governed by causal-root structure rather than by the observer-level light limit.
 
@@ -96691,13 +96691,13 @@ Friedmann's contribution shows that dynamical cosmology was the right opening, b
 
 De Sitter showed that geometry itself could produce recession-like observational structure. His matter-poor relativistic cosmology showed that one could obtain large-scale redshift behavior from the form of spacetime geometry rather than from ordinary matter moving through space.
 
-That was an extraordinary near-miss. De Sitter revealed that observer cosmology can be reconstructed from operational timing, distance, and light-channel behavior. The observer's inferred cosmic history need not be a direct picture of material motion in a fixed container. It may be the output of the measurement architecture.
+That is better treated as a retrospective clue than as a direct near-miss. De Sitter revealed that observer cosmology can be reconstructed from operational timing, distance, and light-channel behavior. The observer's inferred cosmic history need not be a direct picture of material motion in a fixed container. It may be the output of the measurement architecture.
 
 The historical interpretation, however, went toward geometry as the explanatory object. If geometry alone could organize recession-like behavior, then the metric seemed even more fundamental. The possibility that the metric was an effective readout of deeper Noether sea response became harder to see, because the mathematical chart was already doing so much work.
 
 The rational miss is that de Sitter geometry was clean. It did not ask physics to explain a medium, a source history, or a hidden clock and ruler mechanism. It gave a solvable relativistic world in which the observations could be discussed inside the accepted geometric language.
 
-De Sitter keeps the observer-reconstruction clue visible: it was glimpsed but immediately geometrized. The Architrino architecture keeps the insight and reverses the ontology: if operational readouts can generate the observed cosmological chart, then the chart should be read as evidence of the underlying constitutive system, not as a warrant for concluding that the Euclidean void itself expands.
+De Sitter keeps the observer-reconstruction clue visible: operational cosmology could be geometrized so successfully that the effective chart became the explanatory object. The Architrino architecture keeps the insight and reverses the ontology: if operational readouts can generate the observed cosmological chart, then the chart should be read as evidence of the underlying constitutive system, not as a warrant for concluding that the Euclidean void itself expands.
 
 ###### Chapter Forty-Three. Richard Tolman: Bad Redshift Alternatives Narrowed The Field
 
@@ -96877,13 +96877,13 @@ Guth's case shows that a successful repair can prevent a more radical diagnosis.
 
 Linde relocates recurrence and multiplicity into the inflationary framework. Eternal inflation and self-reproducing inflation allowed cosmology to imagine many domains, many histories, and many realized conditions. The universe was no longer only one smooth expansion narrative. It became a landscape of realized regions, each with its own effective conditions.
 
-That was close because multiplicity and recurrence are central to the recycling interpretation. The Architrino architecture also rejects the idea that one simple global expansion story is the whole ontology. It sees source/release processes, black-hole recycling, Noether sea evolution, and Physical Observer reconstruction as ongoing and distributed.
+The comparison is useful because multiplicity and recurrence are central to the recycling interpretation, but it is not a direct near-miss in the same sense as the source-history cases above. The Architrino architecture also rejects the idea that one simple global expansion story is the whole ontology. It sees source/release processes, black-hole recycling, Noether sea evolution, and Physical Observer reconstruction as ongoing and distributed.
 
 The displacement was that multiplicity was pushed outward into a branching ensemble of inflating regions rather than inward into parallel processes inside one continuing Euclidean void. The multiverse became the container for recurrence. Black holes, source histories, and medium reloading did not become the physical engine of recurrence inside the same universe.
 
 The rational reason is that eternal inflation extended an already accepted inflationary mechanism. It did not require rebuilding matter, clocks, redshift, and gravity from architrinos and causal wakes. It kept the machinery at the level where cosmologists already had equations and perturbation tools.
 
-Linde's section marks the displaced recurrence problem: cosmology found recurrence but placed it in the wrong ontology. The multiplicity was not necessarily beyond the universe. It may have been distributed through the universe's own source/release architecture.
+Linde's section marks the displaced recurrence problem: cosmology found recurrence but placed it in an ontology different from the one this essay tests. The multiplicity was not necessarily beyond the universe. It may have been distributed through the universe's own source/release architecture.
 
 ###### Chapter Fifty-Two. Paul Steinhardt And Neil Turok: The Inflation Schism Still Stayed Cosmological
 

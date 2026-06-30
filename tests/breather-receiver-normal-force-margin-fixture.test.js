@@ -8,13 +8,19 @@ import { fileURLToPath } from "node:url";
 
 import {
   BREATHER_FORCE_MARGIN_STATUSES,
+  BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_ARTIFACT_ID,
   BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA,
+  SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
   SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA,
   SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES,
+  SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
   buildBreatherReceiverNormalForceMarginAbsenceBoundary,
+  buildBreatherReceiverNormalBranchChartAndRowProducerTarget,
   buildBreatherReceiverNormalForceMarginFixtureSchema,
+  buildSigmaHf01AcceptedSamePacketSourcePacketTarget,
   buildSigmaHf01ExternalSchemaIntakeTarget,
+  buildSigmaHf01SourcePacketDerivationProofObjectTarget,
   validateBreatherReceiverNormalForceMarginFixture,
   validateSigmaHf01ExternalSchemaIntakeCandidate,
 } from "../scripts/proof-programs/check-breather-receiver-normal-force-margin-fixture.mjs";
@@ -214,6 +220,14 @@ test("Sigma_hf_01 schema-intake target exposes external-only contract", () => {
     "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
   );
   assert.equal(target.required_proof_grade_fields.includes("rule_kernel_obligation_binding"), true);
+  assert.deepEqual(
+    target.proof_grade_field_targets.rule_kernel_obligation_binding.required_predicates,
+    [
+      "derivation_proof_obligation=discharged",
+      "soundness_proof_obligation=discharged",
+      "endpoint_application_proof_obligation=discharged",
+    ],
+  );
   assert.equal(
     target.expected_candidate_file_regex,
     "^sigma_hf_01_external_schema_candidate\\.[^/]+\\.fresh-v10-higher-fold-12-root-rebuild-v0\\.proof-interval-v6\\.lambda0305\\.json$",
@@ -223,7 +237,17 @@ test("Sigma_hf_01 schema-intake target exposes external-only contract", () => {
     true,
   );
   assert.equal(
+    target.proof_grade_field_targets.rule_kernel_derivation_payload_target_binding.first_downstream_consumer,
+    "rule_kernel_derivation_payload",
+  );
+  assert.equal(
     target.required_proof_grade_fields.includes("proof_grade_derivation_schema_statement"),
+    true,
+  );
+  assert.equal(
+    target.proof_grade_field_targets.proof_grade_derivation_schema_statement.required_predicates.includes(
+      "source_data_correspondence_nonempty",
+    ),
     true,
   );
   assert.equal(target.authorization_after_schema_intake.row_consumption, false);
@@ -271,9 +295,22 @@ test("Sigma_hf_01 schema-intake validator rejects local, provisional, and fixtur
     missingProofGradeReport.status,
     SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_STATUSES.requiredFieldRejected,
   );
+  assert.equal(missingProofGradeReport.first_failed_proof_grade_field, "rule_kernel_obligation_binding");
+  assert.equal(
+    missingProofGradeReport.first_missing_proof_grade_predicate,
+    "derivation_proof_obligation=discharged",
+  );
   assert.deepEqual(missingProofGradeReport.proof_grade_fields_failed, [
     "rule_kernel_obligation_binding",
   ]);
+  assert.deepEqual(
+    missingProofGradeReport.proof_grade_field_diagnostics[0].missing_predicates,
+    [
+      "derivation_proof_obligation=discharged",
+      "soundness_proof_obligation=discharged",
+      "endpoint_application_proof_obligation=discharged",
+    ],
+  );
 
   const fixtureReport = validateSigmaHf01ExternalSchemaIntakeCandidate({
     ...buildAcceptedSigmaHf01Candidate(),
@@ -307,6 +344,128 @@ test("Sigma_hf_01 schema-intake CLI emits target and screens candidate JSON", ()
   );
   assert.equal(report.pass, true);
   assert.equal(report.authorization.row_consumption, false);
+});
+
+test("Sigma_hf_01 source-packet proof-object target stays fail-closed downstream", () => {
+  const target = buildSigmaHf01SourcePacketDerivationProofObjectTarget();
+
+  assert.equal(
+    target.schema,
+    SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+  );
+  assert.equal(
+    target.expected_proof_object_file,
+    "source_packet_acceptance_rule_derivation_proof_object.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
+  );
+  assert.equal(
+    target.required_object_fields.includes(
+      "source_packet_acceptance_rule_derivation_proof_object",
+    ),
+    true,
+  );
+  assert.deepEqual(target.source_packet_acceptance_rule_fields, [
+    "source_packet_acceptance_rule_derivation_proof",
+    "source_packet_acceptance_rule_soundness_proof",
+    "source_packet_acceptance_rule_endpoint_application_proof",
+  ]);
+  assert.equal(target.authorization_after_proof_object_target.accepted_source_packet, false);
+  assert.equal(target.authorization_after_proof_object_target.branch_chart, false);
+});
+
+test("Sigma_hf_01 source-packet proof-object target CLI emits the target", () => {
+  const target = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [scriptPath, "--sigma-hf-01-source-packet-derivation-proof-object-target"],
+      { encoding: "utf8" },
+    ),
+  );
+
+  assert.equal(
+    target.schema,
+    SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+  );
+  assert.equal(target.authorization_after_proof_object_target.row_consumption, false);
+});
+
+test("Sigma_hf_01 accepted same-packet source-packet target stays fail-closed downstream", () => {
+  const target = buildSigmaHf01AcceptedSamePacketSourcePacketTarget();
+
+  assert.equal(
+    target.schema,
+    SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
+  );
+  assert.equal(
+    target.required_upstream_proof_object_target,
+    SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+  );
+  assert.equal(
+    target.required_same_packet_source_fields.includes(
+      "row_projection_source_slice_coverage_certificate",
+    ),
+    true,
+  );
+  assert.equal(
+    target.first_source_packet_field_still_blocked,
+    "row_projection_source_slice_coverage_certificate",
+  );
+  assert.equal(target.authorization_after_source_packet_target.row_consumption, false);
+  assert.equal(target.authorization_after_source_packet_target.branch_chart, false);
+});
+
+test("Sigma_hf_01 accepted same-packet source-packet target CLI emits the target", () => {
+  const target = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [scriptPath, "--sigma-hf-01-accepted-same-packet-source-packet-target"],
+      { encoding: "utf8" },
+    ),
+  );
+
+  assert.equal(
+    target.schema,
+    SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
+  );
+  assert.equal(target.authorization_after_source_packet_target.accepted_source_packet, false);
+});
+
+test("breather receiver-normal branch-chart and row producer target stays fail-closed", () => {
+  const target = buildBreatherReceiverNormalBranchChartAndRowProducerTarget();
+
+  assert.equal(
+    target.schema,
+    BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA,
+  );
+  assert.equal(
+    target.expected_producer_files.branch_chart,
+    "branch_chart.json",
+  );
+  assert.equal(target.retained_record_required_fields.includes("D_s_interval"), true);
+  assert.equal(target.retained_record_required_fields.includes("W_rec_interval"), true);
+  assert.equal(target.derivative_bundle_required_fields.includes("D_vW_rec_interval"), true);
+  assert.equal(target.margin_interval_required_fields.includes("gamma_rec_interval"), true);
+  assert.equal(
+    target.forbidden_source_classes.includes("old shell-braid 1/|J| force weights"),
+    true,
+  );
+  assert.equal(target.authorization_after_producer_target.branch_chart, false);
+  assert.equal(target.authorization_after_producer_target.receiver_normal_force_margin_fixture, false);
+});
+
+test("breather receiver-normal branch-chart and row producer target CLI emits the target", () => {
+  const target = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [scriptPath, "--breather-receiver-normal-branch-chart-and-row-producer-target"],
+      { encoding: "utf8" },
+    ),
+  );
+
+  assert.equal(
+    target.schema,
+    BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA,
+  );
+  assert.equal(target.authorization_after_producer_target.row_consumption, false);
 });
 
 test("breather force-margin fixture validator emits breather source absence boundary", () => {
@@ -370,6 +529,16 @@ test("breather force-margin fixture validator emits breather source absence boun
     "sigma_hf_01_external_schema_candidate.<external-source-id>.fresh-v10-higher-fold-12-root-rebuild-v0.proof-interval-v6.lambda0305.json",
   );
   assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary
+      .accepted_same_packet_source_packet_target.schema,
+    SIGMA_HF_01_ACCEPTED_SAME_PACKET_SOURCE_PACKET_TARGET_SCHEMA,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary
+      .accepted_same_packet_source_packet_target.first_source_packet_field_still_blocked,
+    "row_projection_source_slice_coverage_certificate",
+  );
+  assert.equal(
     boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.schema,
     `${BREATHER_RECEIVER_NORMAL_FORCE_MARGIN_SCHEMA}.rule-kernel-payload-boundary/v0`,
   );
@@ -377,6 +546,17 @@ test("breather force-margin fixture validator emits breather source absence boun
     boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary
       .schema_validation_intake_target.schema,
     SIGMA_HF_01_EXTERNAL_SCHEMA_INTAKE_SCHEMA,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary
+      .source_packet_derivation_proof_object_target.schema,
+    SIGMA_HF_01_SOURCE_PACKET_DERIVATION_PROOF_OBJECT_TARGET_SCHEMA,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary
+      .source_packet_derivation_proof_object_target.authorization_after_proof_object_target
+      .accepted_source_packet,
+    false,
   );
   assert.equal(
     boundary.producer_route_boundary.source_packet_route_boundary.rule_kernel_payload_boundary.required_schema_fields.includes(
@@ -412,6 +592,16 @@ test("breather force-margin fixture validator emits breather source absence boun
   assert.equal(
     boundary.producer_route_boundary.receiver_normal_route.derivative_bundle_expected_file,
     "breather_receiver_normal_derivative_bundle.fresh-v10-higher-fold-12-root-rebuild-v0.json",
+  );
+  assert.equal(
+    boundary.producer_route_boundary.receiver_normal_route.branch_chart_and_row_producer_target
+      .schema,
+    BREATHER_RECEIVER_NORMAL_BRANCH_CHART_AND_ROW_PRODUCER_TARGET_SCHEMA,
+  );
+  assert.equal(
+    boundary.producer_route_boundary.receiver_normal_route.branch_chart_and_row_producer_target
+      .authorization_after_producer_target.receiver_normal_force_margin_fixture,
+    false,
   );
   assert.equal(
     boundary.missing_producer_objects.includes("breather_receiver_normal_force_margin_fixture.<packet-id>.json"),

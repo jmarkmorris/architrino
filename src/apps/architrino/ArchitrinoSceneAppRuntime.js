@@ -79,7 +79,10 @@ import {
   resolveWrappedLabelFit,
 } from "../../runtime/SceneLabelSizingRuntime.js";
 import { resolveSharedSceneSphereRadius } from "../../runtime/SceneSphereSizingRuntime.js";
-import { resolveCenterContextDescriptor } from "../../runtime/SceneCenterContextRuntime.js";
+import {
+  resolveCenterContextDescriptor,
+  shouldAllowCenterContext,
+} from "../../runtime/SceneCenterContextRuntime.js";
 import { createSceneGraphRuntime } from "../../runtime/SceneGraphRuntime.js?v=2026-06-28-historical-context-single-ring";
 import {
   RING_LAYOUT_DEFAULTS as ringLayoutDefaults,
@@ -7538,6 +7541,9 @@ function shouldShowCenterContext(level, center) {
     return false;
   }
   if (!isCenteredRingLevel(level)) {
+    return false;
+  }
+  if (!shouldAllowCenterContext(level)) {
     return false;
   }
   if (level.ringLayout?.centerMode === "node") {

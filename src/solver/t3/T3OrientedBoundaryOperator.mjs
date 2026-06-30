@@ -138,6 +138,8 @@ function createSameRecordReplayBoundary(input) {
     sameRecordReplayBoundaryRow(row, producerRowsByChronologyRowId.get(row.rowId) ?? [])
   );
   const negativeControls = createReplayNegativeControls(retainedBoundaryChronology);
+  const acceptedReplayRows = rows.filter((row) => row.acceptedReplayEvidence === true);
+  const blockedReplayRows = rows.filter((row) => row.acceptedReplayEvidence !== true);
   const producerRowSourceBoundary = createProducerRowSourceBoundary({
     retainedBoundaryChronology,
     retainedCausalRootReplaySource,
@@ -182,17 +184,22 @@ function createSameRecordReplayBoundary(input) {
     summary: {
       chronologyRowCount: retainedBoundaryChronology.summary.rowCount,
       replayCandidateRowCount: replayCandidateRows.length,
-      acceptedReplayRowCount: 0,
-      blockedReplayRowCount: rows.length,
+      acceptedReplayRowCount: acceptedReplayRows.length,
+      blockedReplayRowCount: blockedReplayRows.length,
       negativeControlCount: negativeControls.length,
       producerRowSourceStatus: producerRowSourceBoundary.summary.status,
       expectedSourceObjectSchema: producerRowSourceBoundary.expectedSourceObject.schema,
       replayStatus:
-        rows.length > 0
-          ? "fail_closed_missing_same_record_replay"
-          : "no_replay_candidate_rows",
+        rows.length === 0
+          ? "no_replay_candidate_rows"
+          : acceptedReplayRows.length === rows.length
+            ? "same_record_replay_evidence_available"
+            : acceptedReplayRows.length > 0
+              ? "partial_same_record_replay_evidence_available"
+              : "fail_closed_missing_same_record_replay",
       firstReplayBoundaryRowId: rows[0]?.rowId ?? null,
-      firstMissingField: rows[0]?.missingFields?.[0] ?? null,
+      firstBlockedReplayBoundaryRowId: blockedReplayRows[0]?.rowId ?? null,
+      firstMissingField: blockedReplayRows[0]?.missingFields?.[0] ?? null,
       firstMissingProducerField:
         producerRowSourceBoundary.summary.firstMissingProducerField ?? null,
       firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
@@ -207,6 +214,9 @@ function createProducerRowSourceBoundary(input) {
   const sourceRows = Array.isArray(retainedCausalRootReplaySource?.rows)
     ? retainedCausalRootReplaySource.rows
     : [];
+  const acceptedSourceRows = sourceRows.filter((row) => row.acceptedReplayEvidence === true);
+  const blockedSourceRows = sourceRows.filter((row) => row.acceptedReplayEvidence !== true);
+  const uncoveredChronologyRows = rows.filter((row) => row.producerCandidateRowCount === 0);
   const activeFamilies = Array.from(
     new Set(rows.map((row) => row.rowFamily))
   ).sort();
@@ -281,17 +291,26 @@ function createProducerRowSourceBoundary(input) {
       negativeControlIds: negativeControls.map((row) => row.controlId),
     },
     summary: {
-      status: sourcePresent
-        ? "candidate_source_rows_missing_required_same_record_fields"
-        : "missing_retained_causal_root_replay_source",
+      status: !sourcePresent
+        ? "missing_retained_causal_root_replay_source"
+        : acceptedSourceRows.length === sourceRows.length && uncoveredChronologyRows.length === 0
+          ? "same_record_replay_source_rows_complete"
+          : acceptedSourceRows.length > 0
+            ? "accepted_source_rows_available_with_uncovered_chronology_rows"
+            : "candidate_source_rows_missing_required_same_record_fields",
       activeChronologyRowCount: rows.length,
       activeChronologyFamilies: activeFamilies,
       observedChronologyRowCount: retainedBoundaryChronology.summary.rowCount,
       retainedProducerRowSourcePresent: sourcePresent,
       retainedProducerRowCount: sourceRows.length,
-      acceptedReplayRowCount: 0,
+      acceptedReplayRowCount: acceptedSourceRows.length,
+      blockedProducerRowCount: blockedSourceRows.length,
+      uncoveredChronologyRowCount: uncoveredChronologyRows.length,
       firstMissingProducerField:
-        unavailableRequiredFields[0] ?? sourceRows[0]?.missingFields?.[0] ?? null,
+        unavailableRequiredFields[0] ??
+        blockedSourceRows[0]?.missingFields?.[0] ??
+        uncoveredChronologyRows[0]?.missingFields?.[0] ??
+        null,
       firstProducerObjectRequired: SAME_RECORD_REPLAY_PRODUCER_TARGET,
       retainedBranch: false,
       provesBranchAdmissibility: false,
@@ -303,6 +322,15 @@ function sameRecordReplayBoundaryRow(chronologyRow, producerRows = []) {
   const availableProducerFields = Array.from(
     new Set(producerRows.flatMap((row) => row.providedFields ?? []))
   ).sort();
+  const missingFields = replayMissingFields(chronologyRow, availableProducerFields);
+  const acceptedReplayEvidence =
+    producerRows.some((row) => row.acceptedReplayEvidence === true) &&
+    missingFields.length === 0;
+  const fieldSourceBoundary = replayFieldSourceBoundary({
+    chronologyRow,
+    producerRows,
+    missingFields,
+  });
   return {
     rowId: `same_record_replay_boundary_${chronologyRow.rowId}`,
     chronologyRowId: chronologyRow.rowId,
@@ -314,9 +342,13 @@ function sameRecordReplayBoundaryRow(chronologyRow, producerRows = []) {
     boundaryOrientation: replayBoundaryOrientation(chronologyRow),
     chronologyFirstBlocker: chronologyRow.firstBlocker,
     replayStatus:
-      producerRows.length > 0
+      acceptedReplayEvidence
+        ? "accepted_same_record_replay_evidence"
+        : producerRows.length > 0
         ? "blocked_candidate_source_missing_required_same_record_fields"
         : "blocked_missing_same_record_replay",
+    replayAuthorization: acceptedReplayEvidence,
+    acceptedReplayEvidence,
     producerTarget: SAME_RECORD_REPLAY_PRODUCER_TARGET,
     producerCandidateRowCount: producerRows.length,
     producerCandidateRowIds: producerRows.map((row) => row.rowId),
@@ -330,7 +362,8 @@ function sameRecordReplayBoundaryRow(chronologyRow, producerRows = []) {
       "candidateBoundaryOrientation",
       "firstBlocker",
     ],
-    missingFields: replayMissingFields(chronologyRow, availableProducerFields),
+    missingFields,
+    fieldSourceBoundary,
     retainedBoundaryTargetRow: chronologyRow.retainedBoundaryTargetRow,
     detectorRow: chronologyRow.detectorRow,
     neighborRow: chronologyRow.neighborRow,
@@ -341,25 +374,94 @@ function sameRecordReplayBoundaryRow(chronologyRow, producerRows = []) {
 function replayMissingFields(chronologyRow, availableProducerFields = []) {
   const fields = [...COMMON_REPLAY_FIELDS_REQUIRED];
   if (chronologyRow.rowFamily === "seam") {
-    fields.push(
-      "seamPairingMapOrWindingOwnerRowId",
-      "imageDeltaAxis",
-      "signedImageDeltaWitness"
-    );
+    fields.push(...familySpecificReplayFields("seam"));
   } else if (chronologyRow.rowFamily === "neighbor") {
-    fields.push(
-      "neighborPairDeltaRole",
-      "causalRootMultiplicityDelta",
-      "sameRecordPairContactBirthDeathRoute"
-    );
+    fields.push(...familySpecificReplayFields("neighbor"));
   } else if (chronologyRow.rowFamily === "detector-event") {
-    fields.push("retainedEventRowId", "eventRowOrientation", "declaredBoundaryStratum");
+    fields.push(...familySpecificReplayFields("detector-event"));
   } else if (chronologyRow.rowFamily === "unresolved-root") {
-    fields.push("rootLedgerRecordId", "causticRoute", "sourcePathSegmentId");
+    fields.push(...familySpecificReplayFields("unresolved-root"));
   } else if (chronologyRow.rowFamily === "signed-balance") {
-    fields.push("sameRecordCancellationPairingMap", "absentPairedOrRoutedRowMap");
+    fields.push(...familySpecificReplayFields("signed-balance"));
   }
   return fields.filter((field) => !availableProducerFields.includes(field));
+}
+
+function replayFieldSourceBoundary(input) {
+  const { chronologyRow, producerRows, missingFields } = input;
+  if (missingFields.length === 0) {
+    return null;
+  }
+  const familyFields = familySpecificReplayFields(chronologyRow.rowFamily);
+  const missingFamilySpecificFields = familyFields.filter((field) => missingFields.includes(field));
+  return {
+    schema: "t3-same-record-replay-field-source-boundary.v1",
+    chronologyRowId: chronologyRow.rowId,
+    rowFamily: chronologyRow.rowFamily,
+    expectedSourceObject: SAME_RECORD_REPLAY_PRODUCER_TARGET,
+    expectedSourceObjectSchema: "solver-t3-step-response.v1",
+    sameRecordBinding: "chronologyRowId",
+    stepIndex: chronologyRow.stepIndex,
+    producerRowPresent: producerRows.length > 0,
+    missingFields,
+    missingFamilySpecificFields,
+    missingLocalFieldOrSourceConditions: replayMissingLocalFieldOrSourceConditions(
+      chronologyRow,
+      missingFamilySpecificFields
+    ),
+    replayAuthorization: false,
+  };
+}
+
+function replayMissingLocalFieldOrSourceConditions(chronologyRow, missingFields) {
+  if (chronologyRow.rowFamily !== "unresolved-root") {
+    return missingFields.map((field) => ({
+      field,
+      sourceCondition:
+        "solver-t3-step-response.v1 must expose this field on the same chronology row before same-record replay can be accepted",
+    }));
+  }
+  const sourceConditions = {
+    rootLedgerRecordId:
+      "solver-t3-step-response.v1 does not expose a retained root-ledger record id for this unresolved-root chronology row",
+    causticRoute:
+      "solver-t3-step-response.v1 does not expose a same-record caustic route or declared no-caustic route for this unresolved-root chronology row",
+    sourcePathSegmentId:
+      "solver-t3-step-response.v1 does not expose a source path segment id bound to this unresolved-root chronology row",
+  };
+  return missingFields.map((field) => ({
+    field,
+    sourceCondition: sourceConditions[field] ?? null,
+    requiredSameRecordSource:
+      "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, and sourcePathSegmentId before run-summary aggregation",
+  }));
+}
+
+function familySpecificReplayFields(rowFamily) {
+  if (rowFamily === "seam") {
+    return [
+      "seamPairingMapOrWindingOwnerRowId",
+      "imageDeltaAxis",
+      "signedImageDeltaWitness",
+    ];
+  }
+  if (rowFamily === "neighbor") {
+    return [
+      "neighborPairDeltaRole",
+      "causalRootMultiplicityDelta",
+      "sameRecordPairContactBirthDeathRoute",
+    ];
+  }
+  if (rowFamily === "detector-event") {
+    return ["retainedEventRowId", "eventRowOrientation", "declaredBoundaryStratum"];
+  }
+  if (rowFamily === "unresolved-root") {
+    return ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"];
+  }
+  if (rowFamily === "signed-balance") {
+    return ["sameRecordCancellationPairingMap", "absentPairedOrRoutedRowMap"];
+  }
+  return [];
 }
 
 function groupProducerRowsByChronologyRowId(retainedCausalRootReplaySource) {

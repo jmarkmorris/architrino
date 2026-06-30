@@ -337,11 +337,11 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.equal(
     result.runSummary.retainedCausalRootReplaySource.summary.status,
-    "candidate_rows_missing_required_same_record_fields"
+    "same_record_replay_fields_complete"
   );
   assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.candidateRowCount, 2);
-  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.acceptedReplayRowCount, 0);
-  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.replayAuthorization, false);
+  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.acceptedReplayRowCount, 2);
+  assert.equal(result.runSummary.retainedCausalRootReplaySource.summary.replayAuthorization, true);
   assert.deepEqual(
     result.runSummary.retainedCausalRootReplaySource.rows.map((row) => [
       row.chronologyRowId,
@@ -358,7 +358,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
         "seam",
         "positive_boundary_orientation_candidate",
         "x:+1",
-        false,
+        true,
       ],
       [
         "step_2_seam_x",
@@ -366,7 +366,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
         "seam",
         "positive_boundary_orientation_candidate",
         "x:+1",
-        false,
+        true,
       ],
     ]
   );
@@ -464,21 +464,41 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     "t3-step-0:pathKey-1:seam-x:winding-owner"
   );
   assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].jacobianFloorOrDeclaredStratum,
+    {
+      schema: "t3-jacobian-floor-or-declared-stratum.v1",
+      sourceObjectSchema: "solver-t3-step-request+response.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      retainedCausalRootReplayRowId: "t3-step-0:pathKey-1:seam-x",
+      imageDeltaAxis: "x",
+      signedImageDeltaWitness: 1,
+      declaredStratum: "winding/seam",
+      stratumStatus: "declared_from_same_solver_step_periodic_wrap",
+      jacobianFloor: null,
+      sideLength: 1,
+    }
+  );
+  assert.deepEqual(
     result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields,
-    ["jacobianFloorOrDeclaredStratum"]
+    []
   );
   assert.deepEqual(
     result.runSummary.retainedCausalRootReplaySource.rows[0].jacobianFloorSourceBoundary,
     {
       schema: "t3-jacobian-floor-source-boundary.v1",
-      blockerStatus: "missing_same_record_jacobian_floor_or_declared_stratum",
+      sourceStatus: "same_record_declared_stratum_available",
+      blockerStatus: null,
       expectedSourceObject: "solver-t3-step-response.v1",
       expectedField: "jacobianFloorOrDeclaredStratum",
       sameRecordBinding: "pathKey",
       stepIndex: 0,
       pathKey: 1,
       retainedCausalRootReplayRowId: "t3-step-0:pathKey-1:seam-x",
-      replayAuthorization: false,
+      declaredStratum: "winding/seam",
+      missingLocalFieldOrSourceCondition: null,
+      replayAuthorization: true,
     }
   );
   assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
@@ -562,11 +582,19 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.replayStatus,
-    "fail_closed_missing_same_record_replay"
+    "partial_same_record_replay_evidence_available"
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.acceptedReplayRowCount,
-    0
+    2
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.blockedReplayRowCount,
+    3
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.firstBlockedReplayBoundaryRowId,
+    "same_record_replay_boundary_step_0_unresolved_root_rows"
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.firstProducerObjectRequired,
@@ -574,11 +602,11 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.producerRowSourceStatus,
-    "candidate_source_rows_missing_required_same_record_fields"
+    "accepted_source_rows_available_with_uncovered_chronology_rows"
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.observedSourceObject.sourceStatus,
-    "candidate_rows_missing_required_same_record_fields"
+    "same_record_replay_fields_complete"
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.producerRowSourceBoundary.summary.retainedProducerRowSourcePresent,
@@ -642,6 +670,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   assert.equal(
     [
       "retainedCausalRootRowId",
+      "jacobianFloorOrDeclaredStratum",
       "memoryWindowRoute",
       "collisionCoreRoute",
       "omittedRowRoute",
@@ -691,7 +720,58 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
   );
   assert.deepEqual(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields,
-    ["jacobianFloorOrDeclaredStratum"]
+    []
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].acceptedReplayEvidence,
+    true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].replayAuthorization,
+    true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.retainedBranch,
+    false
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.summary.provesBranchAdmissibility,
+    false
+  );
+  const unresolvedRootReplayRow =
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows.find(
+      (row) => row.chronologyRowId === "step_0_unresolved_root_rows"
+    );
+  assert.equal(unresolvedRootReplayRow.replayStatus, "blocked_missing_same_record_replay");
+  assert.equal(unresolvedRootReplayRow.acceptedReplayEvidence, false);
+  assert.equal(unresolvedRootReplayRow.replayAuthorization, false);
+  assert.deepEqual(
+    unresolvedRootReplayRow.fieldSourceBoundary.missingFamilySpecificFields,
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.deepEqual(
+    unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.map(
+      (row) => row.field
+    ),
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.deepEqual(
+    unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.map(
+      (row) => row.sourceCondition
+    ),
+    [
+      "solver-t3-step-response.v1 does not expose a retained root-ledger record id for this unresolved-root chronology row",
+      "solver-t3-step-response.v1 does not expose a same-record caustic route or declared no-caustic route for this unresolved-root chronology row",
+      "solver-t3-step-response.v1 does not expose a source path segment id bound to this unresolved-root chronology row",
+    ]
+  );
+  assert.equal(
+    unresolvedRootReplayRow.fieldSourceBoundary.missingLocalFieldOrSourceConditions.every(
+      (row) =>
+        row.requiredSameRecordSource ===
+        "t3-retained-causal-root-replay.v1 row with chronologyRowId, rootLedgerRecordId, causticRoute, and sourcePathSegmentId before run-summary aggregation"
+    ),
+    true
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.negativeControls.some(

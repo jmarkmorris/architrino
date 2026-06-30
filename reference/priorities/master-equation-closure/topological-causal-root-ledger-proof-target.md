@@ -1054,6 +1054,7 @@ wake-history evidence.
 The diagnostic also exposes CLI replay controls for this receiver-normal
 contract. `--control receiver-normal-missing-derivative-bundle`,
 `--control receiver-normal-missing-proof-object-provider`,
+`--control receiver-normal-proof-object-provenance-mismatch`,
 `--control receiver-normal-reconstruction-drift`,
 `--control receiver-normal-record-mismatch`, and
 `--control receiver-normal-branch-family-checksum-mismatch`, combined with
@@ -1062,6 +1063,16 @@ event row. These controls do not add a validation gate and do not promote the
 row-logic fixture; they only make the wake-history accepted-evidence contract
 replayable and falsifiable before the closed-ledger compositor consumes a
 future artifact.
+
+The same executable boundary now emits
+`wake-history-derivation-proof-object-provider-target/v0` inside
+`wake_history_derivation_proof_object_boundary`. That target names the retained
+record identity fields, receiver-normal derivative fields, proof-object
+provenance fields, excluded source classes, and `partial_L_EpJ` as the first
+blocked consumer. This is a provider-source map, not an accepted provider
+object: the closed-ledger compositor remains blocked until a non-fixture
+accepted retained branch supplies `wake_history_derivation_proof_object` for
+all four wake-history rows on the same retained record.
 
 The action side now has a fail-closed population diagnostic at
 `scripts/proof-programs/action-boundary-pullback-diagnostic.mjs`, with coverage

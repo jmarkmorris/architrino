@@ -254,6 +254,72 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
   assert.equal(refPathAudit.accepted_ref_path_available, false);
   assert.equal(refPathAudit.authorization.moving_retained_branch_certificate, false);
 
+  const qIndexRatioF2Intake = report.same_record_accepted_branch_chart_intake_for_q_index_ratio_f2;
+  assert.equal(
+    qIndexRatioF2Intake.schema,
+    "same_record_accepted_branch_chart_intake_for_q_index_ratio_f2/v0"
+  );
+  assert.deepEqual(qIndexRatioF2Intake.same_record_binding, {
+    branch_label: "q:index-ratio:f2",
+    extraction_window_id: "W:index-ratio:f2:sampled-active-row-window",
+    active_root_ledger_hash: "route-root-key:2856731379702547500",
+  });
+  assert.equal(qIndexRatioF2Intake.selected_candidate_id, "partial-same-record-identity-scout-fixture");
+  assert.equal(qIndexRatioF2Intake.accepted_same_record_branch_chart, false);
+  assert.equal(
+    qIndexRatioF2Intake.first_failure,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.deepEqual(qIndexRatioF2Intake.present_non_proxy_required_fields, [
+    "branch_certificate_ref",
+    "same_record_identity.branch_label",
+    "same_record_identity.extraction_window_id",
+    "same_record_identity.active_root_ledger_hash",
+  ]);
+  assert.deepEqual(qIndexRatioF2Intake.missing_or_rejected_fields, [
+    "same_record_identity.accepted_branch_chart_ref",
+    "same_record_identity.separator_chart_ref",
+    "same_record_identity.positive_gap_record_ref",
+    "same_record_identity.memory_depth_record_ref",
+    "same_record_identity.active_wave_vector_gap_ref",
+  ]);
+  assert.deepEqual(qIndexRatioF2Intake.exact_blocking_refs, {
+    branch_certificate_ref: "candidate:branch-chart-ref-with-partial-same-record-identity",
+    same_record_identity_accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
+    moving_retained_branch_certificate_ref: null,
+  });
+  assert.deepEqual(qIndexRatioF2Intake.selected_candidate_producer_target, {
+    schema: "same_record_accepted_branch_chart_intake_for_q_index_ratio_f2/v0",
+    target_status: "target_only_not_accepted_source",
+    first_missing_field: "same_record_identity.accepted_branch_chart_ref",
+    first_missing_field_code: "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted",
+    required_same_record_fields: [
+      "branch_certificate_ref",
+      "same_record_identity.branch_label",
+      "same_record_identity.extraction_window_id",
+      "same_record_identity.active_root_ledger_hash",
+      "same_record_identity.accepted_branch_chart_ref",
+      "same_record_identity.separator_chart_ref",
+      "same_record_identity.positive_gap_record_ref",
+      "same_record_identity.memory_depth_record_ref",
+      "same_record_identity.active_wave_vector_gap_ref",
+    ],
+    authorization: {
+      moving_retained_branch_certificate: false,
+      structural_integrity_residual_vector: false,
+      photon_gate_a: false,
+      lorentz_rows: false,
+      observer_export: false,
+    },
+  });
+  assert.equal(qIndexRatioF2Intake.required_next_object.object, "accepted_same_record_branch_chart");
+  assert.equal(qIndexRatioF2Intake.required_next_object.first_required_field, "same_record_identity.accepted_branch_chart_ref");
+  assert.equal(qIndexRatioF2Intake.authorization.moving_retained_branch_certificate, false);
+  assert.equal(qIndexRatioF2Intake.authorization.structural_integrity_residual_vector, false);
+  assert.equal(qIndexRatioF2Intake.authorization.photon_gate_a, false);
+  assert.equal(qIndexRatioF2Intake.authorization.lorentz_rows, false);
+  assert.equal(qIndexRatioF2Intake.authorization.observer_export, false);
+
   const partialScout = report.candidate_results.find(
     (candidate) => candidate.id === "partial-same-record-identity-scout-fixture"
   );

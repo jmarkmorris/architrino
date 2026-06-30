@@ -1184,6 +1184,59 @@ function providerFieldTarget(fieldReadouts, field, targetKind, expectedProducer)
   };
 }
 
+function buildAcceptedNonFixtureSameDomainProviderSourceTarget(
+  providerFieldReadouts,
+  nearestProviderReadout
+) {
+  const missingOrRejectedFields = providerFieldReadouts.filter((field) => field.pass !== true);
+  const satisfiedFields = providerFieldReadouts.filter((field) => field.pass === true);
+  const firstMissingField = missingOrRejectedFields[0] ?? null;
+
+  return {
+    schema: "pressure_row_accepted_non_fixture_same_domain_provider_source_target/v0",
+    claim_scope: "rank4 pressure-row same-domain branch-provider source",
+    target_status:
+      missingOrRejectedFields.length === 0
+        ? "source_target_satisfied"
+        : "source_target_blocked",
+    accepted_provider_source_found: missingOrRejectedFields.length === 0,
+    accepted_promotion_authorized: false,
+    selected_provider_candidate_id: nearestProviderReadout?.id ?? null,
+    selected_provider_claim_scope: nearestProviderReadout?.claim_scope ?? null,
+    selected_provider_source_ref: nearestProviderReadout?.source_ref ?? null,
+    first_missing_or_rejected_field: firstMissingField?.field ?? null,
+    first_missing_or_rejected_path: firstMissingField?.path ?? null,
+    first_missing_or_rejected_failure: firstMissingField?.first_failure ?? null,
+    required_provider_report_fields: ACCEPTED_PROVIDER_REPORT_FIELDS,
+    satisfied_same_row_provider_fields: satisfiedFields.map((field) => field.field),
+    missing_or_rejected_provider_report_fields: missingOrRejectedFields.map(
+      (field) => field.field
+    ),
+    field_readouts: providerFieldReadouts,
+    required_source_ref_rule:
+      "source_ref must be non-fixture provenance for the same accepted provider report row.",
+    required_branch_certificate_rule:
+      "branch_certificate_ref must be nonempty on the same accepted non-fixture provider row.",
+    required_same_record_binding: {
+      same_provider_row_required: true,
+      cross_candidate_join_authorized: false,
+      fixture_source_ref_authorized: false,
+      target_only_source_status_authorized: false,
+      h39_theta3minus_diagnostic_authorized_as_pressure_evidence: false,
+    },
+    expected_producer:
+      "non-fixture same-domain branch-provider report for pressure-row-a0-branch-source-frontier-partial carrying provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity on one provider row",
+    authorization: {
+      retained_pressure_row_source: false,
+      branch_derived_pressure_response: false,
+      empirical_mass_response: false,
+      retained_branch_claim: false,
+      observer_export: false,
+      export_readiness: false,
+    },
+  };
+}
+
 function buildAcceptedSourceObjectBoundary(
   nearestCandidate,
   provenanceDepthReadout,
@@ -1262,6 +1315,11 @@ function buildAcceptedSourceObjectBoundary(
         "provider_branch_certificate_ref_target",
         "branch_certificate_ref emitted on the same accepted non-fixture branch-provider report row"
       ),
+      accepted_non_fixture_same_domain_provider_source_target:
+        buildAcceptedNonFixtureSameDomainProviderSourceTarget(
+          providerFieldReadouts,
+          nearestProviderReadout
+        ),
       provider_row_field_readouts: providerFieldReadouts,
       missing_or_rejected_provider_report_fields: missingProviderFields.map(
         (field) => field.field
@@ -1734,6 +1792,50 @@ export function scoutValidationErrors(report) {
       )
     ) {
       errors.push("blocked accepted_source_object_boundary must emit provider branch_certificate_ref target");
+    }
+    const acceptedProviderSourceTarget =
+      acceptedSourceObjectBoundary.provider_boundary
+        ?.accepted_non_fixture_same_domain_provider_source_target;
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedProviderSourceTarget)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit accepted provider source target");
+    }
+    if (isObject(acceptedProviderSourceTarget)) {
+      if (
+        acceptedProviderSourceTarget.schema !==
+        "pressure_row_accepted_non_fixture_same_domain_provider_source_target/v0"
+      ) {
+        errors.push("accepted provider source target schema is not recognized");
+      }
+      if (acceptedProviderSourceTarget.accepted_promotion_authorized !== false) {
+        errors.push("accepted provider source target must not authorize promotion");
+      }
+      if (
+        acceptedProviderSourceTarget.authorization?.branch_derived_pressure_response !== false
+      ) {
+        errors.push("accepted provider source target must not authorize pressure response");
+      }
+      if (
+        report.first_failure === "accepted_non_fixture_source_missing" &&
+        acceptedProviderSourceTarget.accepted_provider_source_found !== false
+      ) {
+        errors.push("blocked accepted provider source target must remain unsatisfied");
+      }
+      if (
+        report.first_failure === "accepted_non_fixture_source_missing" &&
+        acceptedProviderSourceTarget.first_missing_or_rejected_field !==
+          "provider_source_status"
+      ) {
+        errors.push("blocked accepted provider source target must fail first at provider_source_status");
+      }
+      if (
+        acceptedProviderSourceTarget.required_same_record_binding
+          ?.cross_candidate_join_authorized !== false
+      ) {
+        errors.push("accepted provider source target must reject cross-candidate joins");
+      }
     }
     if (
       !Array.isArray(

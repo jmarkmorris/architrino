@@ -419,23 +419,30 @@ function summarizeRetainedCausalRootReplaySource(stepResults) {
       firstMissingField: sourceSummary.firstMissingField ?? null,
     });
   }
+  const acceptedRows = rows.filter((row) => row.acceptedReplayEvidence === true);
+  const blockedRows = rows.filter((row) => row.acceptedReplayEvidence !== true);
+  const allRowsAccepted = rows.length > 0 && acceptedRows.length === rows.length;
   return {
     schema: "t3-retained-causal-root-replay.v1",
     sourceObjectSchema: "t3-run-summary-packaged-step-row-source",
-    replayAuthorization: false,
-    acceptedReplayEvidence: false,
+    replayAuthorization: allRowsAccepted,
+    acceptedReplayEvidence: allRowsAccepted,
     rows,
     perStep,
     summary: {
       status:
-        rows.length > 0
-          ? "candidate_rows_missing_required_same_record_fields"
-          : "no_candidate_replay_rows",
+        rows.length === 0
+          ? "no_candidate_replay_rows"
+          : allRowsAccepted
+            ? "same_record_replay_fields_complete"
+            : acceptedRows.length > 0
+              ? "partial_candidate_rows_missing_required_same_record_fields"
+              : "candidate_rows_missing_required_same_record_fields",
       candidateRowCount: rows.length,
-      acceptedReplayRowCount: 0,
-      replayAuthorization: false,
+      acceptedReplayRowCount: acceptedRows.length,
+      replayAuthorization: allRowsAccepted,
       firstCandidateRowId: rows[0]?.rowId ?? null,
-      firstMissingField: rows[0]?.missingFields?.[0] ?? null,
+      firstMissingField: blockedRows[0]?.missingFields?.[0] ?? null,
       retainedBranch: false,
       provesBranchAdmissibility: false,
     },

@@ -24138,6 +24138,80 @@ function createRetainedGlobalTransportDeclarationTarget({
     retainedRouteCompensationProfile?.routeCompensationRequired === true;
   const globalLawDeclarationFormula =
     "globalLawDeclarationPass = globalRetainedRowSetIdentityPass && (fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass) && retainedPayloadRowsPass && acceptedRetainedEnergyRoutingPass && acceptedFullPointEventRulePass";
+  const routeRootKeys = [
+    ...(transportTarget?.rows ?? []),
+    ...(physicalTarget?.rows ?? []),
+  ]
+    .map((row) => row.routeRootKey)
+    .filter((routeRootKey) => routeRootKey != null);
+  const uniqueRouteRootKeys = [...new Set(routeRootKeys.map(String))];
+  const globalDeclarationFieldRows = [
+    {
+      field: "global_retained_row_set_identity",
+      fieldPass: globalRetainedRowSetIdentityPass,
+      producerObject:
+        "same_route_root_key_global_retained_row_set_identity_provider",
+      requiredSameRecordBinding:
+        "same route/root-key row set as the local endpoint-provider point-event row",
+    },
+    {
+      field: "full_point_event_rule_or_positive_width_common_retained_domain",
+      fieldPass: fullPointEventRuleLiftPass || positiveWidthRetainedDomainLiftPass,
+      producerObject:
+        "full_point_event_rule_or_positive_width_common_retained_domain_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and event/domain route",
+    },
+    {
+      field: "retained_force_torque_wake_phase_partition_stability_payloads",
+      fieldPass: retainedPayloadRowsPass,
+      producerObject:
+        "retained_payload_row_family_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and accepted event or positive-width domain",
+    },
+    {
+      field: "accepted_retained_energy_routing",
+      fieldPass: acceptedRetainedEnergyRoutingPass,
+      producerObject:
+        "accepted_retained_energy_routing_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and accepted event or positive-width domain",
+    },
+    {
+      field: "accepted_full_point_event_rule",
+      fieldPass: acceptedFullPointEventRulePass,
+      producerObject:
+        "accepted_full_point_event_rule_provider",
+      requiredSameRecordBinding:
+        "same global retained row set and event/domain route",
+    },
+  ];
+  const firstMissingGlobalDeclarationFieldRow =
+    globalDeclarationFieldRows.find((row) => row.fieldPass !== true) ?? null;
+  const globalDeclarationSourceBoundary = {
+    schema:
+      "aaa-tri-binary-retained-global-transport-declaration-source-boundary.v1",
+    status: globalLawDeclarationPass
+      ? "retained_global_transport_declaration_source_boundary_closed"
+      : "retained_global_transport_declaration_source_boundary_open",
+    claimLevel:
+      "machine-readable fail-closed source boundary for the global retained transport declaration; not retained branch acceptance",
+    retainedBranchClaim: false,
+    routeRootKeys: uniqueRouteRootKeys,
+    firstMissingGlobalDeclarationField:
+      firstMissingGlobalDeclarationFieldRow?.field ?? null,
+    firstMissingProducerObject:
+      firstMissingGlobalDeclarationFieldRow?.producerObject ?? null,
+    firstMissingSameRecordBinding:
+      firstMissingGlobalDeclarationFieldRow?.requiredSameRecordBinding ?? null,
+    requiredGlobalDeclarationFields: globalDeclarationFieldRows,
+    smallestNextProducerObject:
+      firstMissingGlobalDeclarationFieldRow?.producerObject ??
+      "retained_branch_selection_residual",
+    noGoInterpretation:
+      "The local endpoint-provider point-event row is not promoted by this boundary. The first missing global declaration field must be produced on the same route/root-key retained row set before provider substitution geometry can be treated as global retained transport.",
+  };
   const declarationBlockers = [
     candidateGlobalTransportLiftPass
       ? null
@@ -24217,6 +24291,13 @@ function createRetainedGlobalTransportDeclarationTarget({
     retainedPayloadRowsPass,
     acceptedRetainedEnergyRoutingPass,
     acceptedFullPointEventRulePass,
+    globalDeclarationSourceBoundary,
+    firstMissingGlobalDeclarationField:
+      globalDeclarationSourceBoundary.firstMissingGlobalDeclarationField,
+    firstMissingProducerObject:
+      globalDeclarationSourceBoundary.firstMissingProducerObject,
+    firstMissingSameRecordBinding:
+      globalDeclarationSourceBoundary.firstMissingSameRecordBinding,
     firstOpenTransportBlocker,
     declarationBlockers,
     globalTransportAcceptanceBlockers,

@@ -272,11 +272,15 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
       }));
     }
   }
+  const acceptedRows = candidateRows.filter((row) => row.acceptedReplayEvidence === true);
+  const firstBlockedRow = candidateRows.find((row) => row.acceptedReplayEvidence !== true);
+  const allCandidateRowsAccepted =
+    candidateRows.length > 0 && acceptedRows.length === candidateRows.length;
   return {
     schema: "t3-retained-causal-root-replay.v1",
     sourceObjectSchema: "solver-t3-step-response.v1",
-    replayAuthorization: false,
-    acceptedReplayEvidence: false,
+    replayAuthorization: allCandidateRowsAccepted,
+    acceptedReplayEvidence: allCandidateRowsAccepted,
     rows: candidateRows,
     negativeControls: [
       {
@@ -294,14 +298,18 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
     ],
     summary: {
       status:
-        candidateRows.length > 0
-          ? "candidate_rows_missing_required_same_record_fields"
-          : "no_candidate_replay_rows",
+        candidateRows.length === 0
+          ? "no_candidate_replay_rows"
+          : allCandidateRowsAccepted
+            ? "same_record_replay_fields_complete"
+            : acceptedRows.length > 0
+              ? "partial_candidate_rows_missing_required_same_record_fields"
+              : "candidate_rows_missing_required_same_record_fields",
       candidateRowCount: candidateRows.length,
-      acceptedReplayRowCount: 0,
-      replayAuthorization: false,
+      acceptedReplayRowCount: acceptedRows.length,
+      replayAuthorization: allCandidateRowsAccepted,
       firstCandidateRowId: candidateRows[0]?.rowId ?? null,
-      firstMissingField: candidateRows[0]?.missingFields?.[0] ?? null,
+      firstMissingField: firstBlockedRow?.missingFields?.[0] ?? null,
       retainedBranch: false,
       provesBranchAdmissibility: false,
     },
@@ -344,6 +352,15 @@ function createRetainedCausalRootReplayCandidateRow(input) {
     stepIndex,
     request: input.request,
   });
+  const jacobianFloorOrDeclaredStratum = createJacobianFloorOrDeclaredStratum({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+    axis,
+    signedImageDelta,
+    rowId,
+  });
   const providedFields = [
     "sameRecordReplayId",
     "retainedSourceRecordId",
@@ -369,6 +386,17 @@ function createRetainedCausalRootReplayCandidateRow(input) {
   if (seamOwnerRoute) {
     providedFields.push("seamPairingMapOrWindingOwnerRowId");
   }
+  if (jacobianFloorOrDeclaredStratum) {
+    providedFields.push("jacobianFloorOrDeclaredStratum");
+  }
+  const missingFields = []
+    .concat(jacobianFloorOrDeclaredStratum ? [] : ["jacobianFloorOrDeclaredStratum"])
+    .concat(endpointRoute ? [] : ["endpointRoute"])
+    .concat(memoryWindowRoute ? [] : ["memoryWindowRoute"])
+    .concat(collisionCoreRoute ? [] : ["collisionCoreRoute"])
+    .concat(omittedRowRoute ? [] : ["omittedRowRoute"])
+    .concat(seamOwnerRoute ? [] : ["seamPairingMapOrWindingOwnerRowId"]);
+  const acceptedReplayEvidence = missingFields.length === 0;
   return {
     schema: "t3-retained-causal-root-replay-row.v1",
     rowId,
@@ -386,11 +414,12 @@ function createRetainedCausalRootReplayCandidateRow(input) {
     windingLabel: `${axis}:${signedImageDelta > 0 ? "+1" : "-1"}`,
     imageDeltaAxis: axis,
     signedImageDeltaWitness: signedImageDelta,
-    jacobianFloorOrDeclaredStratum: null,
+    jacobianFloorOrDeclaredStratum,
     jacobianFloorSourceBoundary: createJacobianFloorSourceBoundary({
       row,
       stepIndex,
       rowId,
+      jacobianFloorOrDeclaredStratum,
     }),
     endpointRoute,
     memoryWindowRoute,
@@ -398,33 +427,65 @@ function createRetainedCausalRootReplayCandidateRow(input) {
     omittedRowRoute,
     seamPairingMapOrWindingOwnerRowId: seamOwnerRoute?.windingOwnerRowId ?? null,
     seamOwnerRoute,
-    rowStatus: "candidate_missing_required_same_record_fields",
-    replayAuthorization: false,
-    acceptedReplayEvidence: false,
+    rowStatus: acceptedReplayEvidence
+      ? "accepted_same_record_replay_evidence"
+      : "candidate_missing_required_same_record_fields",
+    replayAuthorization: acceptedReplayEvidence,
+    acceptedReplayEvidence,
     providedFields,
-    missingFields: [
-      "jacobianFloorOrDeclaredStratum",
-    ]
-      .concat(endpointRoute ? [] : ["endpointRoute"])
-      .concat(memoryWindowRoute ? [] : ["memoryWindowRoute"])
-      .concat(collisionCoreRoute ? [] : ["collisionCoreRoute"])
-      .concat(omittedRowRoute ? [] : ["omittedRowRoute"])
-      .concat(seamOwnerRoute ? [] : ["seamPairingMapOrWindingOwnerRowId"]),
+    missingFields,
   };
 }
 
 function createJacobianFloorSourceBoundary(input) {
-  const { row, stepIndex, rowId } = input;
+  const { row, stepIndex, rowId, jacobianFloorOrDeclaredStratum } = input;
+  const sourceAvailable = jacobianFloorOrDeclaredStratum != null;
   return {
     schema: "t3-jacobian-floor-source-boundary.v1",
-    blockerStatus: "missing_same_record_jacobian_floor_or_declared_stratum",
+    sourceStatus: sourceAvailable
+      ? "same_record_declared_stratum_available"
+      : "missing_same_record_jacobian_floor_or_declared_stratum",
+    blockerStatus: sourceAvailable ? null : "missing_same_record_jacobian_floor_or_declared_stratum",
     expectedSourceObject: "solver-t3-step-response.v1",
     expectedField: "jacobianFloorOrDeclaredStratum",
     sameRecordBinding: "pathKey",
     stepIndex,
     pathKey: row?.pathKey ?? null,
     retainedCausalRootReplayRowId: rowId,
-    replayAuthorization: false,
+    declaredStratum: jacobianFloorOrDeclaredStratum?.declaredStratum ?? null,
+    missingLocalFieldOrSourceCondition: sourceAvailable
+      ? null
+      : "solver-t3-step-response.v1 must expose a same-record pathKey row with nonzero imageDelta, and solver-t3-step-request.v1 must expose a finite positive topology sideLength",
+    replayAuthorization: sourceAvailable,
+  };
+}
+
+function createJacobianFloorOrDeclaredStratum(input) {
+  const { row, rowIndex, stepIndex, request, axis, signedImageDelta, rowId } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  const sideLength = finitePositiveOrNull(request?.topology?.sideLength);
+  if (
+    !requestParticle ||
+    requestParticle.pathKey !== row?.pathKey ||
+    sideLength == null ||
+    integerImageDelta(row?.imageDelta?.[axis]) !== signedImageDelta ||
+    signedImageDelta === 0
+  ) {
+    return null;
+  }
+  return {
+    schema: "t3-jacobian-floor-or-declared-stratum.v1",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    retainedCausalRootReplayRowId: rowId,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    declaredStratum: "winding/seam",
+    stratumStatus: "declared_from_same_solver_step_periodic_wrap",
+    jacobianFloor: null,
+    sideLength,
   };
 }
 
@@ -551,6 +612,11 @@ function cloneImageDelta(value = {}) {
 function finiteOrNull(value) {
   const numericValue = Number(value);
   return Number.isFinite(numericValue) ? numericValue : null;
+}
+
+function finitePositiveOrNull(value) {
+  const numericValue = Number(value);
+  return Number.isFinite(numericValue) && numericValue > 0 ? numericValue : null;
 }
 
 function retainedSourceRecordId(row, rowIndex, stepIndex) {

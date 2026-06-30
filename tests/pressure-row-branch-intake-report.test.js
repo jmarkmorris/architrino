@@ -243,6 +243,14 @@ test("pressure-row branch intake report rejects target-only provider fixture", (
     "active_root_or_live_ledger_identity",
     "branch_local_projection_or_normalization_identity",
   ]);
+  assert.deepEqual(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_missing_fields,
+    [
+      "provider_source_status",
+      "source_ref",
+      "branch_certificate_ref",
+    ]
+  );
   assert.equal(
     report.provider_target.same_domain_provider_object_target.authorizes_pressure_response,
     false
@@ -254,6 +262,10 @@ test("pressure-row branch intake report rejects target-only provider fixture", (
   assert.equal(
     report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.required_provider_source_status_path,
     "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status"
+  );
+  assert.equal(
+    report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.required_source_ref_path,
+    "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref"
   );
   assert.equal(
     report.provider_target.same_domain_provider_object_target.current_best_partial_source_path_probe_target.required_branch_certificate_ref_path,
@@ -989,6 +1001,67 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
       expected_producer:
         "branch_certificate_ref emitted on the same accepted non-fixture branch-provider report row",
       same_provider_row_required: true,
+    }
+  );
+  assert.deepEqual(
+    acceptedSourceBoundary.provider_boundary
+      .accepted_non_fixture_same_domain_provider_source_target,
+    {
+      schema: "pressure_row_accepted_non_fixture_same_domain_provider_source_target/v0",
+      claim_scope: "rank4 pressure-row same-domain branch-provider source",
+      target_status: "source_target_blocked",
+      accepted_provider_source_found: false,
+      accepted_promotion_authorized: false,
+      selected_provider_candidate_id: "pressure-row-a0-branch-source-frontier-partial",
+      selected_provider_claim_scope: "rank4 A0 branch-source frontier partial",
+      selected_provider_source_ref:
+        "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json",
+      first_missing_or_rejected_field: "provider_source_status",
+      first_missing_or_rejected_path:
+        "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+      first_missing_or_rejected_failure:
+        "provider_source_status.accepted_non_fixture_source_missing",
+      required_provider_report_fields: [
+        "provider_source_status",
+        "source_ref",
+        "branch_certificate_ref",
+        "same_domain_record_ref",
+        "active_root_or_live_ledger_identity",
+        "branch_local_projection_or_normalization_identity",
+      ],
+      satisfied_same_row_provider_fields: [
+        "same_domain_record_ref",
+        "active_root_or_live_ledger_identity",
+        "branch_local_projection_or_normalization_identity",
+      ],
+      missing_or_rejected_provider_report_fields: [
+        "provider_source_status",
+        "source_ref",
+        "branch_certificate_ref",
+      ],
+      field_readouts:
+        acceptedSourceBoundary.provider_boundary.provider_row_field_readouts,
+      required_source_ref_rule:
+        "source_ref must be non-fixture provenance for the same accepted provider report row.",
+      required_branch_certificate_rule:
+        "branch_certificate_ref must be nonempty on the same accepted non-fixture provider row.",
+      required_same_record_binding: {
+        same_provider_row_required: true,
+        cross_candidate_join_authorized: false,
+        fixture_source_ref_authorized: false,
+        target_only_source_status_authorized: false,
+        h39_theta3minus_diagnostic_authorized_as_pressure_evidence: false,
+      },
+      expected_producer:
+        "non-fixture same-domain branch-provider report for pressure-row-a0-branch-source-frontier-partial carrying provider_source_status=accepted_non_fixture_source, non-fixture source_ref, branch_certificate_ref, same_domain_record_ref, active_root_or_live_ledger_identity, and branch_local_projection_or_normalization_identity on one provider row",
+      authorization: {
+        retained_pressure_row_source: false,
+        branch_derived_pressure_response: false,
+        empirical_mass_response: false,
+        retained_branch_claim: false,
+        observer_export: false,
+        export_readiness: false,
+      },
     }
   );
   const providerReportReadouts = new Map(

@@ -49,14 +49,14 @@ function createService() {
   });
 }
 
-test("textbook TOC numbering resolves scene nodes", async () => {
+test("textbook TOC numbering resolves markdown-backed scene nodes", async () => {
   const service = createService();
 
   assert.equal(
     await service.resolveNodeChapterLabel({
       childScene: "content/scenes/foundations/foundations.json",
     }),
-    "Ch 1"
+    null
   );
   assert.equal(
     await service.resolveNodeChapterLabel({
@@ -66,9 +66,26 @@ test("textbook TOC numbering resolves scene nodes", async () => {
   );
   assert.equal(
     await service.resolveNodeChapterLabel({
+      markdownPath: "content/markdown/aaa/foundations/architrino.md",
+    }),
+    "Ch 1.1"
+  );
+  assert.equal(
+    await service.resolveNodeChapterLabel({
       childScene: "content/scenes/dynamics/dynamics.json",
     }),
-    "Ch 2"
+    null
+  );
+});
+
+test("textbook TOC numbering skips orphan node IDs without a markdown target", async () => {
+  const service = createService();
+
+  assert.equal(
+    await service.resolveNodeChapterLabel({
+      id: "foundations__architrino",
+    }),
+    null
   );
 });
 
