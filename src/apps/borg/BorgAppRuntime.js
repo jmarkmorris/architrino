@@ -13,6 +13,8 @@ const CAMERA_MAX_DISTANCE = 17;
 const DEFAULT_CAMERA_DISTANCE = 10.5;
 const DEFAULT_ROTATION_X = -0.48;
 const DEFAULT_ROTATION_Y = 0.72;
+const ARCHITRINO_POINT_PIXEL_SIZE = 8;
+const ARCHITRINO_PICK_THRESHOLD = 0.22;
 
 const LAYER_LABELS = Object.freeze({
   "simulation-window": "Cube",
@@ -23,6 +25,17 @@ const LAYER_LABELS = Object.freeze({
   "face-boundary-status": "Face",
   diagnostics: "Diag",
   "outbound-face-background": "Face bg",
+});
+
+const LAYER_TITLES = Object.freeze({
+  "simulation-window": "Displayed central cube",
+  "architrino-position": "Architrino positions from native frame rows",
+  "path-history": "Path-history traces from native path rows",
+  "velocity-vectors": "Velocity direction overlay",
+  "wake-streams": "Wake streams are fail-closed until native rows exist",
+  "face-boundary-status": "Face-boundary status is fail-closed until native rows exist",
+  diagnostics: "Diagnostics are shown in the right rail",
+  "outbound-face-background": "Face background is fail-closed until the influence model exists",
 });
 
 const STATUS_TONE = Object.freeze({
@@ -42,14 +55,14 @@ const STATUS_TONE = Object.freeze({
 const PARTICLE_STYLES = Object.freeze({
   1001: Object.freeze({
     label: "1001",
-    color: 0x58c7d4,
-    edgeColor: "#9ff5ff",
+    color: 0x0000ff,
+    edgeColor: "#0000ff",
     polarity: "electrino",
   }),
   1002: Object.freeze({
     label: "1002",
-    color: 0xd6ad52,
-    edgeColor: "#ffe0a0",
+    color: 0xff0000,
+    edgeColor: "#ff0000",
     polarity: "positrino",
   }),
 });
@@ -114,9 +127,11 @@ export function mountBorgApp(options = {}) {
   scene.add(fillLight);
 
   const raycaster = new THREE.Raycaster();
+  raycaster.params.Points.threshold = ARCHITRINO_PICK_THRESHOLD;
   const pointerNdc = new THREE.Vector2();
-  const particleMeshes = new Map();
+  const particleObjects = new Map();
   const velocityLines = new Map();
+  const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
 
   const state = {
     activeFrameIndex: frameSets.at(-1)?.frameIndex ?? 0,
@@ -188,18 +203,23 @@ export function mountBorgApp(options = {}) {
 
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey);
-      const material = new THREE.MeshStandardMaterial({
+      const material = new THREE.PointsMaterial({
         color: style.color,
-        emissive: style.color,
-        emissiveIntensity: 0.18,
-        metalness: 0.08,
-        roughness: 0.38,
+        map: architrinoPointTexture,
+        size: ARCHITRINO_POINT_PIXEL_SIZE,
+        sizeAttenuation: false,
+        alphaTest: 0.5,
+        transparent: true,
+        depthWrite: false,
       });
-      const mesh = new THREE.Mesh(new THREE.SphereGeometry(0.15, 28, 18), material);
-      mesh.userData.pathKey = pathKey;
-      mesh.userData.kind = "architrino";
-      pointGroup.add(mesh);
-      particleMeshes.set(pathKey, mesh);
+      const point = new THREE.Points(
+        new THREE.BufferGeometry().setFromPoints([new THREE.Vector3()]),
+        material,
+      );
+      point.userData.pathKey = pathKey;
+      point.userData.kind = "architrino";
+      pointGroup.add(point);
+      particleObjects.set(pathKey, point);
 
       const velocityMaterial = new THREE.LineBasicMaterial({
         color: style.color,
@@ -340,7 +360,7 @@ export function mountBorgApp(options = {}) {
       button.type = "button";
       button.dataset.layer = layer.layer;
       button.textContent = LAYER_LABELS[layer.layer] ?? layer.layer;
-      button.title = `${layer.layer}: ${layer.state}`;
+      button.title = `${LAYER_TITLES[layer.layer] ?? layer.layer}: ${layer.state}`;
       button.setAttribute("aria-label", `${layer.layer} layer`);
       button.disabled = layer.state === "disabled" || layer.state === "contextual-disabled";
       if (layer.state === "on-locked") {
@@ -435,12 +455,12 @@ export function mountBorgApp(options = {}) {
     dom.timelineRange.value = String(frameSet.frameIndex);
     dom.timelineOutput.value = `t ${formatNumber(frameSet.time)} | frame ${frameSet.frameIndex}`;
     frameSet.frames.forEach((frame) => {
-      const mesh = particleMeshes.get(frame.pathKey);
-      if (!mesh) {
+      const particle = particleObjects.get(frame.pathKey);
+      if (!particle) {
         return;
       }
-      mesh.position.copy(solverPositionToWorld(frame.position));
-      mesh.userData.frame = frame;
+      particle.position.copy(solverPositionToWorld(frame.position));
+      particle.userData.frame = frame;
       updateVelocityLine(frame);
     });
     updateSelectedTag();
@@ -479,12 +499,12 @@ export function mountBorgApp(options = {}) {
   }
 
   function focusSelected() {
-    const mesh = particleMeshes.get(state.selectedPathKey);
-    if (!mesh) {
+    const particle = particleObjects.get(state.selectedPathKey);
+    if (!particle) {
       fitView();
       return;
     }
-    const target = mesh.position.clone();
+    const target = particle.position.clone();
     camera.lookAt(target);
     render();
   }
@@ -576,7 +596,7 @@ export function mountBorgApp(options = {}) {
     pointerNdc.x = ((event.clientX - rect.left) / Math.max(1, rect.width)) * 2 - 1;
     pointerNdc.y = -(((event.clientY - rect.top) / Math.max(1, rect.height)) * 2 - 1);
     raycaster.setFromCamera(pointerNdc, camera);
-    const hits = raycaster.intersectObjects([...particleMeshes.values()], false);
+    const hits = raycaster.intersectObjects([...particleObjects.values()], false);
     if (hits.length === 0) {
       state.selectedPathKey = null;
     } else {
@@ -591,9 +611,9 @@ export function mountBorgApp(options = {}) {
       dom.selectedTag.hidden = true;
       return;
     }
-    const mesh = particleMeshes.get(state.selectedPathKey);
-    const frame = mesh?.userData.frame;
-    if (!mesh || !frame) {
+    const particle = particleObjects.get(state.selectedPathKey);
+    const frame = particle?.userData.frame;
+    if (!particle || !frame) {
       dom.selectedTag.hidden = true;
       return;
     }
@@ -622,6 +642,7 @@ export function mountBorgApp(options = {}) {
     stopPlayback();
     state.resizeObserver?.disconnect?.();
     windowLike.removeEventListener("resize", resize);
+    architrinoPointTexture.dispose();
     renderer.dispose();
   }
 
@@ -652,10 +673,25 @@ function queryRequiredElement(documentLike, selector) {
 function getParticleStyle(pathKey) {
   return PARTICLE_STYLES[pathKey] ?? {
     label: String(pathKey),
-    color: 0xbec7b7,
-    edgeColor: "#e9f0df",
+    color: 0xffffff,
+    edgeColor: "#ffffff",
     polarity: "architrino",
   };
+}
+
+function createArchitrinoPointTexture(documentLike) {
+  const canvas = documentLike.createElement("canvas");
+  canvas.width = 32;
+  canvas.height = 32;
+  const context = canvas.getContext("2d");
+  context.clearRect(0, 0, canvas.width, canvas.height);
+  context.fillStyle = "#ffffff";
+  context.beginPath();
+  context.arc(16, 16, 14, 0, Math.PI * 2);
+  context.fill();
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.needsUpdate = true;
+  return texture;
 }
 
 function formatValue(value) {

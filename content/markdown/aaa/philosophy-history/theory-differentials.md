@@ -6,7 +6,7 @@
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
-It is the catalog companion to [Theory Mapping](theory-mapping.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), [Crisis in Physics](crisis-in-physics.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), [Parameter Ledger](../validation/parameter-ledger.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+It is the catalog companion to [Theory Mapping](theory-mapping.md), [Theory Inheritance Discipline](theory-inheritance-discipline.md), [Crisis in Physics](crisis-in-physics.md), [Solving the Crisis](solving-the-crisis.md), [Parameter Ledger](../validation/parameter-ledger.md), and [No-Go Theorems](../validation/no-go-theorems.md).
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 

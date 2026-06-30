@@ -454,7 +454,7 @@ The priority-only [EQ-15 And EQ-27 Ordered-Frame Loop Source-Field Map](eq-15-27
 - `content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md`
 - `content/markdown/aaa/nuclear-atomic/atomic-spectra.md`
 - `content/markdown/aaa/validation/architrino-si-base-units.md`
-- `content/markdown/aaa/philosophy-history/unknowns-paradoxes.md`
+- `content/markdown/aaa/philosophy-history/solving-the-crisis.md`
 
 Promotion condition: a retained branch supplies the leading magnetic moment and precession residuals before any $g-2$ precision claim is promoted.
 

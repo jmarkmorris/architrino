@@ -158,6 +158,19 @@ if (
   process.exit(0);
 }
 if (
+  args.schema ===
+  "event-root-affine-bracket-identity-conservation-source-step-target"
+) {
+  console.log(
+    JSON.stringify(
+      createEventRootAffineBracketIdentityConservationSourceStepTargetSchema(),
+      null,
+      2
+    )
+  );
+  process.exit(0);
+}
+if (
   args.schema === "accepted-nonlocal-transport-global-row-set-producer-target"
 ) {
   console.log(
@@ -27104,6 +27117,14 @@ async function createEventRootAffineBracketIdentityConservationTarget({
       midpointReplayContext,
       retainedRowSetBindingContext,
     });
+  const identityConservationSourceStep =
+    createEventRootAffineBracketIdentityConservationSourceStep({
+      rowProofs,
+      endpointUniquenessAudit,
+      interiorCoverageAudit,
+      interiorTransitionSourceAudit,
+      interiorAbsenceBridgeFillRuleTarget,
+    });
   const interiorContinuityBlocker =
     createEventRootAffineBracketInteriorContinuityBlocker({
       interiorTransitionSourceAudit,
@@ -27296,6 +27317,16 @@ async function createEventRootAffineBracketIdentityConservationTarget({
     interiorAbsenceBridgeFillRuleTargetStatus:
       interiorAbsenceBridgeFillRuleTarget.status,
     interiorAbsenceBridgeFillRuleTarget,
+    identityConservationSourceStepStatus:
+      identityConservationSourceStep.status,
+    identityConservationSourceStep,
+    selectedTouchingBoundaryProofPrerequisiteRowCount:
+      identityConservationSourceStep.selectedTouchingBoundaryRowCount,
+    selectedTouchingBoundaryProofAcceptedRowCount:
+      identityConservationSourceStep
+        .acceptedSelectedTouchingBoundaryProofRowCount,
+    firstIdentityConservationSourceStepMissingField:
+      identityConservationSourceStep.firstMissingField,
     uniqueEventRootEndpointRowCount:
       endpointUniquenessAudit.uniqueEventRootEndpointRowCount,
     endpointCompetitorRowCount: endpointUniquenessAudit.endpointCompetitorRowCount,
@@ -27346,6 +27377,226 @@ async function createEventRootAffineBracketIdentityConservationTarget({
     rows: rowProofs,
     retainedLimitation:
       "The affine rows prove same-key retained endpoints and a common bracket equation, but the current bracket interiors contain only dropped edges: active-endpoint non-retained transition edges and both-inactive no-transition edges. They do not yet populate retained event-root interior continuity, event-root identity conservation, or binding to the global retained row set.",
+  };
+}
+
+function createEventRootAffineBracketIdentityConservationSourceStep({
+  rowProofs,
+  endpointUniquenessAudit,
+  interiorCoverageAudit,
+  interiorTransitionSourceAudit,
+  interiorAbsenceBridgeFillRuleTarget,
+}) {
+  const expectedSelectedRowIds = [
+    "inner->middle:28:right",
+    "inner->outer:11:left",
+    "inner->outer:17:right",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ];
+  const directSupportRowIds = [
+    "inner->middle:28:right",
+    "inner->outer:17:right",
+  ];
+  const directAbsenceRowIds = [
+    "inner->outer:11:left",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ];
+  const selectedRowIdSet = new Set(expectedSelectedRowIds);
+  const directSupportRowIdSet = new Set(directSupportRowIds);
+  const directAbsenceRowIdSet = new Set(directAbsenceRowIds);
+  const absenceBridgeRowsByKey = new Map(
+    (interiorAbsenceBridgeFillRuleTarget?.rows ?? []).map((row) => [
+      `${row.pairKey}:${row.edgeIndex}`,
+      row,
+    ])
+  );
+  const rows = rowProofs.map((row) => {
+    const rowId = `${row.pairKey}:${row.edgeIndex}:${row.side}`;
+    const absenceBridgeRow =
+      absenceBridgeRowsByKey.get(`${row.pairKey}:${row.edgeIndex}`) ?? null;
+    const endpointIdentityPass =
+      row.endpointIdentityAffineCandidatePass === true &&
+      row.sameEventRootEndpointPass === true &&
+      row.uniqueEventRootEndpointPass === true;
+    const affineBracketGeometryPass =
+      row.affineEquationPass === true && row.latticeAligned === true;
+    const retainedContinuityAcceptedPass =
+      row.bracketInteriorProfile?.interiorEventRootOccupancyWalk
+        ?.retainedContinuityAcceptedPass === true;
+    const absenceBridgeFillLawPass =
+      absenceBridgeRow?.acceptedAbsenceBridgeFillRowPass === true;
+    const globalRetainedRowSetBindingProofPass =
+      row.globalRetainedRowSetBindingProofPopulated === true;
+    const firstMissingField =
+      endpointIdentityPass !== true
+        ? "same_event_root_endpoint_identity"
+        : affineBracketGeometryPass !== true
+          ? "affine_bracket_geometry"
+          : retainedContinuityAcceptedPass !== true ||
+              absenceBridgeFillLawPass !== true
+            ? "derive_event_root_absence_bridge_fill_law"
+            : globalRetainedRowSetBindingProofPass !== true
+              ? "bind_affine_identity_conservation_to_global_retained_row_set"
+              : row.proofSubcase === "touching_boundary_affine_limit"
+                ? "prove_touching_boundary_event_root_identity_limit"
+                : "prove_positive_distance_event_root_identity_conservation";
+    return {
+      rowId,
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      selectedRowPass: selectedRowIdSet.has(rowId),
+      directSupportSelectedRowPass: directSupportRowIdSet.has(rowId),
+      directAbsenceSelectedRowPass: directAbsenceRowIdSet.has(rowId),
+      proofSubcase: row.proofSubcase,
+      bracketIntervalUnits: row.bracketIntervalUnits,
+      inactiveGapIntervalUnits: row.inactiveGapIntervalUnits,
+      endpointIdentityPass,
+      affineBracketGeometryPass,
+      latticeAlignmentPass: row.latticeAligned === true,
+      uniqueEventRootEndpointPass: row.uniqueEventRootEndpointPass === true,
+      retainedContinuityAcceptedPass,
+      absenceBridgeFillLawPass,
+      absenceBridgeFillRowPresent: absenceBridgeRow != null,
+      absenceBridgeFillRowAcceptedPass:
+        absenceBridgeRow?.acceptedAbsenceBridgeFillRowPass === true,
+      globalRetainedRowSetBindingProofPass,
+      interiorEventRootIdentityConservationProofPopulated:
+        row.interiorEventRootIdentityConservationProofPopulated === true,
+      acceptedIdentityConservationRowPass:
+        row.acceptedIdentityConservationRowPass === true,
+      firstMissingField,
+    };
+  });
+  const selectedRows = rows.filter((row) => row.selectedRowPass);
+  const selectedTouchingRows = selectedRows.filter(
+    (row) => row.proofSubcase === "touching_boundary_affine_limit"
+  );
+  const selectedDirectSupportRows = selectedRows.filter(
+    (row) => row.directSupportSelectedRowPass
+  );
+  const selectedDirectAbsenceRows = selectedRows.filter(
+    (row) => row.directAbsenceSelectedRowPass
+  );
+  const touchingRows = rows.filter(
+    (row) => row.proofSubcase === "touching_boundary_affine_limit"
+  );
+  const positiveDistanceRows = rows.filter(
+    (row) => row.proofSubcase === "positive_distance_affine_interior"
+  );
+  const acceptedSelectedTouchingRows = selectedTouchingRows.filter(
+    (row) => row.acceptedIdentityConservationRowPass
+  );
+  const acceptedTouchingRows = touchingRows.filter(
+    (row) => row.acceptedIdentityConservationRowPass
+  );
+  const acceptedPositiveDistanceRows = positiveDistanceRows.filter(
+    (row) => row.acceptedIdentityConservationRowPass
+  );
+  const firstMissingField =
+    selectedRows.find((row) => row.firstMissingField)?.firstMissingField ??
+    rows.find((row) => row.firstMissingField)?.firstMissingField ??
+    null;
+  const selectedRowIds = selectedRows.map((row) => row.rowId);
+  const selectedRowCoveragePass =
+    expectedSelectedRowIds.every((rowId) => selectedRowIds.includes(rowId)) &&
+    selectedRows.length === expectedSelectedRowIds.length;
+  const acceptedIdentityConservationSourceStepPass =
+    rows.length > 0 &&
+    rows.every((row) => row.acceptedIdentityConservationRowPass);
+
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-identity-conservation-source-step.v1",
+    status: rows.length === 0
+      ? "event_root_affine_bracket_identity_conservation_source_step_no_rows"
+      : acceptedIdentityConservationSourceStepPass
+        ? "event_root_affine_bracket_identity_conservation_source_step_accepted"
+        : selectedRowCoveragePass
+          ? "event_root_affine_bracket_identity_conservation_source_step_blocked_absence_bridge_fill_law_and_global_binding"
+          : "event_root_affine_bracket_identity_conservation_source_step_selected_rows_missing",
+    claimLevel:
+      "fail-closed row-local source step for event-root identity conservation on affine bracket intervals; not retained branch acceptance",
+    retainedBranchClaim: false,
+    targetObjectId: "prove_event_root_identity_conservation_on_affine_bracket_interval",
+    producerStepId:
+      "expose_event_root_affine_bracket_identity_conservation_prerequisites",
+    eventRootKey: 2856731379702547500,
+    acceptedIdentityConservationSourceStepPass,
+    emitsBranchCertificateRef: false,
+    emitsAcceptedBranchChart: false,
+    emitsMovingRetainedBranchCertificate: false,
+    emitsAcceptedTransitionSource: false,
+    emitsRetainedBranchClosure: false,
+    emitsGlobalRetainedRowSetIdentity: false,
+    emitsAcceptedNonlocalTransport: false,
+    emitsIdentityConservation: false,
+    affineIdentityRowCount: rows.length,
+    touchingBoundaryRowCount: touchingRows.length,
+    positiveDistanceRowCount: positiveDistanceRows.length,
+    selectedRowCoveragePass,
+    selectedTouchingBoundaryRowCount: selectedTouchingRows.length,
+    selectedDirectSupportTouchingBoundaryRowCount:
+      selectedDirectSupportRows.filter(
+        (row) => row.proofSubcase === "touching_boundary_affine_limit"
+      ).length,
+    selectedDirectAbsenceTouchingBoundaryRowCount:
+      selectedDirectAbsenceRows.filter(
+        (row) => row.proofSubcase === "touching_boundary_affine_limit"
+      ).length,
+    acceptedSelectedTouchingBoundaryProofRowCount:
+      acceptedSelectedTouchingRows.length,
+    acceptedTouchingBoundaryProofRowCount: acceptedTouchingRows.length,
+    acceptedPositiveDistanceProofRowCount: acceptedPositiveDistanceRows.length,
+    endpointRootUniquenessStatus: endpointUniquenessAudit?.status ?? null,
+    interiorCoverageStatus: interiorCoverageAudit?.status ?? null,
+    retainedContinuityStatus: interiorTransitionSourceAudit?.status ?? null,
+    absenceBridgeFillLawStatus:
+      interiorAbsenceBridgeFillRuleTarget?.status ?? null,
+    absenceBridgeFillLawAcceptedPass:
+      interiorAbsenceBridgeFillRuleTarget
+        ?.acceptedAbsenceBridgeFillRulePass === true,
+    globalRetainedRowSetBindingProofRowCount: rows.filter(
+      (row) => row.globalRetainedRowSetBindingProofPass
+    ).length,
+    firstMissingField,
+    smallestProducerObject:
+      firstMissingField === "derive_event_root_absence_bridge_fill_law"
+        ? "derive_event_root_absence_bridge_fill_law"
+        : firstMissingField,
+    expectedSelectedRowIds,
+    directSupportRowIds,
+    directAbsenceRowIds,
+    touchingBoundaryRowIds: touchingRows.map((row) => row.rowId),
+    positiveDistanceRowIds: positiveDistanceRows.map((row) => row.rowId),
+    sameRecordBindingRequirements: [
+      "one_retained_record",
+      "one_route_root_key",
+      "one_event_root_key",
+      "same_affine_bracket_interval_per_row",
+      "one_endpoint_identity_status",
+      "one_affine_bracket_geometry_status",
+      "one_absence_bridge_fill_law_status",
+      "one_global_retained_row_set_binding_status",
+    ],
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createEventRootAffineBracketIdentityConservationSourceStepNegativeControls(),
+    selectedRows,
+    retainedLimitation:
+      "The selected touching-boundary affine-limit rows expose same-record endpoint identity, affine bracket geometry, and lattice alignment, but retained continuity, absence-bridge fill law, global retained row-set binding, and identity-conservation proofs remain unaccepted.",
   };
 }
 
@@ -39918,6 +40169,66 @@ function createSelectedBoundedInteriorInactiveGapFillRuleNegativeControls() {
   ];
 }
 
+function createEventRootAffineBracketIdentityConservationSourceStepNegativeControls() {
+  return [
+    {
+      id: "endpoint_only_rows_not_identity_conservation_source_step",
+      rejects:
+        "endpoint bracket rows without affine bracket geometry, retained continuity, absence-bridge fill law, and global retained row-set binding",
+    },
+    {
+      id: "affine_geometry_alone_not_identity_conservation_source_step",
+      rejects:
+        "affine bracket geometry or lattice alignment without a retained event-root continuity proof on the same bracket interval",
+    },
+    {
+      id: "sampled_partial_support_not_identity_conservation_source_step",
+      rejects:
+        "sampled partial-support rows before retained row-set binding and selected row-lane proof obligations are accepted",
+    },
+    {
+      id: "one_sheet_or_cross_root_joins_not_identity_conservation_source_step",
+      rejects:
+        "one-sheet rows or cross-root joins that do not bind endpoint identity and affine geometry to the same event-root key",
+    },
+    {
+      id: "phase_cancellation_rows_not_identity_conservation_source_step",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without retained event-root identity transport",
+    },
+    {
+      id: "aggregate_rows_not_identity_conservation_source_step",
+      rejects:
+        "aggregate summaries that erase the positive-distance versus touching-boundary proof split",
+    },
+    {
+      id: "target_only_rows_not_identity_conservation_source_step",
+      rejects:
+        "target-only rows or derived affine fits without row-local identity-conservation proof prerequisites",
+    },
+    {
+      id: "route_only_rows_not_identity_conservation_source_step",
+      rejects:
+        "route-only endpoint rows before absence-bridge fill law and global retained row-set binding evidence exist",
+    },
+    {
+      id: "cross_row_bundles_not_identity_conservation_source_step",
+      rejects:
+        "cross-row bundles that assemble endpoint, affine, retained-continuity, fill-law, and binding fields from separate records",
+    },
+    {
+      id: "current_proxy_branch_charts_not_identity_conservation_source_step",
+      rejects:
+        "current or proxy branch-chart rows before same-record identity-conservation evidence exists",
+    },
+    {
+      id: "generated_decoys_not_identity_conservation_source_step",
+      rejects:
+        "fixed generated decoys or report-only projections without accepted same-record source binding",
+    },
+  ];
+}
+
 function createSelectedActiveDomainBoundedGapFillEvidenceProducerTargetSchema() {
   return {
     schema:
@@ -40182,6 +40493,78 @@ function createSelectedBoundedInteriorInactiveGapFillRulePrerequisiteTargetSchem
     ],
     negativeControls:
       createSelectedBoundedInteriorInactiveGapFillRuleNegativeControls(),
+  };
+}
+
+function createEventRootAffineBracketIdentityConservationSourceStepTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-event-root-affine-bracket-identity-conservation-source-step-target.schema.v1",
+    parentProducerStepId: "derive_event_root_absence_bridge_fill_law",
+    targetObjectId: "prove_event_root_identity_conservation_on_affine_bracket_interval",
+    producerStepSchema:
+      "aaa-tri-binary-event-root-affine-bracket-identity-conservation-source-step.v1",
+    producerStepId:
+      "expose_event_root_affine_bracket_identity_conservation_prerequisites",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed event-root identity-conservation source step; not retained branch acceptance",
+    requiredFieldIds: [
+      "endpoint_identity_on_same_affine_bracket_interval",
+      "affine_bracket_geometry",
+      "lattice_alignment",
+      "touching_boundary_affine_limit_case_split",
+      "positive_distance_affine_interior_case_split",
+      "retained_event_root_interior_continuity_status",
+      "event_root_absence_bridge_fill_law_status",
+      "global_retained_row_set_binding_status",
+      "same_record_binding",
+    ],
+    expectedSelectedRowIds: [
+      "inner->middle:28:right",
+      "inner->outer:11:left",
+      "inner->outer:17:right",
+      "inner->outer:31:right",
+      "inner->outer:81:right",
+    ],
+    directSupportRowIds: [
+      "inner->middle:28:right",
+      "inner->outer:17:right",
+    ],
+    directAbsenceRowIds: [
+      "inner->outer:11:left",
+      "inner->outer:31:right",
+      "inner->outer:81:right",
+    ],
+    firstMissingField: "derive_event_root_absence_bridge_fill_law",
+    smallestProducerObject: "derive_event_root_absence_bridge_fill_law",
+    positiveDistanceCasesRemainSeparateAt:
+      "prove_positive_distance_event_root_identity_conservation",
+    touchingBoundaryCasesRemainSeparateAt:
+      "prove_touching_boundary_event_root_identity_limit",
+    sameRecordBindingRequirements: [
+      "one_retained_record",
+      "one_route_root_key",
+      "one_event_root_key",
+      "same_affine_bracket_interval_per_row",
+      "one_endpoint_identity_status",
+      "one_affine_bracket_geometry_status",
+      "one_absence_bridge_fill_law_status",
+      "one_global_retained_row_set_binding_status",
+    ],
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createEventRootAffineBracketIdentityConservationSourceStepNegativeControls(),
   };
 }
 
@@ -65194,5 +65577,6 @@ function printUsage(exitCode) {
   console.log("  --schema selected-partial-support-retained-row-set-binding-producer-target  Print the fail-closed direct-support retained row-set binding producer schema and exit");
   console.log("  --schema selected-partial-support-two-sheet-global-binding-prerequisite-target  Print the fail-closed direct-support two-sheet/global binding prerequisite schema and exit");
   console.log("  --schema selected-bounded-interior-inactive-gap-fill-rule-prerequisite-target  Print the fail-closed selected bounded inactive-gap fill-rule schema and exit");
+  console.log("  --schema event-root-affine-bracket-identity-conservation-source-step-target  Print the fail-closed affine-bracket identity-conservation source-step schema and exit");
   process.exit(exitCode);
 }

@@ -26,8 +26,8 @@
         "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
       },
       {
-        "nodeId": "unknowns_paradoxes_scene",
-        "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
+        "nodeId": "solving_the_crisis",
+        "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json"
       },
       {
         "nodeId": "inherited_theory_interface",
@@ -91,11 +91,11 @@
       "labelTitle": "Crisis in Physics"
     },
     {
-      "id": "unknowns_paradoxes_scene",
-      "title": "Unknowns and Paradoxes",
+      "id": "solving_the_crisis",
+      "title": "Solving the Crisis",
       "radius": 2.688,
       "color": "#5a3f73",
-      "labelTitle": "Unknowns and Paradoxes"
+      "labelTitle": "Solving the Crisis"
     },
     {
       "id": "inherited_theory_interface",

@@ -270,6 +270,55 @@ test("Scene-Index nodes receive textbook chapter labels from resolver", async ()
   );
 });
 
+test("Scene-Index can opt out of runtime textbook chapter labels", async () => {
+  const repository = createRepositoryWithScenes(
+    {
+      "content/scenes/example/markdown_child.json": {
+        scene: {
+          type: "Scene-Markdown-View",
+          source: {
+            type: "markdown",
+            path: "content/markdown/example.md",
+          },
+        },
+        objects: [],
+      },
+    },
+    {
+      resolveTextbookChapterLabel: async (node) =>
+        node.childScene === "content/scenes/example/markdown_child.json" ? "Ch 3.2" : null,
+    }
+  );
+
+  const config = await repository.createConfigFromSceneData(
+    "content/scenes/example/status-card.json",
+    {
+      scene: {
+        type: "Scene-Index",
+        textbookToc: {
+          hideChapterLabels: true,
+        },
+        children: [
+          {
+            nodeId: "markdown_child",
+            scenePath: "content/scenes/example/markdown_child.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "markdown_child",
+        },
+      ],
+    }
+  );
+
+  assert.equal(
+    config.nodes.find((node) => node.id === "markdown_child")?.textbookChapterLabel ?? null,
+    null
+  );
+});
+
 test("authored scene nodes are normalized to one visible sphere radius", async () => {
   const repository = createRepositoryWithScenes({});
 

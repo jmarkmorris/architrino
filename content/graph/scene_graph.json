@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 576,
-      "edges": 1336,
-      "scenes": 373,
+      "nodes": 574,
+      "edges": 1335,
+      "scenes": 372,
       "markdownIndexes": 0,
-      "markdownDocs": 190,
+      "markdownDocs": 189,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -998,12 +998,6 @@
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "unknowns_paradoxes",
-      "name": "Unknowns and Paradoxes",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "nodeType": "scene"
     },
     {
@@ -2249,18 +2243,6 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__solving_open_problems",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__solving_open_problems_overview",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems/overview.json",
-      "nodeType": "scene"
-    },
-    {
       "id": "archie__comics",
       "name": "Comics",
       "path": "content/scenes/archie/comics.json",
@@ -2384,6 +2366,18 @@
       "id": "archie__people",
       "name": "People",
       "path": "content/scenes/archie/people.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__solving_the_crisis",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__solving_the_crisis_overview",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "nodeType": "scene"
     },
     {
@@ -2975,9 +2969,9 @@
       "nodeType": "markdown_doc"
     },
     {
-      "id": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-      "name": "Solving Open Problems With $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-      "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+      "id": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+      "name": "Solving the Crisis With $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3092,12 +3086,6 @@
       "id": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "name": "The Treasure Physics Overlooked",
       "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns And Paradoxes",
-      "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -5788,21 +5776,21 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/solving_open_problems.json",
+      "nodeId": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
       "nodeType": "scene",
-      "id": "philosophy_history__solving_open_problems",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems.json",
-      "searchTarget": "content/scenes/philosophy_history/solving_open_problems.json",
+      "id": "philosophy_history__solving_the_crisis",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis.json",
+      "searchTarget": "content/scenes/philosophy_history/solving_the_crisis.json",
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/solving_open_problems/overview.json",
+      "nodeId": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "nodeType": "scene",
-      "id": "philosophy_history__solving_open_problems_overview",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems/overview.json",
-      "searchTarget": "content/scenes/philosophy_history/solving_open_problems/overview.json",
+      "id": "philosophy_history__solving_the_crisis_overview",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
+      "searchTarget": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "implicit": false
     },
     {
@@ -5992,15 +5980,6 @@
       "name": "The Treasure Physics Overlooked",
       "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
       "searchTarget": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "nodeType": "scene",
-      "id": "unknowns_paradoxes",
-      "name": "Unknowns and Paradoxes",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "implicit": false
     },
     {
@@ -7768,12 +7747,12 @@
       "implicit": false
     },
     {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/solving-open-problems.md",
+      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-      "name": "Solving Open Problems With $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
-      "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
+      "id": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+      "name": "Solving the Crisis With $\\mathbb{A}\\mathbb{A}\\mathbb{A}$",
+      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+      "searchTarget": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "implicit": false
     },
     {
@@ -7945,15 +7924,6 @@
       "name": "The Treasure Physics Overlooked",
       "path": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "searchTarget": "content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "name": "Unknowns And Paradoxes",
-      "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
       "implicit": false
     },
     {
@@ -12377,6 +12347,13 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[3]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
@@ -12390,17 +12367,10 @@
       "field": "scene.children[12]"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "from": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
+      "to": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/solving_open_problems.json",
-      "to": "scene:content/scenes/philosophy_history/solving_open_problems/overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/solving_open_problems.json",
+      "source": "content/scenes/philosophy_history/solving_the_crisis.json",
       "field": "scene.children[0]"
     },
     {
@@ -12506,13 +12476,6 @@
       "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/treasure_physics_overlooked.json",
-      "field": "scene.children[0]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
-      "to": "scene:content/scenes/philosophy_history/solving_open_problems.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "field": "scene.children[0]"
     },
     {
@@ -13972,17 +13935,17 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/solving_open_problems.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-open-problems.md",
+      "from": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/solving_open_problems.json",
-      "field": "solving_open_problems_foundations_spacetime.source.path"
+      "source": "content/scenes/philosophy_history/solving_the_crisis.json",
+      "field": "solving_the_crisis_foundations_spacetime.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/solving_open_problems/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-open-problems.md",
+      "from": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/solving_open_problems/overview.json",
+      "source": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "field": "scene.source.path"
     },
     {

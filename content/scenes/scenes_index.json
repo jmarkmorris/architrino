@@ -711,11 +711,6 @@
       "path": "content/scenes/philosophy_history/philosophy_history.json"
     },
     {
-      "id": "unknowns_paradoxes",
-      "name": "Unknowns and Paradoxes",
-      "path": "content/scenes/philosophy_history/unknowns_paradoxes.json"
-    },
-    {
       "id": "quantum",
       "name": "Quantum",
       "path": "content/scenes/quantum/quantum.json"
@@ -1751,16 +1746,6 @@
       "path": "content/scenes/archie/website_stats.json"
     },
     {
-      "id": "philosophy_history__solving_open_problems",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems.json"
-    },
-    {
-      "id": "philosophy_history__solving_open_problems_overview",
-      "name": "Solving Open Problems",
-      "path": "content/scenes/philosophy_history/solving_open_problems/overview.json"
-    },
-    {
       "id": "archie__comics",
       "name": "Comics",
       "path": "content/scenes/archie/comics.json"
@@ -1864,6 +1849,16 @@
       "id": "archie__people",
       "name": "People",
       "path": "content/scenes/archie/people.json"
+    },
+    {
+      "id": "philosophy_history__solving_the_crisis",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis.json"
+    },
+    {
+      "id": "philosophy_history__solving_the_crisis_overview",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json"
     }
   ]
 }

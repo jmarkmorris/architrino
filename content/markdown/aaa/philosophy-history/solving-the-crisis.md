@@ -1,4 +1,4 @@
-# Solving Open Problems With $\mathbb{A}\mathbb{A}\mathbb{A}$
+# Solving the Crisis With $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 Status: working draft. This is scene-backed corpus prose, not final theorem-level closure.
 
@@ -17,7 +17,7 @@ The paper should include a chapter only when the answer can be stated in four la
 3. **Test advice:** the data product, benchmark, simulation, or falsifier that should discipline the claim.
 4. **Claim level:** whether the chapter is ready for the main paper or only for a watchlist.
 
-This document also functions as the unified problem map for the Unknowns and Paradoxes scene.
+This document is the problem-by-problem accountability layer paired with [Crisis in Physics](crisis-in-physics.md). It turns the crisis diagnosis into resolution tests, claim levels, and concrete derivation burdens.
 
 ## How To Read The Entries
 

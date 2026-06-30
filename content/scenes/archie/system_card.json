@@ -12,6 +12,9 @@
       "order": "objects",
       "direction": "clockwise"
     },
+    "textbookToc": {
+      "hideChapterLabels": true
+    },
     "children": [
       {
         "nodeId": "system_card_overview",

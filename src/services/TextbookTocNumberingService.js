@@ -72,10 +72,7 @@ function buildTextbookTocNumbering(tocRoot, helpers) {
     }
     const label = labelFromNumberPath(numberPath);
     const markdownPath = node.markdownPath ? normalizeMarkdownPath(node.markdownPath) : null;
-    const hasMarkdownTarget = Boolean(markdownPath);
-    if (hasMarkdownTarget) {
-      addFirst(byScenePath, node.scenePath ? normalizeMarkdownPath(node.scenePath) : null, label);
-    }
+    addFirst(byScenePath, node.scenePath ? normalizeMarkdownPath(node.scenePath) : null, label);
     addFirst(
       byMarkdownPath,
       markdownPath,

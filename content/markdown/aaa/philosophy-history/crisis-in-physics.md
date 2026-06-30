@@ -6,7 +6,7 @@
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
-Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Substance Structure and Potential](substance-structure-and-potential.md), [Unknowns and Paradoxes](unknowns-paradoxes.md), and [No-Go Theorems](../validation/no-go-theorems.md).
+Companion bridge chapters for this map are [Theory Mapping](theory-mapping.md), [Theory Differentials](theory-differentials.md), [Substance Structure and Potential](substance-structure-and-potential.md), [Solving the Crisis](solving-the-crisis.md), and [No-Go Theorems](../validation/no-go-theorems.md).
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
@@ -473,6 +473,8 @@ This pressure is intensified by a historical asymmetry. General relativity forma
 ### What Current Physics Gets Right
 
 Current physics gets right that vacuum-state structure is empirically and mathematically consequential. Casimir-type effects, dynamical boundary-response experiments, vacuum-induced phase shifts, spontaneous symmetry breaking frameworks, effective background behavior, and quantum-state distinctions are not artifacts of bad notation. The retained data product is the measured dependence of forces, phases, excitations, and detector records on boundary conditions and vacuum-state preparation, not a settled ontology of emptiness. General relativity also gets right that what observers treat as spacetime structure governs measurable redshift, lensing, delay, and orbital behavior. These successes show that the background cannot be treated as physically idle. Whatever else is true, the vacuum or spacetime sector strongly conditions observable phenomena.
+
+Atomic physics supplies a compact local version of the same lesson. Rutherford scattering made the nucleus tiny compared with the atom, but the slogan that the rest of the atom is simply empty is an interpretation layered on top of the volume comparison, not the data product itself. Schrödinger orbitals then filled the region with probability structure, while relativistic localization at the Compton scale marks where a fixed-particle-number electron picture fails. The Lamb shift gives the sharper operational packet: hydrogen levels move by a small but measurable vacuum-sensitive correction, with the $n=2$ splitting at roughly gigahertz scale. The retained lesson is that nominally empty atomic volume participates in spectra. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be treated as a recovery target for Noether sea response, causal-wake dressing, atomic boundary behavior, and photon-channel bookkeeping, not as proof that the Euclidean void itself is a fluctuating substance.
 
 ### What Remains Unresolved
 

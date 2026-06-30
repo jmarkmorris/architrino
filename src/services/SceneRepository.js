@@ -730,6 +730,7 @@ export class SceneRepository {
     const imageGallery = this.resolveImageGalleryConfig(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
+    const hideTextbookChapterLabels = sceneMeta.textbookToc?.hideChapterLabels === true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
     const sceneChildMarkdownViewBadgeByNodeId =
       await this.resolveSceneChildMarkdownViewBadgeMap(sceneMeta);
@@ -765,7 +766,9 @@ export class SceneRepository {
       nodes = nodes.concat(autoNodes);
     }
     const sceneSphereRadius = enforceSharedSceneSphereRadius(nodes);
-    await this.applyTextbookChapterLabels(nodes);
+    if (!hideTextbookChapterLabels) {
+      await this.applyTextbookChapterLabels(nodes);
+    }
     await this.applyMarkdownDocEligibility(nodes);
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;

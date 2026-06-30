@@ -782,6 +782,113 @@ test("selected bounded inactive-gap fill-rule schema keeps selected rows fail cl
   );
 });
 
+test("event-root affine-bracket identity-conservation source step stays fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "event-root-affine-bracket-identity-conservation-source-step-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-event-root-affine-bracket-identity-conservation-source-step-target.schema.v1"
+  );
+  assert.equal(schema.parentProducerStepId, "derive_event_root_absence_bridge_fill_law");
+  assert.equal(
+    schema.targetObjectId,
+    "prove_event_root_identity_conservation_on_affine_bracket_interval"
+  );
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-event-root-affine-bracket-identity-conservation-source-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "expose_event_root_affine_bracket_identity_conservation_prerequisites"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "endpoint_identity_on_same_affine_bracket_interval",
+    "affine_bracket_geometry",
+    "lattice_alignment",
+    "touching_boundary_affine_limit_case_split",
+    "positive_distance_affine_interior_case_split",
+    "retained_event_root_interior_continuity_status",
+    "event_root_absence_bridge_fill_law_status",
+    "global_retained_row_set_binding_status",
+    "same_record_binding",
+  ]);
+  assert.deepEqual(schema.expectedSelectedRowIds, [
+    "inner->middle:28:right",
+    "inner->outer:11:left",
+    "inner->outer:17:right",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ]);
+  assert.deepEqual(schema.directSupportRowIds, [
+    "inner->middle:28:right",
+    "inner->outer:17:right",
+  ]);
+  assert.deepEqual(schema.directAbsenceRowIds, [
+    "inner->outer:11:left",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ]);
+  assert.equal(schema.firstMissingField, "derive_event_root_absence_bridge_fill_law");
+  assert.equal(schema.smallestProducerObject, "derive_event_root_absence_bridge_fill_law");
+  assert.equal(
+    schema.positiveDistanceCasesRemainSeparateAt,
+    "prove_positive_distance_event_root_identity_conservation"
+  );
+  assert.equal(
+    schema.touchingBoundaryCasesRemainSeparateAt,
+    "prove_touching_boundary_event_root_identity_limit"
+  );
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "one_retained_record",
+    "one_route_root_key",
+    "one_event_root_key",
+    "same_affine_bracket_interval_per_row",
+    "one_endpoint_identity_status",
+    "one_affine_bracket_geometry_status",
+    "one_absence_bridge_fill_law_status",
+    "one_global_retained_row_set_binding_status",
+  ]);
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+    "global_retained_row_set_identity",
+    "accepted_nonlocal_transport",
+    "event_root_identity_conservation",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_only_rows_not_identity_conservation_source_step",
+      "affine_geometry_alone_not_identity_conservation_source_step",
+      "sampled_partial_support_not_identity_conservation_source_step",
+      "one_sheet_or_cross_root_joins_not_identity_conservation_source_step",
+      "phase_cancellation_rows_not_identity_conservation_source_step",
+      "aggregate_rows_not_identity_conservation_source_step",
+      "target_only_rows_not_identity_conservation_source_step",
+      "route_only_rows_not_identity_conservation_source_step",
+      "cross_row_bundles_not_identity_conservation_source_step",
+      "current_proxy_branch_charts_not_identity_conservation_source_step",
+      "generated_decoys_not_identity_conservation_source_step",
+    ]
+  );
+});
+
 test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
   const schema = JSON.parse(
     execFileSync(

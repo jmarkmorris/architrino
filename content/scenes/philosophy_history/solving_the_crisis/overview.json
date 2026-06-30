@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__solving_open_problems_overview",
-    "title": "Solving Open Problems",
+    "id": "philosophy_history__solving_the_crisis_overview",
+    "title": "Solving the Crisis",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/solving-open-problems.md"
+      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
     },
     "view": {
       "columns": 1,

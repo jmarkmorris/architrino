@@ -24,7 +24,7 @@ Do not use this lane as the primary home for:
 
 ### Reading Order
 
-Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [$\mathbb{A}\mathbb{A}\mathbb{A}$ Journey](../../../../markdown/aaa/philosophy-history/aaa-journey.md) for the internal history of how the binary, Noether braid, axial layer, fermion-generation, strong-sector, Noether sea, and causal-wake motifs assembled into the current proof program. Use [The Treasure Physics Overlooked](../../../../markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for a retrospective root-cause account of why the deeper architecture was missed. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
+Start with [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md) for a compact comparison of inherited frameworks. Use [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md) when a reader needs to know which inherited concepts are carried forward as mathematics, benchmarks, effective limits, or directional comparison pressure rather than as ontology. Use [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md) when a concept needs explicit stack placement and relation-type classification. Use [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md) when a reader needs the philosophical distinction between primitive substance, causal wake structure, Euclidean void, Noether sea, and effective description. Use [Geometry and Ontology](../../../../markdown/aaa/philosophy-history/geometry-and-ontology.md) when a reader needs the distinction between fundamental Euclidean geometry, generated causal and assembly geometry, and recovered effective metric geometry. Use [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Solving the Crisis](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md), and [Historical Context and Missed Opportunities](../../../../markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) to understand why closure targets matter. Use [$\mathbb{A}\mathbb{A}\mathbb{A}$ Journey](../../../../markdown/aaa/philosophy-history/aaa-journey.md) for the internal history of how the binary, Noether braid, axial layer, fermion-generation, strong-sector, Noether sea, and causal-wake motifs assembled into the current proof program. Use [The Treasure Physics Overlooked](../../../../markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for a retrospective root-cause account of why the deeper architecture was missed. Use [Philosophy of Science](../../../../markdown/aaa/philosophy-history/philosophy-of-science.md), [Information / Computation](../../../../markdown/aaa/philosophy-history/information-computation.md), and [Agency and Internal Causation](../../../../markdown/aaa/philosophy-history/agency-and-internal-causation.md) for methodological and interpretive discipline.
 
 ### Local Discipline
 
@@ -873,7 +873,7 @@ The long-term relevance of this subject is as a **permanent inference discipline
 
 Modern foundational physics carries a persistent tension between predictive success and conceptual clarity. The formal machinery is powerful, yet many of its deepest objects remain operationally effective without being ontologically settled.
 
-Companion bridge chapters for this map are [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
+Companion bridge chapters for this map are [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), [Solving the Crisis](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is not a complaint about science failing. It is a diagnosis that several domains of modern physics may be mathematically mature while still being ontologically incomplete, mislocated, or over-interpreted.
 
@@ -1341,6 +1341,8 @@ This pressure is intensified by a historical asymmetry. General relativity forma
 
 Current physics gets right that vacuum-state structure is empirically and mathematically consequential. Casimir-type effects, dynamical boundary-response experiments, vacuum-induced phase shifts, spontaneous symmetry breaking frameworks, effective background behavior, and quantum-state distinctions are not artifacts of bad notation. The retained data product is the measured dependence of forces, phases, excitations, and detector records on boundary conditions and vacuum-state preparation, not a settled ontology of emptiness. General relativity also gets right that what observers treat as spacetime structure governs measurable redshift, lensing, delay, and orbital behavior. These successes show that the background cannot be treated as physically idle. Whatever else is true, the vacuum or spacetime sector strongly conditions observable phenomena.
 
+Atomic physics supplies a compact local version of the same lesson. Rutherford scattering made the nucleus tiny compared with the atom, but the slogan that the rest of the atom is simply empty is an interpretation layered on top of the volume comparison, not the data product itself. Schrödinger orbitals then filled the region with probability structure, while relativistic localization at the Compton scale marks where a fixed-particle-number electron picture fails. The Lamb shift gives the sharper operational packet: hydrogen levels move by a small but measurable vacuum-sensitive correction, with the $n=2$ splitting at roughly gigahertz scale. The retained lesson is that nominally empty atomic volume participates in spectra. From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, that should be treated as a recovery target for Noether sea response, causal-wake dressing, atomic boundary behavior, and photon-channel bookkeeping, not as proof that the Euclidean void itself is a fluctuating substance.
+
 #### What Remains Unresolved
 
 What is unsettled is what that structure consists in. Are these features purely properties of fields defined on no medium, or are they clues that the underlying ontology includes a constitutive substrate whose organized state is being described in indirect language? The unresolved gap is not merely terminological. It concerns whether modern physics has allowed effective geometry and vacuum structure to become explanatorily active while leaving their physical basis unspecified.
@@ -1507,17 +1509,15 @@ The long-term relevance of this crisis is permanent. Even future theories can be
 
 ---
 
-## Unknowns and Paradoxes
+## Solving the Crisis
 
-### Solving Open Problems
-
-#### Solving Open Problems
+### Solving the Crisis
 
 Status: working draft. This is scene-backed corpus prose, not final theorem-level closure.
 
 Orientation sources: [List of unsolved problems in physics](https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics) and [List of unsolved problems in astronomy](https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_astronomy). These public lists are orientation only. Any public paper needs source-level references before publication.
 
-##### Paper Thesis
+#### Paper Thesis
 
 The paper should not claim that every famous open problem is solved. It should make a narrower and stronger claim:
 
@@ -1530,9 +1530,9 @@ The paper should include a chapter only when the answer can be stated in four la
 3. **Test advice:** the data product, benchmark, simulation, or falsifier that should discipline the claim.
 4. **Claim level:** whether the chapter is ready for the main paper or only for a watchlist.
 
-This document also functions as the unified problem map for the Unknowns and Paradoxes scene.
+This document is the problem-by-problem accountability layer paired with [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md). It turns the crisis diagnosis into resolution tests, claim levels, and concrete derivation burdens.
 
-##### How To Read The Entries
+#### How To Read The Entries
 
 Each problem entry uses the same teaching sequence. Entries with a full problem-map record include:
 
@@ -1546,7 +1546,7 @@ Each problem entry uses the same teaching sequence. Entries with a full problem-
 
 The distinction between secure record and non-closure is essential. A successful theory must preserve what current physics gets right while replacing only the unsupported ontology, the missing mechanism, or the overextended inference.
 
-##### Paper Section Map
+#### Paper Section Map
 
 | Section | Main job | Chapter candidates |
 | --- | --- | --- |
@@ -1558,9 +1558,9 @@ The distinction between secure record and non-closure is essential. A successful
 | Astrophysical engines | Apply the same radiation, reaction, and medium-response ledgers to high-energy systems. | Supernovae, nucleosynthesis, jets, outflows, compact-object engines, transients. |
 | Appendix and exclusions | Keep weaker candidates visible without overclaiming. | Coronal heating, solar-cycle puzzles, planetary anomalies, one-off anomalies, Fermi paradox, single-object anomalies. |
 
-##### Foundations And Spacetime
+#### Foundations And Spacetime
 
-###### Quantum Gravity And The GR/QM Split
+##### Quantum Gravity And The GR/QM Split
 
 **Secure record.** General relativity recovers gravitational redshift, lensing, perihelion precession, Shapiro delay, binary-pulsar decay, black-hole imaging constraints, and gravitational-wave propagation. Quantum theory recovers atomic spectra, scattering, interference, field-theoretic corrections, and detector statistics. The conflict is not that either framework fails everywhere; it is that they do not share one microscopic ontology.
 
@@ -1586,7 +1586,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready`, with major proof burden in effective metric recovery, basin-measure closure, ultraviolet cutoff derivation, and shared benchmark recovery.
 
-###### Emergent Metric And The Nature Of Spacetime
+##### Emergent Metric And The Nature Of Spacetime
 
 **Secure record.** Operational spacetime measurements work because clocks, rulers, light paths, and gravitational probes agree to high precision in the regimes where general relativity is tested. Any replacement must reproduce that effective metric discipline.
 
@@ -1598,7 +1598,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready`, gated by one-metric recovery across weak-field and relativistic benchmarks.
 
-###### Lorentz Invariance From A Preferred Substrate
+##### Lorentz Invariance From A Preferred Substrate
 
 **Secure record.** Lorentz invariance is tightly constrained by Michelson-Morley, Kennedy-Thorndike, Ives-Stilwell, resonator, particle, clock, and astrophysical tests. Ordinary observers do not see a simple ether wind.
 
@@ -1610,7 +1610,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready`, with tight leakage bounds and moving-medium handling required.
 
-###### The Problem Of Time
+##### The Problem Of Time
 
 **Secure record.** Quantum calculations use a time parameter successfully, while relativistic observations use proper time along physical clocks successfully. Thermodynamics and records also impose a strong directionality on observed history.
 
@@ -1622,7 +1622,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `direction-ready` until the clock, phase, and entropy routes are shown in one compact derivation.
 
-###### Trans-Planckian Censorship And Swampland Comparisons
+##### Trans-Planckian Censorship And Swampland Comparisons
 
 **Secure record.** Low-energy effective theories work across vast ranges, but quantum-gravity programs often ask whether apparently consistent effective theories can actually arise from a consistent ultraviolet completion. Swampland conjectures and the Trans-Planckian Censorship Conjecture are influential comparison tools, not accepted empirical facts.
 
@@ -1648,9 +1648,9 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `appendix-watch` as a comparison framework, with possible promotion if the cutoff proof becomes explicit.
 
-##### Strong-Field Gravity
+#### Strong-Field Gravity
 
-###### Black-Hole Singularities
+##### Black-Hole Singularities
 
 **Secure record.** Classical black-hole solutions, compact-object dynamics, accretion signatures, and gravitational-wave ringdowns are powerful effective descriptions. The strong-field evidence must be preserved.
 
@@ -1662,7 +1662,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready`, but proof depends on terminal-alignment and strong-field continuation packets.
 
-###### Big Bang Singularity And One-Time Origin
+##### Big Bang Singularity And One-Time Origin
 
 **Secure record.** The hot early universe accounts for the CMB, light-element abundances, early plasma physics, and large-scale structure constraints. The success of early-universe records is not optional.
 
@@ -1674,7 +1674,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `direction-ready`, because the cosmology transfer-function and early-state ledger still need quantitative closure.
 
-###### Cosmic Censorship And Cauchy-Horizon Continuation
+##### Cosmic Censorship And Cauchy-Horizon Continuation
 
 **Secure record.** Classical solutions reveal real mathematical pressure in strong-field evolution, and numerical relativity shows that physically relevant collapse often forms horizons.
 
@@ -1686,7 +1686,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `direction-ready`.
 
-###### Black-Hole Information And Entropy
+##### Black-Hole Information And Entropy
 
 **Secure record.** Semiclassical Hawking radiation, black-hole thermodynamics, holographic consistency pressure, Page-curve arguments, and horizon entropy all point to a real information-accounting constraint. These results must be treated as high-value comparison mathematics and recovery pressure.
 
@@ -1712,7 +1712,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready`, with a clear theorem burden for entropy counting and release channels.
 
-###### Gravitational Waves And Compact-Binary Radiation
+##### Gravitational Waves And Compact-Binary Radiation
 
 **Secure record.** Binary pulsar decay and LIGO/Virgo/KAGRA waveforms strongly support general relativity in the radiative strong-field regime.
 
@@ -1724,7 +1724,7 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `architecture-ready` as a recovery chapter.
 
-###### Compact-Star Support And Dense-Matter Response
+##### Compact-Star Support And Dense-Matter Response
 
 **Secure record.** Neutron-star masses, radii, tidal deformabilities, cooling behavior, glitches, and merger remnants provide a dense-matter laboratory that current nuclear and relativistic modeling already constrains strongly.
 
@@ -1736,9 +1736,9 @@ Current physics correctly reproduces the semiclassical, field-theoretic, and inf
 
 **Claim level.** `direction-ready` until pressure coefficients and nuclear closure mature.
 
-##### Cosmology And Large-Scale Structure
+#### Cosmology And Large-Scale Structure
 
-###### Dark Matter And Missing Mass
+##### Dark Matter And Missing Mass
 
 **Secure record.** Galaxy rotation curves, cluster dynamics, gravitational lensing, the Bullet Cluster class, CMB acoustic structure, and structure formation all show extra gravitating influence beyond visible baryons.
 
@@ -1764,7 +1764,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `architecture-ready` for the route, `direction-ready` for quantitative closure.
 
-###### Galaxy Rotation And The Radial Acceleration Relation
+##### Galaxy Rotation And The Radial Acceleration Relation
 
 **Secure record.** Galaxy rotation curves and the radial acceleration relation show regular baryon-linked patterns that remain informative even when embedded in dark-matter halo modeling.
 
@@ -1776,7 +1776,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `architecture-ready` as a test chapter.
 
-###### Dark Energy And Late Cosmic Acceleration
+##### Dark Energy And Late Cosmic Acceleration
 
 **Secure record.** Type Ia supernovae, BAO, CMB distance inference, weak lensing, and growth data imply late-time acceleration in the standard model. Current survey pipelines are strong enough to isolate a genuine residual problem.
 
@@ -1802,7 +1802,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `direction-ready` until a transfer-function model exists.
 
-###### Cosmological Constant And Vacuum Catastrophe
+##### Cosmological Constant And Vacuum Catastrophe
 
 **Secure record.** Quantum field theory and general relativity are each successful in their tested domains, and cosmological data constrain a tiny effective late-time stress signal.
 
@@ -1830,7 +1830,7 @@ Standard repairs include supersymmetric cancellations, sequestering, unimodular 
 
 **Claim level.** `architecture-ready` conceptually, `direction-ready` quantitatively.
 
-###### The Hubble Tension
+##### The Hubble Tension
 
 **Secure record.** Early-universe inference from the CMB and late-universe distance-ladder measurements currently prefer different values of $H_0$ beyond what many analyses expect from known uncertainties.
 
@@ -1856,7 +1856,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `architecture-ready` as a diagnostic chapter; quantitative status remains `direction-ready`.
 
-###### The $S_8$ Structure-Growth Tension
+##### The $S_8$ Structure-Growth Tension
 
 **Secure record.** Weak-lensing and galaxy-clustering surveys often prefer lower late-time structure amplitude than CMB-inferred $\Lambda\mathrm{CDM}$ fits. The signal is modest and survey-sensitive but physically important because it tests growth, not only background expansion.
 
@@ -1882,7 +1882,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `direction-ready`, with strong value as a transfer-function test.
 
-###### Inflation, Horizon, And Flatness Problems
+##### Inflation, Horizon, And Flatness Problems
 
 **Secure record.** Inflation explains the horizon and flatness problems and organizes the nearly scale-invariant, nearly Gaussian CMB perturbation spectrum. Tensor bounds, scalar tilt, non-Gaussianity constraints, and reheating uncertainty all remain informative.
 
@@ -1908,7 +1908,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `direction-ready`.
 
-###### CMB Origin, Blackbody Preservation, And Acoustic Peaks
+##### CMB Origin, Blackbody Preservation, And Acoustic Peaks
 
 **Secure record.** The CMB blackbody spectrum, anisotropies, polarization, acoustic peaks, damping tail, and lensing records are among the hardest constraints on any cosmology.
 
@@ -1920,7 +1920,7 @@ Current physics already gets something important right here: the survey pipeline
 
 **Claim level.** `architecture-ready` as a gate, `direction-ready` for the solution.
 
-###### BBN And The Lithium Problem
+##### BBN And The Lithium Problem
 
 **Secure record.** Big Bang nucleosynthesis largely succeeds for deuterium, helium-4, and other light-element constraints when combined with the CMB baryon density.
 
@@ -1948,7 +1948,7 @@ Standard repairs include stellar-mixing and diffusion models, revised nuclear cr
 
 **Claim level.** `direction-ready`.
 
-###### Structure Formation, Early Galaxies, And High-Redshift Quasars
+##### Structure Formation, Early Galaxies, And High-Redshift Quasars
 
 **Secure record.** Large-scale structure is broadly successful in $\Lambda\mathrm{CDM}$, and surveys give detailed halo, galaxy, lensing, and quasar records.
 
@@ -1960,7 +1960,7 @@ Standard repairs include stellar-mixing and diffusion models, revised nuclear cr
 
 **Claim level.** `direction-ready`, with some `appendix-watch` material for rapidly changing high-redshift claims.
 
-###### Cosmological Principle, Dipoles, And Large-Scale Flows
+##### Cosmological Principle, Dipoles, And Large-Scale Flows
 
 **Secure record.** Large-scale homogeneity and isotropy are powerful approximations, but dipoles, bulk-flow claims, hemispherical asymmetries, and large structures continue to test the assumption.
 
@@ -1972,9 +1972,9 @@ Standard repairs include stellar-mixing and diffusion models, revised nuclear cr
 
 **Claim level.** `appendix-watch` unless a specific shared-gradient model is developed.
 
-##### Quantum And Statistical Emergence
+#### Quantum And Statistical Emergence
 
-###### Quantum Measurement
+##### Quantum Measurement
 
 **Secure record.** Quantum mechanics predicts interference, entanglement, spectra, scattering, and detector statistics with extraordinary precision. Decoherence explains why interference becomes inaccessible in many macroscopic settings.
 
@@ -2002,7 +2002,7 @@ Standard repairs include Copenhagen-style collapse rules, decoherence-based appr
 
 **Claim level.** `architecture-ready`, with basin-measure proof burden.
 
-###### Born Rule, Bell Tests, And No-Signaling
+##### Born Rule, Bell Tests, And No-Signaling
 
 **Secure record.** Bell-test violations rule out broad classes of local hidden-variable theories, while quantum theory preserves no-signaling and uses Born-rule probabilities successfully.
 
@@ -2014,7 +2014,7 @@ Standard repairs include Copenhagen-style collapse rules, decoherence-based appr
 
 **Claim level.** `architecture-ready`, with one of the hardest theorem burdens in the paper.
 
-###### Entropy, Thermalization, And The Arrow Of Time
+##### Entropy, Thermalization, And The Arrow Of Time
 
 **Secure record.** Thermodynamics, fluctuation-dissipation, irreversible detector records, blackbody radiation, and statistical mechanics all work within declared coarse-grainings and access windows.
 
@@ -2044,7 +2044,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Claim level.** `architecture-ready`, with low-entropy initial structure still `direction-ready`.
 
-###### Photon Ontology And Electromagnetic Radiation
+##### Photon Ontology And Electromagnetic Radiation
 
 **Secure record.** Photons behave as quanta of electromagnetic radiation with well-tested energy, momentum, polarization, interference, emission, absorption, and scattering behavior.
 
@@ -2056,7 +2056,7 @@ The arrow problem also separates dynamical relaxation from measure-based typical
 
 **Claim level.** `architecture-ready`, with links to radiation and angular-momentum closure.
 
-###### The UV Catastrophe (Blackbody Divergence)
+##### The UV Catastrophe (Blackbody Divergence)
 
 **Secure record.** Planck's law resolves the historical blackbody divergence, and quantum theory accurately models thermal radiation. The modern lesson is not that blackbody physics remains unsolved, but that continuum mode counting fails outside its domain.
 
@@ -2082,9 +2082,9 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Claim level.** `architecture-ready` as a cutoff lesson, `direction-ready` as a derivation.
 
-##### Standard Model And Particle Closure
+#### Standard Model And Particle Closure
 
-###### Origin Of Mass, Higgs, And The Hierarchy Problem
+##### Origin Of Mass, Higgs, And The Hierarchy Problem
 
 **Secure record.** The Higgs mechanism, Higgs couplings, electroweak precision tests, collider data, and Standard Model mass terms are real constraints. The Higgs mass is measured, not optional.
 
@@ -2110,7 +2110,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Claim level.** `architecture-ready` for the conceptual route, `direction-ready` for numerical closure.
 
-###### Flavor Generations And CKM/PMNS Mixing
+##### Flavor Generations And CKM/PMNS Mixing
 
 **Secure record.** Three fermion generations, hierarchical masses, CKM mixing, PMNS mixing, rare decays, and CP violation are precise empirical targets.
 
@@ -2138,7 +2138,7 @@ Standard repairs include horizontal symmetries, Froggatt-Nielsen textures, textu
 
 **Claim level.** `direction-ready`.
 
-###### Neutrino Mass, Oscillations, And Sterile-Neutrino Questions
+##### Neutrino Mass, Oscillations, And Sterile-Neutrino Questions
 
 **Secure record.** Solar, atmospheric, reactor, and accelerator oscillation experiments establish neutrino mass splittings and mixing. Kinematic, cosmological, and neutrinoless double-beta searches constrain the absolute scale and Majorana/Dirac status.
 
@@ -2166,7 +2166,7 @@ Standard repairs include Dirac masses with tiny Yukawas, Majorana masses with se
 
 **Claim level.** `architecture-ready` for oscillation routing, `direction-ready` for mass origin, Majorana status, and sterile status.
 
-###### Matter-Antimatter Asymmetry
+##### Matter-Antimatter Asymmetry
 
 **Secure record.** The baryon-to-photon ratio from CMB and BBN records shows a matter-dominated universe. Standard Model CP violation is too small for the observed asymmetry under ordinary baryogenesis assumptions.
 
@@ -2194,7 +2194,7 @@ Standard repairs include electroweak baryogenesis, leptogenesis, Affleck-Dine sc
 
 **Claim level.** `direction-ready`.
 
-###### The Strong CP Problem
+##### The Strong CP Problem
 
 **Secure record.** QCD permits a CP-violating $\theta$ term, while neutron electric dipole moment bounds force the effective angle to be extraordinarily small.
 
@@ -2220,7 +2220,7 @@ Current physics gets a large surrounding body of laboratory, collider, decay, an
 
 **Claim level.** `direction-ready`, high value because the observable is sharp.
 
-###### Proton Stability
+##### Proton Stability
 
 **Secure record.** Experiments place very strong lower bounds on the standard label `proton decay`, ruling out minimal unification schemes that predict accessible baryon-number violation.
 
@@ -2248,7 +2248,7 @@ Standard repairs include raising the unification scale, adding protective symmet
 
 **Claim level.** `direction-ready`.
 
-###### Vacuum Instability
+##### Vacuum Instability
 
 **Secure record.** Given measured Higgs and top-quark inputs, Standard Model renormalization-group running can place the electroweak vacuum near a metastability boundary. The calculation is a precise high-scale probe.
 
@@ -2276,7 +2276,7 @@ Standard repairs include improved top-mass extraction, new heavy states that sta
 
 **Claim level.** `appendix-watch` until the Higgs-sector map and cutoff derivation mature.
 
-###### The Muon $g-2$ And Lepton Universality Anomalies
+##### The Muon $g-2$ And Lepton Universality Anomalies
 
 **Secure record.** Muon anomalous magnetic moment measurements and lepton-flavor universality probes are precision tests of QED, electroweak, hadronic, and flavor calculations. Some reported deviations have persisted, weakened, or shifted as theory and data improved.
 
@@ -2304,7 +2304,7 @@ Standard repairs include improved lattice and dispersive hadronic calculations, 
 
 **Claim level.** `appendix-watch`, with promotion only if the anomaly landscape stabilizes.
 
-###### QCD Confinement, Mass Gap, And Hadron Structure
+##### QCD Confinement, Mass Gap, And Hadron Structure
 
 **Secure record.** QCD succeeds phenomenologically and computationally across hadron spectra, jets, form factors, lattice calculations, and asymptotic freedom. Lattice QCD gives strong evidence for confinement and a mass gap.
 
@@ -2332,7 +2332,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `direction-ready`, high value but high proof cost.
 
-###### Gauge Structure And Coupling Constants
+##### Gauge Structure And Coupling Constants
 
 **Secure record.** Gauge symmetry organizes the Standard Model, charge assignments, anomaly cancellation, running couplings, electroweak precision observables, and scattering cross sections.
 
@@ -2344,9 +2344,9 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `direction-ready`.
 
-##### Astrophysical Engines
+#### Astrophysical Engines
 
-###### Core-Collapse Supernova Mechanism
+##### Core-Collapse Supernova Mechanism
 
 **Secure record.** Core-collapse supernovae involve observed neutrino bursts, light curves, remnant masses, explosion energies, asymmetries, nucleosynthetic yields, and gravitational-wave prospects. Broad physical ingredients are known.
 
@@ -2358,7 +2358,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `direction-ready`.
 
-###### Explosive Nucleosynthesis And The P-Nuclei Problem
+##### Explosive Nucleosynthesis And The P-Nuclei Problem
 
 **Secure record.** Many nucleosynthesis channels are understood well enough to connect stars, supernovae, neutron-star mergers, gamma-ray lines, meteoritic records, and solar abundances.
 
@@ -2370,7 +2370,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `direction-ready`.
 
-###### AGN Jets, Quasar Engines, ULXs, And Relativistic Outflows
+##### AGN Jets, Quasar Engines, ULXs, And Relativistic Outflows
 
 **Secure record.** Relativistic jets, quasars, ULXs, and accreting compact systems show structured power, polarization, variability, spectra, feedback, and host-environment interaction.
 
@@ -2382,7 +2382,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `direction-ready`.
 
-###### Fast Transients, Cosmic Rays, Coronal Heating, And Solar-Cycle Problems
+##### Fast Transients, Cosmic Rays, Coronal Heating, And Solar-Cycle Problems
 
 **Secure record.** FRBs, ultra-high-energy cosmic rays, coronal heating, solar-cycle details, and related plasma puzzles have rich data and active source models.
 
@@ -2394,9 +2394,9 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `appendix-watch`.
 
-##### Appendix And Exclusions
+#### Appendix And Exclusions
 
-###### Planetary, Stellar-Population, And One-Off Anomalies
+##### Planetary, Stellar-Population, And One-Off Anomalies
 
 **Secure record.** Astronomy lists include narrower puzzles: planetary formation details, stellar initial mass function questions, Tabby's Star-like anomalies, solar-system residuals, the IBEX ribbon, object-specific mysteries, and other local anomalies.
 
@@ -2408,7 +2408,7 @@ Standard repairs are not so much competing theories as competing analytic tools:
 
 **Claim level.** `appendix-watch` or `exclude-for-now`.
 
-###### Fermi Paradox And Life-Distribution Questions
+##### Fermi Paradox And Life-Distribution Questions
 
 **Secure record.** The galaxy is old, habitable worlds appear common, and no unambiguous technosignature has been confirmed. The mismatch between broad probabilistic expectation and observed silence is real but highly prior-sensitive.
 
@@ -2436,7 +2436,7 @@ Standard repairs include Great Filter arguments, self-destruction scenarios, zoo
 
 **Claim level.** `exclude-for-now`.
 
-##### Main-Body Candidate List
+#### Main-Body Candidate List
 
 The strongest first draft should probably contain these main chapters:
 
@@ -2466,7 +2466,7 @@ The first public version should be shorter than this. The best route is probably
 
 ### Theory Mapping
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Theory Differentials](../../../../markdown/aaa/philosophy-history/theory-differentials.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Substance Structure and Potential](../../../../markdown/aaa/philosophy-history/substance-structure-and-potential.md), and [Solving the Crisis](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](../../../../markdown/aaa/philosophy-history/theory-bridges.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -2602,6 +2602,8 @@ The standard electron-positron annihilation example is therefore a channel recon
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
 
 The useful reader-facing distinction is that a QFT field label is an effective species grammar over stable record classes, not automatic proof that each field is a substrate entity. Electron, photon, quark, gluon, Higgs, or neutrino fields remain valid operator languages for preparing, propagating, and reconstructing observer-level records. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the deeper question is which assembly association, dissociation, shielding change, source history, and Noether sea response make those record classes stable enough that the field grammar works.
+
+Vacuum-sensitive precision examples sharpen that boundary. In the Lamb-shift packet, the standard field-theory calculation treats electromagnetic vacuum modes as producing a small finite correction to hydrogen spectra, while the historical empty-atom slogan begins from Rutherford's volume comparison between nucleus and atom. The benchmark is real: atomic spectral data respond to structure assigned by standard theory to the vacuum sector. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is to reproduce the finite spectral correction through one consistent Noether sea state, causal-wake dressing, atomic boundary record, and photon-channel ledger, while keeping the QFT modes as observer-level calculation objects rather than substrate constituents.
 
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
@@ -3623,7 +3625,7 @@ $$
 
 This document defines the modern ontological network above $\mathbb{A}\mathbb{A}\mathbb{A}$, assuming $\mathbb{A}\mathbb{A}\mathbb{A}$ is substantially correct at substrate level.
 
-It is the catalog companion to [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Unknowns and Paradoxes](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
+It is the catalog companion to [Theory Mapping](../../../../markdown/aaa/philosophy-history/theory-mapping.md), [Theory Inheritance Discipline](../../../../markdown/aaa/philosophy-history/theory-inheritance-discipline.md), [Crisis in Physics](../../../../markdown/aaa/philosophy-history/crisis-in-physics.md), [Solving the Crisis](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md), [Parameter Ledger](../../../../markdown/aaa/validation/parameter-ledger.md), and [No-Go Theorems](../../../../markdown/aaa/validation/no-go-theorems.md).
 
 Its purpose is differential classification, not sociological ranking. The chapter is meant to function as a reference catalog: each entry makes the stack placement, retained strength, and limiting tension explicit even when the prose remains more schematic than in the longer overview chapters. Each entry is judged by layer placement, ontological commitments, empirical carryover, and reclassification outcome under $\mathbb{A}\mathbb{A}\mathbb{A}$.
 
@@ -21892,6 +21894,8 @@ Steinhardt and Turok keep a disciplined dissent alive: dissent from inflation wa
 
 Stellar collapse offered one of the plainest scale clues in twentieth-century physics. Chandrasekhar made the white-dwarf limit unavoidable: under sufficient mass, the familiar material branch cannot support itself by the same pressure law. Oppenheimer's generation then carried collapse into neutron-star and black-hole territory, where matter, pressure, curvature, and causal access all cease to be separable in the ordinary way.
 
+Baade and Zwicky sharpened the same opening in 1934 by proposing that supernovae mark the transition of ordinary stars into neutron stars, with gravitational binding energy powering the event. That proposal joined a visible transient, a hidden compact remnant, and a new matter branch before the instruments existed to follow the chain directly.
+
 Chandrasekhar's calculation was more than a mass limit. It was a scaling clue. Nonrelativistic electron degeneracy pressure stiffens fast enough under compression to find a smaller equilibrium radius. Relativistic electron degeneracy pressure no longer does; it scales with radius in the same way as the gravitational pressure it is trying to resist. At that point, shrinking the star is no longer a cure.
 
 That was almost exactly the right historical opening. In some supernovae, the star does not merely move inward through an unchanged stage. Its material assemblies are driven into smaller, denser operating regimes. In the same historical neighborhood, general relativity taught that clock rates, length standards, light paths, and spatial intervals behave as if the geometry itself has scaled and deformed. The missed synthesis was to ask whether these are two projections of one scale-compression mechanism: Noether braid scale retuning inside matter, coupled to Noether sea spatial compliance and extracted clock observables outside it.
@@ -21911,6 +21915,8 @@ The compact-object collapse line shows that collapse should have been treated as
 ##### Chapter Fifty-Four. Jocelyn Bell Burnell: Pulsars Were Compact Clocks Without The Interior Record
 
 Bell Burnell makes compact objects into clocks. Pulsars turned stellar remnants into astonishingly regular timed records. A collapsed object was no longer only an endpoint inferred from gravity or a theoretical density limit. It became a source whose periodic signal could be tracked pulse by pulse.
+
+The Crab sequence makes the source packet visible: a recorded 1054 supernova, an expanding nebula, a compact central source, a pulse period, measurable spin-down, magnetic-axis beaming, surface spectral shifts, and multi-band radiation. The historical data product was therefore not merely "a pulsar exists." It was a source-history record whose timing, spectrum, remnant environment, and energy loss had to fit together.
 
 That discovery changed what compact objects meant observationally. Neutron stars became clocks, laboratories for dense matter, magnetic environments, binary dynamics, timing noise, glitches, and later gravitational tests. The record was not a smooth glow. It was a precise sequence of arrivals from an extreme source.
 
