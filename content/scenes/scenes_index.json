@@ -1856,14 +1856,9 @@
       "path": "content/scenes/philosophy_history/solving_the_crisis.json"
     },
     {
-      "id": "philosophy_history__solving_the_crisis_overview",
-      "name": "Solving the Crisis",
-      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json"
-    },
-    {
-      "id": "philosophy_history__aaa_journey",
+      "id": "archie__aaa_journey",
       "name": "AAA Journey",
-      "path": "content/scenes/philosophy_history/aaa_journey.json"
+      "path": "content/scenes/archie/aaa_journey.json"
     }
   ]
 }

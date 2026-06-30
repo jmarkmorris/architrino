@@ -1057,7 +1057,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 ### CP-Odd Neutron Dipole Scaffold
 
-The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/solving-open-problems.md#the-strong-cp-problem).
+The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#the-strong-cp-problem).
 
 Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell braid center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
@@ -1441,6 +1441,22 @@ A four-nucleon cluster with two protons and two neutrons is expected to be espec
 - and comparatively low net external multipole stress.
 
 That makes the alpha-like cluster a natural closed local minimum of the effective nuclear energy landscape. This is the nuclear-level analogue of how balanced pro/anti or color-singlet combinations are favored at lower levels of the assembly ladder.
+
+### Alpha-Emission Barrier Benchmark
+
+Alpha emission (SM label: `alpha decay`) turns the alpha-like-cluster claim into a quantitative recovery target. A heavy nucleus can contain an alpha-like sub-assembly in a bound interior while the effective Coulomb barrier outside the touching radius is higher than the kinetic energy of the outgoing alpha assembly. Standard quantum mechanics treats the event as barrier penetration: the interior alpha-like cluster repeatedly samples the barrier, the escape probability is dominated by the action accumulated through the forbidden region, and the measured half-life follows from an attempt rate times that escape probability.
+
+At effective level, the benchmark has the form
+
+$$
+\lambda_{\alpha}\simeq\nu_{\mathrm{hit}}P_{\mathrm{esc}},
+\qquad
+t_{1/2}=\frac{\ln 2}{\lambda_{\alpha}}
+$$
+
+Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bound alpha-like cluster, $P_{\mathrm{esc}}$ is the finite-window escape probability, and $\lambda_{\alpha}$ is the observer-level emission constant. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this probability cannot be inserted as formal wavefunction leakage alone. It must be recovered as a basin measure over deterministic nuclear assembly histories that cross the retained separatrix tube, while the energy ledger still routes the outgoing alpha assembly, daughter remnant, recoil, photon output if present, medium exchange, and Noether sea update.
+
+Polonium-212 is a compact numerical check: the standard comparison channel is ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and observed half-life near $0.3\,\mu\mathrm{s}$. A single rectangular-barrier approximation can miss the half-life by many orders of magnitude, while resolving the Coulomb barrier into multiple segments already moves the estimate close to the observed value. The lesson for the nuclear branch is that barrier shape, turning points, and attempt rate are not disposable fitting details; they are the effective observables that a native nuclear assembly model must recover.
 
 ### Beta Stability Interface
 

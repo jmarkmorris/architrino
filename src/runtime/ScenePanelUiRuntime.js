@@ -22,7 +22,7 @@ export function createScenePanelUiRuntime(deps) {
       return;
     }
     const docLevel = currentLevel.markdownSection
-      ? { ...currentLevel, markdownSection: null }
+      ? { ...currentLevel, id: "", markdownSection: null }
       : currentLevel;
     markdownRuntime.showMarkdownPanel(docLevel);
     if (markdownDocButton && docLevel.markdownSection == null) {

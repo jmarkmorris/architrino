@@ -1,8 +1,8 @@
 {
   "schemaVersion": "0.1",
   "scene": {
-    "id": "philosophy_history__solving_the_crisis_overview",
-    "title": "Solving the Crisis",
+    "id": "archie__aaa_journey",
+    "title": "AAA Journey",
     "type": "Scene-Markdown-View",
     "units": "relative",
     "wrapLabels": true,
@@ -11,7 +11,7 @@
     },
     "source": {
       "type": "markdown",
-      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
+      "path": "content/markdown/aaa/archie/aaa-journey.md"
     },
     "view": {
       "columns": 1,

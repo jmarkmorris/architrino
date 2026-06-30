@@ -1,12 +1,14 @@
 # Solving the Crisis With $\mathbb{A}\mathbb{A}\mathbb{A}$
 
+## Overview
+
 Status: working draft. This is scene-backed corpus prose, not final theorem-level closure.
 
 Orientation sources: [List of unsolved problems in physics](https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_physics) and [List of unsolved problems in astronomy](https://en.wikipedia.org/wiki/List_of_unsolved_problems_in_astronomy). These public lists are orientation only. Any public paper needs source-level references before publication.
 
-## Paper Thesis
+This document is the problem-by-problem accountability layer paired with [Crisis in Physics](crisis-in-physics.md). It turns the crisis diagnosis into resolution tests, claim levels, and concrete derivation burdens.
 
-The paper should not claim that every famous open problem is solved. It should make a narrower and stronger claim:
+**Thesis.** The paper should not claim that every famous open problem is solved. It should make a narrower and stronger claim:
 
 $\mathbb{A}\mathbb{A}\mathbb{A}$ gives a shared architecture for many open problems because it starts from one ontology, not from separate postulates for spacetime, quantum probability, particle identity, dark components, and cosmological initial conditions.
 
@@ -17,11 +19,7 @@ The paper should include a chapter only when the answer can be stated in four la
 3. **Test advice:** the data product, benchmark, simulation, or falsifier that should discipline the claim.
 4. **Claim level:** whether the chapter is ready for the main paper or only for a watchlist.
 
-This document is the problem-by-problem accountability layer paired with [Crisis in Physics](crisis-in-physics.md). It turns the crisis diagnosis into resolution tests, claim levels, and concrete derivation burdens.
-
-## How To Read The Entries
-
-Each problem entry uses the same teaching sequence. Entries with a full problem-map record include:
+**Entry guide.** Each problem entry uses the same teaching sequence. Entries with a full problem-map record include:
 
 1. **Secure record:** the empirical or theoretical result that already works and must not be discarded.
 2. **Problem detail and where it appears:** the concrete phenomenon, equation, experiment, or observational surface that creates the non-closure.
@@ -33,7 +31,7 @@ Each problem entry uses the same teaching sequence. Entries with a full problem-
 
 The distinction between secure record and non-closure is essential. A successful theory must preserve what current physics gets right while replacing only the unsupported ontology, the missing mechanism, or the overextended inference.
 
-## Paper Section Map
+**Section map.**
 
 | Section | Main job | Chapter candidates |
 | --- | --- | --- |
@@ -44,6 +42,30 @@ The distinction between secure record and non-closure is essential. A successful
 | Standard Model and particle closure | Explain particle families, masses, mixing, confinement, asymmetry, and precision anomalies through branch geometry and event provenance. | Higgs/origin of mass, hierarchy, neutrinos, flavor, QCD confinement, strong CP, proton stability, vacuum stability, muon $g-2$, matter-antimatter asymmetry. |
 | Astrophysical engines | Apply the same radiation, reaction, and medium-response ledgers to high-energy systems. | Supernovae, nucleosynthesis, jets, outflows, compact-object engines, transients. |
 | Appendix and exclusions | Keep weaker candidates visible without overclaiming. | Coronal heating, solar-cycle puzzles, planetary anomalies, one-off anomalies, Fermi paradox, single-object anomalies. |
+
+**First draft candidates.** The strongest first draft should probably contain these main chapters:
+
+1. Quantum gravity and the GR/QM split.
+2. Emergent metric and spacetime ontology.
+3. Lorentz invariance from a preferred substrate.
+4. Black-hole singularities.
+5. Black-hole information and entropy.
+6. Dark matter and galaxy rotation.
+7. Dark energy, cosmological constant, and transfer functions.
+8. The Hubble and $S_8$ tensions as transfer-function diagnostics.
+9. CMB as the hard cosmology gate.
+10. Quantum measurement.
+11. Born rule, Bell tests, and no-signaling.
+12. Entropy and the arrow of time.
+13. Photon ontology, UV cutoff behavior, and radiation.
+14. Origin of mass and the Higgs sector.
+15. Neutrino oscillations and mass routing.
+16. Flavor and mixing.
+17. Strong CP as a neutron-electric-dipole scaffold.
+18. QCD confinement and hadron structure.
+19. Supernovae and compact astrophysical engines.
+
+The first public version should be shorter than this. The best route is probably a six-section paper with one or two high-confidence chapters per section, plus a table that lists the deferred chapters and their proof burdens.
 
 ## Foundations And Spacetime
 
@@ -922,29 +944,3 @@ Standard repairs include Great Filter arguments, self-destruction scenarios, zoo
 **Resolution standard.** Resolution would require either a confirmed technosignature or a far stronger quantitative account of habitability, emergence, and detectability than we currently possess.
 
 **Claim level.** `exclude-for-now`.
-
-## Main-Body Candidate List
-
-The strongest first draft should probably contain these main chapters:
-
-1. Quantum gravity and the GR/QM split.
-2. Emergent metric and spacetime ontology.
-3. Lorentz invariance from a preferred substrate.
-4. Black-hole singularities.
-5. Black-hole information and entropy.
-6. Dark matter and galaxy rotation.
-7. Dark energy, cosmological constant, and transfer functions.
-8. The Hubble and $S_8$ tensions as transfer-function diagnostics.
-9. CMB as the hard cosmology gate.
-10. Quantum measurement.
-11. Born rule, Bell tests, and no-signaling.
-12. Entropy and the arrow of time.
-13. Photon ontology, UV cutoff behavior, and radiation.
-14. Origin of mass and the Higgs sector.
-15. Neutrino oscillations and mass routing.
-16. Flavor and mixing.
-17. Strong CP as a neutron-electric-dipole scaffold.
-18. QCD confinement and hadron structure.
-19. Supernovae and compact astrophysical engines.
-
-The first public version should be shorter than this. The best route is probably a six-section paper with one or two high-confidence chapters per section, plus a table that lists the deferred chapters and their proof burdens.

@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 575,
-      "edges": 1336,
-      "scenes": 373,
+      "nodes": 574,
+      "edges": 1334,
+      "scenes": 372,
       "markdownIndexes": 0,
       "markdownDocs": 189,
       "runtimeEdges": 476,
@@ -2375,21 +2375,21 @@
       "nodeType": "scene"
     },
     {
-      "id": "philosophy_history__solving_the_crisis_overview",
-      "name": "Solving the Crisis",
-      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
-      "nodeType": "scene"
-    },
-    {
-      "id": "philosophy_history__aaa_journey",
+      "id": "archie__aaa_journey",
       "name": "AAA Journey",
-      "path": "content/scenes/philosophy_history/aaa_journey.json",
+      "path": "content/scenes/archie/aaa_journey.json",
       "nodeType": "scene"
     },
     {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/aaa-journey.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+      "path": "content/markdown/aaa/archie/aaa-journey.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -2906,12 +2906,6 @@
       "id": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-      "nodeType": "markdown_doc"
-    },
-    {
-      "id": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
-      "path": "content/markdown/aaa/philosophy-history/aaa-journey.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3522,6 +3516,15 @@
     }
   ],
   "nodes": [
+    {
+      "nodeId": "scene:content/scenes/archie/aaa_journey.json",
+      "nodeType": "scene",
+      "id": "archie__aaa_journey",
+      "name": "AAA Journey",
+      "path": "content/scenes/archie/aaa_journey.json",
+      "searchTarget": "content/scenes/archie/aaa_journey.json",
+      "implicit": false
+    },
     {
       "nodeId": "scene:content/scenes/archie/about_architrino.json",
       "nodeType": "scene",
@@ -5674,15 +5677,6 @@
       "implicit": false
     },
     {
-      "nodeId": "scene:content/scenes/philosophy_history/aaa_journey.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__aaa_journey",
-      "name": "AAA Journey",
-      "path": "content/scenes/philosophy_history/aaa_journey.json",
-      "searchTarget": "content/scenes/philosophy_history/aaa_journey.json",
-      "implicit": false
-    },
-    {
       "nodeId": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "nodeType": "scene",
       "id": "philosophy_history__agency_and_internal_causation",
@@ -5797,15 +5791,6 @@
       "name": "Solving the Crisis",
       "path": "content/scenes/philosophy_history/solving_the_crisis.json",
       "searchTarget": "content/scenes/philosophy_history/solving_the_crisis.json",
-      "implicit": false
-    },
-    {
-      "nodeId": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
-      "nodeType": "scene",
-      "id": "philosophy_history__solving_the_crisis_overview",
-      "name": "Solving the Crisis",
-      "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
-      "searchTarget": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "implicit": false
     },
     {
@@ -6889,6 +6874,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/aaa-journey.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/aaa-journey.md",
+      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
+      "path": "content/markdown/aaa/archie/aaa-journey.md",
+      "searchTarget": "content/markdown/aaa/archie/aaa-journey.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/about-architrino.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/about-architrino.md",
@@ -7660,15 +7654,6 @@
       "name": "Nucleon Structure",
       "path": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
       "searchTarget": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md",
-      "implicit": false
-    },
-    {
-      "nodeId": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "nodeType": "markdown_doc",
-      "id": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "name": "$\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Journey",
-      "path": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "searchTarget": "content/markdown/aaa/philosophy-history/aaa-journey.md",
       "implicit": false
     },
     {
@@ -8974,6 +8959,13 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/aaa_journey.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[1]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/about_architrino.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
@@ -8984,28 +8976,28 @@
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[2]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/people.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[1]"
+      "field": "scene.children[2]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -12292,17 +12284,10 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "scene:content/scenes/philosophy_history/aaa_journey.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12330,7 +12315,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12344,7 +12329,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12365,7 +12350,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12386,14 +12371,7 @@
       "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[13]"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
-      "to": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
-      "edgeType": "subscene",
-      "source": "content/scenes/philosophy_history/solving_the_crisis.json",
-      "field": "scene.children[0]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/theory_bridges/theory_bridges.json",
@@ -13292,6 +13270,13 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/archie/aaa_journey.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/aaa-journey.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/aaa_journey.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/about_architrino.json",
       "to": "markdown_doc:content/markdown/aaa/archie/about-architrino.md",
       "edgeType": "markdown_doc",
@@ -13880,13 +13865,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/aaa_journey.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/aaa_journey.json",
-      "field": "scene.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "edgeType": "markdown_doc",
@@ -13961,13 +13939,6 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/solving_the_crisis.json",
-      "field": "solving_the_crisis_paper_thesis.source.path"
-    },
-    {
-      "from": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
       "field": "scene.source.path"
     },
     {

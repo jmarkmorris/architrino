@@ -3,207 +3,68 @@
   "scene": {
     "id": "philosophy_history__solving_the_crisis",
     "title": "Solving the Crisis",
-    "type": "Scene-Index",
+    "type": "Scene-Markdown-Split",
     "units": "relative",
     "wrapLabels": true,
     "centerOn": "solving_the_crisis_overview",
     "layout": {
-      "type": "rings",
-      "centerNode": "solving_the_crisis_overview",
-      "order": "objects",
-      "direction": "clockwise"
+      "type": "rings"
     },
-    "children": [
-      {
-        "nodeId": "solving_the_crisis_overview",
-        "scenePath": "content/scenes/philosophy_history/solving_the_crisis/overview.json"
-      }
-    ]
-  },
-  "objects": [
-    {
-      "id": "solving_the_crisis_overview",
-      "title": "Solving the Crisis",
-      "radius": 1.32,
-      "color": "#4f5d75",
-      "labelTitle": "Solving the Crisis (entire)",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "solving_the_crisis_paper_thesis",
-      "title": "Paper Thesis",
-      "radius": 1.32,
-      "color": "#6f4a8f",
-      "labelTitle": "Paper Thesis",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Paper Thesis",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_how_to_read",
-      "title": "How To Read The Entries",
-      "radius": 1.32,
-      "color": "#4f7b3a",
-      "labelTitle": "How To Read",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "How To Read The Entries",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_paper_section_map",
-      "title": "Paper Section Map",
-      "radius": 1.32,
-      "color": "#2f6b6f",
-      "labelTitle": "Paper Section Map",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Paper Section Map",
-        "columns": 1
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "solving_the_crisis_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "foundations and spacetime": {
+            "id": "solving_the_crisis_foundations_spacetime",
+            "labelTitle": "Foundations / Spacetime",
+            "labelBadge": "doc"
+          },
+          "strong field gravity": {
+            "id": "solving_the_crisis_strong_field_gravity",
+            "labelTitle": "Strong-Field Gravity",
+            "labelBadge": "doc"
+          },
+          "cosmology and large scale structure": {
+            "id": "solving_the_crisis_cosmology_structure",
+            "labelTitle": "Cosmology / Structure",
+            "labelBadge": "doc"
+          },
+          "quantum and statistical emergence": {
+            "id": "solving_the_crisis_quantum_statistics",
+            "labelTitle": "Quantum / Statistics",
+            "labelBadge": "doc"
+          },
+          "standard model and particle closure": {
+            "id": "solving_the_crisis_standard_model_particle",
+            "labelTitle": "Standard Model / Particles",
+            "labelBadge": "doc"
+          },
+          "astrophysical engines": {
+            "id": "solving_the_crisis_astrophysical_engines",
+            "labelTitle": "Astrophysical Engines",
+            "labelBadge": "doc"
+          },
+          "appendix and exclusions": {
+            "id": "solving_the_crisis_appendix_exclusions",
+            "labelTitle": "Appendix / Exclusions",
+            "labelBadge": "doc"
+          }
+        }
       }
     },
-    {
-      "id": "solving_the_crisis_foundations_spacetime",
-      "title": "Foundations / Spacetime",
-      "radius": 1.32,
-      "color": "#577590",
-      "labelTitle": "Foundations / Spacetime",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Foundations And Spacetime",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_strong_field_gravity",
-      "title": "Strong-Field Gravity",
-      "radius": 1.32,
-      "color": "#8c5f46",
-      "labelTitle": "Strong-Field Gravity",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Strong-Field Gravity",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_cosmology_structure",
-      "title": "Cosmology / Structure",
-      "radius": 1.32,
-      "color": "#3f7d6a",
-      "labelTitle": "Cosmology / Structure",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Cosmology And Large-Scale Structure",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_quantum_statistics",
-      "title": "Quantum / Statistics",
-      "radius": 1.32,
-      "color": "#6f5f9c",
-      "labelTitle": "Quantum / Statistics",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Quantum And Statistical Emergence",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_standard_model_particle",
-      "title": "Standard Model / Particles",
-      "radius": 1.32,
-      "color": "#8b6f47",
-      "labelTitle": "Standard Model / Particles",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Standard Model And Particle Closure",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_astrophysical_engines",
-      "title": "Astrophysical Engines",
-      "radius": 1.32,
-      "color": "#5f7661",
-      "labelTitle": "Astrophysical Engines",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Astrophysical Engines",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_appendix_exclusions",
-      "title": "Appendix / Exclusions",
-      "radius": 1.32,
-      "color": "#8b4f68",
-      "labelTitle": "Appendix / Exclusions",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Appendix And Exclusions",
-        "columns": 1
-      }
-    },
-    {
-      "id": "solving_the_crisis_main_body_candidates",
-      "title": "Main-Body Candidates",
-      "radius": 1.32,
-      "color": "#6f4a8f",
-      "labelTitle": "Main-Body Candidates",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
-      },
-      "view": {
-        "section": "Main-Body Candidate List",
-        "columns": 1
-      }
+    "view": {
+      "columns": 1
     }
-  ]
+  },
+  "objects": []
 }

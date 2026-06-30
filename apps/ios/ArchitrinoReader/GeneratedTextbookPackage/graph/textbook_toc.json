@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 182,
-      "sections": 1446
+      "entries": 180,
+      "sections": 1445
     }
   },
   "tocRoot": {
@@ -5278,6 +5278,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Alpha-Emission Barrier Benchmark",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Alpha-Emission Barrier Benchmark",
+                "sectionKey": "alpha emission barrier benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Beta Stability Interface",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Beta Stability Interface",
@@ -9600,118 +9608,76 @@
             ]
           },
           {
-            "id": "unknowns_paradoxes",
-            "title": "Unknowns and Paradoxes",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-            "children": [
+            "id": "philosophy_history__solving_the_crisis",
+            "title": "Solving the Crisis",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+            "sections": [
               {
-                "id": "philosophy_history__solving_open_problems",
-                "title": "Solving Open Problems",
-                "kind": "scene-index",
-                "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/philosophy_history/solving_open_problems.json",
-                "children": [
-                  {
-                    "id": "philosophy_history__solving_open_problems_overview",
-                    "title": "Solving Open Problems",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/solving_open_problems/overview.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Paper Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Paper Thesis",
-                        "sectionKey": "paper thesis",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "How To Read The Entries",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "How To Read The Entries",
-                        "sectionKey": "how to read the entries",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Paper Section Map",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Paper Section Map",
-                        "sectionKey": "paper section map",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Foundations And Spacetime",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Foundations And Spacetime",
-                        "sectionKey": "foundations and spacetime",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Strong-Field Gravity",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Strong-Field Gravity",
-                        "sectionKey": "strong field gravity",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Cosmology And Large-Scale Structure",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Cosmology And Large-Scale Structure",
-                        "sectionKey": "cosmology and large scale structure",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Quantum And Statistical Emergence",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Quantum And Statistical Emergence",
-                        "sectionKey": "quantum and statistical emergence",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Standard Model And Particle Closure",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Standard Model And Particle Closure",
-                        "sectionKey": "standard model and particle closure",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Astrophysical Engines",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Astrophysical Engines",
-                        "sectionKey": "astrophysical engines",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Appendix And Exclusions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Appendix And Exclusions",
-                        "sectionKey": "appendix and exclusions",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Main-Body Candidate List",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Main-Body Candidate List",
-                        "sectionKey": "main body candidate list",
-                        "headingLevel": 2
-                      }
-                    ]
-                  }
-                ]
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Foundations / Spacetime",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Foundations And Spacetime",
+                "sectionKey": "foundations and spacetime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Strong-Field Gravity",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Strong-Field Gravity",
+                "sectionKey": "strong field gravity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology / Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Cosmology And Large-Scale Structure",
+                "sectionKey": "cosmology and large scale structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantum / Statistics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Quantum And Statistical Emergence",
+                "sectionKey": "quantum and statistical emergence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model / Particles",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Standard Model And Particle Closure",
+                "sectionKey": "standard model and particle closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Astrophysical Engines",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Astrophysical Engines",
+                "sectionKey": "astrophysical engines",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix / Exclusions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Appendix And Exclusions",
+                "sectionKey": "appendix and exclusions",
+                "headingLevel": 2
               }
             ]
           },
@@ -9842,6 +9808,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "General Relativity (GR)",
                         "sectionKey": "general relativity gr",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "sectionKey": "perturbative quantum gravity general relativity effective field theory",
                         "headingLevel": 3
                       },
                       {
@@ -13179,7 +13153,7 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermodynamic Cost of Computation",
+                "title": "Thermodynamic Cost",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
                 "markdownSection": "Thermodynamic Cost of Computation",
                 "sectionKey": "thermodynamic cost of computation",

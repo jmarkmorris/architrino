@@ -442,6 +442,8 @@ Vacuum-energy bookkeeping adds another form of pressure. If straightforward cont
 
 Standard repairs include renormalization-group interpretation, effective field theory modesty, UV-completion programs, and appeals to symmetry or duality to control high-energy behavior. These are powerful responses. Effective field theory, in particular, is a disciplined and often correct reply to overreach: one need not know the ultraviolet in detail to predict the infrared well.
 
+Perturbative quantum gravity gives a clean version of the warning. In QED, the small fine-structure coupling and a finite renormalized input set keep loop corrections predictive. For gravity, the effective dimensionless coupling grows schematically as $\alpha_G(E)\sim(E/E_P)^2$; low-energy calculations are therefore controllable, but near the Planck energy the loop hierarchy collapses and new counterterms proliferate. The lesson is not that quantum gravity is meaningless: long-distance effective-field-theory gravity gives calculable, tiny corrections to Newtonian gravity. The lesson is that smooth metric variables are effective variables, and their perturbative quantization is not substrate-level closure.
+
 They remain incomplete because they often show how to manage the formalism without deciding what the formalism's deepest objects are. UV completion can shift the problem upward without guaranteeing ontological closure. Symmetry and duality can stabilize a framework while leaving unsettled what, physically, is being stabilized. The technical success of the repair does not erase the ontological question.
 
 ### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$

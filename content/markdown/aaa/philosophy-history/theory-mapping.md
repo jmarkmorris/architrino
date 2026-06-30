@@ -373,6 +373,26 @@ $$
 - Show geodesic motion emerges from straight-line motion in the Noether sea with variable signal speed.
 
 ---
+### Perturbative Quantum Gravity / General Relativity Effective Field Theory
+
+**Theory Name:** Perturbative Quantum Gravity / General Relativity Effective Field Theory. **Short Name:** Perturbative Quantum Gravity / GR-EFT. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
+
+**Summary:** Quantizes weak perturbations of the metric and organizes long-distance gravitational quantum corrections as an effective field theory, while failing as a UV-complete perturbative theory near the Planck scale.
+
+**Conceptual View:** Around a smooth background, gravity can be treated as a weak field with a dimensionless effective coupling that scales schematically as
+$$
+\alpha_G(E)\sim\left(\frac{E}{E_P}\right)^2.
+$$
+At ordinary and collider energies this coupling is tiny, so loop corrections are strongly suppressed. Near $E_P$, the coupling becomes order one, the perturbative hierarchy collapses, and nonrenormalizable counterterms remove predictive power unless a deeper high-energy account supplies the missing structure.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Low-energy GR-EFT is an observer-level recovery target for the emergent metric, not evidence that metric quanta are primitive ontology. The calculable long-distance corrections to Newtonian gravity must be recovered from the same Noether sea constitutive record that supports PPN behavior, redshift, Shapiro delay, lensing, and gravitational-wave propagation. The Planck-scale breakdown of perturbative metric quantization is read as a variable-choice failure at the edge of the smooth metric approximation, not as a license to import gravitons or continuum metric modes as substrate entities.
+
+**What Still Works:** Low-energy quantum gravity as effective field theory remains a disciplined infrared calculation and must be recovered wherever it makes controlled predictions.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitons, metric loops, and Feynman-diagram bookkeeping are treated as effective descriptions of collective metric response, not primitive constituents.
+**Transition Relevance:** Transition relevance is high because this packet separates a valid low-energy recovery benchmark from the failed inference that perturbative metric quantization is a complete high-energy ontology.
+**Long-Term Relevance:** Long-term relevance is as a precision recovery layer and as a warning that smooth spacetime variables can be both operationally powerful and ontologically non-final.
+
+---
 ### Special Relativity (SR)
 
 **Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).

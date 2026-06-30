@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 182,
-      "sections": 1457
+      "entries": 180,
+      "sections": 1445
     }
   },
   "tocRoot": {
@@ -9610,107 +9610,74 @@
           {
             "id": "philosophy_history__solving_the_crisis",
             "title": "Solving the Crisis",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
             "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json",
-            "children": [
+            "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+            "sections": [
               {
-                "id": "philosophy_history__solving_the_crisis_overview",
-                "title": "Solving the Crisis",
-                "kind": "markdown-view",
-                "sceneType": "Scene-Markdown-View",
-                "scenePath": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
+                "kind": "markdown-section",
+                "title": "Overview",
                 "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Paper Thesis",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Paper Thesis",
-                    "sectionKey": "paper thesis",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "How To Read The Entries",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "How To Read The Entries",
-                    "sectionKey": "how to read the entries",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Paper Section Map",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Paper Section Map",
-                    "sectionKey": "paper section map",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Foundations And Spacetime",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Foundations And Spacetime",
-                    "sectionKey": "foundations and spacetime",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Strong-Field Gravity",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Strong-Field Gravity",
-                    "sectionKey": "strong field gravity",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Cosmology And Large-Scale Structure",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Cosmology And Large-Scale Structure",
-                    "sectionKey": "cosmology and large scale structure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Quantum And Statistical Emergence",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Quantum And Statistical Emergence",
-                    "sectionKey": "quantum and statistical emergence",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Standard Model And Particle Closure",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Standard Model And Particle Closure",
-                    "sectionKey": "standard model and particle closure",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Astrophysical Engines",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Astrophysical Engines",
-                    "sectionKey": "astrophysical engines",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Appendix And Exclusions",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Appendix And Exclusions",
-                    "sectionKey": "appendix and exclusions",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Main-Body Candidate List",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
-                    "markdownSection": "Main-Body Candidate List",
-                    "sectionKey": "main body candidate list",
-                    "headingLevel": 2
-                  }
-                ]
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Foundations / Spacetime",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Foundations And Spacetime",
+                "sectionKey": "foundations and spacetime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Strong-Field Gravity",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Strong-Field Gravity",
+                "sectionKey": "strong field gravity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology / Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Cosmology And Large-Scale Structure",
+                "sectionKey": "cosmology and large scale structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantum / Statistics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Quantum And Statistical Emergence",
+                "sectionKey": "quantum and statistical emergence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model / Particles",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Standard Model And Particle Closure",
+                "sectionKey": "standard model and particle closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Astrophysical Engines",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Astrophysical Engines",
+                "sectionKey": "astrophysical engines",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix / Exclusions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Appendix And Exclusions",
+                "sectionKey": "appendix and exclusions",
+                "headingLevel": 2
               }
             ]
           },
@@ -9841,6 +9808,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "General Relativity (GR)",
                         "sectionKey": "general relativity gr",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "sectionKey": "perturbative quantum gravity general relativity effective field theory",
                         "headingLevel": 3
                       },
                       {
@@ -12555,96 +12530,6 @@
             ]
           },
           {
-            "id": "philosophy_history__aaa_journey",
-            "title": "AAA Journey",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/aaa_journey.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "2018: Search Frame And Medium Intuition",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2018: Search Frame And Medium Intuition",
-                "sectionKey": "2018 search frame and medium intuition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2019: Two Polarity Primitives And First Assembly Grammar",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2019: Two Polarity Primitives And First Assembly Grammar",
-                "sectionKey": "2019 two polarity primitives and first assembly grammar",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2020: Noether-Core Grammar And The Axial Layer",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2020: Noether-Core Grammar And The Axial Layer",
-                "sectionKey": "2020 noether core grammar and the axial layer",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2021: Noether Naming, Clock And Ruler Roles, And Strong-Sector Linkage",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2021: Noether Naming, Clock And Ruler Roles, And Strong-Sector Linkage",
-                "sectionKey": "2021 noether naming clock and ruler roles and strong sector linkage",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2022: Path-History Mechanics And Strong-Sector Topology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2022: Path-History Mechanics And Strong-Sector Topology",
-                "sectionKey": "2022 path history mechanics and strong sector topology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2023: Cosmology Timeline And Assembly Epoch Mapping",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2023: Cosmology Timeline And Assembly Epoch Mapping",
-                "sectionKey": "2023 cosmology timeline and assembly epoch mapping",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2024: Binary Self-Action, Noether Sea, And Standard-Model Reframing",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2024: Binary Self-Action, Noether Sea, And Standard-Model Reframing",
-                "sectionKey": "2024 binary self action noether sea and standard model reframing",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "2025-2026: Effective-Theory Framing And Closure Work",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "2025-2026: Effective-Theory Framing And Closure Work",
-                "sectionKey": "2025 2026 effective theory framing and closure work",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Seminal Realization Threads",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "Seminal Realization Threads",
-                "sectionKey": "seminal realization threads",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What The Journey Does Not Prove",
-                "markdownPath": "content/markdown/aaa/philosophy-history/aaa-journey.md",
-                "markdownSection": "What The Journey Does Not Prove",
-                "sectionKey": "what the journey does not prove",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -13268,7 +13153,7 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermodynamic Cost of Computation",
+                "title": "Thermodynamic Cost",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
                 "markdownSection": "Thermodynamic Cost of Computation",
                 "sectionKey": "thermodynamic cost of computation",

@@ -854,19 +854,19 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **What Problem They Were Trying To Solve:** He aimed to build a predictive quantum framework constrained strictly by observables and free from misleading classical imagery.
 
-**What They Got Right:** He correctly identified robust measurement tradeoffs and formal complementarity constraints that any realistic account must recover.
+**What They Got Right:** He correctly built quantum mechanics from transition frequencies and amplitudes rather than unobserved electron orbits, and he exposed the noncommutative operator structure that any realistic account must recover. His later uncertainty limits remain non-negotiable effective constraints.
 
 **What They Got Wrong or Overstated:** He overstated anti-ontology by treating uncertainty as fundamental indeterminacy rather than as effective inferential limits over deeper lawful dynamics.
 
 **Relation to** $\mathbb{A}\mathbb{A}\mathbb{A}$: Partially retained in formal consequences and contradicted in ontology.
 
-**Transition Relevance**: Heisenberg is highly relevant for transition because his inequalities serve as non-negotiable empirical constraints that substrate models must derive.
+**Transition Relevance**: Heisenberg is highly relevant for transition because matrix mechanics provides a clean recovery target: discrete transition arrays, noncommutative effective operators, and uncertainty inequalities must be derived from underlying dynamics rather than merely postulated.
 
 **Long-Term Relevance**: Long-term relevance is high for derived effective constraints and low for observables-only ontology.
 
 **Core Belief**: Quantum theory should be built from observable quantities, and uncertainty relations express intrinsic limits central to physical description.
 
-**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ derives Heisenberg-style limits from assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
+**Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ treats Heisenberg's transition arrays and uncertainty limits as observer-level exports of assembly measurement structure and path-history dynamics while preserving definite substrate states between branch regimes.
 
 **Legacy Shift**: Heisenberg's formal constraints survive as emergent theorems, while his anti-realist interpretation is replaced by substrate realism.
 

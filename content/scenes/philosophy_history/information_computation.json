@@ -29,6 +29,11 @@
             "labelTitle": "Information / Ontology",
             "labelBadge": "doc"
           },
+          "thermodynamic cost of computation": {
+            "id": "information_computation_thermodynamic_cost",
+            "labelTitle": "Thermodynamic Cost",
+            "labelBadge": "doc"
+          },
           "computation as ontology": {
             "id": "information_computation_computation_ontology",
             "labelTitle": "Computation / Ontology",
