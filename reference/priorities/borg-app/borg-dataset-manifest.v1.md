@@ -205,12 +205,24 @@ Face-boundary replay is reduced-model boundary input. Boundary-generated inbound
 | `faceSummarySetIds` | Sets of `borg-face-summary.v1` rows. |
 | `faceSummaryIds` | Individual face summary row ids consumed by this manifest. |
 | `faceReplaySourceIds` | `borg-face-replay-source.v1` ids consumed by this manifest. |
+| `timeMapPolicyIds` | Time-map policy ids mapping target replay bins to observed source face bins. |
+| `timeMapSourceStatus` | `observed-face-input`, `observed-bin-resample`, `display-only-synthetic-preview`, `untraceable-source`, or `fail-closed-synthetic-input`. |
+| `faceInputTraceabilityRowIds` | Rows linking replayed inbound samples to source face summaries, source time bins, path segments or path streams, and face influence model ids. |
+| `velocityScaleRange` | Declared minimum and maximum sampled velocity magnitudes, units, and normalization chart. |
+| `velocitySamplingProtocolIds` | `borg-velocity-sampling-protocol.v1` ids used to measure candidate sampling policies. |
+| `velocitySamplingResultIds` | `borg-velocity-sampling-result.v1` ids for scored candidate policies. |
+| `velocitySamplingPolicyIds` | Sampling policy ids for velocity-scale-aware face replay. |
+| `velocitySamplingSelectedPolicyId` | Candidate sampling policy selected for the replay source, or null while research remains open. |
+| `velocitySamplingResearchStatus` | `research-open`, `candidate-policy`, `measured-within-budget`, `precision-insufficient`, or `fail-closed`. |
+| `velocitySamplingHoldoutStatus` | `passed`, `failed`, `not-measured`, or `fail-closed`. |
+| `velocitySamplingResidualSummary` | Velocity distribution residual, tail mass residual, correlation residual, seed variance residual, face replay residual, and central residual contribution. |
+| `velocitySamplingErrorBudgetIds` | Error-budget rows for velocity sampling and its contribution to face replay and central-volume residuals. |
 | `inboundReplayRowIds` | Boundary-generated inbound architrino and wake-history rows. |
 | `faceReplayValidationResultIds` | Validation result ids containing $R_{\mathrm{face\ replay}}$ and `R_boundary->central`. |
 | `retainedLocalEvidenceStatus` | Status for same-record local path and wake evidence. |
 | `boundaryGeneratedEvidenceStatus` | Status for boundary-generated architrinos and reconstructed wake history. |
 
-Face-boundary replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence.
+Face-boundary replay may not replace retained local wake rows, repair missing same-record path history, or serve as branch evidence. The first time-map policy may use only observed face-input samples or resampled observed bins with traceability to recorded path-derived face data. Invented synthetic boundary input may be shown only as display-only visualization and must not influence receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. Velocity-scale-aware sampling is research-open until the manifest reports a measured policy, declared velocity scale range, and replay error budget.
 
 ## Boundary-To-Central Residual
 
@@ -227,6 +239,16 @@ Central-volume values outside strict buffer status require a residual decision:
 | `boundaryRunId` | Boundary replay run used by the residual. |
 | `status` | `passed`, `failed`, `missing-reference`, `missing-bound`, `not-measured`, or `fail-closed`. |
 | `firstFailureCode` | `central_boundary_residual_exceeded`, `missing_error_budget`, or another first-failure code. |
+| `boundaryReplayDecisionPolicyId` | Decision policy id for strict-buffer, measured replay, display-only, and fail-closed outcomes. |
+| `strictBufferStatus` | `strict-buffer-pass`, `strict-buffer-failed`, or `not-evaluated`. |
+| `boundaryReplayDecisionStatus` | `strict-buffer-pass`, `measured-reduced-pass`, `display-only-insufficient-evidence`, `fail-closed-residual`, `fail-closed-contamination`, or `fail-closed-missing-contract`. |
+| `tauSelf` | Declared $\tau_{\mathrm{self}}$; v0 default is $5\times10^{-2}$. |
+| `tauFace` | Declared $\tau_{\mathrm{face}}$; v0 default is $10^{-2}$. |
+| `tauCentral` | Declared $\tau_{\mathcal C}$; v0 default is $10^{-3}$. |
+| `epsilon0` | Normalization floor used in residual denominators. |
+| `decisionNormId` | Norm and comparison-window definition used for residual decisions. |
+| `displayOnlyReason` | Reason code when the replay can be rendered but cannot receive value authority. |
+| `failClosedAffectedValueIds` | Central-volume, acceleration, wake-background, or diagnostic value ids forced closed by the decision. |
 
 If this residual is required and does not pass, central-volume acceleration and wake-background values must use `fail-closed-value` or `missing-error-budget`.
 
@@ -400,6 +422,16 @@ The manifest must report the first applicable failure before displaying affected
 | `branch_evidence_contaminated` | A retained branch row used replayed boundary input as same-record evidence. |
 | `correlation_unmodeled` | Detected correlation structure is above budget but not represented in the replay policy. |
 | `face_replay_used_as_branch_evidence` | Face-boundary replay is used as branch evidence or a retained wake substitute. |
+| `residual_tolerance_policy_missing` | Required tolerance, comparison norm, or $\varepsilon_0$ residual floor is missing. |
+| `required_residual_unmeasured` | A required residual is missing while a central-volume or replay diagnostic asks for value authority. |
+| `time_map_source_untraceable` | A replayed inbound sample cannot be traced to observed face summary bins, path rows, or the face influence model. |
+| `synthetic_boundary_input_used_experimentally` | An invented synthetic boundary input affects receiver acceleration, wake-background diagnostics, central-volume residuals, or experimental output. |
+| `velocity_sampling_protocol_missing` | Replay-affected diagnostics are requested without a `borg-velocity-sampling-protocol.v1` row. |
+| `velocity_sampling_research_open` | Velocity-scale-aware sampling has not been measured, so affected values cannot receive experimental authority. |
+| `velocity_sampling_precision_insufficient` | The selected sampling policy cannot represent the declared velocity scale range inside the replay error budget. |
+| `velocity_sampling_holdout_failed` | The selected sampling policy passes calibration but fails withheld source bins. |
+| `velocity_sampling_tail_residual_exceeded` | Rare high-speed or wake-sensitive tail mass is outside the declared budget. |
+| `velocity_sampling_seed_variance_exceeded` | Deterministic seed-set replay variation is outside the declared budget. |
 | `missing_central_volume` | The run lacks a declared `centralVolume` while presenting central-volume conclusions. |
 | `scale_fields_collapsed` | Outer `sideLength`, displayed `centralVolumeSideLength`, and `faceBufferMargin` are collapsed into one visual scale. |
 | `central_count_treated_as_total_count` | `centralArchitrinoCount` is treated as total `architrinoCount` after a nonzero buffer is declared. |
@@ -410,8 +442,8 @@ The manifest must report the first applicable failure before displaying affected
 
 ## Claim-Level Status
 
-This manifest contract is `priority-design` and ready to drive the first native-backed fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, and row-conservation counts.
+This manifest contract is `priority-design` and ready to drive the first native-backed fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
 ## Next Exact Build Burden
 
-The next build burden is `first_native_backed_fixture`: select the smallest native central solver run that can emit a `borg-dataset-manifest.v1` object while exercising scale, face crossings, path-history replay, and at least one wake-history or boundary-status diagnostic. The fixture must include the outer/central cube split, derived population counts, native solver status, current state frames, path-history source ids or explicit gap rows, wake-history gap rows, face-boundary gap rows, deployment budget placeholders, and a 4K UHD render manifest. It must keep wake streams and face-boundary replay fail-closed or display-only until native rows exist.
+The next build burden is `first_native_backed_fixture`: select the smallest native central solver run that can emit a `borg-dataset-manifest.v1` object while exercising scale, face crossings, path-history replay, the velocity-scale sampling protocol, the boundary replay decision policy, and at least one wake-history or boundary-status diagnostic. The fixture must include the outer/central cube split, derived population counts, native solver status, current state frames, path-history source ids or explicit gap rows, wake-history gap rows, face-boundary gap rows, velocity sampling protocol/result placeholders, deployment budget placeholders, and a 4K UHD render manifest. It must keep wake streams and face-boundary replay fail-closed or display-only until native rows exist and velocity sampling is measured within budget.

@@ -948,6 +948,147 @@
             "negative_control_status": "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row",
             "smallest_next_evidence_object": "same-ledger-action-measure-row-with-branch-scope-and-period-rows"
           },
+          "rank5_retained_branch_closure_producer_target": {
+            "schema": "neutral-braid-octahedral-zero-mean-rank5-retained-branch-action-measure-producer-target/v0",
+            "claim_scope": "rank5-retained-branch-action-measure-producer-target-after-normal-candidate",
+            "promotion_status": "priority-only",
+            "top_six_rank": 5,
+            "closure_route": "bounded-speed-live-ledger",
+            "source_after_normal_packet": "bounded-speed-normal-reconstruction-candidate",
+            "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+            "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+            "force_checksum_id": "force-checksum-fixture",
+            "consumer_checksum_id": "consumer-checksum-fixture",
+            "attempted_evidence_object": "same-ledger-action-measure-row-with-branch-scope",
+            "required_identity_tuple": {
+              "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+              "force_checksum_id": "force-checksum-fixture",
+              "consumer_checksum_id": "consumer-checksum-fixture",
+              "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+            },
+            "required_producer_fields": [
+              "same_ledger_identity_tuple",
+              "branch_scope",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "supplied_fields_on_normal_candidate_ledger": [
+              "same_ledger_identity_tuple"
+            ],
+            "missing_producer_fields": [
+              "branch_scope",
+              "period_rows",
+              "action_functional",
+              "root_support_event_rows"
+            ],
+            "first_missing_producer_field": "branch_scope",
+            "first_blocker": "same_ledger_branch_scope_source_missing",
+            "rejected_evidence_kinds": [
+              "fixture-rows",
+              "proxy-only-branch-scope",
+              "fixed-speed-root-ledger-provenance",
+              "branch-scope-free-action-summaries",
+              "diagnostic-force-residual",
+              "sampled-phase-offset",
+              "sampled-diagnostics",
+              "h39-theta3minus-quotient-rows",
+              "source-normal-rows",
+              "generated-decoys",
+              "cross-row-bundles",
+              "finite-mode-open-search-contract"
+            ],
+            "nearest_rejected_source": {
+              "source_path": "scripts/neutral-braid/octahedral-root-ledger.mjs",
+              "artifact_schema": "neutral-braid-octahedral-root-ledger/v1",
+              "artifact_id": "neutral_braid_octahedral_root_ledger.certified.v1",
+              "branch_scope_role": "certified fixed-speed all-pairs root ledger",
+              "first_rejection_code": "root-ledger-branch-scope-lacks-action-measure-row"
+            },
+            "finite_mode_solver_action_measure_row_producer_target": {
+              "schema": "neutral-braid-octahedral-zero-mean-finite-mode-action-measure-row-producer-target/v0",
+              "claim_scope": "bounded-speed-finite-mode-action-measure-row-producer-target",
+              "promotion_status": "priority-only",
+              "target_status": "producer_target_blocked",
+              "expected_source_object": "bounded-speed-factor-finite-mode-solver-artifact-with-action-measure-row",
+              "expected_source_packet": "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-finite-mode-branch-system.md",
+              "source_after_normal_packet": "bounded-speed-normal-reconstruction-candidate",
+              "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture",
+              "required_identity_tuple": {
+                "bounded_speed_ledger_id": "bounded-speed-live-ledger-fixture",
+                "force_checksum_id": "force-checksum-fixture",
+                "consumer_checksum_id": "consumer-checksum-fixture",
+                "source_normal_reconstruction_candidate_id": "post-correction-bounded-speed-normal-reconstruction-candidate-fixture"
+              },
+              "required_same_ledger_row_fields": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id",
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows",
+                "retained_source_binding",
+                "receiver_normal_branch_strength_linkage",
+                "provider_provenance"
+              ],
+              "supplied_fields_on_normal_candidate_ledger": [
+                "bounded_speed_ledger_id",
+                "force_checksum_id",
+                "consumer_checksum_id",
+                "source_normal_reconstruction_candidate_id"
+              ],
+              "missing_same_ledger_row_fields": [
+                "branch_scope",
+                "period_rows",
+                "action_functional",
+                "root_support_event_rows",
+                "retained_source_binding",
+                "receiver_normal_branch_strength_linkage",
+                "provider_provenance"
+              ],
+              "first_missing_same_ledger_field": "branch_scope",
+              "first_blocker": "same_ledger_branch_scope_source_missing",
+              "required_finite_mode_sections": [
+                "branch_scope",
+                "clock_period",
+                "root_sheet_rows",
+                "force_rows",
+                "event_rows",
+                "variational_noether",
+                "derivative_matrix",
+                "full_stack_embedding"
+              ],
+              "negative_controls": [
+                "fixture-rows",
+                "proxy-only-branch-scope",
+                "fixed-speed-root-ledger-provenance",
+                "branch-scope-free-action-summaries",
+                "diagnostic-force-residual",
+                "sampled-phase-offset",
+                "sampled-diagnostics",
+                "h39-theta3minus-quotient-rows",
+                "source-normal-rows",
+                "generated-decoys",
+                "cross-row-bundles",
+                "finite-mode-open-search-contract"
+              ],
+              "accepted_same_ledger_action_measure_row": null,
+              "authorizes_rank5_retention": false,
+              "certifies_action_measure_row": false,
+              "certifies_bounded_speed_live_ledger": false,
+              "retention": "not_retained",
+              "retained_branch": false
+            },
+            "negative_control_status": "same-ledger-tuple-without-branch-scope-action-measure-not-rank5-retained-branch",
+            "accepted_same_ledger_action_measure_row": null,
+            "certifies_action_measure_row": false,
+            "certifies_rank5_retained_branch_closure": false,
+            "certifies_bounded_speed_live_ledger": false,
+            "retention": "not_retained",
+            "retained_branch": false
+          },
           "certifies_action_measure_row": false,
           "certifies_action_derived_scale": false,
           "certifies_bounded_speed_live_ledger": false,

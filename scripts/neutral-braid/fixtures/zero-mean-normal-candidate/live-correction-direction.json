@@ -7,7 +7,7 @@
   "source_live_derivative_matrix_id": "same-ledger-constant-column-pass",
   "source_range_certificate_status": "certified-live-rhs-in-range",
   "direction_id": "alpha-constant-column-fixture",
-  "alpha_b_vector": [-1.15740669293],
+  "alpha_b_vector": [-1.937049763945],
   "certifies_live_derivative_matrix": true,
   "certifies_correction_direction": true,
   "certifies_bounded_speed_live_ledger": false,
