@@ -35,15 +35,17 @@ Normal answers should remain fluent. They may include source links or source chi
 
 ## Deployment Boundary
 
-Architrino.com is deployed through GitHub Pages, so the first public Archie question interface must treat static-site delivery as a hard product boundary. The first launch can use committed scene files, generated indexes, authored markdown, static assets, and in-browser routing or local search. It must not depend on server-side code running inside GitHub Pages.
+Architrino.com is currently deployed through GitHub Pages. GitHub Pages should be treated as the current public site host and possible service entry surface, not as the target architecture for the full Archie question interface.
 
-First-launch public code must not include private model API keys, service credentials, direct public model API calls from browser JavaScript, live external-source search, durable user prompt logging, speech processing, or image intake. Those capabilities require a later platform phase with an explicit backend or serverless proxy, source routing, rate limits, privacy and logging policy, cost controls, abuse handling, and failure behavior.
+The desired Archie question interface is long-term platform work. It requires a properly deployed service with backend or serverless runtime support, private credential handling, source routing, retrieval/indexing, rate limits, privacy and logging policy, cost controls, abuse handling, observability, staging/production separation, rollback behavior, and a public beta gate.
 
-The first launch should therefore prefer a static or local-search Archie prototype that routes users to source documents, shows claim labels, and makes the System Card easy to reach. The UI may reserve clean interaction seams for later server-backed text, speech, and image modes, but those seams should remain inactive until the platform boundary is designed and approved. More capable public AI service work should wait behind the current theory-closure push unless it directly unblocks the deployed site.
+Do not build a static/local-source Archie question UI as the intended product path. The current GitHub Pages site can keep the Archie sphere, System Card, apps, comics, and public navigation useful while core theory closure proceeds. When the project is ready to make Archie available as a question service, start from [service-platform.md](service-platform.md), not from a static mockup.
 
-## First-Launch Source Policy
+Public client code must not include private model API keys, service credentials, direct public model API calls from browser JavaScript, live external-source search, durable user prompt logging, speech processing, or image intake. Those capabilities require the deployed service boundary above.
 
-| Class | First-launch public policy | Notes |
+## Platform Source Policy
+
+| Class | Long-term service policy | Notes |
 | --- | --- | --- |
 | `published_corpus` | Allow as the primary answer and route source. | Use authored markdown as the strongest local authority. |
 | `generated_reading_copy` | Allow for reader routing and convenience only. | Do not treat generated copies as stronger than authored markdown. |
@@ -51,7 +53,7 @@ The first launch should therefore prefer a static or local-search Archie prototy
 | `app_guide` | Allow for controls, diagnostics, and app limits. | Keep app outputs in the `app diagnostic` claim class unless an accepted validation artifact supports more. |
 | `archie_reference` | Allow for public-program routing and messaging context. | Do not treat it as published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus authority. |
 | `priority_material` | Exclude from ordinary public answers unless the UI explicitly exposes development-status material. | Always label as `priority-only`; keep it available for operator/developer surfaces. |
-| `external_prior_physics` | Allow only if curated statically into the first-launch source set. | No live search in the GitHub Pages-first prototype. |
+| `external_prior_physics` | Allow only through a curated source policy or controlled retrieval/search path. | External material remains comparison context, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. |
 | `model_memory` | Exclude from public answer authority. | Use only for operator continuity, then verify against files before making factual claims. |
 
 ## Source Classes
@@ -220,26 +222,25 @@ Required shape:
 I do not have a source-backed answer for that as an established $\mathbb{A}\mathbb{A}\mathbb{A}$ claim. The closest supported material is [source]. The open burden is [specific missing derivation, validation, or source decision].
 ```
 
-## Public UI Boundary
+## Public Service Boundary
 
-Before public AI answer generation launches, the project needs a source-authority decision for:
+Before public AI answer generation launches, the project needs a platform decision for:
 
 1. whether public users may see `priority_material` at all;
-2. whether external prior-physics sources are curated statically, searched live, or excluded from first launch;
+2. whether external prior-physics sources are curated statically, searched through a controlled retrieval path, or excluded from public answers;
 3. whether generated textbook reading copies are indexed as answer sources or only route targets;
 4. how citations display in compact mobile layouts;
 5. whether user prompts, answer histories, and failed questions are logged;
 6. what fallback UI appears when answer generation is unavailable;
-7. whether speech input, speech output, and image intake are first-launch features or later-stage capabilities;
-8. how the UI links answers and mode chrome to the System Card without making unsupported proof claims.
+7. whether speech input, speech output, and image intake are public beta features or later-stage capabilities;
+8. how the UI links answers and mode chrome to the System Card without making unsupported proof claims;
 9. what backend, proxy, credential, rate-limit, abuse, and failure model is required before any server-backed AI answer generation is exposed publicly.
 
-Until those decisions are made, the safest implementation path is a static or local-search prototype that answers by routing users to source documents rather than generating free-form public claims.
-Under the GitHub Pages-first boundary, this static or local-search prototype is the default first public implementation. Server-backed AI answers, live external search, speech, image intake, and durable answer history are later platform work.
+Until those decisions are made, do not launch public AI answer generation. The near-term public site should remain the Archie sphere, System Card, scene navigation, apps, and corpus access. The future question interface should be designed as a deployed service with explicit platform, privacy, source-authority, cost, and operations boundaries.
 
 ## Validation Expectations
 
-The first prototype should not be considered launch-ready until it passes:
+The public Archie service should not be considered launch-ready until it passes:
 
 - scene graph and content validation;
 - source index freshness checks;
@@ -251,4 +252,6 @@ The first prototype should not be considered launch-ready until it passes:
 - prior-physics comparison fixtures with separate $\mathbb{A}\mathbb{A}\mathbb{A}$ and external citations;
 - mobile layout review for citations and mode controls;
 - privacy and cost review if any request leaves the browser;
-- no browser-side private credentials or direct public model API calls.
+- no browser-side private credentials or direct public model API calls;
+- deployment smoke tests for staging and production;
+- rollback and incident-response checks.

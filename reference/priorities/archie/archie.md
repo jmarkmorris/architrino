@@ -12,6 +12,7 @@
 - System Card sphere: [System Card scene](../../../content/scenes/archie/system_card.json)
 - System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
 - Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
+- Long-term service platform: [service-platform.md](service-platform.md)
 - Runtime files to inspect: [AppSceneChromeRuntime](../../../src/runtime/AppSceneChromeRuntime.js), [ArchitrinoSceneAppRuntime](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js), and [index.html](../../../index.html)
 
 ## Current State
@@ -29,7 +30,7 @@ Active public reference material and public image assets now use Archie-owned pa
 
 The first assistant behavior contract is captured in [assistant-mode-contract.md](assistant-mode-contract.md). It defines initial modes, source classes, claim labels, citation behavior, unsupported-answer behavior, the $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory stance, multimodal outreach objectives, the System Card sphere disclosure model, and public UI blockers. No runtime AI answer generation is implemented yet.
 
-The deployed site runs through GitHub Pages via `architrino.com`, so the first public Archie interface must be GitHub Pages-compatible by default. The first launch should use static scene routing, local indexes, and source navigation that can run entirely in the browser from committed site assets. Direct model API calls, private keys, live external search, speech processing, image intake, user-history logging, and server-side answer generation belong to a later platform phase with an explicit backend or serverless proxy, rate limits, privacy policy, logging policy, cost controls, and failure behavior. That later platform phase should wait behind the current theory-closure push unless it directly unblocks the public site.
+The deployed site currently runs through GitHub Pages via `architrino.com`. The Archie question interface should not be reduced to a static/local-source UI prototype. Treat a real Archie question service as long-term platform work: a separately designed deployment with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, cost controls, observability, and rollback behavior. The long-term platform packet is [service-platform.md](service-platform.md). This platform work should wait behind the current theory-closure push unless it directly unblocks public readiness.
 
 ## Working Impression
 
@@ -48,21 +49,23 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 
 ## Task Queue
 
-1. `source_authority_boundary` - Convert the contract's source classes into a GitHub Pages-compatible first-launch allowlist: public corpus, scene routing, local generated indexes, app guides, selected development-status material, curated static prior-physics references, or a staged split. Status: `active`. Depends on: `assistant-mode-contract.md`.
-2. `ui_prototype` - Design the smallest non-disruptive Archie UI, including mode selection, prompt input, source links, answer history, and fallback navigation when answer generation is unavailable. Status: `next`. Depends on: `source_authority_boundary`.
-3. `implementation_path` - Choose the implementation route under the GitHub Pages constraint: static site-only navigation first, local search-backed answers from committed indexes, or a later server-backed platform after theory closure. Status: `pending`. Depends on: `ui_prototype`.
-4. `privacy_and_cost_boundary` - For any later server-backed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, cost controls, and failure behavior. Status: `pending`. Depends on: `implementation_path`.
-5. `validation_and_qa` - Define the validation checklist for scene graph drift, content validation, scene search, mobile layout, keyboard navigation, answer citations, and claim-level correctness before launch. Status: `pending`. Depends on: `implementation_path`.
+1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
+2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.
+3. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
+4. `platform_architecture_packet` - When platform work is selected, compare deployment routes: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, or managed AI gateway. Status: `deferred`. Depends on: `theory_closure_first`.
+5. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `platform_architecture_packet`.
+6. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
 
 ## Promotion Map
 
 | Task | Primary target | Promotion gate |
 | --- | --- | --- |
+| `theory_closure_first` | Core proof/corpus readiness. | Archie has stable enough source substance to explain publicly. |
+| `service_platform_priority` | Long-term platform plan. | Archie is treated as a deployed service, not a static UI mockup. |
 | `source_authority_boundary` | Public-answer source policy. | Priority-only and speculative material cannot appear as established corpus claims. |
-| `ui_prototype` | Prototype UI task. | The interface can be tested without committing to public AI answer generation. |
-| `implementation_path` | Runtime implementation task. | The first public path fits GitHub Pages without browser-side secrets or direct public model calls. |
-| `privacy_and_cost_boundary` | Later platform launch gate. | User data, service use, logging, and budget limits are explicit before any server-backed answer generation. |
-| `validation_and_qa` | Launch checklist. | Scene, UI, answer, and claim-level checks pass. |
+| `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting. |
+| `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
+| `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |
 
 ## Initial Constraints
 
@@ -70,9 +73,9 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 - Do not present priority-only material as published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus knowledge.
 - Do not let AI answer generation bypass scene, markdown, and app-guide source authority.
 - Let Archie support an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance, with proof status, caveats, gates, and metrics routed through the System Card.
-- Treat GitHub Pages as the first-launch deployment boundary: public Archie behavior must work as static site code, committed source indexes, and in-browser navigation unless a later backend platform is explicitly approved.
+- Treat GitHub Pages as the current site host and public entry surface, not as the target architecture for the full Archie question service.
 - Do not put private model API keys, service credentials, user-history storage, or direct public model calls in browser JavaScript.
-- Treat server-backed AI, speech, image intake, and durable user history as a later platform phase after the source-authority, privacy, logging, cost, and failure boundaries are explicit.
+- Treat server-backed AI, speech, image intake, and durable user history as long-term platform features after theory closure and after source-authority, privacy, logging, cost, deployment, operations, and failure boundaries are explicit.
 - Do not route public-support, GitHub, PDF, comics, or app entry points behind a hidden or non-obvious branch.
 - Keep scene consolidation separate from public answer generation.
 
@@ -80,7 +83,7 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 
 ```text
 Closure goal:
-Set the first-launch Archie source-authority boundary so UI prototyping can proceed without exposing unsupported claims.
+Design the long-term Archie service platform so the eventual question interface is deployed correctly instead of becoming a static/local-source UI prototype.
 
 Use the `aaa-corpus-advancement` skill in edit-batch mode.
 
@@ -94,30 +97,32 @@ Context:
 - The first assistant behavior contract is captured in `reference/priorities/archie/assistant-mode-contract.md`.
 - The CTO objective now includes public education and outreach through text, speech, and image-grounded Archie interactions.
 - The Archie sphere now includes a System Card sphere with routes for overview, closure scorecard, validation, caveats, and launch-status surfaces.
-- The deployed site runs through GitHub Pages via `architrino.com`, so the first public prototype must work as static browser code with committed local indexes and no private model credentials in the client.
-- More capable server-backed AI service work is a later platform phase, expected after the current theory-closure push unless it directly unblocks the public site.
+- The deployed site currently runs through GitHub Pages via `architrino.com`.
+- The operator does not want a static/local-source Archie UI prototype.
+- The desired Archie question interface is long-term platform work with deployment, backend/serverless runtime, model/provider boundary, privacy, logging, rate limits, cost controls, source authority, System Card disclosure, operations, monitoring, and rollback.
+- This work should wait behind core theory closure unless platform design directly unblocks public readiness.
 
 Task:
-- Decide the first-launch allowlist for each source class in `assistant-mode-contract.md`.
-- Treat GitHub Pages compatibility as a hard first-launch constraint.
-- Specify whether priority material, generated reading copies, app guides, public reference material, and external prior-physics sources are visible to public users, operator/developer mode only, or excluded from first launch.
-- Decide whether the first prototype includes only typed questions and static/local-source routing, or only reserves UI/API seams for later speech, image-grounded questions, and server-backed AI.
-- Decide which System Card metrics are first-launch required and which can remain later-stage.
-- Produce the smallest source policy needed for a static or local-search UI prototype.
+- Use `reference/priorities/archie/service-platform.md` as the long-term platform priority.
+- Compare deployment options: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, and managed AI gateway.
+- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/cost policy, observability, staging/production split, and rollback plan.
+- Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:
-- Inspect `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/archie.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `content/markdown/aaa/archie/`, `reference/archie/`, and generated scene/markdown index behavior.
+- Inspect `reference/priorities/archie/service-platform.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/archie.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, runtime entry points, and generated scene/markdown index behavior.
 - Do not promote priority-only material into reader-facing corpus prose.
+- Do not build runtime code unless explicitly requested.
 
 Constraints:
 - Preserve TeX exactly.
 - Use canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology.
 - Keep priority-only material visibly priority-only.
-- Edit authority: priority/design capture is authorized; stop before adding runtime AI generation, external-source live search, logging, or changing theory/canon claims.
+- Edit authority: priority/design capture is authorized; stop before adding runtime AI generation, external-source live search, logging, deployment config, or changing theory/canon claims.
 - Do not add browser-side model API calls or private credentials.
 
 Expected output:
-- First-launch source policy and System Card metric policy captured or advanced.
-- Remaining blockers for UI prototyping listed.
-- Validation checklist.
+- Long-term platform architecture options.
+- Required platform decisions.
+- Public beta gates.
+- Concrete implementation phases.
 ```

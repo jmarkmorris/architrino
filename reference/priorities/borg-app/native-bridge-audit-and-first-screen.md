@@ -14,6 +14,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | [face-boundary-replay](face-boundary-replay.md) | Outbound/inbound face-boundary summary and replay fixture requirements. |
 | Existing central solver bridge | Current production solver boundary and ABI extension point. |
 | Existing simulation runtime surfaces | Current state, trajectory frames, bounded trails, and visualization-frame evidence. |
+| [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) | First Borg developer-test fixture that binds native bridge output into `borg-dataset-manifest.v1`. |
 
 ## Capability Classification
 
@@ -24,16 +25,19 @@ The audit is priority-design material. It does not promote app output to proof e
 | Scale controls | `manifest-gap` | Existing configs carry side length and scale-like fields. | Manifest must record outer computed `sideLength`, displayed `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, derived outer `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, and error budget. |
 | Initial conditions | `native-backed-now` for random/lattice/clustered/explicit families; `manifest-gap` for app-facing provenance | Current setup supports generated and explicit state families plus polarity/composition encoding. | First screen can expose random 50/50 launch state, central-count presets, derived outer computed count, and velocity policies; manifest must preserve exact resolved assignments. |
 | No physical mass input | `native-backed-now` for app contract policy | The app requirement labels numerical scalars as `integrationWeight` / `integrationWeights`. | UI, bridge schema, and manifest language must keep preventing physical-mass wording. |
-| Path history | `native-backed-now` for bounded trajectory/trail frames; `bridge-schema-gap` for durable solver-owned streams | Current runtime can produce sampled trajectory frames and bounded trails. | First screen can show recent trails as app-facing projection; durable path-history stream handles and replay indices remain gaps. |
+| Path history | `native-backed-now` for bounded trajectory/trail frames and the bridge-level path-history stream contract; `manifest-gap` for Borg binding | Current runtime can produce sampled trajectory frames and bounded trails; the central solver bridge schema exposes path-history stream rows, metadata, indexed readback, and dynamic replay validation. | First screen can show recent trails as app-facing projection; the first fixture must either bind durable `pathHistoryStreamIds` and `pathReplayIndexIds` into `borg-dataset-manifest.v1` or emit explicit `pathHistoryGapRows`. |
 | Wake history rows | `native-capability-gap` | Resolved row-bound wake-history output is not yet available as an app manifest product. | Wake streams must remain disabled/display-only until retained wake rows exist. |
-| Face-boundary rows | `native-capability-gap` | No bridge rows currently emit outbound architrino face summaries, outbound wake summaries, inbound replay rows, or $R_{\mathrm{face\ replay}}$. | Boundary layer starts disabled or display-only until face-boundary rows exist. |
+| Face-boundary rows | `native-capability-gap` | No bridge rows currently emit `borg-face-summary.v1`, `borg-face-replay-source.v1`, outbound wake summaries, inbound replay rows, or $R_{\mathrm{face\ replay}}$. | Boundary layer starts disabled or display-only until face-boundary rows exist. |
+| Path-derived face influence model | `native-capability-gap` | No current bridge product emits `borg-face-influence-model.v1` from native path streams, path indices, kernels, and face distribution models. | Per-point face projection caches remain display/debug only; the first fixture emits fail-closed gap rows for `faceInfluenceModelIds`. |
+| Six-face boundary noise policy | `developer-test` gap rows for placeholders; `native-capability-gap` for measured replay output | The design defines `borg-six-face-boundary-noise-policy.v1`, but no native-backed row emits face-source mixtures, six-face policy status, history-hiding status, or `benignNoiseStatus`. | Replay-affected values remain display-only or fail-closed until complete six-face coverage, source traceability, measured velocity sampling, wake reconstruction, and central residuals pass. |
+| Velocity-scale sampling rows | `native-capability-gap` | No native-backed `borg-velocity-sampling-protocol.v1` or `borg-velocity-sampling-result.v1` rows are measured for the Borg fixture yet. | Velocity-scale sampling remains `research-open`; the first fixture emits fail-closed velocity sampling gap rows. |
 | Receiver acceleration decomposition | `native-capability-gap` | Current output can expose total acceleration but not row-bound local/background/boundary contributions. | Show only total acceleration until decomposition rows exist. |
 | Error budget and diagnostic status vocabulary | `manifest-gap` | General bridge has precision/value-authority concepts, but the app manifest does not yet attach the vocabulary to each displayed value. | First screen must show `missing-error-budget` or `fail-closed-value` for values without manifest-backed error budget. |
 | 3-D rotate and zoom | `display-only` | Existing 2D or projection renderers are not the final app surface. | First screen should target a 3D viewport; camera controls are display-only and separate from simulation scale. |
 | Visualization resolution | `display-only` | The native solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest | `priority-design-complete`; implementation remains `manifest-gap` | Existing outputs do not emit the app-facing run cover sheet; the design source is [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md). | The next implementation artifact should emit the manifest from native-backed current-state data plus explicit gap rows for missing path-history, wake-history, face-boundary, and error-budget products. |
+| Dataset manifest | `developer-test` fixture complete; app integration remains `manifest-gap` | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows. | The next implementation artifact should consume the manifest in the app surface while keeping missing wake-history rows, face-boundary rows, face influence models, six-face policy rows, velocity sampling rows, residual decisions, and deployment budgets fail-closed or placeholder-only. |
 
 ## Smallest Elegant First Screen
 
@@ -105,12 +109,26 @@ Minimum timeline:
 
 ## Implementation Order
 
-1. Implement the app dataset manifest from [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md) so the first screen can distinguish solver-backed values from projections and gaps.
+1. Use [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) as the first developer-test manifest source. It already distinguishes native-backed frames/path history from explicit wake, face-boundary, face influence, six-face policy, velocity sampling, and residual gap rows.
 2. Add a 3D viewport surface that consumes current visualization frames without changing solver behavior.
 3. Add the layer controller with default-visible `simulation-window` and `architrino-position`; keep velocity rays behind the layer toggle and selected-object editing.
 4. Add selected-object diagnostics using current state, run summary, and diagnostic status vocabulary.
-5. Keep wake streams, face-boundary replay, and acceleration decomposition disabled or fail-closed until native and manifest support exists.
+5. Keep wake streams, face-boundary replay, six-face benign-noise status, velocity-sampling promotion, and acceleration decomposition disabled or fail-closed until native and manifest support exists.
+
+## First Native-Backed Fixture Artifact
+
+`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs the existing native central bridge through a two-architrino pair-interaction smoke fixture and validates these manifest facts:
+
+1. `nativeSolverStatus = native-backed-now`;
+2. `executionPath = native_c_abi`;
+3. native current-state frame count is 6;
+4. native path-history row count is 4;
+5. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
+6. native path-history bounds cross the outer x faces;
+7. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
+
+The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 
 ## Next Exact Build Burden
 
-Select `first_native_backed_fixture`: the smallest native central solver run that can emit `borg-dataset-manifest.v1` while exercising scale, face crossings, path-history replay, and at least one wake-history or boundary-status diagnostic. The fixture must include topology, simulation envelope, outer computed side length, displayed central volume, buffer margin, central architrino count, outer computed architrino count, buffer architrino count, central-volume velocity bound, central observation interval, initial conditions, current state frames, trajectory/path-history sources or explicit gap rows, native bridge status, diagnostic status, value authority, wake-history gap rows, face-boundary replay gap rows, error-budget status, deployment budget placeholders, and a 4K UHD render manifest.
+Build `app_surface_design`: the first Borg screen or screen-spec consumer for the emitted `borg-dataset-manifest.v1` fixture. The screen must render the displayed central cube, native current-state frames, path-history availability, and fail-closed boundary diagnostics without changing solver state or promoting replay-affected values.

@@ -362,6 +362,110 @@ test("active-domain two-sheet global-binding producer schema stays fail closed",
   );
 });
 
+test("selected active-domain bounded-gap fill evidence schema keeps row split fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "selected-active-domain-bounded-gap-fill-evidence-producer-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-selected-active-domain-bounded-gap-fill-evidence-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.parentProducerStepId,
+    "active_domain_extension_required_before_two_sheet_global_binding"
+  );
+  assert.equal(
+    schema.targetObjectId,
+    "selected_active_domain_bounded_gap_fill_evidence"
+  );
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-selected-active-domain-bounded-gap-fill-evidence-producer-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "classify_selected_active_domain_bounded_gap_fill_evidence"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "five_selected_active_domain_bounded_gap_rows",
+    "direct_support_row_split",
+    "direct_absence_row_split",
+    "endpoint_bracket_fields",
+    "affine_bracket_fields",
+    "selected_partial_support_retained_row_set_binding",
+    "selected_direct_absence_bounded_gap_fill_law",
+    "same_record_binding",
+  ]);
+  assert.deepEqual(schema.expectedSelectedRowIds, [
+    "inner->middle:28:right",
+    "inner->outer:11:left",
+    "inner->outer:17:right",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ]);
+  assert.deepEqual(schema.directSupportRowIds, [
+    "inner->middle:28:right",
+    "inner->outer:17:right",
+  ]);
+  assert.deepEqual(schema.directAbsenceRowIds, [
+    "inner->outer:11:left",
+    "inner->outer:31:right",
+    "inner->outer:81:right",
+  ]);
+  assert.equal(
+    schema.firstMissingField,
+    "selected_partial_support_retained_row_set_binding"
+  );
+  assert.equal(
+    schema.firstDirectAbsenceMissingField,
+    "selected_direct_absence_bounded_gap_fill_law"
+  );
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "one_retained_record",
+    "one_route_root_key",
+    "one_event_root_key",
+    "five_selected_active_domain_bounded_gap_rows",
+    "one_direct_support_retained_row_set_binding_status",
+    "one_direct_absence_bounded_gap_fill_law_status",
+  ]);
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+    "global_retained_row_set_identity",
+    "accepted_nonlocal_transport",
+    "event_root_identity_conservation",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_only_rows_not_selected_bounded_gap_fill_evidence",
+      "affine_geometry_alone_not_selected_bounded_gap_fill_evidence",
+      "one_sheet_or_cross_root_joins_not_selected_bounded_gap_fill_evidence",
+      "sampled_support_not_selected_bounded_gap_fill_evidence",
+      "phase_cancellation_rows_not_selected_bounded_gap_fill_evidence",
+      "aggregate_rows_not_selected_bounded_gap_fill_evidence",
+      "target_only_rows_not_selected_bounded_gap_fill_evidence",
+      "route_only_rows_not_selected_bounded_gap_fill_evidence",
+      "cross_row_bundles_not_selected_bounded_gap_fill_evidence",
+      "current_proxy_branch_charts_not_selected_bounded_gap_fill_evidence",
+    ]
+  );
+});
+
 test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
   const schema = JSON.parse(
     execFileSync(

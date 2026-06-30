@@ -21,7 +21,7 @@ The system card sphere should grow into a compact public dashboard for:
 - major open proof burdens;
 - formula, coefficient, parameter, benchmark, and validation gaps;
 - source-authority policy for Archie answers;
-- deployment boundary for the GitHub Pages public site;
+- deployment boundary for the long-term Archie service;
 - enabled input modes: typed questions, speech, and image-grounded questions;
 - launch gates for privacy, cost, logging, citations, and fallback behavior;
 - known limits of app diagnostics and visual explanations;
@@ -33,14 +33,14 @@ The ordinary Archie answer should be useful first: clear, direct, and written fr
 
 The system card carries the heavier status burden. A normal answer can link to the system card, cite the strongest local sources, and keep moving. When a user asks whether a claim is proven, blocked, speculative, or only a working route, Archie should route them directly to the relevant scorecard, gate, or validation document.
 
-## First Launch Boundary
+## Service Launch Boundary
 
-For the first public prototype, the safest system-card rule is:
+For the public Archie question service, the safest system-card rule is:
 
-1. treat GitHub Pages as the first public deployment boundary;
-2. use published corpus, scene routes, and committed local indexes as the default answer and navigation sources;
-3. avoid browser-side private credentials, direct public model API calls, live external search, and durable user-history storage;
+1. treat GitHub Pages as the current public site host, not as the target architecture for the full question service;
+2. build the question interface only as a properly deployed service with backend or serverless runtime support;
+3. avoid browser-side private credentials, direct public model API calls, uncontrolled live external search, and ungoverned durable user-history storage;
 4. show priority-only material only when the interface clearly labels it as development status;
 5. treat external prior-physics material as comparison context, not $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology;
 6. treat app visuals as explanatory or diagnostic unless a validation artifact says more;
-7. keep server-backed AI answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, and failure behavior are defined.
+7. keep public AI answers, speech, and image intake behind explicit platform gates until privacy, logging, source routing, rate limits, cost controls, observability, rollback, and failure behavior are defined.

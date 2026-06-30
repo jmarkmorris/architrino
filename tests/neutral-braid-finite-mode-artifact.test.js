@@ -78,6 +78,64 @@ test("neutral braid finite-mode artifact keeps action rows and rank-5 authorizat
   const artifact = buildArtifact();
 
   assert.equal(artifact.all_pairs_root_ledger.status, "all-pairs-root-ledger-open");
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.status,
+    "same-run-prerequisites-open"
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.first_missing_field,
+    "bounded_speed_delay_brackets"
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.source_ledger_reference.seed_only,
+    true
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.source_ledger_reference
+      .promoted_as_bounded_speed_evidence,
+    false
+  );
+  assert.equal(artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.clock_lift.rows.length, 6);
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.pair_policy_handoff
+      .ordered_distinct_pair_count,
+    30
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.root_label_handoff.root_labels.length,
+    30
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.accepted_bounded_speed_live_ledger,
+    null
+  );
+  assert.equal(
+    artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff.certifies_bounded_speed_live_ledger,
+    false
+  );
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.status, "same-run-prerequisites-open");
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.row_family, "bounded_speed_active_root_prerequisites");
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.first_missing_field, "bounded_speed_delay_brackets");
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.accepted_active_roots, null);
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.certifies_active_roots, false);
+  assert.equal(artifact.all_pairs_root_ledger.active_roots.rows.length, 30);
+  assert.equal(
+    artifact.all_pairs_root_ledger.active_roots.rows.every(
+      (row) =>
+        row.chart_run_id === artifact.chart_run.run_id &&
+        row.bounded_speed_root_equation.first_missing_field === "bounded_speed_delay_bracket" &&
+        row.delay_bracket.status === "not_computed" &&
+        row.delay_floor.status === "not_computed" &&
+        row.jacobian.status === "not_computed" &&
+        row.source_provenance.retained_source_binding === null &&
+        row.source_provenance.provider_provenance === null &&
+        row.fixed_speed_source_reference.allowed_as_seed === true &&
+        row.fixed_speed_source_reference.promoted_as_bounded_speed_evidence === false &&
+        row.accepted_active_root === null &&
+        row.certifies_active_root === false
+    ),
+    true
+  );
   assert.equal(artifact.action_measure_row.status, "absent-fail-closed");
   assert.equal(
     artifact.action_measure_row.first_missing_field_after_period_rows,

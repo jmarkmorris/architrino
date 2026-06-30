@@ -6,7 +6,13 @@ The People scene separates the founder/CEO profile, the CTO role, and the projec
 
 ## Founder and CEO
 
+J Mark Morris is the CEO of Architrino, LLC. His technical training spans electrical and computer engineering: he earned a BSEE from Rensselaer Polytechnic Institute and an MSCE from Carnegie Mellon University, after attending Evanston Township High School. His first post-university role was at Bell Laboratories.
+
+Since 2018, Morris has led the development of the Architrino Assembly Architecture as a fundamental-physics research program, combining original theory work, thought experimentation, product direction, editorial judgment, and public-facing research architecture.
+
 The founder/CEO role carries company direction, original theory insight, creative problem solving, relentless root-cause investigation, product instinct, editorial judgment, public voice, and strategic decisions about where Architrino should go next.
+
+The working style should be presented as disciplined adaptability: nonlinear exploration across the problem space, willingness to revise claims when stronger facts, analysis, or arguments require it, and persistent learning while the architecture develops.
 
 The CEO image should use a supplied photograph or an approved portrait image. Do not substitute a generated likeness for the founder without explicit approval.
 

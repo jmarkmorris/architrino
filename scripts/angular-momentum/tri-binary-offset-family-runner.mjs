@@ -106,6 +106,19 @@ if (
   process.exit(0);
 }
 if (
+  args.schema ===
+  "selected-active-domain-bounded-gap-fill-evidence-producer-target"
+) {
+  console.log(
+    JSON.stringify(
+      createSelectedActiveDomainBoundedGapFillEvidenceProducerTargetSchema(),
+      null,
+      2
+    )
+  );
+  process.exit(0);
+}
+if (
   args.schema === "accepted-nonlocal-transport-global-row-set-producer-target"
 ) {
   console.log(
@@ -30214,6 +30227,15 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
       directAbsenceNonlocalSourceBoundDependencyAudit,
       dynamicPresenceMeasureLawTarget,
     });
+  const selectedBoundedGapFillEvidenceProducerStep =
+    createSelectedActiveDomainBoundedGapFillEvidenceProducerStep({
+      rows: auditRows,
+      directAbsenceLatticeLawAudit,
+      directAbsenceSupportSourceAudit,
+      directAbsenceRowLocalEvidenceAudit,
+      directAbsenceNonlocalSourceBoundDependencyAudit,
+      directAbsenceSourceBindingActiveDomainCycleAudit,
+    });
   const firstSelectedActiveDomainBoundedGapFillSourceBlocker =
     auditRows.find((row) => row.firstSelectedBoundedGapFillSourceRowBlocker)
       ?.firstSelectedBoundedGapFillSourceRowBlocker ?? null;
@@ -30249,6 +30271,15 @@ function createSelectedActiveDomainBoundedGapFillSourceAudit({
     acceptedSelectedActiveDomainBoundedGapFillSourceRowCount:
       acceptedRows.length,
     firstSelectedActiveDomainBoundedGapFillSourceBlocker,
+    selectedBoundedGapFillEvidenceProducerStepStatus:
+      selectedBoundedGapFillEvidenceProducerStep.status,
+    selectedBoundedGapFillEvidenceProducerStep,
+    selectedBoundedGapFillEvidenceDirectSupportRowCount:
+      selectedBoundedGapFillEvidenceProducerStep.directSupportRowCount,
+    selectedBoundedGapFillEvidenceDirectAbsenceRowCount:
+      selectedBoundedGapFillEvidenceProducerStep.directAbsenceRowCount,
+    firstSelectedBoundedGapFillEvidenceField:
+      selectedBoundedGapFillEvidenceProducerStep.firstMissingField,
     directAbsenceLatticeLawAuditStatus:
       directAbsenceLatticeLawAudit.status,
     directAbsenceLatticeLawAudit,
@@ -34027,6 +34058,254 @@ function createSelectedActiveDomainDirectAbsenceLatticeLawAudit({
     rows: auditRows,
     retainedLimitation:
       "The selected direct-absence gaps cannot be filled by a local lattice/touching-boundary shortcut: every direct-absence row lies in a pair-agnostic geometry class that also contains direct support, while pair-specific refinement either remains mixed or becomes a source-free singleton. A nonlocal dynamic fill law or explicit rejection is still required.",
+  };
+}
+
+function createSelectedActiveDomainBoundedGapFillEvidenceProducerStep({
+  rows = [],
+  directAbsenceLatticeLawAudit = null,
+  directAbsenceSupportSourceAudit = null,
+  directAbsenceRowLocalEvidenceAudit = null,
+  directAbsenceNonlocalSourceBoundDependencyAudit = null,
+  directAbsenceSourceBindingActiveDomainCycleAudit = null,
+} = {}) {
+  const rowsByKey = (sourceRows) =>
+    new Map(
+      (sourceRows ?? []).map((row) => [
+        `${row.pairKey}:${row.edgeIndex}:${row.side}`,
+        row,
+      ])
+    );
+  const latticeRowsByKey = rowsByKey(directAbsenceLatticeLawAudit?.rows);
+  const supportRowsByKey = rowsByKey(directAbsenceSupportSourceAudit?.rows);
+  const rowLocalEvidenceRowsByKey = rowsByKey(
+    directAbsenceRowLocalEvidenceAudit?.rows
+  );
+  const nonlocalSourceBoundRowsByKey = rowsByKey(
+    directAbsenceNonlocalSourceBoundDependencyAudit?.rows
+  );
+  const dynamicFillLawTarget =
+    directAbsenceSourceBindingActiveDomainCycleAudit?.cycleBreakRouteAudit
+      ?.directAbsenceDynamicFillLawTarget ?? null;
+  const directSupportRows = rows.filter(
+    (row) => row.anyDirectEventRootSupportPass === true
+  );
+  const directAbsenceRows = rows.filter(
+    (row) => row.directReplayEventRootAbsentPass === true
+  );
+  const directSupportRetainedBindingRows = directSupportRows.filter(
+    (row) => row.retainedRowSetBindingProofPass === true
+  );
+  const acceptedRows = rows.filter(
+    (row) => row.acceptedSelectedBoundedGapFillSourcePass === true
+  );
+  const directAbsenceAcceptedRows = directAbsenceRows.filter(
+    (row) => row.acceptedSelectedBoundedGapFillSourcePass === true
+  );
+  const directSupportMissingBindingRows = directSupportRows.filter(
+    (row) => row.retainedRowSetBindingProofPass !== true
+  );
+  const rowEvidence = rows.map((row) => {
+    const rowKey = `${row.pairKey}:${row.edgeIndex}:${row.side}`;
+    const latticeRow = latticeRowsByKey.get(rowKey) ?? null;
+    const supportRow = supportRowsByKey.get(rowKey) ?? null;
+    const rowLocalEvidenceRow = rowLocalEvidenceRowsByKey.get(rowKey) ?? null;
+    const nonlocalSourceBoundRow =
+      nonlocalSourceBoundRowsByKey.get(rowKey) ?? null;
+    const directSupportLanePass = row.anyDirectEventRootSupportPass === true;
+    const directAbsenceLanePass = row.directReplayEventRootAbsentPass === true;
+    const acceptedSelectedBoundedGapFillEvidenceRowPass = false;
+    const firstMissingField =
+      acceptedSelectedBoundedGapFillEvidenceRowPass
+        ? null
+        : directSupportLanePass &&
+            row.retainedRowSetBindingProofPass !== true
+          ? "selected_partial_support_retained_row_set_binding"
+          : directAbsenceLanePass
+            ? "selected_direct_absence_bounded_gap_fill_law"
+            : directSupportLanePass
+              ? "accepted_retained_fill_law_from_selected_direct_support"
+              : "selected_bounded_gap_support_or_absence_classification";
+    return {
+      rowId: `${row.pairKey}:${row.edgeIndex}:${row.side}`,
+      pairKey: row.pairKey,
+      edgeIndex: row.edgeIndex,
+      side: row.side,
+      eventRootKey: row.eventRootKey,
+      start: row.start,
+      end: row.end,
+      width: row.width,
+      priorBoundaryEdgeIndex: row.priorBoundaryEdgeIndex,
+      nextBoundaryEdgeIndex: row.nextBoundaryEdgeIndex,
+      priorDistance: row.priorDistance,
+      nextDistance: row.nextDistance,
+      bracketSpan: row.bracketSpan,
+      widthUnits: row.widthUnits,
+      priorDistanceUnits: row.priorDistanceUnits,
+      nextDistanceUnits: row.nextDistanceUnits,
+      bracketSpanUnits: row.bracketSpanUnits,
+      latticeAligned: row.latticeAligned === true,
+      touchingPrior: row.touchingPrior === true,
+      touchingNext: row.touchingNext === true,
+      directSupportLanePass,
+      directAbsenceLanePass,
+      midpointReplayPopulated: row.midpointReplayPopulated === true,
+      midpointEventRootPresencePass:
+        row.midpointEventRootPresencePass === true,
+      midpointActiveRootKeys: row.midpointActiveRootKeys ?? [],
+      partialSupportCandidatePass:
+        row.partialSupportCandidatePass === true,
+      sampledRootSheetEnclosureCandidatePass:
+        row.sampledRootSheetEnclosureCandidatePass === true,
+      sampledDerivativeSignMarginCandidatePass:
+        row.sampledDerivativeSignMarginCandidatePass === true,
+      retainedRowSetBindingProofPass:
+        row.retainedRowSetBindingProofPass === true,
+      retainedBindingBothActiveConversionPairPass:
+        row.retainedBindingBothActiveConversionPairPass === true,
+      retainedBindingCompetitorRootPresentPass:
+        row.retainedBindingCompetitorRootPresentPass === true,
+      directAbsenceLocalLatticeLawStatus:
+        latticeRow?.firstDirectAbsenceLatticeLawRowBlocker ?? null,
+      directAbsenceSupportSourceStatus:
+        supportRow?.firstDirectAbsenceSupportSourceRowBlocker ?? null,
+      directAbsenceRowLocalEvidenceStatus:
+        rowLocalEvidenceRow?.firstRowLocalEvidenceBlocker ?? null,
+      directAbsenceNonlocalSourceBoundStatus:
+        nonlocalSourceBoundRow?.firstNonlocalSourceBoundDependencyRowBlocker ??
+        null,
+      acceptedSelectedBoundedGapFillEvidenceRowPass,
+      firstMissingField,
+    };
+  });
+  const firstMissingField =
+    directSupportMissingBindingRows.length > 0
+      ? "selected_partial_support_retained_row_set_binding"
+      : directAbsenceRows.length > directAbsenceAcceptedRows.length
+        ? "selected_direct_absence_bounded_gap_fill_law"
+        : rows.length > acceptedRows.length
+          ? "accepted_selected_active_domain_bounded_gap_fill_evidence"
+          : null;
+  const firstDirectSupportMissingField =
+    directSupportMissingBindingRows.length > 0
+      ? "selected_partial_support_retained_row_set_binding"
+      : directSupportRows.length > directSupportRetainedBindingRows.length
+        ? "accepted_retained_fill_law_from_selected_direct_support"
+        : null;
+  const firstDirectAbsenceMissingField =
+    directAbsenceRows.length > directAbsenceAcceptedRows.length
+      ? "selected_direct_absence_bounded_gap_fill_law"
+      : null;
+  const status =
+    rows.length === 0
+      ? "selected_active_domain_bounded_gap_fill_evidence_no_rows"
+      : acceptedRows.length === rows.length
+        ? "selected_active_domain_bounded_gap_fill_evidence_accepted"
+        : directSupportMissingBindingRows.length > 0 &&
+            directAbsenceRows.length > directAbsenceAcceptedRows.length
+          ? "selected_active_domain_bounded_gap_fill_evidence_blocked_retained_binding_and_direct_absence_fill_law"
+          : directSupportMissingBindingRows.length > 0
+            ? "selected_active_domain_bounded_gap_fill_evidence_blocked_retained_binding"
+            : directAbsenceRows.length > directAbsenceAcceptedRows.length
+              ? "selected_active_domain_bounded_gap_fill_evidence_blocked_direct_absence_fill_law"
+              : "selected_active_domain_bounded_gap_fill_evidence_blocked_acceptance_law_missing";
+
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-bounded-gap-fill-evidence-producer-step.v1",
+    status,
+    claimLevel:
+      "fail-closed producer step for selected active-domain bounded-gap fill evidence; not retained branch acceptance",
+    retainedBranchClaim: false,
+    parentProducerStepId:
+      "active_domain_extension_required_before_two_sheet_global_binding",
+    targetObjectId: "selected_active_domain_bounded_gap_fill_evidence",
+    producerStepId:
+      "classify_selected_active_domain_bounded_gap_fill_evidence",
+    eventRootKeys: [
+      ...new Set(
+        rows
+          .map((row) => row.eventRootKey)
+          .filter((eventRootKey) => eventRootKey != null)
+          .map(String)
+      ),
+    ].sort(),
+    acceptedSelectedBoundedGapFillEvidencePass:
+      acceptedRows.length === rows.length && rows.length > 0,
+    emitsBranchCertificateRef: false,
+    emitsAcceptedBranchChart: false,
+    emitsMovingRetainedBranchCertificate: false,
+    emitsAcceptedTransitionSource: false,
+    emitsRetainedBranchClosure: false,
+    emitsGlobalRetainedRowSetIdentity: false,
+    emitsAcceptedNonlocalTransport: false,
+    emitsIdentityConservation: false,
+    selectedBoundedGapRowCount: rows.length,
+    directSupportRowCount: directSupportRows.length,
+    directSupportRetainedBindingRowCount:
+      directSupportRetainedBindingRows.length,
+    directSupportMissingRetainedBindingRowCount:
+      directSupportMissingBindingRows.length,
+    directAbsenceRowCount: directAbsenceRows.length,
+    directAbsenceAcceptedFillLawRowCount: directAbsenceAcceptedRows.length,
+    selectedRowIds: rowEvidence.map((row) => row.rowId),
+    directSupportRowIds: rowEvidence
+      .filter((row) => row.directSupportLanePass)
+      .map((row) => row.rowId),
+    directAbsenceRowIds: rowEvidence
+      .filter((row) => row.directAbsenceLanePass)
+      .map((row) => row.rowId),
+    endpointBracketEvidence: {
+      allRowsHaveEndpointBracketsPass:
+        rows.length > 0 &&
+        rows.every(
+          (row) =>
+            row.priorBoundaryEdgeIndex != null &&
+            row.nextBoundaryEdgeIndex != null
+        ),
+      allRowsTouchNextEventRootBoundaryPass:
+        rows.length > 0 && rows.every((row) => row.touchingNext === true),
+    },
+    affineBracketEvidence: {
+      allRowsLatticeAlignedPass:
+        rows.length > 0 && rows.every((row) => row.latticeAligned === true),
+      bracketSpanUnitValues: [
+        ...new Set(rows.map((row) => row.bracketSpanUnits).filter(Number.isFinite)),
+      ].sort((left, right) => left - right),
+      widthUnitValues: [
+        ...new Set(rows.map((row) => row.widthUnits).filter(Number.isFinite)),
+      ].sort((left, right) => left - right),
+    },
+    currentSourceStatuses: {
+      directAbsenceLatticeLawStatus:
+        directAbsenceLatticeLawAudit?.status ?? null,
+      directAbsenceSupportSourceStatus:
+        directAbsenceSupportSourceAudit?.status ?? null,
+      directAbsenceRowLocalEvidenceStatus:
+        directAbsenceRowLocalEvidenceAudit?.status ?? null,
+      directAbsenceNonlocalSourceBoundDependencyStatus:
+        directAbsenceNonlocalSourceBoundDependencyAudit?.status ?? null,
+      directAbsenceDynamicFillLawTargetStatus:
+        dynamicFillLawTarget?.status ?? null,
+    },
+    firstMissingField,
+    firstDirectSupportMissingField,
+    firstDirectAbsenceMissingField,
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createSelectedActiveDomainBoundedGapFillEvidenceNegativeControls(),
+    rows: rowEvidence,
+    retainedLimitation:
+      "The five selected active-domain bounded gaps now have an explicit split: direct-support rows must bind their partial-support evidence to the global retained row set, while direct-absence rows require a bounded-gap fill law. Neither split authorizes retained branch output without same-record retained binding, identity conservation, and accepted nonlocal transport.",
   };
 }
 
@@ -38735,6 +39014,128 @@ function createActiveDomainExtensionTwoSheetGlobalBindingProducerTargetSchema() 
     ],
     negativeControls:
       createActiveDomainExtensionTwoSheetGlobalBindingNegativeControls(),
+  };
+}
+
+function createSelectedActiveDomainBoundedGapFillEvidenceNegativeControls() {
+  return [
+    {
+      id: "endpoint_only_rows_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "endpoint bracket rows without retained row-set binding or a bounded-gap fill law",
+    },
+    {
+      id: "affine_geometry_alone_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "affine bracket geometry or lattice alignment without accepted selected-row fill evidence",
+    },
+    {
+      id: "one_sheet_or_cross_root_joins_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "one-sheet rows or cross-root joins that do not bind the selected rows on one route/root-key record",
+    },
+    {
+      id: "sampled_support_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "sampled direct support or partial support before retained row-set binding",
+    },
+    {
+      id: "phase_cancellation_rows_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "phase-cancellation or point-torque cancellation rows without selected bounded-gap fill evidence",
+    },
+    {
+      id: "aggregate_rows_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "aggregate summaries that erase the five selected row identities",
+    },
+    {
+      id: "target_only_rows_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "target-only rows or derived affine fits without independent source evidence",
+    },
+    {
+      id: "route_only_rows_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "route-only endpoint rows without retained binding and a direct-absence fill law",
+    },
+    {
+      id: "cross_row_bundles_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "cross-row bundles that assemble direct-support and direct-absence fields from separate records",
+    },
+    {
+      id: "current_proxy_branch_charts_not_selected_bounded_gap_fill_evidence",
+      rejects:
+        "current or proxy branch-chart rows before same-record selected bounded-gap fill evidence exists",
+    },
+  ];
+}
+
+function createSelectedActiveDomainBoundedGapFillEvidenceProducerTargetSchema() {
+  return {
+    schema:
+      "aaa-tri-binary-selected-active-domain-bounded-gap-fill-evidence-producer-target.schema.v1",
+    parentProducerStepId:
+      "active_domain_extension_required_before_two_sheet_global_binding",
+    targetObjectId: "selected_active_domain_bounded_gap_fill_evidence",
+    producerStepSchema:
+      "aaa-tri-binary-selected-active-domain-bounded-gap-fill-evidence-producer-step.v1",
+    producerStepId:
+      "classify_selected_active_domain_bounded_gap_fill_evidence",
+    eventRootKey: 2856731379702547500,
+    retainedBranchClaim: false,
+    claimLevel:
+      "schema contract for an angular-only fail-closed selected bounded-gap fill evidence producer step; not retained branch acceptance",
+    requiredFieldIds: [
+      "five_selected_active_domain_bounded_gap_rows",
+      "direct_support_row_split",
+      "direct_absence_row_split",
+      "endpoint_bracket_fields",
+      "affine_bracket_fields",
+      "selected_partial_support_retained_row_set_binding",
+      "selected_direct_absence_bounded_gap_fill_law",
+      "same_record_binding",
+    ],
+    expectedSelectedRowIds: [
+      "inner->middle:28:right",
+      "inner->outer:11:left",
+      "inner->outer:17:right",
+      "inner->outer:31:right",
+      "inner->outer:81:right",
+    ],
+    directSupportRowIds: [
+      "inner->middle:28:right",
+      "inner->outer:17:right",
+    ],
+    directAbsenceRowIds: [
+      "inner->outer:11:left",
+      "inner->outer:31:right",
+      "inner->outer:81:right",
+    ],
+    firstMissingField: "selected_partial_support_retained_row_set_binding",
+    firstDirectAbsenceMissingField:
+      "selected_direct_absence_bounded_gap_fill_law",
+    sameRecordBindingRequirements: [
+      "one_retained_record",
+      "one_route_root_key",
+      "one_event_root_key",
+      "five_selected_active_domain_bounded_gap_rows",
+      "one_direct_support_retained_row_set_binding_status",
+      "one_direct_absence_bounded_gap_fill_law_status",
+    ],
+    downstreamUnauthorizedUntilAccepted: [
+      "retained_active_row_branch_certificate_ref",
+      "accepted_same_record_branch_chart",
+      "moving_retained_branch_certificate",
+      "accepted_transition_source",
+      "retained_branch_closure",
+      "global_retained_row_set_identity",
+      "accepted_nonlocal_transport",
+      "event_root_identity_conservation",
+    ],
+    negativeControls:
+      createSelectedActiveDomainBoundedGapFillEvidenceNegativeControls(),
   };
 }
 
@@ -63743,5 +64144,6 @@ function printUsage(exitCode) {
   console.log("  --schema active-domain-extension-row-set-producer-target  Print the fail-closed active-domain extension producer schema and exit");
   console.log("  --schema event-root-absence-bridge-fill-law-producer-target  Print the fail-closed absence-bridge fill-law producer schema and exit");
   console.log("  --schema active-domain-extension-two-sheet-global-binding-producer-target  Print the fail-closed two-sheet active-domain binding producer schema and exit");
+  console.log("  --schema selected-active-domain-bounded-gap-fill-evidence-producer-target  Print the fail-closed selected bounded-gap fill evidence producer schema and exit");
   process.exit(exitCode);
 }

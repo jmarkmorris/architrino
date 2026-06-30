@@ -117,6 +117,21 @@ const INACTIVE_GAP_PREDICATES = [
   "owned-by-active-root",
 ];
 
+const LIVE_LEDGER_HANDOFF_REQUIRED_ROWS = [
+  "source_ledger_reference",
+  "bounded_chart",
+  "clock_lift",
+  "pair_policy_handoff",
+  "root_label_handoff",
+  "active_root_equations",
+  "inactive_gap_cover",
+  "jacobian_floor",
+  "tail_interface",
+  "root_derivative_columns",
+  "force_checksum",
+  "consumer_checksum",
+];
+
 const TAIL_TERMINAL_PREDICATES = [
   "excluded-gap",
   "unique-root-tube",
@@ -337,6 +352,85 @@ function buildPeriodRows(chartRun) {
   }));
 }
 
+function rootLabelForPair(pair) {
+  return `r_${pair.receiver}_${pair.source}_nu`;
+}
+
+function buildClockLiftRows(chartRun) {
+  return SITE_IDS.map((siteId) => ({
+    row: "clock_lift_prerequisite",
+    site: siteId,
+    chart_run_id: chartRun.run_id,
+    chi_symbol: `chi_${siteId}`,
+    lambda_symbol: `Lambda_${siteId}`,
+    period_symbol: `H_${siteId}`,
+    period: chartRun.common_period,
+    speed_factor_status: "bounded-speed-speed-factor-open",
+    inverse_clock_derivatives_status: "not_computed",
+    fixed_speed_seed_only: false,
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    cross_row_bundle: false,
+  }));
+}
+
+function buildActiveRootPrerequisiteRows(chartRun, pairs) {
+  return pairs.map((pair, index) => ({
+    row: "bounded_speed_active_root_prerequisite",
+    row_id: `active_root_prerequisite_${index + 1}`,
+    chart_run_id: chartRun.run_id,
+    root_label: rootLabelForPair(pair),
+    receiver: pair.receiver,
+    source: pair.source,
+    force_sign: pair.force_sign,
+    source_relation: pair.source_relation,
+    clock_lift_binding: {
+      receiver_clock_map: `chi_${pair.receiver}`,
+      source_clock_map: `chi_${pair.source}`,
+      receiver_inverse_clock_map: `Lambda_${pair.receiver}`,
+      source_inverse_clock_map: `Lambda_${pair.source}`,
+      period_convention: chartRun.period_convention,
+      status: "same-run-prerequisite",
+    },
+    bounded_speed_root_equation: {
+      equation: "G_r^nu(u,eta_r;Y,nu)=0",
+      status: "not_solved",
+      first_missing_field: "bounded_speed_delay_bracket",
+    },
+    delay_bracket: { status: "not_computed", lower: null, upper: null },
+    delay_floor: { status: "not_computed", value: null },
+    jacobian: {
+      status: "not_computed",
+      sign_label: null,
+      floor: null,
+      first_missing_field: "bounded_speed_root_solution",
+    },
+    inactive_gap_cover: {
+      status: "not_computed",
+      predicates: [...INACTIVE_GAP_PREDICATES],
+      rows: [],
+    },
+    source_provenance: {
+      status: "same-run-chart-source-open",
+      chart_id: chartRun.chart_id,
+      retained_source_binding: null,
+      provider_provenance: null,
+    },
+    fixed_speed_source_reference: {
+      allowed_as_seed: true,
+      promoted_as_bounded_speed_evidence: false,
+    },
+    accepted_active_root: null,
+    certifies_active_root: false,
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    sampled_diagnostic: false,
+    cross_row_bundle: false,
+  }));
+}
+
 function buildRootSupportEventRows(chartRun) {
   return {
     status: "same-run-open",
@@ -348,10 +442,10 @@ function buildRootSupportEventRows(chartRun) {
         row_id: "all_pairs_root_ledger",
         group: "root",
         chart_run_id: chartRun.run_id,
-        status: "open_placeholder",
+        status: "same-run-prerequisites-open",
         first_missing_field: "accepted_active_roots",
         absence_reason:
-          "no active, assimilated, or excluded all-pairs root ledger has been solved on this chart run",
+          "same-run active-root prerequisite rows are present, but no bounded-speed delay brackets, Jacobian floors, inactive-gap cover, or retained source binding certify accepted active roots",
       },
       {
         row_id: "root_sheet_rows",
@@ -462,6 +556,8 @@ export function buildArtifact(options = {}) {
   const inventory = siteInventory();
   const periodRows = buildPeriodRows(chartRun);
   const rootSupportEventRows = buildRootSupportEventRows(chartRun);
+  const clockLiftRows = buildClockLiftRows(chartRun);
+  const activeRootPrerequisiteRows = buildActiveRootPrerequisiteRows(chartRun, pairs);
 
   return {
     schema: SCHEMA_ID,
@@ -596,7 +692,71 @@ export function buildArtifact(options = {}) {
         ordered_distinct_pair_count: pairs.length,
         same_source_policy: sameSourcePolicy,
       },
-      active_roots: { status: "open_placeholder", rows: [] },
+      bounded_speed_live_ledger_handoff: {
+        status: "same-run-prerequisites-open",
+        required_rows: [...LIVE_LEDGER_HANDOFF_REQUIRED_ROWS],
+        first_missing_field: "bounded_speed_delay_brackets",
+        source_ledger_reference: {
+          source_artifact_id: "octahedral_root_ledger_diagnostic",
+          source_schema: "neutral-braid-octahedral-root-ledger/v1",
+          fixed_speed_special_case: true,
+          seed_only: true,
+          promoted_as_bounded_speed_evidence: false,
+        },
+        bounded_chart: {
+          chart_run_id: chartRun.run_id,
+          chart_id: chartRun.chart_id,
+          period_convention: chartRun.period_convention,
+          status: "same-run-chart-input",
+        },
+        clock_lift: {
+          status: "same-run-prerequisites-open",
+          rows: clockLiftRows,
+          first_missing_field: "bounded_speed_speed_factor_solution",
+        },
+        pair_policy_handoff: {
+          status: "same-run-prerequisite-computed",
+          policy: "Pi_all",
+          ordered_distinct_pair_count: pairs.length,
+          unordered_compression: false,
+        },
+        root_label_handoff: {
+          status: "same-run-prerequisite-computed",
+          root_labels: activeRootPrerequisiteRows.map((row) => row.root_label),
+          certified_bounded_speed_root_tubes: null,
+        },
+        active_root_equations: {
+          status: "same-run-prerequisites-open",
+          row_count: activeRootPrerequisiteRows.length,
+          first_missing_field: "bounded_speed_delay_brackets",
+        },
+        inactive_gap_cover: {
+          status: "not_computed",
+          predicates: [...INACTIVE_GAP_PREDICATES],
+          first_missing_field: "bounded_speed_inactive_gap_cover",
+        },
+        jacobian_floor: {
+          status: "not_computed",
+          first_missing_field: "bounded_speed_jacobian_floor",
+        },
+        tail_interface: { status: "not_computed", first_missing_field: "tail_ownership_map" },
+        root_derivative_columns: {
+          status: "not_computed",
+          first_missing_field: "root_sheet_derivatives",
+        },
+        force_checksum: { status: "not_computed" },
+        consumer_checksum: { status: "not_computed" },
+        accepted_bounded_speed_live_ledger: null,
+        certifies_bounded_speed_live_ledger: false,
+      },
+      active_roots: {
+        status: "same-run-prerequisites-open",
+        row_family: "bounded_speed_active_root_prerequisites",
+        first_missing_field: "bounded_speed_delay_brackets",
+        accepted_active_roots: null,
+        certifies_active_roots: false,
+        rows: activeRootPrerequisiteRows,
+      },
       assimilated_tail_roots: { status: "open_placeholder", rows: [] },
       excluded_tail_cells: { status: "open_placeholder", rows: [] },
       inactive_gaps: { status: "open_placeholder", predicates: INACTIVE_GAP_PREDICATES, rows: [] },
@@ -904,7 +1064,118 @@ export function validateArtifact(artifact) {
   const rootLedger = artifact.all_pairs_root_ledger;
   assertField(rootLedger?.status === "all-pairs-root-ledger-open", "root ledger status must be open", errors);
   assertField(rootLedger?.pair_policy_checksum?.ordered_distinct_pair_count === 30, "root ledger checksum must record 30 pairs", errors);
-  assertField(rootLedger?.active_roots?.status === "open_placeholder", "active_roots must be an open placeholder", errors);
+  const liveLedgerHandoff = rootLedger?.bounded_speed_live_ledger_handoff ?? {};
+  assertField(
+    liveLedgerHandoff.status === "same-run-prerequisites-open",
+    "bounded-speed live-ledger handoff must be same-run prerequisites open",
+    errors
+  );
+  assertField(
+    LIVE_LEDGER_HANDOFF_REQUIRED_ROWS.every((row) => liveLedgerHandoff.required_rows?.includes(row)),
+    "bounded-speed live-ledger handoff required rows are incomplete",
+    errors
+  );
+  assertField(
+    liveLedgerHandoff.first_missing_field === "bounded_speed_delay_brackets",
+    "bounded-speed live-ledger handoff first missing field must be bounded_speed_delay_brackets",
+    errors
+  );
+  assertField(
+    liveLedgerHandoff.source_ledger_reference?.seed_only === true &&
+      liveLedgerHandoff.source_ledger_reference?.promoted_as_bounded_speed_evidence === false,
+    "fixed-speed source ledger reference must remain seed-only",
+    errors
+  );
+  assertField(
+    liveLedgerHandoff.bounded_chart?.chart_run_id === chartRun?.run_id &&
+      liveLedgerHandoff.bounded_chart?.status === "same-run-chart-input",
+    "bounded chart handoff must bind to the same chart run",
+    errors
+  );
+  assertField(
+    Array.isArray(liveLedgerHandoff.clock_lift?.rows) &&
+      liveLedgerHandoff.clock_lift.rows.length === SITE_IDS.length &&
+      liveLedgerHandoff.clock_lift.rows.every((row) => row.chart_run_id === chartRun?.run_id),
+    "clock_lift must emit one same-run prerequisite row per site",
+    errors
+  );
+  assertField(
+    liveLedgerHandoff.pair_policy_handoff?.ordered_distinct_pair_count === 30 &&
+      liveLedgerHandoff.pair_policy_handoff?.unordered_compression === false,
+    "pair_policy_handoff must preserve ordered all-pairs policy",
+    errors
+  );
+  assertField(
+    Array.isArray(liveLedgerHandoff.root_label_handoff?.root_labels) &&
+      liveLedgerHandoff.root_label_handoff.root_labels.length === 30,
+    "root_label_handoff must name 30 retained root labels",
+    errors
+  );
+  assertField(
+    liveLedgerHandoff.accepted_bounded_speed_live_ledger === null &&
+      liveLedgerHandoff.certifies_bounded_speed_live_ledger === false,
+    "bounded-speed live-ledger handoff must remain non-certifying",
+    errors
+  );
+  const activeRootRows = rootLedger?.active_roots?.rows ?? [];
+  assertField(
+    rootLedger?.active_roots?.status === "same-run-prerequisites-open",
+    "active_roots must be same-run prerequisites open",
+    errors
+  );
+  assertField(
+    rootLedger?.active_roots?.first_missing_field === "bounded_speed_delay_brackets" &&
+      rootLedger?.active_roots?.accepted_active_roots === null &&
+      rootLedger?.active_roots?.certifies_active_roots === false,
+    "active_roots must remain fail-closed behind bounded_speed_delay_brackets",
+    errors
+  );
+  assertField(
+    Array.isArray(activeRootRows) && activeRootRows.length === expectedPairs.length,
+    "active_roots must emit one prerequisite row per ordered distinct pair",
+    errors
+  );
+  for (const pair of expectedPairs) {
+    const row = activeRootRows.find((candidate) => candidate.receiver === pair.receiver && candidate.source === pair.source);
+    assertField(Boolean(row), `active_roots must include prerequisite row for ${pairKey(pair)}`, errors);
+    assertField(row?.chart_run_id === chartRun?.run_id, `active root prerequisite ${pairKey(pair)} chart_run_id must match`, errors);
+    assertField(row?.root_label === rootLabelForPair(pair), `active root prerequisite ${pairKey(pair)} root_label mismatch`, errors);
+    assertField(
+      row?.bounded_speed_root_equation?.first_missing_field === "bounded_speed_delay_bracket",
+      `active root prerequisite ${pairKey(pair)} must name bounded_speed_delay_bracket as first missing field`,
+      errors
+    );
+    assertField(
+      row?.delay_bracket?.status === "not_computed" &&
+        row?.delay_floor?.status === "not_computed" &&
+        row?.jacobian?.status === "not_computed",
+      `active root prerequisite ${pairKey(pair)} must not fabricate delay or Jacobian evidence`,
+      errors
+    );
+    assertField(
+      row?.source_provenance?.retained_source_binding === null &&
+        row?.source_provenance?.provider_provenance === null,
+      `active root prerequisite ${pairKey(pair)} must keep provenance fail-closed`,
+      errors
+    );
+    assertField(
+      row?.fixed_speed_source_reference?.allowed_as_seed === true &&
+        row?.fixed_speed_source_reference?.promoted_as_bounded_speed_evidence === false,
+      `active root prerequisite ${pairKey(pair)} must keep fixed-speed source reference seed-only`,
+      errors
+    );
+    assertField(
+      row?.accepted_active_root === null &&
+        row?.certifies_active_root === false &&
+        row?.fixture === false &&
+        row?.proxy === false &&
+        row?.off_ledger === false &&
+        row?.sampled_diagnostic === false &&
+        row?.cross_row_bundle === false,
+      `active root prerequisite ${pairKey(pair)} must remain non-authorizing same-run evidence`,
+      errors
+    );
+  }
   assertField(rootLedger?.inactive_gaps?.status === "open_placeholder", "inactive_gaps must be an open placeholder", errors);
   assertField(rootLedger?.jacobian_floor?.status === "open_placeholder", "jacobian_floor must be an open placeholder", errors);
 
