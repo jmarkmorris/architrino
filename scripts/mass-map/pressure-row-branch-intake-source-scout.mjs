@@ -1168,6 +1168,22 @@ function providerReportFieldReadouts(nearestProviderReadout, providerSourcePathP
   );
 }
 
+function providerFieldTarget(fieldReadouts, field, targetKind, expectedProducer) {
+  const readout = fieldReadouts.find((entry) => entry.field === field) ?? null;
+  return {
+    schema: `pressure_row_${targetKind}/v0`,
+    field,
+    status: readout?.pass === true ? "source_target_satisfied" : "source_target_blocked",
+    accepted_promotion_authorized: false,
+    path: readout?.path ?? null,
+    required_value: readout?.required_value ?? null,
+    observed_value: readout?.observed_value ?? null,
+    first_failure: readout?.first_failure ?? null,
+    expected_producer: expectedProducer,
+    same_provider_row_required: true,
+  };
+}
+
 function buildAcceptedSourceObjectBoundary(
   nearestCandidate,
   provenanceDepthReadout,
@@ -1228,6 +1244,24 @@ function buildAcceptedSourceObjectBoundary(
       first_missing_or_rejected_provider_report_path: firstMissingProviderField?.path ?? null,
       first_missing_or_rejected_provider_report_failure:
         firstMissingProviderField?.first_failure ?? null,
+      provider_source_status_target: providerFieldTarget(
+        providerFieldReadouts,
+        "provider_source_status",
+        "provider_source_status_target",
+        "same-domain branch-provider report row that marks this provider source as accepted_non_fixture_source"
+      ),
+      provider_source_ref_target: providerFieldTarget(
+        providerFieldReadouts,
+        "source_ref",
+        "provider_source_ref_target",
+        "non-fixture source_ref for the same accepted branch-provider report row, outside scripts/**/fixtures/**"
+      ),
+      provider_branch_certificate_ref_target: providerFieldTarget(
+        providerFieldReadouts,
+        "branch_certificate_ref",
+        "provider_branch_certificate_ref_target",
+        "branch_certificate_ref emitted on the same accepted non-fixture branch-provider report row"
+      ),
       provider_row_field_readouts: providerFieldReadouts,
       missing_or_rejected_provider_report_fields: missingProviderFields.map(
         (field) => field.field
@@ -1680,6 +1714,26 @@ export function scoutValidationErrors(report) {
         ?.first_missing_or_rejected_provider_report_path !== "string"
     ) {
       errors.push("blocked accepted_source_object_boundary must name first provider blocker path");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedSourceObjectBoundary.provider_boundary?.provider_source_status_target)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider_source_status target");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(acceptedSourceObjectBoundary.provider_boundary?.provider_source_ref_target)
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider source_ref target");
+    }
+    if (
+      report.first_failure === "accepted_non_fixture_source_missing" &&
+      !isObject(
+        acceptedSourceObjectBoundary.provider_boundary?.provider_branch_certificate_ref_target
+      )
+    ) {
+      errors.push("blocked accepted_source_object_boundary must emit provider branch_certificate_ref target");
     }
     if (
       !Array.isArray(

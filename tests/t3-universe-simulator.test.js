@@ -374,7 +374,7 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields.includes(
       "retainedCausalRootRowId"
     ),
-    true
+    false
   );
   assert.equal(
     result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields.includes(
@@ -397,6 +397,88 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       initialPosition: { x: 0.75, y: 0.2, z: 0.2 },
       finalPosition: { x: 0.25, y: 0.2, z: 0.2 },
       imageDelta: { x: 1, y: 0, z: 0 },
+    }
+  );
+  assert.match(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].retainedCausalRootRowId,
+    /^t3-step-0:pathKey-1:seam-x:candidate-root$/
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].memoryWindowRoute,
+    {
+      schema: "t3-memory-window-route.v1",
+      routeStatus: "declared_from_same_solver_step_interval",
+      sourceObjectSchema: "solver-t3-step-request+response.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      startTime: 0,
+      endTime: 1,
+      timestep: 1,
+      memoryWindowStart: 0,
+      memoryWindowEnd: 1,
+    }
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].collisionCoreRoute,
+    {
+      schema: "t3-collision-core-route.v1",
+      routeStatus: "declared_no_collision_core_channel_in_solver_step",
+      sourceObjectSchema: "solver-t3-step-request.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      interactionLaw: "none",
+    }
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].omittedRowRoute,
+    {
+      schema: "t3-omitted-row-route.v1",
+      routeStatus: "declared_no_omitted_solver_step_rows",
+      sourceObjectSchema: "solver-t3-step-request+response.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      requestParticleCount: 1,
+      responseRowCount: 1,
+      rowIndex: 0,
+    }
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].seamOwnerRoute,
+    {
+      schema: "t3-seam-owner-route.v1",
+      routeStatus: "declared_from_same_solver_step_image_delta",
+      sourceObjectSchema: "solver-t3-step-response.v1",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      imageDeltaAxis: "x",
+      signedImageDeltaWitness: 1,
+      windingOwnerRowId: "t3-step-0:pathKey-1:seam-x:winding-owner",
+    }
+  );
+  assert.equal(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].seamPairingMapOrWindingOwnerRowId,
+    "t3-step-0:pathKey-1:seam-x:winding-owner"
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].missingFields,
+    ["jacobianFloorOrDeclaredStratum"]
+  );
+  assert.deepEqual(
+    result.runSummary.retainedCausalRootReplaySource.rows[0].jacobianFloorSourceBoundary,
+    {
+      schema: "t3-jacobian-floor-source-boundary.v1",
+      blockerStatus: "missing_same_record_jacobian_floor_or_declared_stratum",
+      expectedSourceObject: "solver-t3-step-response.v1",
+      expectedField: "jacobianFloorOrDeclaredStratum",
+      sameRecordBinding: "pathKey",
+      stepIndex: 0,
+      pathKey: 1,
+      retainedCausalRootReplayRowId: "t3-step-0:pathKey-1:seam-x",
+      replayAuthorization: false,
     }
   );
   assert.equal(result.runSummary.eventSummary.totalEventCount, 0);
@@ -561,12 +643,21 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
     [
       "retainedCausalRootRowId",
       "memoryWindowRoute",
+      "collisionCoreRoute",
+      "omittedRowRoute",
+      "seamPairingMapOrWindingOwnerRowId",
     ].every((field) =>
-      result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].availableProducerFields.includes(
         field
       )
     ),
     true
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "retainedCausalRootRowId"
+    ),
+    false
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
@@ -579,6 +670,28 @@ test("solver run summary uses native bulk T3 route without per-particle fallback
       "endpointRoute"
     ),
     false
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "memoryWindowRoute"
+    ),
+    false
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "omittedRowRoute"
+    ),
+    false
+  );
+  assert.equal(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields.includes(
+      "seamPairingMapOrWindingOwnerRowId"
+    ),
+    false
+  );
+  assert.deepEqual(
+    result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.rows[0].missingFields,
+    ["jacobianFloorOrDeclaredStratum"]
   );
   assert.equal(
     result.runSummary.orientedBoundaryPrototype.sameRecordReplayBoundary.negativeControls.some(

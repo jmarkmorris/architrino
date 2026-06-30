@@ -947,6 +947,50 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
     acceptedSourceBoundary.provider_boundary.first_missing_or_rejected_provider_report_failure,
     "provider_source_status.accepted_non_fixture_source_missing"
   );
+  assert.deepEqual(acceptedSourceBoundary.provider_boundary.provider_source_status_target, {
+    schema: "pressure_row_provider_source_status_target/v0",
+    field: "provider_source_status",
+    status: "source_target_blocked",
+    accepted_promotion_authorized: false,
+    path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status",
+    required_value: "accepted_non_fixture_source",
+    observed_value: "tier0_continuation_ready_not_accepted_history",
+    first_failure: "provider_source_status.accepted_non_fixture_source_missing",
+    expected_producer:
+      "same-domain branch-provider report row that marks this provider source as accepted_non_fixture_source",
+    same_provider_row_required: true,
+  });
+  assert.deepEqual(acceptedSourceBoundary.provider_boundary.provider_source_ref_target, {
+    schema: "pressure_row_provider_source_ref_target/v0",
+    field: "source_ref",
+    status: "source_target_blocked",
+    accepted_promotion_authorized: false,
+    path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].source_ref",
+    required_value: "non-fixture source_ref for accepted provider report",
+    observed_value:
+      "scripts/mass-map/fixtures/pressure-row-branch-intake-a0-branch-source-partial.json",
+    first_failure: "source_ref.fixture_source_ref_not_accepted_provenance",
+    expected_producer:
+      "non-fixture source_ref for the same accepted branch-provider report row, outside scripts/**/fixtures/**",
+    same_provider_row_required: true,
+  });
+  assert.deepEqual(
+    acceptedSourceBoundary.provider_boundary.provider_branch_certificate_ref_target,
+    {
+      schema: "pressure_row_provider_branch_certificate_ref_target/v0",
+      field: "branch_certificate_ref",
+      status: "source_target_blocked",
+      accepted_promotion_authorized: false,
+      path: "scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].branch_certificate_ref",
+      required_value:
+        "nonempty branch_certificate_ref on the same accepted non-fixture provider record",
+      observed_value: null,
+      first_failure: "branch_certificate_ref.missing",
+      expected_producer:
+        "branch_certificate_ref emitted on the same accepted non-fixture branch-provider report row",
+      same_provider_row_required: true,
+    }
+  );
   const providerReportReadouts = new Map(
     acceptedSourceBoundary.provider_boundary.provider_row_field_readouts.map((field) => [
       field.field,

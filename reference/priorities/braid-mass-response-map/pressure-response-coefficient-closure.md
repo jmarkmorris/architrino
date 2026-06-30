@@ -858,6 +858,12 @@ The first executable provider-row blocker is
 `scripts/solver-audits/fixtures/branch-provider-current-candidates.json#/candidates[id=pressure-row-a0-branch-source-frontier-partial].provider_source_status`;
 it must become `accepted_non_fixture_source` on a non-fixture provider row
 before the `source_ref` and `branch_certificate_ref` blockers can close.
+The same accepted-source boundary now emits three ordered provider-source
+targets: the provider status target, the non-fixture `source_ref` target outside
+`scripts/**/fixtures/**`, and the same-row `branch_certificate_ref` target.
+All three remain fail-closed for the nearest partial, so the retained
+pressure-row 33-field report family stays blocked until a single non-fixture
+provider row satisfies the ordered target chain.
 
 Executable current-status checker:
 [pressure-row-branch-intake-report.mjs](../../../scripts/mass-map/pressure-row-branch-intake-report.mjs)

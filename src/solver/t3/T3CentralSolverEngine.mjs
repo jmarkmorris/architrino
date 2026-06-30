@@ -50,7 +50,11 @@ export class T3CentralSolverEngine {
     const response = await this.solverClient.stepT3UniverseF64(request);
     const rows = response?.rows ?? [];
     const bulkStepSummary = response?.summary ?? {};
-    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, { stepIndex: state.stepIndex, request });
+    const periodicWrapEvidence = summarizeT3ImageDeltas(rows, {
+      stepIndex: state.stepIndex,
+      request,
+      response,
+    });
     applyT3BulkStepRows(state, rows);
     state.time = bulkStepSummary.endTime ?? state.time + dt;
     state.stepIndex += 1;
@@ -259,8 +263,10 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
       candidateRows.push(createRetainedCausalRootReplayCandidateRow({
         row,
         rowIndex,
+        rows,
         stepIndex,
         request: options.request,
+        response: options.response,
         axis,
         signedImageDelta,
       }));
@@ -306,15 +312,42 @@ function createRetainedCausalRootReplayCandidateRow(input) {
   const { row, rowIndex, stepIndex, axis, signedImageDelta } = input;
   const sourceRecordId = retainedSourceRecordId(row, rowIndex, stepIndex);
   const rowId = `${sourceRecordId}:seam-${axis}`;
+  const retainedCausalRootRowId = `${rowId}:candidate-root`;
   const endpointRoute = createEndpointRoute({
     row,
     rowIndex,
     stepIndex,
     request: input.request,
   });
+  const memoryWindowRoute = createMemoryWindowRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    request: input.request,
+  });
+  const omittedRowRoute = createOmittedRowRoute({
+    row,
+    rowIndex,
+    stepIndex,
+    rows: input.rows,
+    request: input.request,
+  });
+  const seamOwnerRoute = createSeamOwnerRoute({
+    row,
+    stepIndex,
+    axis,
+    signedImageDelta,
+    rowId,
+  });
+  const collisionCoreRoute = createCollisionCoreRoute({
+    row,
+    stepIndex,
+    request: input.request,
+  });
   const providedFields = [
     "sameRecordReplayId",
     "retainedSourceRecordId",
+    "retainedCausalRootRowId",
     "rowFamilyIdentity",
     "boundaryOrientation",
     "windingLabel",
@@ -324,12 +357,24 @@ function createRetainedCausalRootReplayCandidateRow(input) {
   if (endpointRoute) {
     providedFields.push("endpointRoute");
   }
+  if (memoryWindowRoute) {
+    providedFields.push("memoryWindowRoute");
+  }
+  if (collisionCoreRoute) {
+    providedFields.push("collisionCoreRoute");
+  }
+  if (omittedRowRoute) {
+    providedFields.push("omittedRowRoute");
+  }
+  if (seamOwnerRoute) {
+    providedFields.push("seamPairingMapOrWindingOwnerRowId");
+  }
   return {
     schema: "t3-retained-causal-root-replay-row.v1",
     rowId,
     sameRecordReplayId: `candidate-replay:${rowId}`,
     retainedSourceRecordId: sourceRecordId,
-    retainedCausalRootRowId: null,
+    retainedCausalRootRowId,
     stepIndex,
     sourcePathKey: row?.pathKey ?? rowIndex + 1,
     rowFamilyIdentity: "seam",
@@ -342,22 +387,44 @@ function createRetainedCausalRootReplayCandidateRow(input) {
     imageDeltaAxis: axis,
     signedImageDeltaWitness: signedImageDelta,
     jacobianFloorOrDeclaredStratum: null,
+    jacobianFloorSourceBoundary: createJacobianFloorSourceBoundary({
+      row,
+      stepIndex,
+      rowId,
+    }),
     endpointRoute,
-    memoryWindowRoute: null,
-    collisionCoreRoute: null,
-    omittedRowRoute: null,
+    memoryWindowRoute,
+    collisionCoreRoute,
+    omittedRowRoute,
+    seamPairingMapOrWindingOwnerRowId: seamOwnerRoute?.windingOwnerRowId ?? null,
+    seamOwnerRoute,
     rowStatus: "candidate_missing_required_same_record_fields",
     replayAuthorization: false,
     acceptedReplayEvidence: false,
     providedFields,
     missingFields: [
-      "retainedCausalRootRowId",
       "jacobianFloorOrDeclaredStratum",
-      "memoryWindowRoute",
-      "collisionCoreRoute",
-      "omittedRowRoute",
-      "seamPairingMapOrWindingOwnerRowId",
-    ].concat(endpointRoute ? [] : ["endpointRoute"]),
+    ]
+      .concat(endpointRoute ? [] : ["endpointRoute"])
+      .concat(memoryWindowRoute ? [] : ["memoryWindowRoute"])
+      .concat(collisionCoreRoute ? [] : ["collisionCoreRoute"])
+      .concat(omittedRowRoute ? [] : ["omittedRowRoute"])
+      .concat(seamOwnerRoute ? [] : ["seamPairingMapOrWindingOwnerRowId"]),
+  };
+}
+
+function createJacobianFloorSourceBoundary(input) {
+  const { row, stepIndex, rowId } = input;
+  return {
+    schema: "t3-jacobian-floor-source-boundary.v1",
+    blockerStatus: "missing_same_record_jacobian_floor_or_declared_stratum",
+    expectedSourceObject: "solver-t3-step-response.v1",
+    expectedField: "jacobianFloorOrDeclaredStratum",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row?.pathKey ?? null,
+    retainedCausalRootReplayRowId: rowId,
+    replayAuthorization: false,
   };
 }
 
@@ -380,6 +447,88 @@ function createEndpointRoute(input) {
     initialPosition: cloneVectorObject(requestParticle.position),
     finalPosition: cloneVectorObject(row.position),
     imageDelta: cloneImageDelta(row.imageDelta),
+  };
+}
+
+function createMemoryWindowRoute(input) {
+  const { row, rowIndex, stepIndex, request } = input;
+  const requestParticle = request?.particles?.[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  return {
+    schema: "t3-memory-window-route.v1",
+    routeStatus: "declared_from_same_solver_step_interval",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    startTime: request.startTime,
+    endTime: request.endTime,
+    timestep: request.timestep,
+    memoryWindowStart: request.startTime,
+    memoryWindowEnd: request.endTime,
+  };
+}
+
+function createCollisionCoreRoute(input) {
+  const { row, stepIndex, request } = input;
+  if (request?.interaction?.law !== "none") {
+    return null;
+  }
+  return {
+    schema: "t3-collision-core-route.v1",
+    routeStatus: "declared_no_collision_core_channel_in_solver_step",
+    sourceObjectSchema: "solver-t3-step-request.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row?.pathKey ?? null,
+    interactionLaw: request.interaction.law,
+  };
+}
+
+function createOmittedRowRoute(input) {
+  const { row, rowIndex, rows, stepIndex, request } = input;
+  const requestParticles = Array.isArray(request?.particles) ? request.particles : [];
+  const responseRows = Array.isArray(rows) ? rows : [];
+  const requestParticle = requestParticles[rowIndex] ?? null;
+  if (!requestParticle || requestParticle.pathKey !== row?.pathKey) {
+    return null;
+  }
+  const pathKeySequenceMatches = responseRows.every(
+    (responseRow, index) => responseRow?.pathKey === requestParticles[index]?.pathKey
+  );
+  if (requestParticles.length !== responseRows.length || !pathKeySequenceMatches) {
+    return null;
+  }
+  return {
+    schema: "t3-omitted-row-route.v1",
+    routeStatus: "declared_no_omitted_solver_step_rows",
+    sourceObjectSchema: "solver-t3-step-request+response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    requestParticleCount: requestParticles.length,
+    responseRowCount: responseRows.length,
+    rowIndex,
+  };
+}
+
+function createSeamOwnerRoute(input) {
+  const { row, stepIndex, axis, signedImageDelta, rowId } = input;
+  if (!row?.pathKey || signedImageDelta === 0) {
+    return null;
+  }
+  return {
+    schema: "t3-seam-owner-route.v1",
+    routeStatus: "declared_from_same_solver_step_image_delta",
+    sourceObjectSchema: "solver-t3-step-response.v1",
+    sameRecordBinding: "pathKey",
+    stepIndex,
+    pathKey: row.pathKey,
+    imageDeltaAxis: axis,
+    signedImageDeltaWitness: signedImageDelta,
+    windingOwnerRowId: `${rowId}:winding-owner`,
   };
 }
 
