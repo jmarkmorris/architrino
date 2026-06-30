@@ -14116,6 +14116,20 @@ $$
 $$
 The scalar mass-shell relation is therefore the low-information summary of a richer assembly-plus-medium response.
 
+###### Invariant Mass Versus Velocity-Dependent Response
+
+This bridge should not recover special relativity by reintroducing a speed-dependent rest mass. Standard relativistic mechanics already shows why that route is unstable: if the factor $\gamma$ is hidden inside a "relativistic mass," then the quantity called mass depends on the observer's relative motion, and the force-to-acceleration response depends on whether the applied force is longitudinal, transverse, or at an intermediate angle. That is useful only as a direction-dependent effective response coefficient, not as a scalar particle identity.
+
+The invariant recovery target is instead the mass shell itself:
+$$
+M_0^2 c_{\text{eff}}^4
+=
+E_{\text{CM}}^2-p_{\text{CM}}^2c_{\text{eff}}^2
+$$
+Physical Observers may disagree about $E_{\text{CM}}$ and $p_{\text{CM}}$, but in the recovered relativistic limit they must reconstruct the same $M_0$ from the same branch record. A photon-like null channel has $M_0=0$ while still carrying energy and momentum; a massive assembly has nonzero $M_0$ while its kinetic energy and momentum vary with observer motion.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline. Velocity-dependent inertia belongs to the moving center-of-mass response of the dressed assembly ledger and the Noether sea response tensor. It must not be smuggled into the scalar rest mass being derived from the closed internal causal-history ledger, shielding coefficient, and homogeneous-limit response map.
+
 ##### Why The Same Factor Appears
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.
@@ -19064,6 +19078,8 @@ The long-term relevance of this episode is permanent process control for cosmolo
 What physics already had was particle-wave duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
 
 An earlier bridge came from blackbody radiation. Experiments supplied a robust spectrum for hot objects that classical cavity reasoning could not match. Rayleigh and Jeans treated the cavity as a standing-wave mode inventory and applied equipartition to the allowed modes; that mode count was the right kind of structural data product, but continuous energy sharing made the high-frequency energy density diverge. Planck's move was to preserve the successful low-frequency limit while replacing continuous oscillator energy with discrete packets $\epsilon=h\nu$, giving a frequency-dependent occupation rule that suppressed ultraviolet modes. Historically, the sequence was data product, classical recovery attempt, ultraviolet failure, ad hoc quantum recovery rule, and then later operational lock-in.
+
+Einstein's 1905 light-quantum argument added a sharper bridge on the same path. Instead of beginning with the photoelectric effect as a detached anomaly, he asked what the entropy of high-frequency monochromatic radiation was counting. In the Wien regime, the volume-dependence of radiation entropy matched the volume-dependence for a gas of independent countable entities; combined with Boltzmann's principle and Planck's high-frequency constant, that comparison selected $E=h\nu$ per entity. The historical sequence was therefore spectrum data product -> entropy-counting argument -> countable radiation energy packet -> photoelectric threshold test -> later photon operational lock-in.
 
 The opening had been prepared by the old-quantum-theory sequence before the Copenhagen settlement itself. Rutherford scattering turned atomic internal structure into a measured data product: rare large-angle alpha events forced a dense nuclear center and made atomic stability a concrete dynamical problem. The classical planetary reading then failed in two connected ways: an accelerating charged electron should radiate and spiral inward, and a continuum of allowed orbits would not explain discrete emission and absorption lines. Bohr then showed that an ad hoc angular-momentum rule could recover the hydrogen spectrum and preserve a high-$n$ correspondence with classical mechanics, but the rule did not explain why only those states were stable, why jumps occurred when they did, or why line intensities had the observed pattern. De Broglie's matter-wave proposal sharpened the near miss by converting one hand-inserted rule into a stability criterion: a closed orbit is allowed when the associated action closes around the cycle rather than destructively failing to return to itself.
 

@@ -48,6 +48,8 @@ Accepted-looking `retained_orbit_reduction_row` rows must also declare explicit 
 
 Accepted-looking `constant_delay_self_hit_model_row` rows must likewise declare explicit support metadata for `EQ-12A`, `constant_delay_self_hit_model_row`, the retained action-period carrier, the constant-delay self-hit model, the finite-memory return map, and the `S_eq` equal-frequency tri-binary route. This keeps the source object from smuggling in a generic delay equation or a durable-but-unbound source path.
 
+All later accepted-looking retained action-period rows must also declare explicit support metadata for `EQ-12A`, their exact row id, the retained action-period carrier, and the `S_eq` equal-frequency tri-binary route. A durable non-priority source path alone is not enough for `hopf_retained_orbit_birth_row`, Floquet, Poincare, action-period, readout-independence, history-throughput, non-resonance, or geometry-derived action rows.
+
 ## Direct Geometry Layer
 
 This layer keeps $h_\vartheta$ as a retained action-period readout from one same-branch orbit certificate. It does not let photon energy, alpha fitting, thermal rows, or a `theta_gamma_packet` substitute for the retained action-period carrier.
@@ -118,6 +120,14 @@ node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --in
 ```
 
 This control marks `constant_delay_self_hit_model_row` accepted-looking and points it at a durable file, but omits the required row support metadata. The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_constant_delay_self_hit_model_row`, and `rowStatuses.constant_delay_self_hit_model_row.reason=constant_delay_self_hit_model_source_contract_mismatch`.
+
+The Hopf-birth metadata-missing control is [constant-delay-retained-orbit-hopf-birth-metadata-missing-negative-control.v1.json](../../../scripts/equation-mapping/constant-delay-retained-orbit-hopf-birth-metadata-missing-negative-control.v1.json):
+
+```sh
+node scripts/equation-mapping/constant-delay-retained-orbit-certificate.mjs --input scripts/equation-mapping/constant-delay-retained-orbit-hopf-birth-metadata-missing-negative-control.v1.json --summary --pretty
+```
+
+This control marks `retained_orbit_reduction_row` and `constant_delay_self_hit_model_row` accepted-looking with explicit support metadata, then marks `hopf_retained_orbit_birth_row` accepted-looking against a durable file while omitting the required Hopf-birth row support metadata. The expected result is `status: blocked_missing_rows`, `nextBlocker: missing_accepted_hopf_retained_orbit_birth_row`, and `rowStatuses.hopf_retained_orbit_birth_row.reason=hopf_retained_orbit_birth_row_source_contract_mismatch`.
 
 ## Next Action
 

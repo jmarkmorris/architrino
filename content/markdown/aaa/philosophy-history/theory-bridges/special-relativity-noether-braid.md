@@ -395,6 +395,20 @@ $$
 $$
 The scalar mass-shell relation is therefore the low-information summary of a richer assembly-plus-medium response.
 
+### Invariant Mass Versus Velocity-Dependent Response
+
+This bridge should not recover special relativity by reintroducing a speed-dependent rest mass. Standard relativistic mechanics already shows why that route is unstable: if the factor $\gamma$ is hidden inside a "relativistic mass," then the quantity called mass depends on the observer's relative motion, and the force-to-acceleration response depends on whether the applied force is longitudinal, transverse, or at an intermediate angle. That is useful only as a direction-dependent effective response coefficient, not as a scalar particle identity.
+
+The invariant recovery target is instead the mass shell itself:
+$$
+M_0^2 c_{\text{eff}}^4
+=
+E_{\text{CM}}^2-p_{\text{CM}}^2c_{\text{eff}}^2
+$$
+Physical Observers may disagree about $E_{\text{CM}}$ and $p_{\text{CM}}$, but in the recovered relativistic limit they must reconstruct the same $M_0$ from the same branch record. A photon-like null channel has $M_0=0$ while still carrying energy and momentum; a massive assembly has nonzero $M_0$ while its kinetic energy and momentum vary with observer motion.
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a strict implementation discipline. Velocity-dependent inertia belongs to the moving center-of-mass response of the dressed assembly ledger and the Noether sea response tensor. It must not be smuggled into the scalar rest mass being derived from the closed internal causal-history ledger, shielding coefficient, and homogeneous-limit response map.
+
 ## Why The Same Factor Appears
 
 The same Lorentz factor appears in clock, ruler, momentum, and energy formulas because the inherited theory imposes one invariant interval. The bridge target is to show that the same factor appears in $\mathbb{A}\mathbb{A}\mathbb{A}$ because the same delayed closure problem controls all four channels.

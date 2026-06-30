@@ -41,6 +41,8 @@ export function createBorgAppSurfaceDesign(manifest) {
       nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
       sampleInterval: manifest.simulationEnvelope.sampleInterval,
       playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
+      initialLinePolicy: manifest.initialConditions.initialLinePolicy,
+      pairAccelerationScale: manifest.sourceBridgeRun.pairAccelerationScale,
       sourceClaimLevel: manifest.claimLevel,
     },
     nativeSolverBoundary: {
@@ -262,6 +264,11 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
     "native-keyframes",
     "playback frame source",
   );
+  assertEqual(
+    surfaceDesign.sourceManifest.initialLinePolicy,
+    manifest.initialConditions.initialLinePolicy,
+    "initial line policy",
+  );
   assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
   assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
@@ -427,6 +434,8 @@ function printSummary(surfaceDesign) {
     nativeKeyframeCount: surfaceDesign.sourceManifest.nativeKeyframeCount,
     sampleInterval: surfaceDesign.sourceManifest.sampleInterval,
     playbackFrameSource: surfaceDesign.sourceManifest.playbackFrameSource,
+    initialLinePolicy: surfaceDesign.sourceManifest.initialLinePolicy,
+    pairAccelerationScale: surfaceDesign.sourceManifest.pairAccelerationScale,
     pathRowCount: surfaceDesign.bottomTimeline.pathRowCount,
     renderPixelSize: surfaceDesign.firstViewport.renderPixelSize,
     firstFailureCodes: surfaceDesign.failClosedFirstFailureCodes,

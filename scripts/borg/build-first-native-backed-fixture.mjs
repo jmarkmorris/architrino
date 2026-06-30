@@ -48,6 +48,14 @@ const LONG_FIXTURE_PROFILE = Object.freeze({
   rowsPerChunk: 16,
 });
 
+const PAIR_INTERACTION_SETTINGS = Object.freeze({
+  interactionLaw: "display_pair_attraction_v1",
+  initialLinePolicy: "non-collinear-curvature-visibility",
+  pairAccelerationScale: 1.2,
+  softening: 0.01,
+  integrationTolerance: 1e-11,
+});
+
 export async function buildBorgFirstNativeBackedFixture() {
   const native = await runNativePairFixture();
   const manifest = createBorgDatasetManifest(native);
@@ -84,6 +92,16 @@ export function assertBorgFixtureManifest(manifest, native) {
     manifest.currentStateAndFrameSources.playbackFrameSource,
     LONG_FIXTURE_PROFILE.playbackFrameSource,
     "playback frame source",
+  );
+  assertEqual(
+    manifest.initialConditions.initialLinePolicy,
+    PAIR_INTERACTION_SETTINGS.initialLinePolicy,
+    "initial line policy",
+  );
+  assertEqual(
+    manifest.sourceBridgeRun.pairAccelerationScale,
+    PAIR_INTERACTION_SETTINGS.pairAccelerationScale,
+    "pair acceleration scale",
   );
   assertEqual(manifest.currentStateAndFrameSources.interpolatedFrameCount, 0, "interpolated frame count");
   assertEqual(manifest.population.centralArchitrinoCount, 1, "central count");
@@ -253,6 +271,8 @@ function createBorgDatasetManifest(native) {
       sampleInterval: SIMULATION_ENVELOPE.sampleInterval,
       playbackFrameSource: LONG_FIXTURE_PROFILE.playbackFrameSource,
       interpolationAuthority: LONG_FIXTURE_PROFILE.interpolationAuthority,
+      interactionLaw: PAIR_INTERACTION_SETTINGS.interactionLaw,
+      pairAccelerationScale: PAIR_INTERACTION_SETTINGS.pairAccelerationScale,
       pathCount: nativeResponse.summary.pathCount,
       pathRowCount: pathHistory.rowCount,
       chunkCount: pathHistory.chunkCount,
@@ -314,6 +334,7 @@ function createBorgDatasetManifest(native) {
       positrinoCount: 1,
       polarityAssignmentSource: "explicit",
       velocityPolicy: "explicit",
+      initialLinePolicy: PAIR_INTERACTION_SETTINGS.initialLinePolicy,
       velocitySeed: null,
       resolvedInitialStateId: `${FIXTURE_IDS.nativeRunId}:explicit-pair-initial-state`,
       customEditStatus: "accepted",
@@ -610,23 +631,23 @@ function createPairInteractionRequest() {
     endTime: SIMULATION_ENVELOPE.duration,
     step: SIMULATION_ENVELOPE.sampleInterval,
     maxFrames: Math.floor(SIMULATION_ENVELOPE.duration / SIMULATION_ENVELOPE.sampleInterval) + 1,
-    pairAccelerationScale: 0.02,
-    softening: 0.01,
-    integrationTolerance: 1e-11,
-    interactionLaw: "display_pair_attraction_v1",
+    pairAccelerationScale: PAIR_INTERACTION_SETTINGS.pairAccelerationScale,
+    softening: PAIR_INTERACTION_SETTINGS.softening,
+    integrationTolerance: PAIR_INTERACTION_SETTINGS.integrationTolerance,
+    interactionLaw: PAIR_INTERACTION_SETTINGS.interactionLaw,
     initialStates: [
       {
         pathKey: 1001,
-        initialPosition: { x: 4.3, y: 5, z: 5 },
-        initialVelocity: { x: 0, y: 0.28, z: 0 },
+        initialPosition: { x: 4.55, y: 4.55, z: 4.9 },
+        initialVelocity: { x: 0.02, y: 0.225, z: 0.018 },
         charge: 1,
         mass: 1,
         stateFlags: 1,
       },
       {
         pathKey: 1002,
-        initialPosition: { x: 5.7, y: 5, z: 5 },
-        initialVelocity: { x: 0, y: -0.28, z: 0 },
+        initialPosition: { x: 5.45, y: 5.35, z: 5.12 },
+        initialVelocity: { x: -0.01, y: -0.175, z: -0.012 },
         charge: -1,
         mass: 1,
         stateFlags: 2,

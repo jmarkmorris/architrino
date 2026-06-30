@@ -258,11 +258,8 @@ function evaluateAcceptedRow(row, rowId) {
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
   }
-  if (rowId === "retained_orbit_reduction_row" && !sourceSupportsRetainedOrbitReductionRow(row)) {
-    return { accepted: false, reason: "retained_orbit_reduction_source_contract_mismatch" };
-  }
-  if (rowId === "constant_delay_self_hit_model_row" && !sourceSupportsConstantDelaySelfHitModelRow(row)) {
-    return { accepted: false, reason: "constant_delay_self_hit_model_source_contract_mismatch" };
+  if (!sourceSupportsRetainedActionPeriodRow(row, rowId)) {
+    return { accepted: false, reason: sourceContractMismatchReason(rowId) };
   }
   return { accepted: true, reason: "accepted" };
 }
@@ -295,12 +292,12 @@ function evaluateSourcePath(sourcePath) {
   return { accepted: true, reason: "accepted" };
 }
 
-function sourceSupportsRetainedOrbitReductionRow(row) {
+function sourceSupportsRetainedActionPeriodRow(row, rowId) {
   const normalized = collectSupportMetadata(row);
   const eq12aSupported = normalized.some(
     (value) => value.includes("eq-12a") || value.includes("eq12a"),
   );
-  const rowSupported = normalized.some((value) => value.includes("retained_orbit_reduction_row"));
+  const rowSupported = normalized.some((value) => value.includes(rowId));
   const carrierSupported = normalized.some(
     (value) =>
       value.includes("retained_action_period_carrier") ||
@@ -308,20 +305,6 @@ function sourceSupportsRetainedOrbitReductionRow(row) {
   );
   const seqSupported = normalized.some(
     (value) => value.includes("s_eq") || value.includes("equal_frequency_tri_binary"),
-  );
-  return eq12aSupported && rowSupported && carrierSupported && seqSupported;
-}
-
-function sourceSupportsConstantDelaySelfHitModelRow(row) {
-  const normalized = collectSupportMetadata(row);
-  const eq12aSupported = normalized.some(
-    (value) => value.includes("eq-12a") || value.includes("eq12a"),
-  );
-  const rowSupported = normalized.some((value) => value.includes("constant_delay_self_hit_model_row"));
-  const carrierSupported = normalized.some(
-    (value) =>
-      value.includes("retained_action_period_carrier") ||
-      value.includes("retained action-period carrier"),
   );
   const modelSupported = normalized.some(
     (value) =>
@@ -329,10 +312,19 @@ function sourceSupportsConstantDelaySelfHitModelRow(row) {
       value.includes("constant_delay_self_hit") ||
       value.includes("finite-memory return map"),
   );
-  const seqSupported = normalized.some(
-    (value) => value.includes("s_eq") || value.includes("equal_frequency_tri_binary"),
-  );
-  return eq12aSupported && rowSupported && carrierSupported && modelSupported && seqSupported;
+  const modelRequirementPassed =
+    rowId !== "constant_delay_self_hit_model_row" || modelSupported;
+  return eq12aSupported && rowSupported && carrierSupported && seqSupported && modelRequirementPassed;
+}
+
+function sourceContractMismatchReason(rowId) {
+  if (rowId === "retained_orbit_reduction_row") {
+    return "retained_orbit_reduction_source_contract_mismatch";
+  }
+  if (rowId === "constant_delay_self_hit_model_row") {
+    return "constant_delay_self_hit_model_source_contract_mismatch";
+  }
+  return `${rowId}_source_contract_mismatch`;
 }
 
 function collectSupportMetadata(row) {

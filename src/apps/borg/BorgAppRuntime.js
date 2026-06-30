@@ -300,6 +300,8 @@ export function mountBorgApp(options = {}) {
       ["Native keyframes", manifest.currentStateAndFrameSources.nativeKeyframeCount],
       ["Sample interval", manifest.simulationEnvelope.sampleInterval],
       ["Playback source", manifest.currentStateAndFrameSources.playbackFrameSource],
+      ["Initial line", manifest.initialConditions.initialLinePolicy],
+      ["Pair action scale", manifest.sourceBridgeRun.pairAccelerationScale],
       ["Path rows", manifest.sourceBridgeRun.pathRowCount],
     ]);
 

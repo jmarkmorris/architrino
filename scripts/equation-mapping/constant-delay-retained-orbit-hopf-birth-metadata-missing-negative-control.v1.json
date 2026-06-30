@@ -1,0 +1,160 @@
+{
+  "schema": "aaa-equation-map-constant-delay-retained-orbit-input/v1",
+  "claimLevel": "score-neutral EQ-12A hopf_retained_orbit_birth_row metadata-missing negative control; durable source path without row support metadata must fail closed",
+  "certificateId": "R_EQ12A_hopf_birth_metadata_missing_negative_control_0001",
+  "commonCarrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+  "sourceIdentity": {
+    "retainedRowSetId": "S_eq",
+    "retainedBranchId": "S_eq_equal_frequency_branch_source_attempt_0001",
+    "finiteWindowId": "W_S_eq_action_period_source_attempt_0001",
+    "supportId": "support_S_eq_action_period_source_attempt_0001",
+    "domainId": "domain_S_eq_action_period_source_attempt_0001",
+    "sourceProvenanceId": "source_provenance_S_eq_action_period_source_attempt_0001",
+    "noHiddenRetuneWitnessId": "no_hidden_retune_S_eq_action_period_source_attempt_0001"
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "hopfResidual": 1e-10,
+    "transversality": 0.000001,
+    "stableRootMargin": 0.000001,
+    "firstLyapunov": 0.000001,
+    "monodromy": 1e-8,
+    "floquetGap": 0.000001,
+    "section": 1e-8,
+    "actionReadout": 1e-10,
+    "refinement": 1e-8,
+    "sweep": 1e-8,
+    "sweepMovingRange": 0.001,
+    "historyThroughput": 1e-8,
+    "nonResonance": 0.000001,
+    "negativeControl": 1e-12
+  },
+  "packet": {
+    "id": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+    "commonCarrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+    "rows": {
+      "retained_orbit_reduction_row": {
+        "id": "retained_orbit_reduction_hopf_birth_metadata_control_0001",
+        "rowId": "retained_orbit_reduction_hopf_birth_metadata_control_row",
+        "status": "accepted",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "sourceFamily": "EQ-12A retained action-period carrier",
+        "sourceKind": "retained_orbit_reduction_row",
+        "sourceRole": "retained_action_period_carrier",
+        "evidenceSupports": [
+          "EQ-12A",
+          "retained_orbit_reduction_row",
+          "retained action-period carrier",
+          "S_eq equal_frequency_tri_binary"
+        ],
+        "claimLevel": "accepted-looking source-evidence control row; not accepted retained evidence"
+      },
+      "constant_delay_self_hit_model_row": {
+        "id": "constant_delay_self_hit_model_hopf_birth_metadata_control_0001",
+        "rowId": "constant_delay_self_hit_model_hopf_birth_metadata_control_row",
+        "status": "accepted",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "sourceFamily": "EQ-12A retained action-period carrier",
+        "sourceKind": "constant_delay_self_hit_model_row",
+        "sourceRole": "retained_action_period_carrier",
+        "sourceSupport": "constant-delay self-hit finite-memory return map for the S_eq retained action-period carrier",
+        "evidenceSupports": [
+          "EQ-12A",
+          "constant_delay_self_hit_model_row",
+          "retained action-period carrier",
+          "constant-delay self-hit model",
+          "finite-memory return map",
+          "S_eq equal_frequency_tri_binary"
+        ],
+        "claimLevel": "accepted-looking source-contract control row; not accepted retained evidence"
+      },
+      "hopf_retained_orbit_birth_row": {
+        "id": "hopf_retained_orbit_birth_metadata_missing_control_0001",
+        "rowId": "hopf_retained_orbit_birth_metadata_missing_control_row",
+        "status": "accepted",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "stats/pdgfeed.supported.pdg_reactions.md",
+        "claimLevel": "accepted-looking durable source row without EQ-12A retained action-period Hopf-birth support metadata; must fail closed"
+      },
+      "first_lyapunov_coefficient_row": {
+        "id": "first_lyapunov_coefficient_source_attempt_0001",
+        "rowId": "first_lyapunov_coefficient_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "monodromy_floquet_certificate": {
+        "id": "monodromy_floquet_certificate_source_attempt_0001",
+        "rowId": "monodromy_floquet_certificate_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_section_reduction_row": {
+        "id": "poincare_section_reduction_source_attempt_0001",
+        "rowId": "poincare_section_reduction_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "poincare_cartan_orbit_integral_row": {
+        "id": "poincare_cartan_orbit_integral_source_attempt_0001",
+        "rowId": "poincare_cartan_orbit_integral_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "energy_clock_readout_row": {
+        "id": "energy_clock_readout_source_attempt_0001",
+        "rowId": "energy_clock_readout_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "phase_loop_area_readout_row": {
+        "id": "phase_loop_area_readout_source_attempt_0001",
+        "rowId": "phase_loop_area_readout_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "readout_refinement_independence_row": {
+        "id": "readout_refinement_independence_source_attempt_0001",
+        "rowId": "readout_refinement_independence_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "parameter_sweep_action_invariance_row": {
+        "id": "parameter_sweep_action_invariance_source_attempt_0001",
+        "rowId": "parameter_sweep_action_invariance_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "history_energy_throughput_row": {
+        "id": "history_energy_throughput_source_attempt_0001",
+        "rowId": "history_energy_throughput_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "non_resonance_certificate": {
+        "id": "non_resonance_certificate_source_attempt_0001",
+        "rowId": "non_resonance_certificate_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      },
+      "geometry_derived_action_period_row": {
+        "id": "geometry_derived_action_period_source_attempt_0001",
+        "rowId": "geometry_derived_action_period_source_attempt_row",
+        "status": "attempt",
+        "carrierId": "theta_retained_S_eq_hopf_birth_metadata_missing_control_0001",
+        "sourcePath": "reference/priorities/equation-mapping/eq-12a-retained-action-period-source-field-map.md"
+      }
+    }
+  }
+}
