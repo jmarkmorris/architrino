@@ -8,6 +8,7 @@ import {
   createInteractionPipeline,
   createT3SpatialIndex,
   createT3Topology,
+  createT3BulkStepRequest,
   createT3OrientedBoundaryPrototype,
   T3_ORIENTED_BOUNDARY_PROTOTYPE_SCHEMA,
   createT3UniverseSimulator,
@@ -248,6 +249,195 @@ test("central solver engine advances particles through bulk T3 solver client", a
   assert.equal(calls[0].interaction.law, "none");
   assert.ok(Math.abs(simulator.state.positions[0] - 0.3) < 1e-12);
   assert.equal(simulator.state.imageOffsets[0], 1);
+});
+
+test("central solver carries unresolved-root segment sidecar as fail-closed shape evidence", async () => {
+  const directTopology = createT3Topology({ sideLength: 4 });
+  const directRequest = createT3BulkStepRequest({
+    state: createInitialT3State({
+      topology: { sideLength: 4 },
+      particles: {
+        items: [
+          { id: "source", position: [0, 0, 0], velocity: [0.1, 0, 0] },
+          { id: "receiver", position: [0.4, 0, 0], velocity: [0, 0.1, 0] },
+        ],
+      },
+    }),
+    startTime: 0,
+    timestep: 0.25,
+    topology: directTopology,
+    spatialIndex: createT3SpatialIndex({ topology: directTopology, interactionRadius: 1, cellSize: 1 }),
+    interactionPipeline: createInteractionPipeline([]),
+    stepIndex: 7,
+    signalSpeed: 3,
+    rootTolerance: 1e-7,
+    unresolvedRootSegmentSidecar: {
+      enabled: true,
+      pairPolicy: "neighbor_pruned_v1",
+    },
+  });
+  assert.equal(directRequest.stepIndex, 7);
+  assert.equal(directRequest.signalSpeed, 3);
+  assert.equal(directRequest.rootTolerance, 1e-7);
+  assert.deepEqual(directRequest.unresolvedRootSegmentSidecar, {
+    schema: "t3-unresolved-root-segment-sidecar-request.v1",
+    enabled: true,
+    pairPolicy: "neighbor_pruned_v1",
+    maxRows: 1,
+  });
+
+  const calls = [];
+  const solverClient = {
+    async stepT3UniverseF64(request) {
+      calls.push(request);
+      return {
+        schema: "solver-t3-step-response.v1",
+        rows: request.particles.map((particle) => ({
+          pathKey: particle.pathKey,
+          position: particle.position,
+          velocity: particle.velocity,
+          acceleration: { x: 0, y: 0, z: 0 },
+          imageDelta: { x: 0, y: 0, z: 0 },
+          stateFlags: particle.stateFlags,
+        })),
+        unresolvedRootSegmentRows: [
+          {
+            schema: "t3-unresolved-root-segment-row.v1",
+            chronologyRowId: "step_0_unresolved_root_rows",
+            stepIndex: request.stepIndex,
+            sourcePathKey: request.particles[0].pathKey,
+            receiverPathKey: request.particles[1].pathKey,
+            sourceSegmentIndex: request.stepIndex,
+            receiverSegmentIndex: request.stepIndex,
+            sourceSegment: {
+              pathKey: request.particles[0].pathKey,
+              segmentIndex: request.stepIndex,
+              startTime: request.startTime,
+              endTime: request.endTime,
+              position: request.particles[0].position,
+              velocity: request.particles[0].velocity,
+              errorBound: request.integrationTolerance,
+            },
+            receiverSegment: {
+              pathKey: request.particles[1].pathKey,
+              segmentIndex: request.stepIndex,
+              startTime: request.startTime,
+              endTime: request.endTime,
+              position: request.particles[1].position,
+              velocity: request.particles[1].velocity,
+              errorBound: request.integrationTolerance,
+            },
+            sameRecordSegmentBinding: {
+              sourcePathKey: request.particles[0].pathKey,
+              receiverPathKey: request.particles[1].pathKey,
+              sourceSegmentIndex: request.stepIndex,
+              receiverSegmentIndex: request.stepIndex,
+              bindingStatus: "same_step_segment_shape_evidence",
+            },
+            sourceIdentityBinding: {
+              pathKey: request.particles[0].pathKey,
+              stateFlags: request.particles[0].stateFlags,
+              bindingStatus: "path_key_state_flags_same_step",
+            },
+            receiverIdentityBinding: {
+              pathKey: request.particles[1].pathKey,
+              stateFlags: request.particles[1].stateFlags,
+              bindingStatus: "path_key_state_flags_same_step",
+            },
+            hitTime: request.endTime,
+            signalSpeed: request.signalSpeed,
+            rootTolerance: request.rootTolerance,
+            rootLedgerRecordId: null,
+            causticRoute: null,
+            sourcePathSegmentId: null,
+            pairPolicy: "neighbor_pruned_v1",
+            rowStatus: "candidate_shape_evidence",
+            replayAuthorization: false,
+            acceptedReplayEvidence: false,
+            retainedBranch: false,
+            provesBranchAdmissibility: false,
+          },
+        ],
+        unresolvedRootSegmentSidecar: {
+          schema: "t3-unresolved-root-segment-sidecar.v1",
+          enabled: true,
+          pairPolicy: "neighbor_pruned_v1",
+          rowCount: 1,
+          rowStatus: "candidate_shape_evidence_only",
+          replayAuthorization: false,
+          retainedBranch: false,
+          provesBranchAdmissibility: false,
+        },
+        summary: {
+          startTime: request.startTime,
+          endTime: request.endTime,
+          timestep: request.timestep,
+          particleCount: request.particles.length,
+          neighborPairCount: 1,
+          occupiedCellCount: 1,
+        },
+        executionPath: "native_c_abi",
+        status: { code: "ok", severity: "ok", message: "fake solver integrated" },
+      };
+    },
+  };
+  const simulator = createT3UniverseSimulator({
+    config: {
+      model: { causalSpeed: 3 },
+      topology: { sideLength: 4 },
+      initialConditions: {
+        particles: [
+          { id: "source", position: [0, 0, 0], velocity: [0.1, 0, 0] },
+          { id: "receiver", position: [0.4, 0, 0], velocity: [0, 0.1, 0] },
+        ],
+      },
+      interactions: { interactionRadius: 1, spatialIndexCellSize: 1 },
+      solver: { engine: "solver", timestep: 0.25, tolerance: 1e-7, centralSolverConcurrency: 1 },
+    },
+    solverClient,
+  });
+
+  const result = await simulator.step();
+
+  assert.equal(calls.length, 1);
+  assert.equal(calls[0].stepIndex, 0);
+  assert.equal(calls[0].signalSpeed, 3);
+  assert.equal(calls[0].rootTolerance, 1e-7);
+  assert.deepEqual(calls[0].unresolvedRootSegmentSidecar, {
+    schema: "t3-unresolved-root-segment-sidecar-request.v1",
+    enabled: true,
+    pairPolicy: "neighbor_pruned_v1",
+    maxRows: 1,
+  });
+  assert.equal(result.unresolvedRootSegmentRows.length, 1);
+  assert.equal(result.unresolvedRootSegmentSidecar.replayAuthorization, false);
+  assert.equal(result.unresolvedRootSegmentSidecar.retainedBranch, false);
+  assert.equal(result.unresolvedRootSegmentSidecar.provesBranchAdmissibility, false);
+
+  const replaySource = result.periodicWrapEvidence.retainedCausalRootReplaySource;
+  const sidecarReplayRow = replaySource.rows.find(
+    (row) => row.sourceObjectRowSchema === "t3-unresolved-root-segment-row.v1"
+  );
+  assert.equal(sidecarReplayRow.chronologyRowId, "step_0_unresolved_root_rows");
+  assert.equal(sidecarReplayRow.acceptedReplayEvidence, false);
+  assert.equal(sidecarReplayRow.replayAuthorization, false);
+  assert.equal(sidecarReplayRow.rootLedgerRecordId, null);
+  assert.equal(sidecarReplayRow.causticRoute, null);
+  assert.equal(sidecarReplayRow.sourcePathSegmentId, null);
+  assert.equal(sidecarReplayRow.providedFields.includes("sourceSegment"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("receiverSegment"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("sourceIdentityBinding"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("rootLedgerRecordId"), false);
+  assert.deepEqual(
+    sidecarReplayRow.missingFields.filter((field) =>
+      ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"].includes(field)
+    ),
+    ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId"]
+  );
+  assert.equal(replaySource.acceptedReplayEvidence, false);
+  assert.equal(replaySource.replayAuthorization, false);
+  assert.equal(replaySource.summary.retainedBranch, false);
+  assert.equal(replaySource.summary.provesBranchAdmissibility, false);
 });
 
 test("solver run summary uses native bulk T3 route without per-particle fallback", async () => {

@@ -407,7 +407,8 @@ function replayFieldSourceBoundary(input) {
     missingFamilySpecificFields,
     nativeBridgeSource: replayNativeBridgeSourceBoundary(
       chronologyRow,
-      missingFamilySpecificFields
+      missingFamilySpecificFields,
+      producerRows
     ),
     missingLocalFieldOrSourceConditions: replayMissingLocalFieldOrSourceConditions(
       chronologyRow,
@@ -417,9 +418,42 @@ function replayFieldSourceBoundary(input) {
   };
 }
 
-function replayNativeBridgeSourceBoundary(chronologyRow, missingFields) {
+function replayNativeBridgeSourceBoundary(chronologyRow, missingFields, producerRows = []) {
   if (chronologyRow.rowFamily !== "unresolved-root" || missingFields.length === 0) {
     return null;
+  }
+  const sidecarProducerRows = producerRows.filter(
+    (row) => row?.sourceObjectRowSchema === "t3-unresolved-root-segment-row.v1"
+  );
+  if (sidecarProducerRows.length > 0) {
+    return {
+      schema: "t3-native-bridge-field-source-boundary.v1",
+      sourceObjectSchema: "solver-t3-step-response.v1",
+      nativeRow: "T3UnresolvedRootSegmentRowF64",
+      nativeStruct: "src/solver/include/architrino/solver/T3BulkStep.hpp::T3UnresolvedRootSegmentRowF64",
+      nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
+      bridgeReader: "src/solver/app/SolverAppBridge.mjs::readT3UnresolvedRootSegmentRowF64",
+      availableNativeBridgeFields: [
+        "chronologyRowId",
+        "sourcePathKey",
+        "receiverPathKey",
+        "sourceSegmentIndex",
+        "receiverSegmentIndex",
+        "sourceSegment",
+        "receiverSegment",
+        "sameRecordSegmentBinding",
+        "sourceIdentityBinding",
+        "receiverIdentityBinding",
+        "hitTime",
+        "signalSpeed",
+        "rootTolerance",
+      ],
+      missingNativeBridgeFields: missingFields,
+      requiredUpstreamObject:
+        "same-step retained root-ledger replay producer fields on T3UnresolvedRootSegmentRowF64 before t3-run-summary.v1 aggregation",
+      sidecarRowCount: sidecarProducerRows.length,
+      replayAuthorization: false,
+    };
   }
   return {
     schema: "t3-native-bridge-field-source-boundary.v1",

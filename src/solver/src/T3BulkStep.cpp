@@ -79,6 +79,26 @@ bool validate_request(
                    false);
     return false;
   }
+  if (request.unresolvedRootSegmentSidecarEnabled != 0) {
+    if (!std::isfinite(request.signalSpeed) || request.signalSpeed <= 0.0 ||
+        !std::isfinite(request.rootTolerance) || request.rootTolerance <= 0.0) {
+      validation.add(StatusCode::AppContractError,
+                     StatusSeverity::Error,
+                     "T3 unresolved-root segment sidecar requires finite positive signalSpeed and rootTolerance",
+                     "t3-bulk-step",
+                     false);
+      return false;
+    }
+    if (request.unresolvedRootPairPolicy !=
+        static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::NeighborPrunedV1)) {
+      validation.add(StatusCode::AppContractError,
+                     StatusSeverity::Error,
+                     "T3 unresolved-root segment sidecar pair policy is not supported",
+                     "t3-bulk-step",
+                     false);
+      return false;
+    }
+  }
   if (request.interactionLaw == static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1) &&
       (!std::isfinite(request.softSphereRadius) || request.softSphereRadius <= 0.0 ||
        !std::isfinite(request.softSphereStrength) ||
@@ -240,6 +260,10 @@ T3BulkStepResult step_t3_universe(
   double interactionEnergy = 0.0;
   std::uint64_t neighborPairCount = 0;
   std::unordered_set<std::uint64_t> seenCells;
+  const bool emitUnresolvedRootSegmentRows =
+      request.unresolvedRootSegmentSidecarEnabled != 0 &&
+      request.unresolvedRootPairPolicy ==
+          static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::NeighborPrunedV1);
 
   for (std::size_t i = 0; i < states.size(); ++i) {
     seenCells.clear();
@@ -271,6 +295,31 @@ T3BulkStepResult step_t3_universe(
               continue;
             }
             ++neighborPairCount;
+            if (emitUnresolvedRootSegmentRows) {
+              result.unresolvedRootSegmentRows.push_back(T3UnresolvedRootSegmentRowF64{
+                  request.stepIndex,
+                  states[i].pathKey,
+                  states[j].pathKey,
+                  request.stepIndex,
+                  request.stepIndex,
+                  states[i].position,
+                  states[i].velocity,
+                  states[j].position,
+                  states[j].velocity,
+                  request.startTime,
+                  request.endTime,
+                  request.endTime,
+                  request.signalSpeed,
+                  request.rootTolerance,
+                  request.integrationTolerance,
+                  request.integrationTolerance,
+                  states[i].stateFlags,
+                  states[j].stateFlags,
+                  request.unresolvedRootPairPolicy,
+                  static_cast<std::uint32_t>(
+                      T3UnresolvedRootSegmentRowStatus::CandidateShapeEvidence),
+              });
+            }
             if (!useSoftSphere) {
               continue;
             }

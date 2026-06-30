@@ -45,6 +45,20 @@ export class T3CentralSolverEngine {
       spatialIndex: this.spatialIndex,
       interactionPipeline: this.interactionPipeline,
       integrationTolerance: this.config.solver?.tolerance ?? 0,
+      stepIndex: state.stepIndex,
+      signalSpeed:
+        this.config.model?.causalSpeed ??
+        this.config.solver?.signalSpeed ??
+        this.config.signalSpeed ??
+        1,
+      rootTolerance:
+        this.config.solver?.rootTolerance ??
+        this.config.solver?.tolerance ??
+        1e-6,
+      unresolvedRootSegmentSidecar: {
+        enabled: true,
+        pairPolicy: "neighbor_pruned_v1",
+      },
       maxRows: state.particleCount,
     });
     const response = await this.solverClient.stepT3UniverseF64(request);
@@ -78,6 +92,19 @@ export class T3CentralSolverEngine {
       occupiedCellCount: bulkStepSummary.occupiedCellCount ?? 0,
       maxAcceleration: bulkStepSummary.maxAcceleration ?? 0,
       interactionEnergy: bulkStepSummary.interactionEnergy ?? 0,
+      unresolvedRootSegmentRows: Array.isArray(response?.unresolvedRootSegmentRows)
+        ? response.unresolvedRootSegmentRows
+        : [],
+      unresolvedRootSegmentSidecar: response?.unresolvedRootSegmentSidecar ?? {
+        schema: "t3-unresolved-root-segment-sidecar.v1",
+        enabled: false,
+        pairPolicy: "disabled",
+        rowCount: 0,
+        rowStatus: "absent_from_solver_step_response",
+        replayAuthorization: false,
+        retainedBranch: false,
+        provesBranchAdmissibility: false,
+      },
       bulkStepSummary,
       periodicWrapEvidence,
       executionPath: response?.executionPath ?? "central_solver_bridge",
@@ -122,6 +149,10 @@ export function createT3BulkStepRequest(input = {}) {
     spatialIndex,
     interactionPipeline,
     integrationTolerance = 0,
+    stepIndex = 0,
+    signalSpeed = 1,
+    rootTolerance = 1e-6,
+    unresolvedRootSegmentSidecar = { enabled: false, pairPolicy: "disabled" },
     maxRows,
   } = input;
   if (!state || !topology || !spatialIndex) {
@@ -141,6 +172,13 @@ export function createT3BulkStepRequest(input = {}) {
       cellSize: spatialIndex.cellSize,
     },
     interaction: createNativeT3InteractionSpec(interactionPipeline),
+    stepIndex: positiveIntegerOrZero(stepIndex, "stepIndex"),
+    signalSpeed: positiveFiniteNumber(signalSpeed, "signalSpeed"),
+    rootTolerance: positiveFiniteNumber(rootTolerance, "rootTolerance"),
+    unresolvedRootSegmentSidecar: normalizeUnresolvedRootSegmentSidecarRequest({
+      ...unresolvedRootSegmentSidecar,
+      particleCount: state.particleCount,
+    }),
     particles: Array.from({ length: state.particleCount }, (_, particleIndex) => {
       const offset = particleIndex * 3;
       return {
@@ -155,6 +193,31 @@ export function createT3BulkStepRequest(input = {}) {
     integrationTolerance,
     integrationMethod: 1,
     maxRows: maxRows ?? state.particleCount,
+  };
+}
+
+function normalizeUnresolvedRootSegmentSidecarRequest(input = {}) {
+  const enabled = input.enabled === true;
+  if (!enabled) {
+    return {
+      schema: "t3-unresolved-root-segment-sidecar-request.v1",
+      enabled: false,
+      pairPolicy: "disabled",
+      maxRows: 0,
+    };
+  }
+  if (input.pairPolicy !== "neighbor_pruned_v1") {
+    throw new TypeError("T3 unresolved-root segment sidecar pairPolicy must be neighbor_pruned_v1");
+  }
+  const particleCount = positiveIntegerOrZero(input.particleCount ?? 0, "particleCount");
+  return {
+    schema: "t3-unresolved-root-segment-sidecar-request.v1",
+    enabled: true,
+    pairPolicy: "neighbor_pruned_v1",
+    maxRows: positiveIntegerOrZero(
+      input.maxRows ?? (particleCount * (particleCount - 1)) / 2,
+      "unresolvedRootSegmentSidecar.maxRows"
+    ),
   };
 }
 
@@ -272,6 +335,16 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
       }));
     }
   }
+  const unresolvedRootSegmentRows = Array.isArray(options.response?.unresolvedRootSegmentRows)
+    ? options.response.unresolvedRootSegmentRows
+    : [];
+  unresolvedRootSegmentRows.forEach((row, rowIndex) => {
+    candidateRows.push(createUnresolvedRootSegmentReplayCandidateRow({
+      row,
+      rowIndex,
+      stepIndex,
+    }));
+  });
   const acceptedRows = candidateRows.filter((row) => row.acceptedReplayEvidence === true);
   const firstBlockedRow = candidateRows.find((row) => row.acceptedReplayEvidence !== true);
   const allCandidateRowsAccepted =
@@ -295,6 +368,12 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
           "solver step rows cannot authorize replay until endpoint, memory-window, collision/core, and omitted-row routes are declared on the same retained record",
         promotionBlocked: true,
       },
+      {
+        controlId: "unresolved_root_segment_sidecar_without_retained_root_ledger_fields",
+        expectedFailure:
+          "unresolved-root segment sidecar rows can expose same-step segment shape evidence but cannot authorize replay without rootLedgerRecordId, causticRoute, and sourcePathSegmentId",
+        promotionBlocked: true,
+      },
     ],
     summary: {
       status:
@@ -313,6 +392,87 @@ function createRetainedCausalRootReplaySource(rows, options = {}) {
       retainedBranch: false,
       provesBranchAdmissibility: false,
     },
+  };
+}
+
+function createUnresolvedRootSegmentReplayCandidateRow(input) {
+  const { row, rowIndex, stepIndex } = input;
+  const effectiveStepIndex = Number.isInteger(row?.stepIndex) ? row.stepIndex : stepIndex;
+  const chronologyRowId = row?.chronologyRowId ??
+    (effectiveStepIndex == null ? null : `step_${effectiveStepIndex}_unresolved_root_rows`);
+  const rowId = [
+    chronologyRowId ?? "step_unknown_unresolved_root_rows",
+    "segment",
+    row?.sourcePathKey ?? "source_unknown",
+    row?.receiverPathKey ?? "receiver_unknown",
+    rowIndex,
+  ].join(":");
+  const providedFields = [
+    "chronologyRowId",
+    "sourcePathKey",
+    "receiverPathKey",
+    "sourceSegmentIndex",
+    "receiverSegmentIndex",
+    "sourceSegment",
+    "receiverSegment",
+    "sameRecordSegmentBinding",
+    "sourceIdentityBinding",
+    "receiverIdentityBinding",
+    "hitTime",
+    "signalSpeed",
+    "rootTolerance",
+    "rowFamilyIdentity",
+  ].filter((field) => field === "rowFamilyIdentity" || row?.[field] != null);
+  const requiredFields = [
+    "sameRecordReplayId",
+    "retainedSourceRecordId",
+    "retainedCausalRootRowId",
+    "rowFamilyIdentity",
+    "boundaryOrientation",
+    "windingLabel",
+    "jacobianFloorOrDeclaredStratum",
+    "endpointRoute",
+    "memoryWindowRoute",
+    "collisionCoreRoute",
+    "omittedRowRoute",
+    "rootLedgerRecordId",
+    "causticRoute",
+    "sourcePathSegmentId",
+  ];
+  const missingFields = requiredFields.filter((field) => !providedFields.includes(field));
+  return {
+    schema: "t3-retained-causal-root-replay-row.v1",
+    rowId,
+    sourceObjectRowSchema: row?.schema ?? "t3-unresolved-root-segment-row.v1",
+    sourceObjectRowStatus: row?.rowStatus ?? "candidate_shape_evidence",
+    sameRecordReplayId: null,
+    retainedSourceRecordId: null,
+    retainedCausalRootRowId: null,
+    stepIndex: effectiveStepIndex,
+    sourcePathKey: row?.sourcePathKey ?? null,
+    receiverPathKey: row?.receiverPathKey ?? null,
+    sourceSegmentIndex: row?.sourceSegmentIndex ?? null,
+    receiverSegmentIndex: row?.receiverSegmentIndex ?? null,
+    sourceSegment: row?.sourceSegment ?? null,
+    receiverSegment: row?.receiverSegment ?? null,
+    sameRecordSegmentBinding: row?.sameRecordSegmentBinding ?? null,
+    sourceIdentityBinding: row?.sourceIdentityBinding ?? null,
+    receiverIdentityBinding: row?.receiverIdentityBinding ?? null,
+    hitTime: row?.hitTime ?? null,
+    signalSpeed: row?.signalSpeed ?? null,
+    rootTolerance: row?.rootTolerance ?? null,
+    rootLedgerRecordId: null,
+    causticRoute: null,
+    sourcePathSegmentId: null,
+    rowFamilyIdentity: "unresolved-root",
+    chronologyRowId,
+    rowStatus: "candidate_shape_evidence_missing_retained_causal_root_replay",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
+    providedFields,
+    missingFields,
   };
 }
 
@@ -740,6 +900,14 @@ function positiveInteger(value, fieldName) {
   const numericValue = Number(value);
   if (!Number.isInteger(numericValue) || numericValue <= 0) {
     throw new TypeError(`${fieldName} must be a positive integer`);
+  }
+  return numericValue;
+}
+
+function positiveIntegerOrZero(value, fieldName) {
+  const numericValue = Number(value);
+  if (!Number.isInteger(numericValue) || numericValue < 0) {
+    throw new TypeError(`${fieldName} must be a nonnegative integer`);
   }
   return numericValue;
 }

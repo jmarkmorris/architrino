@@ -30,10 +30,13 @@ int main() {
       2.0,
       1e-6,
       0.0,
+      1.0,
+      1e-6,
+      0,
       static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
       1,
-      0,
-      0,
+      1,
+      1,
   };
   const std::vector<T3ParticleState> states{
       T3ParticleState{1, Vector3{9.8, 5.0, 5.0}, Vector3{0.5, 0.0, 0.0}, 1.0, 0.0, 1, 0},
@@ -77,11 +80,16 @@ int main() {
       2.0,
       1e-6,
       0.0,
+      1.0,
+      1e-6,
+      0,
       static_cast<std::uint32_t>(T3InteractionLaw::SoftSphereRepelV1),
       1,
-      0,
-      0,
+      1,
+      1,
   };
+  ArchitrinoSolverT3UnresolvedRootSegmentRowF64 abiSegmentRows[1]{};
+  int abiSegmentRowCount = 0;
   const int abiStatus = architrino_solver_step_t3_universe_f64(
       &abiRequest,
       abiStates,
@@ -89,7 +97,10 @@ int main() {
       abiRows,
       2,
       &abiRowCount,
-      &abiSummary);
+      &abiSummary,
+      abiSegmentRows,
+      1,
+      &abiSegmentRowCount);
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
 
   const bool ok =
@@ -107,11 +118,17 @@ int main() {
       abiSummary.neighbor_pair_count == 1 &&
       abiRows[0].image_delta_x == 0 &&
       abiRows[1].image_delta_x == 0 &&
-      abiInfo.abi_minor == 16 &&
-      abiInfo.t3_step_request_f64_bytes == 96 &&
+      result.unresolvedRootSegmentRows.size() == 1 &&
+      abiSegmentRowCount == 1 &&
+      abiSegmentRows[0].source_path_key == 1 &&
+      abiSegmentRows[0].receiver_path_key == 2 &&
+      abiSegmentRows[0].row_status == 1 &&
+      abiInfo.abi_minor == 17 &&
+      abiInfo.t3_step_request_f64_bytes == 120 &&
       abiInfo.t3_particle_state_f64_bytes == 80 &&
       abiInfo.t3_particle_step_row_f64_bytes == 104 &&
-      abiInfo.t3_step_summary_f64_bytes == 88;
+      abiInfo.t3_step_summary_f64_bytes == 88 &&
+      abiInfo.t3_unresolved_root_segment_row_f64_bytes == 208;
 
   if (!ok) {
     std::cerr << "solver T3 smoke failed\n";

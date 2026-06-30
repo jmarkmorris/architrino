@@ -662,10 +662,23 @@ const PAIR_INTERACTION_REQUEST_F64_BYTES = 88;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 352;
-const T3_STEP_REQUEST_F64_BYTES = 96;
+const T3_STEP_REQUEST_F64_BYTES = 120;
 const T3_PARTICLE_STATE_F64_BYTES = 80;
 const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
 const T3_STEP_SUMMARY_F64_BYTES = 88;
+const T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES = 208;
+const T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID = Object.freeze({
+  disabled: 0,
+  neighbor_pruned_v1: 1,
+});
+const T3_UNRESOLVED_ROOT_PAIR_POLICY_ID_BY_CODE = Object.freeze({
+  0: "disabled",
+  1: "neighbor_pruned_v1",
+});
+const T3_UNRESOLVED_ROOT_SEGMENT_ROW_STATUS_BY_CODE = Object.freeze({
+  0: "disabled",
+  1: "candidate_shape_evidence",
+});
 const PAIR_INTERACTION_PATH_CONSTRAINT_GUIDANCE_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE = "retained_knot_boundary";
 const PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_MODE_LAW_AWARE = "law_aware_retained_knot_boundary";
@@ -891,7 +904,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 208;
+const ABI_INFO_BYTES = 212;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -11750,6 +11763,10 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
 
   const stateCount = normalized.particles.length;
   const maxRows = normalized.maxRows ?? stateCount;
+  const unresolvedRootSegmentSidecar = normalized.unresolvedRootSegmentSidecar;
+  const maxUnresolvedRootSegmentRows = unresolvedRootSegmentSidecar.enabled
+    ? unresolvedRootSegmentSidecar.maxRows
+    : 0;
   if (maxRows < stateCount) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "T3 bulk step row buffer is too small", {
@@ -11762,7 +11779,13 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
   const requestPtr = module._malloc(abiInfo.t3StepRequestF64Bytes);
   const statesPtr = module._malloc(Math.max(1, stateCount) * abiInfo.t3ParticleStateF64Bytes);
   const rowsPtr = maxRows > 0 ? module._malloc(abiInfo.t3ParticleStepRowF64Bytes * maxRows) : 0;
+  const unresolvedRootSegmentRowsPtr = maxUnresolvedRootSegmentRows > 0
+    ? module._malloc(
+        abiInfo.t3UnresolvedRootSegmentRowF64Bytes * maxUnresolvedRootSegmentRows
+      )
+    : 0;
   const outRowCountPtr = module._malloc(4);
+  const outUnresolvedRootSegmentRowCountPtr = module._malloc(4);
   const summaryPtr = module._malloc(abiInfo.t3StepSummaryF64Bytes);
   try {
     writeT3StepRequestF64(module, requestPtr, normalized);
@@ -11774,8 +11797,12 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
       );
     });
     module.setValue(outRowCountPtr, 0, "i32");
+    module.setValue(outUnresolvedRootSegmentRowCountPtr, 0, "i32");
     writeZeroBytes(module, summaryPtr, abiInfo.t3StepSummaryF64Bytes);
     const stepT3 = module.cwrap("architrino_solver_step_t3_universe_f64", "number", [
+      "number",
+      "number",
+      "number",
       "number",
       "number",
       "number",
@@ -11791,15 +11818,29 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
       rowsPtr,
       maxRows,
       outRowCountPtr,
-      summaryPtr
+      summaryPtr,
+      unresolvedRootSegmentRowsPtr,
+      maxUnresolvedRootSegmentRows,
+      outUnresolvedRootSegmentRowCountPtr
     );
     const rowCount = module.getValue(outRowCountPtr, "i32");
+    const unresolvedRootSegmentRowCount = module.getValue(
+      outUnresolvedRootSegmentRowCountPtr,
+      "i32"
+    );
     const summary = readT3StepSummaryF64(module, summaryPtr);
     if (status !== 0) {
       throw new SolverBridgeError(
         createStatus("internal_solver_error", "halt", `T3 bulk step C ABI returned ${status}`, {
           recoverable: status === -3,
-          details: { status, rowCount, maxRows, stateCount },
+          details: {
+            status,
+            rowCount,
+            maxRows,
+            unresolvedRootSegmentRowCount,
+            maxUnresolvedRootSegmentRows,
+            stateCount,
+          },
         })
       );
     }
@@ -11811,9 +11852,30 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
         rowsPtr + index * abiInfo.t3ParticleStepRowF64Bytes
       ));
     }
+    const unresolvedRootSegmentRows = [];
+    for (let index = 0; index < unresolvedRootSegmentRowCount; index += 1) {
+      unresolvedRootSegmentRows.push(readT3UnresolvedRootSegmentRowF64(
+        module,
+        unresolvedRootSegmentRowsPtr +
+          index * abiInfo.t3UnresolvedRootSegmentRowF64Bytes
+      ));
+    }
     return {
       schema: "solver-t3-step-response.v1",
       rows,
+      unresolvedRootSegmentRows,
+      unresolvedRootSegmentSidecar: {
+        schema: "t3-unresolved-root-segment-sidecar.v1",
+        enabled: unresolvedRootSegmentSidecar.enabled,
+        pairPolicy: unresolvedRootSegmentSidecar.pairPolicy,
+        rowCount: unresolvedRootSegmentRows.length,
+        rowStatus: unresolvedRootSegmentSidecar.enabled
+          ? "candidate_shape_evidence_only"
+          : "disabled",
+        replayAuthorization: false,
+        retainedBranch: false,
+        provesBranchAdmissibility: false,
+      },
       summary,
       particleCount: stateCount,
       interactionLaw: normalized.interaction.law,
@@ -11823,6 +11885,7 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
           executionPath: "native_c_abi",
           interactionLaw: normalized.interaction.law,
           neighborPairCount: summary.neighborPairCount,
+          unresolvedRootSegmentRowCount: unresolvedRootSegmentRows.length,
           occupiedCellCount: summary.occupiedCellCount,
         },
       }),
@@ -11833,7 +11896,11 @@ function stepT3UniverseF64WithModule(module, request, abiInfo) {
     if (rowsPtr !== 0) {
       module._free(rowsPtr);
     }
+    if (unresolvedRootSegmentRowsPtr !== 0) {
+      module._free(unresolvedRootSegmentRowsPtr);
+    }
     module._free(outRowCountPtr);
+    module._free(outUnresolvedRootSegmentRowCountPtr);
     module._free(summaryPtr);
   }
 }
@@ -11867,6 +11934,12 @@ function normalizeT3StepRequest(request) {
     "T3 spatialCellSize"
   );
   const particles = normalizeT3ParticleStates(request.particles ?? request.stateRows ?? []);
+  const unresolvedRootSegmentSidecar = normalizeT3UnresolvedRootSegmentSidecar(
+    request.unresolvedRootSegmentSidecar ??
+      request.unresolvedRootSegmentSidecarPolicy ??
+      {},
+    particles.length
+  );
   return {
     schema: "solver-t3-step-request.v1",
     startTime,
@@ -11881,12 +11954,65 @@ function normalizeT3StepRequest(request) {
     },
     interaction,
     particles,
+    stepIndex: t3NonnegativeInteger(request.stepIndex ?? 0, "T3 stepIndex"),
     integrationTolerance: t3NonnegativeFinite(
       request.integrationTolerance ?? request.tolerance ?? 0,
       "T3 integrationTolerance"
     ),
+    signalSpeed: unresolvedRootSegmentSidecar.enabled
+      ? t3PositiveFinite(
+          request.signalSpeed ?? request.causalSpeed ?? unresolvedRootSegmentSidecar.signalSpeed,
+          "T3 signalSpeed"
+        )
+      : t3Finite(request.signalSpeed ?? request.causalSpeed ?? 0, "T3 signalSpeed"),
+    rootTolerance: unresolvedRootSegmentSidecar.enabled
+      ? t3PositiveFinite(
+          request.rootTolerance ?? unresolvedRootSegmentSidecar.rootTolerance,
+          "T3 rootTolerance"
+        )
+      : t3NonnegativeFinite(
+          request.rootTolerance ?? unresolvedRootSegmentSidecar.rootTolerance ?? 0,
+          "T3 rootTolerance"
+        ),
+    unresolvedRootSegmentSidecar,
     integrationMethod: t3PositiveInteger(request.integrationMethod ?? 1, "T3 integrationMethod"),
     maxRows: request.maxRows == null ? particles.length : t3NonnegativeInteger(request.maxRows, "T3 maxRows"),
+  };
+}
+
+function normalizeT3UnresolvedRootSegmentSidecar(input, particleCount) {
+  const value = input && typeof input === "object" && !Array.isArray(input) ? input : {};
+  const enabled = value.enabled === true || value.mode === "enabled";
+  const pairPolicy = value.pairPolicy ?? value.policy ?? "disabled";
+  const expectedPairCount = Math.max(0, (particleCount * (particleCount - 1)) / 2);
+  if (!enabled) {
+    return {
+      schema: "t3-unresolved-root-segment-sidecar-request.v1",
+      enabled: false,
+      pairPolicy: "disabled",
+      pairPolicyCode: T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID.disabled,
+      signalSpeed: 0,
+      rootTolerance: 0,
+      maxRows: 0,
+    };
+  }
+  if (pairPolicy !== "neighbor_pruned_v1") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `unsupported T3 unresolved-root sidecar pair policy: ${pairPolicy}`, {
+        recoverable: false,
+      })
+    );
+  }
+  return {
+    schema: "t3-unresolved-root-segment-sidecar-request.v1",
+    enabled: true,
+    pairPolicy,
+    pairPolicyCode: T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID[pairPolicy],
+    signalSpeed: value.signalSpeed,
+    rootTolerance: value.rootTolerance,
+    maxRows: value.maxRows == null
+      ? expectedPairCount
+      : t3NonnegativeInteger(value.maxRows, "T3 unresolvedRootSegmentSidecar.maxRows"),
   };
 }
 
@@ -14442,6 +14568,7 @@ function readAbiInfo(module) {
       t3ParticleStateF64Bytes: module.getValue(ptr + 196, "i32"),
       t3ParticleStepRowF64Bytes: module.getValue(ptr + 200, "i32"),
       t3StepSummaryF64Bytes: module.getValue(ptr + 204, "i32"),
+      t3UnresolvedRootSegmentRowF64Bytes: module.getValue(ptr + 208, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -14451,7 +14578,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 16,
+    abiMinor: 17,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -14502,13 +14629,14 @@ function defaultAbiInfo() {
     t3ParticleStateF64Bytes: T3_PARTICLE_STATE_F64_BYTES,
     t3ParticleStepRowF64Bytes: T3_PARTICLE_STEP_ROW_F64_BYTES,
     t3StepSummaryF64Bytes: T3_STEP_SUMMARY_F64_BYTES,
+    t3UnresolvedRootSegmentRowF64Bytes: T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 16 ||
+    abiInfo.abiMinor !== 17 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -14558,7 +14686,8 @@ function assertAbiInfo(abiInfo) {
     abiInfo.t3StepRequestF64Bytes !== T3_STEP_REQUEST_F64_BYTES ||
     abiInfo.t3ParticleStateF64Bytes !== T3_PARTICLE_STATE_F64_BYTES ||
     abiInfo.t3ParticleStepRowF64Bytes !== T3_PARTICLE_STEP_ROW_F64_BYTES ||
-    abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES
+    abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES ||
+    abiInfo.t3UnresolvedRootSegmentRowF64Bytes !== T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -16163,10 +16292,22 @@ function writeT3StepRequestF64(module, ptr, request) {
   module.setValue(ptr + 56, request.interaction.strength, "double");
   module.setValue(ptr + 64, request.interaction.softening, "double");
   module.setValue(ptr + 72, request.integrationTolerance ?? 0, "double");
-  module.setValue(ptr + 80, request.interaction.lawCode, "i32");
-  module.setValue(ptr + 84, request.integrationMethod ?? 1, "i32");
-  module.setValue(ptr + 88, 0, "i32");
-  module.setValue(ptr + 92, 0, "i32");
+  module.setValue(ptr + 80, request.signalSpeed ?? 0, "double");
+  module.setValue(ptr + 88, request.rootTolerance ?? 0, "double");
+  writeUint64(module, ptr + 96, request.stepIndex ?? 0);
+  module.setValue(ptr + 104, request.interaction.lawCode, "i32");
+  module.setValue(ptr + 108, request.integrationMethod ?? 1, "i32");
+  module.setValue(
+    ptr + 112,
+    request.unresolvedRootSegmentSidecar?.enabled === true ? 1 : 0,
+    "i32"
+  );
+  module.setValue(
+    ptr + 116,
+    request.unresolvedRootSegmentSidecar?.pairPolicyCode ??
+      T3_UNRESOLVED_ROOT_PAIR_POLICY_CODE_BY_ID.disabled,
+    "i32"
+  );
 }
 
 function writeT3ParticleStateF64(module, ptr, state) {
@@ -16818,6 +16959,88 @@ function readT3StepSummaryF64(module, ptr) {
     interactionLaw: interactionLawCode === 1 ? "soft_sphere_repel_v1" : "none",
     integrationMethod: module.getValue(ptr + 76, "i32") >>> 0,
     statusFlags: module.getValue(ptr + 80, "i32") >>> 0,
+  };
+}
+
+function readT3UnresolvedRootSegmentRowF64(module, ptr) {
+  const stepIndex = readUint64(module, ptr);
+  const sourcePathKey = readUint64(module, ptr + 8);
+  const receiverPathKey = readUint64(module, ptr + 16);
+  const sourceSegmentIndex = readUint64(module, ptr + 24);
+  const receiverSegmentIndex = readUint64(module, ptr + 32);
+  const sourcePosition = readVector(module, ptr + 40);
+  const sourceVelocity = readVector(module, ptr + 64);
+  const receiverPosition = readVector(module, ptr + 88);
+  const receiverVelocity = readVector(module, ptr + 112);
+  const startTime = module.getValue(ptr + 136, "double");
+  const endTime = module.getValue(ptr + 144, "double");
+  const hitTime = module.getValue(ptr + 152, "double");
+  const signalSpeed = module.getValue(ptr + 160, "double");
+  const rootTolerance = module.getValue(ptr + 168, "double");
+  const sourceErrorBound = module.getValue(ptr + 176, "double");
+  const receiverErrorBound = module.getValue(ptr + 184, "double");
+  const sourceStateFlags = module.getValue(ptr + 192, "i32") >>> 0;
+  const receiverStateFlags = module.getValue(ptr + 196, "i32") >>> 0;
+  const pairPolicyCode = module.getValue(ptr + 200, "i32") >>> 0;
+  const rowStatusCode = module.getValue(ptr + 204, "i32") >>> 0;
+  return {
+    schema: "t3-unresolved-root-segment-row.v1",
+    chronologyRowId: `step_${stepIndex}_unresolved_root_rows`,
+    stepIndex,
+    sourcePathKey,
+    receiverPathKey,
+    sourceSegmentIndex,
+    receiverSegmentIndex,
+    sourceSegment: {
+      pathKey: sourcePathKey,
+      segmentIndex: sourceSegmentIndex,
+      startTime,
+      endTime,
+      position: sourcePosition,
+      velocity: sourceVelocity,
+      errorBound: sourceErrorBound,
+    },
+    receiverSegment: {
+      pathKey: receiverPathKey,
+      segmentIndex: receiverSegmentIndex,
+      startTime,
+      endTime,
+      position: receiverPosition,
+      velocity: receiverVelocity,
+      errorBound: receiverErrorBound,
+    },
+    sameRecordSegmentBinding: {
+      sourcePathKey,
+      receiverPathKey,
+      sourceSegmentIndex,
+      receiverSegmentIndex,
+      bindingStatus: "same_step_segment_shape_evidence",
+    },
+    sourceIdentityBinding: {
+      pathKey: sourcePathKey,
+      stateFlags: sourceStateFlags,
+      bindingStatus: "path_key_state_flags_same_step",
+    },
+    receiverIdentityBinding: {
+      pathKey: receiverPathKey,
+      stateFlags: receiverStateFlags,
+      bindingStatus: "path_key_state_flags_same_step",
+    },
+    hitTime,
+    signalSpeed,
+    rootTolerance,
+    rootLedgerRecordId: null,
+    causticRoute: null,
+    sourcePathSegmentId: null,
+    pairPolicyCode,
+    pairPolicy: T3_UNRESOLVED_ROOT_PAIR_POLICY_ID_BY_CODE[pairPolicyCode] ?? "unknown",
+    rowStatusCode,
+    rowStatus:
+      T3_UNRESOLVED_ROOT_SEGMENT_ROW_STATUS_BY_CODE[rowStatusCode] ?? "unknown",
+    replayAuthorization: false,
+    acceptedReplayEvidence: false,
+    retainedBranch: false,
+    provesBranchAdmissibility: false,
   };
 }
 

@@ -460,10 +460,13 @@ struct ArchitrinoSolverT3StepRequestF64 {
   double soft_sphere_strength;
   double softening;
   double integration_tolerance;
+  double signal_speed;
+  double root_tolerance;
+  std::uint64_t step_index;
   std::uint32_t interaction_law;
   std::uint32_t integration_method;
-  std::uint32_t reserved0;
-  std::uint32_t reserved1;
+  std::uint32_t unresolved_root_segment_sidecar_enabled;
+  std::uint32_t unresolved_root_pair_policy;
 };
 
 struct ArchitrinoSolverT3ParticleStateF64 {
@@ -502,6 +505,29 @@ struct ArchitrinoSolverT3StepSummaryF64 {
   std::uint32_t integration_method;
   std::uint32_t status_flags;
   std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverT3UnresolvedRootSegmentRowF64 {
+  std::uint64_t step_index;
+  std::uint64_t source_path_key;
+  std::uint64_t receiver_path_key;
+  std::uint64_t source_segment_index;
+  std::uint64_t receiver_segment_index;
+  ArchitrinoSolverVector3F64 source_position;
+  ArchitrinoSolverVector3F64 source_velocity;
+  ArchitrinoSolverVector3F64 receiver_position;
+  ArchitrinoSolverVector3F64 receiver_velocity;
+  double start_time;
+  double end_time;
+  double hit_time;
+  double signal_speed;
+  double root_tolerance;
+  double source_error_bound;
+  double receiver_error_bound;
+  std::uint32_t source_state_flags;
+  std::uint32_t receiver_state_flags;
+  std::uint32_t pair_policy;
+  std::uint32_t row_status;
 };
 
 struct ArchitrinoSolverMotionFrameRowF64 {
@@ -987,6 +1013,7 @@ struct ArchitrinoSolverAbiInfo {
   int t3_particle_state_f64_bytes;
   int t3_particle_step_row_f64_bytes;
   int t3_step_summary_f64_bytes;
+  int t3_unresolved_root_segment_row_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -1156,7 +1183,10 @@ int architrino_solver_step_t3_universe_f64(
     ArchitrinoSolverT3ParticleStepRowF64* rows,
     int max_rows,
     int* out_row_count,
-    ArchitrinoSolverT3StepSummaryF64* out_summary);
+    ArchitrinoSolverT3StepSummaryF64* out_summary,
+    ArchitrinoSolverT3UnresolvedRootSegmentRowF64* unresolved_root_segment_rows,
+    int max_unresolved_root_segment_rows,
+    int* out_unresolved_root_segment_row_count);
 
 int architrino_solver_compute_phase_at_hit_f64(
     const ArchitrinoSolverCausalRootRowF64* roots,

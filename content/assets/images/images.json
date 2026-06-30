@@ -532,11 +532,11 @@
       "path": "content/assets/images/comics/citation-needed.png",
       "mediaType": "image/png",
       "dimensions": {
-        "width": 1535,
-        "height": 1024
+        "width": 1536,
+        "height": 1536
       },
-      "fileSizeBytes": 2332001,
-      "sha256": "abbb0929dce3d2c1cbb1a24426c05cb0623197fc94bd13ebb0452d14a813a37c",
+      "fileSizeBytes": 2527294,
+      "sha256": "d24012735e2c0f3dde5888e98e5393dc1c4f89d8f8deb609ee4cedab8526dadf",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -545,7 +545,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "OpenAI image generation",
+        "generator": "OpenAI image generation with local square edge extension",
         "accessedDate": "2026-06-28"
       },
       "creators": [
@@ -585,8 +585,8 @@
         "width": 360,
         "height": 360
       },
-      "fileSizeBytes": 217208,
-      "sha256": "addf739e64cb73a01e245afb7a22cc9c8730e3463a1777fd8860a8e0206c7073",
+      "fileSizeBytes": 184045,
+      "sha256": "b518db2fa3e22cfcb78191468d1b1d75789cf7313b547d2b0fa346b9b13da1d0",
       "dateCreated": "2026-06-28",
       "dateImported": "2026-06-28",
       "status": "approved",
@@ -595,7 +595,7 @@
         "name": "Architrino project",
         "pageUrl": null,
         "fileUrl": null,
-        "generator": "sips centered square crop derivative from citation-needed",
+        "generator": "Pillow derivative from citation-needed",
         "accessedDate": "2026-06-28"
       },
       "creators": [

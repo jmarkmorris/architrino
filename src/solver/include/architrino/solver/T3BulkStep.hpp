@@ -12,6 +12,16 @@ enum class T3InteractionLaw : std::uint32_t {
   SoftSphereRepelV1 = 1,
 };
 
+enum class T3UnresolvedRootSegmentPairPolicy : std::uint32_t {
+  Disabled = 0,
+  NeighborPrunedV1 = 1,
+};
+
+enum class T3UnresolvedRootSegmentRowStatus : std::uint32_t {
+  Disabled = 0,
+  CandidateShapeEvidence = 1,
+};
+
 struct T3BulkStepRequest {
   double startTime = 0.0;
   double endTime = 0.0;
@@ -23,10 +33,14 @@ struct T3BulkStepRequest {
   double softSphereStrength = 0.0;
   double softening = 0.0;
   double integrationTolerance = 0.0;
+  double signalSpeed = 0.0;
+  double rootTolerance = 0.0;
+  std::uint64_t stepIndex = 0;
   std::uint32_t interactionLaw = static_cast<std::uint32_t>(T3InteractionLaw::None);
   std::uint32_t integrationMethod = 1;
-  std::uint32_t reserved0 = 0;
-  std::uint32_t reserved1 = 0;
+  std::uint32_t unresolvedRootSegmentSidecarEnabled = 0;
+  std::uint32_t unresolvedRootPairPolicy =
+      static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::Disabled);
 };
 
 struct T3ParticleState {
@@ -67,8 +81,34 @@ struct T3StepSummaryF64 {
   std::uint32_t reserved0 = 0;
 };
 
+struct T3UnresolvedRootSegmentRowF64 {
+  std::uint64_t stepIndex = 0;
+  std::uint64_t sourcePathKey = 0;
+  std::uint64_t receiverPathKey = 0;
+  std::uint64_t sourceSegmentIndex = 0;
+  std::uint64_t receiverSegmentIndex = 0;
+  Vector3 sourcePosition{};
+  Vector3 sourceVelocity{};
+  Vector3 receiverPosition{};
+  Vector3 receiverVelocity{};
+  double startTime = 0.0;
+  double endTime = 0.0;
+  double hitTime = 0.0;
+  double signalSpeed = 0.0;
+  double rootTolerance = 0.0;
+  double sourceErrorBound = 0.0;
+  double receiverErrorBound = 0.0;
+  std::uint32_t sourceStateFlags = 0;
+  std::uint32_t receiverStateFlags = 0;
+  std::uint32_t pairPolicy =
+      static_cast<std::uint32_t>(T3UnresolvedRootSegmentPairPolicy::Disabled);
+  std::uint32_t rowStatus =
+      static_cast<std::uint32_t>(T3UnresolvedRootSegmentRowStatus::Disabled);
+};
+
 struct T3BulkStepResult {
   std::vector<T3ParticleStepRowF64> rows;
+  std::vector<T3UnresolvedRootSegmentRowF64> unresolvedRootSegmentRows;
   T3StepSummaryF64 summary{};
   ValidationReport validation;
 };

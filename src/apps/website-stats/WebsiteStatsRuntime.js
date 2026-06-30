@@ -5,7 +5,7 @@ import {
 } from "./WebsiteAnalyticsOptOutRuntime.js";
 
 const DEFAULT_PERIOD_LABEL = "Aggregate Window";
-const BREAKDOWN_COLORS = ["#d1912d", "#4a9a78", "#b95f6a", "#6385b7", "#bfa354"];
+const BREAKDOWN_COLORS = ["#ff0000", "#4b0082", "#0000ff"];
 
 function createElement(tagName, className, textContent) {
   const element = document.createElement(tagName);

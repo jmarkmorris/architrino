@@ -528,6 +528,66 @@ $$
 
 Because $q_2q_2>0$, each self branch is repulsive.
 
+### Receiver-normal branch-row admissibility target
+
+A simple-root branch row is not admissible as force evidence merely because it
+has a source-normal Jacobian floor. For each retained branch row
+$$
+b=(r,t,t_0),
+\qquad
+r\in\{p,s\},
+$$
+the same retained record must carry the causal-root replay, the source-normal
+transversality denominator, the receiver-normal numerator, and the resulting
+receiver-normal branch strength.
+
+For partner rows set
+$$
+r_p(t;t_0)=|x(t)+x(t_0)|,
+\qquad
+D_{s,p}(t;t_0)=c_f+\dot x(t_0)\hat r_p(t;t_0),
+$$
+$$
+D_{t,p}(t;t_0)=c_f-\dot x(t)\hat r_p(t;t_0),
+\qquad
+W_p^{\mathrm{rec}}(t;t_0)
+=
+\left|\frac{D_{t,p}(t;t_0)}{D_{s,p}(t;t_0)}\right|.
+$$
+For self rows set
+$$
+r_s(t;t_0)=|x(t)-x(t_0)|,
+\qquad
+D_{s,s}(t;t_0)=c_f-\dot x(t_0)\hat r_s(t;t_0),
+$$
+$$
+D_{t,s}(t;t_0)=c_f-\dot x(t)\hat r_s(t;t_0),
+\qquad
+W_s^{\mathrm{rec}}(t;t_0)
+=
+\left|\frac{D_{t,s}(t;t_0)}{D_{s,s}(t;t_0)}\right|.
+$$
+Thus
+$$
+D_{s,p}=c_fJ_p,
+\qquad
+D_{s,s}=c_fJ_s,
+$$
+so $J_p$ and $J_s$ remain source-normal transversality diagnostics rather
+than standalone force weights.
+
+The row passes the receiver-normal admissibility target only if these fields
+are bound to the same branch row as the root identity and the sign data:
+$$
+\left(
+t_0,\hat r_r,r_r,D_{s,r},D_{t,r},W_r^{\mathrm{rec}}
+\right)
+$$
+on one retained record. A source-normal denominator, a root-topology row, or a
+pre-ledger interval without that same-record binding is diagnostic only. It
+cannot feed the corridor, monodromy, returned-sample, certified topology, or
+Schauder rows.
+
 ### Reduced branch-resolved equation
 
 On the exact root-selected model, the right-particle acceleration is
@@ -536,18 +596,18 @@ $$
 =
 -\,\kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\hat r_p(t;t_0)}
-{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+\frac{\hat r_p(t;t_0)W_p^{\mathrm{rec}}(t;t_0)}
+{r_p(t;t_0)^2}
 +
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s(t)}
-\frac{\hat r_s(t;t_0)}
-{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{\hat r_s(t;t_0)W_s^{\mathrm{rec}}(t;t_0)}
+{r_s(t;t_0)^2}
 $$
 
 The first sum is partner attraction. The second is self-hit repulsion. Reflection symmetry gives the left-particle equation automatically.
 
-Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with the same retained record carrying both the source-normal transversality denominator and the receiver-normal branch strength.
+Plain language: in 1D there is no tangential direction to hide in. The entire competition is between delayed inward attraction and delayed outward self-repulsion, with each active branch row carrying both the source-normal transversality denominator and the receiver-normal branch strength on the same retained record.
 
 ## Regularized 1D Equation
 
@@ -648,6 +708,9 @@ $$
 \delta_\eta\!\big(|x(t)-x(s)|-c_f(t-s)\big)\,ds
 $$
 The branch-sum equations used throughout the proof scaffold are simple-root reductions of this law. Across causal folds, caustic transit, and certified topology arguments, the integral law is the primary object.
+After the receiver-normal restart, any simple-root reduction that is used as
+force evidence must pass the receiver-normal branch-row admissibility target
+above; otherwise it remains a root-topology or transversality diagnostic only.
 
 The regularized formulation is the one best suited to:
 
@@ -769,7 +832,8 @@ A_p(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_p(t)}
-\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}}{|x(t)+x(t_0)|^2\,|J_p(t;t_0)|}
+\frac{\mathbf{1}_{\{x(t)+x(t_0)>0\}}W_p^{\mathrm{rec}}(t;t_0)}
+{r_p(t;t_0)^2}
 \ge 0
 $$
 
@@ -819,14 +883,14 @@ A_s^{\text{out}}(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s^{\text{out}}(t)}
-\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
 $$
 $$
 A_s^{\text{in}}(t)
 \equiv
 \kappa \epsilon^2
 \sum_{t_0\in\mathcal{C}_s^{\text{in}}(t)}
-\frac{1}{|x(t)-x(t_0)|^2\,|J_s(t;t_0)|}
+\frac{W_s^{\mathrm{rec}}(t;t_0)}{r_s(t;t_0)^2}
 $$
 
 On the tame exterior-root class where all active partner roots are inward exterior roots, the total acceleration on the exterior branch is
@@ -1644,13 +1708,20 @@ $$
 \left|w(t_s)-w(t)\right|\le \eta
 $$
 
-On the full initial tube one only assumes the class-wide transversality and branch-count bounds. Therefore
+On the full initial tube one assumes the class-wide branch-count bound and a
+same-record receiver-normal branch-strength ceiling
+$$
+W_s^{\mathrm{rec}}(t;t_s)
+\le
+\overline W_s^{\mathrm{rec}}
+$$
+for every retained self row in the tube. Therefore
 $$
 A_s^{\rho}(t)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
-\frac{c_f}{\nu}\,
+\overline W_s^{\mathrm{rec}}\,
 \frac{1}{\epsilon_c^2}
 \equiv
 \overline A_s^{\rho}
@@ -1728,7 +1799,7 @@ A_s^{\rho}(t)
 \le
 N_s^{\max}\,
 \kappa\epsilon^2\,
-\frac{c_f}{\nu}\,
+\overline W_s^{\mathrm{rec}}\,
 \frac{4}{\rho_{\mathrm{zero}}^2}
 \equiv
 \overline A_{s,\mathrm{geom}}^{\rho}
@@ -1739,14 +1810,14 @@ Proof.
 On the full initial tube, each active self branch contributes a radial acceleration of the form
 $$
 \kappa\epsilon^2\,
-\frac{1}{|J_s|}\,
+W_s^{\mathrm{rec}}\,
 \frac{1}{r_s^2+\epsilon_c^2}
 $$
 with
 $$
-|J_s|\ge \frac{\nu}{c_f}
+W_s^{\mathrm{rec}}\le \overline W_s^{\mathrm{rec}}
 $$
-by the class definition and
+by the same-record branch-strength ceiling and
 $$
 r_s^2+\epsilon_c^2\ge \epsilon_c^2
 $$
@@ -10513,7 +10584,7 @@ The scaffold is now coherent enough to freeze as a proof program, but the follow
 - **State-space labeling.** The theorem program is safest in true signed coordinates $x\in\mathbb{R}$, with recapture phrased in the radial variable $\rho=|x|$. Any language suggesting a rebound on the same $x>0$ branch before the origin should be treated as provisional shorthand rather than as a derived dynamical fact.
 - **Physical plausibility boundary.** In the collinear geometry the self term is not a centrifugal barrier. On the physically relevant post-crossing outbound branch it tends to reinforce the current radial motion. So the only plausible recapture mechanism in this model is that delayed partner attraction eventually dominates that outward self-drive on the outer leg. If the outer-turn theorem target fails, then the collinear breather should be read as a failed stabilization test rather than as an almost-closed proof.
 - **Apocenter-entry window.** Lemma 29 supplies the strict sub-field-speed window from a coarse entry-brake margin, or else reaches the outer turn before that window is needed. The global proof still has to include the coarse entry-brake ceiling inside the coupled parameter regime rather than smuggling it in through the local z-map argument.
-- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history.
+- **Past-velocity transversality.** The Jacobians $J_p$ and $J_s$ depend on emission-time velocities, not current velocity. Turning through $\dot x=0$ at the present time does not by itself preserve transversality, so the lower bounds on $|J|$ must be checked against the delayed high-speed part of the history. Those lower bounds are still only source-normal diagnostics until the same retained record also supplies the receiver-normal numerator and branch strength.
 - **Partner-root inequality, not equality.** As the trajectory brakes after the crossing, the true partner distance can only become smaller than the leading linear prediction, which strengthens the partner force. So the partner-root estimate should be used as an upper bound on $r_p(t)$ and therefore a lower bound on $A_p^{\rho}(t)$, not as an exact identity on the nonlinear window.
 - **Inner rebound region.** The theorem program still packages the actual near-center reversal into the admissible history class. That is acceptable for the reduced problem, but it means the hardest local dynamics near the inner rebound is not yet derived from first principles here.
 - **Root multiplicity control.** The branch sums defining $A_p$, $A_s^{\text{out}}$, and $A_s^{\text{in}}$ are only tame if the number of active roots stays controlled. The regularized model softens each branch contribution, but it does not by itself prevent root proliferation from defeating the envelope bounds.
@@ -10528,7 +10599,7 @@ The existence capstone of the manuscript is the Schauder theorem target above. I
 > **Theorem Target (Dual-Mollified Collinear Breather).**
 > For some nonempty parameter regime
 > $$
-> (\kappa,\epsilon,c_f,\eta,h,x_\ast)
+> (\kappa,\epsilon,c_f,\eta,\epsilon_c,h,x_\ast)
 > $$
 > and some closed convex tame envelope
 > $$
@@ -10560,19 +10631,21 @@ This model should be attacked before the full circular MCB or full nested shell 
 
 The circular binary has a tangential no-go problem. The 1D model has no tangential channel at all. That removes the main obstruction already visible in the planar circular analysis.
 
-### 2. Exact scalar Jacobians
+### 2. Exact scalar branch factors
 
 In 1D,
 $$
 \hat r \in \{-1,+1\}
 $$
-so the delay-map Jacobians reduce to explicit scalar factors
+so the source-normal delay-map diagnostics reduce to explicit scalar factors
 $$
 J_p = 1+\frac{\dot x(t_0)\hat r_p}{c_f},
 \qquad
 J_s = 1-\frac{\dot x(t_0)\hat r_s}{c_f}
 $$
-This makes the branch geometry much easier to track analytically.
+The receiver-normal numerators $D_t$ are scalar factors as well. This makes
+the same-record binding of root identity, source-normal transversality, and
+receiver-normal branch strength much easier to track analytically.
 
 ### 3. Direct test of the self-hit mechanism
 
