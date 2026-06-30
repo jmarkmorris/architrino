@@ -955,6 +955,12 @@ p_{\text{CM}}=\gamma_{\text{eff}} M_0 v_{\text{CM}},\qquad
 \gamma_{\text{eff}}=\frac{1}{\sqrt{1-v_{\text{CM}}^2/c_{\text{eff}}^2}}
 $$
 
+This parameterization must keep rest, motion, and null transport separate. The rest term is the exposed internal ledger $M_0c_{\text{eff}}^2$, not a velocity-dependent rest mass. Motion changes the center-of-mass readout through $\gamma_{\text{eff}}$ and $p_{\text{CM}}$, while the massless photon-channel limit is a separate null closure,
+$$
+E_\gamma=c_\gamma\|\mathbf{p}_\gamma\|
+$$
+after the photon channel and its speed record have been declared. A calculation that uses the same scalar mass-shell formula to explain a massive assembly, a moving massive assembly, and a photon without naming these three records has collapsed distinct observer-level closures into one slogan.
+
 Consistency requirement: if this closure fails in regimes where emergent Lorentz behavior is claimed, the mass-loading and medium-response model is incomplete.
 
 Cross-links:

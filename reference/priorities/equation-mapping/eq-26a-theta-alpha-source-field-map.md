@@ -85,6 +85,27 @@ accepted evidence:
 
 Checker-contract finding: [planck-alpha-braid-theta-alpha-source-attempt.v1.json](../../../scripts/equation-mapping/planck-alpha-braid-theta-alpha-source-attempt.v1.json) already exercises this contract. The current run is score-neutral: it reports `status=blocked_missing_rows`, `nextBlocker=missing_accepted_theta_gamma_packet`, `scoreDecision=no_score_increase`, `alphaRunningPass=true`, and `15/15` negative controls passing. The local charge exposure, alpha coupling, wake/dressing, running, source-provenance, and no-hidden-retune rows remain `attempt`, so no score change follows from the alpha arithmetic or the source-attempt shape.
 
+## Source-Mined Alpha Anchors
+
+PBS Space Time's 2022 fine-structure overview is useful as a source lead, not
+accepted retained evidence. It packages the same external constraints that
+`EQ-26A` must keep bound to one carrier: low-energy
+$\alpha(0)\approx 1/137.035999$ ([03:41]-[03:45]), spectral fine-structure
+splitting ([02:21]-[03:15]), the Coulomb-to-photon energy ratio ([03:54]-[04:17]),
+the Bohr ground-state speed ratio $v/c\sim\alpha$ ([04:17]-[04:22]), the hydrogen
+binding-to-rest-energy scale $\sim\alpha^2$ ([04:26]-[04:34]), electromagnetic
+coupling language ([05:14]-[06:46]), and energy-scale running ([07:00]-[07:40]).
+The equation-mapping use is a multi-anchor consistency check: all of these
+readouts may consume the same $\Theta_\alpha^{(\mu,W)}$ only if
+$q_{\mathrm{obs}}$, $h_\vartheta$, $c_\gamma$, the gauge domain, and
+$\theta_{\mathrm{sea}}$ remain fixed while scale dependence is routed through
+$\mathcal K_{\mathrm{EM}}(\mu;\theta_{\mathrm{sea}})$ and $I_\mu$.
+
+Disposition: priority-only source lead; no score change. The source does not
+supply accepted retained evidence for `charge_exposure_row`,
+`alpha_coupling_row`, or `theta_gamma_packet`, and its anthropic/multiverse
+speculation ([08:33]-[09:08]) is ignored for equation mapping.
+
 ## Direct Geometry Layer
 
 This layer keeps $\alpha(\mu)$ as a same-domain electromagnetic exposure readout. It does not allow fixed alpha fitting, action-period inversion, or scale running detached from charge exposure and the photon/action parent chain.

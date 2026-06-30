@@ -189,6 +189,8 @@ $$
 \frac{1}{n_a^2}
 $$
 
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a>n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
+
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
 $$
@@ -327,7 +329,30 @@ $$
 g_{\mathrm{eff}}\mu_B B
 $$
 
-The closure burden is to derive $g_{\mathrm{eff}}$ from the completed internal spinor ledger, material branch, and measurement-response model rather than assigning a free spin label. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern: a central component plus symmetric side components for the transverse view, and a circularly polarized doublet for the longitudinal view. A compact comparison can treat the side-component spacing as
+
+$$
+\omega_{\pm}^{\mathrm{obs}}
+=
+\omega_0
+\pm
+\Omega_B^{\mathrm{orb}},
+\qquad
+\Omega_B^{\mathrm{orb}}\propto B\,\frac{q}{m_{\mathrm{resp}}}
+$$
+
+with the proportionality, polarization basis, and charge-to-mass readout recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction
+benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
+measurements used viewing geometry and analyzer response to distinguish the
+longitudinal circularly polarized doublet from the transverse linearly polarized
+components. For this chapter, the recovery target is therefore a same-record map
+from source magnetic state, viewing direction, line family, analyzer response,
+and photon-channel polarization ledger to split line positions and intensities.
+The lab calibration and the solar or stellar inference must consume the same
+effective magnetic-state map; otherwise the inferred field strength is only a
+spectroscopic fit.
 
 Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
 

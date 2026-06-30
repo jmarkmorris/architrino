@@ -486,6 +486,38 @@ export class SceneRepository {
     return String(sceneData?.scene?.type ?? "").toLowerCase() === "scene-index";
   }
 
+  resolveLayoutConfig(sceneMeta, sceneType, layoutType) {
+    const layoutConfig =
+      sceneMeta?.layout && typeof sceneMeta.layout === "object" && !Array.isArray(sceneMeta.layout)
+        ? { ...sceneMeta.layout }
+        : null;
+    const normalizedLayoutType = String(layoutType ?? "").toLowerCase();
+    const isMarkdownSectionScene =
+      sceneType === "Scene-Markdown-Split" || sceneType === "Scene-Markdown-Tree";
+    if (!isMarkdownSectionScene || normalizedLayoutType !== "rings") {
+      return layoutConfig;
+    }
+
+    const stableLayoutConfig = layoutConfig ?? { type: "rings" };
+    if (
+      !Object.prototype.hasOwnProperty.call(stableLayoutConfig, "centerNode") &&
+      typeof sceneMeta?.centerOn === "string" &&
+      sceneMeta.centerOn.trim().length > 0
+    ) {
+      stableLayoutConfig.centerNode = sceneMeta.centerOn.trim();
+    }
+    if (!Object.prototype.hasOwnProperty.call(stableLayoutConfig, "direction")) {
+      stableLayoutConfig.direction = "clockwise";
+    }
+    if (!Object.prototype.hasOwnProperty.call(stableLayoutConfig, "order")) {
+      stableLayoutConfig.order = "objects";
+    }
+    if (!Object.prototype.hasOwnProperty.call(stableLayoutConfig, "allowInnerRings")) {
+      stableLayoutConfig.allowInnerRings = false;
+    }
+    return stableLayoutConfig;
+  }
+
   isPersonalityArchitrinoNode(node) {
     if (!node || typeof node !== "object") {
       return false;
@@ -590,24 +622,8 @@ export class SceneRepository {
         });
       }
     }
-    const shuffledPalette = [...palette];
-    for (let i = shuffledPalette.length - 1; i > 0; i -= 1) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffledPalette[i], shuffledPalette[j]] = [shuffledPalette[j], shuffledPalette[i]];
-    }
-    let colorBag = [...shuffledPalette];
-    const drawColor = () => {
-      if (!colorBag.length) {
-        colorBag = [...palette];
-        for (let i = colorBag.length - 1; i > 0; i -= 1) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [colorBag[i], colorBag[j]] = [colorBag[j], colorBag[i]];
-        }
-      }
-      return colorBag.pop();
-    };
-    orderedNodes.forEach((node) => {
-      node.color = drawColor();
+    orderedNodes.forEach((node, index) => {
+      node.color = palette[index % palette.length];
     });
   }
 
@@ -722,14 +738,14 @@ export class SceneRepository {
           }
         : rawSceneMarkdown;
     const rawLayoutType = this.resolveLayoutType(sceneMeta);
-    const rawLayoutConfig =
-      sceneMeta.layout && typeof sceneMeta.layout === "object" && !Array.isArray(sceneMeta.layout)
-        ? sceneMeta.layout
-        : null;
+    const rawLayoutConfig = this.resolveLayoutConfig(sceneMeta, sceneType, rawLayoutType);
     const sceneViewportFit = this.resolveViewportFit(sceneMeta);
     const imageGallery = this.resolveImageGalleryConfig(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
+    const hideTextbookChapterLabels =
+      sceneMeta.textbookToc?.hideChapterLabels === true ||
+      sceneMeta.textbookToc?.hideChildren === true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
     const sceneChildMarkdownViewBadgeByNodeId =
       await this.resolveSceneChildMarkdownViewBadgeMap(sceneMeta);
@@ -765,7 +781,9 @@ export class SceneRepository {
       nodes = nodes.concat(autoNodes);
     }
     const sceneSphereRadius = enforceSharedSceneSphereRadius(nodes);
-    await this.applyTextbookChapterLabels(nodes);
+    if (!hideTextbookChapterLabels) {
+      await this.applyTextbookChapterLabels(nodes);
+    }
     await this.applyMarkdownDocEligibility(nodes);
 
     const sceneName = this.resolveDisplayTitle(sceneMeta) ?? scenePath;

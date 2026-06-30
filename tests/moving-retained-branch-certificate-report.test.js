@@ -318,12 +318,14 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
     qIndexRatioF2Intake.accepted_branch_chart_source_target.rejected_branch_chart_evidence_sources,
     [
       "proxy refs",
+      "current status rows",
       "fixture refs",
       "candidate refs",
       "synthetic refs",
       "sampled-only rows",
       "aggregate rows",
       "cross-row bundles",
+      "cross-report branch-chart rows",
       "route-only rows",
       "H39/theta3minus quotient rows",
       "source-normal denominator machinery",
@@ -379,9 +381,25 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
     producerTarget.first_missing_or_rejected_field_code,
     "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
   );
+  assert.equal(
+    producerTarget.first_missing_accepted_source_field,
+    "same_record_identity.accepted_branch_chart_ref"
+  );
+  assert.equal(
+    producerTarget.first_missing_accepted_source_field_code,
+    "same_record_identity_accepted_branch_chart_ref_proxy_not_accepted"
+  );
+  assert.deepEqual(producerTarget.required_same_record_values, {
+    branch_label: "q:index-ratio:f2",
+    extraction_window_id: "W:index-ratio:f2:sampled-active-row-window",
+    active_root_ledger_key: "2856731379702547500",
+    active_root_ledger_hash: "route-root-key:2856731379702547500",
+    source_status: "accepted_same_record_branch_chart",
+  });
   assert.deepEqual(producerTarget.same_record_binding_required, {
     branch_label: "q:index-ratio:f2",
     extraction_window_id: "W:index-ratio:f2:sampled-active-row-window",
+    active_root_ledger_key: "2856731379702547500",
     active_root_ledger_hash: "route-root-key:2856731379702547500",
     required_fields_must_live_on_one_branch_row: true,
     retained_source_binding_must_match_branch_row: true,
@@ -409,6 +427,58 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
     "retained_source_binding.causal_root_replay_ref",
     "provider_object_provenance",
   ]);
+  assert.deepEqual(producerTarget.required_producer_field_groups.negative_control, [
+    "negative_controls.proxy_branch_chart_ref_rejected",
+    "negative_controls.current_status_row_rejected",
+    "negative_controls.cross_report_branch_chart_row_rejected",
+  ]);
+  assert.equal(
+    producerTarget.required_producer_fields.includes("retained_source_binding.retained_record_id"),
+    true
+  );
+  assert.equal(
+    producerTarget.required_producer_fields.includes("negative_controls.cross_report_branch_chart_row_rejected"),
+    true
+  );
+  assert.deepEqual(producerTarget.required_retained_record_payload, {
+    required_on_one_retained_record: true,
+    retained_source_binding_must_match_branch_row: true,
+    fields: [
+      "branch_row_id",
+      "branch_certificate_ref",
+      "same_record_identity.branch_label",
+      "same_record_identity.extraction_window_id",
+      "same_record_identity.active_root_ledger_hash",
+      "source_status",
+      "same_record_identity.accepted_branch_chart_ref",
+      "same_record_identity.separator_chart_ref",
+      "same_record_identity.positive_gap_record_ref",
+      "same_record_identity.memory_depth_record_ref",
+      "same_record_identity.active_wave_vector_gap_ref",
+      "retained_source_binding.retained_record_id",
+      "retained_source_binding.source_record_id",
+      "retained_source_binding.source_artifact_hash",
+      "retained_source_binding.causal_root_replay_ref",
+      "provider_object_provenance",
+    ],
+  });
+  assert.deepEqual(producerTarget.negative_controls_required, [
+    {
+      control_id: "proxy_branch_chart_ref_negative_control",
+      rejected_source: "proxy refs",
+      required_result: "rejected",
+    },
+    {
+      control_id: "current_status_branch_chart_row_negative_control",
+      rejected_source: "current status rows",
+      required_result: "rejected",
+    },
+    {
+      control_id: "cross_report_branch_chart_row_negative_control",
+      rejected_source: "cross-report branch-chart rows",
+      required_result: "rejected",
+    },
+  ]);
   assert.deepEqual(producerTarget.exact_blocking_refs, {
     branch_certificate_ref: "candidate:branch-chart-ref-with-partial-same-record-identity",
     same_record_identity_accepted_branch_chart_ref: "proxy:accepted-branch-chart-ref-not-issued",
@@ -418,10 +488,12 @@ test("accepted branch-chart source scout enumerates current candidates fail-clos
   });
   for (const rejectedSource of [
     "proxy refs",
+    "current status rows",
     "fixture refs",
     "sampled-only rows",
     "aggregate rows",
     "cross-row bundles",
+    "cross-report branch-chart rows",
     "route-only rows",
     "H39/theta3minus quotient rows",
     "source-normal denominator machinery",

@@ -11,6 +11,18 @@
     "wrapLabels": true,
     "children": [
       {
+        "nodeId": "about_architrino",
+        "scenePath": "content/scenes/archie/about_architrino.json"
+      },
+      {
+        "nodeId": "aaa_journey",
+        "scenePath": "content/scenes/archie/aaa_journey.json"
+      },
+      {
+        "nodeId": "people",
+        "scenePath": "content/scenes/archie/people.json"
+      },
+      {
         "nodeId": "licenses_attributions",
         "scenePath": "content/scenes/archie/licenses_attributions.json"
       },
@@ -25,6 +37,30 @@
     ]
   },
   "objects": [
+    {
+      "id": "about_architrino",
+      "title": "About Architrino",
+      "radius": 2.2,
+      "color": "#243d8f",
+      "labelTitle": "About Architrino",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "aaa_journey",
+      "title": "AAA Journey",
+      "radius": 2.2,
+      "color": "#8b6f47",
+      "labelTitle": "AAA Journey",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "people",
+      "title": "People",
+      "radius": 2.2,
+      "color": "#166534",
+      "labelTitle": "People",
+      "labelBadge": "doc"
+    },
     {
       "id": "licenses_attributions",
       "title": "Licenses & Attributions",

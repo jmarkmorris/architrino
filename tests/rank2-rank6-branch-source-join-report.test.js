@@ -47,6 +47,11 @@ function intakeField(report, field) {
   );
 }
 
+function sameStepProviderTarget(report) {
+  return report.same_record_provider_intake
+    .same_step_retained_torque_wake_branch_certificate_provider_target;
+}
+
 function syntheticRank2Report() {
   const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "rank2-source-join-"));
   fs.writeFileSync(
@@ -179,6 +184,24 @@ test("rank2/rank6 branch-source join report records current fixtures as fail-clo
   );
   assert.equal(report.same_record_provider_intake.negative_controls.status, "armed_no_mismatch_seen");
   assert.equal(
+    sameStepProviderTarget(report).schema,
+    "same_step_retained_torque_wake_branch_certificate_provider/v0"
+  );
+  assert.equal(sameStepProviderTarget(report).target_status, "fail_closed_provider_target");
+  assert.equal(
+    sameStepProviderTarget(report).required_same_step_selected_case_id,
+    "index-ratio:f2"
+  );
+  assert.equal(sameStepProviderTarget(report).first_failure, "accepted_transition_source_ref_missing");
+  assert.equal(
+    sameStepProviderTarget(report).downstream_authorization.rank2_field_speed_action_self_hit_scan,
+    false
+  );
+  assert.equal(
+    sameStepProviderTarget(report).downstream_authorization.rank6_moving_retained_branch_certificate,
+    false
+  );
+  assert.equal(
     report.same_record_provider_intake.negative_controls.rejects_cross_report_or_synthetic_mismatch,
     true
   );
@@ -222,6 +245,8 @@ test("rank2/rank6 branch-source join can identify a synthetic same-source candid
   assert.equal(report.same_branch_source_join, true);
   assert.equal(report.join_rows.every((entry) => entry.status === "passed"), true);
   assert.equal(report.same_record_provider_intake.provider_status, "same_record_provider_candidate");
+  assert.equal(sameStepProviderTarget(report).provider_ready, false);
+  assert.equal(sameStepProviderTarget(report).first_failure, "accepted_transition_source_ref_missing");
   assert.deepEqual(report.same_record_provider_intake.blocking_missing_or_rejected_fields, []);
   assert.equal(
     report.same_record_provider_intake.required_same_record_fields.every(

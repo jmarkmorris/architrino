@@ -1,0 +1,133 @@
+# Borg App Surface Design v1
+
+## Workstream Metadata
+
+- Kind: `priority`
+- Status: `design-complete`
+- Claim level: `developer-test-screen-spec`
+- Schema id: `borg-app-surface-design.v1`
+- Source fixture: [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs)
+- Surface artifact: [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs)
+- Source manifest: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
+- Requirements source: [requirements-and-design](requirements-and-design.md)
+- Native bridge source: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
+
+## Purpose
+
+`borg-app-surface-design.v1` is the first concrete first-screen contract for the Borg app. It consumes the live `borg-first-native-backed-fixture` manifest and turns it into a screen-spec object that a static Borg page can render without reinterpreting the design prose.
+
+The artifact is a manifest consumer, not a new solver and not a production browser screen. It keeps native current-state frames and native path-history rows visible, while wake streams, face-boundary status, outbound-face background, benign-noise status, and central-volume acceleration remain fail-closed until native-backed rows and residuals exist.
+
+## Minimum Surface Object
+
+The surface object emitted by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) must include:
+
+| Field | Required content |
+| --- | --- |
+| `schema` | Literal `borg-app-surface-design.v1`. |
+| `screenSpecId` | Stable first-screen spec id. |
+| `appId` | Literal `borg-app`. |
+| `claimLevel` | `developer-test-screen-spec` for the current artifact. |
+| `sourceManifest` | Manifest id, run id, model contract id, native solver status, native solver version, bridge schema version, fixture status, and source claim level. |
+| `nativeSolverBoundary` | Native central solver as the production solver, no new solver, bridge execution path, and authority state for current state, path history, wake history, and face-boundary rows. |
+| `firstViewport` | Workspace layout regions, required 4K UHD render size, visible layers, hidden layers, disabled layers, and authority promotion rule. |
+| `viewport` | Displayed central cube, outer computed cube diagnostic overlay, native architrino frame source, and display-only camera controls. |
+| `layerStrip` | First-screen layer states and source fields. |
+| `simulationEnvelopeRail` | Exact manifest-backed fields for scale, history, central-volume timing, and population split. |
+| `initialConditionPanel` | Initial-condition family, seed, polarity mix, velocity policy, resolved initial-state id, edit status, and velocity-ray default. |
+| `diagnosticsRail` | Compact alerts, fail-closed rows, diagnostic status vocabulary, value-authority states, and selected-object panel ids. |
+| `bottomTimeline` | Linear local scrubber, logarithmic overview placeholder, exact readouts, time range, frame range, frame count, and path row count. |
+| `deploymentBudgetPanel` | Separate bundle, asset, Pages bandwidth, browser heap, GPU memory, browser storage, Actions artifact, and native throughput fields. |
+| `renderManifestPanel` | 4K UHD render manifest fields and render status. |
+| `authorityMap` | Screen-level authority for native frames, path history, display projections, fail-closed wake/face values, deployment budgets, and render quality. |
+| `failClosedFirstFailureCodes` | First-failure codes surfaced by the screen spec. |
+| `validation` | Screen-spec validation status, source fixture status, bridge status, path-bound face-crossing status, boundary replay decision status, benign-noise authority status, and proof-claim status. |
+| `nextBuildBurden` | Literal next implementation handoff id. |
+
+## First Developer-Test Values
+
+The current `borg-first-screen-from-native-fixture` surface contract binds these checked values:
+
+| Field | Value |
+| --- | --- |
+| `nativeSolverStatus` | `native-backed-now` |
+| `bridgeExecutionPath` | `native_c_abi` |
+| `frameCount` | `6` native current-state frame rows |
+| `pathRowCount` | `4` native path-history rows |
+| `renderPixelSize` | `3840x2160` |
+| `centralArchitrinoCount` | `1` |
+| `architrinoCount` | `2` |
+| `bufferArchitrinoCount` | `1` |
+| `strictCentralBufferStatus` | `failed` |
+| `boundaryReplayDecisionStatus` | `fail-closed-missing-contract` |
+| `benignNoiseStatus` | `fail-closed-missing-contract` |
+
+These values are valid only as a developer-test screen contract. They do not establish proof evidence, production rendering performance, benign-noise authority, or central-volume acceleration authority.
+
+## First-Screen Layer Contract
+
+| Layer | State | Authority |
+| --- | --- | --- |
+| `simulation-window` | `on-locked` | `app-facing-projection` |
+| `architrino-position` | `on` | `authoritative-solver-output` |
+| `path-history` | `off` | `authoritative-solver-output` |
+| `velocity-vectors` | `off` | raw values are `authoritative-solver-output`; ray geometry is `app-facing-projection` |
+| `wake-streams` | `disabled` | `fail-closed-value` |
+| `face-boundary-status` | `contextual-disabled` | `fail-closed-value` |
+| `diagnostics` | `on-locked` | exposes fail-closed diagnostics without upgrading values |
+| `outbound-face-background` | `disabled` | `fail-closed-value` |
+
+The visible default is `simulation-window`, `architrino-position`, and `diagnostics`. Path history and velocity vectors are available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
+
+The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
+
+## Simulation-Envelope Rail Contract
+
+The left rail must display separate exact fields for:
+
+1. outer computed `sideLength`;
+2. displayed `centralVolumeSideLength`;
+3. `faceBufferMargin` and `strictCentralBufferStatus`;
+4. `historyDepth`;
+5. `fieldSpeed`;
+6. computed `wakeHorizon = c_f h`;
+7. `centralVelocityBound`;
+8. `centralObservationInterval`;
+9. `centralArchitrinoCount`;
+10. derived outer `architrinoCount`;
+11. derived `bufferArchitrinoCount`.
+
+The rail is the only place where simulation-envelope edits may occur. View camera controls may rotate, zoom, pan, reset, fit, or focus, but they may not edit these fields.
+
+## Fail-Closed Rows Surfaced
+
+The current screen spec surfaces these first-failure codes from the source manifest:
+
+| Code | Surface consequence |
+| --- | --- |
+| `wake_history_gap_unclassified` | `wake-streams` remains disabled and central wake-background authority remains closed. |
+| `missing_face_crossing_coverage` | `face-boundary-status` remains contextual-disabled because native path bounds cross outer faces but no face-crossing event rows are emitted. |
+| `face_influence_model_missing` | `outbound-face-background` remains disabled and no face influence model can drive replay. |
+| `six_face_boundary_policy_missing` | Six-face benign-noise status cannot receive reduced-model authority. |
+| `velocity_sampling_protocol_missing` | Velocity-scale replay sampling remains research-open. |
+| `required_residual_unmeasured` | `R_boundary->central` is not measured, so central-volume acceleration and replay-affected diagnostics remain fail-closed. |
+
+## Validation Command
+
+Run:
+
+```bash
+node scripts/borg/build-app-surface-design.mjs
+```
+
+The command fails if the screen spec stops binding the native fixture, loses the 4K UHD render manifest, enables disabled wake or face layers, drops the fail-closed rows, or promotes central-volume acceleration beyond `fail-closed-value`.
+
+## First Static Page Artifact
+
+The first browser consumer is [borg.html](../../../borg.html). It uses [BorgFixtureData.js](../../../src/apps/borg/BorgFixtureData.js) as the browser-safe fixture snapshot, [BorgAppRuntime.js](../../../src/apps/borg/BorgAppRuntime.js) as the Three.js app runtime, and [main.js](../../../src/apps/borg/main.js) as the page entrypoint.
+
+The page renders the displayed central cube, native current-state positions, path-history trails when toggled on, velocity vectors when toggled on, the simulation-envelope rail, source manifest fields, timeline scrubber, render/deployment placeholders, value-authority rows, and fail-closed diagnostics. It remains a static developer-test page. It does not run the native solver in the browser, does not generate boundary input, and does not upgrade wake streams, face-boundary replay, benign-noise status, or central-volume acceleration beyond the source manifest.
+
+## Next Exact Build Burden
+
+Measure the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The next artifact should report static transfer size, browser heap, GPU memory proxy, viewport/canvas sizing, and a 3840 by 2160 capture or verified render manifest while preserving all fail-closed authority states.

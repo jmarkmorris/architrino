@@ -4,6 +4,7 @@ import {
   isSceneSphereSizingNode,
   resolveSharedSceneSphereRadius,
 } from "./SceneSphereSizingRuntime.js";
+import { hasActionableSceneSphereTarget } from "./SceneSphereActionRuntime.js";
 import {
   RING_LAYOUT_DEFAULTS,
   getRingDirectionSign,
@@ -382,9 +383,11 @@ export function createSceneGraphRuntime(deps) {
   }
 
   function getNodeRingStyle(nodeData) {
+    const actionable = hasActionableSceneSphereTarget(nodeData);
     const ringScale = nodeData.glowRingScale ?? 1.04;
     const ringThickness =
-      nodeData.glowRingThickness ?? Math.max(0.028, nodeData.radius * 0.06);
+      nodeData.glowRingThickness ??
+      Math.max(actionable ? 0.028 : 0.022, nodeData.radius * (actionable ? 0.06 : 0.04));
     return { ringScale, ringThickness };
   }
 
@@ -400,6 +403,24 @@ export function createSceneGraphRuntime(deps) {
       12,
       64
     );
+    const innerRim = ringMesh.userData?.innerRim;
+    if (innerRim?.geometry) {
+      const innerRimScale =
+        nodeData.staticInnerRimScale ?? Math.max(0.98, style.ringScale - 0.05);
+      const innerRimThickness =
+        nodeData.staticInnerRimThickness ?? Math.max(0.012, nodeData.radius * 0.018);
+      innerRim.geometry.dispose();
+      innerRim.geometry = new deps.THREE.TorusGeometry(
+        nodeData.radius * innerRimScale,
+        innerRimThickness,
+        12,
+        64
+      );
+      ringMesh.userData.innerRimStyle = {
+        ringScale: innerRimScale,
+        ringThickness: innerRimThickness,
+      };
+    }
   }
 
   function refreshNodeRingGeometries(node) {

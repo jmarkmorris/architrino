@@ -164,12 +164,31 @@ export function createLevelRuntime(deps) {
     });
   }
 
+  function setLayeredRingOpacity(ring, opacity) {
+    if (!ring?.material || !Number.isFinite(opacity)) {
+      return;
+    }
+    ring.material.opacity = opacity;
+    const innerRim = ring.userData?.innerRim;
+    if (!innerRim?.material) {
+      return;
+    }
+    const outerBaseOpacity = Number.isFinite(ring.userData?.ringBaseOpacity)
+      ? ring.userData.ringBaseOpacity
+      : 0;
+    const innerBaseOpacity = Number.isFinite(ring.userData?.innerRimBaseOpacity)
+      ? ring.userData.innerRimBaseOpacity
+      : innerRim.material.opacity;
+    const opacityFactor = outerBaseOpacity > 0 ? opacity / outerBaseOpacity : 1;
+    innerRim.material.opacity = innerBaseOpacity * opacityFactor;
+  }
+
   function setNodeExtraOpacity(node, opacity) {
     if (!node.extraMeshes || !node.extraMeshes.length) {
       return;
     }
     node.extraMeshes.forEach((entry) => {
-      entry.mesh.material.opacity = entry.baseOpacity * opacity;
+      setLayeredRingOpacity(entry.mesh, entry.baseOpacity * opacity);
     });
   }
 
@@ -208,9 +227,15 @@ export function createLevelRuntime(deps) {
       centerContextSphere.outline.material.opacity =
         centerContextSphere.baseOpacity.outline * meshOpacity;
     }
+    if (Number.isFinite(meshOpacity) && centerContextSphere.shell?.material) {
+      centerContextSphere.shell.material.opacity =
+        centerContextSphere.baseOpacity.shell * meshOpacity;
+    }
     if (Number.isFinite(meshOpacity) && centerContextSphere.ring?.material) {
-      centerContextSphere.ring.material.opacity =
-        centerContextSphere.baseOpacity.ring * meshOpacity;
+      setLayeredRingOpacity(
+        centerContextSphere.ring,
+        centerContextSphere.baseOpacity.ring * meshOpacity
+      );
     }
     if (Number.isFinite(labelOpacity) && centerContextSphere.labelObject?.element) {
       centerContextSphere.labelObject.element.style.opacity =
@@ -339,8 +364,7 @@ export function createLevelRuntime(deps) {
 
       if (node.halo) {
         node.halo.scale.setScalar(scale);
-        node.halo.material.opacity =
-          node.haloBaseOpacity * node.haloIntensity * opacityFactor;
+        setLayeredRingOpacity(node.halo, node.haloBaseOpacity * node.haloIntensity * opacityFactor);
       }
 
       if (!node.extraMeshes || !node.extraMeshes.length) {
@@ -352,7 +376,7 @@ export function createLevelRuntime(deps) {
           return;
         }
         mesh.scale.setScalar(scale);
-        mesh.material.opacity = entry.baseOpacity * node.haloIntensity * opacityFactor;
+        setLayeredRingOpacity(mesh, entry.baseOpacity * node.haloIntensity * opacityFactor);
       });
     });
   }

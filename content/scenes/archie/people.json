@@ -1,0 +1,50 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__people",
+    "title": "People",
+    "type": "Scene-Markdown-Split",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "people_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/people.md",
+      "split": {
+        "headingLevel": 2,
+        "maxDepth": 1,
+        "overrides": {
+          "overview": {
+            "id": "people_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "founder and ceo": {
+            "id": "people_founder_ceo",
+            "labelTitle": "Founder / CEO",
+            "labelBadge": "doc"
+          },
+          "chief technology officer": {
+            "id": "people_cto",
+            "labelTitle": "CTO",
+            "labelBadge": "doc"
+          },
+          "picture page": {
+            "id": "people_picture_page",
+            "labelTitle": "Picture Page",
+            "labelBadge": "doc"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}

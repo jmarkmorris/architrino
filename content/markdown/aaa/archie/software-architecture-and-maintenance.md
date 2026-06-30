@@ -21,7 +21,7 @@ The practical rule is:
 - preserve working behavior,
 - but do not preserve every historical implementation branch merely because it once existed.
 
-When a new path clearly supersedes an old one, the default expectation is to remove the old path in the same change when safe.
+When a new path clearly supersedes an old one, remove the old path in the same change. If the operator/developer explicitly requests a temporary transition, record the removal condition where maintainers will see it.
 
 ## Main Failure Modes
 
@@ -181,15 +181,15 @@ Default behavior:
 
 - write the canonical current state directly;
 - remove process-history sentences once they no longer guide action;
-- keep transition notes only when they name active residual work or an active compatibility constraint;
-- use `reference/priorities/`, Architecture Decision Records, GitHub issues, GitHub pull requests, and git history for backlog, rationale, and historical trace;
+- keep transition notes only when they name active residual work or an explicitly requested temporary transition;
+- use `reference/priorities/`, `reference/architectural-decisions/`, GitHub issues, GitHub pull requests, and git history for backlog, rationale, and historical trace;
 - keep user-facing and reader-facing documents free of internal drafting history unless the document is explicitly historical.
 
 Acceptable reasons to keep history inside a document:
 
-- the document is an ADR, release note, priority ledger, audit trail, generated-output inventory, or historical comparison;
+- the document is an architectural decision record, release note, priority ledger, audit trail, generated-output inventory, or historical comparison;
 - the earlier state is evidence for the current claim;
-- a temporary coexistence or compatibility path still exists and a maintainer needs to know its removal condition.
+- the operator/developer explicitly requested a temporary transition and a maintainer needs to know its removal condition.
 
 Unacceptable reasons:
 
@@ -203,7 +203,7 @@ Unacceptable reasons:
 Before considering a software change complete, ask:
 
 1. Did this change create a second path for a responsibility that used to have one?
-2. If so, is the coexistence intentional and temporary?
+2. If so, did the operator/developer explicitly request the temporary coexistence?
 3. Is there older code that is now superseded and safe to remove?
 4. Did any hardcoded choice get introduced that should really be authored or configurable?
 5. Did the change preserve the ownership boundary between content, scene structure, generated manifests, and runtime behavior?

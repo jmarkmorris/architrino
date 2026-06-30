@@ -423,7 +423,8 @@ T3BulkStepResult step_t3_universe(
                       T3RetainedCausalRootReplayFieldStatus::CandidateSidecarShapeEvidence),
                   static_cast<std::uint32_t>(
                       T3RetainedCausalRootReplayRowStatus::CandidateSameRecordBinding),
-                  0,
+                  static_cast<std::uint32_t>(
+                      T3RetainedCausalRootReplayCausticRouteKind::Missing),
               });
             }
             if (!useSoftSphere) {

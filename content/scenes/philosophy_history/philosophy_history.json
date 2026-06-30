@@ -22,14 +22,6 @@
         "scenePath": "content/scenes/philosophy_history/philosophy_of_science.json"
       },
       {
-        "nodeId": "crisis_in_physics",
-        "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
-      },
-      {
-        "nodeId": "unknowns_paradoxes_scene",
-        "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json"
-      },
-      {
         "nodeId": "inherited_theory_interface",
         "scenePath": "content/scenes/philosophy_history/inherited_theory_interface.json"
       },
@@ -40,10 +32,6 @@
       {
         "nodeId": "substance_structure_potential",
         "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
-      },
-      {
-        "nodeId": "historical_context_missed_opportunities",
-        "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
       {
         "nodeId": "major_thinkers",
@@ -60,6 +48,18 @@
       {
         "nodeId": "agency_and_internal_causation",
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+      },
+      {
+        "nodeId": "historical_context_missed_opportunities",
+        "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
+      },
+      {
+        "nodeId": "crisis_in_physics",
+        "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json"
+      },
+      {
+        "nodeId": "solving_the_crisis",
+        "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json"
       },
       {
         "nodeId": "treasure_physics_overlooked",
@@ -84,20 +84,6 @@
       "labelTitle": "Philosophy of Science"
     },
     {
-      "id": "crisis_in_physics",
-      "title": "Crisis in Physics",
-      "radius": 2.688,
-      "color": "#243d8f",
-      "labelTitle": "Crisis in Physics"
-    },
-    {
-      "id": "unknowns_paradoxes_scene",
-      "title": "Unknowns and Paradoxes",
-      "radius": 2.688,
-      "color": "#5a3f73",
-      "labelTitle": "Unknowns and Paradoxes"
-    },
-    {
       "id": "inherited_theory_interface",
       "title": "Inherited Theory Interface",
       "radius": 2.688,
@@ -119,28 +105,6 @@
       "color": "#7a5430",
       "labelTitle": "Substance / Structure",
       "labelBadge": "doc"
-    },
-    {
-      "id": "historical_context_missed_opportunities",
-      "title": "Historical Context and Missed Opportunities",
-      "radius": 2.688,
-      "color": "#2f6b6f",
-      "labelTitle": "Historical Context and Missed Opportunities"
-    },
-    {
-      "id": "aaa_journey",
-      "title": "AAA Journey",
-      "radius": 2.688,
-      "color": "#8b6f47",
-      "labelTitle": "AAA Journey",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
-      },
-      "view": {
-        "columns": 1
-      }
     },
     {
       "id": "major_thinkers",
@@ -170,6 +134,27 @@
       "color": "#6a3c3c",
       "labelTitle": "Agency and Internal Causation",
       "labelBadge": "doc"
+    },
+    {
+      "id": "historical_context_missed_opportunities",
+      "title": "Historical Context and Missed Opportunities",
+      "radius": 2.688,
+      "color": "#2f6b6f",
+      "labelTitle": "Historical Context and Missed Opportunities"
+    },
+    {
+      "id": "crisis_in_physics",
+      "title": "Crisis in Physics",
+      "radius": 2.688,
+      "color": "#243d8f",
+      "labelTitle": "Crisis in Physics"
+    },
+    {
+      "id": "solving_the_crisis",
+      "title": "Solving the Crisis",
+      "radius": 2.688,
+      "color": "#5a3f73",
+      "labelTitle": "Solving the Crisis"
     },
     {
       "id": "treasure_physics_overlooked",

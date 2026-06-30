@@ -1,0 +1,282 @@
+[
+  {
+    "id": "again-makes-a-pattern-cover",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-cover.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5363,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-01",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4806,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-02",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-02.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4211,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-03",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-03.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5854,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-04",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-04.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5456,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-05",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-05.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.6139,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-06",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-06.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4309,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-07",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-07.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4779,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-08",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-08.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4157,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-09",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-09.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5551,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-10",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-10.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4607,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-11",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-11.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5904,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-spread-12",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-spread-12.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.4229,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  },
+  {
+    "id": "again-makes-a-pattern-backmatter-01",
+    "book_slug": "again-makes-a-pattern",
+    "source_png": "content/assets/images/archie/childrens-books/source/again-makes-a-pattern/again-makes-a-pattern-backmatter-01.png",
+    "exists": true,
+    "automated": {
+      "width": 1536,
+      "height": 1024,
+      "aspect_ratio": 1.5,
+      "saturated_non_palette_fraction": 0.5695,
+      "palette_flag": true
+    },
+    "manual_checklist": {
+      "palette": "pending",
+      "no_in_image_text": "pending",
+      "one_continuous_scene": "pending",
+      "correct_geometry": "pending"
+    },
+    "decision": "pending"
+  }
+]

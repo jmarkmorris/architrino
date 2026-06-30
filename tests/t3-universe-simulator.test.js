@@ -377,6 +377,18 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
             retainedCausalRootRowId: 1003,
             rootLedgerRecordId: 1003,
             causticRoute: null,
+            causticRouteKind: "missing",
+            causticRouteSourceLane: {
+              schema: "t3-caustic-route-source-lane.v1",
+              nativeRow: "T3RetainedCausalRootReplayRowF64",
+              nativeField: "causticRouteKind",
+              cAbiField: "caustic_route_kind",
+              bridgeField: "causticRouteKind",
+              causticRouteKind: "missing",
+              causticRouteStatus: "missing",
+              routePayloadPresent: false,
+              acceptedRouteEvidence: false,
+            },
             sourcePathSegmentId: 1004,
             receiverPathSegmentId: 1005,
             windingLabel: { x: 0, y: 0, z: 0 },
@@ -468,6 +480,7 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(result.retainedCausalRootReplayRows.length, 1);
   assert.equal(result.retainedCausalRootReplayRows[0].rootLedgerRecordId, 1003);
   assert.equal(result.retainedCausalRootReplayRows[0].causticRoute, null);
+  assert.equal(result.retainedCausalRootReplayRows[0].causticRouteKind, "missing");
   assert.equal(result.retainedCausalRootReplayRows[0].sourcePathSegmentId, 1004);
   assert.equal(result.retainedCausalRootReplayRows[0].receiverPathSegmentId, 1005);
   assert.equal(result.retainedCausalRootReplayRows[0].replayAuthorization, false);
@@ -485,6 +498,9 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.replayAuthorization, false);
   assert.equal(sidecarReplayRow.rootLedgerRecordId, 1003);
   assert.equal(sidecarReplayRow.causticRoute, null);
+  assert.equal(sidecarReplayRow.causticRouteKind, "missing");
+  assert.equal(sidecarReplayRow.causticRouteSourceLane.routePayloadPresent, false);
+  assert.equal(sidecarReplayRow.causticRouteSourceLane.acceptedRouteEvidence, false);
   assert.equal(sidecarReplayRow.sourcePathSegmentId, 1004);
   assert.equal(sidecarReplayRow.receiverPathSegmentId, 1005);
   assert.deepEqual(sidecarReplayRow.windingLabel, { x: 0, y: 0, z: 0 });
@@ -556,6 +572,18 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
       retainedSourceBindingStatus: "candidate_same_record_binding",
       sameRecordReplayStatus: "candidate_same_record_binding",
       causticRouteStatus: "missing",
+      causticRouteKind: "missing",
+      causticRouteSourceLane: {
+        schema: "t3-caustic-route-source-lane.v1",
+        nativeRow: "T3RetainedCausalRootReplayRowF64",
+        nativeField: "causticRouteKind",
+        cAbiField: "caustic_route_kind",
+        bridgeField: "causticRouteKind",
+        causticRouteKind: "missing",
+        causticRouteStatus: "missing",
+        routePayloadPresent: false,
+        acceptedRouteEvidence: false,
+      },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
         nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
@@ -602,6 +630,8 @@ test("central solver carries unresolved-root segment sidecar as fail-closed shap
   assert.equal(sidecarReplayRow.providedFields.includes("sourcePathSegmentId"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("receiverPathSegmentId"), true);
   assert.equal(sidecarReplayRow.providedFields.includes("windingLabel"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("causticRouteKind"), true);
+  assert.equal(sidecarReplayRow.providedFields.includes("causticRouteSourceLane"), true);
   assert.deepEqual(
     sidecarReplayRow.missingFields.filter((field) =>
       ["rootLedgerRecordId", "causticRoute", "sourcePathSegmentId", "receiverPathSegmentId", "windingLabel"].includes(field)
@@ -1218,6 +1248,18 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       retainedSourceBindingStatus: "candidate_same_record_binding",
       sameRecordReplayStatus: "candidate_same_record_binding",
       causticRouteStatus: "missing",
+      causticRouteKind: "missing",
+      causticRouteSourceLane: {
+        schema: "t3-caustic-route-source-lane.v1",
+        nativeRow: "T3RetainedCausalRootReplayRowF64",
+        nativeField: "causticRouteKind",
+        cAbiField: "caustic_route_kind",
+        bridgeField: "causticRouteKind",
+        causticRouteKind: "missing",
+        causticRouteStatus: "missing",
+        routePayloadPresent: false,
+        acceptedRouteEvidence: false,
+      },
       proofObjectProvenanceStatus: "candidate_sidecar_shape_evidence",
       proofObjectProvenance: {
         nativeProducer: "src/solver/src/T3BulkStep.cpp::step_t3_universe",
@@ -1289,6 +1331,8 @@ test("oriented boundary exposes unresolved-root sidecar replay producer contract
       "windingLabel",
       "windingLabelStatus",
       "sameRecordRetainedBinding",
+      "causticRouteKind",
+      "causticRouteSourceLane",
     ],
     requiredReplaySourceFields,
     missingReplaySourceFields,

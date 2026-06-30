@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 183,
-      "sections": 1473
+      "entries": 180,
+      "sections": 1446
     }
   },
   "tocRoot": {
@@ -5278,6 +5278,14 @@
               },
               {
                 "kind": "markdown-section",
+                "title": "Alpha-Emission Barrier Benchmark",
+                "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
+                "markdownSection": "Alpha-Emission Barrier Benchmark",
+                "sectionKey": "alpha emission barrier benchmark",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
                 "title": "Beta Stability Interface",
                 "markdownPath": "content/markdown/aaa/nuclear-atomic/nuclear-binding.md",
                 "markdownSection": "Beta Stability Interface",
@@ -9494,462 +9502,6 @@
             ]
           },
           {
-            "id": "crisis_in_physics",
-            "title": "Crisis in Physics",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Progress vs. Time",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Progress vs. Time",
-                "sectionKey": "progress vs time",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Prediction vs. Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Prediction vs. Ontology",
-                "sectionKey": "prediction vs ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Measurement / Outcome",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Quantum Measurement and Outcome Selection",
-                "sectionKey": "quantum measurement and outcome selection",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Nonlocality / Bell",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Nonlocality, Bell, and Causal Structure",
-                "sectionKey": "nonlocality bell and causal structure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "GR and Quantum Theory",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "General Relativity and Quantum Theory",
-                "sectionKey": "general relativity and quantum theory",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "AdS Control and de Sitter Reality",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "AdS Control and de Sitter Reality",
-                "sectionKey": "ads control and de sitter reality",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Renormalization / UV",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Renormalization, UV Completion, and Continuum Excess",
-                "sectionKey": "renormalization uv completion and continuum excess",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Vacuum / Medium",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Vacuum, Medium, and the Status of Empty Space",
-                "sectionKey": "vacuum medium and the status of empty space",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dark-Sector Inference",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
-                "sectionKey": "dark matter dark energy and cosmological over inference",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Parameters / Patchwork",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Parameter Proliferation and Patchwork Closure",
-                "sectionKey": "parameter proliferation and patchwork closure",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Math vs. Mechanism",
-                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
-                "markdownSection": "Mathematical Control vs. Mechanistic Explanation",
-                "sectionKey": "mathematical control vs mechanistic explanation",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "unknowns_paradoxes",
-            "title": "Unknowns and Paradoxes",
-            "kind": "scene-index",
-            "sceneType": "Scene-Index",
-            "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes.json",
-            "children": [
-              {
-                "id": "philosophy_history__solving_open_problems",
-                "title": "Solving Open Problems",
-                "kind": "scene-index",
-                "sceneType": "Scene-Index",
-                "scenePath": "content/scenes/philosophy_history/solving_open_problems.json",
-                "children": [
-                  {
-                    "id": "philosophy_history__solving_open_problems_overview",
-                    "title": "Solving Open Problems",
-                    "kind": "markdown-view",
-                    "sceneType": "Scene-Markdown-View",
-                    "scenePath": "content/scenes/philosophy_history/solving_open_problems/overview.json",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                    "sections": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Paper Thesis",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Paper Thesis",
-                        "sectionKey": "paper thesis",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Paper Section Map",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Paper Section Map",
-                        "sectionKey": "paper section map",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Foundations And Spacetime",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Foundations And Spacetime",
-                        "sectionKey": "foundations and spacetime",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Strong-Field Gravity",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Strong-Field Gravity",
-                        "sectionKey": "strong field gravity",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Cosmology And Large-Scale Structure",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Cosmology And Large-Scale Structure",
-                        "sectionKey": "cosmology and large scale structure",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Quantum And Statistical Emergence",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Quantum And Statistical Emergence",
-                        "sectionKey": "quantum and statistical emergence",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Standard Model And Particle Closure",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Standard Model And Particle Closure",
-                        "sectionKey": "standard model and particle closure",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Astrophysical Engines",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Astrophysical Engines",
-                        "sectionKey": "astrophysical engines",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Appendix And Exclusions",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Appendix And Exclusions",
-                        "sectionKey": "appendix and exclusions",
-                        "headingLevel": 2
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Main-Body Candidate List",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/solving-open-problems.md",
-                        "markdownSection": "Main-Body Candidate List",
-                        "sectionKey": "main body candidate list",
-                        "headingLevel": 2
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "id": "unknowns_paradoxes__problem_map",
-                "title": "Unknowns and Paradoxes: Problem Map",
-                "kind": "markdown-tree",
-                "sceneType": "Scene-Markdown-Tree",
-                "scenePath": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
-                "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                "sections": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Overview",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Overview",
-                    "sectionKey": "overview",
-                    "headingLevel": 2
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Cosmology / Inference",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Cosmology and Large-Scale Inference",
-                    "sectionKey": "cosmology and large scale inference",
-                    "headingLevel": 2,
-                    "children": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Nature of Dark Energy",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Nature of Dark Energy",
-                        "sectionKey": "the nature of dark energy",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Identity of Dark Matter",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Identity of Dark Matter",
-                        "sectionKey": "the identity of dark matter",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Cosmological Constant Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Cosmological Constant Problem",
-                        "sectionKey": "the cosmological constant problem",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Hubble Tension",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Hubble Tension",
-                        "sectionKey": "the hubble tension",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The $S_8$ (Structure Growth) Tension",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The $S_8$ (Structure Growth) Tension",
-                        "sectionKey": "the s 8 structure growth tension",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Mechanism of Inflation",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Mechanism of Inflation",
-                        "sectionKey": "the mechanism of inflation",
-                        "headingLevel": 3
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Particle / Field",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Particle and Field Microstructure",
-                    "sectionKey": "particle and field microstructure",
-                    "headingLevel": 2,
-                    "children": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Hierarchy Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Hierarchy Problem (Naturalness)",
-                        "sectionKey": "the hierarchy problem naturalness",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The UV Catastrophe",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The UV Catastrophe (Blackbody Divergence)",
-                        "sectionKey": "the uv catastrophe blackbody divergence",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Baryon Asymmetry",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Baryon Asymmetry",
-                        "sectionKey": "baryon asymmetry",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Neutrino Mass and Nature",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Neutrino Mass and Nature",
-                        "sectionKey": "neutrino mass and nature",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Strong CP Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Strong CP Problem",
-                        "sectionKey": "the strong cp problem",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Flavor Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Flavor Problem",
-                        "sectionKey": "the flavor problem",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Proton Stability",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Proton Stability",
-                        "sectionKey": "proton stability",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Vacuum Instability",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Vacuum Instability",
-                        "sectionKey": "vacuum instability",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Muon g-2 & Lepton Anomalies",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Muon $g-2$ and Lepton Universality Anomalies",
-                        "sectionKey": "the muon g 2 and lepton universality anomalies",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Lithium Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Lithium Problem",
-                        "sectionKey": "the lithium problem",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Confinement and the Mass Gap",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Confinement and the Mass Gap",
-                        "sectionKey": "confinement and the mass gap",
-                        "headingLevel": 3
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Quantum / Unification",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Quantum Foundations and Unification",
-                    "sectionKey": "quantum foundations and unification",
-                    "headingLevel": 2,
-                    "children": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "Quantum Gravity and Renormalizability",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "Quantum Gravity and Renormalizability",
-                        "sectionKey": "quantum gravity and renormalizability",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Black Hole Information Paradox",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Black Hole Information Paradox",
-                        "sectionKey": "the black hole information paradox",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Measurement Problem",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Measurement Problem",
-                        "sectionKey": "the measurement problem",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Arrow of Time",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Arrow of Time",
-                        "sectionKey": "the arrow of time",
-                        "headingLevel": 3
-                      },
-                      {
-                        "kind": "markdown-section",
-                        "title": "Trans-Planckian Censorship",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Trans-Planckian Censorship and the Swampland",
-                        "sectionKey": "the trans planckian censorship and the swampland",
-                        "headingLevel": 3
-                      }
-                    ]
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Astrobiological Boundary",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                    "markdownSection": "Astrobiological Boundary Question",
-                    "sectionKey": "astrobiological boundary question",
-                    "headingLevel": 2,
-                    "children": [
-                      {
-                        "kind": "markdown-section",
-                        "title": "The Fermi Paradox",
-                        "markdownPath": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
-                        "markdownSection": "The Fermi Paradox",
-                        "sectionKey": "the fermi paradox",
-                        "headingLevel": 3
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
             "id": "inherited_theory_interface",
             "title": "Inherited Theory Interface",
             "kind": "scene-index",
@@ -10076,6 +9628,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
                         "markdownSection": "General Relativity (GR)",
                         "sectionKey": "general relativity gr",
+                        "headingLevel": 3
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-mapping.md",
+                        "markdownSection": "Perturbative Quantum Gravity / General Relativity Effective Field Theory",
+                        "sectionKey": "perturbative quantum gravity general relativity effective field theory",
                         "headingLevel": 3
                       },
                       {
@@ -11471,6 +11031,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Harmonic-Oscillator Ladder Benchmark",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Harmonic-Oscillator Ladder Benchmark",
+                        "sectionKey": "harmonic oscillator ladder benchmark",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Observable-Domain Guardrail",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Observable-Domain Guardrail",
@@ -12676,120 +12244,6 @@
             ]
           },
           {
-            "id": "historical_context_missed_opportunities",
-            "title": "Historical Context and Missed Opportunities",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
-                "sectionKey": "lorentz before einstein the almost substrate moment",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometrization After 1915: Ontology Shift",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Geometrization After 1915: Ontology Shift",
-                "sectionKey": "geometrization after 1915 ontology shift",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Einstein's 1917 Static World: Closure Before Validation",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
-                "sectionKey": "einstein s 1917 static world closure before validation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
-                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Renormalization Era: Warnings Reframed",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Renormalization Era: Warnings Reframed",
-                "sectionKey": "renormalization era warnings reframed",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
-                "sectionKey": "wheeler s tokyo program particles fields and direct action",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Einstein's Abandoned Steady-State Cosmology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
-                "sectionKey": "einstein s abandoned steady state cosmology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Precision Cosmology: Parameters into Story",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Precision Cosmology: Parameters into Story",
-                "sectionKey": "precision cosmology parameters into story",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Recurrent Narrative Filters",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Recurrent Narrative Filters",
-                "sectionKey": "recurrent narrative filters",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Would Have Needed to Be Different",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "What Would Have Needed to Be Different",
-                "sectionKey": "what would have needed to be different",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Present Use of This History",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Present Use of This History",
-                "sectionKey": "present use of this history",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Falsifiability Constraint",
-                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
-                "markdownSection": "Falsifiability Constraint",
-                "sectionKey": "falsifiability constraint",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "major_thinkers",
             "title": "Major Thinkers",
             "kind": "markdown-tree",
@@ -13413,7 +12867,7 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Thermodynamic Cost of Computation",
+                "title": "Thermodynamic Cost",
                 "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
                 "markdownSection": "Thermodynamic Cost of Computation",
                 "sectionKey": "thermodynamic cost of computation",
@@ -13531,6 +12985,300 @@
                 "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
                 "markdownSection": "Closing Statement",
                 "sectionKey": "closing statement",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "historical_context_missed_opportunities",
+            "title": "Historical Context and Missed Opportunities",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Lorentz Before Einstein: The Almost-Substrate Moment",
+                "sectionKey": "lorentz before einstein the almost substrate moment",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Geometrization After 1915: Ontology Shift",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Geometrization After 1915: Ontology Shift",
+                "sectionKey": "geometrization after 1915 ontology shift",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's 1917 Static World: Closure Before Validation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's 1917 Static World: Closure Before Validation",
+                "sectionKey": "einstein s 1917 static world closure before validation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Copenhagen: Multistability Lost to Epistemic Minimalism",
+                "sectionKey": "copenhagen multistability lost to epistemic minimalism",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Renormalization Era: Warnings Reframed",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Renormalization Era: Warnings Reframed",
+                "sectionKey": "renormalization era warnings reframed",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Wheeler's Tokyo Program: Particles, Fields, and Direct Action",
+                "sectionKey": "wheeler s tokyo program particles fields and direct action",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Einstein's Abandoned Steady-State Cosmology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Einstein's Abandoned Steady-State Cosmology",
+                "sectionKey": "einstein s abandoned steady state cosmology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Precision Cosmology: Parameters into Story",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Precision Cosmology: Parameters into Story",
+                "sectionKey": "precision cosmology parameters into story",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Recurrent Narrative Filters",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Recurrent Narrative Filters",
+                "sectionKey": "recurrent narrative filters",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Would Have Needed to Be Different",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "What Would Have Needed to Be Different",
+                "sectionKey": "what would have needed to be different",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Present Use of This History",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Present Use of This History",
+                "sectionKey": "present use of this history",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Falsifiability Constraint",
+                "markdownPath": "content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md",
+                "markdownSection": "Falsifiability Constraint",
+                "sectionKey": "falsifiability constraint",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "crisis_in_physics",
+            "title": "Crisis in Physics",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/crisis_in_physics.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Progress vs. Time",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Progress vs. Time",
+                "sectionKey": "progress vs time",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Prediction vs. Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Prediction vs. Ontology",
+                "sectionKey": "prediction vs ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Measurement / Outcome",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Quantum Measurement and Outcome Selection",
+                "sectionKey": "quantum measurement and outcome selection",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Nonlocality / Bell",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Nonlocality, Bell, and Causal Structure",
+                "sectionKey": "nonlocality bell and causal structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "GR and Quantum Theory",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "General Relativity and Quantum Theory",
+                "sectionKey": "general relativity and quantum theory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "AdS Control and de Sitter Reality",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "AdS Control and de Sitter Reality",
+                "sectionKey": "ads control and de sitter reality",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Renormalization / UV",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Renormalization, UV Completion, and Continuum Excess",
+                "sectionKey": "renormalization uv completion and continuum excess",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Vacuum / Medium",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Vacuum, Medium, and the Status of Empty Space",
+                "sectionKey": "vacuum medium and the status of empty space",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dark-Sector Inference",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Dark Matter, Dark Energy, and Cosmological Over-Inference",
+                "sectionKey": "dark matter dark energy and cosmological over inference",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Parameters / Patchwork",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Parameter Proliferation and Patchwork Closure",
+                "sectionKey": "parameter proliferation and patchwork closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Math vs. Mechanism",
+                "markdownPath": "content/markdown/aaa/philosophy-history/crisis-in-physics.md",
+                "markdownSection": "Mathematical Control vs. Mechanistic Explanation",
+                "sectionKey": "mathematical control vs mechanistic explanation",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__solving_the_crisis",
+            "title": "Solving the Crisis",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/solving_the_crisis.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Foundations / Spacetime",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Foundations And Spacetime",
+                "sectionKey": "foundations and spacetime",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Strong-Field Gravity",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Strong-Field Gravity",
+                "sectionKey": "strong field gravity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Cosmology / Structure",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Cosmology And Large-Scale Structure",
+                "sectionKey": "cosmology and large scale structure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Quantum / Statistics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Quantum And Statistical Emergence",
+                "sectionKey": "quantum and statistical emergence",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Standard Model / Particles",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Standard Model And Particle Closure",
+                "sectionKey": "standard model and particle closure",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Astrophysical Engines",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Astrophysical Engines",
+                "sectionKey": "astrophysical engines",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Appendix / Exclusions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/solving-the-crisis.md",
+                "markdownSection": "Appendix And Exclusions",
+                "sectionKey": "appendix and exclusions",
                 "headingLevel": 2
               }
             ]

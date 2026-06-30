@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__about_architrino",
+    "title": "About Architrino",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/about-architrino.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

@@ -1057,7 +1057,7 @@ The neutron is therefore not neutral because it lacks internal charge structure,
 
 ### CP-Odd Neutron Dipole Scaffold
 
-The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/unknowns-paradoxes.md#the-strong-cp-problem).
+The strong-CP comparison problem enters this chapter through the neutron electric dipole moment. The retained observable is a spin-aligned electric first moment of the neutron assembly, not the ontology of any particular Standard-Model repair. This section supplies the nucleon-side scaffold used by [The Strong CP Problem](../../../../markdown/aaa/philosophy-history/solving-the-crisis.md#the-strong-cp-problem).
 
 Let the neutron's axial sites carry polarity signs $\sigma_a\in\{+1,-1\}$ and positions $\mathbf{r}_a$ relative to the nested shell braid center, with each site carrying polarity magnitude $\epsilon=|e|/6$. The axial contribution to the neutron dipole is
 $$
@@ -1442,6 +1442,22 @@ A four-nucleon cluster with two protons and two neutrons is expected to be espec
 
 That makes the alpha-like cluster a natural closed local minimum of the effective nuclear energy landscape. This is the nuclear-level analogue of how balanced pro/anti or color-singlet combinations are favored at lower levels of the assembly ladder.
 
+### Alpha-Emission Barrier Benchmark
+
+Alpha emission (SM label: `alpha decay`) turns the alpha-like-cluster claim into a quantitative recovery target. A heavy nucleus can contain an alpha-like sub-assembly in a bound interior while the effective Coulomb barrier outside the touching radius is higher than the kinetic energy of the outgoing alpha assembly. Standard quantum mechanics treats the event as barrier penetration: the interior alpha-like cluster repeatedly samples the barrier, the escape probability is dominated by the action accumulated through the forbidden region, and the measured half-life follows from an attempt rate times that escape probability.
+
+At effective level, the benchmark has the form
+
+$$
+\lambda_{\alpha}\simeq\nu_{\mathrm{hit}}P_{\mathrm{esc}},
+\qquad
+t_{1/2}=\frac{\ln 2}{\lambda_{\alpha}}
+$$
+
+Here $\nu_{\mathrm{hit}}$ is the effective barrier-sampling frequency of the bound alpha-like cluster, $P_{\mathrm{esc}}$ is the finite-window escape probability, and $\lambda_{\alpha}$ is the observer-level emission constant. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this probability cannot be inserted as formal wavefunction leakage alone. It must be recovered as a basin measure over deterministic nuclear assembly histories that cross the retained separatrix tube, while the energy ledger still routes the outgoing alpha assembly, daughter remnant, recoil, photon output if present, medium exchange, and Noether sea update.
+
+Polonium-212 is a compact numerical check: the standard comparison channel is ${}^{212}\mathrm{Po}\to{}^{208}\mathrm{Pb}+\alpha$, with outgoing alpha energy near $8.78\,\mathrm{MeV}$ and observed half-life near $0.3\,\mu\mathrm{s}$. A single rectangular-barrier approximation can miss the half-life by many orders of magnitude, while resolving the Coulomb barrier into multiple segments already moves the estimate close to the observed value. The lesson for the nuclear branch is that barrier shape, turning points, and attempt rate are not disposable fitting details; they are the effective observables that a native nuclear assembly model must recover.
+
 ### Beta Stability Interface
 
 Nuclear binding is tied to weak stability because a nucleus can trade between proton and neutron count through weak channels. At coarse level, beta stability is the condition that the total nuclear energy cannot be lowered by
@@ -1679,6 +1695,8 @@ $$
 \frac{1}{n_a^2}
 $$
 
+Standard hydrogen spectroscopy names familiar subfamilies inside this same line set. Lyman, Balmer, Paschen, Brackett, and Pfund are fixed-lower-label slices with $n_b=1,2,3,4,5$ respectively and $n_a>n_b$. In this benchmark those names remain observer-level groupings, not independent fitted surfaces. A successful scan must recover the same $\widehat R_{\mathrm H}^{(\ell)}$, the same $c_{\gamma,0}^{(\ell)}$, and the same local Noether sea and clock/rate record across whichever named series are included in $\mathcal L_{\mathrm H}^{0}$.
+
 For each line in this set, the spectral scan extracts a Rydberg readout from the same channel record:
 
 $$
@@ -1817,7 +1835,30 @@ $$
 g_{\mathrm{eff}}\mu_B B
 $$
 
-The closure burden is to derive $g_{\mathrm{eff}}$ from the completed internal spinor ledger, material branch, and measurement-response model rather than assigning a free spin label. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+The normal Zeeman limit gives a sharper staged benchmark. In that limit the external magnetic branch should split one observer-level line into the standard polarization-resolved pattern: a central component plus symmetric side components for the transverse view, and a circularly polarized doublet for the longitudinal view. A compact comparison can treat the side-component spacing as
+
+$$
+\omega_{\pm}^{\mathrm{obs}}
+=
+\omega_0
+\pm
+\Omega_B^{\mathrm{orb}},
+\qquad
+\Omega_B^{\mathrm{orb}}\propto B\,\frac{q}{m_{\mathrm{resp}}}
+$$
+
+with the proportionality, polarization basis, and charge-to-mass readout recovered from the same magnetic-state map and photon-channel event record. The anomalous Zeeman cases then become the next benchmark: extra components and non-normal spacings must be routed through the completed internal spinor ledger and measurement-response model, not patched by assigning a free line-by-line $g_{\mathrm{eff}}$. In isolated-atom comparisons this protects fine, hyperfine, and Zeeman recovery from being fitted independently of the base spectral envelope.
+
+Solar and stellar Zeeman observations sharpen this as a source-reconstruction
+benchmark, not merely a laboratory line-splitting example. Hale's 1908 sunspot
+measurements used viewing geometry and analyzer response to distinguish the
+longitudinal circularly polarized doublet from the transverse linearly polarized
+components. For this chapter, the recovery target is therefore a same-record map
+from source magnetic state, viewing direction, line family, analyzer response,
+and photon-channel polarization ledger to split line positions and intensities.
+The lab calibration and the solar or stellar inference must consume the same
+effective magnetic-state map; otherwise the inferred field strength is only a
+spectroscopic fit.
 
 Nuclear recoil-free resonant absorption supplies a separate material-coupled benchmark. For a photon of energy $E_\gamma$ absorbed by a free atom of mass $M$, the observer-level recoil scale is
 

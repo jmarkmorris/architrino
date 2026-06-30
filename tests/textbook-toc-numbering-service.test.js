@@ -49,14 +49,14 @@ function createService() {
   });
 }
 
-test("textbook TOC numbering resolves markdown-backed scene nodes", async () => {
+test("textbook TOC numbering resolves scene and markdown-backed nodes", async () => {
   const service = createService();
 
   assert.equal(
     await service.resolveNodeChapterLabel({
       childScene: "content/scenes/foundations/foundations.json",
     }),
-    null
+    "Ch 1"
   );
   assert.equal(
     await service.resolveNodeChapterLabel({
@@ -74,7 +74,7 @@ test("textbook TOC numbering resolves markdown-backed scene nodes", async () => 
     await service.resolveNodeChapterLabel({
       childScene: "content/scenes/dynamics/dynamics.json",
     }),
-    null
+    "Ch 2"
   );
 });
 

@@ -82,9 +82,10 @@ This document distinguishes three audience scopes:
 #### Forward-Only Documentation
 
 - In user-facing, reader-facing, and ordinary guide/reference markdown, state the current source of truth directly. Do not preserve process-history filler such as "redesigned," "previously," "obsolete," "old plan," or "we used to" unless the document is explicitly historical.
-- Keep historical trace, abandoned alternatives, and progress diaries in the places designed for them: `reference/priorities/`, Architecture Decision Records, GitHub issues, GitHub pull requests, and git history.
-- Even in behind-the-scenes documents, keep history only when it has an active purpose: a priority ledger, an ADR rationale, an audit trail, a generated-output inventory, a compatibility/removal condition, or evidence needed for the current claim.
+- Keep historical trace, abandoned alternatives, and progress diaries in the places designed for them: `reference/priorities/`, `reference/architectural-decisions/`, GitHub issues, GitHub pull requests, and git history.
+- Even in behind-the-scenes documents, keep history only when it has an active purpose: a priority ledger, architectural-decision rationale, an audit trail, a generated-output inventory, a removal condition, or evidence needed for the current claim.
 - When editing a document after a decision changes, rewrite it as the current policy or current design. Do not add a note merely explaining that the old text was replaced.
+- Treat forward-only documentation as current-source replacement, not compatibility staging. Once a decision is accepted, ordinary docs should state the decided design directly and should not preserve old/new coexistence unless the operator/developer explicitly requests a temporary transition record.
 
 #### Promotion From Priority Material
 
@@ -142,6 +143,7 @@ This document distinguishes three audience scopes:
 - If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
 - Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
 - If a refactor is too large to finish in one pass, still isolate the new work behind a small dedicated module or helper so later extraction is straightforward instead of leaving another layer of spaghetti.
+- Once a product, UI, architecture, content, or terminology decision is accepted, apply it consistently across the affected app/repo surface. Do not preserve a mixed old/new implementation, compatibility shim, partial migration, or parallel behavior unless the operator/developer explicitly requests a temporary transition. Keep rationale or historical records in [reference/architectural-decisions](reference/architectural-decisions/README.md), priority ledgers, issues, PRs, or git history; keep the live code and ordinary docs on the decided current design.
 
 ### Solver Ownership
 

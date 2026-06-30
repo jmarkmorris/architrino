@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__comics__citation_needed",
+    "title": "Citation Needed",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/comics/citation-needed.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

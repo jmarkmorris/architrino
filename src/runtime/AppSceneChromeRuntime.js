@@ -1,11 +1,9 @@
 export function createAppSceneChromeRuntime({
   sceneLabel,
   textbookTocButton,
-  archieButton,
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
-  detailInfoButton,
 }) {
   function updateTextbookTocButton(currentLevel, options = {}) {
     if (!textbookTocButton) {
@@ -22,15 +20,6 @@ export function createAppSceneChromeRuntime({
     );
     textbookTocButton.setAttribute("aria-pressed", String(isTextbookToc));
     textbookTocButton.disabled = !!options.transitionActive || !currentLevel;
-  }
-
-  function updateArchieButton(currentLevel, options = {}) {
-    if (!archieButton) {
-      return;
-    }
-    const isArchie = currentLevel?.id === options.archieScenePath;
-    archieButton.classList.toggle("is-active", isArchie);
-    archieButton.setAttribute("aria-pressed", String(isArchie));
   }
 
   function updateMarkdownDocButton(currentLevel) {
@@ -90,13 +79,6 @@ export function createAppSceneChromeRuntime({
     sceneLabel.removeAttribute("aria-label");
   }
 
-  function updateDetailInfoButton(canOpenInfo, options = {}) {
-    if (!detailInfoButton) {
-      return;
-    }
-    detailInfoButton.disabled = !!options.transitionActive || !canOpenInfo;
-  }
-
   function updateSceneLabel(currentLevel) {
     if (!sceneLabel) {
       return;
@@ -106,12 +88,10 @@ export function createAppSceneChromeRuntime({
 
   return {
     updateTextbookTocButton,
-    updateArchieButton,
     updateMarkdownDocButton,
     updateMarkdownLayoutToggleButton,
     updateMarkdownPdfButton,
     updateSceneInfoTrigger,
-    updateDetailInfoButton,
     updateSceneLabel,
   };
 }

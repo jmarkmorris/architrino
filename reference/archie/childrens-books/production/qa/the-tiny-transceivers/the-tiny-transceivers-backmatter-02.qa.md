@@ -1,0 +1,23 @@
+# QA: Back Matter Activity 2
+
+- id: `the-tiny-transceivers-backmatter-02`
+- source: `content/assets/images/archie/childrens-books/source/the-tiny-transceivers/the-tiny-transceivers-backmatter-02.png`
+- lesson: Back-matter activity image.
+- geometry: Use the geometry already introduced in the story at activity scale.
+
+## Automated Checks
+
+- source image: present
+- dimensions: 1536 x 1024
+- aspect ratio: 1.5
+- saturated non-palette fraction: 0.4671
+- palette flag: True
+
+## Manual Checklist
+
+- [ ] Palette follows the style guide.
+- [ ] No in-image text, captions, labels, equations, watermark, or logo.
+- [ ] One continuous scene, not a contact sheet or inset diagram collection.
+- [ ] Geometry teaches the stated lesson.
+
+Decision: pending

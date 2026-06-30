@@ -34,6 +34,12 @@ enum class T3RetainedCausalRootReplayFieldStatus : std::uint32_t {
   CandidateSameRecordBinding = 2,
 };
 
+enum class T3RetainedCausalRootReplayCausticRouteKind : std::uint32_t {
+  Missing = 0,
+  DeclaredNoCausticRoute = 1,
+  ConcreteCausticRoute = 2,
+};
+
 enum class T3WindingLabelStatus : std::uint32_t {
   Missing = 0,
   LocalPreWrapCandidate = 1,
@@ -151,7 +157,8 @@ struct T3RetainedCausalRootReplayRowF64 {
       static_cast<std::uint32_t>(T3RetainedCausalRootReplayFieldStatus::Missing);
   std::uint32_t rowStatus =
       static_cast<std::uint32_t>(T3RetainedCausalRootReplayRowStatus::Disabled);
-  std::uint32_t reserved0 = 0;
+  std::uint32_t causticRouteKind =
+      static_cast<std::uint32_t>(T3RetainedCausalRootReplayCausticRouteKind::Missing);
 };
 
 struct T3BulkStepResult {

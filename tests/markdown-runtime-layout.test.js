@@ -105,6 +105,8 @@ function createFakeElement() {
 function createFakeButton() {
   let clickHandler = null;
   return {
+    classList: createClassList(),
+    disabled: false,
     addEventListener(type, handler) {
       if (type === "click") {
         clickHandler = handler;
@@ -723,6 +725,37 @@ test("PDF toolbar button opens markdown before invoking browser print", async (t
 
   assert.deepEqual(shownLevels, [currentLevel]);
   assert.deepEqual(printCalls, [0, 1]);
+});
+
+test("whole document toolbar button clears runtime section identity", async () => {
+  const shownLevels = [];
+  const markdownDocButton = createFakeButton();
+  const currentLevel = {
+    id: "runtime:markdown:reader:content/markdown/aaa/example.md::Section%20One",
+    name: "Section One",
+    markdownPath: "content/markdown/aaa/example.md",
+    markdownSection: "Section One",
+    markdownColumns: 1,
+  };
+
+  const runtime = createScenePanelUiRuntime({
+    markdownDocButton,
+    markdownRuntime: {
+      showMarkdownPanel(level) {
+        shownLevels.push(level);
+      },
+    },
+    getCurrentLevel: () => currentLevel,
+    isTransitionActive: () => false,
+  });
+
+  runtime.wireListeners();
+  await markdownDocButton.click();
+
+  assert.equal(shownLevels.length, 1);
+  assert.equal(shownLevels[0].id, "");
+  assert.equal(shownLevels[0].markdownPath, "content/markdown/aaa/example.md");
+  assert.equal(shownLevels[0].markdownSection, null);
 });
 
 test("PDF toolbar button downloads download-only markdown without opening print", async () => {

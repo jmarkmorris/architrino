@@ -24,7 +24,7 @@
 
 - Architrino QR and logo-plus-QR brand images: created by the Architrino project, 2026; project-owned; [landscape asset](../../../assets/images/brand/architrino-logo-qr-landscape.png), [stacked asset](../../../assets/images/brand/noether-braid-qr-logo-1x2-logo-top-qr-bottom.png), [QR asset](../../../assets/images/brand/qr.png). Full catalog entries: [image manifest](../../../assets/images/images.json).
 
-- Outreach comics: created by the Architrino project, 2026; project-owned. Full catalog entries: [image manifest](../../../assets/images/images.json).
+- Comics: created by the Architrino project, 2026; project-owned. Full catalog entries: [image manifest](../../../assets/images/images.json).
 
 - Three.js runtime: MIT license (see header in [vendor/three/three.module.js](../../../../vendor/three/three.module.js)).
 

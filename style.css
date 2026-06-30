@@ -338,35 +338,6 @@ body.has-scene-image-gallery .label-center-context {
   height: 18px;
 }
 
-#archie-button {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
-  color: #f5f7ff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
-
-#archie-button svg {
-  width: 18px;
-  height: 18px;
-  pointer-events: none;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-}
-
-#archie-button.is-active {
-  border-color: rgba(213, 220, 255, 0.6);
-}
-
 #textbook-toc-button {
   position: relative;
   min-width: 48px;
@@ -410,38 +381,6 @@ body.has-scene-image-gallery .label-center-context {
 
 #textbook-toc-button:disabled {
   opacity: 0.5;
-  cursor: default;
-}
-
-#detail-info-button {
-  width: 32px;
-  height: 32px;
-  border-radius: 999px;
-  border: 1px solid rgba(160, 170, 220, 0.25);
-  background: rgba(8, 10, 18, 0.75);
-  color: #f5f7ff;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  padding: 0;
-}
-
-#detail-info-button:not(:disabled):hover,
-#detail-info-button:not(:disabled):focus-visible {
-  border-color: rgba(213, 220, 255, 0.6);
-}
-
-#detail-info-button svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  stroke-width: 2;
-  fill: none;
-}
-
-#detail-info-button:disabled {
-  opacity: 0.35;
   cursor: default;
 }
 
@@ -750,11 +689,116 @@ body.has-scene-image-gallery .label-center-context {
   flex-direction: column;
 }
 
+body.has-textbook-page-nav #markdown-panel.is-open {
+  width: min(1750px, calc(100vw - 152px));
+}
+
+#textbook-page-nav {
+  position: absolute;
+  inset: 0;
+  z-index: 8;
+  display: none;
+  pointer-events: none;
+}
+
+#textbook-page-nav.is-visible {
+  display: block;
+}
+
+.textbook-page-nav-button {
+  -webkit-appearance: none;
+  appearance: none;
+  position: absolute;
+  top: 50%;
+  display: inline-flex;
+  width: 58px;
+  height: 96px;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  color: rgba(248, 251, 255, 0.92);
+  cursor: pointer;
+  border: 1px solid transparent;
+  border-radius: 999px;
+  background: transparent;
+  transform: translateY(-50%);
+  pointer-events: auto;
+}
+
+.textbook-page-nav-button:hover,
+.textbook-page-nav-button:focus-visible {
+  color: #f8fbff;
+  border-color: rgba(232, 238, 255, 0.24);
+  outline: none;
+  background: rgba(14, 17, 26, 0.3);
+}
+
+.textbook-page-nav-button:disabled {
+  cursor: default;
+  opacity: 0.18;
+}
+
+.textbook-page-nav-button:disabled:hover {
+  border-color: transparent;
+  background: transparent;
+}
+
+.textbook-page-nav-button svg {
+  width: 52px;
+  height: 74px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 1.55;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  pointer-events: none;
+}
+
+.textbook-page-nav-prev {
+  left: 10px;
+}
+
+.textbook-page-nav-next {
+  right: 10px;
+}
+
 @media (max-width: 980px) {
   #markdown-panel {
     top: 108px;
     height: calc(100% - 132px);
     max-height: calc(100% - 132px);
+  }
+}
+
+@media (max-width: 760px) {
+  body.has-textbook-page-nav #markdown-panel.is-open {
+    width: calc(100vw - 24px);
+    height: calc(100% - 190px);
+    max-height: calc(100% - 190px);
+  }
+
+  .textbook-page-nav-button {
+    top: auto;
+    bottom: 14px;
+    width: 42px;
+    height: 42px;
+    border-color: rgba(232, 238, 255, 0.24);
+    background: rgba(14, 17, 26, 0.7);
+    transform: none;
+  }
+
+  .textbook-page-nav-button svg {
+    width: 23px;
+    height: 23px;
+    stroke-width: 2.3;
+  }
+
+  .textbook-page-nav-prev {
+    left: 16px;
+  }
+
+  .textbook-page-nav-next {
+    right: 16px;
   }
 }
 
@@ -912,18 +956,18 @@ body.has-scene-image-gallery .label-center-context {
   margin: 0 auto;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-body {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-body {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
   gap: 18px;
   align-items: start;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block {
   margin: 0;
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a {
   display: block;
   overflow: hidden;
   border: 1px solid rgba(255, 255, 255, 0.16);
@@ -931,12 +975,12 @@ body.has-scene-image-gallery .label-center-context {
   background: rgba(255, 255, 255, 0.05);
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a:hover,
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block a:focus-visible {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a:hover,
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block a:focus-visible {
   border-color: rgba(255, 255, 255, 0.42);
 }
 
-#markdown-panel[data-markdown-kind="outreach-comics"] #markdown-content .markdown-image-block img.markdown-image {
+#markdown-panel[data-markdown-kind="archie-comics"] #markdown-content .markdown-image-block img.markdown-image {
   width: 100%;
   max-width: 100%;
   aspect-ratio: 1;

@@ -298,26 +298,8 @@ export function createMarkdownNodeBuilder(deps) {
       const col = index % columns;
       return [startX + col * gridSpacing, startY - row * gridSpacing];
     };
-    let colorBag = Array.isArray(palette) && palette.length ? [...palette] : [];
-    const shuffleInPlace = (list) => {
-      for (let i = list.length - 1; i > 0; i -= 1) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [list[i], list[j]] = [list[j], list[i]];
-      }
-      return list;
-    };
-    if (colorBag.length > 1) {
-      shuffleInPlace(colorBag);
-    }
-    const drawPaletteColor = () => {
-      if (!colorBag.length) {
-        colorBag = Array.isArray(palette) ? [...palette] : [];
-        if (colorBag.length > 1) {
-          shuffleInPlace(colorBag);
-        }
-      }
-      return colorBag.pop();
-    };
+    const colorAtIndex = (index) =>
+      Array.isArray(palette) && palette.length ? palette[index % palette.length] : null;
 
     if (includeExisting) {
       currentNodes.forEach((node, index) => {
@@ -345,7 +327,7 @@ export function createMarkdownNodeBuilder(deps) {
             : id;
         const layoutIndex = includeExisting ? currentNodes.length + index : index;
         const [x, y] = positionForIndex(layoutIndex);
-        let color = baseColor ?? drawPaletteColor() ?? "#3a5a8a";
+        let color = baseColor ?? colorAtIndex(index) ?? "#3a5a8a";
         if (
           typeof sectionOverride?.color === "string" &&
           sectionOverride.color.trim().length > 0

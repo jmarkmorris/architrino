@@ -389,7 +389,7 @@ Scoring system:
   3. `philosophy-of-science.md`
   4. `religious-ontologies.md`
   5. `theory-differentials.md`
-  6. `unknowns-paradoxes.md`
+  6. `solving-the-crisis.md`
   7. `major-thinkers.md`
   8. `theory-mapping.md`
 - `crisis-in-physics.md` received a full review on March 12, 2026.

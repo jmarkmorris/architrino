@@ -5,6 +5,7 @@ import { createLevelRuntime } from "../../runtime/LevelRuntime.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { createFileSourceRuntime } from "../../runtime/FileSourceRuntime.js";
 import { createNodeFactory } from "../../runtime/NodeFactoryRuntime.js";
+import { hasActionableSceneSphereTarget } from "../../runtime/SceneSphereActionRuntime.js";
 import {
   clampAnimatorTimelineSpan,
   ANIMATOR_TIMELINE_MIN_DURATION_SECONDS as animatorTimelineMinDurationSeconds,
@@ -58,6 +59,7 @@ import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
 import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js?v=2026-06-29-gallery-overlay-hide-scene";
+import { createTextbookPageNavigationRuntime } from "../../runtime/TextbookPageNavigationRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import { normalizeAnimatorSceneDocument } from "../../runtime/Animator2SceneDocumentRuntime.js";
 import {
@@ -114,6 +116,7 @@ import { createSceneStateHashService } from "../../services/SceneStateHashServic
 import { createSceneBootstrapService } from "../../services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "../../services/SceneSearchCoordinatorService.js";
 import { createTextbookTocNumberingService } from "../../services/TextbookTocNumberingService.js";
+import { createTextbookTocNavigationService } from "../../services/TextbookTocNavigationService.js";
 import {
   isAtomContextScene,
   isAtomicParticleFocusTarget,
@@ -249,7 +252,6 @@ const app = document.getElementById("app");
 const canvas = document.getElementById("viz");
 const navUpButton = document.getElementById("nav-up");
 const navForwardButton = document.getElementById("nav-forward");
-const detailInfoButton = document.getElementById("detail-info-button");
 const sceneLabel = document.getElementById("scene-label");
 const sceneHudTools = document.getElementById("scene-hud-tools");
 const sceneFocusSphere = document.getElementById("scene-focus-sphere");
@@ -266,7 +268,6 @@ const detailBody = document.getElementById("detail-body");
 const detailClose = document.getElementById("detail-close");
 const homeButton = document.getElementById("home-button");
 const textbookTocButton = document.getElementById("textbook-toc-button");
-const archieButton = document.getElementById("archie-button");
 const elementLegend = document.getElementById("element-legend");
 const elementLegendItems = elementLegend
   ? Array.from(elementLegend.querySelectorAll(".legend-pill"))
@@ -279,6 +280,9 @@ const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
 const markdownPdfButton = document.getElementById("markdown-pdf-button");
+const textbookPageNav = document.getElementById("textbook-page-nav");
+const textbookPagePrevButton = document.getElementById("textbook-page-prev");
+const textbookPageNextButton = document.getElementById("textbook-page-next");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -5360,7 +5364,6 @@ if (markdownRenderer) {
 const markdownManifestPath = "content/markdown/markdown_index.json";
 const sceneGraphManifestPath = "content/graph/scene_graph.json";
 const rootScenePath = "content/scenes/architrino_assembly_architecture.json";
-const archieScenePath = "content/scenes/archie/archie.json";
 const textbookTocScenePath = "content/scenes/archie/textbook_toc.json";
 const animatorScenePath = ANIMATOR_SCENE_PATH;
 const animatorSceneId = "animator";
@@ -5387,7 +5390,6 @@ let appDirector = null;
 const sceneIndexService = new SceneIndexService();
 const periodicTableService = new PeriodicTableService();
 const searchBackStack = [];
-const archieBackStack = [];
 const generationBackStack = [];
 const browserBackStack = [];
 const browserForwardStack = [];
@@ -6985,6 +6987,28 @@ const textbookTocNumberingService = createTextbookTocNumberingService({
   normalizeMarkdownKey,
   logger: console,
 });
+const textbookTocNavigationService = createTextbookTocNavigationService({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  normalizeMarkdownPath,
+  logger: console,
+});
+const textbookPageNavigationRuntime = createTextbookPageNavigationRuntime({
+  container: textbookPageNav,
+  previousButton: textbookPagePrevButton,
+  nextButton: textbookPageNextButton,
+  navigationService: textbookTocNavigationService,
+  getCurrentLevel: () => currentLevel,
+  isTransitionActive: () => transitionState.active,
+  navigateToPage: async (entry) => {
+    if (!entry?.targetPath || transitionState.active) {
+      return false;
+    }
+    await jumpToScene(entry.targetPath, { mode: "jump", startScale: 0.7, duration: 760 });
+    return true;
+  },
+  logger: console,
+});
 
 const sceneRepository = new SceneRepository({
   fetchImpl: (...args) => fetch(...args),
@@ -7793,6 +7817,8 @@ const nodeFactory = createNodeFactory({
   THREE,
   CSS2DObject,
   binaryStyle,
+  isActionableSphereNode: (nodeData) =>
+    hasActionableSceneSphereTarget(nodeData, { panelMap: animatorPanelMap }),
 });
 
 function createNode(nodeData) {
@@ -8429,6 +8455,7 @@ function maybeAutoWarp(now) {
 }
 
 function updateNavButton() {
+  textbookPageNavigationRuntime.setTransitionActive(transitionState.active);
   if (transitionState.active) {
     if (navUpButton) {
       navUpButton.disabled = true;
@@ -8436,9 +8463,6 @@ function updateNavButton() {
     if (navForwardButton) {
       navForwardButton.disabled = true;
     }
-    appSceneChromeRuntime.updateDetailInfoButton(false, {
-      transitionActive: transitionState.active,
-    });
     appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
       textbookTocScenePath,
       transitionActive: transitionState.active,
@@ -8453,9 +8477,6 @@ function updateNavButton() {
   }
   const canReopenInfo = isElementSceneLevel();
   appSceneChromeRuntime.updateSceneInfoTrigger(canReopenInfo);
-  appSceneChromeRuntime.updateDetailInfoButton(canReopenInfo, {
-    transitionActive: transitionState.active,
-  });
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
@@ -8649,11 +8670,9 @@ const { animatorUiRuntime } = animatorAppRuntime;
 const appSceneChromeRuntime = createAppSceneChromeRuntime({
   sceneLabel,
   textbookTocButton,
-  archieButton,
   markdownDocButton,
   markdownPdfButton,
   markdownLayoutToggle,
-  detailInfoButton,
 });
 const elementNavigationChromeRuntime = createElementNavigationChromeRuntime({
   elementNavOverlay,
@@ -8683,12 +8702,10 @@ function updateSceneLabel() {
     historyMode: takeSceneHashHistoryMode(),
   });
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
+  textbookPageNavigationRuntime.syncCurrentLevel(currentLevel);
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
-  });
-  appSceneChromeRuntime.updateArchieButton(currentLevel, {
-    archieScenePath,
   });
   appSceneChromeRuntime.updateMarkdownLayoutToggleButton(currentLevel);
   appSceneChromeRuntime.updateMarkdownDocButton(currentLevel);
@@ -8745,33 +8762,6 @@ async function restoreSceneFromBrowserHistory(event) {
     restoreNavStack: targetEntry.navigationStack,
     historyTraversal: true,
   });
-}
-
-function openArchieRing() {
-  if (transitionState.active) {
-    return;
-  }
-  if (currentLevel?.id === archieScenePath) {
-    const backState = archieBackStack.pop();
-    if (backState?.levelId) {
-      jumpToScene(backState.levelId, {
-        restoreNavStack: backState.navigationStack,
-      });
-    } else {
-      resetToRootScene();
-    }
-    return;
-  }
-  if (currentLevel) {
-    archieBackStack.push({
-      levelId: currentLevel.id,
-      navigationStack: navigationStack.map((entry) => ({
-        levelId: entry.levelId,
-        focusNodeId: entry.focusNodeId,
-      })),
-    });
-  }
-  jumpToScene(archieScenePath, { mode: "jump", startScale: 0.7, duration: 760 });
 }
 
 function toggleTextbookToc() {
@@ -9243,7 +9233,6 @@ if (typeof window !== "undefined") {
       console.warn("[ArchitrinoSceneAppRuntime] Failed to restore browser history state", error);
     });
   });
-  window.openArchieRing = openArchieRing;
 }
 
 appDirector = new AppDirector({
@@ -9263,7 +9252,6 @@ appDirector = new AppDirector({
   getTransitionState: () => transitionState,
   getNavigationStack: () => navigationStack,
   getSearchBackStack: () => searchBackStack,
-  getArchieBackStack: () => archieBackStack,
   getGenerationBackStack: () => generationBackStack,
 });
 const appShellUiRuntime = createAppShellUiRuntime({
@@ -9274,7 +9262,6 @@ const appShellUiRuntime = createAppShellUiRuntime({
   sceneLabel,
   navUpButton,
   navForwardButton,
-  detailInfoButton,
   homeButton,
   periodicOverlayRuntime,
   appDirector,
@@ -9290,6 +9277,7 @@ appShellUiRuntime.wireListeners();
 sceneHudTooltipRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 sceneImageGalleryRuntime?.wireListeners();
+textbookPageNavigationRuntime.wireListeners();
 animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
 updateAnimatorViewportModeButtons();

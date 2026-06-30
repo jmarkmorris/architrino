@@ -17,7 +17,7 @@ import {
   titleFromSlug,
 } from "../src/services/MarkdownNamingService.js";
 
-function createBuilder(markdownByPath) {
+function createBuilder(markdownByPath, options = {}) {
   return createMarkdownNodeBuilder({
     fetchImpl: async (path) => ({
       ok: Object.hasOwn(markdownByPath, path),
@@ -34,7 +34,7 @@ function createBuilder(markdownByPath) {
     compactMarkdownNodeLabel,
     colorTokens: {},
     autoMarkdownPalettes: {},
-    defaultAutoMarkdownPalette: ["#345678"],
+    defaultAutoMarkdownPalette: options.defaultAutoMarkdownPalette ?? ["#345678"],
     computeRingLayout: () => null,
     maxRingNodeRadius: () => Infinity,
     logger: { warn() {} },
@@ -124,6 +124,36 @@ test("markdown split node radius controls generated sphere radius", async () => 
   );
 
   assert.equal(node.radius, 1.76);
+});
+
+test("markdown split palette assignment is deterministic by source order", async () => {
+  const markdown = ["## Alpha", "## Beta", "## Gamma"].join("\n\n");
+  const builder = createBuilder(
+    {
+      "content/markdown/example.md": markdown,
+    },
+    {
+      defaultAutoMarkdownPalette: ["#111111", "#222222"],
+    }
+  );
+
+  const scene = {
+    layoutType: "grid",
+    splitSourcePath: "content/markdown/example.md",
+    splitHeadingLevel: 2,
+    splitMaxDepth: 1,
+  };
+  const firstNodes = await builder(scene, []);
+  const secondNodes = await builder(scene, []);
+
+  assert.deepEqual(
+    firstNodes.map((node) => node.color),
+    ["#111111", "#222222", "#111111"]
+  );
+  assert.deepEqual(
+    secondNodes.map((node) => node.color),
+    firstNodes.map((node) => node.color)
+  );
 });
 
 test("markdown split nodes derive title and date labels from dated headings", async () => {

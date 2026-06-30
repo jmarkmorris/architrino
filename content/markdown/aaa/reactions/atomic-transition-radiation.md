@@ -246,6 +246,12 @@ $$
 
 Here $f_a$ and $f_b$ are ensemble occupation weights for the atomic basins and $\bar n_\gamma$ is the effective photon occupation. This is an observer-level recovery target, not a substrate postulate.
 
+Optical dispersion adds the line-strength version of the same target. In the old Lorentz-Drude comparison, anomalous dispersion and absorption were summarized by an effective population of resonant oscillators for each line. The quantum correction was to read that measured coefficient through Einstein transition probabilities rather than as a literal count of independently vibrating electrons. In this chapter that coefficient belongs with Einstein coefficients and oscillator strengths as an observer-level comparison object. It must be recovered from the same Gate C rate ledger that supplies emission, absorption, stimulated channels, and detailed balance.
+
+Matrix mechanics is the algebraic face of this Gate C target. Heisenberg's replacement of classical Fourier modes by indexed transition amplitudes is safe here only as observer-level comparison: the indices label pre/post atomic basins, the intensities project from Gate C rates, and the noncommutative product records how sequential transition quantities compose through intermediate basin labels. The multiplication rule is a recovery target for effective operator algebra, not a substrate postulate.
+
+The practical rule is that a line may not use one event record for its frequency and another for its strength. For a transition pair $a,b$, the envelope gap, photon-capture or photon-emission rate, absorption strength, dispersion strength, and stimulated-channel coefficients all have to project from the same pre/post atomic basins, local Noether sea state, photon branch, recoil rows, and ensemble occupation weights. If optical dispersion can be matched only by assigning a separate resonator population unrelated to the Gate C basin-measure rate, the standard dispersion formula has been fitted rather than recovered.
+
 ## Gate C Rate Target
 
 The native rate target should be a basin-measure statement over deterministic atomic, photon, and local Noether sea microstates. For a record window $T$, a schematic form is

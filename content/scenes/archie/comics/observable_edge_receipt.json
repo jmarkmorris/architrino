@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__comics__observable_edge_receipt",
+    "title": "The Observable Edge Receipt",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/comics/observable-edge-receipt.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

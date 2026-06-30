@@ -1,0 +1,22 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "archie__comics__acknowledgements_in_architrinos_room",
+    "title": "Acknowledgements In Architrino's Room",
+    "type": "Scene-Markdown-View",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    },
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/archie/comics/acknowledgements-in-architrino-s-room.md"
+    },
+    "view": {
+      "columns": 1,
+      "autoOpen": true
+    }
+  },
+  "objects": []
+}

@@ -208,9 +208,9 @@ Faraday's place in the chain is therefore the realism of the in-between. He made
 
 ### Chapter Ten. James Clerk Maxwell: The Field Became Too Successful
 
-Maxwell's decisive contribution here was finite propagation. Electromagnetism taught physics that influence is not instantaneous, that fields carry energy and momentum, and that light belongs to the same mathematical structure as electricity and magnetism. It also kept alive, for a time, the intuition that the visible field might be the organized behavior of something deeper.
+Maxwell's decisive contribution here was finite propagation and ledger consistency. Electromagnetism taught physics that influence is not instantaneous, that fields carry energy and momentum, and that light belongs to the same mathematical structure as electricity and magnetism. The displacement-current correction sharpened the point: a loop around a charging capacitor had to give the same magnetic circulation whether the spanning surface cut the conducting wire or passed through the gap where only the electric flux changed. It also kept alive, for a time, the intuition that the visible field might be the organized behavior of something deeper.
 
-Maxwell's finite-propagation lesson brought physics near the Architrino architecture because causal wakes are not an ornamental medium analogy. They are source histories in motion. The Architrino architecture makes field behavior the observer-level continuum summary of architrino emissions, returns, and medium response. Maxwell's world had already learned to respect propagation, stress, polarization, and radiation. It had not yet learned to treat these as projections of a source-resolved causal record.
+Maxwell's finite-propagation and continuity lessons brought physics near the Architrino architecture because causal wakes are not an ornamental medium analogy. They are source histories in motion. The Architrino architecture makes field behavior the observer-level continuum summary of architrino emissions, returns, and medium response. Maxwell's world had already learned to respect propagation, stress, polarization, displacement-current bookkeeping, and radiation. It had not yet learned to treat these as projections of a source-resolved causal record.
 
 The responsible path came from the failure of mechanical ether models. Vortices, gears, elastic media, and luminiferous ether pictures did not mature into a disciplined ontology. They explained too much by image and too little by exact bookkeeping. When the field equations succeeded without those pictures, the responsible move was to keep the equations and drop the mechanisms.
 
@@ -994,6 +994,8 @@ Steinhardt and Turok keep a disciplined dissent alive: dissent from inflation wa
 
 Stellar collapse offered one of the plainest scale clues in twentieth-century physics. Chandrasekhar made the white-dwarf limit unavoidable: under sufficient mass, the familiar material branch cannot support itself by the same pressure law. Oppenheimer's generation then carried collapse into neutron-star and black-hole territory, where matter, pressure, curvature, and causal access all cease to be separable in the ordinary way.
 
+Baade and Zwicky sharpened the same opening in 1934 by proposing that supernovae mark the transition of ordinary stars into neutron stars, with gravitational binding energy powering the event. That proposal joined a visible transient, a hidden compact remnant, and a new matter branch before the instruments existed to follow the chain directly.
+
 Chandrasekhar's calculation was more than a mass limit. It was a scaling clue. Nonrelativistic electron degeneracy pressure stiffens fast enough under compression to find a smaller equilibrium radius. Relativistic electron degeneracy pressure no longer does; it scales with radius in the same way as the gravitational pressure it is trying to resist. At that point, shrinking the star is no longer a cure.
 
 That was almost exactly the right historical opening. In some supernovae, the star does not merely move inward through an unchanged stage. Its material assemblies are driven into smaller, denser operating regimes. In the same historical neighborhood, general relativity taught that clock rates, length standards, light paths, and spatial intervals behave as if the geometry itself has scaled and deformed. The missed synthesis was to ask whether these are two projections of one scale-compression mechanism: Noether braid scale retuning inside matter, coupled to Noether sea spatial compliance and extracted clock observables outside it.
@@ -1013,6 +1015,8 @@ The compact-object collapse line shows that collapse should have been treated as
 ### Chapter Fifty-Four. Jocelyn Bell Burnell: Pulsars Were Compact Clocks Without The Interior Record
 
 Bell Burnell makes compact objects into clocks. Pulsars turned stellar remnants into astonishingly regular timed records. A collapsed object was no longer only an endpoint inferred from gravity or a theoretical density limit. It became a source whose periodic signal could be tracked pulse by pulse.
+
+The Crab sequence makes the source packet visible: a recorded 1054 supernova, an expanding nebula, a compact central source, a pulse period, measurable spin-down, magnetic-axis beaming, surface spectral shifts, and multi-band radiation. The historical data product was therefore not merely "a pulsar exists." It was a source-history record whose timing, spectrum, remnant environment, and energy loss had to fit together.
 
 That discovery changed what compact objects meant observationally. Neutron stars became clocks, laboratories for dense matter, magnetic environments, binary dynamics, timing noise, glitches, and later gravitational tests. The record was not a smooth glow. It was a precise sequence of arrivals from an extreme source.
 

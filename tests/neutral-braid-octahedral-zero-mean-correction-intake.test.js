@@ -24,6 +24,8 @@ import {
   OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_ROW_TARGET_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_ACTION_MEASURE_BRANCH_SCOPE_SOURCE_AUDIT_SCHEMA,
   OCTAHEDRAL_ZERO_MEAN_SAME_LEDGER_ACTION_MEASURE_WITH_BRANCH_SCOPE_ATTEMPT_SCHEMA,
+  OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA,
+  OCTAHEDRAL_ZERO_MEAN_FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_TARGET_SCHEMA,
   evaluateCandidateBRangeProbe,
   evaluateLiveCorrectionDirectionCertificate,
   evaluateLiveDerivativeMatrixCertificate,
@@ -139,6 +141,12 @@ const ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS = [
   "action_functional",
   "root_support_event_rows",
 ];
+const FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_REQUIRED_FIELDS = [
+  ...ACTION_MEASURE_ROW_CANDIDATE_REQUIRED_FIELDS,
+  "retained_source_binding",
+  "receiver_normal_branch_strength_linkage",
+  "provider_provenance",
+];
 const CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS = [
   "bounded_speed_ledger_id",
   "force_checksum_id",
@@ -233,6 +241,27 @@ const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL =
   "branch-scope-provenance-without-same-ledger-period-rows-not-action-measure-row";
 const ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT =
   "same-ledger-action-measure-row-with-branch-scope-and-period-rows";
+const RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS = [
+  "same_ledger_identity_tuple",
+  "branch_scope",
+  "period_rows",
+  "action_functional",
+  "root_support_event_rows",
+];
+const RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE = [
+  "fixture-rows",
+  "proxy-only-branch-scope",
+  "fixed-speed-root-ledger-provenance",
+  "branch-scope-free-action-summaries",
+  "diagnostic-force-residual",
+  "sampled-phase-offset",
+  "sampled-diagnostics",
+  "h39-theta3minus-quotient-rows",
+  "source-normal-rows",
+  "generated-decoys",
+  "cross-row-bundles",
+  "finite-mode-open-search-contract",
+];
 const ACTION_MEASURE_BRANCH_SCOPE_CANDIDATE_FIELD_STATUSES = [
   {
     field: "branch_scope",
@@ -452,6 +481,80 @@ function sameLedgerActionMeasureWithBranchScopeAttemptPacket(identityTuple) {
       negative_control_status: ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_NEGATIVE_CONTROL,
       smallest_next_evidence_object:
         ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
+    },
+    rank5_retained_branch_closure_producer_target: {
+      schema: OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA,
+      claim_scope:
+        "rank5-retained-branch-action-measure-producer-target-after-normal-candidate",
+      promotion_status: "priority-only",
+      top_six_rank: 5,
+      closure_route: "bounded-speed-live-ledger",
+      source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
+      source_normal_reconstruction_candidate_id:
+        identityTuple.source_normal_reconstruction_candidate_id,
+      bounded_speed_ledger_id: identityTuple.bounded_speed_ledger_id,
+      force_checksum_id: identityTuple.force_checksum_id,
+      consumer_checksum_id: identityTuple.consumer_checksum_id,
+      attempted_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      required_identity_tuple: { ...identityTuple },
+      required_producer_fields: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS,
+      supplied_fields_on_normal_candidate_ledger: ["same_ledger_identity_tuple"],
+      missing_producer_fields: MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS,
+      first_missing_producer_field: "branch_scope",
+      first_blocker: "same_ledger_branch_scope_source_missing",
+      rejected_evidence_kinds: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE,
+      nearest_rejected_source: {
+        ...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE,
+      },
+      finite_mode_solver_action_measure_row_producer_target: {
+        schema: OCTAHEDRAL_ZERO_MEAN_FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_TARGET_SCHEMA,
+        claim_scope: "bounded-speed-finite-mode-action-measure-row-producer-target",
+        promotion_status: "priority-only",
+        target_status: "producer_target_blocked",
+        expected_source_object:
+          "bounded-speed-factor-finite-mode-solver-artifact-with-action-measure-row",
+        expected_source_packet:
+          "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-finite-mode-branch-system.md",
+        source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
+        source_normal_reconstruction_candidate_id:
+          identityTuple.source_normal_reconstruction_candidate_id,
+        required_identity_tuple: { ...identityTuple },
+        required_same_ledger_row_fields:
+          FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_REQUIRED_FIELDS,
+        supplied_fields_on_normal_candidate_ledger:
+          CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS,
+        missing_same_ledger_row_fields:
+          FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_REQUIRED_FIELDS.filter(
+            (field) => !CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.includes(field)
+          ),
+        first_missing_same_ledger_field: "branch_scope",
+        first_blocker: "same_ledger_branch_scope_source_missing",
+        required_finite_mode_sections: [
+          "branch_scope",
+          "clock_period",
+          "root_sheet_rows",
+          "force_rows",
+          "event_rows",
+          "variational_noether",
+          "derivative_matrix",
+          "full_stack_embedding",
+        ],
+        negative_controls: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE,
+        accepted_same_ledger_action_measure_row: null,
+        authorizes_rank5_retention: false,
+        certifies_action_measure_row: false,
+        certifies_bounded_speed_live_ledger: false,
+        retention: "not_retained",
+        retained_branch: false,
+      },
+      negative_control_status:
+        "same-ledger-tuple-without-branch-scope-action-measure-not-rank5-retained-branch",
+      accepted_same_ledger_action_measure_row: null,
+      certifies_action_measure_row: false,
+      certifies_rank5_retained_branch_closure: false,
+      certifies_bounded_speed_live_ledger: false,
+      retention: "not_retained",
+      retained_branch: false,
     },
     certifies_action_measure_row: false,
     certifies_action_derived_scale: false,
@@ -2418,6 +2521,92 @@ test("octahedral zero-mean correction intake emits fail-closed action stability 
     smallest_next_evidence_object:
       ACTION_MEASURE_WITH_BRANCH_SCOPE_PERIOD_ROWS_SMALLEST_NEXT_EVIDENCE_OBJECT,
   });
+  assert.deepEqual(
+    actionMeasureWithBranchScopeAttempt.rank5_retained_branch_closure_producer_target,
+    {
+      schema: OCTAHEDRAL_ZERO_MEAN_RANK5_RETAINED_BRANCH_ACTION_MEASURE_PRODUCER_TARGET_SCHEMA,
+      claim_scope:
+        "rank5-retained-branch-action-measure-producer-target-after-normal-candidate",
+      promotion_status: "priority-only",
+      top_six_rank: 5,
+      closure_route: "bounded-speed-live-ledger",
+      source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
+      source_normal_reconstruction_candidate_id:
+        actionMeasureWithBranchScopeAttempt.required_identity_tuple
+          .source_normal_reconstruction_candidate_id,
+      bounded_speed_ledger_id:
+        actionMeasureWithBranchScopeAttempt.required_identity_tuple.bounded_speed_ledger_id,
+      force_checksum_id:
+        actionMeasureWithBranchScopeAttempt.required_identity_tuple.force_checksum_id,
+      consumer_checksum_id:
+        actionMeasureWithBranchScopeAttempt.required_identity_tuple.consumer_checksum_id,
+      attempted_evidence_object: ACTION_MEASURE_BRANCH_SCOPE_SMALLEST_NEXT_EVIDENCE_OBJECT,
+      required_identity_tuple: {
+        ...actionMeasureWithBranchScopeAttempt.required_identity_tuple,
+      },
+      required_producer_fields: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REQUIRED_FIELDS,
+      supplied_fields_on_normal_candidate_ledger: ["same_ledger_identity_tuple"],
+      missing_producer_fields: MISSING_ACTION_MEASURE_ROW_TARGET_FIELDS,
+      first_missing_producer_field: "branch_scope",
+      first_blocker: "same_ledger_branch_scope_source_missing",
+      rejected_evidence_kinds: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE,
+      nearest_rejected_source: {
+        ...ACTION_MEASURE_BRANCH_SCOPE_NEAREST_CANDIDATE,
+      },
+      finite_mode_solver_action_measure_row_producer_target: {
+        schema: OCTAHEDRAL_ZERO_MEAN_FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_TARGET_SCHEMA,
+        claim_scope: "bounded-speed-finite-mode-action-measure-row-producer-target",
+        promotion_status: "priority-only",
+        target_status: "producer_target_blocked",
+        expected_source_object:
+          "bounded-speed-factor-finite-mode-solver-artifact-with-action-measure-row",
+        expected_source_packet:
+          "reference/priorities/braid-retained-branch-closure/shell-braid/bounded-speed-factor-finite-mode-branch-system.md",
+        source_after_normal_packet: "bounded-speed-normal-reconstruction-candidate",
+        source_normal_reconstruction_candidate_id:
+          actionMeasureWithBranchScopeAttempt.required_identity_tuple
+            .source_normal_reconstruction_candidate_id,
+        required_identity_tuple: {
+          ...actionMeasureWithBranchScopeAttempt.required_identity_tuple,
+        },
+        required_same_ledger_row_fields:
+          FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_REQUIRED_FIELDS,
+        supplied_fields_on_normal_candidate_ledger:
+          CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS,
+        missing_same_ledger_row_fields:
+          FINITE_MODE_ACTION_MEASURE_ROW_PRODUCER_REQUIRED_FIELDS.filter(
+            (field) => !CURRENT_ACTION_MEASURE_ROW_CANDIDATE_SUPPLIED_FIELDS.includes(field)
+          ),
+        first_missing_same_ledger_field: "branch_scope",
+        first_blocker: "same_ledger_branch_scope_source_missing",
+        required_finite_mode_sections: [
+          "branch_scope",
+          "clock_period",
+          "root_sheet_rows",
+          "force_rows",
+          "event_rows",
+          "variational_noether",
+          "derivative_matrix",
+          "full_stack_embedding",
+        ],
+        negative_controls: RANK5_RETAINED_BRANCH_PRODUCER_TARGET_REJECTED_EVIDENCE,
+        accepted_same_ledger_action_measure_row: null,
+        authorizes_rank5_retention: false,
+        certifies_action_measure_row: false,
+        certifies_bounded_speed_live_ledger: false,
+        retention: "not_retained",
+        retained_branch: false,
+      },
+      negative_control_status:
+        "same-ledger-tuple-without-branch-scope-action-measure-not-rank5-retained-branch",
+      accepted_same_ledger_action_measure_row: null,
+      certifies_action_measure_row: false,
+      certifies_rank5_retained_branch_closure: false,
+      certifies_bounded_speed_live_ledger: false,
+      retention: "not_retained",
+      retained_branch: false,
+    }
+  );
   assert.equal(actionMeasureWithBranchScopeAttempt.certifies_action_measure_row, false);
   assert.equal(
     artifact.action_stability_after_normal_candidate_intake.bounded_speed_live_ledger
@@ -2679,6 +2868,51 @@ test("octahedral zero-mean correction intake emits fail-closed action stability 
         }),
       }),
     /fail_closed_action_measure_row_target missing fields mismatch/
+  );
+  assert.throws(
+    () =>
+      buildOctahedralZeroMeanCorrectionIntake({
+        phaseSamples: 120,
+        ySubdivisions: 240,
+        liveDerivativeMatrixPacket: matrixPacket,
+        liveCorrectionDirectionPacket: directionPacket,
+        speedPrimitiveFeasibilityPacket: primitivePacket,
+        speedClockLengthPacket: clockPacket,
+        normalReconstructionHandoffPacket: handoffPacket,
+        boundedSpeedNormalReconstructionCandidatePacket: candidatePacket,
+        actionStabilityAfterNormalCandidatePacket: actionStabilityAfterNormalCandidatePacket({
+          bounded_speed_live_ledger: {
+            ...actionPacket.bounded_speed_live_ledger,
+            action_derived_scale_target: {
+              ...actionPacket.bounded_speed_live_ledger.action_derived_scale_target,
+              action_measure_row_target: {
+                ...actionPacket.bounded_speed_live_ledger.action_derived_scale_target
+                  .action_measure_row_target,
+                same_ledger_action_measure_row_with_branch_scope_attempt: {
+                  ...actionPacket.bounded_speed_live_ledger.action_derived_scale_target
+                    .action_measure_row_target
+                    .same_ledger_action_measure_row_with_branch_scope_attempt,
+                  rank5_retained_branch_closure_producer_target: {
+                    ...actionPacket.bounded_speed_live_ledger.action_derived_scale_target
+                      .action_measure_row_target
+                      .same_ledger_action_measure_row_with_branch_scope_attempt
+                      .rank5_retained_branch_closure_producer_target,
+                    finite_mode_solver_action_measure_row_producer_target: {
+                      ...actionPacket.bounded_speed_live_ledger.action_derived_scale_target
+                        .action_measure_row_target
+                        .same_ledger_action_measure_row_with_branch_scope_attempt
+                        .rank5_retained_branch_closure_producer_target
+                        .finite_mode_solver_action_measure_row_producer_target,
+                      negative_controls: ["fixture-rows"],
+                    },
+                  },
+                },
+              },
+            },
+          },
+        }),
+      }),
+    /finite_mode_solver_action_measure_row_producer_target negative controls mismatch/
   );
   assert.throws(
     () =>

@@ -209,6 +209,7 @@ static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, root_le
 static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, winding_label_x) == 88);
 static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, retained_source_binding_status) == 104);
 static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, row_status) == 120);
+static_assert(offsetof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64, caustic_route_kind) == 124);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, time) == 16);
 static_assert(offsetof(ArchitrinoSolverMotionFrameRowF64, state_flags) == 80);
 static_assert(offsetof(ArchitrinoSolverPathHistoryRowF64, start_time) == 16);
@@ -777,7 +778,7 @@ ArchitrinoSolverT3RetainedCausalRootReplayRowF64 to_c_t3_retained_causal_root_re
       row.causticRouteStatus,
       row.proofObjectProvenanceStatus,
       row.rowStatus,
-      row.reserved0,
+      row.causticRouteKind,
   };
 }
 

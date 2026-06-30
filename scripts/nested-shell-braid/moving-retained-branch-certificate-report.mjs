@@ -61,6 +61,7 @@ const ACCEPTED_BRANCH_CHART_SOURCE_STATUS = "accepted_same_record_branch_chart";
 const Q_INDEX_RATIO_F2_BRANCH_LABEL = "q:index-ratio:f2";
 const Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID = "W:index-ratio:f2:sampled-active-row-window";
 const Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH = "route-root-key:2856731379702547500";
+const Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_KEY = "2856731379702547500";
 
 const DISALLOWED_REFERENCE_PREFIXES = [
   "priority-only:",
@@ -83,12 +84,14 @@ const DISALLOWED_REFERENCE_SUBSTRINGS = [
 
 const REJECTED_BRANCH_CHART_EVIDENCE_SOURCES = [
   "proxy refs",
+  "current status rows",
   "fixture refs",
   "candidate refs",
   "synthetic refs",
   "sampled-only rows",
   "aggregate rows",
   "cross-row bundles",
+  "cross-report branch-chart rows",
   "route-only rows",
   "H39/theta3minus quotient rows",
   "source-normal denominator machinery",
@@ -119,6 +122,11 @@ const SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS = {
     "retained_source_binding.causal_root_replay_ref",
     "provider_object_provenance",
   ],
+  negative_control: [
+    "negative_controls.proxy_branch_chart_ref_rejected",
+    "negative_controls.current_status_row_rejected",
+    "negative_controls.cross_report_branch_chart_row_rejected",
+  ],
   same_record_binding: [
     "branch_row_id",
     "branch_certificate_ref",
@@ -134,6 +142,24 @@ const SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS = {
     "retained_source_binding.source_artifact_hash",
   ],
 };
+
+const SAME_RECORD_ACCEPTED_BRANCH_CHART_NEGATIVE_CONTROL_REQUIREMENTS = [
+  {
+    control_id: "proxy_branch_chart_ref_negative_control",
+    rejected_source: "proxy refs",
+    required_result: "rejected",
+  },
+  {
+    control_id: "current_status_branch_chart_row_negative_control",
+    rejected_source: "current status rows",
+    required_result: "rejected",
+  },
+  {
+    control_id: "cross_report_branch_chart_row_negative_control",
+    rejected_source: "cross-report branch-chart rows",
+    required_result: "rejected",
+  },
+];
 
 const SAME_RECORD_IDENTITY_ROWS = [
   {
@@ -664,9 +690,7 @@ function buildQIndexRatioF2SourceTarget(selected, missingOrRejectedFields, first
 
 function buildQIndexRatioF2ProducerTarget(selected, missingOrRejectedFields, firstFailure, accepted) {
   const requiredProducerFields = [
-    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.branch_row_identity,
-    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.accepted_branch_chart,
-    ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.retained_source_binding,
+    ...new Set(Object.values(SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS).flat()),
   ];
 
   return {
@@ -679,9 +703,19 @@ function buildQIndexRatioF2ProducerTarget(selected, missingOrRejectedFields, fir
     selected_source_status: selected?.source_status ?? null,
     first_missing_or_rejected_field: missingOrRejectedFields[0] ?? null,
     first_missing_or_rejected_field_code: firstFailure,
+    first_missing_accepted_source_field: missingOrRejectedFields[0] ?? null,
+    first_missing_accepted_source_field_code: firstFailure,
+    required_same_record_values: {
+      branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
+      extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_key: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_KEY,
+      active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
+      source_status: ACCEPTED_BRANCH_CHART_SOURCE_STATUS,
+    },
     same_record_binding_required: {
       branch_label: Q_INDEX_RATIO_F2_BRANCH_LABEL,
       extraction_window_id: Q_INDEX_RATIO_F2_EXTRACTION_WINDOW_ID,
+      active_root_ledger_key: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_KEY,
       active_root_ledger_hash: Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH,
       required_fields_must_live_on_one_branch_row: true,
       retained_source_binding_must_match_branch_row: true,
@@ -689,6 +723,16 @@ function buildQIndexRatioF2ProducerTarget(selected, missingOrRejectedFields, fir
     },
     required_producer_field_groups: SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS,
     required_producer_fields: requiredProducerFields,
+    required_retained_record_payload: {
+      required_on_one_retained_record: true,
+      retained_source_binding_must_match_branch_row: true,
+      fields: [
+        ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.branch_row_identity,
+        ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.accepted_branch_chart,
+        ...SAME_RECORD_ACCEPTED_BRANCH_CHART_PRODUCER_REQUIRED_FIELD_GROUPS.retained_source_binding,
+      ],
+    },
+    negative_controls_required: SAME_RECORD_ACCEPTED_BRANCH_CHART_NEGATIVE_CONTROL_REQUIREMENTS,
     downstream_consumers_blocked_until_producer_exists: [
       "moving_retained_branch_certificate/v0",
       "structural-integrity residual rows",
@@ -1229,6 +1273,18 @@ export function sourceScoutValidationErrors(report) {
         errors.push("q:index-ratio:f2 producer target must preserve the extraction window");
       }
       if (
+        producerTarget.required_same_record_values?.active_root_ledger_key !==
+        Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_KEY
+      ) {
+        errors.push("q:index-ratio:f2 producer target must preserve the raw active-root ledger key");
+      }
+      if (
+        producerTarget.same_record_binding_required?.active_root_ledger_key !==
+        Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_KEY
+      ) {
+        errors.push("q:index-ratio:f2 producer target must bind the raw active-root ledger key");
+      }
+      if (
         producerTarget.same_record_binding_required?.active_root_ledger_hash !==
         Q_INDEX_RATIO_F2_ACTIVE_ROOT_LEDGER_HASH
       ) {
@@ -1248,12 +1304,35 @@ export function sourceScoutValidationErrors(report) {
       )) {
         errors.push("q:index-ratio:f2 producer target must require retained source binding fields");
       }
+      if (!producerTarget.required_producer_field_groups?.same_record_binding?.includes(
+        "retained_source_binding.retained_record_id"
+      )) {
+        errors.push("q:index-ratio:f2 producer target must require same-record retained binding fields");
+      }
+      if (!producerTarget.required_producer_field_groups?.negative_control?.includes(
+        "negative_controls.cross_report_branch_chart_row_rejected"
+      )) {
+        errors.push("q:index-ratio:f2 producer target must require branch-chart negative controls");
+      }
+      if (
+        producerTarget.required_retained_record_payload?.required_on_one_retained_record !== true ||
+        !producerTarget.required_retained_record_payload?.fields?.includes("provider_object_provenance")
+      ) {
+        errors.push("q:index-ratio:f2 producer target must require one retained-record provider payload");
+      }
+      if (!producerTarget.negative_controls_required?.some(
+        (control) => control.control_id === "cross_report_branch_chart_row_negative_control"
+      )) {
+        errors.push("q:index-ratio:f2 producer target must require a cross-report negative control");
+      }
       for (const rejectedSource of [
         "proxy refs",
+        "current status rows",
         "fixture refs",
         "sampled-only rows",
         "aggregate rows",
         "cross-row bundles",
+        "cross-report branch-chart rows",
         "route-only rows",
         "H39/theta3minus quotient rows",
         "source-normal denominator machinery",
@@ -1275,6 +1354,15 @@ export function sourceScoutValidationErrors(report) {
           "same_record_identity.accepted_branch_chart_ref"
       ) {
         errors.push("blocked q:index-ratio:f2 producer target must fail first at accepted_branch_chart_ref");
+      }
+      if (
+        report.accepted_count === 0 &&
+        producerTarget.first_missing_accepted_source_field !==
+          "same_record_identity.accepted_branch_chart_ref"
+      ) {
+        errors.push(
+          "blocked q:index-ratio:f2 producer target must name accepted_branch_chart_ref as the first missing accepted source field"
+        );
       }
       if (
         report.accepted_count === 0 &&

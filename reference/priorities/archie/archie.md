@@ -7,7 +7,12 @@
 - Claim level: `priority-only`
 - Primary scene: [Archie scene](../../../content/scenes/archie/archie.json)
 - Main-ring route: [main architecture scene](../../../content/scenes/architrino_assembly_architecture.json)
-- Retired-route candidate: [Outreach scene](../../../content/scenes/outreach/outreach.json)
+- Comics scene: [Comics scene](../../../content/scenes/archie/comics.json)
+- Comics markdown: [Comics markdown](../../../content/markdown/aaa/archie/comics.md)
+- System Card sphere: [System Card scene](../../../content/scenes/archie/system_card.json)
+- System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
+- Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
+- Long-term service platform: [service-platform.md](service-platform.md)
 - Runtime files to inspect: [AppSceneChromeRuntime](../../../src/runtime/AppSceneChromeRuntime.js), [ArchitrinoSceneAppRuntime](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js), and [index.html](../../../index.html)
 
 ## Current State
@@ -19,89 +24,105 @@ The main architecture ring now routes the top-level `Archie` sphere to `content/
 1. the existing Archie groups: `User Interface`, `Documentation`, and `Project`;
 2. the application entry point: `Applications`;
 3. public project entries: `Download Textbook PDF`, `Support Architrino Research`, and `GitHub Presence & Community`;
-4. the former Outreach public entries: `Comics` and `Reductionist Universe`.
+4. public reader entries: `Comics` and `Reductionist Universe`.
+
+Active public reference material and public image assets now use Archie-owned paths under `reference/archie/` and `content/assets/images/archie/`. The retired `Outreach` scene, scene paths, markdown paths, and public-program asset/reference path names have been removed from the active route set.
+
+The first assistant behavior contract is captured in [assistant-mode-contract.md](assistant-mode-contract.md). It defines initial modes, source classes, claim labels, citation behavior, unsupported-answer behavior, the $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory stance, multimodal outreach objectives, the System Card sphere disclosure model, and public UI blockers. No runtime AI answer generation is implemented yet.
+
+The deployed site currently runs through GitHub Pages via `architrino.com`. The Archie question interface should not be reduced to a static/local-source UI prototype. Treat a real Archie question service as long-term platform work: a separately designed deployment with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, cost controls, observability, and rollback behavior. The long-term platform packet is [service-platform.md](service-platform.md). This platform work should wait behind the current theory-closure push unless it directly unblocks public readiness.
 
 ## Working Impression
 
-The consolidation gives readers one coherent guide rather than a broad `Outreach` bucket plus a separate Archie icon. The current direct scene routing keeps the existing content intact while making Archie the normal top-level entry.
+The consolidation gives readers one coherent guide through the top-level `Archie` sphere. The current direct scene routing keeps the existing content intact while making Archie the normal public entry.
 
 The main risk is scope drift. If Archie becomes an AI persona, it must not sound more certain than the corpus. It needs source-grounded answers, visible claim levels, and clear separation between established $\mathbb{A}\mathbb{A}\mathbb{A}$ prose, priority-only material, inherited physics summaries, and speculative comparison. The assistant interface should act like a disciplined guide over the corpus, not as an oracle that invents closure.
 
 ## Candidate Modes
 
-1. `ask_aaa` - Answer reader questions from published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus material with citations or scene/document links. Status: `investigate`.
-2. `prior_physics_compare` - Explain how a $\mathbb{A}\mathbb{A}\mathbb{A}$ claim relates to inherited physics, separating recovery target, comparison framework, and speculation. Status: `investigate`.
-3. `site_navigator` - Route users to scenes, apps, textbook sections, PDFs, GitHub, support, and outreach comics. Status: `investigate`.
-4. `claim_level_explainer` - Explain whether a topic is established corpus prose, derivation target, simulation target, priority-only work, or open blocker. Status: `investigate`.
-5. `app_helper` - Help users understand app controls and diagnostics for deployed apps without making proof-level claims from diagnostic visuals. Status: `investigate`.
+1. `aaa_native_explainer` - Answer from inside the $\mathbb{A}\mathbb{A}\mathbb{A}$ frame as an educational working premise, including future text, speech, and image-grounded questions, while preserving visible claim/source status. Status: `investigate`.
+2. `ask_aaa` - Answer reader questions from published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus material with citations or scene/document links. Status: `investigate`.
+3. `prior_physics_compare` - Explain how a $\mathbb{A}\mathbb{A}\mathbb{A}$ claim relates to inherited physics, separating recovery target, comparison framework, and speculation. Status: `investigate`.
+4. `site_navigator` - Route users to scenes, apps, textbook sections, PDFs, GitHub, support, and comics. Status: `investigate`.
+5. `claim_level_explainer` - Explain whether a topic is established corpus prose, derivation target, simulation target, priority-only work, or open blocker. Status: `investigate`.
+6. `app_helper` - Help users understand app controls and diagnostics for deployed apps without making proof-level claims from diagnostic visuals. Status: `investigate`.
 
 ## Task Queue
 
-1. `outreach_scene_retirement_decision` - Decide whether `content/scenes/outreach/outreach.json` remains as an unlinked legacy scene during transition, becomes a compatibility alias, or is removed after generated indexes are refreshed. Status: `active`. Depends on: generated-drift review.
-2. `top_right_icon_retirement` - Inspect the top-right Archie button, `openArchieRing()` behavior, active-state handling, browser-history behavior, and mobile layout before removing the icon or changing it into another affordance. Status: `next`. Depends on: `outreach_scene_retirement_decision`.
-3. `content_migration_map` - Decide whether the Outreach comics markdown stays under `content/markdown/aaa/outreach/comics/` as a public-content category or moves under an Archie-owned public-content path. Status: `next`. Depends on: `outreach_scene_retirement_decision`.
-4. `assistant_mode_contract` - Define the first multi-mode Archie contract: allowed sources, citation behavior, answer confidence, claim-level labels, prior-physics comparison rules, and refusal behavior when the corpus does not support an answer. Status: `next`. Depends on: current Archie scene topology.
-5. `source_authority_boundary` - Decide which sources Archie may use for public answers: published `content/markdown/aaa`, generated textbook copies, scene metadata, app guides, `reference/priorities`, external prior-physics sources, or only a curated subset. Status: `next`. Depends on: `assistant_mode_contract`.
-6. `ui_prototype` - Design the smallest non-disruptive Archie UI, including mode selection, prompt input, source links, answer history, and fallback navigation when answer generation is unavailable. Status: `pending`. Depends on: `assistant_mode_contract` and `source_authority_boundary`.
-7. `implementation_path` - Choose the implementation route: static site-only navigation first, local search-backed answers, server-backed AI answers, or staged hybrid. Status: `pending`. Depends on: `ui_prototype`.
-8. `privacy_and_cost_boundary` - If AI answer generation is considered, define what user text leaves the browser, what model/service is used, rate limits, logs, cost controls, and failure behavior. Status: `pending`. Depends on: `implementation_path`.
-9. `validation_and_qa` - Define the validation checklist for scene graph drift, content validation, scene search, mobile layout, keyboard navigation, answer citations, and claim-level correctness before launch. Status: `pending`. Depends on: `implementation_path`.
+1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
+2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.
+3. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
+4. `platform_architecture_packet` - When platform work is selected, compare deployment routes: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, or managed AI gateway. Status: `deferred`. Depends on: `theory_closure_first`.
+5. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `platform_architecture_packet`.
+6. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
 
 ## Promotion Map
 
 | Task | Primary target | Promotion gate |
 | --- | --- | --- |
-| `outreach_scene_retirement_decision` | Scene cleanup plan. | The legacy Outreach scene has a clear keep, alias, or remove decision. |
-| `top_right_icon_retirement` | Runtime/UI change plan. | Removing or repurposing the icon preserves navigation, history, search, and mobile usability. |
-| `content_migration_map` | Public-content routing plan. | Comics and other public entries have reader-facing homes under the Archie information architecture. |
-| `assistant_mode_contract` | Assistant requirements packet or implementation issue. | Every answer mode has source, claim-level, and unsupported-answer rules. |
+| `theory_closure_first` | Core proof/corpus readiness. | Archie has stable enough source substance to explain publicly. |
+| `service_platform_priority` | Long-term platform plan. | Archie is treated as a deployed service, not a static UI mockup. |
 | `source_authority_boundary` | Public-answer source policy. | Priority-only and speculative material cannot appear as established corpus claims. |
-| `ui_prototype` | Prototype UI task. | The interface can be tested without committing to public AI answer generation. |
-| `implementation_path` | Runtime implementation task. | The chosen path fits the static site/deployment model and cost/privacy boundary. |
-| `privacy_and_cost_boundary` | Launch gate. | User data, service use, logging, and budget limits are explicit. |
-| `validation_and_qa` | Launch checklist. | Scene, UI, answer, and claim-level checks pass. |
+| `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting. |
+| `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
+| `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |
 
 ## Initial Constraints
 
 - Use `Archie` as the project term for this interface unless the operator/developer explicitly changes the terminology.
-- Do not remove the top-right Archie icon until its current navigation and return-stack role is replaced or proven unnecessary.
 - Do not present priority-only material as published $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus knowledge.
 - Do not let AI answer generation bypass scene, markdown, and app-guide source authority.
+- Let Archie support an $\mathbb{A}\mathbb{A}\mathbb{A}$-native educational stance, with proof status, caveats, gates, and metrics routed through the System Card.
+- Treat GitHub Pages as the current site host and public entry surface, not as the target architecture for the full Archie question service.
+- Do not put private model API keys, service credentials, user-history storage, or direct public model calls in browser JavaScript.
+- Treat server-backed AI, speech, image intake, and durable user history as long-term platform features after theory closure and after source-authority, privacy, logging, cost, deployment, operations, and failure boundaries are explicit.
 - Do not route public-support, GitHub, PDF, comics, or app entry points behind a hidden or non-obvious branch.
 - Keep scene consolidation separate from public answer generation.
 
-## First Investigation Prompt
+## Next Implementation Prompt
 
 ```text
 Closure goal:
-Complete the next Archie consolidation step by deciding what to do with the legacy Outreach scene and top-right Archie icon.
+Design the long-term Archie service platform so the eventual question interface is deployed correctly instead of becoming a static/local-source UI prototype.
 
-Use the `aaa-corpus-advancement` skill in audit/report mode.
+Use the `aaa-corpus-advancement` skill in edit-batch mode.
 
 Context:
 - The main-ring sphere now routes to `content/scenes/archie/archie.json`.
-- The Archie root scene includes the existing Archie groups plus former Outreach public entries.
-- The top-right Archie icon still opens/toggles the same Archie root scene.
+- The Archie root scene includes the existing Archie groups plus public entries.
+- The top-right Archie icon has been removed; Archie is entered through the top-level sphere.
+- The old Outreach root scene has been removed.
+- Comics scene and markdown paths have moved under `content/scenes/archie/` and `content/markdown/aaa/archie/`.
+- Public reference material and public image assets use `reference/archie/` and `content/assets/images/archie/`.
+- The first assistant behavior contract is captured in `reference/priorities/archie/assistant-mode-contract.md`.
+- The CTO objective now includes public education and outreach through text, speech, and image-grounded Archie interactions.
+- The Archie sphere now includes a System Card sphere with routes for overview, closure scorecard, validation, caveats, and launch-status surfaces.
+- The deployed site currently runs through GitHub Pages via `architrino.com`.
+- The operator does not want a static/local-source Archie UI prototype.
+- The desired Archie question interface is long-term platform work with deployment, backend/serverless runtime, model/provider boundary, privacy, logging, rate limits, cost controls, source authority, System Card disclosure, operations, monitoring, and rollback.
+- This work should wait behind core theory closure unless platform design directly unblocks public readiness.
 
 Task:
-- Decide whether `content/scenes/outreach/outreach.json` should remain temporarily, become a compatibility alias, or be removed after generated indexes are refreshed.
-- Inspect every runtime behavior tied to the top-right Archie button.
-- Propose the smallest safe icon-retirement or icon-repurpose change.
-- Keep static scene/navigation work separate from AI assistant work.
+- Use `reference/priorities/archie/service-platform.md` as the long-term platform priority.
+- Compare deployment options: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, and managed AI gateway.
+- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/cost policy, observability, staging/production split, and rollback plan.
+- Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:
-- Inspect `content/scenes/architrino_assembly_architecture.json`, `content/scenes/outreach/outreach.json`, `content/scenes/archie/archie.json`, `index.html`, `src/runtime/AppSceneChromeRuntime.js`, and `src/apps/architrino/ArchitrinoSceneAppRuntime.js`.
-- Do not edit runtime code unless the operator/developer explicitly authorizes implementation.
+- Inspect `reference/priorities/archie/service-platform.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/archie.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, runtime entry points, and generated scene/markdown index behavior.
+- Do not promote priority-only material into reader-facing corpus prose.
+- Do not build runtime code unless explicitly requested.
 
 Constraints:
 - Preserve TeX exactly.
 - Use canonical $\mathbb{A}\mathbb{A}\mathbb{A}$ terminology.
 - Keep priority-only material visibly priority-only.
-- Edit authority: report-only unless implementation is explicitly authorized.
+- Edit authority: priority/design capture is authorized; stop before adding runtime AI generation, external-source live search, logging, deployment config, or changing theory/canon claims.
+- Do not add browser-side model API calls or private credentials.
 
 Expected output:
-- Outreach scene decision.
-- Icon-retirement or icon-repurpose plan.
-- Any direct source edits made.
-- Validation checklist.
+- Long-term platform architecture options.
+- Required platform decisions.
+- Public beta gates.
+- Concrete implementation phases.
 ```

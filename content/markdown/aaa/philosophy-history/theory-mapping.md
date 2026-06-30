@@ -1,6 +1,6 @@
 # Theory Mapping: Major Physics Theories (Core Idea, Intuition, Math)
 
-This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](./theory-inheritance-discipline.md), [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), [Substance Structure and Potential](./substance-structure-and-potential.md), and [Unknowns and Paradoxes](./unknowns-paradoxes.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](theory-bridges.md).
+This chapter is a comparative reader for the inherited modern-physics stack viewed from a substrate-first architecture. It is meant to orient readers quickly: what each major theory claims, what it explains well, and whether $\mathbb{A}\mathbb{A}\mathbb{A}$ intends to recover it, reinterpret it, or reject its ontology while preserving some effective structure. For the repo's deeper conceptual framing of where inherited theories break or remain useful, compare [Theory Inheritance Discipline](./theory-inheritance-discipline.md), [Theory Differentials](./theory-differentials.md), [Crisis in Physics](./crisis-in-physics.md), [Substance Structure and Potential](./substance-structure-and-potential.md), and [Solving the Crisis](./solving-the-crisis.md). For long-form mathematical mappings between inherited frameworks and the $\mathbb{A}\mathbb{A}\mathbb{A}$ implementation layer, see [Theory Bridges](theory-bridges.md).
 
 The document is organized as a matrix rather than a linear history. The first sections explain the comparison method; the later layers then group theories by assembly, spacetime, cosmology, and epistemic-observation roles.
 
@@ -136,6 +136,8 @@ The standard electron-positron annihilation example is therefore a channel recon
 **What Still Works:** Quantum Field Theory (QFT) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model. Its precision comparisons with experiment, renormalized perturbation methods, lattice calculations where applicable, effective actions, and operator language are benchmark successes that any replacement must recover in the regimes where practitioners currently use them. That success does not by itself settle the ontology of continuum fields, vacuum structure, or creation and annihilation operators; it fixes a recovery burden.
 
 The useful reader-facing distinction is that a QFT field label is an effective species grammar over stable record classes, not automatic proof that each field is a substrate entity. Electron, photon, quark, gluon, Higgs, or neutrino fields remain valid operator languages for preparing, propagating, and reconstructing observer-level records. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the deeper question is which assembly association, dissociation, shielding change, source history, and Noether sea response make those record classes stable enough that the field grammar works.
+
+Vacuum-sensitive precision examples sharpen that boundary. In the Lamb-shift packet, the standard field-theory calculation treats electromagnetic vacuum modes as producing a small finite correction to hydrogen spectra, while the historical empty-atom slogan begins from Rutherford's volume comparison between nucleus and atom. The benchmark is real: atomic spectral data respond to structure assigned by standard theory to the vacuum sector. The $\mathbb{A}\mathbb{A}\mathbb{A}$ recovery target is to reproduce the finite spectral correction through one consistent Noether sea state, causal-wake dressing, atomic boundary record, and photon-channel ledger, while keeping the QFT modes as observer-level calculation objects rather than substrate constituents.
 
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, field operators, vacuum summaries, particle-number changes, symmetries, and couplings are treated as effective descriptors of assembly association, dissociation, normal-mode changes, axial-layer states, and medium-level interaction rules rather than primitive ontology.
 **Transition Relevance:** Transition relevance is high because this is still the language in which laboratory data, precision fits, and most cross-framework calculations are reported.
@@ -371,6 +373,26 @@ $$
 - Show geodesic motion emerges from straight-line motion in the Noether sea with variable signal speed.
 
 ---
+### Perturbative Quantum Gravity / General Relativity Effective Field Theory
+
+**Theory Name:** Perturbative Quantum Gravity / General Relativity Effective Field Theory. **Short Name:** Perturbative Quantum Gravity / GR-EFT. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
+
+**Summary:** Quantizes weak perturbations of the metric and organizes long-distance gravitational quantum corrections as an effective field theory, while failing as a UV-complete perturbative theory near the Planck scale.
+
+**Conceptual View:** Around a smooth background, gravity can be treated as a weak field with a dimensionless effective coupling that scales schematically as
+$$
+\alpha_G(E)\sim\left(\frac{E}{E_P}\right)^2.
+$$
+At ordinary and collider energies this coupling is tiny, so loop corrections are strongly suppressed. Near $E_P$, the coupling becomes order one, the perturbative hierarchy collapses, and nonrenormalizable counterterms remove predictive power unless a deeper high-energy account supplies the missing structure.
+
+**$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Low-energy GR-EFT is an observer-level recovery target for the emergent metric, not evidence that metric quanta are primitive ontology. The calculable long-distance corrections to Newtonian gravity must be recovered from the same Noether sea constitutive record that supports PPN behavior, redshift, Shapiro delay, lensing, and gravitational-wave propagation. The Planck-scale breakdown of perturbative metric quantization is read as a failure of the chosen effective variables at the edge of the smooth metric approximation, not as a license to import gravitons or continuum metric modes as substrate entities.
+
+**What Still Works:** Low-energy quantum gravity as effective field theory remains a disciplined infrared calculation and must be recovered wherever it makes controlled predictions.
+**What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, gravitons, metric loops, and Feynman-diagram bookkeeping are treated as effective descriptions of collective metric response, not primitive constituents.
+**Transition Relevance:** Transition relevance is high because this packet separates a valid low-energy recovery benchmark from the failed inference that perturbative metric quantization is a complete high-energy ontology.
+**Long-Term Relevance:** Long-term relevance is as a precision recovery layer and as a warning that smooth spacetime variables can be both operationally powerful and ontologically non-final.
+
+---
 ### Special Relativity (SR)
 
 **Theory Name:** Special Relativity (SR). **Short Name:** SR. **Layer Bucket:** Spacetime / Gravity (Emergent Metric).
@@ -468,7 +490,7 @@ S = -\frac{T}{2}\int d^2\sigma \sqrt{-h} h^{ab}\partial_a X^\mu \partial_b X_\mu
 $$
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** $\mathbb{A}\mathbb{A}\mathbb{A}$ does not posit fundamental strings or extra dimensions; these appear, at best, as effective models of certain extended architrino assembly patterns (e.g., long coherent trains or vortex lines in the Noether sea). String actions then summarize the dynamics of these extended excitations in a particular limit rather than define the underlying substrate.
 
-**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe.
+**What Still Works:** String Theory remains valuable as a quantum-gravity consistency laboratory, especially for anomaly cancellation, extended-object dynamics, dualities, black-hole accounting, and controlled model systems. In its strongest historical form it identified real recovery targets: a massless spin-2 gravitational channel and softer ultraviolet behavior from extended world-sheet interactions rather than point-vertex divergences. Those achievements should be preserved as comparison pressure, but they do not by themselves license extra dimensions, hidden sectors, or landscape populations as recovered ontology for the observed universe.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, geometric and metric quantities are reclassified as coarse-grained summaries of Noether sea response, clock-rate variation, and signal-structure in an underlying Euclidean substrate.
 **Transition Relevance:** Transition relevance is high because legacy gravity and relativistic calculations remain indispensable for observation, navigation, and limiting-case recovery.
 **Long-Term Relevance:** Long-term relevance is as an emergent-geometry interface layer that compresses medium behavior when full assembly tracking is neither needed nor practical.
@@ -836,7 +858,7 @@ universe.
 not a single canonical equation.
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Multiple “universes” would correspond to distinct large-scale attractors or disjoint regions of the architrino/Noether braid state space with different effective parameter values (assembly densities, coupling patterns, symmetry phases). $\mathbb{A}\mathbb{A}\mathbb{A}$ itself stays as a single underlying substrate; multiverse stories describe diversity of emergent macroscopic solutions, not multiple fundamental containers.
 
-**What Still Works:** Multiverse (Generic) remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
+**What Still Works:** Multiverse (Generic) remains useful as a stress test for ensemble measures, selection effects, and underconstrained cosmological inference. Its value is conditional rather than predictive: it clarifies what must be specified before an ensemble explanation can say why these observed constants should occur.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients. A multiverse ensemble without a controlled measure is therefore a comparison language, not an explanation of the observed parameter values.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
@@ -869,7 +891,7 @@ possible parameter sets, only a small subset yields observers, so apparent
 fine-tuning reflects conditional selection rather than design.
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Within $\mathbb{A}\mathbb{A}\mathbb{A}$, apparent fine-tuning reflects which regions of the architrino/Noether braid configuration space support long-lived, complex assemblies (including observer-like ones). Anthropic reasoning becomes a way of conditioning on those assembly sectors; it does not replace a dynamical explanation of why particular effective parameters arise from the underlying architrino rules. The native target is therefore a measure over admissible assembly histories, not an appeal to observer existence after the parameters are already known.
 
-**What Still Works:** Anthropic Principle remains indispensable as the standard predictive and organizational framework for the phenomena it was built to model, and any replacement must recover its empirical successes in the regime where practitioners currently use it.
+**What Still Works:** Anthropic Principle remains useful as a conditioning check on observer-compatible sectors. It can expose when a proposed parameter range is incompatible with long-lived complex assemblies, but it does not replace a dynamical derivation of the effective parameters or a controlled measure over admissible histories.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, the parameters and fields of this entry are reclassified as inference-level summaries of assembly-density history, medium relaxation, and observational pipeline fits rather than primitive global ingredients.
 **Transition Relevance:** Transition relevance is high because cosmological inference will continue to be performed first in the legacy parameter language before any deeper substrate reconstruction is accepted.
 **Long-Term Relevance:** Long-term relevance is as an averaged large-scale description whose variables survive only insofar as they continue to compress real survey data efficiently.
@@ -1031,6 +1053,8 @@ $$
 This term shows how non-relativistic spin-$1/2$ behavior enters ordinary Schrödinger dynamics through a two-component spinor and magnetic coupling.
 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ View:** Spin labels should be treated as effective symmetry and transformation classes of stable assembly behavior, not as primitive miniature rotation. The table is therefore a mapping target: $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover why scalar modes behave as spin $0$, why spin-$1/2$ maps to the precessing-axis structure of fermionic assemblies, and why spin-$1$ maps to axial-lock behavior at field speed in photon, W, and Z sectors. Gluons remain spin-$1$ in the inherited classification, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ they are better read as axial coupling between binaries in nearby Noether braids: an assembly behavior rather than a standalone assembly of the same kind. The Pauli and Dirac equations mark especially important bridges because they expose how spin, magnetic response, and relativistic structure enter after the spinless Schrödinger envelope has been exceeded.
+
+The Dirac case also sharpens the recovery target. At the effective level, the four free Dirac solutions are not optional decoration: they are a benchmark sector count. $\mathbb{A}\mathbb{A}\mathbb{A}$ must recover two spin projections for a fermion record and two corresponding charge-conjugate records with the same mass-shell comparison, all pulled from the same ordered-frame, polarity, and provenance data rather than assigned as independent field labels.
 
 **What Still Works:** The spin-classified equation ladder remains indispensable for organizing atomic spectra, magnetic response, fermion behavior, relativistic particle dynamics, and gauge-boson phenomenology.
 **What Is Reclassified:** Under $\mathbb{A}\mathbb{A}\mathbb{A}$, spin is reclassified as an effective transformation signature of assembly geometry, phase structure, and stable mode topology rather than a fundamental independent ingredient.

@@ -29,6 +29,23 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
   - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
+#### Maxwell-Ampere Continuity Benchmark
+
+The charging-capacitor case is a useful low-energy benchmark for this map. In standard electrodynamics, the same boundary loop can be spanned by a surface that cuts the conducting wire or by a bulging surface through the capacitor gap. The observer-level magnetic circulation cannot depend on that arbitrary surface choice, so the Maxwell-Ampere comparison must recover
+
+$$
+\oint_{\partial S}\mathbf{B}_{\mathrm{eff}}\cdot d\boldsymbol{\ell}
+=
+\mu_0
+\left(
+I_{\mathrm{cond}}
++
+\epsilon_0\frac{d\Phi_E}{dt}
+\right)
+$$
+
+in the validated regime. The useful lesson is not that displacement current is a new substrate current moving through empty space. It is that conduction-current bookkeeping in charged assemblies and changing effective electric flux in the Noether sea response must project to the same loop-circulation record. If the two surface choices require different branch records, different medium-response variables, or a hidden retuning of $\mu_0$ and $\epsilon_0$, then the effective electromagnetic map has not recovered Maxwell-level continuity.
+
 ### Symmetry Groups as Geometric Deformations
 
 We map the abstract gauge groups of the Standard Model to physical deformations of the Noether sea and its Noether braids:
