@@ -255,6 +255,35 @@ Y_\Omega(A_\epsilon(t_1))-Y_\Omega(A_{\text{pre}})
 $$
 but $T_\Omega$ belongs to $\mathcal{A}_{\mathcal{Q},\mathcal{K},W,T}$ only for the declared apparatus kernel and record window that calibrate $Y_\Omega$. A negative or otherwise anomalous time-like value is therefore a signed conditional response in that domain, not a new substrate time variable and not evidence for backward-in-$t$ causation. If two time observables coincide in a standard benchmark, the coincidence is a recovery target for the declared record channel; if they differ, the operator map must preserve the distinction instead of forcing one global time operator.
 
+## Harmonic-Oscillator Ladder Benchmark
+
+The one-dimensional quantum harmonic oscillator is the minimal operator chart in which bracket-to-commutator recovery, operator ordering, a lower-bounded spectrum, and state generation can be checked without importing field ontology. On a declared oscillator coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $X_\theta$ and $P_\theta$ be the dimensionless position and momentum records obtained from the same apparatus kernel and record window. The comparison ladder operators are
+$$
+a_\theta=\frac{1}{\sqrt{2}}(X_\theta+iP_\theta),
+\qquad
+a_\theta^\dagger=\frac{1}{\sqrt{2}}(X_\theta-iP_\theta).
+$$
+The standard benchmark then requires
+$$
+[a_\theta,a_\theta^\dagger]\approx I_\theta,
+\qquad
+H_\theta=\hbar\omega_\theta\left(a_\theta^\dagger a_\theta+\frac{1}{2}\right),
+\qquad
+N_\theta=a_\theta^\dagger a_\theta,
+$$
+with the approximation evaluated in the declared record norm. A successful chart should recover a lower-bounded state family $\{\,|n\rangle_\theta\,\}_{n\in\mathbb{N}_0}$ such that
+$$
+N_\theta|n\rangle_\theta=n|n\rangle_\theta,
+\qquad
+a_\theta|0\rangle_\theta\approx 0,
+\qquad
+|n\rangle_\theta\approx\frac{(a_\theta^\dagger)^n}{\sqrt{n!}}|0\rangle_\theta,
+\qquad
+E_n\approx\hbar\omega_\theta\left(n+\frac{1}{2}\right).
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective-mode benchmark, not a statement that the substrate creates or destroys particles when $a^\dagger$ or $a$ is applied. The recovery burden is to identify the retained assembly branch, apparatus kernel, and record window whose coarse variables make the oscillator algebra admissible. If the same chart cannot supply the commutator, level spacing, ground-state lower bound, and generated higher-state record family without changing $\mathcal{Q}$, $\mathcal{K}$, $W$, or $T$, the ladder operators remain a useful calculation chart rather than a closed operator recovery.
+
 ## Observable-Domain Guardrail
 
 Dimensional or representation claims are meaningful only after the observable domain has been declared. Two effective descriptions can be operationally equivalent on a restricted apparatus record set even when their internal coordinates, apparent dimension, or auxiliary geometry differ. That equivalence is useful comparison mathematics, but it cannot be read backward as substrate ontology.

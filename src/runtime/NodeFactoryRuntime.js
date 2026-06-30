@@ -14,17 +14,23 @@ export function createNodeFactory(deps) {
   const staticSphereInnerRimOpacity = 0.4;
   const glowRingMinThickness = 0.028;
   const glowRingRadiusThicknessFactor = 0.06;
+  const centerContextShellScale = 1.08;
+  const centerContextShellOpacity = 0.18;
 
-  function createPremiumSphereMaterial(nodeData, { hideSphere = false, isReaction = false } = {}) {
+  function createPremiumSphereMaterial(
+    nodeData,
+    { hideSphere = false, isReaction = false, opacity = null } = {}
+  ) {
     const baseColor = new THREE.Color(nodeData.color ?? "#3a5a8a");
     const emissiveColor = baseColor.clone().multiplyScalar(isReaction ? 0.14 : 0.11);
+    const visibleOpacity = Number.isFinite(opacity) ? opacity : isReaction ? 0.9 : 0.84;
     const material = new THREE.MeshPhongMaterial({
       color: baseColor,
       emissive: emissiveColor,
       specular: premiumSphereSpecularColor,
       shininess: isReaction ? 8 : 6,
       transparent: true,
-      opacity: hideSphere ? 0 : isReaction ? 0.9 : 0.84,
+      opacity: hideSphere ? 0 : visibleOpacity,
     });
     material.depthWrite = false;
     return material;
@@ -255,17 +261,6 @@ export function createNodeFactory(deps) {
     return ring;
   }
 
-  function getCenterContextRingStyle(radius) {
-    return {
-      ringScale: 1.04,
-      ringThickness: Math.max(glowRingMinThickness, radius * glowRingRadiusThicknessFactor),
-      ringColor: staticSphereShadowRingColor,
-      ringOpacity: staticSphereShadowRingOpacity,
-      blending: THREE.NormalBlending,
-      innerRim: null,
-    };
-  }
-
   function removeRingInnerRim(ring) {
     const innerRim = ring?.userData?.innerRim;
     if (!innerRim) {
@@ -277,6 +272,36 @@ export function createNodeFactory(deps) {
     delete ring.userData.innerRim;
     delete ring.userData.innerRimBaseOpacity;
     delete ring.userData.innerRimStyle;
+  }
+
+  function disposeRingMesh(ring) {
+    if (!ring) {
+      return;
+    }
+    removeRingInnerRim(ring);
+    ring.geometry?.dispose?.();
+    ring.material?.dispose?.();
+  }
+
+  function createCenterContextShellGeometry(radius) {
+    return new THREE.SphereGeometry(radius * centerContextShellScale, 32, 20);
+  }
+
+  function createCenterContextShell(radius) {
+    const shellGeometry = createCenterContextShellGeometry(radius);
+    const shellMaterial = new THREE.MeshBasicMaterial({
+      color: staticSphereShadowRingColor,
+      transparent: true,
+      opacity: centerContextShellOpacity,
+      depthWrite: false,
+      side: THREE.DoubleSide,
+      blending: THREE.NormalBlending,
+    });
+    shellMaterial.depthWrite = false;
+    const shell = new THREE.Mesh(shellGeometry, shellMaterial);
+    shell.renderOrder = -2;
+    shell.userData.isCenterContextShell = true;
+    return shell;
   }
 
   function createLabel(node) {
@@ -413,13 +438,13 @@ export function createNodeFactory(deps) {
   function createCenterContextSphere(data) {
     const radius = Math.max(0.01, Number(data?.radius) || 1);
     const group = new THREE.Group();
+    const shell = createCenterContextShell(radius);
+    group.add(shell);
+
     const geometry = new THREE.SphereGeometry(radius, 32, 20);
-    const material = new THREE.MeshBasicMaterial({
+    const material = createPremiumSphereMaterial({
       color: data?.color ?? "#243047",
-      transparent: true,
-      opacity: 0.42,
-    });
-    material.depthWrite = false;
+    }, { opacity: 0.72 });
     const mesh = new THREE.Mesh(geometry, material);
     mesh.userData.isCenterContextSphere = true;
     group.add(mesh);
@@ -435,11 +460,6 @@ export function createNodeFactory(deps) {
     outline.userData.isCenterContextSphere = true;
     group.add(outline);
 
-    const ringStyle = getCenterContextRingStyle(radius);
-    const ring = createRingMesh({ radius }, ringStyle);
-    ring.userData.isCenterContextRing = true;
-    group.add(ring);
-
     const label = document.createElement("div");
     label.className = "label label-wrap label-center-context";
     label.innerHTML = renderCenterContextLabel(data);
@@ -448,17 +468,17 @@ export function createNodeFactory(deps) {
 
     return {
       group,
+      shell,
       mesh,
       outline,
-      ring,
       labelObject,
       data: { ...data, radius },
       labelMaxWidth: null,
       labelContentKey: getCenterContextContentKey(data),
       baseOpacity: {
+        shell: shell.material.opacity,
         mesh: material.opacity,
         outline: outlineMaterial.opacity,
-        ring: ring.material.opacity,
         label: 1,
       },
     };
@@ -471,25 +491,18 @@ export function createNodeFactory(deps) {
     const radius = Math.max(0.01, Number(data.radius) || contextSphere.data?.radius || 1);
     if (Math.abs(radius - (contextSphere.data?.radius ?? 0)) > 0.0001) {
       const geometry = new THREE.SphereGeometry(radius, 32, 20);
+      if (contextSphere.shell?.geometry) {
+        contextSphere.shell.geometry.dispose();
+        contextSphere.shell.geometry = createCenterContextShellGeometry(radius);
+      }
       contextSphere.mesh.geometry.dispose();
       contextSphere.mesh.geometry = geometry;
       contextSphere.outline.geometry.dispose();
       contextSphere.outline.geometry = new THREE.EdgesGeometry(geometry);
       if (contextSphere.ring) {
-        const ringStyle = getCenterContextRingStyle(radius);
-        contextSphere.ring.geometry.dispose();
-        contextSphere.ring.geometry = createRingGeometry(radius, ringStyle);
-        const innerRim = contextSphere.ring.userData?.innerRim;
-        if (innerRim?.geometry && ringStyle.innerRim) {
-          innerRim.geometry.dispose();
-          innerRim.geometry = createRingGeometry(radius, ringStyle.innerRim);
-          contextSphere.ring.userData.innerRimStyle = {
-            ringScale: ringStyle.innerRim.ringScale,
-            ringThickness: ringStyle.innerRim.ringThickness,
-          };
-        } else if (!ringStyle.innerRim) {
-          removeRingInnerRim(contextSphere.ring);
-        }
+        contextSphere.group?.remove?.(contextSphere.ring);
+        disposeRingMesh(contextSphere.ring);
+        contextSphere.ring = null;
       }
     }
 
@@ -507,12 +520,11 @@ export function createNodeFactory(deps) {
     }
     contextSphere.mesh?.geometry?.dispose?.();
     contextSphere.mesh?.material?.dispose?.();
+    contextSphere.shell?.geometry?.dispose?.();
+    contextSphere.shell?.material?.dispose?.();
     contextSphere.outline?.geometry?.dispose?.();
     contextSphere.outline?.material?.dispose?.();
-    contextSphere.ring?.userData?.innerRim?.geometry?.dispose?.();
-    contextSphere.ring?.userData?.innerRim?.material?.dispose?.();
-    contextSphere.ring?.geometry?.dispose?.();
-    contextSphere.ring?.material?.dispose?.();
+    disposeRingMesh(contextSphere.ring);
   }
 
   function getBinaryBandRadii(shellRadius, bands) {

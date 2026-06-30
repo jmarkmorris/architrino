@@ -227,6 +227,10 @@ export function createLevelRuntime(deps) {
       centerContextSphere.outline.material.opacity =
         centerContextSphere.baseOpacity.outline * meshOpacity;
     }
+    if (Number.isFinite(meshOpacity) && centerContextSphere.shell?.material) {
+      centerContextSphere.shell.material.opacity =
+        centerContextSphere.baseOpacity.shell * meshOpacity;
+    }
     if (Number.isFinite(meshOpacity) && centerContextSphere.ring?.material) {
       setLayeredRingOpacity(
         centerContextSphere.ring,

@@ -306,6 +306,21 @@ Optical dispersion supplied the same lesson from the line-strength side. Lorentz
 
 Zeeman splitting supplied a magnetic-field version of the same transition-record pressure. Faraday's 1862 null search for magnetic changes in spectral lines did not close the question; it marked an instrumentation limit. Zeeman's higher-resolution 1896 repetition turned magnetic line broadening, splitting, polarization, and field scaling into a data product. Lorentz's classical charged-oscillator model then recovered the normal triplet/doublet geometry and the charge-to-mass scale later recognized as electronic, but sodium's anomalous Zeeman patterns exposed that orbital oscillator bookkeeping was incomplete. The sequence is: null result; higher-resolution spectral split; classical normal-effect recovery; charge-to-mass readout; anomalous Zeeman failure; and spin, exclusion, and quantum angular-momentum structure as later recovery targets. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the target is not to import Lorentz's oscillator ontology or intrinsic spin as a primitive, but to recover magnetic splitting, polarization selection, and anomalous multiplets from one atomic envelope, magnetic-state map, photon-channel event record, and downstream angular-momentum/spinor ledger.
 
+The solar sequel sharpened that sequence by moving the same effect from the
+laboratory into an astronomical source record. Lockyer, Young, Cortie, and other
+solar observers had already recorded broadened, doubled, or tripled sunspot
+lines before the laboratory Zeeman effect was recognized. Hale's 1908 step was
+to join those records to the Zeeman polarization discriminator: a sunspot near
+disk center should present the longitudinal circularly polarized doublet, while
+a sunspot near the limb should approach the transverse linearly polarized
+pattern. The historical packet is therefore: solar spectral anomaly; laboratory
+magnetic-splitting recovery model; polarization discriminator; calibrated
+magnetic-field inference; and later stellar or compact-source magnetic
+benchmarks. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that an
+observed line split becomes a physical source map only when the line family,
+viewing geometry, analyzer response, photon-channel polarization, and magnetic
+state are bound to one event record.
+
 Matrix mechanics supplied the algebraic version of the same transition-data lesson. Heisenberg's starting point was not a picture of an electron orbit, but the experimentally organized table of transition frequencies and amplitudes. Ritz combination rules made the frequencies compose by matched indices, and line intensities demanded corresponding transition quantities. Heisenberg's recovery move was to replace the classical Fourier components of an orbit with indexed transition amplitudes; once products were required to preserve the same transition-frequency closure, multiplication had to sum through matching intermediate indices. Born and Jordan later recognized that rule as matrix multiplication. The near miss is that this was a genuine structural discovery about the observable transition record, not proof that observables-only formalism is final ontology.
 
 That sequence matters because it shows the field moving through multiple distinct levels: data product, recovery rule, stability mechanism or rate bridge, coefficient recovery, transition algebra, and later operational closure. Rutherford supplied the data pressure. Bohr supplied a successful but partly postulated recovery rule. De Broglie supplied a physical criterion that looked more like a branch-stability condition. Ladenburg supplied a rate bridge from classical dispersion strengths to Einstein transition probabilities. Zeeman and Lorentz supplied a magnetic splitting and polarization benchmark with a charge-to-mass readout. Heisenberg supplied the indexed algebra of transition quantities. The later Copenhagen lock-in then stabilized the formal practice while discouraging the deeper question of what substrate dynamics actually selects the branch, forms the record, and assigns the observed weights.

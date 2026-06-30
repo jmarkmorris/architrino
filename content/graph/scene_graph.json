@@ -12287,7 +12287,7 @@
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[8]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12301,7 +12301,7 @@
       "to": "scene:content/scenes/philosophy_history/geometry_and_ontology.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[7]"
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12315,7 +12315,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12329,7 +12329,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12350,7 +12350,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12364,7 +12364,7 @@
       "to": "scene:content/scenes/philosophy_history/substance_structure_potential.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",

@@ -59,6 +59,7 @@ import { createAppShellUiRuntime } from "../../runtime/AppShellUiRuntime.js";
 import { createAppSceneChromeRuntime } from "../../runtime/AppSceneChromeRuntime.js";
 import { createSceneHudTooltipRuntime } from "../../runtime/SceneHudTooltipRuntime.js";
 import { createSceneImageGalleryRuntime } from "../../runtime/SceneImageGalleryRuntime.js?v=2026-06-29-gallery-overlay-hide-scene";
+import { createTextbookPageNavigationRuntime } from "../../runtime/TextbookPageNavigationRuntime.js";
 import { wireAnimatorCanvasUiListeners } from "../../runtime/AnimatorCanvasUiRuntime.js";
 import { normalizeAnimatorSceneDocument } from "../../runtime/Animator2SceneDocumentRuntime.js";
 import {
@@ -115,6 +116,7 @@ import { createSceneStateHashService } from "../../services/SceneStateHashServic
 import { createSceneBootstrapService } from "../../services/SceneBootstrapService.js";
 import { createSceneSearchCoordinatorService } from "../../services/SceneSearchCoordinatorService.js";
 import { createTextbookTocNumberingService } from "../../services/TextbookTocNumberingService.js";
+import { createTextbookTocNavigationService } from "../../services/TextbookTocNavigationService.js";
 import {
   isAtomContextScene,
   isAtomicParticleFocusTarget,
@@ -278,6 +280,9 @@ const markdownClose = document.getElementById("markdown-close");
 const markdownLayoutToggle = document.getElementById("markdown-layout-toggle");
 const markdownDocButton = document.getElementById("markdown-doc-button");
 const markdownPdfButton = document.getElementById("markdown-pdf-button");
+const textbookPageNav = document.getElementById("textbook-page-nav");
+const textbookPagePrevButton = document.getElementById("textbook-page-prev");
+const textbookPageNextButton = document.getElementById("textbook-page-next");
 const periodicOverlay = document.getElementById("periodic-overlay");
 const periodicGrid = document.getElementById("periodic-grid");
 const periodicLegend = document.getElementById("periodic-legend");
@@ -6982,6 +6987,28 @@ const textbookTocNumberingService = createTextbookTocNumberingService({
   normalizeMarkdownKey,
   logger: console,
 });
+const textbookTocNavigationService = createTextbookTocNavigationService({
+  fetchImpl: (...args) => fetch(...args),
+  appendCacheBust,
+  normalizeMarkdownPath,
+  logger: console,
+});
+const textbookPageNavigationRuntime = createTextbookPageNavigationRuntime({
+  container: textbookPageNav,
+  previousButton: textbookPagePrevButton,
+  nextButton: textbookPageNextButton,
+  navigationService: textbookTocNavigationService,
+  getCurrentLevel: () => currentLevel,
+  isTransitionActive: () => transitionState.active,
+  navigateToPage: async (entry) => {
+    if (!entry?.targetPath || transitionState.active) {
+      return false;
+    }
+    await jumpToScene(entry.targetPath, { mode: "jump", startScale: 0.7, duration: 760 });
+    return true;
+  },
+  logger: console,
+});
 
 const sceneRepository = new SceneRepository({
   fetchImpl: (...args) => fetch(...args),
@@ -8428,6 +8455,7 @@ function maybeAutoWarp(now) {
 }
 
 function updateNavButton() {
+  textbookPageNavigationRuntime.setTransitionActive(transitionState.active);
   if (transitionState.active) {
     if (navUpButton) {
       navUpButton.disabled = true;
@@ -8674,6 +8702,7 @@ function updateSceneLabel() {
     historyMode: takeSceneHashHistoryMode(),
   });
   appSceneChromeRuntime.updateSceneLabel(currentLevel);
+  textbookPageNavigationRuntime.syncCurrentLevel(currentLevel);
   appSceneChromeRuntime.updateTextbookTocButton(currentLevel, {
     textbookTocScenePath,
     transitionActive: transitionState.active,
@@ -9248,6 +9277,7 @@ appShellUiRuntime.wireListeners();
 sceneHudTooltipRuntime.wireListeners();
 scenePanelUiRuntime.wireListeners();
 sceneImageGalleryRuntime?.wireListeners();
+textbookPageNavigationRuntime.wireListeners();
 animatorAppRuntime.wireListeners();
 sceneSearchUiRuntime.wireListeners();
 updateAnimatorViewportModeButtons();

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1445
+      "sections": 1446
     }
   },
   "tocRoot": {
@@ -11031,6 +11031,14 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Harmonic-Oscillator Ladder Benchmark",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Harmonic-Oscillator Ladder Benchmark",
+                        "sectionKey": "harmonic oscillator ladder benchmark",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Observable-Domain Guardrail",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Observable-Domain Guardrail",
@@ -12096,245 +12104,67 @@
             ]
           },
           {
-            "id": "philosophy_history__religious_ontologies",
-            "title": "Religious Ontologies",
-            "kind": "markdown-tree",
-            "sceneType": "Scene-Markdown-Tree",
-            "scenePath": "content/scenes/philosophy_history/religious_ontologies.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Abrahamic Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Abrahamic Traditions",
-                "sectionKey": "abrahamic traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Judaism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Judaism",
-                    "sectionKey": "judaism",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Christianity",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Christianity",
-                    "sectionKey": "christianity",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Islam",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Islam",
-                    "sectionKey": "islam",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Dharmic Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "Dharmic Traditions",
-                "sectionKey": "dharmic traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Hinduism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Hinduism",
-                    "sectionKey": "hinduism",
-                    "headingLevel": 3
-                  },
-                  {
-                    "kind": "markdown-section",
-                    "title": "Buddhism",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Buddhism",
-                    "sectionKey": "buddhism",
-                    "headingLevel": 3
-                  }
-                ]
-              },
-              {
-                "kind": "markdown-section",
-                "title": "East Asian Traditions",
-                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                "markdownSection": "East Asian Traditions",
-                "sectionKey": "east asian traditions",
-                "headingLevel": 2,
-                "children": [
-                  {
-                    "kind": "markdown-section",
-                    "title": "Daoism (Taoism)",
-                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
-                    "markdownSection": "Daoism (Taoism)",
-                    "sectionKey": "daoism taoism",
-                    "headingLevel": 3
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "id": "information_computation",
-            "title": "Information / Computation",
-            "kind": "markdown-split",
-            "sceneType": "Scene-Markdown-Split",
-            "scenePath": "content/scenes/philosophy_history/information_computation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Information / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Information as Ontology",
-                "sectionKey": "information as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Thermodynamic Cost",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Thermodynamic Cost of Computation",
-                "sectionKey": "thermodynamic cost of computation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Computation / Ontology",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Computation as Ontology",
-                "sectionKey": "computation as ontology",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Digital Physics",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Digital Physics and Discrete Substrate Programs",
-                "sectionKey": "digital physics and discrete substrate programs",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Observer / Encoding",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Observer, Encoding, and Representation",
-                "sectionKey": "observer encoding and representation",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation / Computability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
-                "markdownSection": "Simulation, Modeling, and Computability Limits",
-                "sectionKey": "simulation modeling and computability limits",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "philosophy_history__agency_and_internal_causation",
-            "title": "Agency and Internal Causation",
+            "id": "philosophy_history__geometry_and_ontology",
+            "title": "Geometry and Ontology",
             "kind": "markdown-view",
             "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+            "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
             "sections": [
               {
                 "kind": "markdown-section",
-                "title": "Internal vs External Causation",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Internal vs External Causation",
-                "sectionKey": "internal vs external causation",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Functional Agency",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Functional Agency",
-                "sectionKey": "functional agency",
+                "title": "The Geometry Question",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Geometry Question",
+                "sectionKey": "the geometry question",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Biological and Artificial Embodiments",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Biological and Artificial Embodiments",
-                "sectionKey": "biological and artificial embodiments",
+                "title": "Geometry-Layer Map",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Geometry-Layer Map",
+                "sectionKey": "geometry layer map",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Primitive Metastability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Primitive Metastability",
-                "sectionKey": "primitive metastability",
+                "title": "What General Relativity Gets Right",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What General Relativity Gets Right",
+                "sectionKey": "what general relativity gets right",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Determinism and Predictability",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Determinism and Predictability",
-                "sectionKey": "determinism and predictability",
+                "title": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
+                "sectionKey": "what mathbb a mathbb a mathbb a adds",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Will as Threshold Setting",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Will as Threshold Setting",
-                "sectionKey": "will as threshold setting",
+                "title": "The Correct Critique",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "The Correct Critique",
+                "sectionKey": "the correct critique",
                 "headingLevel": 2
               },
               {
                 "kind": "markdown-section",
-                "title": "Compatibilist Agency",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Compatibilist Agency",
-                "sectionKey": "compatibilist agency",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Summary",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Summary",
-                "sectionKey": "summary",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Closing Statement",
-                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
-                "markdownSection": "Closing Statement",
-                "sectionKey": "closing statement",
+                "title": "Methodological Use",
+                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
+                "markdownSection": "Methodological Use",
+                "sectionKey": "methodological use",
                 "headingLevel": 2
               }
             ]
@@ -12407,72 +12237,6 @@
                 "kind": "markdown-section",
                 "title": "Methodological Use",
                 "markdownPath": "content/markdown/aaa/philosophy-history/substance-structure-and-potential.md",
-                "markdownSection": "Methodological Use",
-                "sectionKey": "methodological use",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "philosophy_history__geometry_and_ontology",
-            "title": "Geometry and Ontology",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json",
-            "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Overview",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Overview",
-                "sectionKey": "overview",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Geometry Question",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "The Geometry Question",
-                "sectionKey": "the geometry question",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Geometry-Layer Map",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "Geometry-Layer Map",
-                "sectionKey": "geometry layer map",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What General Relativity Gets Right",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "What General Relativity Gets Right",
-                "sectionKey": "what general relativity gets right",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "What $\\mathbb{A}\\mathbb{A}\\mathbb{A}$ Adds",
-                "sectionKey": "what mathbb a mathbb a mathbb a adds",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "The Correct Critique",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
-                "markdownSection": "The Correct Critique",
-                "sectionKey": "the correct critique",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Methodological Use",
-                "markdownPath": "content/markdown/aaa/philosophy-history/geometry-and-ontology.md",
                 "markdownSection": "Methodological Use",
                 "sectionKey": "methodological use",
                 "headingLevel": 2
@@ -12978,6 +12742,250 @@
                     "headingLevel": 3
                   }
                 ]
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__religious_ontologies",
+            "title": "Religious Ontologies",
+            "kind": "markdown-tree",
+            "sceneType": "Scene-Markdown-Tree",
+            "scenePath": "content/scenes/philosophy_history/religious_ontologies.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Abrahamic Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Abrahamic Traditions",
+                "sectionKey": "abrahamic traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Judaism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Judaism",
+                    "sectionKey": "judaism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Christianity",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Christianity",
+                    "sectionKey": "christianity",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Islam",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Islam",
+                    "sectionKey": "islam",
+                    "headingLevel": 3
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Dharmic Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "Dharmic Traditions",
+                "sectionKey": "dharmic traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Hinduism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Hinduism",
+                    "sectionKey": "hinduism",
+                    "headingLevel": 3
+                  },
+                  {
+                    "kind": "markdown-section",
+                    "title": "Buddhism",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Buddhism",
+                    "sectionKey": "buddhism",
+                    "headingLevel": 3
+                  }
+                ]
+              },
+              {
+                "kind": "markdown-section",
+                "title": "East Asian Traditions",
+                "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                "markdownSection": "East Asian Traditions",
+                "sectionKey": "east asian traditions",
+                "headingLevel": 2,
+                "children": [
+                  {
+                    "kind": "markdown-section",
+                    "title": "Daoism (Taoism)",
+                    "markdownPath": "content/markdown/aaa/philosophy-history/religious-ontologies.md",
+                    "markdownSection": "Daoism (Taoism)",
+                    "sectionKey": "daoism taoism",
+                    "headingLevel": 3
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "id": "information_computation",
+            "title": "Information / Computation",
+            "kind": "markdown-split",
+            "sceneType": "Scene-Markdown-Split",
+            "scenePath": "content/scenes/philosophy_history/information_computation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Overview",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Overview",
+                "sectionKey": "overview",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Information / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Information as Ontology",
+                "sectionKey": "information as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Thermodynamic Cost",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Thermodynamic Cost of Computation",
+                "sectionKey": "thermodynamic cost of computation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Computation / Ontology",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Computation as Ontology",
+                "sectionKey": "computation as ontology",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Digital Physics",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Digital Physics and Discrete Substrate Programs",
+                "sectionKey": "digital physics and discrete substrate programs",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Observer / Encoding",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Observer, Encoding, and Representation",
+                "sectionKey": "observer encoding and representation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation / Computability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/information-computation.md",
+                "markdownSection": "Simulation, Modeling, and Computability Limits",
+                "sectionKey": "simulation modeling and computability limits",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "philosophy_history__agency_and_internal_causation",
+            "title": "Agency and Internal Causation",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json",
+            "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Internal vs External Causation",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Internal vs External Causation",
+                "sectionKey": "internal vs external causation",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Functional Agency",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Functional Agency",
+                "sectionKey": "functional agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Biological and Artificial Embodiments",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Biological and Artificial Embodiments",
+                "sectionKey": "biological and artificial embodiments",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Primitive Metastability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Primitive Metastability",
+                "sectionKey": "primitive metastability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Determinism and Predictability",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Determinism and Predictability",
+                "sectionKey": "determinism and predictability",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Will as Threshold Setting",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Will as Threshold Setting",
+                "sectionKey": "will as threshold setting",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Compatibilist Agency",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Compatibilist Agency",
+                "sectionKey": "compatibilist agency",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Summary",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Summary",
+                "sectionKey": "summary",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Closing Statement",
+                "markdownPath": "content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
+                "markdownSection": "Closing Statement",
+                "sectionKey": "closing statement",
+                "headingLevel": 2
               }
             ]
           },

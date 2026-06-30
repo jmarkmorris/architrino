@@ -26,6 +26,18 @@
         "scenePath": "content/scenes/philosophy_history/inherited_theory_interface.json"
       },
       {
+        "nodeId": "geometry_and_ontology",
+        "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json"
+      },
+      {
+        "nodeId": "substance_structure_potential",
+        "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
+      },
+      {
+        "nodeId": "major_thinkers",
+        "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
+      },
+      {
         "nodeId": "religious_ontologies",
         "scenePath": "content/scenes/philosophy_history/religious_ontologies.json"
       },
@@ -36,18 +48,6 @@
       {
         "nodeId": "agency_and_internal_causation",
         "scenePath": "content/scenes/philosophy_history/agency_and_internal_causation.json"
-      },
-      {
-        "nodeId": "substance_structure_potential",
-        "scenePath": "content/scenes/philosophy_history/substance_structure_potential.json"
-      },
-      {
-        "nodeId": "geometry_and_ontology",
-        "scenePath": "content/scenes/philosophy_history/geometry_and_ontology.json"
-      },
-      {
-        "nodeId": "major_thinkers",
-        "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
       {
         "nodeId": "historical_context_missed_opportunities",
@@ -91,6 +91,29 @@
       "labelTitle": "Inherited Theory Interface"
     },
     {
+      "id": "geometry_and_ontology",
+      "title": "Geometry and Ontology",
+      "radius": 2.688,
+      "color": "#4b5e2f",
+      "labelTitle": "Geometry and Ontology",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "substance_structure_potential",
+      "title": "Substance Structure and Potential",
+      "radius": 2.688,
+      "color": "#7a5430",
+      "labelTitle": "Substance / Structure",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "major_thinkers",
+      "title": "Major Thinkers",
+      "radius": 2.688,
+      "color": "#4b0082",
+      "labelTitle": "Major Thinkers"
+    },
+    {
       "id": "religious_ontologies",
       "title": "Religious Ontologies",
       "radius": 2.688,
@@ -111,29 +134,6 @@
       "color": "#6a3c3c",
       "labelTitle": "Agency and Internal Causation",
       "labelBadge": "doc"
-    },
-    {
-      "id": "substance_structure_potential",
-      "title": "Substance Structure and Potential",
-      "radius": 2.688,
-      "color": "#7a5430",
-      "labelTitle": "Substance / Structure",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "geometry_and_ontology",
-      "title": "Geometry and Ontology",
-      "radius": 2.688,
-      "color": "#4b5e2f",
-      "labelTitle": "Geometry and Ontology",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "major_thinkers",
-      "title": "Major Thinkers",
-      "radius": 2.688,
-      "color": "#4b0082",
-      "labelTitle": "Major Thinkers"
     },
     {
       "id": "historical_context_missed_opportunities",
