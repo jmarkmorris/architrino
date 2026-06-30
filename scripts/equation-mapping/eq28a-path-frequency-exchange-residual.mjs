@@ -579,6 +579,9 @@ function evaluateSourcePath(sourcePath) {
   if (!fs.statSync(resolved).isFile()) {
     return { accepted: false, reason: "source_not_file" };
   }
+  if (isRuntimeOrCheckerSourcePath(resolved)) {
+    return { accepted: false, reason: "runtime_or_checker_source_path" };
+  }
   if (!isEvidenceSourcePath(resolved)) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
@@ -620,6 +623,28 @@ function isEvidenceSourcePath(filePath) {
     lowerBasename.includes("probe") ||
     lowerBasename.includes("mock") ||
     lowerBasename.includes("negative-control")
+  );
+}
+
+function isRuntimeOrCheckerSourcePath(filePath) {
+  const normalized = path.normalize(filePath);
+  const relative = path.relative(REPO_ROOT, normalized);
+  if (
+    relative === "" ||
+    relative.startsWith("..") ||
+    path.isAbsolute(relative)
+  ) {
+    return false;
+  }
+  const lowerRelative = relative.toLowerCase();
+  const lowerBasename = path.basename(relative).toLowerCase();
+  return (
+    lowerRelative.startsWith(`scripts${path.sep}`) &&
+    (lowerBasename.endsWith(".mjs") ||
+      lowerBasename.endsWith(".js") ||
+      lowerBasename.includes("residual") ||
+      lowerBasename.includes("checker") ||
+      lowerBasename.includes("check"))
   );
 }
 

@@ -49477,6 +49477,26 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
   - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
+##### Gauss-Law Source and Closure Benchmarks
+
+The Faraday-to-Gauss field picture is a useful low-energy checkpoint for the effective electromagnetic map. Field lines are visualization aids, not literal strands in the substrate, and the test charge or compass needle is an apparatus probe of a coarse response. What must survive is the closed-surface bookkeeping. In ordinary electrostatics, the electric flux through a closed surface depends only on the net charge enclosed:
+
+$$
+\oint_{\partial V}\mathbf{E}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+\frac{Q_{\mathrm{enc}}}{\epsilon_0}
+$$
+
+In standard magnetostatics, the corresponding magnetic flux through a closed surface vanishes in the no-monopole regime:
+
+$$
+\oint_{\partial V}\mathbf{B}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+0
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, Noether sea response, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through circulation/vorticity without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
+
 ##### Maxwell-Ampere Continuity Benchmark
 
 The charging-capacitor case is a useful low-energy benchmark for this map. In standard electrodynamics, the same boundary loop can be spanned by a surface that cuts the conducting wire or by a bulging surface through the capacitor gap. The observer-level magnetic circulation cannot depend on that arbitrary surface choice, so the Maxwell-Ampere comparison must recover
@@ -94423,6 +94443,8 @@ The opening in each case was similar in form even when different in content. A d
 Another recurring pattern is failure to revisit earlier assumption sets after later discoveries widened the design space. When new constituent possibilities, new charge or state structures, or new assembly principles become available, old no-go conclusions do not automatically remain final. Sometimes they do. Sometimes they only show that an earlier implementation failed. Classical point-source theory makes the distinction concrete: failure of a primitive source model does not by itself rule out delayed multi-source assembly dynamics or other substrate-first implementations. A historical near-miss analysis should keep that distinction explicit.
 
 Rømer's episode is a useful front-end case because it did not begin as a theory of light ontology. It began as a table-residual problem in a remote clock: Io's eclipses were predicted from an average period, then the observed times drifted with the changing Earth-Jupiter distance. The correction was cumulative, not a one-shot anomaly: successive observed intervals differed from the source clock by the changing light-time term $P_{\mathrm{obs}}=P+(D_2-D_1)/c$. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that finite propagation first entered physics as path-history timing in an observation record. The recovery target is not to identify Rømer's measured light speed with primitive $c_f$, but to keep the levels separated: primitive causal wakes use $c_f$, photon-channel propagation must recover $c_\gamma$, and weak homogeneous observers calibrate $c_0$ only after the channel closure is declared.
+
+Electromagnetic field language contains a second early bridge. Coulomb's inverse-square law made electric force precise while leaving action at a distance conceptually exposed. Faraday's field picture then moved the explanatory burden into the space around charged and magnetic bodies, and Gauss-style flux bookkeeping made that move testable: electric closed-surface flux tracks enclosed charge, while magnetic closed-surface flux vanishes in the no-monopole regime. The missed opportunity was not that field language was wrong; it was that a successful field representation could become the stopping point before the carrier, medium response, and apparatus probe were implemented. The current recovery target is stated in [Gauge Structure Emergence](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks): recover the electric source row, magnetic closure row, and measured force response from one branch record rather than treating $\mathbf{E}$ and $\mathbf{B}$ as primitive substances.
 
 | Period | What physics had in hand | $\mathbb{A}\mathbb{A}\mathbb{A}$-adjacent opening | Narrative lock-in that occluded it |
 |:---|:---|:---|:---|

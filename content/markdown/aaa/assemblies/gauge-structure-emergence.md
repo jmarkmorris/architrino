@@ -25,6 +25,26 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
   - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
+### Gauss-Law Source and Closure Benchmarks
+
+The Faraday-to-Gauss field picture is a useful low-energy checkpoint for the effective electromagnetic map. Field lines are visualization aids, not literal strands in the substrate, and the test charge or compass needle is an apparatus probe of a coarse response. What must survive is the closed-surface bookkeeping. In ordinary electrostatics, the electric flux through a closed surface depends only on the net charge enclosed:
+
+$$
+\oint_{\partial V}\mathbf{E}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+\frac{Q_{\mathrm{enc}}}{\epsilon_0}
+$$
+
+In standard magnetostatics, the corresponding magnetic flux through a closed surface vanishes in the no-monopole regime:
+
+$$
+\oint_{\partial V}\mathbf{B}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+0
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, Noether sea response, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through circulation/vorticity without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
+
 ### Maxwell-Ampere Continuity Benchmark
 
 The charging-capacitor case is a useful low-energy benchmark for this map. In standard electrodynamics, the same boundary loop can be spanned by a surface that cuts the conducting wire or by a bulging surface through the capacitor gap. The observer-level magnetic circulation cannot depend on that arbitrary surface choice, so the Maxwell-Ampere comparison must recover
