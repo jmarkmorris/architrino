@@ -317,6 +317,35 @@ test("Scene-Index can opt out of runtime textbook chapter labels", async () => {
     config.nodes.find((node) => node.id === "markdown_child")?.textbookChapterLabel ?? null,
     null
   );
+
+  const hiddenChildrenConfig = await repository.createConfigFromSceneData(
+    "content/scenes/example/hidden-children-card.json",
+    {
+      scene: {
+        type: "Scene-Index",
+        textbookToc: {
+          hideChildren: true,
+        },
+        children: [
+          {
+            nodeId: "markdown_child",
+            scenePath: "content/scenes/example/markdown_child.json",
+          },
+        ],
+      },
+      objects: [
+        {
+          id: "markdown_child",
+        },
+      ],
+    }
+  );
+
+  assert.equal(
+    hiddenChildrenConfig.nodes.find((node) => node.id === "markdown_child")?.textbookChapterLabel ??
+      null,
+    null
+  );
 });
 
 test("authored scene nodes are normalized to one visible sphere radius", async () => {

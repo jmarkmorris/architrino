@@ -730,7 +730,9 @@ export class SceneRepository {
     const imageGallery = this.resolveImageGalleryConfig(sceneMeta);
     const splitScene = this.resolveSplitSceneConfig(sceneMeta);
     const wrapLabels = sceneMeta.wrapLabels ?? true;
-    const hideTextbookChapterLabels = sceneMeta.textbookToc?.hideChapterLabels === true;
+    const hideTextbookChapterLabels =
+      sceneMeta.textbookToc?.hideChapterLabels === true ||
+      sceneMeta.textbookToc?.hideChildren === true;
     const sceneChildRefByNodeId = this.buildSceneChildRefMap(sceneMeta);
     const sceneChildMarkdownViewBadgeByNodeId =
       await this.resolveSceneChildMarkdownViewBadgeMap(sceneMeta);

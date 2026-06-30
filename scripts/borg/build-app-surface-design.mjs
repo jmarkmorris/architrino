@@ -60,7 +60,7 @@ export function createBorgAppSurfaceDesign(manifest) {
         "right-diagnostics-rail",
         "bottom-timeline",
       ],
-      defaultVisibleLayers: ["simulation-window", "architrino-position"],
+      defaultVisibleLayers: ["simulation-window", "architrino-position", "diagnostics"],
       defaultHiddenLayers: ["path-history", "velocity-vectors"],
       defaultDisabledLayers: ["wake-streams", "face-boundary-status", "outbound-face-background"],
       authorityPromotionRule: "least-authoritative-applicable-status-wins",
@@ -342,7 +342,7 @@ function createLayerStrip(manifest) {
     },
     {
       layer: "diagnostics",
-      state: "contextual",
+      state: "on-locked",
       sourceFields: ["diagnostics.haltDiagnostics", "diagnostics.diagnosticStatusVocabulary"],
       valueAuthority: "fail-closed-value",
     },

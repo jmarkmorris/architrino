@@ -15,6 +15,8 @@ const DEFAULT_ROTATION_X = -0.48;
 const DEFAULT_ROTATION_Y = 0.72;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
+const PLAY_ICON_PATH = "M8 5v14l11-7z";
+const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
 
 const LAYER_LABELS = Object.freeze({
   "simulation-window": "Cube",
@@ -92,6 +94,7 @@ export function mountBorgApp(options = {}) {
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
+    playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
     resetButton: queryRequiredElement(documentLike, "#borg-reset-view-button"),
     fitButton: queryRequiredElement(documentLike, "#borg-fit-view-button"),
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
@@ -135,7 +138,12 @@ export function mountBorgApp(options = {}) {
 
   const state = {
     activeFrameIndex: frameSets.at(-1)?.frameIndex ?? 0,
-    activeLayers: new Set(surfaceDesign.firstViewport.defaultVisibleLayers),
+    activeLayers: new Set([
+      ...surfaceDesign.firstViewport.defaultVisibleLayers,
+      ...surfaceDesign.layerStrip
+        .filter((layer) => layer.state === "on-locked")
+        .map((layer) => layer.layer),
+    ]),
     cameraDistance: DEFAULT_CAMERA_DISTANCE,
     selectedPathKey: null,
     dragging: false,
@@ -157,6 +165,7 @@ export function mountBorgApp(options = {}) {
   bindEvents();
   updateLayerVisibility();
   updateFrame(state.activeFrameIndex);
+  setPlayButtonPresentation(false);
   resize();
 
   return {
@@ -386,11 +395,7 @@ export function mountBorgApp(options = {}) {
       updateFrame(Number(dom.timelineRange.value));
     });
     dom.playButton.addEventListener("click", () => {
-      if (state.playing) {
-        stopPlayback();
-      } else {
-        startPlayback();
-      }
+      togglePlayback();
     });
     dom.resetButton.addEventListener("click", resetView);
     dom.fitButton.addEventListener("click", fitView);
@@ -404,6 +409,7 @@ export function mountBorgApp(options = {}) {
     resizeObserver.observe(dom.canvas);
     state.resizeObserver = resizeObserver;
     windowLike.addEventListener("resize", resize);
+    windowLike.addEventListener("keydown", handleKeyDown);
   }
 
   function toggleLayer(layerId) {
@@ -510,10 +516,11 @@ export function mountBorgApp(options = {}) {
   }
 
   function startPlayback() {
+    if (state.playing) {
+      return;
+    }
     state.playing = true;
-    dom.playButton.classList.add("is-active");
-    dom.playButton.setAttribute("aria-pressed", "true");
-    dom.playButton.title = "Pause";
+    setPlayButtonPresentation(true);
     state.playTimer = windowLike.setInterval(() => {
       const currentIndex = frameSets.findIndex((entry) => entry.frameIndex === state.activeFrameIndex);
       const next = frameSets[(currentIndex + 1) % frameSets.length];
@@ -523,13 +530,41 @@ export function mountBorgApp(options = {}) {
 
   function stopPlayback() {
     state.playing = false;
-    dom.playButton.classList.remove("is-active");
-    dom.playButton.setAttribute("aria-pressed", "false");
-    dom.playButton.title = "Play";
+    setPlayButtonPresentation(false);
     if (state.playTimer != null) {
       windowLike.clearInterval(state.playTimer);
       state.playTimer = null;
     }
+  }
+
+  function togglePlayback() {
+    if (state.playing) {
+      stopPlayback();
+    } else {
+      startPlayback();
+    }
+  }
+
+  function setPlayButtonPresentation(isPlaying) {
+    dom.playButton.classList.toggle("is-active", isPlaying);
+    dom.playButton.setAttribute("aria-pressed", isPlaying ? "true" : "false");
+    dom.playButton.setAttribute("aria-label", isPlaying ? "Pause" : "Play");
+    dom.playButton.title = isPlaying ? "Pause" : "Play";
+    dom.playButtonIcon.setAttribute("d", isPlaying ? PAUSE_ICON_PATH : PLAY_ICON_PATH);
+  }
+
+  function handleKeyDown(event) {
+    if (event.defaultPrevented || event.repeat || event.metaKey || event.ctrlKey || event.altKey) {
+      return;
+    }
+    if (event.code !== "Space" && event.key !== " ") {
+      return;
+    }
+    if (isEditableTarget(event.target)) {
+      return;
+    }
+    event.preventDefault();
+    togglePlayback();
   }
 
   function handlePointerDown(event) {
@@ -642,6 +677,7 @@ export function mountBorgApp(options = {}) {
     stopPlayback();
     state.resizeObserver?.disconnect?.();
     windowLike.removeEventListener("resize", resize);
+    windowLike.removeEventListener("keydown", handleKeyDown);
     architrinoPointTexture.dispose();
     renderer.dispose();
   }
@@ -716,6 +752,17 @@ function formatNumber(value) {
 
 function vectorLength(vector) {
   return Math.hypot(vector?.x ?? 0, vector?.y ?? 0, vector?.z ?? 0);
+}
+
+function isEditableTarget(target) {
+  const tagName = target?.tagName;
+  if (target?.isContentEditable || tagName === "TEXTAREA" || tagName === "SELECT") {
+    return true;
+  }
+  if (tagName !== "INPUT") {
+    return false;
+  }
+  return ["email", "number", "password", "search", "tel", "text", "url"].includes(target.type);
 }
 
 function setTone(element, status) {

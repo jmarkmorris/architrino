@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 574,
-      "edges": 1335,
-      "scenes": 372,
+      "nodes": 575,
+      "edges": 1336,
+      "scenes": 373,
       "markdownIndexes": 0,
       "markdownDocs": 189,
       "runtimeEdges": 476,
@@ -2378,6 +2378,12 @@
       "id": "philosophy_history__solving_the_crisis_overview",
       "name": "Solving the Crisis",
       "path": "content/scenes/philosophy_history/solving_the_crisis/overview.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "philosophy_history__aaa_journey",
+      "name": "AAA Journey",
+      "path": "content/scenes/philosophy_history/aaa_journey.json",
       "nodeType": "scene"
     },
     {
@@ -5665,6 +5671,15 @@
       "name": "Proton",
       "path": "content/scenes/nuclear/proton.json",
       "searchTarget": "content/scenes/nuclear/proton.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/aaa_journey.json",
+      "nodeType": "scene",
+      "id": "philosophy_history__aaa_journey",
+      "name": "AAA Journey",
+      "path": "content/scenes/philosophy_history/aaa_journey.json",
+      "searchTarget": "content/scenes/philosophy_history/aaa_journey.json",
       "implicit": false
     },
     {
@@ -12277,10 +12292,17 @@
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
+      "to": "scene:content/scenes/philosophy_history/aaa_journey.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/philosophy_history.json",
+      "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
       "to": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[11]"
+      "field": "scene.children[12]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12308,7 +12330,7 @@
       "to": "scene:content/scenes/philosophy_history/information_computation.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12322,7 +12344,7 @@
       "to": "scene:content/scenes/philosophy_history/major_thinkers.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[8]"
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12343,7 +12365,7 @@
       "to": "scene:content/scenes/philosophy_history/religious_ontologies.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
@@ -12364,7 +12386,7 @@
       "to": "scene:content/scenes/philosophy_history/treasure_physics_overlooked.json",
       "edgeType": "subscene",
       "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "scene.children[12]"
+      "field": "scene.children[13]"
     },
     {
       "from": "scene:content/scenes/philosophy_history/solving_the_crisis.json",
@@ -13858,6 +13880,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/aaa_journey.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/aaa_journey.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/philosophy_history/agency_and_internal_causation.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/agency-and-internal-causation.md",
       "edgeType": "markdown_doc",
@@ -13914,13 +13943,6 @@
       "field": "scene.source.path"
     },
     {
-      "from": "scene:content/scenes/philosophy_history/philosophy_history.json",
-      "to": "markdown_doc:content/markdown/aaa/philosophy-history/aaa-journey.md",
-      "edgeType": "markdown_doc",
-      "source": "content/scenes/philosophy_history/philosophy_history.json",
-      "field": "aaa_journey.source.path"
-    },
-    {
       "from": "scene:content/scenes/philosophy_history/philosophy_of_science.json",
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/philosophy-of-science.md",
       "edgeType": "markdown_doc",
@@ -13939,7 +13961,7 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/solving-the-crisis.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/solving_the_crisis.json",
-      "field": "solving_the_crisis_foundations_spacetime.source.path"
+      "field": "solving_the_crisis_paper_thesis.source.path"
     },
     {
       "from": "scene:content/scenes/philosophy_history/solving_the_crisis/overview.json",

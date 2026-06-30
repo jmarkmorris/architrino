@@ -264,7 +264,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = Object.freeze({
       "right-diagnostics-rail",
       "bottom-timeline",
     ]),
-    defaultVisibleLayers: Object.freeze(["simulation-window", "architrino-position"]),
+    defaultVisibleLayers: Object.freeze(["simulation-window", "architrino-position", "diagnostics"]),
     defaultHiddenLayers: Object.freeze(["path-history", "velocity-vectors"]),
     defaultDisabledLayers: Object.freeze(["wake-streams", "face-boundary-status", "outbound-face-background"]),
     authorityPromotionRule: "least-authoritative-applicable-status-wins",
@@ -291,7 +291,7 @@ export const BORG_APP_SURFACE_DESIGN_V1 = Object.freeze({
       valueAuthority: "fail-closed-value",
       firstFailureCode: "missing_face_crossing_coverage",
     }),
-    Object.freeze({ layer: "diagnostics", state: "contextual", valueAuthority: "fail-closed-value" }),
+    Object.freeze({ layer: "diagnostics", state: "on-locked", valueAuthority: "fail-closed-value" }),
     Object.freeze({
       layer: "outbound-face-background",
       state: "disabled",

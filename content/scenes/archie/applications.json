@@ -9,6 +9,9 @@
       "type": "rings"
     },
     "wrapLabels": true,
+    "textbookToc": {
+      "hideChapterLabels": true
+    },
     "children": [
       {
         "nodeId": "ideal_braid",

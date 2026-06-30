@@ -30,6 +30,54 @@
       "labelBadge": "doc"
     },
     {
+      "id": "solving_the_crisis_paper_thesis",
+      "title": "Paper Thesis",
+      "radius": 1.32,
+      "color": "#6f4a8f",
+      "labelTitle": "Paper Thesis",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
+      },
+      "view": {
+        "section": "Paper Thesis",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_the_crisis_how_to_read",
+      "title": "How To Read The Entries",
+      "radius": 1.32,
+      "color": "#4f7b3a",
+      "labelTitle": "How To Read",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
+      },
+      "view": {
+        "section": "How To Read The Entries",
+        "columns": 1
+      }
+    },
+    {
+      "id": "solving_the_crisis_paper_section_map",
+      "title": "Paper Section Map",
+      "radius": 1.32,
+      "color": "#2f6b6f",
+      "labelTitle": "Paper Section Map",
+      "labelBadge": "doc",
+      "source": {
+        "type": "markdown",
+        "path": "content/markdown/aaa/philosophy-history/solving-the-crisis.md"
+      },
+      "view": {
+        "section": "Paper Section Map",
+        "columns": 1
+      }
+    },
+    {
       "id": "solving_the_crisis_foundations_spacetime",
       "title": "Foundations / Spacetime",
       "radius": 1.32,

@@ -74,10 +74,12 @@ These values are valid only as a developer-test screen contract. They do not est
 | `velocity-vectors` | `off` | raw values are `authoritative-solver-output`; ray geometry is `app-facing-projection` |
 | `wake-streams` | `disabled` | `fail-closed-value` |
 | `face-boundary-status` | `contextual-disabled` | `fail-closed-value` |
-| `diagnostics` | `contextual` | exposes fail-closed diagnostics without upgrading values |
+| `diagnostics` | `on-locked` | exposes fail-closed diagnostics without upgrading values |
 | `outbound-face-background` | `disabled` | `fail-closed-value` |
 
-The visible default is only `simulation-window` and `architrino-position`. Path history and velocity vectors are available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
+The visible default is `simulation-window`, `architrino-position`, and `diagnostics`. Path history and velocity vectors are available but off. Wake streams, face-boundary status, and outbound-face background are disabled because their source rows do not yet exist in the native-backed manifest.
+
+The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
 
 ## Simulation-Envelope Rail Contract
 

@@ -46,6 +46,10 @@
         "scenePath": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
       },
       {
+        "nodeId": "aaa_journey",
+        "scenePath": "content/scenes/philosophy_history/aaa_journey.json"
+      },
+      {
         "nodeId": "major_thinkers",
         "scenePath": "content/scenes/philosophy_history/major_thinkers.json"
       },
@@ -133,14 +137,7 @@
       "radius": 2.688,
       "color": "#8b6f47",
       "labelTitle": "AAA Journey",
-      "labelBadge": "doc",
-      "source": {
-        "type": "markdown",
-        "path": "content/markdown/aaa/philosophy-history/aaa-journey.md"
-      },
-      "view": {
-        "columns": 1
-      }
+      "labelBadge": "doc"
     },
     {
       "id": "major_thinkers",
