@@ -466,6 +466,101 @@ test("selected active-domain bounded-gap fill evidence schema keeps row split fa
   );
 });
 
+test("selected partial-support retained row-set binding schema keeps direct support fail closed", () => {
+  const schema = JSON.parse(
+    execFileSync(
+      process.execPath,
+      [
+        scriptPath,
+        "--schema",
+        "selected-partial-support-retained-row-set-binding-producer-target",
+      ],
+      { encoding: "utf8" }
+    )
+  );
+
+  assert.equal(
+    schema.schema,
+    "aaa-tri-binary-selected-partial-support-retained-row-set-binding-producer-target.schema.v1"
+  );
+  assert.equal(
+    schema.parentProducerStepId,
+    "classify_selected_active_domain_bounded_gap_fill_evidence"
+  );
+  assert.equal(
+    schema.targetObjectId,
+    "selected_partial_support_retained_row_set_binding"
+  );
+  assert.equal(
+    schema.producerStepSchema,
+    "aaa-tri-binary-selected-partial-support-retained-row-set-binding-producer-step.v1"
+  );
+  assert.equal(
+    schema.producerStepId,
+    "bind_selected_partial_support_rows_to_global_retained_row_set"
+  );
+  assert.equal(schema.eventRootKey, 2856731379702547500);
+  assert.equal(schema.retainedBranchClaim, false);
+  assert.deepEqual(schema.requiredFieldIds, [
+    "two_selected_direct_support_rows",
+    "local_partial_support_evidence_bundle",
+    "sampled_root_sheet_enclosure_candidate",
+    "sampled_derivative_sign_margin_candidate",
+    "competitor_bearing_two_sheet_status",
+    "two_sheet_global_binding_before_selected_partial_support_retained_row_set_binding",
+    "same_record_binding",
+  ]);
+  assert.deepEqual(schema.expectedDirectSupportRowIds, [
+    "inner->middle:28:right",
+    "inner->outer:17:right",
+  ]);
+  assert.equal(
+    schema.firstMissingField,
+    "two_sheet_global_binding_before_selected_partial_support_retained_row_set_binding"
+  );
+  assert.equal(
+    schema.smallestProducerObject,
+    "active_domain_extension_required_before_two_sheet_global_binding"
+  );
+  assert.equal(
+    schema.directAbsenceRowsRemainBlockedAt,
+    "selected_direct_absence_bounded_gap_fill_law"
+  );
+  assert.deepEqual(schema.sameRecordBindingRequirements, [
+    "one_retained_record",
+    "one_route_root_key",
+    "one_event_root_key",
+    "two_selected_direct_support_rows",
+    "one_competitor_bearing_two_sheet_status",
+    "one_two_sheet_global_binding_status",
+    "one_retained_row_set_binding_proof",
+  ]);
+  assert.deepEqual(schema.downstreamUnauthorizedUntilAccepted, [
+    "retained_active_row_branch_certificate_ref",
+    "accepted_same_record_branch_chart",
+    "moving_retained_branch_certificate",
+    "accepted_transition_source",
+    "retained_branch_closure",
+    "global_retained_row_set_identity",
+    "accepted_nonlocal_transport",
+    "event_root_identity_conservation",
+  ]);
+  assert.deepEqual(
+    schema.negativeControls.map((control) => control.id),
+    [
+      "endpoint_only_rows_not_partial_support_retained_row_set_binding",
+      "affine_geometry_alone_not_partial_support_retained_row_set_binding",
+      "sampled_partial_support_without_retained_binding_not_partial_support_retained_row_set_binding",
+      "one_sheet_or_cross_root_joins_not_partial_support_retained_row_set_binding",
+      "aggregate_rows_not_partial_support_retained_row_set_binding",
+      "target_only_rows_not_partial_support_retained_row_set_binding",
+      "route_only_rows_not_partial_support_retained_row_set_binding",
+      "cross_row_bundles_not_partial_support_retained_row_set_binding",
+      "current_proxy_branch_charts_not_partial_support_retained_row_set_binding",
+    ]
+  );
+});
+
 test("accepted nonlocal transport global row-set producer schema stays fail closed", () => {
   const schema = JSON.parse(
     execFileSync(

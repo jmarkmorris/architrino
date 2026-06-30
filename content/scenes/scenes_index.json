@@ -1864,6 +1864,11 @@
       "id": "archie__people",
       "name": "People",
       "path": "content/scenes/archie/people.json"
+    },
+    {
+      "id": "unknowns_paradoxes__problem_map",
+      "name": "Unknowns and Paradoxes: Problem Map",
+      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json"
     }
   ]
 }

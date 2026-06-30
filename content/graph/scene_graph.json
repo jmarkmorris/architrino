@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 576,
-      "edges": 1336,
-      "scenes": 373,
+      "nodes": 577,
+      "edges": 1338,
+      "scenes": 374,
       "markdownIndexes": 0,
       "markdownDocs": 190,
       "runtimeEdges": 476,
@@ -2384,6 +2384,12 @@
       "id": "archie__people",
       "name": "People",
       "path": "content/scenes/archie/people.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "unknowns_paradoxes__problem_map",
+      "name": "Unknowns and Paradoxes: Problem Map",
+      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
       "nodeType": "scene"
     },
     {
@@ -6001,6 +6007,15 @@
       "name": "Unknowns and Paradoxes",
       "path": "content/scenes/philosophy_history/unknowns_paradoxes.json",
       "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
+      "nodeType": "scene",
+      "id": "unknowns_paradoxes__problem_map",
+      "name": "Unknowns and Paradoxes: Problem Map",
+      "path": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
+      "searchTarget": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
       "implicit": false
     },
     {
@@ -12516,6 +12531,13 @@
       "field": "scene.children[0]"
     },
     {
+      "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "to": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/philosophy_history/unknowns_paradoxes.json",
+      "field": "scene.children[1]"
+    },
+    {
       "from": "scene:content/scenes/proof-programs/proof_programs.json",
       "to": "scene:content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json",
       "edgeType": "subscene",
@@ -14123,6 +14145,13 @@
       "to": "markdown_doc:content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
+      "to": "markdown_doc:content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/philosophy_history/unknowns_paradoxes/problem_map.json",
       "field": "scene.source.path"
     },
     {

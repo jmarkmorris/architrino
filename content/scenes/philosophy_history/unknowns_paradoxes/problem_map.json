@@ -1,0 +1,156 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "unknowns_paradoxes__problem_map",
+    "title": "Unknowns and Paradoxes: Problem Map",
+    "type": "Scene-Markdown-Tree",
+    "units": "relative",
+    "wrapLabels": true,
+    "centerOn": "unknowns_overview",
+    "layout": {
+      "type": "rings"
+    },
+    "labelDocIconOwnLine": true,
+    "source": {
+      "type": "markdown",
+      "path": "content/markdown/aaa/philosophy-history/unknowns-paradoxes.md",
+      "tree": {
+        "rootHeadingLevel": 2,
+        "maxDepth": 2,
+        "overrides": {
+          "overview": {
+            "id": "unknowns_overview",
+            "labelTitle": "Overview",
+            "labelBadge": "doc",
+            "mode": "doc"
+          },
+          "cosmology and large scale inference": {
+            "id": "unknowns_cosmology_inference",
+            "labelTitle": "Cosmology / Inference"
+          },
+          "particle and field microstructure": {
+            "id": "unknowns_particle_field_microstructure",
+            "labelTitle": "Particle / Field"
+          },
+          "quantum foundations and unification": {
+            "id": "unknowns_quantum_unification",
+            "labelTitle": "Quantum / Unification"
+          },
+          "astrobiological boundary question": {
+            "id": "unknowns_astrobiological_boundary",
+            "labelTitle": "Astrobiological Boundary"
+          },
+          "the nature of dark energy": {
+            "id": "unknown_the_nature_of_dark_energy",
+            "labelTitle": "The Nature of Dark Energy",
+            "labelBadge": "doc"
+          },
+          "the identity of dark matter": {
+            "id": "unknown_the_identity_of_dark_matter",
+            "labelTitle": "The Identity of Dark Matter",
+            "labelBadge": "doc"
+          },
+          "the cosmological constant problem": {
+            "id": "unknown_the_cosmological_constant_problem",
+            "labelTitle": "The Cosmological Constant Problem",
+            "labelBadge": "doc"
+          },
+          "the hierarchy problem naturalness": {
+            "id": "unknown_the_hierarchy_problem_naturalness",
+            "labelTitle": "The Hierarchy Problem",
+            "labelBadge": "doc"
+          },
+          "the uv catastrophe blackbody divergence": {
+            "id": "unknown_the_uv_catastrophe_blackbody_divergence",
+            "labelTitle": "The UV Catastrophe",
+            "labelBadge": "doc"
+          },
+          "baryon asymmetry": {
+            "id": "unknown_baryon_asymmetry",
+            "labelTitle": "Baryon Asymmetry",
+            "labelBadge": "doc"
+          },
+          "neutrino mass and nature": {
+            "id": "unknown_neutrino_mass_and_nature",
+            "labelTitle": "Neutrino Mass and Nature",
+            "labelBadge": "doc"
+          },
+          "the strong cp problem": {
+            "id": "unknown_the_strong_cp_problem",
+            "labelTitle": "The Strong CP Problem",
+            "labelBadge": "doc"
+          },
+          "quantum gravity and renormalizability": {
+            "id": "unknown_quantum_gravity_and_renormalizability",
+            "labelTitle": "Quantum Gravity and Renormalizability",
+            "labelBadge": "doc"
+          },
+          "the black hole information paradox": {
+            "id": "unknown_the_black_hole_information_paradox",
+            "labelTitle": "The Black Hole Information Paradox",
+            "labelBadge": "doc"
+          },
+          "the fermi paradox": {
+            "id": "unknown_the_fermi_paradox",
+            "labelTitle": "The Fermi Paradox",
+            "labelBadge": "doc"
+          },
+          "the measurement problem": {
+            "id": "unknown_the_measurement_problem",
+            "labelTitle": "The Measurement Problem",
+            "labelBadge": "doc"
+          },
+          "the mechanism of inflation": {
+            "id": "unknown_the_mechanism_of_inflation",
+            "labelTitle": "The Mechanism of Inflation",
+            "labelBadge": "doc"
+          },
+          "the flavor problem": {
+            "id": "unknown_the_flavor_problem",
+            "labelTitle": "The Flavor Problem",
+            "labelBadge": "doc"
+          },
+          "proton stability": {
+            "id": "unknown_proton_stability",
+            "labelTitle": "Proton Stability",
+            "labelBadge": "doc"
+          },
+          "vacuum instability": {
+            "id": "unknown_vacuum_instability",
+            "labelTitle": "Vacuum Instability",
+            "labelBadge": "doc"
+          },
+          "the muon g 2 and lepton universality anomalies": {
+            "id": "unknown_the_muon_g_2_and_lepton_universality_anomalies",
+            "labelTitle": "Muon g-2 & Lepton Anomalies",
+            "labelBadge": "doc"
+          },
+          "the lithium problem": {
+            "id": "unknown_the_lithium_problem",
+            "labelTitle": "The Lithium Problem",
+            "labelBadge": "doc"
+          },
+          "confinement and the mass gap": {
+            "id": "unknown_confinement_and_the_mass_gap",
+            "labelTitle": "Confinement and the Mass Gap",
+            "labelBadge": "doc"
+          },
+          "the arrow of time": {
+            "id": "unknown_the_arrow_of_time",
+            "labelTitle": "The Arrow of Time",
+            "labelBadge": "doc"
+          },
+          "the trans planckian censorship and the swampland": {
+            "id": "unknown_the_trans_planckian_censorship_and_the_swampland",
+            "labelTitle": "Trans-Planckian Censorship",
+            "labelBadge": "doc"
+          }
+        }
+      }
+    },
+    "view": {
+      "columns": 1
+    }
+  },
+  "objects": []
+}
