@@ -714,7 +714,7 @@ Failure modes:
 ## Related Priorities
 
 - [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
-- [3x3](../deferred/3x3/3x3.md)
+- [3x3](../dormant-deferred/3x3/3x3.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 

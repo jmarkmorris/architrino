@@ -12,7 +12,7 @@ Use `proof-programs/` for active mathematical proof-program priorities that shar
 
 Use `operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 
-Use `aaa-journey/aaa-journey.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
+Use `dormant-deferred/aaa-journey/aaa-journey.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 
 ## Priority-Doc Maintenance Pattern
 

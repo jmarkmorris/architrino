@@ -1,4 +1,4 @@
-# Future Physics Cosmology Brainstorming
+# AAA Futures Brainstorming
 
 This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
 
@@ -10,4 +10,4 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
-No separate loose future-physics-cosmology ideas were moved in the current migration audit. The active research-transition material remains in [research-revolution.md](research-revolution.md) because it is already a focused working note, not a general idea bank.
+No separate loose `aaa-futures` ideas were moved in the current migration audit. The active research-transition material remains in [research-revolution.md](research-revolution.md) because it is already a focused working note, not a general idea bank.

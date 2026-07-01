@@ -48,6 +48,10 @@ This document distinguishes three audience scopes:
 
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
 - For thread startup, thread splitting, issue-work handoffs, branch/PR mechanics, and source-mining starts, read the operator routing index at [reference/op/README.md](reference/op/README.md) first. Treat [reference/op/codex-goal-seeking-prompt-template.md](reference/op/codex-goal-seeking-prompt-template.md) as the default meta-optimization wrapper for any Codex thread, then read only the additional linked procedure file that matches the selected workflow.
+- The operator often runs many agents in this same checkout at the same time. Treat a dirty working tree as normal ambient state, not as an exceptional condition by itself.
+- The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.
+- At the start of work, inspect `git status --short --untracked-files=all`, then keep the write set scoped to the files the current task owns. Report unrelated dirty files only when they block the task, create overwrite risk, affect validation, or matter for staging, committing, pushing, or PR publication.
+- In closeouts, distinguish scoped edits from ambient multi-agent worktree state. Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action.
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 

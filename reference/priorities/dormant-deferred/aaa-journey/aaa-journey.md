@@ -54,7 +54,7 @@ Use this workstream for perspective pages that can become reader-facing historic
 - Treat the mature-$\mathbb{A}\mathbb{A}\mathbb{A}$ vantage as a counterfactual interpretive device unless the proof state actually warrants a stronger claim.
 - Shape each perspective as polished public commentary rather than a raw transcript or staged debate.
 - Preserve the figure's known intellectual sensibility without claiming the real person would have endorsed $\mathbb{A}\mathbb{A}\mathbb{A}$.
-- Use the `Questions` section in [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) as the shared prompt all production perspectives answer.
+- Use the `Questions` section in [The Treasure Physics Overlooked](../../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) as the shared prompt all production perspectives answer.
 - Position $\mathbb{A}\mathbb{A}\mathbb{A}$ in relation to prior models of nature, including general relativity, quantum theory, thermodynamics, the Standard Model, and Lambda-CDM where relevant.
 - Include missed-opportunity analysis where relevant: why the architecture did not crystallize from available ingredients, why the miss persisted through later successful theories, and which stage-specific habits of thought made the deeper construction harder to see.
 - Refer to the operator/developer as Marko in published perspective text when origin or authorship is discussed.
@@ -80,7 +80,7 @@ Do not create a new reader-facing scene merely because a journey packet exists. 
 
 | Priority-stage source | User-facing destination | Promotion slice | Promotion status |
 | --- | --- | --- | --- |
-| [aaa-theory-history](aaa-theory-history.md) | [Historical Context and Missed Opportunities](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) | Discovery path, historical near-miss framing, missed openings, and why a substrate-first architecture was hard to see. | Defer with blocker: needs a focused rewrite that strips diary structure and states current claim level. |
-| [aaa-theory-history](aaa-theory-history.md) | [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Retrospective root-cause material about why simple constituent and substrate choices were missed. | Defer with blocker: promote only defensible pattern analysis, not proof-status claims. |
+| [aaa-theory-history](aaa-theory-history.md) | [Historical Context and Missed Opportunities](../../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) | Discovery path, historical near-miss framing, missed openings, and why a substrate-first architecture was hard to see. | Defer with blocker: needs a focused rewrite that strips diary structure and states current claim level. |
+| [aaa-theory-history](aaa-theory-history.md) | [The Treasure Physics Overlooked](../../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) | Retrospective root-cause material about why simple constituent and substrate choices were missed. | Defer with blocker: promote only defensible pattern analysis, not proof-status claims. |
 
 The distributive rule is: history and missed-opportunity material goes to philosophy-history; first-person journey material remains priority-only unless a separate outreach or founder-narrative surface is explicitly selected.

@@ -1245,6 +1245,19 @@ test("causal delay feedback settings sliders use themed range styling", () => {
   assert.equal(html.includes("c<sub>f</sub>"), true);
 });
 
+test("causal delay feedback settings place architrino speed after canvas", () => {
+  const html = readCausalDelayFeedbackHtml();
+  const canvasIndex = html.indexOf('id="causal-delay-feedback-color-swatches"');
+  const architrinoSpeedIndex = html.indexOf('id="causal-delay-feedback-architrino-speed"');
+  const cfSpeedIndex = html.indexOf('id="causal-delay-feedback-cf-speed"');
+  const traversalIndex = html.indexOf('id="causal-delay-feedback-traversal-mode"');
+
+  assert(canvasIndex > 0);
+  assert(architrinoSpeedIndex > canvasIndex);
+  assert(cfSpeedIndex > architrinoSpeedIndex);
+  assert(traversalIndex > cfSpeedIndex);
+});
+
 test("causal delay feedback settings popover includes reset preset without adding a toolbar control", () => {
   const html = readCausalDelayFeedbackHtml();
 
@@ -1286,6 +1299,9 @@ test("causal delay feedback toolbar exposes independent wake visual switches", (
 
   assert.equal(html.includes("right: max(20px, env(safe-area-inset-right));"), true);
   assert.equal(html.includes("max-width: calc(100vw - 40px);"), false);
+  assert.equal(html.includes("flex: 1 1 520px;"), true);
+  assert.equal(html.includes("grid-template-columns: minmax(320px, 1fr) 48px;"), true);
+  assert.equal(html.includes("grid-template-columns: minmax(118px, 18vw) 48px;"), false);
   assert.equal(html.includes('id="causal-delay-feedback-visual-switches"'), true);
   [
     "arcWakesEnabled",

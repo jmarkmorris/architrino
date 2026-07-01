@@ -65,8 +65,9 @@ Use this process whenever a work session is being wrapped up and the work is int
 
 ### 1. Confirm scope
 
-- Check that the worktree contains only the intended changes.
-- If unrelated edits are present, separate them before staging or committing.
+- Confirm that the scoped files for this branch contain only the intended changes.
+- This repo often has concurrent agents in the same checkout, so unrelated dirty files can be normal ambient state. Keep them out of staging and committing unless the operator explicitly brings them into scope.
+- If unrelated edits overlap the files needed for the PR, separate or resolve that overlap before staging or committing.
 
 Commands:
 
@@ -210,10 +211,11 @@ If an existing PR is draft and is now ready for review:
 gh pr ready
 ```
 
-### 7. End the session in a clean state
+### 7. End the session in a scoped clean state
 
-- Leave the worktree clean on the working branch.
-- Do not leave unstaged experimental edits behind unless they are intentionally being carried into the next session.
+- Leave the files owned by this working branch clean: committed, intentionally staged, or intentionally carried into the next session.
+- Do not promise a globally clean checkout when concurrent agents may have unrelated dirty files in the same repo.
+- Do not leave unstaged experimental edits in the scoped files unless they are intentionally being carried into the next session.
 
 Command:
 
@@ -249,7 +251,7 @@ git checkout -b codex/<series-item-name>
 
 - Do not open, update, or rely on a PR until the exact branch tip you want reviewed is both committed locally and present on the remote branch.
 - Refresh remote-tracking refs first so all later decisions are based on the current `origin/main`, not stale local knowledge.
-- The worktree should be clean at this point.
+- The files owned by the PR should be clean at this point; unrelated ambient checkout changes must remain out of the PR.
 - The local branch `HEAD` and `origin/<current-branch>` should resolve to the same commit.
 - Also determine whether the branch actually contains work relative to the current base branch.
 - Do not treat `HEAD == origin/<current-branch>` as evidence that there is nothing to publish. That only proves the branch tip is pushed.

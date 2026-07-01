@@ -151,7 +151,8 @@
 
       .causal-now-scrub {
         display: grid;
-        grid-template-columns: minmax(118px, 18vw) 48px;
+        flex: 1 1 520px;
+        grid-template-columns: minmax(320px, 1fr) 48px;
         align-items: center;
         gap: 8px;
         min-width: 170px;
@@ -749,22 +750,6 @@
       >
         <div class="causal-settings-label">Canvas</div>
         <div class="causal-swatch-row" id="causal-delay-feedback-color-swatches"></div>
-        <div class="causal-settings-label">
-          <span class="causal-math-label">c<sub>f</sub></span> speed
-        </div>
-        <div class="causal-slider-row">
-          <input
-            id="causal-delay-feedback-cf-speed"
-            class="causal-range"
-            type="range"
-            min="0.25"
-            max="2.5"
-            step="0.05"
-            value="1"
-            aria-label="c f animation speed"
-          />
-          <output id="causal-delay-feedback-cf-speed-value" class="causal-speed-value">1x</output>
-        </div>
         <div class="causal-settings-label">Architrino speed</div>
         <div class="causal-slider-row has-step-buttons">
           <button
@@ -790,6 +775,22 @@
             aria-label="Increase architrino speed"
           >&gt;</button>
           <output id="causal-delay-feedback-architrino-speed-value" class="causal-speed-value">0.7 c<sub>f</sub></output>
+        </div>
+        <div class="causal-settings-label">
+          <span class="causal-math-label">c<sub>f</sub></span> speed
+        </div>
+        <div class="causal-slider-row">
+          <input
+            id="causal-delay-feedback-cf-speed"
+            class="causal-range"
+            type="range"
+            min="0.25"
+            max="2.5"
+            step="0.05"
+            value="1"
+            aria-label="c f animation speed"
+          />
+          <output id="causal-delay-feedback-cf-speed-value" class="causal-speed-value">1x</output>
         </div>
         <div class="causal-settings-label">Traversal</div>
         <select

@@ -11,13 +11,14 @@
 
 ## Task Queue
 
-1. `six_point_symmetry_invariant_lemma` - Prove that the held six-point seed remains on the center-zero, common-sphere, antipodal-pair invariant manifold under symmetric retained-root dynamics. Status: `active`. Depends on: none.
-2. `common_level_branch_definition` - Define the same-level branch constraints for six Noether braid architrinos without assuming circular orbits. Status: `next`. Depends on: `six_point_symmetry_invariant_lemma`.
-3. `self_hit_held_release_solver_row` - Promote the held-release seed from the priority-only partner-wake toy into a retained-history solver row with same-source self-hits enabled. Status: `next`. Depends on: `six_point_symmetry_invariant_lemma`.
-4. `noether_sea_stabilization_term` - Test which retained-history or Noether sea response term changes the reduced common-sphere radius from Euclidean-void escape into bounded return, breather behavior, or stable-radius settling. Status: `pending`. Depends on: `self_hit_held_release_solver_row`.
-5. `translating_ellipsoid_family` - Generalize the rest-level support into a translating ellipsoid family with declared shape, drift, and retained-row variables. Status: `pending`. Depends on: `common_level_branch_definition`.
-6. `h_basin_atlas` - Search whether stable basin families can appear at every $h$-scale action level and identify the first solver or proof target. Status: `pending`. Depends on: `common_level_branch_definition`.
-7. `prior_material_disposition` - Compare this lane against the earlier equal-frequency, shell-braid rearchitecture, and same-level scaling packets so useful material is mined without promoting old overclaims. Status: `pending`. Depends on: `common_level_branch_definition`.
+1. `oblate_spheroid_reduced_equations` - Develop the three-pair oblate-spheroid ansatz with group velocity, orbital velocity, radius, frequency, causal-root, and optional Noether sea pressure variables. Status: `active`. Depends on: none.
+2. `six_point_symmetry_invariant_lemma` - Prove that the held six-point seed remains on the center-zero, common-sphere, antipodal-pair invariant manifold under symmetric retained-root dynamics. Status: `next`. Depends on: `oblate_spheroid_reduced_equations`.
+3. `common_level_branch_definition` - Define the same-level branch constraints for six Noether braid architrinos without assuming circular orbits. Status: `next`. Depends on: `six_point_symmetry_invariant_lemma`.
+4. `self_hit_held_release_solver_row` - Promote the held-release seed from the priority-only partner-wake toy into a retained-history solver row with same-source self-hits enabled. Status: `next`. Depends on: `oblate_spheroid_reduced_equations`.
+5. `noether_sea_stabilization_term` - Test which retained-history or Noether sea response term changes the reduced common-sphere radius from Euclidean-void escape into bounded return, breather behavior, or stable-radius settling. Status: `pending`. Depends on: `oblate_spheroid_reduced_equations`.
+6. `translating_ellipsoid_family` - Generalize the rest-level support into a translating ellipsoid family with declared shape, drift, and retained-row variables. Status: `pending`. Depends on: `oblate_spheroid_reduced_equations`.
+7. `h_basin_atlas` - Search whether stable basin families can appear at every $h$-scale action level and identify the first solver or proof target. Status: `pending`. Depends on: `common_level_branch_definition`.
+8. `prior_material_disposition` - Compare this lane against the earlier equal-frequency, shell-braid rearchitecture, and same-level scaling packets so useful material is mined without promoting old overclaims. Status: `pending`. Depends on: `common_level_branch_definition`.
 
 ## Scope
 
@@ -31,7 +32,7 @@ This lane should stay general. It should not assume circular orbits, fixed binar
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [brainstorming.md](brainstorming.md) | Brainstorming packet, octahedral decoration-class control, executable closure diagnostic, and held-release toy results for the six-architrino scenario, same-level ideal-braid hypothesis, translating ellipsoid generalization, non-circular path allowance, and $h$-basin search. | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), and [energy](../../../content/markdown/aaa/dynamics/energy.md) after retained-branch evidence exists. |
+| [brainstorming.md](brainstorming.md) | Brainstorming packet, octahedral decoration-class control, executable closure, wiggle-window, same-source self-hit probe diagnostics, reduced-radius equation diagnostics, oblate-spheroid reduced equations, and held-release toy results for the six-architrino scenario, same-level ideal-braid hypothesis, translating ellipsoid generalization, non-circular path allowance, and $h$-basin search. | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), and [energy](../../../content/markdown/aaa/dynamics/energy.md) after retained-branch evidence exists. |
 
 ## Relation To Prior Packets
 
@@ -45,6 +46,7 @@ This area has prior relatives, but none of them is the same workstream:
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
+| `oblate_spheroid_reduced_equations` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), or [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md) | The reduced ansatz supplies retained-root equations, velocity/frequency definitions, spheroid residuals, optional Noether sea pressure terms, and fixed-frequency validation rows without claiming a stable branch. |
 | `six_point_symmetry_invariant_lemma` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) or [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md) | The proof shows that coordinate permutations plus charge-conjugate inversion force the perfect held seed onto the common-sphere, center-zero, antipodal-pair invariant manifold for any symmetric retained-root force law. |
 | `common_level_branch_definition` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) or [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md) | The same-level branch state is defined with source/receiver path history, causal roots, wake rows, action/energy rows, angular-momentum rows, and stability rows on one retained row set. |
 | `self_hit_held_release_solver_row` | [brainstorming.md](brainstorming.md) | [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) or [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | The held-release seed is rerun with same-source self-hits, retained history, root-ledger rows, and a declared same-level failure or survival diagnostic after the first near pass. |

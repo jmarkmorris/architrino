@@ -30,10 +30,10 @@ The workstream control file is [aaa-journey](aaa-journey.md). This file is the l
 
 ## Source Surfaces
 
-- Registry: [../source-mining/legacy-architrino-wordpress-posts.jsonl](../source-mining/legacy-architrino-wordpress-posts.jsonl)
-- Generated library view: [../source-mining/legacy-architrino-wordpress-library-posts.md](../source-mining/legacy-architrino-wordpress-library-posts.md)
-- Generated mining queue: [../source-mining/legacy-architrino-wordpress-mining-queue.txt](../source-mining/legacy-architrino-wordpress-mining-queue.txt)
-- Archive analysis report: [../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md](../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md)
+- Registry: [../../source-mining/legacy-architrino-wordpress-posts.jsonl](../../source-mining/legacy-architrino-wordpress-posts.jsonl)
+- Generated library view: [../../source-mining/legacy-architrino-wordpress-library-posts.md](../../source-mining/legacy-architrino-wordpress-library-posts.md)
+- Generated mining queue: [../../source-mining/legacy-architrino-wordpress-mining-queue.txt](../../source-mining/legacy-architrino-wordpress-mining-queue.txt)
+- Archive analysis report: [../../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md](../../source-mining/archive-analysis/legacy-architrino-archive-mining-report.md)
 - Clean-text cache: `${TMPDIR:-/tmp}/architrino-archive-mining/clean-text`
 
 This pass swept the registry and clean-text cache by terms including `binary`, `binaries`, `Noether`, `core`, `braid`, `personality`, `generation`, `fermion`, `quark`, `gluon`, `color`, `strong`, `weak`, `Higgs`, `spacetime`, `aether`, `potential`, `path history`, and `self-action`. It read representative clean-text artifacts across the full date range. `source-mining-history.md` was not updated because this was a broad topic sweep and synthesis, not a per-source incorporation event.
@@ -268,9 +268,9 @@ Do not promote this file directly into reader-facing corpus prose. A future prom
 
 Primary promotion destinations:
 
-- [Historical Context and Missed Opportunities](../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) for discovery-path material that clarifies missed openings, historical near-misses, and why a substrate-first architecture was hard to see.
-- [The Treasure Physics Overlooked](../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for retrospective root-cause analysis about overlooked simple ingredients, provided it is rewritten as defensible pattern analysis rather than proof-status claim.
+- [Historical Context and Missed Opportunities](../../../../content/markdown/aaa/philosophy-history/historical-context-and-missed-opportunities.md) for discovery-path material that clarifies missed openings, historical near-misses, and why a substrate-first architecture was hard to see.
+- [The Treasure Physics Overlooked](../../../../content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md) for retrospective root-cause analysis about overlooked simple ingredients, provided it is rewritten as defensible pattern analysis rather than proof-status claim.
 - focused priority packets under this folder for material that remains useful as source history but is not reader-facing yet.
 - outreach/founder narrative material outside the textbook corpus for first-person context, operator/developer journey, and human story.
 
-Avoid using [GitHub Presence and Community](../../../content/markdown/aaa/archie/github-presence-and-community.md) for this file unless the edit is explicitly about public contribution norms. Avoid Archie canon edits unless a terminology or style policy update is explicitly requested.
+Avoid using [GitHub Presence and Community](../../../../content/markdown/aaa/archie/github-presence-and-community.md) for this file unless the edit is explicitly about public contribution norms. Avoid Archie canon edits unless a terminology or style policy update is explicitly requested.

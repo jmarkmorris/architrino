@@ -44,9 +44,6 @@ const DEFAULT_FIELD_SPEED_SCALE = 1;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
-const TRAVERSAL_MODE_FIXED_SPEED = "fixed_speed";
-const TRAVERSAL_MODE_VARIABLE_SPEED = "variable_speed";
-const DEFAULT_TRAVERSAL_MODE = TRAVERSAL_MODE_FIXED_SPEED;
 const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
@@ -214,12 +211,6 @@ class CausalDelayFeedbackRuntime {
     this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
       options.architrinoSpeedIndex ?? DEFAULT_ARCHITRINO_SPEED_INDEX,
     );
-    this.traversalMode = this.normalizeTraversalMode(
-      options.traversalMode ??
-        getInitialQueryValue(this.window, "traversalMode") ??
-        getInitialQueryValue(this.window, "traversal") ??
-        DEFAULT_TRAVERSAL_MODE,
-    );
     this.architrinoVelocityReference = {};
     this.presetId = getPresetById(
       options.presetId ?? getInitialQueryValue(this.window, "preset") ?? DEFAULT_PRESET_ID,
@@ -305,7 +296,6 @@ class CausalDelayFeedbackRuntime {
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
-      traversalModeInput: queryRequiredElement(this.document, "#causal-delay-feedback-traversal-mode"),
       weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
@@ -425,9 +415,6 @@ class CausalDelayFeedbackRuntime {
     });
     this.dom.architrinoSpeedInput.addEventListener("change", () => {
       void this.submitArchitrinoSpeedFraction();
-    });
-    this.dom.traversalModeInput.addEventListener("change", () => {
-      this.setTraversalMode(this.dom.traversalModeInput.value);
     });
     this.dom.settingsPanel.addEventListener("click", (event) => {
       const button = event.target.closest("[data-architrino-speed-step]");

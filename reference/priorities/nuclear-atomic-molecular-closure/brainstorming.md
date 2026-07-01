@@ -38,7 +38,7 @@ The object remains incomplete until $\mathcal{Y}_{\mathrm{emit}}$ separates alph
 
 Candidate focus:
 
-- triage [deferred/electron-orbitals](../deferred/electron-orbitals/electron-orbitals.md) into a priority packet that separates standard orbital notation from $\mathbb{A}\mathbb{A}\mathbb{A}$ localized-assembly interpretation;
+- triage [dormant-deferred/electron-orbitals](../dormant-deferred/electron-orbitals/electron-orbitals.md) into a priority packet that separates standard orbital notation from $\mathbb{A}\mathbb{A}\mathbb{A}$ localized-assembly interpretation;
 - use hydrogen and helium as the first clean boundary cases for exact assembly membership, dynamic exclusion envelope, electron resonance envelope, and ambient Noether sea coarse-graining;
 - treat periodic-table families as recovered observer summaries, not as source inputs;
 - connect spectra to reaction/radiation event ledgers only after the atomic transition source row is explicit.

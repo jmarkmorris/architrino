@@ -206,6 +206,481 @@ For the `axial-paired` preset, the diagnostic status is `same_level_support_lost
 
 Both statuses keep `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. The next producer object remains `self_hit_held_release_solver_row`, with missing accepted fields for the central-solver retained-history row, same-source self-hit rows, same-record causal-root replay, retained wake-history rows, same-record action ledger, stability or return-margin row, and retained branch certificate.
 
+### Wiggle Window Diagnostic - 2026-07-01
+
+The runner also emits `trajectoryDiagnostics` with schema `braid-ideal-held-release-wiggle-window-diagnostic.v1`. This is a priority-only same-record diagnostic for the observed radial wiggle, not an accepted retained branch certificate. It records full-window extrema, full-window symmetry residual maxima, radial turn rows, the first compression-to-expansion turn, whether a later expansion-to-compression return turn appears, and the first fail-closed wiggle blocker.
+
+Validation-speed reruns with `dt=0.004`, `duration=3`, and `sampleEvery=25` produced:
+
+| Run | Wiggle-window status | Symmetry window | Radial turn rows | First wiggle blocker |
+| --- | --- | --- | --- | --- |
+| $c_f=1$, `face-opposite`, causal weight | `single_compression_escape_with_field_speed_crossing` | pass; max radius std `9.93013661298909e-16` | one compression-to-expansion turn at `t=1.08`, radius `0.821722`; no return turn | `field_speed_crossing_before_retained_solver_promotion` |
+| $c_f=6$, `face-opposite`, causal weight | `single_compression_then_escape` | pass; max radius std `3.14018491736755e-16` | one compression-to-expansion turn at `t=1.096`, radius `0.908822`; no return turn | `post_first_pass_return_turn_absent` |
+| $c_f=1$, `axial-paired`, causal weight | `same_level_window_lost` | fail; max radius std `1.58481637102546`, max opposite-site residual `5.30455114148257` | one compression-to-expansion turn at `t=1.136`, but without same-level support | `same_level_window_symmetry_lost` |
+
+Interpretation. The `face-opposite` seed has a real, extremely clean same-level symmetry window in the toy, but the wiggle currently looks like a single compression and release rather than a bounded breather. Raising the field speed removes the immediate field-speed crossing blocker over the tested window, but it does not produce the missing return turn. The `axial-paired` control can show ordinary radial turning, but it is not the same object because the common-sphere and antipodal-pair window fails first.
+
+Fail-closed consequence. The diagnostic keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. The next producer object remains `self_hit_held_release_solver_row`, because only a retained-history solver row with same-source self-hit rows, same-record causal-root replay, retained wake-history rows, action ledger rows, and a stability or return-margin row can distinguish a real Noether braid basin from a symmetric Euclidean-void scatter.
+
+### Same-Source Self-Hit Probe - 2026-07-01
+
+The runner now accepts `--include-self-hits`, which includes delayed same-source causal roots as a priority-only toy probe. The probe filters self-hit roots to strictly delayed rows using `selfHitMinDelay`, defaulting to the integration step `dt`. This is still not a central-solver retained-history row and does not authorize retained branch evidence.
+
+Validation-speed reruns with `dt=0.004`, `duration=3`, and `sampleEvery=25` produced:
+
+| Run | Self-hit rows | Wiggle status | First blocker | Interpretation |
+| --- | ---: | --- | --- | --- |
+| $c_f=6$, `face-opposite`, causal weight, self-hit probe | `0` delayed roots; `4500` missing directed self-hit rows | `same_source_self_hit_rows_absent_in_toy_probe` | `same_source_self_hit_rows_absent_in_toy_probe` | The sub-field-speed symmetric release preserves the clean same-level window, but the strict delayed self-hit root condition never populates. |
+| $c_f=1$, `face-opposite`, causal weight, self-hit probe | `714` delayed roots; `3786` missing directed self-hit rows | `causal_root_coverage_lost` | `causal_root_coverage_lost_in_toy_window` | Delayed self roots appear only in the super-field-speed blow-up regime: first field-speed crossing at `t=0.732`, first missing partner roots at `t=1.188`, final radius `23.104551`, final speed `10.307475`. |
+
+Interpretation. The same-source probe makes the next blocker sharper. In the safe high-field window, the toy has no delayed self-hit rows to test. In the low-field window, same-source roots appear, but only after the run has already crossed field speed and then loses causal-root coverage. That means the JavaScript toy is not enough to decide whether same-source self-hits can stabilize the ideal braid; the next evidence-moving object remains a central-solver retained-history row with solver-owned same-source self-hit rows, causal-root replay, retained wake-history rows, action ledger rows, and a stability or return-margin row.
+
+Fail-closed consequence. The self-hit probe keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. The useful result is not a score increase; it is a narrower producer boundary for `self_hit_held_release_solver_row`.
+
+### Reduced Radius Equation Diagnostic - 2026-07-01
+
+The runner now emits `reducedRadiusDiagnostics` with schema `braid-ideal-reduced-radius-equation-diagnostic.v1`. This diagnostic projects the same-level window to the reduced variables
+
+$$
+R(t)=\operatorname{mean}_i |x_i(t)-C(t)|,
+\qquad
+\dot R(t)=\operatorname{mean}_i
+\frac{\langle x_i(t)-C(t),\dot x_i(t)-\dot C(t)\rangle}{|x_i(t)-C(t)|},
+$$
+
+and the finite-difference toy row
+
+$$
+\ddot R(t)\approx \frac{\Delta \dot R}{\Delta t}.
+$$
+
+It is priority-only. It does not supply a retained branch certificate, conserved action ledger, or accepted Noether sea response row. Its purpose is to ask a narrower question after the first compression-to-expansion turn: does the toy ever produce an inward radial acceleration row that could be the first sign of a return force?
+
+Validation-speed reruns with `dt=0.004`, `duration=3`, and `sampleEvery=25` produced:
+
+| Run | Reduced-radius status | First reduced-radius blocker | Post-turn acceleration rows | First-turn acceleration |
+| --- | --- | --- | --- | ---: |
+| $c_f=1$, `face-opposite`, causal weight | `field_speed_crossing_before_reduced_radius_equation` | `field_speed_crossing_before_reduced_radius_equation` | inward rows exist later, but only after field-speed crossing | `2.54130997918223` |
+| $c_f=6$, `face-opposite`, causal weight | `post_turn_inward_radial_acceleration_absent` | `post_turn_inward_radial_acceleration_absent` | `476` outward rows, `0` inward rows, `0` deadband rows | `0.700009024758892` |
+| $c_f=6$, `face-opposite`, causal weight, self-hit probe | `same_source_self_hit_rows_absent_in_toy_probe` | `same_source_self_hit_rows_absent_in_toy_probe` | `476` outward rows, `0` inward rows, `0` deadband rows; self-hit rows absent first | `0.700009024758892` |
+
+For the clean high-field face/opposite-face run, the reduced-radius row at the first turn is still outward accelerating:
+
+$$
+t=1.096,\qquad
+R=0.908821918990776,\qquad
+\dot R=0.00218799946306812,\qquad
+\ddot R\approx0.700009024758892.
+$$
+
+After that turn, every one of the `476` post-turn finite-difference rows has positive $\ddot R$ above the diagnostic epsilon. The weakest outward acceleration row is still positive:
+
+$$
+t=3,\qquad
+R=1.84069025636478,\qquad
+\dot R=0.704865214649074,\qquad
+\ddot R\approx0.0934863484737535.
+$$
+
+Interpretation. The clean high-field wiggle is not merely missing a visible return turn; within this toy window it has no inward reduced-radius acceleration after the first expansion begins. That makes the next stabilizing requirement sharper. A serious same-level basin needs a solver-owned term that changes the reduced-radius equation after the first near pass: same-source self-hit rows, retained wake-energy response, shielding, angular-momentum accommodation, or a Noether sea response row must provide an inward acceleration row, a second turn, a stable fixed radius, or a bounded limit cycle on the same retained record.
+
+Fail-closed consequence. The reduced-radius diagnostic keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. It narrows the next producer boundary for `self_hit_held_release_solver_row`; it does not authorize branch evidence.
+
+## Oblate Spheroid Reduced Equations
+
+Claim level. Analytical candidate packet. This section does not claim a stable branch. It defines a reduced equation family for three antipodal pairs on a translating oblate spheroid and identifies the residuals a solver or proof must close.
+
+### Variables
+
+Let $C(t)$ be the dynamic center and
+
+$$
+\mathbf V_g(t)=\dot C(t),
+\qquad
+u(t)=|\mathbf V_g(t)|
+$$
+
+be the group velocity through the Noether sea frame. The equations should allow
+
+$$
+0\le u < \infty,
+$$
+
+including $u<c_f$, $u\approx c_f$, and $u>c_f$. No Lorentz-like deformation law is assumed at this stage.
+
+Let $Q(t)\in SO(3)$ be a body-frame orientation. Its pole is
+
+$$
+\mathbf n(t)=Q(t)\mathbf e_3,
+$$
+
+with body angular velocity $\Omega(t)$ defined by
+
+$$
+\dot Q(t)\mathbf y = \Omega(t)\times Q(t)\mathbf y
+$$
+
+for any body-frame vector $\mathbf y$. Let the oblate support have equatorial radius $R_\perp(t)$, polar radius $R_\parallel(t)$, and flattening ratio
+
+$$
+\chi(t)=\frac{R_\parallel(t)}{R_\perp(t)},
+\qquad
+0<\chi(t)\le 1.
+$$
+
+The spheroid surface in body coordinates is
+
+$$
+\Phi(\mathbf y;R_\perp,R_\parallel)
+=
+\frac{y_1^2+y_2^2}{R_\perp^2}
++
+\frac{y_3^2}{R_\parallel^2}
+-1=0.
+$$
+
+### Three-Pair Spheroid Ansatz
+
+Use one shared phase $\psi(t)$ and three offsets
+
+$$
+\alpha_k=\frac{2\pi k}{3},
+\qquad
+k=0,1,2.
+$$
+
+For the simplest latitude-ring ansatz, choose a shared spheroid height coordinate $\zeta(t)\in[-1,1]$ and define
+
+$$
+\mathbf s_k(t)
+=
+R_\perp(t)\sqrt{1-\zeta(t)^2}
+\begin{pmatrix}
+\cos(\psi(t)+\alpha_k)\\
+\sin(\psi(t)+\alpha_k)\\
+0
+\end{pmatrix}
++
+R_\parallel(t)\zeta(t)
+\begin{pmatrix}
+0\\
+0\\
+1
+\end{pmatrix}.
+$$
+
+Then the three Positrinos and three Electrinos are
+
+$$
+\mathbf x_{P,k}(t)=C(t)+Q(t)\mathbf s_k(t),
+\qquad
+\mathbf x_{E,k}(t)=C(t)-Q(t)\mathbf s_k(t).
+$$
+
+This automatically preserves a center-zero internal configuration and antipodal pairs in the center frame. It also places all six architrinos on the same instantaneous oblate spheroid. The original face-opposite spherical seed is the special case $R_\perp=R_\parallel$, $\zeta=1/\sqrt3$, and a body-frame rotation that maps the three phase offsets to the coordinate-axis face.
+
+This ansatz is deliberately not restricted to circular orbits. Non-circular motion enters through $\zeta(t)$, $R_\perp(t)$, $R_\parallel(t)$, and $Q(t)$. A more general closed curve on the spheroid can replace the latitude-ring ansatz by allowing $\zeta=\zeta(\psi)$ and a nonuniform phase speed $\dot\psi(t)$.
+
+### Velocity And Frequency Rows
+
+The receiver velocity is
+
+$$
+\dot{\mathbf x}_{P,k}
+=
+\mathbf V_g
++
+\Omega\times Q\mathbf s_k
++
+Q\dot{\mathbf s}_k,
+$$
+
+and
+
+$$
+\dot{\mathbf x}_{E,k}
+=
+\mathbf V_g
+-
+\Omega\times Q\mathbf s_k
+-
+Q\dot{\mathbf s}_k.
+$$
+
+When $R_\perp$, $R_\parallel$, $\zeta$, and $Q$ are instantaneously fixed, the orbital speed in the center frame is
+
+$$
+v_{\mathrm{orb}}
+=
+R_\perp\sqrt{1-\zeta^2}\,|\omega|,
+\qquad
+\omega=\dot\psi.
+$$
+
+When $\zeta$ varies, the body-frame internal speed contains the meridional term
+
+$$
+|\dot{\mathbf s}_k|^2
+=
+R_\perp^2(1-\zeta^2)\omega^2
++
+\left(
+R_\parallel^2
++
+\frac{R_\perp^2\zeta^2}{1-\zeta^2}
+\right)\dot\zeta^2
+$$
+
+for fixed $R_\perp$ and $R_\parallel$. Radius changes add the obvious $\dot R_\perp$ and $\dot R_\parallel$ terms and should be retained in a solver packet.
+
+Frequency has at least three meanings:
+
+| Symbol | Meaning | Closure use |
+| --- | --- | --- |
+| $\nu_\psi=\langle\dot\psi\rangle/(2\pi)$ | azimuthal phase frequency around the spheroid pole | labeled closure requires $\Delta\psi=2\pi m$; unlabeled threefold closure may allow $\Delta\psi=2\pi m/3$ |
+| $\nu_z$ | meridional or pole-return frequency of $\zeta(t)$ or $\zeta(\psi)$ | one pole-return cycle means the reduced path returns to the same $\zeta$, $\dot\zeta$, and branch-root pattern |
+| $\nu_p=|\Omega|/(2\pi)$ | body-frame precession frequency | closure requires the body frame to return, or to return up to an allowed threefold permutation |
+
+An integer-frequency branch target should therefore be stated as a resonance vector, not a single frequency:
+
+$$
+\Delta\psi=2\pi m_\psi,
+\qquad
+\Delta\theta_p=2\pi m_p,
+\qquad
+\zeta(T)=\zeta(0),
+\qquad
+\dot\zeta(T)=\dot\zeta(0),
+$$
+
+over a period $T$, with $m_\psi,m_p\in\mathbb Z$. If architrino labels are quotiented by the threefold permutation symmetry, the weaker closure condition $\Delta\psi=2\pi m_\psi/3$ may be acceptable for an assembly-state row, but a retained path-history row must declare whether it is labeled or quotient-level closure.
+
+### Causal-Root Equations With Group Velocity
+
+For any receiver $a\in\{P,k\}$ or $\{E,k\}$ and source $b\in\{P,\ell\}$ or $\{E,\ell\}$, the causal emission times $t_0=t-\tau$ are selected by
+
+$$
+\left\|
+C(t)-C(t-\tau)
++
+Q(t)\mathbf y_a(t)
+-
+Q(t-\tau)\mathbf y_b(t-\tau)
+\right\|
+=
+c_f\tau,
+\qquad
+\tau>0,
+$$
+
+where $\mathbf y_{P,k}=\mathbf s_k$ and $\mathbf y_{E,k}=-\mathbf s_k$. For constant group velocity this becomes
+
+$$
+\left\|
+\mathbf V_g\tau
++
+Q(t)\mathbf y_a(t)
+-
+Q(t-\tau)\mathbf y_b(t-\tau)
+\right\|
+=
+c_f\tau.
+$$
+
+This equation is the first place where $u/c_f$ matters. When $u<c_f$, many branches behave like ordinary delayed roots. Near $u=c_f$, source-normal denominators can become fragile. When $u>c_f$, same-source roots, multiple roots, and root-loss windows become live branch events rather than optional corrections. The reduced equations must therefore keep the full root set
+
+$$
+\mathcal C_{ab}(t)
+=
+\{\tau>0:\mathcal R_{ab}(t,\tau)=0\}
+$$
+
+and must not silently prune roots by assuming a sub-field-speed regime.
+
+For each active root, define
+
+$$
+\mathbf r_{ab}(t,\tau)
+=
+\mathbf x_a(t)-\mathbf x_b(t-\tau),
+\qquad
+\hat{\mathbf r}_{ab}
+=
+\frac{\mathbf r_{ab}}{|\mathbf r_{ab}|}.
+$$
+
+The source-normal and receiver-normal factors are
+
+$$
+D_{s,ab}=c_f-\dot{\mathbf x}_b(t-\tau)\cdot\hat{\mathbf r}_{ab},
+\qquad
+D_{t,ab}=c_f-\dot{\mathbf x}_a(t)\cdot\hat{\mathbf r}_{ab},
+$$
+
+with
+
+$$
+W_{ab}^{\mathrm{rec}}
+=
+\left|\frac{D_{t,ab}}{D_{s,ab}}\right|.
+$$
+
+The acceleration row for receiver $a$ is then the master-equation branch sum
+
+$$
+\mathbf a_a^{\mathrm{wake}}(t)
+=
+\sum_b
+\sum_{\tau\in\mathcal C_{ab}(t)}
+\kappa\,\sigma_{ab}
+\frac{|q_aq_b|}{|\mathbf r_{ab}(t,\tau)|^2}
+W_{ab}^{\mathrm{rec}}(t,\tau)
+\hat{\mathbf r}_{ab}(t,\tau),
+$$
+
+including $b=a$ for same-source self-hits when those roots exist.
+
+### Reduced Residual Equations
+
+The spheroid ansatz supplies a kinematic acceleration
+
+$$
+\mathbf a_a^{\mathrm{ans}}(t)=\ddot{\mathbf x}_a(t),
+$$
+
+computed from $C,Q,R_\perp,R_\parallel,\zeta,\psi$ and their derivatives. A branch is not certified by drawing the spheroid. It must satisfy
+
+$$
+\mathbf a_a^{\mathrm{ans}}(t)
+=
+\mathbf a_a^{\mathrm{wake}}(t)
++
+\mathbf a_a^{\mathrm{sea}}(t)
+$$
+
+for all six architrinos on the same retained root set. Equivalently, define
+
+$$
+\mathbf E_a(t)
+=
+\mathbf a_a^{\mathrm{wake}}(t)
++
+\mathbf a_a^{\mathrm{sea}}(t)
+-
+\mathbf a_a^{\mathrm{ans}}(t),
+$$
+
+and require the reduced projections to vanish:
+
+$$
+\mathcal R_{\psi,k}
+=
+\mathbf E_{P,k}\cdot Q\partial_\psi\mathbf s_k
+=0,
+$$
+
+$$
+\mathcal R_{\zeta,k}
+=
+\mathbf E_{P,k}\cdot Q\partial_\zeta\mathbf s_k
+=0,
+$$
+
+$$
+\mathcal R_{\perp,k}
+=
+\mathbf E_{P,k}\cdot Q\partial_{R_\perp}\mathbf s_k
+=0,
+\qquad
+\mathcal R_{\parallel,k}
+=
+\mathbf E_{P,k}\cdot Q\partial_{R_\parallel}\mathbf s_k
+=0.
+$$
+
+The corresponding Electrino residuals should be redundant under exact antipodal symmetry, but they must still be checked numerically in a retained solver row. The center residual is
+
+$$
+\mathcal R_C
+=
+\sum_a \mathbf E_a
+=0.
+$$
+
+The angular residual can be written as
+
+$$
+\mathcal R_J
+=
+\sum_a
+(\mathbf x_a-C)\times \mathbf E_a
+=0,
+$$
+
+which is the reduced angular-momentum accommodation condition for the ansatz. A stable same-level row needs all of these residuals on the same root ledger.
+
+### Optional Noether Sea Pressure Term
+
+If nearby Noether sea response constrains the radius, the cleanest provisional form is a constraint or soft-wall term tied to the spheroid surface function $\Phi$. A hard constraint uses a Lagrange multiplier:
+
+$$
+\mathbf a_a^{\mathrm{sea}}
+=
+-\lambda_a(t)\,
+Q\nabla_{\mathbf y}\Phi(\mathbf y_a;R_\perp,R_\parallel),
+$$
+
+with $\lambda_a$ chosen so that $\Phi(\mathbf y_a)=0$ remains true through time. A soft pressure version is
+
+$$
+\mathbf a_a^{\mathrm{sea}}
+=
+-K_{\mathrm{sea}}\Phi(\mathbf y_a)
+Q\nabla_{\mathbf y}\Phi(\mathbf y_a)
+-\Gamma_{\mathrm{sea}}\dot\Phi(\mathbf y_a)
+Q\nabla_{\mathbf y}\Phi(\mathbf y_a).
+$$
+
+This is an artificial confinement model until $K_{\mathrm{sea}}$, $\Gamma_{\mathrm{sea}}$, or $\lambda_a$ are derived from a retained Noether sea response row. Its value is diagnostic: it can test whether a bounded oblate branch exists once support pressure is allowed, but it cannot by itself prove that the Noether sea supplies that pressure.
+
+### Fixed-Frequency Solver Validation Target
+
+A solver validation row can hold an integer resonance candidate fixed and measure residuals rather than searching blindly. Choose
+
+$$
+\Theta
+=
+(u,R_\perp,\chi,\zeta_0,\omega,\Omega,K_{\mathrm{sea}})
+$$
+
+and a period $T$ satisfying the declared closure convention. Then evaluate:
+
+1. all causal roots $\mathcal C_{ab}(t)$, including same-source roots when they exist;
+2. the residual projections $\mathcal R_\psi,\mathcal R_\zeta,\mathcal R_\perp,\mathcal R_\parallel,\mathcal R_C,\mathcal R_J$;
+3. the action proxy
+   $$
+   \mathcal A(T)
+   =
+   \oint_0^T
+   \sum_a
+   \mu_{\mathrm{arch}}
+   \dot{\mathbf x}_a\cdot d\mathbf x_a;
+   $$
+4. the root-ledger status: root counts, source-normal denominator floors, self-hit rows, and root-loss windows;
+5. the return status: whether the spheroid state closes, precesses by an allowed integer, or escapes.
+
+Integer frequencies become interesting only after this residual test is same-record:
+
+$$
+\nu_\psi:\nu_z:\nu_p
+=
+m_\psi:m_z:m_p,
+\qquad
+m_\psi,m_z,m_p\in\mathbb Z.
+$$
+
+The first useful result would be a table of fixed-frequency rows labeled `pass`, `near_miss`, or `fail`, with failure codes separated into `root_loss`, `small_denominator`, `pressure_artifact`, `action_drift`, `same_level_loss`, and `escape`.
+
 ## Ideal Braid Hypothesis
 
 The ideal-braid hypothesis generalizes the seed scenario from a coordinate release to a branch candidate:

@@ -18,6 +18,8 @@ const TOY_CLOSURE_THRESHOLDS = Object.freeze({
   pairOppositionMax: 1e-9,
   boundedRadiusMean: 2,
   boundedRadiusStd: 0.05,
+  radialTurnEpsilon: 1e-9,
+  radialAccelerationEpsilon: 1e-9,
 });
 
 const INITIAL_PARTICLE_PRESETS = Object.freeze({
@@ -74,6 +76,8 @@ function parseArgs(rawArgs) {
     outputDir: null,
     preset: "face-opposite",
     causalWeight: true,
+    includeSelfHits: false,
+    selfHitMinDelay: null,
     maxAcceleration: Infinity,
   };
 
@@ -120,6 +124,11 @@ function parseArgs(rawArgs) {
     } else if (arg === "--max-acceleration") {
       parsed.maxAcceleration = positiveFiniteNumber(requireNext(rawArgs, index, arg), "max-acceleration");
       index += 1;
+    } else if (arg === "--include-self-hits") {
+      parsed.includeSelfHits = true;
+    } else if (arg === "--self-hit-min-delay") {
+      parsed.selfHitMinDelay = nonnegativeFiniteNumber(requireNext(rawArgs, index, arg), "self-hit-min-delay");
+      index += 1;
     } else if (arg === "--no-causal-weight") {
       parsed.causalWeight = false;
     } else {
@@ -128,6 +137,7 @@ function parseArgs(rawArgs) {
   }
 
   parsed.outputDir = parsed.outputDir ?? INITIAL_PARTICLE_PRESETS[parsed.preset].outputDir;
+  parsed.selfHitMinDelay = parsed.selfHitMinDelay ?? parsed.dt;
   return parsed;
 }
 
@@ -165,8 +175,14 @@ function runHeldRelease(options) {
     missingRoots: 0,
     smallJacobianRoots: 0,
     maxRootsPerDirectedPair: 0,
+    selfHitRoots: 0,
+    missingSelfHitRoots: 0,
+    selfHitDirectedPairs: 0,
+    maxSelfHitRootsPerDirectedPair: 0,
     maxBranchWeight: 0,
   };
+  const trajectoryAccumulator = createTrajectoryAccumulator();
+  recordTrajectorySample(trajectoryAccumulator, frames[0].metrics, state);
 
   const totalSteps = Math.ceil(options.duration / options.dt);
   for (let step = 0; step < totalSteps; step += 1) {
@@ -184,6 +200,7 @@ function runHeldRelease(options) {
     history.push(snapshotState(state));
 
     const metrics = computeMetrics(state, history, options);
+    recordTrajectorySample(trajectoryAccumulator, metrics, state);
     detectMetricEvents(events, metrics, state, options);
     if (step === totalSteps - 1 || state.stepIndex % options.sampleEvery === 0) {
       frames.push(sampleFrame(state, history, options, metrics));
@@ -192,12 +209,25 @@ function runHeldRelease(options) {
 
   const finalMetrics = computeMetrics(state, history, options);
   const classification = classifyRun(finalMetrics, events, options);
+  const trajectoryDiagnostics = createTrajectoryDiagnostics({
+    options,
+    events,
+    rootStats,
+    trajectoryAccumulator,
+  });
+  const reducedRadiusDiagnostics = createReducedRadiusDiagnostics({
+    options,
+    trajectoryAccumulator,
+    trajectoryDiagnostics,
+  });
   const closureDiagnostics = createClosureDiagnostics({
     options,
     classification,
     events,
     rootStats,
     finalMetrics,
+    trajectoryDiagnostics,
+    reducedRadiusDiagnostics,
   });
   return {
     schema: "braid-ideal-held-release-causal-wake-toy-result.v1",
@@ -222,16 +252,23 @@ function runHeldRelease(options) {
       softening: options.softening,
       jacobianFloor: options.jacobianFloor,
       causalWeight: options.causalWeight,
+      includeSelfHits: options.includeSelfHits,
+      selfHitMinDelay: cleanNumber(options.selfHitMinDelay),
       maxAcceleration: Number.isFinite(options.maxAcceleration) ? options.maxAcceleration : null,
     },
     modelNotes: [
       "Each directed pair contributes through all detected causal roots in the retained history window.",
       "The force law uses q_i q_j r / (|r|^2 + softening^2)^(3/2), multiplied by the optional causal branch weight.",
       "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
+      options.includeSelfHits
+        ? "Same-source causal roots are included as a priority-only toy probe and filtered to delayed roots only."
+        : "Same-source self-hits are disabled in the default toy run.",
       "Architrinos are treated as primitives without physical mass; acceleration is a numerical response variable.",
     ],
     classification,
     closureDiagnostics,
+    trajectoryDiagnostics,
+    reducedRadiusDiagnostics,
     events,
     rootStats,
     finalMetrics,
@@ -247,25 +284,46 @@ function evaluateAccelerations(state, history, options) {
     missingRoots: 0,
     smallJacobianRoots: 0,
     maxRootsPerDirectedPair: 0,
+    selfHitRoots: 0,
+    missingSelfHitRoots: 0,
+    selfHitDirectedPairs: 0,
+    maxSelfHitRootsPerDirectedPair: 0,
     maxBranchWeight: 0,
   };
 
   for (let i = 0; i < state.particles.length; i += 1) {
     const receiver = state.particles[i];
     for (let j = 0; j < state.particles.length; j += 1) {
-      if (i === j) {
+      const selfHitPair = i === j;
+      if (selfHitPair && !options.includeSelfHits) {
         continue;
       }
       const source = state.particles[j];
-      const roots = findCausalRoots({ receiver, sourceIndex: j, hitTime: state.time, history, options });
+      const roots = findCausalRoots({ receiver, sourceIndex: j, hitTime: state.time, history, options }).filter(
+        (root) => !selfHitPair || root.delay >= options.selfHitMinDelay
+      );
       rootStats.maxRootsPerDirectedPair = Math.max(rootStats.maxRootsPerDirectedPair, roots.length);
+      if (selfHitPair) {
+        rootStats.selfHitDirectedPairs += 1;
+        rootStats.maxSelfHitRootsPerDirectedPair = Math.max(
+          rootStats.maxSelfHitRootsPerDirectedPair,
+          roots.length
+        );
+      }
       if (roots.length === 0) {
-        rootStats.missingRoots += 1;
-        pairRows.push({ receiver: receiver.id, source: source.id, rootCount: 0 });
+        if (selfHitPair) {
+          rootStats.missingSelfHitRoots += 1;
+        } else {
+          rootStats.missingRoots += 1;
+        }
+        pairRows.push({ receiver: receiver.id, source: source.id, selfHitPair, rootCount: 0 });
         continue;
       }
       for (const root of roots) {
         rootStats.totalRoots += 1;
+        if (selfHitPair) {
+          rootStats.selfHitRoots += 1;
+        }
         if (root.smallJacobian) {
           rootStats.smallJacobianRoots += 1;
         }
@@ -279,6 +337,7 @@ function evaluateAccelerations(state, history, options) {
       pairRows.push({
         receiver: receiver.id,
         source: source.id,
+        selfHitPair,
         rootCount: roots.length,
         roots: roots.map((root) => ({
           emissionTime: root.emissionTime,
@@ -517,7 +576,15 @@ function classifyRun(finalMetrics, events, options) {
   return "unclassified_transient";
 }
 
-function createClosureDiagnostics({ options, classification, events, rootStats, finalMetrics }) {
+function createClosureDiagnostics({
+  options,
+  classification,
+  events,
+  rootStats,
+  finalMetrics,
+  trajectoryDiagnostics,
+  reducedRadiusDiagnostics,
+}) {
   const symmetryResiduals = {
     centerNorm: cleanNumber(norm(finalMetrics.center)),
     radiusStd: finalMetrics.radiusStd,
@@ -530,6 +597,7 @@ function createClosureDiagnostics({ options, classification, events, rootStats, 
     symmetryResiduals.speedStd <= TOY_CLOSURE_THRESHOLDS.speedStd &&
     symmetryResiduals.pairOppositionMax <= TOY_CLOSURE_THRESHOLDS.pairOppositionMax;
   const rootCoveragePass = rootStats.missingRoots === 0 && !events.firstMissingRoot;
+  const selfHitProbePass = !options.includeSelfHits || rootStats.selfHitRoots > 0;
   const fieldSpeedPass = !events.firstFieldSpeedCrossing;
   const boundedReturnCandidate =
     finalMetrics.radialVelocityMean <= 0 ||
@@ -539,6 +607,15 @@ function createClosureDiagnostics({ options, classification, events, rootStats, 
     [!symmetryResidualPass, "common_sphere_antipodal_symmetry_not_preserved"],
     [!rootCoveragePass, "causal_root_coverage_lost_in_toy_window"],
     [!fieldSpeedPass, "field_speed_crossing_before_retained_solver_promotion"],
+    [!selfHitProbePass, "same_source_self_hit_rows_absent_in_toy_probe"],
+    [
+      !reducedRadiusDiagnostics.checks.postFirstExpansionInwardAccelerationObserved,
+      "post_first_pass_inward_radial_acceleration_absent",
+    ],
+    [
+      !trajectoryDiagnostics.checks.postFirstExpansionReturnObserved,
+      "post_first_pass_bounded_return_turn_absent",
+    ],
     [!boundedReturnCandidate, "bounded_return_or_stable_radius_absent"],
     [true, "retained_history_solver_row_absent"],
   ]);
@@ -561,9 +638,32 @@ function createClosureDiagnostics({ options, classification, events, rootStats, 
       symmetryResidualPass,
       rootCoveragePass,
       fieldSpeedPass,
+      selfHitProbePass,
       boundedReturnCandidate,
+      wiggleWindowPass:
+        trajectoryDiagnostics.checks.symmetryWindowPass &&
+        trajectoryDiagnostics.checks.rootCoveragePass &&
+        trajectoryDiagnostics.checks.fieldSpeedPass &&
+        selfHitProbePass &&
+        trajectoryDiagnostics.checks.postFirstExpansionReturnObserved,
+      reducedRadiusEquationPass:
+        reducedRadiusDiagnostics.checks.symmetryWindowPass &&
+        reducedRadiusDiagnostics.checks.rootCoveragePass &&
+        reducedRadiusDiagnostics.checks.fieldSpeedPass &&
+        reducedRadiusDiagnostics.checks.selfHitProbePass &&
+        reducedRadiusDiagnostics.checks.compressionToExpansionTurnObserved &&
+        reducedRadiusDiagnostics.checks.postFirstExpansionInwardAccelerationObserved,
+    },
+    selfHitProbe: {
+      enabled: options.includeSelfHits,
+      minDelay: cleanNumber(options.selfHitMinDelay),
+      delayedRootCount: rootStats.selfHitRoots,
+      missingDirectedPairRows: rootStats.missingSelfHitRoots,
+      authority: "priority_only_toy_probe_not_accepted_evidence",
     },
     firstClosureBlocker,
+    firstWiggleBlocker: trajectoryDiagnostics.firstWiggleBlocker,
+    firstReducedRadiusBlocker: reducedRadiusDiagnostics.firstReducedRadiusBlocker,
     nextProducerObject: "self_hit_held_release_solver_row",
     missingAcceptedFields: [
       "central_solver_retained_history_row",
@@ -575,6 +675,349 @@ function createClosureDiagnostics({ options, classification, events, rootStats, 
       "retained_branch_certificate",
     ],
   };
+}
+
+function createTrajectoryAccumulator() {
+  return {
+    sampleCount: 0,
+    extrema: {
+      minRadiusMean: null,
+      maxRadiusMean: null,
+      maxRadiusStd: null,
+      maxCenterNorm: null,
+      maxSpeedStd: null,
+      maxPairOppositionMax: null,
+      maxFieldSpeedRatio: null,
+      minSameDistance: null,
+      minOppositeDistance: null,
+    },
+    previousRadialSign: 0,
+    previousRadialVelocityMean: 0,
+    radialTurnRows: [],
+    previousRadialAccelerationSample: null,
+    radialAccelerationRows: [],
+  };
+}
+
+function recordTrajectorySample(accumulator, metrics, state) {
+  accumulator.sampleCount += 1;
+  updateExtremum(accumulator.extrema, "minRadiusMean", metrics, "radiusMean", "min", state);
+  updateExtremum(accumulator.extrema, "maxRadiusMean", metrics, "radiusMean", "max", state);
+  updateExtremum(accumulator.extrema, "maxRadiusStd", metrics, "radiusStd", "max", state);
+  updateExtremum(accumulator.extrema, "maxCenterNorm", {
+    ...metrics,
+    centerNorm: norm(metrics.center),
+  }, "centerNorm", "max", state);
+  updateExtremum(accumulator.extrema, "maxSpeedStd", metrics, "speedStd", "max", state);
+  updateExtremum(accumulator.extrema, "maxPairOppositionMax", metrics, "pairOppositionMax", "max", state);
+  updateExtremum(accumulator.extrema, "maxFieldSpeedRatio", metrics, "fieldSpeedRatioMax", "max", state);
+  updateExtremum(accumulator.extrema, "minSameDistance", metrics, "minSameDistance", "min", state);
+  updateExtremum(accumulator.extrema, "minOppositeDistance", metrics, "minOppositeDistance", "min", state);
+  recordRadialAccelerationSample(accumulator, metrics, state);
+
+  const radialSign = signWithDeadband(metrics.radialVelocityMean, TOY_CLOSURE_THRESHOLDS.radialTurnEpsilon);
+  if (radialSign !== 0) {
+    if (accumulator.previousRadialSign !== 0 && radialSign !== accumulator.previousRadialSign) {
+      accumulator.radialTurnRows.push({
+        time: cleanNumber(metrics.time),
+        stepIndex: state.stepIndex,
+        turnKind:
+          accumulator.previousRadialSign < 0 && radialSign > 0
+            ? "compression_to_expansion"
+            : "expansion_to_compression",
+        previousRadialVelocityMean: cleanNumber(accumulator.previousRadialVelocityMean),
+        radialVelocityMean: cleanNumber(metrics.radialVelocityMean),
+        radiusMean: cleanNumber(metrics.radiusMean),
+        fieldSpeedRatioMax: cleanNumber(metrics.fieldSpeedRatioMax),
+      });
+    }
+    accumulator.previousRadialSign = radialSign;
+    accumulator.previousRadialVelocityMean = metrics.radialVelocityMean;
+  }
+}
+
+function recordRadialAccelerationSample(accumulator, metrics, state) {
+  const previous = accumulator.previousRadialAccelerationSample;
+  if (previous != null) {
+    const deltaTime = metrics.time - previous.time;
+    if (deltaTime > 0) {
+      accumulator.radialAccelerationRows.push({
+        time: cleanNumber(metrics.time),
+        stepIndex: state.stepIndex,
+        radiusMean: cleanNumber(metrics.radiusMean),
+        radialVelocityMean: cleanNumber(metrics.radialVelocityMean),
+        radialAccelerationMean: cleanNumber(
+          (metrics.radialVelocityMean - previous.radialVelocityMean) / deltaTime
+        ),
+        fieldSpeedRatioMax: cleanNumber(metrics.fieldSpeedRatioMax),
+      });
+    }
+  }
+  accumulator.previousRadialAccelerationSample = {
+    time: metrics.time,
+    radialVelocityMean: metrics.radialVelocityMean,
+  };
+}
+
+function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAccumulator }) {
+  const extrema = cleanExtrema(trajectoryAccumulator.extrema);
+  const windowResiduals = {
+    centerNormMax: extrema.maxCenterNorm.value,
+    radiusStdMax: extrema.maxRadiusStd.value,
+    speedStdMax: extrema.maxSpeedStd.value,
+    pairOppositionMax: extrema.maxPairOppositionMax.value,
+  };
+  const symmetryWindowPass =
+    windowResiduals.centerNormMax <= TOY_CLOSURE_THRESHOLDS.centerNorm &&
+    windowResiduals.radiusStdMax <= TOY_CLOSURE_THRESHOLDS.radiusStd &&
+    windowResiduals.speedStdMax <= TOY_CLOSURE_THRESHOLDS.speedStd &&
+    windowResiduals.pairOppositionMax <= TOY_CLOSURE_THRESHOLDS.pairOppositionMax;
+  const rootCoveragePass = rootStats.missingRoots === 0 && !events.firstMissingRoot;
+  const selfHitProbePass = !options.includeSelfHits || rootStats.selfHitRoots > 0;
+  const fieldSpeedPass = !events.firstFieldSpeedCrossing;
+  const firstCompressionToExpansionTurn =
+    trajectoryAccumulator.radialTurnRows.find((row) => row.turnKind === "compression_to_expansion") ?? null;
+  const firstExpansionToCompressionTurnAfterFirstExpansion =
+    firstCompressionToExpansionTurn == null
+      ? null
+      : trajectoryAccumulator.radialTurnRows.find(
+          (row) =>
+            row.turnKind === "expansion_to_compression" &&
+            row.stepIndex > firstCompressionToExpansionTurn.stepIndex
+        ) ?? null;
+  const postFirstExpansionReturnObserved = firstExpansionToCompressionTurnAfterFirstExpansion != null;
+  const status = firstPresent([
+    [!symmetryWindowPass, "same_level_window_lost"],
+    [!rootCoveragePass, "causal_root_coverage_lost"],
+    [!fieldSpeedPass, "single_compression_escape_with_field_speed_crossing"],
+    [!selfHitProbePass, "same_source_self_hit_rows_absent_in_toy_probe"],
+    [!firstCompressionToExpansionTurn, "radial_turn_not_observed"],
+    [!postFirstExpansionReturnObserved, "single_compression_then_escape"],
+    [true, "post_pass_return_candidate_observed_but_retained_branch_unauthorized"],
+  ]);
+  const firstWiggleBlocker = firstPresent([
+    [!symmetryWindowPass, "same_level_window_symmetry_lost"],
+    [!rootCoveragePass, "causal_root_coverage_lost_in_toy_window"],
+    [!fieldSpeedPass, "field_speed_crossing_before_retained_solver_promotion"],
+    [!selfHitProbePass, "same_source_self_hit_rows_absent_in_toy_probe"],
+    [!firstCompressionToExpansionTurn, "first_radial_turn_not_detected"],
+    [!postFirstExpansionReturnObserved, "post_first_pass_return_turn_absent"],
+    [true, "retained_history_solver_row_absent"],
+  ]);
+
+  return {
+    schema: "braid-ideal-held-release-wiggle-window-diagnostic.v1",
+    status,
+    preset: options.preset,
+    priorityOnly: true,
+    retainedBranchClaim: false,
+    acceptedSameLevelBranchClaim: false,
+    scoreMovement: "no_score_increase",
+    sampleCount: trajectoryAccumulator.sampleCount,
+    thresholds: {
+      centerNorm: TOY_CLOSURE_THRESHOLDS.centerNorm,
+      radiusStd: TOY_CLOSURE_THRESHOLDS.radiusStd,
+      speedStd: TOY_CLOSURE_THRESHOLDS.speedStd,
+      pairOppositionMax: TOY_CLOSURE_THRESHOLDS.pairOppositionMax,
+      radialTurnEpsilon: TOY_CLOSURE_THRESHOLDS.radialTurnEpsilon,
+      radialAccelerationEpsilon: TOY_CLOSURE_THRESHOLDS.radialAccelerationEpsilon,
+    },
+    windowResiduals,
+    extrema,
+    radialTurnRows: trajectoryAccumulator.radialTurnRows,
+    firstCompressionToExpansionTurn,
+    firstExpansionToCompressionTurnAfterFirstExpansion,
+    checks: {
+      symmetryWindowPass,
+      rootCoveragePass,
+      fieldSpeedPass,
+      selfHitProbePass,
+      compressionToExpansionTurnObserved: firstCompressionToExpansionTurn != null,
+      postFirstExpansionReturnObserved,
+    },
+    selfHitProbe: {
+      enabled: options.includeSelfHits,
+      minDelay: cleanNumber(options.selfHitMinDelay),
+      delayedRootCount: rootStats.selfHitRoots,
+      missingDirectedPairRows: rootStats.missingSelfHitRoots,
+      authority: "priority_only_toy_probe_not_accepted_evidence",
+    },
+    firstWiggleBlocker,
+    nextProducerObject: "self_hit_held_release_solver_row",
+    missingAcceptedFields: [
+      "central_solver_retained_history_row",
+      "same_source_self_hit_rows",
+      "same_record_causal_root_replay",
+      "retained_wake_history_rows",
+      "same_record_action_ledger",
+      "stability_or_return_margin_row",
+      "retained_branch_certificate",
+    ],
+  };
+}
+
+function createReducedRadiusDiagnostics({ options, trajectoryAccumulator, trajectoryDiagnostics }) {
+  const epsilon = TOY_CLOSURE_THRESHOLDS.radialAccelerationEpsilon;
+  const firstTurn = trajectoryDiagnostics.firstCompressionToExpansionTurn;
+  const radialAccelerationRows = trajectoryAccumulator.radialAccelerationRows;
+  const firstTurnAccelerationRow =
+    firstTurn == null
+      ? null
+      : radialAccelerationRows.find((row) => row.stepIndex === firstTurn.stepIndex) ?? null;
+  const postFirstExpansionRows =
+    firstTurn == null
+      ? []
+      : radialAccelerationRows.filter((row) => row.stepIndex > firstTurn.stepIndex);
+  const postFirstExpansionSummary = summarizeRadialAccelerationRows(postFirstExpansionRows, epsilon);
+  const firstPostFirstExpansionInwardAccelerationRow =
+    postFirstExpansionRows.find((row) => row.radialAccelerationMean < -epsilon) ?? null;
+  const status = firstPresent([
+    [
+      !trajectoryDiagnostics.checks.symmetryWindowPass,
+      "same_level_window_lost_before_reduced_radius_equation",
+    ],
+    [
+      !trajectoryDiagnostics.checks.rootCoveragePass,
+      "causal_root_coverage_lost_before_reduced_radius_equation",
+    ],
+    [
+      !trajectoryDiagnostics.checks.fieldSpeedPass,
+      "field_speed_crossing_before_reduced_radius_equation",
+    ],
+    [
+      !trajectoryDiagnostics.checks.selfHitProbePass,
+      "same_source_self_hit_rows_absent_in_toy_probe",
+    ],
+    [
+      !trajectoryDiagnostics.checks.compressionToExpansionTurnObserved,
+      "compression_to_expansion_turn_absent",
+    ],
+    [
+      !firstPostFirstExpansionInwardAccelerationRow,
+      "post_turn_inward_radial_acceleration_absent",
+    ],
+    [
+      !trajectoryDiagnostics.checks.postFirstExpansionReturnObserved,
+      "post_turn_inward_acceleration_without_return_turn",
+    ],
+    [true, "return_candidate_observed_but_retained_solver_row_absent"],
+  ]);
+  const firstReducedRadiusBlocker = firstPresent([
+    [!trajectoryDiagnostics.checks.symmetryWindowPass, "same_level_window_symmetry_lost"],
+    [!trajectoryDiagnostics.checks.rootCoveragePass, "causal_root_coverage_lost_in_toy_window"],
+    [!trajectoryDiagnostics.checks.fieldSpeedPass, "field_speed_crossing_before_reduced_radius_equation"],
+    [!trajectoryDiagnostics.checks.selfHitProbePass, "same_source_self_hit_rows_absent_in_toy_probe"],
+    [!trajectoryDiagnostics.checks.compressionToExpansionTurnObserved, "first_radial_turn_not_detected"],
+    [!firstPostFirstExpansionInwardAccelerationRow, "post_turn_inward_radial_acceleration_absent"],
+    [!trajectoryDiagnostics.checks.postFirstExpansionReturnObserved, "post_first_pass_return_turn_absent"],
+    [true, "retained_history_solver_row_absent"],
+  ]);
+
+  return {
+    schema: "braid-ideal-reduced-radius-equation-diagnostic.v1",
+    status,
+    preset: options.preset,
+    priorityOnly: true,
+    retainedBranchClaim: false,
+    acceptedSameLevelBranchClaim: false,
+    scoreMovement: "no_score_increase",
+    equationVariables: {
+      radius: "R(t)=mean_i |x_i(t)-C(t)|",
+      radialVelocity: "dot_R(t)=mean_i <x_i-C, dot_x_i-dot_C>/|x_i-C|",
+      radialAcceleration: "ddot_R(t)=Delta dot_R / Delta t finite-difference diagnostic",
+    },
+    thresholds: {
+      radialTurnEpsilon: TOY_CLOSURE_THRESHOLDS.radialTurnEpsilon,
+      radialAccelerationEpsilon: epsilon,
+    },
+    firstCompressionToExpansionTurn: firstTurn,
+    radialAccelerationAtFirstCompressionToExpansionTurn: firstTurnAccelerationRow,
+    firstPostFirstExpansionInwardAccelerationRow,
+    postFirstExpansionSummary,
+    checks: {
+      symmetryWindowPass: trajectoryDiagnostics.checks.symmetryWindowPass,
+      rootCoveragePass: trajectoryDiagnostics.checks.rootCoveragePass,
+      fieldSpeedPass: trajectoryDiagnostics.checks.fieldSpeedPass,
+      selfHitProbePass: trajectoryDiagnostics.checks.selfHitProbePass,
+      compressionToExpansionTurnObserved:
+        trajectoryDiagnostics.checks.compressionToExpansionTurnObserved,
+      postFirstExpansionInwardAccelerationObserved:
+        firstPostFirstExpansionInwardAccelerationRow != null,
+      postFirstExpansionReturnObserved:
+        trajectoryDiagnostics.checks.postFirstExpansionReturnObserved,
+    },
+    firstReducedRadiusBlocker,
+    nextProducerObject: "self_hit_held_release_solver_row",
+    missingAcceptedFields: [
+      "central_solver_retained_history_row",
+      "same_source_self_hit_rows",
+      "same_record_causal_root_replay",
+      "retained_wake_history_rows",
+      "same_record_action_ledger",
+      "stability_or_return_margin_row",
+      "retained_branch_certificate",
+    ],
+  };
+}
+
+function summarizeRadialAccelerationRows(rows, epsilon) {
+  const summary = {
+    rowCount: rows.length,
+    inwardRows: 0,
+    outwardRows: 0,
+    deadbandRows: 0,
+    minRadialAccelerationRow: null,
+    maxRadialAccelerationRow: null,
+  };
+  for (const row of rows) {
+    const sign = signWithDeadband(row.radialAccelerationMean, epsilon);
+    if (sign < 0) {
+      summary.inwardRows += 1;
+    } else if (sign > 0) {
+      summary.outwardRows += 1;
+    } else {
+      summary.deadbandRows += 1;
+    }
+    if (
+      summary.minRadialAccelerationRow == null ||
+      row.radialAccelerationMean < summary.minRadialAccelerationRow.radialAccelerationMean
+    ) {
+      summary.minRadialAccelerationRow = row;
+    }
+    if (
+      summary.maxRadialAccelerationRow == null ||
+      row.radialAccelerationMean > summary.maxRadialAccelerationRow.radialAccelerationMean
+    ) {
+      summary.maxRadialAccelerationRow = row;
+    }
+  }
+  return summary;
+}
+
+function updateExtremum(extrema, outputKey, metrics, inputKey, mode, state) {
+  const value = metrics[inputKey];
+  if (!Number.isFinite(value)) {
+    return;
+  }
+  const current = extrema[outputKey];
+  const shouldReplace =
+    current == null || (mode === "min" ? value < current.value : value > current.value);
+  if (shouldReplace) {
+    extrema[outputKey] = {
+      value: cleanNumber(value),
+      time: cleanNumber(metrics.time),
+      stepIndex: state.stepIndex,
+    };
+  }
+}
+
+function cleanExtrema(extrema) {
+  return Object.fromEntries(
+    Object.entries(extrema).map(([key, value]) => [
+      key,
+      value ?? { value: null, time: null, stepIndex: null },
+    ])
+  );
 }
 
 function detectMetricEvents(events, metrics, state, options) {
@@ -640,6 +1083,13 @@ function mergeRootStats(total, next) {
   total.missingRoots += next.missingRoots;
   total.smallJacobianRoots += next.smallJacobianRoots;
   total.maxRootsPerDirectedPair = Math.max(total.maxRootsPerDirectedPair, next.maxRootsPerDirectedPair);
+  total.selfHitRoots += next.selfHitRoots;
+  total.missingSelfHitRoots += next.missingSelfHitRoots;
+  total.selfHitDirectedPairs += next.selfHitDirectedPairs;
+  total.maxSelfHitRootsPerDirectedPair = Math.max(
+    total.maxSelfHitRootsPerDirectedPair,
+    next.maxSelfHitRootsPerDirectedPair
+  );
   total.maxBranchWeight = Math.max(total.maxBranchWeight, next.maxBranchWeight);
 }
 
@@ -693,6 +1143,8 @@ function createConsoleSummary(result) {
     status: result.status,
     classification: result.classification,
     closureDiagnostics: result.closureDiagnostics,
+    trajectoryDiagnostics: result.trajectoryDiagnostics,
+    reducedRadiusDiagnostics: result.reducedRadiusDiagnostics,
     outputDir: options.outputDir,
     configuration: result.configuration,
     events: result.events,
@@ -790,6 +1242,13 @@ function cleanNumber(value) {
   return Number.isFinite(value) ? Number(value.toPrecision(15)) : value;
 }
 
+function signWithDeadband(value, epsilon) {
+  if (Math.abs(value) <= epsilon) {
+    return 0;
+  }
+  return value < 0 ? -1 : 1;
+}
+
 function requireNext(rawArgs, index, arg) {
   const value = rawArgs[index + 1];
   if (value == null || value.startsWith("--")) {
@@ -846,6 +1305,8 @@ Options:
   --sample-every <integer>     output sample stride, default 10
   --preset <name>              initial decoration, one of face-opposite, axial-paired
   --max-acceleration <number>  optional acceleration cap
+  --include-self-hits          include delayed same-source roots as a priority-only toy probe
+  --self-hit-min-delay <num>   minimum delayed self-hit root delay, default dt
   --no-causal-weight           disable causal branch weighting
   --out <path>                 output directory, default ${DEFAULT_OUTPUT_DIR}
 `);
