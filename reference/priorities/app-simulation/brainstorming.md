@@ -104,3 +104,9 @@ R_{\mathrm{wake}}(W,T)
 $$
 
 Small $R_{\mathrm{wake}}$ is useful for visualization mining and branch-chart intuition, but it is not a promotion gate by itself. If a continuum potential map is not part of the run, the same residual can be applied to a root-weighted wake-event density with the channel named explicitly. The diagnostic can only support a rerun or chart-selection argument when root closure, phase closure, energy/action closure, speed ordering, and the Floquet or return-map stability rows are still reported on the same retained branch record.
+
+## Dynamo Team Insights Simulation Seeds
+
+- Self-hit bifurcation scan: preserve a simulation target that tracks root creation, root merger, Jacobian-floor loss, multistability, and chaotic scattering near $c_f$ thresholds. The run should classify limit-cycle, quasi-periodic, chaotic, and maximum-curvature organizing-center behavior without treating any attractor class as accepted particle ontology.
+- N-body coarse-graining check: any core-level effective-field or frame-field model should be tested against explicit N-architrino delay simulations before promotion. The useful artifact is a comparison report naming the retained variables, omitted variables, mismatch residuals, and failure modes.
+- Finite-memory experiment: test whether locality, finite $c_f$, and distance decay let stable assemblies behave as finite-memory objects. A useful run reports memory depth, omitted-tail contribution, active-root identity under refinement, and bounded particle-plus-wake energy.

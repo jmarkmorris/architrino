@@ -31,7 +31,7 @@ This lane should stay general. It should not assume circular orbits, fixed binar
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
-| [brainstorming.md](brainstorming.md) | Brainstorming packet and first held-release toy result for the six-architrino scenario, same-level ideal-braid hypothesis, translating ellipsoid generalization, non-circular path allowance, and $h$-basin search. | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), and [energy](../../../content/markdown/aaa/dynamics/energy.md) after retained-branch evidence exists. |
+| [brainstorming.md](brainstorming.md) | Brainstorming packet, octahedral decoration-class control, executable closure diagnostic, and held-release toy results for the six-architrino scenario, same-level ideal-braid hypothesis, translating ellipsoid generalization, non-circular path allowance, and $h$-basin search. | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), and [energy](../../../content/markdown/aaa/dynamics/energy.md) after retained-branch evidence exists. |
 
 ## Relation To Prior Packets
 

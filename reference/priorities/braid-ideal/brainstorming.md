@@ -30,6 +30,25 @@ $$
 
 The initial velocities are zero. The system has been held long enough that causal wakes are already past the opposite partners, so the start is not a no-history release. The active wake field already contains source history from all six architrinos.
 
+## Octahedral Decoration Classes
+
+The six axial sites
+
+$$
+\{+x,-x,+y,-y,+z,-z\}
+$$
+
+are the six vertices of a regular octahedron. A balanced decoration with three Positrinos and three Electrinos has $20$ raw assignments, but only two classes under proper 3D rotations of the octahedron.
+
+The distinguishing invariant is the number of same-polarity opposite axial pairs:
+
+| Class | Representative | Opposite-pair pattern | Notes |
+| --- | --- | --- | --- |
+| `face-opposite` | $P:\{+x,+y,+z\}$, $E:\{-x,-y,-z\}$ | Every axis is split $P/E$ | Positrinos occupy one triangular face; Electrinos occupy the opposite face. This is the original held-release seed. |
+| `axial-paired` | $P:\{+x,-x,+y\}$, $E:\{-y,+z,-z\}$ | One $P/P$ axis, one $E/E$ axis, one split $P/E$ axis | This is the only other balanced class up to rotation. |
+
+This is a finite-geometry fact, not a deep topology claim: it is the classification of balanced two-colorings of octahedron vertices under the octahedral rotation group. The `face-opposite` class is the one that carries the strongest tetrahedral face/opposite-face symmetry. The `axial-paired` class is a necessary control because it has the same inventory and sites but not the same symmetry group.
+
 ## Initial Qualitative Response
 
 The first reading of this setup is that it is not three independent axis binaries. It is two staggered same-polarity triangles: a positive triangle in the plane
@@ -153,6 +172,39 @@ This is favorable for the larger Noether braid architecture rather than damaging
 ELI5 summary. In empty space, the six architrinos can keep a beautifully fair dance on one changing sphere, but the sphere keeps growing after the first squeeze. The Noether sea may be the springy surrounding medium that supplies the return response needed for the dance to repeat or settle.
 
 Proof route. Prove the Euclidean-void invariant first, then test which additional retained-history or Noether sea response term changes the reduced radius equation from escape to bounded return. The next useful diagnostic is not just whether the common sphere survives; it is whether the reduced radial motion has a turning point after the first expansion, a stable fixed radius, or a bounded limit cycle.
+
+### Alternate Decoration Toy Run - 2026-07-01
+
+The runner also tested the other balanced octahedral decoration class with the `axial-paired` preset:
+
+$$
+P:\{+x,-x,+y\},
+\qquad
+E:\{-y,+z,-z\}.
+$$
+
+This uses the same held prehistory, zero initial velocity, softening, and partner-wake force law as the original run. The only intended change is the rotation-class representative.
+
+| Run | Classification | Minimum mean radius | Maximum radius spread | Closest same-polarity distance | Closest opposite-polarity distance | Final trend |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| $c_f=1$, causal weight | `same_polarity_close_pass_with_field_speed_crossing` | `0.765662` at `t=1.14` | `2.574311` at `t=3.00` | `0.121101` at `t=1.26` | `0.111360` at `t=1.26` | escape-like expansion, final radius mean `5.015410`, radius spread `2.574311`, outward radial velocity `2.421385` |
+| $c_f=1$, no causal weight | `same_polarity_close_pass_with_field_speed_crossing` | `0.205063` at `t=1.76` | `0.346214` at `t=2.54` | `0.010404` at `t=1.76` | `0.030192` at `t=1.76` | post-close-pass outward drift, final radius mean `1.214720`, radius spread `0.285973`, outward radial velocity `0.245470` |
+| $c_f=6$, causal weight, duration `3` | `same_polarity_close_pass_without_field_speed_crossing` | `0.694501` at `t=1.50` | `2.213518` at `t=3.00` | `0.066287` at `t=1.50` | `0.112384` at `t=1.54` | escape-like expansion, final radius mean `5.363081`, radius spread `2.213518`, outward radial velocity `3.705148` |
+| $c_f=6$, causal weight, duration `6`, `dt=0.004` | `same_polarity_close_pass_without_field_speed_crossing` | `0.695118` at `t=1.48` | `5.372217` at `t=6.00` | `0.080992` at `t=1.48` | `0.139548` at `t=1.52` | escape-like expansion, final radius mean `15.967753`, radius spread `5.372217`, outward radial velocity `3.582438` |
+
+The alternate class does not preserve the common-sphere invariant. The center remains numerically near zero, but the radius spread becomes large. In the default causal-weight run the radius standard deviation is already `2.574311` by `t=3`, compared with roundoff-scale radius spread for the `face-opposite` class. The closest same-polarity and opposite-polarity distances also occur in the same near-pass window rather than in the cleaner face/opposite-face contraction.
+
+Interpretation. The common-sphere invariant is not a generic consequence of placing three Positrinos and three Electrinos on the six axial sites. It appears tied to the `face-opposite` decoration class and its coordinate-permutation plus charge-conjugate inversion symmetry. The `axial-paired` control is therefore useful negative evidence: the same inventory in the same Euclidean void can lose same-level support immediately when the octahedral coloring class changes.
+
+### Executable Closure Diagnostic - 2026-07-01
+
+The runner now emits `closureDiagnostics` with schema `braid-ideal-held-release-toy-closure-diagnostic.v1`. This is a priority-only same-record diagnostic, not an accepted retained branch certificate. It records the preset, symmetry residual thresholds, residual values, root-coverage status, field-speed status, bounded-return status, first closure blocker, and missing accepted fields before any score movement is allowed.
+
+For the default `face-opposite` preset, the diagnostic status is `symmetry_channel_preserved_but_retained_branch_unauthorized`: center, common-radius, common-speed, and opposite-site residuals pass the toy thresholds, but the run still crosses field speed and expands rather than producing a bounded return. The first closure blocker is `field_speed_crossing_before_retained_solver_promotion`.
+
+For the `axial-paired` preset, the diagnostic status is `same_level_support_lost_in_toy_control`: the radius, speed, and opposite-site residuals exceed the toy thresholds by ordinary scale rather than roundoff scale. The first closure blocker is `common_sphere_antipodal_symmetry_not_preserved`.
+
+Both statuses keep `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. The next producer object remains `self_hit_held_release_solver_row`, with missing accepted fields for the central-solver retained-history row, same-source self-hit rows, same-record causal-root replay, retained wake-history rows, same-record action ledger, stability or return-margin row, and retained branch certificate.
 
 ## Ideal Braid Hypothesis
 
@@ -294,3 +346,9 @@ The new contribution here is to make `braid-ideal` a dedicated lane for the comm
 3. If a same-level observable persists, classify it as circular, non-circular but closed, quasi-periodic, or chaotic-but-bounded.
 4. Test whether translation deforms the support as an ellipsoid while preserving same-level action readouts.
 5. Search whether distinct basin families are indexed by $n h$, or whether same-level support exists only in isolated bands.
+
+## Dynamo Team Insights Cross-Feed
+
+- The ideal-braid lane is a natural local testbed for the finite-dimensional stable-manifold question: can a bounded six-body retained-history system collapse to a few same-level observables without losing root-ledger identity or action closure?
+- The attractor vocabulary should stay broad enough for closed curves, quasi-periodic tori, chaotic-but-bounded basin measures, and maximum-curvature organizing centers. Do not reduce the search to circular orbits unless a specific diagnostic projection requires it.
+- If a candidate same-level basin survives, the next mathematical object is a return or transfer map on retained histories with a declared basin partition, not a direct particle-identity claim.

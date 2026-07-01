@@ -5,14 +5,49 @@ import path from "node:path";
 
 const DEFAULT_OUTPUT_DIR = path.join(".tmp", "braid-ideal", "held-release-causal-wake-toy");
 
-const INITIAL_PARTICLES = Object.freeze([
-  Object.freeze({ id: "p_x", chargeType: "positrino", q: 1, position: [1, 0, 0] }),
-  Object.freeze({ id: "p_y", chargeType: "positrino", q: 1, position: [0, 1, 0] }),
-  Object.freeze({ id: "p_z", chargeType: "positrino", q: 1, position: [0, 0, 1] }),
-  Object.freeze({ id: "e_x", chargeType: "electrino", q: -1, position: [-1, 0, 0] }),
-  Object.freeze({ id: "e_y", chargeType: "electrino", q: -1, position: [0, -1, 0] }),
-  Object.freeze({ id: "e_z", chargeType: "electrino", q: -1, position: [0, 0, -1] }),
+const AXIS_SITE_PAIRS = Object.freeze([
+  Object.freeze(["+x", "-x"]),
+  Object.freeze(["+y", "-y"]),
+  Object.freeze(["+z", "-z"]),
 ]);
+
+const TOY_CLOSURE_THRESHOLDS = Object.freeze({
+  centerNorm: 1e-9,
+  radiusStd: 1e-9,
+  speedStd: 1e-9,
+  pairOppositionMax: 1e-9,
+  boundedRadiusMean: 2,
+  boundedRadiusStd: 0.05,
+});
+
+const INITIAL_PARTICLE_PRESETS = Object.freeze({
+  "face-opposite": Object.freeze({
+    label: "face/opposite-face",
+    decorationClass: "one positrino and one electrino on every axis",
+    outputDir: DEFAULT_OUTPUT_DIR,
+    particles: Object.freeze([
+      Object.freeze({ id: "p_x", site: "+x", chargeType: "positrino", q: 1, position: [1, 0, 0] }),
+      Object.freeze({ id: "p_y", site: "+y", chargeType: "positrino", q: 1, position: [0, 1, 0] }),
+      Object.freeze({ id: "p_z", site: "+z", chargeType: "positrino", q: 1, position: [0, 0, 1] }),
+      Object.freeze({ id: "e_x", site: "-x", chargeType: "electrino", q: -1, position: [-1, 0, 0] }),
+      Object.freeze({ id: "e_y", site: "-y", chargeType: "electrino", q: -1, position: [0, -1, 0] }),
+      Object.freeze({ id: "e_z", site: "-z", chargeType: "electrino", q: -1, position: [0, 0, -1] }),
+    ]),
+  }),
+  "axial-paired": Object.freeze({
+    label: "axial-paired",
+    decorationClass: "one P/P axis, one E/E axis, and one split P/E axis",
+    outputDir: path.join(".tmp", "braid-ideal", "held-release-causal-wake-toy-axial-paired"),
+    particles: Object.freeze([
+      Object.freeze({ id: "p_x_plus", site: "+x", chargeType: "positrino", q: 1, position: [1, 0, 0] }),
+      Object.freeze({ id: "p_x_minus", site: "-x", chargeType: "positrino", q: 1, position: [-1, 0, 0] }),
+      Object.freeze({ id: "p_y_plus", site: "+y", chargeType: "positrino", q: 1, position: [0, 1, 0] }),
+      Object.freeze({ id: "e_y_minus", site: "-y", chargeType: "electrino", q: -1, position: [0, -1, 0] }),
+      Object.freeze({ id: "e_z_plus", site: "+z", chargeType: "electrino", q: -1, position: [0, 0, 1] }),
+      Object.freeze({ id: "e_z_minus", site: "-z", chargeType: "electrino", q: -1, position: [0, 0, -1] }),
+    ]),
+  }),
+});
 
 const options = parseArgs(process.argv.slice(2));
 if (options.help) {
@@ -36,7 +71,8 @@ function parseArgs(rawArgs) {
     jacobianFloor: 0.05,
     closeRadius: 0.15,
     sampleEvery: 10,
-    outputDir: DEFAULT_OUTPUT_DIR,
+    outputDir: null,
+    preset: "face-opposite",
     causalWeight: true,
     maxAcceleration: Infinity,
   };
@@ -75,6 +111,12 @@ function parseArgs(rawArgs) {
     } else if (arg === "--out") {
       parsed.outputDir = requireNext(rawArgs, index, arg);
       index += 1;
+    } else if (arg === "--preset") {
+      parsed.preset = requireNext(rawArgs, index, arg);
+      if (!INITIAL_PARTICLE_PRESETS[parsed.preset]) {
+        throw new TypeError(`--preset must be one of: ${Object.keys(INITIAL_PARTICLE_PRESETS).join(", ")}`);
+      }
+      index += 1;
     } else if (arg === "--max-acceleration") {
       parsed.maxAcceleration = positiveFiniteNumber(requireNext(rawArgs, index, arg), "max-acceleration");
       index += 1;
@@ -85,11 +127,14 @@ function parseArgs(rawArgs) {
     }
   }
 
+  parsed.outputDir = parsed.outputDir ?? INITIAL_PARTICLE_PRESETS[parsed.preset].outputDir;
   return parsed;
 }
 
 function runHeldRelease(options) {
-  const particles = INITIAL_PARTICLES.map((particle) => ({
+  const preset = INITIAL_PARTICLE_PRESETS[options.preset];
+  const initialParticles = preset.particles;
+  const particles = initialParticles.map((particle) => ({
     ...particle,
     position: cloneVector(particle.position),
     velocity: [0, 0, 0],
@@ -101,8 +146,8 @@ function runHeldRelease(options) {
   };
   const history = [
     snapshotState(state, -options.holdTime, {
-      positions: INITIAL_PARTICLES.map((particle) => cloneVector(particle.position)),
-      velocities: INITIAL_PARTICLES.map(() => [0, 0, 0]),
+      positions: initialParticles.map((particle) => cloneVector(particle.position)),
+      velocities: initialParticles.map(() => [0, 0, 0]),
     }),
     snapshotState(state),
   ];
@@ -146,6 +191,14 @@ function runHeldRelease(options) {
   }
 
   const finalMetrics = computeMetrics(state, history, options);
+  const classification = classifyRun(finalMetrics, events, options);
+  const closureDiagnostics = createClosureDiagnostics({
+    options,
+    classification,
+    events,
+    rootStats,
+    finalMetrics,
+  });
   return {
     schema: "braid-ideal-held-release-causal-wake-toy-result.v1",
     createdAt: new Date().toISOString(),
@@ -154,7 +207,10 @@ function runHeldRelease(options) {
       "This runner is not a production central-solver claim. It is a scoped delayed-force toy for the held-release seed.",
     configuration: {
       initialCondition: {
-        particles: INITIAL_PARTICLES,
+        preset: options.preset,
+        presetLabel: preset.label,
+        decorationClass: preset.decorationClass,
+        particles: initialParticles,
         velocity: [0, 0, 0],
         heldStationaryFor: options.holdTime,
         releaseTime: 0,
@@ -174,7 +230,8 @@ function runHeldRelease(options) {
       "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
       "Architrinos are treated as primitives without physical mass; acceleration is a numerical response variable.",
     ],
-    classification: classifyRun(finalMetrics, events, options),
+    classification,
+    closureDiagnostics,
     events,
     rootStats,
     finalMetrics,
@@ -385,13 +442,11 @@ function computeMetrics(state, history, options) {
     }
   }
   const pairedOppositionErrors = [
-    ["p_x", "e_x"],
-    ["p_y", "e_y"],
-    ["p_z", "e_z"],
-  ].map(([positiveId, negativeId]) => {
-    const positive = state.particles.find((particle) => particle.id === positiveId);
-    const negative = state.particles.find((particle) => particle.id === negativeId);
-    return norm(add(subtract(positive.position, center), subtract(negative.position, center)));
+    ...AXIS_SITE_PAIRS,
+  ].map(([positiveSite, negativeSite]) => {
+    const positiveSiteParticle = state.particles.find((particle) => particle.site === positiveSite);
+    const negativeSiteParticle = state.particles.find((particle) => particle.site === negativeSite);
+    return norm(add(subtract(positiveSiteParticle.position, center), subtract(negativeSiteParticle.position, center)));
   });
   const radialVelocityMean = mean(
     state.particles.map((particle) => {
@@ -425,6 +480,7 @@ function sampleFrame(state, history, options, metrics) {
     metrics: metrics ?? computeMetrics(state, history, options),
     particles: state.particles.map((particle) => ({
       id: particle.id,
+      site: particle.site,
       chargeType: particle.chargeType,
       q: particle.q,
       position: cleanVector(particle.position),
@@ -459,6 +515,66 @@ function classifyRun(finalMetrics, events, options) {
     return "bounded_equal-radius_transient_candidate";
   }
   return "unclassified_transient";
+}
+
+function createClosureDiagnostics({ options, classification, events, rootStats, finalMetrics }) {
+  const symmetryResiduals = {
+    centerNorm: cleanNumber(norm(finalMetrics.center)),
+    radiusStd: finalMetrics.radiusStd,
+    speedStd: finalMetrics.speedStd,
+    pairOppositionMax: finalMetrics.pairOppositionMax,
+  };
+  const symmetryResidualPass =
+    symmetryResiduals.centerNorm <= TOY_CLOSURE_THRESHOLDS.centerNorm &&
+    symmetryResiduals.radiusStd <= TOY_CLOSURE_THRESHOLDS.radiusStd &&
+    symmetryResiduals.speedStd <= TOY_CLOSURE_THRESHOLDS.speedStd &&
+    symmetryResiduals.pairOppositionMax <= TOY_CLOSURE_THRESHOLDS.pairOppositionMax;
+  const rootCoveragePass = rootStats.missingRoots === 0 && !events.firstMissingRoot;
+  const fieldSpeedPass = !events.firstFieldSpeedCrossing;
+  const boundedReturnCandidate =
+    finalMetrics.radialVelocityMean <= 0 ||
+    (finalMetrics.radiusMean <= TOY_CLOSURE_THRESHOLDS.boundedRadiusMean &&
+      finalMetrics.radiusStd <= TOY_CLOSURE_THRESHOLDS.boundedRadiusStd);
+  const firstClosureBlocker = firstPresent([
+    [!symmetryResidualPass, "common_sphere_antipodal_symmetry_not_preserved"],
+    [!rootCoveragePass, "causal_root_coverage_lost_in_toy_window"],
+    [!fieldSpeedPass, "field_speed_crossing_before_retained_solver_promotion"],
+    [!boundedReturnCandidate, "bounded_return_or_stable_radius_absent"],
+    [true, "retained_history_solver_row_absent"],
+  ]);
+  const sameLevelToyStatus = symmetryResidualPass
+    ? "symmetry_channel_preserved_but_retained_branch_unauthorized"
+    : "same_level_support_lost_in_toy_control";
+
+  return {
+    schema: "braid-ideal-held-release-toy-closure-diagnostic.v1",
+    status: sameLevelToyStatus,
+    preset: options.preset,
+    priorityOnly: true,
+    retainedBranchClaim: false,
+    acceptedSameLevelBranchClaim: false,
+    scoreMovement: "no_score_increase",
+    classification,
+    thresholds: TOY_CLOSURE_THRESHOLDS,
+    symmetryResiduals,
+    checks: {
+      symmetryResidualPass,
+      rootCoveragePass,
+      fieldSpeedPass,
+      boundedReturnCandidate,
+    },
+    firstClosureBlocker,
+    nextProducerObject: "self_hit_held_release_solver_row",
+    missingAcceptedFields: [
+      "central_solver_retained_history_row",
+      "same_source_self_hit_rows",
+      "same_record_causal_root_replay",
+      "retained_wake_history_rows",
+      "same_record_action_ledger",
+      "stability_or_return_margin_row",
+      "retained_branch_certificate",
+    ],
+  };
 }
 
 function detectMetricEvents(events, metrics, state, options) {
@@ -576,12 +692,22 @@ function createConsoleSummary(result) {
     schema: "braid-ideal-held-release-causal-wake-toy-console-summary.v1",
     status: result.status,
     classification: result.classification,
+    closureDiagnostics: result.closureDiagnostics,
     outputDir: options.outputDir,
     configuration: result.configuration,
     events: result.events,
     rootStats: result.rootStats,
     finalMetrics: result.finalMetrics,
   };
+}
+
+function firstPresent(entries) {
+  for (const [condition, value] of entries) {
+    if (condition) {
+      return value;
+    }
+  }
+  return null;
 }
 
 function snapshotState(state, time = state.time, override = null) {
@@ -718,6 +844,7 @@ Options:
   --jacobian-floor <number>    branch-weight floor, default 0.05
   --close-radius <number>      close-pass event threshold, default 0.15
   --sample-every <integer>     output sample stride, default 10
+  --preset <name>              initial decoration, one of face-opposite, axial-paired
   --max-acceleration <number>  optional acceleration cap
   --no-causal-weight           disable causal branch weighting
   --out <path>                 output directory, default ${DEFAULT_OUTPUT_DIR}

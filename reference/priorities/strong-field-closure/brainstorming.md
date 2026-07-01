@@ -42,6 +42,8 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 - There may be a nontrivial connection to Fermi-Dirac versus Pauli exclusion.
 - What threshold lets a dark-sector photon-like mode re-enter the visible photon channel after redshift or medium transport?
 - Could high-redshift compact red sources, including the Little Red Dot class now commonly compared with young AGN or dense SMBH cocoons, become a discriminating observable for dark-sector photon-like release without overriding ordinary AGN, dust, dense-gas, or star-forming explanations?
+- Does a maximal-curvature binary act as a singularity preventer by trapping energy in a self-consistent causal-history loop, and if so, which retained wake-history and boundary-flux rows distinguish reversible trapping from radiative export?
+- Does $\epsilon_{\text{geo}}\sim \ell_{\text{core}}/L_{\text{curv}}$ provide a useful strong-field routing variable, with $\epsilon_{\text{geo}}\ll1$ marking GR-like effective-metric recovery and $\epsilon_{\text{geo}}\sim1$ marking black-hole-core, sharp-gradient, or Planck-alignment deviations?
 
 ## Dark-Sector Photon-Like Mode Detail
 
@@ -63,7 +65,6 @@ The expanded dark-sector photon-like mode brainstorm, candidate assembly registr
 - [dark-sector](../dark-sector/dark-sector.md)
 - [phenomenological-heuristics](../braid-dyadic-lock/phenomenological-heuristics.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [dynamo-team-insights](../deferred/dynamo-team-insights.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

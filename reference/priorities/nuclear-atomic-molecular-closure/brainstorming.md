@@ -87,6 +87,8 @@ $$
 
 ## Enzymes And Biomolecular Mechanisms
 
+Status. Parked idea surface formerly represented by the `biomolecular_mechanism_brainstorm` control-file row. Promote only after a concrete enzyme, DNA/RNA, conformational, or biological information-bearing mechanism target is selected.
+
 Candidate focus:
 
 - enzyme active sites as molecular geometry plus local response conditions that select reaction paths;
@@ -118,4 +120,5 @@ This is only a candidate frame. It becomes useful when one enzyme, DNA/RNA motif
 2. `electron_orbital_triage` — Convert the deferred electron-orbitals note into a claim-leveled atomic-structure packet, preserving standard notation while isolating the localized-assembly interpretation.
 3. `first_molecular_bond_target` — Choose one simple molecule and define the first bond/event ledger without importing ordinary chemistry labels as source fields.
 4. `enzyme_active_site_bridge` — Choose one enzyme mechanism and restate it as molecular geometry, action-path selection, energy routing, and record-state stability.
+5. `biomolecular_mechanism_bridge` — Preserve enzyme, DNA/RNA, conformational, and information-bearing molecular-geometry ideas as physical assembly targets, not biological overclaims, until one case becomes concrete enough for a queue item or packet.
 5. `dna_record_integrity_bridge` — Choose one DNA/RNA structural motif or damage/repair event and express it as information-bearing molecular geometry plus event-ledger integrity.

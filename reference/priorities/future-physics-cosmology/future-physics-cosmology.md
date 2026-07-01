@@ -24,6 +24,7 @@ The lane is priority-only. It does not change the claim level of any $\mathbb{A}
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
+| [brainstorming.md](brainstorming.md) | Idea and insight parking for loose research, funding, institutional, publishing, public-impact, and corporate R&D notes that are not ready to become queue items or working notes. | Future public strategy prose, research-program planning, or a later reader-facing outlook section after claim-level review. |
 | [research-revolution.md](research-revolution.md) | Working note for funding, academic/institutional research, publishing, impact, and corporate R&D implications. | Future public strategy prose, research-program planning, or a later reader-facing outlook section after claim-level review. |
 
 ## Promotion Map

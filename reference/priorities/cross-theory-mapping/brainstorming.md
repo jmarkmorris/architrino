@@ -10,4 +10,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
-- No loose ideas have been moved here yet.
+### Dynamo Team Insights Mining
+
+- Refractive-gravity comparison: Fermat-path language is useful as a bridge for signal propagation in an inhomogeneous Noether sea, but it is not a full effective metric unless lapse, drift, spatial compliance, and signal-delay rows share one constitutive record. Route comparison details through emergent-metric and PPN recovery work.
+- Weak-solution comparison: entropy-condition language may help frame selection near self-hit singularities, but should stay a comparison analogy until the proof-program lane supplies an AAA-native admissibility condition.

@@ -10,4 +10,8 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
-- No loose ideas have been moved here yet.
+### Dynamo Team Insights Mining
+
+- Geometry-export target: organize assembly phase space as a dynamical atlas with local charts by density, self-hit strength, speed regime, and retained-root class, plus gluing maps between branch domains. Promote only after one chart transition is expressed as a concrete retained-row handoff.
+- Effective-frame target: the frame field should be a function of declared assembly and Noether sea variables, including $\rho_{\text{NS}}(\mathbf{x},t)$, local flow, orientation fields, and internal tri-binary state. Promote into the bridge packet only when the variable list becomes a shared source record for clock, ruler, signal, and weak-field projections.
+- Ontology guardrail: curvature is an observer-level frame-bundle or effective-metric readout, not curvature of the Euclidean void. Any refractive or Fermat-path language should remain bridge language until the ADM / Cartan rows and PPN rows consume the same constitutive record.

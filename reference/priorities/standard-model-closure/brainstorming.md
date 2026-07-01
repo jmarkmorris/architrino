@@ -10,4 +10,7 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
-- No loose ideas have been moved here yet.
+### Dynamo Team Insights Mining
+
+- Derivation-closure target: discrete charge quantization with $\epsilon=e/6$ should be tested as a consequence of six retained polarity sites plus causal linking, winding, and stability selection, not as an arbitrary charge table. Promotion requires a branch-derived sign-pattern rule and a failure case excluding unobserved low-energy stable charge patterns.
+- Gauge-structure implication: if causal linking selects allowed six-site sign counts, route the result into the low-energy charge and gauge mapping only after the same branch evidence also satisfies dynamical exclusion of non-Standard-Model stable assemblies.

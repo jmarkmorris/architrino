@@ -67,6 +67,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 
 | File | Role | Primary promotion targets |
 | --- | --- | --- |
+| [brainstorming.md](brainstorming.md) | Idea and insight parking for loose dark-sector candidate notes that are not ready to become queue items, candidate packets, simulation targets, or corpus destinations. | Existing dark-sector, strong-field, cosmology, radiation, and app targets after a concrete promotion route is selected. |
 | [dark-sector-photon-like-mode.md](dark-sector-photon-like-mode.md) | Working packet for black-hole-adjacent dark-sector photon-like modes, redshift-triggered reactions, visible-channel re-entry, CMB speculation, and Little Red Dot convergence tests. | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [CMB](../../../content/markdown/aaa/cosmology/CMB.md), [black-holes](../../../content/markdown/aaa/spacetime/black-holes.md), [radiation](../../../content/markdown/aaa/reactions/radiation.md) |
 | [wimp-susy-benchmark.md](wimp-susy-benchmark.md) | Source-limited lane-native packet containing the Jungman WIMP benchmark vector and supersymmetry guardrail. | [dark-matter](../../../content/markdown/aaa/cosmology/dark-matter.md) and the candidate assembly registry |
 

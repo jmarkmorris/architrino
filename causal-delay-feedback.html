@@ -254,8 +254,8 @@
       }
 
       .causal-legend-line {
-        width: 28px;
-        height: 16px;
+        width: 34px;
+        height: 22px;
         position: relative;
       }
 
@@ -264,7 +264,8 @@
         position: absolute;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 5px;
+        border-radius: 999px;
         content: "";
       }
 
@@ -279,21 +280,47 @@
       }
 
       .causal-legend-dots {
-        display: inline-grid;
-        grid-template-columns: repeat(5, 4px);
-        grid-auto-rows: 4px;
-        gap: 3px;
+        position: relative;
+        width: 34px;
+        height: 18px;
+        flex: 0 0 34px;
       }
 
       .causal-legend-dots i {
-        width: 4px;
-        height: 4px;
+        position: absolute;
+        width: 3px;
+        height: 3px;
         border-radius: 999px;
         background: var(--causal-positrino-wake-color, #ff96a6);
       }
 
       .causal-legend-dots i:nth-child(even) {
         background: var(--causal-electrino-wake-color, #96aaff);
+      }
+
+      .causal-legend-dots i:nth-child(1) {
+        left: 1px;
+        top: 12px;
+      }
+
+      .causal-legend-dots i:nth-child(2) {
+        left: 8px;
+        top: 7px;
+      }
+
+      .causal-legend-dots i:nth-child(3) {
+        left: 16px;
+        top: 5px;
+      }
+
+      .causal-legend-dots i:nth-child(4) {
+        left: 24px;
+        top: 7px;
+      }
+
+      .causal-legend-dots i:nth-child(5) {
+        left: 31px;
+        top: 12px;
       }
 
       .causal-settings {

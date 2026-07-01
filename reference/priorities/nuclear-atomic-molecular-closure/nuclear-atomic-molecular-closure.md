@@ -15,7 +15,6 @@
 2. `nuclear_radiation_worked_examples` — Track alpha, beta, gamma, radioisotope, and heat-channel worked examples as nuclear reaction provenance before routing photon-source details to `EQ-29`. Status: `next`. Depends on: `nuclear_binding_packet_ownership`.
 3. `atomic_orbital_import` — Triage the deferred electron-orbitals note into a cleaner atomic-structure and spectra bridge. Status: `queued`. Depends on: none.
 4. `molecular_bonding_bridge` — Define the first molecular bonding and geometry targets from atomic ledger, electron-envelope, Noether sea response, and reaction-provenance rows. Status: `queued`. Depends on: `atomic_orbital_import`.
-5. `biomolecular_mechanism_brainstorm` — Preserve enzyme, DNA/RNA, conformational, and biological information-bearing mechanism ideas as physical assembly targets, not biological overclaims. Status: `idea`. Depends on: `molecular_bonding_bridge`.
 
 ## Scope
 
@@ -59,7 +58,6 @@ Use this bucket when the question is naturally about a physical assembly above t
 | `nuclear_radiation_worked_examples` | [nuclear-binding-closure.md](nuclear-binding-closure.md) and [brainstorming.md](brainstorming.md) | [radiation](../../../content/markdown/aaa/reactions/radiation.md) and [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md) | A nuclear event ledger names parent assembly, daughter assembly, emitted products, recoil, heat, photon rows when present, Noether sea update, and path-history provenance without hidden loss. |
 | `atomic_orbital_import` | [deferred/electron-orbitals](../deferred/electron-orbitals/electron-orbitals.md) and [brainstorming.md](brainstorming.md) | [atomic-structure](../../../content/markdown/aaa/nuclear-atomic/atomic-structure.md), [atomic-spectra](../../../content/markdown/aaa/nuclear-atomic/atomic-spectra.md), and [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) | Orbitals are restated as effective occupancy/readout patterns for localized assemblies with explicit claim level and without importing probability clouds as ontology. |
 | `molecular_bonding_bridge` | [brainstorming.md](brainstorming.md) | Future molecular or chemistry-facing corpus target after selection | A molecule-level target identifies participating nuclei, electron-envelope rows, bond geometry, reaction/path ledger, stability margin, and failure mode. |
-| `biomolecular_mechanism_brainstorm` | [brainstorming.md](brainstorming.md) | Future biomolecular assembly packet after selection | Enzyme, DNA/RNA, or conformational claims are phrased as molecular geometry, energy routing, reaction-path selection, information-bearing structure, or record stability, not as broad biological explanation. |
 
 ## Related Priorities
 

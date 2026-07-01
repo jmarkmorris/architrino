@@ -374,3 +374,9 @@ Requirements:
 3. `self_hit_near_cf` - Best single-page correction for the common misconception that self-hit is decided by speed alone.
 4. `branch_geometry_explorer` - Best bridge from visual teaching into solver diagnostics.
 5. `threshold_crossing_map` - Best conceptual bridge into measurement, resonance changes, and deterministic basin selection.
+
+## Dynamo Team Insights App Notes
+
+- The deferred geometry/dynamics packet reinforces the existing app order rather than adding a new top-priority app. `path_history_ledger`, `self_hit_near_cf`, `branch_geometry_explorer`, `born_rule_basin_measure`, `action_ledger_conservation`, `noether_sea_response_tensor`, and `mass_map_exposure_viewer` already cover the strongest visualizable signals.
+- A later `dynamical_atlas_explorer` may be useful only after the theory side supplies concrete chart labels and gluing maps. Until then, fold atlas visuals into `branch_geometry_explorer` and solver diagnostics rather than creating another app concept.
+- App language should keep every signal candidate-level: visualizations may teach path-history state, multiple roots, basin measures, reactive wake storage, and response tensors, but they must not imply completed Lorentz, Born-rule, mass-map, or effective-metric derivations.

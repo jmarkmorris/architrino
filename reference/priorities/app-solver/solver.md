@@ -1276,6 +1276,10 @@ Lower-priority solver task-queue items:
 
 1. `gpu_feasibility_harness_followup` - Priority: low. Keep production GPU acceleration deferred, but continue [gpu-feasibility-harness](gpu-feasibility-harness.md) as a learning and measurement track. The next useful work is to test whether a more solver-representative GPU kernel can beat the CPU by a large, repeatable margin after setup, transfer, dispatch, readback, and CPU verification costs are included. Candidate improvements include persistent GPU buffers, dispatch-only timing, GPU-side reduction or checksum readback, workgroup-size tuning, larger source-receiver and time-slab packets, and an optional native Metal/C++ comparison harness. Do not migrate app-facing solver paths to GPU unless the promotion criteria in the feasibility harness are met.
 
+## Brainstorming
+
+[brainstorming.md](brainstorming.md) is the idea and insight parking file for solver-side notes that are not ready to become task-queue items, contract changes, validation targets, or app/document destinations.
+
 ## Related Priorities
 
 - [h39-solver-impact-audit](h39-solver-impact-audit.md)

@@ -10,4 +10,8 @@ This file preserves ideas and insights that are working toward promotion to an e
 
 ## Ideas And Insights
 
-- No loose ideas have been moved here yet.
+### Dynamo Team Insights Mining
+
+- Candidate theorem target: prove when a finite-dimensional stable manifold can emerge from an infinite-dimensional, state-dependent delay system. Minimal theorem shape: a retained-history flow, a local dominance bound, a compact branch-support condition, and a projection map whose error remains below the stability margin.
+- Weak-solution target: if Lipschitz continuity fails near causal-wake singularities or root bifurcations, formulate a weak solution plus selection principle for delayed self-hit dynamics. Keep the entropy-condition analogy as comparison language only; promotion requires an AAA-native selection functional or admissibility inequality.
+- Noether history-functional target: derive the particle-plus-wake energy functional from the same delayed action and regulator used by the force law. Failure mode: the proposed $E_{\text{wake}}$ does not share branch identity, boundary convention, or finite-memory endpoints with the Master EOM row.

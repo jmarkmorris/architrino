@@ -1193,9 +1193,14 @@ test("causal delay feedback canvas swatches match the iOS reader theme colors", 
 test("causal delay feedback legend lozenges use selected canvas and trace colors", () => {
   const html = readCausalDelayFeedbackHtml();
   assert.equal(html.includes("background: var(--causal-selected-canvas-color, #4b0082);"), true);
-  assert.match(html, /\.causal-legend-line\s*\{[^}]*height: 16px;/);
+  assert.match(html, /\.causal-legend-line\s*\{[^}]*height: 22px;/);
+  assert.match(html, /\.causal-legend-line::before,\s*\.causal-legend-line::after\s*\{[^}]*height: 5px;/);
+  assert.equal(html.includes("border-radius: 999px;"), true);
   assert.equal(html.includes("background: var(--causal-positrino-color, #ff0000);"), true);
   assert.equal(html.includes("background: var(--causal-electrino-color, #0000ff);"), true);
+  assert.match(html, /\.causal-legend-dots\s*\{[^}]*height: 18px;/);
+  assert.match(html, /\.causal-legend-dots i\s*\{[^}]*width: 3px;[^}]*height: 3px;/);
+  assert.match(html, /\.causal-legend-dots i:nth-child\(3\)\s*\{[^}]*top: 5px;/);
 
   const colorSwatches = new FakeElement();
   const appStyle = {};
