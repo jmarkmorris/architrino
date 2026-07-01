@@ -305,7 +305,15 @@ export function mountBorgApp(options = {}) {
       ["Sample interval", manifest.simulationEnvelope.sampleInterval],
       ["Playback source", manifest.currentStateAndFrameSources.playbackFrameSource],
       ["Initial layout", manifest.initialConditions.initialLinePolicy],
-      ["Pair action scale", manifest.sourceBridgeRun.pairAccelerationScale],
+      ["Solver mode", manifest.sourceBridgeRun.solverMode],
+      ["Motion law", manifest.sourceBridgeRun.motionLaw],
+      ["Parameter set", manifest.sourceBridgeRun.fixedPhysicalParameterSetId],
+      ["Parameter authority", manifest.sourceBridgeRun.fixedPhysicalParameterAuthority],
+      ["Visual tuning", manifest.sourceBridgeRun.visualTuningStatus],
+      ["Visual authority", manifest.sourceBridgeRun.visualBehaviorAuthority],
+      ["Master equation", manifest.sourceBridgeRun.nativeMasterEquationStatus],
+      ["ME probe", manifest.nativeMasterEquationProbe?.statusCode],
+      ["ME fallback", manifest.nativeMasterEquationProbe?.fallbackDecision],
       ["Path rows", manifest.sourceBridgeRun.pathRowCount],
     ]);
 
@@ -813,7 +821,7 @@ export function mountBorgApp(options = {}) {
   function solverPositionToWorld(position) {
     const center = manifest.simulationEnvelope.centralVolume.center;
     return new THREE.Vector3(
-      (position.x - center.x) * WORLD_UNITS_PER_SOLVER_UNIT,
+      (position.x - center.x) * worldUnitsPerSolverUnit,
       (position.y - center.y) * worldUnitsPerSolverUnit,
       (position.z - center.z) * worldUnitsPerSolverUnit,
     );

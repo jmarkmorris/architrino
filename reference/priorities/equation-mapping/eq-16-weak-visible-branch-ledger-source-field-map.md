@@ -10,8 +10,10 @@
   - [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json)
   - [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json)
   - [weak-gauge-exposure-domain-muon-ledger-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-ledger-evidence.v1.json)
+  - [weak-gauge-exposure-domain-muon-projection-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json)
 - Durable evidence sources:
   - [weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json)
+  - [weak-projection-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json)
 - Negative-control fixtures:
   - [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json)
   - [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json)
@@ -21,7 +23,7 @@
 
 ## Boundary
 
-This map does not populate the full accepted `EQ-16` evidence object. It now has one durable source-backed muon-decay `weak_visible_branch_ledger` on a fixed weak-visible domain. It is not the `ordered_frame_loop` route for `EQ-15`/`EQ-27`, and it is not the `neutral_lepton_retained_branch` route for `EQ-16A`.
+This map does not populate the full accepted `EQ-16` evidence object. It now has one durable source-backed muon-decay `weak_visible_branch_ledger` and one same-domain `weak_projection` row on a fixed weak-visible domain. It is not the `ordered_frame_loop` route for `EQ-15`/`EQ-27`, and it is not the `neutral_lepton_retained_branch` route for `EQ-16A`.
 
 No score changes.
 
@@ -33,11 +35,11 @@ No score changes.
 | Current score and closure driver | Score `2`; recover gauge and Standard Model-facing equations as sector-visible projections with reaction provenance. |
 | Primary AAA carrier | `weak_visible_branch_ledger` on one fixed weak-visible retained domain. |
 | Smallest accepted evidence object | One accepted weak-visible branch ledger with projection, quotient, exposure, `V-A`, CKM/PMNS readouts, provenance, covariance, reaction-event, Noether sea rows, and no-retune on the same domain. |
-| Exact first blocker | Muon evidence lane: `missing_accepted_weak_projection`; baseline skeleton: `missing_accepted_weak_visible_branch_ledger`. |
-| Existing scripts/fixtures/packets | [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs), [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json), [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json), [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json), [weak-gauge-exposure-domain-muon-ledger-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-ledger-evidence.v1.json), [weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json), [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json), and [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json). |
+| Exact first blocker | Muon projection lane: `missing_accepted_weak_quotient`; muon ledger lane: `missing_accepted_weak_projection`; baseline skeleton: `missing_accepted_weak_visible_branch_ledger`. |
+| Existing scripts/fixtures/packets | [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs), [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json), [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json), [weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-ledger-source-contract-attempt.v1.json), [weak-gauge-exposure-domain-muon-ledger-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-ledger-evidence.v1.json), [weak-gauge-exposure-domain-muon-projection-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json), [weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json), [weak-projection-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json), [weak-gauge-exposure-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-split-negative-control.v1.json), and [weak-gauge-exposure-domain-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-priority-source-negative-control.v1.json). |
 | Candidate breakthrough angle | Use `EQ-16A` PMNS/common-clock as a consumer clue only; PMNS must read from the same weak-exposure domain, but the neutral-lepton branch cannot substitute for the weak-visible ledger. |
 | Fail-closed negative control | Durable-source numeric rows with `pmns_overlap_readout.domainId` on a different domain must fail before score review at hidden domain split. |
-| Smaller next action | Populate one durable `weak_projection` row on `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then require the checker to advance only to `missing_accepted_weak_quotient` with no score change. |
+| Smaller next action | Populate one durable `weak_quotient` row on `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then require the checker to advance only to `missing_accepted_weak_exposure_record` with no score change. |
 
 ## Accepted-Object Contract
 
@@ -129,12 +131,27 @@ The expected normal run reports `status: blocked_missing_rows`, `scoreDecision: 
 
 This is the first retained weak-visible branch-ledger artifact for `EQ-16`; it is not a full `EQ-16` score artifact and does not supply the `EQ-16A` neutral-lepton retained branch.
 
-## Next Action
+## Muon Projection Evidence Probe
 
-Create one durable source-backed `weak_projection` row for `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then run:
+The first durable non-priority projection source is [weak-projection-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json). It records the same-domain projection from the retained muon weak-visible ledger into the observer weak-visible comparison row, keeping measured charged-lepton spectrum, polarization/lifetime, and Michel-fit rows separate from inferred neutral-lepton rows. The official source layer is still the PDG 2026 muon listing and PDG 2026 muon-decay-parameter review; the durable source consumed by the checker is the local JSON projection evidence file, not the raw URLs.
+
+Run the muon projection evidence lane:
 
 ```sh
-node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-muon-ledger-evidence.v1.json --summary --pretty
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json --summary --pretty
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json --summary --pretty --require-populated
 ```
 
-Until that row exists, the correct result for the muon evidence lane remains `missing_accepted_weak_projection`.
+The expected normal run reports `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, `sourceEvidencePass: true`, accepted `weak_visible_branch_ledger` and `weak_projection`, shared domain `D_weak_visible_attempt_0001`, and `nextBlocker: missing_accepted_weak_quotient`. The `--require-populated` form must still exit nonzero because the packet has not populated quotient, exposure, `V-A`, CKM, PMNS, provenance, covariance, reaction-event, or Noether sea rows.
+
+This is the first same-domain weak projection artifact for `EQ-16`; it is not a full `EQ-16` score artifact and does not supply the `EQ-16A` neutral-lepton retained branch.
+
+## Next Action
+
+Create one durable source-backed `weak_quotient` row for `D_weak_visible_attempt_0001` / `A_weak_attempt_0001`, then run:
+
+```sh
+node scripts/equation-mapping/weak-gauge-exposure-domain.mjs --input scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json --summary --pretty
+```
+
+Until that row exists, the correct result for the muon projection evidence lane remains `missing_accepted_weak_quotient`.

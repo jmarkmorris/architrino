@@ -52,17 +52,31 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | --- | --- |
 | `nativeSolverStatus` | `native-backed-now` |
 | `bridgeExecutionPath` | `native_c_abi` |
-| `duration` | `30` solver-time units |
+| `sideLength` | `100` solver units |
+| `centralVolumeSideLength` | `80` solver units |
+| `faceBufferMargin` | `10` solver units |
+| `duration` | `300` solver-time units |
 | `sampleInterval` | `0.2` solver-time units |
-| `nativeKeyframeCount` | `151` native keyframes |
-| `frameCount` | `2416` native current-state frame rows, sixteen architrino rows per keyframe |
-| `pathRowCount` | `2400` native path-history rows |
+| `nativeKeyframeCount` | `1501` native keyframes |
+| `frameCount` | `24016` native current-state frame rows, sixteen architrino rows per keyframe |
+| `pathRowCount` | `24016` native path-history rows |
 | `playbackFrameSource` | `native-keyframes` |
 | `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
+| `runKind` | `motionSimulation` |
+| `solverMode` | `native-fixed-parameter-default-motion` |
+| `motionLaw` | `fixed_parameter_inertial_motion_v1` |
+| `fixedPhysicalParameterSetId` | `borg-fixed-physical-parameters.v1` |
+| `fixedPhysicalParameterAuthority` | `manifest-declared-fixed-parameter-contract` |
+| `visualTuningStatus` | `not-visual-tuned` |
+| `visualBehaviorAuthority` | `native-output-only` |
+| `nativeMasterEquationStatus` | `native-fixture-capability-missing` |
+| `nativeMasterEquationProbe.statusCode` | `native_capability_missing` |
+| `nativeMasterEquationProbe.firstFailureCode` | `native_master_equation_fixture_missing` |
+| `nativeMasterEquationProbe.requiredNativeExport` | `architrino_solver_integrate_master_equation_motion_f64` |
+| `nativeMasterEquationProbe.fallbackDecision` | `default-motion-baseline-selected` |
 | `initialLinePolicy` | `seeded-random-interior-cube` |
 | `polaritySignConvention` | `positrino-positive-electrino-negative`, with positrino charge `1` and electrino charge `-1` |
 | `velocityPolicy` | `seeded-random-small-3d`, with `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2` |
-| `pairAccelerationScale` | `1.2` |
 | `renderPixelSize` | `3840x2160` |
 | `centralArchitrinoCount` | `8` |
 | `architrinoCount` | `16` |
@@ -145,4 +159,4 @@ The first screen must show the simulation before manifest details. Source manife
 
 ## Next Exact Build Burden
 
-Measure the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The next artifact should report static transfer size, browser heap, GPU memory proxy, viewport/canvas sizing, and a 3840 by 2160 capture or verified render manifest while preserving all fail-closed authority states.
+Build `native_master_equation_fixed_parameter_fixture`. The next artifact should extend the native central solver contract and bridge so Borg can request a fixed-physical-parameter many-body master-equation run and receive authoritative acceleration evidence, path histories, and wake/interaction rows. Browser surface-budget measurement remains required later, but this surface design now advertises the missing native master-equation fixture as the next implementation handoff.

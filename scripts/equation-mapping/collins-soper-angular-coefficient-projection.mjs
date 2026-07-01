@@ -10,8 +10,12 @@ const DEFAULT_INPUT_PATH = path.join(
 );
 const INPUT_SCHEMA =
   "aaa-equation-map-collins-soper-angular-coefficient-projection-input/v1";
+const SWEEP_INPUT_SCHEMA =
+  "aaa-equation-map-collins-soper-angular-coefficient-projection-sweep/v1";
 const OUTPUT_SCHEMA =
   "aaa-equation-map-collins-soper-angular-coefficient-projection-check/v1";
+const SWEEP_OUTPUT_SCHEMA =
+  "aaa-equation-map-collins-soper-angular-coefficient-projection-sweep-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
 const COEFFICIENT_ORDER = ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7"];
@@ -109,19 +113,10 @@ if (args.help) {
   process.exit(0);
 }
 
-const inputPath = path.resolve(args.input);
-const input = readJson(inputPath);
-const inputWithStabilityProbes = args.componentStabilityProbes
-  ? mergeComponentStabilityProbes(input, readJson(path.resolve(args.componentStabilityProbes)))
-  : input;
-const inputWithUniquenessCertificate = args.componentUniquenessCertificate
-  ? mergeComponentUniquenessCertificate(
-      inputWithStabilityProbes,
-      readJson(path.resolve(args.componentUniquenessCertificate)),
-    )
-  : inputWithStabilityProbes;
-const evaluatedInput = applyCliControls(inputWithUniquenessCertificate, args);
-const output = evaluateProjection(evaluatedInput, inputPath);
+const sidecars = readSidecars(args);
+const output = args.sweep
+  ? evaluateSweep(readJson(path.resolve(args.sweep)), path.resolve(args.sweep), args, sidecars)
+  : evaluateInputPath(path.resolve(args.input), args, sidecars);
 writeOutput(output, args);
 
 if (args.requirePopulated && output.summary.status !== "populated") {
@@ -152,6 +147,7 @@ if (
 function parseArgs(argv) {
   const parsed = {
     input: DEFAULT_INPUT_PATH,
+    sweep: null,
     out: null,
     pretty: false,
     summary: false,
@@ -168,6 +164,8 @@ function parseArgs(argv) {
     const arg = argv[index];
     if (arg === "--input") {
       parsed.input = argv[++index];
+    } else if (arg === "--sweep") {
+      parsed.sweep = argv[++index];
     } else if (arg === "--out") {
       parsed.out = argv[++index];
     } else if (arg === "--pretty") {
@@ -202,6 +200,7 @@ function printHelp() {
 
 Options:
   --input PATH          Collins-Soper projection input JSON.
+  --sweep PATH          Collins-Soper projection sweep JSON with multiple cases.
   --out PATH            Write JSON output to PATH.
   --summary             Emit compact summary JSON.
   --pretty              Pretty-print JSON output.
@@ -229,6 +228,333 @@ density-matrix labels as primitives.`);
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function readSidecars(parsedArgs) {
+  return {
+    componentStabilityProbes: parsedArgs.componentStabilityProbes
+      ? readJson(path.resolve(parsedArgs.componentStabilityProbes))
+      : null,
+    componentUniquenessCertificate: parsedArgs.componentUniquenessCertificate
+      ? readJson(path.resolve(parsedArgs.componentUniquenessCertificate))
+      : null,
+  };
+}
+
+function evaluateInputPath(inputPath, parsedArgs, sidecars) {
+  const input = readJson(inputPath);
+  return evaluateProjection(prepareInputForEvaluation(input, parsedArgs, sidecars), inputPath);
+}
+
+function prepareInputForEvaluation(input, parsedArgs, sidecars) {
+  const inputWithStabilityProbes = sidecars.componentStabilityProbes
+    ? mergeComponentStabilityProbes(input, sidecars.componentStabilityProbes)
+    : input;
+  const inputWithUniquenessCertificate = sidecars.componentUniquenessCertificate
+    ? mergeComponentUniquenessCertificate(
+        inputWithStabilityProbes,
+        sidecars.componentUniquenessCertificate,
+      )
+    : inputWithStabilityProbes;
+  return applyCliControls(inputWithUniquenessCertificate, parsedArgs);
+}
+
+function evaluateSweep(sweepInput, sweepPath, parsedArgs, sidecars) {
+  const sweepDirectory = path.dirname(sweepPath);
+  const baseInputPath = path.resolve(
+    sweepDirectory,
+    sweepInput.baseInputPath ?? DEFAULT_INPUT_PATH,
+  );
+  const baseInput = readJson(baseInputPath);
+  const cases = Array.isArray(sweepInput.cases) ? sweepInput.cases : [];
+  const evaluatedCases = cases.map((sweepCase, index) => {
+    const materializedInput = materializeSweepCase({
+      baseInput,
+      sweepInput,
+      sweepCase,
+      index,
+    });
+    const preparedInput = prepareInputForEvaluation(materializedInput, parsedArgs, sidecars);
+    const output = evaluateProjection(
+      preparedInput,
+      `${sweepPath}#${sweepCase.caseId ?? index + 1}`,
+    );
+    return {
+      caseId: sweepCase.caseId ?? `case_${index + 1}`,
+      benchmarkBin: preparedInput.measurement?.benchmarkBin ?? null,
+      pTZGeV: sweepCase.pTZGeV ?? null,
+      output,
+    };
+  });
+  const sweepSummary = summarizeSweep({
+    sweepInput,
+    cases: evaluatedCases,
+    schemaOk: sweepInput.schema === SWEEP_INPUT_SCHEMA,
+    baseInputPath,
+  });
+  return {
+    schema: SWEEP_OUTPUT_SCHEMA,
+    generatedAt: new Date().toISOString(),
+    sweep: {
+      sweepId: sweepInput.sweepId ?? null,
+      sourceId: sweepInput.sourceId ?? null,
+      claimLevel: sweepInput.claimLevel ?? null,
+      baseInputPath: path.relative(process.cwd(), baseInputPath),
+      caseCount: cases.length,
+      coefficientOrder: COEFFICIENT_ORDER,
+      pTZGeV: cases.map((sweepCase) => sweepCase.pTZGeV ?? null),
+    },
+    summary: sweepSummary,
+    cases: evaluatedCases.map(({ caseId, benchmarkBin, pTZGeV, output }) => ({
+      caseId,
+      benchmarkBin,
+      pTZGeV,
+      summary: output.summary,
+      componentStability: output.componentStability,
+      componentUniqueness: output.componentUniqueness,
+      coefficientSource: output.coefficientSource,
+      comparison: {
+        chi2: output.comparison.chi2,
+        ndof: output.comparison.ndof,
+        pulls: output.comparison.pulls,
+      },
+      aFB: output.aFB,
+    })),
+  };
+}
+
+function materializeSweepCase({ baseInput, sweepInput, sweepCase, index }) {
+  const caseId = sweepCase.caseId ?? `case_${index + 1}`;
+  const domainId = sweepCase.domainId ?? `${baseInput.rows?.source_branch_chart?.domainId}_${caseId}`;
+  const branchRecordId =
+    sweepCase.branchRecordId ??
+    `${baseInput.rows?.source_branch_chart?.branchRecordId}_${caseId}`;
+  const detectorProvenanceId =
+    sweepCase.detectorProvenanceId ??
+    baseInput.detectorProvenance?.provenanceId ??
+    "D_LHC_ATLAS_8TeV_Zll_CS_v1";
+  const sourcePath =
+    sweepCase.sourcePath ??
+    sweepInput.sourcePath ??
+    baseInput.retainedWeakCorridorBranchDynamics?.sourcePath;
+  const measurement = materializeSweepMeasurement(sweepInput, sweepCase);
+  const componentRows =
+    sweepCase.retainedWeakCorridorBranchDynamics?.componentRows ??
+    sweepCase.componentRows ??
+    [];
+  const sourceRows =
+    sweepCase.retainedWeakCorridorBranchDynamics?.sourceRows ??
+    sourceRowsForSweepCase(caseId);
+  const rowOverrides = {
+    sourcePath,
+    domainId,
+    branchRecordId,
+    detectorProvenanceId,
+  };
+  return {
+    ...baseInput,
+    claimLevel: sweepCase.claimLevel ?? sweepInput.caseClaimLevel ?? baseInput.claimLevel,
+    projectionId:
+      sweepCase.projectionId ??
+      `${sweepInput.sweepId ?? baseInput.projectionId ?? "Pi_CS_Zgamma_branch_dynamics_sweep"}_${caseId}`,
+    rows: Object.fromEntries(
+      Object.entries(baseInput.rows ?? {}).map(([rowId, row]) => [
+        rowId,
+        {
+          ...row,
+          ...rowOverrides,
+        },
+      ]),
+    ),
+    dileptonSystem: {
+      ...(baseInput.dileptonSystem ?? {}),
+      ...(sweepCase.dileptonSystem ?? {}),
+      ...(sweepCase.pTZGeV && !sweepCase.dileptonSystem?.transverseMomentumGeV
+        ? { transverseMomentumGeV: binMidpoint(sweepCase.pTZGeV) }
+        : {}),
+    },
+    retainedWeakCorridorBranchDynamics: {
+      ...(baseInput.retainedWeakCorridorBranchDynamics ?? {}),
+      ...rowOverrides,
+      sourceRows,
+      componentRows,
+    },
+    measurement,
+  };
+}
+
+function materializeSweepMeasurement(sweepInput, sweepCase) {
+  const rawMeasurement = sweepCase.measurement ?? {};
+  const coefficientsWithUncertainties = parseSweepCoefficientEntries(
+    rawMeasurement.coefficients ?? {},
+  );
+  return {
+    sourceId: rawMeasurement.sourceId ?? sweepInput.sourceId ?? "ATLAS_arXiv_1606_00689",
+    benchmarkBin: rawMeasurement.benchmarkBin ?? sweepCase.benchmarkBin ?? caseBinLabel(sweepCase),
+    covarianceModel:
+      rawMeasurement.covarianceModel ??
+      sweepInput.covarianceModel ??
+      "diagonal_from_stat_syst_quadrature",
+    coefficients: Object.fromEntries(
+      COEFFICIENT_ORDER.map((coefficient) => [
+        coefficient,
+        coefficientsWithUncertainties[coefficient].value,
+      ]),
+    ),
+    covariance:
+      rawMeasurement.covariance ??
+      diagonalCovarianceFromUncertainties(coefficientsWithUncertainties),
+    uncertainties: coefficientsWithUncertainties,
+  };
+}
+
+function parseSweepCoefficientEntries(rawCoefficients) {
+  return Object.fromEntries(
+    COEFFICIENT_ORDER.map((coefficient) => {
+      const entry = rawCoefficients[coefficient];
+      if (typeof entry === "number") {
+        return [
+          coefficient,
+          {
+            value: finiteNumber(entry, `measurement.coefficients.${coefficient}`),
+            stat: 0,
+            syst: 0,
+          },
+        ];
+      }
+      return [
+        coefficient,
+        {
+          value: finiteNumber(entry?.value, `measurement.coefficients.${coefficient}.value`),
+          stat: finiteNumber(entry?.stat ?? 0, `measurement.coefficients.${coefficient}.stat`),
+          syst: finiteNumber(entry?.syst ?? 0, `measurement.coefficients.${coefficient}.syst`),
+        },
+      ];
+    }),
+  );
+}
+
+function diagonalCovarianceFromUncertainties(coefficientsWithUncertainties) {
+  return COEFFICIENT_ORDER.map((rowCoefficient) =>
+    COEFFICIENT_ORDER.map((columnCoefficient) => {
+      if (rowCoefficient !== columnCoefficient) {
+        return 0;
+      }
+      const entry = coefficientsWithUncertainties[rowCoefficient];
+      return entry.stat * entry.stat + entry.syst * entry.syst;
+    }),
+  );
+}
+
+function sourceRowsForSweepCase(caseId) {
+  return {
+    source_depletion: `Q_src_Zgamma_branch_dynamics_${caseId}_v1`,
+    recoil_balance: `Q_recoil_Zgamma_branch_dynamics_${caseId}_v1`,
+    noether_sea_response: `Q_sea_Zgamma_branch_dynamics_${caseId}_v1`,
+    corridor_orientation_axis: `e_corr_Zgamma_branch_dynamics_${caseId}_v1`,
+  };
+}
+
+function binMidpoint(range) {
+  return (finiteNumber(range[0], "pTZGeV[0]") + finiteNumber(range[1], "pTZGeV[1]")) / 2;
+}
+
+function caseBinLabel(sweepCase) {
+  const range = sweepCase.pTZGeV;
+  const pTLabel = Array.isArray(range) ? `pTZ ${range[0]}-${range[1]} GeV` : "pTZ unspecified";
+  return `${sweepCase.yZ ?? "yZ-integrated"}, ${pTLabel}`;
+}
+
+function summarizeSweep({ sweepInput, cases, schemaOk, baseInputPath }) {
+  const failedCase = cases.find(({ output }) => output.summary.status !== "populated");
+  const summaries = cases.map(({ output }) => output.summary);
+  const all = (key) => summaries.every((summary) => summary[key] === true);
+  const allRequired = (key) =>
+    summaries.every((summary) => summary[key] === null)
+      ? null
+      : summaries.every((summary) => summary[key] === true);
+  const numericValues = (key) =>
+    summaries
+      .map((summary) => summary[key])
+      .filter((value) => typeof value === "number" && Number.isFinite(value));
+  const maxValue = (key) => {
+    const values = numericValues(key);
+    return values.length > 0 ? Math.max(...values) : null;
+  };
+  const minValue = (key) => {
+    const values = numericValues(key);
+    return values.length > 0 ? Math.min(...values) : null;
+  };
+  const status = !schemaOk
+    ? "blocked_sweep_schema_mismatch"
+    : cases.length === 0
+      ? "blocked_sweep_cases_missing"
+      : failedCase
+        ? "blocked_sweep_case"
+        : "populated";
+  return {
+    status,
+    scoreDecision: SCORE_DECISION,
+    nextBlocker:
+      status === "blocked_sweep_schema_mismatch"
+        ? "sweep_schema_mismatch"
+        : status === "blocked_sweep_cases_missing"
+          ? "sweep_cases_missing"
+          : failedCase
+            ? `${failedCase.caseId}:${failedCase.output.summary.nextBlocker ?? failedCase.output.summary.status}`
+            : null,
+    sweepId: sweepInput.sweepId ?? null,
+    sourceId: sweepInput.sourceId ?? null,
+    baseInputPath: path.relative(process.cwd(), baseInputPath),
+    caseCount: cases.length,
+    populatedCaseCount: cases.filter(({ output }) => output.summary.status === "populated").length,
+    benchmarkBins: cases.map(({ caseId, benchmarkBin, pTZGeV }) => ({
+      caseId,
+      benchmarkBin,
+      pTZGeV,
+    })),
+    rowPass: all("rowPass"),
+    sourceEvidencePass: all("sourceEvidencePass"),
+    intrinsicPrimitivePass: all("intrinsicPrimitivePass"),
+    detectorProvenancePass: all("detectorProvenancePass"),
+    coefficientSourceKinds: [...new Set(summaries.map((summary) => summary.coefficientSource))],
+    nativeWeakCorridorDynamicsPass: all("nativeWeakCorridorDynamicsPass"),
+    retainedWeakCorridorBranchDynamicsPass: all("retainedWeakCorridorBranchDynamicsPass"),
+    requireNativeDerivedPass: allRequired("requireNativeDerivedPass"),
+    requireBranchDynamicsDerivedPass: allRequired("requireBranchDynamicsDerivedPass"),
+    componentStabilityPass: all("componentStabilityPass"),
+    componentStabilityProbeCountTotal: summaries.reduce(
+      (sum, summary) => sum + (summary.componentStabilityProbeCount ?? 0),
+      0,
+    ),
+    requireComponentStabilityPass: allRequired("requireComponentStabilityPass"),
+    componentUniquenessPass: all("componentUniquenessPass"),
+    componentUniquenessComponentCountTotal: summaries.reduce(
+      (sum, summary) => sum + (summary.componentUniquenessComponentCount ?? 0),
+      0,
+    ),
+    componentUniquenessMinRank: minValue("componentUniquenessMinRank"),
+    componentUniquenessMaxSolutionResidual: maxValue(
+      "componentUniquenessMaxSolutionResidual",
+    ),
+    requireComponentUniquenessPass: allRequired("requireComponentUniquenessPass"),
+    measurementPass: all("measurementPass"),
+    generatedEventCountTotal: summaries.reduce(
+      (sum, summary) => sum + (summary.generatedEventCount ?? 0),
+      0,
+    ),
+    maxProjectionAngleResidual: maxValue("maxProjectionAngleResidual"),
+    maxCoefficientResidual: maxValue("maxCoefficientResidual"),
+    maxChi2: maxValue("chi2"),
+    maxAFBResidual: maxValue("aFBResidual"),
+    failedCases: cases
+      .filter(({ output }) => output.summary.status !== "populated")
+      .map(({ caseId, output }) => ({
+        caseId,
+        status: output.summary.status,
+        nextBlocker: output.summary.nextBlocker,
+      })),
+  };
 }
 
 function mergeComponentStabilityProbes(input, probePayload) {
@@ -479,6 +805,9 @@ function evaluateProjection(input, inputPath) {
 }
 
 function summarizeOutput(output) {
+  if (output.schema === SWEEP_OUTPUT_SCHEMA) {
+    return summarizeSweepOutput(output);
+  }
   return {
     schema: output.schema,
     generatedAt: output.generatedAt,
@@ -495,6 +824,25 @@ function summarizeOutput(output) {
       pulls: output.comparison.pulls,
     },
     aFB: output.aFB,
+  };
+}
+
+function summarizeSweepOutput(output) {
+  return {
+    schema: output.schema,
+    generatedAt: output.generatedAt,
+    sweep: output.sweep,
+    summary: output.summary,
+    cases: output.cases.map((entry) => ({
+      caseId: entry.caseId,
+      benchmarkBin: entry.benchmarkBin,
+      pTZGeV: entry.pTZGeV,
+      summary: entry.summary,
+      componentStability: entry.componentStability,
+      componentUniqueness: entry.componentUniqueness,
+      comparison: entry.comparison,
+      aFB: entry.aFB,
+    })),
   };
 }
 

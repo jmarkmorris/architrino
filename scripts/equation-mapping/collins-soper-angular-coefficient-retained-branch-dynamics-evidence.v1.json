@@ -3,10 +3,20 @@
   "sourceKind": "durable_retained_weak_corridor_branch_dynamics_evidence",
   "sourceFamily": "Collins-Soper angular coefficient projection",
   "sourceSupport": "collins-soper angular coefficient projection",
-  "claimLevel": "source-mirrored benchmark row plus retained weak-corridor branch-dynamics component evidence; score-neutral and not a full causal-root existence theorem",
+  "claimLevel": "source-mirrored benchmark rows plus retained weak-corridor branch-dynamics component evidence; score-neutral and not a full causal-root existence theorem",
   "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
   "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
   "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1",
+  "supportedDomains": [
+    "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
+    "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1"
+  ],
+  "supportedBranchRecords": [
+    "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
+    "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1"
+  ],
   "supportedRows": [
     "source_branch_chart",
     "neutral_corridor_branch_chart",
@@ -25,6 +35,7 @@
     "basis": "collins_soper_retained_weak_corridor_branch_dynamics",
     "componentEquation": "component = sourceDepletion + recoilBalance + noetherSeaResponse + corridorOrientation + wakeBalance",
     "componentStabilityProbeSetId": "CS_branch_dynamics_component_stability_22_25p5_v1",
+    "componentUniquenessCertificateId": "CS_branch_dynamics_component_uniqueness_rank_complete_22_25p5_v1",
     "componentRows": [
       {
         "component": "T_even_L",
@@ -99,8 +110,38 @@
     "traceability": [
       "ATLAS arXiv:1606.00689 Eq. (1) gives the angular basis in cos(theta) and phi.",
       "ATLAS arXiv:1606.00689 Tables 11, 12, and 13 give the yZ-integrated measured A0..A7 rows with statistical and systematic uncertainties.",
+      "The retained branch-dynamics sweep mirrors the low 5.0-8.0 GeV, mid 22.0-25.5 GeV, and high 132-173 GeV pTZ yZ-integrated summary rows from the ATLAS table.",
       "Component-stability probes redistribute retained branch-dynamics contribution rows while preserving the component sum; a negative-control sidecar verifies that nonzero component drift fails closed.",
-      "This evidence object mirrors one representative bin and a retained branch-dynamics component reduction; it is not a substitute for full HEPData covariance or a full causal-root existence theorem."
+      "Component-uniqueness certification separates the rank-one angular-coefficient sum from the rank-complete retained contribution row lock; a rank-deficient sidecar verifies that the coefficient sum alone fails closed.",
+      "This evidence object mirrors three representative pTZ bins and retained branch-dynamics component reductions; it is not a substitute for full HEPData covariance or a full causal-root existence theorem."
+    ]
+  },
+  "multiBinBenchmark": {
+    "sourceId": "ATLAS_arXiv_1606_00689_table_test_yIntegrated",
+    "arxiv": "1606.00689",
+    "experiment": "ATLAS",
+    "collisionSystem": "pp sqrt(s)=8 TeV",
+    "frame": "Collins-Soper",
+    "channel": "Z/gamma* -> lepton pairs, yZ-integrated eeCC + mumuCC measurement",
+    "bins": [
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+        "pTZGeV": [5.0, 8.0],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
+        "pTZGeV": [22.0, 25.5],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+        "pTZGeV": [132.0, 173.0],
+        "yZ": "integrated"
+      }
     ]
   }
 }

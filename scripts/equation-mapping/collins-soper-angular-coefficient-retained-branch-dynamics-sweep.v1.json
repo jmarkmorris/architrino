@@ -1,0 +1,127 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-projection-sweep/v1",
+  "sweepId": "CS_branch_dynamics_yIntegrated_low_mid_high_pTZ_v1",
+  "sourceId": "ATLAS_arXiv_1606_00689_table_test_yIntegrated",
+  "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-evidence.v1.json",
+  "baseInputPath": "collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json",
+  "claimLevel": "multi-bin retained weak-corridor branch-dynamics sweep across ATLAS yZ-integrated low, mid, and high pTZ measured angular-coefficient rows; score-neutral and not a causal-root existence theorem",
+  "caseClaimLevel": "populated retained weak-corridor branch-dynamics sweep case for a measured Collins-Soper Z/gamma* angular-coefficient bin; score-neutral and not a causal-root existence theorem",
+  "measurementSource": {
+    "experiment": "ATLAS",
+    "arxiv": "1606.00689",
+    "table": "Table captioned Summary of the measured coefficients in the ee_CC + mumu_CC yZ-integrated channel",
+    "channel": "ee_CC + mumu_CC yZ-integrated",
+    "uncertaintyConvention": "statistical and systematic uncertainties are listed separately and used here as diagonal stat+syst quadrature"
+  },
+  "covarianceModel": "diagonal_from_stat_syst_quadrature",
+  "cases": [
+    {
+      "caseId": "5_8_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_5_8_yIntegrated_v1",
+      "pTZGeV": [5.0, 8.0],
+      "yZ": "yZ-integrated",
+      "dileptonSystem": {
+        "massGeV": 91.1876,
+        "rapidity": 0.35,
+        "azimuth": 0.25
+      },
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 5.0-8.0 GeV",
+        "coefficients": {
+          "A0": { "value": 0.015, "stat": 0.002, "syst": 0.007 },
+          "A1": { "value": 0.013, "stat": 0.002, "syst": 0.002 },
+          "A2": { "value": -0.003, "stat": 0.003, "syst": 0.003 },
+          "A3": { "value": 0.001, "stat": 0.001, "syst": 0.001 },
+          "A4": { "value": 0.082, "stat": 0.001, "syst": 0.002 },
+          "A5": { "value": -0.002, "stat": 0.001, "syst": 0.001 },
+          "A6": { "value": -0.001, "stat": 0.001, "syst": 0.001 },
+          "A7": { "value": 0.000, "stat": 0.001, "syst": 0.001 }
+        }
+      },
+      "componentRows": [
+        { "component": "T_even_L", "rowId": "bd_T_even_L_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_L_5_8_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.0069811320754717, "recoilBalance": 0.00481132075471698, "noetherSeaResponse": 0.00273584905660377, "corridorOrientation": 0.000471698113207547, "wakeBalance": 0 },
+        { "component": "T_even_xz", "rowId": "bd_T_even_xz_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_xz_5_8_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.00433333333333333, "recoilBalance": 0.00526190476190476, "noetherSeaResponse": 0.00247619047619048, "corridorOrientation": 0.000928571428571428, "wakeBalance": 0 },
+        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_5_8_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": -0.0012, "recoilBalance": -0.00105, "noetherSeaResponse": -0.00054, "corridorOrientation": -0.00021, "wakeBalance": 0 },
+        { "component": "P_weak_x", "rowId": "bd_P_weak_x_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_x_5_8_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.000333333333333333, "recoilBalance": 0.00025, "noetherSeaResponse": 0.000166666666666667, "corridorOrientation": 0.00025, "wakeBalance": 0 },
+        { "component": "P_weak_z", "rowId": "bd_P_weak_z_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_z_5_8_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.0328, "recoilBalance": 0.0264923076923077, "noetherSeaResponse": 0.0151384615384615, "corridorOrientation": 0.00756923076923077, "wakeBalance": 0 },
+        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_5_8_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_5_8_yIntegrated_v1", "axis": "xy", "sourceDepletion": -0.000666666666666667, "recoilBalance": -0.000533333333333333, "noetherSeaResponse": -0.000466666666666667, "corridorOrientation": 0, "wakeBalance": -0.000333333333333333 },
+        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_5_8_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_5_8_yIntegrated_v1", "axis": "zy", "sourceDepletion": -0.000333333333333333, "recoilBalance": -0.000266666666666667, "noetherSeaResponse": -0.000233333333333333, "corridorOrientation": 0, "wakeBalance": -0.000166666666666667 },
+        { "component": "P_weak_y", "rowId": "bd_P_weak_y_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_y_5_8_yIntegrated_v1", "axis": "y", "sourceDepletion": 0, "recoilBalance": 0, "noetherSeaResponse": 0, "corridorOrientation": 0, "wakeBalance": 0 }
+      ]
+    },
+    {
+      "caseId": "22_25p5_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_22_25p5_yIntegrated_v1",
+      "pTZGeV": [22.0, 25.5],
+      "yZ": "yZ-integrated",
+      "dileptonSystem": {
+        "massGeV": 91.1876,
+        "rapidity": 0.35,
+        "azimuth": 0.25
+      },
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 22.0-25.5 GeV",
+        "coefficients": {
+          "A0": { "value": 0.159, "stat": 0.003, "syst": 0.007 },
+          "A1": { "value": 0.042, "stat": 0.002, "syst": 0.002 },
+          "A2": { "value": 0.100, "stat": 0.003, "syst": 0.003 },
+          "A3": { "value": 0.006, "stat": 0.001, "syst": 0.001 },
+          "A4": { "value": 0.065, "stat": 0.002, "syst": 0.002 },
+          "A5": { "value": 0.003, "stat": 0.002, "syst": 0.001 },
+          "A6": { "value": 0.000, "stat": 0.002, "syst": 0.001 },
+          "A7": { "value": 0.001, "stat": 0.001, "syst": 0.001 }
+        }
+      },
+      "componentRows": [
+        { "component": "T_even_L", "rowId": "bd_T_even_L_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_L_22_25p5_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.074, "recoilBalance": 0.051, "noetherSeaResponse": 0.029, "corridorOrientation": 0.005, "wakeBalance": 0 },
+        { "component": "T_even_xz", "rowId": "bd_T_even_xz_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_xz_22_25p5_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.014, "recoilBalance": 0.017, "noetherSeaResponse": 0.008, "corridorOrientation": 0.003, "wakeBalance": 0 },
+        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_22_25p5_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": 0.04, "recoilBalance": 0.035, "noetherSeaResponse": 0.018, "corridorOrientation": 0.007, "wakeBalance": 0 },
+        { "component": "P_weak_x", "rowId": "bd_P_weak_x_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_x_22_25p5_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.002, "recoilBalance": 0.0015, "noetherSeaResponse": 0.001, "corridorOrientation": 0.0015, "wakeBalance": 0 },
+        { "component": "P_weak_z", "rowId": "bd_P_weak_z_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_z_22_25p5_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.026, "recoilBalance": 0.021, "noetherSeaResponse": 0.012, "corridorOrientation": 0.006, "wakeBalance": 0 },
+        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_22_25p5_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_22_25p5_yIntegrated_v1", "axis": "xy", "sourceDepletion": 0.001, "recoilBalance": 0.0008, "noetherSeaResponse": 0.0007, "corridorOrientation": 0, "wakeBalance": 0.0005 },
+        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_22_25p5_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_22_25p5_yIntegrated_v1", "axis": "zy", "sourceDepletion": 0, "recoilBalance": 0, "noetherSeaResponse": 0, "corridorOrientation": 0, "wakeBalance": 0 },
+        { "component": "P_weak_y", "rowId": "bd_P_weak_y_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_y_22_25p5_yIntegrated_v1", "axis": "y", "sourceDepletion": 0.0003, "recoilBalance": 0.0003, "noetherSeaResponse": 0.0002, "corridorOrientation": 0.0002, "wakeBalance": 0 }
+      ]
+    },
+    {
+      "caseId": "132_173_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_132_173_yIntegrated_v1",
+      "pTZGeV": [132.0, 173.0],
+      "yZ": "yZ-integrated",
+      "dileptonSystem": {
+        "massGeV": 91.1876,
+        "rapidity": 0.35,
+        "azimuth": 0.25
+      },
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 132-173 GeV",
+        "coefficients": {
+          "A0": { "value": 0.856, "stat": 0.008, "syst": 0.008 },
+          "A1": { "value": 0.065, "stat": 0.008, "syst": 0.005 },
+          "A2": { "value": 0.708, "stat": 0.022, "syst": 0.020 },
+          "A3": { "value": 0.054, "stat": 0.007, "syst": 0.003 },
+          "A4": { "value": 0.027, "stat": 0.005, "syst": 0.002 },
+          "A5": { "value": 0.011, "stat": 0.006, "syst": 0.003 },
+          "A6": { "value": 0.003, "stat": 0.005, "syst": 0.002 },
+          "A7": { "value": 0.004, "stat": 0.004, "syst": 0.002 }
+        }
+      },
+      "componentRows": [
+        { "component": "T_even_L", "rowId": "bd_T_even_L_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_L_132_173_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.398389937106918, "recoilBalance": 0.274566037735849, "noetherSeaResponse": 0.156125786163522, "corridorOrientation": 0.0269182389937107, "wakeBalance": 0 },
+        { "component": "T_even_xz", "rowId": "bd_T_even_xz_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_xz_132_173_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.0216666666666667, "recoilBalance": 0.0263095238095238, "noetherSeaResponse": 0.0123809523809524, "corridorOrientation": 0.00464285714285714, "wakeBalance": 0 },
+        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_132_173_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": 0.2832, "recoilBalance": 0.2478, "noetherSeaResponse": 0.12744, "corridorOrientation": 0.04956, "wakeBalance": 0 },
+        { "component": "P_weak_x", "rowId": "bd_P_weak_x_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_x_132_173_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.018, "recoilBalance": 0.0135, "noetherSeaResponse": 0.009, "corridorOrientation": 0.0135, "wakeBalance": 0 },
+        { "component": "P_weak_z", "rowId": "bd_P_weak_z_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_z_132_173_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.0108, "recoilBalance": 0.00872307692307692, "noetherSeaResponse": 0.00498461538461539, "corridorOrientation": 0.00249230769230769, "wakeBalance": 0 },
+        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_132_173_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_132_173_yIntegrated_v1", "axis": "xy", "sourceDepletion": 0.00366666666666667, "recoilBalance": 0.00293333333333333, "noetherSeaResponse": 0.00256666666666667, "corridorOrientation": 0, "wakeBalance": 0.00183333333333333 },
+        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_132_173_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_132_173_yIntegrated_v1", "axis": "zy", "sourceDepletion": 0.001, "recoilBalance": 0.0008, "noetherSeaResponse": 0.0007, "corridorOrientation": 0, "wakeBalance": 0.0005 },
+        { "component": "P_weak_y", "rowId": "bd_P_weak_y_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_y_132_173_yIntegrated_v1", "axis": "y", "sourceDepletion": 0.0012, "recoilBalance": 0.0012, "noetherSeaResponse": 0.0008, "corridorOrientation": 0.0008, "wakeBalance": 0 }
+      ]
+    }
+  ]
+}

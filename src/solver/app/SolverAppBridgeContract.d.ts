@@ -9,6 +9,7 @@ export type SolverRunKind =
   | "sharedGeometry"
   | "appPlayback"
   | "pairInteraction"
+  | "masterEquation"
   | "validationReplay";
 
 export type SolverPrecisionPath =
@@ -2015,6 +2016,7 @@ export type SolverRunConfig =
   | DelayedHitsSolverConfig
   | SharedGeometrySolverConfig
   | PairInteractionSolverConfig
+  | MasterEquationSolverConfig
   | MotionSimulationSolverConfig
   | AppPlaybackSolverConfig
   | AnimatorSolverConfig
@@ -2116,6 +2118,38 @@ export interface PairInteractionSolverConfig {
   rowsPerChunk?: number;
   storagePolicy?: SolverStoragePolicy;
   metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface MasterEquationSolverConfig {
+  appId: SolverAppId;
+  masterEquationRequest: SolverMasterEquationF64Request;
+  fallbackPolicy?: string;
+  streamId?: string;
+  rowsPerChunk?: number;
+  storagePolicy?: SolverStoragePolicy;
+  metadata?: Partial<SolverPathHistoryStreamMetadata>;
+}
+
+export interface SolverMasterEquationF64Request {
+  startTime: number;
+  endTime: number;
+  step: number;
+  maxFrames?: number;
+  fixedPhysicalParameterSetId: string;
+  masterEquationVersion: string;
+  forceLawVersion: string;
+  fieldSpeed: number;
+  historyDepth: number;
+  integrationTolerance?: number;
+  initialStates: SolverMasterEquationInitialStateF64Request[];
+}
+
+export interface SolverMasterEquationInitialStateF64Request {
+  pathKey: number;
+  initialPosition: SolverVector3F64;
+  initialVelocity: SolverVector3F64;
+  charge: number;
+  stateFlags?: number;
 }
 
 export interface SolverPairInteractionF64Request {
@@ -2252,6 +2286,7 @@ export interface SolverRunResponse {
   geometry?: SolverSharedGeometryF64Response;
   validationReplay?: SolverBaselineComparisonResult;
   pairInteraction?: SolverPairInteractionSummary;
+  masterEquation?: SolverMasterEquationSummary;
   status: SolverStatusRecord;
 }
 
@@ -3257,6 +3292,17 @@ export interface SolverRunSummary {
   interactionLaw?: string;
   signalSpeed?: number;
   executionPath?: string;
+  nativeMasterEquationStatus?: string;
+  fixedPhysicalParameterSetId?: string;
+  fixedPhysicalParameterAuthority?: string;
+  masterEquationVersion?: string;
+  forceLawVersion?: string;
+  canonicalEomEvidence?: boolean;
+  eomEvidenceStatus?: string;
+  eomEvidenceReason?: string;
+  firstFailureCode?: string;
+  wakeRowCount?: number;
+  accelerationRowCount?: number;
   pathConstraintCount?: number;
   pathConstraintFrameRefinementSampleCount?: number;
   pathConstraintPositionResidualSampleCount?: number;
@@ -3326,6 +3372,29 @@ export interface SolverRunSummary {
   maxPathConstraintBoundaryResidual?: number;
   meanPathConstraintBoundaryResidual?: number;
   rmsPathConstraintBoundaryResidual?: number;
+}
+
+export interface SolverMasterEquationSummary {
+  schema: "solver-master-equation-run-summary.v1";
+  runKind: "masterEquation";
+  executionPath: string;
+  nativeMasterEquationStatus: string;
+  fixedPhysicalParameterSetId: string;
+  fixedPhysicalParameterAuthority: string;
+  masterEquationVersion: string;
+  forceLawVersion: string;
+  initialStateCount: number;
+  startTime: number;
+  endTime: number;
+  step: number;
+  fieldSpeed: number;
+  historyDepth: number;
+  canonicalEomEvidence: boolean;
+  eomEvidenceStatus: string;
+  eomEvidenceReason: string;
+  firstFailureCode: string;
+  requiredNativeExport: string;
+  fallbackPolicy: string;
 }
 
 export type SolverPairInteractionBoundaryResidualStatus =

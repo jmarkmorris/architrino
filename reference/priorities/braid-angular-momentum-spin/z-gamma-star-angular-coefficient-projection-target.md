@@ -1,8 +1,8 @@
 # Z/gamma* Angular-Coefficient Projection Target
 
-Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It now carries a populated score-neutral projection instance that tests the Collins-Soper angular-basis handoff from retained event rows through detector-level lepton momenta, a native weak-corridor source-term instance, a retained weak-corridor branch-dynamics instance that computes the same $A_0,\ldots,A_7$ row without reading `branchAngularMeasure.coefficients`, and component-split stability probes for the retained branch-dynamics row. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
+Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It now carries a populated score-neutral projection instance that tests the Collins-Soper angular-basis handoff from retained event rows through detector-level lepton momenta, a native weak-corridor source-term instance, a retained weak-corridor branch-dynamics instance that computes the same $A_0,\ldots,A_7$ row without reading `branchAngularMeasure.coefficients`, component-split stability probes, a rank-complete component-uniqueness certificate, and a three-bin retained branch-dynamics sweep across the ATLAS yZ-integrated low, mid, and high $p_T^Z$ summary rows. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
 
-Claim level. Populated retained branch-dynamics certificate row with local component-split stability. The packet defines observer-level angular coefficients and parity-sensitive distributions that a retained weak-corridor or neutral-current branch certificate should be able to project to. It now derives the benchmark row from retained branch-dynamics component rows and verifies that sum-preserving redistribution among contribution rows leaves the mapped coefficient invariant. It does not yet prove uniqueness, full multi-bin stability, or global generation of those branch-dynamics rows from a deeper causal-root theorem.
+Claim level. Populated retained branch-dynamics certificate row with local component-split stability, a rank-complete uniqueness condition, and a measured-bin sweep over three yZ-integrated ATLAS $p_T^Z$ rows. The packet defines observer-level angular coefficients and parity-sensitive distributions that a retained weak-corridor or neutral-current branch certificate should be able to project to. It now derives the benchmark row from retained branch-dynamics component rows, verifies that sum-preserving redistribution among contribution rows leaves the mapped coefficient invariant, proves that the angular coefficient sum alone leaves a four-dimensional split nullspace, certifies uniqueness only when retained contribution constraints have full rank, and repeats the retained branch-dynamics path for the low, mid, and high measured $p_T^Z$ summary bins. It does not yet prove full-table stability or global generation of those branch-dynamics rows from a deeper causal-root theorem.
 
 ## Source Family
 
@@ -115,6 +115,8 @@ The hat on $\widehat{\mathbf A}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ means the coef
 7. Fail closed if a native weak-corridor certificate is required but the coefficient source remains a declared projection-measure row.
 8. Fail closed if a retained branch-dynamics certificate is required but the coefficient source remains a collapsed native source-term row.
 9. Fail closed if a retained component-stability probe changes the component sum while claiming to preserve the coefficient.
+10. Fail closed if a retained component-uniqueness certificate has rank below the five contribution variables required for a unique split.
+11. Sweep across more than one measured $p_T^Z$ bin before treating the retained branch-dynamics mapping as stable beyond a single benchmark row.
 
 ## Extension Rows
 
@@ -144,8 +146,11 @@ Instance files:
 | `scripts/equation-mapping/collins-soper-angular-coefficient-native-weak-corridor-evidence.v1.json` | Durable source/evidence mirror for the native source-term coefficient map and ATLAS benchmark row. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json` | Populated retained weak-corridor branch-dynamics instance for the same benchmark row. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-evidence.v1.json` | Durable source/evidence mirror for the retained branch-dynamics component reduction and ATLAS benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-sweep.v1.json` | Three-bin sweep artifact for the ATLAS yZ-integrated $5.0$-$8.0$, $22.0$-$25.5$, and $132$-$173$ GeV $p_T^Z$ measured rows. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-probes.v1.json` | Positive component-stability sidecar that redistributes source, recoil, Noether sea, corridor-orientation, and wake contributions while preserving component sums. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-negative-control.v1.json` | Negative component-stability sidecar that changes a component sum and must fail under `--require-component-stability`. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-component-uniqueness-certificate.v1.json` | Positive component-uniqueness sidecar that supplies a rank-complete retained contribution row lock for the five contribution variables. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-component-uniqueness-rank-negative-control.v1.json` | Negative component-uniqueness sidecar showing that the angular coefficient sum alone has rank one and leaves a four-dimensional component-split nullspace. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-covariance-negative-control.v1.json` | Negative control that keeps all rows accepted-looking but shifts $A_0$ outside the covariance tolerance. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-intrinsic-spin-negative-control.v1.json` | Negative control that keeps the angular projection numerically valid but imports `intrinsic_spin` as a primitive. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-declared-measure-native-negative-control.v1.json` | Negative control that keeps the declared projection-measure coefficients numerically valid but rejects them when native weak-corridor derivation is required. |
@@ -191,6 +196,88 @@ Component-stability result:
 | Stability probes | 4 sum-preserving retained branch-dynamics redistributions |
 | Maximum component drift | $0$ |
 | Maximum coefficient drift | $0$ |
+
+Component-split uniqueness run:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --input scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json --component-uniqueness-certificate scripts/equation-mapping/collins-soper-angular-coefficient-component-uniqueness-certificate.v1.json --require-populated --require-native-derived --require-branch-dynamics-derived --require-component-uniqueness --summary --pretty
+```
+
+Let
+
+$$
+\mathbf x_\alpha
+=
+\left(
+Q_{\mathrm{src},\alpha},
+Q_{\mathrm{recoil},\alpha},
+Q_{\mathrm{sea},\alpha},
+O_{\mathrm{corr},\alpha},
+W_{\mathrm{wake},\alpha}
+\right)^T.
+$$
+
+The angular coefficient row supplies only the component sum,
+
+$$
+\mathbf 1^T\mathbf x_\alpha=C_\alpha,
+\qquad
+\operatorname{rank}\!\left(\mathbf 1^T\right)=1,
+\qquad
+\dim\ker\!\left(\mathbf 1^T\right)=4.
+$$
+
+Therefore the angular coefficient by itself does not uniquely determine the retained contribution split. A retained contribution row lock must supply a rank-complete linear system,
+
+$$
+M_\alpha\mathbf x_\alpha=\mathbf b_\alpha,
+\qquad
+\operatorname{rank}(M_\alpha)=5,
+$$
+
+which implies a unique split for that component row.
+
+Component-uniqueness result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Component-uniqueness requirement | `requireComponentUniquenessPass=true` |
+| Components certified | 8 retained branch-dynamics components |
+| Coefficient-only rank/nullity | rank $1$, nullity $4$ |
+| Minimum retained constraint rank | $5$ |
+| Maximum solution residual | $1.65\times10^{-17}$ |
+
+Multi-bin retained branch-dynamics sweep:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --sweep scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-sweep.v1.json --component-stability-probes scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-probes.v1.json --component-uniqueness-certificate scripts/equation-mapping/collins-soper-angular-coefficient-component-uniqueness-certificate.v1.json --require-populated --require-native-derived --require-branch-dynamics-derived --require-component-stability --require-component-uniqueness --summary --pretty
+```
+
+The sweep covers the three yZ-integrated ATLAS summary rows at low, mid, and high $p_T^Z$:
+
+| Case | Measured bin | Status | $\chi^2$ | Maximum coefficient residual | Minimum uniqueness rank |
+| --- | --- | --- | --- | --- | --- |
+| `5_8_yIntegrated` | $5.0$-$8.0$ GeV | `populated` | $2.50\times10^{-23}$ | $3.21\times10^{-14}$ | $5$ |
+| `22_25p5_yIntegrated` | $22.0$-$25.5$ GeV | `populated` | $1.33\times10^{-23}$ | $2.73\times10^{-14}$ | $5$ |
+| `132_173_yIntegrated` | $132$-$173$ GeV | `populated` | $3.83\times10^{-24}$ | $2.24\times10^{-14}$ | $5$ |
+
+Sweep result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Populated cases | 3 of 3 measured $p_T^Z$ bins |
+| Coefficient source | `retained_weak_corridor_branch_dynamics` for every case |
+| Native-derived requirement | `requireNativeDerivedPass=true` |
+| Branch-dynamics requirement | `requireBranchDynamicsDerivedPass=true` |
+| Component-stability requirement | `requireComponentStabilityPass=true` |
+| Component-uniqueness requirement | `requireComponentUniquenessPass=true` |
+| Generated projected events | 1152 deterministic quadrature events |
+| Detector projection | $\max|\Delta(\cos\theta_{\mathrm{CS}},\phi_{\mathrm{CS}})|=1.07\times10^{-14}$ |
+| Coefficient recovery | $\max_i|\widehat A_i-A_i|=3.21\times10^{-14}$ |
+| Covariance comparison | $\max \chi^2=2.50\times10^{-23}$ for the 8 coefficient rows |
+| Parity relation | $\max |A_{\mathrm{FB}}-3A_4/8|=2.95\times10^{-16}$ |
 
 Retained branch-dynamics run:
 
@@ -284,9 +371,10 @@ Control results:
 | Declared measure under native requirement | Coefficients remain in `branchAngularMeasure.coefficients` instead of native weak-corridor dynamics | `blocked_declared_projection_measure` with next blocker `native_weak_corridor_dynamics_required` |
 | Source-term shortcut under branch-dynamics requirement | Coefficients are supplied by `nativeWeakCorridorDynamics` instead of retained branch-dynamics component rows | `blocked_branch_dynamics_shortcut` with next blocker `retained_weak_corridor_branch_dynamics_required` |
 | Component-split drift | A retained contribution perturbation changes the component sum instead of merely redistributing it | `blocked_component_stability` with next blocker `component_stability_delta_drift_even_L_source_only` |
+| Component-split rank deficiency | Angular coefficient sum alone supplies one constraint for five contribution variables | `blocked_component_uniqueness` with next blocker `component_uniqueness_rank_deficient_T_even_L` |
 
-Claim boundary. This is a populated projection, detector-handoff, native source-term, retained branch-dynamics, and local component-split stability success marker, not a spin-recovery theorem. It proves that a retained event-family row set can be projected into the Collins-Soper basis, moment-extracted into $A_0,\ldots,A_7$, and compared with a covariance row without using intrinsic spin as an input. It also proves that the checker can compute the same coefficient row from retained weak-corridor branch-dynamics component rows rather than from a declared projection-measure row or a collapsed native source-term row, and that sum-preserving redistribution among retained contribution rows leaves the mapped coefficient invariant. It does not yet prove uniqueness of the component split, stability across the full measured bin table, or global existence of the branch-dynamics rows from a deeper causal-root theorem.
+Claim boundary. This is a populated projection, detector-handoff, native source-term, retained branch-dynamics, local component-split stability, rank-complete component-uniqueness, and three-bin retained branch-dynamics sweep success marker, not a spin-recovery theorem. It proves that a retained event-family row set can be projected into the Collins-Soper basis, moment-extracted into $A_0,\ldots,A_7$, and compared with a covariance row without using intrinsic spin as an input. It also proves that the checker can compute the same coefficient row from retained weak-corridor branch-dynamics component rows rather than from a declared projection-measure row or a collapsed native source-term row, that sum-preserving redistribution among retained contribution rows leaves the mapped coefficient invariant, that the retained contribution split is unique only after a rank-complete retained row lock is supplied, and that the retained branch-dynamics path remains populated across the ATLAS yZ-integrated low, mid, and high $p_T^Z$ summary rows. It does not prove physical uniqueness from angular data alone, stability across the full measured bin table, or global existence of the branch-dynamics rows from a deeper causal-root theorem.
 
 ## Promotion Decision
 
-Keep this packet in priority material until the retained branch-dynamics certificate is strengthened beyond one benchmark row. The local component-split stability argument closes the narrow redistribution invariant, but reader-facing corpus promotion should still wait for a multi-bin retained branch-dynamics sweep, a uniqueness argument for the component split, or a deeper causal-root theorem that generates the retained weak-corridor branch rows without intrinsic-spin primitives.
+Keep this packet in priority material until the retained branch-dynamics certificate is strengthened beyond the three yZ-integrated summary bins. The local component-split stability argument, rank-complete uniqueness condition, and low/mid/high $p_T^Z$ sweep close the narrow one-bin blocker and establish a measured-bin stability marker, but reader-facing corpus promotion should still wait for full-table measured-bin coverage or a deeper causal-root theorem that generates the retained weak-corridor branch rows without intrinsic-spin primitives.

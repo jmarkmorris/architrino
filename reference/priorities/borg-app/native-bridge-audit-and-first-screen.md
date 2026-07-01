@@ -119,19 +119,23 @@ Minimum timeline:
 
 ## First Native-Backed Fixture Artifact
 
-`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs the existing native central bridge through a sixteen-architrino longer pair-interaction fixture and validates these manifest facts:
+`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script first runs a fixed-parameter native central-bridge `masterEquation` probe, records the missing native ABI, and then runs the existing native central bridge through sixteen fixed-parameter native `motionSimulation` runs. It validates these manifest facts:
 
 1. `nativeSolverStatus = native-backed-now`;
 2. `executionPath = native_c_abi`;
-3. `fixtureProfileId = borg-first-native-backed-long-fixture.v3`;
-4. `duration = 30` and `sampleInterval = 0.2`;
-5. native keyframe count is 151, with 2416 native current-state frame rows across sixteen architrinos;
-6. native path-history row count is 2400;
-7. `playbackFrameSource = native-keyframes` and `interpolatedFrameCount = 0`;
-8. `initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, `electrinoCharge = -1`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, `velocityBoundScaleFromV1 = 1.2`, and `pairAccelerationScale = 1.2`;
-9. `centralArchitrinoCount = 8`, derived `architrinoCount = 16`, and `bufferArchitrinoCount = 8`;
-10. native path-history bounds stay inside the outer computed cube for this fixture;
-11. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
+3. `fixtureProfileId = borg-first-native-default-motion-fixture.v1`;
+4. outer `sideLength = 100`, displayed `centralVolumeSideLength = 80`, and `faceBufferMargin = 10`;
+5. `duration = 300` and `sampleInterval = 0.2`;
+6. native keyframe count is 1501, with 24016 native current-state frame rows across sixteen architrinos;
+7. native path-history row count is 24016;
+8. `playbackFrameSource = native-keyframes` and `interpolatedFrameCount = 0`;
+9. `runKind = motionSimulation`, `solverMode = native-fixed-parameter-default-motion`, `motionLaw = fixed_parameter_inertial_motion_v1`, `fixedPhysicalParameterSetId = borg-fixed-physical-parameters.v1`, `fixedPhysicalParameterAuthority = manifest-declared-fixed-parameter-contract`, `visualTuningStatus = not-visual-tuned`, `visualBehaviorAuthority = native-output-only`, and `nativeMasterEquationStatus = native-fixture-capability-missing`;
+10. `nativeMasterEquationProbe.statusCode = native_capability_missing`, `firstFailureCode = native_master_equation_fixture_missing`, `requiredNativeExport = architrino_solver_integrate_master_equation_motion_f64`, and `fallbackDecision = default-motion-baseline-selected`;
+11. `initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, `electrinoCharge = -1`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2`;
+12. `centralArchitrinoCount = 8`, derived `architrinoCount = 16`, and `bufferArchitrinoCount = 8`;
+13. native path-history bounds stay inside the outer computed cube for this fixture;
+14. many-body master-equation acceleration is not emitted by this fixture and remains fail-closed rather than visually tuned;
+15. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
 
 The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 
@@ -144,7 +148,7 @@ The fixture is a `developer-test` artifact. It does not grant authority to repla
 3. `simulation-window` is `on-locked` and `architrino-position` is `on`;
 4. `path-history` and `velocity-vectors` are off by default;
 5. `wake-streams`, `face-boundary-status`, and `outbound-face-background` remain disabled or contextual-disabled;
-6. native current-state frame count is 2416, native keyframe count is 151, and native path-history row count is 2400;
+6. native current-state frame count is 24016, native keyframe count is 1501, and native path-history row count is 24016;
 7. render manifest uses 3840 by 2160 pixels;
 8. central-volume acceleration remains `fail-closed-value`;
 9. fail-closed rows surface missing wake history, missing face influence model, and unmeasured `R_boundary->central`.
@@ -159,4 +163,4 @@ The page is an app-surface developer test, not native solver integration in the 
 
 ## Next Exact Build Burden
 
-Measure the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The next artifact must report transfer size, runtime memory observations, GPU/render target proxy, 3840 by 2160 capture status, and any browser integration gaps without changing solver state or promoting replay-affected values.
+Build `native_master_equation_fixed_parameter_fixture`. The next artifact must extend the native central solver contract and bridge so Borg can request a fixed-physical-parameter many-body master-equation run and receive authoritative acceleration evidence, path histories, and wake/interaction rows without adding an app-local solver or visual tuning.
