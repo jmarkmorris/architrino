@@ -23,6 +23,7 @@ const PHOTON_FIELD_PANEL_BOTTOM_TEXT_INSET = 14;
 const PHOTON_FIELD_PANEL_TEXT_FONT = "700 12px Helvetica Neue, Arial, sans-serif";
 const PHOTON_STAGE_TEXT_FONT = "730 12px Helvetica Neue, Arial, sans-serif";
 const PHOTON_STAGE_AXIS_GLYPH_FONT = "730 10px Helvetica Neue, Arial, sans-serif";
+const PHOTON_POLARIZATION_RAW_LINE_MIN_SAMPLE_COUNT = 24;
 const PHOTON_FACE_PAIR_TITLE = "Contra-rotating, Offset, Planar Braids";
 const PHOTON_STAGE_WHITE_LABEL_COLOR = "#ffffff";
 const PHOTON_TRANSLATION_AXIS_COLOR = "rgba(251, 191, 36, 0.92)";
@@ -543,6 +544,46 @@ function normalizePhotonPlotProgress(progress) {
   return ((progress % 1) + 1) % 1;
 }
 
+function canEvaluatePhotonPolarizationComponent(component) {
+  return Number.isFinite(Number(component?.cosCoefficient)) &&
+    Number.isFinite(Number(component?.sinCoefficient));
+}
+
+function evaluatePhotonPolarizationComponent(component, phase) {
+  return (
+    (Number(component?.cosCoefficient) || 0) * Math.cos(phase) +
+    (Number(component?.sinCoefficient) || 0) * Math.sin(phase)
+  );
+}
+
+export function resolvePhotonPolarizationCurrentPoint(trace, timeSeconds) {
+  const fallback = trace?.current ?? { ey: 0, ez: 0 };
+  const yComponent = trace?.components?.y;
+  const zComponent = trace?.components?.z;
+  const cycleDuration = Number(trace?.cycleDuration);
+  const time = Number(timeSeconds);
+  if (
+    !Number.isFinite(time) ||
+    !Number.isFinite(cycleDuration) ||
+    cycleDuration <= 0 ||
+    !canEvaluatePhotonPolarizationComponent(yComponent) ||
+    !canEvaluatePhotonPolarizationComponent(zComponent)
+  ) {
+    return fallback;
+  }
+  const fitCycleStart = Number.isFinite(Number(trace?.fitCycleStart))
+    ? Number(trace.fitCycleStart)
+    : 0;
+  const progress = normalizePhotonPlotProgress((time - fitCycleStart) / cycleDuration);
+  const phase = TWO_PI * progress;
+  return {
+    progress,
+    phase,
+    ey: evaluatePhotonPolarizationComponent(yComponent, phase),
+    ez: evaluatePhotonPolarizationComponent(zComponent, phase),
+  };
+}
+
 export function isPhotonPlotSampleInForwardGap(
   sampleProgress,
   currentProgress,
@@ -728,18 +769,20 @@ function drawPhotonPolarizationRawOverlay(ctx, trace, centerX, centerY, radius, 
   ctx.save();
   ctx.lineCap = "round";
   ctx.lineJoin = "round";
-  ctx.strokeStyle = "rgba(253, 230, 138, 0.1)";
-  ctx.lineWidth = 0.9;
-  ctx.beginPath();
-  rawPoints.forEach((point, index) => {
-    if (index === 0) {
-      ctx.moveTo(point.x, point.y);
-    } else {
-      ctx.lineTo(point.x, point.y);
-    }
-  });
-  ctx.closePath();
-  ctx.stroke();
+  if (rawPoints.length >= PHOTON_POLARIZATION_RAW_LINE_MIN_SAMPLE_COUNT) {
+    ctx.strokeStyle = "rgba(253, 230, 138, 0.1)";
+    ctx.lineWidth = 0.9;
+    ctx.beginPath();
+    rawPoints.forEach((point, index) => {
+      if (index === 0) {
+        ctx.moveTo(point.x, point.y);
+      } else {
+        ctx.lineTo(point.x, point.y);
+      }
+    });
+    ctx.closePath();
+    ctx.stroke();
+  }
 
   ctx.fillStyle = "rgba(238, 243, 255, 0.24)";
   rawPoints.forEach((point) => {
@@ -783,8 +826,14 @@ function drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, scale
   ctx.restore();
 }
 
-function drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, scale) {
-  const current = mapPhotonPolarizationPoint(trace.current, centerX, centerY, radius, scale);
+function drawPhotonPolarizationCurrentVector(ctx, trace, timeSeconds, centerX, centerY, radius, scale) {
+  const current = mapPhotonPolarizationPoint(
+    resolvePhotonPolarizationCurrentPoint(trace, timeSeconds),
+    centerX,
+    centerY,
+    radius,
+    scale
+  );
   ctx.save();
   ctx.strokeStyle = "rgba(238, 243, 255, 0.92)";
   ctx.lineWidth = 2;
@@ -925,7 +974,7 @@ export function drawPhotonPolarizationInset(canvas, state, timeSeconds, options 
   }
   drawPhotonPolarizationTrail(ctx, trace, centerX, centerY, radius, trace.scale);
   drawPhotonPolarizationAnalyzerAxis(ctx, trace, centerX, centerY, radius, trace.scale);
-  drawPhotonPolarizationCurrentVector(ctx, trace, centerX, centerY, radius, trace.scale);
+  drawPhotonPolarizationCurrentVector(ctx, trace, timeSeconds, centerX, centerY, radius, trace.scale);
 
   ctx.save();
   ctx.fillStyle = "rgba(238, 243, 255, 0.58)";

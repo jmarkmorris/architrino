@@ -9,7 +9,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
-const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "t3"];
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "borg", "t3"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",
@@ -9562,7 +9562,7 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
   };
 }
 
-function computeMovingCircularObserverFieldF64(request = {}) {
+export function computeMovingCircularObserverFieldF64(request = {}) {
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, index) =>
     computeMovingCircularObserverFieldContribution(branch, index, request)

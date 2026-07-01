@@ -66,10 +66,10 @@ Recent app work has several reusable design patterns for this app:
 The first build should feel simpler than Photon or Ideal Braid:
 
 - one canvas-first scene;
-- one floating toolbar with a preset dropdown, play/pause, reset, and settings gear;
+- one floating toolbar spanning the canvas with wake visual switches, play/pause, reset, scrubber, settings gear, and legend chips;
 - no always-open control panel;
 - no large formula panel;
-- a compact named preset dropdown, consistent with the Photon app pattern;
+- no visible scene preset dropdown;
 - no search, export, or markdown reader in v1;
 - no more than two live architrino markers visible at startup;
 - no proof metadata panels on the canvas;
@@ -113,6 +113,7 @@ Current central-bridge inspection:
 The current canvas exposes replay controls and compact settings:
 
 - preset selection;
+- wake visual switches for arcs and full circular wakes;
 - play/pause, reset, scrubber, and keyboard frame stepping;
 - canvas color;
 - $c_f$ replay speed;
@@ -138,7 +139,7 @@ The app renders solver-shaped datasets. It should not draw physically meaningful
 1. App loads a named replay preset.
 2. The runtime creates or receives a solver-shaped dataset with frame samples, retained path-history points, and optional diagnostic causal-wake rows.
 3. App replays the dataset on the canvas.
-4. User changes the named preset, play state, canvas color, compact speed settings, or `now` time without opening a dense control panel.
+4. User changes the named preset, wake visual switches, play state, canvas color, compact speed settings, or `now` time without opening a dense control panel.
 5. The compact `now` scrubber pauses replay, moves live architrino markers and wake fronts to the selected replay time, and refreshes any selected wake readout.
 6. After the central solver bridge is available, scripted or future direct-edit paths may submit retained path constraints to the solver or app-worker adapter, but v1 no longer exposes fixed retained-point handles on the canvas.
 7. Solver computes the architrino path history, causal roots, delayed hits, and diagnostics.
@@ -172,7 +173,7 @@ Accepted first proof constraints:
 
 - Keep one pair only: one positrino path and one electrino path.
 - Keep retained history samples internal to the replay dataset; do not show them as numbered path dots.
-- Use cross-path partial wake arcs in the current proof set. Keep `full_circular_arcs` as a later named preset rather than mixing it into this comparison sheet.
+- Use cross-path partial wake arcs in the default proof set. Full circular wakes remain available through wake visual switches and legacy direct review URLs, but ordinary comparison sheets should state which switch combination they captured.
 - Use 16:9 framing, with 1920x1080 as the design target.
 
 Landscape contact sheets should use the accepted six-variant proof set. Each variant should preserve the one-pair, two-live-wake-series scope and be framed as a 16:9 YouTube-compatible landscape tile.
@@ -237,16 +238,16 @@ Browser QA proof artifacts:
 - Causal wakes should be drawn as curved arcs, not straight rays.
 - Architrino path history should be drawn as solid trails, while causal wakes should be drawn as dotted arcs so the two uses of positrino/electrino color remain distinct.
 - Active dotted wake arcs in the proof tiles should begin at a back-solved emission point on the emitter path and end at the partner architrino's current replay position.
-- Each live wake series should keep fixed separation between visible fronts. Longer source-to-receiver action lines should draw more fronts, while the final front still lands on the current receiver point. The front count is derived from current action-line length, not from an elapsed-time buildup control.
+- Each live wake series should keep the smaller fixed separation between visible fronts. Longer source-to-receiver action lines still draw more fronts while the final front lands on the current receiver point.
 - The source emission point is the latest point on the emitter path satisfying the causal-delay equation against the partner's current path position. It should visibly trail the live emitter by a distance that changes with path geometry and $c_f$.
-- Partial wake presets should use dense, fixed-separation bands so the changing source-to-receiver series is easy to read.
+- Partial wake settings should use dense, fixed-separation bands so the changing source-to-receiver series is easy to read.
 - Clicking a live wake series selects the wake and shows its back-solved source, travel, falloff, and contribution details. Fixed retained path-history points are not canvas hit targets.
 - Scripted retained-constraint edits may deform the displayed path with a smooth local spline-style falloff, recompute the two live wake series from the edited paths, and move the live architrino marker along the edited path. Solver-backed modes should replace this preview with a solver rerun.
 - The accepted default wake-front treatment combines the tighter receiver sector from sample `2` with the brighter visibility treatment from sample `5`.
 - Dotted wake fronts should be bolder near the emitter and fade lighter as they approach the receiver.
 - Current proof wake arcs should only cover the emitter-to-receiver sector, not full circles or unrelated off-path arcs.
 - Prototype proof tiles should not draw pulse dots or architrino-like markers on top of dotted wake arcs; the dotted wake stroke itself carries the wake geometry.
-- A full-circular-arc preset should exist because it teaches the complete emitted wake geometry.
+- A full circular wake switch should exist because it teaches the complete emitted wake geometry.
 - The default teaching view should use smaller outward-propagating arcs moving toward each intersection, because partial arcs keep the screen less busy and make feedback arrivals easier to see.
 - The first contact sheet proof scope is accepted: one positrino path, one electrino path, no separate observation point, internal retained path samples, two live wake series, and six 16:9 proof variants that compare undecided arc treatments.
 - The revised contact sheet proof canvas should be a solid purple field with no grid.
@@ -293,15 +294,16 @@ Browser QA proof artifacts:
 - Do not draw separate pulse or particle markers on the causal-wake paths in the first proof; the dotted wake segment itself is the arrival cue.
 - Draw inactive or invalid paths as faint dashed paths with a rejection reason.
 - Keep velocity and retained-depth controls out of the default canvas. Use compact settings or scripted solver-review hooks until a cleaner direct-edit interaction is designed.
-- Support two wake-arc display modes: `partial_propagating_arcs` for the default teaching view and `full_circular_arcs` for the full-geometry preset.
+- Support independent wake display switches: arc wakes on/off and full circular wakes on/off. Wake-front gap stays locked to the smaller spacing, arc width stays locked to the smaller accepted span, front weight stays locked to the thinner treatment, causal-wake falloff stays locked to the weaker setting, and brightness stays locked to the dimmer treatment.
+- When arc wakes and full circular wakes are both enabled, do not draw the partial dotted arc fronts; draw the full circular fronts plus solid source-to-now emission lines from each current receiver position to its back-solved emission point.
 
 ### Animation
 
 - Animate architrino markers along solver-returned path samples.
 - Use linear or gently curved path-history motion for the first proof scenes.
 - Animate partial dotted causal-wake arcs by continuously recomputing their source emission point and current receiver point from the replay paths.
-- Keep one fixed, tight causal-wake front separation across all presets; do not expose a control or preset field that changes spacing between successive wake fronts.
-- In full-circular-arc mode, use the same live emission-point backsolve and fixed front separation as the partial arc mode, but draw each visible front as a complete 360-degree circle.
+- Keep causal-wake front separation fixed at the smaller spacing for both arc wakes and full circular wakes.
+- In full-circular mode, issue one causal isochron sphere per wake-front time step per architrino from the architrino's emission origin. Each sphere should keep expanding from its origin until it leaves the visible canvas or until replay policy stops rendering after the last reception.
 - Keep every wake arc color-locked to its emitter for the full trip, including faded older depths.
 - Fade and thin older paths by computed contribution strength using the $1/r$ falloff while keeping their depth index and emission time readable.
 - Let weak paths approach a thin or desaturated endpoint state below the assembly-relevance threshold, provided the wake's emitter identity remains clear from the active segment, depth row, or endpoint label.
@@ -323,35 +325,32 @@ Browser QA proof artifacts:
 
 ## Presets
 
-V1 should include a compact named preset dropdown in the floating toolbar, following the Photon app's basic pattern: load a complete named state, then allow `Reset preset` to restore the last loaded preset.
+V1 keeps named scene/data presets as review-link and runtime state, not as a visible toolbar dropdown. Direct review links such as `causal-delay-feedback.html?preset=contrast_stress` can still load a complete scene/data state.
 
-The preset dropdown should be small and secondary. It should not turn the app back into a control-dense inspector.
-The current standalone page keeps the persistent toolbar as replay-first controls and places `Reset preset` inside the settings popover, where it reloads the current preset through the same adapter path as the preset dropdown.
+The current standalone page keeps the persistent toolbar as replay-first controls and places `Reset preset` inside the settings popover, where it reloads the current preset through the same adapter path used by review-link presets.
 
-Named presets should load complete app state:
+Visual wake variants that need to combine freely should be independent switches, not separate preset entries.
+
+Named presets should load scene and replay state:
 
 - initial positions;
 - initial velocities;
 - polarity or role;
 - run duration;
 - retained history depth;
-- wake-arc display mode;
 - weak contribution cue mode;
 - readout visibility;
 - canvas color or purple-background atmosphere variant;
 - and proof dataset source when a contact sheet is using mock replay data.
 
-Initial preset set:
+Visible preset set:
 
 | Preset | Purpose |
 | --- | --- |
-| `one_pair_baseline` | Default one positrino/electrino pair with three readable causal-wake depths. |
-| `one_pair_dense_history` | Stress test for overlapping emitter-colored causal-wake arcs on purple background. |
-| `full_circular_arcs` | Full emitted circular wake geometry using the same progressing wake-front series as the partial arc mode, with each front drawn as a complete circle. |
-| `partial_propagating_arcs` | Default teaching view with smaller outward-propagating arcs moving toward each active intersection. |
-| `wide_delay_gap` | Clearer teaching preset with long travel times and visibly separated arrivals. |
-| `close_delay_crossing` | Short-delay preset where current path position and recent history compete visually. |
+| `accepted_tight_bright` | Default one positrino/electrino pair with accepted tight bright wake-front treatment. |
 | `contrast_stress` | Visual QA preset for red/blue wakes, faded depths, selection cyan, warnings, and white text. |
+
+Legacy direct review URLs may still accept prior visual preset ids such as `full_circular_arcs`, `strong_falloff`, `thin_fronts`, and `bright_fronts`. When loaded directly, they should initialize the equivalent wake visual switch state where one still exists, but they should not appear as ordinary dropdown choices. Older width-variant URLs should no longer widen the live arc span, older thinness-variant URLs should not change the locked thinner front weight, older strong-falloff URLs should not change the locked weaker falloff, and older brightness-variant URLs should not change the locked dimmer treatment.
 
 Search, export, import, and session-preset promotion should stay out of v1. They can follow the Photon pattern later if configuration exploration becomes useful.
 
@@ -382,13 +381,13 @@ Orientation behavior should be planned early:
 - Landscape: use the full 16:9 canvas composition with the floating toolbar kept compact; runtime readouts should stay unobtrusive and should not recreate the removed proof-panel layout.
 - Portrait: keep the same one-pair scene, but stack the compact toolbar, canvas, contribution stack, and readout vertically so the moving architrino paths remain visible.
 - iPad: prefer a landscape-like canvas with optional inspector/readout space; do not add extra conceptual panels just because more screen space is available.
-- The orientation change should preserve the current preset, `now` time, selected path, wake-arc display mode, and weak contribution cue setting.
+- The orientation change should preserve the current preset, `now` time, selected path, wake visual switch state, and weak contribution cue setting.
 
 ## Direct Manipulation Model
 
 Primary interactions:
 
-- Use the preset dropdown to switch replay scenes.
+- Use wake visual switches to combine arc wakes and full circular wakes without changing the scene dataset.
 - Use play/pause, reset, scrubber, and keyboard frame-step controls to inspect replay time.
 - Use settings for canvas color, $c_f$ replay speed, architrino speed, weak contribution cues, and preset reset.
 - Click a live wake series to select it and show its current back-solved emission, travel, falloff, and contribution row in the compact readout.
@@ -408,6 +407,7 @@ The runtime now implements background-only wheel and pinch zoom as viewport oper
 V1 should avoid a large controls panel. The visible controls should be limited to:
 
 - Preset dropdown.
+- Wake visual switches.
 - Play/pause.
 - Reset replay.
 - Now scrubber.
@@ -476,7 +476,7 @@ Do not add a root-ledger inspector, large diagnostic table, or persistent diagno
 - Diagnostic presets may preserve rejected rows when they are relevant to understanding the geometry.
 - Selecting a live wake-series entry should highlight the causal-wake path that produced it.
 - Drag targets must have generous hit areas so the app works on trackpads and tablets.
-- Pressing the spacebar should toggle play/pause unless focus is inside a native control such as the preset dropdown or a toolbar button.
+- Pressing the spacebar should toggle play/pause unless focus is inside a native control such as a settings select or toolbar button.
 - Pressing the left/right arrow keys should pause replay and step backward or forward through solver frame samples unless focus is inside a native control.
 - Future direct-edit gestures should enqueue or rerun the solver and mark previous paths as preview or stale until the new solver result arrives.
 - If the dragged state creates no active paths, the canvas should show an empty active set and name why rather than freezing the prior paths.
@@ -516,7 +516,8 @@ Each solver run should also carry a compact setup record:
 | `presetId` | Named preset currently loaded, when any. |
 | `datasetSource` | `solver`, `representative_mock_solver_replay`, or `draft_preview`. |
 | `canvasColor` | Selected canvas color or purple-background atmosphere variant. |
-| `wakeArcDisplayMode` | `partial_propagating_arcs` or `full_circular_arcs`. |
+| `wakeArcDisplayMode` | Legacy/review display mode metadata: `partial_propagating_arcs` or `full_circular_arcs`. |
+| `wakeVisualSettings` | Switch state for arc wakes and full circular wakes. |
 | `weakCueMode` | `off` or `threshold_only`. |
 | `initialConditions` | Initial positions, velocities, polarity or role, and run duration. |
 | `solverStatus` | `draft`, `running`, `ready`, `stale`, `failed`, or `unsupported`. |
@@ -587,10 +588,11 @@ Each solver run should also carry a compact setup record:
 - `route_runtime_scaffold` - Add `causal-delay-feedback.html`, `src/apps/causal-delay-feedback/`, and the standalone navigator route.
 - `temporary_mock_solver_replay_adapter` - Create `representative_mock_solver_replay` data with frame samples, retained path-history points, diagnostic cross-path wake rows, official red/blue polarity colors, and the future central solver bridge target.
 - `solver_adapter_boundary` - Isolate the temporary mock replay in a focused adapter module so the central solver bridge can replace the data source without rewriting the canvas renderer.
-- `named_preset_dropdown` - Add named replay presets matching the accepted contact-sheet comparison family, plus a full circular wake mode.
+- `scene_preset_review_urls` - Keep named replay presets for scene/data choices available through review URLs and runtime state, with no visible toolbar dropdown.
 - `preset_review_url` - Allow direct review links such as `causal-delay-feedback.html?preset=full_circular_arcs` and canvas-color variants through URL query settings.
-- `toolbar_minimum` - Add compact play/pause, reset, preset, and settings controls.
-- `spacebar_play_pause` - Toggle play/pause from the spacebar while preserving native control behavior when focus is on the preset dropdown or toolbar buttons.
+- `wake_visual_switches` - Add independent toolbar switches for arcs and full circular wakes. When arc wakes and full circular wakes are both enabled, the runtime draws full circular fronts plus solid source-to-now emission lines instead of partial arc fronts. Wake-front gap is locked to the smaller spacing, arc width is locked to the smaller accepted span, front weight is locked to the thinner treatment, causal-wake falloff is locked to the weaker setting, and brightness is locked to the dimmer treatment.
+- `toolbar_minimum` - Add compact play/pause, reset, wake-switch, scrubber, legend, and settings controls.
+- `spacebar_play_pause` - Toggle play/pause from the spacebar while preserving native control behavior when focus is on settings selects or toolbar buttons.
 - `keyboard_frame_step` - Use left/right arrow keys as low-clutter frame-step controls: pause replay, step backward or forward through solver frame samples, refresh the selected readout, and preserve native control behavior when focus is inside inputs, selects, textareas, or buttons.
 - `central_solver_replay_contract_adapter` - Add a central-bridge replay request builder and response normalizer for causal-delay feedback datasets, with injected bridge-run support for tests and future worker wiring.
 - `central_bridge_causal_delay_app_id` - Add `causal-delay-feedback` to the central solver bridge app-id contract and smoke it through built-in app playback.
@@ -624,7 +626,7 @@ Each solver run should also carry a compact setup record:
 - `wake_arrival_animation` - Animate source motion and dotted causal-wake arcs by changing the back-solved source and current receiver endpoints each frame, without particle-like markers on wake paths.
 - `wake_receiver_arrival_sync` - Treat the final front of each live wake series as continuously received at the partner's current path position. Do not snap skipped animation frames to retained receiver points; retained delayed-hit times remain diagnostics rather than the canvas arrival schedule.
 - `hidden_retained_history_markers` - Keep retained path-history samples in the replay and solver data, but do not draw them as visible numbered path markers or expose them as canvas hit targets.
-- `full_circular_arcs_preset` - Add a named preset where the normal wake-front series is drawn as full 360-degree circular fronts instead of partial receiver-facing arcs.
+- `full_circular_wake_switch` - Add a full circular wake switch where each visible causal isochron sphere is drawn as a complete 360-degree front from its own moving emission origin.
 - `settings_gear` - Add a compact settings popover with canvas-color swatches.
 - `field_and_architrino_speed_settings` - Add compact settings controls for $c_f$ replay speed and architrino speed as $v/c_f$, with the architrino speed setting using the exact 10-stop sequence `0.1`, `0.3`, `0.5`, `0.7`, `0.9`, `0.99`, `0.999`, `0.9999`, `0.99999`, and `0.999999`.
 - `themed_settings_sliders` - Style the $c_f$ and architrino-speed range controls with the app's dark-purple panel treatment and cyan accent so the settings popover no longer falls back to native white/black slider chrome.

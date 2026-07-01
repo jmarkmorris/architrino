@@ -282,7 +282,7 @@ constexpr std::uint32_t kMasterEquationCanonicalEomEvidenceYes = 1;
 constexpr std::uint32_t kBorgFixedParameterSetCode = 1;
 constexpr std::uint32_t kMasterEquationFixedParameterVersionCode = 1;
 constexpr std::uint32_t kArchitrinoMasterEquationForceLawCode = 1;
-constexpr double kBorgMasterEquationCoupling = 1.0;
+constexpr double kBorgMasterEquationCoupling = 1.0e-4;
 constexpr double kBorgMasterEquationSoftening = 1.0;
 
 architrino::solver::Vector3 to_vector(ArchitrinoSolverVector3F64 value) {
@@ -3322,8 +3322,8 @@ std::vector<double> master_equation_sample_times(
 std::vector<architrino::solver::Vector3> master_equation_accelerations(
     const std::vector<MasterEquationWorkingState>& states,
     const ArchitrinoSolverMasterEquationRequestF64& request) {
-  const double duration = std::max(request.end_time - request.start_time, request.step);
-  const double factor = kBorgMasterEquationCoupling / std::max(duration * duration, 1e-12);
+  (void)request;
+  const double factor = kBorgMasterEquationCoupling;
   const double softening_squared = kBorgMasterEquationSoftening * kBorgMasterEquationSoftening;
   std::vector<architrino::solver::Vector3> accelerations(states.size());
   for (std::size_t index = 0; index < states.size(); ++index) {

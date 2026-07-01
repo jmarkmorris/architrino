@@ -89,6 +89,9 @@ const MASTER_EQUATION_FIXTURE_SETTINGS = Object.freeze({
   solverMode: "native-fixed-parameter-master-equation",
   motionLaw: DEFAULT_MOTION_SETTINGS.masterEquationForceLawVersion,
   accelerationPolicy: "native-many-body-master-equation",
+  coupling: 1e-4,
+  softeningLength: 1,
+  durationNormalization: "none",
   masterEquationSelectionDecision: "native-master-equation-selected",
   canonicalEomEvidence: true,
   eomEvidenceStatus: "native_master_equation_fixed_parameter_evidence",
@@ -190,6 +193,21 @@ export function assertBorgFixtureManifest(manifest, native) {
     manifest.sourceBridgeRun.visualBehaviorAuthority,
     DEFAULT_MOTION_SETTINGS.visualBehaviorAuthority,
     "visual behavior authority",
+  );
+  assertEqual(
+    manifest.sourceBridgeRun.fixedPhysicalParameters.masterEquationCoupling,
+    MASTER_EQUATION_FIXTURE_SETTINGS.coupling,
+    "master-equation coupling",
+  );
+  assertEqual(
+    manifest.sourceBridgeRun.fixedPhysicalParameters.masterEquationSofteningLength,
+    MASTER_EQUATION_FIXTURE_SETTINGS.softeningLength,
+    "master-equation softening length",
+  );
+  assertEqual(
+    manifest.sourceBridgeRun.fixedPhysicalParameters.durationNormalization,
+    MASTER_EQUATION_FIXTURE_SETTINGS.durationNormalization,
+    "master-equation duration normalization",
   );
   assert(
     ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(
@@ -1170,6 +1188,9 @@ function createFixedPhysicalParameterSummary() {
     acceleration: DEFAULT_MOTION_SETTINGS.acceleration,
     integrationTolerance: DEFAULT_MOTION_SETTINGS.integrationTolerance,
     integrationMethod: DEFAULT_MOTION_SETTINGS.integrationMethod,
+    masterEquationCoupling: MASTER_EQUATION_FIXTURE_SETTINGS.coupling,
+    masterEquationSofteningLength: MASTER_EQUATION_FIXTURE_SETTINGS.softeningLength,
+    durationNormalization: MASTER_EQUATION_FIXTURE_SETTINGS.durationNormalization,
     positrinoCharge: 1,
     electrinoCharge: -1,
     visualTuningStatus: DEFAULT_MOTION_SETTINGS.visualTuningStatus,
