@@ -25,14 +25,14 @@ const FIXTURE_IDS = Object.freeze({
 });
 
 const SIMULATION_ENVELOPE = Object.freeze({
-  sideLength: 10,
-  centralVolumeSideLength: 8,
-  faceBufferMargin: 1,
-  duration: 30,
+  sideLength: 100,
+  centralVolumeSideLength: 80,
+  faceBufferMargin: 10,
+  duration: 300,
   sampleInterval: 0.2,
   historyDepth: 10,
   fieldSpeed: 3,
-  centralObservationInterval: 30,
+  centralObservationInterval: 300,
   centralBoundaryTolerance: 1e-3,
 });
 
@@ -41,17 +41,17 @@ const POPULATION = Object.freeze({
 });
 
 const LONG_FIXTURE_PROFILE = Object.freeze({
-  fixtureProfileId: "borg-first-native-backed-long-fixture.v3",
+  fixtureProfileId: "borg-first-native-backed-long-fixture.v4",
   playbackFrameSource: "native-keyframes",
   interpolationAuthority: "display-only-between-native-keyframes",
-  expectedNativeKeyframeRange: [151, 151],
+  expectedNativeKeyframeRange: [1501, 1501],
   rowsPerChunk: 16,
 });
 
 const PAIR_INTERACTION_SETTINGS = Object.freeze({
   interactionLaw: "display_pair_attraction_v1",
   initialLinePolicy: "seeded-random-interior-cube",
-  pairAccelerationScale: 1.2,
+  pairAccelerationScale: 12,
   softening: 0.01,
   integrationTolerance: 1e-11,
 });
@@ -62,9 +62,9 @@ const POSITRINO_COUNT = 8;
 const INITIAL_CONDITION_SEED = "borg-sixteen-random-interior-position-seed.v1";
 const VELOCITY_SEED = "borg-sixteen-random-small-3d-velocity-seed.v1";
 const INTERIOR_RANDOM_LAYOUT = Object.freeze({
-  minCoordinate: 1.35,
-  maxCoordinate: 8.65,
-  minSeparation: 1.05,
+  minCoordinate: 13.5,
+  maxCoordinate: 86.5,
+  minSeparation: 10.5,
 });
 const RANDOM_VELOCITY = Object.freeze({
   maxComponentMagnitude: 0.042,
@@ -276,6 +276,9 @@ function createBorgDatasetManifest(native) {
   const wakeHorizon = SIMULATION_ENVELOPE.fieldSpeed * SIMULATION_ENVELOPE.historyDepth;
   const centralVelocityBound = maxFrameSpeed(nativeResponse.frames);
   const nativeKeyframeCount = countNativeKeyframes(nativeResponse.frames);
+  const centralVolumeMin = SIMULATION_ENVELOPE.faceBufferMargin;
+  const centralVolumeMax = SIMULATION_ENVELOPE.sideLength - SIMULATION_ENVELOPE.faceBufferMargin;
+  const centralVolumeCenter = SIMULATION_ENVELOPE.sideLength / 2;
   const strictBufferLimit = Math.max(
     wakeHorizon,
     centralVelocityBound * SIMULATION_ENVELOPE.centralObservationInterval,
@@ -329,11 +332,15 @@ function createBorgDatasetManifest(native) {
       sideLength: SIMULATION_ENVELOPE.sideLength,
       centralVolume: {
         kind: "cube",
-        center: { x: 5, y: 5, z: 5 },
+        center: {
+          x: centralVolumeCenter,
+          y: centralVolumeCenter,
+          z: centralVolumeCenter,
+        },
         bounds: {
-          x: [1, 9],
-          y: [1, 9],
-          z: [1, 9],
+          x: [centralVolumeMin, centralVolumeMax],
+          y: [centralVolumeMin, centralVolumeMax],
+          z: [centralVolumeMin, centralVolumeMax],
         },
         coordinateChart: "outer-cube-cartesian",
       },

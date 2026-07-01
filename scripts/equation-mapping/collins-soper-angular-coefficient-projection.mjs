@@ -15,6 +15,59 @@ const OUTPUT_SCHEMA =
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
 const COEFFICIENT_ORDER = ["A0", "A1", "A2", "A3", "A4", "A5", "A6", "A7"];
+const NATIVE_DERIVED_SOURCE_KINDS = new Set([
+  "native_weak_corridor_dynamics",
+  "retained_weak_corridor_branch_dynamics",
+]);
+const BRANCH_DYNAMICS_COMPONENTS = [
+  {
+    component: "T_even_L",
+    coefficient: "A0",
+    sourceTerm: "evenTensor.longitudinalTraceFree",
+  },
+  {
+    component: "T_even_xz",
+    coefficient: "A1",
+    sourceTerm: "evenTensor.xz",
+  },
+  {
+    component: "T_even_xx_minus_yy",
+    coefficient: "A2",
+    sourceTerm: "evenTensor.xxMinusYy",
+  },
+  {
+    component: "P_weak_x",
+    coefficient: "A3",
+    sourceTerm: "parityVector.x",
+  },
+  {
+    component: "P_weak_z",
+    coefficient: "A4",
+    sourceTerm: "parityVector.z",
+  },
+  {
+    component: "W_odd_xy",
+    coefficient: "A5",
+    sourceTerm: "wakeOddTensor.xy",
+  },
+  {
+    component: "W_odd_zy",
+    coefficient: "A6",
+    sourceTerm: "wakeOddTensor.zy",
+  },
+  {
+    component: "P_weak_y",
+    coefficient: "A7",
+    sourceTerm: "parityVector.y",
+  },
+];
+const BRANCH_DYNAMICS_CONTRIBUTION_KEYS = [
+  "sourceDepletion",
+  "recoilBalance",
+  "noetherSeaResponse",
+  "corridorOrientation",
+  "wakeBalance",
+];
 const REQUIRED_ROWS = [
   "source_branch_chart",
   "neutral_corridor_branch_chart",
@@ -31,6 +84,8 @@ const DEFAULT_TOLERANCES = {
   weightNormalization: 1e-12,
   projectionAngle: 1e-10,
   coefficient: 1e-9,
+  componentStability: 1e-12,
+  componentUniqueness: 1e-12,
   aFB: 1e-12,
   chi2: 1e-8,
 };
@@ -56,10 +111,41 @@ if (args.help) {
 
 const inputPath = path.resolve(args.input);
 const input = readJson(inputPath);
-const output = evaluateProjection(input, inputPath);
+const inputWithStabilityProbes = args.componentStabilityProbes
+  ? mergeComponentStabilityProbes(input, readJson(path.resolve(args.componentStabilityProbes)))
+  : input;
+const inputWithUniquenessCertificate = args.componentUniquenessCertificate
+  ? mergeComponentUniquenessCertificate(
+      inputWithStabilityProbes,
+      readJson(path.resolve(args.componentUniquenessCertificate)),
+    )
+  : inputWithStabilityProbes;
+const evaluatedInput = applyCliControls(inputWithUniquenessCertificate, args);
+const output = evaluateProjection(evaluatedInput, inputPath);
 writeOutput(output, args);
 
 if (args.requirePopulated && output.summary.status !== "populated") {
+  process.exitCode = 1;
+}
+if (args.requireNativeDerived && output.summary.requireNativeDerivedPass !== true) {
+  process.exitCode = 1;
+}
+if (
+  args.requireBranchDynamicsDerived &&
+  output.summary.requireBranchDynamicsDerivedPass !== true
+) {
+  process.exitCode = 1;
+}
+if (
+  args.requireComponentStability &&
+  output.summary.requireComponentStabilityPass !== true
+) {
+  process.exitCode = 1;
+}
+if (
+  args.requireComponentUniqueness &&
+  output.summary.requireComponentUniquenessPass !== true
+) {
   process.exitCode = 1;
 }
 
@@ -70,6 +156,12 @@ function parseArgs(argv) {
     pretty: false,
     summary: false,
     requirePopulated: false,
+    requireNativeDerived: false,
+    requireBranchDynamicsDerived: false,
+    requireComponentStability: false,
+    requireComponentUniqueness: false,
+    componentStabilityProbes: null,
+    componentUniquenessCertificate: null,
     help: false,
   };
   for (let index = 0; index < argv.length; index += 1) {
@@ -84,6 +176,18 @@ function parseArgs(argv) {
       parsed.summary = true;
     } else if (arg === "--require-populated") {
       parsed.requirePopulated = true;
+    } else if (arg === "--require-native-derived") {
+      parsed.requireNativeDerived = true;
+    } else if (arg === "--require-branch-dynamics-derived") {
+      parsed.requireBranchDynamicsDerived = true;
+    } else if (arg === "--require-component-stability") {
+      parsed.requireComponentStability = true;
+    } else if (arg === "--component-stability-probes") {
+      parsed.componentStabilityProbes = argv[++index];
+    } else if (arg === "--require-component-uniqueness") {
+      parsed.requireComponentUniqueness = true;
+    } else if (arg === "--component-uniqueness-certificate") {
+      parsed.componentUniquenessCertificate = argv[++index];
     } else if (arg === "--help" || arg === "-h") {
       parsed.help = true;
     } else {
@@ -102,6 +206,18 @@ Options:
   --summary             Emit compact summary JSON.
   --pretty              Pretty-print JSON output.
   --require-populated   Exit nonzero unless the projection instance is populated.
+  --require-native-derived
+                       Exit nonzero unless A0..A7 come from native weak-corridor dynamics.
+  --require-branch-dynamics-derived
+                       Exit nonzero unless A0..A7 come from retained weak-corridor branch dynamics.
+  --require-component-stability
+                       Exit nonzero unless retained branch-dynamics component probes preserve A0..A7.
+  --component-stability-probes PATH
+                       Read component-stability probes from a JSON sidecar.
+  --require-component-uniqueness
+                       Exit nonzero unless retained branch-dynamics component split is rank-certified.
+  --component-uniqueness-certificate PATH
+                       Read component-uniqueness certificate constraints from a JSON sidecar.
   --help                Show this help.
 
 This checker is score-neutral. It tests whether a retained branch-chart event
@@ -113,6 +229,58 @@ density-matrix labels as primitives.`);
 
 function readJson(filePath) {
   return JSON.parse(fs.readFileSync(filePath, "utf8"));
+}
+
+function mergeComponentStabilityProbes(input, probePayload) {
+  const probes = probePayload.componentStabilityProbes ?? probePayload.probes ?? [];
+  return {
+    ...input,
+    retainedWeakCorridorBranchDynamics: {
+      ...(input.retainedWeakCorridorBranchDynamics ?? {}),
+      componentStabilityProbes: probes,
+      componentStabilityProbeSetId:
+        probePayload.probeSetId ?? probePayload.sourceId ?? probePayload.schema ?? null,
+    },
+  };
+}
+
+function mergeComponentUniquenessCertificate(input, certificatePayload) {
+  const certificate =
+    certificatePayload.componentUniquenessCertificate ?? certificatePayload.certificate ?? {};
+  return {
+    ...input,
+    retainedWeakCorridorBranchDynamics: {
+      ...(input.retainedWeakCorridorBranchDynamics ?? {}),
+      componentUniquenessCertificate: certificate,
+      componentUniquenessCertificateId:
+        certificatePayload.certificateId ??
+        certificate.certificateId ??
+        certificatePayload.sourceId ??
+        certificatePayload.schema ??
+        null,
+    },
+  };
+}
+
+function applyCliControls(input, parsedArgs) {
+  const controlOverrides = {
+    ...(parsedArgs.requireNativeDerived ? { requireNativeDerived: true } : {}),
+    ...(parsedArgs.requireBranchDynamicsDerived
+      ? { requireBranchDynamicsDerived: true }
+      : {}),
+    ...(parsedArgs.requireComponentStability ? { requireComponentStability: true } : {}),
+    ...(parsedArgs.requireComponentUniqueness ? { requireComponentUniqueness: true } : {}),
+  };
+  if (Object.keys(controlOverrides).length === 0) {
+    return input;
+  }
+  return {
+    ...input,
+    controls: {
+      ...(input.controls ?? {}),
+      ...controlOverrides,
+    },
+  };
 }
 
 function writeOutput(output, parsedArgs) {
@@ -132,19 +300,31 @@ function evaluateProjection(input, inputPath) {
   const sourceEvidence = evaluateSourceEvidence(rowChecks);
   const ontology = evaluateOntologyPrimitiveBoundary(input);
   const detector = evaluateDetectorProvenance(input.detectorProvenance ?? {});
-  const branchMeasure = parseCoefficientMap(
-    input.branchAngularMeasure?.coefficients ?? {},
-    "branchAngularMeasure.coefficients",
+  const coefficientSource = resolveCoefficientSource(input);
+  const controls = evaluateControls(input.controls ?? {}, coefficientSource);
+  const componentStability = evaluateComponentStability(
+    input.retainedWeakCorridorBranchDynamics?.componentStabilityProbes ??
+      input.componentStabilityProbes ??
+      [],
+    coefficientSource,
+    tolerances,
+    input.retainedWeakCorridorBranchDynamics?.componentStabilityProbeSetId ?? null,
+  );
+  const componentUniqueness = evaluateComponentUniqueness(
+    input.retainedWeakCorridorBranchDynamics?.componentUniquenessCertificate ?? null,
+    coefficientSource,
+    tolerances,
+    input.retainedWeakCorridorBranchDynamics?.componentUniquenessCertificateId ?? null,
   );
   const measurement = evaluateMeasurement(input.measurement ?? {});
   const simulation = buildProjectionSimulation({
-    coefficients: branchMeasure.values,
+    coefficients: coefficientSource.coefficients.values,
     dileptonSystem: input.dileptonSystem ?? {},
     quadrature: input.quadrature ?? {},
   });
   const coefficientResidual = computeCoefficientResidual(
     simulation.extractedCoefficients.values,
-    branchMeasure.values,
+    coefficientSource.coefficients.values,
   );
   const comparison = compareWithMeasurement({
     extracted: simulation.extractedCoefficients.values,
@@ -157,6 +337,10 @@ function evaluateProjection(input, inputPath) {
     sourceEvidence,
     ontology,
     detector,
+    coefficientSource,
+    controls,
+    componentStability,
+    componentUniqueness,
     measurement,
     simulation,
     coefficientResidual,
@@ -191,6 +375,10 @@ function evaluateProjection(input, inputPath) {
         sourceEvidence,
         ontology,
         detector,
+        coefficientSource,
+        controls,
+        componentStability,
+        componentUniqueness,
         measurement,
         simulation,
         coefficientResidual,
@@ -203,6 +391,30 @@ function evaluateProjection(input, inputPath) {
       sourceEvidencePass: sourceEvidence.passed,
       intrinsicPrimitivePass: ontology.passed,
       detectorProvenancePass: detector.passed,
+      coefficientSource: coefficientSource.kind,
+      coefficientSourcePass: coefficientSource.passed,
+      nativeWeakCorridorDynamicsPass:
+        coefficientSource.nativeWeakCorridorDynamics?.passed ?? false,
+      retainedWeakCorridorBranchDynamicsPass:
+        coefficientSource.retainedWeakCorridorBranchDynamics?.passed ?? false,
+      requireNativeDerivedPass: controls.requireNativeDerived
+        ? controls.nativeDerivedPass
+        : null,
+      requireBranchDynamicsDerivedPass: controls.requireBranchDynamicsDerived
+        ? controls.branchDynamicsDerivedPass
+        : null,
+      componentStabilityPass: componentStability.passed,
+      componentStabilityProbeCount: componentStability.probeCount,
+      requireComponentStabilityPass: controls.requireComponentStability
+        ? componentStability.passed
+        : null,
+      componentUniquenessPass: componentUniqueness.passed,
+      componentUniquenessComponentCount: componentUniqueness.componentCount,
+      componentUniquenessMinRank: componentUniqueness.minRank,
+      componentUniquenessMaxSolutionResidual: componentUniqueness.maxSolutionResidual,
+      requireComponentUniquenessPass: controls.requireComponentUniqueness
+        ? componentUniqueness.passed
+        : null,
       measurementPass: measurement.passed,
       generatedEventCount: simulation.eventCount,
       weightNormalizationResidual: simulation.weightNormalizationResidual,
@@ -235,12 +447,25 @@ function evaluateProjection(input, inputPath) {
     sourceEvidence,
     ontology,
     detector,
+    controls,
+    componentStability,
+    componentUniqueness,
+    coefficientSource: {
+      kind: coefficientSource.kind,
+      label: coefficientSource.label,
+      passed: coefficientSource.passed,
+      reason: coefficientSource.reason,
+      coefficientOrder: COEFFICIENT_ORDER,
+      coefficients: coefficientSource.coefficients.map,
+      nativeWeakCorridorDynamics: coefficientSource.nativeWeakCorridorDynamics,
+      retainedWeakCorridorBranchDynamics: coefficientSource.retainedWeakCorridorBranchDynamics,
+    },
     measurement,
     simulation: {
       eventCount: simulation.eventCount,
       coefficientOrder: COEFFICIENT_ORDER,
       extractedCoefficients: simulation.extractedCoefficients.map,
-      generatedCoefficients: branchMeasure.map,
+      generatedCoefficients: coefficientSource.coefficients.map,
       coefficientResiduals: coefficientResidual.map,
       weightNormalizationResidual: simulation.weightNormalizationResidual,
       maxProjectionAngleResidual: simulation.maxProjectionAngleResidual,
@@ -261,6 +486,9 @@ function summarizeOutput(output) {
     projection: output.projection,
     summary: output.summary,
     rows: output.rows,
+    componentStability: output.componentStability,
+    componentUniqueness: output.componentUniqueness,
+    coefficientSource: output.coefficientSource,
     comparison: {
       chi2: output.comparison.chi2,
       ndof: output.comparison.ndof,
@@ -511,6 +739,804 @@ function evaluateDetectorProvenance(raw) {
     frameConventions: frame,
     visibleMomentumHandoff: visible,
   };
+}
+
+function resolveCoefficientSource(input) {
+  if (input.retainedWeakCorridorBranchDynamics) {
+    const retainedWeakCorridorBranchDynamics = evaluateRetainedWeakCorridorBranchDynamics(
+      input.retainedWeakCorridorBranchDynamics,
+    );
+    return {
+      kind: "retained_weak_corridor_branch_dynamics",
+      label: "retainedWeakCorridorBranchDynamics",
+      passed: retainedWeakCorridorBranchDynamics.passed,
+      reason: retainedWeakCorridorBranchDynamics.reason,
+      coefficients: retainedWeakCorridorBranchDynamics.coefficients,
+      nativeWeakCorridorDynamics:
+        retainedWeakCorridorBranchDynamics.derivedNativeWeakCorridorDynamics,
+      retainedWeakCorridorBranchDynamics,
+    };
+  }
+  if (input.nativeWeakCorridorDynamics) {
+    const nativeWeakCorridorDynamics = evaluateNativeWeakCorridorDynamics(
+      input.nativeWeakCorridorDynamics,
+    );
+    return {
+      kind: "native_weak_corridor_dynamics",
+      label: "nativeWeakCorridorDynamics",
+      passed: nativeWeakCorridorDynamics.passed,
+      reason: nativeWeakCorridorDynamics.reason,
+      coefficients: nativeWeakCorridorDynamics.coefficients,
+      nativeWeakCorridorDynamics,
+    };
+  }
+  const coefficients = parseCoefficientMap(
+    input.branchAngularMeasure?.coefficients ?? {},
+    "branchAngularMeasure.coefficients",
+  );
+  return {
+    kind: "declared_projection_measure",
+    label: input.branchAngularMeasure?.coefficientSource ?? "branchAngularMeasure.coefficients",
+    passed: true,
+    reason: "accepted",
+    coefficients,
+    nativeWeakCorridorDynamics: {
+      passed: false,
+      reason: "native_weak_corridor_dynamics_missing",
+    },
+    retainedWeakCorridorBranchDynamics: {
+      passed: false,
+      reason: "retained_weak_corridor_branch_dynamics_missing",
+    },
+  };
+}
+
+function evaluateRetainedWeakCorridorBranchDynamics(raw) {
+  const componentRows = parseBranchDynamicsComponentRows(raw.componentRows ?? []);
+  const coefficients = coefficientsFromBranchDynamicsComponents(componentRows);
+  const statusAccepted = ACCEPTED_STATUSES.has(normalizeStatus(raw));
+  const sourceCheck = evaluateDurableSource(
+    raw.sourcePath,
+    raw,
+    "retained_weak_corridor_branch_dynamics",
+  );
+  const requiredSourceRows = [
+    "source_depletion",
+    "recoil_balance",
+    "noether_sea_response",
+    "corridor_orientation_axis",
+  ];
+  const missingSourceRows = requiredSourceRows.filter(
+    (rowId) => !concreteString(raw.sourceRows?.[rowId]),
+  );
+  const basisAccepted = raw.basis === "collins_soper_retained_weak_corridor_branch_dynamics";
+  const noDirectCoefficientRows = componentRows.forbiddenDirectCoefficientRows.length === 0;
+  const passed =
+    statusAccepted &&
+    sourceCheck.accepted &&
+    missingSourceRows.length === 0 &&
+    basisAccepted &&
+    componentRows.passed &&
+    noDirectCoefficientRows &&
+    coefficients.values.every(Number.isFinite);
+  const derivedNativeWeakCorridorDynamics = derivedNativeWeakCorridorDynamicsFromBranchRows({
+    raw,
+    passed,
+    reason: passed
+      ? "accepted"
+      : firstRetainedBranchDynamicsBlocker({
+          statusAccepted,
+          sourceCheck,
+          missingSourceRows,
+          basisAccepted,
+          componentRows,
+          noDirectCoefficientRows,
+        }),
+    coefficients,
+    componentRows,
+  });
+  return {
+    passed,
+    reason: derivedNativeWeakCorridorDynamics.reason,
+    status: normalizeStatus(raw),
+    sourcePath: raw.sourcePath ?? null,
+    sourceCheck,
+    domainId: raw.domainId ?? null,
+    branchRecordId: raw.branchRecordId ?? null,
+    detectorProvenanceId: raw.detectorProvenanceId ?? null,
+    basis: raw.basis ?? null,
+    sourceRows: raw.sourceRows ?? {},
+    componentEquation:
+      "component = sourceDepletion + recoilBalance + noetherSeaResponse + corridorOrientation + wakeBalance",
+    componentRows,
+    coefficients,
+    derivedNativeWeakCorridorDynamics,
+    missingSourceRows,
+  };
+}
+
+function parseBranchDynamicsComponentRows(rawRows) {
+  const rows = Array.isArray(rawRows) ? rawRows : [];
+  const rowByComponent = new Map(rows.map((row) => [row?.component, row]));
+  const missingComponents = BRANCH_DYNAMICS_COMPONENTS.filter(
+    ({ component }) => !rowByComponent.has(component),
+  ).map(({ component }) => component);
+  const duplicateComponents = rows
+    .map((row) => row?.component)
+    .filter((component, index, components) => component && components.indexOf(component) !== index);
+  const forbiddenDirectCoefficientRows = rows
+    .filter((row) =>
+      ["value", "coefficient", ...COEFFICIENT_ORDER].some((key) =>
+        Object.prototype.hasOwnProperty.call(row ?? {}, key),
+      ),
+    )
+    .map((row) => row?.component ?? null);
+  const parsedRows = BRANCH_DYNAMICS_COMPONENTS.map(({ component, coefficient, sourceTerm }) => {
+    const row = rowByComponent.get(component) ?? {};
+    const contributions = {
+      sourceDepletion: finiteNumber(row.sourceDepletion ?? 0, `${component}.sourceDepletion`),
+      recoilBalance: finiteNumber(row.recoilBalance ?? 0, `${component}.recoilBalance`),
+      noetherSeaResponse: finiteNumber(
+        row.noetherSeaResponse ?? 0,
+        `${component}.noetherSeaResponse`,
+      ),
+      corridorOrientation: finiteNumber(
+        row.corridorOrientation ?? 0,
+        `${component}.corridorOrientation`,
+      ),
+      wakeBalance: finiteNumber(row.wakeBalance ?? 0, `${component}.wakeBalance`),
+    };
+    const value = Object.values(contributions).reduce((sum, entry) => sum + entry, 0);
+    return {
+      component,
+      coefficient,
+      sourceTerm,
+      rowId: row.rowId ?? null,
+      branchPairId: row.branchPairId ?? null,
+      axis: row.axis ?? null,
+      contributions,
+      value,
+    };
+  });
+  return {
+    passed:
+      rows.length > 0 &&
+      missingComponents.length === 0 &&
+      duplicateComponents.length === 0 &&
+      forbiddenDirectCoefficientRows.length === 0,
+    rows: parsedRows,
+    missingComponents,
+    duplicateComponents: [...new Set(duplicateComponents)],
+    forbiddenDirectCoefficientRows,
+  };
+}
+
+function coefficientsFromBranchDynamicsComponents(componentRows) {
+  const map = Object.fromEntries(
+    componentRows.rows.map((row) => [row.coefficient, row.value]),
+  );
+  return parseCoefficientMap(map, "retainedWeakCorridorBranchDynamics.componentRows");
+}
+
+function derivedNativeWeakCorridorDynamicsFromBranchRows({
+  raw,
+  passed,
+  reason,
+  coefficients,
+  componentRows,
+}) {
+  const map = coefficients.map;
+  return {
+    passed,
+    reason,
+    status: normalizeStatus(raw),
+    sourcePath: raw.sourcePath ?? null,
+    domainId: raw.domainId ?? null,
+    branchRecordId: raw.branchRecordId ?? null,
+    detectorProvenanceId: raw.detectorProvenanceId ?? null,
+    basis: "collins_soper_native_harmonic_source_terms",
+    derivedFrom: "retained_weak_corridor_branch_dynamics",
+    sourceRows: raw.sourceRows ?? {},
+    componentToCoefficientMap: Object.fromEntries(
+      BRANCH_DYNAMICS_COMPONENTS.map(({ coefficient, sourceTerm }) => [coefficient, sourceTerm]),
+    ),
+    sourceTermComponents: componentRows.rows,
+    coefficients: {
+      values: coefficients.values,
+      map,
+    },
+  };
+}
+
+function firstRetainedBranchDynamicsBlocker({
+  statusAccepted,
+  sourceCheck,
+  missingSourceRows,
+  basisAccepted,
+  componentRows,
+  noDirectCoefficientRows,
+}) {
+  if (!statusAccepted) {
+    return "retained_weak_corridor_branch_dynamics_not_accepted";
+  }
+  if (!sourceCheck.accepted) {
+    return sourceCheck.reason;
+  }
+  if (missingSourceRows.length > 0) {
+    return `missing_branch_dynamics_source_row_${missingSourceRows[0]}`;
+  }
+  if (!basisAccepted) {
+    return "retained_weak_corridor_branch_dynamics_basis_mismatch";
+  }
+  if (componentRows.missingComponents.length > 0) {
+    return `missing_branch_dynamics_component_${componentRows.missingComponents[0]}`;
+  }
+  if (componentRows.duplicateComponents.length > 0) {
+    return `duplicate_branch_dynamics_component_${componentRows.duplicateComponents[0]}`;
+  }
+  if (!noDirectCoefficientRows) {
+    return `branch_dynamics_direct_coefficient_row_${componentRows.forbiddenDirectCoefficientRows[0]}`;
+  }
+  return "retained_weak_corridor_branch_dynamics_invalid";
+}
+
+function evaluateNativeWeakCorridorDynamics(raw) {
+  const coefficients = coefficientsFromNativeWeakCorridorDynamics(raw);
+  const statusAccepted = ACCEPTED_STATUSES.has(normalizeStatus(raw));
+  const sourceCheck = evaluateDurableSource(
+    raw.sourcePath,
+    raw,
+    "native_weak_corridor_dynamics",
+  );
+  const requiredSourceRows = [
+    "source_depletion",
+    "recoil_balance",
+    "noether_sea_response",
+    "corridor_orientation_axis",
+  ];
+  const missingSourceRows = requiredSourceRows.filter(
+    (rowId) => !concreteString(raw.sourceRows?.[rowId]),
+  );
+  const basisAccepted = raw.basis === "collins_soper_native_harmonic_source_terms";
+  const passed =
+    statusAccepted &&
+    sourceCheck.accepted &&
+    missingSourceRows.length === 0 &&
+    basisAccepted &&
+    coefficients.values.every(Number.isFinite);
+  return {
+    passed,
+    reason: passed
+      ? "accepted"
+      : firstNativeWeakCorridorBlocker({
+          statusAccepted,
+          sourceCheck,
+          missingSourceRows,
+          basisAccepted,
+        }),
+    status: normalizeStatus(raw),
+    sourcePath: raw.sourcePath ?? null,
+    sourceCheck,
+    domainId: raw.domainId ?? null,
+    branchRecordId: raw.branchRecordId ?? null,
+    detectorProvenanceId: raw.detectorProvenanceId ?? null,
+    basis: raw.basis ?? null,
+    sourceRows: raw.sourceRows ?? {},
+    componentToCoefficientMap: {
+      A0: "evenTensor.longitudinalTraceFree",
+      A1: "evenTensor.xz",
+      A2: "evenTensor.xxMinusYy",
+      A3: "parityVector.x",
+      A4: "parityVector.z",
+      A5: "wakeOddTensor.xy",
+      A6: "wakeOddTensor.zy",
+      A7: "parityVector.y",
+    },
+    coefficients,
+    missingSourceRows,
+  };
+}
+
+function coefficientsFromNativeWeakCorridorDynamics(raw) {
+  return parseCoefficientMap(
+    {
+      A0: raw.evenTensor?.longitudinalTraceFree,
+      A1: raw.evenTensor?.xz,
+      A2: raw.evenTensor?.xxMinusYy,
+      A3: raw.parityVector?.x,
+      A4: raw.parityVector?.z,
+      A5: raw.wakeOddTensor?.xy,
+      A6: raw.wakeOddTensor?.zy,
+      A7: raw.parityVector?.y,
+    },
+    "nativeWeakCorridorDynamics",
+  );
+}
+
+function firstNativeWeakCorridorBlocker({
+  statusAccepted,
+  sourceCheck,
+  missingSourceRows,
+  basisAccepted,
+}) {
+  if (!statusAccepted) {
+    return "native_weak_corridor_dynamics_not_accepted";
+  }
+  if (!sourceCheck.accepted) {
+    return sourceCheck.reason;
+  }
+  if (missingSourceRows.length > 0) {
+    return `missing_native_source_row_${missingSourceRows[0]}`;
+  }
+  if (!basisAccepted) {
+    return "native_weak_corridor_basis_mismatch";
+  }
+  return "native_weak_corridor_dynamics_invalid";
+}
+
+function evaluateControls(raw, coefficientSource) {
+  const requireNativeDerived = raw.requireNativeDerived === true;
+  const requireBranchDynamicsDerived = raw.requireBranchDynamicsDerived === true;
+  const requireComponentStability = raw.requireComponentStability === true;
+  const requireComponentUniqueness = raw.requireComponentUniqueness === true;
+  const nativeDerivedPass =
+    !requireNativeDerived || NATIVE_DERIVED_SOURCE_KINDS.has(coefficientSource.kind);
+  const branchDynamicsDerivedPass =
+    !requireBranchDynamicsDerived ||
+    coefficientSource.kind === "retained_weak_corridor_branch_dynamics";
+  const declaredMeasureBlocked =
+    requireNativeDerived && !NATIVE_DERIVED_SOURCE_KINDS.has(coefficientSource.kind);
+  const branchDynamicsBlocked = requireBranchDynamicsDerived && !branchDynamicsDerivedPass;
+  const status = declaredMeasureBlocked
+    ? "blocked_declared_projection_measure"
+    : branchDynamicsBlocked
+      ? "blocked_branch_dynamics_shortcut"
+      : "accepted";
+  return {
+    passed: status === "accepted",
+    requireNativeDerived,
+    requireBranchDynamicsDerived,
+    requireComponentStability,
+    requireComponentUniqueness,
+    nativeDerivedPass,
+    branchDynamicsDerivedPass,
+    status,
+    reason:
+      status === "blocked_declared_projection_measure"
+        ? "native_weak_corridor_dynamics_required"
+        : status === "blocked_branch_dynamics_shortcut"
+          ? "retained_weak_corridor_branch_dynamics_required"
+          : "accepted",
+  };
+}
+
+function evaluateComponentStability(rawProbes, coefficientSource, tolerances, probeSetId = null) {
+  const probes = Array.isArray(rawProbes) ? rawProbes : [];
+  if (coefficientSource.kind !== "retained_weak_corridor_branch_dynamics") {
+    return {
+      passed: false,
+      reason: "retained_weak_corridor_branch_dynamics_required",
+      probeSetId,
+      probeCount: probes.length,
+      maxComponentDelta: null,
+      maxCoefficientDelta: null,
+      probes: [],
+    };
+  }
+  if (probes.length === 0) {
+    return {
+      passed: false,
+      reason: "component_stability_probes_missing",
+      probeSetId,
+      probeCount: 0,
+      maxComponentDelta: null,
+      maxCoefficientDelta: null,
+      probes: [],
+    };
+  }
+
+  const baseRows =
+    coefficientSource.retainedWeakCorridorBranchDynamics?.componentRows?.rows ?? [];
+  const rowByComponent = new Map(baseRows.map((row) => [row.component, row]));
+  const evaluatedProbes = probes.map((probe, index) =>
+    evaluateComponentStabilityProbe(probe, index, rowByComponent, tolerances),
+  );
+  const maxComponentDelta = Math.max(
+    ...evaluatedProbes.map((probe) => Math.abs(probe.componentDelta ?? 0)),
+  );
+  const maxCoefficientDelta = Math.max(
+    ...evaluatedProbes.map((probe) => Math.abs(probe.coefficientDelta ?? 0)),
+  );
+  const firstFailure = evaluatedProbes.find((probe) => !probe.passed);
+  return {
+    passed: firstFailure === undefined,
+    reason: firstFailure?.reason ?? "accepted",
+    probeSetId,
+    probeCount: probes.length,
+    tolerance: tolerances.componentStability,
+    maxComponentDelta,
+    maxCoefficientDelta,
+    probes: evaluatedProbes,
+  };
+}
+
+function evaluateComponentStabilityProbe(probe, index, rowByComponent, tolerances) {
+  const probeId = concreteString(probe?.probeId) ? probe.probeId : `probe_${index}`;
+  const component = probe?.component ?? null;
+  const baseRow = rowByComponent.get(component);
+  if (!baseRow) {
+    return componentStabilityProbeFailure({
+      probeId,
+      component,
+      reason: `component_stability_unknown_component_${component ?? "missing"}`,
+    });
+  }
+  const deltas = probe?.deltas ?? {};
+  if (!deltas || typeof deltas !== "object" || Array.isArray(deltas)) {
+    return componentStabilityProbeFailure({
+      probeId,
+      component,
+      coefficient: baseRow.coefficient,
+      reason: `component_stability_invalid_deltas_${probeId}`,
+    });
+  }
+  const unknownDeltaKey = Object.keys(deltas).find(
+    (key) => !BRANCH_DYNAMICS_CONTRIBUTION_KEYS.includes(key),
+  );
+  if (unknownDeltaKey) {
+    return componentStabilityProbeFailure({
+      probeId,
+      component,
+      coefficient: baseRow.coefficient,
+      reason: `component_stability_unknown_delta_${unknownDeltaKey}`,
+    });
+  }
+
+  const baseValue = baseRow.value;
+  const perturbedContributions = Object.fromEntries(
+    BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key) => [
+      key,
+      baseRow.contributions[key] + finiteNumber(deltas[key] ?? 0, `${probeId}.${key}`),
+    ]),
+  );
+  const perturbedValue = Object.values(perturbedContributions).reduce(
+    (sum, value) => sum + value,
+    0,
+  );
+  const componentDelta = perturbedValue - baseValue;
+  const coefficientDelta = componentDelta;
+  const passed = Math.abs(componentDelta) <= tolerances.componentStability;
+  return {
+    probeId,
+    component,
+    coefficient: baseRow.coefficient,
+    passed,
+    reason: passed ? "accepted" : `component_stability_delta_${probeId}`,
+    baseValue,
+    perturbedValue,
+    componentDelta,
+    coefficientDelta,
+    deltas: Object.fromEntries(
+      BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key) => [key, deltas[key] ?? 0]),
+    ),
+  };
+}
+
+function componentStabilityProbeFailure({
+  probeId,
+  component,
+  coefficient = null,
+  reason,
+}) {
+  return {
+    probeId,
+    component,
+    coefficient,
+    passed: false,
+    reason,
+    baseValue: null,
+    perturbedValue: null,
+    componentDelta: null,
+    coefficientDelta: null,
+    deltas: {},
+  };
+}
+
+function evaluateComponentUniqueness(rawCertificate, coefficientSource, tolerances, certificateId) {
+  if (coefficientSource.kind !== "retained_weak_corridor_branch_dynamics") {
+    return {
+      passed: false,
+      reason: "retained_weak_corridor_branch_dynamics_required",
+      certificateId,
+      componentCount: 0,
+      minRank: null,
+      requiredRank: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length,
+      coefficientOnlyRank: 1,
+      coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+      maxSolutionResidual: null,
+      maxConstraintResidual: null,
+      components: [],
+    };
+  }
+  if (!rawCertificate || typeof rawCertificate !== "object" || Array.isArray(rawCertificate)) {
+    return {
+      passed: false,
+      reason: "component_uniqueness_certificate_missing",
+      certificateId,
+      componentCount: 0,
+      minRank: null,
+      requiredRank: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length,
+      coefficientOnlyRank: 1,
+      coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+      maxSolutionResidual: null,
+      maxConstraintResidual: null,
+      components: [],
+    };
+  }
+
+  const baseRows =
+    coefficientSource.retainedWeakCorridorBranchDynamics?.componentRows?.rows ?? [];
+  const evaluatedComponents = baseRows.map((row) =>
+    evaluateComponentUniquenessRow(row, rawCertificate, tolerances),
+  );
+  const firstFailure = evaluatedComponents.find((component) => !component.passed);
+  const ranks = evaluatedComponents.map((component) => component.rank ?? 0);
+  const solutionResiduals = evaluatedComponents.map(
+    (component) => component.maxSolutionResidual ?? 0,
+  );
+  const constraintResiduals = evaluatedComponents.map(
+    (component) => component.maxConstraintResidual ?? 0,
+  );
+  return {
+    passed: firstFailure === undefined && evaluatedComponents.length === BRANCH_DYNAMICS_COMPONENTS.length,
+    reason:
+      firstFailure?.reason ??
+      (evaluatedComponents.length === BRANCH_DYNAMICS_COMPONENTS.length
+        ? "accepted"
+        : "component_uniqueness_component_rows_missing"),
+    certificateId,
+    componentCount: evaluatedComponents.length,
+    minRank: ranks.length > 0 ? Math.min(...ranks) : null,
+    requiredRank: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length,
+    coefficientOnlyRank: 1,
+    coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+    maxSolutionResidual: solutionResiduals.length > 0 ? Math.max(...solutionResiduals) : null,
+    maxConstraintResidual:
+      constraintResiduals.length > 0 ? Math.max(...constraintResiduals) : null,
+    components: evaluatedComponents,
+  };
+}
+
+function evaluateComponentUniquenessRow(componentRow, certificate, tolerances) {
+  const requiredRank = integerAtLeast(
+    certificate.requiredRank ?? BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length,
+    BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length,
+  );
+  const constraints = expandComponentUniquenessConstraints(componentRow, certificate);
+  if (!constraints.passed) {
+    return {
+      component: componentRow.component,
+      coefficient: componentRow.coefficient,
+      passed: false,
+      reason: constraints.reason,
+      requiredRank,
+      rank: 0,
+      coefficientOnlyRank: 1,
+      coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+      maxSolutionResidual: null,
+      maxConstraintResidual: null,
+      independentConstraintIds: [],
+      constraints: constraints.rows,
+    };
+  }
+
+  const matrix = constraints.rows.map((row) =>
+    BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key) => row.coefficients[key]),
+  );
+  const values = constraints.rows.map((row) => row.value);
+  const rank = matrixRank(matrix, tolerances.componentUniqueness);
+  if (rank < requiredRank) {
+    return {
+      component: componentRow.component,
+      coefficient: componentRow.coefficient,
+      passed: false,
+      reason: `component_uniqueness_rank_deficient_${componentRow.component}`,
+      requiredRank,
+      rank,
+      coefficientOnlyRank: 1,
+      coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+      maxSolutionResidual: null,
+      maxConstraintResidual: null,
+      independentConstraintIds: [],
+      constraints: constraints.rows,
+    };
+  }
+
+  const independentRows = selectIndependentRows(
+    matrix,
+    requiredRank,
+    tolerances.componentUniqueness,
+  );
+  const squareMatrix = independentRows.map((index) => matrix[index]);
+  const squareValues = independentRows.map((index) => values[index]);
+  const solution = solveLinearSystem(squareMatrix, squareValues);
+  const baseVector = BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map(
+    (key) => componentRow.contributions[key],
+  );
+  const solutionResiduals = solution.map((value, index) => value - baseVector[index]);
+  const constraintResiduals = matrix.map((row, index) => dot(row, solution) - values[index]);
+  const maxSolutionResidual = Math.max(...solutionResiduals.map((value) => Math.abs(value)));
+  const maxConstraintResidual = Math.max(
+    ...constraintResiduals.map((value) => Math.abs(value)),
+  );
+  const passed =
+    maxSolutionResidual <= tolerances.componentUniqueness &&
+    maxConstraintResidual <= tolerances.componentUniqueness;
+  return {
+    component: componentRow.component,
+    coefficient: componentRow.coefficient,
+    passed,
+    reason: passed
+      ? "accepted"
+      : maxConstraintResidual > tolerances.componentUniqueness
+        ? `component_uniqueness_constraint_residual_${componentRow.component}`
+        : `component_uniqueness_solution_residual_${componentRow.component}`,
+    requiredRank,
+    rank,
+    coefficientOnlyRank: 1,
+    coefficientOnlyNullity: BRANCH_DYNAMICS_CONTRIBUTION_KEYS.length - 1,
+    variables: BRANCH_DYNAMICS_CONTRIBUTION_KEYS,
+    solution: Object.fromEntries(
+      BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key, index) => [key, solution[index]]),
+    ),
+    baseContributions: componentRow.contributions,
+    solutionResiduals: Object.fromEntries(
+      BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key, index) => [
+        key,
+        solutionResiduals[index],
+      ]),
+    ),
+    maxSolutionResidual,
+    maxConstraintResidual,
+    independentConstraintIds: independentRows.map((index) => constraints.rows[index].constraintId),
+    constraints: constraints.rows.map((row, index) => ({
+      ...row,
+      residual: constraintResiduals[index],
+    })),
+  };
+}
+
+function expandComponentUniquenessConstraints(componentRow, certificate) {
+  const directRows = certificate.constraintsByComponent?.[componentRow.component];
+  const templates = Array.isArray(directRows) ? directRows : certificate.constraintTemplates;
+  if (!Array.isArray(templates) || templates.length === 0) {
+    return {
+      passed: false,
+      reason: `component_uniqueness_constraints_missing_${componentRow.component}`,
+      rows: [],
+    };
+  }
+  const rows = [];
+  for (const [index, template] of templates.entries()) {
+    if (!template || typeof template !== "object" || Array.isArray(template)) {
+      return {
+        passed: false,
+        reason: `component_uniqueness_constraint_invalid_${componentRow.component}_${index}`,
+        rows,
+      };
+    }
+    const coefficientMap = template.coefficients ?? {};
+    const unknownKey = Object.keys(coefficientMap).find(
+      (key) => !BRANCH_DYNAMICS_CONTRIBUTION_KEYS.includes(key),
+    );
+    if (unknownKey) {
+      return {
+        passed: false,
+        reason: `component_uniqueness_unknown_coefficient_${unknownKey}`,
+        rows,
+      };
+    }
+    const coefficients = Object.fromEntries(
+      BRANCH_DYNAMICS_CONTRIBUTION_KEYS.map((key) => [
+        key,
+        finiteNumber(coefficientMap[key] ?? 0, `${componentRow.component}.${key}`),
+      ]),
+    );
+    const value = resolveComponentUniquenessConstraintValue(template, componentRow, index);
+    if (!Number.isFinite(value)) {
+      return {
+        passed: false,
+        reason: `component_uniqueness_value_invalid_${componentRow.component}_${index}`,
+        rows,
+      };
+    }
+    rows.push({
+      constraintId:
+        template.constraintId ?? `${componentRow.component}_constraint_${index + 1}`,
+      component: componentRow.component,
+      valueSource: template.valueSource ?? "literal",
+      coefficients,
+      value,
+    });
+  }
+  return { passed: true, reason: "accepted", rows };
+}
+
+function resolveComponentUniquenessConstraintValue(template, componentRow, index) {
+  if (Object.prototype.hasOwnProperty.call(template, "value")) {
+    return finiteNumber(template.value, `${componentRow.component}.constraint[${index}].value`);
+  }
+  if (template.valueSource === "component_value") {
+    return componentRow.value;
+  }
+  const contributionPrefix = "contribution.";
+  if (
+    typeof template.valueSource === "string" &&
+    template.valueSource.startsWith(contributionPrefix)
+  ) {
+    const key = template.valueSource.slice(contributionPrefix.length);
+    if (!BRANCH_DYNAMICS_CONTRIBUTION_KEYS.includes(key)) {
+      return Number.NaN;
+    }
+    return componentRow.contributions[key];
+  }
+  return Number.NaN;
+}
+
+function matrixRank(matrix, tolerance) {
+  const rows = matrix.map((row) => [...row]);
+  let rank = 0;
+  const columnCount = rows[0]?.length ?? 0;
+  for (let column = 0; column < columnCount; column += 1) {
+    let pivot = rank;
+    for (let row = rank + 1; row < rows.length; row += 1) {
+      if (Math.abs(rows[row][column]) > Math.abs(rows[pivot]?.[column] ?? 0)) {
+        pivot = row;
+      }
+    }
+    if (!rows[pivot] || Math.abs(rows[pivot][column]) <= tolerance) {
+      continue;
+    }
+    [rows[rank], rows[pivot]] = [rows[pivot], rows[rank]];
+    const pivotValue = rows[rank][column];
+    for (let c = column; c < columnCount; c += 1) {
+      rows[rank][c] /= pivotValue;
+    }
+    for (let row = 0; row < rows.length; row += 1) {
+      if (row === rank) {
+        continue;
+      }
+      const factor = rows[row][column];
+      for (let c = column; c < columnCount; c += 1) {
+        rows[row][c] -= factor * rows[rank][c];
+      }
+    }
+    rank += 1;
+    if (rank === rows.length) {
+      break;
+    }
+  }
+  return rank;
+}
+
+function selectIndependentRows(matrix, requiredRank, tolerance) {
+  const selected = [];
+  let currentRank = 0;
+  for (let index = 0; index < matrix.length && selected.length < requiredRank; index += 1) {
+    const candidate = [...selected, index];
+    const rank = matrixRank(
+      candidate.map((rowIndex) => matrix[rowIndex]),
+      tolerance,
+    );
+    if (rank > currentRank) {
+      selected.push(index);
+      currentRank = rank;
+    }
+  }
+  if (selected.length !== requiredRank) {
+    throw new Error("Unable to select a rank-complete component uniqueness row set.");
+  }
+  return selected;
 }
 
 function parseCoefficientMap(raw, label) {
@@ -807,6 +1833,10 @@ function decideStatus({
   sourceEvidence,
   ontology,
   detector,
+  coefficientSource,
+  controls,
+  componentStability,
+  componentUniqueness,
   measurement,
   simulation,
   coefficientResidual,
@@ -828,6 +1858,18 @@ function decideStatus({
   }
   if (!detector.passed) {
     return "blocked_detector_provenance";
+  }
+  if (!coefficientSource.passed) {
+    return "blocked_coefficient_source";
+  }
+  if (!controls.passed) {
+    return controls.status;
+  }
+  if (controls.requireComponentStability && !componentStability.passed) {
+    return "blocked_component_stability";
+  }
+  if (controls.requireComponentUniqueness && !componentUniqueness.passed) {
+    return "blocked_component_uniqueness";
   }
   if (!measurement.passed) {
     return "blocked_measurement_covariance";
@@ -856,6 +1898,10 @@ function firstBlocker({
   sourceEvidence,
   ontology,
   detector,
+  coefficientSource,
+  controls,
+  componentStability,
+  componentUniqueness,
   measurement,
   simulation,
   coefficientResidual,
@@ -873,6 +1919,21 @@ function firstBlocker({
   }
   if (status === "blocked_detector_provenance") {
     return "detector_provenance_incomplete";
+  }
+  if (status === "blocked_coefficient_source") {
+    return coefficientSource.reason ?? "coefficient_source_invalid";
+  }
+  if (status === "blocked_declared_projection_measure") {
+    return controls.reason ?? "native_weak_corridor_dynamics_required";
+  }
+  if (status === "blocked_branch_dynamics_shortcut") {
+    return controls.reason ?? "retained_weak_corridor_branch_dynamics_required";
+  }
+  if (status === "blocked_component_stability") {
+    return componentStability.reason ?? "component_stability_failed";
+  }
+  if (status === "blocked_component_uniqueness") {
+    return componentUniqueness.reason ?? "component_uniqueness_failed";
   }
   if (status === "blocked_measurement_covariance") {
     return measurement.covariance.reason ?? "measurement_covariance_invalid";

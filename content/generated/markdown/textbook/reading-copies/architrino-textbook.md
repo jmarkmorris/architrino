@@ -69263,6 +69263,59 @@ Useful 2022 CODATA rows for the closure stack are:
 
 The most important mining consequence is procedural: exact rows such as $h$, $e$, $k_B$, and $c$ are not easier physical targets because their listed uncertainty is zero. They are exact in SI because the units are defined through them. The physical pressure comes from the adjusted and dimensionless rows, especially $\alpha$, $m_p/m_e$, $R_\infty$, particle mass-energy equivalents, and $G$.
 
+##### LHC scalar benchmark contract
+
+The LHC scalar rows are observer-level benchmark rows, not CODATA constants and not substrate inputs. The ATLAS 2012 discovery row fixes one date-stamped scalar-boson benchmark for the Higgs-sector residual used by [Particle Masses](../../../../markdown/aaa/assemblies/particle-masses.md) and [Electroweak Bosons](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md). It tests whether one shared native scalar or mass-map record can recover the observed mass, production-and-branching normalization, channel pattern, and absence of broad additional scalar signals.
+
+| Entry | ATLAS 2012 benchmark | Ledger role |
+| --- | ---: | --- |
+| $M_H^{\mathrm{ATLAS\,2012}}$ | $126.0\,\mathrm{GeV}$ with $0.4\,\mathrm{GeV}$ statistical and $0.4\,\mathrm{GeV}$ systematic uncertainty | Date-stamped scalar-mass benchmark; not a native scalar-mode identification. |
+| $\hat{\mu}_H^{\mathrm{ATLAS\,2012}}$ | $1.4\pm0.3$ | Production-and-branching normalization benchmark near $126\,\mathrm{GeV}$. |
+| local discovery significance | $5.9\sigma$ | Discovery-strength record; not an independent residual term unless a likelihood reconstruction declares one. |
+| high-resolution channels | $ZZ^{(*)}\to4\ell$, $\gamma\gamma$, $WW^{(*)}\to\ell\nu\ell\nu$ | Channel-pattern benchmark for spin-compatible, detector-facing scalar recovery. |
+
+For the ATLAS 2012 row, the scalar validation ledger uses
+$$
+M_H^{\mathrm{ledger}}=126.0\,\mathrm{GeV},
+\qquad
+\sigma_H^{\mathrm{ledger}}
+=
+\sqrt{0.4^2+0.4^2}\,\mathrm{GeV},
+\qquad
+\mu_H^{\mathrm{ledger}}=1.4,
+\qquad
+\sigma_{\mu_H}^{\mathrm{ledger}}=0.3
+$$
+with the channel set
+$$
+\mathcal{C}_{H}^{\mathrm{ATLAS\,2012}}
+=
+\{ZZ^{(*)}\to4\ell,\gamma\gamma,WW^{(*)}\to\ell\nu\ell\nu\}.
+$$
+The corresponding validation contribution is
+$$
+\mathcal{R}_{H,\mathrm{ATLAS\,2012}}(\theta)
+=
+\left[
+\frac{M_H^{\mathrm{breath}}(\theta)-M_H^{\mathrm{ledger}}}
+{\sigma_H^{\mathrm{ledger}}}
+\right]^2
++
+\left[
+\frac{\mu_H^{\mathrm{eff}}(\theta)-\mu_H^{\mathrm{ledger}}}
+{\sigma_{\mu_H}^{\mathrm{ledger}}}
+\right]^2
++
+\sum_{c\in\mathcal{C}_{H}^{\mathrm{ATLAS\,2012}}}
+\left[
+\frac{Z_c^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)-Z_c^{\mathrm{ATLAS\,2012}}}
+{\sigma_{Z_c}}
+\right]^2
++
+\mathcal{R}_{\mathrm{excluded\,scalar}}(\theta)
+$$
+Here $M_H^{\mathrm{breath}}(\theta)$ is the predicted scalar or breathing-mode mass from the same branch record, $\mu_H^{\mathrm{eff}}(\theta)$ is the observer-level production-and-branching normalization, and $Z_c$ records the declared channel significance or likelihood contribution. This row does not identify the Higgs with a named native mode, does not update to a current world-average mass, and must not be used as a branch-search, shielding, or mass-map input. Higgs-sector closure requires the residual to close after the branch, shielding, channel, and detector-provenance records have been fixed independently.
+
 ##### Naturalness and sensitivity
 
 When a symbol is claimed as a closure output rather than a free fit, use the fine-tuning quotient
@@ -69382,6 +69435,7 @@ These quantities are where closure is tested. They are not substrate inputs.
 | O5 | $\theta_W^{\text{bare}}$ and $\theta_W$ | Geometric target / observable benchmark | Open | bare geometric weak-mixing increment and the measured electroweak mixing angle it must eventually inform | [../assemblies/fermions/weak-mixing-angle.md](../../../../markdown/aaa/assemblies/fermions/weak-mixing-angle.md), [../assemblies/gauge-structure-emergence.md](../../../../markdown/aaa/assemblies/gauge-structure-emergence.md) |
 | O6 | $(\alpha_1,\alpha_2,\alpha_3)$ | Observable benchmark | Open | standard PPN preferred-frame coefficients derived from $(\Xi_1,\Xi_2,\Xi_3)$ | [../spacetime/ppn-parameters.md](../../../../markdown/aaa/spacetime/ppn-parameters.md) |
 | O7 | $Z_X^{E\to R}$, $Y_{X,E\to R}$, and $H_{\mathrm{eff},X}$ | Observer-level derived output | Open | total signed photon-frequency transfer, path-history exchange contribution, and inferred redshift-transfer slope for a declared source/receiver record; not primitive expansion parameters | [../cosmology/expansion-mechanism.md](../../../../markdown/aaa/cosmology/expansion-mechanism.md), [simulations/redshift-budget-toy-model.md](../../../../markdown/aaa/validation/simulations/redshift-budget-toy-model.md), [reaction-cosmology-provenance-ledger.md](../../../../markdown/aaa/validation/reaction-cosmology-provenance-ledger.md) |
+| O8 | $M_H^{\mathrm{ledger}}$, $\mu_H^{\mathrm{ledger}}$, and $Z_c^{\mathrm{ATLAS\,2012}}$ | Observable benchmark | ATLAS 2012 row recorded; Higgs-sector closure open | date-stamped scalar-boson mass, production-and-branching normalization, and high-resolution channel ledger used to test Higgs-sector recovery; not branch-search or mass-map input | [../assemblies/particle-masses.md](../../../../markdown/aaa/assemblies/particle-masses.md), [../assemblies/bosons/electroweak-bosons.md](../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md) |
 
 #### Canonical Relations
 

@@ -1,8 +1,8 @@
 # Z/gamma* Angular-Coefficient Projection Target
 
-Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It now carries a populated score-neutral projection instance that tests the Collins-Soper angular-basis handoff from retained event rows through detector-level lepton momenta. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
+Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It now carries a populated score-neutral projection instance that tests the Collins-Soper angular-basis handoff from retained event rows through detector-level lepton momenta, a native weak-corridor source-term instance, a retained weak-corridor branch-dynamics instance that computes the same $A_0,\ldots,A_7$ row without reading `branchAngularMeasure.coefficients`, and component-split stability probes for the retained branch-dynamics row. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
 
-Claim level. Defer with blocker. The packet defines observer-level angular coefficients and parity-sensitive distributions that a future retained weak-corridor or neutral-current branch certificate should be able to project to. It does not supply that certificate.
+Claim level. Populated retained branch-dynamics certificate row with local component-split stability. The packet defines observer-level angular coefficients and parity-sensitive distributions that a retained weak-corridor or neutral-current branch certificate should be able to project to. It now derives the benchmark row from retained branch-dynamics component rows and verifies that sum-preserving redistribution among contribution rows leaves the mapped coefficient invariant. It does not yet prove uniqueness, full multi-bin stability, or global generation of those branch-dynamics rows from a deeper causal-root theorem.
 
 ## Source Family
 
@@ -112,6 +112,9 @@ The hat on $\widehat{\mathbf A}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ means the coef
 4. Verify that $A_{\mathrm{FB}}=3A_4/8$ is recovered from the same projected angular distribution, not from a separate weak-charge lookup.
 5. Require event-ledger closure for source depletion, recoil, Noether sea response, branch orientation, and detector handoff before any coefficient is accepted.
 6. Fail closed if an implementation inserts intrinsic spin, helicity fractions, or density-matrix labels as branch primitives.
+7. Fail closed if a native weak-corridor certificate is required but the coefficient source remains a declared projection-measure row.
+8. Fail closed if a retained branch-dynamics certificate is required but the coefficient source remains a collapsed native source-term row.
+9. Fail closed if a retained component-stability probe changes the component sum while claiming to preserve the coefficient.
 
 ## Extension Rows
 
@@ -137,8 +140,15 @@ Instance files:
 | `scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs` | Computes the Collins-Soper frame from visible lepton four-momenta, recovers $A_0,\ldots,A_7$ by angular moments, compares them with a covariance matrix, verifies $A_{\mathrm{FB}}=3A_4/8$, and rejects explicit intrinsic-spin, helicity, polarization, or density-matrix primitive imports. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-instance.v1.json` | Populated retained projection instance for the ATLAS yZ-integrated $22.0<p_T^Z<25.5$ GeV benchmark row. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json` | Durable source/evidence mirror for the ATLAS [arXiv:1606.00689](https://arxiv.org/abs/1606.00689) Tables 11, 12, and 13 benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-native-weak-corridor-instance.v1.json` | Populated native weak-corridor source-term instance for the same benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-native-weak-corridor-evidence.v1.json` | Durable source/evidence mirror for the native source-term coefficient map and ATLAS benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json` | Populated retained weak-corridor branch-dynamics instance for the same benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-evidence.v1.json` | Durable source/evidence mirror for the retained branch-dynamics component reduction and ATLAS benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-probes.v1.json` | Positive component-stability sidecar that redistributes source, recoil, Noether sea, corridor-orientation, and wake contributions while preserving component sums. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-negative-control.v1.json` | Negative component-stability sidecar that changes a component sum and must fail under `--require-component-stability`. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-covariance-negative-control.v1.json` | Negative control that keeps all rows accepted-looking but shifts $A_0$ outside the covariance tolerance. |
 | `scripts/equation-mapping/collins-soper-angular-coefficient-intrinsic-spin-negative-control.v1.json` | Negative control that keeps the angular projection numerically valid but imports `intrinsic_spin` as a primitive. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-declared-measure-native-negative-control.v1.json` | Negative control that keeps the declared projection-measure coefficients numerically valid but rejects them when native weak-corridor derivation is required. |
 
 Positive run result:
 
@@ -151,15 +161,132 @@ Positive run result:
 | Covariance comparison | $\chi^2=1.33\times10^{-23}$ for 8 coefficient rows |
 | Parity relation | $|A_{\mathrm{FB}}-3A_4/8|=1.98\times10^{-16}$ |
 
+Component-split stability run:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --input scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json --component-stability-probes scripts/equation-mapping/collins-soper-angular-coefficient-component-stability-probes.v1.json --require-populated --require-native-derived --require-branch-dynamics-derived --require-component-stability --summary --pretty
+```
+
+Stability condition:
+
+$$
+\delta Q_{\mathrm{src},\alpha}
++\delta Q_{\mathrm{recoil},\alpha}
++\delta Q_{\mathrm{sea},\alpha}
++\delta O_{\mathrm{corr},\alpha}
++\delta W_{\mathrm{wake},\alpha}
+=0
+\quad\Longrightarrow\quad
+\delta C_\alpha=0
+\quad\Longrightarrow\quad
+\delta A_i=0.
+$$
+
+Component-stability result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Component-stability requirement | `requireComponentStabilityPass=true` |
+| Stability probes | 4 sum-preserving retained branch-dynamics redistributions |
+| Maximum component drift | $0$ |
+| Maximum coefficient drift | $0$ |
+
+Retained branch-dynamics run:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --input scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json --require-populated --require-native-derived --require-branch-dynamics-derived --summary --pretty
+```
+
+Branch-dynamics reduction:
+
+$$
+C_\alpha
+=
+Q_{\mathrm{src},\alpha}
++Q_{\mathrm{recoil},\alpha}
++Q_{\mathrm{sea},\alpha}
++O_{\mathrm{corr},\alpha}
++W_{\mathrm{wake},\alpha}.
+$$
+
+The Collins-Soper coefficients are then read from the retained component row vector,
+
+$$
+\left(A_0,A_1,A_2,A_3,A_4,A_5,A_6,A_7\right)
+=
+\left(
+C_{T_{\mathrm{even}}^{L}},
+C_{T_{\mathrm{even}}^{xz}},
+C_{T_{\mathrm{even}}^{xx-yy}},
+C_{P_{\mathrm{weak}}^{x}},
+C_{P_{\mathrm{weak}}^{z}},
+C_{W_{\mathrm{odd}}^{xy}},
+C_{W_{\mathrm{odd}}^{zy}},
+C_{P_{\mathrm{weak}}^{y}}
+\right).
+$$
+
+Retained branch-dynamics result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Coefficient source | `retained_weak_corridor_branch_dynamics` |
+| Native-derived requirement | `requireNativeDerivedPass=true` |
+| Branch-dynamics requirement | `requireBranchDynamicsDerivedPass=true` |
+| Generated projected events | 384 deterministic quadrature events |
+| Detector projection | $\max|\Delta(\cos\theta_{\mathrm{CS}},\phi_{\mathrm{CS}})|=3.55\times10^{-15}$ |
+| Coefficient recovery | $\max_i|\widehat A_i-A_i|=2.73\times10^{-14}$ |
+| Covariance comparison | $\chi^2=1.33\times10^{-23}$ for 8 coefficient rows |
+| Parity relation | $|A_{\mathrm{FB}}-3A_4/8|=1.98\times10^{-16}$ |
+
+Native source-term run:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --input scripts/equation-mapping/collins-soper-angular-coefficient-native-weak-corridor-instance.v1.json --require-populated --require-native-derived --summary --pretty
+```
+
+Native source-term map:
+
+$$
+\begin{aligned}
+A_0 &= T_{\mathrm{even}}^{L},&
+A_1 &= T_{\mathrm{even}}^{xz},&
+A_2 &= T_{\mathrm{even}}^{xx-yy},\\
+A_3 &= P_{\mathrm{weak}}^{x},&
+A_4 &= P_{\mathrm{weak}}^{z},&
+A_5 &= W_{\mathrm{odd}}^{xy},\\
+A_6 &= W_{\mathrm{odd}}^{zy},&
+A_7 &= P_{\mathrm{weak}}^{y}.
+\end{aligned}
+$$
+
+Native run result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Coefficient source | `native_weak_corridor_dynamics` |
+| Native-derived requirement | `requireNativeDerivedPass=true` |
+| Generated projected events | 384 deterministic quadrature events |
+| Detector projection | $\max|\Delta(\cos\theta_{\mathrm{CS}},\phi_{\mathrm{CS}})|=3.55\times10^{-15}$ |
+| Coefficient recovery | $\max_i|\widehat A_i-A_i|=2.73\times10^{-14}$ |
+| Covariance comparison | $\chi^2=1.33\times10^{-23}$ for 8 coefficient rows |
+| Parity relation | $|A_{\mathrm{FB}}-3A_4/8|=1.98\times10^{-16}$ |
+
 Control results:
 
 | Control | Expected block | Observed status |
 | --- | --- | --- |
 | Covariance shift | Coefficients outside measured uncertainty row | `blocked_covariance_comparison` with $\chi^2=142.78$ |
 | Intrinsic-spin primitive | Primitive ontology imports source interpretation language | `blocked_intrinsic_spin_primitive` |
+| Declared measure under native requirement | Coefficients remain in `branchAngularMeasure.coefficients` instead of native weak-corridor dynamics | `blocked_declared_projection_measure` with next blocker `native_weak_corridor_dynamics_required` |
+| Source-term shortcut under branch-dynamics requirement | Coefficients are supplied by `nativeWeakCorridorDynamics` instead of retained branch-dynamics component rows | `blocked_branch_dynamics_shortcut` with next blocker `retained_weak_corridor_branch_dynamics_required` |
+| Component-split drift | A retained contribution perturbation changes the component sum instead of merely redistributing it | `blocked_component_stability` with next blocker `component_stability_delta_drift_even_L_source_only` |
 
-Claim boundary. This is a populated projection and detector-handoff success marker, not a branch-geometry theorem. It proves that a retained event-family row set can be projected into the Collins-Soper basis, moment-extracted into $A_0,\ldots,A_7$, and compared with a covariance row without using intrinsic spin as an input. It does not yet prove that native retained branch geometry derives the ATLAS coefficient values.
+Claim boundary. This is a populated projection, detector-handoff, native source-term, retained branch-dynamics, and local component-split stability success marker, not a spin-recovery theorem. It proves that a retained event-family row set can be projected into the Collins-Soper basis, moment-extracted into $A_0,\ldots,A_7$, and compared with a covariance row without using intrinsic spin as an input. It also proves that the checker can compute the same coefficient row from retained weak-corridor branch-dynamics component rows rather than from a declared projection-measure row or a collapsed native source-term row, and that sum-preserving redistribution among retained contribution rows leaves the mapped coefficient invariant. It does not yet prove uniqueness of the component split, stability across the full measured bin table, or global existence of the branch-dynamics rows from a deeper causal-root theorem.
 
 ## Promotion Decision
 
-Keep this packet in priority material until a retained branch-chart implementation can emit the detector projection, angular basis, covariance-aware comparison, and event-ledger closure rows from native branch dynamics rather than from a declared projection-measure instance. Reader-facing corpus promotion should wait for a branch-geometry certificate or simulation that derives at least the Collins-Soper $Z/\gamma^\ast$ coefficient row without intrinsic-spin primitives.
+Keep this packet in priority material until the retained branch-dynamics certificate is strengthened beyond one benchmark row. The local component-split stability argument closes the narrow redistribution invariant, but reader-facing corpus promotion should still wait for a multi-bin retained branch-dynamics sweep, a uniqueness argument for the component split, or a deeper causal-root theorem that generates the retained weak-corridor branch rows without intrinsic-spin primitives.

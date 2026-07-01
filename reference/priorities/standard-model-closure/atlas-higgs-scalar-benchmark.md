@@ -4,7 +4,7 @@
 
 - Kind: lane-native source-mining packet.
 - Date split: 2026-05-23.
-- Status: captured for promotion; not reader-facing canon.
+- Status: ATLAS 2012 validation-facing row promoted to [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md); scalar-candidate residuals remain priority-only.
 - Split from: `reference/priorities/aaa-work-threads/arxiv-particle-holography-susy-mining.md`.
 - Source:
   - G. Aad et al., [Observation of a new particle in the search for the Standard Model Higgs boson with the ATLAS detector at the LHC](https://arxiv.org/abs/1207.7214), `1207.7214`.
@@ -63,7 +63,7 @@ N_{s,c,k}^{\mathbb{A}\mathbb{A}\mathbb{A}}(\theta)
 B_{s,c,k}.
 $$
 
-The immediate reader-facing promotion should say that any native scalar or mass-map proposal must recover the observed neutral boson mass, channel pattern, and rate compatibility before it can claim Higgs closure.
+The validation-facing promotion says that any native scalar or mass-map proposal must recover the observed neutral boson mass, channel pattern, and rate compatibility before it can claim Higgs closure.
 
 ## Priority-Only Scalar Candidate Residuals
 
@@ -110,6 +110,7 @@ Matching a neutral or scalar-looking topology is therefore only an admissibility
 
 | Target | Proposed promotion | Gate |
 | --- | --- | --- |
+| [parameter-ledger.md](../../../content/markdown/aaa/validation/parameter-ledger.md) | Record the ATLAS 2012 row as a date-stamped scalar-boson benchmark with mass, signal strength, channel set, and residual form. | Promoted; must remain ATLAS 2012 benchmark data rather than a current PDG/world-average value or native scalar derivation. |
 | [standard-model-closure.md](standard-model-closure.md) | Keep `scalar_boson_acceptance` tied to mass, signal strength, production, branching, detector provenance, and excluded scalar windows. | Must not reduce the Higgs benchmark to a mass-only fit. |
 | [mass-map.md](../braid-mass-response-map/braid-mass-response-map.md) | Use the scalar residual as a downstream mass-map benchmark after branch, shielding, and medium-response records are fixed. | Must not use observed Higgs properties as branch-search or shielding inputs. |
 | [particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md) and [electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Add the ATLAS Higgs mass, signal-strength, and channel ledger as hard closure benchmarks. | Must not claim Higgs derivation until the mass-map residual is solved. |

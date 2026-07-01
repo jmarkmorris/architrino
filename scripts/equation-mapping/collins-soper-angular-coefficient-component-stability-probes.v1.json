@@ -1,0 +1,40 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-component-stability-probes/v1",
+  "probeSetId": "CS_branch_dynamics_component_stability_22_25p5_v1",
+  "claimLevel": "component-split stability probes for retained weak-corridor branch-dynamics Collins-Soper row; score-neutral",
+  "componentStabilityProbes": [
+    {
+      "probeId": "redistribute_even_L_source_recoil",
+      "component": "T_even_L",
+      "deltas": {
+        "sourceDepletion": 0.004,
+        "recoilBalance": -0.004
+      }
+    },
+    {
+      "probeId": "redistribute_even_xx_minus_yy_three_way",
+      "component": "T_even_xx_minus_yy",
+      "deltas": {
+        "sourceDepletion": 0.002,
+        "noetherSeaResponse": -0.001,
+        "corridorOrientation": -0.001
+      }
+    },
+    {
+      "probeId": "redistribute_parity_z_sea_orientation",
+      "component": "P_weak_z",
+      "deltas": {
+        "noetherSeaResponse": -0.002,
+        "corridorOrientation": 0.002
+      }
+    },
+    {
+      "probeId": "redistribute_wake_xy_source_wake",
+      "component": "W_odd_xy",
+      "deltas": {
+        "sourceDepletion": -0.0004,
+        "wakeBalance": 0.0004
+      }
+    }
+  ]
+}

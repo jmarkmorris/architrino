@@ -1,0 +1,31 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-component-uniqueness-certificate/v1",
+  "certificateId": "CS_branch_dynamics_component_uniqueness_rank_deficient_negative_control_v1",
+  "claimLevel": "negative control: angular coefficient sum alone leaves a four-dimensional component-split nullspace",
+  "componentUniquenessCertificate": {
+    "basis": "coefficient_sum_only_rank_deficient_control",
+    "variables": [
+      "sourceDepletion",
+      "recoilBalance",
+      "noetherSeaResponse",
+      "corridorOrientation",
+      "wakeBalance"
+    ],
+    "requiredRank": 5,
+    "coefficientOnlyRank": 1,
+    "coefficientOnlyNullity": 4,
+    "constraintTemplates": [
+      {
+        "constraintId": "component_sum_only",
+        "valueSource": "component_value",
+        "coefficients": {
+          "sourceDepletion": 1,
+          "recoilBalance": 1,
+          "noetherSeaResponse": 1,
+          "corridorOrientation": 1,
+          "wakeBalance": 1
+        }
+      }
+    ]
+  }
+}

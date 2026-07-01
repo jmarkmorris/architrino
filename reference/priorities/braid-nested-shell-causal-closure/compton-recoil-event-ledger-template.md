@@ -226,7 +226,7 @@ after the photon Gate A and Gate B handoffs are supplied by their owning proof p
 
 ## Worked Channel Instances
 
-The packet stages two comparison instances. They are worked ledger rows, not accepted proof evidence: both remain blocked by the absence of a retained photon Gate A/B carrier and an AAA-native transition amplitude. Their role is to make the first low-complexity channel concrete enough that later branch-populated data can fill the same row names without changing the channel boundary.
+The packet stages two comparison instances. They are worked ledger rows, not accepted proof evidence: both remain blocked by the absence of a retained photon Gate A/B carrier and a $\mathbb{A}\mathbb{A}\mathbb{A}$-native transition amplitude. Their role is to make the first low-complexity channel concrete enough that later branch-populated data can fill the same row names without changing the channel boundary.
 
 ### Instance F0: Free-Electron Recoil
 

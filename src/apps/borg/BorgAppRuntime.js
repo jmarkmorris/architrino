@@ -7,7 +7,7 @@ import {
   validateBorgFixtureSnapshot,
 } from "./BorgFixtureData.js";
 
-const WORLD_UNITS_PER_SOLVER_UNIT = 0.62;
+const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const CAMERA_MIN_DISTANCE = 4.8;
 const CAMERA_MAX_DISTANCE = 28;
 const DEFAULT_CAMERA_FIT_MARGIN = 1.25;
@@ -109,6 +109,8 @@ export function mountBorgApp(options = {}) {
   };
 
   const frameSets = getBorgFrameSet(manifest);
+  const worldUnitsPerSolverUnit =
+    TARGET_CENTRAL_WORLD_SIDE / Math.max(1, manifest.simulationEnvelope.centralVolumeSideLength);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -276,7 +278,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function createCubeEdges({ sideLength, color, opacity }) {
-    const worldSide = sideLength * WORLD_UNITS_PER_SOLVER_UNIT;
+    const worldSide = sideLength * worldUnitsPerSolverUnit;
     const geometry = new THREE.BoxGeometry(worldSide, worldSide, worldSide);
     const edges = new THREE.EdgesGeometry(geometry);
     const material = new THREE.LineBasicMaterial({
@@ -812,13 +814,13 @@ export function mountBorgApp(options = {}) {
     const center = manifest.simulationEnvelope.centralVolume.center;
     return new THREE.Vector3(
       (position.x - center.x) * WORLD_UNITS_PER_SOLVER_UNIT,
-      (position.y - center.y) * WORLD_UNITS_PER_SOLVER_UNIT,
-      (position.z - center.z) * WORLD_UNITS_PER_SOLVER_UNIT,
+      (position.y - center.y) * worldUnitsPerSolverUnit,
+      (position.z - center.z) * worldUnitsPerSolverUnit,
     );
   }
 
   function fitCameraToCentralCube(margin) {
-    const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * WORLD_UNITS_PER_SOLVER_UNIT;
+    const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * worldUnitsPerSolverUnit;
     const cubeRadius = (Math.sqrt(3) * worldSide) / 2;
     const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
     const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));

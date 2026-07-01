@@ -98,6 +98,8 @@ $$
 
 with no open-color far field between color-singlet nucleons. The first useful calculation is therefore not a fitted Yukawa curve; it is the comparison between two isolated closed nucleon corridors and a paired closed-corridor minimization. The row is rejected if it needs an independent residual-force parameter, leaves unscreened color leakage, or binds $p+p$ as easily as $p+n$ after $V_{\text{Coul}}$, orientation, and branch-interface rows are included.
 
+[NN Corridor Overlap First Evaluation](nn-corridor-overlap-first-evaluation.md) records the first reduced numerical row for that comparison. It gives a candidate $p+n$ attractive window and keeps the corresponding $p+p$ row positive after orientation suppression, branch-interface mismatch, and Coulomb are included. Its channel weights now come from a first $\mathcal B_{ij}^{\mathrm{int}}$ extraction; the ranges and scales remain source leads until the same confinement functional produces them directly.
+
 ## Branch-Interface Exchange Residual
 
 Source-mining intake 2026-06-28. Legacy "bonded vortices" language is not current terminology, but it preserves one useful nuclear target: residual-strong binding should report a coupled interface row rather than only a scalar potential. In current terms, the candidate branch-interface exchange record is

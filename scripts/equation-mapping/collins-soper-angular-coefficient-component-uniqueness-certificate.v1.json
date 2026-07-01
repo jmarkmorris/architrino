@@ -1,0 +1,66 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-component-uniqueness-certificate/v1",
+  "certificateId": "CS_branch_dynamics_component_uniqueness_rank_complete_22_25p5_v1",
+  "claimLevel": "rank-complete component-split uniqueness certificate for retained weak-corridor branch-dynamics Collins-Soper row; score-neutral",
+  "componentUniquenessCertificate": {
+    "basis": "rank_complete_retained_contribution_row_lock",
+    "variables": [
+      "sourceDepletion",
+      "recoilBalance",
+      "noetherSeaResponse",
+      "corridorOrientation",
+      "wakeBalance"
+    ],
+    "requiredRank": 5,
+    "coefficientOnlyRank": 1,
+    "coefficientOnlyNullity": 4,
+    "constraintTemplates": [
+      {
+        "constraintId": "component_sum",
+        "valueSource": "component_value",
+        "coefficients": {
+          "sourceDepletion": 1,
+          "recoilBalance": 1,
+          "noetherSeaResponse": 1,
+          "corridorOrientation": 1,
+          "wakeBalance": 1
+        }
+      },
+      {
+        "constraintId": "source_depletion_lock",
+        "valueSource": "contribution.sourceDepletion",
+        "coefficients": {
+          "sourceDepletion": 1
+        }
+      },
+      {
+        "constraintId": "recoil_balance_lock",
+        "valueSource": "contribution.recoilBalance",
+        "coefficients": {
+          "recoilBalance": 1
+        }
+      },
+      {
+        "constraintId": "noether_sea_response_lock",
+        "valueSource": "contribution.noetherSeaResponse",
+        "coefficients": {
+          "noetherSeaResponse": 1
+        }
+      },
+      {
+        "constraintId": "corridor_orientation_lock",
+        "valueSource": "contribution.corridorOrientation",
+        "coefficients": {
+          "corridorOrientation": 1
+        }
+      },
+      {
+        "constraintId": "wake_balance_lock",
+        "valueSource": "contribution.wakeBalance",
+        "coefficients": {
+          "wakeBalance": 1
+        }
+      }
+    ]
+  }
+}
