@@ -1,0 +1,14 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-component-stability-probes/v1",
+  "probeSetId": "CS_branch_dynamics_component_stability_negative_control_v1",
+  "claimLevel": "negative control: component perturbation changes retained branch-dynamics component sum",
+  "componentStabilityProbes": [
+    {
+      "probeId": "drift_even_L_source_only",
+      "component": "T_even_L",
+      "deltas": {
+        "sourceDepletion": 0.001
+      }
+    }
+  ]
+}

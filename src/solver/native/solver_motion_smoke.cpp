@@ -25,6 +25,9 @@ int main() {
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
   static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationRequestF64) == 72);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationStateF64) == 72);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationSummaryF64) == 120);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",
@@ -390,6 +393,54 @@ int main() {
           16,
           &abiPairCausalDelayBoundaryPathRowCount,
           &abiPairCausalDelayBoundarySummary);
+  ArchitrinoSolverMasterEquationRequestF64 abiMasterEquationRequest{
+      0.0,
+      1.0,
+      0.5,
+      3.0,
+      1.0,
+      1e-11,
+      1,
+      1,
+      1,
+      1,
+      0,
+      0,
+  };
+  ArchitrinoSolverMasterEquationStateF64 abiMasterEquationStates[2]{
+      ArchitrinoSolverMasterEquationStateF64{
+          101,
+          ArchitrinoSolverVector3F64{0.0, 0.0, 0.0},
+          ArchitrinoSolverVector3F64{0.01, 0.0, 0.0},
+          1.0,
+          1,
+          0,
+      },
+      ArchitrinoSolverMasterEquationStateF64{
+          202,
+          ArchitrinoSolverVector3F64{1.0, 0.0, 0.0},
+          ArchitrinoSolverVector3F64{-0.01, 0.0, 0.0},
+          -1.0,
+          2,
+          0,
+      },
+  };
+  int abiMasterEquationFrameCount = -1;
+  int abiMasterEquationPathRowCount = -1;
+  ArchitrinoSolverMotionFrameRowF64 abiMasterEquationFrames[6]{};
+  ArchitrinoSolverPathHistoryRowF64 abiMasterEquationPathRows[4]{};
+  ArchitrinoSolverMasterEquationSummaryF64 abiMasterEquationSummary{};
+  const int abiMasterEquationStatus = architrino_solver_integrate_master_equation_motion_f64(
+      &abiMasterEquationRequest,
+      abiMasterEquationStates,
+      2,
+      abiMasterEquationFrames,
+      6,
+      &abiMasterEquationFrameCount,
+      abiMasterEquationPathRows,
+      4,
+      &abiMasterEquationPathRowCount,
+      &abiMasterEquationSummary);
   const ArchitrinoSolverAbiInfo abiInfo = architrino_solver_abi_info();
   const double expectedPathInterpolationBound = 1e-11 + 0.125 * std::sqrt(5.25);
 
@@ -508,6 +559,27 @@ int main() {
       nearly_equal(abiPairFrames[4].velocity_x, 0.975) &&
       abiPairPathRows[0].path_key == 101 &&
       nearly_equal(abiPairPathRows[0].velocity_x, 0.5) &&
+      abiMasterEquationStatus == 0 &&
+      abiMasterEquationFrameCount == 6 &&
+      abiMasterEquationPathRowCount == 4 &&
+      abiMasterEquationFrames[2].path_key == 101 &&
+      abiMasterEquationFrames[2].frame_index == 1 &&
+      abiMasterEquationFrames[2].position_x > 0.05 &&
+      abiMasterEquationFrames[3].path_key == 202 &&
+      abiMasterEquationFrames[3].position_x < 0.95 &&
+      abiMasterEquationPathRows[0].path_key == 101 &&
+      abiMasterEquationPathRows[0].segment_index == 0 &&
+      abiMasterEquationPathRows[0].velocity_x > 0.05 &&
+      abiMasterEquationSummary.status_code == 0 &&
+      abiMasterEquationSummary.first_failure_code == 0 &&
+      abiMasterEquationSummary.native_master_equation_status == 2 &&
+      abiMasterEquationSummary.canonical_eom_evidence == 1 &&
+      abiMasterEquationSummary.initial_state_count == 2 &&
+      abiMasterEquationSummary.frame_count == 6 &&
+      abiMasterEquationSummary.path_row_count == 4 &&
+      abiMasterEquationSummary.wake_row_count == 0 &&
+      abiMasterEquationSummary.acceleration_row_count == 6 &&
+      nearly_equal(abiMasterEquationSummary.field_speed, 3.0) &&
       pairConstrained.validation.ok &&
       pairConstrained.frames.size() == 18 &&
       pairConstrained.pathRows.size() == 16 &&

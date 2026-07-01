@@ -352,6 +352,8 @@ $$
 $$
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
+Penrose-style estimates of early-universe specialness are retained here at exactly this level. The familiar order-of-magnitude claim that a smooth low-gravitational-entropy early record occupies a fraction near $1/10^{10^{123}}$ of a maximum-entropy comparison space is not imported as a literal sampling story for the Euclidean void. It is a scale warning: if a cosmology branch recovers CMB smoothness, low gravitational free-mode content, and later black-hole-dominated entropy only by selecting an exponentially tiny $\mathcal{B}_{\mathrm{obs}}$, then the branch has relocated the arrow-of-time problem into $\theta_{\mathrm{init}}$ rather than deriving it from Noether sea dynamics.
+
 The same burden can be written in a compact conditioned form when the cosmology branch has already declared its constraint set:
 $$
 I_{\mathrm{init}}(\theta)

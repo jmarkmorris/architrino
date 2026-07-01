@@ -1,0 +1,50 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-projection-input/v1",
+  "claimLevel": "negative control: accepted-looking Collins-Soper projection that imports intrinsic spin as a primitive",
+  "projectionId": "Pi_CS_Zgamma_intrinsic_spin_negative_control_v1",
+  "ontologyPrimitives": [
+    "source_branch_chart",
+    "intrinsic_spin"
+  ],
+  "rows": {
+    "source_branch_chart": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "neutral_corridor_branch_chart": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "corridor_orientation_axis": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "source_depletion": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "recoil_balance": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "noether_sea_response": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "detector_provenance": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "visible_lepton_momenta": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "angular_basis_projection": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" },
+    "coefficient_covariance_comparison": { "status": "populated", "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json", "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1", "branchRecordId": "B_Zgamma_CS_22_25p5_v1", "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1" }
+  },
+  "detectorProvenance": {
+    "status": "populated",
+    "provenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1",
+    "experiment": "ATLAS",
+    "collisionSystem": "pp sqrt(s)=8 TeV",
+    "visibleMomentumHandoff": { "finalVisibleLeptonMomenta": true },
+    "frameConventions": { "collinsSoper": true }
+  },
+  "dileptonSystem": { "massGeV": 91.1876, "transverseMomentumGeV": 23.75, "rapidity": 0.35, "azimuth": 0.25 },
+  "quadrature": { "cosThetaNodes": 12, "phiBins": 32 },
+  "branchAngularMeasure": {
+    "coefficients": { "A0": 0.159, "A1": 0.042, "A2": 0.100, "A3": 0.006, "A4": 0.065, "A5": 0.003, "A6": 0.000, "A7": 0.001 }
+  },
+  "measurement": {
+    "sourceId": "ATLAS_arXiv_1606_00689_tables_11_12_13",
+    "benchmarkBin": "yZ-integrated, pTZ 22.0-25.5 GeV",
+    "covarianceModel": "diagonal_first_instance_from_stat_syst_quadrature",
+    "coefficients": { "A0": 0.159, "A1": 0.042, "A2": 0.100, "A3": 0.006, "A4": 0.065, "A5": 0.003, "A6": 0.000, "A7": 0.001 },
+    "covariance": [
+      [0.000058, 0, 0, 0, 0, 0, 0, 0],
+      [0, 0.000008, 0, 0, 0, 0, 0, 0],
+      [0, 0, 0.000018, 0, 0, 0, 0, 0],
+      [0, 0, 0, 0.000002, 0, 0, 0, 0],
+      [0, 0, 0, 0, 0.000008, 0, 0, 0],
+      [0, 0, 0, 0, 0, 0.000005, 0, 0],
+      [0, 0, 0, 0, 0, 0, 0.000005, 0],
+      [0, 0, 0, 0, 0, 0, 0, 0.000002]
+    ]
+  }
+}

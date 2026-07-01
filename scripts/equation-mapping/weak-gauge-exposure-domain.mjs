@@ -7,6 +7,12 @@ const INPUT_SCHEMA = "aaa-equation-map-weak-gauge-exposure-domain-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-weak-gauge-exposure-domain-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
+const SOURCE_EVIDENCE_FAILURE_REASONS = new Set([
+  "accepted_without_evidence_source",
+  "raw_url_source_not_mirrored",
+  "source_explicitly_rejects_requested_row",
+  "weak_visible_branch_ledger_source_contract_mismatch",
+]);
 
 const REQUIRED_ROWS = [
   "weak_visible_branch_ledger",
@@ -126,7 +132,7 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const rows = input.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const sourceEvidence = evaluateSourceEvidence(rowChecks);
@@ -303,8 +309,12 @@ function evaluateResiduals(raw, tolerances) {
 
 function evaluateSourceEvidence(rowChecks) {
   const failures = Object.entries(rowChecks)
-    .filter(([, check]) => check.reason === "accepted_without_evidence_source")
-    .map(([rowId, check]) => ({ rowId, sourcePath: check.sourcePath ?? null }));
+    .filter(([, check]) => SOURCE_EVIDENCE_FAILURE_REASONS.has(check.reason))
+    .map(([rowId, check]) => ({
+      rowId,
+      reason: check.reason,
+      sourcePath: check.sourcePath ?? null,
+    }));
   return {
     passed: failures.length === 0,
     failures,
@@ -312,7 +322,7 @@ function evaluateSourceEvidence(rowChecks) {
 }
 
 function hasNonSourceEvidenceMissingRows(missingRows, rowChecks) {
-  return missingRows.some((rowId) => rowChecks[rowId]?.reason !== "accepted_without_evidence_source");
+  return missingRows.some((rowId) => !SOURCE_EVIDENCE_FAILURE_REASONS.has(rowChecks[rowId]?.reason));
 }
 
 function decideStatus({ missingRows, rowChecks, sourceEvidence, domain, branchRecord, residuals }) {
@@ -351,13 +361,13 @@ function firstBlocker({ status, missingRows, rowChecks, sourceEvidence, domain, 
     return "weak_hidden_domain_split";
   }
   if (missingRows.length > 0) {
-    if (rowChecks[missingRows[0]]?.reason === "accepted_without_evidence_source") {
-      return "accepted_without_evidence_source";
+    if (SOURCE_EVIDENCE_FAILURE_REASONS.has(rowChecks[missingRows[0]]?.reason)) {
+      return rowChecks[missingRows[0]].reason;
     }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!sourceEvidence.passed) {
-    return "accepted_without_evidence_source";
+    return sourceEvidence.failures[0]?.reason ?? "accepted_without_evidence_source";
   }
   if (!branchRecord.stable) {
     return "gauge_branch_record_changed";
@@ -392,7 +402,7 @@ function parseTolerances(raw) {
   );
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, requestedRowKind) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "row_missing" };
   }
@@ -400,7 +410,7 @@ function evaluateAcceptedRow(row) {
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
   }
-  const sourceCheck = evaluateDurableSource(row.sourcePath ?? row.source);
+  const sourceCheck = evaluateDurableSource(row.sourcePath ?? row.source, row, requestedRowKind);
   if (!sourceCheck.accepted) {
     return {
       accepted: false,
@@ -411,7 +421,7 @@ function evaluateAcceptedRow(row) {
   return { accepted: true, reason: "accepted" };
 }
 
-function evaluateDurableSource(sourcePath) {
+function evaluateDurableSource(sourcePath, row = {}, requestedRowKind = null) {
   if (typeof sourcePath !== "string" || sourcePath.trim() === "") {
     return { accepted: false, reason: "source_missing" };
   }
@@ -424,7 +434,7 @@ function evaluateDurableSource(sourcePath) {
     return { accepted: false, reason: "source_not_durable" };
   }
   if (/^https?:\/\//.test(sourcePath)) {
-    return { accepted: true, reason: "source_url" };
+    return { accepted: false, reason: "raw_url_source_not_mirrored" };
   }
   const resolvedPath = path.resolve(sourcePath);
   if (!fs.existsSync(resolvedPath)) {
@@ -436,7 +446,25 @@ function evaluateDurableSource(sourcePath) {
   if (!isEvidenceSourcePath(resolvedPath)) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
+  const source = readJsonOrNull(resolvedPath);
+  if (!source) {
+    return { accepted: false, reason: "weak_visible_branch_ledger_source_contract_mismatch" };
+  }
+  if (sourceExplicitlyRejectsRequestedRow(source, requestedRowKind)) {
+    return { accepted: false, reason: "source_explicitly_rejects_requested_row" };
+  }
+  if (!sourceSupportsWeakVisibleBranchLedger(source, row)) {
+    return { accepted: false, reason: "weak_visible_branch_ledger_source_contract_mismatch" };
+  }
   return { accepted: true, reason: "source_file" };
+}
+
+function readJsonOrNull(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function isEvidenceSourcePath(filePath) {
@@ -460,6 +488,73 @@ function isEvidenceSourcePath(filePath) {
     !basename.includes("mock") &&
     !basename.includes("negative-control")
   );
+}
+
+function sourceExplicitlyRejectsRequestedRow(source, requestedRowKind) {
+  if (typeof requestedRowKind !== "string" || requestedRowKind.trim() === "") {
+    return false;
+  }
+  const notAcceptedRows = source?.acceptedBoundary?.notAcceptedRows;
+  if (!Array.isArray(notAcceptedRows)) {
+    return false;
+  }
+  return notAcceptedRows.includes(requestedRowKind);
+}
+
+function sourceSupportsWeakVisibleBranchLedger(source, row) {
+  const sourceValues = collectSourceSupportValues(source)
+    .filter((value) => typeof value === "string")
+    .map((value) => value.toLowerCase());
+  const rowSupported = sourceValues.some(
+    (value) => value.includes("eq-16") || value.includes("eq16"),
+  );
+  const ledgerSupported = sourceValues.some(
+    (value) =>
+      value.includes("weak_visible_branch_ledger") ||
+      value.includes("weak-visible branch ledger") ||
+      value.includes("weak visible branch ledger"),
+  );
+  const expectedDomainId = domainIdForRow(row);
+  const expectedBranchRecordId = row?.branchRecordId ?? null;
+  const sourceStrings = new Set(collectSourceSupportValues(source).filter((value) => typeof value === "string"));
+  const domainSupported =
+    !expectedDomainId || sourceStrings.has(expectedDomainId);
+  const branchSupported =
+    !expectedBranchRecordId || sourceStrings.has(expectedBranchRecordId);
+  return rowSupported && ledgerSupported && domainSupported && branchSupported;
+}
+
+function collectSourceSupportValues(value) {
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => collectSourceSupportValues(entry));
+  }
+  if (value && typeof value === "object") {
+    return [
+      value.row,
+      value.targetRow,
+      value.sourceRole,
+      value.sourceFamily,
+      value.sourceKind,
+      value.sourceSupport,
+      value.sourceSupports,
+      value.requiredSourceSupport,
+      value.evidenceFamily,
+      value.evidenceRole,
+      value.evidenceSupports,
+      value.claimLevel,
+      value.purpose,
+      value.supportedRows,
+      value.domainId,
+      value.retainedDomainId,
+      value.eventId,
+      value.carrierId,
+      value.branchRecordId,
+      ...Object.values(value).flatMap((entry) =>
+        typeof entry === "object" ? collectSourceSupportValues(entry) : [],
+      ),
+    ].flatMap((entry) => (Array.isArray(entry) ? entry : [entry]));
+  }
+  return typeof value === "string" ? [value] : [];
 }
 
 function normalizeStatus(row) {

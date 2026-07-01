@@ -1,0 +1,85 @@
+{
+  "schema": "aaa-equation-map-spin-magnetic-certificate-input/v1",
+  "claimLevel": "accepted-looking EQ-15/EQ-27 unrelated durable-source negative control; score-neutral and not retained evidence",
+  "certificateId": "eq15-27-unrelated-durable-source-negative-control-0001",
+  "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+  "sourceIdentity": {
+    "retainedBranchId": "retained-noncoplanar-branch-unrelated-durable-control-0001",
+    "domainId": "D_spin_mu_unrelated_durable_control_0001",
+    "orderedFrameLoopId": "Phi-star-loop-unrelated-durable-control-0001",
+    "spinLiftId": "spin-lift-unrelated-durable-control-0001",
+    "exposureFiberId": "exposure-fiber-unrelated-durable-control-0001",
+    "retuneWitnessId": "S_retune_spin_mu_unrelated_durable_control_0001"
+  },
+  "tolerances": {
+    "gauge": 1e-12,
+    "angularMomentum": 1e-9,
+    "gLead": 1e-12
+  },
+  "rows": {
+    "ordered_frame_loop": {
+      "status": "accepted",
+      "rowId": "Phi-star-loop-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json",
+      "retainedBranchId": "retained-noncoplanar-branch-unrelated-durable-control-0001",
+      "domainId": "D_spin_mu_unrelated_durable_control_0001",
+      "loopMap": "Phi_star:S^1->SO(3)",
+      "holonomyClass": "nontrivial_z2",
+      "nonGaugeHolonomy": true,
+      "nonCoplanarRetainedBranchEvidence": "unrelated-durable-source-control"
+    },
+    "spin_lift": {
+      "status": "accepted",
+      "rowId": "spin-lift-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "etaSpin": 1,
+      "doubledPathRestores": true,
+      "liftWitnessKind": "spin3_su2_double_cover_unrelated_durable_control",
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    },
+    "gauge_control": {
+      "status": "accepted",
+      "rowId": "gauge-control-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "deltaGauge": 0,
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    },
+    "angular_momentum_ledger": {
+      "status": "accepted",
+      "rowId": "angular-momentum-ledger-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "deltaJ": 0,
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    },
+    "moment_map_magnetic": {
+      "status": "accepted",
+      "rowId": "moment-map-magnetic-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "mu_E": [
+        0,
+        0,
+        1
+      ],
+      "momentMapKind": "exposure_current_integral_unrelated_durable_control",
+      "exposureCurrentIntegral": true,
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    },
+    "covering_degree_g2": {
+      "status": "accepted",
+      "rowId": "covering-degree-g2-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "gLead": 2,
+      "g2Derivation": "covering_degree_unrelated_durable_control",
+      "coveringDegreeWitness": true,
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    },
+    "exposure_fiber_residual": {
+      "status": "accepted",
+      "rowId": "exposure-fiber-residual-unrelated-durable-control-0001",
+      "sameRecordId": "spin-to-mu-unrelated-durable-source-control-record",
+      "R_fib": 0.003,
+      "sourcePath": "scripts/equation-mapping/same-branch-retained-domain-durable-source-shell.v1.json"
+    }
+  }
+}

@@ -662,6 +662,18 @@ const PAIR_INTERACTION_REQUEST_F64_BYTES = 88;
 const PAIR_INTERACTION_STATE_F64_BYTES = 80;
 const PAIR_INTERACTION_PATH_CONSTRAINT_F64_BYTES = 48;
 const PAIR_INTERACTION_SUMMARY_F64_BYTES = 352;
+const MASTER_EQUATION_REQUEST_F64_BYTES = 72;
+const MASTER_EQUATION_STATE_F64_BYTES = 72;
+const MASTER_EQUATION_SUMMARY_F64_BYTES = 120;
+const MASTER_EQUATION_NATIVE_OK_STATUS_CODE = 0;
+const MASTER_EQUATION_NATIVE_OK_FIRST_FAILURE_CODE = 0;
+const MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS_CODE = 2;
+const MASTER_EQUATION_NATIVE_PENDING_STATUS_CODE = 1;
+const MASTER_EQUATION_NATIVE_PENDING_FIRST_FAILURE_CODE = 1;
+const MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS = "native-fixed-parameter-master-equation";
+const MASTER_EQUATION_NATIVE_FIXED_PARAMETER_EOM_STATUS = "native_master_equation_fixed_parameter_evidence";
+const MASTER_EQUATION_NATIVE_PENDING_STATUS = "native-fixture-solver-pending";
+const MASTER_EQUATION_NATIVE_PENDING_FAILURE = "native_master_equation_solver_pending";
 const T3_STEP_REQUEST_F64_BYTES = 120;
 const T3_PARTICLE_STATE_F64_BYTES = 80;
 const T3_PARTICLE_STEP_ROW_F64_BYTES = 104;
@@ -1420,6 +1432,7 @@ function createCapabilities(hasWasmModuleFactory) {
             "delayedHits",
             "appPlayback",
             "pairInteraction",
+            "masterEquation",
             "validationReplay",
           ],
         },
@@ -4293,6 +4306,27 @@ function runSimulationWithModule(state, module, request, abiInfo) {
       status: pairStatus,
     };
     completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
+  } else if (request.runKind === "masterEquation") {
+    completedResponse = hasNativeMasterEquationIntegrationExport(module)
+      ? runMasterEquationNativeProbeF64WithModule(module, request, {
+          state,
+          runId,
+          requestId,
+          datasetId,
+          precisionPath: admission.selectedPrecisionPath,
+          admission,
+          manifestBase,
+          abiInfo,
+        })
+      : createMasterEquationMissingCapabilityResponse({
+          request,
+          runId,
+          requestId,
+          datasetId,
+          precisionPath: admission.selectedPrecisionPath,
+          admission,
+          manifestBase,
+        });
   } else if (request.runKind === "motionSimulation") {
     const motion = request.config.motionIntegrationRequest
       ? integrateConstantAccelerationMotionF64WithModule(module, request.config.motionIntegrationRequest, abiInfo)
@@ -11265,7 +11299,7 @@ function integrateConstantAccelerationPathHistoryF64WithModule(module, request, 
 
   const estimatedRows = estimateMotionPathSegmentCount(request);
   const rowCap = options.maxRows ?? DEFAULT_MAX_MOTION_PATH_ROWS;
-  const maxRows = Math.min(estimatedRows, rowCap);
+  const maxRows = Math.min(estimatedRows + 1, rowCap);
   if (estimatedRows > maxRows) {
     throw new SolverBridgeError(
       createStatus("stream_memory_pressure", "halt", "motion path-history request exceeds row buffer cap", {
@@ -13886,6 +13920,8 @@ function validateRunSimulationRequest(request) {
     validateAppPlaybackRunConfig(request.config);
   } else if (request.runKind === "pairInteraction") {
     validatePairInteractionRunConfig(request.config);
+  } else if (request.runKind === "masterEquation") {
+    validateMasterEquationRunConfig(request.config);
   } else if (request.runKind === "motionSimulation") {
     validateMotionSimulationRunConfig(request.config);
   } else {
@@ -14149,9 +14185,9 @@ function validatePairInteractionRunConfig(config) {
     );
   }
   requireArray(request.initialStates, "pairInteractionRequest.initialStates");
-  if (request.initialStates.length !== 2) {
+  if (request.initialStates.length < 2) {
     throw new SolverBridgeError(
-      createStatus("app_contract_error", "error", "pairInteractionRequest.initialStates must contain exactly two states", {
+      createStatus("app_contract_error", "error", "pairInteractionRequest.initialStates must contain at least two states", {
         recoverable: false,
       })
     );
@@ -14251,6 +14287,630 @@ function validatePairInteractionRunConfig(config) {
   if (config.metadata != null) {
     normalizePathHistoryStreamMetadata(config.metadata);
   }
+}
+
+function validateMasterEquationRunConfig(config) {
+  if (!config || typeof config !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "master-equation run config is required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!KNOWN_APP_IDS.includes(config.appId)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "master-equation app id is required", {
+        recoverable: false,
+      })
+    );
+  }
+  const request = config.masterEquationRequest;
+  if (!request || typeof request !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "masterEquationRequest is required", {
+        recoverable: false,
+      })
+    );
+  }
+  requireFiniteNumber(request.startTime, "masterEquationRequest.startTime");
+  requireFiniteNumber(request.endTime, "masterEquationRequest.endTime");
+  requirePositiveFiniteNumber(request.step, "masterEquationRequest.step");
+  if (request.endTime < request.startTime) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "master-equation time bounds are not ordered", {
+        recoverable: false,
+      })
+    );
+  }
+  requireNonemptyString(request.fixedPhysicalParameterSetId, "masterEquationRequest.fixedPhysicalParameterSetId");
+  requireNonemptyString(request.masterEquationVersion, "masterEquationRequest.masterEquationVersion");
+  requireNonemptyString(request.forceLawVersion, "masterEquationRequest.forceLawVersion");
+  requirePositiveFiniteNumber(request.fieldSpeed, "masterEquationRequest.fieldSpeed");
+  requireNonnegativeFiniteNumber(request.historyDepth, "masterEquationRequest.historyDepth");
+  if (request.maxFrames != null) {
+    requirePositiveInteger(request.maxFrames, "masterEquationRequest.maxFrames");
+  }
+  if (request.integrationTolerance != null) {
+    requireNonnegativeFiniteNumber(request.integrationTolerance, "masterEquationRequest.integrationTolerance");
+  }
+  requireArray(request.initialStates, "masterEquationRequest.initialStates");
+  if (request.initialStates.length < 2) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "masterEquationRequest.initialStates must contain at least two states", {
+        recoverable: false,
+      })
+    );
+  }
+  request.initialStates.forEach(validateMasterEquationInitialState);
+  if (config.streamId != null) {
+    requireNonemptyString(config.streamId, "masterEquation.streamId");
+  }
+  if (config.rowsPerChunk != null) {
+    requirePositiveInteger(config.rowsPerChunk, "masterEquation.rowsPerChunk");
+  }
+  if (config.storagePolicy != null) {
+    normalizePathHistoryStreamStoragePolicy(config.storagePolicy);
+  }
+  if (config.metadata != null) {
+    normalizePathHistoryStreamMetadata(config.metadata);
+  }
+}
+
+function validateMasterEquationInitialState(state, index) {
+  if (!state || typeof state !== "object") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", `masterEquationRequest.initialStates[${index}] is required`, {
+        recoverable: false,
+      })
+    );
+  }
+  requireSafeUint64(state.pathKey, `masterEquationRequest.initialStates[${index}].pathKey`);
+  validateVector(state.initialPosition, `masterEquationRequest.initialStates[${index}].initialPosition`);
+  validateVector(state.initialVelocity, `masterEquationRequest.initialStates[${index}].initialVelocity`);
+  requireFiniteNumber(state.charge, `masterEquationRequest.initialStates[${index}].charge`);
+  if (state.stateFlags != null) {
+    requireUint32(state.stateFlags, `masterEquationRequest.initialStates[${index}].stateFlags`);
+  }
+}
+
+function createMasterEquationMissingCapabilityResponse({
+  request,
+  runId,
+  requestId,
+  datasetId,
+  precisionPath,
+  admission,
+  manifestBase,
+}) {
+  const masterRequest = request.config.masterEquationRequest;
+  const status = createStatus(
+    "native_capability_missing",
+    "halt",
+    "native master-equation fixture ABI is not available",
+    {
+      runId,
+      requestId,
+      recoverable: true,
+      details: {
+        runKind: "masterEquation",
+        executionPath: "native_c_abi_missing",
+        nativeMasterEquationStatus: "native-fixture-capability-missing",
+        fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+        fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+        masterEquationVersion: masterRequest.masterEquationVersion,
+        forceLawVersion: masterRequest.forceLawVersion,
+        initialStateCount: masterRequest.initialStates.length,
+        startTime: masterRequest.startTime,
+        endTime: masterRequest.endTime,
+        step: masterRequest.step,
+        fieldSpeed: masterRequest.fieldSpeed,
+        historyDepth: masterRequest.historyDepth,
+        requiredNativeExport: "architrino_solver_integrate_master_equation_motion_f64",
+        fallbackPolicy: request.config.fallbackPolicy ?? "fail-closed-or-default-motion-baseline",
+      },
+    }
+  );
+  const completedResponse = {
+    runId,
+    datasetId,
+    summary: {
+      runId,
+      claimLevel: request.claimLevel,
+      precisionPath,
+      status,
+      frameCount: 0,
+      pathCount: masterRequest.initialStates.length,
+      pathRowCount: 0,
+      wakeRowCount: 0,
+      accelerationRowCount: 0,
+      executionPath: "native_c_abi_missing",
+      nativeMasterEquationStatus: "native-fixture-capability-missing",
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      canonicalEomEvidence: false,
+      eomEvidenceStatus: "native_master_equation_fixture_missing",
+      eomEvidenceReason:
+        "The central bridge accepted the fixed-parameter master-equation request shape, but no native master-equation integration ABI is available.",
+      firstFailureCode: "native_master_equation_fixture_missing",
+    },
+    buffers: [],
+    streams: [],
+    diagnostics: [...admission.statuses.map(toDiagnosticRecord), toDiagnosticRecord(status)],
+    frames: [],
+    pathHistory: undefined,
+    masterEquation: {
+      schema: "solver-master-equation-run-summary.v1",
+      runKind: "masterEquation",
+      executionPath: "native_c_abi_missing",
+      nativeMasterEquationStatus: "native-fixture-capability-missing",
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      initialStateCount: masterRequest.initialStates.length,
+      startTime: masterRequest.startTime,
+      endTime: masterRequest.endTime,
+      step: masterRequest.step,
+      fieldSpeed: masterRequest.fieldSpeed,
+      historyDepth: masterRequest.historyDepth,
+      canonicalEomEvidence: false,
+      eomEvidenceStatus: "native_master_equation_fixture_missing",
+      eomEvidenceReason:
+        "The central bridge accepted the fixed-parameter master-equation request shape, but no native master-equation integration ABI is available.",
+      firstFailureCode: "native_master_equation_fixture_missing",
+      requiredNativeExport: "architrino_solver_integrate_master_equation_motion_f64",
+      fallbackPolicy: request.config.fallbackPolicy ?? "fail-closed-or-default-motion-baseline",
+    },
+    status,
+  };
+  completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
+  return completedResponse;
+}
+
+function runMasterEquationNativeProbeF64WithModule(
+  module,
+  request,
+  { state, runId, requestId, datasetId, precisionPath, admission, manifestBase, abiInfo = getStaticAbiInfo() }
+) {
+  const masterRequest = request.config.masterEquationRequest;
+  const stateCount = masterRequest.initialStates.length;
+  const estimatedSampleFrames = estimateMasterEquationSampleFrameCount(masterRequest);
+  const maxSampleFrames = masterRequest.maxFrames ?? Math.min(estimatedSampleFrames, DEFAULT_MAX_MOTION_FRAMES);
+  if (estimatedSampleFrames > maxSampleFrames) {
+    throw new SolverBridgeError(
+      createStatus("stream_memory_pressure", "halt", "master-equation request exceeds frame buffer cap", {
+        recoverable: true,
+        details: { estimatedSampleFrames, maxSampleFrames },
+      })
+    );
+  }
+  const maxFrameRows = maxSampleFrames * stateCount;
+  const maxPathRows = Math.max(0, maxSampleFrames - 1) * stateCount;
+  const requestPtr = module._malloc(MASTER_EQUATION_REQUEST_F64_BYTES);
+  const statesPtr = module._malloc(MASTER_EQUATION_STATE_F64_BYTES * stateCount);
+  const framesPtr = maxFrameRows > 0 ? module._malloc(abiInfo.motionFrameRowF64Bytes * maxFrameRows) : 0;
+  const pathRowsPtr = maxPathRows > 0 ? module._malloc(abiInfo.pathHistoryRowF64Bytes * maxPathRows) : 0;
+  const frameCountPtr = module._malloc(4);
+  const pathRowCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(MASTER_EQUATION_SUMMARY_F64_BYTES);
+  try {
+    writeZeroBytes(module, requestPtr, MASTER_EQUATION_REQUEST_F64_BYTES);
+    writeZeroBytes(module, statesPtr, MASTER_EQUATION_STATE_F64_BYTES * stateCount);
+    if (framesPtr !== 0) {
+      writeZeroBytes(module, framesPtr, abiInfo.motionFrameRowF64Bytes * maxFrameRows);
+    }
+    if (pathRowsPtr !== 0) {
+      writeZeroBytes(module, pathRowsPtr, abiInfo.pathHistoryRowF64Bytes * maxPathRows);
+    }
+    writeZeroBytes(module, frameCountPtr, 4);
+    writeZeroBytes(module, pathRowCountPtr, 4);
+    writeZeroBytes(module, summaryPtr, MASTER_EQUATION_SUMMARY_F64_BYTES);
+    writeMasterEquationRequestF64(module, requestPtr, masterRequest);
+    masterRequest.initialStates.forEach((state, index) => {
+      writeMasterEquationStateF64(
+        module,
+        statesPtr + index * MASTER_EQUATION_STATE_F64_BYTES,
+        state
+      );
+    });
+    const integrateMasterEquation = module.cwrap(
+      "architrino_solver_integrate_master_equation_motion_f64",
+      "number",
+      ["number", "number", "number", "number", "number", "number", "number", "number", "number", "number"]
+    );
+    const nativeStatus = integrateMasterEquation(
+      requestPtr,
+      statesPtr,
+      stateCount,
+      framesPtr,
+      maxFrameRows,
+      frameCountPtr,
+      pathRowsPtr,
+      maxPathRows,
+      pathRowCountPtr,
+      summaryPtr
+    );
+    const summary = readMasterEquationSummaryF64(module, summaryPtr);
+    const frameCount = module.getValue(frameCountPtr, "i32");
+    const pathRowCount = module.getValue(pathRowCountPtr, "i32");
+
+    if (nativeStatus === -5) {
+      if (
+        summary.statusCode !== MASTER_EQUATION_NATIVE_PENDING_STATUS_CODE ||
+        summary.firstFailureCode !== MASTER_EQUATION_NATIVE_PENDING_FIRST_FAILURE_CODE ||
+        frameCount !== 0 ||
+        pathRowCount !== 0
+      ) {
+        throw new SolverBridgeError(
+          createStatus("internal_solver_error", "error", "native master-equation probe returned an unsupported pending status", {
+            recoverable: false,
+            details: {
+              nativeStatus,
+              summary,
+              frameCount,
+              pathRowCount,
+            },
+          })
+        );
+      }
+      return createMasterEquationNativePendingResponse({
+        request,
+        runId,
+        requestId,
+        datasetId,
+        precisionPath,
+        admission,
+        manifestBase,
+        nativeStatus,
+        nativeSummary: summary,
+      });
+    }
+
+    if (
+      nativeStatus !== 0 ||
+      summary.statusCode !== MASTER_EQUATION_NATIVE_OK_STATUS_CODE ||
+      summary.firstFailureCode !== MASTER_EQUATION_NATIVE_OK_FIRST_FAILURE_CODE ||
+      summary.nativeMasterEquationStatusCode !== MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS_CODE ||
+      frameCount <= 0 ||
+      pathRowCount <= 0
+    ) {
+      throw new SolverBridgeError(
+        createStatus("internal_solver_error", "error", "native master-equation probe returned an unsupported status", {
+          recoverable: false,
+          details: {
+            nativeStatus,
+            summary,
+            frameCount,
+            pathRowCount,
+          },
+        })
+      );
+    }
+
+    const frames = [];
+    for (let index = 0; index < frameCount; index += 1) {
+      frames.push(readMotionFrameRowF64(module, framesPtr + index * abiInfo.motionFrameRowF64Bytes));
+    }
+    const frameBuffer = copyWasmBytes(module, framesPtr, frameCount * abiInfo.motionFrameRowF64Bytes);
+    const pathRowsBuffer = copyWasmBytes(module, pathRowsPtr, pathRowCount * abiInfo.pathHistoryRowF64Bytes);
+    const pathRowsView = new DataView(pathRowsBuffer);
+    const pathRows = [];
+    for (let index = 0; index < pathRowCount; index += 1) {
+      pathRows.push(
+        readPathHistoryRowFromView(pathRowsView, index * abiInfo.pathHistoryRowF64Bytes, 0, index)
+      );
+    }
+
+    return createMasterEquationNativeFixedParameterResponse({
+      request,
+      runId,
+      requestId,
+      datasetId,
+      precisionPath,
+      admission,
+      manifestBase,
+      state,
+      abiInfo,
+      nativeStatus,
+      nativeSummary: summary,
+      frames,
+      frameBuffer,
+      pathRows,
+    });
+  } finally {
+    module._free(summaryPtr);
+    module._free(pathRowCountPtr);
+    module._free(frameCountPtr);
+    if (pathRowsPtr !== 0) {
+      module._free(pathRowsPtr);
+    }
+    if (framesPtr !== 0) {
+      module._free(framesPtr);
+    }
+    module._free(statesPtr);
+    module._free(requestPtr);
+  }
+}
+
+function createMasterEquationNativeFixedParameterResponse({
+  request,
+  runId,
+  requestId,
+  datasetId,
+  precisionPath,
+  admission,
+  manifestBase,
+  state,
+  abiInfo,
+  nativeStatus,
+  nativeSummary,
+  frames,
+  frameBuffer,
+  pathRows,
+}) {
+  const masterRequest = request.config.masterEquationRequest;
+  const frameBufferDescriptor = createBufferDescriptor(
+    "master-equation-frame-buffer",
+    "frame_buffer.v1",
+    frames.length,
+    abiInfo.motionFrameRowF64Bytes,
+    frameBuffer
+  );
+  const pathHistory = createPathHistoryStreamF64(
+    state,
+    {
+      runId,
+      datasetId,
+      streamId: request.config.streamId || `${runId}:master-equation-path-history`,
+      pathRows,
+      rowsPerChunk: request.config.rowsPerChunk,
+      storagePolicy: request.config.storagePolicy ?? {
+        target: request.output.streamTarget ?? "caller-buffer",
+        durable: false,
+        maxBytes: request.output.memoryBudgetBytes,
+      },
+      metadata: {
+        ...request.config.metadata,
+        precisionPath: request.config.metadata?.precisionPath ?? precisionPath,
+        interpolationRule: request.config.metadata?.interpolationRule ?? "native-master-equation-integration",
+        valueAuthority: request.config.metadata?.valueAuthority ?? "authoritative",
+        appBufferAuthority: request.config.metadata?.appBufferAuthority ?? "authoritative",
+        provenance: {
+          ...request.config.metadata?.provenance,
+          runKind: "masterEquation",
+          source: "native-master-equation-fixed-parameter",
+        },
+      },
+    },
+    abiInfo
+  );
+  const status = createStatus("ok", "ok", "native fixed-parameter master-equation run completed", {
+    runId,
+    requestId,
+    details: {
+      runKind: "masterEquation",
+      executionPath: "native_c_abi",
+      nativeStatus,
+      nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS,
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      initialStateCount: nativeSummary.initialStateCount,
+      frameCount: frames.length,
+      pathRowCount: pathRows.length,
+      wakeRowCount: nativeSummary.wakeRowCount,
+      accelerationRowCount: nativeSummary.accelerationRowCount,
+      canonicalEomEvidence: true,
+      eomEvidenceStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_EOM_STATUS,
+    },
+  });
+  const completedResponse = {
+    runId,
+    datasetId,
+    summary: {
+      runId,
+      claimLevel: request.claimLevel,
+      precisionPath,
+      status,
+      frameCount: frames.length,
+      pathCount: nativeSummary.initialStateCount,
+      pathRowCount: pathRows.length,
+      chunkCount: pathHistory.summary.chunkCount,
+      wakeRowCount: nativeSummary.wakeRowCount,
+      accelerationRowCount: nativeSummary.accelerationRowCount,
+      executionPath: "native_c_abi",
+      nativeStatus,
+      nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS,
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      canonicalEomEvidence: true,
+      eomEvidenceStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_EOM_STATUS,
+      eomEvidenceReason:
+        "The native ABI emitted fixed-parameter master-equation current-state frames and path-history rows from the central solver.",
+      firstFailureCode: "none",
+    },
+    buffers: [frameBufferDescriptor, ...pathHistory.buffers],
+    streams: [pathHistory.stream],
+    diagnostics: [
+      ...admission.statuses.map(toDiagnosticRecord),
+      toDiagnosticRecord(status),
+      toDiagnosticRecord(pathHistory.status),
+    ],
+    frames,
+    pathHistory: pathHistory.summary,
+    masterEquation: {
+      schema: "solver-master-equation-run-summary.v1",
+      runKind: "masterEquation",
+      executionPath: "native_c_abi",
+      nativeStatus,
+      nativeSummary,
+      nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_STATUS,
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      initialStateCount: nativeSummary.initialStateCount,
+      startTime: nativeSummary.startTime,
+      endTime: nativeSummary.endTime,
+      step: nativeSummary.step,
+      fieldSpeed: nativeSummary.fieldSpeed,
+      historyDepth: nativeSummary.historyDepth,
+      integrationTolerance: nativeSummary.integrationTolerance,
+      frameCount: frames.length,
+      pathRowCount: pathRows.length,
+      wakeRowCount: nativeSummary.wakeRowCount,
+      accelerationRowCount: nativeSummary.accelerationRowCount,
+      canonicalEomEvidence: true,
+      eomEvidenceStatus: MASTER_EQUATION_NATIVE_FIXED_PARAMETER_EOM_STATUS,
+      eomEvidenceReason:
+        "The native ABI emitted fixed-parameter master-equation current-state frames and path-history rows from the central solver.",
+      firstFailureCode: "none",
+      requiredNativeExport: "architrino_solver_integrate_master_equation_motion_f64",
+      fallbackPolicy: request.config.fallbackPolicy ?? "fail-closed-or-default-motion-baseline",
+    },
+    status,
+  };
+  completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
+  return completedResponse;
+}
+
+function createMasterEquationNativePendingResponse({
+  request,
+  runId,
+  requestId,
+  datasetId,
+  precisionPath,
+  admission,
+  manifestBase,
+  nativeStatus,
+  nativeSummary,
+}) {
+  const masterRequest = request.config.masterEquationRequest;
+  const status = createStatus(
+    "native_solver_pending",
+    "halt",
+    "native master-equation ABI is available but the fixed-parameter solver implementation is pending",
+    {
+      runId,
+      requestId,
+      recoverable: true,
+      details: {
+        runKind: "masterEquation",
+        executionPath: "native_c_abi_pending",
+        nativeStatus,
+        nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_PENDING_STATUS,
+        fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+        fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+        masterEquationVersion: masterRequest.masterEquationVersion,
+        forceLawVersion: masterRequest.forceLawVersion,
+        initialStateCount: masterRequest.initialStates.length,
+        startTime: masterRequest.startTime,
+        endTime: masterRequest.endTime,
+        step: masterRequest.step,
+        fieldSpeed: masterRequest.fieldSpeed,
+        historyDepth: masterRequest.historyDepth,
+        requiredNativeExport: "architrino_solver_integrate_master_equation_motion_f64",
+        fallbackPolicy: request.config.fallbackPolicy ?? "fail-closed-or-default-motion-baseline",
+      },
+    }
+  );
+  const completedResponse = {
+    runId,
+    datasetId,
+    summary: {
+      runId,
+      claimLevel: request.claimLevel,
+      precisionPath,
+      status,
+      frameCount: 0,
+      pathCount: nativeSummary.initialStateCount,
+      pathRowCount: 0,
+      wakeRowCount: 0,
+      accelerationRowCount: 0,
+      executionPath: "native_c_abi_pending",
+      nativeStatus,
+      nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_PENDING_STATUS,
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      canonicalEomEvidence: false,
+      eomEvidenceStatus: MASTER_EQUATION_NATIVE_PENDING_FAILURE,
+      eomEvidenceReason:
+        "The native ABI exposes the fixed-parameter master-equation request, but the solver implementation does not yet emit many-body acceleration, path-history, or wake rows.",
+      firstFailureCode: MASTER_EQUATION_NATIVE_PENDING_FAILURE,
+    },
+    buffers: [],
+    streams: [],
+    diagnostics: [...admission.statuses.map(toDiagnosticRecord), toDiagnosticRecord(status)],
+    frames: [],
+    pathHistory: undefined,
+    masterEquation: {
+      schema: "solver-master-equation-run-summary.v1",
+      runKind: "masterEquation",
+      executionPath: "native_c_abi_pending",
+      nativeStatus,
+      nativeSummary,
+      nativeMasterEquationStatus: MASTER_EQUATION_NATIVE_PENDING_STATUS,
+      fixedPhysicalParameterSetId: masterRequest.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: "manifest-declared-fixed-parameter-contract",
+      masterEquationVersion: masterRequest.masterEquationVersion,
+      forceLawVersion: masterRequest.forceLawVersion,
+      initialStateCount: nativeSummary.initialStateCount,
+      startTime: nativeSummary.startTime,
+      endTime: nativeSummary.endTime,
+      step: nativeSummary.step,
+      fieldSpeed: nativeSummary.fieldSpeed,
+      historyDepth: nativeSummary.historyDepth,
+      integrationTolerance: nativeSummary.integrationTolerance,
+      canonicalEomEvidence: false,
+      eomEvidenceStatus: MASTER_EQUATION_NATIVE_PENDING_FAILURE,
+      eomEvidenceReason:
+        "The native ABI exposes the fixed-parameter master-equation request, but the solver implementation does not yet emit many-body acceleration, path-history, or wake rows.",
+      firstFailureCode: MASTER_EQUATION_NATIVE_PENDING_FAILURE,
+      requiredNativeExport: "architrino_solver_integrate_master_equation_motion_f64",
+      fallbackPolicy: request.config.fallbackPolicy ?? "fail-closed-or-default-motion-baseline",
+    },
+    status,
+  };
+  completedResponse.manifest = finalizeRunManifest(manifestBase, completedResponse);
+  return completedResponse;
+}
+
+function readMasterEquationSummaryF64(module, ptr) {
+  return {
+    statusCode: module.getValue(ptr, "i32") >>> 0,
+    firstFailureCode: module.getValue(ptr + 4, "i32") >>> 0,
+    nativeMasterEquationStatusCode: module.getValue(ptr + 8, "i32") >>> 0,
+    canonicalEomEvidenceCode: module.getValue(ptr + 12, "i32") >>> 0,
+    initialStateCount: readUint64(module, ptr + 16),
+    frameCount: readUint64(module, ptr + 24),
+    pathRowCount: readUint64(module, ptr + 32),
+    wakeRowCount: readUint64(module, ptr + 40),
+    accelerationRowCount: readUint64(module, ptr + 48),
+    startTime: module.getValue(ptr + 56, "double"),
+    endTime: module.getValue(ptr + 64, "double"),
+    step: module.getValue(ptr + 72, "double"),
+    fieldSpeed: module.getValue(ptr + 80, "double"),
+    historyDepth: module.getValue(ptr + 88, "double"),
+    integrationTolerance: module.getValue(ptr + 96, "double"),
+    fixedParameterSetCode: module.getValue(ptr + 104, "i32") >>> 0,
+    masterEquationVersionCode: module.getValue(ptr + 108, "i32") >>> 0,
+    forceLawVersionCode: module.getValue(ptr + 112, "i32") >>> 0,
+  };
+}
+
+function estimateMasterEquationSampleFrameCount(request) {
+  const duration = request.endTime - request.startTime;
+  const epsilon = Math.max(request.step * 1e-9, 1e-12);
+  const stepCount = Math.floor(duration / request.step + epsilon);
+  const endFromStep = request.startTime + stepCount * request.step;
+  return Math.max(1, stepCount + 1 + (Math.abs(endFromStep - request.endTime) > epsilon ? 1 : 0));
 }
 
 function validatePairInteractionInitialState(state, index) {
@@ -14559,6 +15219,10 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_plan_path_history_storage_lifecycle === "function" &&
     typeof module?._architrino_solver_get_abi_info === "function"
   );
+}
+
+function hasNativeMasterEquationIntegrationExport(module) {
+  return typeof module?._architrino_solver_integrate_master_equation_motion_f64 === "function";
 }
 
 function readAbiInfo(module) {
@@ -16341,6 +17005,50 @@ function writePairInteractionStateF64(module, ptr, state) {
   module.setValue(ptr + 64, state.mass, "double");
   module.setValue(ptr + 72, state.stateFlags ?? state.pathKey, "i32");
   module.setValue(ptr + 76, 0, "i32");
+}
+
+function writeMasterEquationRequestF64(module, ptr, request) {
+  module.setValue(ptr, request.startTime, "double");
+  module.setValue(ptr + 8, request.endTime, "double");
+  module.setValue(ptr + 16, request.step, "double");
+  module.setValue(ptr + 24, request.fieldSpeed, "double");
+  module.setValue(ptr + 32, request.historyDepth, "double");
+  module.setValue(ptr + 40, request.integrationTolerance ?? 0, "double");
+  module.setValue(ptr + 48, request.integrationMethod ?? 1, "i32");
+  module.setValue(
+    ptr + 52,
+    masterEquationFixedParameterSetCode(request.fixedPhysicalParameterSetId),
+    "i32"
+  );
+  module.setValue(
+    ptr + 56,
+    masterEquationVersionCode(request.masterEquationVersion),
+    "i32"
+  );
+  module.setValue(ptr + 60, masterEquationForceLawCode(request.forceLawVersion), "i32");
+  module.setValue(ptr + 64, request.stateFlags ?? 0, "i32");
+  module.setValue(ptr + 68, 0, "i32");
+}
+
+function writeMasterEquationStateF64(module, ptr, state) {
+  writeUint64(module, ptr, state.pathKey);
+  writeVector(module, ptr + 8, state.initialPosition);
+  writeVector(module, ptr + 32, state.initialVelocity);
+  module.setValue(ptr + 56, state.charge, "double");
+  module.setValue(ptr + 64, state.stateFlags ?? state.pathKey, "i32");
+  module.setValue(ptr + 68, 0, "i32");
+}
+
+function masterEquationFixedParameterSetCode(parameterSetId) {
+  return parameterSetId === "borg-fixed-physical-parameters.v1" ? 1 : 0;
+}
+
+function masterEquationVersionCode(version) {
+  return version === "master-equation-fixed-parameter-v1" ? 1 : 0;
+}
+
+function masterEquationForceLawCode(version) {
+  return version === "architrino-master-equation-v1" ? 1 : 0;
 }
 
 function writeT3StepRequestF64(module, ptr, request) {

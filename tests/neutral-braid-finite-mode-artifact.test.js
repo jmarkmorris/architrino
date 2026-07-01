@@ -156,6 +156,66 @@ test("neutral braid finite-mode artifact keeps action rows and rank-5 authorizat
   assert.equal(artifact.result.retained_branch, false);
 });
 
+test("neutral braid finite-mode artifact records fail-closed native replay source boundary", () => {
+  const artifact = buildArtifact();
+  const boundary = artifact.same_run_native_replay_source_boundary;
+  const handoffBoundary = artifact.all_pairs_root_ledger.bounded_speed_live_ledger_handoff
+    .native_replay_source_boundary;
+
+  assert.equal(boundary.schema, "neutral-braid-same-run-native-replay-source-boundary/v1");
+  assert.equal(boundary.status, "fail_closed_missing_source_producing_input");
+  assert.equal(boundary.row_family, "same_run_finite_mode_path_clock_source_boundary");
+  assert.equal(boundary.chart_run_id, artifact.chart_run.run_id);
+  assert.equal(boundary.expected_consumer_row_family, "bounded_speed_active_root_prerequisites");
+  assert.equal(boundary.expected_consumer_row_count, 30);
+  assert.equal(boundary.expected_bindings.length, 30);
+  assert.equal(
+    boundary.expected_bindings.every((row) => row.chart_run_id === artifact.chart_run.run_id),
+    true
+  );
+  assert.equal(
+    boundary.expected_bindings.every((binding) =>
+      artifact.all_pairs_root_ledger.active_roots.rows.some(
+        (row) =>
+          row.row_id === binding.active_root_prerequisite_row_id &&
+          row.root_label === binding.root_label &&
+          row.receiver === binding.receiver &&
+          row.source === binding.source
+      )
+    ),
+    true
+  );
+  assert.deepEqual(boundary.missing_source_fields, [
+    "source_path_segment",
+    "receiver_path_segment",
+    "receiver_clock_map_values",
+    "source_clock_map_values",
+    "receiver_inverse_clock_map_values",
+    "source_inverse_clock_map_values",
+    "hitTime",
+    "signalSpeed",
+    "rootTolerance",
+    "source_provenance",
+  ]);
+  assert.equal(boundary.first_missing_source_producing_input, "finite_mode_curve_path_segment_rows");
+  assert.equal(boundary.first_missing_field, "source_path_segment");
+  assert.deepEqual(boundary.emitted_request_grade_rows, []);
+  assert.equal(boundary.accepted_same_run_native_replay_source_rows, null);
+  assert.equal(boundary.certifies_native_causal_root_replay, false);
+  assert.equal(boundary.certifies_bounded_speed_delay_brackets, false);
+  assert.equal(boundary.certifies_active_roots, false);
+  assert.equal(boundary.retained_source_binding, null);
+  assert.equal(boundary.provider_provenance, null);
+  assert.equal(boundary.rejected_evidence_kinds.includes("synthetic-path-segment"), true);
+  assert.equal(boundary.rejected_evidence_kinds.includes("fixed-speed-octahedral-diagnostic"), true);
+  assert.equal(boundary.rejected_evidence_kinds.includes("t3-unresolved-root-segment-row"), true);
+  assert.equal(boundary.rejected_evidence_kinds.includes("photon-app-path-row"), true);
+  assert.equal(handoffBoundary.status, boundary.status);
+  assert.equal(handoffBoundary.row_family, boundary.row_family);
+  assert.equal(handoffBoundary.expected_consumer_row_count, 30);
+  assert.equal(handoffBoundary.emitted_request_grade_row_count, 0);
+});
+
 test("neutral braid finite-mode artifact rejects fixture fixed-speed proxy and cross-row action evidence", () => {
   const artifact = buildArtifact();
 

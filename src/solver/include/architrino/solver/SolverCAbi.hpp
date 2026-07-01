@@ -449,6 +449,52 @@ struct ArchitrinoSolverPairInteractionSummaryF64 {
   std::uint32_t reserved0;
 };
 
+struct ArchitrinoSolverMasterEquationRequestF64 {
+  double start_time;
+  double end_time;
+  double step;
+  double field_speed;
+  double history_depth;
+  double integration_tolerance;
+  std::uint32_t integration_method;
+  std::uint32_t fixed_parameter_set_code;
+  std::uint32_t master_equation_version_code;
+  std::uint32_t force_law_version_code;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverMasterEquationStateF64 {
+  std::uint64_t path_key;
+  ArchitrinoSolverVector3F64 initial_position;
+  ArchitrinoSolverVector3F64 initial_velocity;
+  double charge;
+  std::uint32_t state_flags;
+  std::uint32_t reserved0;
+};
+
+struct ArchitrinoSolverMasterEquationSummaryF64 {
+  std::uint32_t status_code;
+  std::uint32_t first_failure_code;
+  std::uint32_t native_master_equation_status;
+  std::uint32_t canonical_eom_evidence;
+  std::uint64_t initial_state_count;
+  std::uint64_t frame_count;
+  std::uint64_t path_row_count;
+  std::uint64_t wake_row_count;
+  std::uint64_t acceleration_row_count;
+  double start_time;
+  double end_time;
+  double step;
+  double field_speed;
+  double history_depth;
+  double integration_tolerance;
+  std::uint32_t fixed_parameter_set_code;
+  std::uint32_t master_equation_version_code;
+  std::uint32_t force_law_version_code;
+  std::uint32_t reserved0;
+};
+
 struct ArchitrinoSolverT3StepRequestF64 {
   double start_time;
   double end_time;
@@ -1200,6 +1246,18 @@ int architrino_solver_integrate_pair_interaction_motion_f64(
     int max_path_rows,
     int* out_path_row_count,
     ArchitrinoSolverPairInteractionSummaryF64* out_summary);
+
+int architrino_solver_integrate_master_equation_motion_f64(
+    const ArchitrinoSolverMasterEquationRequestF64* request,
+    const ArchitrinoSolverMasterEquationStateF64* states,
+    int state_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverMasterEquationSummaryF64* out_summary);
 
 int architrino_solver_step_t3_universe_f64(
     const ArchitrinoSolverT3StepRequestF64* request,

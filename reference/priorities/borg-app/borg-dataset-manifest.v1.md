@@ -109,13 +109,19 @@ The manifest must preserve the exact initial-condition provenance accepted by th
 
 | Field | Required content |
 | --- | --- |
-| `initialConditionFamily` | `random`, `lattice`, `clustered`, `explicit`, or `imported`. |
+| `initialConditionFamily` | `random`, `seeded-random`, `lattice`, `clustered`, `explicit`, or `imported`. |
 | `initialConditionSeed` | Seed used by generated initial conditions; null only for fully explicit source rows. |
 | `electrinoCount` | Requested and resolved electrino inventory. |
 | `positrinoCount` | Requested and resolved positrino inventory. |
-| `polarityAssignmentSource` | `generated`, `explicit`, or `imported`, with source id or checksum. |
-| `velocityPolicy` | `zero`, `scale-mix`, `explicit`, or `drift-v`. |
+| `polarityAssignmentSource` | `generated`, `seeded-balanced`, `explicit`, or `imported`, with source id or checksum. |
+| `polaritySignConvention` | Declared solver convention for charge signs; current Borg fixture uses `positrino-positive-electrino-negative`. |
+| `positrinoCharge` | Native charge scalar assigned to positrino rows. |
+| `electrinoCharge` | Native charge scalar assigned to electrino rows. |
+| `velocityPolicy` | `zero`, `scale-mix`, `seeded-random-small-3d`, `explicit`, or `drift-v`. |
 | `velocitySeed` | Seed for generated velocity vectors when applicable. |
+| `randomVelocityMaxComponentMagnitude` | Maximum absolute component magnitude for `seeded-random-small-3d` initial velocities. |
+| `randomVelocityMinSpeed` | Minimum accepted speed for `seeded-random-small-3d` initial velocities. |
+| `velocityBoundScaleFromV1` | Scale factor relative to the first seeded-random velocity-bound profile when applicable. |
 | `resolvedInitialStateId` | Native-accepted initial-state row or stream id. |
 | `customEditStatus` | `not-edited`, `pending-native-acceptance`, `accepted`, `rejected`, or `fail-closed`. |
 
@@ -359,11 +365,17 @@ population:
   bufferArchitrinoCount: integer
   countDerivation: formula_and_inputs
 initialConditions:
-  initialConditionFamily: random | lattice | clustered | explicit | imported
+  initialConditionFamily: random | seeded-random | lattice | clustered | explicit | imported
   initialConditionSeed: string_or_null
   electrinoCount: integer
   positrinoCount: integer
-  velocityPolicy: zero | scale-mix | explicit | drift-v
+  polaritySignConvention: string
+  positrinoCharge: number
+  electrinoCharge: number
+  velocityPolicy: zero | scale-mix | seeded-random-small-3d | explicit | drift-v
+  randomVelocityMaxComponentMagnitude: number_or_null
+  randomVelocityMinSpeed: number_or_null
+  velocityBoundScaleFromV1: number_or_null
 pathHistory:
   pathHistoryStreamIds: []
   pathHistoryGapRows: []
@@ -465,13 +477,13 @@ The manifest must report the first applicable failure before displaying affected
 
 ## Claim-Level Status
 
-This manifest contract is `priority-design` and now has a first native-backed `developer-test` fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
+This manifest contract is `priority-design` and now has a first longer native-backed `developer-test` fixture. It does not upgrade app output beyond `candidate-run` or `developer-test` without native-backed rows, error budgets, residuals, row-conservation counts, and measured velocity-scale sampling results for any replay-affected diagnostic.
 
 ## First Native-Backed Fixture Artifact
 
 `borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). It emits a live `borg-dataset-manifest.v1` object from the existing native central bridge rather than from a static JSON hand sketch.
 
-The fixture uses a two-architrino pair-interaction smoke run because that is the smallest current bridge path that emits both native current-state frames and a native path-history stream. The manifest records `executionPath = native_c_abi`, six native frame rows, four native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 2`, `bufferArchitrinoCount = 1`, path bounds crossing the outer x faces, deployment budget placeholders, and a 4K UHD render manifest placeholder.
+The fixture submits a fixed-parameter native central-bridge `masterEquation` run. The manifest records that probe as `nativeMasterEquationProbe.statusCode = ok`, `firstFailureCode = none`, `requiredNativeExport = architrino_solver_integrate_master_equation_motion_f64`, and `fallbackDecision = native-master-equation-selected`. The selected source uses `fixtureProfileId = borg-first-native-default-motion-fixture.v1`, `runKind = masterEquation`, `solverMode = native-fixed-parameter-master-equation`, `motionLaw = architrino-master-equation-v1`, `fixedPhysicalParameterSetId = borg-fixed-physical-parameters.v1`, `fixedPhysicalParameterAuthority = manifest-declared-fixed-parameter-contract`, `visualTuningStatus = not-visual-tuned`, `visualBehaviorAuthority = native-output-only`, outer `sideLength = 100`, displayed `centralVolumeSideLength = 80`, `faceBufferMargin = 10`, `duration = 300`, and `sampleInterval = 0.2`. The initial placement uses `initialLinePolicy = seeded-random-interior-cube` with `initialConditionSeed = borg-sixteen-random-interior-position-seed.v1`; the initial polarity contract uses `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, and `electrinoCharge = -1`; the initial velocity uses `velocityPolicy = seeded-random-small-3d`, `velocitySeed = borg-sixteen-random-small-3d-velocity-seed.v1`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2`. The manifest records `executionPath = native_c_abi`, `playbackFrameSource = native-keyframes`, `interpolationAuthority = display-only-between-native-keyframes`, `nativeKeyframeCount = 1501`, `frameCount = 24016` native current-state rows, `pathRowCount = 24000` native path-history rows, path-history stream ids, the outer/central cube split, derived `architrinoCount = 16`, `bufferArchitrinoCount = 8`, path bounds that stay inside the outer computed cube, deployment budget placeholders, and a 4K UHD render manifest placeholder. It does not expose a tuned pair action scale; `nativeMasterEquationStatus = native-fixed-parameter-master-equation`, `canonicalEomEvidence = true`, and `eomEvidenceStatus = native_master_equation_fixed_parameter_evidence` for the fixed-parameter current-state frame rows and adjacent path-history rows.
 
 The fixture intentionally fails closed for replay authority. It emits explicit gap rows for retained wake rows, face-boundary summaries, `borg-face-influence-model.v1`, `borg-six-face-boundary-noise-policy.v1`, velocity sampling, and `R_boundary->central`. Its valid claim is `developer-test`, not proof evidence and not measured benign-noise authority.
 
@@ -479,7 +491,7 @@ The fixture intentionally fails closed for replay authority. It emits explicit g
 
 `borg-app-surface-design.v1` is implemented by [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs). It consumes the live dataset manifest and emits the first Borg screen-spec object from the native-backed fixture.
 
-The surface design binds the displayed central cube, optional outer computed cube overlay, native current-state frames, native path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, and `diagnostics` visible by default, keeps `path-history` and `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red.
+The surface design binds the displayed central cube, optional outer computed cube overlay, native current-state frames, native path-history availability, simulation-envelope rail, initial-condition summary, layer strip, bottom timeline, diagnostics rail, deployment budget placeholders, and 4K UHD render manifest. It keeps `simulation-window`, `architrino-position`, and `diagnostics` visible by default, keeps `path-history` and `velocity-vectors` off by default, and disables `wake-streams`, `face-boundary-status`, and `outbound-face-background` until their required native-backed rows exist. The app-facing visual convention renders architrinos as small fixed-screen points, with `electrino` rows pure blue and `positrino` rows pure red. The path-history visual rule is `displayTransform = adjacent-native-row-line-segments` and `smoothingPolicy = none`, so the first page cannot imply curved interaction dynamics before native master-equation rows exist.
 
 The surface design intentionally preserves fail-closed authority for wake history, face-boundary replay, benign-noise status, and central-volume acceleration. Its valid claim is `developer-test-screen-spec`, not production UI readiness and not proof evidence.
 
@@ -491,4 +503,4 @@ The page is static and developer-test scoped. It does not replace [build-first-n
 
 ## Next Exact Build Burden
 
-The next build burden is measuring the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The report must separate static transfer, browser heap, GPU memory proxy, browser storage, render/capture dimensions, and native solver throughput, with replay-affected values still fail-closed.
+The next build burden is `build-native-wake-history-and-boundary-residual-fixture`: extend the native central solver contract and bridge so the manifest can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter master-equation frame/path evidence. Browser surface-budget measurement remains required later, but it must not precede the native solver evidence needed for Borg physics interpretation.

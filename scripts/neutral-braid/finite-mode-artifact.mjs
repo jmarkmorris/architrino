@@ -31,6 +31,21 @@ const NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS = [
   "branch-scope-free-summary",
   "target-only-row",
 ];
+const NATIVE_REPLAY_SOURCE_REJECTIONS = [
+  "synthetic-path-segment",
+  "fixed-speed-octahedral-diagnostic",
+  "generic-path-history-smoke-row",
+  "t3-unresolved-root-segment-row",
+  "photon-app-path-row",
+  "fixture-row",
+  "sampled-diagnostic",
+  "proxy-row",
+  "generated-decoy",
+  "priority-prose",
+  "authored-prose",
+  "raw-url",
+  "cross-row-bundle",
+];
 const ROOT_SUPPORT_EVENT_ROW_IDS = [
   "all_pairs_root_ledger",
   "root_sheet_rows",
@@ -131,6 +146,45 @@ const LIVE_LEDGER_HANDOFF_REQUIRED_ROWS = [
   "force_checksum",
   "consumer_checksum",
 ];
+
+const REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS = [
+  "chart_run_id",
+  "active_root_prerequisite_row_id",
+  "root_label",
+  "receiver",
+  "source",
+  "source_path_segment",
+  "receiver_path_segment",
+  "receiver_clock_map_values",
+  "source_clock_map_values",
+  "receiver_inverse_clock_map_values",
+  "source_inverse_clock_map_values",
+  "hitTime",
+  "signalSpeed",
+  "rootTolerance",
+  "local_artifact_ref",
+  "source_provenance",
+];
+
+const CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS = [
+  "chart_run_id",
+  "chart_id",
+  "active_root_prerequisite_row_id",
+  "root_label",
+  "receiver",
+  "source",
+  "period_convention",
+  "common_period",
+  "site_ids",
+  "ordered_distinct_source_pairs",
+  "clock_map_symbols",
+  "inverse_clock_map_symbols",
+  "local_artifact_ref",
+];
+
+const MISSING_REQUEST_GRADE_SOURCE_FIELDS = REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS.filter(
+  (field) => !CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS.includes(field)
+);
 
 const TAIL_TERMINAL_PREDICATES = [
   "excluded-gap",
@@ -431,6 +485,57 @@ function buildActiveRootPrerequisiteRows(chartRun, pairs) {
   }));
 }
 
+function buildNativeReplaySourceBoundary(chartRun, pairs, activeRootPrerequisiteRows) {
+  return {
+    schema: "neutral-braid-same-run-native-replay-source-boundary/v1",
+    status: "fail_closed_missing_source_producing_input",
+    row_family: "same_run_finite_mode_path_clock_source_boundary",
+    chart_run_id: chartRun.run_id,
+    chart_id: chartRun.chart_id,
+    expected_source_object: "bounded-speed-factor-finite-mode-solver-artifact-with-curve-path-clock-map-rows",
+    expected_consumer_row_family: "bounded_speed_active_root_prerequisites",
+    expected_consumer_row_count: pairs.length,
+    expected_bindings: activeRootPrerequisiteRows.map((row) => ({
+      active_root_prerequisite_row_id: row.row_id,
+      root_label: row.root_label,
+      receiver: row.receiver,
+      source: row.source,
+      chart_run_id: row.chart_run_id,
+      binding_status: "blocked_missing_request_grade_path_clock_source_row",
+    })),
+    required_per_pair_fields: [...REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS],
+    current_chart_data_available: [...CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS],
+    missing_source_fields: [...MISSING_REQUEST_GRADE_SOURCE_FIELDS],
+    first_missing_source_producing_input: "finite_mode_curve_path_segment_rows",
+    first_missing_field: "source_path_segment",
+    emitted_request_grade_rows: [],
+    local_artifact_ref: {
+      schema: SCHEMA_ID,
+      packet_id: PACKET_ID,
+      artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
+      chart_run_id: chartRun.run_id,
+      source_kind: chartRun.source_kind,
+      promotion_status: PROMOTION_STATUS,
+    },
+    provenance_status: "same-run-chart-source-open",
+    retained_source_binding: null,
+    provider_provenance: null,
+    cannot_derive_reason:
+      "The selected finite-mode chart data contains site ids, common period, ordered pair policy, root labels, and symbolic clock-map names, but no curve/path segment endpoints, velocities, numeric bounded-speed clock-map values, hitTime, signalSpeed, or rootTolerance.",
+    accepted_same_run_native_replay_source_rows: null,
+    certifies_native_causal_root_replay: false,
+    certifies_bounded_speed_delay_brackets: false,
+    certifies_active_roots: false,
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    sampled_diagnostic: false,
+    cross_row_bundle: false,
+    target_only: false,
+    rejected_evidence_kinds: [...NATIVE_REPLAY_SOURCE_REJECTIONS],
+  };
+}
+
 function buildRootSupportEventRows(chartRun) {
   return {
     status: "same-run-open",
@@ -558,6 +663,7 @@ export function buildArtifact(options = {}) {
   const rootSupportEventRows = buildRootSupportEventRows(chartRun);
   const clockLiftRows = buildClockLiftRows(chartRun);
   const activeRootPrerequisiteRows = buildActiveRootPrerequisiteRows(chartRun, pairs);
+  const nativeReplaySourceBoundary = buildNativeReplaySourceBoundary(chartRun, pairs, activeRootPrerequisiteRows);
 
   return {
     schema: SCHEMA_ID,
@@ -574,10 +680,12 @@ export function buildArtifact(options = {}) {
       emits_same_run_branch_scope: true,
       emits_same_run_period_rows: true,
       emits_same_run_root_support_event_rows: true,
+      emits_same_run_native_replay_source_boundary: true,
+      emits_request_grade_native_replay_source_rows: false,
       emits_action_measure_row: false,
       authorizes_rank5_retained_branch_closure: false,
       strongest_claim:
-        "This artifact records the selected finite-mode chart, branch scope, same-run period rows, and same-run root/support/event row ids; it does not solve dynamics or retain a branch.",
+        "This artifact records the selected finite-mode chart, branch scope, same-run period rows, same-run root/support/event row ids, and the fail-closed native replay source boundary; it does not solve dynamics or retain a branch.",
     },
     chart_run: chartRun,
     branch_scope: {
@@ -748,6 +856,13 @@ export function buildArtifact(options = {}) {
         consumer_checksum: { status: "not_computed" },
         accepted_bounded_speed_live_ledger: null,
         certifies_bounded_speed_live_ledger: false,
+        native_replay_source_boundary: {
+          status: nativeReplaySourceBoundary.status,
+          row_family: nativeReplaySourceBoundary.row_family,
+          first_missing_source_producing_input: nativeReplaySourceBoundary.first_missing_source_producing_input,
+          expected_consumer_row_count: nativeReplaySourceBoundary.expected_consumer_row_count,
+          emitted_request_grade_row_count: nativeReplaySourceBoundary.emitted_request_grade_rows.length,
+        },
       },
       active_roots: {
         status: "same-run-prerequisites-open",
@@ -757,6 +872,7 @@ export function buildArtifact(options = {}) {
         certifies_active_roots: false,
         rows: activeRootPrerequisiteRows,
       },
+      native_replay_source_boundary: nativeReplaySourceBoundary,
       assimilated_tail_roots: { status: "open_placeholder", rows: [] },
       excluded_tail_cells: { status: "open_placeholder", rows: [] },
       inactive_gaps: { status: "open_placeholder", predicates: INACTIVE_GAP_PREDICATES, rows: [] },
@@ -804,6 +920,7 @@ export function buildArtifact(options = {}) {
       certifies_action_measure_row: false,
       authorizes_rank5_retained_branch_closure: false,
     },
+    same_run_native_replay_source_boundary: nativeReplaySourceBoundary,
     residual_vector: {
       symbol: "B_NS_M_nu",
       rows: residualRows(),
@@ -895,6 +1012,16 @@ export function validateArtifact(artifact) {
   assertField(
     artifact.artifact_claim?.emits_same_run_root_support_event_rows === true,
     "artifact must emit same-run root_support_event_rows",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.emits_same_run_native_replay_source_boundary === true,
+    "artifact must emit same-run native replay source boundary",
+    errors
+  );
+  assertField(
+    artifact.artifact_claim?.emits_request_grade_native_replay_source_rows === false,
+    "artifact must not emit request-grade native replay source rows",
     errors
   );
   assertField(artifact.artifact_claim?.emits_action_measure_row === false, "artifact must not emit action_measure_row", errors);
@@ -1117,6 +1244,15 @@ export function validateArtifact(artifact) {
     "bounded-speed live-ledger handoff must remain non-certifying",
     errors
   );
+  assertField(
+    liveLedgerHandoff.native_replay_source_boundary?.status === "fail_closed_missing_source_producing_input" &&
+      liveLedgerHandoff.native_replay_source_boundary?.first_missing_source_producing_input ===
+        "finite_mode_curve_path_segment_rows" &&
+      liveLedgerHandoff.native_replay_source_boundary?.expected_consumer_row_count === 30 &&
+      liveLedgerHandoff.native_replay_source_boundary?.emitted_request_grade_row_count === 0,
+    "bounded-speed live-ledger handoff must reference the fail-closed native replay source boundary",
+    errors
+  );
   const activeRootRows = rootLedger?.active_roots?.rows ?? [];
   assertField(
     rootLedger?.active_roots?.status === "same-run-prerequisites-open",
@@ -1176,6 +1312,81 @@ export function validateArtifact(artifact) {
       errors
     );
   }
+  const nativeReplaySourceBoundary = artifact.same_run_native_replay_source_boundary ?? {};
+  assertField(
+    rootLedger?.native_replay_source_boundary?.schema === nativeReplaySourceBoundary.schema &&
+      rootLedger?.native_replay_source_boundary?.chart_run_id === nativeReplaySourceBoundary.chart_run_id &&
+      rootLedger?.native_replay_source_boundary?.expected_consumer_row_count ===
+        nativeReplaySourceBoundary.expected_consumer_row_count,
+    "root ledger native_replay_source_boundary must match the top-level boundary binding",
+    errors
+  );
+  assertField(
+    nativeReplaySourceBoundary.schema === "neutral-braid-same-run-native-replay-source-boundary/v1" &&
+      nativeReplaySourceBoundary.status === "fail_closed_missing_source_producing_input" &&
+      nativeReplaySourceBoundary.row_family === "same_run_finite_mode_path_clock_source_boundary",
+    "native replay source boundary schema/status/row_family mismatch",
+    errors
+  );
+  assertField(
+    nativeReplaySourceBoundary.chart_run_id === chartRun?.run_id &&
+      nativeReplaySourceBoundary.expected_consumer_row_family === "bounded_speed_active_root_prerequisites" &&
+      nativeReplaySourceBoundary.expected_consumer_row_count === expectedPairs.length,
+    "native replay source boundary must bind to chart_run and 30 active-root prerequisites",
+    errors
+  );
+  assertField(
+    Array.isArray(nativeReplaySourceBoundary.expected_bindings) &&
+      nativeReplaySourceBoundary.expected_bindings.length === expectedPairs.length &&
+      nativeReplaySourceBoundary.expected_bindings.every((row) => row.chart_run_id === chartRun?.run_id),
+    "native replay source boundary expected bindings must cover the same chart run",
+    errors
+  );
+  assertField(
+    REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS.every((field) =>
+      nativeReplaySourceBoundary.required_per_pair_fields?.includes(field)
+    ),
+    "native replay source boundary required fields are incomplete",
+    errors
+  );
+  assertField(
+    MISSING_REQUEST_GRADE_SOURCE_FIELDS.every((field) => nativeReplaySourceBoundary.missing_source_fields?.includes(field)) &&
+      nativeReplaySourceBoundary.first_missing_source_producing_input === "finite_mode_curve_path_segment_rows" &&
+      nativeReplaySourceBoundary.first_missing_field === "source_path_segment",
+    "native replay source boundary must name the exact missing source-producing input",
+    errors
+  );
+  assertField(
+    Array.isArray(nativeReplaySourceBoundary.emitted_request_grade_rows) &&
+      nativeReplaySourceBoundary.emitted_request_grade_rows.length === 0 &&
+      nativeReplaySourceBoundary.accepted_same_run_native_replay_source_rows === null,
+    "native replay source boundary must not fabricate request-grade rows",
+    errors
+  );
+  assertField(
+    nativeReplaySourceBoundary.certifies_native_causal_root_replay === false &&
+      nativeReplaySourceBoundary.certifies_bounded_speed_delay_brackets === false &&
+      nativeReplaySourceBoundary.certifies_active_roots === false &&
+      nativeReplaySourceBoundary.retained_source_binding === null &&
+      nativeReplaySourceBoundary.provider_provenance === null,
+    "native replay source boundary must remain non-certifying and provenance-open",
+    errors
+  );
+  assertField(
+    nativeReplaySourceBoundary.fixture === false &&
+      nativeReplaySourceBoundary.proxy === false &&
+      nativeReplaySourceBoundary.off_ledger === false &&
+      nativeReplaySourceBoundary.sampled_diagnostic === false &&
+      nativeReplaySourceBoundary.cross_row_bundle === false &&
+      nativeReplaySourceBoundary.target_only === false,
+    "native replay source boundary must reject fixture/proxy/off-ledger/diagnostic/cross-row/target-only evidence",
+    errors
+  );
+  assertField(
+    NATIVE_REPLAY_SOURCE_REJECTIONS.every((kind) => nativeReplaySourceBoundary.rejected_evidence_kinds?.includes(kind)),
+    "native replay source boundary rejected evidence list is incomplete",
+    errors
+  );
   assertField(rootLedger?.inactive_gaps?.status === "open_placeholder", "inactive_gaps must be an open placeholder", errors);
   assertField(rootLedger?.jacobian_floor?.status === "open_placeholder", "jacobian_floor must be an open placeholder", errors);
 

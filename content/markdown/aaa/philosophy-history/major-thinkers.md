@@ -1010,15 +1010,15 @@ If the framework works, the historical result is not that prior thinkers were si
 ## QFT & Standard Model Architecture (Foundations, Renormalization, Gauge Structure)
 
 ### **Paul Dirac (1902–1984)**
-**Subject:** Paul Dirac (1902–1984), foundational architect of relativistic quantum theory and antimatter prediction.
+**Subject:** Paul Dirac (1902–1984), foundational architect of operator quantum mechanics, relativistic quantum theory, and antimatter prediction.
 
-**Era / Context**: Dirac worked in early quantum-field development when relativity and quantum mechanics required unification under a mathematically coherent framework.
+**Era / Context**: Dirac entered physics during the 1925 transition from old quantum theory to matrix mechanics and then became central to early relativistic quantum theory, when quantum mechanics and relativity required unification under a mathematically coherent framework.
 
 **Primary Domain**: Relativistic quantum theory, field-theoretic formalism, and particle ontology.
 
-**What Problem They Were Trying To Solve:** He sought equations consistent with both Lorentz structure and quantum behavior while preserving predictive control over electron dynamics.
+**What Problem They Were Trying To Solve:** He first sought the structural rule connecting Heisenberg's noncommutative transition product to classical Hamiltonian mechanics, then sought equations consistent with both Lorentz structure and quantum behavior while preserving predictive control over electron dynamics.
 
-**What They Got Right:** Dirac correctly produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation. More specifically, linearizing the relativistic energy-momentum relation made the cost explicit: the electron description required a four-component spinor, with two ordinary spin states and two charge-conjugate sectors that later became positron states after the negative-energy branch was reinterpreted. Anderson's cloud-chamber positron discovery then made the episode a clean historical case where formal consistency found a real sector before direct observation.
+**What They Got Right:** Dirac correctly identified the commutator as the quantum counterpart of the Poisson bracket before the canonical commutation relations had become the standard starting point. He then used that bridge to recover the canonical commutators and the Heisenberg equation from the Hamiltonian form of mechanics. Later, he produced a structurally powerful relativistic framework and anticipated antimatter as a real physical sector before direct experimental confirmation. More specifically, linearizing the relativistic energy-momentum relation made the cost explicit: the electron description required a four-component spinor, with two ordinary spin states and two charge-conjugate sectors that later became positron states after the negative-energy branch was reinterpreted. Anderson's cloud-chamber positron discovery then made the episode a clean historical case where formal consistency found a real sector before direct observation.
 
 **What They Got Wrong or Overstated:** Field-operator and vacuum fluctuation objects were treated in ways that can be ontologically over-read beyond their effective calculational status.
 
@@ -1028,7 +1028,7 @@ If the framework works, the historical result is not that prior thinkers were si
 
 **Long-Term Relevance**: Long-term relevance is high for formal constraints and effective equations, with ontological primitives demoted to emergent status.
 
-**Core Belief**: Relativistic quantum dynamics requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
+**Core Belief**: Quantum mechanics requires a noncommutative operator algebra whose classical shadow is Hamiltonian Poisson-bracket mechanics; relativistic quantum dynamics then requires spinor structure and yields antiparticle sectors as intrinsic consequences of consistent equations.
 
 **Architrino Impact**: $\mathbb{A}\mathbb{A}\mathbb{A}$ preserves Dirac-level empirical structure while relocating particle/antiparticle interpretation to architrino assembly modes and treating QFT operators as effective bookkeeping over deeper dynamics.
 

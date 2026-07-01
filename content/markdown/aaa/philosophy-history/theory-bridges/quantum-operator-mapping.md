@@ -175,6 +175,85 @@ where $M^\theta_{B\circ A}$ is extracted from the same substrate flow after the 
 
 This recovery target connects to the locality, representation, quantization-domain, and apparatus-context residuals above. It does not add a separate validation bureaucracy; it states the mathematical object that must be extracted before a Heisenberg-style matrix is treated as a valid effective operator rather than as an assumed formal layer.
 
+## Born-Jordan Commutator Bridge
+
+Born and Jordan's 1925 formalization is useful because it shows how the canonical commutator entered as a recovery from transition-record algebra, not as an unexplained first axiom. Heisenberg's indexed transition quantities already carried the Ritz-style composition rule. Born recognized that the product was matrix multiplication, rewrote the old action rule in Hamiltonian variables, and found the diagonal part of the matrix difference $PQ-QP$. Jordan then proved the missing off-diagonal claim by showing that the relevant matrix is constant and therefore diagonal in the transition-energy chart. In modern notation the result is
+
+$$
+[\widehat P_\theta,\widehat Q_\theta]
+\approx
+-i\hbar I_\theta
+$$
+
+for the declared effective chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$.
+
+The $\mathbb{A}\mathbb{A}\mathbb{A}$ lesson is narrow and important. The commutator is not promoted to a substrate object. It is the effective algebra that must be recovered when the same finite-window branch record supplies calibrated transition frequencies, transition amplitudes, action-cycle closure, and apparatus access. In sequence form, the recovery target is
+
+$$
+\text{spectral transition record}
+\longrightarrow
+\widehat M_\theta
+\longrightarrow
+[\widehat P_\theta,\widehat Q_\theta]
+\longrightarrow
+[\widehat H_\theta,\widehat O_\theta]
+\longrightarrow
+\frac{d\widehat O_\theta}{dt}
+$$
+
+where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
+
+## Born-Kramers Rule And Action-Angle Recovery
+
+The Born-Kramers rule marks the step between action-angle mechanics and the indexed quantities of matrix mechanics. In a classical action-angle chart, the frequency of a periodic branch is recovered from the action-dependent Hamiltonian. In old quantum language, Bohr's transition postulate compares the emitted frequency between nearby action-labeled states with the classical harmonic frequency in the large-quantum-number limit. Born and Kramers then generalized that comparison from energy to arbitrary periodic quantities, replacing classical derivatives with finite differences between indexed transition quantities. In sequence form, the useful recovery target is
+
+$$
+\text{canonical action-angle chart}
+\longrightarrow
+\frac{\partial H_\theta}{\partial I}
+\longrightarrow
+\frac{E_{n+\alpha}-E_n}{h}
+\longrightarrow
+\text{indexed transition quantities}
+\longrightarrow
+\widehat M_\theta
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every
+classical variable. It is a domain-limited bridge: the action chart must first
+be admitted by the same retained branch record, the emitted or absorbed
+frequency must be a calibrated transition record, and the finite-difference
+step must preserve the same apparatus-accessible quantities that later become
+matrix entries. If the derivative-to-difference move is applied outside that
+declared record domain, the rule has become a formal analogy rather than an
+operator recovery.
+
+## Dirac's 1925 Poisson-Bracket Bridge
+
+Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
+
+$$
+\text{transition-product data}
+\longrightarrow
+[\widehat O_f,\widehat O_g]_\theta
+\longrightarrow
+i\hbar\,\widehat O_{\{f,g\}_{\mathcal Q}}
+\longrightarrow
+[\widehat Q_\theta,\widehat P_\theta]\approx i\hbar
+$$
+
+for a declared chart $\theta=(\mathcal{Q},\mathcal{K},W,T)$ whose effective observables $f,g$ are actually recordable in that chart. The last arrow is a consequence inside the admitted canonical subdomain, not the historical starting axiom and not a global quantization license.
+
+The same route gives the Heisenberg equation only after an effective Hamiltonian record has been admitted:
+
+$$
+i\hbar\,\frac{d\widehat O_f}{dt}
+\approx
+[\widehat O_f,\widehat H_\theta]
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is a recovery target for reduced observer-level charts. A local Hamiltonian, Poisson bracket, or commutator is accepted only when the retained assembly branch, causal-wake history, apparatus kernel, and record window preserve enough path-history structure for the bracket residual below to be small. Otherwise Dirac's bridge has been used as a calculation recipe rather than recovered as an effective algebra of physical records.
+
 ## Subsystem-Partition Guardrail
 
 Entanglement and subsystem claims require the same discipline. In relativistic quantum-field descriptions, a change of observer, access region, or mode decomposition can change the effective subsystem split and therefore the entanglement assigned to the record. That dependence is useful comparison mathematics, but it is not a license to promote the chosen tensor factorization into substrate ontology.
@@ -283,6 +362,51 @@ E_n\approx\hbar\omega_\theta\left(n+\frac{1}{2}\right).
 $$
 
 For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is an effective-mode benchmark, not a statement that the substrate creates or destroys particles when $a^\dagger$ or $a$ is applied. The recovery burden is to identify the retained assembly branch, apparatus kernel, and record window whose coarse variables make the oscillator algebra admissible. If the same chart cannot supply the commutator, level spacing, ground-state lower bound, and generated higher-state record family without changing $\mathcal{Q}$, $\mathcal{K}$, $W$, or $T$, the ladder operators remain a useful calculation chart rather than a closed operator recovery.
+
+## Orbital-Angular-Momentum Ladder Benchmark
+
+Orbital angular momentum supplies a second operator benchmark with a different ladder structure. The harmonic oscillator ladder is semi-infinite and lower-bounded. The orbital angular-momentum ladder is finite at fixed $\ell$: the same effective chart must recover the $L^2$ value, one chosen projection such as $L_z$, the raising and lowering of that projection, and the top and bottom termination conditions.
+
+For a declared orbital coarse-graining $\theta=(\mathcal{Q},\mathcal{K},W,T)$, let $L_x^\theta$, $L_y^\theta$, and $L_z^\theta$ be the effective angular-momentum record operators extracted from one apparatus and envelope chart. The standard comparison algebra is
+$$
+[L_i^\theta,L_j^\theta]\approx i\hbar\,\epsilon_{ijk}L_k^\theta,
+\qquad
+[(L^\theta)^2,L_i^\theta]\approx0
+$$
+with the approximation evaluated in the same record norm used for the operator map. Thus the chart may assign a simultaneous effective record to $(L^\theta)^2$ and one chosen component, but not to all three components at once.
+
+The ladder operators are
+$$
+L_\pm^\theta=L_x^\theta\pm iL_y^\theta
+$$
+and should satisfy
+$$
+[L_z^\theta,L_\pm^\theta]\approx\pm\hbar L_\pm^\theta,
+\qquad
+[(L^\theta)^2,L_\pm^\theta]\approx0.
+$$
+For a validated orbital family $\{|\ell,m\rangle_\theta\}$, the finite ladder comparison is
+$$
+(L^\theta)^2|\ell,m\rangle_\theta
+\approx
+\ell(\ell+1)\hbar^2|\ell,m\rangle_\theta,
+\qquad
+L_z^\theta|\ell,m\rangle_\theta
+\approx
+m\hbar|\ell,m\rangle_\theta,
+$$
+with
+$$
+m\in\{-\ell,-\ell+1,\ldots,\ell\},
+\qquad
+L_+^\theta|\ell,\ell\rangle_\theta\approx0,
+\qquad
+L_-^\theta|\ell,-\ell\rangle_\theta\approx0.
+$$
+
+This is not a claim that the substrate carries preassigned values of all angular-momentum components. The chosen $z$ axis is an apparatus-context and envelope-chart choice, often fixed by an external magnetic-state map in atomic comparisons. The recovery burden is that the same assembly branch, causal-wake history, apparatus kernel, and record window make the noncommuting component algebra, the shared $(L^2,L_z)$ record, the $2\ell+1$ projection count, and the finite ladder endpoints appear together. If these rows require different charts, the construction has reproduced a useful textbook calculation but has not recovered orbital angular momentum as one effective operator record.
+
+The domain is also restricted. In central-envelope problems, this benchmark should agree with the angular-envelope result in [Angular Momentum and Spin](angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma): regular single-valued functions on $S^2$ give the $\ell(\ell+1)$ spectrum and $m$ range. Atomic spectra may consume those labels as in [Atomic Spectra](../../nuclear-atomic/atomic-spectra.md#atomic-orbitals-as-lattice-resonances), but the operator algebra does not derive the electron envelope, the radial energy functional, or internal spinor behavior by itself.
 
 ## Observable-Domain Guardrail
 

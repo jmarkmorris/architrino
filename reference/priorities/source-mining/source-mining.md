@@ -22,6 +22,15 @@ This is the ranked queue for source-material mining and corpus integration.
 
 During the current core geometrical theory push, do not treat corpus coverage as a substitute for solving the mathematics. Use this queue only when the source-mining work adds or clarifies definitions, equations, closure targets, proof routes, or worked examples that directly serve the active theory stack.
 
+## Deprioritized Mining Lanes
+
+Do not start broad particle-physics mining merely because a source family is large, famous, or numerically rich. These lanes are deferred unless a current proof route names a specific carrier, event ledger, benchmark row, or same-record residual that consumes the source:
+
+- Raw whole-Particle Data Group catalog sweeps. Use PDG rows only as scoped downstream benchmarks after the native branch, exposure, mass, detector, or event-provenance object has been declared.
+- Broad beyond-Standard-Model anomaly hunting. Mine anomalies only when a named source supplies a hard benchmark, detector-provenance example, or falsifier for a live closure route.
+- E8 or supersymmetry numerology. Treat these as comparison frameworks or legacy clue surfaces only after an accepted branch-state or gauge-record row exists.
+- Standalone Koide work. Koide remains a post-prediction charged-lepton mass-map residual and should not receive source-mining time before the shared `EQ-04` mass-shell and charged-lepton generation rows exist.
+
 ## Scorecard Use
 
 - For scorecard purposes, this is the main Coverage bucket.
@@ -74,6 +83,9 @@ The completed target list lives in [source-mining-history](source-mining-history
 
 ## Comparison Packets
 
+- [Collider detector provenance and event reconstruction](collider-detector-provenance-event-reconstruction.md) captures CERN, ATLAS, and CMS detector, trigger, reconstruction, jet, missing-transverse-momentum, and uncertainty material for event-ledger mapping.
+- [QCD confinement and hadronization recovery targets](../standard-model-closure/qcd-confinement-hadronization-recovery-targets.md) captures PDG QCD, lattice-QCD, LEP event-shape, fragmentation-function, and LHC jet/hadron benchmark material for Standard Model closure without treating quarks, gluons, showers, or jets as directly observed substrate products.
+- [PDG particle mass, width, lifetime, and scheme benchmark map](pdg-particle-mass-width-lifetime-benchmark-map.md) captures scoped charged-lepton, selected light-hadron, $W/Z/H$, top, quark scheme, width, lifetime, and branching-ratio rows as downstream benchmark material without raw whole-catalog mining or standalone Koide work.
 - [Classical source-history electrodynamics](classical-source-history-electrodynamics.md) captures the Lienard-Wiechert, Jefimenko, Heaviside-Feynman, and Panofsky-Phillips comparison space for delayed source-history electrodynamics.
 
 ## Legacy Operational Parking Lot
@@ -93,7 +105,7 @@ This backlog names high-value source families. Workflow details live in [source-
 | KITP [Online Talks](https://www.kitp.ucsb.edu/online-talks) | Program talks with slides on black holes, quantum matter, cosmology, non-equilibrium dynamics, amplitudes, and gravitational waves. | Dense frontier material with speaker-provided PDFs and discussion Q&A. |
 | IAS / Cornell / Simons Center video lecture collections | Arkani-Hamed amplitudes, positive geometry, quantum spacetime, black holes, cosmology, and mathematical-physics lectures. | Good for disciplined comparison frameworks where spacetime, locality, and quantum mechanics are derived rather than assumed. |
 | CERN videos and public detector lectures | Detector walkthroughs, event reconstruction, trigger systems, Standard Model lectures, and open-data tutorials. | High value for end-to-end measurement provenance: collision, detector response, reconstruction, particle ID, uncertainty. |
-| Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence. |
+| Sean Carroll, Quanta, Royal Institution, and similar long-form interviews/lectures | Episodes with primary researchers on black holes, cosmology tensions, quantum foundations, amplitudes, and scoped Standard Model anomalies. | Mostly explanatory and source-lead value, not closure evidence; broad beyond-Standard-Model anomaly hunting is deprioritized. |
 
 
 ### Immediate Mining Order

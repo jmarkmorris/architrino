@@ -26,7 +26,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Scale controls | `manifest-gap` | Existing configs carry side length and scale-like fields. | Manifest must record outer computed `sideLength`, displayed `centralVolumeSideLength`, `faceBufferMargin`, `centralArchitrinoCount`, derived outer `architrinoCount`, `bufferArchitrinoCount`, `scaleFactor`, `historyDepth`, `wakeHorizon = c_f h`, `wakeFloor`, `boundaryMode`, and error budget. |
 | Initial conditions | `native-backed-now` for random/lattice/clustered/explicit families; `manifest-gap` for app-facing provenance | Current setup supports generated and explicit state families plus polarity/composition encoding. | First screen can expose random 50/50 launch state, central-count presets, derived outer computed count, and velocity policies; manifest must preserve exact resolved assignments. |
 | No physical mass input | `native-backed-now` for app contract policy | The app requirement labels numerical scalars as `integrationWeight` / `integrationWeights`. | UI, bridge schema, and manifest language must keep preventing physical-mass wording. |
-| Path history | `native-backed-now` for bounded trajectory/trail frames and the bridge-level path-history stream contract; `manifest-gap` for Borg binding | Current runtime can produce sampled trajectory frames and bounded trails; the central solver bridge schema exposes path-history stream rows, metadata, indexed readback, and dynamic replay validation. | First screen can show recent trails as app-facing projection; the first fixture must either bind durable `pathHistoryStreamIds` and `pathReplayIndexIds` into `borg-dataset-manifest.v1` or emit explicit `pathHistoryGapRows`. |
+| Path history | `native-backed-now` for fixed-parameter master-equation path rows and the bridge-level path-history stream contract | The Borg fixture binds `pathHistoryStreamIds`, replay-index ids, and adjacent native path rows from `architrino_solver_integrate_master_equation_motion_f64`. | First screen can show native row-segment trails with solver authority for path rows; wake and boundary consumers still fail closed until their row products exist. |
 | Wake history rows | `native-capability-gap` | Resolved row-bound wake-history output is not yet available as an app manifest product. | Wake streams must remain disabled/display-only until retained wake rows exist. |
 | Face-boundary rows | `native-capability-gap` | No bridge rows currently emit `borg-face-summary.v1`, `borg-face-replay-source.v1`, outbound wake summaries, inbound replay rows, or $R_{\mathrm{face\ replay}}$. | Boundary layer starts disabled or display-only until face-boundary rows exist. |
 | Path-derived face influence model | `native-capability-gap` | No current bridge product emits `borg-face-influence-model.v1` from native path streams, path indices, kernels, and face distribution models. | Per-point face projection caches remain display/debug only; the first fixture emits fail-closed gap rows for `faceInfluenceModelIds`. |
@@ -38,7 +38,7 @@ The audit is priority-design material. It does not promote app output to proof e
 | Visualization resolution | `display-only` | The native solver owns simulation values, not canvas pixel density. | Produced screenshots, captures, review output, and quality-mode views must be 4K UHD, 3840 by 2160; lower adaptive internal render scale is only an interaction fallback. |
 | Layer toggles | `display-only` | Existing visualization flags can inform, but not define, the app layer controller. | New app-surface layer controller should keep solver data immutable. |
 | Logarithmic UI | `display-only` | Velocity display transforms are app projections. | Use floating exponent labels on active velocity rays; exact solver values remain in diagnostics. |
-| Dataset manifest and first-screen consumer | `developer-test` fixture and screen-spec complete; browser page integration remains `manifest-gap` | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows; [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) consumes it into `borg-app-surface-design.v1`. | The next implementation artifact should render the screen spec in a static Borg page while keeping missing wake-history rows, face-boundary rows, face influence models, six-face policy rows, velocity sampling rows, residual decisions, and deployment budgets fail-closed or placeholder-only. |
+| Dataset manifest and first-screen consumer | `developer-test` fixture, screen-spec, and static page consumer complete | [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs) emits the app-facing run cover sheet from native-backed current-state frames and path-history rows; [build-app-surface-design.mjs](../../../scripts/borg/build-app-surface-design.mjs) consumes it into `borg-app-surface-design.v1`; [borg.html](../../../borg.html) renders the static developer-test surface. | The next implementation artifact should add native wake-history rows, boundary residual rows, and required acceleration-contribution diagnostics while keeping missing replay authority fail-closed. |
 
 ## Smallest Elegant First Screen
 
@@ -119,15 +119,23 @@ Minimum timeline:
 
 ## First Native-Backed Fixture Artifact
 
-`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs the existing native central bridge through a two-architrino pair-interaction smoke fixture and validates these manifest facts:
+`borg-first-native-backed-fixture` is implemented by [build-first-native-backed-fixture.mjs](../../../scripts/borg/build-first-native-backed-fixture.mjs). The script runs a fixed-parameter native central-bridge `masterEquation` request through `architrino_solver_integrate_master_equation_motion_f64` and selects that result for the Borg developer-test fixture. It validates these manifest facts:
 
 1. `nativeSolverStatus = native-backed-now`;
 2. `executionPath = native_c_abi`;
-3. native current-state frame count is 6;
-4. native path-history row count is 4;
-5. `centralArchitrinoCount = 1`, derived `architrinoCount = 2`, and `bufferArchitrinoCount = 1`;
-6. native path-history bounds cross the outer x faces;
-7. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
+3. `fixtureProfileId = borg-first-native-default-motion-fixture.v1`;
+4. outer `sideLength = 100`, displayed `centralVolumeSideLength = 80`, and `faceBufferMargin = 10`;
+5. `duration = 300` and `sampleInterval = 0.2`;
+6. native keyframe count is 1501, with 24016 native current-state frame rows across sixteen architrinos;
+7. native adjacent path-history row count is 24000;
+8. `playbackFrameSource = native-keyframes` and `interpolationAuthority = display-only-between-native-keyframes`;
+9. `runKind = masterEquation`, `solverMode = native-fixed-parameter-master-equation`, `motionLaw = architrino-master-equation-v1`, `fixedPhysicalParameterSetId = borg-fixed-physical-parameters.v1`, `fixedPhysicalParameterAuthority = manifest-declared-fixed-parameter-contract`, `visualTuningStatus = not-visual-tuned`, `visualBehaviorAuthority = native-output-only`, and `nativeMasterEquationStatus = native-fixed-parameter-master-equation`;
+10. `nativeMasterEquationProbe.statusCode = ok`, `firstFailureCode = none`, `requiredNativeExport = architrino_solver_integrate_master_equation_motion_f64`, and `fallbackDecision = native-master-equation-selected`;
+11. `initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, `electrinoCharge = -1`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2`;
+12. `centralArchitrinoCount = 8`, derived `architrinoCount = 16`, and `bufferArchitrinoCount = 8`;
+13. native path-history bounds stay inside the outer computed cube for this fixture;
+14. fixed-parameter master-equation frame/path evidence is emitted by the native solver and is not controlled by visual tuning;
+15. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
 
 The fixture is a `developer-test` artifact. It does not grant authority to replay-affected diagnostics and does not promote app output to proof evidence.
 
@@ -140,7 +148,7 @@ The fixture is a `developer-test` artifact. It does not grant authority to repla
 3. `simulation-window` is `on-locked` and `architrino-position` is `on`;
 4. `path-history` and `velocity-vectors` are off by default;
 5. `wake-streams`, `face-boundary-status`, and `outbound-face-background` remain disabled or contextual-disabled;
-6. native current-state frame count is 6 and native path-history row count is 4;
+6. native current-state frame count is 24016, native keyframe count is 1501, and native path-history row count is 24000;
 7. render manifest uses 3840 by 2160 pixels;
 8. central-volume acceleration remains `fail-closed-value`;
 9. fail-closed rows surface missing wake history, missing face influence model, and unmeasured `R_boundary->central`.
@@ -155,4 +163,4 @@ The page is an app-surface developer test, not native solver integration in the 
 
 ## Next Exact Build Burden
 
-Measure the browser surface budget and 4K render behavior for [borg.html](../../../borg.html). The next artifact must report transfer size, runtime memory observations, GPU/render target proxy, 3840 by 2160 capture status, and any browser integration gaps without changing solver state or promoting replay-affected values.
+Build `build-native-wake-history-and-boundary-residual-fixture`. The next artifact must extend the native central solver contract and bridge so Borg can emit retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics without adding an app-local solver or visual tuning.

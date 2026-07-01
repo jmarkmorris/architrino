@@ -15,7 +15,9 @@ Einstein, Podolsky, and Rosen (1935) argued from two premises:
 - **Realism**: If, without disturbing a system, the outcome of a measurement can be predicted with certainty, there exists an element of physical reality corresponding to that outcome.
 - **Locality**: No action performed on one system can instantaneously affect a distant system.
 
-Applied to a pair of particles with perfectly anti-correlated spins, EPR concluded that both spin components must possess simultaneous definite values (predetermined by hidden variables $\lambda$), and that quantum mechanics, which assigns no such values, is therefore incomplete.
+Applied to a pair of particles with perfectly anti-correlated records, the EPR argument produced a fork. If Alice's choice among incompatible measurements does not physically disturb Bob's distant system, then Bob's system must already carry enough structure to answer the corresponding measurement. If Alice's choice really changes Bob's distant physical state, the theory has accepted a nonlocal influence. EPR used that fork to argue that quantum mechanics, which does not assign all such values inside the wavefunction, is incomplete.
+
+Schrodinger's later language of steering usefully names the operational tension without turning it into a signal. Alice's measurement context can change which conditional description is assigned to Bob's system, but the no-signaling theorem prevents her from using that dependence to transmit a controllable message. That distinction matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the Bell closure target is not superluminal communication. It is a joint-record law whose one-wing marginals remain setting-independent while the two-wing correlations fail Bell factorizability.
 
 The quantum formalist response (Bohr) rejected the premise that unmeasured observables possess definite values. The debate remained philosophical until Bell (1964) converted it into a quantitative, experimentally testable constraint.
 
@@ -153,7 +155,11 @@ The experimental conclusion is unambiguous: at least one of the three Bell assum
 
 ## The Logical Structure of the Theorem
 
-Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. Its logical skeleton is:
+Bell's theorem is a **no-go theorem**: it excludes a class of theories, not a specific model. It also does not show that hidden-variable completions are impossible as a category. Bohmian mechanics was already a counterexample to that reading: empirically adequate in its intended nonrelativistic domain while explicitly nonlocal. Bell's result is sharper and narrower. A completion that retains measurement independence and reduces to local factorizable response functions cannot reproduce the quantum correlations.
+
+That distinction is especially important because Bell's theorem is a physical theorem, not only an abstract mathematical exercise. The mathematical derivation can be sound while its physical force depends on how the premises are mapped onto preparations, detector settings, outcome records, and hidden-variable descriptions. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the proof does not license vague escape language. It fixes the required diagnostic: identify which observer-level compression fails product screening, while separately checking no-signaling, measurement independence, ordering leakage, and the correlation law.
+
+Its logical skeleton is:
 
 $$
 \text{(Realism)} \;\wedge\; \text{(Bell Locality)} \;\wedge\; \text{(Measurement Independence)} \;\Rightarrow\; |S| \leq 2

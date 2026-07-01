@@ -12,6 +12,7 @@ const KNOWN_RUN_KINDS = new Set([
   "sharedGeometry",
   "appPlayback",
   "pairInteraction",
+  "masterEquation",
   "validationReplay",
 ]);
 const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
@@ -23,6 +24,7 @@ const DEFAULT_CONFIG_VERSION_BY_RUN_KIND = Object.freeze({
   sharedGeometry: "shared-geometry-adapter.v1",
   appPlayback: "animator-app-playback-adapter.v1",
   pairInteraction: "causal-delay-feedback-pair-interaction-adapter.v1",
+  masterEquation: "causal-delay-feedback-master-equation-adapter.v1",
   validationReplay: "validation-replay-adapter.v1",
 });
 const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
@@ -34,6 +36,7 @@ const DEFAULT_OUTPUTS_BY_RUN_KIND = Object.freeze({
   sharedGeometry: ["geometryBuffer", "diagnostics"],
   appPlayback: ["summary", "diagnostics"],
   pairInteraction: ["frameBuffer", "pathStream", "diagnostics"],
+  masterEquation: ["summary", "diagnostics"],
   validationReplay: ["validationArtifacts", "diagnostics"],
 });
 

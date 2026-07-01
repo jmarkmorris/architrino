@@ -68,7 +68,7 @@ The photon description above is the ontology-level target. The theorem-level pro
 | :--- | :--- | :--- |
 | **Gate A: kinematics and optics** | Derive the coaxial contra-rotating pro/anti planar-pair branch from Noether braid and Noether sea dynamics. The active variables include $c_f$, $c_\gamma$, $\delta_\gamma\equiv1-c_\gamma/c_f$, the pair spacing $d$, the phase frequency $\omega$, and the geometric phase $\phi_{\text{geom}}$. | Recover $E_\gamma=h\nu$, $p=h/\lambda$, $E_\gamma=\|\mathbf{p}_\gamma\|c_\gamma$, $m_\gamma^2=0$, no residual rest branch, no rest proper-time clock, and no unacceptable free-space dispersion. |
 | **Gate B: polarization and spin** | Derive the transverse ledger, material analyzer projector, invariant unresolved-material measure, analyzer coupling, helicity, and squared-amplitude rule from planar-pair capture rather than appending them as observer-level facts. | Recover exactly two transverse photon modes, no physical longitudinal mode, Malus' law, helicity $\pm1$, single-photon statistics, and no-signaling behavior in entangled-polarization tests. |
-| **Gate C: vertices and transitions** | Map emission, absorption, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
+| **Gate C: vertices and transitions** | Map emission, absorption, the photoelectric effect, pair production, Compton-like scattering, photon-photon limits, blackbody behavior, and effective coupling into allowed ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs. | Recover validated Maxwell/QED behavior, transition-rate limits, photoelectric thresholds, pair-production thresholds, Bose-Einstein occupation behavior, $U(1)$-like phase bookkeeping, Aharonov-Bohm phase behavior, and the effective scale $\alpha$. |
 
 Gate C treats blackbody behavior as an ensemble theorem target. It should not be read as a property of a single photon, a single excited Noether braid, or a local source event by itself; the blackbody route requires repeated emission, capture, scattering, pair-channel exchange, and medium exchange to recover detailed balance for a photon bath.
 
@@ -605,8 +605,8 @@ The relevant high-resolution channels include $H\to ZZ^{(*)}\to4\ell$, $H\to\gam
 | Boson | Geometry | Payload | Propagation | Mass Origin |
 | :--- | :--- | :--- | :--- | :--- |
 | **Photon** | Coaxial contra-rotating pro/anti planar pair | Neutral (0) | Planar-pair mode train at $c_\gamma$ | None (planar / edge-on) |
-| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether sea Response |
-| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c$, ruptures) | Confinement Energy / Noether sea Response |
+| **W Boson** | Inflated Transaction Vortex | Charged ($\pm 6\epsilon$) | Short-lived Corridor (near-$c_f$, ruptures) | Confinement Energy / Noether sea Response |
+| **Z Boson** | Inflated Neutral Vortex | Neutral ($3P, 3E$) | Short-lived Corridor (near-$c_f$, ruptures) | Confinement Energy / Noether sea Response |
 | **Higgs** | Radial Noether sea Oscillation | N/A | Local Resonance | Medium stiffness |
 
 ## Pair production (note)

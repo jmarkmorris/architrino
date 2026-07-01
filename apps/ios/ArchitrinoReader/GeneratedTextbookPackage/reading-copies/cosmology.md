@@ -354,6 +354,8 @@ $$
 $$
 A high $\mathcal{S}_{\mathrm{init}}$ means the smoothing or release explanation has been moved into a small allowed initial basin. A low value means the declared mechanism is robust under the chosen chart. This is a diagnostic on the branch record, not an external probability assigned after the dynamics.
 
+Penrose-style estimates of early-universe specialness are retained here at exactly this level. The familiar order-of-magnitude claim that a smooth low-gravitational-entropy early record occupies a fraction near $1/10^{10^{123}}$ of a maximum-entropy comparison space is not imported as a literal sampling story for the Euclidean void. It is a scale warning: if a cosmology branch recovers CMB smoothness, low gravitational free-mode content, and later black-hole-dominated entropy only by selecting an exponentially tiny $\mathcal{B}_{\mathrm{obs}}$, then the branch has relocated the arrow-of-time problem into $\theta_{\mathrm{init}}$ rather than deriving it from Noether sea dynamics.
+
 The same burden can be written in a compact conditioned form when the cosmology branch has already declared its constraint set:
 $$
 I_{\mathrm{init}}(\theta)
@@ -2849,6 +2851,10 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 **$\mathbb{A}\mathbb{A}\mathbb{A}$ interpretation (Dark Ages: Coaxial Contra-Rotating Photon Assemblies Free-Stream):** The decoupled photon assemblies, modeled as coaxial contra-rotating pro/anti planar pairs, propagate through the evolving Noether sea. The radiation field retains its thermal shape while redshifting due to medium evolution and path-integrated clock-rate comparison between emission and observation environments. Small anisotropies reflect assembly-density fluctuations rather than a single primordial event.
 
 This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
+
+#### Entropy Split in the CMB Record
+
+The CMB record carries two different entropy lessons that must not be collapsed into one. Its near-blackbody spectrum and uniform temperature show that the radiation sector reached a high-entropy thermal record under the photon/matter coarse-graining. The same smoothness is low entropy under the gravitational and horizon-interface coarse-graining because later clumping, potential-energy release, structure formation, and black-hole records open vastly larger compatible histories. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB branch must therefore keep radiation thermalization, gravitational smoothness, Noether sea state, and horizon-interface entropy as separate projections of one shared source-and-transport record.
 
 ### SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.

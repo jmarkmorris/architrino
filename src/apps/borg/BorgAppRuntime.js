@@ -7,16 +7,21 @@ import {
   validateBorgFixtureSnapshot,
 } from "./BorgFixtureData.js";
 
-const WORLD_UNITS_PER_SOLVER_UNIT = 0.62;
+const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const CAMERA_MIN_DISTANCE = 4.8;
-const CAMERA_MAX_DISTANCE = 17;
-const DEFAULT_CAMERA_DISTANCE = 10.5;
-const DEFAULT_ROTATION_X = -0.48;
-const DEFAULT_ROTATION_Y = 0.72;
+const CAMERA_MAX_DISTANCE = 28;
+const DEFAULT_CAMERA_FIT_MARGIN = 1.25;
+const FIT_VIEW_MARGIN = 1.14;
+const DEFAULT_ROTATION_X = -0.44;
+const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
+const PLAYBACK_MS_PER_NATIVE_STEP = 120;
+const PATH_RENDER_ORDER = 2;
+const ARCHITRINO_RENDER_ORDER = 6;
 const PLAY_ICON_PATH = "M8 5v14l11-7z";
 const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
+const HIDDEN_LAYER_BUTTONS = new Set(["simulation-window", "architrino-position"]);
 
 const LAYER_LABELS = Object.freeze({
   "simulation-window": "Cube",
@@ -54,16 +59,18 @@ const STATUS_TONE = Object.freeze({
   "not-measured": "warn",
 });
 
-const PARTICLE_STYLES = Object.freeze({
-  1001: Object.freeze({
-    label: "1001",
+const PARTICLE_POLARITY_STYLES = Object.freeze({
+  electrino: Object.freeze({
     color: 0x0000ff,
+    pathColor: 0x8fb4ff,
+    velocityColor: 0x9fefff,
     edgeColor: "#0000ff",
     polarity: "electrino",
   }),
-  1002: Object.freeze({
-    label: "1002",
+  positrino: Object.freeze({
     color: 0xff0000,
+    pathColor: 0xff8f86,
+    velocityColor: 0xff9b92,
     edgeColor: "#ff0000",
     polarity: "positrino",
   }),
@@ -101,6 +108,8 @@ export function mountBorgApp(options = {}) {
   };
 
   const frameSets = getBorgFrameSet(manifest);
+  const worldUnitsPerSolverUnit =
+    TARGET_CENTRAL_WORLD_SIDE / Math.max(1, manifest.simulationEnvelope.centralVolumeSideLength);
   const scene = new THREE.Scene();
   const camera = new THREE.PerspectiveCamera(38, 1, 0.05, 100);
   const renderer = new THREE.WebGLRenderer({
@@ -135,16 +144,18 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
+  const particleStyles = createParticleStyles(manifest);
 
   const state = {
-    activeFrameIndex: frameSets.at(-1)?.frameIndex ?? 0,
+    activeFrameIndex: frameSets[0]?.frameIndex ?? 0,
     activeLayers: new Set([
       ...surfaceDesign.firstViewport.defaultVisibleLayers,
       ...surfaceDesign.layerStrip
         .filter((layer) => layer.state === "on-locked")
         .map((layer) => layer.layer),
     ]),
-    cameraDistance: DEFAULT_CAMERA_DISTANCE,
+    cameraDistance: CAMERA_MIN_DISTANCE,
+    cameraFitMargin: DEFAULT_CAMERA_FIT_MARGIN,
     selectedPathKey: null,
     dragging: false,
     pointerId: null,
@@ -154,7 +165,11 @@ export function mountBorgApp(options = {}) {
     pointerLastY: 0,
     pointerTravel: 0,
     playing: false,
-    playTimer: null,
+    playFrameRequestId: null,
+    playFrameRequestKind: null,
+    playbackFromSetIndex: 0,
+    playbackToSetIndex: 0,
+    playbackSegmentStartedAt: null,
   };
 
   buildScene();
@@ -194,24 +209,30 @@ export function mountBorgApp(options = {}) {
     outerCubeGroup.visible = false;
 
     getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey);
+      const style = getParticleStyle(pathKey, particleStyles);
       const points = manifest.currentStateFrames
         .filter((frame) => frame.pathKey === pathKey)
         .sort((left, right) => left.frameIndex - right.frameIndex)
         .map((frame) => solverPositionToWorld(frame.position));
-      const geometry = new THREE.BufferGeometry().setFromPoints(points);
+      if (points.length < 2) {
+        return;
+      }
+      const geometry = createPathSegmentGeometry(points);
       const material = new THREE.LineBasicMaterial({
-        color: style.color,
+        color: style.pathColor ?? style.velocityColor ?? style.color,
         transparent: true,
-        opacity: 0.58,
+        opacity: 0.9,
+        depthTest: false,
+        depthWrite: false,
       });
-      const line = new THREE.Line(geometry, material);
-      line.visible = false;
-      pathGroup.add(line);
+      const trail = new THREE.LineSegments(geometry, material);
+      trail.visible = false;
+      trail.renderOrder = PATH_RENDER_ORDER;
+      pathGroup.add(trail);
     });
 
     getPathKeys().forEach((pathKey) => {
-      const style = getParticleStyle(pathKey);
+      const style = getParticleStyle(pathKey, particleStyles);
       const material = new THREE.PointsMaterial({
         color: style.color,
         map: architrinoPointTexture,
@@ -219,6 +240,7 @@ export function mountBorgApp(options = {}) {
         sizeAttenuation: false,
         alphaTest: 0.5,
         transparent: true,
+        depthTest: false,
         depthWrite: false,
       });
       const point = new THREE.Points(
@@ -227,13 +249,14 @@ export function mountBorgApp(options = {}) {
       );
       point.userData.pathKey = pathKey;
       point.userData.kind = "architrino";
+      point.renderOrder = ARCHITRINO_RENDER_ORDER;
       pointGroup.add(point);
       particleObjects.set(pathKey, point);
 
       const velocityMaterial = new THREE.LineBasicMaterial({
-        color: style.color,
+        color: style.velocityColor ?? style.color,
         transparent: true,
-        opacity: 0.72,
+        opacity: 0.96,
       });
       const velocityGeometry = new THREE.BufferGeometry().setFromPoints([
         new THREE.Vector3(),
@@ -247,7 +270,7 @@ export function mountBorgApp(options = {}) {
   }
 
   function createCubeEdges({ sideLength, color, opacity }) {
-    const worldSide = sideLength * WORLD_UNITS_PER_SOLVER_UNIT;
+    const worldSide = sideLength * worldUnitsPerSolverUnit;
     const geometry = new THREE.BoxGeometry(worldSide, worldSide, worldSide);
     const edges = new THREE.EdgesGeometry(geometry);
     const material = new THREE.LineBasicMaterial({
@@ -270,6 +293,19 @@ export function mountBorgApp(options = {}) {
       ["Bridge path", manifest.sourceBridgeRun.executionPath],
       ["Source claim", manifest.claimLevel],
       ["Frame rows", manifest.sourceBridgeRun.frameCount],
+      ["Native keyframes", manifest.currentStateAndFrameSources.nativeKeyframeCount],
+      ["Sample interval", manifest.simulationEnvelope.sampleInterval],
+      ["Playback source", manifest.currentStateAndFrameSources.playbackFrameSource],
+      ["Initial layout", manifest.initialConditions.initialLinePolicy],
+      ["Solver mode", manifest.sourceBridgeRun.solverMode],
+      ["Motion law", manifest.sourceBridgeRun.motionLaw],
+      ["Parameter set", manifest.sourceBridgeRun.fixedPhysicalParameterSetId],
+      ["Parameter authority", manifest.sourceBridgeRun.fixedPhysicalParameterAuthority],
+      ["Visual tuning", manifest.sourceBridgeRun.visualTuningStatus],
+      ["Visual authority", manifest.sourceBridgeRun.visualBehaviorAuthority],
+      ["Master equation", manifest.sourceBridgeRun.nativeMasterEquationStatus],
+      ["ME probe", manifest.nativeMasterEquationProbe?.statusCode],
+      ["ME fallback", manifest.nativeMasterEquationProbe?.fallbackDecision],
       ["Path rows", manifest.sourceBridgeRun.pathRowCount],
     ]);
 
@@ -277,6 +313,8 @@ export function mountBorgApp(options = {}) {
       ["sideLength", manifest.simulationEnvelope.sideLength],
       ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
       ["faceBufferMargin", manifest.simulationEnvelope.faceBufferMargin],
+      ["duration", manifest.simulationEnvelope.duration],
+      ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
       ["historyDepth", manifest.simulationEnvelope.historyDepth],
       ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
       ["wakeHorizon", manifest.simulationEnvelope.wakeHorizon],
@@ -303,7 +341,7 @@ export function mountBorgApp(options = {}) {
       ["tolerance", manifest.boundaryToCentralResidual.tolerance],
       ["decision", manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus],
       ["benignNoiseStatus", manifest.faceBoundary.benignNoiseStatus],
-      ["path bounds", manifest.pathHistory.pathBoundsFaceCrossing.crossingStatus],
+      ["path bounds", manifest.faceBoundary.pathBoundsFaceCrossing.crossingStatus],
       ["proof claim", manifest.validation.proofClaimStatus],
     ]);
 
@@ -363,7 +401,7 @@ export function mountBorgApp(options = {}) {
 
   function renderLayerStrip() {
     dom.layerStrip.textContent = "";
-    surfaceDesign.layerStrip.forEach((layer) => {
+    surfaceDesign.layerStrip.filter((layer) => !HIDDEN_LAYER_BUTTONS.has(layer.layer)).forEach((layer) => {
       const button = documentLike.createElement("button");
       button.className = "borg-layer-button";
       button.type = "button";
@@ -437,6 +475,9 @@ export function mountBorgApp(options = {}) {
     cubeGroup.visible = state.activeLayers.has("simulation-window");
     pointGroup.visible = state.activeLayers.has("architrino-position");
     pathGroup.visible = state.activeLayers.has("path-history");
+    pathGroup.children.forEach((trail) => {
+      trail.visible = pathGroup.visible;
+    });
     velocityGroup.visible = state.activeLayers.has("velocity-vectors");
     velocityLines.forEach((line) => {
       line.visible = velocityGroup.visible;
@@ -457,9 +498,16 @@ export function mountBorgApp(options = {}) {
     if (!frameSet) {
       return;
     }
+    applyFrameSet(frameSet, {
+      outputLabel: formatTimelineLabel(frameSet.time, frameSet.frameIndex),
+      rangeValue: frameSet.frameIndex,
+    });
+  }
+
+  function applyFrameSet(frameSet, { outputLabel, rangeValue }) {
     state.activeFrameIndex = frameSet.frameIndex;
-    dom.timelineRange.value = String(frameSet.frameIndex);
-    dom.timelineOutput.value = `t ${formatNumber(frameSet.time)} | frame ${frameSet.frameIndex}`;
+    dom.timelineRange.value = String(rangeValue);
+    dom.timelineOutput.value = outputLabel;
     frameSet.frames.forEach((frame) => {
       const particle = particleObjects.get(frame.pathKey);
       if (!particle) {
@@ -491,16 +539,14 @@ export function mountBorgApp(options = {}) {
 
   function resetView() {
     rootGroup.rotation.set(DEFAULT_ROTATION_X, DEFAULT_ROTATION_Y, 0);
-    state.cameraDistance = DEFAULT_CAMERA_DISTANCE;
-    camera.position.set(0, 0, state.cameraDistance);
-    camera.lookAt(0, 0, 0);
+    state.cameraFitMargin = DEFAULT_CAMERA_FIT_MARGIN;
+    fitCameraToCentralCube(state.cameraFitMargin);
     render();
   }
 
   function fitView() {
-    state.cameraDistance = 9.2;
-    camera.position.set(0, 0, state.cameraDistance);
-    camera.lookAt(0, 0, 0);
+    state.cameraFitMargin = FIT_VIEW_MARGIN;
+    fitCameraToCentralCube(state.cameraFitMargin);
     render();
   }
 
@@ -510,31 +556,30 @@ export function mountBorgApp(options = {}) {
       fitView();
       return;
     }
+    state.cameraFitMargin = null;
     const target = particle.position.clone();
     camera.lookAt(target);
     render();
   }
 
   function startPlayback() {
-    if (state.playing) {
+    if (state.playing || frameSets.length < 2) {
       return;
+    }
+    let currentSetIndex = getFrameSetIndex(state.activeFrameIndex);
+    if (currentSetIndex >= frameSets.length - 1) {
+      currentSetIndex = 0;
+      updateFrame(frameSets[0].frameIndex);
     }
     state.playing = true;
     setPlayButtonPresentation(true);
-    state.playTimer = windowLike.setInterval(() => {
-      const currentIndex = frameSets.findIndex((entry) => entry.frameIndex === state.activeFrameIndex);
-      const next = frameSets[(currentIndex + 1) % frameSets.length];
-      updateFrame(next.frameIndex);
-    }, 950);
+    startPlaybackSegment(currentSetIndex);
   }
 
   function stopPlayback() {
     state.playing = false;
     setPlayButtonPresentation(false);
-    if (state.playTimer != null) {
-      windowLike.clearInterval(state.playTimer);
-      state.playTimer = null;
-    }
+    cancelQueuedPlaybackFrame();
   }
 
   function togglePlayback() {
@@ -565,6 +610,84 @@ export function mountBorgApp(options = {}) {
     }
     event.preventDefault();
     togglePlayback();
+  }
+
+  function startPlaybackSegment(fromSetIndex, startedAt = null) {
+    const toSetIndex = fromSetIndex + 1;
+    if (toSetIndex >= frameSets.length) {
+      stopPlayback();
+      return;
+    }
+    state.playbackFromSetIndex = fromSetIndex;
+    state.playbackToSetIndex = toSetIndex;
+    state.playbackSegmentStartedAt = startedAt;
+    queuePlaybackFrame();
+  }
+
+  function stepPlayback(now) {
+    if (!state.playing) {
+      return;
+    }
+    const fromFrameSet = frameSets[state.playbackFromSetIndex];
+    const toFrameSet = frameSets[state.playbackToSetIndex];
+    if (!fromFrameSet || !toFrameSet) {
+      stopPlayback();
+      return;
+    }
+    if (state.playbackSegmentStartedAt == null) {
+      state.playbackSegmentStartedAt = now;
+    }
+    const progress = clamp(
+      (now - state.playbackSegmentStartedAt) / PLAYBACK_MS_PER_NATIVE_STEP,
+      0,
+      1,
+    );
+    const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
+    const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
+    applyFrameSet(displayFrameSet, {
+      outputLabel: formatTimelineLabel(displayFrameSet.time, currentFrameIndex),
+      rangeValue: currentFrameIndex,
+    });
+    if (progress >= 1) {
+      applyFrameSet(toFrameSet, {
+        outputLabel: formatTimelineLabel(toFrameSet.time, toFrameSet.frameIndex),
+        rangeValue: toFrameSet.frameIndex,
+      });
+      if (state.playbackToSetIndex >= frameSets.length - 1) {
+        stopPlayback();
+        return;
+      }
+      startPlaybackSegment(state.playbackToSetIndex, now);
+      return;
+    }
+    queuePlaybackFrame();
+  }
+
+  function queuePlaybackFrame() {
+    cancelQueuedPlaybackFrame();
+    if (typeof windowLike.requestAnimationFrame === "function") {
+      state.playFrameRequestKind = "animation-frame";
+      state.playFrameRequestId = windowLike.requestAnimationFrame(stepPlayback);
+      return;
+    }
+    state.playFrameRequestKind = "timeout";
+    state.playFrameRequestId = windowLike.setTimeout(() => stepPlayback(getPlaybackNow()), 16);
+  }
+
+  function cancelQueuedPlaybackFrame() {
+    if (state.playFrameRequestId == null) {
+      return;
+    }
+    if (
+      state.playFrameRequestKind === "animation-frame" &&
+      typeof windowLike.cancelAnimationFrame === "function"
+    ) {
+      windowLike.cancelAnimationFrame(state.playFrameRequestId);
+    } else {
+      windowLike.clearTimeout(state.playFrameRequestId);
+    }
+    state.playFrameRequestId = null;
+    state.playFrameRequestKind = null;
   }
 
   function handlePointerDown(event) {
@@ -616,6 +739,7 @@ export function mountBorgApp(options = {}) {
   function handleWheel(event) {
     event.preventDefault();
     const direction = event.deltaY > 0 ? 1 : -1;
+    state.cameraFitMargin = null;
     state.cameraDistance = clamp(
       state.cameraDistance * (direction > 0 ? 1.08 : 0.92),
       CAMERA_MIN_DISTANCE,
@@ -653,9 +777,10 @@ export function mountBorgApp(options = {}) {
       return;
     }
     const speed = vectorLength(frame.velocity);
-    const style = getParticleStyle(state.selectedPathKey);
+    const style = getParticleStyle(state.selectedPathKey, particleStyles);
+    const keyframeCount = manifest.currentStateAndFrameSources.nativeKeyframeCount ?? frameSets.length;
     dom.selectedTag.hidden = false;
-    dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${manifest.currentStateFrames.length} frame rows`;
+    dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${keyframeCount} native keyframes`;
   }
 
   function resize() {
@@ -666,6 +791,9 @@ export function mountBorgApp(options = {}) {
     renderer.setSize(width, height, false);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+    if (state.cameraFitMargin != null) {
+      fitCameraToCentralCube(state.cameraFitMargin);
+    }
     render();
   }
 
@@ -685,10 +813,34 @@ export function mountBorgApp(options = {}) {
   function solverPositionToWorld(position) {
     const center = manifest.simulationEnvelope.centralVolume.center;
     return new THREE.Vector3(
-      (position.x - center.x) * WORLD_UNITS_PER_SOLVER_UNIT,
-      (position.y - center.y) * WORLD_UNITS_PER_SOLVER_UNIT,
-      (position.z - center.z) * WORLD_UNITS_PER_SOLVER_UNIT,
+      (position.x - center.x) * worldUnitsPerSolverUnit,
+      (position.y - center.y) * worldUnitsPerSolverUnit,
+      (position.z - center.z) * worldUnitsPerSolverUnit,
     );
+  }
+
+  function fitCameraToCentralCube(margin) {
+    const worldSide = manifest.simulationEnvelope.centralVolumeSideLength * worldUnitsPerSolverUnit;
+    const cubeRadius = (Math.sqrt(3) * worldSide) / 2;
+    const verticalHalfFov = THREE.MathUtils.degToRad(camera.fov * 0.5);
+    const horizontalHalfFov = Math.atan(Math.tan(verticalHalfFov) * Math.max(0.1, camera.aspect));
+    const limitingHalfFov = Math.min(verticalHalfFov, horizontalHalfFov);
+    state.cameraDistance = clamp(
+      (cubeRadius / Math.sin(limitingHalfFov)) * margin,
+      CAMERA_MIN_DISTANCE,
+      CAMERA_MAX_DISTANCE,
+    );
+    camera.position.set(0, 0, state.cameraDistance);
+    camera.lookAt(0, 0, 0);
+  }
+
+  function getFrameSetIndex(frameIndex) {
+    const index = frameSets.findIndex((entry) => entry.frameIndex === frameIndex);
+    return index >= 0 ? index : 0;
+  }
+
+  function getPlaybackNow() {
+    return windowLike.performance?.now?.() ?? Date.now();
   }
 
   function getPathKeys() {
@@ -696,6 +848,14 @@ export function mountBorgApp(options = {}) {
       (left, right) => left - right,
     );
   }
+}
+
+function createPathSegmentGeometry(points) {
+  const segmentPoints = [];
+  for (let index = 1; index < points.length; index += 1) {
+    segmentPoints.push(points[index - 1], points[index]);
+  }
+  return new THREE.BufferGeometry().setFromPoints(segmentPoints);
 }
 
 function queryRequiredElement(documentLike, selector) {
@@ -706,13 +866,63 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-function getParticleStyle(pathKey) {
-  return PARTICLE_STYLES[pathKey] ?? {
+function createParticleStyles(manifest) {
+  const styles = new Map();
+  manifest.currentStateFrames.forEach((frame) => {
+    if (styles.has(frame.pathKey)) {
+      return;
+    }
+    const baseStyle =
+      frame.stateFlags === 1 ? PARTICLE_POLARITY_STYLES.positrino : PARTICLE_POLARITY_STYLES.electrino;
+    styles.set(frame.pathKey, {
+      ...baseStyle,
+      label: String(frame.pathKey),
+    });
+  });
+  return styles;
+}
+
+function getParticleStyle(pathKey, particleStyles) {
+  return particleStyles?.get(pathKey) ?? {
     label: String(pathKey),
     color: 0xffffff,
+    pathColor: 0xe5f1ff,
+    velocityColor: 0xe5f1ff,
     edgeColor: "#ffffff",
     polarity: "architrino",
   };
+}
+
+function interpolateFrameSet(fromFrameSet, toFrameSet, progress) {
+  const toFramesByPathKey = new Map(toFrameSet.frames.map((frame) => [frame.pathKey, frame]));
+  return {
+    frameIndex: progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex,
+    time: lerp(fromFrameSet.time, toFrameSet.time, progress),
+    frames: fromFrameSet.frames.map((fromFrame) => {
+      const toFrame = toFramesByPathKey.get(fromFrame.pathKey) ?? fromFrame;
+      return {
+        pathKey: fromFrame.pathKey,
+        frameIndex: progress < 0.5 ? fromFrame.frameIndex : toFrame.frameIndex,
+        time: lerp(fromFrame.time ?? fromFrameSet.time, toFrame.time ?? toFrameSet.time, progress),
+        position: interpolateVector(fromFrame.position, toFrame.position, progress),
+        velocity: interpolateVector(fromFrame.velocity, toFrame.velocity, progress),
+        errorBound: Math.max(fromFrame.errorBound ?? 0, toFrame.errorBound ?? 0),
+        stateFlags: fromFrame.stateFlags ?? toFrame.stateFlags ?? 0,
+      };
+    }),
+  };
+}
+
+function interpolateVector(fromVector, toVector, progress) {
+  return {
+    x: lerp(fromVector?.x ?? 0, toVector?.x ?? 0, progress),
+    y: lerp(fromVector?.y ?? 0, toVector?.y ?? 0, progress),
+    z: lerp(fromVector?.z ?? 0, toVector?.z ?? 0, progress),
+  };
+}
+
+function lerp(fromValue, toValue, progress) {
+  return fromValue + (toValue - fromValue) * progress;
 }
 
 function createArchitrinoPointTexture(documentLike) {
@@ -738,6 +948,18 @@ function formatValue(value) {
     return "null";
   }
   return String(value);
+}
+
+function formatTimelineLabel(time, frameIndex) {
+  return `t ${formatTimelineTime(time)} | frame ${frameIndex}`;
+}
+
+function formatTimelineTime(value) {
+  if (!Number.isFinite(value)) {
+    return String(value);
+  }
+  const rounded = Math.abs(value) < 0.05 ? 0 : value;
+  return rounded.toFixed(1);
 }
 
 function formatNumber(value) {

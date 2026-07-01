@@ -150,6 +150,8 @@ The conjugate momenta are more than bookkeeping in ordinary mechanics. When a co
 
 This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM is a delayed path-history law, not an ordinary finite-dimensional phase-space law. The instantaneous pair $(\mathbf{x}_i(t),\mathbf{p}_i(t))$ does not contain all active causal-root, boundary, and wake-history data. A Hamiltonian chart is therefore an effective reduction: it is admissible only when a coarse-graining compresses the retained path history into coordinates and momenta while preserving the comparison invariants. The test is not merely that an expression called $H_{\text{eff}}$ can be written, but that the induced return map preserves the relevant measure, symplectic form, or Poisson-bracket structure to the declared tolerance.
 
+Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
 therefore not an arbitrary instantaneous snapshot. It is a replayable or
 phase-locked branch chart: a reduced description in which the retained internal
@@ -166,6 +168,28 @@ sub-assembly adds its own phase-action pair. Surrounding influences are
 admissible only when they are represented as fixed branch data, slow parameters,
 or additional coordinates over the comparison window; otherwise the chart is a
 driven open system rather than a closed Hamiltonian phase space.
+
+On a single periodic channel, the action variable is not an arbitrary label once
+the chart is required to be canonical and the angle is required to advance
+uniformly. With the local $2\pi$ convention, the reduced action is the
+closed-cycle integral of the canonical one-form,
+$$
+I_\alpha
+=
+\frac{1}{2\pi}
+\oint_{\gamma_\alpha}\Pi\,dQ
+$$
+and the frequency readout is
+$$
+\omega_\alpha
+=
+\frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
+$$
+on that reduced chart. The value of this comparison is methodological: a
+replayable branch can expose frequency and harmonic content before the full
+path-history solution is written, but only if the same causal-root ledger and
+retained branch record make the closed-cycle integral and canonical residual
+stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
 
@@ -421,6 +445,47 @@ The normalized characteristic-tail kernel carries explicit energy, momentum, and
 The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate when the mollifier, history window, and self-branch cutoff preserve those symmetries: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit. If the regularization is inserted only at the equation-of-motion level or uses a non-invariant window, the associated energy, momentum, and angular-momentum expressions become diagnostics rather than proved Noether charges.
 
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking interactions that are still carried by causal wakes between emission and reception.
+
+Here symmetry means an active transformation of the retained physical record, not merely a passive relabeling of coordinates. A passive relabeling is a representation check: the same assembly, causal-wake history, and Noether sea record should not acquire a different physical meaning because the chart changed. An active transformation asks whether the transformed branch record obeys the same action principle. Only the active question produces a Noether conservation statement.
+
+The ordinary boundary-term identity makes the recovery burden precise. For a local action, the first variation splits into an interior Euler-Lagrange term and an endpoint term,
+$$
+\delta S
+=
+\int_{t_a}^{t_b}
+\left(
+\frac{\partial L}{\partial q^a}
+-
+\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
+\right)\delta q^a\,dt
++
+\left[p_a\delta q^a-H\delta t\right]_{t_a}^{t_b}
+$$
+with
+$$
+p_a=\frac{\partial L}{\partial \dot q^a},
+\qquad
+H=p_a\dot q^a-L.
+$$
+On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is promoted only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum row is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage row is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
+
+The more general local Noether form also matters. For an infinitesimal active transformation
+$$
+q^a\mapsto q^a+\epsilon X^a(q,t)
+$$
+the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
+$$
+\delta L
+=
+\epsilon\frac{dG}{dt}
+$$
+On stationary paths this gives the conserved charge
+$$
+\frac{d}{dt}\left(p_aX^a-G\right)=0
+$$
+Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
 **Energy Functional:**
 Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
@@ -699,6 +764,32 @@ $$
 This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping variables for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
+
+At the standard local-field level, the action principle changes the object being varied rather than the logic of stationarity. A particle path $q^a(t)$ is replaced by effective fields $\varphi^A(\mathbf{x},t)$, and the local action has the schematic form
+$$
+S[\varphi]
+=
+\int dt\,d^3x\,
+\mathcal{L}
+\left(
+\varphi^A,
+\partial_t\varphi^A,
+\nabla\varphi^A,
+\ldots
+\right).
+$$
+Fixed-boundary variation gives the field Euler-Lagrange expression
+$$
+\frac{\partial \mathcal{L}}{\partial \varphi^A}
+-
+\partial_t
+\frac{\partial \mathcal{L}}{\partial(\partial_t\varphi^A)}
+-
+\partial_i
+\frac{\partial \mathcal{L}}{\partial(\partial_i\varphi^A)}
+=0.
+$$
+This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and receiver-normal branch-strength rows.
 
 ### Effective Hamiltonian Domain Gate
 

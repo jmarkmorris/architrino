@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1446
+      "sections": 1450
     }
   },
   "tocRoot": {
@@ -11007,6 +11007,30 @@
                       },
                       {
                         "kind": "markdown-section",
+                        "title": "Born-Jordan Commutator Bridge",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Born-Jordan Commutator Bridge",
+                        "sectionKey": "born jordan commutator bridge",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Born-Kramers Rule And Action-Angle Recovery",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Born-Kramers Rule And Action-Angle Recovery",
+                        "sectionKey": "born kramers rule and action angle recovery",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Dirac's 1925 Poisson-Bracket Bridge",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Dirac's 1925 Poisson-Bracket Bridge",
+                        "sectionKey": "dirac s 1925 poisson bracket bridge",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
                         "title": "Subsystem-Partition Guardrail",
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Subsystem-Partition Guardrail",
@@ -11035,6 +11059,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Harmonic-Oscillator Ladder Benchmark",
                         "sectionKey": "harmonic oscillator ladder benchmark",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Orbital-Angular-Momentum Ladder Benchmark",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Orbital-Angular-Momentum Ladder Benchmark",
+                        "sectionKey": "orbital angular momentum ladder benchmark",
                         "headingLevel": 2
                       },
                       {

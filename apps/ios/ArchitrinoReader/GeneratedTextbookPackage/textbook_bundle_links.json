@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-06-30T20:37:35.854Z",
-  "total_links": 1577,
+  "generated_at": "2026-07-01T13:20:39.342Z",
+  "total_links": 1584,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -5622,6 +5622,14 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/assemblies/gauge-structure-emergence.md#gauss-law-source-and-closure-benchmarks",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/gauge-structure-emergence.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/assemblies/mesons/mesons.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5999,6 +6007,14 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/nuclear-atomic/atomic-spectra.md#atomic-orbitals-as-lattice-resonances",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/nuclear-atomic/atomic-spectra.md"
@@ -6439,6 +6455,14 @@
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md#effective-angular-envelope-recovery-lemma",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md"
@@ -10182,6 +10206,22 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/assemblies/bosons/electroweak-bosons.md#photon-closure-interface",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -10402,6 +10442,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/assemblies/gauge-symmetries.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/assemblies/particle-masses.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/assemblies/particle-masses.md"
     },
     {
       "sourceChapterId": "validation",

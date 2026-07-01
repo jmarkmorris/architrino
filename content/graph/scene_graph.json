@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 574,
-      "edges": 1334,
-      "scenes": 372,
+      "nodes": 578,
+      "edges": 1338,
+      "scenes": 376,
       "markdownIndexes": 0,
       "markdownDocs": 189,
       "runtimeEdges": 476,
@@ -2381,6 +2381,30 @@
       "nodeType": "scene"
     },
     {
+      "id": "animator",
+      "name": "Animator",
+      "path": "content/scenes/archie/animator.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "assembly-explorer",
+      "name": "Assembly Configuration Explorer",
+      "path": "content/scenes/archie/assembly_explorer.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "borg",
+      "name": "Borg App",
+      "path": "content/scenes/archie/borg.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "causal-delay-feedback",
+      "name": "Causal Delay Feedback",
+      "path": "content/scenes/archie/causal_delay_feedback.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3553,6 +3577,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/animator.json",
+      "nodeType": "scene",
+      "id": "animator",
+      "name": "Animator",
+      "path": "content/scenes/archie/animator.json",
+      "searchTarget": "content/scenes/archie/animator.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/applications.json",
       "nodeType": "scene",
       "id": "archie__applications",
@@ -3568,6 +3601,33 @@
       "name": "Archie",
       "path": "content/scenes/archie/archie.json",
       "searchTarget": "content/scenes/archie/archie.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/assembly_explorer.json",
+      "nodeType": "scene",
+      "id": "assembly-explorer",
+      "name": "Assembly Configuration Explorer",
+      "path": "content/scenes/archie/assembly_explorer.json",
+      "searchTarget": "content/scenes/archie/assembly_explorer.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/borg.json",
+      "nodeType": "scene",
+      "id": "borg",
+      "name": "Borg App",
+      "path": "content/scenes/archie/borg.json",
+      "searchTarget": "content/scenes/archie/borg.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/causal_delay_feedback.json",
+      "nodeType": "scene",
+      "id": "causal-delay-feedback",
+      "name": "Causal Delay Feedback",
+      "path": "content/scenes/archie/causal_delay_feedback.json",
+      "searchTarget": "content/scenes/archie/causal_delay_feedback.json",
       "implicit": false
     },
     {
@@ -8684,6 +8744,34 @@
     }
   ],
   "edges": [
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/animator.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[9]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/assembly_explorer.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/borg.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[10]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/causal_delay_feedback.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[8]"
+    },
     {
       "from": "scene:content/scenes/archie/applications.json",
       "to": "scene:content/scenes/archie/ideal_braid.json",

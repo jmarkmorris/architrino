@@ -7,6 +7,16 @@ import { buildBorgFirstNativeBackedFixture } from "./build-first-native-backed-f
 const SURFACE_DESIGN_SCHEMA = "borg-app-surface-design.v1";
 const SCREEN_SPEC_ID = "borg-first-screen-from-native-fixture";
 const REQUIRED_RENDER_PIXEL_SIZE = "3840x2160";
+const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
+  "ok",
+  "native_capability_missing",
+  "native_solver_pending",
+]);
+const ALLOWED_NATIVE_MASTER_EQUATION_STATUSES = new Set([
+  "native-fixed-parameter-master-equation",
+  "native-fixture-capability-missing",
+  "native-fixture-solver-pending",
+]);
 
 export async function buildBorgAppSurfaceDesign() {
   const { manifest, native } = await buildBorgFirstNativeBackedFixture();
@@ -37,6 +47,24 @@ export function createBorgAppSurfaceDesign(manifest) {
       nativeSolverVersion: manifest.nativeSolverVersion,
       bridgeSchemaVersion: manifest.bridgeSchemaVersion,
       fixtureStatus: manifest.validation.fixtureStatus,
+      fixtureProfileId: manifest.sourceBridgeRun.fixtureProfileId,
+      nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
+      sampleInterval: manifest.simulationEnvelope.sampleInterval,
+      playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
+      initialLinePolicy: manifest.initialConditions.initialLinePolicy,
+      runKind: manifest.sourceBridgeRun.runKind,
+      solverMode: manifest.sourceBridgeRun.solverMode,
+      motionLaw: manifest.sourceBridgeRun.motionLaw,
+      fixedPhysicalParameterSetId: manifest.sourceBridgeRun.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: manifest.sourceBridgeRun.fixedPhysicalParameterAuthority,
+      fixedPhysicalParameters: manifest.sourceBridgeRun.fixedPhysicalParameters,
+      visualTuningStatus: manifest.sourceBridgeRun.visualTuningStatus,
+      visualBehaviorAuthority: manifest.sourceBridgeRun.visualBehaviorAuthority,
+      nativeMasterEquationStatus: manifest.sourceBridgeRun.nativeMasterEquationStatus,
+      nativeMasterEquationProbe: manifest.nativeMasterEquationProbe,
+      canonicalEomEvidence: manifest.sourceBridgeRun.canonicalEomEvidence,
+      eomEvidenceStatus: manifest.sourceBridgeRun.eomEvidenceStatus,
+      nextSolverBurden: manifest.sourceBridgeRun.nextSolverBurden,
       sourceClaimLevel: manifest.claimLevel,
     },
     nativeSolverBoundary: {
@@ -181,6 +209,9 @@ export function createBorgAppSurfaceDesign(manifest) {
       timeRange: manifest.pathHistory.streamSummary.timeRange,
       frameRange: manifest.pathHistory.streamSummary.frameRange,
       frameCount: manifest.currentStateAndFrameSources.frameCount,
+      nativeKeyframeCount: manifest.currentStateAndFrameSources.nativeKeyframeCount,
+      sampleInterval: manifest.simulationEnvelope.sampleInterval,
+      playbackFrameSource: manifest.currentStateAndFrameSources.playbackFrameSource,
       pathRowCount: manifest.pathHistory.streamSummary.rowCount,
       valueAuthority: manifest.pathHistory.streamSummary.valueAuthority,
     },
@@ -231,15 +262,91 @@ export function createBorgAppSurfaceDesign(manifest) {
       benignNoiseAuthorityStatus: manifest.validation.benignNoiseAuthorityStatus,
       proofClaimStatus: manifest.validation.proofClaimStatus,
     },
-    nextBuildBurden: "measure-browser-surface-budget-and-4k-render-capture",
+    nextBuildBurden: manifest.sourceBridgeRun.nextSolverBurden,
   };
 }
 
 export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
+  const selectedMasterEquation =
+    surfaceDesign.sourceManifest.nativeMasterEquationStatus ===
+    "native-fixed-parameter-master-equation";
   assertEqual(surfaceDesign.schema, SURFACE_DESIGN_SCHEMA, "surface design schema");
   assertEqual(surfaceDesign.screenSpecId, SCREEN_SPEC_ID, "screen spec id");
   assertEqual(surfaceDesign.sourceManifest.manifestId, manifest.manifestId, "source manifest id");
   assertEqual(surfaceDesign.sourceManifest.nativeSolverStatus, "native-backed-now", "native solver status");
+  assertEqual(
+    surfaceDesign.sourceManifest.fixtureProfileId,
+    manifest.sourceBridgeRun.fixtureProfileId,
+    "fixture profile id",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.nativeKeyframeCount,
+    manifest.currentStateAndFrameSources.nativeKeyframeCount,
+    "native keyframe count",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.playbackFrameSource,
+    "native-keyframes",
+    "playback frame source",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.initialLinePolicy,
+    manifest.initialConditions.initialLinePolicy,
+    "initial line policy",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.motionLaw,
+    manifest.sourceBridgeRun.motionLaw,
+    "motion law",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.solverMode,
+    manifest.sourceBridgeRun.solverMode,
+    "solver mode",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.fixedPhysicalParameterSetId,
+    manifest.sourceBridgeRun.fixedPhysicalParameterSetId,
+    "fixed physical parameter set id",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.fixedPhysicalParameterAuthority,
+    manifest.sourceBridgeRun.fixedPhysicalParameterAuthority,
+    "fixed physical parameter authority",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.visualTuningStatus,
+    "not-visual-tuned",
+    "visual tuning status",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.visualBehaviorAuthority,
+    "native-output-only",
+    "visual behavior authority",
+  );
+  assert(
+    ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(
+      surfaceDesign.sourceManifest.nativeMasterEquationStatus,
+    ),
+    `native master-equation status ${surfaceDesign.sourceManifest.nativeMasterEquationStatus}`,
+  );
+  assert(
+    ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(
+      surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode,
+    ),
+    `native master-equation probe status ${surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode}`,
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.nativeMasterEquationProbe.fallbackDecision,
+    selectedMasterEquation ? "native-master-equation-selected" : "default-motion-baseline-selected",
+    "native master-equation probe fallback decision",
+  );
+  assertEqual(
+    surfaceDesign.sourceManifest.nextSolverBurden,
+    manifest.sourceBridgeRun.nextSolverBurden,
+    "next solver burden",
+  );
+  assertEqual(surfaceDesign.nextBuildBurden, manifest.sourceBridgeRun.nextSolverBurden, "next build burden");
   assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
   assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
@@ -324,6 +431,8 @@ function createLayerStrip(manifest) {
       layer: "path-history",
       state: "off",
       sourceFields: ["pathHistory.pathHistoryStreamIds", "pathHistory.pathReplayIndexIds"],
+      displayTransform: "adjacent-native-row-line-segments",
+      smoothingPolicy: "none",
       valueAuthority: manifest.pathHistory.streamSummary.valueAuthority,
     },
     {
@@ -402,6 +511,20 @@ function printSummary(surfaceDesign) {
     hiddenLayers: surfaceDesign.firstViewport.defaultHiddenLayers,
     disabledLayers: surfaceDesign.firstViewport.defaultDisabledLayers,
     frameCount: surfaceDesign.viewport.architrinoPositions.frameCount,
+    nativeKeyframeCount: surfaceDesign.sourceManifest.nativeKeyframeCount,
+    sampleInterval: surfaceDesign.sourceManifest.sampleInterval,
+    playbackFrameSource: surfaceDesign.sourceManifest.playbackFrameSource,
+    initialLinePolicy: surfaceDesign.sourceManifest.initialLinePolicy,
+    runKind: surfaceDesign.sourceManifest.runKind,
+    solverMode: surfaceDesign.sourceManifest.solverMode,
+    motionLaw: surfaceDesign.sourceManifest.motionLaw,
+    fixedPhysicalParameterSetId: surfaceDesign.sourceManifest.fixedPhysicalParameterSetId,
+    fixedPhysicalParameterAuthority: surfaceDesign.sourceManifest.fixedPhysicalParameterAuthority,
+    visualTuningStatus: surfaceDesign.sourceManifest.visualTuningStatus,
+    visualBehaviorAuthority: surfaceDesign.sourceManifest.visualBehaviorAuthority,
+    nativeMasterEquationStatus: surfaceDesign.sourceManifest.nativeMasterEquationStatus,
+    nativeMasterEquationProbeStatus: surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode,
+    masterEquationFallbackDecision: surfaceDesign.sourceManifest.nativeMasterEquationProbe.fallbackDecision,
     pathRowCount: surfaceDesign.bottomTimeline.pathRowCount,
     renderPixelSize: surfaceDesign.firstViewport.renderPixelSize,
     firstFailureCodes: surfaceDesign.failClosedFirstFailureCodes,

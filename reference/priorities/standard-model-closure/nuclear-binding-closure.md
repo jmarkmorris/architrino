@@ -53,6 +53,53 @@ $$
 
 The proof burden is to derive or constrain the signs, range, and saturation behavior of these terms from hadronic assembly geometry, meson-like corridor formation, and local Noether sea polarization. It is not enough to borrow the nuclear-force shape and relabel it.
 
+### First Confinement-Energetics Consumer
+
+The first native consumer of the confinement packet is not a new nuclear gate. It is the row that tells this potential which part of the color-corridor energy functional it is allowed to use. Let $\Gamma_{N_1}$ and $\Gamma_{N_2}(r)$ be the closed color-corridor graphs of two accepted color-singlet nucleon source envelopes at separation $r$. The confinement packet supplies
+
+$$
+\Delta E_{\mathrm{corr}}^{NN}(r)
+=
+\min_{\Theta_{12}\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_1}\cup\Gamma_{N_2}(r),
+\Theta_{12}
+\right]
+-
+\sum_{i=1}^{2}
+\min_{\Theta_i\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_i},
+\Theta_i
+\right].
+$$
+
+This row may feed only the residual strong and Noether sea polarization part of the two-nucleon potential:
+
+$$
+V_{\pi/\text{corr}}(r)
++
+V_{\text{sea-pol}}(r)
+\leftarrow
+\Delta E_{\mathrm{corr}}^{NN}(r).
+$$
+
+The open-corridor string tension $\sigma_{\mathrm{eff}}$ and this finite two-singlet residual must come from the same color-corridor functional: the same axis-exceptionality charges, transverse Noether sea response, and ambient $\rho_{\text{NS}},\chi_{\text{sea}}$ state. The accepted behavior is finite range:
+
+$$
+\Delta E_{\mathrm{corr}}^{NN}(r)\to0
+\quad
+\text{as}
+\quad
+r\to\infty,
+$$
+
+with no open-color far field between color-singlet nucleons. The first useful calculation is therefore not a fitted Yukawa curve; it is the comparison between two isolated closed nucleon corridors and a paired closed-corridor minimization. The row is rejected if it needs an independent residual-force parameter, leaves unscreened color leakage, or binds $p+p$ as easily as $p+n$ after $V_{\text{Coul}}$, orientation, and branch-interface rows are included.
+
+[NN Corridor Overlap First Evaluation](nn-corridor-overlap-first-evaluation.md) records the first reduced numerical row for that comparison. It gives a candidate $p+n$ attractive window and keeps the corresponding $p+p$ row positive after orientation suppression, branch-interface mismatch, and Coulomb are included. Its channel weights now come from a first $\mathcal B_{ij}^{\mathrm{int}}$ extraction; the ranges and scales remain source leads until the same confinement functional produces them directly.
+
 ## Branch-Interface Exchange Residual
 
 Source-mining intake 2026-06-28. Legacy "bonded vortices" language is not current terminology, but it preserves one useful nuclear target: residual-strong binding should report a coupled interface row rather than only a scalar potential. In current terms, the candidate branch-interface exchange record is

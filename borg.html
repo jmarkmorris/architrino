@@ -156,6 +156,48 @@
         border-top: 0;
       }
 
+      .borg-provenance-drawer {
+        margin: 0;
+        padding-top: 12px;
+        border-top: 1px solid rgba(139, 164, 126, 0.18);
+      }
+
+      .borg-provenance-drawer summary {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        align-items: center;
+        gap: 8px;
+        min-height: 30px;
+        padding: 5px 7px;
+        border: 1px solid rgba(139, 164, 126, 0.18);
+        border-radius: 6px;
+        background: #1a1d18;
+        color: #dfe7d6;
+        cursor: pointer;
+        font-size: 12px;
+        font-weight: 760;
+        list-style: none;
+      }
+
+      .borg-provenance-drawer summary::-webkit-details-marker {
+        display: none;
+      }
+
+      .borg-provenance-drawer summary::after {
+        content: "+";
+        color: #aeb8a6;
+        font-size: 14px;
+        font-weight: 760;
+      }
+
+      .borg-provenance-drawer[open] summary {
+        margin-bottom: 8px;
+      }
+
+      .borg-provenance-drawer[open] summary::after {
+        content: "-";
+      }
+
       .borg-section h2 {
         margin: 0 0 8px;
         color: #f2f5ec;
@@ -207,11 +249,6 @@
         grid-auto-columns: minmax(58px, auto);
         gap: 7px;
         max-width: calc(100% - 28px);
-        padding: 8px;
-        border: 1px solid rgba(139, 164, 126, 0.24);
-        border-radius: 8px;
-        background: rgba(25, 27, 22, 0.9);
-        backdrop-filter: blur(10px);
       }
 
       .borg-layer-button,
@@ -261,11 +298,6 @@
         display: grid;
         grid-auto-flow: column;
         gap: 7px;
-        padding: 8px;
-        border: 1px solid rgba(139, 164, 126, 0.24);
-        border-radius: 8px;
-        background: rgba(25, 27, 22, 0.9);
-        backdrop-filter: blur(10px);
       }
 
       .borg-icon-button svg {
@@ -273,8 +305,8 @@
         height: 18px;
         fill: none;
         stroke: currentColor;
-        stroke-linecap: square;
-        stroke-linejoin: miter;
+        stroke-linecap: round;
+        stroke-linejoin: round;
         stroke-width: 1.9;
       }
 
@@ -445,11 +477,6 @@
           </div>
         </header>
 
-        <section class="borg-section" aria-label="Source manifest">
-          <h2>Source Manifest</h2>
-          <div id="borg-source-fields" class="borg-field-list"></div>
-        </section>
-
         <section class="borg-section" aria-label="Simulation envelope fields">
           <h2>Simulation Envelope</h2>
           <div id="borg-envelope-fields" class="borg-field-list"></div>
@@ -459,6 +486,11 @@
           <h2>Initial Condition</h2>
           <div id="borg-initial-condition-fields" class="borg-field-list"></div>
         </section>
+
+        <details class="borg-provenance-drawer" aria-label="Source provenance">
+          <summary>Provenance</summary>
+          <div id="borg-source-fields" class="borg-field-list"></div>
+        </details>
       </aside>
 
       <main class="borg-viewport" aria-label="Borg simulation viewport">
@@ -467,8 +499,9 @@
         <div class="borg-camera-controls" aria-label="View controls">
           <button id="borg-reset-view-button" class="borg-icon-button" type="button" aria-label="Reset view" title="Reset view">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M4 12a8 8 0 1 1 2.3 5.7"></path>
-              <path d="M4 18v-6h6"></path>
+              <path d="M9.8 6.2a6.8 6.8 0 1 1-4.2 6.3"></path>
+              <path d="M5 5.6v3.7"></path>
+              <path d="M5 5.6h3.7"></path>
             </svg>
           </button>
           <button id="borg-fit-view-button" class="borg-icon-button" type="button" aria-label="Fit view" title="Fit view">

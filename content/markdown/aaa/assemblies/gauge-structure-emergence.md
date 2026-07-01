@@ -25,6 +25,26 @@ The relevant distinction is between the $\mathbb{U}_{\text{now}}$ universe-state
   - **$\vec{E}$ and $\vec{B}$ fields** are statistical averages of receiver-normal causal-flux density and circulation/vorticity in the Noether sea.
   - **Gauge potentials ($A_\mu$)** correspond to local twists, strains, or density gradients in the Noether braid assembly network.
 
+### Gauss-Law Source and Closure Benchmarks
+
+The Faraday-to-Gauss field picture is a useful low-energy checkpoint for the effective electromagnetic map. Field lines are visualization aids, not literal strands in the substrate, and the test charge or compass needle is an apparatus probe of a coarse response. What must survive is the closed-surface bookkeeping. In ordinary electrostatics, the electric flux through a closed surface depends only on the net charge enclosed:
+
+$$
+\oint_{\partial V}\mathbf{E}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+\frac{Q_{\mathrm{enc}}}{\epsilon_0}
+$$
+
+In standard magnetostatics, the corresponding magnetic flux through a closed surface vanishes in the no-monopole regime:
+
+$$
+\oint_{\partial V}\mathbf{B}_{\mathrm{eff}}\cdot d\mathbf{A}
+=
+0
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, these equations are recovery targets for one effective branch record. The electric relation says the retained polarity ledger, Noether sea response, and apparatus surface must project to the same enclosed-charge flux. The magnetic relation says the observer-level magnetic response must close through circulation/vorticity without requiring an untracked isolated magnetic source. If the electric source row, magnetic closure row, and measured force response require different medium records or independently tuned $\epsilon_0$ and $\mu_0$, the effective field description has not yet recovered the Maxwell-level limit.
+
 ### Maxwell-Ampere Continuity Benchmark
 
 The charging-capacitor case is a useful low-energy benchmark for this map. In standard electrodynamics, the same boundary loop can be spanned by a surface that cuts the conducting wire or by a bulging surface through the capacitor gap. The observer-level magnetic circulation cannot depend on that arbitrary surface choice, so the Maxwell-Ampere comparison must recover
@@ -143,6 +163,8 @@ F_{\mu\nu}^{\theta'}=U F_{\mu\nu}^\theta U^{-1}
 $$
 This is a redundancy test. It asks whether different gauge charts describe the same observer-level channel, not whether the Noether sea itself has been changed.
 
+The passive/active distinction is load-bearing here. A gauge relabeling is passive when it changes only the effective bookkeeping basis and leaves the retained assembly, causal-wake, axial-layer, and Noether sea record fixed. An active physical change belongs in the branch record $\theta$ itself: it may alter medium response, exposed axial inventory, apparatus coupling, or causal-wake provenance. Gauge covariance is recovered only when passive relabelings preserve the same record. It cannot be used to hide a changed physical branch behind a different chart.
+
 A compact residual for the comparison is
 $$
 \mathcal{R}_{\mathrm{cov}}(\theta;U)
@@ -214,6 +236,8 @@ Positive-geometry amplitude work adds one more useful guardrail. If an amplitude
 ## Higgs Mechanism and VEV Reinterpretation
 
 The popular particle-centered Higgs narrative is replaced by a Noether sea medium-response comparison.
+
+The Standard Model recovery sequence is still important. In the effective field description, a massless comparison field has no minimum-frequency gap; a restoring term traced to potential curvature creates the same equation structure as a massive quantum. The Higgs mechanism then adds the critical step: a field that would be massless on its own acquires an effective mass term when it couples to a scalar background with nonzero vacuum expectation value. The Higgs boson itself is the small quantized fluctuation around that background, and its observed mass probes the curvature of the Higgs potential at the selected resting value. In $\mathbb{A}\mathbb{A}\mathbb{A}$, that whole packet is a recovery target for the electroweak comparison layer. It is not evidence that the Euclidean void has density, not a replacement for the mass-map derivation, and not a claim that all observed mass comes from the Higgs sector; composite hadron masses remain tied to color-corridor closure, binding, shielding, and Noether sea response.
 
 - **VEV (vacuum expectation value):** The VEV is interpreted as an equilibrium density or order-parameter proxy for the Noether sea. It is nonzero because medium contents occupy the void, not because the void has its own density; the exact order parameter and conversion to observer-level electroweak normalization remain closure targets.
 - **Symmetry breaking:** Electroweak phase transition language is treated as a phase-change closure target. The high-energy plasma record must relax into the stable, coupled Noether sea inferred today, but the order parameter and transition dynamics still have to be derived.

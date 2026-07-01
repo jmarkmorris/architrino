@@ -37,6 +37,7 @@
   ],
   "failClosedNegativeControls": [
     "scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json",
+    "scripts/equation-mapping/eq15-27-ordered-frame-loop-unrelated-durable-source-negative-control.v1.json",
     "scripts/equation-mapping/eq15-27-ordered-frame-loop-record-split-durable-source-negative-control.v1.json",
     "scripts/equation-mapping/spin-magnetic-moment-assigned-spin-g2-durable-source-negative-control.v1.json"
   ]

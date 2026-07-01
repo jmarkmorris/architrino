@@ -63,11 +63,52 @@ $$
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
 
+The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
+$$
+\Delta x_{\mathrm{eff}}(\Delta p)
+\sim
+\frac{\hbar}{\Delta p}
++
+\frac{G\,\Delta p}{c_f^3}
+$$
+The first term is the standard wavelength or Fourier-localization limit; the second is the displacement or horizon-facing uncertainty induced by concentrating the probe energy into the same region. Minimizing this comparison gives
+$$
+\Delta p_{\mathrm{cross}}^2\sim\frac{\hbar c_f^3}{G},
+\qquad
+\Delta x_{\mathrm{eff,min}}\sim O(\ell_P)
+$$
+In this chapter the formula is not a new uncertainty postulate and not evidence for primitive spatial discreteness. It is a second route to the same recovery target: any branch that claims sub-Planck localization must explain why the same action scale, effective gravitational coupling, and observer-channel speed do not turn the attempted measurement into horizon-interface or alignment behavior.
+
 The dimensional-analysis route reaches the same comparison scale. Up to convention factors, the only length built from $G$, $\hbar$, and $c_f$ is
 $$
 \ell_P \sim \sqrt{\frac{\hbar G}{c_f^3}}.
 $$
 In this chapter, that relation is a benchmark object rather than an ontology postulate. The derivation burden is to show why one retained alignment branch supplies the effective gravitational coupling, action scale, and low-energy photon-channel speed that enter the observer-level estimate.
+
+The same collapse-and-crossing logic supplies a power-output comparison. For a region of size $R$, the fastest ordinary exterior export has crossing time
+$$
+\Delta t_{\min}\sim \frac{R}{c}
+$$
+while the largest energy localized before black-hole formation is, up to convention factors,
+$$
+E_{\max}\sim \frac{R c^4}{G}.
+$$
+Dividing cancels the size of the region:
+$$
+L_P\sim \frac{E_{\max}}{\Delta t_{\min}}\sim \frac{c^5}{G}.
+$$
+For a radiationlike channel with $p=E/c$, the associated momentum-flow scale is
+$$
+F_P\sim\frac{L_P}{c}\sim\frac{c^4}{G}.
+$$
+
+This is valuable because $\hbar$ does not enter. The Planck luminosity is therefore not a matter-wave postulate; it is a classical strong-field recovery target linking a limiting signal channel to gravitational collapse. In this chapter $c$ is the inherited observer-level speed in the standard comparison formula. The $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to show how the relevant weak homogeneous observer channel is exported from $c_f$ and the Noether sea response, then to show why further energy concentration routes into horizon-interface alignment, interior self-hit continuation, or failed exterior export rather than unlimited luminosity.
+
+Hawking evaporation gives a useful but weaker endpoint pressure. The standard scaling
+$$
+L_H\sim\frac{\hbar c^6}{G^2M^2}
+$$
+approaches $c^5/G$ when $M$ is estimated by the Planck mass, but that substitution sits exactly where semiclassical black-hole theory is no longer trusted. It should be used as a consistency pressure on terminal release, not as a completed endpoint model.
 
 **Regime clarification (to prevent speed-label conflicts):**
 - In this chapter, "$v_{\text{trans}} \to c_f$" and "$v_{\text{orb}}^{\text{tan}} \to c_f$" are component-speed saturation statements in the terminal alignment regime.
@@ -112,6 +153,7 @@ We keep these as open threads while we test whether alignment alone can lock the
 | Alignment geometry $A_{\text{align}}$ | $A_{\text{align}} = R_{\text{align}}^2$ | Square of the alignment radius | Planar alignment area scale. |
 | Gravitation $G$ | $G \propto c_f^3 A_{\text{align}} / h$ | Express in terms of $A_{\text{align}}$ and $h$ | Medium compliance tied to the alignment geometry scale ($A_{\text{align}}$). |
 | Force $F_P$ | $F_P = c^4 / G$ | Response scale from $c$ and $G$ | Medium "yield strength" for alignment; maximal response scale of the Noether sea. |
+| Luminosity $L_P$ | $L_P = c^5 / G$ | Power scale from crossing time plus collapse bound; equivalently $F_P c$. | Maximum power-output recovery target for strong-field release, not a claim of continuous Planck-scale radiation. |
 | Momentum $p_P$ | $p_P = m_P c$ | Momentum from mass scale at $c$ | Momentum scale for aligned outer-binary motion at $c_f$. |
 | Mass $m_P$ | $m_P = E_P / c^2$ | Mass from Planck energy | Corner case: an energy-equivalent scale for alignment, not a rest-mass of the planar, field-speed state. |
 | Time $t_P$ | $t_P = 1/f_P$ | Invert the cadence to get period | One orbital **period** at alignment if $f_{\text{align}} = f_P$. |

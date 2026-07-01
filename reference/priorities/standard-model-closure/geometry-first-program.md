@@ -421,6 +421,33 @@ $$
 $$
 with $f(0)=1$ and $f(a)=0$. The resulting Euler-Lagrange problem should produce a positive $\sigma_{\mathrm{eff}}(Q_H)$ for an open color sector. The same functional must relax to finite energy for $Q_c+(-Q_c)=0$ meson closure and $Q_H+Q_M+Q_L=0$ baryon closure. It fails if the transverse minimization gives $\sigma_{\mathrm{eff}}=0$, spreads with sublinear energy growth, or leaves far-field strain after the color-singlet quotient.
 
+The first nuclear consumer must reuse that same functional rather than introducing a separate residual-force rule. For two accepted color-singlet nucleon corridor graphs $\Gamma_{N_1}$ and $\Gamma_{N_2}(r)$, define
+$$
+\Delta E_{\mathrm{corr}}^{NN}(r)
+=
+\min_{\Theta_{12}\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_1}\cup\Gamma_{N_2}(r),
+\Theta_{12}
+\right]
+-
+\sum_{i=1}^{2}
+\min_{\Theta_i\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_i},
+\Theta_i
+\right].
+$$
+The downstream nuclear packet may use this only as
+$$
+V_{\pi/\text{corr}}(r)+V_{\text{sea-pol}}(r)
+\leftarrow
+\Delta E_{\mathrm{corr}}^{NN}(r),
+$$
+after $V_{\text{excl}}(r)$ and $V_{\text{Coul}}(r)$ are kept as separate rows. This is the first confinement-to-nuclear extraction row: the open-corridor $\sigma_{\mathrm{eff}}$ and the finite two-singlet residual must share $K_\perp$, $V_{\mathrm{exc}}$, $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, and the same traceless axis-exceptionality charges. It fails if the nuclear residual survives only by tuning an independent potential, if it leaves a long-range open-color far field, or if it binds $p+p$ as easily as $p+n$ after the Coulomb, orientation, and branch-interface rows are included.
+
 ## Exact Next Calculation
 
 Compute one row before attempting the full CKM/PMNS system. Fix one color-sector branch $c$, one down-type family candidate, one axial-frame offset $R_{\text{rel}}$, and one local Noether sea state. Build the three shielding envelopes

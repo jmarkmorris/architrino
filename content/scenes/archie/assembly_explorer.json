@@ -1,0 +1,14 @@
+{
+  "schemaVersion": "0.1",
+  "scene": {
+    "id": "assembly-explorer",
+    "title": "Assembly Configuration Explorer",
+    "type": "Scene-Diagram",
+    "units": "relative",
+    "wrapLabels": true,
+    "layout": {
+      "type": "static"
+    }
+  },
+  "objects": []
+}

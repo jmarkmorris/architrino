@@ -206,6 +206,10 @@ Epoch labels in the mapped chronology below are effective reaction-stage names. 
 
 This retention claim is a transparent-transport invariant, not a claim of continued ordinary thermalization. After decoupling, the path map must rescale photon-channel frequency and inferred temperature together while preserving the transported bundle's occupation-shape function and transverse phase coherence. A post-decoupling mechanism that repeatedly absorbs, re-emits, scatters, or randomly kicks the photon packets may relax a spectrum in special circumstances, but it will generically erase image sharpness, anisotropy, polarization, or the near-Planck spectral shape unless those side effects are explicitly bounded.
 
+### Entropy Split in the CMB Record
+
+The CMB record carries two different entropy lessons that must not be collapsed into one. Its near-blackbody spectrum and uniform temperature show that the radiation sector reached a high-entropy thermal record under the photon/matter coarse-graining. The same smoothness is low entropy under the gravitational and horizon-interface coarse-graining because later clumping, potential-energy release, structure formation, and black-hole records open vastly larger compatible histories. A valid $\mathbb{A}\mathbb{A}\mathbb{A}$ CMB branch must therefore keep radiation thermalization, gravitational smoothness, Noether sea state, and horizon-interface entropy as separate projections of one shared source-and-transport record.
+
 ## SMBH Release Channels
 - Scope: interpretive bridge between $\mathbb{A}\mathbb{A}\mathbb{A}$ steady-state recycling and the effective Big Bang chronology map.
 - Claim: the Big Bang corresponds to the collective surfaces of SMBHs, not a singular origin.

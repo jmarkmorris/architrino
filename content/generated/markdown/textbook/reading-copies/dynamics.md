@@ -3782,6 +3782,8 @@ All energy accounting remains localized to **architrinos and their assemblies** 
 
 The Master Equation is a state-dependent delay system: acceleration at time $t$ depends on the path-history segment over $[t-h,t]$. In this setting, conservation laws are not functions of the instantaneous state $(\mathbf{x},\mathbf{v})$ alone. Instead, they are **functionals on path history** that track "in-flight" wake contributions.
 
+The comparison to delay-equation theory should therefore be read literally but narrowly. A finite-propagation two-body law is not an ordinary present-state ODE: a valid update needs a retained history segment, the active causal-root ledger, and the same receiver/source branch rows used by the force law. In standard terminology, a reduced chart whose delayed dependencies reach only positions and velocities resembles a state-dependent delay differential equation, while a chart that retains delayed accelerations or highest-derivative constraints is closer to a neutral delay differential equation. That classification is only a mathematical comparison; the native burden remains the same-record causal-root, $D_s$, $D_t$, $W^{\mathrm{rec}}$, and wake-history ledger.
+
 This section makes the symmetry group explicit and states the corresponding conserved functionals for isolated systems with $\eta > 0$.
 
 ##### Fundamental Symmetry Group
@@ -5352,10 +5354,10 @@ This note compares three modeling options for the emission-propagation-interacti
 * The wake surface radius after emission time $\tau$ is
 
   $$
-  r(t,\tau) = c\,(t-\tau) \quad \text{for } t\ge\tau
+  r(t,\tau) = c_f\,(t-\tau) \quad \text{for } t\ge\tau
   $$
 
-  where $c$ is the constant **field speed**.
+  where $c_f$ is the constant **field speed**.
 * Each emitted wake surface carries a **strength** $Q$, interpreted here as wake-surface amplitude. Its physical bookkeeping role depends on the comparison target: polarity, potential impulse, energy, or another declared quantity.
 * Continuous source (preferred): model the emitter as a moving point injection with time-density $q(t)$ (amplitude per unit time) at its instantaneous position, i.e., $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$. Each instant $t_0$ contributes a causal wake surface; we do not count “wake surfaces per second” (pulse trains are merely numerical surrogates).
 * The diagnostic target is the effective scalar potential $\phi(\mathbf{x},t)$ produced at any point $\mathbf{x}$ and time $t$.
@@ -5367,20 +5369,20 @@ We compare three frameworks: (1) a time-domain PDE/source, (2) an integral/Green
 
 #### Time-based PDE (wave equation with a moving point source)
 
-**Physical idea:** keep the source as “something injected per unit time at the emitter location,” put that into a PDE surrogate for causal wake propagation at speed $c$, and let the PDE produce expanding spherical causal wake surfaces automatically. Numerically this is usually the easiest and most robust approach.
+**Physical idea:** keep the source as “something injected per unit time at the emitter location,” put that into a PDE surrogate for causal wake propagation at speed $c_f$, and let the PDE produce expanding spherical causal wake surfaces automatically. Numerically this is usually the easiest and most robust approach.
 
 ##### PDE model
 
 Use the scalar wave equation as a continuum comparison surrogate for finite-speed causal-wake reconstruction:
 
 $$
-\boxed{\;\frac{\partial^2 \phi}{\partial t^2}(\mathbf{x},t) - c^2 \,\nabla^2 \phi(\mathbf{x},t) \;=\; S(\mathbf{x},t)\;}
+\boxed{\;\frac{\partial^2 \phi}{\partial t^2}(\mathbf{x},t) - c_f^2 \,\nabla^2 \phi(\mathbf{x},t) \;=\; S(\mathbf{x},t)\;}
 $$
 
 **Symbols**
 
 * $\phi(\mathbf{x},t)$: scalar potential surrogate at position $\mathbf{x}\in\mathbb{R}^3$ and time $t$.
-* $c$: field propagation speed (units length/time).
+* $c_f$: field propagation speed (units length/time).
 * $\nabla^2$: Laplacian operator in space (sums second spatial derivatives).
 * $S(\mathbf{x},t)$: source term (right-hand side) — this is how the emitter injects wake surfaces into the field.
 
@@ -5396,17 +5398,17 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 
 **How expanding causal wake surfaces appear**
 
-* The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an outgoing spherical causal wake surface whose front moves outward at speed $c$. That is the built-in behavior of the wave-equation surrogate.
-* The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding causal wake surfaces at speed $c$.
+* The source term does not explicitly insert a radius into the right-hand side. Instead, the PDE and the finite speed $c_f$ cause any instantaneous injection at the point $\mathbf{x}_s(\tau)$ to produce an outgoing spherical causal wake surface whose front moves outward at speed $c_f$. That is the built-in behavior of the wave-equation surrogate.
+* The Green’s function ensures that, at $(\mathbf{x},t)$, only the path history emission $q(\tau)$ with $\tau = t - r/c_f$ contributes, producing an outgoing spherical wave with amplitude $q(\tau)/(4\pi r)$ supported on $r=c_f(t-\tau)$. Thus Method 1 with $S(\mathbf{x},t)=q(t)\delta(\mathbf{x}-\mathbf{x}_s(t))$ naturally yields expanding causal wake surfaces at speed $c_f$.
 
 **Why $\|\mathbf{v}\|$ (emitter speed) does not cause blow-ups**
 
-* If the emitter slows or stops, $S(\mathbf{x},t)$ remains nonzero at the same spatial location; the wave equation spreads each injection outward at speed $c$. No $1/\|\mathbf{v}\|$ singularity appears because the formulation does not convert from per-time emission to per-distance emission.
+* If the emitter slows or stops, $S(\mathbf{x},t)$ remains nonzero at the same spatial location; the wave equation spreads each injection outward at speed $c_f$. No $1/\|\mathbf{v}\|$ singularity appears because the formulation does not convert from per-time emission to per-distance emission.
 * Numerically, represent the point delta by a small, smooth kernel when avoiding grid artifacts. For example, instead of $\delta(\mathbf{x}-\mathbf{x}_s)$ use a small Gaussian of width $\sigma$ comparable to grid spacing.
 
 **Numerical recipe (simple)**
 
-* Choose spatial grid $\mathbf{x}_i$ and time step $\Delta t$ satisfying CFL stability (roughly $c\Delta t/\Delta x \le \text{const}$).
+* Choose spatial grid $\mathbf{x}_i$ and time step $\Delta t$ satisfying CFL stability (roughly $c_f\Delta t/\Delta x \le \text{const}$).
 * Use a standard finite-difference time stepping for the wave equation (centered difference in time and space).
 * At each time step $t_n$ add the source contribution $S(\cdot,t_n)$ to the RHS at the grid cells nearest $\mathbf{x}_s(t_n)$. If the emitter stops, it remains injecting at that grid location — the solver propagates outgoing wake surfaces.
 * To avoid a numerical spike, spread the delta over a few cells with a mollifier, representing a thin wake surface of finite thickness.
@@ -5414,7 +5416,7 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 **Summary for Method 1**
 
 * Model is explicit, straightforward, numerically robust.
-* Emission is naturally time-based; wake surfaces expand automatically at speed $c$.
+* Emission is naturally time-based; wake surfaces expand automatically at speed $c_f$.
 * No division by the emitter speed appears; stopping the emitter is handled simply by keeping the source at the same location.
 
 ---
@@ -5428,7 +5430,7 @@ Here $q(t)$ has units “amplitude per unit time.” The finite-speed wave opera
 If the wave equation is
 
 $$
-\frac{\partial^2 \phi}{\partial t^2} - c^2 \nabla^2 \phi = S(\mathbf{x},t)
+\frac{\partial^2 \phi}{\partial t^2} - c_f^2 \nabla^2 \phi = S(\mathbf{x},t)
 $$
 
 then the solution may be written as the space–time convolution with the Green’s function $G$:
@@ -5448,11 +5450,11 @@ For three spatial dimensions (the usual case for causal wake surfaces), the caus
 $$
 G(\mathbf{x},t;\mathbf{y},\tau)
 \;=\;
-\frac{\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{y}\|}{c}\big)}{4\pi\,\|\mathbf{x}-\mathbf{y}\|},
+\frac{\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{y}\|}{c_f}\big)}{4\pi\,\|\mathbf{x}-\mathbf{y}\|},
 \qquad t>\tau
 $$
 
-**Interpretation:** a unit impulse at location $\mathbf{y}$ and time $\tau$ influences $\mathbf{x}$ at time $t$ only when the travel time $\|\mathbf{x}-\mathbf{y}\|/c$ has elapsed; the $1/(4\pi r)$ factor is the usual geometric decay of an outgoing spherical wave in 3D.
+**Interpretation:** a unit impulse at location $\mathbf{y}$ and time $\tau$ influences $\mathbf{x}$ at time $t$ only when the travel time $\|\mathbf{x}-\mathbf{y}\|/c_f$ has elapsed; the $1/(4\pi r)$ factor is the usual geometric decay of an outgoing spherical wave in 3D.
 
 ##### Plugging in a moving point source
 
@@ -5462,7 +5464,7 @@ $$
 \boxed{\;\displaystyle
 \phi(\mathbf{x},t) \;=\; \int_{-\infty}^{t}
 \frac{q(\tau)\;
-\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{x}_s(\tau)\|}{c}\big)}
+\delta\!\big(t-\tau - \tfrac{\|\mathbf{x}-\mathbf{x}_s(\tau)\|}{c_f}\big)}
 {4\pi\,\|\mathbf{x}-\mathbf{x}_s(\tau)\|}\; d\tau\;}
 $$
 
@@ -5473,37 +5475,37 @@ $$
 The $\delta$-function in the integrand enforces the *path-history-time condition*:
 
 $$
-t-\tau=\frac{r(\tau)}{c}, \qquad r(\tau)\equiv\|\mathbf{x}-\mathbf{x}_s(\tau)\|
+t-\tau=\frac{r(\tau)}{c_f}, \qquad r(\tau)\equiv\|\mathbf{x}-\mathbf{x}_s(\tau)\|
 $$
 
 So the contribution to $\phi(\mathbf{x},t)$ comes only from times $\tau$ such that the expanding causal wake surface emitted at $\tau$ has just reached $\mathbf{x}$ at time $t$.
 
-Mathematically, use the identity $\delta(g(\tau))=\sum_i \delta(\tau-\tau_i)/|g'(\tau_i)|$ where $\tau_i$ are simple roots of $g$. With $g(\tau)=t-\tau - r(\tau)/c$ we find (after algebra) the standard path-history solution:
+Mathematically, use the identity $\delta(g(\tau))=\sum_i \delta(\tau-\tau_i)/|g'(\tau_i)|$ where $\tau_i$ are simple roots of $g$. With $g(\tau)=t-\tau - r(\tau)/c_f$ we find (after algebra) the standard path-history solution:
 
 $$
 \boxed{\;
 \phi(\mathbf{x},t) \;=\; \sum_{\tau_i}
-\frac{q(\tau_i)}{4\pi\,r(\tau_i)\,\big|1 + \tfrac{1}{c}\,r'(\tau_i)\big|}
+\frac{q(\tau_i)}{4\pi\,r(\tau_i)\,\big|1 + \tfrac{1}{c_f}\,r'(\tau_i)\big|}
 \;=\;
 \sum_{\tau_i}
-\frac{q(\tau_i)}{4\pi\,r(\tau_i)\,\big|1 - \tfrac{\mathbf{n}(\tau_i)\cdot\mathbf{v}_s(\tau_i)}{c}\big|}\;}
+\frac{q(\tau_i)}{4\pi\,r(\tau_i)\,\big|1 - \tfrac{\mathbf{n}(\tau_i)\cdot\mathbf{v}_s(\tau_i)}{c_f}\big|}\;}
 $$
 
 where:
 
-* the sum runs over **path-history times** $\tau_i$ solving $t-\tau_i=r(\tau_i)/c$ (usually there is a single relevant root).
+* the sum runs over **path-history times** $\tau_i$ solving $t-\tau_i=r(\tau_i)/c_f$ (usually there is a single relevant root).
 * $r(\tau_i)=\|\mathbf{x}-\mathbf{x}_s(\tau_i)\|$.
 * $r'(\tau)=\dfrac{d}{d\tau}\|\mathbf{x}-\mathbf{x}_s(\tau)\|=-\,\mathbf{n}(\tau)\cdot\mathbf{v}_s(\tau)$.
 * $\mathbf{v}_s(\tau)=\dfrac{d\mathbf{x}_s}{d\tau}$ is the source velocity at emission time $\tau$.
 * $\mathbf{n}(\tau) = \dfrac{\mathbf{x}-\mathbf{x}_s(\tau)}{r(\tau)}$ is the unit vector pointing from source (at emission) to the field point.
 
-In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding source-normal denominator is the root-transversality field, while the active received branch strength is the receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rather than an extra source-amplitude modulation.
+In standard wave-equation solutions, a Jacobian factor $|1 - \mathbf{n}\!\cdot\!\mathbf{v}_s/c_f|$ arises from the change of variables used to evaluate the path history time delta. In this project’s canonical per-hit law, emission cadence and per-wavefront amplitude are constant and do not depend on emitter speed. The corresponding source-normal denominator is the root-transversality field, while the active received branch strength is the receiver-normal factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ rather than an extra source-amplitude modulation.
 
 ##### Special simple case — stationary emitter
 
 If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau-\tau_0)$ (single wake surface at $\tau_0$), then the formula reduces to the intuitive result:
 
-* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0=\|\mathbf{x}-\mathbf{x}_0\|/c$, i.e., when the causal wake surface of radius $r=c(t-\tau_0)$ reaches $\mathbf{x}$.
+* The field at $\mathbf{x},t$ is nonzero only when $t-\tau_0=\|\mathbf{x}-\mathbf{x}_0\|/c_f$, i.e., when the causal wake surface of radius $r=c_f(t-\tau_0)$ reaches $\mathbf{x}$.
 * The amplitude is $\displaystyle \phi(\mathbf{x},t) = \frac{Q}{4\pi\,r}$ (no extra Jacobian factor because $v_s=0$).
 
 ##### How wake surfaces show up here
@@ -5513,14 +5515,14 @@ If $\mathbf{x}_s(\tau)=\mathbf{x}_0$ (emitter fixed) and $q(\tau)=Q\,\delta(\tau
 
 ##### Handling an emitter that stops / $\|\mathbf{v}_s\|\to 0$
 
-* If the emitter slows or stops, the Jacobian factor $1 - \mathbf{n}\cdot\mathbf{v}_s/c$ tends to 1 and nothing singular happens. The path-history equation still has a solution and each wake surface arrives at the predicted time.
+* If the emitter slows or stops, the Jacobian factor $1 - \mathbf{n}\cdot\mathbf{v}_s/c_f$ tends to 1 and nothing singular happens. The path-history equation still has a solution and each wake surface arrives at the predicted time.
 * If the emitter sits still and emits many wake surfaces (continuous $q(\tau)$), the field is the time integral (or sum) of all wake surface contributions evaluated at their respective causal times. No $1/\|\mathbf{v}_s\|$ blowup occurs.
 
 ---
 
 #### Event-driven Radial-Transport + Per-Hit EOM (Canonical Method)
 
-Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with receiver-normal branch strength at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c$ otherwise.
+Physical idea: represent emission as a conserved, razor-thin causal wake surface (a measure on the causal isochron), then drive particle motion by summing line-of-action per-hit accelerations with receiver-normal branch strength at causal intersection times. We work in units with field speed $v=1$ unless noted; replace $v$ by $c_f$ otherwise.
 
 Field representation (transport/continuity form)
 - Source impulse at $(t_0,\mathbf{s}_0)$ creates a wake surface supported on $r = v(t-t_0)$ with surface density that conserves a constant per-wake surface amplitude $q$:
@@ -5558,7 +5560,7 @@ Implementation checklist
 
 Relation to Methods 1 and 2
 - This is a transport/continuity model, not the scalar wave equation. The $1/r^2$ factor is a surface-density normalization (Gauss-like on the spherically expanding causal wake surfaces); it is compatible with conserving total emission per wake surface. In Method 2 the $\!1/(4\pi r)$ factor appears for a wave amplitude; taking gradients connects these scalings when mapping to forces.
-- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ from Method 2 is the source-normal branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; no additional source-speed amplitude factor is introduced.
+- The Doppler-type Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c_f$ from Method 2 is the source-normal branch-transversality factor. Geometric constants are absorbed into $\kappa$ by convention, but the canonical per-hit strength uses the receiver-normal branch factor $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$; no additional source-speed amplitude factor is introduced.
 - Numerically, this method targets particle dynamics directly (per-hit ODEs) rather than evolving a full field (Method 1) or evaluating fields at sparse probes (Method 2).
 
 Operator diagnostics (finite-window checks)
@@ -5588,18 +5590,18 @@ Plain language: treat the potential contribution as a conserved amount spread ov
 
 ##### Cross-Method Selection
 - Method 1 (PDE): whole-field grid simulations, visualization, and complex media/boundaries. Deposit a smeared source each step; robust when an emitter slows or stops. Aggregate particle data to coarse-grained densities n(x,t), $\rho$(x,t), and ℰ(x,t) as inputs/targets for PDE runs and validation.
-- Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ during evaluation; root-solve one (or more) $\tau$ per (observer, time) pair.
+- Method 2 (Green’s function / path-history integral): closed forms and sparse probe evaluation. Enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c_f$ during evaluation; root-solve one (or more) $\tau$ per (observer, time) pair.
 - Method 3 (Event-driven canonical): production many-body dynamics. Find causal roots and sum per-hit $W^{\mathrm{rec}}/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 Short worked example — stationary emitter, continuous source (consistent across methods)
 - Setup: emitter at origin $\mathbf{x}_s=0$ with $q(t)\equiv q_0$ (constant).
 - Method 1: solving the wave PDE with $S(\mathbf{x},t)=q_0\,\delta(\mathbf{x})$ reproduces the same spherical profile $\phi(r,t)=q_0/(4\pi r)$ on the outgoing wavefront.
-- Method 2: the path-history formula gives $\displaystyle \phi(r,t)=\frac{q_0}{4\pi r}$ with the path-history time $\tau=t-r/c$.
-- Method 3: the path-history condition selects the single causal time $t_0=t-r/c$; the per-hit EOM yields one radial push along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to force.
+- Method 2: the path-history formula gives $\displaystyle \phi(r,t)=\frac{q_0}{4\pi r}$ with the path-history time $\tau=t-r/c_f$.
+- Method 3: the path-history condition selects the single causal time $t_0=t-r/c_f$; the per-hit EOM yields one radial push along $\hat{\mathbf{r}}$ with $1/r^2$ scaling, consistent with taking spatial gradients of the $1/r$ potential to connect amplitude to force.
 
 Practical implementation notes (concise)
-- PDE: smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to grid scale; enforce CFL ($c\,\Delta t/\Delta x$ within the scheme’s bound).
-- Path-history: robust root-finding for $\tau$ from $t-\tau=r(\tau)/c$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf{v}_s/c$ is small.
+- PDE: smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to grid scale; enforce CFL ($c_f\,\Delta t/\Delta x$ within the scheme’s bound).
+- Path-history: robust root-finding for $\tau$ from $t-\tau=r(\tau)/c_f$; take care near grazing geometries where $1-\mathbf{n}\cdot\mathbf{v}_s/c_f$ is small.
 - Event-driven: bracket causal roots for continuity, optionally use $\delta_\eta$ for smooth pushes, and limit step sizes so only a controlled number of mollified wake surfaces overlap.
 
 ##### Operational Summary
@@ -5613,17 +5615,17 @@ Practical implementation notes (concise)
 
 Axiomatic fidelity (delayed-only, line-of-action, constant source emission)
 - Method 1: Partially aligned. The PDE yields $1/(4\pi r)$ wave amplitudes; mapping to $1/r^2$ per-hit accelerations requires gradients and conventions. Radial-only action is not built-in.
-- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received force magnitude uses $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
+- Method 2: Causality and superposition are exact; amplitudes are $1/(4\pi r)$ with a source-normal Jacobian $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c_f\right|^{-1}$ when evaluating the path-history time delta. The canonical law keeps the corresponding source-normal denominator as root-transversality data, while received force magnitude uses $W^{\mathrm{rec}}=\lvert D_t/D_s\rvert$ and overall geometric normalizations are absorbed into $\kappa$ when comparing accelerations.
 - Method 3: Exact match. Delayed-only, line-of-action per-hit with constant source emission is native, and the receiver-normal branch strength appears explicitly in the received force magnitude. Geometric normalizations are conventionally absorbed into $\kappa$.
 
 Causal root structure, self-interaction, multiplicity
 - Method 1: Self-hits and multiple roots are implicit in the evolving field; they are not directly enumerated as discrete events.
-- Method 2: Causal roots arise via solving $t-\tau=r(\tau)/c$; multiple roots and tangencies are explicit but require robust root-finding.
+- Method 2: Causal roots arise via solving $t-\tau=r(\tau)/c_f$; multiple roots and tangencies are explicit but require robust root-finding.
 - Method 3: Roots are primitive; multi-hit and self-hit regimes are treated natively. Conventions H(0)=0 and exclusion of $r=0$ beyond $\tau=0$ are explicit.
 
 Energetics and work
 - Method 1: Continuum energy bookkeeping is natural ($\phi$, ∂t$\phi$, ∇$\phi$). Mapping to radial per-hit work needs careful averaging and alignment with the EOM.
-- Method 2: Exact potentials in free space; gradients give forces; care is needed near $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c\right|\to0$ geometries.
+- Method 2: Exact potentials in free space; gradients give forces; care is needed near $\left|1-\mathbf{n}\cdot\mathbf{v}_s/c_f\right|\to0$ geometries.
 - Method 3: Energetics are validated via $\eta$-mollified potentials $\Phi_\eta$ and work–energy on resolved windows; impulses are recovered as $\eta$→0 in the weak sense.
 
 Numerical stability and well-posedness
@@ -5637,7 +5639,7 @@ Computational cost and scalability
 - Method 3: Light for particle dynamics. Cost scales with sources × average roots per step; independent of any spatial grid.
 
 Boundaries, media, and heterogeneity
-- Method 1: Natural—modify PDE coefficients (inhomogeneous c, damping, boundaries).
+- Method 1: Natural—modify PDE coefficients (inhomogeneous $c_f$, damping, boundaries).
 - Method 2: Natural only in homogeneous free space; complex media/boundaries require bespoke Green’s functions.
 - Method 3: Natural in free space. Media/boundaries need additional modeling (e.g., corridor-level effective rules); not PDE-native.
 
@@ -5653,14 +5655,14 @@ Summary (one line each)
 
 Operational guidance — when to use which method
 - Method 1 (PDE): use this for whole-field grid simulations, visualization, and complex media or boundaries; step the wave PDE forward with a smeared source. Robust when an emitter slows or stops.
-- Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ in evaluation; solve one root per (observer, time) pair in slow-motion, more if sources move fast.
+- Method 2 (Path history integral): use this for closed forms, analytic insight, or sparse probe evaluation; enforce the path-history condition $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c_f$ and handle the geometric factor $1-\mathbf{n}\cdot\mathbf{v}_s/c_f$ in evaluation; solve one root per (observer, time) pair in slow-motion, more if sources move fast.
 - Method 3 (Event-driven canonical): use this for production many-body dynamics; find causal roots and sum per-hit $W^{\mathrm{rec}}/r^2$ pushes; prefer $\eta$-mollified mode for smooth ODEs when needed.
 
 #### Pros and cons (comparative)
 
 Method 1 — Time-based PDE (wave equation)
 - Pros
-- Physically standard propagation at fixed speed $c$; expanding causal wake surfaces emerge automatically.
+- Physically standard propagation at fixed speed $c_f$; expanding causal wake surfaces emerge automatically.
   - Robust on grids; handles inhomogeneous media, damping, and boundaries.
   - Good for full-field visualization and energy bookkeeping in continuum form.
 - Cons
@@ -5671,7 +5673,7 @@ Method 1 — Time-based PDE (wave equation)
 Method 2 — Green’s function (path-history integral)
 - Pros
   - Exact in homogeneous free space; no grid or time stepping for the field.
-  - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c$ automatically.
+  - Makes causality explicit via path-history times; captures Doppler/Jacobian $1-\mathbf{n}\!\cdot\!\mathbf{v}_s/c_f$ automatically.
   - Efficient for field evaluation at a few observation points; excellent for analysis and cross-checks.
 - Cons
   - Requires root-finding for each (observer, time) pair; multiple roots possible when sources outrun wake surfaces.
@@ -5694,21 +5696,21 @@ Method 3 — Event-driven radial-transport + per-hit EOM (canonical)
 
 - Use Method 3 as the primary engine for particle dynamics and assemblies. It matches the model’s axioms (radial-only action, constant emission cadence) and scales well.
 - Adopt Method 2 as the analytic reference for calibration and validation. Calibrate $\kappa$ so simple benchmarks (stationary/slow sources, symmetric binaries) agree between Methods 2 and 3 at the per-hit level; do not introduce any per-hit emitter-speed weighting.
-- Baseline formula (stationary emitter at origin): with $q(t)\equiv q_0$, $\displaystyle \phi(r,t)=\frac{q_0}{4\pi r}$ since the path history condition selects $\tau=t-r/c$; if $q$ varies, $\displaystyle \phi(r,t)=\frac{q(t-r/c)}{4\pi r}$.
+- Baseline formula (stationary emitter at origin): with $q(t)\equiv q_0$, $\displaystyle \phi(r,t)=\frac{q_0}{4\pi r}$ since the path history condition selects $\tau=t-r/c_f$; if $q$ varies, $\displaystyle \phi(r,t)=\frac{q(t-r/c_f)}{4\pi r}$.
 - Reserve Method 1 for full-field studies (visualization, media, boundary effects) and for end-to-end tests of numerical stability; it is valuable but unnecessary for routine ODE-based assembly simulations.
 - Documentation/actionables: keep the continuity-form field definition and per-hit EOM as the canonical statement; add a brief appendix mapping densities (Method 3) to potentials (Method 2) to clarify when $1/r$ vs $1/r^2$ factors appear and how calibration preserves totals.
 - Numerical cautions:
   - Always smear $\delta(\mathbf{x}-\mathbf{x}_s)$ to a normalized kernel of width $\sigma$ comparable to the grid spacing in PDE runs to avoid grid-scale artifacts.
-  - Enforce CFL: choose $\Delta t$ so that $c\,\Delta t/\Delta x$ meets the stability bound for the chosen stencil to prevent instability.
-  - Path history solving: solve $t-\tau=r(\tau)/c$ carefully; near $\|\mathbf{v}_s\|\approx c$, root finding and the factor $1-\mathbf{n}\cdot\mathbf{v}_s/c$ require extra care.
+  - Enforce CFL: choose $\Delta t$ so that $c_f\,\Delta t/\Delta x$ meets the stability bound for the chosen stencil to prevent instability.
+  - Path history solving: solve $t-\tau=r(\tau)/c_f$ carefully; near $\|\mathbf{v}_s\|\approx c_f$, root finding and the factor $1-\mathbf{n}\cdot\mathbf{v}_s/c_f$ require extra care.
   - Finite temporal thickness: if wake surfaces have duration, replace $\delta(t-\tau)$ with a smooth profile to model finite-width wavefronts.
 
 Plain language: use the event-driven, radial-only method for dynamics, check it against the path-history integral to calibrate parameters, and use the PDE only when the calculation needs whole-field pictures or complex media.
 
 Recap (in three lines)
 - Model sources as $S(\mathbf{x},t)=q(t)\,\delta\!\big(\mathbf{x}-\mathbf{x}_s(t)\big)$ (time-based emission density).
-- Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c$.
-- Method 2: exact path-history formula; contributions occur only when $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf{v}_s/c$ factor in evaluation.
+- Method 1: easiest for grid-based whole-field runs; wake surfaces emerge at speed $c_f$.
+- Method 2: exact path-history formula; contributions occur only when $t-\tau=\|\mathbf{x}-\mathbf{x}_s(\tau)\|/c_f$, with amplitude decaying as $1/(4\pi r)$ and a geometric $1-\mathbf{n}\cdot\mathbf{v}_s/c_f$ factor in evaluation.
 
 ---
 
@@ -7567,6 +7569,16 @@ Even if the complete deterministic dynamics preserve the underlying measure, the
 The arrow-of-time closure problem is therefore sharper than a generic second-law slogan. A mature account must explain why the admissible early record is low-defect or low-entropy in the relevant coarse-graining, and why later macroscopic reversal would require reconstruction of path-history and wake-phase detail no finite observer or apparatus can retain.
 
 The past-hypothesis comparison also depends on the partition. A nearly uniform early matter record can look high entropy under a non-gravitating gas coarse-graining and low entropy under a gravitational coarse-graining, because gravitational clumping, potential-energy release, and horizon labels open far larger compatible records later. In $\mathbb{A}\mathbb{A}\mathbb{A}$ the lesson is not that gravity is entropy. It is that a cosmological entropy statement must name whether its macrostate includes Noether sea state, potential gradients, causal-wake boundary data, and horizon-interface records.
+
+The standard cosmology comparison gives a useful scale check for this distinction. A radiation-only CMB count is often summarized as $S_{\gamma,\mathrm{CMB}}\sim10^{89}k_B$, the present observable universe is often estimated as black-hole dominated with $S_{\mathrm{BH,pop}}\sim10^{104}k_B$, and a rough maximum black-hole-like entropy for the same mass-energy budget is quoted near $S_{\max}\sim10^{123}k_B$. In this chapter those numbers are not treated as substrate entropy of the Euclidean void. They are comparison-scale records: the closure target is to recover the ordering $S_{\gamma,\mathrm{CMB}}\ll S_{\mathrm{BH,pop}}\ll S_{\max}$ only after the radiation, matter, Noether sea, and horizon-interface coarse-grainings are all declared. The corresponding Penrose-style initial-state fraction is a benchmark for the size of the compatible-history fiber,
+$$
+f_{\mathrm{early}}
+\sim
+\exp\!\left[-\frac{S_{\max}-S_{\mathrm{early}}}{k_B}\right]
+\approx
+\exp(-10^{123})
+$$
+not proof that an external random draw selected the universe.
 
 Boltzmann-brain pressure exposes the same rule in extreme form. A retained observer record cannot certify the low-entropy history that is then used to certify the retained observer record. The packet must separate the internal consistency of a memory record from the boundary-condition claim that the record descends from a shared low-defect universe path history. Let $\Gamma_{\mathrm{hist}}$ denote compatible complete histories in which observer records, cosmological traces, and low-defect boundary data descend from one shared path-history record. Let $\Gamma_{\mathrm{BB}}$ denote compatible complete histories in which an observer record is an isolated high-entropy fluctuation with no shared supporting cosmological record. The corresponding fluctuation residual is
 
@@ -11081,6 +11093,8 @@ The conjugate momenta are more than bookkeeping in ordinary mechanics. When a co
 
 This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM is a delayed path-history law, not an ordinary finite-dimensional phase-space law. The instantaneous pair $(\mathbf{x}_i(t),\mathbf{p}_i(t))$ does not contain all active causal-root, boundary, and wake-history data. A Hamiltonian chart is therefore an effective reduction: it is admissible only when a coarse-graining compresses the retained path history into coordinates and momenta while preserving the comparison invariants. The test is not merely that an expression called $H_{\text{eff}}$ can be written, but that the induced return map preserves the relevant measure, symplectic form, or Poisson-bracket structure to the declared tolerance.
 
+Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
 therefore not an arbitrary instantaneous snapshot. It is a replayable or
 phase-locked branch chart: a reduced description in which the retained internal
@@ -11097,6 +11111,28 @@ sub-assembly adds its own phase-action pair. Surrounding influences are
 admissible only when they are represented as fixed branch data, slow parameters,
 or additional coordinates over the comparison window; otherwise the chart is a
 driven open system rather than a closed Hamiltonian phase space.
+
+On a single periodic channel, the action variable is not an arbitrary label once
+the chart is required to be canonical and the angle is required to advance
+uniformly. With the local $2\pi$ convention, the reduced action is the
+closed-cycle integral of the canonical one-form,
+$$
+I_\alpha
+=
+\frac{1}{2\pi}
+\oint_{\gamma_\alpha}\Pi\,dQ
+$$
+and the frequency readout is
+$$
+\omega_\alpha
+=
+\frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
+$$
+on that reduced chart. The value of this comparison is methodological: a
+replayable branch can expose frequency and harmonic content before the full
+path-history solution is written, but only if the same causal-root ledger and
+retained branch record make the closed-cycle integral and canonical residual
+stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
 
@@ -11352,6 +11388,47 @@ The normalized characteristic-tail kernel carries explicit energy, momentum, and
 The regularized action $S_\eta$ is invariant under the fundamental symmetry group of the substrate when the mollifier, history window, and self-branch cutoff preserve those symmetries: the Euclidean group $E(3)$ and absolute time translations $\mathbb{R}_{\text{time}}$; the exact statement is recovered in the $\eta\to0^+$ limit. If the regularization is inserted only at the equation-of-motion level or uses a non-invariant window, the associated energy, momentum, and angular-momentum expressions become diagnostics rather than proved Noether charges.
 
 Because the Lagrangian is nonlocal in time, the corresponding Noether charges are path-history functionals tracking interactions that are still carried by causal wakes between emission and reception.
+
+Here symmetry means an active transformation of the retained physical record, not merely a passive relabeling of coordinates. A passive relabeling is a representation check: the same assembly, causal-wake history, and Noether sea record should not acquire a different physical meaning because the chart changed. An active transformation asks whether the transformed branch record obeys the same action principle. Only the active question produces a Noether conservation statement.
+
+The ordinary boundary-term identity makes the recovery burden precise. For a local action, the first variation splits into an interior Euler-Lagrange term and an endpoint term,
+$$
+\delta S
+=
+\int_{t_a}^{t_b}
+\left(
+\frac{\partial L}{\partial q^a}
+-
+\frac{d}{dt}\frac{\partial L}{\partial \dot q^a}
+\right)\delta q^a\,dt
++
+\left[p_a\delta q^a-H\delta t\right]_{t_a}^{t_b}
+$$
+with
+$$
+p_a=\frac{\partial L}{\partial \dot q^a},
+\qquad
+H=p_a\dot q^a-L.
+$$
+On a stationary path, the interior term vanishes. Spatial translation symmetry then compares endpoint momentum, while absolute-time translation symmetry compares the Hamiltonian energy. This is the standard Noether route: a conserved quantity is the boundary charge induced by a continuous symmetry of the action, not an independently imposed storage rule.
+
+In $\mathbb{A}\mathbb{A}\mathbb{A}$ this identity is a recovery template, not a substrate replacement. A delayed action is promoted only if the same split appears on the retained causal-root chart: the interior term must reduce to the Master EOM residual, and the endpoint term must become the wake-history boundary functional on the same branch record. Spatial translation invariance then protects $\mathbf{P}_{\mathrm{mech}}+\mathbf{P}_{\mathrm{wake}}$ only when the wake momentum row is retained, and absolute-time translation protects $K+E_{\mathrm{wake}}$ only when the endpoint leakage row is declared. Dropping the interior residual, the wake-history endpoint term, or the boundary flux turns the Noether statement back into a diagnostic comparison.
+
+The more general local Noether form also matters. For an infinitesimal active transformation
+$$
+q^a\mapsto q^a+\epsilon X^a(q,t)
+$$
+the action variation is unchanged when the Lagrangian changes at most by a total time derivative,
+$$
+\delta L
+=
+\epsilon\frac{dG}{dt}
+$$
+On stationary paths this gives the conserved charge
+$$
+\frac{d}{dt}\left(p_aX^a-G\right)=0
+$$
+Spatial translations have $G=0$ and recover momentum. Rotations recover angular momentum. Time translations are the case where the total-derivative term supplies the Hamiltonian energy. In the delayed chart, the same pattern is admissible only after $X^a$, $G$, and the boundary functional are replaced by history-aware branch quantities from the retained causal-root record.
 
 **Energy Functional:**
 Invariance under absolute time translation yields a conserved total energy only for the symmetry-preserving action-derived model:
@@ -11630,6 +11707,32 @@ $$
 This residual prevents ordinary viscous loss language from replacing the exact wake-history energy ledger. A nonzero positive quadratic term is allowed as a coarse channel for coherent-to-incoherent transfer, but the transferred content must appear in the retained wake, heat, or medium-response record.
 
 By defining an effective scalar potential $\Phi_{\text{wake}}(\mathbf{x}, t)$ and a vector transport potential $\mathbf{A}_{\text{wake}}(\mathbf{x}, t)$ that track the integrated causal wakes of the continuous medium, the system maps locally onto an effective field theory. These potentials are bookkeeping variables for delayed transport, not additional ontological primitives. The resulting local Lagrangian density $\mathcal{L}_{\text{eff}}$ therefore belongs to a further closure step beyond the exact delayed causal action.
+
+At the standard local-field level, the action principle changes the object being varied rather than the logic of stationarity. A particle path $q^a(t)$ is replaced by effective fields $\varphi^A(\mathbf{x},t)$, and the local action has the schematic form
+$$
+S[\varphi]
+=
+\int dt\,d^3x\,
+\mathcal{L}
+\left(
+\varphi^A,
+\partial_t\varphi^A,
+\nabla\varphi^A,
+\ldots
+\right).
+$$
+Fixed-boundary variation gives the field Euler-Lagrange expression
+$$
+\frac{\partial \mathcal{L}}{\partial \varphi^A}
+-
+\partial_t
+\frac{\partial \mathcal{L}}{\partial(\partial_t\varphi^A)}
+-
+\partial_i
+\frac{\partial \mathcal{L}}{\partial(\partial_i\varphi^A)}
+=0.
+$$
+This is the common effective grammar behind Maxwell, Einstein-Hilbert, and Standard Model action formulations. For $\mathbb{A}\mathbb{A}\mathbb{A}$ it is not a license to treat fields as substrate objects. It is the recovery grammar a local chart must satisfy after the delayed branch record has been coarse-grained into admitted fields and after its Euler-Lagrange residual has been checked against the same causal-wake, boundary, and receiver-normal branch-strength rows.
 
 #### Effective Hamiltonian Domain Gate
 

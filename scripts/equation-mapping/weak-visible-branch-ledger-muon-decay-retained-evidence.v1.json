@@ -1,0 +1,113 @@
+{
+  "schema": "aaa-equation-map-weak-visible-branch-ledger-evidence/v1",
+  "claimLevel": "durable source-backed EQ-16 weak_visible_branch_ledger evidence row from the muon decay channel; ledger boundary only, score-neutral and not a populated EQ-16 packet",
+  "row": "EQ-16",
+  "targetRow": "EQ-16",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "weak_visible_branch_ledger",
+  "sourceSupport": "EQ-16 weak_visible_branch_ledger D_weak_visible_attempt_0001 A_weak_attempt_0001",
+  "evidenceSupports": [
+    "EQ-16",
+    "weak_visible_branch_ledger",
+    "D_weak_visible_attempt_0001",
+    "A_weak_attempt_0001"
+  ],
+  "sourceIdentity": {
+    "domainId": "D_weak_visible_attempt_0001",
+    "branchRecordId": "A_weak_attempt_0001",
+    "weakVisibleBranchLedgerId": "L_A_weak_visible_muon_decay_0001",
+    "gaugeChartId": "effective_weak_chart_attempt_0001",
+    "channelId": "muon_decay_charged_current_0001"
+  },
+  "officialSources": [
+    {
+      "label": "PDG 2026 muon listing",
+      "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-muon.pdf",
+      "rowsUsed": [
+        "muon mean life 2.1969811 +/- 0.0000022 x 10^-6 s",
+        "dominant mu- decay topology e- anti-nu_e nu_mu",
+        "radiative and internal-conversion muon decay comparison rows"
+      ]
+    },
+    {
+      "label": "PDG 2026 muon-decay-parameter review, Sec. 57",
+      "url": "https://pdg.lbl.gov/2026/reviews/rpp2026-rev-muon-decay-params.pdf",
+      "rowsUsed": [
+        "Michel-parameter spectrum and angular form",
+        "Standard Model V-A benchmark rho=xi*delta=3/4, xi=1, eta=0",
+        "left-neutrino spectrum parameter Q_L^nu_e=1 in the Standard Model benchmark"
+      ]
+    },
+    {
+      "label": "Weak flavor event-ledger benchmark packet",
+      "path": "reference/priorities/standard-model-closure/weak-flavor-event-ledger-benchmark-packet.md",
+      "rowsUsed": [
+        "measured charged products kept separate from inferred neutral-lepton rows",
+        "muon lifetime and V-A spectrum benchmark mapping"
+      ]
+    }
+  ],
+  "weakVisibleBranchLedger": {
+    "rowId": "L_A_weak_visible_muon_decay_0001",
+    "domainId": "D_weak_visible_attempt_0001",
+    "branchRecordId": "A_weak_attempt_0001",
+    "eventFamilyId": "muon_decay_charged_current_0001",
+    "standardReaction": "mu- -> e- + anti-nu_e + nu_mu",
+    "chargeConjugateReaction": "mu+ -> e+ + nu_e + anti-nu_mu",
+    "measuredOutgoingRows": [
+      {
+        "rowId": "muon_decay_measured_electron_spectrum_0001",
+        "dataProduct": "electron spectrum, angular distribution when polarization is present, and muon lifetime",
+        "sourceLayer": "measured charged-lepton and clock rows",
+        "status": "measured_or_fit_data_product"
+      },
+      {
+        "rowId": "muon_decay_michel_parameter_row_0001",
+        "dataProduct": "Michel-parameter spectrum readout with Standard Model V-A benchmark point",
+        "sourceLayer": "fit summary over measured charged lepton distributions",
+        "status": "observer_fit_surface"
+      }
+    ],
+    "inferredNeutralRows": [
+      {
+        "rowId": "muon_decay_inferred_anti_nu_e_0001",
+        "dataProduct": "electron antineutrino row inferred from rate, spectrum, angular, energy-momentum, and lepton-flavor bookkeeping",
+        "sourceLayer": "inferred neutral-lepton row",
+        "status": "inferred_not_directly_measured"
+      },
+      {
+        "rowId": "muon_decay_inferred_nu_mu_0001",
+        "dataProduct": "muon neutrino row inferred from rate, spectrum, angular, energy-momentum, and lepton-flavor bookkeeping",
+        "sourceLayer": "inferred neutral-lepton row",
+        "status": "inferred_not_directly_measured"
+      }
+    ],
+    "separationRule": "The measured row is the charged electron spectrum, polarization readout when available, and lifetime. The neutral-lepton rows are admissible only as inferred balance and flavor-bookkeeping rows inside the same weak-visible ledger.",
+    "massMapBoundary": "The muon lifetime is an observer finite-window clock benchmark. It is not primitive architrino mass evidence and does not populate a parent mass-map carrier by itself."
+  },
+  "acceptedBoundary": {
+    "acceptedRows": [
+      "weak_visible_branch_ledger"
+    ],
+    "notAcceptedRows": [
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "reaction_event_ledger",
+      "noether_sea_response"
+    ],
+    "expectedCheckerStatus": "blocked_missing_rows",
+    "expectedNextBlocker": "missing_accepted_weak_projection",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not a priority prose source and is not a raw URL source.",
+    "The embedded official URLs provide provenance for the muon benchmark rows but do not by themselves satisfy the runner's durable source guard.",
+    "The row cannot satisfy EQ-16A because it does not supply a neutral_lepton_retained_branch, common-clock phase operator, PMNS readout, matter correction, or source/detector event ledger."
+  ]
+}

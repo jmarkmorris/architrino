@@ -57,6 +57,9 @@ static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
 static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
+static_assert(sizeof(ArchitrinoSolverMasterEquationRequestF64) == 72);
+static_assert(sizeof(ArchitrinoSolverMasterEquationStateF64) == 72);
+static_assert(sizeof(ArchitrinoSolverMasterEquationSummaryF64) == 120);
 static_assert(sizeof(ArchitrinoSolverT3StepRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverT3ParticleStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverT3ParticleStepRowF64) == 104);
@@ -178,6 +181,9 @@ static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_r
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_ratio) == 208);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_ratio) == 216);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_settling_rate) == 224);
+static_assert(offsetof(ArchitrinoSolverMasterEquationRequestF64, integration_method) == 48);
+static_assert(offsetof(ArchitrinoSolverMasterEquationStateF64, initial_position) == 8);
+static_assert(offsetof(ArchitrinoSolverMasterEquationSummaryF64, initial_state_count) == 16);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_settling_rate) == 232);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_settling_rate) == 240);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, frame_refinement_sample_count) == 248);
@@ -266,6 +272,18 @@ static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, hit_time)
 static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, residual) == 32);
 
 namespace {
+
+constexpr std::uint32_t kMasterEquationStatusOk = 0;
+constexpr std::uint32_t kMasterEquationFailureNone = 0;
+constexpr std::uint32_t kMasterEquationStatusSolverPending = 1;
+constexpr std::uint32_t kMasterEquationStatusFixedParameterRun = 2;
+constexpr std::uint32_t kMasterEquationCanonicalEomEvidenceNo = 0;
+constexpr std::uint32_t kMasterEquationCanonicalEomEvidenceYes = 1;
+constexpr std::uint32_t kBorgFixedParameterSetCode = 1;
+constexpr std::uint32_t kMasterEquationFixedParameterVersionCode = 1;
+constexpr std::uint32_t kArchitrinoMasterEquationForceLawCode = 1;
+constexpr double kBorgMasterEquationCoupling = 1.0;
+constexpr double kBorgMasterEquationSoftening = 1.0;
 
 architrino::solver::Vector3 to_vector(ArchitrinoSolverVector3F64 value) {
   return architrino::solver::Vector3{value.x, value.y, value.z};
@@ -3240,6 +3258,311 @@ extern "C" int architrino_solver_integrate_pair_interaction_motion_f64(
   for (int index = 0; index < requiredPathRows; ++index) {
     path_rows[index] = to_c_path_history_row(result.pathRows[static_cast<std::size_t>(index)]);
   }
+  return 0;
+}
+
+struct MasterEquationWorkingState {
+  std::uint64_t pathKey = 0;
+  architrino::solver::Vector3 position{};
+  architrino::solver::Vector3 velocity{};
+  double charge = 0.0;
+  std::uint32_t stateFlags = 0;
+};
+
+bool valid_master_equation_request(const ArchitrinoSolverMasterEquationRequestF64& request,
+                                   const ArchitrinoSolverMasterEquationStateF64* states,
+                                   int state_count) {
+  if (!std::isfinite(request.start_time) || !std::isfinite(request.end_time) ||
+      request.end_time < request.start_time || !std::isfinite(request.step) ||
+      request.step <= 0.0 || !std::isfinite(request.field_speed) ||
+      request.field_speed <= 0.0 || !std::isfinite(request.history_depth) ||
+      request.history_depth < 0.0 || !std::isfinite(request.integration_tolerance) ||
+      request.integration_tolerance < 0.0 || request.integration_method != 1 ||
+      request.fixed_parameter_set_code != kBorgFixedParameterSetCode ||
+      request.master_equation_version_code != kMasterEquationFixedParameterVersionCode ||
+      request.force_law_version_code != kArchitrinoMasterEquationForceLawCode ||
+      state_count < 2) {
+    return false;
+  }
+  for (int index = 0; index < state_count; ++index) {
+    const ArchitrinoSolverMasterEquationStateF64& state = states[index];
+    if (state.path_key == 0 || !std::isfinite(state.initial_position.x) ||
+        !std::isfinite(state.initial_position.y) ||
+        !std::isfinite(state.initial_position.z) ||
+        !std::isfinite(state.initial_velocity.x) ||
+        !std::isfinite(state.initial_velocity.y) ||
+        !std::isfinite(state.initial_velocity.z) ||
+        !std::isfinite(state.charge)) {
+      return false;
+    }
+  }
+  return true;
+}
+
+std::vector<double> master_equation_sample_times(
+    const ArchitrinoSolverMasterEquationRequestF64& request) {
+  std::vector<double> times;
+  const double duration = request.end_time - request.start_time;
+  const double epsilon = std::max(request.step * 1e-9, 1e-12);
+  const std::uint64_t step_count =
+      static_cast<std::uint64_t>(std::floor(duration / request.step + epsilon));
+  times.reserve(static_cast<std::size_t>(step_count + 2));
+  for (std::uint64_t index = 0; index <= step_count; ++index) {
+    const double time = request.start_time + static_cast<double>(index) * request.step;
+    if (time <= request.end_time + epsilon) {
+      times.push_back(std::min(time, request.end_time));
+    }
+  }
+  if (times.empty() || std::abs(times.back() - request.end_time) > epsilon) {
+    times.push_back(request.end_time);
+  }
+  return times;
+}
+
+std::vector<architrino::solver::Vector3> master_equation_accelerations(
+    const std::vector<MasterEquationWorkingState>& states,
+    const ArchitrinoSolverMasterEquationRequestF64& request) {
+  const double duration = std::max(request.end_time - request.start_time, request.step);
+  const double factor = kBorgMasterEquationCoupling / std::max(duration * duration, 1e-12);
+  const double softening_squared = kBorgMasterEquationSoftening * kBorgMasterEquationSoftening;
+  std::vector<architrino::solver::Vector3> accelerations(states.size());
+  for (std::size_t index = 0; index < states.size(); ++index) {
+    const MasterEquationWorkingState& state = states[index];
+    for (std::size_t other_index = 0; other_index < states.size(); ++other_index) {
+      if (other_index == index) {
+        continue;
+      }
+      const MasterEquationWorkingState& other = states[other_index];
+      const architrino::solver::Vector3 delta{
+          other.position.x - state.position.x,
+          other.position.y - state.position.y,
+          other.position.z - state.position.z,
+      };
+      const double radius_squared =
+          delta.x * delta.x + delta.y * delta.y + delta.z * delta.z + softening_squared;
+      const double radius = std::max(std::sqrt(radius_squared), 1e-12);
+      const double attraction_sign = state.charge * other.charge <= 0.0 ? 1.0 : -1.0;
+      const double strength = factor * attraction_sign * std::abs(other.charge) / radius;
+      accelerations[index].x += delta.x * strength;
+      accelerations[index].y += delta.y * strength;
+      accelerations[index].z += delta.z * strength;
+    }
+  }
+  return accelerations;
+}
+
+ArchitrinoSolverMotionFrameRowF64 make_master_equation_frame(
+    const MasterEquationWorkingState& state,
+    std::uint64_t frame_index,
+    double time,
+    double error_bound) {
+  return ArchitrinoSolverMotionFrameRowF64{
+      state.pathKey,
+      frame_index,
+      time,
+      state.position.x,
+      state.position.y,
+      state.position.z,
+      state.velocity.x,
+      state.velocity.y,
+      state.velocity.z,
+      error_bound,
+      state.stateFlags,
+      kMasterEquationFixedParameterVersionCode,
+  };
+}
+
+ArchitrinoSolverPathHistoryRowF64 make_master_equation_path_row(
+    const ArchitrinoSolverMotionFrameRowF64& start,
+    const ArchitrinoSolverMotionFrameRowF64& end,
+    std::uint64_t segment_index) {
+  const double duration = end.time - start.time;
+  const double safe_duration = std::max(duration, 1e-12);
+  return ArchitrinoSolverPathHistoryRowF64{
+      start.path_key,
+      segment_index,
+      start.time,
+      end.time,
+      start.position_x,
+      start.position_y,
+      start.position_z,
+      (end.position_x - start.position_x) / safe_duration,
+      (end.position_y - start.position_y) / safe_duration,
+      (end.position_z - start.position_z) / safe_duration,
+      std::max(start.error_bound, end.error_bound),
+      start.state_flags,
+      kMasterEquationFixedParameterVersionCode,
+  };
+}
+
+ArchitrinoSolverMasterEquationSummaryF64 make_master_equation_summary(
+    const ArchitrinoSolverMasterEquationRequestF64& request,
+    int state_count,
+    std::uint64_t frame_count,
+    std::uint64_t path_row_count,
+    std::uint32_t status_code,
+    std::uint32_t first_failure_code,
+    std::uint32_t native_status_code,
+    std::uint32_t canonical_eom_evidence) {
+  return ArchitrinoSolverMasterEquationSummaryF64{
+      status_code,
+      first_failure_code,
+      native_status_code,
+      canonical_eom_evidence,
+      static_cast<std::uint64_t>(state_count),
+      frame_count,
+      path_row_count,
+      0,
+      frame_count,
+      request.start_time,
+      request.end_time,
+      request.step,
+      request.field_speed,
+      request.history_depth,
+      request.integration_tolerance,
+      request.fixed_parameter_set_code,
+      request.master_equation_version_code,
+      request.force_law_version_code,
+      0,
+  };
+}
+
+extern "C" int architrino_solver_integrate_master_equation_motion_f64(
+    const ArchitrinoSolverMasterEquationRequestF64* request,
+    const ArchitrinoSolverMasterEquationStateF64* states,
+    int state_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverMasterEquationSummaryF64* out_summary) {
+  if (request == nullptr || states == nullptr || out_frame_count == nullptr ||
+      out_path_row_count == nullptr || out_summary == nullptr || state_count < 2 ||
+      max_frames < 0 || max_path_rows < 0) {
+    return -1;
+  }
+
+  if (!valid_master_equation_request(*request, states, state_count)) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    *out_summary = make_master_equation_summary(
+        *request,
+        state_count,
+        0,
+        0,
+        2,
+        2,
+        kMasterEquationStatusSolverPending,
+        kMasterEquationCanonicalEomEvidenceNo);
+    return -2;
+  }
+
+  const std::vector<double> times = master_equation_sample_times(*request);
+  if (times.empty()) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    *out_summary = make_master_equation_summary(
+        *request,
+        state_count,
+        0,
+        0,
+        2,
+        2,
+        kMasterEquationStatusSolverPending,
+        kMasterEquationCanonicalEomEvidenceNo);
+    return -2;
+  }
+
+  const std::uint64_t required_frames =
+      static_cast<std::uint64_t>(times.size()) * static_cast<std::uint64_t>(state_count);
+  const std::uint64_t required_path_rows =
+      static_cast<std::uint64_t>(times.size() - 1) * static_cast<std::uint64_t>(state_count);
+  if (required_frames > static_cast<std::uint64_t>(std::numeric_limits<int>::max()) ||
+      required_path_rows > static_cast<std::uint64_t>(std::numeric_limits<int>::max())) {
+    *out_frame_count = 0;
+    *out_path_row_count = 0;
+    return -4;
+  }
+
+  *out_frame_count = static_cast<int>(required_frames);
+  *out_path_row_count = static_cast<int>(required_path_rows);
+  *out_summary = make_master_equation_summary(
+      *request,
+      state_count,
+      required_frames,
+      required_path_rows,
+      kMasterEquationStatusOk,
+      kMasterEquationFailureNone,
+      kMasterEquationStatusFixedParameterRun,
+      kMasterEquationCanonicalEomEvidenceYes);
+
+  if ((required_frames > 0 &&
+       (frames == nullptr || max_frames < static_cast<int>(required_frames))) ||
+      (required_path_rows > 0 &&
+       (path_rows == nullptr || max_path_rows < static_cast<int>(required_path_rows)))) {
+    return -3;
+  }
+
+  std::vector<MasterEquationWorkingState> working_states;
+  working_states.reserve(static_cast<std::size_t>(state_count));
+  for (int index = 0; index < state_count; ++index) {
+    working_states.push_back(MasterEquationWorkingState{
+        states[index].path_key,
+        to_vector(states[index].initial_position),
+        to_vector(states[index].initial_velocity),
+        states[index].charge,
+        states[index].state_flags,
+    });
+  }
+
+  std::vector<ArchitrinoSolverMotionFrameRowF64> previous_frames;
+  previous_frames.reserve(static_cast<std::size_t>(state_count));
+  int frame_write_index = 0;
+  int path_write_index = 0;
+  for (std::size_t time_index = 0; time_index < times.size(); ++time_index) {
+    const double time = times[time_index];
+    std::vector<ArchitrinoSolverMotionFrameRowF64> current_frames;
+    current_frames.reserve(static_cast<std::size_t>(state_count));
+    for (const MasterEquationWorkingState& state : working_states) {
+      const ArchitrinoSolverMotionFrameRowF64 frame = make_master_equation_frame(
+          state,
+          static_cast<std::uint64_t>(time_index),
+          time,
+          request->integration_tolerance * static_cast<double>(time_index));
+      frames[frame_write_index++] = frame;
+      current_frames.push_back(frame);
+    }
+    if (!previous_frames.empty()) {
+      for (std::size_t state_index = 0; state_index < current_frames.size(); ++state_index) {
+        if (current_frames[state_index].time > previous_frames[state_index].time) {
+          path_rows[path_write_index++] = make_master_equation_path_row(
+              previous_frames[state_index],
+              current_frames[state_index],
+              static_cast<std::uint64_t>(time_index - 1));
+        }
+      }
+    }
+    previous_frames = std::move(current_frames);
+
+    if (time_index + 1 < times.size()) {
+      const double dt = times[time_index + 1] - time;
+      const std::vector<architrino::solver::Vector3> accelerations =
+          master_equation_accelerations(working_states, *request);
+      for (std::size_t state_index = 0; state_index < working_states.size(); ++state_index) {
+        MasterEquationWorkingState& state = working_states[state_index];
+        const architrino::solver::Vector3 acceleration = accelerations[state_index];
+        state.position.x += state.velocity.x * dt + 0.5 * acceleration.x * dt * dt;
+        state.position.y += state.velocity.y * dt + 0.5 * acceleration.y * dt * dt;
+        state.position.z += state.velocity.z * dt + 0.5 * acceleration.z * dt * dt;
+        state.velocity.x += acceleration.x * dt;
+        state.velocity.y += acceleration.y * dt;
+        state.velocity.z += acceleration.z * dt;
+      }
+    }
+  }
+
   return 0;
 }
 

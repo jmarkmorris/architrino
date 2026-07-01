@@ -803,6 +803,28 @@ c_\star
 $$
 in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
+### Muon Lifetime Benchmark
+
+Cosmic-ray muons supply a compact observer-level benchmark for the moving-clock row. In the standard account, muons formed high in the atmosphere have a rest-frame mean lifetime near $2.2\,\mu\mathrm{s}$ and travel at a large fraction of $c_0$. Without time dilation, a particle moving near $c_0$ for only a few microseconds would cross less than a kilometer before the exponential survival law suppresses the population. Yet high-altitude and sea-level counts, such as the Frisch-Smith Mount Washington comparison, retain far more muons than the undilated lifetime permits.
+
+The benchmark is a clock-law test, not a new substrate-time claim. In the weak homogeneous observer branch, let $N_{\mathrm{high}}$ be the counted muon rate at the high detector, $N_{\mathrm{low}}$ the counted rate at the lower detector, $\Delta h$ the height separation, $\tau_{\mu,0}$ the rest-lifetime comparison value, and $\|\mathbf{w}_\mu\|$ the muon drift speed through the local Noether sea. The observer-level survival target is
+$$
+N_{\mathrm{low}}
+\approx
+N_{\mathrm{high}}
+\exp\!\left[
+-
+\frac{\Delta h/\|\mathbf{w}_\mu\|}
+{\gamma_\mu \tau_{\mu,0}}
+\right],
+\qquad
+\gamma_\mu
+=
+\frac{1}{\sqrt{1-\|\mathbf{w}_\mu\|^2/c_0^2}}.
+$$
+
+The same event can be described in the muon's effective rest chart as length contraction of the atmospheric path. In $\mathbb{A}\mathbb{A}\mathbb{A}$ both descriptions are downstream exports of one moving-assembly response: the external observer sees a slowed internal reaction clock, while the muon-channel description compresses the traversed distance. The native burden is to derive the same $\gamma_\mu$ from the assembly and Noether sea record that also supports clocks, rulers, photon synchronization, and bounded preferred-frame leakage.
+
 ### Gravitational Effect (Medium Dependence)
 
 Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
