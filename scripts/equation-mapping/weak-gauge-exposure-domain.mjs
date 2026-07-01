@@ -10,6 +10,7 @@ const SCORE_DECISION = "no_score_increase";
 const SOURCE_EVIDENCE_FAILURE_REASONS = new Set([
   "accepted_without_evidence_source",
   "raw_url_source_not_mirrored",
+  "source_explicitly_rejects_requested_row",
   "weak_visible_branch_ledger_source_contract_mismatch",
 ]);
 
@@ -131,7 +132,7 @@ function evaluateWeakGaugeExposureDomain(input, inputPath) {
   const tolerances = parseTolerances(input.tolerances ?? {});
   const rows = input.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const sourceEvidence = evaluateSourceEvidence(rowChecks);
@@ -401,7 +402,7 @@ function parseTolerances(raw) {
   );
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, requestedRowKind) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "row_missing" };
   }
@@ -409,7 +410,7 @@ function evaluateAcceptedRow(row) {
   if (!ACCEPTED_STATUSES.has(status)) {
     return { accepted: false, reason: "row_not_accepted" };
   }
-  const sourceCheck = evaluateDurableSource(row.sourcePath ?? row.source, row);
+  const sourceCheck = evaluateDurableSource(row.sourcePath ?? row.source, row, requestedRowKind);
   if (!sourceCheck.accepted) {
     return {
       accepted: false,
@@ -420,7 +421,7 @@ function evaluateAcceptedRow(row) {
   return { accepted: true, reason: "accepted" };
 }
 
-function evaluateDurableSource(sourcePath, row = {}) {
+function evaluateDurableSource(sourcePath, row = {}, requestedRowKind = null) {
   if (typeof sourcePath !== "string" || sourcePath.trim() === "") {
     return { accepted: false, reason: "source_missing" };
   }
@@ -445,10 +446,25 @@ function evaluateDurableSource(sourcePath, row = {}) {
   if (!isEvidenceSourcePath(resolvedPath)) {
     return { accepted: false, reason: "accepted_without_evidence_source" };
   }
-  if (!sourceSupportsWeakVisibleBranchLedger(resolvedPath, row)) {
+  const source = readJsonOrNull(resolvedPath);
+  if (!source) {
+    return { accepted: false, reason: "weak_visible_branch_ledger_source_contract_mismatch" };
+  }
+  if (sourceExplicitlyRejectsRequestedRow(source, requestedRowKind)) {
+    return { accepted: false, reason: "source_explicitly_rejects_requested_row" };
+  }
+  if (!sourceSupportsWeakVisibleBranchLedger(source, row)) {
     return { accepted: false, reason: "weak_visible_branch_ledger_source_contract_mismatch" };
   }
   return { accepted: true, reason: "source_file" };
+}
+
+function readJsonOrNull(filePath) {
+  try {
+    return JSON.parse(fs.readFileSync(filePath, "utf8"));
+  } catch {
+    return null;
+  }
 }
 
 function isEvidenceSourcePath(filePath) {
@@ -474,13 +490,18 @@ function isEvidenceSourcePath(filePath) {
   );
 }
 
-function sourceSupportsWeakVisibleBranchLedger(filePath, row) {
-  let source;
-  try {
-    source = JSON.parse(fs.readFileSync(filePath, "utf8"));
-  } catch {
+function sourceExplicitlyRejectsRequestedRow(source, requestedRowKind) {
+  if (typeof requestedRowKind !== "string" || requestedRowKind.trim() === "") {
     return false;
   }
+  const notAcceptedRows = source?.acceptedBoundary?.notAcceptedRows;
+  if (!Array.isArray(notAcceptedRows)) {
+    return false;
+  }
+  return notAcceptedRows.includes(requestedRowKind);
+}
+
+function sourceSupportsWeakVisibleBranchLedger(source, row) {
   const sourceValues = collectSourceSupportValues(source)
     .filter((value) => typeof value === "string")
     .map((value) => value.toLowerCase());

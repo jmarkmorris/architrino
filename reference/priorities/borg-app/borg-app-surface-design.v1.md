@@ -59,21 +59,23 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `sampleInterval` | `0.2` solver-time units |
 | `nativeKeyframeCount` | `1501` native keyframes |
 | `frameCount` | `24016` native current-state frame rows, sixteen architrino rows per keyframe |
-| `pathRowCount` | `24016` native path-history rows |
+| `pathRowCount` | `24000` native adjacent path-history rows |
 | `playbackFrameSource` | `native-keyframes` |
-| `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
-| `runKind` | `motionSimulation` |
-| `solverMode` | `native-fixed-parameter-default-motion` |
-| `motionLaw` | `fixed_parameter_inertial_motion_v1` |
+| `interpolationAuthority` | `display-only-between-native-keyframes` |
+| `runKind` | `masterEquation` |
+| `solverMode` | `native-fixed-parameter-master-equation` |
+| `motionLaw` | `architrino-master-equation-v1` |
 | `fixedPhysicalParameterSetId` | `borg-fixed-physical-parameters.v1` |
 | `fixedPhysicalParameterAuthority` | `manifest-declared-fixed-parameter-contract` |
 | `visualTuningStatus` | `not-visual-tuned` |
 | `visualBehaviorAuthority` | `native-output-only` |
-| `nativeMasterEquationStatus` | `native-fixture-solver-pending` |
-| `nativeMasterEquationProbe.statusCode` | `native_solver_pending` |
-| `nativeMasterEquationProbe.firstFailureCode` | `native_master_equation_solver_pending` |
+| `nativeMasterEquationStatus` | `native-fixed-parameter-master-equation` |
+| `nativeMasterEquationProbe.statusCode` | `ok` |
+| `nativeMasterEquationProbe.firstFailureCode` | `none` |
 | `nativeMasterEquationProbe.requiredNativeExport` | `architrino_solver_integrate_master_equation_motion_f64` |
-| `nativeMasterEquationProbe.fallbackDecision` | `default-motion-baseline-selected` |
+| `nativeMasterEquationProbe.fallbackDecision` | `native-master-equation-selected` |
+| `canonicalEomEvidence` | `true` for fixed-parameter frame/path evidence |
+| `eomEvidenceStatus` | `native_master_equation_fixed_parameter_evidence` |
 | `initialLinePolicy` | `seeded-random-interior-cube` |
 | `polaritySignConvention` | `positrino-positive-electrino-negative`, with positrino charge `1` and electrino charge `-1` |
 | `velocityPolicy` | `seeded-random-small-3d`, with `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2` |
@@ -104,7 +106,7 @@ The visible default is `simulation-window`, `architrino-position`, and `diagnost
 
 The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
 
-The `path-history` layer renders adjacent native path rows as straight line segments with `smoothingPolicy = none`. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows. The first static page must not spline, tube-smooth, or otherwise curve a native default-motion path before the native master-equation fixture emits curved solver rows.
+The `path-history` layer renders adjacent native path rows as straight line segments with `smoothingPolicy = none`. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows. The first static page must not spline, tube-smooth, or otherwise curve native rows beyond the solver-emitted frame sequence.
 
 The first static page uses the native fixture frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional native solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
 
@@ -159,4 +161,4 @@ The first screen must show the simulation before manifest details. Source manife
 
 ## Next Exact Build Burden
 
-Build `native_master_equation_fixed_parameter_fixture`. The next artifact should extend the native central solver contract and bridge so Borg can request a fixed-physical-parameter many-body master-equation run and receive authoritative acceleration evidence, path histories, and wake/interaction rows. Browser surface-budget measurement remains required later, but this surface design now advertises the missing native master-equation fixture as the next implementation handoff.
+Build `build-native-wake-history-and-boundary-residual-fixture`. The next artifact should extend the native central solver contract and bridge so Borg can add retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and required acceleration-contribution diagnostics on top of the current fixed-parameter native master-equation frame/path fixture. Browser surface-budget measurement remains required later, but this surface design now advertises the missing wake-history and residual fixture as the next implementation handoff.
