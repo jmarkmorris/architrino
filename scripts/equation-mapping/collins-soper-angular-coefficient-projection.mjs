@@ -338,10 +338,11 @@ function materializeSweepCase({ baseInput, sweepInput, sweepCase, index }) {
     sweepInput.sourcePath ??
     baseInput.retainedWeakCorridorBranchDynamics?.sourcePath;
   const measurement = materializeSweepMeasurement(sweepInput, sweepCase);
-  const componentRows =
-    sweepCase.retainedWeakCorridorBranchDynamics?.componentRows ??
-    sweepCase.componentRows ??
-    [];
+  const explicitComponentRows =
+    sweepCase.retainedWeakCorridorBranchDynamics?.componentRows ?? sweepCase.componentRows;
+  const componentRows = Array.isArray(explicitComponentRows)
+    ? explicitComponentRows
+    : componentRowsFromSweepProfile({ sweepInput, sweepCase, measurement });
   const sourceRows =
     sweepCase.retainedWeakCorridorBranchDynamics?.sourceRows ??
     sourceRowsForSweepCase(caseId);
@@ -381,6 +382,62 @@ function materializeSweepCase({ baseInput, sweepInput, sweepCase, index }) {
     },
     measurement,
   };
+}
+
+function componentRowsFromSweepProfile({ sweepInput, sweepCase, measurement }) {
+  const profile = sweepCase.componentSplitProfile ?? sweepInput.componentSplitProfile;
+  if (!profile || typeof profile !== "object" || Array.isArray(profile)) {
+    return [];
+  }
+  return BRANCH_DYNAMICS_COMPONENTS.map(({ component, coefficient, sourceTerm }) => {
+    const profileRow = profile[component] ?? {};
+    const fractions = profileRow.fractions ?? {};
+    const value = finiteNumber(
+      measurement.coefficients?.[coefficient],
+      `measurement.coefficients.${coefficient}`,
+    );
+    const contributions = contributionsFromProfileFractions({
+      component,
+      value,
+      fractions,
+    });
+    return {
+      component,
+      rowId: `bd_${component}_${sweepCase.caseId ?? "case"}_v1`,
+      branchPairId: `bp_${component}_${sweepCase.caseId ?? "case"}_v1`,
+      axis: profileRow.axis ?? sourceTerm,
+      ...contributions,
+    };
+  });
+}
+
+function contributionsFromProfileFractions({ component, value, fractions }) {
+  if (!fractions || typeof fractions !== "object" || Array.isArray(fractions)) {
+    throw new Error(`componentSplitProfile.${component}.fractions must be an object.`);
+  }
+  const unknownKey = Object.keys(fractions).find(
+    (key) => !BRANCH_DYNAMICS_CONTRIBUTION_KEYS.includes(key),
+  );
+  if (unknownKey) {
+    throw new Error(`componentSplitProfile.${component}.fractions.${unknownKey} is not supported.`);
+  }
+  const lastKey = BRANCH_DYNAMICS_CONTRIBUTION_KEYS.at(-1);
+  const contributions = {};
+  let partial = 0;
+  for (const key of BRANCH_DYNAMICS_CONTRIBUTION_KEYS) {
+    if (key === lastKey) {
+      continue;
+    }
+    const fraction = finiteNumber(
+      fractions[key] ?? 0,
+      `componentSplitProfile.${component}.fractions.${key}`,
+    );
+    const contribution = value * fraction;
+    contributions[key] = contribution;
+    partial += contribution;
+  }
+  contributions[lastKey] = value - partial;
+  return contributions;
 }
 
 function materializeSweepMeasurement(sweepInput, sweepCase) {

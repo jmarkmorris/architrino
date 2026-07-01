@@ -25,6 +25,9 @@ int main() {
   static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
   static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
   static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationRequestF64) == 72);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationStateF64) == 72);
+  static_assert(sizeof(ArchitrinoSolverMasterEquationSummaryF64) == 120);
 
   const architrino::solver::LinearPathSegment segment{
       "motion-path",

@@ -57,6 +57,9 @@ static_assert(sizeof(ArchitrinoSolverPairInteractionRequestF64) == 88);
 static_assert(sizeof(ArchitrinoSolverPairInteractionStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverPairInteractionPathConstraintF64) == 48);
 static_assert(sizeof(ArchitrinoSolverPairInteractionSummaryF64) == 352);
+static_assert(sizeof(ArchitrinoSolverMasterEquationRequestF64) == 72);
+static_assert(sizeof(ArchitrinoSolverMasterEquationStateF64) == 72);
+static_assert(sizeof(ArchitrinoSolverMasterEquationSummaryF64) == 120);
 static_assert(sizeof(ArchitrinoSolverT3StepRequestF64) == 120);
 static_assert(sizeof(ArchitrinoSolverT3ParticleStateF64) == 80);
 static_assert(sizeof(ArchitrinoSolverT3ParticleStepRowF64) == 104);
@@ -178,6 +181,9 @@ static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_r
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_ratio) == 208);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_ratio) == 216);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, boundary_relaxation_residual_settling_rate) == 224);
+static_assert(offsetof(ArchitrinoSolverMasterEquationRequestF64, integration_method) == 48);
+static_assert(offsetof(ArchitrinoSolverMasterEquationStateF64, initial_position) == 8);
+static_assert(offsetof(ArchitrinoSolverMasterEquationSummaryF64, initial_state_count) == 16);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, mean_boundary_relaxation_residual_settling_rate) == 232);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, rms_boundary_relaxation_residual_settling_rate) == 240);
 static_assert(offsetof(ArchitrinoSolverPairInteractionSummaryF64, frame_refinement_sample_count) == 248);
@@ -3241,6 +3247,51 @@ extern "C" int architrino_solver_integrate_pair_interaction_motion_f64(
     path_rows[index] = to_c_path_history_row(result.pathRows[static_cast<std::size_t>(index)]);
   }
   return 0;
+}
+
+extern "C" int architrino_solver_integrate_master_equation_motion_f64(
+    const ArchitrinoSolverMasterEquationRequestF64* request,
+    const ArchitrinoSolverMasterEquationStateF64* states,
+    int state_count,
+    ArchitrinoSolverMotionFrameRowF64* frames,
+    int max_frames,
+    int* out_frame_count,
+    ArchitrinoSolverPathHistoryRowF64* path_rows,
+    int max_path_rows,
+    int* out_path_row_count,
+    ArchitrinoSolverMasterEquationSummaryF64* out_summary) {
+  (void)frames;
+  (void)path_rows;
+  if (request == nullptr || states == nullptr || out_frame_count == nullptr ||
+      out_path_row_count == nullptr || out_summary == nullptr || state_count < 2 ||
+      max_frames < 0 || max_path_rows < 0) {
+    return -1;
+  }
+
+  *out_frame_count = 0;
+  *out_path_row_count = 0;
+  *out_summary = ArchitrinoSolverMasterEquationSummaryF64{
+      1,
+      1,
+      1,
+      0,
+      static_cast<std::uint64_t>(state_count),
+      0,
+      0,
+      0,
+      0,
+      request->start_time,
+      request->end_time,
+      request->step,
+      request->field_speed,
+      request->history_depth,
+      request->integration_tolerance,
+      request->fixed_parameter_set_code,
+      request->master_equation_version_code,
+      request->force_law_version_code,
+      0,
+  };
+  return -5;
 }
 
 extern "C" int architrino_solver_step_t3_universe_f64(

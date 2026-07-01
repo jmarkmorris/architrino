@@ -10,12 +10,54 @@
   "supportedDomains": [
     "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
     "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
-    "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1"
+    "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+    "D_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1"
   ],
   "supportedBranchRecords": [
     "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
     "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
-    "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1"
+    "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+    "B_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1"
   ],
   "supportedRows": [
     "source_branch_chart",
@@ -93,53 +135,282 @@
     "frame": "Collins-Soper",
     "channel": "Z/gamma* -> lepton pairs, yZ-integrated eeCC + mumuCC measurement",
     "bin": {
-      "pTZGeV": [22.0, 25.5],
+      "pTZGeV": [
+        22,
+        25.5
+      ],
       "yZ": "integrated"
     },
     "coefficients": {
-      "A0": { "value": 0.159, "stat": 0.003, "syst": 0.007 },
-      "A1": { "value": 0.042, "stat": 0.002, "syst": 0.002 },
-      "A2": { "value": 0.100, "stat": 0.003, "syst": 0.003 },
-      "A3": { "value": 0.006, "stat": 0.001, "syst": 0.001 },
-      "A4": { "value": 0.065, "stat": 0.002, "syst": 0.002 },
-      "A5": { "value": 0.003, "stat": 0.002, "syst": 0.001 },
-      "A6": { "value": 0.000, "stat": 0.002, "syst": 0.001 },
-      "A7": { "value": 0.001, "stat": 0.001, "syst": 0.001 }
+      "A0": {
+        "value": 0.159,
+        "stat": 0.003,
+        "syst": 0.007
+      },
+      "A1": {
+        "value": 0.042,
+        "stat": 0.002,
+        "syst": 0.002
+      },
+      "A2": {
+        "value": 0.1,
+        "stat": 0.003,
+        "syst": 0.003
+      },
+      "A3": {
+        "value": 0.006,
+        "stat": 0.001,
+        "syst": 0.001
+      },
+      "A4": {
+        "value": 0.065,
+        "stat": 0.002,
+        "syst": 0.002
+      },
+      "A5": {
+        "value": 0.003,
+        "stat": 0.002,
+        "syst": 0.001
+      },
+      "A6": {
+        "value": 0,
+        "stat": 0.002,
+        "syst": 0.001
+      },
+      "A7": {
+        "value": 0.001,
+        "stat": 0.001,
+        "syst": 0.001
+      }
     },
     "covarianceModel": "diagonal_first_instance_from_stat_syst_quadrature",
     "traceability": [
       "ATLAS arXiv:1606.00689 Eq. (1) gives the angular basis in cos(theta) and phi.",
       "ATLAS arXiv:1606.00689 Tables 11, 12, and 13 give the yZ-integrated measured A0..A7 rows with statistical and systematic uncertainties.",
-      "The retained branch-dynamics sweep mirrors the low 5.0-8.0 GeV, mid 22.0-25.5 GeV, and high 132-173 GeV pTZ yZ-integrated summary rows from the ATLAS table.",
       "Component-stability probes redistribute retained branch-dynamics contribution rows while preserving the component sum; a negative-control sidecar verifies that nonzero component drift fails closed.",
       "Component-uniqueness certification separates the rank-one angular-coefficient sum from the rank-complete retained contribution row lock; a rank-deficient sidecar verifies that the coefficient sum alone fails closed.",
-      "This evidence object mirrors three representative pTZ bins and retained branch-dynamics component reductions; it is not a substitute for full HEPData covariance or a full causal-root existence theorem."
+      "The retained branch-dynamics sweep mirrors all 23 pTZ bins from the ATLAS yZ-integrated appendix tables Tab:measured_A0_A2, Tab:measured_A1_A4, and Tab:measured_A5_A7.",
+      "This evidence object mirrors the full yZ-integrated pTZ measured-bin table and retained branch-dynamics component reductions; it is not a substitute for full HEPData covariance or a full causal-root existence theorem."
     ]
   },
   "multiBinBenchmark": {
-    "sourceId": "ATLAS_arXiv_1606_00689_table_test_yIntegrated",
+    "sourceId": "ATLAS_arXiv_1606_00689_appendix_yIntegrated_tables_A0_A7",
     "arxiv": "1606.00689",
     "experiment": "ATLAS",
     "collisionSystem": "pp sqrt(s)=8 TeV",
     "frame": "Collins-Soper",
     "channel": "Z/gamma* -> lepton pairs, yZ-integrated eeCC + mumuCC measurement",
+    "tables": [
+      "Tab:measured_A0_A2",
+      "Tab:measured_A1_A4",
+      "Tab:measured_A5_A7"
+    ],
     "bins": [
       {
-        "domainId": "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
-        "branchRecordId": "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
-        "pTZGeV": [5.0, 8.0],
+        "domainId": "D_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+        "pTZGeV": [
+          0,
+          2.5
+        ],
         "yZ": "integrated"
       },
       {
-        "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
-        "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
-        "pTZGeV": [22.0, 25.5],
+        "domainId": "D_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+        "pTZGeV": [
+          2.5,
+          5
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
+        "pTZGeV": [
+          5,
+          8
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+        "pTZGeV": [
+          8,
+          11.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+        "pTZGeV": [
+          11.4,
+          14.9
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+        "pTZGeV": [
+          14.9,
+          18.5
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+        "pTZGeV": [
+          18.5,
+          22
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
+        "pTZGeV": [
+          22,
+          25.5
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+        "pTZGeV": [
+          25.5,
+          29
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+        "pTZGeV": [
+          29,
+          32.6
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+        "pTZGeV": [
+          32.6,
+          36.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+        "pTZGeV": [
+          36.4,
+          40.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+        "pTZGeV": [
+          40.4,
+          44.9
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+        "pTZGeV": [
+          44.9,
+          50.2
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+        "pTZGeV": [
+          50.2,
+          56.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+        "pTZGeV": [
+          56.4,
+          63.9
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+        "pTZGeV": [
+          63.9,
+          73.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+        "pTZGeV": [
+          73.4,
+          85.4
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+        "pTZGeV": [
+          85.4,
+          105
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+        "pTZGeV": [
+          105,
+          132
+        ],
         "yZ": "integrated"
       },
       {
         "domainId": "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
         "branchRecordId": "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
-        "pTZGeV": [132.0, 173.0],
+        "pTZGeV": [
+          132,
+          173
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+        "pTZGeV": [
+          173,
+          253
+        ],
+        "yZ": "integrated"
+      },
+      {
+        "domainId": "D_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1",
+        "branchRecordId": "B_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1",
+        "pTZGeV": [
+          253,
+          600
+        ],
         "yZ": "integrated"
       }
     ]

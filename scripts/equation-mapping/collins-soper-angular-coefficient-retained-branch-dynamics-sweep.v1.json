@@ -1,127 +1,1386 @@
 {
   "schema": "aaa-equation-map-collins-soper-angular-coefficient-projection-sweep/v1",
-  "sweepId": "CS_branch_dynamics_yIntegrated_low_mid_high_pTZ_v1",
-  "sourceId": "ATLAS_arXiv_1606_00689_table_test_yIntegrated",
+  "sweepId": "CS_branch_dynamics_yIntegrated_full_pTZ_table_v1",
+  "sourceId": "ATLAS_arXiv_1606_00689_appendix_yIntegrated_tables_A0_A7",
   "sourcePath": "scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-dynamics-evidence.v1.json",
   "baseInputPath": "collins-soper-angular-coefficient-retained-branch-dynamics-instance.v1.json",
-  "claimLevel": "multi-bin retained weak-corridor branch-dynamics sweep across ATLAS yZ-integrated low, mid, and high pTZ measured angular-coefficient rows; score-neutral and not a causal-root existence theorem",
-  "caseClaimLevel": "populated retained weak-corridor branch-dynamics sweep case for a measured Collins-Soper Z/gamma* angular-coefficient bin; score-neutral and not a causal-root existence theorem",
+  "claimLevel": "full yZ-integrated retained weak-corridor branch-dynamics sweep across the ATLAS appendix pTZ measured angular-coefficient rows; score-neutral and not a causal-root existence theorem",
+  "caseClaimLevel": "populated retained weak-corridor branch-dynamics sweep case for a measured Collins-Soper Z/gamma* angular-coefficient pTZ bin; score-neutral and not a causal-root existence theorem",
   "measurementSource": {
     "experiment": "ATLAS",
     "arxiv": "1606.00689",
-    "table": "Table captioned Summary of the measured coefficients in the ee_CC + mumu_CC yZ-integrated channel",
+    "tables": [
+      "Tab:measured_A0_A2",
+      "Tab:measured_A1_A4",
+      "Tab:measured_A5_A7"
+    ],
+    "sourceFile": "Append_AdditionalResults.tex",
     "channel": "ee_CC + mumu_CC yZ-integrated",
     "uncertaintyConvention": "statistical and systematic uncertainties are listed separately and used here as diagonal stat+syst quadrature"
   },
   "covarianceModel": "diagonal_from_stat_syst_quadrature",
+  "componentSplitProfile": {
+    "T_even_L": {
+      "axis": "longitudinal",
+      "fractions": {
+        "sourceDepletion": 0.46540880503144655,
+        "recoilBalance": 0.32075471698113206,
+        "noetherSeaResponse": 0.18238993710691823,
+        "corridorOrientation": 0.031446540880503145
+      }
+    },
+    "T_even_xz": {
+      "axis": "xz_mixed",
+      "fractions": {
+        "sourceDepletion": 0.3333333333333333,
+        "recoilBalance": 0.40476190476190477,
+        "noetherSeaResponse": 0.19047619047619047,
+        "corridorOrientation": 0.07142857142857142
+      }
+    },
+    "T_even_xx_minus_yy": {
+      "axis": "transverse_quadrupole",
+      "fractions": {
+        "sourceDepletion": 0.4,
+        "recoilBalance": 0.35,
+        "noetherSeaResponse": 0.18,
+        "corridorOrientation": 0.07
+      }
+    },
+    "P_weak_x": {
+      "axis": "x",
+      "fractions": {
+        "sourceDepletion": 0.3333333333333333,
+        "recoilBalance": 0.25,
+        "noetherSeaResponse": 0.16666666666666666,
+        "corridorOrientation": 0.25
+      }
+    },
+    "P_weak_z": {
+      "axis": "z",
+      "fractions": {
+        "sourceDepletion": 0.4,
+        "recoilBalance": 0.3230769230769231,
+        "noetherSeaResponse": 0.18461538461538463,
+        "corridorOrientation": 0.09230769230769231
+      }
+    },
+    "W_odd_xy": {
+      "axis": "xy",
+      "fractions": {
+        "sourceDepletion": 0.3333333333333333,
+        "recoilBalance": 0.26666666666666666,
+        "noetherSeaResponse": 0.23333333333333334,
+        "corridorOrientation": 0
+      }
+    },
+    "W_odd_zy": {
+      "axis": "zy",
+      "fractions": {
+        "sourceDepletion": 0.3333333333333333,
+        "recoilBalance": 0.26666666666666666,
+        "noetherSeaResponse": 0.23333333333333334,
+        "corridorOrientation": 0
+      }
+    },
+    "P_weak_y": {
+      "axis": "y",
+      "fractions": {
+        "sourceDepletion": 0.3,
+        "recoilBalance": 0.3,
+        "noetherSeaResponse": 0.2,
+        "corridorOrientation": 0.2
+      }
+    }
+  },
   "cases": [
+    {
+      "caseId": "0_2p5_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_0_2p5_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_0_2p5_yIntegrated_v1",
+      "pTZGeV": [
+        0,
+        2.5
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 0-2.5 GeV",
+        "coefficients": {
+          "A0": {
+            "value": -0.014,
+            "stat": 0.004,
+            "syst": 0.008
+          },
+          "A1": {
+            "value": 0.014,
+            "stat": 0.005,
+            "syst": 0.003
+          },
+          "A2": {
+            "value": 0.025,
+            "stat": 0.009,
+            "syst": 0.006
+          },
+          "A3": {
+            "value": -0.005,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A4": {
+            "value": 0.075,
+            "stat": 0.003,
+            "syst": 0.003
+          },
+          "A5": {
+            "value": -0.001,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A6": {
+            "value": 0.006,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A7": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "2p5_5_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_2p5_5_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_2p5_5_yIntegrated_v1",
+      "pTZGeV": [
+        2.5,
+        5
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 2.5-5 GeV",
+        "coefficients": {
+          "A0": {
+            "value": -0.003,
+            "stat": 0.002,
+            "syst": 0.008
+          },
+          "A1": {
+            "value": 0.012,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.001,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": -0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.081,
+            "stat": 0.001,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": -0.002,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
     {
       "caseId": "5_8_yIntegrated",
       "domainId": "D_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
       "branchRecordId": "B_Zgamma_CS_branch_dynamics_5_8_yIntegrated_v1",
       "projectionId": "Pi_CS_Zgamma_branch_dynamics_5_8_yIntegrated_v1",
-      "pTZGeV": [5.0, 8.0],
+      "pTZGeV": [
+        5,
+        8
+      ],
       "yZ": "yZ-integrated",
-      "dileptonSystem": {
-        "massGeV": 91.1876,
-        "rapidity": 0.35,
-        "azimuth": 0.25
-      },
       "measurement": {
-        "benchmarkBin": "yZ-integrated, pTZ 5.0-8.0 GeV",
+        "benchmarkBin": "yZ-integrated, pTZ 5-8 GeV",
         "coefficients": {
-          "A0": { "value": 0.015, "stat": 0.002, "syst": 0.007 },
-          "A1": { "value": 0.013, "stat": 0.002, "syst": 0.002 },
-          "A2": { "value": -0.003, "stat": 0.003, "syst": 0.003 },
-          "A3": { "value": 0.001, "stat": 0.001, "syst": 0.001 },
-          "A4": { "value": 0.082, "stat": 0.001, "syst": 0.002 },
-          "A5": { "value": -0.002, "stat": 0.001, "syst": 0.001 },
-          "A6": { "value": -0.001, "stat": 0.001, "syst": 0.001 },
-          "A7": { "value": 0.000, "stat": 0.001, "syst": 0.001 }
+          "A0": {
+            "value": 0.015,
+            "stat": 0.002,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.013,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": -0.003,
+            "stat": 0.003,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.082,
+            "stat": 0.001,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": -0.002,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": -0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          }
         }
-      },
-      "componentRows": [
-        { "component": "T_even_L", "rowId": "bd_T_even_L_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_L_5_8_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.0069811320754717, "recoilBalance": 0.00481132075471698, "noetherSeaResponse": 0.00273584905660377, "corridorOrientation": 0.000471698113207547, "wakeBalance": 0 },
-        { "component": "T_even_xz", "rowId": "bd_T_even_xz_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_xz_5_8_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.00433333333333333, "recoilBalance": 0.00526190476190476, "noetherSeaResponse": 0.00247619047619048, "corridorOrientation": 0.000928571428571428, "wakeBalance": 0 },
-        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_5_8_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_5_8_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": -0.0012, "recoilBalance": -0.00105, "noetherSeaResponse": -0.00054, "corridorOrientation": -0.00021, "wakeBalance": 0 },
-        { "component": "P_weak_x", "rowId": "bd_P_weak_x_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_x_5_8_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.000333333333333333, "recoilBalance": 0.00025, "noetherSeaResponse": 0.000166666666666667, "corridorOrientation": 0.00025, "wakeBalance": 0 },
-        { "component": "P_weak_z", "rowId": "bd_P_weak_z_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_z_5_8_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.0328, "recoilBalance": 0.0264923076923077, "noetherSeaResponse": 0.0151384615384615, "corridorOrientation": 0.00756923076923077, "wakeBalance": 0 },
-        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_5_8_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_5_8_yIntegrated_v1", "axis": "xy", "sourceDepletion": -0.000666666666666667, "recoilBalance": -0.000533333333333333, "noetherSeaResponse": -0.000466666666666667, "corridorOrientation": 0, "wakeBalance": -0.000333333333333333 },
-        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_5_8_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_5_8_yIntegrated_v1", "axis": "zy", "sourceDepletion": -0.000333333333333333, "recoilBalance": -0.000266666666666667, "noetherSeaResponse": -0.000233333333333333, "corridorOrientation": 0, "wakeBalance": -0.000166666666666667 },
-        { "component": "P_weak_y", "rowId": "bd_P_weak_y_5_8_yIntegrated_v1", "branchPairId": "bp_P_weak_y_5_8_yIntegrated_v1", "axis": "y", "sourceDepletion": 0, "recoilBalance": 0, "noetherSeaResponse": 0, "corridorOrientation": 0, "wakeBalance": 0 }
-      ]
+      }
+    },
+    {
+      "caseId": "8_11p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_8_11p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_8_11p4_yIntegrated_v1",
+      "pTZGeV": [
+        8,
+        11.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 8-11.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.038,
+            "stat": 0.002,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.017,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.007,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A3": {
+            "value": 0.003,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.08,
+            "stat": 0.001,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": -0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": -0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "11p4_14p9_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_11p4_14p9_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_11p4_14p9_yIntegrated_v1",
+      "pTZGeV": [
+        11.4,
+        14.9
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 11.4-14.9 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.064,
+            "stat": 0.002,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.023,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A2": {
+            "value": 0.025,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A3": {
+            "value": 0.004,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.076,
+            "stat": 0.001,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": -0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0
+          }
+        }
+      }
+    },
+    {
+      "caseId": "14p9_18p5_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_14p9_18p5_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_14p9_18p5_yIntegrated_v1",
+      "pTZGeV": [
+        14.9,
+        18.5
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 14.9-18.5 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.093,
+            "stat": 0.002,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.029,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A2": {
+            "value": 0.048,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A3": {
+            "value": 0.004,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.072,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "18p5_22_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_18p5_22_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_18p5_22_yIntegrated_v1",
+      "pTZGeV": [
+        18.5,
+        22
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 18.5-22 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.125,
+            "stat": 0.003,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.036,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A2": {
+            "value": 0.073,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A3": {
+            "value": 0.005,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.068,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.002,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
     },
     {
       "caseId": "22_25p5_yIntegrated",
-      "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_v1",
-      "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_v1",
+      "domainId": "D_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_22_25p5_yIntegrated_v1",
       "projectionId": "Pi_CS_Zgamma_branch_dynamics_22_25p5_yIntegrated_v1",
-      "pTZGeV": [22.0, 25.5],
+      "pTZGeV": [
+        22,
+        25.5
+      ],
       "yZ": "yZ-integrated",
-      "dileptonSystem": {
-        "massGeV": 91.1876,
-        "rapidity": 0.35,
-        "azimuth": 0.25
-      },
       "measurement": {
-        "benchmarkBin": "yZ-integrated, pTZ 22.0-25.5 GeV",
+        "benchmarkBin": "yZ-integrated, pTZ 22-25.5 GeV",
         "coefficients": {
-          "A0": { "value": 0.159, "stat": 0.003, "syst": 0.007 },
-          "A1": { "value": 0.042, "stat": 0.002, "syst": 0.002 },
-          "A2": { "value": 0.100, "stat": 0.003, "syst": 0.003 },
-          "A3": { "value": 0.006, "stat": 0.001, "syst": 0.001 },
-          "A4": { "value": 0.065, "stat": 0.002, "syst": 0.002 },
-          "A5": { "value": 0.003, "stat": 0.002, "syst": 0.001 },
-          "A6": { "value": 0.000, "stat": 0.002, "syst": 0.001 },
-          "A7": { "value": 0.001, "stat": 0.001, "syst": 0.001 }
+          "A0": {
+            "value": 0.159,
+            "stat": 0.003,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.042,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.1,
+            "stat": 0.003,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": 0.006,
+            "stat": 0.001,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.065,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          }
         }
-      },
-      "componentRows": [
-        { "component": "T_even_L", "rowId": "bd_T_even_L_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_L_22_25p5_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.074, "recoilBalance": 0.051, "noetherSeaResponse": 0.029, "corridorOrientation": 0.005, "wakeBalance": 0 },
-        { "component": "T_even_xz", "rowId": "bd_T_even_xz_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_xz_22_25p5_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.014, "recoilBalance": 0.017, "noetherSeaResponse": 0.008, "corridorOrientation": 0.003, "wakeBalance": 0 },
-        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_22_25p5_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_22_25p5_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": 0.04, "recoilBalance": 0.035, "noetherSeaResponse": 0.018, "corridorOrientation": 0.007, "wakeBalance": 0 },
-        { "component": "P_weak_x", "rowId": "bd_P_weak_x_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_x_22_25p5_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.002, "recoilBalance": 0.0015, "noetherSeaResponse": 0.001, "corridorOrientation": 0.0015, "wakeBalance": 0 },
-        { "component": "P_weak_z", "rowId": "bd_P_weak_z_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_z_22_25p5_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.026, "recoilBalance": 0.021, "noetherSeaResponse": 0.012, "corridorOrientation": 0.006, "wakeBalance": 0 },
-        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_22_25p5_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_22_25p5_yIntegrated_v1", "axis": "xy", "sourceDepletion": 0.001, "recoilBalance": 0.0008, "noetherSeaResponse": 0.0007, "corridorOrientation": 0, "wakeBalance": 0.0005 },
-        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_22_25p5_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_22_25p5_yIntegrated_v1", "axis": "zy", "sourceDepletion": 0, "recoilBalance": 0, "noetherSeaResponse": 0, "corridorOrientation": 0, "wakeBalance": 0 },
-        { "component": "P_weak_y", "rowId": "bd_P_weak_y_22_25p5_yIntegrated_v1", "branchPairId": "bp_P_weak_y_22_25p5_yIntegrated_v1", "axis": "y", "sourceDepletion": 0.0003, "recoilBalance": 0.0003, "noetherSeaResponse": 0.0002, "corridorOrientation": 0.0002, "wakeBalance": 0 }
-      ]
+      }
+    },
+    {
+      "caseId": "25p5_29_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_25p5_29_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_25p5_29_yIntegrated_v1",
+      "pTZGeV": [
+        25.5,
+        29
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 25.5-29 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.195,
+            "stat": 0.003,
+            "syst": 0.007
+          },
+          "A1": {
+            "value": 0.048,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.127,
+            "stat": 0.003,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": 0.007,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.064,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "29_32p6_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_29_32p6_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_29_32p6_yIntegrated_v1",
+      "pTZGeV": [
+        29,
+        32.6
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 29-32.6 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.234,
+            "stat": 0.003,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.053,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.155,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": 0.008,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.062,
+            "stat": 0.002,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "32p6_36p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_32p6_36p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_32p6_36p4_yIntegrated_v1",
+      "pTZGeV": [
+        32.6,
+        36.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 32.6-36.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.275,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.057,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.184,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A3": {
+            "value": 0.009,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.062,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": -0.001,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.001,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "36p4_40p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_36p4_40p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_36p4_40p4_yIntegrated_v1",
+      "pTZGeV": [
+        36.4,
+        40.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 36.4-40.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.32,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.06,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A2": {
+            "value": 0.216,
+            "stat": 0.005,
+            "syst": 0.004
+          },
+          "A3": {
+            "value": 0.012,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.061,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": -0.001,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "40p4_44p9_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_40p4_44p9_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_40p4_44p9_yIntegrated_v1",
+      "pTZGeV": [
+        40.4,
+        44.9
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 40.4-44.9 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.368,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.062,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A2": {
+            "value": 0.252,
+            "stat": 0.005,
+            "syst": 0.004
+          },
+          "A3": {
+            "value": 0.014,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.06,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.001,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "44p9_50p2_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_44p9_50p2_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_44p9_50p2_yIntegrated_v1",
+      "pTZGeV": [
+        44.9,
+        50.2
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 44.9-50.2 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.42,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.063,
+            "stat": 0.004,
+            "syst": 0.003
+          },
+          "A2": {
+            "value": 0.292,
+            "stat": 0.005,
+            "syst": 0.005
+          },
+          "A3": {
+            "value": 0.018,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.058,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.002,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0.001,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.002,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "50p2_56p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_50p2_56p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_50p2_56p4_yIntegrated_v1",
+      "pTZGeV": [
+        50.2,
+        56.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 50.2-56.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.475,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.064,
+            "stat": 0.005,
+            "syst": 0.003
+          },
+          "A2": {
+            "value": 0.337,
+            "stat": 0.006,
+            "syst": 0.005
+          },
+          "A3": {
+            "value": 0.022,
+            "stat": 0.003,
+            "syst": 0.001
+          },
+          "A4": {
+            "value": 0.055,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.003,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "56p4_63p9_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_56p4_63p9_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_56p4_63p9_yIntegrated_v1",
+      "pTZGeV": [
+        56.4,
+        63.9
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 56.4-63.9 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.534,
+            "stat": 0.004,
+            "syst": 0.006
+          },
+          "A1": {
+            "value": 0.064,
+            "stat": 0.005,
+            "syst": 0.003
+          },
+          "A2": {
+            "value": 0.389,
+            "stat": 0.007,
+            "syst": 0.006
+          },
+          "A3": {
+            "value": 0.027,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A4": {
+            "value": 0.051,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.004,
+            "stat": 0.003,
+            "syst": 0.001
+          },
+          "A6": {
+            "value": 0.006,
+            "stat": 0.002,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.004,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "63p9_73p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_63p9_73p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_63p9_73p4_yIntegrated_v1",
+      "pTZGeV": [
+        63.9,
+        73.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 63.9-73.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.596,
+            "stat": 0.004,
+            "syst": 0.005
+          },
+          "A1": {
+            "value": 0.063,
+            "stat": 0.005,
+            "syst": 0.004
+          },
+          "A2": {
+            "value": 0.447,
+            "stat": 0.009,
+            "syst": 0.008
+          },
+          "A3": {
+            "value": 0.031,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A4": {
+            "value": 0.046,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.005,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A6": {
+            "value": 0.009,
+            "stat": 0.003,
+            "syst": 0.001
+          },
+          "A7": {
+            "value": 0.006,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "73p4_85p4_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_73p4_85p4_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_73p4_85p4_yIntegrated_v1",
+      "pTZGeV": [
+        73.4,
+        85.4
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 73.4-85.4 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.661,
+            "stat": 0.005,
+            "syst": 0.005
+          },
+          "A1": {
+            "value": 0.063,
+            "stat": 0.006,
+            "syst": 0.004
+          },
+          "A2": {
+            "value": 0.51,
+            "stat": 0.012,
+            "syst": 0.01
+          },
+          "A3": {
+            "value": 0.037,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A4": {
+            "value": 0.04,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.007,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A6": {
+            "value": 0.011,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A7": {
+            "value": 0.007,
+            "stat": 0.002,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "85p4_105_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_85p4_105_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_85p4_105_yIntegrated_v1",
+      "pTZGeV": [
+        85.4,
+        105
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 85.4-105 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.727,
+            "stat": 0.005,
+            "syst": 0.005
+          },
+          "A1": {
+            "value": 0.063,
+            "stat": 0.007,
+            "syst": 0.004
+          },
+          "A2": {
+            "value": 0.576,
+            "stat": 0.014,
+            "syst": 0.012
+          },
+          "A3": {
+            "value": 0.043,
+            "stat": 0.005,
+            "syst": 0.002
+          },
+          "A4": {
+            "value": 0.034,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.009,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A6": {
+            "value": 0.012,
+            "stat": 0.003,
+            "syst": 0.002
+          },
+          "A7": {
+            "value": 0.008,
+            "stat": 0.003,
+            "syst": 0.001
+          }
+        }
+      }
+    },
+    {
+      "caseId": "105_132_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_105_132_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_105_132_yIntegrated_v1",
+      "pTZGeV": [
+        105,
+        132
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 105-132 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.793,
+            "stat": 0.006,
+            "syst": 0.005
+          },
+          "A1": {
+            "value": 0.063,
+            "stat": 0.007,
+            "syst": 0.004
+          },
+          "A2": {
+            "value": 0.644,
+            "stat": 0.017,
+            "syst": 0.015
+          },
+          "A3": {
+            "value": 0.049,
+            "stat": 0.006,
+            "syst": 0.003
+          },
+          "A4": {
+            "value": 0.029,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.01,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A6": {
+            "value": 0.01,
+            "stat": 0.004,
+            "syst": 0.002
+          },
+          "A7": {
+            "value": 0.007,
+            "stat": 0.003,
+            "syst": 0.002
+          }
+        }
+      }
     },
     {
       "caseId": "132_173_yIntegrated",
       "domainId": "D_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
       "branchRecordId": "B_Zgamma_CS_branch_dynamics_132_173_yIntegrated_v1",
       "projectionId": "Pi_CS_Zgamma_branch_dynamics_132_173_yIntegrated_v1",
-      "pTZGeV": [132.0, 173.0],
+      "pTZGeV": [
+        132,
+        173
+      ],
       "yZ": "yZ-integrated",
-      "dileptonSystem": {
-        "massGeV": 91.1876,
-        "rapidity": 0.35,
-        "azimuth": 0.25
-      },
       "measurement": {
         "benchmarkBin": "yZ-integrated, pTZ 132-173 GeV",
         "coefficients": {
-          "A0": { "value": 0.856, "stat": 0.008, "syst": 0.008 },
-          "A1": { "value": 0.065, "stat": 0.008, "syst": 0.005 },
-          "A2": { "value": 0.708, "stat": 0.022, "syst": 0.020 },
-          "A3": { "value": 0.054, "stat": 0.007, "syst": 0.003 },
-          "A4": { "value": 0.027, "stat": 0.005, "syst": 0.002 },
-          "A5": { "value": 0.011, "stat": 0.006, "syst": 0.003 },
-          "A6": { "value": 0.003, "stat": 0.005, "syst": 0.002 },
-          "A7": { "value": 0.004, "stat": 0.004, "syst": 0.002 }
+          "A0": {
+            "value": 0.856,
+            "stat": 0.008,
+            "syst": 0.008
+          },
+          "A1": {
+            "value": 0.065,
+            "stat": 0.008,
+            "syst": 0.005
+          },
+          "A2": {
+            "value": 0.708,
+            "stat": 0.022,
+            "syst": 0.02
+          },
+          "A3": {
+            "value": 0.054,
+            "stat": 0.007,
+            "syst": 0.003
+          },
+          "A4": {
+            "value": 0.027,
+            "stat": 0.005,
+            "syst": 0.002
+          },
+          "A5": {
+            "value": 0.011,
+            "stat": 0.006,
+            "syst": 0.003
+          },
+          "A6": {
+            "value": 0.003,
+            "stat": 0.005,
+            "syst": 0.002
+          },
+          "A7": {
+            "value": 0.004,
+            "stat": 0.004,
+            "syst": 0.002
+          }
         }
-      },
-      "componentRows": [
-        { "component": "T_even_L", "rowId": "bd_T_even_L_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_L_132_173_yIntegrated_v1", "axis": "longitudinal", "sourceDepletion": 0.398389937106918, "recoilBalance": 0.274566037735849, "noetherSeaResponse": 0.156125786163522, "corridorOrientation": 0.0269182389937107, "wakeBalance": 0 },
-        { "component": "T_even_xz", "rowId": "bd_T_even_xz_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_xz_132_173_yIntegrated_v1", "axis": "xz_mixed", "sourceDepletion": 0.0216666666666667, "recoilBalance": 0.0263095238095238, "noetherSeaResponse": 0.0123809523809524, "corridorOrientation": 0.00464285714285714, "wakeBalance": 0 },
-        { "component": "T_even_xx_minus_yy", "rowId": "bd_T_even_xx_minus_yy_132_173_yIntegrated_v1", "branchPairId": "bp_T_even_xx_minus_yy_132_173_yIntegrated_v1", "axis": "transverse_quadrupole", "sourceDepletion": 0.2832, "recoilBalance": 0.2478, "noetherSeaResponse": 0.12744, "corridorOrientation": 0.04956, "wakeBalance": 0 },
-        { "component": "P_weak_x", "rowId": "bd_P_weak_x_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_x_132_173_yIntegrated_v1", "axis": "x", "sourceDepletion": 0.018, "recoilBalance": 0.0135, "noetherSeaResponse": 0.009, "corridorOrientation": 0.0135, "wakeBalance": 0 },
-        { "component": "P_weak_z", "rowId": "bd_P_weak_z_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_z_132_173_yIntegrated_v1", "axis": "z", "sourceDepletion": 0.0108, "recoilBalance": 0.00872307692307692, "noetherSeaResponse": 0.00498461538461539, "corridorOrientation": 0.00249230769230769, "wakeBalance": 0 },
-        { "component": "W_odd_xy", "rowId": "bd_W_odd_xy_132_173_yIntegrated_v1", "branchPairId": "bp_W_odd_xy_132_173_yIntegrated_v1", "axis": "xy", "sourceDepletion": 0.00366666666666667, "recoilBalance": 0.00293333333333333, "noetherSeaResponse": 0.00256666666666667, "corridorOrientation": 0, "wakeBalance": 0.00183333333333333 },
-        { "component": "W_odd_zy", "rowId": "bd_W_odd_zy_132_173_yIntegrated_v1", "branchPairId": "bp_W_odd_zy_132_173_yIntegrated_v1", "axis": "zy", "sourceDepletion": 0.001, "recoilBalance": 0.0008, "noetherSeaResponse": 0.0007, "corridorOrientation": 0, "wakeBalance": 0.0005 },
-        { "component": "P_weak_y", "rowId": "bd_P_weak_y_132_173_yIntegrated_v1", "branchPairId": "bp_P_weak_y_132_173_yIntegrated_v1", "axis": "y", "sourceDepletion": 0.0012, "recoilBalance": 0.0012, "noetherSeaResponse": 0.0008, "corridorOrientation": 0.0008, "wakeBalance": 0 }
-      ]
+      }
+    },
+    {
+      "caseId": "173_253_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_173_253_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_173_253_yIntegrated_v1",
+      "pTZGeV": [
+        173,
+        253
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 173-253 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.914,
+            "stat": 0.013,
+            "syst": 0.013
+          },
+          "A1": {
+            "value": 0.069,
+            "stat": 0.012,
+            "syst": 0.007
+          },
+          "A2": {
+            "value": 0.763,
+            "stat": 0.034,
+            "syst": 0.031
+          },
+          "A3": {
+            "value": 0.06,
+            "stat": 0.012,
+            "syst": 0.005
+          },
+          "A4": {
+            "value": 0.03,
+            "stat": 0.008,
+            "syst": 0.004
+          },
+          "A5": {
+            "value": 0.01,
+            "stat": 0.01,
+            "syst": 0.006
+          },
+          "A6": {
+            "value": -0.011,
+            "stat": 0.009,
+            "syst": 0.004
+          },
+          "A7": {
+            "value": -0.002,
+            "stat": 0.008,
+            "syst": 0.003
+          }
+        }
+      }
+    },
+    {
+      "caseId": "253_600_yIntegrated",
+      "domainId": "D_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1",
+      "branchRecordId": "B_Zgamma_CS_branch_dynamics_253_600_yIntegrated_v1",
+      "projectionId": "Pi_CS_Zgamma_branch_dynamics_253_600_yIntegrated_v1",
+      "pTZGeV": [
+        253,
+        600
+      ],
+      "yZ": "yZ-integrated",
+      "measurement": {
+        "benchmarkBin": "yZ-integrated, pTZ 253-600 GeV",
+        "coefficients": {
+          "A0": {
+            "value": 0.965,
+            "stat": 0.024,
+            "syst": 0.024
+          },
+          "A1": {
+            "value": 0.074,
+            "stat": 0.022,
+            "syst": 0.013
+          },
+          "A2": {
+            "value": 0.801,
+            "stat": 0.057,
+            "syst": 0.048
+          },
+          "A3": {
+            "value": 0.065,
+            "stat": 0.022,
+            "syst": 0.009
+          },
+          "A4": {
+            "value": 0.04,
+            "stat": 0.015,
+            "syst": 0.007
+          },
+          "A5": {
+            "value": 0.006,
+            "stat": 0.019,
+            "syst": 0.01
+          },
+          "A6": {
+            "value": -0.036,
+            "stat": 0.016,
+            "syst": 0.007
+          },
+          "A7": {
+            "value": -0.012,
+            "stat": 0.014,
+            "syst": 0.006
+          }
+        }
+      }
     }
   ]
 }
