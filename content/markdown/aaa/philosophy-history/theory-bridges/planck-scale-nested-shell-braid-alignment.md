@@ -63,6 +63,22 @@ $$
 
 Thus the Planck scale is not merely a guessed lattice spacing or primitive grain of length. It is an operational closure point: attempts to force shorter localization either lose resolution through quantum wavelength or replace the target region with a horizon-scale causal boundary. This supports the interpretation of $\ell_P$ as the observed trace of a nested shell braid alignment horizon rather than as proof that spacetime is made of smaller static beads.
 
+The same operational limit can be written as a generalized-uncertainty comparison. A probe with momentum uncertainty $\Delta p$ carries an ordinary localization term and a gravitational back-action term:
+$$
+\Delta x_{\mathrm{eff}}(\Delta p)
+\sim
+\frac{\hbar}{\Delta p}
++
+\frac{G\,\Delta p}{c_f^3}
+$$
+The first term is the standard wavelength or Fourier-localization limit; the second is the displacement or horizon-facing uncertainty induced by concentrating the probe energy into the same region. Minimizing this comparison gives
+$$
+\Delta p_{\mathrm{cross}}^2\sim\frac{\hbar c_f^3}{G},
+\qquad
+\Delta x_{\mathrm{eff,min}}\sim O(\ell_P)
+$$
+In this chapter the formula is not a new uncertainty postulate and not evidence for primitive spatial discreteness. It is a second route to the same recovery target: any branch that claims sub-Planck localization must explain why the same action scale, effective gravitational coupling, and observer-channel speed do not turn the attempted measurement into horizon-interface or alignment behavior.
+
 The dimensional-analysis route reaches the same comparison scale. Up to convention factors, the only length built from $G$, $\hbar$, and $c_f$ is
 $$
 \ell_P \sim \sqrt{\frac{\hbar G}{c_f^3}}.

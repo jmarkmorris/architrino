@@ -50,6 +50,12 @@ $$
 
 Under $\mathbb{A}\mathbb{A}\mathbb{A}$, this should be read as effective bookkeeping for stable mode contributions from Noether braid clusters, not as literal creation or destruction of substrate entities.
 
+The oscillator-to-field route is useful because it separates three levels. First, a continuum field can be decomposed into normal modes $u_k$ with mode coordinates $Q_k(t)$. Second, each mode behaves like a harmonic oscillator with frequency $\omega_k$. Third, quantization replaces continuous mode energy with an occupation ladder,
+$$
+E_{n,k}\approx\hbar\omega_k\left(n+\frac12\right).
+$$
+In standard QFT, one increment of that ladder is called one particle of the corresponding field. In $\mathbb{A}\mathbb{A}\mathbb{A}$, this is retained as observer-level occupation bookkeeping. The native burden is to derive the mode basis, frequency gap, and stable increments from Noether sea and assembly dynamics before particle-count language is promoted beyond an effective chart.
+
 | QFT language | $\mathbb{A}\mathbb{A}\mathbb{A}$ reading |
 | --- | --- |
 | Vacuum state | Reference Noether sea background |
@@ -75,6 +81,20 @@ $$
 \omega^2=c_{\mathrm{eff}}^2k^2+\omega_0^2
 $$
 with $\omega_0$ supplying the Klein-Gordon-like mode gap.
+
+In the standard relativistic comparison, the same dispersion relation becomes the particle dictionary when $c_{\mathrm{eff}}\to c$ and one assigns
+$$
+E=\hbar\omega,
+\qquad
+p=\hbar k,
+\qquad
+m=\frac{\hbar\omega_0}{c^2}
+$$
+so that the mode relation recovers
+$$
+E^2=p^2c^2+m^2c^4
+$$
+For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a recovery equation, not an ontology update. The native task is to derive which Noether sea or assembly normal modes supply a stable gap $\omega_0$, which observer chart exposes the conserved increments as $E$ and $p$, and when one increment of the effective occupation ladder may be named a particle.
 
 ## Curved-Spacetime Equation
 
