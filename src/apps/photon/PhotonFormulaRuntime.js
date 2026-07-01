@@ -3,6 +3,9 @@ import {
   createSharedGeometryRunRequest,
 } from "../../solver/app/SolverAppAdapters.mjs";
 import {
+  computeMovingCircularObserverFieldF64,
+} from "../../solver/app/SolverAppBridge.mjs";
+import {
   runSolverAppBridgeRequest,
 } from "../../solver/app/SolverAppBridgeClientResolver.mjs";
 import {
@@ -24,9 +27,14 @@ import {
   getPhotonRunDuration,
   getPhotonMiddleCycleBounds,
   wrapPhotonTime,
-  getPhotonSeparationReferenceRadius,
   resolvePhotonSpeedSettings,
 } from "./PhotonStateRuntime.js";
+import {
+  PHOTON_SOURCE_HISTORY_BOUNDARY,
+  PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+  createPhotonConstrainedSourceHistoryProvider,
+  getPhotonConstrainedBraidCenterX,
+} from "./PhotonSourceHistoryRuntime.js";
 
 const TWO_PI = Math.PI * 2;
 const EPSILON = 1e-9;
@@ -41,6 +49,10 @@ const DEFAULT_SELF_HIT_FIELD_SPEED_TOLERANCE = 0.015;
 const DEFAULT_SELF_HIT_SOLVE_ITERATIONS = 28;
 const DEFAULT_SELF_HIT_SCAN_SUBDIVISIONS = 96;
 const DEFAULT_SELF_HIT_MAX_ANGLE = TWO_PI;
+const PHOTON_PHASE_LOCK_STABLE_SPREAD_DEG = 5;
+const PHOTON_PHASE_LOCK_CANDIDATE_SPREAD_DEG = 15;
+const PHOTON_PHASE_LOCK_DIFFUSE_SPREAD_DEG = 45;
+const PHOTON_PHASE_LOCK_MIN_ROOT_COUNT = 2;
 const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const DEFAULT_POLARIZATION_FIT_SAMPLES = 144;
@@ -115,9 +127,7 @@ export function resolvePhotonMeasurementParameters(state) {
 }
 
 function getPhotonBraidCenterX(state, braidId) {
-  const fallbackSeparation = getPhotonSeparationReferenceRadius(state);
-  const separation = Math.max(0, Number(state?.pair?.pairSeparation) || fallbackSeparation);
-  return braidId === "left" ? -separation / 2 : separation / 2;
+  return getPhotonConstrainedBraidCenterX(state, braidId);
 }
 
 function subtractVector(a, b) {
@@ -530,59 +540,6 @@ export function getPhotonArchitrinoKinematics(state, braidId, layerId, chargeTyp
   };
 }
 
-function getPhotonAbsoluteObserverPositionAtTime(measurement, timeSeconds) {
-  const photonSpeed = Number(measurement.photonSpeedCf) || 0;
-  return {
-    x: measurement.virtualObserver.x + photonSpeed * timeSeconds,
-    y: measurement.virtualObserver.y,
-    z: measurement.virtualObserver.z,
-  };
-}
-
-function createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement) {
-  const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
-  const radius = Number(layer.radius) || 0;
-  return {
-    centerAtEpoch: {
-      x: getPhotonBraidCenterX(state, sourceRef.braidId),
-      y: 0,
-      z: 0,
-    },
-    centerVelocity: {
-      x: Number(measurement.photonSpeedCf) || 0,
-      y: 0,
-      z: 0,
-    },
-    radiusU: { x: 0, y: radius, z: 0 },
-    radiusV: { x: 0, y: 0, z: radius },
-    angularVelocity:
-      getPhotonDirectionSign(state, sourceRef.braidId) *
-      TWO_PI *
-      (Number(layer.frequencyHz) || 0),
-    phaseAtEpoch: getPhotonLayerAngleRadians(
-      state,
-      sourceRef.braidId,
-      sourceRef.layerId,
-      0,
-      sourceRef.chargeType
-    ),
-    epochTime: 0,
-  };
-}
-
-function createPhotonAbsoluteVirtualObserverHistory(measurement) {
-  return {
-    startTime: 0,
-    endTime: 0,
-    positionAtStart: getPhotonAbsoluteObserverPositionAtTime(measurement, 0),
-    velocity: {
-      x: Number(measurement.photonSpeedCf) || 0,
-      y: 0,
-      z: 0,
-    },
-  };
-}
-
 function buildPhotonSelfHitLayerDescriptors(state, measurement = resolvePhotonMeasurementParameters(state)) {
   const signalSpeed = Math.max(EPSILON, Number(measurement.emissionSpeedCf) || 1);
   const photonSpeedCf = Math.max(0, Number(measurement.photonSpeedCf) || 0);
@@ -606,6 +563,7 @@ function buildPhotonSelfHitLayerDescriptors(state, measurement = resolvePhotonMe
         signalSpeedCf: signalSpeed,
         absoluteSpeedCf,
         fieldSpeedRatio,
+        speedBudgetKind: "orthogonal_local_c_translation_plus_transverse_orbital",
       }];
     })
   );
@@ -660,6 +618,7 @@ export function createPhotonCircularSelfHitSpansRunRequest(state, options = {}) 
     geometryRequest: {
       circularSelfHitSpans: descriptors.map((descriptor) => ({
         fieldSpeedRatio: descriptor.fieldSpeedRatio,
+        speedBudgetKind: descriptor.speedBudgetKind,
         fieldSpeedTolerance,
         tolerance,
         maxIterations,
@@ -846,6 +805,134 @@ function formatPhotonChargeLabel(chargeType) {
   return String(chargeType ?? "?");
 }
 
+function createPhotonSelfHitRegimeCounts() {
+  return {
+    sub_field: 0,
+    field_speed: 0,
+    super_field: 0,
+  };
+}
+
+function incrementPhotonSelfHitRegimeCount(counts, regime) {
+  if (regime === "super_field") {
+    counts.super_field += 1;
+  } else if (regime === "field_speed") {
+    counts.field_speed += 1;
+  } else {
+    counts.sub_field += 1;
+  }
+}
+
+function summarizePhotonSelfHitSpeedRegimes(rows = []) {
+  const rowCounts = createPhotonSelfHitRegimeCounts();
+  const rootCounts = createPhotonSelfHitRegimeCounts();
+  (Array.isArray(rows) ? rows : []).forEach((row) => {
+    const regime = row.regime ?? getPhotonSelfHitRegime(row.fieldSpeedRatio);
+    incrementPhotonSelfHitRegimeCount(rowCounts, regime);
+    if (row.rootFound === true) {
+      incrementPhotonSelfHitRegimeCount(rootCounts, regime);
+    }
+  });
+  return {
+    rowCounts,
+    rootCounts,
+    subFieldRows: rowCounts.sub_field,
+    fieldSpeedRows: rowCounts.field_speed,
+    selfHitCandidateRows: rowCounts.super_field,
+    subFieldRoots: rootCounts.sub_field,
+    fieldSpeedRoots: rootCounts.field_speed,
+    selfHitRoots: rootCounts.super_field,
+  };
+}
+
+function classifyPhotonSelfHitSpeedFamily(regimeCounts) {
+  if ((regimeCounts?.super_field ?? 0) > 0) {
+    return {
+      speedFamily: "self_hit",
+      speedFamilyLabel: "self-hit",
+    };
+  }
+  if ((regimeCounts?.field_speed ?? 0) > 0) {
+    return {
+      speedFamily: "field_speed_boundary",
+      speedFamilyLabel: "field-speed boundary",
+    };
+  }
+  return {
+    speedFamily: "sub_field",
+    speedFamilyLabel: "sub-field",
+  };
+}
+
+function classifyPhotonHelicalSelfHitPhaseFamily({
+  rootCount,
+  sourcePhaseSpreadDeg,
+  receiverPhaseSpreadDeg,
+  minJacobianAbs,
+} = {}) {
+  const roots = Number.isFinite(Number(rootCount)) ? Number(rootCount) : 0;
+  const sourceSpread = Number.isFinite(Number(sourcePhaseSpreadDeg))
+    ? Number(sourcePhaseSpreadDeg)
+    : 0;
+  const receiverSpread = Number.isFinite(Number(receiverPhaseSpreadDeg))
+    ? Number(receiverPhaseSpreadDeg)
+    : 0;
+  const maxPhaseSpreadDeg = Math.max(sourceSpread, receiverSpread);
+  const jacobianAbs = Number.isFinite(Number(minJacobianAbs)) ? Number(minJacobianAbs) : 0;
+  if (roots < PHOTON_PHASE_LOCK_MIN_ROOT_COUNT) {
+    return {
+      phaseLockClassification: "single_hit",
+      phaseLockLabel: "single-hit",
+      phaseLockStable: false,
+      phaseLockCandidate: false,
+      maxPhaseSpreadDeg,
+    };
+  }
+  if (jacobianAbs <= JACOBIAN_FLOOR) {
+    return {
+      phaseLockClassification: "singular_candidate",
+      phaseLockLabel: "singular candidate",
+      phaseLockStable: false,
+      phaseLockCandidate: false,
+      maxPhaseSpreadDeg,
+    };
+  }
+  if (maxPhaseSpreadDeg <= PHOTON_PHASE_LOCK_STABLE_SPREAD_DEG) {
+    return {
+      phaseLockClassification: "stable_phase_lock",
+      phaseLockLabel: "stable phase-lock",
+      phaseLockStable: true,
+      phaseLockCandidate: true,
+      maxPhaseSpreadDeg,
+    };
+  }
+  if (maxPhaseSpreadDeg <= PHOTON_PHASE_LOCK_CANDIDATE_SPREAD_DEG) {
+    return {
+      phaseLockClassification: "candidate_phase_lock",
+      phaseLockLabel: "phase-lock candidate",
+      phaseLockStable: false,
+      phaseLockCandidate: true,
+      maxPhaseSpreadDeg,
+    };
+  }
+  if (maxPhaseSpreadDeg <= PHOTON_PHASE_LOCK_DIFFUSE_SPREAD_DEG) {
+    return {
+      phaseLockClassification: "diffuse_phase_family",
+      phaseLockLabel: "diffuse phase family",
+      phaseLockStable: false,
+      phaseLockCandidate: false,
+      maxPhaseSpreadDeg,
+    };
+  }
+  return {
+    phaseLockClassification: "phase_drift",
+    phaseLockLabel: "phase drift",
+    phaseLockStable: false,
+    phaseLockCandidate: false,
+    maxPhaseSpreadDeg,
+  };
+}
+
 function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
   const groups = new Map();
   (Array.isArray(helicalRows) ? helicalRows : []).forEach((row) => {
@@ -864,6 +951,7 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
       const chargeSign = Number.isFinite(Number(row.chargeSign))
         ? Number(row.chargeSign)
         : Number(phase.sourceChargeSign) || 0;
+      const regime = row.regime ?? getPhotonSelfHitRegime(row.fieldSpeedRatio);
       const key = [role, layerId, chargeType, sourceCycleIndex].join("|");
       if (!groups.has(key)) {
         groups.set(key, {
@@ -875,12 +963,19 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
           sourceCycleIndex,
           sourcePhases: [],
           receiverPhases: [],
+          regimeCounts: createPhotonSelfHitRegimeCounts(),
+          maxFieldSpeedRatio: 0,
           minJacobianAbs: Number.POSITIVE_INFINITY,
           rootCount: 0,
         });
       }
       const group = groups.get(key);
       group.rootCount += 1;
+      incrementPhotonSelfHitRegimeCount(group.regimeCounts, regime);
+      group.maxFieldSpeedRatio = Math.max(
+        group.maxFieldSpeedRatio,
+        Number(row.fieldSpeedRatio) || 0
+      );
       if (Number.isFinite(Number(phase.sourcePhaseDegrees))) {
         group.sourcePhases.push(Number(phase.sourcePhaseDegrees));
       }
@@ -898,6 +993,14 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
     .map((group) => {
       const sourcePhaseSpreadDeg = computePhotonCircularSpreadDegrees(group.sourcePhases);
       const receiverPhaseSpreadDeg = computePhotonCircularSpreadDegrees(group.receiverPhases);
+      const minJacobianAbs = Number.isFinite(group.minJacobianAbs) ? group.minJacobianAbs : 0;
+      const phaseLock = classifyPhotonHelicalSelfHitPhaseFamily({
+        rootCount: group.rootCount,
+        sourcePhaseSpreadDeg,
+        receiverPhaseSpreadDeg,
+        minJacobianAbs,
+      });
+      const speedFamily = classifyPhotonSelfHitSpeedFamily(group.regimeCounts);
       const label = [
         group.role,
         group.layerId,
@@ -915,22 +1018,45 @@ function summarizePhotonHelicalSelfHitPhaseFamilies(helicalRows = []) {
         rootCount: group.rootCount,
         sourcePhaseSpreadDeg,
         receiverPhaseSpreadDeg,
-        minJacobianAbs: Number.isFinite(group.minJacobianAbs) ? group.minJacobianAbs : 0,
+        minJacobianAbs,
+        maxFieldSpeedRatio: group.maxFieldSpeedRatio,
+        regimeCounts: group.regimeCounts,
+        ...speedFamily,
+        ...phaseLock,
       };
     })
     .sort((a, b) =>
+      Number(b.phaseLockStable) - Number(a.phaseLockStable) ||
+      Number(b.phaseLockCandidate) - Number(a.phaseLockCandidate) ||
       b.rootCount - a.rootCount ||
       a.sourcePhaseSpreadDeg - b.sourcePhaseSpreadDeg ||
       a.label.localeCompare(b.label)
     );
   const stableFamilies = families.filter(
-    (family) => family.rootCount >= 2 && family.sourcePhaseSpreadDeg <= 15
+    (family) => family.phaseLockCandidate === true
   );
   const bestFamily = stableFamilies[0] ?? families[0] ?? null;
   return {
     families,
     familyCount: families.length,
     stableFamilyCount: stableFamilies.length,
+    stablePhaseLockFamilyCount: families.filter((family) => family.phaseLockStable === true).length,
+    candidatePhaseLockFamilyCount: families.filter((family) => family.phaseLockCandidate === true).length,
+    singularCandidateFamilyCount: families.filter(
+      (family) => family.phaseLockClassification === "singular_candidate"
+    ).length,
+    diffusePhaseFamilyCount: families.filter(
+      (family) => family.phaseLockClassification === "diffuse_phase_family"
+    ).length,
+    phaseDriftFamilyCount: families.filter(
+      (family) => family.phaseLockClassification === "phase_drift"
+    ).length,
+    singleHitFamilyCount: families.filter(
+      (family) => family.phaseLockClassification === "single_hit"
+    ).length,
+    selfHitFamilyCount: families.filter((family) => family.speedFamily === "self_hit").length,
+    subFieldFamilyCount: families.filter((family) => family.speedFamily === "sub_field").length,
+    fieldSpeedBoundaryFamilyCount: families.filter((family) => family.speedFamily === "field_speed_boundary").length,
     bestFamily,
   };
 }
@@ -939,6 +1065,8 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
   const safeRows = Array.isArray(rows) ? rows : [];
   const safeHelicalRows = Array.isArray(helicalRows) ? helicalRows : [];
   const helicalPhaseFamilies = summarizePhotonHelicalSelfHitPhaseFamilies(safeHelicalRows);
+  const speedRegimeSummary = summarizePhotonSelfHitSpeedRegimes(safeRows);
+  const helicalSpeedRegimeSummary = summarizePhotonSelfHitSpeedRegimes(safeHelicalRows);
   const maxFieldSpeedRatio = safeRows.reduce(
     (maximum, row) => Math.max(maximum, Number(row.fieldSpeedRatio) || 0),
     0
@@ -964,19 +1092,34 @@ function summarizePhotonSelfHitRows(rows = [], status = "ok", message = "", heli
     candidateCount,
     rootFoundCount,
     maxFieldSpeedRatio,
+    speedRegimeSummary,
     helicalRows: safeHelicalRows,
     helicalRowCount: safeHelicalRows.length,
     helicalCandidateCount,
     helicalRootFoundCount,
     helicalMaxFieldSpeedRatio,
+    helicalSpeedRegimeSummary,
     helicalPhaseFamilies: helicalPhaseFamilies.families,
     helicalPhaseFamilyCount: helicalPhaseFamilies.familyCount,
     helicalStablePhaseFamilyCount: helicalPhaseFamilies.stableFamilyCount,
+    helicalStablePhaseLockFamilyCount: helicalPhaseFamilies.stablePhaseLockFamilyCount,
+    helicalCandidatePhaseLockFamilyCount: helicalPhaseFamilies.candidatePhaseLockFamilyCount,
+    helicalSingularCandidateFamilyCount: helicalPhaseFamilies.singularCandidateFamilyCount,
+    helicalDiffusePhaseFamilyCount: helicalPhaseFamilies.diffusePhaseFamilyCount,
+    helicalPhaseDriftFamilyCount: helicalPhaseFamilies.phaseDriftFamilyCount,
+    helicalSingleHitFamilyCount: helicalPhaseFamilies.singleHitFamilyCount,
+    helicalSelfHitFamilyCount: helicalPhaseFamilies.selfHitFamilyCount,
+    helicalSubFieldFamilyCount: helicalPhaseFamilies.subFieldFamilyCount,
+    helicalFieldSpeedBoundaryFamilyCount: helicalPhaseFamilies.fieldSpeedBoundaryFamilyCount,
     helicalBestPhaseFamily: helicalPhaseFamilies.bestFamily,
   };
 }
 
 function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hitTime, options = {}) {
+  const provider = createPhotonConstrainedSourceHistoryProvider(state, sourceRef, measurement, {
+    sourceHistoryKind: "moving-circular-same-source",
+    receiverHistoryKind: "same-constrained-architrino-source",
+  });
   const layer = getPhotonLayer(state, sourceRef.braidId, sourceRef.layerId);
   const frequency = Math.max(EPSILON, Math.abs(Number(layer.frequencyHz) || 0));
   const historyCycles = normalizePositiveSolverNumber(
@@ -994,19 +1137,23 @@ function createPhotonHelicalSelfHitRootRequest(state, sourceRef, measurement, hi
       Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(historyCycles * ROOT_SCAN_STEPS_PER_CYCLE))
     )
   );
-  return createMovingCircularSameSourceRootRequest({
-    source: createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement),
-    hitTime,
-    signalSpeed: measurement.emissionSpeedCf,
-    sourceStartTime: hitTime - maxDelay,
-    sourceEndTime: hitTime,
-    minimumDelay: options.helicalSelfHitMinimumDelay ?? options.selfHitMinimumDelay ?? 1e-6,
-    rootTolerance: options.helicalSelfHitRootTolerance ?? options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
-    maxIterations: options.helicalSelfHitMaxIterations ?? options.maxIterations ?? 96,
-    scanSubdivisions,
-    maxRoots: normalizePositiveSolverInteger(options.helicalSelfHitMaxRoots ?? options.maxRoots, 8),
-    sourceRef,
-  });
+  return {
+    ...createMovingCircularSameSourceRootRequest({
+      source: provider.source,
+      hitTime,
+      signalSpeed: measurement.emissionSpeedCf,
+      sourceStartTime: hitTime - maxDelay,
+      sourceEndTime: hitTime,
+      minimumDelay: options.helicalSelfHitMinimumDelay ?? options.selfHitMinimumDelay ?? 1e-6,
+      rootTolerance: options.helicalSelfHitRootTolerance ?? options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+      maxIterations: options.helicalSelfHitMaxIterations ?? options.maxIterations ?? 96,
+      scanSubdivisions,
+      maxRoots: normalizePositiveSolverInteger(options.helicalSelfHitMaxRoots ?? options.maxRoots, 8),
+      sourceRef,
+    }),
+    sourceHistoryProvider: provider,
+    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+  };
 }
 
 function getPhotonSelfHitRegime(fieldSpeedRatio) {
@@ -1052,6 +1199,11 @@ async function createPhotonHelicalSelfHitRow(state, descriptor, chargeType, item
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
     itemIndex,
     sourceHistoryKind: "moving-circular-same-source",
+    sourceHistoryProviderId:
+      request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    sourceHistoryProviderKind:
+      request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
+    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     ...descriptor,
     chargeType,
     chargeSign: PHOTON_CHARGE_SIGN[chargeType] ?? 0,
@@ -1204,6 +1356,10 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
   options = {}
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const provider = createPhotonConstrainedSourceHistoryProvider(state, sourceRef, measurement, {
+    sourceHistoryKind: "moving-circular-source-linearized",
+    approximationPolicy: "linearized-moving-circular-source-segments",
+  });
   const hitTime = Number(observationTime) || 0;
   const maxDelay = normalizeNonnegativeSolverNumber(
     options.maxDelay,
@@ -1220,8 +1376,8 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
     ? Number(options.sourceEndTime)
     : hitTime;
   return createMovingCircularSourceLinearizedRootRequests({
-    source: createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement),
-    receiver: createPhotonAbsoluteVirtualObserverHistory(measurement),
+    source: provider.source,
+    receiver: provider.receiver,
     hitTime,
     signalSpeed: measurement.emissionSpeedCf,
     sourceStartTime,
@@ -1235,7 +1391,11 @@ export function createPhotonAbsoluteSourceSegmentCausalRootRequests(
     sourceErrorBound: options.sourceErrorBound ?? 0,
     receiverErrorBound: options.receiverErrorBound ?? 0,
     sourceRef,
-  });
+  }).map((request) => ({
+    ...request,
+    sourceHistoryProvider: provider,
+    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+  }));
 }
 
 export function createPhotonAbsoluteMovingCircularCausalRootRequest(
@@ -1245,6 +1405,7 @@ export function createPhotonAbsoluteMovingCircularCausalRootRequest(
   options = {}
 ) {
   const measurement = options.measurement ?? resolvePhotonMeasurementParameters(state);
+  const provider = createPhotonConstrainedSourceHistoryProvider(state, sourceRef, measurement);
   const hitTime = Number(observationTime) || 0;
   const maxDelay = normalizeNonnegativeSolverNumber(
     options.maxDelay,
@@ -1265,19 +1426,23 @@ export function createPhotonAbsoluteMovingCircularCausalRootRequest(
       Math.max(ROOT_SCAN_MIN_STEPS, Math.ceil(maxDelay * frequency * ROOT_SCAN_STEPS_PER_CYCLE))
     )
   );
-  return createMovingCircularSourceRootRequest({
-    source: createPhotonAbsoluteMovingCircularSourceHistory(state, sourceRef, measurement),
-    receiver: createPhotonAbsoluteVirtualObserverHistory(measurement),
-    hitTime,
-    signalSpeed: measurement.emissionSpeedCf,
-    sourceStartTime,
-    sourceEndTime,
-    rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
-    maxIterations: options.maxIterations ?? 96,
-    scanSubdivisions,
-    maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
-    sourceRef,
-  });
+  return {
+    ...createMovingCircularSourceRootRequest({
+      source: provider.source,
+      receiver: provider.receiver,
+      hitTime,
+      signalSpeed: measurement.emissionSpeedCf,
+      sourceStartTime,
+      sourceEndTime,
+      rootTolerance: options.rootTolerance ?? DEFAULT_PHOTON_ROOT_TOLERANCE,
+      maxIterations: options.maxIterations ?? 96,
+      scanSubdivisions,
+      maxRoots: normalizePositiveSolverInteger(options.maxRoots, Math.max(16, scanSubdivisions + 1)),
+      sourceRef,
+    }),
+    sourceHistoryProvider: provider,
+    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+  };
 }
 
 function createPhotonPhaseAtHitRecord(state, sourceRef, emissionTime, sourcePhase = null) {
@@ -1400,6 +1565,11 @@ function mapPhotonMovingCircularRootToDelayedRoot(state, sourceRef, measurement,
     },
     receiverPoint,
     sourceHistoryKind: root.sourceHistoryKind ?? request.sourceHistoryKind ?? "moving-circular-source",
+    sourceHistoryProviderId:
+      request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    sourceHistoryProviderKind:
+      request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
+    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     phaseAtHit: createPhotonPhaseAtHitRecord(
       state,
       sourceRef,
@@ -1462,6 +1632,11 @@ function mapPhotonLinearSegmentRootToDelayedRoot(state, sourceRef, measurement, 
     receiverPoint,
     segmentIndex: request.segmentIndex,
     sourceHistoryKind: request.sourceHistory?.kind ?? "linear-source-segment",
+    sourceHistoryProviderId:
+      request.sourceHistoryProvider?.providerId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    sourceHistoryProviderKind:
+      request.sourceHistoryProvider?.providerKind ?? "constrained_architrino_motion",
+    solverBoundary: request.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     phaseAtHit: createPhotonPhaseAtHitRecord(
       state,
       sourceRef,
@@ -1612,6 +1787,8 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
     signalSpeed: measurement.emissionSpeedCf,
     jacobianFloor: JACOBIAN_FLOOR,
     unstableGapThreshold: 0.05,
+    sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
     branches: roots.map((root) => ({
       chargeSign: root.kinematics?.chargeSign ?? 0,
       direction: root.direction,
@@ -1628,6 +1805,9 @@ function createPhotonObserverFieldBranchSumRequest(roots = [], measurement = {})
       receiverNormalFactor: root.receiverNormalFactor,
       unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
       receiverNormalStatusCode: root.receiverNormalStatusCode,
+      sourceHistoryKind: root.sourceHistoryKind,
+      sourceHistoryProviderId: root.sourceHistoryProviderId ?? PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+      solverBoundary: root.solverBoundary ?? PHOTON_SOURCE_HISTORY_BOUNDARY,
     })),
   };
 }
@@ -1642,47 +1822,7 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
     ? await options.computeMovingCircularObserverField(request)
     : hasPhotonMovingCircularSolverBridgeOption(options, "computeMovingCircularObserverFieldF64")
       ? await runPhotonMovingCircularObserverFieldSolverBridgeClient(options, request)
-      : null;
-  if (!response) {
-    const contributions = roots.map((root) => computePhotonDelayedContribution(root, measurement));
-    return {
-      sourceMode: "solver_bridge_absolute_history_receiver_normal_root_branch_sum",
-      contributions,
-      electric: contributions.reduce(
-        (sum, contribution) => addVector(sum, contribution.electric),
-        { x: 0, y: 0, z: 0 }
-      ),
-      comparisonB: contributions.reduce(
-        (sum, contribution) => addVector(sum, contribution.comparisonB),
-        { x: 0, y: 0, z: 0 }
-      ),
-      averageDelay: contributions.length > 0
-        ? contributions.reduce((sum, contribution) => sum + contribution.delay, 0) / contributions.length
-        : 0,
-      delaySolveGapMax: contributions.reduce(
-        (maximum, contribution) => Math.max(maximum, contribution.delaySolveGap),
-        0
-      ),
-      maxSourceSpeedRatio: contributions.reduce(
-        (maximum, contribution) => Math.max(maximum, contribution.sourceSpeedRatio),
-        0
-      ),
-      jacobianAbsMin: contributions.reduce(
-        (minimum, contribution) => Math.min(minimum, contribution.jacobianAbs),
-        Number.POSITIVE_INFINITY
-      ),
-      unstableSourceCount: contributions.filter(
-        (contribution) =>
-          contribution.receiverNormalEvidenceStatus !== "ok" ||
-          contribution.delaySolveGap > 0.05 ||
-          contribution.jacobianAbs <= JACOBIAN_FLOOR
-      ).length,
-      nearestSourceDistance: contributions.reduce(
-        (minimum, contribution) => Math.min(minimum, contribution.distance),
-        Number.POSITIVE_INFINITY
-      ),
-    };
-  }
+      : computeMovingCircularObserverFieldF64(request);
   const solverContributions = Array.isArray(response.contributions) ? response.contributions : [];
   const contributions = roots.map((root, index) => ({
     ...root,
@@ -1690,6 +1830,9 @@ async function computePhotonAbsoluteObserverFieldContributionsWithSolverBridge(
   }));
   return {
     sourceMode: "solver_bridge_absolute_history_receiver_normal_root_branch_sum",
+    sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+    fieldReconstructionOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.fieldReconstructionOwner,
+    receiverNormalOwner: PHOTON_SOURCE_HISTORY_BOUNDARY.receiverNormalOwner,
     solverFieldSchema: response.schema ?? "",
     contributions,
     electric: contributions.reduce(
@@ -2056,6 +2199,9 @@ export async function computePhotonDelayedEmissionFieldWithSolverBridge(
     sourceMode: fieldSum.sourceMode,
     solverFieldSchema: fieldSum.solverFieldSchema ?? "",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    sourceHistoryProviderId: fieldSum.sourceHistoryProviderId ?? "",
+    fieldReconstructionOwner: fieldSum.fieldReconstructionOwner ?? "",
+    receiverNormalOwner: fieldSum.receiverNormalOwner ?? "",
     measurement,
     contributions,
     sourceCount: sourceRefs.length,
@@ -2103,7 +2249,11 @@ export async function computePhotonObserverFieldWithSolverBridge(state, timeSeco
     referenceFrequency,
     phase,
     sourceMode: delayedField.sourceMode,
+    solverFieldSchema: delayedField.solverFieldSchema ?? "",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    sourceHistoryProviderId: delayedField.sourceHistoryProviderId ?? "",
+    fieldReconstructionOwner: delayedField.fieldReconstructionOwner ?? "",
+    receiverNormalOwner: delayedField.receiverNormalOwner ?? "",
     measurement: delayedField.measurement,
     sourceCount: delayedField.sourceCount,
     rootCount: delayedField.rootCount,
@@ -2390,6 +2540,10 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
   return {
     ...fit,
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    solverFieldSchema: currentField.solverFieldSchema ?? "",
+    sourceHistoryProviderId: currentField.sourceHistoryProviderId ?? "",
+    fieldReconstructionOwner: currentField.fieldReconstructionOwner ?? "",
+    receiverNormalOwner: currentField.receiverNormalOwner ?? "",
     referenceFrequency,
     cycleDuration,
     fitCycleStart,
@@ -2508,7 +2662,11 @@ export async function buildPhotonPlotSamplesWithSolverBridge(
     runDuration,
     currentTime,
     sourceMode: fields[0]?.field?.sourceMode ?? "",
+    solverFieldSchema: fields[0]?.field?.solverFieldSchema ?? "",
     solverEngineId: PHOTON_SOLVER_BRIDGE_ENGINE_ID,
+    sourceHistoryProviderId: fields[0]?.field?.sourceHistoryProviderId ?? "",
+    fieldReconstructionOwner: fields[0]?.field?.fieldReconstructionOwner ?? "",
+    receiverNormalOwner: fields[0]?.field?.receiverNormalOwner ?? "",
     middleCycle: getPhotonMiddleCycleBounds(state),
     amplitudeScale,
     samples,

@@ -18,7 +18,7 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
   const config = createBorgDynamicNativeRunConfig(manifest, options);
   let resolvedClient = null;
   let nextInitialStates = createBorgInitialStatesFromFrameRows(
-    manifest.currentStateFrames,
+    options.initialFrameRows ?? manifest.currentStateFrames,
     manifest,
     "first",
   );
@@ -311,6 +311,8 @@ export function normalizeBorgDynamicNativeChunk(runHandle = {}, { config, chunkI
     endTime: request?.config?.masterEquationRequest?.endTime ?? frames.at(-1)?.time ?? null,
     sampleInterval: config.sampleInterval,
     nativeKeyframeCount: new Set(frames.map((frame) => frame.frameIndex)).size,
+    bufferCount: Array.isArray(response.buffers) ? response.buffers.length : 0,
+    bufferByteLength: estimateResponseBufferByteLength(response.buffers),
     frames: Object.freeze(frames),
     pathHistory: response.pathHistory ?? null,
     diagnostics: Object.freeze([...(response.diagnostics ?? [])]),
@@ -400,6 +402,8 @@ function createCompleteChunk(config, chunkIndex, time) {
     endTime: time,
     sampleInterval: config.sampleInterval,
     nativeKeyframeCount: 0,
+    bufferCount: 0,
+    bufferByteLength: 0,
     frames: Object.freeze([]),
     pathHistory: null,
     diagnostics: Object.freeze([]),
@@ -443,6 +447,41 @@ function cloneVector(vector = {}) {
     y: finiteNumber(vector.y, 0),
     z: finiteNumber(vector.z, 0),
   };
+}
+
+function estimateResponseBufferByteLength(buffers) {
+  if (!Array.isArray(buffers)) {
+    return 0;
+  }
+  return buffers.reduce((sum, buffer) => sum + estimateBufferByteLength(buffer), 0);
+}
+
+function estimateBufferByteLength(buffer) {
+  const directByteLength = finitePositiveByteLength(buffer?.byteLength);
+  if (directByteLength != null) {
+    return directByteLength;
+  }
+  const payloadByteLength =
+    finitePositiveByteLength(buffer?.buffer?.byteLength) ??
+    finitePositiveByteLength(buffer?.data?.byteLength) ??
+    finitePositiveByteLength(buffer?.arrayBuffer?.byteLength);
+  if (payloadByteLength != null) {
+    return payloadByteLength;
+  }
+  const rowCount = finitePositiveByteLength(buffer?.rowCount);
+  const rowSizeBytes =
+    finitePositiveByteLength(buffer?.rowSizeBytes) ??
+    finitePositiveByteLength(buffer?.rowByteLength) ??
+    finitePositiveByteLength(buffer?.rowBytes);
+  if (rowCount != null && rowSizeBytes != null) {
+    return rowCount * rowSizeBytes;
+  }
+  return 0;
+}
+
+function finitePositiveByteLength(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : null;
 }
 
 function frameRowKey(frame) {

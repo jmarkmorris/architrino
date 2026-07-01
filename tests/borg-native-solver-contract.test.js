@@ -95,11 +95,18 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
+  assert.match(runtimeSource, /borg-live-run-budget\.v1/);
+  assert.match(runtimeSource, /readLiveRunBudgetSnapshot/);
+  assert.match(runtimeSource, /createSeededDistributionFrameRows/);
   assert.equal(runtimeSource.includes("Live 3000 / 20"), true);
   assert.match(runtimeSource, /switchRunControlPreset/);
+  assert.match(runtimeSource, /startNewDistributionRun/);
   assert.match(runtimeSource, /createBorgDynamicNativeRunner/);
   assert.match(runtimeSource, /BorgSolverBridgeWorker\.js/);
   assert.match(runtimeSource, /mergeBorgFrameRows/);
+  assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
+  assert.match(htmlSource, /id="borg-start-frame-button"/);
+  assert.match(htmlSource, /id="borg-new-distribution-button"/);
   assert.match(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });
@@ -135,6 +142,8 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
   assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
   assert.equal(firstChunk.source, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
+  assert.equal(firstChunk.bufferCount, 1);
+  assert.equal(firstChunk.bufferByteLength, firstChunk.frames.length * 64);
   assert.deepEqual(uniqueFrameIndexes(firstChunk.frames), [0, 1, 2]);
 
   const secondChunk = await runner.computeNextChunk();
@@ -259,6 +268,16 @@ function createFakeBorgDynamicRunResponse(request) {
         firstFailureCode: "none",
       },
       frames,
+      buffers: [
+        {
+          bufferId: `${request.datasetId}:frames`,
+          layout: "borg-frame-row.v1",
+          rowCount: frames.length,
+          rowSizeBytes: 64,
+          byteLength: frames.length * 64,
+          buffer: new ArrayBuffer(frames.length * 64),
+        },
+      ],
       pathHistory: {
         streamId: request.config.streamId,
         rowCount: Math.max(0, times.length - 1) * masterRequest.initialStates.length,

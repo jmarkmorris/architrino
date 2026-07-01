@@ -9562,7 +9562,7 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
   };
 }
 
-function computeMovingCircularObserverFieldF64(request = {}) {
+export function computeMovingCircularObserverFieldF64(request = {}) {
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, index) =>
     computeMovingCircularObserverFieldContribution(branch, index, request)

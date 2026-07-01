@@ -13,6 +13,7 @@ import {
 } from "./BorgDynamicNativeRunner.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
+const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
 const CAMERA_MIN_DISTANCE = 4.8;
 const CAMERA_MAX_DISTANCE = 28;
 const DEFAULT_CAMERA_FIT_MARGIN = 1.25;
@@ -23,6 +24,8 @@ const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
 const DEFAULT_RUN_CONTROL_PRESET_ID = "live-long";
+const DEFAULT_DISTRIBUTION_LABEL = "manifest initial distribution";
+const DISTRIBUTION_POSITION_INSET_RATIO = 0.08;
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
   Object.freeze({ id: "detail", label: "Detail", msPerNativeStep: 120 }),
   Object.freeze({ id: "normal", label: "Normal", msPerNativeStep: 1000 / 60 }),
@@ -100,6 +103,8 @@ const STATUS_TONE = Object.freeze({
   "fixture-fallback": "warn",
   "live-native-error": "bad",
   "completed-live-native-run": "good",
+  "measured-live-run-budget": "good",
+  "partial-live-run-budget": "warn",
   "fail-closed-missing-contract": "bad",
   failed: "bad",
   passed: "good",
@@ -151,6 +156,8 @@ export function mountBorgApp(options = {}) {
     playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
     playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
+    startButton: queryRequiredElement(documentLike, "#borg-start-frame-button"),
+    newDistributionButton: queryRequiredElement(documentLike, "#borg-new-distribution-button"),
     resetButton: queryRequiredElement(documentLike, "#borg-reset-view-button"),
     fitButton: queryRequiredElement(documentLike, "#borg-fit-view-button"),
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
@@ -232,6 +239,10 @@ export function mountBorgApp(options = {}) {
     dynamicTargetDuration: null,
     dynamicChunkDuration: null,
     dynamicRunGeneration: 0,
+    liveRunBudget: createEmptyLiveRunBudget(),
+    distributionFrameRows: null,
+    distributionSeedIndex: 0,
+    distributionLabel: DEFAULT_DISTRIBUTION_LABEL,
     resizeObserver: null,
   };
 
@@ -365,6 +376,11 @@ export function mountBorgApp(options = {}) {
       ["renderStatus", manifest.renderManifests[0]?.renderStatus ?? "not-measured"],
       ["viewportCssSize", manifest.renderManifests[0]?.viewportCssSize ?? "not-measured"],
     ]);
+    renderDeploymentFields();
+  }
+
+  function renderDeploymentFields() {
+    const budget = state.liveRunBudget;
     renderFieldRows(dom.deploymentFields, [
       ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
       ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
@@ -372,6 +388,14 @@ export function mountBorgApp(options = {}) {
       ["browserHeapBudget", manifest.deploymentBudget.browserHeapBudget ?? "not-measured"],
       ["gpuMemoryBudget", manifest.deploymentBudget.gpuMemoryBudget ?? "not-measured"],
       ["nativeSolverThroughput", "not-measured"],
+      ["liveRunBudget", budget.schema],
+      ["liveBudgetStatus", budget.status],
+      ["lastChunkMs", budget.lastChunkWallTimeMs ?? "not-measured"],
+      ["chunkFrameRows", budget.computedFrameRows ?? "not-measured"],
+      ["appendRowsPerSec", budget.frameAppendRateRowsPerSecond ?? "not-measured"],
+      ["heapGrowthBytes", budget.browserHeapGrowthBytes ?? budget.browserHeapAuthority],
+      ["workerMemoryBytes", budget.wasmWorkerMemoryEstimateBytes ?? budget.wasmWorkerMemoryAuthority],
+      ["workerBudgetPressure", budget.wasmWorkerMemoryPressure ?? "not-measured"],
     ]);
   }
 
@@ -379,6 +403,8 @@ export function mountBorgApp(options = {}) {
     renderFieldRows(dom.sourceFields, [
       ["Run source", state.sourceMode],
       ["Run preset", runControlPresetById(state.runControlPresetId).label],
+      ["Distribution", state.distributionLabel],
+      ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
       ["Live target", state.dynamicTargetDuration ?? "not-started"],
       ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
@@ -539,6 +565,8 @@ export function mountBorgApp(options = {}) {
     dom.playButton.addEventListener("click", () => {
       togglePlayback();
     });
+    dom.startButton.addEventListener("click", goToStartFrame);
+    dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
     dom.runSource.addEventListener("change", () => {
       switchRunControlPreset(dom.runSource.value);
     });
@@ -655,6 +683,11 @@ export function mountBorgApp(options = {}) {
     state.cameraFitMargin = DEFAULT_CAMERA_FIT_MARGIN;
     fitCameraToCentralCube(state.cameraFitMargin);
     render();
+  }
+
+  function goToStartFrame() {
+    stopPlayback();
+    updateFrame(frameSets[0]?.frameIndex ?? 0);
   }
 
   function fitView() {
@@ -1007,22 +1040,31 @@ export function mountBorgApp(options = {}) {
     );
   }
 
+  function getRunInitialFrameRows() {
+    return state.distributionFrameRows ?? fixtureFrames;
+  }
+
   function startDynamicNativeRunner() {
     const preset = runControlPresetById(state.runControlPresetId);
     if (preset.sourceMode === "fixture") {
       restoreFixtureRun();
       return;
     }
-    const runnerOptions = createDefaultDynamicRunnerOptions(windowLike, options, preset);
+    const runnerOptions = createDefaultDynamicRunnerOptions(
+      windowLike,
+      options,
+      preset,
+      getRunInitialFrameRows(),
+    );
     if (!runnerOptions) {
       state.runControlPresetId = "fixture";
       dom.runSource.value = "fixture";
-      state.dynamicRunnerStatus = "precomputed-fixture";
+      restoreFixtureRun();
+      state.dynamicRunnerStatus = "fixture-fallback";
       state.dynamicRunnerMessage = "live native runner unavailable";
-      state.dynamicTargetDuration = null;
-      state.dynamicChunkDuration = null;
       updateSourceStatusPresentation();
       renderSourceFields();
+      renderDeploymentFields();
       return;
     }
     const generation = state.dynamicRunGeneration;
@@ -1033,6 +1075,7 @@ export function mountBorgApp(options = {}) {
     state.dynamicRunnerMessage = "computing native chunks";
     updateSourceStatusPresentation();
     renderSourceFields();
+    renderDeploymentFields();
     ensureDynamicFramesAhead({ replaceFixture: true, generation });
   }
 
@@ -1047,6 +1090,8 @@ export function mountBorgApp(options = {}) {
     state.dynamicRunnerMessage = "computing native chunk";
     updateSourceStatusPresentation();
     renderSourceFields();
+    const budgetBefore = readLiveRunBudgetSnapshot(windowLike);
+    const previousFrameRowCount = currentFrames.length;
     state.dynamicChunkPromise = state.dynamicRunner
       .computeNextChunk()
       .then((chunk) => {
@@ -1063,6 +1108,15 @@ export function mountBorgApp(options = {}) {
           ? [...chunk.frames]
           : mergeBorgFrameRows(currentFrames, chunk.frames);
         frameSets = createBorgFrameSetsFromRows(currentFrames);
+        state.liveRunBudget = createLiveRunBudgetMeasurement({
+          before: budgetBefore,
+          after: readLiveRunBudgetSnapshot(windowLike),
+          chunk,
+          previousFrameRowCount,
+          nextFrameRowCount: currentFrames.length,
+          replaceFixture,
+          memoryBudgetBytes: state.dynamicRunner?.config?.memoryBudgetBytes ?? null,
+        });
         rebuildPathTrails();
         updateTimelineBounds();
         if (replaceFixture) {
@@ -1072,6 +1126,7 @@ export function mountBorgApp(options = {}) {
         }
         updateSourceStatusPresentation();
         renderSourceFields();
+        renderDeploymentFields();
         return chunk;
       })
       .catch((error) => {
@@ -1083,9 +1138,17 @@ export function mountBorgApp(options = {}) {
         state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
         if (!hadLiveFrames) {
           state.sourceMode = "precomputed-fixture";
+          state.distributionFrameRows = null;
+          state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
+          currentFrames = [...fixtureFrames];
+          frameSets = createBorgFrameSetsFromRows(currentFrames);
+          rebuildPathTrails();
+          updateTimelineBounds();
+          updateFrame(frameSets[0]?.frameIndex ?? 0);
         }
         updateSourceStatusPresentation();
         renderSourceFields();
+        renderDeploymentFields();
         return null;
       })
       .finally(() => {
@@ -1169,6 +1232,8 @@ export function mountBorgApp(options = {}) {
 
   function restoreFixtureRun() {
     disposeDynamicRunner();
+    state.distributionFrameRows = null;
+    state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
     currentFrames = [...fixtureFrames];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     rebuildPathTrails();
@@ -1178,26 +1243,50 @@ export function mountBorgApp(options = {}) {
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
+    state.liveRunBudget = createEmptyLiveRunBudget();
     updateTimelineBounds();
     updateFrame(frameSets[0]?.frameIndex ?? 0);
     updateSourceStatusPresentation();
     renderSourceFields();
+    renderDeploymentFields();
   }
 
   function resetDynamicRunState() {
-    currentFrames = [...fixtureFrames];
+    currentFrames = [...getRunInitialFrameRows()];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
     rebuildPathTrails();
-    state.sourceMode = "precomputed-fixture";
+    state.sourceMode = state.distributionFrameRows
+      ? "seeded-random-live-initial-state"
+      : "precomputed-fixture";
     state.dynamicRunnerStatus = "live-native-running";
     state.dynamicRunnerMessage = "computing native chunks";
     state.dynamicChunksComputed = 0;
     state.dynamicTargetDuration = null;
     state.dynamicChunkDuration = null;
+    state.liveRunBudget = createEmptyLiveRunBudget();
     updateTimelineBounds();
     updateFrame(frameSets[0]?.frameIndex ?? 0);
     updateSourceStatusPresentation();
     renderSourceFields();
+    renderDeploymentFields();
+  }
+
+  function startNewDistributionRun() {
+    stopPlayback();
+    state.distributionSeedIndex += 1;
+    state.distributionFrameRows = createSeededDistributionFrameRows(
+      manifest,
+      fixtureFrames,
+      state.distributionSeedIndex,
+    );
+    state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
+    if (runControlPresetById(state.runControlPresetId).sourceMode === "fixture") {
+      state.runControlPresetId = DEFAULT_RUN_CONTROL_PRESET_ID;
+      dom.runSource.value = state.runControlPresetId;
+    }
+    disposeDynamicRunner();
+    resetDynamicRunState();
+    startDynamicNativeRunner();
   }
 
   function disposeDynamicRunner() {
@@ -1268,7 +1357,12 @@ function runControlPresetById(presetId) {
   );
 }
 
-function createDefaultDynamicRunnerOptions(windowLike, options = {}, preset = runControlPresetById()) {
+function createDefaultDynamicRunnerOptions(
+  windowLike,
+  options = {},
+  preset = runControlPresetById(),
+  initialFrameRows = null,
+) {
   if (options.enableDynamicNativeRunner === false || options.dynamicNativeRunner === false) {
     return null;
   }
@@ -1301,10 +1395,202 @@ function createDefaultDynamicRunnerOptions(windowLike, options = {}, preset = ru
     ...configured,
     targetDuration: configured.targetDuration ?? preset.targetDuration,
     chunkDuration: configured.chunkDuration ?? preset.chunkDuration,
+    initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
     scope: windowLike,
     ...workerOptions,
     requestTimeoutMs: configured.requestTimeoutMs ?? 120000,
   };
+}
+
+function createEmptyLiveRunBudget() {
+  return Object.freeze({
+    schema: BORG_LIVE_RUN_BUDGET_VERSION,
+    status: "not-measured",
+    lastChunkWallTimeMs: null,
+    computedFrameRows: null,
+    appendedFrameRows: null,
+    frameAppendRateRowsPerSecond: null,
+    browserHeapGrowthBytes: null,
+    browserHeapAuthority: "not-exposed-by-browser",
+    wasmWorkerMemoryEstimateBytes: null,
+    wasmWorkerMemoryAuthority: "not-measured",
+    wasmWorkerMemoryPressure: null,
+    chunkIndex: null,
+  });
+}
+
+function readLiveRunBudgetSnapshot(windowLike) {
+  return {
+    timestampMs: windowLike?.performance?.now?.() ?? Date.now(),
+    usedJSHeapSize: finiteBudgetNumber(windowLike?.performance?.memory?.usedJSHeapSize),
+  };
+}
+
+function createLiveRunBudgetMeasurement({
+  before,
+  after,
+  chunk,
+  previousFrameRowCount,
+  nextFrameRowCount,
+  replaceFixture,
+  memoryBudgetBytes,
+}) {
+  const wallTimeMs = Math.max(0, finiteBudgetNumber(after?.timestampMs - before?.timestampMs) ?? 0);
+  const computedFrameRows = Array.isArray(chunk?.frames) ? chunk.frames.length : 0;
+  const appendedFrameRows = replaceFixture
+    ? computedFrameRows
+    : Math.max(0, (finiteBudgetNumber(nextFrameRowCount) ?? 0) - (finiteBudgetNumber(previousFrameRowCount) ?? 0));
+  const frameAppendRateRowsPerSecond =
+    wallTimeMs > 0 ? appendedFrameRows / (wallTimeMs / 1000) : null;
+  const heapGrowthBytes =
+    before?.usedJSHeapSize != null && after?.usedJSHeapSize != null
+      ? Math.max(0, after.usedJSHeapSize - before.usedJSHeapSize)
+      : null;
+  const rawWorkerMemoryEstimateBytes = finiteBudgetNumber(chunk?.bufferByteLength);
+  const wasmWorkerMemoryEstimateBytes =
+    rawWorkerMemoryEstimateBytes != null && rawWorkerMemoryEstimateBytes > 0
+      ? rawWorkerMemoryEstimateBytes
+      : null;
+  const memoryBudgetPressure =
+    wasmWorkerMemoryEstimateBytes != null && memoryBudgetBytes > 0
+      ? wasmWorkerMemoryEstimateBytes / memoryBudgetBytes
+      : null;
+  const status =
+    wallTimeMs <= 0
+      ? "not-measured"
+      : heapGrowthBytes == null
+        ? "partial-live-run-budget"
+        : "measured-live-run-budget";
+
+  return Object.freeze({
+    schema: BORG_LIVE_RUN_BUDGET_VERSION,
+    status,
+    lastChunkWallTimeMs: wallTimeMs,
+    computedFrameRows,
+    appendedFrameRows,
+    frameAppendRateRowsPerSecond,
+    browserHeapGrowthBytes: heapGrowthBytes,
+    browserHeapAuthority:
+      heapGrowthBytes == null ? "not-exposed-by-browser" : "performance.memory.usedJSHeapSize",
+    wasmWorkerMemoryEstimateBytes,
+    wasmWorkerMemoryAuthority:
+      wasmWorkerMemoryEstimateBytes > 0
+        ? "estimated-from-native-output-buffers"
+        : "not-exposed-by-worker",
+    wasmWorkerMemoryPressure: memoryBudgetPressure,
+    chunkIndex: chunk?.chunkIndex ?? null,
+  });
+}
+
+function createSeededDistributionFrameRows(manifest, baseFrames, seedIndex) {
+  const rng = createSeededRandom(
+    `${manifest.initialConditions?.initialConditionSeed ?? "borg"}:${manifest.initialConditions?.velocitySeed ?? "velocity"}:${seedIndex}`,
+  );
+  const bounds = manifest.simulationEnvelope?.centralVolume?.bounds ?? {};
+  const pathFrames = selectInitialPathFrames(baseFrames);
+  const velocityMax = positiveFiniteNumber(
+    manifest.initialConditions?.randomVelocityMaxComponentMagnitude,
+    0.035,
+  );
+  const velocityMin = positiveFiniteNumber(
+    manifest.initialConditions?.randomVelocityMinSpeed,
+    velocityMax * 0.35,
+  );
+
+  return Object.freeze(
+    pathFrames.map((frame) =>
+      Object.freeze({
+        ...frame,
+        frameIndex: 0,
+        time: 0,
+        position: createRandomCentralPosition(bounds, rng),
+        velocity: createRandomVelocity(rng, velocityMax, velocityMin),
+        errorBound: 0,
+        runSource: "seeded-random-live-initial-state",
+        valueAuthority: "app-generated-native-run-initial-condition",
+      }),
+    ),
+  );
+}
+
+function selectInitialPathFrames(frames) {
+  const byPathKey = new Map();
+  frames.forEach((frame) => {
+    const existing = byPathKey.get(frame.pathKey);
+    if (!existing || Number(frame.time) < Number(existing.time)) {
+      byPathKey.set(frame.pathKey, frame);
+    }
+  });
+  return [...byPathKey.values()].sort((left, right) => left.pathKey - right.pathKey);
+}
+
+function createRandomCentralPosition(bounds, rng) {
+  return {
+    x: randomAxisValue(bounds.x, rng),
+    y: randomAxisValue(bounds.y, rng),
+    z: randomAxisValue(bounds.z, rng),
+  };
+}
+
+function randomAxisValue(axisBounds, rng) {
+  const [min, max] = Array.isArray(axisBounds) ? axisBounds : [0, 1];
+  const low = finiteBudgetNumber(min) ?? 0;
+  const high = finiteBudgetNumber(max) ?? low + 1;
+  const span = Math.max(1, high - low);
+  const inset = Math.min(span * DISTRIBUTION_POSITION_INSET_RATIO, span * 0.4);
+  return low + inset + rng() * Math.max(0, span - inset * 2);
+}
+
+function createRandomVelocity(rng, maxComponentMagnitude, minSpeed) {
+  for (let attempt = 0; attempt < 24; attempt += 1) {
+    const velocity = {
+      x: randomSignedMagnitude(rng, maxComponentMagnitude),
+      y: randomSignedMagnitude(rng, maxComponentMagnitude),
+      z: randomSignedMagnitude(rng, maxComponentMagnitude),
+    };
+    if (vectorLength(velocity) >= minSpeed) {
+      return velocity;
+    }
+  }
+  return {
+    x: minSpeed,
+    y: randomSignedMagnitude(rng, maxComponentMagnitude * 0.25),
+    z: randomSignedMagnitude(rng, maxComponentMagnitude * 0.25),
+  };
+}
+
+function randomSignedMagnitude(rng, magnitude) {
+  return (rng() * 2 - 1) * magnitude;
+}
+
+function createSeededRandom(seedText) {
+  let state = hashSeedText(seedText);
+  return () => {
+    state += 0x6d2b79f5;
+    let value = state;
+    value = Math.imul(value ^ (value >>> 15), value | 1);
+    value ^= value + Math.imul(value ^ (value >>> 7), value | 61);
+    return ((value ^ (value >>> 14)) >>> 0) / 4294967296;
+  };
+}
+
+function hashSeedText(seedText) {
+  let hash = 2166136261;
+  String(seedText).split("").forEach((character) => {
+    hash ^= character.charCodeAt(0);
+    hash = Math.imul(hash, 16777619);
+  });
+  return hash >>> 0;
+}
+
+function finiteBudgetNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : null;
+}
+
+function positiveFiniteNumber(value, fallback) {
+  const number = finiteBudgetNumber(value);
+  return number != null && number > 0 ? number : fallback;
 }
 
 function interpolateFrameSet(fromFrameSet, toFrameSet, progress) {

@@ -198,7 +198,26 @@ function formatPhaseFamilyValue(family) {
     ? Number(family.sourcePhaseSpreadDeg)
     : 0;
   const roots = Number.isFinite(Number(family.rootCount)) ? Number(family.rootCount) : 0;
-  return `${family.label ?? "family"} ${formatPhotonFixed(spread, 1)} deg (${roots})`;
+  const phaseLabel = family.phaseLockLabel ? `${family.phaseLockLabel}: ` : "";
+  const speedLabel = family.speedFamilyLabel ? `${family.speedFamilyLabel} ` : "";
+  return `${phaseLabel}${speedLabel}${family.label ?? "family"} ${formatPhotonFixed(spread, 1)} deg (${roots})`;
+}
+
+function formatSelfHitSpeedRegimeSummary(summary = {}) {
+  return [
+    `sub ${Number(summary.subFieldRoots ?? 0)} / ${Number(summary.subFieldRows ?? 0)}`,
+    `edge ${Number(summary.fieldSpeedRoots ?? 0)} / ${Number(summary.fieldSpeedRows ?? 0)}`,
+    `self ${Number(summary.selfHitRoots ?? 0)} / ${Number(summary.selfHitCandidateRows ?? 0)}`,
+  ].join(", ");
+}
+
+function formatPhaseLockClassSummary(diagnostics = {}) {
+  return [
+    `stable ${Number(diagnostics.helicalStablePhaseLockFamilyCount ?? 0)}`,
+    `candidate ${Number(diagnostics.helicalCandidatePhaseLockFamilyCount ?? 0)}`,
+    `singular ${Number(diagnostics.helicalSingularCandidateFamilyCount ?? 0)}`,
+    `self ${Number(diagnostics.helicalSelfHitFamilyCount ?? 0)}`,
+  ].join(", ");
 }
 
 function requirePhotonFormulaSummary(formulaSummary) {
@@ -232,6 +251,10 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     analyzerFraction: formula.field.analyzer.fraction,
     averageAnalyzerFraction: formula.averageAnalyzerFraction,
     fitResidual: formula.fitResidual,
+    sourceHistoryProviderId: formula.field.sourceHistoryProviderId ?? "",
+    solverFieldSchema: formula.field.solverFieldSchema ?? "",
+    fieldReconstructionOwner: formula.field.fieldReconstructionOwner ?? "",
+    receiverNormalOwner: formula.field.receiverNormalOwner ?? "",
     averageDelay: formula.field.averageDelay,
     delaySolveGapMax: formula.field.delaySolveGapMax,
     maxSourceSpeedRatio: formula.field.maxSourceSpeedRatio,
@@ -250,13 +273,24 @@ export function computePhotonDiagnostics(state, timeSeconds, formulaSummary = nu
     selfHitCandidateCount: formula.selfHitDiagnostics?.candidateCount ?? 0,
     selfHitRootFoundCount: formula.selfHitDiagnostics?.rootFoundCount ?? 0,
     selfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.maxFieldSpeedRatio ?? 0,
+    selfHitSpeedRegimeSummary: formula.selfHitDiagnostics?.speedRegimeSummary ?? null,
     selfHitStatus: formula.selfHitDiagnostics?.status ?? "unavailable",
     helicalSelfHitRowCount: formula.selfHitDiagnostics?.helicalRowCount ?? 0,
     helicalSelfHitCandidateCount: formula.selfHitDiagnostics?.helicalCandidateCount ?? 0,
     helicalSelfHitRootFoundCount: formula.selfHitDiagnostics?.helicalRootFoundCount ?? 0,
     helicalSelfHitMaxFieldSpeedRatio: formula.selfHitDiagnostics?.helicalMaxFieldSpeedRatio ?? 0,
+    helicalSpeedRegimeSummary: formula.selfHitDiagnostics?.helicalSpeedRegimeSummary ?? null,
     helicalPhaseFamilyCount: formula.selfHitDiagnostics?.helicalPhaseFamilyCount ?? 0,
     helicalStablePhaseFamilyCount: formula.selfHitDiagnostics?.helicalStablePhaseFamilyCount ?? 0,
+    helicalStablePhaseLockFamilyCount: formula.selfHitDiagnostics?.helicalStablePhaseLockFamilyCount ?? 0,
+    helicalCandidatePhaseLockFamilyCount: formula.selfHitDiagnostics?.helicalCandidatePhaseLockFamilyCount ?? 0,
+    helicalSingularCandidateFamilyCount: formula.selfHitDiagnostics?.helicalSingularCandidateFamilyCount ?? 0,
+    helicalDiffusePhaseFamilyCount: formula.selfHitDiagnostics?.helicalDiffusePhaseFamilyCount ?? 0,
+    helicalPhaseDriftFamilyCount: formula.selfHitDiagnostics?.helicalPhaseDriftFamilyCount ?? 0,
+    helicalSingleHitFamilyCount: formula.selfHitDiagnostics?.helicalSingleHitFamilyCount ?? 0,
+    helicalSelfHitFamilyCount: formula.selfHitDiagnostics?.helicalSelfHitFamilyCount ?? 0,
+    helicalSubFieldFamilyCount: formula.selfHitDiagnostics?.helicalSubFieldFamilyCount ?? 0,
+    helicalFieldSpeedBoundaryFamilyCount: formula.selfHitDiagnostics?.helicalFieldSpeedBoundaryFamilyCount ?? 0,
     helicalBestPhaseFamily: formula.selfHitDiagnostics?.helicalBestPhaseFamily ?? null,
     helicalSelfHitJacobianAbsMin: Number.isFinite(helicalSelfHitJacobianAbsMin)
       ? helicalSelfHitJacobianAbsMin
@@ -282,6 +316,16 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
     ["Mean delay", formatPhotonFixed(diagnostics.averageDelay, 3), "info"],
     ["Source count", String(diagnostics.sourceCount), "info"],
     ["Root count", String(diagnostics.rootCount), "info"],
+    [
+      "Motion source",
+      diagnostics.sourceHistoryProviderId ? "Photon constrained" : "unavailable",
+      diagnostics.sourceHistoryProviderId ? "info" : "poor",
+    ],
+    [
+      "Field reconstruction",
+      diagnostics.fieldReconstructionOwner === "central_solver" ? "central solver" : "local",
+      diagnostics.fieldReconstructionOwner === "central_solver" ? "good" : "poor",
+    ],
     [
       "Max source v/c_f",
       formatPhotonFixed(diagnostics.maxSourceSpeedRatio, 2),
@@ -322,6 +366,11 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       { labelMath: "\\mathrm{Helical\\ self\\! -\\! hit\\ max}\\ v/c_{\\mathrm{sig}}" },
     ],
     [
+      "Helical speed regimes",
+      formatSelfHitSpeedRegimeSummary(diagnostics.helicalSpeedRegimeSummary),
+      diagnostics.helicalSelfHitFamilyCount > 0 ? "info" : "poor",
+    ],
+    [
       "Helical self-hit min |J|",
       formatPhotonFixed(diagnostics.helicalSelfHitJacobianAbsMin, 4),
       getHigherIsBetterQuality(diagnostics.helicalSelfHitJacobianAbsMin, {
@@ -341,6 +390,13 @@ export function getPhotonDiagnosticRows(state, timeSeconds, formulaSummary = nul
       "Helical phase families",
       `${diagnostics.helicalStablePhaseFamilyCount} / ${diagnostics.helicalPhaseFamilyCount}`,
       getPhaseFamilyQuality(diagnostics.helicalStablePhaseFamilyCount, diagnostics.helicalPhaseFamilyCount),
+    ],
+    [
+      "Helical phase-lock classes",
+      formatPhaseLockClassSummary(diagnostics),
+      diagnostics.helicalStablePhaseLockFamilyCount > 0
+        ? "good"
+        : diagnostics.helicalSingularCandidateFamilyCount > 0 ? "poor" : "info",
     ],
     [
       "Best helical family",

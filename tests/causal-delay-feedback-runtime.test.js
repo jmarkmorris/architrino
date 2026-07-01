@@ -138,6 +138,53 @@ function createArcRecordingContext() {
   };
 }
 
+function createPathRecordingContext() {
+  return {
+    commands: [],
+    beginPath() {
+      this.commands.push({ type: "beginPath" });
+    },
+    moveTo(x, y) {
+      this.commands.push({ type: "moveTo", x, y });
+    },
+    lineTo(x, y) {
+      this.commands.push({ type: "lineTo", x, y });
+    },
+    bezierCurveTo(controlStartX, controlStartY, controlEndX, controlEndY, x, y) {
+      this.commands.push({
+        type: "bezierCurveTo",
+        controlStartX,
+        controlStartY,
+        controlEndX,
+        controlEndY,
+        x,
+        y,
+      });
+    },
+    restore() {
+      this.commands.push({ type: "restore" });
+    },
+    save() {
+      this.commands.push({ type: "save" });
+    },
+    stroke() {
+      this.commands.push({ type: "stroke" });
+    },
+    set lineCap(value) {
+      this._lineCap = value;
+    },
+    set lineJoin(value) {
+      this._lineJoin = value;
+    },
+    set lineWidth(value) {
+      this._lineWidth = value;
+    },
+    set strokeStyle(value) {
+      this._strokeStyle = value;
+    },
+  };
+}
+
 function createRuntimeForReadout() {
   const readout = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
@@ -217,7 +264,7 @@ test("causal delay feedback readout summarizes selected wake link", () => {
   assert.equal(readout.children[7].textContent, "weight=0.17");
   assert.match(readout.children[8].textContent, /^contrib=/);
   assert.match(readout.children[9].textContent, /^(threshold=above_threshold|threshold=near_threshold|threshold=below_threshold)$/);
-  assert.equal(readout.children[10].textContent, "partial arc");
+  assert.equal(readout.children[10].textContent, "arc wakes");
 });
 
 test("causal delay feedback wake readout includes central solver diagnostics", () => {
@@ -247,7 +294,7 @@ test("causal delay feedback wake readout includes central solver diagnostics", (
       "resid=0",
       "rootCode=13",
       "hitCode=13",
-      "partial arc",
+      "arc wakes",
     ],
   );
 });
@@ -303,7 +350,7 @@ test("causal delay feedback wake readout and visual weight expose rejected solve
   assert.equal(visualWeight.desaturation, 0.78);
   assert.deepEqual(
     readout.children.map((child) => child.textContent).slice(10, 16),
-    ["state=rejected", "reason=no_delayed_hit", "solver=unresolved", "roots=0", "hits=0", "partial arc"],
+    ["state=rejected", "reason=no_delayed_hit", "solver=unresolved", "roots=0", "hits=0", "arc wakes"],
   );
 });
 
@@ -650,7 +697,7 @@ test("causal delay feedback path trails use one pure-color stroke", () => {
     window: fakeWindow,
   });
   const pathLines = [];
-  runtime.drawLine = (_ctx, _points, color, width) => {
+  runtime.drawSmoothLine = (_ctx, _points, color, width) => {
     pathLines.push({ color, width });
   };
 
@@ -661,6 +708,22 @@ test("causal delay feedback path trails use one pure-color stroke", () => {
     { color: { r: 255, g: 0, b: 0, a: 1 }, width: 5 },
     { color: { r: 0, g: 0, b: 255, a: 1 }, width: 5 },
   ]);
+});
+
+test("causal delay feedback edited path trails render as continuous curve strokes", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const context = createPathRecordingContext();
+  const anchor = runtime.dataset.paths.positrino[90];
+
+  runtime.applyPathLineDrag("positrino", anchor.t, { x: 48, y: -72 });
+  runtime.drawPathTrail(context, "positrino", { r: 255, g: 0, b: 0, a: 1 });
+
+  const commandTypes = context.commands.map((command) => command.type);
+  assert(commandTypes.includes("bezierCurveTo"));
+  assert.equal(commandTypes.includes("lineTo"), false);
 });
 
 test("causal delay feedback background depth field remains an internal render option", () => {
@@ -762,7 +825,7 @@ test("causal delay feedback aggregate summary excludes rejected solver links", (
   assert.equal(readoutText.includes("rejected=1"), false);
 });
 
-test("causal delay feedback wake-front separation is controlled by the gap switch", () => {
+test("causal delay feedback wake-front separation is locked to the smaller gap", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -795,6 +858,7 @@ test("causal delay feedback wake-front separation is controlled by the gap switc
 
   assert(PRESETS.every((preset) => !("wakeBands" in preset)));
   const spacing = assertConstantWakeFrontSeparation(frontDistances, getTimingDistance(timing, link));
+  assertNear(spacing, 9, 1e-6);
   assertNear(
     assertConstantWakeFrontSeparation(contrastFrontDistances, getTimingDistance(contrastTiming, contrastLink)),
     spacing,
@@ -803,14 +867,11 @@ test("causal delay feedback wake-front separation is controlled by the gap switc
   assert(longFronts.length > shortFronts.length);
 
   runtime.setWakeVisualSwitch("wideWakeFrontGapEnabled", true);
-  const wideFrontDistances = getWakeFrontDistances(runtime, timing, link);
-  const wideShortFronts = runtime.getWakeFrontProgresses(shortTiming);
-  const wideLongFronts = runtime.getWakeFrontProgresses(longTiming);
-  const wideSpacing = assertConstantWakeFrontSeparation(wideFrontDistances, getTimingDistance(timing, link));
-
-  assert(wideSpacing > spacing);
-  assert(wideLongFronts.length > wideShortFronts.length);
-  assert(wideLongFronts.length < longFronts.length);
+  const staleGapSpacing = assertConstantWakeFrontSeparation(
+    getWakeFrontDistances(runtime, timing, link),
+    getTimingDistance(timing, link),
+  );
+  assertNear(staleGapSpacing, spacing, 1e-6);
 });
 
 test("causal delay feedback wake visual switches derive combinable rendering settings", () => {
@@ -822,20 +883,22 @@ test("causal delay feedback wake visual switches derive combinable rendering set
   const normalPreset = runtime.getWakeVisualPreset();
   const normalSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
-  runtime.setWakeVisualSwitch("strongFalloffEnabled", true);
-  runtime.setWakeVisualSwitch("wideArcsEnabled", true);
-  runtime.setWakeVisualSwitch("thinFrontsEnabled", true);
-  runtime.setWakeVisualSwitch("brightFrontsEnabled", true);
+  runtime.setWakeVisualSwitch("fullCircularWakesEnabled", true);
   const combinedPreset = runtime.getWakeVisualPreset();
-  const strongSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
+  const combinedSphereWeight = runtime.getCausalIsochronSphereVisualWeight(sphere);
 
   assert.equal(normalPreset.falloffPower, 1);
-  assert.equal(combinedPreset.falloffPower, 1.7);
-  assert.equal(combinedPreset.finalSpan, 20);
-  assert.equal(combinedPreset.startSpan, 3.5);
-  assert.notEqual(combinedPreset.dotRadius, normalPreset.dotRadius);
-  assert.notEqual(combinedPreset.alphaScale, normalPreset.alphaScale);
-  assert(strongSphereWeight < normalSphereWeight);
+  assert.equal(normalPreset.finalSpan, 7);
+  assert.equal(normalPreset.startSpan, 1.25);
+  assert.equal(normalPreset.dotRadius, 1.35);
+  assert.equal(normalPreset.alphaScale, 0.86);
+  assert.equal(combinedPreset.falloffPower, 1);
+  assert.equal(combinedPreset.finalSpan, 7);
+  assert.equal(combinedPreset.startSpan, 1.25);
+  assert.equal(combinedPreset.dotRadius, 1.35);
+  assert.equal(combinedPreset.alphaScale, 0.86);
+  assert.equal(runtime.getWakeVisualModeLabel(), "full circles + emission lines");
+  assert.equal(combinedSphereWeight, normalSphereWeight);
 });
 
 test("causal delay feedback live wake series back-solves one emission point per architrino", () => {
@@ -1089,42 +1152,45 @@ test("causal delay feedback settings popover includes reset preset without addin
 test("causal delay feedback toolbar exposes independent wake visual switches", () => {
   const html = readCausalDelayFeedbackHtml();
 
+  assert.equal(html.includes("right: max(20px, env(safe-area-inset-right));"), true);
+  assert.equal(html.includes("max-width: calc(100vw - 40px);"), false);
   assert.equal(html.includes('id="causal-delay-feedback-visual-switches"'), true);
   [
     "arcWakesEnabled",
     "fullCircularWakesEnabled",
-    "strongFalloffEnabled",
-    "wideArcsEnabled",
-    "thinFrontsEnabled",
-    "brightFrontsEnabled",
-    "wideWakeFrontGapEnabled",
   ].forEach((switchId) => {
     assert.equal(html.includes(`data-visual-switch="${switchId}"`), true);
   });
   assert.equal(html.includes(">Arcs</button>"), true);
   assert.equal(html.includes(">Full</button>"), true);
-  assert.equal(html.includes(">Strong</button>"), true);
-  assert.equal(html.includes(">Wide</button>"), true);
-  assert.equal(html.includes(">Thin</button>"), true);
-  assert.equal(html.includes(">Bright</button>"), true);
-  assert.equal(html.includes(">Gap+</button>"), true);
+  assert.equal(html.includes('data-visual-switch="strongFalloffEnabled"'), false);
+  assert.equal(html.includes(">Strong</button>"), false);
+  assert.equal(html.includes('data-visual-switch="wideArcsEnabled"'), false);
+  assert.equal(html.includes(">Wide</button>"), false);
+  assert.equal(html.includes('data-visual-switch="thinFrontsEnabled"'), false);
+  assert.equal(html.includes(">Thin</button>"), false);
+  assert.equal(html.includes('data-visual-switch="brightFrontsEnabled"'), false);
+  assert.equal(html.includes(">Bright</button>"), false);
+  assert.equal(html.includes('data-visual-switch="wideWakeFrontGapEnabled"'), false);
+  assert.equal(html.includes(">Gap+</button>"), false);
 });
 
-test("causal delay feedback visible preset menu omits visual switch variants", () => {
-  const preset = new FakeElement();
+test("causal delay feedback toolbar omits the preset dropdown while review presets still load", async () => {
+  const html = readCausalDelayFeedbackHtml();
+  const replayStatus = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
+    autoLoadReplay: false,
   });
-  runtime.dom = { preset };
+  runtime.dom = { replayStatus };
 
-  runtime.populatePresets();
-  const optionValues = preset.children.map((option) => option.value);
+  await runtime.setPreset("contrast_stress");
 
-  assert.deepEqual(optionValues, ["accepted_tight_bright", "contrast_stress"]);
-  assert.equal(optionValues.includes("full_circular_arcs"), false);
-  assert.equal(optionValues.includes("strong_falloff"), false);
-  assert.equal(optionValues.includes("slightly_wider"), false);
+  assert.equal(html.includes('id="causal-delay-feedback-preset"'), false);
+  assert.equal(html.includes("causal-preset"), false);
+  assert.equal(runtime.presetId, "contrast_stress");
+  assert.equal(runtime.dataset.preset.id, "contrast_stress");
 });
 
 test("causal delay feedback settings button uses a gear icon", () => {
@@ -1266,6 +1332,26 @@ test("causal delay feedback c_f speed setting scales the replay clock", () => {
   assertNear(runtime.elapsedSeconds, 0.032);
   assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 2);
   assert.equal(scheduledFrames.length, 1);
+});
+
+test("causal delay feedback c_f tempo and architrino speed settings keep live wake arcs visible", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const replayTime = 0.5;
+  const baseSignalSpeed = runtime.getLiveWakeSignalSpeed();
+
+  runtime.setFieldSpeedScale(0.25);
+  runtime.setArchitrinoSpeedIndex(9);
+
+  assert.equal(runtime.fieldSpeedScale, 0.25);
+  assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
+  assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
+  assert.deepEqual(
+    runtime.getVisibleWakeSeries(replayTime).map((link) => link.id),
+    ["live-positrino-to-electrino", "live-electrino-to-positrino"],
+  );
 });
 
 test("causal delay feedback architrino speed setting uses the requested v over c_f sequence", () => {
@@ -3586,10 +3672,13 @@ test("causal delay feedback live marker labels are centered above and below the 
     document: new FakeDocument(),
     window: fakeWindow,
   });
+  const circles = [];
   const labels = [];
-  runtime.drawCircle = () => {};
-  runtime.drawScreenText = (_ctx, text, point, _size, _color, align) => {
-    labels.push({ text, point, align });
+  runtime.drawCircle = (_ctx, _point, radius, fill) => {
+    circles.push({ radius, fill });
+  };
+  runtime.drawScreenText = (_ctx, text, point, _size, color, align) => {
+    labels.push({ text, point, color, align });
   };
   const replayTime = 0.42;
   const positrinoScreen = runtime.worldToScreen(runtime.getReplayPathPoint("positrino", replayTime));
@@ -3608,6 +3697,9 @@ test("causal delay feedback live marker labels are centered above and below the 
   assert(labels[0].point.y < positrinoScreen.y - 20 * runtime.viewport.scale);
   assertNear(labels[1].point.x, electrinoScreen.x);
   assert(labels[1].point.y > electrinoScreen.y + 20 * runtime.viewport.scale);
+  assert.deepEqual(labels[0].color, { r: 255, g: 0, b: 0, a: 0.9 });
+  assert.deepEqual(labels[1].color, { r: 126, g: 219, b: 255, a: 1 });
+  assert.deepEqual(circles[3].fill, { r: 0, g: 0, b: 255, a: 1 });
 });
 
 test("causal delay feedback path deformation updates detached frame samples", () => {

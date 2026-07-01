@@ -7,7 +7,6 @@ import {
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
   ELECTRINO,
   ELECTRINO_WAKE,
-  FULL_CIRCULAR_ARCS,
   SPACE_AXIS_TOP_Y,
   TIME_AXIS_BASELINE_Y,
   TIME_AXIS_END_X,
@@ -49,13 +48,13 @@ const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
-const DEFAULT_LIVE_WAKE_FRONT_SPACING = 18;
-const WIDE_LIVE_WAKE_FRONT_SPACING = 30;
+const DEFAULT_LIVE_WAKE_FRONT_SPACING = 9;
 const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
 const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
+const ELECTRINO_LABEL = Object.freeze({ r: 126, g: 219, b: 255, a: 1 });
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
@@ -66,24 +65,13 @@ const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
 const WEAK_CONTRIBUTION_CUE_OFF = "off";
 const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
-const SELECTABLE_SCENE_PRESET_IDS = new Set(["accepted_tight_bright", "contrast_stress"]);
 const WAKE_VISUAL_SWITCHES = Object.freeze({
   arcWakesEnabled: "arcWakesEnabled",
   fullCircularWakesEnabled: "fullCircularWakesEnabled",
-  strongFalloffEnabled: "strongFalloffEnabled",
-  wideArcsEnabled: "wideArcsEnabled",
-  thinFrontsEnabled: "thinFrontsEnabled",
-  brightFrontsEnabled: "brightFrontsEnabled",
-  wideWakeFrontGapEnabled: "wideWakeFrontGapEnabled",
 });
 const DEFAULT_WAKE_VISUAL_SETTINGS = Object.freeze({
   arcWakesEnabled: true,
   fullCircularWakesEnabled: false,
-  strongFalloffEnabled: false,
-  wideArcsEnabled: false,
-  thinFrontsEnabled: false,
-  brightFrontsEnabled: false,
-  wideWakeFrontGapEnabled: false,
 });
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
@@ -264,7 +252,6 @@ class CausalDelayFeedbackRuntime {
       throw new Error("Canvas 2D context is unavailable.");
     }
 
-    this.populatePresets();
     this.populateCanvasSwatches();
     this.updateSpeedControls();
     this.updateDisplaySettingControls();
@@ -283,7 +270,6 @@ class CausalDelayFeedbackRuntime {
     return {
       app: queryRequiredElement(this.document, "#causal-delay-feedback-app"),
       canvas: queryRequiredElement(this.document, "#causal-delay-feedback-canvas"),
-      preset: queryRequiredElement(this.document, "#causal-delay-feedback-preset"),
       playButton: queryRequiredElement(this.document, "#causal-delay-feedback-play"),
       pauseButton: queryRequiredElement(this.document, "#causal-delay-feedback-pause"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
@@ -302,21 +288,6 @@ class CausalDelayFeedbackRuntime {
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
-  }
-
-  populatePresets() {
-    const selectablePresets = PRESETS.filter((preset) => (
-      SELECTABLE_SCENE_PRESET_IDS.has(preset.id) || preset.id === this.presetId
-    ));
-    this.dom.preset.replaceChildren(
-      ...selectablePresets.map((preset) => {
-        const option = this.document.createElement("option");
-        option.value = preset.id;
-        option.textContent = preset.label;
-        option.selected = preset.id === this.presetId;
-        return option;
-      }),
-    );
   }
 
   populateCanvasSwatches() {
@@ -340,18 +311,6 @@ class CausalDelayFeedbackRuntime {
       case "full_circular_arcs":
         settings.arcWakesEnabled = false;
         settings.fullCircularWakesEnabled = true;
-        break;
-      case "strong_falloff":
-        settings.strongFalloffEnabled = true;
-        break;
-      case "slightly_wider":
-        settings.wideArcsEnabled = true;
-        break;
-      case "thin_fronts":
-        settings.thinFrontsEnabled = true;
-        break;
-      case "bright_fronts":
-        settings.brightFrontsEnabled = true;
         break;
       default:
         break;
@@ -404,9 +363,6 @@ class CausalDelayFeedbackRuntime {
     this.boundKeyDown = (event) => this.handleKeyDown(event);
     this.document.addEventListener("keydown", this.boundKeyDown);
 
-    this.dom.preset.addEventListener("change", () => {
-      void this.setPreset(this.dom.preset.value);
-    });
     this.dom.playButton.addEventListener("click", () => {
       this.setPlaying(true);
     });
@@ -610,9 +566,6 @@ class CausalDelayFeedbackRuntime {
     this.updateWakeLinkGeometry();
     this.resetArchitrinoVelocityReference();
     this.syncReplayRequestOptionsFromDataset();
-    if (this.dom?.preset) {
-      this.dom.preset.value = this.presetId;
-    }
     this.updateSpeedControls();
     this.updateReplayStatus();
   }
@@ -1746,7 +1699,7 @@ class CausalDelayFeedbackRuntime {
         : Number.isFinite(summarySignalSpeed) && summarySignalSpeed > 0
           ? summarySignalSpeed
           : DEFAULT_LIVE_WAKE_SIGNAL_SPEED;
-    return baseSignalSpeed * this.normalizeFieldSpeedScale(this.fieldSpeedScale);
+    return baseSignalSpeed;
   }
 
   solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed) {
@@ -2241,28 +2194,30 @@ class CausalDelayFeedbackRuntime {
     const basePreset = this.dataset?.preset?.contrastStress
       ? this.dataset.preset
       : getPresetById(DEFAULT_PRESET_ID);
-    const settings = this.wakeVisualSettings ?? DEFAULT_WAKE_VISUAL_SETTINGS;
-    let dotRadius = Number(basePreset.dotRadius) || 1.8;
-    let alphaScale = Number(basePreset.alphaScale) || 1;
-    if (settings.thinFrontsEnabled) {
-      dotRadius *= 1.35 / 1.8;
-      alphaScale *= 0.86 / 1.18;
-    }
-    if (settings.brightFrontsEnabled) {
-      dotRadius *= 2.05 / 1.8;
-      alphaScale *= 1.32 / 1.18;
-    }
-    if (settings.strongFalloffEnabled) {
-      alphaScale *= 0.92 / 1.18;
-    }
+    const dotRadius = (Number(basePreset.dotRadius) || 1.8) * (1.35 / 1.8);
+    const alphaScale = (Number(basePreset.alphaScale) || 1) * (0.86 / 1.18);
     return {
       ...basePreset,
-      finalSpan: settings.wideArcsEnabled ? 20 : 14,
-      startSpan: settings.wideArcsEnabled ? 3.5 : 2.5,
+      finalSpan: 7,
+      startSpan: 1.25,
       dotRadius,
       alphaScale,
-      falloffPower: settings.strongFalloffEnabled ? 1.7 : 1,
+      falloffPower: 1,
     };
+  }
+
+  getWakeVisualModeLabel() {
+    const settings = this.wakeVisualSettings ?? DEFAULT_WAKE_VISUAL_SETTINGS;
+    if (settings.fullCircularWakesEnabled && settings.arcWakesEnabled) {
+      return "full circles + emission lines";
+    }
+    if (settings.fullCircularWakesEnabled) {
+      return "full circular";
+    }
+    if (settings.arcWakesEnabled) {
+      return "arc wakes";
+    }
+    return "wakes hidden";
   }
 
   drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
@@ -2421,7 +2376,7 @@ class CausalDelayFeedbackRuntime {
 
   drawPathTrail(ctx, kind, color) {
     const points = this.dataset.paths[kind].map((point) => this.worldToScreen(point));
-    this.drawLine(ctx, points, color, 5);
+    this.drawSmoothLine(ctx, points, color, 5);
   }
 
   drawSelection(ctx) {
@@ -2455,6 +2410,7 @@ class CausalDelayFeedbackRuntime {
     const screen = this.worldToScreen(point);
     this.drawCircle(ctx, screen, 20, withAlpha(color, 0.12));
     this.drawCircle(ctx, screen, 9, color, WHITE, 1.4);
+    const labelColor = kind === "electrino" ? ELECTRINO_LABEL : withAlpha(color, 0.9);
     this.drawScreenText(
       ctx,
       label,
@@ -2463,7 +2419,7 @@ class CausalDelayFeedbackRuntime {
         y: screen.y + labelOffset.y * this.viewport.scale,
       },
       14,
-      withAlpha(color, 0.9),
+      labelColor,
       "center",
       "bold",
     );
@@ -2496,6 +2452,40 @@ class CausalDelayFeedbackRuntime {
     ctx.moveTo(points[0].x, points[0].y);
     for (let index = 1; index < points.length; index += 1) {
       ctx.lineTo(points[index].x, points[index].y);
+    }
+    ctx.stroke();
+    ctx.restore();
+  }
+
+  drawSmoothLine(ctx, points, color, width) {
+    if (points.length < 2) {
+      return;
+    }
+    if (typeof ctx.bezierCurveTo !== "function") {
+      this.drawLine(ctx, points, color, width);
+      return;
+    }
+    ctx.save();
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+    ctx.strokeStyle = colorToCss(color);
+    ctx.lineWidth = Math.max(1, width * this.viewport.scale);
+    ctx.beginPath();
+    ctx.moveTo(points[0].x, points[0].y);
+    for (let index = 0; index < points.length - 1; index += 1) {
+      const previous = points[Math.max(0, index - 1)];
+      const start = points[index];
+      const end = points[index + 1];
+      const next = points[Math.min(points.length - 1, index + 2)];
+      const controlStart = {
+        x: start.x + (end.x - previous.x) / 6,
+        y: start.y + (end.y - previous.y) / 6,
+      };
+      const controlEnd = {
+        x: end.x - (next.x - start.x) / 6,
+        y: end.y - (next.y - start.y) / 6,
+      };
+      ctx.bezierCurveTo(controlStart.x, controlStart.y, controlEnd.x, controlEnd.y, end.x, end.y);
     }
     ctx.stroke();
     ctx.restore();
@@ -3385,9 +3375,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   getWakeFrontSpacing() {
-    return this.wakeVisualSettings?.wideWakeFrontGapEnabled === true
-      ? WIDE_LIVE_WAKE_FRONT_SPACING
-      : DEFAULT_LIVE_WAKE_FRONT_SPACING;
+    return DEFAULT_LIVE_WAKE_FRONT_SPACING;
   }
 
   getVisibleCausalIsochronSpheres(replayTime = this.getCurrentReplayTime()) {
@@ -3766,7 +3754,7 @@ class CausalDelayFeedbackRuntime {
         `threshold=${thresholdState}`,
         ...(wakeState.status === "active" ? [] : [`state=${wakeState.status}`, `reason=${wakeState.reason}`]),
         ...solverDetails,
-        this.dataset.wakeArcDisplayMode === FULL_CIRCULAR_ARCS ? "full circular" : "partial arc",
+        this.getWakeVisualModeLabel(),
       ],
       distance,
       hitRadius: 20,

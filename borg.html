@@ -367,11 +367,16 @@
         min-width: 0;
         min-height: 0;
         display: grid;
-        grid-template-columns: 40px minmax(96px, 1fr) 128px 88px minmax(128px, auto);
+        grid-template-columns: 40px 40px 40px minmax(96px, 1fr) 128px 88px minmax(128px, auto);
         gap: 10px;
         align-items: center;
         padding: 12px 14px;
         border-top: 1px solid rgba(139, 164, 126, 0.24);
+      }
+
+      .borg-timeline .borg-icon-button {
+        width: 40px;
+        height: 40px;
       }
 
       .borg-range {
@@ -475,7 +480,17 @@
         }
 
         .borg-timeline {
-          grid-template-columns: 40px minmax(0, 1fr) 128px 88px;
+          grid-template-columns: 40px 40px 40px minmax(0, 1fr);
+        }
+
+        .borg-run-source {
+          grid-column: 1 / 3;
+          width: 100%;
+        }
+
+        .borg-playback-speed {
+          grid-column: 3 / 5;
+          width: 100%;
         }
 
         .borg-time-output {
@@ -521,9 +536,9 @@
         <div class="borg-camera-controls" aria-label="View controls">
           <button id="borg-reset-view-button" class="borg-icon-button" type="button" aria-label="Reset view" title="Reset view">
             <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path d="M9.8 6.2a6.8 6.8 0 1 1-4.2 6.3"></path>
-              <path d="M5 5.6v3.7"></path>
-              <path d="M5 5.6h3.7"></path>
+              <path d="M5 12l7-6 7 6"></path>
+              <path d="M7.5 10.5v7h9v-7"></path>
+              <path d="M10 17.5v-4h4v4"></path>
             </svg>
           </button>
           <button id="borg-fit-view-button" class="borg-icon-button" type="button" aria-label="Fit view" title="Fit view">
@@ -576,6 +591,20 @@
         <button id="borg-play-button" class="borg-icon-button" type="button" aria-label="Play" title="Play">
           <svg viewBox="0 0 24 24" aria-hidden="true">
             <path d="M8 5v14l11-7z"></path>
+          </svg>
+        </button>
+        <button id="borg-start-frame-button" class="borg-icon-button" type="button" aria-label="First frame" title="First frame">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M7 5v14"></path>
+            <path d="M18 6l-8 6 8 6z"></path>
+          </svg>
+        </button>
+        <button id="borg-new-distribution-button" class="borg-icon-button" type="button" aria-label="New distribution" title="New distribution">
+          <svg viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M4 7h3.5c1.5 0 2.6.7 3.4 2.1l2.2 3.8c.8 1.4 1.9 2.1 3.4 2.1H20"></path>
+            <path d="M17 12l3 3-3 3"></path>
+            <path d="M4 17h3.5c1.5 0 2.6-.7 3.4-2.1l2.2-3.8c.8-1.4 1.9-2.1 3.4-2.1H20"></path>
+            <path d="M17 6l3 3-3 3"></path>
           </svg>
         </button>
         <input id="borg-time-range" class="borg-range" type="range" min="0" max="2" step="1" value="2" aria-label="Frame" />
