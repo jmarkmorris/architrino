@@ -84,6 +84,7 @@ import {
   computePhotonStageLayout,
   getPhotonFieldPlotSampleCount,
   isPhotonPlotSampleInForwardGap,
+  resolvePhotonPolarizationCurrentPoint,
 } from "../src/apps/photon/PhotonBraidVisualRuntime.js";
 import { createSolverBridgeLoopbackWorker } from "./solver-worker-loopback.mjs";
 
@@ -1773,7 +1774,9 @@ test("derived solver-bridge polarization trace uses the fitted current field", a
   });
 
   assert.equal(trace.solverEngineId, "architrino-solver-app-bridge");
-  assert.ok(trace.rawSamples.length >= 6);
+  assert.equal(trace.rawSamples.length, 6);
+  assert.ok(trace.traceSampleCount >= 72);
+  assert.ok(trace.samples.length > trace.rawSamples.length * 10);
   assert.ok(["weak", "linear", "right_circular", "left_circular", "elliptical"].includes(
     trace.classification
   ));
@@ -1816,6 +1819,30 @@ test("derived solver-bridge polarization ellipse fit stays stable while the curr
   assertNear(first.samples[3].ey, second.samples[3].ey, 1e-12);
   assertNear(first.samples[3].ez, second.samples[3].ez, 1e-12);
   assert.notEqual(first.currentProgress.toFixed(6), second.currentProgress.toFixed(6));
+});
+
+test("polarization inset current vector follows display time between solver snapshots", async () => {
+  const state = createDefaultPhotonState();
+  const bridge = createPhotonCircularSourceBridgeStub();
+  const trace = await buildPhotonDerivedPolarizationTraceWithSolverBridge(state, 0.5, 6, {
+    solveCircularSourceRootsHitsLedger: bridge.solveCircularSourceRootsHitsLedger,
+    minimumPolarizationSampleCount: 6,
+  });
+  const snapshotTime = trace.fitCycleStart + trace.currentProgress * trace.cycleDuration;
+  const snapshotCurrent = resolvePhotonPolarizationCurrentPoint(trace, snapshotTime);
+  const advancedCurrent = resolvePhotonPolarizationCurrentPoint(
+    trace,
+    snapshotTime + trace.cycleDuration * 0.25
+  );
+
+  assertNear(snapshotCurrent.ey, trace.fittedCurrent.ey, 1e-12);
+  assertNear(snapshotCurrent.ez, trace.fittedCurrent.ez, 1e-12);
+  assert.ok(
+    Math.hypot(
+      advancedCurrent.ey - snapshotCurrent.ey,
+      advancedCurrent.ez - snapshotCurrent.ez
+    ) > trace.scale * 0.25
+  );
 });
 
 test("photon animation keeps braid time continuous while plot time wraps", () => {

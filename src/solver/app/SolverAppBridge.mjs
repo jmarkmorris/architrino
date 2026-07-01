@@ -9,7 +9,7 @@ import { classifySolverBaselineResponse } from "./SolverBaselineComparison.mjs";
 
 export const SOLVER_APP_BRIDGE_API_VERSION = "solver-app-bridge.v1";
 
-const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "t3"];
+const KNOWN_APP_IDS = ["animator", "photon", "ideal-braid", "causal-delay-feedback", "borg", "t3"];
 const DEFAULT_PRECISION_PATHS = [
   "auto",
   "scaled_f64_fast",

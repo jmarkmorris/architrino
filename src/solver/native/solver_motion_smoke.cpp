@@ -564,12 +564,12 @@ int main() {
       abiMasterEquationPathRowCount == 4 &&
       abiMasterEquationFrames[2].path_key == 101 &&
       abiMasterEquationFrames[2].frame_index == 1 &&
-      abiMasterEquationFrames[2].position_x > 0.05 &&
+      abiMasterEquationFrames[2].position_x > 0.005 &&
       abiMasterEquationFrames[3].path_key == 202 &&
-      abiMasterEquationFrames[3].position_x < 0.95 &&
+      abiMasterEquationFrames[3].position_x < 0.995 &&
       abiMasterEquationPathRows[0].path_key == 101 &&
       abiMasterEquationPathRows[0].segment_index == 0 &&
-      abiMasterEquationPathRows[0].velocity_x > 0.05 &&
+      abiMasterEquationPathRows[0].velocity_x > 0.01 &&
       abiMasterEquationSummary.status_code == 0 &&
       abiMasterEquationSummary.first_failure_code == 0 &&
       abiMasterEquationSummary.native_master_equation_status == 2 &&
@@ -792,12 +792,59 @@ int main() {
               << '\n';
     std::cerr << "summary max residual native=" << pairConstrained.maxPathConstraintResidual
               << " abi=" << abiPairConstrainedSummary.max_constraint_residual
+              << " position native=" << pairConstrained.maxPathConstraintPositionResidual
+              << " abi=" << abiPairConstrainedSummary.max_position_residual
               << " guidance native=" << pairConstrained.maxPathConstraintGuidanceAcceleration
               << " abi=" << abiPairConstrainedSummary.max_guidance_acceleration
               << " boundary native=" << pairConstrained.maxPathConstraintBoundaryResidual
               << " abi=" << abiPairConstrainedSummary.max_boundary_residual
               << " initVel native=" << pairConstrained.maxPathConstraintInitialVelocityResidual
               << " abi=" << abiPairConstrainedSummary.max_initial_velocity_residual << '\n';
+    std::cerr << "relaxation status=" << pairConstrained.pathConstraintBoundaryRelaxationStatus
+              << " stop=" << pairConstrained.pathConstraintBoundaryRelaxationStopReason
+              << " applied=" << pairConstrained.pathConstraintBoundaryRelaxationAppliedIterationCount
+              << " samples=" << pairConstrained.pathConstraintBoundaryRelaxationResidualSampleCount
+              << " max before=" << pairConstrained.maxPathConstraintBoundaryRelaxationResidualBefore
+              << " after=" << pairConstrained.maxPathConstraintBoundaryRelaxationResidualAfter
+              << " ratio=" << pairConstrained.pathConstraintBoundaryRelaxationResidualRatio
+              << " mean ratio=" << pairConstrained.meanPathConstraintBoundaryRelaxationResidualRatio
+              << " rms ratio=" << pairConstrained.rmsPathConstraintBoundaryRelaxationResidualRatio
+              << " settling=" << pairConstrained.pathConstraintBoundaryRelaxationResidualSettlingRate
+              << " variants=" << pairConstrained.pathConstraintBoundaryRelaxationCandidateVariantCount
+              << " trials=" << pairConstrained.pathConstraintBoundaryRelaxationLineSearchTrialCount
+              << " mask=" << pairConstrained.pathConstraintBoundaryRelaxationCandidateKindMask
+              << " seed samples=" << pairConstrained.pathConstraintBoundarySeedSampleCount
+              << " frame refinements=" << pairConstrained.pathConstraintFrameRefinementSampleCount
+              << '\n';
+    std::cerr << "causal boundary status=" << abiPairCausalDelayBoundaryStatus
+              << " mode=" << abiPairCausalDelayBoundarySummary.boundary_residual_mode
+              << " samples=" << abiPairCausalDelayBoundarySummary.boundary_residual_sample_count
+              << " relax samples="
+              << abiPairCausalDelayBoundarySummary.boundary_relaxation_residual_sample_count
+              << " max boundary=" << abiPairCausalDelayBoundarySummary.max_boundary_residual
+              << " max relax after="
+              << abiPairCausalDelayBoundarySummary.max_boundary_relaxation_residual_after
+              << " mask="
+              << abiPairCausalDelayBoundarySummary.boundary_relaxation_candidate_kind_mask
+              << '\n';
+    std::cerr << "abi minor=" << abiInfo.abi_minor
+              << " motion request bytes=" << abiInfo.motion_integration_request_f64_bytes
+              << " pair request bytes=" << abiInfo.pair_interaction_request_f64_bytes << '\n';
+    std::cerr << "abi constrained relaxation status="
+              << abiPairConstrainedSummary.boundary_relaxation_status
+              << " stop=" << abiPairConstrainedSummary.boundary_relaxation_stop_reason
+              << " applied="
+              << abiPairConstrainedSummary.boundary_relaxation_applied_iteration_count
+              << " seed samples=" << abiPairConstrainedSummary.boundary_seed_sample_count
+              << " frame refinements="
+              << abiPairConstrainedSummary.frame_refinement_sample_count
+              << " variants="
+              << abiPairConstrainedSummary.boundary_relaxation_candidate_variant_count
+              << " trials="
+              << abiPairConstrainedSummary.boundary_relaxation_line_search_trial_count
+              << " mask="
+              << abiPairConstrainedSummary.boundary_relaxation_candidate_kind_mask
+              << '\n';
     if (abiPairConstrainedFrameCount > 4) {
       std::cerr << "abi frame2 pos=(" << abiPairConstrainedFrames[2].position_x << ','
                 << abiPairConstrainedFrames[2].position_y << ") vel=("

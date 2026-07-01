@@ -2,7 +2,7 @@ export const SOLVER_APP_ADAPTERS_VERSION = "solver-app-adapters.v1";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_STREAM_TARGET = "caller-buffer";
-const KNOWN_APP_IDS = new Set(["animator", "photon", "ideal-braid", "causal-delay-feedback"]);
+const KNOWN_APP_IDS = new Set(["animator", "photon", "ideal-braid", "causal-delay-feedback", "borg"]);
 const KNOWN_RUN_KINDS = new Set([
   "motionSimulation",
   "pathHistory",

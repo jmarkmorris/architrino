@@ -7,6 +7,13 @@ import {
   BORG_DATASET_MANIFEST_V1,
   validateBorgFixtureSnapshot,
 } from "../src/apps/borg/BorgFixtureData.js";
+import {
+  BORG_DYNAMIC_NATIVE_RUN_SOURCE,
+  BORG_DYNAMIC_NATIVE_RUNNER_VERSION,
+  createBorgDynamicNativeRunner,
+  createBorgFrameSetsFromRows,
+  mergeBorgFrameRows,
+} from "../src/apps/borg/BorgDynamicNativeRunner.js";
 
 const MASTER_EQUATION_SOLVER_MODE = "native-fixed-parameter-master-equation";
 const NEXT_MASTER_EQUATION_BURDEN = "build-native-wake-history-and-boundary-residual-fixture";
@@ -69,7 +76,7 @@ test("Borg fixture is a native fixed-parameter master-equation run, not tuned vi
 test("Borg native master-equation frame data carries non-linear path evidence", () => {
   const maxDeviation = maxNativeFrameDeviationFromPathLine(BORG_DATASET_MANIFEST_V1.currentStateFrames);
   assert.ok(
-    maxDeviation > 1e-7,
+    maxDeviation > 1,
     `native fixed-parameter master-equation paths must show solver-owned curvature; max deviation ${maxDeviation}`,
   );
 });
@@ -79,11 +86,74 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
     new URL("../src/apps/borg/BorgAppRuntime.js", import.meta.url),
     "utf8",
   );
+  const htmlSource = readFileSync(new URL("../borg.html", import.meta.url), "utf8");
 
   assert.match(runtimeSource, /new THREE\.LineSegments/);
   assert.match(runtimeSource, /createPathSegmentGeometry/);
   assert.doesNotMatch(runtimeSource, /CatmullRomCurve3/);
   assert.doesNotMatch(runtimeSource, /TubeGeometry/);
+  assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
+  assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
+  assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
+  assert.equal(runtimeSource.includes("Live 3000 / 20"), true);
+  assert.match(runtimeSource, /switchRunControlPreset/);
+  assert.match(runtimeSource, /createBorgDynamicNativeRunner/);
+  assert.match(runtimeSource, /BorgSolverBridgeWorker\.js/);
+  assert.match(runtimeSource, /mergeBorgFrameRows/);
+  assert.match(htmlSource, /id="borg-run-source"/);
+  assert.match(htmlSource, /id="borg-playback-speed"/);
+});
+
+test("Borg dynamic native runner builds first-class live master-equation chunks", async () => {
+  const requests = [];
+  const solverClient = {
+    async runSimulation(request) {
+      requests.push(request);
+      return createFakeBorgDynamicRunResponse(request);
+    },
+    async dispose() {},
+  };
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    solverClient,
+    targetDuration: 0.6,
+    chunkDuration: 0.4,
+    sampleInterval: 0.2,
+  });
+
+  assert.equal(runner.schema, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
+  assert.equal(runner.config.runSource, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
+
+  const firstChunk = await runner.computeNextChunk();
+  assert.equal(requests[0].appId, "borg");
+  assert.equal(requests[0].runKind, "masterEquation");
+  assert.equal(requests[0].configVersion, BORG_DYNAMIC_NATIVE_RUNNER_VERSION);
+  assert.equal(requests[0].config.appId, "borg");
+  assert.equal(requests[0].config.fallbackPolicy, "fail-closed");
+  assert.equal(requests[0].config.metadata.valueAuthority, "authoritative");
+  assert.equal(requests[0].config.metadata.appBufferAuthority, "authoritative");
+  assert.equal(requests[0].config.masterEquationRequest.initialStates.length, 16);
+  assert.equal(requests[0].config.masterEquationRequest.startTime, 0);
+  assert.equal(requests[0].config.masterEquationRequest.endTime, 0.4);
+  assert.equal(firstChunk.source, BORG_DYNAMIC_NATIVE_RUN_SOURCE);
+  assert.deepEqual(uniqueFrameIndexes(firstChunk.frames), [0, 1, 2]);
+
+  const secondChunk = await runner.computeNextChunk();
+  assert.equal(requests[1].appId, "borg");
+  assert.equal(requests[1].config.masterEquationRequest.startTime, 0.4);
+  assert.equal(requests[1].config.masterEquationRequest.endTime, 0.6);
+  const firstPathKey = firstChunk.frames[0].pathKey;
+  assert.deepEqual(
+    requests[1].config.masterEquationRequest.initialStates[0].initialPosition,
+    lastFrameForPath(firstChunk.frames, firstPathKey).position,
+  );
+  assert.deepEqual(uniqueFrameIndexes(secondChunk.frames), [2, 3]);
+
+  const mergedFrames = mergeBorgFrameRows(firstChunk.frames, secondChunk.frames);
+  const frameSets = createBorgFrameSetsFromRows(mergedFrames);
+  assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
+  assert.equal(frameSets.at(-1).frames.length, 16);
+
+  await runner.dispose();
 });
 
 test("Borg surface advertises wake-history and boundary residuals as the next build burden", () => {
@@ -143,6 +213,88 @@ function maxNativeFrameDeviationFromPathLine(frames) {
     });
   });
   return maxDeviation;
+}
+
+function createFakeBorgDynamicRunResponse(request) {
+  const masterRequest = request.config.masterEquationRequest;
+  const times = createSampleTimes(
+    masterRequest.startTime,
+    masterRequest.endTime,
+    masterRequest.step,
+  );
+  const frames = [];
+  times.forEach((time, frameIndex) => {
+    masterRequest.initialStates.forEach((state) => {
+      const elapsed = time - masterRequest.startTime;
+      frames.push({
+        pathKey: state.pathKey,
+        frameIndex,
+        time,
+        position: {
+          x: state.initialPosition.x + state.initialVelocity.x * elapsed,
+          y: state.initialPosition.y + state.initialVelocity.y * elapsed,
+          z: state.initialPosition.z + state.initialVelocity.z * elapsed,
+        },
+        velocity: { ...state.initialVelocity },
+        errorBound: 0,
+        stateFlags: state.stateFlags,
+      });
+    });
+  });
+  return {
+    requestId: request.requestId,
+    runId: request.runId,
+    datasetId: request.datasetId,
+    acceptedPrecisionPath: "scaled_f64_strict",
+    status: { code: "ok", severity: "ok" },
+    response: {
+      runId: request.runId,
+      datasetId: request.datasetId,
+      status: { code: "ok", severity: "ok" },
+      summary: {
+        frameCount: frames.length,
+        pathRowCount: Math.max(0, times.length - 1) * masterRequest.initialStates.length,
+        executionPath: "native_c_abi",
+        nativeMasterEquationStatus: "native-fixed-parameter-master-equation",
+        firstFailureCode: "none",
+      },
+      frames,
+      pathHistory: {
+        streamId: request.config.streamId,
+        rowCount: Math.max(0, times.length - 1) * masterRequest.initialStates.length,
+      },
+      diagnostics: [],
+      streams: [],
+      masterEquation: {
+        runKind: "masterEquation",
+        executionPath: "native_c_abi",
+        nativeMasterEquationStatus: "native-fixed-parameter-master-equation",
+        firstFailureCode: "none",
+      },
+    },
+  };
+}
+
+function createSampleTimes(startTime, endTime, step) {
+  const times = [];
+  for (let time = startTime; time <= endTime + step * 0.5; time += step) {
+    times.push(Number(Math.min(time, endTime).toFixed(12)));
+  }
+  if (times.at(-1) !== endTime) {
+    times.push(endTime);
+  }
+  return times;
+}
+
+function uniqueFrameIndexes(frames) {
+  return [...new Set(frames.map((frame) => frame.frameIndex))];
+}
+
+function lastFrameForPath(frames, pathKey) {
+  return frames
+    .filter((frame) => frame.pathKey === pathKey)
+    .sort((left, right) => left.time - right.time)
+    .at(-1);
 }
 
 function subtractVectors(left, right) {

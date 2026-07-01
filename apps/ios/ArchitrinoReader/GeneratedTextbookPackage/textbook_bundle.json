@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-01T13:20:39.342Z",
+  "generated_at": "2026-07-01T17:05:32.902Z",
   "package_version": "1.0.0-d4b9e28d",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -205,7 +205,7 @@
       "role": "chapter",
       "type": "html",
       "size": 24415430,
-      "sha256": "a220866666723bce16f7caafc2fb54a4435210acd07dde6e1570c200c55a0cb3"
+      "sha256": "b055f42f260b42ac658fd1aa04a94dfe7e324d514d0ceaa06d861430c68d71ac"
     },
     {
       "path": "reading-copies/dynamics.md",
@@ -213,7 +213,7 @@
       "role": "chapter",
       "type": "markdown",
       "size": 1379905,
-      "sha256": "f2ef66a7ce74c2c8d02367a8d806fe5e6e3616b047543ddf217a7010091a3930"
+      "sha256": "6c23e3a7cf7e068aa7c065114cdf4a26f8074f1dc2faa96eb2bb13eff55aaf5f"
     },
     {
       "path": "reading-copies/foundations.html",
@@ -429,7 +429,7 @@
       "role": "search",
       "type": "json",
       "size": 9688844,
-      "sha256": "21c911b313e56ae658c3365fa46d85ec6d76c17725996f31c5ada398549bcbaa"
+      "sha256": "f34ba4ae3e7eb5a2844750e178d95e2cd401350d736432177b936ea026a579a3"
     }
   ],
   "links": []

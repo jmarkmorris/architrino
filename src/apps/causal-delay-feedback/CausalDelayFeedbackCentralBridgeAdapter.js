@@ -28,6 +28,7 @@ export const CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND = "delayedHits";
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
 const DEFAULT_FRAME_COUNT = 180;
+const TIME_EPSILON = 1e-6;
 const RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE = 14;
 const RECEIVER_NORMAL_TOLERANCE = 1e-9;
 const DEFAULT_RUN_DURATION = 1;
@@ -71,10 +72,9 @@ const DERIVED_INITIAL_VELOCITY_RESIDUAL_TOLERANCE = 1e-9;
 const TIME_SPACE_CANVAS_FIT_PROJECTION = "time_space_canvas_fit_v1";
 const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
 const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
-const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
-  "retained_point_drag_preview",
-  "path_line_drag_preview",
-]);
+const RETAINED_POINT_DRAG_PREVIEW_REASON = "retained_point_drag_preview";
+const PATH_LINE_DRAG_PREVIEW_REASON = "path_line_drag_preview";
+const PATH_LINE_CONSTRAINT_SAMPLE_COUNT_PER_PATH = 36;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const PATH_KEYS_BY_KIND = Object.freeze({ positrino: 1, electrino: 2 });
 const KIND_BY_PATH_KEY = Object.freeze(Object.fromEntries(
@@ -1214,9 +1214,10 @@ function createCausalDelayFeedbackPairInteractionRequest(playbackRequest) {
   const replayConfig = playbackRequest.config.replay;
   const frameCount = normalizePositiveInteger(replayConfig.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
   const runDuration = normalizePositiveNumber(replayConfig.runDuration, DEFAULT_RUN_DURATION, "runDuration");
-  const pathConstraints = shouldUsePairInteractionPathConstraints(playbackRequest.config.geometry?.draftPreview)
-    ? createPairInteractionPathConstraints(playbackRequest.config.geometry?.history)
-    : [];
+  const pathConstraints = createPairInteractionPathConstraintsForDraft(
+    playbackRequest.config.geometry,
+    playbackRequest.config.frames,
+  );
   const startTime = Math.min(
     ...ARCHITRINO_KINDS.map((kind) => {
       const condition = initialConditions[kind];
@@ -1411,34 +1412,196 @@ function appendPairInteractionConstraintRefinementTimes(times, { startTime, endT
   });
 }
 
-function createPairInteractionPathConstraints(history) {
+function createPairInteractionPathConstraintsForDraft(geometry, frames) {
+  const reason = String(geometry?.draftPreview?.reason ?? "");
+  if (reason === PATH_LINE_DRAG_PREVIEW_REASON) {
+    return createPairInteractionPathLineConstraints(geometry, frames);
+  }
+  if (reason === RETAINED_POINT_DRAG_PREVIEW_REASON) {
+    return createPairInteractionHistoryPathConstraints(geometry?.history);
+  }
+  return [];
+}
+
+function createPairInteractionHistoryPathConstraints(history) {
   if (!history || typeof history !== "object") {
     return [];
   }
-  return ARCHITRINO_KINDS.flatMap((kind) => {
-    const rows = history[kind];
-    if (!Array.isArray(rows)) {
-      return [];
-    }
-    return rows.map((row, index) => {
-      requireObject(row, `geometry.history.${kind}[${index}]`);
-      return {
-        pathKey: PATH_KEYS_BY_KIND[kind],
-        kind,
-        depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, `geometry.history.${kind}[${index}].depth`),
-        time: normalizeFiniteNumber(row.t ?? row.time, `geometry.history.${kind}[${index}].time`),
-        position: {
-          x: normalizeFiniteNumber(row.x, `geometry.history.${kind}[${index}].x`),
-          y: normalizeFiniteNumber(row.y, `geometry.history.${kind}[${index}].y`),
-          z: normalizeOptionalMotionAxis(row.z, 0),
-        },
-      };
-    });
+  return ARCHITRINO_KINDS.flatMap((kind) => createPairInteractionHistoryPathConstraintsForKind(history, kind));
+}
+
+function createPairInteractionHistoryPathConstraintsForKind(history, kind) {
+  const rows = history?.[kind];
+  if (!Array.isArray(rows)) {
+    return [];
+  }
+  return rows.map((row, index) => {
+    requireObject(row, `geometry.history.${kind}[${index}]`);
+    return {
+      pathKey: PATH_KEYS_BY_KIND[kind],
+      kind,
+      depth: normalizePositiveInteger(row.depth ?? index + 1, index + 1, `geometry.history.${kind}[${index}].depth`),
+      time: normalizeFiniteNumber(row.t ?? row.time, `geometry.history.${kind}[${index}].time`),
+      position: {
+        x: normalizeFiniteNumber(row.x, `geometry.history.${kind}[${index}].x`),
+        y: normalizeFiniteNumber(row.y, `geometry.history.${kind}[${index}].y`),
+        z: normalizeOptionalMotionAxis(row.z, 0),
+      },
+    };
   });
 }
 
-function shouldUsePairInteractionPathConstraints(draftPreview) {
-  return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+function createPairInteractionPathLineConstraints(geometry, frames) {
+  if (!Array.isArray(frames) || frames.length === 0) {
+    return createPairInteractionHistoryPathConstraints(geometry?.history);
+  }
+  const constraints = ARCHITRINO_KINDS.flatMap((kind) => (
+    createPairInteractionPathLineConstraintsForKind(geometry, frames, kind)
+  ));
+  return constraints.length > 0 ? constraints : createPairInteractionHistoryPathConstraints(geometry?.history);
+}
+
+function createPairInteractionPathLineConstraintsForKind(geometry, frames, kind) {
+  const pathFrames = getSortedPairInteractionPathFrames(frames, kind);
+  if (pathFrames.length === 0) {
+    return [];
+  }
+  const historyConstraints = createPairInteractionHistoryPathConstraintsForKind(geometry?.history, kind);
+  const sampleTimes = selectPairInteractionPathLineConstraintTimes(
+    pathFrames,
+    historyConstraints,
+    geometry?.draftPreview,
+    kind,
+  );
+  const constraints = [];
+  sampleTimes.forEach((time) => {
+    const historyConstraint = findConstraintAtTime(historyConstraints, time);
+    if (historyConstraint) {
+      insertPairInteractionPathConstraint(constraints, historyConstraint);
+      return;
+    }
+    const sample = samplePairInteractionPathFrameAtTime(pathFrames, time);
+    if (!sample) {
+      return;
+    }
+    insertPairInteractionPathConstraint(constraints, {
+      pathKey: PATH_KEYS_BY_KIND[kind],
+      kind,
+      time: sample.time,
+      position: sample.position,
+    });
+  });
+  return constraints.sort((left, right) => left.pathKey - right.pathKey || left.time - right.time);
+}
+
+function getSortedPairInteractionPathFrames(frames, kind) {
+  const pathKey = PATH_KEYS_BY_KIND[kind];
+  return frames
+    .filter((frame) => Number(frame?.pathKey) === pathKey)
+    .map((frame, index) => {
+      const position = frame.position ?? frame;
+      return {
+        frameIndex: normalizeNonnegativeInteger(
+          frame.frameIndex ?? index,
+          `geometry.frames.${kind}[${index}].frameIndex`,
+        ),
+        time: normalizeFiniteNumber(frame.time ?? frame.t, `geometry.frames.${kind}[${index}].time`),
+        position: normalizeVectorPoint(position, `geometry.frames.${kind}[${index}].position`),
+      };
+    })
+    .sort((left, right) => left.time - right.time || left.frameIndex - right.frameIndex);
+}
+
+function selectPairInteractionPathLineConstraintTimes(pathFrames, historyConstraints, draftPreview, kind) {
+  const times = [];
+  const appendTime = (time) => {
+    const numericTime = Number(time);
+    if (!Number.isFinite(numericTime)) {
+      return;
+    }
+    if (!times.some((existing) => Math.abs(existing - numericTime) <= TIME_EPSILON)) {
+      times.push(numericTime);
+    }
+  };
+  const sampleCount = Math.min(PATH_LINE_CONSTRAINT_SAMPLE_COUNT_PER_PATH, pathFrames.length);
+  for (let index = 0; index < sampleCount; index += 1) {
+    const frameIndex = sampleCount === 1
+      ? 0
+      : Math.round((index * (pathFrames.length - 1)) / (sampleCount - 1));
+    appendTime(pathFrames[frameIndex]?.time);
+  }
+  historyConstraints.forEach((constraint) => appendTime(constraint.time));
+  const pathLineKind = String(draftPreview?.pathLineKind ?? "");
+  if (!pathLineKind || pathLineKind === kind) {
+    appendTime(draftPreview?.pathLineAnchorT);
+  }
+  return times.sort((left, right) => left - right);
+}
+
+function samplePairInteractionPathFrameAtTime(pathFrames, time) {
+  const sampleT = Number(time);
+  if (!Number.isFinite(sampleT) || pathFrames.length === 0) {
+    return null;
+  }
+  const exact = pathFrames.find((frame) => Math.abs(frame.time - sampleT) <= TIME_EPSILON);
+  if (exact) {
+    return {
+      time: sampleT,
+      position: copyBridgeVector(exact.position),
+    };
+  }
+  const first = pathFrames[0];
+  const last = pathFrames.at(-1);
+  if (sampleT <= first.time) {
+    return { time: sampleT, position: copyBridgeVector(first.position) };
+  }
+  if (sampleT >= last.time) {
+    return { time: sampleT, position: copyBridgeVector(last.position) };
+  }
+  const rightIndex = pathFrames.findIndex((frame) => frame.time >= sampleT);
+  const left = pathFrames[Math.max(0, rightIndex - 1)];
+  const right = pathFrames[rightIndex] ?? last;
+  const span = right.time - left.time;
+  if (!Number.isFinite(span) || span <= TIME_EPSILON) {
+    return null;
+  }
+  const amount = Math.max(0, Math.min(1, (sampleT - left.time) / span));
+  const leftZ = Number.isFinite(Number(left.position.z)) ? Number(left.position.z) : 0;
+  const rightZ = Number.isFinite(Number(right.position.z)) ? Number(right.position.z) : 0;
+  return {
+    time: sampleT,
+    position: {
+      x: left.position.x + (right.position.x - left.position.x) * amount,
+      y: left.position.y + (right.position.y - left.position.y) * amount,
+      z: leftZ + (rightZ - leftZ) * amount,
+    },
+  };
+}
+
+function findConstraintAtTime(constraints, time) {
+  return constraints.find((constraint) => Math.abs(constraint.time - time) <= TIME_EPSILON) ?? null;
+}
+
+function insertPairInteractionPathConstraint(constraints, constraint) {
+  const existingIndex = constraints.findIndex((candidate) => (
+    candidate.pathKey === constraint.pathKey &&
+    Math.abs(candidate.time - constraint.time) <= TIME_EPSILON
+  ));
+  if (existingIndex >= 0) {
+    if (constraint.depth != null || constraints[existingIndex].depth == null) {
+      constraints[existingIndex] = constraint;
+    }
+    return;
+  }
+  constraints.push(constraint);
+}
+
+function copyBridgeVector(vector) {
+  return {
+    x: Number(vector.x),
+    y: Number(vector.y),
+    z: Number.isFinite(Number(vector.z)) ? Number(vector.z) : 0,
+  };
 }
 
 function createMotionStateFromInitialCondition(kind, condition) {

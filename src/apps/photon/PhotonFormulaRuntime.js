@@ -44,6 +44,8 @@ const DEFAULT_SELF_HIT_MAX_ANGLE = TWO_PI;
 const JACOBIAN_FLOOR = 1e-4;
 const DEFAULT_ANALYZER_AVERAGE_SAMPLES = 48;
 const DEFAULT_POLARIZATION_FIT_SAMPLES = 144;
+const DEFAULT_POLARIZATION_TRACE_SAMPLES = 144;
+const MINIMUM_POLARIZATION_TRACE_SAMPLES = 72;
 const DEFAULT_SOLVER_MEMORY_BUDGET_BYTES = 64 * 1024 * 1024;
 const DEFAULT_PHOTON_ROOT_TOLERANCE = 1e-12;
 const PHOTON_SOLVER_BRIDGE_ENGINE_ID = "architrino-solver-app-bridge";
@@ -2342,9 +2344,14 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
 
   const analyzerAngle = degreesToPhotonRadians(state?.polarization?.analyzerAngleDeg ?? 0);
   const fit = fitPhotonPolarizationFromSamples(rawSamples, analyzerAngle);
+  const traceSampleCount = Math.max(
+    count,
+    Math.round(options.polarizationTraceSampleCount ?? DEFAULT_POLARIZATION_TRACE_SAMPLES),
+    Math.round(options.minimumPolarizationTraceSampleCount ?? MINIMUM_POLARIZATION_TRACE_SAMPLES)
+  );
   const samples = [];
-  for (let index = 0; index <= count; index += 1) {
-    const progress = index / count;
+  for (let index = 0; index <= traceSampleCount; index += 1) {
+    const progress = index / traceSampleCount;
     const phase = TWO_PI * progress;
     samples.push({
       progress,
@@ -2389,6 +2396,7 @@ export async function buildPhotonDerivedPolarizationTraceWithSolverBridge(
     rawSamples,
     rawCurrent,
     samples,
+    traceSampleCount,
     currentProgress,
     currentPhase,
     current,

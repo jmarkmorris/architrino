@@ -999,6 +999,74 @@ test("causal delay central bridge adapter submits retained path constraints afte
   assert.equal(dataset.history.electrino.at(-1).y, finalPoint.y);
 });
 
+test("causal delay central bridge adapter samples visible path constraints after a path-line edit", async () => {
+  const draftDataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
+  const anchor = draftDataset.paths.positrino[90];
+  const anchorT = anchor.t;
+  const delta = { x: 86, y: -154 };
+  const dragWeightAt = (sampleT) => {
+    const normalizedDistance = Math.abs(sampleT - anchorT) / 0.32;
+    if (normalizedDistance >= 1) {
+      return 0;
+    }
+    const amount = 1 - normalizedDistance;
+    return amount * amount * (3 - 2 * amount);
+  };
+  const applyPathLineDelta = (point) => {
+    const weight = dragWeightAt(point.t);
+    point.x += delta.x * weight;
+    point.y += delta.y * weight;
+  };
+  draftDataset.paths.positrino.forEach(applyPathLineDelta);
+  draftDataset.history.positrino.forEach(applyPathLineDelta);
+  draftDataset.draftPreview = {
+    reason: "path_line_drag_preview",
+    authoritative: false,
+    pathLineKind: "positrino",
+    pathLineAnchorT: anchorT,
+  };
+  let capturedPairRequest = null;
+  const adapter = createCausalDelayFeedbackCentralBridgeAdapter({
+    async runSolverBridge(request) {
+      if (request.runKind === CENTRAL_SOLVER_PAIR_INTERACTION_REPLAY_MODE) {
+        capturedPairRequest = request;
+        return createPairInteractionRunResponse(request);
+      }
+      return createDelayedHitRunResponse(request);
+    },
+  });
+
+  const dataset = await adapter.createReplayAsync({
+    presetId: "accepted_tight_bright",
+    requestOptions: {
+      replayDataset: draftDataset,
+      initialConditions: draftDataset.initialConditions,
+      pathConstraintBoundaryRelaxationIterationCount: 12,
+      pathConstraintBoundaryRelaxationTolerance: 6,
+    },
+  });
+  const constraints = capturedPairRequest.config.pairInteractionRequest.pathConstraints;
+  const positrinoConstraints = constraints.filter((constraint) => constraint.pathKey === 1);
+  const electrinoConstraints = constraints.filter((constraint) => constraint.pathKey === 2);
+  const anchorConstraint = positrinoConstraints.find(
+    (constraint) => Math.abs(constraint.time - anchorT) <= 1e-9,
+  );
+  const retainedConstraint = positrinoConstraints.find((constraint) => constraint.depth === 3);
+  const retainedPoint = draftDataset.history.positrino.find((point) => point.depth === 3);
+
+  assert(positrinoConstraints.length > draftDataset.history.positrino.length);
+  assert(electrinoConstraints.length > draftDataset.history.electrino.length);
+  assert(constraints.length < draftDataset.paths.positrino.length + draftDataset.paths.electrino.length);
+  assert(anchorConstraint);
+  assert.equal(anchorConstraint.depth, undefined);
+  assertNear(anchorConstraint.position.x, anchor.x);
+  assertNear(anchorConstraint.position.y, anchor.y);
+  assert.equal(retainedConstraint.position.x, retainedPoint.x);
+  assert.equal(retainedConstraint.position.y, retainedPoint.y);
+  assert.equal(dataset.pathConstraintCount, constraints.length);
+  assert(dataset.paths.positrino.length > draftDataset.history.positrino.length);
+});
+
 test("causal delay central bridge adapter derives boundary status from converged telemetry", async () => {
   const draftDataset = createMockCausalDelayReplayDataset("accepted_tight_bright");
   draftDataset.draftPreview = {

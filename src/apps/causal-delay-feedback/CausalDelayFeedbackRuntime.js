@@ -49,7 +49,8 @@ const VIEWPORT_ZOOM_MIN = 1;
 const VIEWPORT_ZOOM_MAX = 3;
 const WHEEL_ZOOM_SENSITIVITY = 0.0015;
 const WAKE_FRONT_CADENCE_TIME_DIVISIONS = 144;
-const LIVE_WAKE_FRONT_SPACING = 18;
+const DEFAULT_LIVE_WAKE_FRONT_SPACING = 18;
+const WIDE_LIVE_WAKE_FRONT_SPACING = 30;
 const LIVE_WAKE_ROOT_SCAN_STEPS = 96;
 const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
@@ -65,6 +66,25 @@ const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
 const WEAK_CONTRIBUTION_CUE_OFF = "off";
 const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
+const SELECTABLE_SCENE_PRESET_IDS = new Set(["accepted_tight_bright", "contrast_stress"]);
+const WAKE_VISUAL_SWITCHES = Object.freeze({
+  arcWakesEnabled: "arcWakesEnabled",
+  fullCircularWakesEnabled: "fullCircularWakesEnabled",
+  strongFalloffEnabled: "strongFalloffEnabled",
+  wideArcsEnabled: "wideArcsEnabled",
+  thinFrontsEnabled: "thinFrontsEnabled",
+  brightFrontsEnabled: "brightFrontsEnabled",
+  wideWakeFrontGapEnabled: "wideWakeFrontGapEnabled",
+});
+const DEFAULT_WAKE_VISUAL_SETTINGS = Object.freeze({
+  arcWakesEnabled: true,
+  fullCircularWakesEnabled: false,
+  strongFalloffEnabled: false,
+  wideArcsEnabled: false,
+  thinFrontsEnabled: false,
+  brightFrontsEnabled: false,
+  wideWakeFrontGapEnabled: false,
+});
 const PATH_CONSTRAINT_DRAFT_REASONS = new Set([
   "retained_point_drag_preview",
   "path_line_drag_preview",
@@ -195,6 +215,10 @@ class CausalDelayFeedbackRuntime {
     this.presetId = getPresetById(
       options.presetId ?? getInitialQueryValue(this.window, "preset") ?? DEFAULT_PRESET_ID,
     ).id;
+    this.wakeVisualSettings = this.createWakeVisualSettingsForPreset(
+      getPresetById(this.presetId),
+      options.wakeVisualSettings,
+    );
     this.canvasColorId = getCanvasColorById(
       options.canvasColorId ?? getInitialQueryValue(this.window, "canvas") ?? DEFAULT_CANVAS_ID,
     ).id;
@@ -264,6 +288,7 @@ class CausalDelayFeedbackRuntime {
       pauseButton: queryRequiredElement(this.document, "#causal-delay-feedback-pause"),
       resetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset"),
       settingsButton: queryRequiredElement(this.document, "#causal-delay-feedback-settings"),
+      visualSwitches: queryRequiredElement(this.document, "#causal-delay-feedback-visual-switches"),
       settingsPanel: queryRequiredElement(this.document, "#causal-delay-feedback-settings-panel"),
       resetPresetButton: queryRequiredElement(this.document, "#causal-delay-feedback-reset-preset"),
       colorSwatches: queryRequiredElement(this.document, "#causal-delay-feedback-color-swatches"),
@@ -280,8 +305,11 @@ class CausalDelayFeedbackRuntime {
   }
 
   populatePresets() {
+    const selectablePresets = PRESETS.filter((preset) => (
+      SELECTABLE_SCENE_PRESET_IDS.has(preset.id) || preset.id === this.presetId
+    ));
     this.dom.preset.replaceChildren(
-      ...PRESETS.map((preset) => {
+      ...selectablePresets.map((preset) => {
         const option = this.document.createElement("option");
         option.value = preset.id;
         option.textContent = preset.label;
@@ -304,6 +332,70 @@ class CausalDelayFeedbackRuntime {
       }),
     );
     this.updateCanvasSwatchSelection();
+  }
+
+  createWakeVisualSettingsForPreset(preset, overrides = null) {
+    const settings = { ...DEFAULT_WAKE_VISUAL_SETTINGS };
+    switch (preset?.id) {
+      case "full_circular_arcs":
+        settings.arcWakesEnabled = false;
+        settings.fullCircularWakesEnabled = true;
+        break;
+      case "strong_falloff":
+        settings.strongFalloffEnabled = true;
+        break;
+      case "slightly_wider":
+        settings.wideArcsEnabled = true;
+        break;
+      case "thin_fronts":
+        settings.thinFrontsEnabled = true;
+        break;
+      case "bright_fronts":
+        settings.brightFrontsEnabled = true;
+        break;
+      default:
+        break;
+    }
+    Object.entries(overrides ?? {}).forEach(([key, value]) => {
+      if (Object.prototype.hasOwnProperty.call(settings, key)) {
+        settings[key] = this.normalizeBooleanSetting(value);
+      }
+    });
+    return settings;
+  }
+
+  setWakeVisualSettingsFromPreset(presetId) {
+    this.wakeVisualSettings = this.createWakeVisualSettingsForPreset(getPresetById(presetId));
+    this.updateDisplaySettingControls();
+  }
+
+  toggleWakeVisualSwitch(switchId) {
+    if (!Object.prototype.hasOwnProperty.call(WAKE_VISUAL_SWITCHES, switchId)) {
+      return;
+    }
+    this.setWakeVisualSwitch(switchId, !this.wakeVisualSettings[switchId]);
+  }
+
+  setWakeVisualSwitch(switchId, isEnabled) {
+    if (!Object.prototype.hasOwnProperty.call(WAKE_VISUAL_SWITCHES, switchId)) {
+      return;
+    }
+    const nextValue = this.normalizeBooleanSetting(isEnabled);
+    if (this.wakeVisualSettings[switchId] === nextValue) {
+      this.updateDisplaySettingControls();
+      return;
+    }
+    this.wakeVisualSettings = {
+      ...this.wakeVisualSettings,
+      [switchId]: nextValue,
+    };
+    this.updateDisplaySettingControls();
+    if (this.context) {
+      this.render();
+    }
+    if (this.dom?.readout) {
+      this.updateReadout();
+    }
   }
 
   bindEvents() {
@@ -329,6 +421,13 @@ class CausalDelayFeedbackRuntime {
     });
     this.dom.settingsButton.addEventListener("click", () => {
       this.toggleSettings();
+    });
+    this.dom.visualSwitches.addEventListener("click", (event) => {
+      const button = event.target.closest("[data-visual-switch]");
+      if (!button) {
+        return;
+      }
+      this.toggleWakeVisualSwitch(button.dataset.visualSwitch);
     });
     this.dom.colorSwatches.addEventListener("click", (event) => {
       const button = event.target.closest("[data-color-id]");
@@ -392,6 +491,7 @@ class CausalDelayFeedbackRuntime {
 
   setPreset(presetId) {
     this.presetId = getPresetById(presetId).id;
+    this.setWakeVisualSettingsFromPreset(this.presetId);
     this.elapsedSeconds = 0;
     this.selectedItem = null;
     this.dragState = null;
@@ -1476,6 +1576,14 @@ class CausalDelayFeedbackRuntime {
     if (this.dom?.weakContributionCueInput) {
       this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
     }
+    if (this.dom?.visualSwitches) {
+      Array.from(this.dom.visualSwitches.children).forEach((button) => {
+        const switchId = button.dataset.visualSwitch;
+        const isActive = this.wakeVisualSettings[switchId] === true;
+        button.classList.toggle("is-active", isActive);
+        button.setAttribute("aria-pressed", isActive ? "true" : "false");
+      });
+    }
   }
 
   updateFieldSpeedControl() {
@@ -2129,43 +2237,103 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
+  getWakeVisualPreset() {
+    const basePreset = this.dataset?.preset?.contrastStress
+      ? this.dataset.preset
+      : getPresetById(DEFAULT_PRESET_ID);
+    const settings = this.wakeVisualSettings ?? DEFAULT_WAKE_VISUAL_SETTINGS;
+    let dotRadius = Number(basePreset.dotRadius) || 1.8;
+    let alphaScale = Number(basePreset.alphaScale) || 1;
+    if (settings.thinFrontsEnabled) {
+      dotRadius *= 1.35 / 1.8;
+      alphaScale *= 0.86 / 1.18;
+    }
+    if (settings.brightFrontsEnabled) {
+      dotRadius *= 2.05 / 1.8;
+      alphaScale *= 1.32 / 1.18;
+    }
+    if (settings.strongFalloffEnabled) {
+      alphaScale *= 0.92 / 1.18;
+    }
+    return {
+      ...basePreset,
+      finalSpan: settings.wideArcsEnabled ? 20 : 14,
+      startSpan: settings.wideArcsEnabled ? 3.5 : 2.5,
+      dotRadius,
+      alphaScale,
+      falloffPower: settings.strongFalloffEnabled ? 1.7 : 1,
+    };
+  }
+
   drawWakes(ctx, replayTime = this.getCurrentReplayTime()) {
-    if (this.dataset.wakeArcDisplayMode === FULL_CIRCULAR_ARCS) {
+    const drawArcWakes = this.wakeVisualSettings.arcWakesEnabled === true;
+    const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
+    if (drawFullCircularWakes) {
       this.drawFullCircularWakes(ctx, replayTime);
+    }
+    if (!drawArcWakes) {
       return;
     }
-    this.getVisibleWakeSeries(replayTime).forEach((link) => {
+    const visibleWakeSeries = this.getVisibleWakeSeries(replayTime);
+    if (drawFullCircularWakes) {
+      visibleWakeSeries.forEach((link) => {
+        this.drawWakeEmissionLine(ctx, link, replayTime);
+      });
+      return;
+    }
+    visibleWakeSeries.forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
     });
   }
 
   drawFullCircularWakes(ctx, replayTime) {
-    this.getVisibleWakeSeries(replayTime).forEach((link) => {
-      this.drawFullCircularWakeProgression(ctx, link, replayTime);
+    this.getVisibleCausalIsochronSpheres(replayTime).forEach((sphere) => {
+      this.drawCausalIsochronSphere(ctx, sphere);
     });
   }
 
-  drawFullCircularWakeProgression(ctx, link, replayTime) {
-    const timing = this.getWakeTiming(link, replayTime);
-    if (!this.shouldDrawWakeSeries(timing)) {
+  drawCausalIsochronSphere(ctx, sphere) {
+    if (!this.shouldDrawCausalIsochronSphere(sphere)) {
       return;
     }
-    const preset = this.dataset.preset;
-    const radius = getDistance(timing.source, timing.receiver);
-    const theta = getAngleDegrees(timing.source, timing.receiver);
-    const falloffWeight = Math.pow(link.weight, preset.falloffPower);
-    const visualWeight = this.getWakeVisualWeight(link);
-    const frontProgresses = this.getWakeFrontProgresses(timing, link);
+    const preset = this.getWakeVisualPreset();
+    const wakeColor = mixColor(sphere.color, WHITE, 0.18);
+    const alpha = (118 / 255) * preset.alphaScale * this.getCausalIsochronSphereVisualWeight(sphere);
+    const dotRadius = Math.max(1.05, preset.dotRadius * 0.92);
+    this.drawDottedArc(ctx, sphere.origin, sphere.radius, 0, 360, withAlpha(wakeColor, alpha), dotRadius);
+  }
 
-    this.drawWakeBuildProgression(ctx, link, {
-      source: timing.source,
-      radius,
-      theta,
-      falloffWeight,
-      frontProgresses,
-      visualWeight,
-      fullCircle: true,
-    });
+  getCausalIsochronSphereVisualWeight(sphere) {
+    const age = Number(sphere?.age);
+    const [pathStart, pathEnd] = this.getReplayTimeRange();
+    const pathDuration = pathEnd - pathStart;
+    if (!Number.isFinite(age) || !Number.isFinite(pathDuration) || pathDuration <= TIME_EPSILON) {
+      return 1;
+    }
+    const preset = this.getWakeVisualPreset();
+    const ageRatio = clamp(age / pathDuration, 0, 1);
+    const distanceFalloff = Math.pow(1 - ageRatio * 0.72, preset.falloffPower);
+    return 0.34 + 0.66 * distanceFalloff;
+  }
+
+  shouldDrawCausalIsochronSphere(sphere) {
+    const radius = Number(sphere?.radius);
+    if (!sphere?.origin || !Number.isFinite(radius) || radius <= TIME_EPSILON) {
+      return false;
+    }
+    const center = this.worldToScreen(sphere.origin);
+    const screenRadius = radius * this.viewport.scale;
+    const margin = Math.max(4, (this.dataset?.preset?.dotRadius ?? 1.8) * this.viewport.scale * 3);
+    const minDx = center.x < 0 ? -center.x : center.x > this.canvasWidth ? center.x - this.canvasWidth : 0;
+    const minDy = center.y < 0 ? -center.y : center.y > this.canvasHeight ? center.y - this.canvasHeight : 0;
+    const minDistance = Math.hypot(minDx, minDy);
+    const maxDistance = Math.max(
+      Math.hypot(center.x, center.y),
+      Math.hypot(center.x - this.canvasWidth, center.y),
+      Math.hypot(center.x, center.y - this.canvasHeight),
+      Math.hypot(center.x - this.canvasWidth, center.y - this.canvasHeight),
+    );
+    return screenRadius + margin >= minDistance && screenRadius <= maxDistance + margin;
   }
 
   drawWakeProgression(ctx, link, replayTime) {
@@ -2173,7 +2341,7 @@ class CausalDelayFeedbackRuntime {
     if (!this.shouldDrawWakeSeries(timing)) {
       return;
     }
-    const preset = this.dataset.preset;
+    const preset = this.getWakeVisualPreset();
     const radius = getDistance(timing.source, timing.receiver);
     const theta = getAngleDegrees(timing.source, timing.receiver);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
@@ -2187,15 +2355,35 @@ class CausalDelayFeedbackRuntime {
       falloffWeight,
       frontProgresses,
       visualWeight,
+      preset,
     });
+  }
+
+  drawWakeEmissionLine(ctx, link, replayTime) {
+    const timing = this.getWakeTiming(link, replayTime);
+    if (!this.shouldDrawWakeSeries(timing)) {
+      return;
+    }
+    const preset = this.getWakeVisualPreset();
+    const visualWeight = this.getWakeVisualWeight(link);
+    const falloffWeight = Math.pow(link.weight, preset.falloffPower);
+    const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
+    const alpha = 0.34 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale;
+    const width = preset.dotRadius * 0.9 * visualWeight.radiusScale;
+    this.drawLine(
+      ctx,
+      [this.worldToScreen(timing.receiver), this.worldToScreen(timing.source)],
+      withAlpha(wakeColor, alpha),
+      Math.max(1, width),
+    );
   }
 
   drawWakeBuildProgression(
     ctx,
     link,
-    { source, radius, theta, falloffWeight, frontProgresses, visualWeight, fullCircle = false },
+    { source, radius, theta, falloffWeight, frontProgresses, visualWeight, preset, fullCircle = false },
   ) {
-    const preset = this.dataset.preset;
+    const wakePreset = preset ?? this.getWakeVisualPreset();
 
     for (const progress of frontProgresses) {
       if (progress <= 0) {
@@ -2204,15 +2392,15 @@ class CausalDelayFeedbackRuntime {
       const bandRadius = radius * progress;
       const wakeSpan = fullCircle
         ? 360
-        : preset.startSpan + (preset.finalSpan - preset.startSpan) * progress;
+        : wakePreset.startSpan + (wakePreset.finalSpan - wakePreset.startSpan) * progress;
       const emitterBias = 1 - progress;
       const alpha =
         ((84 + 124 * emitterBias) / 255) *
         (0.48 + 0.52 * falloffWeight) *
-        preset.alphaScale *
+        wakePreset.alphaScale *
         visualWeight.alphaScale;
       const dotRadius =
-        preset.dotRadius *
+        wakePreset.dotRadius *
         (0.82 + 0.34 * emitterBias) *
         (0.72 + 0.3 * falloffWeight) *
         visualWeight.radiusScale;
@@ -2564,7 +2752,10 @@ class CausalDelayFeedbackRuntime {
     }
     this.updateWakeLinkGeometry();
     this.syncReplayRequestOptionsFromDataset();
-    this.markDraftPreview("path_line_drag_preview");
+    this.markDraftPreview("path_line_drag_preview", {
+      pathLineKind: kind,
+      pathLineAnchorT: Number(anchorT),
+    });
     return true;
   }
 
@@ -2601,7 +2792,7 @@ class CausalDelayFeedbackRuntime {
     return kind === "positrino" ? POSITRINO_WAKE : ELECTRINO_WAKE;
   }
 
-  markDraftPreview(reason, { staleSolverRows = true } = {}) {
+  markDraftPreview(reason, { staleSolverRows = true, ...draftMetadata } = {}) {
     if (!this.dataset) {
       return;
     }
@@ -2612,6 +2803,7 @@ class CausalDelayFeedbackRuntime {
     this.dataset.draftPreview = {
       reason,
       authoritative: false,
+      ...draftMetadata,
     };
     this.replayLoadState = "draft";
     this.replayLoadError = null;
@@ -3184,11 +3376,63 @@ class CausalDelayFeedbackRuntime {
     if (!Number.isFinite(distance) || distance <= 0) {
       return [];
     }
-    const frontCount = Math.max(1, Math.ceil(distance / LIVE_WAKE_FRONT_SPACING));
+    const spacing = this.getWakeFrontSpacing();
+    const frontCount = Math.max(1, Math.ceil(distance / spacing));
     return Array.from({ length: frontCount }, (_unused, index) => {
-      const frontDistance = Math.min(distance, (index + 1) * LIVE_WAKE_FRONT_SPACING);
+      const frontDistance = Math.min(distance, (index + 1) * spacing);
       return clamp(frontDistance / distance, 0, 1);
     });
+  }
+
+  getWakeFrontSpacing() {
+    return this.wakeVisualSettings?.wideWakeFrontGapEnabled === true
+      ? WIDE_LIVE_WAKE_FRONT_SPACING
+      : DEFAULT_LIVE_WAKE_FRONT_SPACING;
+  }
+
+  getVisibleCausalIsochronSpheres(replayTime = this.getCurrentReplayTime()) {
+    return ARCHITRINO_KINDS.flatMap((kind) => this.getCausalIsochronSpheres(kind, replayTime));
+  }
+
+  getCausalIsochronSpheres(kind, replayTime = this.getCurrentReplayTime()) {
+    const now = Number(replayTime);
+    const signalSpeed = this.getLiveWakeSignalSpeed();
+    const [pathStart, pathEnd] = this.getReplayTimeRange();
+    const pathDuration = pathEnd - pathStart;
+    if (
+      !ARCHITRINO_KINDS.includes(kind) ||
+      !Number.isFinite(now) ||
+      !Number.isFinite(signalSpeed) ||
+      signalSpeed <= 0 ||
+      !Number.isFinite(pathDuration) ||
+      pathDuration <= TIME_EPSILON ||
+      now <= pathStart + TIME_EPSILON
+    ) {
+      return [];
+    }
+    const emissionEnd = Math.min(now, pathEnd);
+    const emissionStep = this.getWakeFrontSpacing() / signalSpeed;
+    const emissionCount = Math.floor((emissionEnd - pathStart) / emissionStep);
+    const spheres = [];
+    for (let index = 0; index <= emissionCount; index += 1) {
+      const emissionTime = pathStart + index * emissionStep;
+      const age = now - emissionTime;
+      if (age <= TIME_EPSILON) {
+        continue;
+      }
+      spheres.push({
+        id: `${kind}-isochron-${index}`,
+        kind,
+        origin: this.getReplayPathPoint(kind, emissionTime),
+        emissionTime,
+        replayTime: now,
+        age,
+        radius: signalSpeed * age,
+        signalSpeed,
+        color: this.getWakeColorForKind(kind),
+      });
+    }
+    return spheres;
   }
 
   shouldDrawWakeSeries(timing) {

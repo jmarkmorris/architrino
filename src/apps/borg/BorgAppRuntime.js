@@ -3,9 +3,14 @@ import {
   BORG_APP_SURFACE_DESIGN_V1,
   BORG_DATASET_MANIFEST_V1,
   BORG_FAIL_CLOSED_ROWS,
-  getBorgFrameSet,
   validateBorgFixtureSnapshot,
 } from "./BorgFixtureData.js";
+import {
+  BORG_DYNAMIC_NATIVE_RUN_SOURCE,
+  createBorgDynamicNativeRunner,
+  createBorgFrameSetsFromRows,
+  mergeBorgFrameRows,
+} from "./BorgDynamicNativeRunner.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const CAMERA_MIN_DISTANCE = 4.8;
@@ -16,7 +21,43 @@ const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
-const PLAYBACK_MS_PER_NATIVE_STEP = 120;
+const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
+const DEFAULT_RUN_CONTROL_PRESET_ID = "live-long";
+const PLAYBACK_SPEED_PRESETS = Object.freeze([
+  Object.freeze({ id: "detail", label: "Detail", msPerNativeStep: 120 }),
+  Object.freeze({ id: "normal", label: "Normal", msPerNativeStep: 1000 / 60 }),
+  Object.freeze({ id: "fast", label: "Fast", msPerNativeStep: 1000 / 150 }),
+]);
+const RUN_CONTROL_PRESETS = Object.freeze([
+  Object.freeze({
+    id: "live-long",
+    label: "Live 3000 / 20",
+    sourceMode: "live",
+    targetDuration: 3000,
+    chunkDuration: 20,
+  }),
+  Object.freeze({
+    id: "live-fixture-scale",
+    label: "Live 300 / 20",
+    sourceMode: "live",
+    targetDuration: 300,
+    chunkDuration: 20,
+  }),
+  Object.freeze({
+    id: "live-large-chunk",
+    label: "Live 3000 / 50",
+    sourceMode: "live",
+    targetDuration: 3000,
+    chunkDuration: 50,
+  }),
+  Object.freeze({
+    id: "fixture",
+    label: "Fixture 300 / static",
+    sourceMode: "fixture",
+    targetDuration: null,
+    chunkDuration: null,
+  }),
+]);
 const PATH_RENDER_ORDER = 2;
 const ARCHITRINO_RENDER_ORDER = 6;
 const PLAY_ICON_PATH = "M8 5v14l11-7z";
@@ -53,6 +94,12 @@ const STATUS_TONE = Object.freeze({
   "exceeded-error-budget": "bad",
   "fail-closed-value": "bad",
   "native-backed-now": "good",
+  "computed-live-native-chunks": "good",
+  "live-native-running": "good",
+  "precomputed-fixture": "warn",
+  "fixture-fallback": "warn",
+  "live-native-error": "bad",
+  "completed-live-native-run": "good",
   "fail-closed-missing-contract": "bad",
   failed: "bad",
   passed: "good",
@@ -100,6 +147,8 @@ export function mountBorgApp(options = {}) {
     selectedTag: queryRequiredElement(documentLike, "#borg-selected-tag"),
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
+    runSource: queryRequiredElement(documentLike, "#borg-run-source"),
+    playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
     playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
     resetButton: queryRequiredElement(documentLike, "#borg-reset-view-button"),
@@ -107,7 +156,9 @@ export function mountBorgApp(options = {}) {
     focusButton: queryRequiredElement(documentLike, "#borg-focus-selected-button"),
   };
 
-  const frameSets = getBorgFrameSet(manifest);
+  const fixtureFrames = [...manifest.currentStateFrames];
+  let currentFrames = [...fixtureFrames];
+  let frameSets = createBorgFrameSetsFromRows(currentFrames);
   const worldUnitsPerSolverUnit =
     TARGET_CENTRAL_WORLD_SIDE / Math.max(1, manifest.simulationEnvelope.centralVolumeSideLength);
   const scene = new THREE.Scene();
@@ -144,7 +195,7 @@ export function mountBorgApp(options = {}) {
   const particleObjects = new Map();
   const velocityLines = new Map();
   const architrinoPointTexture = createArchitrinoPointTexture(documentLike);
-  const particleStyles = createParticleStyles(manifest);
+  const particleStyles = createParticleStyles(currentFrames);
 
   const state = {
     activeFrameIndex: frameSets[0]?.frameIndex ?? 0,
@@ -170,6 +221,18 @@ export function mountBorgApp(options = {}) {
     playbackFromSetIndex: 0,
     playbackToSetIndex: 0,
     playbackSegmentStartedAt: null,
+    playbackSpeedPresetId: DEFAULT_PLAYBACK_SPEED_PRESET_ID,
+    runControlPresetId: options.initialRunControlPresetId ?? DEFAULT_RUN_CONTROL_PRESET_ID,
+    sourceMode: "precomputed-fixture",
+    dynamicRunnerStatus: "precomputed-fixture",
+    dynamicRunnerMessage: "static native fixture loaded",
+    dynamicRunner: null,
+    dynamicChunkPromise: null,
+    dynamicChunksComputed: 0,
+    dynamicTargetDuration: null,
+    dynamicChunkDuration: null,
+    dynamicRunGeneration: 0,
+    resizeObserver: null,
   };
 
   buildScene();
@@ -182,6 +245,7 @@ export function mountBorgApp(options = {}) {
   updateFrame(state.activeFrameIndex);
   setPlayButtonPresentation(false);
   resize();
+  startDynamicNativeRunner();
 
   return {
     manifest,
@@ -210,7 +274,7 @@ export function mountBorgApp(options = {}) {
 
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey, particleStyles);
-      const points = manifest.currentStateFrames
+      const points = currentFrames
         .filter((frame) => frame.pathKey === pathKey)
         .sort((left, right) => left.frameIndex - right.frameIndex)
         .map((frame) => solverPositionToWorld(frame.position));
@@ -282,69 +346,14 @@ export function mountBorgApp(options = {}) {
   }
 
   function renderStaticPanels() {
-    dom.nativeStatus.textContent = manifest.nativeSolverStatus;
-    setTone(dom.nativeStatus, manifest.nativeSolverStatus);
+    updateSourceStatusPresentation();
     dom.manifestStatus.textContent = surfaceDesign.claimLevel;
     setTone(dom.manifestStatus, "app-facing-projection");
 
-    renderFieldRows(dom.sourceFields, [
-      ["Manifest", manifest.manifestId],
-      ["Model contract", manifest.modelContractId],
-      ["Bridge path", manifest.sourceBridgeRun.executionPath],
-      ["Source claim", manifest.claimLevel],
-      ["Frame rows", manifest.sourceBridgeRun.frameCount],
-      ["Native keyframes", manifest.currentStateAndFrameSources.nativeKeyframeCount],
-      ["Sample interval", manifest.simulationEnvelope.sampleInterval],
-      ["Playback source", manifest.currentStateAndFrameSources.playbackFrameSource],
-      ["Initial layout", manifest.initialConditions.initialLinePolicy],
-      ["Solver mode", manifest.sourceBridgeRun.solverMode],
-      ["Motion law", manifest.sourceBridgeRun.motionLaw],
-      ["Parameter set", manifest.sourceBridgeRun.fixedPhysicalParameterSetId],
-      ["Parameter authority", manifest.sourceBridgeRun.fixedPhysicalParameterAuthority],
-      ["Visual tuning", manifest.sourceBridgeRun.visualTuningStatus],
-      ["Visual authority", manifest.sourceBridgeRun.visualBehaviorAuthority],
-      ["Master equation", manifest.sourceBridgeRun.nativeMasterEquationStatus],
-      ["ME probe", manifest.nativeMasterEquationProbe?.statusCode],
-      ["ME fallback", manifest.nativeMasterEquationProbe?.fallbackDecision],
-      ["Path rows", manifest.sourceBridgeRun.pathRowCount],
-    ]);
-
-    renderFieldRows(dom.envelopeFields, [
-      ["sideLength", manifest.simulationEnvelope.sideLength],
-      ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
-      ["faceBufferMargin", manifest.simulationEnvelope.faceBufferMargin],
-      ["duration", manifest.simulationEnvelope.duration],
-      ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
-      ["historyDepth", manifest.simulationEnvelope.historyDepth],
-      ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
-      ["wakeHorizon", manifest.simulationEnvelope.wakeHorizon],
-      ["centralVelocityBound", manifest.simulationEnvelope.centralVelocityBound],
-      ["centralObservationInterval", manifest.simulationEnvelope.centralObservationInterval],
-      ["centralArchitrinoCount", manifest.population.centralArchitrinoCount],
-      ["architrinoCount", manifest.population.architrinoCount],
-      ["bufferArchitrinoCount", manifest.population.bufferArchitrinoCount],
-      ["strictCentralBufferStatus", manifest.simulationEnvelope.strictCentralBufferStatus],
-    ]);
-
-    renderFieldRows(dom.initialConditionFields, [
-      ["family", manifest.initialConditions.initialConditionFamily],
-      ["seed", manifest.initialConditions.initialConditionSeed ?? "null"],
-      ["electrinoCount", manifest.initialConditions.electrinoCount],
-      ["positrinoCount", manifest.initialConditions.positrinoCount],
-      ["velocityPolicy", manifest.initialConditions.velocityPolicy],
-      ["velocity rays", "off"],
-      ["customEditStatus", manifest.initialConditions.customEditStatus],
-    ]);
-
-    renderFieldRows(dom.diagnosticsFields, [
-      ["R_boundary->central", manifest.boundaryToCentralResidual.status],
-      ["tolerance", manifest.boundaryToCentralResidual.tolerance],
-      ["decision", manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus],
-      ["benignNoiseStatus", manifest.faceBoundary.benignNoiseStatus],
-      ["path bounds", manifest.faceBoundary.pathBoundsFaceCrossing.crossingStatus],
-      ["proof claim", manifest.validation.proofClaimStatus],
-    ]);
-
+    renderSourceFields();
+    renderEnvelopeFields();
+    renderInitialConditionFields();
+    renderDiagnosticFields();
     renderFailClosedRows();
     renderFieldRows(
       dom.authorityFields,
@@ -363,6 +372,79 @@ export function mountBorgApp(options = {}) {
       ["browserHeapBudget", manifest.deploymentBudget.browserHeapBudget ?? "not-measured"],
       ["gpuMemoryBudget", manifest.deploymentBudget.gpuMemoryBudget ?? "not-measured"],
       ["nativeSolverThroughput", "not-measured"],
+    ]);
+  }
+
+  function renderSourceFields() {
+    renderFieldRows(dom.sourceFields, [
+      ["Run source", state.sourceMode],
+      ["Run preset", runControlPresetById(state.runControlPresetId).label],
+      ["Live status", state.dynamicRunnerStatus],
+      ["Live target", state.dynamicTargetDuration ?? "not-started"],
+      ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
+      ["Live chunks", state.dynamicChunksComputed],
+      ["Live message", state.dynamicRunnerMessage],
+      ["Manifest", manifest.manifestId],
+      ["Model contract", manifest.modelContractId],
+      ["Bridge path", manifest.sourceBridgeRun.executionPath],
+      ["Source claim", manifest.claimLevel],
+      ["Frame rows", currentFrames.length],
+      ["Native keyframes", frameSets.length],
+      ["Sample interval", manifest.simulationEnvelope.sampleInterval],
+      ["Playback source", state.sourceMode],
+      ["Initial layout", manifest.initialConditions.initialLinePolicy],
+      ["Solver mode", manifest.sourceBridgeRun.solverMode],
+      ["Motion law", manifest.sourceBridgeRun.motionLaw],
+      ["Parameter set", manifest.sourceBridgeRun.fixedPhysicalParameterSetId],
+      ["Parameter authority", manifest.sourceBridgeRun.fixedPhysicalParameterAuthority],
+      ["Visual tuning", manifest.sourceBridgeRun.visualTuningStatus],
+      ["Visual authority", manifest.sourceBridgeRun.visualBehaviorAuthority],
+      ["Master equation", manifest.sourceBridgeRun.nativeMasterEquationStatus],
+      ["ME probe", manifest.nativeMasterEquationProbe?.statusCode],
+      ["ME fallback", manifest.nativeMasterEquationProbe?.fallbackDecision],
+      ["Path rows", manifest.sourceBridgeRun.pathRowCount],
+    ]);
+  }
+
+  function renderEnvelopeFields() {
+    renderFieldRows(dom.envelopeFields, [
+      ["sideLength", manifest.simulationEnvelope.sideLength],
+      ["centralVolumeSideLength", manifest.simulationEnvelope.centralVolumeSideLength],
+      ["faceBufferMargin", manifest.simulationEnvelope.faceBufferMargin],
+      ["duration", manifest.simulationEnvelope.duration],
+      ["sampleInterval", manifest.simulationEnvelope.sampleInterval],
+      ["historyDepth", manifest.simulationEnvelope.historyDepth],
+      ["fieldSpeed", manifest.simulationEnvelope.fieldSpeed],
+      ["wakeHorizon", manifest.simulationEnvelope.wakeHorizon],
+      ["centralVelocityBound", manifest.simulationEnvelope.centralVelocityBound],
+      ["centralObservationInterval", manifest.simulationEnvelope.centralObservationInterval],
+      ["centralArchitrinoCount", manifest.population.centralArchitrinoCount],
+      ["architrinoCount", manifest.population.architrinoCount],
+      ["bufferArchitrinoCount", manifest.population.bufferArchitrinoCount],
+      ["strictCentralBufferStatus", manifest.simulationEnvelope.strictCentralBufferStatus],
+    ]);
+  }
+
+  function renderInitialConditionFields() {
+    renderFieldRows(dom.initialConditionFields, [
+      ["family", manifest.initialConditions.initialConditionFamily],
+      ["seed", manifest.initialConditions.initialConditionSeed ?? "null"],
+      ["electrinoCount", manifest.initialConditions.electrinoCount],
+      ["positrinoCount", manifest.initialConditions.positrinoCount],
+      ["velocityPolicy", manifest.initialConditions.velocityPolicy],
+      ["velocity rays", "off"],
+      ["customEditStatus", manifest.initialConditions.customEditStatus],
+    ]);
+  }
+
+  function renderDiagnosticFields() {
+    renderFieldRows(dom.diagnosticsFields, [
+      ["R_boundary->central", manifest.boundaryToCentralResidual.status],
+      ["tolerance", manifest.boundaryToCentralResidual.tolerance],
+      ["decision", manifest.boundaryToCentralResidual.boundaryReplayDecisionStatus],
+      ["benignNoiseStatus", manifest.faceBoundary.benignNoiseStatus],
+      ["path bounds", manifest.faceBoundary.pathBoundsFaceCrossing.crossingStatus],
+      ["proof claim", manifest.validation.proofClaimStatus],
     ]);
   }
 
@@ -420,11 +502,33 @@ export function mountBorgApp(options = {}) {
   }
 
   function configureTimeline() {
+    updateTimelineBounds();
+    dom.runSource.textContent = "";
+    RUN_CONTROL_PRESETS.forEach((preset) => {
+      const option = documentLike.createElement("option");
+      option.value = preset.id;
+      option.textContent = preset.label;
+      dom.runSource.append(option);
+    });
+    dom.runSource.value = runControlPresetById(state.runControlPresetId).id;
+    dom.playbackSpeed.textContent = "";
+    PLAYBACK_SPEED_PRESETS.forEach((preset) => {
+      const option = documentLike.createElement("option");
+      option.value = preset.id;
+      option.textContent = preset.label;
+      dom.playbackSpeed.append(option);
+    });
+    dom.playbackSpeed.value = state.playbackSpeedPresetId;
+  }
+
+  function updateTimelineBounds() {
     const frameIndexes = frameSets.map((entry) => entry.frameIndex);
     dom.timelineRange.min = String(Math.min(...frameIndexes));
     dom.timelineRange.max = String(Math.max(...frameIndexes));
     dom.timelineRange.step = "1";
-    dom.timelineRange.value = String(state.activeFrameIndex);
+    dom.timelineRange.value = String(
+      clamp(state.activeFrameIndex, Number(dom.timelineRange.min), Number(dom.timelineRange.max)),
+    );
   }
 
   function bindEvents() {
@@ -434,6 +538,15 @@ export function mountBorgApp(options = {}) {
     });
     dom.playButton.addEventListener("click", () => {
       togglePlayback();
+    });
+    dom.runSource.addEventListener("change", () => {
+      switchRunControlPreset(dom.runSource.value);
+    });
+    dom.playbackSpeed.addEventListener("change", () => {
+      state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
+      if (state.playing) {
+        state.playbackSegmentStartedAt = getPlaybackNow();
+      }
     });
     dom.resetButton.addEventListener("click", resetView);
     dom.fitButton.addEventListener("click", fitView);
@@ -573,6 +686,7 @@ export function mountBorgApp(options = {}) {
     }
     state.playing = true;
     setPlayButtonPresentation(true);
+    ensureDynamicFramesAhead();
     startPlaybackSegment(currentSetIndex);
   }
 
@@ -615,6 +729,11 @@ export function mountBorgApp(options = {}) {
   function startPlaybackSegment(fromSetIndex, startedAt = null) {
     const toSetIndex = fromSetIndex + 1;
     if (toSetIndex >= frameSets.length) {
+      if (canExtendDynamicRun()) {
+        ensureDynamicFramesAhead();
+        queuePlaybackFrame();
+        return;
+      }
       stopPlayback();
       return;
     }
@@ -628,20 +747,48 @@ export function mountBorgApp(options = {}) {
     if (!state.playing) {
       return;
     }
-    const fromFrameSet = frameSets[state.playbackFromSetIndex];
-    const toFrameSet = frameSets[state.playbackToSetIndex];
+    let fromFrameSet = frameSets[state.playbackFromSetIndex];
+    let toFrameSet = frameSets[state.playbackToSetIndex];
     if (!fromFrameSet || !toFrameSet) {
+      if (canExtendDynamicRun()) {
+        ensureDynamicFramesAhead();
+        queuePlaybackFrame();
+        return;
+      }
       stopPlayback();
       return;
     }
+    maybeQueueDynamicFramesAhead();
     if (state.playbackSegmentStartedAt == null) {
       state.playbackSegmentStartedAt = now;
     }
-    const progress = clamp(
-      (now - state.playbackSegmentStartedAt) / PLAYBACK_MS_PER_NATIVE_STEP,
-      0,
-      1,
-    );
+    const msPerNativeStep = getPlaybackMsPerNativeStep();
+    const rawProgress = (now - state.playbackSegmentStartedAt) / msPerNativeStep;
+    let progress = clamp(rawProgress, 0, 1);
+    if (rawProgress >= 1) {
+      const advancedStepCount = Math.floor(rawProgress);
+      const nextFromSetIndex = state.playbackFromSetIndex + advancedStepCount;
+      if (nextFromSetIndex >= frameSets.length - 1) {
+        if (canExtendDynamicRun()) {
+          ensureDynamicFramesAhead();
+          queuePlaybackFrame();
+          return;
+        }
+        applyFrameSet(frameSets.at(-1), {
+          outputLabel: formatTimelineLabel(frameSets.at(-1).time, frameSets.at(-1).frameIndex),
+          rangeValue: frameSets.at(-1).frameIndex,
+        });
+        stopPlayback();
+        return;
+      }
+      const remainder = rawProgress - advancedStepCount;
+      state.playbackFromSetIndex = nextFromSetIndex;
+      state.playbackToSetIndex = nextFromSetIndex + 1;
+      state.playbackSegmentStartedAt = now - remainder * msPerNativeStep;
+      fromFrameSet = frameSets[state.playbackFromSetIndex];
+      toFrameSet = frameSets[state.playbackToSetIndex];
+      progress = clamp(remainder, 0, 1);
+    }
     const displayFrameSet = interpolateFrameSet(fromFrameSet, toFrameSet, progress);
     const currentFrameIndex = progress < 0.5 ? fromFrameSet.frameIndex : toFrameSet.frameIndex;
     applyFrameSet(displayFrameSet, {
@@ -654,6 +801,11 @@ export function mountBorgApp(options = {}) {
         rangeValue: toFrameSet.frameIndex,
       });
       if (state.playbackToSetIndex >= frameSets.length - 1) {
+        if (canExtendDynamicRun()) {
+          ensureDynamicFramesAhead();
+          queuePlaybackFrame();
+          return;
+        }
         stopPlayback();
         return;
       }
@@ -778,7 +930,7 @@ export function mountBorgApp(options = {}) {
     }
     const speed = vectorLength(frame.velocity);
     const style = getParticleStyle(state.selectedPathKey, particleStyles);
-    const keyframeCount = manifest.currentStateAndFrameSources.nativeKeyframeCount ?? frameSets.length;
+    const keyframeCount = frameSets.length;
     dom.selectedTag.hidden = false;
     dom.selectedTag.textContent = `${style.polarity} ${state.selectedPathKey} | speed ${formatNumber(speed)} | ${keyframeCount} native keyframes`;
   }
@@ -806,6 +958,8 @@ export function mountBorgApp(options = {}) {
     state.resizeObserver?.disconnect?.();
     windowLike.removeEventListener("resize", resize);
     windowLike.removeEventListener("keydown", handleKeyDown);
+    disposeDynamicRunner();
+    disposePathTrails();
     architrinoPointTexture.dispose();
     renderer.dispose();
   }
@@ -843,10 +997,215 @@ export function mountBorgApp(options = {}) {
     return windowLike.performance?.now?.() ?? Date.now();
   }
 
+  function getPlaybackMsPerNativeStep() {
+    return playbackSpeedPresetById(state.playbackSpeedPresetId).msPerNativeStep;
+  }
+
   function getPathKeys() {
-    return [...new Set(manifest.currentStateFrames.map((frame) => frame.pathKey))].sort(
+    return [...new Set(currentFrames.map((frame) => frame.pathKey))].sort(
       (left, right) => left - right,
     );
+  }
+
+  function startDynamicNativeRunner() {
+    const preset = runControlPresetById(state.runControlPresetId);
+    if (preset.sourceMode === "fixture") {
+      restoreFixtureRun();
+      return;
+    }
+    const runnerOptions = createDefaultDynamicRunnerOptions(windowLike, options, preset);
+    if (!runnerOptions) {
+      state.runControlPresetId = "fixture";
+      dom.runSource.value = "fixture";
+      state.dynamicRunnerStatus = "precomputed-fixture";
+      state.dynamicRunnerMessage = "live native runner unavailable";
+      state.dynamicTargetDuration = null;
+      state.dynamicChunkDuration = null;
+      updateSourceStatusPresentation();
+      renderSourceFields();
+      return;
+    }
+    const generation = state.dynamicRunGeneration;
+    state.dynamicRunner = createBorgDynamicNativeRunner(manifest, runnerOptions);
+    state.dynamicTargetDuration = state.dynamicRunner.config.targetDuration;
+    state.dynamicChunkDuration = state.dynamicRunner.config.chunkDuration;
+    state.dynamicRunnerStatus = "live-native-running";
+    state.dynamicRunnerMessage = "computing native chunks";
+    updateSourceStatusPresentation();
+    renderSourceFields();
+    ensureDynamicFramesAhead({ replaceFixture: true, generation });
+  }
+
+  function ensureDynamicFramesAhead({
+    replaceFixture = false,
+    generation = state.dynamicRunGeneration,
+  } = {}) {
+    if (!state.dynamicRunner || state.dynamicChunkPromise || !state.dynamicRunner.canComputeNextChunk()) {
+      return state.dynamicChunkPromise;
+    }
+    state.dynamicRunnerStatus = "live-native-running";
+    state.dynamicRunnerMessage = "computing native chunk";
+    updateSourceStatusPresentation();
+    renderSourceFields();
+    state.dynamicChunkPromise = state.dynamicRunner
+      .computeNextChunk()
+      .then((chunk) => {
+        if (generation !== state.dynamicRunGeneration) {
+          return null;
+        }
+        state.dynamicChunksComputed += 1;
+        state.sourceMode = BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        state.dynamicRunnerStatus = state.dynamicRunner.canComputeNextChunk()
+          ? BORG_DYNAMIC_NATIVE_RUN_SOURCE
+          : "completed-live-native-run";
+        state.dynamicRunnerMessage = `chunk ${chunk.chunkIndex} ready`;
+        currentFrames = replaceFixture
+          ? [...chunk.frames]
+          : mergeBorgFrameRows(currentFrames, chunk.frames);
+        frameSets = createBorgFrameSetsFromRows(currentFrames);
+        rebuildPathTrails();
+        updateTimelineBounds();
+        if (replaceFixture) {
+          updateFrame(frameSets[0]?.frameIndex ?? 0);
+        } else {
+          updateFrame(clamp(state.activeFrameIndex, frameSets[0]?.frameIndex ?? 0, frameSets.at(-1)?.frameIndex ?? 0));
+        }
+        updateSourceStatusPresentation();
+        renderSourceFields();
+        return chunk;
+      })
+      .catch((error) => {
+        if (generation !== state.dynamicRunGeneration) {
+          return null;
+        }
+        const hadLiveFrames = state.sourceMode === BORG_DYNAMIC_NATIVE_RUN_SOURCE;
+        state.dynamicRunnerStatus = hadLiveFrames ? "live-native-error" : "fixture-fallback";
+        state.dynamicRunnerMessage = error?.message ?? "live native runner failed";
+        if (!hadLiveFrames) {
+          state.sourceMode = "precomputed-fixture";
+        }
+        updateSourceStatusPresentation();
+        renderSourceFields();
+        return null;
+      })
+      .finally(() => {
+        if (generation === state.dynamicRunGeneration) {
+          state.dynamicChunkPromise = null;
+        }
+      });
+    return state.dynamicChunkPromise;
+  }
+
+  function canExtendDynamicRun() {
+    return Boolean(
+      state.dynamicRunner &&
+        (state.dynamicChunkPromise || state.dynamicRunner.canComputeNextChunk()),
+    );
+  }
+
+  function maybeQueueDynamicFramesAhead() {
+    if (!state.dynamicRunner || state.dynamicChunkPromise || !state.dynamicRunner.canComputeNextChunk()) {
+      return;
+    }
+    const remainingFrameSets = frameSets.length - 1 - state.playbackToSetIndex;
+    if (remainingFrameSets <= 12) {
+      ensureDynamicFramesAhead();
+    }
+  }
+
+  function rebuildPathTrails() {
+    disposePathTrails();
+    getPathKeys().forEach((pathKey) => {
+      const style = getParticleStyle(pathKey, particleStyles);
+      const points = currentFrames
+        .filter((frame) => frame.pathKey === pathKey)
+        .sort((left, right) => left.frameIndex - right.frameIndex)
+        .map((frame) => solverPositionToWorld(frame.position));
+      if (points.length < 2) {
+        return;
+      }
+      const geometry = createPathSegmentGeometry(points);
+      const material = new THREE.LineBasicMaterial({
+        color: style.pathColor ?? style.velocityColor ?? style.color,
+        transparent: true,
+        opacity: 0.9,
+        depthTest: false,
+        depthWrite: false,
+      });
+      const trail = new THREE.LineSegments(geometry, material);
+      trail.visible = pathGroup.visible;
+      trail.renderOrder = PATH_RENDER_ORDER;
+      pathGroup.add(trail);
+    });
+  }
+
+  function disposePathTrails() {
+    while (pathGroup.children.length > 0) {
+      const child = pathGroup.children[0];
+      pathGroup.remove(child);
+      child.geometry?.dispose?.();
+      child.material?.dispose?.();
+    }
+  }
+
+  function updateSourceStatusPresentation() {
+    dom.nativeStatus.textContent = state.dynamicRunnerStatus;
+    setTone(dom.nativeStatus, state.dynamicRunnerStatus);
+  }
+
+  function switchRunControlPreset(presetId) {
+    const preset = runControlPresetById(presetId);
+    stopPlayback();
+    state.runControlPresetId = preset.id;
+    dom.runSource.value = preset.id;
+    disposeDynamicRunner();
+    if (preset.sourceMode === "fixture") {
+      restoreFixtureRun();
+      return;
+    }
+    resetDynamicRunState();
+    startDynamicNativeRunner();
+  }
+
+  function restoreFixtureRun() {
+    disposeDynamicRunner();
+    currentFrames = [...fixtureFrames];
+    frameSets = createBorgFrameSetsFromRows(currentFrames);
+    rebuildPathTrails();
+    state.sourceMode = "precomputed-fixture";
+    state.dynamicRunnerStatus = "precomputed-fixture";
+    state.dynamicRunnerMessage = "static native fixture loaded";
+    state.dynamicChunksComputed = 0;
+    state.dynamicTargetDuration = null;
+    state.dynamicChunkDuration = null;
+    updateTimelineBounds();
+    updateFrame(frameSets[0]?.frameIndex ?? 0);
+    updateSourceStatusPresentation();
+    renderSourceFields();
+  }
+
+  function resetDynamicRunState() {
+    currentFrames = [...fixtureFrames];
+    frameSets = createBorgFrameSetsFromRows(currentFrames);
+    rebuildPathTrails();
+    state.sourceMode = "precomputed-fixture";
+    state.dynamicRunnerStatus = "live-native-running";
+    state.dynamicRunnerMessage = "computing native chunks";
+    state.dynamicChunksComputed = 0;
+    state.dynamicTargetDuration = null;
+    state.dynamicChunkDuration = null;
+    updateTimelineBounds();
+    updateFrame(frameSets[0]?.frameIndex ?? 0);
+    updateSourceStatusPresentation();
+    renderSourceFields();
+  }
+
+  function disposeDynamicRunner() {
+    state.dynamicRunGeneration += 1;
+    state.dynamicChunkPromise = null;
+    const runner = state.dynamicRunner;
+    state.dynamicRunner = null;
+    runner?.dispose?.();
   }
 }
 
@@ -866,9 +1225,9 @@ function queryRequiredElement(documentLike, selector) {
   return element;
 }
 
-function createParticleStyles(manifest) {
+function createParticleStyles(frames) {
   const styles = new Map();
-  manifest.currentStateFrames.forEach((frame) => {
+  frames.forEach((frame) => {
     if (styles.has(frame.pathKey)) {
       return;
     }
@@ -890,6 +1249,61 @@ function getParticleStyle(pathKey, particleStyles) {
     velocityColor: 0xe5f1ff,
     edgeColor: "#ffffff",
     polarity: "architrino",
+  };
+}
+
+function playbackSpeedPresetById(presetId) {
+  return (
+    PLAYBACK_SPEED_PRESETS.find((preset) => preset.id === presetId) ??
+    PLAYBACK_SPEED_PRESETS.find((preset) => preset.id === DEFAULT_PLAYBACK_SPEED_PRESET_ID) ??
+    PLAYBACK_SPEED_PRESETS[0]
+  );
+}
+
+function runControlPresetById(presetId) {
+  return (
+    RUN_CONTROL_PRESETS.find((preset) => preset.id === presetId) ??
+    RUN_CONTROL_PRESETS.find((preset) => preset.id === DEFAULT_RUN_CONTROL_PRESET_ID) ??
+    RUN_CONTROL_PRESETS[0]
+  );
+}
+
+function createDefaultDynamicRunnerOptions(windowLike, options = {}, preset = runControlPresetById()) {
+  if (options.enableDynamicNativeRunner === false || options.dynamicNativeRunner === false) {
+    return null;
+  }
+  const configured =
+    options.dynamicNativeRunner && typeof options.dynamicNativeRunner === "object"
+      ? options.dynamicNativeRunner
+      : {};
+  const hasExplicitNativeClient =
+    configured.solverClient ||
+    configured.createSolverBridgeClient ||
+    configured.solverWorker ||
+    configured.createSolverWorker ||
+    configured.createWasmModule;
+  const hasWorker = typeof (configured.WorkerCtor ?? windowLike?.Worker) === "function";
+  if (!hasExplicitNativeClient && !hasWorker) {
+    return null;
+  }
+  const workerOptions = hasWorker || configured.workerUrl || configured.WorkerCtor
+    ? {
+        workerUrl: configured.workerUrl ?? new URL("./BorgSolverBridgeWorker.js", import.meta.url).href,
+        workerOptions: {
+          type: "module",
+          ...(configured.workerOptions ?? {}),
+        },
+        disposeSolverWorkerAfterRun: false,
+        terminateSolverWorkerOnDispose: true,
+      }
+    : {};
+  return {
+    ...configured,
+    targetDuration: configured.targetDuration ?? preset.targetDuration,
+    chunkDuration: configured.chunkDuration ?? preset.chunkDuration,
+    scope: windowLike,
+    ...workerOptions,
+    requestTimeoutMs: configured.requestTimeoutMs ?? 120000,
   };
 }
 

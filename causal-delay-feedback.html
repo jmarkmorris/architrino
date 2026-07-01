@@ -89,6 +89,38 @@
         outline: none;
       }
 
+      .causal-switch-row {
+        display: flex;
+        flex: 1 1 330px;
+        flex-wrap: wrap;
+        gap: 6px;
+        max-width: min(520px, 34vw);
+      }
+
+      .causal-switch-button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-width: 52px;
+        height: 30px;
+        padding: 0 9px;
+        border: 1px solid rgba(224, 207, 255, 0.3);
+        border-radius: 6px;
+        background: rgba(36, 20, 55, 0.72);
+        color: rgba(246, 247, 255, 0.74);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 780;
+        line-height: 1;
+        white-space: nowrap;
+      }
+
+      .causal-switch-button[aria-pressed="true"] {
+        border-color: rgba(74, 229, 255, 0.72);
+        background: rgba(38, 76, 90, 0.72);
+        color: #f6f7ff;
+      }
+
       .causal-source-chip {
         display: inline-flex;
         align-items: center;
@@ -192,7 +224,9 @@
       .causal-icon-button:hover,
       .causal-icon-button:focus-visible,
       .causal-preset:hover,
-      .causal-preset:focus-visible {
+      .causal-preset:focus-visible,
+      .causal-switch-button:hover,
+      .causal-switch-button:focus-visible {
         border-color: rgba(246, 247, 255, 0.72);
         outline: none;
       }
@@ -545,6 +579,11 @@
           width: auto;
         }
 
+        .causal-switch-row {
+          flex: 1 1 100%;
+          max-width: none;
+        }
+
         .causal-now-scrub {
           flex: 1 1 180px;
           grid-template-columns: minmax(118px, 1fr) 48px;
@@ -583,6 +622,69 @@
         </div>
 
         <select id="causal-delay-feedback-preset" class="causal-preset" aria-label="Preset"></select>
+
+        <div
+          id="causal-delay-feedback-visual-switches"
+          class="causal-switch-row"
+          aria-label="Wake visual switches"
+        >
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="arcWakesEnabled"
+            aria-pressed="true"
+            aria-label="Arc wakes"
+            title="Arc wakes"
+          >Arcs</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="fullCircularWakesEnabled"
+            aria-pressed="false"
+            aria-label="Full circular wakes"
+            title="Full circular wakes"
+          >Full</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="strongFalloffEnabled"
+            aria-pressed="false"
+            aria-label="Strong falloff"
+            title="Strong falloff"
+          >Strong</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="wideArcsEnabled"
+            aria-pressed="false"
+            aria-label="Wide arcs"
+            title="Wide arcs"
+          >Wide</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="thinFrontsEnabled"
+            aria-pressed="false"
+            aria-label="Thin fronts"
+            title="Thin fronts"
+          >Thin</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="brightFrontsEnabled"
+            aria-pressed="false"
+            aria-label="Bright fronts"
+            title="Bright fronts"
+          >Bright</button>
+          <button
+            class="causal-switch-button"
+            type="button"
+            data-visual-switch="wideWakeFrontGapEnabled"
+            aria-pressed="false"
+            aria-label="More gap between wake fronts"
+            title="More gap between wake fronts"
+          >Gap+</button>
+        </div>
 
         <button
           id="causal-delay-feedback-play"
