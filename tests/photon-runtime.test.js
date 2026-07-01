@@ -73,6 +73,11 @@ import {
   serializePhotonSearchResults,
 } from "../src/apps/photon/PhotonSearchRuntime.js";
 import {
+  PHOTON_SELF_HIT_PHASE_LOCK_SWEEP_SCHEMA,
+  createPhotonSelfHitPhaseLockSweepCases,
+  runPhotonSelfHitPhaseLockSweep,
+} from "../src/apps/photon/PhotonSelfHitSweepRuntime.js";
+import {
   PHOTON_SOURCE_HISTORY_BOUNDARY,
   PHOTON_SOURCE_HISTORY_PROVIDER_ID,
 } from "../src/apps/photon/PhotonSourceHistoryRuntime.js";
@@ -1007,6 +1012,39 @@ test("Photon self-hit diagnostics can fall back when only circular-source roots 
     row.sourceHistoryKind === "moving-circular-same-source" &&
     row.phaseAtHit?.rootKind === "same-source" &&
     Number.isFinite(row.phaseAtHit.receiverPhaseDegrees)
+  ));
+});
+
+test("Photon helical self-hit phase-lock sweep summarizes sampled cases", async () => {
+  const cases = createPhotonSelfHitPhaseLockSweepCases({
+    presetIds: ["balanced_contra_rotating_pair"],
+    photonSpeedCfValues: [0, 1],
+    signalSpeedCfValues: [1],
+    observationProgressValues: [0, 0.25],
+  });
+
+  assert.equal(cases.length, 4);
+  assert.equal(cases[0].presetId, "balanced_contra_rotating_pair");
+
+  const sweep = await runPhotonSelfHitPhaseLockSweep({
+    presetIds: ["balanced_contra_rotating_pair"],
+    photonSpeedCfValues: [0, 1],
+    signalSpeedCfValues: [1],
+    observationProgressValues: [0, 0.25],
+    helicalSelfHitHistoryCycles: 2,
+    helicalSelfHitScanSubdivisions: 64,
+    helicalSelfHitMaxRoots: 8,
+  });
+
+  assert.equal(sweep.schema, PHOTON_SELF_HIT_PHASE_LOCK_SWEEP_SCHEMA);
+  assert.equal(sweep.summary.caseCount, 4);
+  assert.equal(sweep.cases.length, 4);
+  assert.equal(typeof sweep.summary.stablePhaseLockFound, "boolean");
+  assert.ok(sweep.summary.totalPhaseFamilies >= 0);
+  assert.ok(sweep.cases.every((caseResult) =>
+    caseResult.caseId &&
+    Number.isFinite(caseResult.helicalPhaseFamilyCount) &&
+    Array.isArray(caseResult.phaseFamilies)
   ));
 });
 

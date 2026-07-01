@@ -54,6 +54,8 @@ const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
+const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
+const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
 const ELECTRINO_LABEL = Object.freeze({ r: 126, g: 219, b: 255, a: 1 });
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
@@ -2130,6 +2132,7 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
+    this.drawPathEndpointHandles(ctx);
     this.drawSelection(ctx);
     this.drawLiveMarkers(ctx, replayTime);
   }
@@ -2379,6 +2382,21 @@ class CausalDelayFeedbackRuntime {
     this.drawSmoothLine(ctx, points, color, 5);
   }
 
+  drawPathEndpointHandles(ctx) {
+    ARCHITRINO_KINDS.forEach((kind) => {
+      this.getPathEndpointHandles(kind).forEach((point) => {
+        this.drawCircle(
+          ctx,
+          this.worldToScreen(point),
+          PATH_ENDPOINT_HANDLE_RADIUS,
+          withAlpha(WHITE, 0.12),
+          withAlpha(WHITE, 0.92),
+          1.5,
+        );
+      });
+    });
+  }
+
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
@@ -2537,6 +2555,9 @@ class CausalDelayFeedbackRuntime {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
       }
+      if (this.dragState.type === "history") {
+        this.dragSelectedHistoryPoint(event);
+      }
       if (this.dragState.type === "path-line") {
         this.dragSelectedPathLine(event);
       }
@@ -2562,6 +2583,9 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
+    }
+    if (hit.type === "history") {
+      this.startHistoryPointDrag(event, hit);
     }
     if (hit.type === "path-line") {
       this.startPathLineDrag(event, hit);
@@ -2656,6 +2680,38 @@ class CausalDelayFeedbackRuntime {
     const world = this.screenToWorld(screen);
     this.dragState.lastWorld = world;
     if (this.applyInitialVelocityDrag(this.dragState.kind, world)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
+  }
+
+  startHistoryPointDrag(event, hit) {
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
+    this.dragState = {
+      type: "history",
+      kind: hit.selection.kind,
+      depth: hit.selection.depth,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault?.();
+  }
+
+  dragSelectedHistoryPoint(event) {
+    const screen = this.canvasScreenPointFromEvent(event);
+    const world = this.screenToWorld(screen);
+    const delta = {
+      x: world.x - this.dragState.lastWorld.x,
+      y: world.y - this.dragState.lastWorld.y,
+    };
+    this.dragState.lastWorld = world;
+    if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -2995,7 +3051,7 @@ class CausalDelayFeedbackRuntime {
     const pathPointSet = new Set(path);
     let didEdit = false;
     const applyDelta = (point, fallbackT = point?.t) => {
-      if (!point) {
+      if (!point || this.isPathEndpointPoint(kind, point, fallbackT)) {
         return;
       }
       const weight = this.getPathLineDragWeight(anchorT, fallbackT);
@@ -3025,6 +3081,42 @@ class CausalDelayFeedbackRuntime {
       this.syncInitialConditionToHistoryStart(kind, startPoint);
     }
     return didEdit;
+  }
+
+  getPathEndpointHandles(kind) {
+    const history = this.getSortedFiniteHistory(kind);
+    if (history.length === 0) {
+      return [];
+    }
+    const start = history.find((point) => Number(point.depth) === 1) ?? history[0];
+    const endDepth = this.getMaxHistoryDepth(kind);
+    const end = history.find((point) => Number(point.depth) === endDepth) ?? history.at(-1);
+    return start === end ? [start] : [start, end];
+  }
+
+  isPathEndpointPoint(kind, point, fallbackT = point?.t) {
+    const depth = Number(point?.depth);
+    if (depth === 1 || depth === this.getMaxHistoryDepth(kind)) {
+      return true;
+    }
+    return this.isPathEndpointTime(kind, fallbackT);
+  }
+
+  isPathEndpointTime(kind, sampleT) {
+    const path = this.dataset?.paths?.[kind] ?? [];
+    if (path.length === 0) {
+      return false;
+    }
+    const time = Number(sampleT);
+    if (!Number.isFinite(time)) {
+      return false;
+    }
+    const startT = Number(path[0]?.t);
+    const endT = Number(path.at(-1)?.t);
+    return (
+      (Number.isFinite(startT) && Math.abs(time - startT) <= TIME_EPSILON) ||
+      (Number.isFinite(endT) && Math.abs(time - endT) <= TIME_EPSILON)
+    );
   }
 
   getPathLineDragWeight(anchorT, sampleT) {
@@ -3603,6 +3695,10 @@ class CausalDelayFeedbackRuntime {
     const candidates = [];
     if (includePaths) {
       ARCHITRINO_KINDS.forEach((kind) => {
+        const endpointHit = this.findNearestPathEndpointHit(kind, screen);
+        if (endpointHit) {
+          candidates.push(endpointHit);
+        }
         const hit = this.findNearestPathLineHit(kind, screen);
         if (hit) {
           candidates.push(hit);
@@ -3623,8 +3719,25 @@ class CausalDelayFeedbackRuntime {
         candidates.push(this.createWakeHit(link, distance));
       });
     }
-    const nearest = candidates.sort((a, b) => a.distance - b.distance)[0];
+    const nearest = candidates.sort((a, b) => (a.sortDistance ?? a.distance) - (b.sortDistance ?? b.distance))[0];
     return nearest && nearest.distance <= nearest.hitRadius ? nearest : null;
+  }
+
+  findNearestPathEndpointHit(kind, screen) {
+    let nearest = null;
+    this.getPathEndpointHandles(kind).forEach((point) => {
+      const distance = getDistance(screen, this.worldToScreen(point));
+      if (nearest && distance >= nearest.distance) {
+        return;
+      }
+      nearest = this.createHistoryHit(point, distance);
+      nearest.hitRadius = PATH_ENDPOINT_HANDLE_HIT_RADIUS;
+      nearest.sortDistance =
+        distance <= PATH_ENDPOINT_HANDLE_HIT_RADIUS
+          ? distance - PATH_ENDPOINT_HANDLE_HIT_RADIUS - PATH_LINE_HIT_RADIUS
+          : distance;
+    });
+    return nearest;
   }
 
   findNearestPathLineHit(kind, screen) {

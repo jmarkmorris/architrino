@@ -96,6 +96,10 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
   assert.match(runtimeSource, /borg-live-run-budget\.v1/);
+  assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
+  assert.match(runtimeSource, /measuredRunPresetCalibration/);
+  assert.match(runtimeSource, /updateMeasuredRunPresetCalibration/);
+  assert.match(runtimeSource, /effectiveTargetDuration/);
   assert.match(runtimeSource, /readLiveRunBudgetSnapshot/);
   assert.match(runtimeSource, /createSeededDistributionFrameRows/);
   assert.equal(runtimeSource.includes("Live 3000 / 20"), true);
@@ -161,6 +165,39 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   const frameSets = createBorgFrameSetsFromRows(mergedFrames);
   assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
   assert.equal(frameSets.at(-1).frames.length, 16);
+
+  await runner.dispose();
+});
+
+test("Borg dynamic native runner applies measured target and chunk limits", async () => {
+  const requests = [];
+  const solverClient = {
+    async runSimulation(request) {
+      requests.push(request);
+      return createFakeBorgDynamicRunResponse(request);
+    },
+    async dispose() {},
+  };
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    solverClient,
+    targetDuration: 1,
+    chunkDuration: 0.4,
+    sampleInterval: 0.2,
+  });
+
+  runner.setRunLimits({ targetDuration: 0.5, chunkDuration: 0.2 });
+  assert.equal(runner.targetDuration, 0.5);
+  assert.equal(runner.chunkDuration, 0.2);
+
+  await runner.computeNextChunk();
+  await runner.computeNextChunk();
+  await runner.computeNextChunk();
+
+  assert.deepEqual(
+    requests.map((request) => request.config.masterEquationRequest.endTime),
+    [0.2, 0.4, 0.5],
+  );
+  assert.equal(runner.canComputeNextChunk(), false);
 
   await runner.dispose();
 });

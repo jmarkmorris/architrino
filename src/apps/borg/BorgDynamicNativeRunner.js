@@ -24,6 +24,8 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
   );
   let chunkIndex = 0;
   let nextStartTime = config.startTime;
+  let targetDuration = config.targetDuration;
+  let chunkDuration = config.chunkDuration;
   let disposed = false;
 
   return {
@@ -32,21 +34,37 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
     get nextStartTime() {
       return nextStartTime;
     },
+    get targetDuration() {
+      return targetDuration;
+    },
+    get chunkDuration() {
+      return chunkDuration;
+    },
     get chunkIndex() {
       return chunkIndex;
     },
     canComputeNextChunk() {
-      return !disposed && nextStartTime < config.targetDuration;
+      return !disposed && nextStartTime < targetDuration;
+    },
+    setRunLimits(nextLimits = {}) {
+      targetDuration = Math.min(
+        config.targetDuration,
+        Math.max(config.startTime + config.sampleInterval, positiveNumber(nextLimits.targetDuration, targetDuration)),
+      );
+      chunkDuration = Math.min(
+        config.chunkDuration,
+        Math.max(config.sampleInterval, positiveNumber(nextLimits.chunkDuration, chunkDuration)),
+      );
     },
     async computeNextChunk() {
       if (disposed) {
         throw new Error("Borg dynamic native runner has been disposed.");
       }
-      if (nextStartTime >= config.targetDuration) {
+      if (nextStartTime >= targetDuration) {
         return createCompleteChunk(config, chunkIndex, nextStartTime);
       }
       const startTime = nextStartTime;
-      const endTime = Math.min(config.targetDuration, startTime + config.chunkDuration);
+      const endTime = Math.min(targetDuration, startTime + chunkDuration);
       const request = createBorgDynamicMasterEquationRunRequest({
         manifest,
         config,

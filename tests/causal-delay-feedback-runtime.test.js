@@ -1628,6 +1628,7 @@ test("causal delay feedback path line drag can start over removed history point 
     document: new FakeDocument(),
     window: fakeWindow,
   });
+  runtime.setRetainedDepthLimit(4);
   runtime.dom = {
     canvas: {
       getBoundingClientRect: () => ({ left: 0, top: 0 }),
@@ -1635,7 +1636,7 @@ test("causal delay feedback path line drag can start over removed history point 
     readout: new FakeElement(),
   };
   runtime.render = () => {};
-  const pathPoint = runtime.dataset.history.positrino[0];
+  const pathPoint = runtime.dataset.history.positrino.find((point) => point.depth === 5);
   const screen = runtime.worldToScreen(pathPoint);
   let prevented = false;
 
@@ -2741,7 +2742,33 @@ test("causal delay feedback hit testing does not expose retained reception point
   assert.notEqual(hit?.type, "history");
 });
 
-test("causal delay feedback path endpoints are not fixed canvas handles", () => {
+test("causal delay feedback draws path endpoint handles", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const circles = [];
+  runtime.drawCircle = (_ctx, point, radius, fill, stroke, lineWidth) => {
+    circles.push({ point, radius, fill, stroke, lineWidth });
+  };
+
+  runtime.drawPathEndpointHandles({});
+
+  assert.equal(circles.length, 4);
+  assert(circles.every((circle) => circle.radius > 0 && circle.radius < 8));
+  assert(circles.every((circle) => circle.fill.a > 0 && circle.stroke.a > circle.fill.a));
+  assert.deepEqual(
+    circles.map((circle) => Math.round(circle.point.x)),
+    [
+      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("positrino")[0]).x),
+      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("positrino")[1]).x),
+      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("electrino")[0]).x),
+      Math.round(runtime.worldToScreen(runtime.getPathEndpointHandles("electrino")[1]).x),
+    ],
+  );
+});
+
+test("causal delay feedback path endpoint handles are selectable", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -2750,16 +2777,18 @@ test("causal delay feedback path endpoints are not fixed canvas handles", () => 
   const endDepth = runtime.getMaxHistoryDepth("positrino");
   const endPoint = runtime.dataset.history.positrino.find((point) => point.depth === endDepth);
 
-  const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includeWakes: true });
-  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
+  const startHit = runtime.findNearestHit(runtime.worldToScreen(startPoint), { includePaths: true });
+  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includePaths: true });
 
   assert.equal(startPoint.t, 0);
   assert.equal(endPoint.t, 1);
-  assert.notEqual(startHit?.type, "history");
-  assert.notEqual(endHit?.type, "history");
+  assert.equal(startHit?.type, "history");
+  assert.equal(startHit.selection.depth, 1);
+  assert.equal(endHit?.type, "history");
+  assert.equal(endHit.selection.depth, endDepth);
 });
 
-test("causal delay feedback retained endpoint constraints remain internal under lower retained wake depth", () => {
+test("causal delay feedback endpoint handles remain visible under lower retained wake depth", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -2769,13 +2798,14 @@ test("causal delay feedback retained endpoint constraints remain internal under 
   const endPoint = runtime.dataset.history.electrino.find((point) => point.depth === endDepth);
 
   const visibleDepths = runtime.getVisibleHistory("electrino").map((point) => point.depth);
-  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includeWakes: true });
+  const endHit = runtime.findNearestHit(runtime.worldToScreen(endPoint), { includePaths: true });
   const before = { x: endPoint.x, y: endPoint.y };
   const didEdit = runtime.applyRetainedPointDrag("electrino", endDepth, { x: -18, y: 12 });
 
   assert.deepEqual(visibleDepths, [1, 2, endDepth]);
   assert(runtime.getVisibleWakeLinks().every((link) => link.sourceDepth <= 2 && link.receiverDepth <= 2));
-  assert.notEqual(endHit?.type, "history");
+  assert.equal(endHit?.type, "history");
+  assert.equal(endHit.selection.depth, endDepth);
   assert.equal(didEdit, true);
   assert.equal(endPoint.x, before.x - 18);
   assert.equal(endPoint.y, before.y + 12);
@@ -2930,6 +2960,54 @@ test("causal delay feedback path line drag deforms the visible path without addi
   assert.equal(runtime.replayRequestOptions.replayDataset, runtime.dataset);
 });
 
+test("causal delay feedback path line drag keeps path endpoints fixed", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const path = runtime.dataset.paths.positrino;
+  const startHistory = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const endHistory = runtime.dataset.history.positrino.find((point) => point.depth === runtime.getMaxHistoryDepth("positrino"));
+  const startBefore = {
+    pathX: path[0].x,
+    pathY: path[0].y,
+    historyX: startHistory.x,
+    historyY: startHistory.y,
+    frameX: runtime.dataset.frames[0].positrino.x,
+    frameY: runtime.dataset.frames[0].positrino.y,
+    neighborY: path[1].y,
+  };
+  const endBefore = {
+    pathX: path.at(-1).x,
+    pathY: path.at(-1).y,
+    historyX: endHistory.x,
+    historyY: endHistory.y,
+    frameX: runtime.dataset.frames.at(-1).positrino.x,
+    frameY: runtime.dataset.frames.at(-1).positrino.y,
+    neighborY: path.at(-2).y,
+  };
+
+  const startEdit = runtime.applyPathLineDrag("positrino", path[0].t, { x: 36, y: -28 });
+  const endEdit = runtime.applyPathLineDrag("positrino", path.at(-1).t, { x: -30, y: 24 });
+
+  assert.equal(startEdit, true);
+  assert.equal(endEdit, true);
+  assert.equal(path[0].x, startBefore.pathX);
+  assert.equal(path[0].y, startBefore.pathY);
+  assert.equal(startHistory.x, startBefore.historyX);
+  assert.equal(startHistory.y, startBefore.historyY);
+  assert.equal(runtime.dataset.frames[0].positrino.x, startBefore.frameX);
+  assert.equal(runtime.dataset.frames[0].positrino.y, startBefore.frameY);
+  assert.notEqual(path[1].y, startBefore.neighborY);
+  assert.equal(path.at(-1).x, endBefore.pathX);
+  assert.equal(path.at(-1).y, endBefore.pathY);
+  assert.equal(endHistory.x, endBefore.historyX);
+  assert.equal(endHistory.y, endBefore.historyY);
+  assert.equal(runtime.dataset.frames.at(-1).positrino.x, endBefore.frameX);
+  assert.equal(runtime.dataset.frames.at(-1).positrino.y, endBefore.frameY);
+  assert.notEqual(path.at(-2).y, endBefore.neighborY);
+});
+
 test("causal delay feedback pointer drag on path line updates the path preview", () => {
   const readout = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
@@ -2971,6 +3049,55 @@ test("causal delay feedback pointer drag on path line updates the path preview",
   assert.equal(runtime.dragState.didEdit, true);
   assert(anchor.y < beforeY);
   assert.equal(runtime.dataset.draftPreview.reason, "path_line_drag_preview");
+  assert.equal(readout.hidden, false);
+});
+
+test("causal delay feedback pointer drag on endpoint handle moves the endpoint", () => {
+  const readout = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = {
+    canvas: {
+      getBoundingClientRect: () => ({ left: 0, top: 0 }),
+      setPointerCapture() {},
+    },
+    readout,
+  };
+  runtime.render = () => {};
+  const startPoint = runtime.dataset.history.positrino.find((point) => point.depth === 1);
+  const screen = runtime.worldToScreen(startPoint);
+  const before = { x: startPoint.x, y: startPoint.y };
+  let prevented = false;
+
+  runtime.handleCanvasPointerDown({
+    pointerId: 8,
+    pointerType: "mouse",
+    clientX: screen.x,
+    clientY: screen.y,
+    preventDefault() {
+      prevented = true;
+    },
+  });
+  runtime.handleCanvasPointerMove({
+    pointerId: 8,
+    pointerType: "mouse",
+    clientX: screen.x + 34,
+    clientY: screen.y - 22,
+    preventDefault() {},
+  });
+
+  assert.equal(prevented, true);
+  assert.equal(runtime.dragState.type, "history");
+  assert.equal(runtime.dragState.kind, "positrino");
+  assert.equal(runtime.dragState.depth, 1);
+  assert.equal(runtime.dragState.didEdit, true);
+  assert.notEqual(startPoint.x, before.x);
+  assert.notEqual(startPoint.y, before.y);
+  assert.equal(runtime.dataset.initialConditions.positrino.x, startPoint.x);
+  assert.equal(runtime.dataset.initialConditions.positrino.y, startPoint.y);
+  assert.equal(runtime.dataset.draftPreview.reason, "retained_point_drag_preview");
   assert.equal(readout.hidden, false);
 });
 
