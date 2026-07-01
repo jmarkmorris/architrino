@@ -51,8 +51,11 @@ const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_conver
 const FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
   "finite_difference_pair_boundary_value_solve_converged";
 const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
+const PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS = "physical_boundary_value_converged";
 const RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM =
   "retained_knot_guidance_not_physical_boundary_value_solve";
+const DISCRETE_PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM =
+  "discrete_pair_interaction_path_constraint_boundary_value_solve_converged";
 const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION =
   "retained_knot_guidance_acceleration_required";
 const PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED =
@@ -3396,11 +3399,15 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
     residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING &&
     maxRelaxationResidualAfter <= relaxationTolerance;
 
+  if (hasConvergedFiniteDifferenceEvidence) {
+    return {
+      pathConstraintSolverStatus: DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS,
+      pathConstraintSolverClaim: FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM,
+    };
+  }
+
   if (explicitStatus) {
-    if (
-      explicitStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS ||
-      hasConvergedFiniteDifferenceEvidence
-    ) {
+    if (explicitStatus !== DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS) {
       return {
         pathConstraintSolverStatus: explicitStatus,
         pathConstraintSolverClaim: explicitClaim,
@@ -3413,15 +3420,11 @@ function createPairInteractionConstraintSolverMetadata(pairSummary, pairInteract
   }
 
   return {
-    pathConstraintSolverStatus: hasConvergedFiniteDifferenceEvidence
-      ? DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS
-      : Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+    pathConstraintSolverStatus: Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
         ? BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS
         : undefined,
     pathConstraintSolverClaim: explicitClaim ?? (
-      hasConvergedFiniteDifferenceEvidence
-        ? FINITE_DIFFERENCE_PAIR_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM
-        : Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
+      Number.isFinite(boundarySeedSampleCount) && boundarySeedSampleCount > 0
           ? "diagnostic_constraint_replay_not_boundary_value_solve"
           : undefined
     ),
@@ -3443,17 +3446,17 @@ function createPairInteractionPhysicalBoundarySolverMetadata(
   const explicitBlockingReason = optionalString(
     pairInteractionSummaryField(pairSummary, pairInteraction, "pathConstraintPhysicalBoundarySolverBlockingReason"),
   );
-  if (explicitStatus || explicitClaim || explicitBlockingReason) {
-    return {
-      ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
-      ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
-      ...(explicitBlockingReason
-        ? { pathConstraintPhysicalBoundarySolverBlockingReason: explicitBlockingReason }
-        : {}),
-    };
-  }
   const constraintCount = Number(pathConstraintCount);
   if (!Number.isFinite(constraintCount) || constraintCount <= 0) {
+    if (explicitStatus || explicitClaim || explicitBlockingReason) {
+      return {
+        ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
+        ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
+        ...(explicitBlockingReason
+          ? { pathConstraintPhysicalBoundarySolverBlockingReason: explicitBlockingReason }
+          : {}),
+      };
+    }
     return {};
   }
   const guidanceSampleCount = Number(
@@ -3525,10 +3528,15 @@ function createPairInteractionPhysicalBoundarySolverMetadata(
     Number.isFinite(maxRelaxationResidualAfter) &&
     residualEvidenceStatus === BOUNDARY_RELAXATION_RESIDUAL_EVIDENCE_NON_WORSENING &&
     maxRelaxationResidualAfter <= relaxationTolerance;
-  let blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
   if (hasConvergedBoundaryEvidence) {
-    blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
-  } else if (
+    return {
+      pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS,
+      pathConstraintPhysicalBoundarySolverClaim:
+        DISCRETE_PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM,
+    };
+  }
+  let blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  if (
     retainedPositionsPreserved &&
     relaxationMode === FINITE_DIFFERENCE_FRAME_RELAXATION_MODE &&
     relaxationStatus === FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS &&
@@ -3552,6 +3560,26 @@ function createPairInteractionPhysicalBoundarySolverMetadata(
     blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION;
   } else if (relaxationStatus !== FINITE_DIFFERENCE_FRAME_RELAXATION_CONVERGED_STATUS) {
     blockingReason = PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED;
+  }
+  const explicitPhysicalConvergenceClaim =
+    explicitStatus === PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS ||
+    explicitClaim === DISCRETE_PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_VALUE_SOLVE_CONVERGED_CLAIM;
+  if (explicitPhysicalConvergenceClaim) {
+    return {
+      pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS,
+      pathConstraintPhysicalBoundarySolverClaim:
+        RETAINED_KNOT_GUIDANCE_NOT_PHYSICAL_BOUNDARY_VALUE_SOLVE_CLAIM,
+      pathConstraintPhysicalBoundarySolverBlockingReason: blockingReason,
+    };
+  }
+  if (explicitStatus || explicitClaim || explicitBlockingReason) {
+    return {
+      ...(explicitStatus ? { pathConstraintPhysicalBoundarySolverStatus: explicitStatus } : {}),
+      ...(explicitClaim ? { pathConstraintPhysicalBoundarySolverClaim: explicitClaim } : {}),
+      ...(explicitBlockingReason
+        ? { pathConstraintPhysicalBoundarySolverBlockingReason: explicitBlockingReason }
+        : {}),
+    };
   }
   return {
     pathConstraintPhysicalBoundarySolverStatus: PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS,

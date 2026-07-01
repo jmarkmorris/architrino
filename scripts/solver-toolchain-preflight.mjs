@@ -112,8 +112,12 @@ function createToolCheck(name, options = {}) {
 }
 
 function createBrewPackageCheck(name) {
-  const prefix = run("brew", ["--prefix", name]);
-  const version = run("brew", ["list", "--versions", name]);
+  const brewEnv = {
+    ...process.env,
+    HOMEBREW_NO_AUTO_UPDATE: process.env.HOMEBREW_NO_AUTO_UPDATE || "1",
+  };
+  const prefix = run("brew", ["--prefix", name], { env: brewEnv });
+  const version = run("brew", ["list", "--versions", name], { env: brewEnv });
   return {
     kind: "brew-package",
     name,

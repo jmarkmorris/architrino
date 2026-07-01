@@ -37,6 +37,19 @@ struct CircularPathSegment {
   double errorBound = 0.0;
 };
 
+struct MovingCircularSourceHistory {
+  std::string pathId;
+  Vector3 centerAtEpoch;
+  Vector3 centerVelocity;
+  Vector3 radiusU;
+  Vector3 radiusV;
+  double angularVelocity = 0.0;
+  double phaseAtEpoch = 0.0;
+  double epochTime = 0.0;
+  NumericType numericType = NumericType::F64;
+  double errorBound = 0.0;
+};
+
 struct CausalRootRequest {
   std::string receiverId;
   std::string sourceId;
@@ -56,6 +69,20 @@ struct CircularSourceCausalRootRequest {
   LinearPathSegment receiver;
   double hitTime = 0.0;
   double signalSpeed = 1.0;
+  double rootTolerance = 1e-12;
+  int maxIterations = 96;
+  int scanSubdivisions = 64;
+};
+
+struct MovingCircularSourceCausalRootRequest {
+  std::string receiverId;
+  std::string sourceId;
+  MovingCircularSourceHistory source;
+  LinearPathSegment receiver;
+  double hitTime = 0.0;
+  double signalSpeed = 1.0;
+  double sourceStartTime = 0.0;
+  double sourceEndTime = 0.0;
   double rootTolerance = 1e-12;
   int maxIterations = 96;
   int scanSubdivisions = 64;
@@ -127,9 +154,14 @@ struct DelayedHitResult {
 Vector3 position_at(const LinearPathSegment& segment, double time);
 Vector3 position_at(const CircularPathSegment& segment, double time);
 Vector3 velocity_at(const CircularPathSegment& segment, double time);
+Vector3 position_at(const MovingCircularSourceHistory& source, double time);
+Vector3 velocity_at(const MovingCircularSourceHistory& source, double time);
+double phase_at(const MovingCircularSourceHistory& source, double time);
 CausalRootResult solve_causal_roots(const CausalRootRequest& request);
 CausalRootResult solve_circular_source_causal_roots(
     const CircularSourceCausalRootRequest& request);
+CausalRootResult solve_moving_circular_source_causal_roots(
+    const MovingCircularSourceCausalRootRequest& request);
 DelayedHitResult solve_delayed_hits(const CausalRootRequest& request);
 
 }  // namespace architrino::solver

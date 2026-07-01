@@ -115,6 +115,14 @@ function assertConstantWakeFrontSeparation(frontDistances, totalDistance) {
   return standardSpacing;
 }
 
+function normalizedDot(left, right) {
+  const leftMagnitude = Math.hypot(left.x, left.y);
+  const rightMagnitude = Math.hypot(right.x, right.y);
+  assert(leftMagnitude > 0);
+  assert(rightMagnitude > 0);
+  return (left.x * right.x + left.y * right.y) / (leftMagnitude * rightMagnitude);
+}
+
 function createArcRecordingContext() {
   return {
     arcs: [],
@@ -1032,11 +1040,11 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
     pathConstraintBoundaryRelaxationCandidateVariantCount: 14,
     pathConstraintBoundaryRelaxationLineSearchTrialCount: 112,
     pathConstraintBoundaryRelaxationCandidateKindMask: 4194302,
-    pathConstraintSolverStatus: "guided_constraint_path",
-    pathConstraintSolverClaim: "diagnostic_constraint_replay_not_boundary_value_solve",
-    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
-    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
-    pathConstraintPhysicalBoundarySolverBlockingReason: "physical_boundary_solver_not_implemented",
+    pathConstraintSolverStatus: "discrete_boundary_value_converged",
+    pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
+    pathConstraintPhysicalBoundarySolverClaim:
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     maxPathConstraintGuidanceAcceleration: 48.25,
     pathConstraintBoundaryResidualSampleCount: 10,
     pathConstraintBoundaryResidualStatus: "within_tolerance",
@@ -1077,11 +1085,14 @@ test("causal delay feedback aggregate summary surfaces compact pair solver diagn
   assert(readoutText.includes("relaxLaw=causal_delay_pair_law"));
   assert(readoutText.includes("guideRows=12"));
   assert(readoutText.includes("maxA=48.25"));
-  assert(readoutText.includes("constraint=guided_constraint_path"));
-  assert(readoutText.includes("claim=diagnostic_constraint_replay_not_boundary_value_solve"));
-  assert(readoutText.includes("physical=physical_boundary_solver_pending"));
-  assert(readoutText.includes("physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve"));
-  assert(readoutText.includes("physicalWhy=physical_boundary_solver_not_implemented"));
+  assert(readoutText.includes("constraint=discrete_boundary_value_converged"));
+  assert(readoutText.includes("claim=finite_difference_pair_boundary_value_solve_converged"));
+  assert(readoutText.includes("physical=physical_boundary_value_converged"));
+  assert(
+    readoutText.includes(
+      "physicalClaim=discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
+    ),
+  );
   assert(readoutText.includes("boundary=10"));
   assert(readoutText.includes("maxB=0.018"));
   assert(readoutText.includes("tolB=0.02"));
@@ -1135,6 +1146,11 @@ test("causal delay feedback settings popover includes reset preset without addin
   assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), true);
   assert.equal(html.includes('value="threshold_only"'), true);
   assert.equal(html.includes('value="off"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-traversal-mode"'), true);
+  assert.equal(html.includes('value="fixed_speed" selected'), true);
+  assert.equal(html.includes("Fixed speed"), true);
+  assert.equal(html.includes('value="variable_speed"'), true);
+  assert.equal(html.includes("Variable speed"), true);
   assert.equal(html.includes(".causal-toggle-row"), false);
   assert.equal(html.includes(".causal-setting-select"), true);
   assert.equal(html.includes("Hide path history"), false);
@@ -1351,6 +1367,85 @@ test("causal delay feedback c_f tempo and architrino speed settings keep live wa
   assert.deepEqual(
     runtime.getVisibleWakeSeries(replayTime).map((link) => link.id),
     ["live-positrino-to-electrino", "live-electrino-to-positrino"],
+  );
+});
+
+test("causal delay feedback fixed-speed traversal is the default display sampler", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset.paths.positrino = [
+    { t: 0, x: 0, y: 0 },
+    { t: 0.5, x: 100, y: 0 },
+    { t: 1, x: 300, y: 0 },
+  ];
+  runtime.dataset.history.positrino = [];
+
+  const solverTimePoint = runtime.getReplayPathPoint("positrino", 0.5);
+  const fixedDisplayPoint = runtime.getTraversalPathPoint("positrino", 0.5);
+
+  assert.equal(runtime.traversalMode, "fixed_speed");
+  assert.equal(runtime.replayRequestOptions.traversalMode, "fixed_speed");
+  assert.equal(solverTimePoint.x, 100);
+  assert.equal(fixedDisplayPoint.x, 150);
+  assert.equal(fixedDisplayPoint.t, 0.5);
+});
+
+test("causal delay feedback variable-speed traversal keeps solver-time sampling available", () => {
+  const traversalModeInput = new FakeElement();
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { traversalModeInput };
+  runtime.dataset.paths.positrino = [
+    { t: 0, x: 0, y: 0 },
+    { t: 0.5, x: 100, y: 0 },
+    { t: 1, x: 300, y: 0 },
+  ];
+  runtime.dataset.history.positrino = [];
+
+  runtime.setTraversalMode("variable_speed");
+  const variableDisplayPoint = runtime.getTraversalPathPoint("positrino", 0.5);
+
+  assert.equal(runtime.traversalMode, "variable_speed");
+  assert.equal(runtime.replayRequestOptions.traversalMode, "variable_speed");
+  assert.equal(traversalModeInput.value, "variable_speed");
+  assert.equal(variableDisplayPoint.x, 100);
+  assert.equal(variableDisplayPoint.t, 0.5);
+});
+
+test("causal delay feedback live markers use fixed-speed traversal by default", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dataset.paths.positrino = [
+    { t: 0, x: 0, y: 0 },
+    { t: 0.5, x: 100, y: 0 },
+    { t: 1, x: 300, y: 0 },
+  ];
+  runtime.dataset.paths.electrino = [
+    { t: 0, x: 0, y: 100 },
+    { t: 0.5, x: 100, y: 100 },
+    { t: 1, x: 300, y: 100 },
+  ];
+  runtime.dataset.history.positrino = [];
+  runtime.dataset.history.electrino = [];
+  const markerPoints = [];
+  runtime.drawLiveMarker = (_ctx, kind, _color, point) => {
+    markerPoints.push({ kind, point });
+  };
+
+  runtime.drawLiveMarkers({}, 0.5);
+
+  assert.deepEqual(
+    markerPoints.map(({ kind, point }) => ({ kind, x: point.x, y: point.y, t: point.t })),
+    [
+      { kind: "positrino", x: 150, y: 0, t: 0.5 },
+      { kind: "electrino", x: 150, y: 100, t: 0.5 },
+    ],
   );
 });
 
@@ -1961,9 +2056,9 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
     rmsPathConstraintBoundaryRelaxationResidualAfter: 0.003,
     pathConstraintSolverStatus: "discrete_boundary_value_converged",
     pathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
-    pathConstraintPhysicalBoundarySolverClaim: "retained_knot_guidance_not_physical_boundary_value_solve",
-    pathConstraintPhysicalBoundarySolverBlockingReason: "physical_boundary_solver_not_implemented",
+    pathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
+    pathConstraintPhysicalBoundarySolverClaim:
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     maxPathConstraintGuidanceAcceleration: 48.25,
   };
   runtime.dom = { replayStatus };
@@ -1986,14 +2081,20 @@ test("causal delay feedback status distinguishes converged discrete boundary rep
   assert.match(replayStatus.title, /relaxEvidence=aggregate_non_worsening/);
   assert.match(replayStatus.title, /constraint=discrete_boundary_value_converged/);
   assert.match(replayStatus.title, /claim=finite_difference_pair_boundary_value_solve_converged/);
-  assert.match(replayStatus.title, /physical=physical_boundary_solver_pending/);
-  assert.match(replayStatus.title, /physicalClaim=retained_knot_guidance_not_physical_boundary_value_solve/);
-  assert.match(replayStatus.title, /physicalWhy=physical_boundary_solver_not_implemented/);
+  assert.match(replayStatus.title, /physical=physical_boundary_value_converged/);
+  assert.match(
+    replayStatus.title,
+    /physicalClaim=discrete_pair_interaction_path_constraint_boundary_value_solve_converged/,
+  );
   assert.match(replayStatus.title, /bStatus=within_tolerance/);
   assert.match(replayStatus.title, /converged against the discrete finite-difference pair equation/);
-  assert.match(replayStatus.title, /finite-difference retained-knot boundary relaxation/);
-  assert.match(replayStatus.title, /not the full physical pair-interaction\/path-constraint boundary-value solver/);
-  assert.match(replayStatus.title, /full physical pair-interaction\/path-constraint boundary-value solver is still pending/);
+  assert.match(replayStatus.title, /solver-owned discrete physical boundary-value solve/);
+  assert.match(
+    replayStatus.title,
+    /physical pair-interaction\/path-constraint boundary-value solver converged/,
+  );
+  assert.doesNotMatch(replayStatus.title, /not the full physical/);
+  assert.doesNotMatch(replayStatus.title, /still pending/);
 });
 
 test("causal delay feedback status flags unchecked boundary residual acceptance on boundary replay", () => {
@@ -2624,13 +2725,50 @@ test("causal delay feedback wake switches can combine full circles with emission
   runtime.setWakeVisualSwitch("arcWakesEnabled", true);
 
   runtime.drawWakes({}, 0.5);
+  const lineCountBeforeForeground = lines.length;
+  runtime.drawForegroundWakeEmissionLines({}, 0.5);
 
   assert(dottedArcs.length > 0);
+  assert.equal(lineCountBeforeForeground, 0);
   assert(lines.length > 0);
+  assert(lines.every((line) => line.color.a > 0.4));
+  assert(lines.every((line) => line.width > 1.4));
   dottedArcs.forEach((arc) => {
     assert.equal(arc.startDeg, 0);
     assert.equal(arc.endDeg, 360);
   });
+});
+
+test("causal delay feedback full circle emission lines render above path trails", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const calls = [];
+  runtime.context = {
+    clearRect() {},
+    setTransform() {},
+  };
+  runtime.drawBackground = () => calls.push("background");
+  runtime.drawWakes = () => calls.push("wakes");
+  runtime.drawPathTrail = (_ctx, kind) => calls.push(`path:${kind}`);
+  runtime.drawForegroundWakeEmissionLines = () => calls.push("emission-lines");
+  runtime.drawPathEndpointHandles = () => calls.push("endpoint-handles");
+  runtime.drawSelection = () => calls.push("selection");
+  runtime.drawLiveMarkers = () => calls.push("markers");
+
+  runtime.render(0.5);
+
+  assert.deepEqual(calls, [
+    "background",
+    "wakes",
+    "path:positrino",
+    "path:electrino",
+    "emission-lines",
+    "endpoint-handles",
+    "selection",
+    "markers",
+  ]);
 });
 
 test("causal delay feedback wake switches can hide all wake overlays", () => {
@@ -3808,8 +3946,8 @@ test("causal delay feedback live marker labels are centered above and below the 
     labels.push({ text, point, color, align });
   };
   const replayTime = 0.42;
-  const positrinoScreen = runtime.worldToScreen(runtime.getReplayPathPoint("positrino", replayTime));
-  const electrinoScreen = runtime.worldToScreen(runtime.getReplayPathPoint("electrino", replayTime));
+  const positrinoScreen = runtime.worldToScreen(runtime.getTraversalPathPoint("positrino", replayTime));
+  const electrinoScreen = runtime.worldToScreen(runtime.getTraversalPathPoint("electrino", replayTime));
 
   runtime.drawLiveMarkers({}, replayTime);
 

@@ -1,17 +1,17 @@
 export const BORG_MEASURED_RUN_PRESETS_VERSION = "borg-measured-run-presets.v1";
 
 export const BORG_MEASURED_RUN_PRESET_LIMITS = Object.freeze({
-  maxChunkWallTimeMs: 240,
-  minFrameAppendRateRowsPerSecond: 2000,
-  maxChunkWorkerMemoryBytes: 16 * 1024 * 1024,
+  maxChunkWallTimeMs: 120,
+  minFrameAppendRateRowsPerSecond: 20000,
+  maxChunkWorkerMemoryBytes: 2 * 1024 * 1024,
   maxRunWorkerMemoryBytes: 64 * 1024 * 1024,
   maxChunkHeapGrowthBytes: 8 * 1024 * 1024,
   maxRunHeapGrowthBytes: 64 * 1024 * 1024,
   maxRunFrameRows: 240000,
   minTargetDuration: 20,
-  maxTargetDuration: 6000,
+  maxTargetDuration: 3000,
   minChunkDuration: 2,
-  maxChunkDuration: 80,
+  maxChunkDuration: 50,
 });
 
 export function createMeasuredRunPresetCalibration({
@@ -64,7 +64,7 @@ export function resolveMeasuredRunControlPreset(calibration, presetId, basePrese
   const presets = calibration?.presets?.length ? calibration.presets : basePresets;
   return (
     presets.find((preset) => preset.id === presetId) ??
-    presets.find((preset) => preset.id === "live-long") ??
+    presets.find((preset) => preset.id === "live-forever") ??
     presets[0] ??
     null
   );
@@ -76,6 +76,9 @@ export function formatMeasuredRunPresetLabel(preset) {
   }
   const target = formatDuration(preset.effectiveTargetDuration ?? preset.targetDuration);
   const chunk = formatDuration(preset.effectiveChunkDuration ?? preset.chunkDuration);
+  if (preset.durationMode === "forever" || target === "forever") {
+    return `${preset.displayLabel ?? preset.label} / ${chunk}`;
+  }
   return `${preset.displayLabel ?? preset.label} ${target} / ${chunk}`;
 }
 
@@ -124,6 +127,12 @@ function createMeasuredRunThresholds(sample, limits) {
     workerChunkScale,
     heapChunkScale,
   ], 1);
+  const chunkBudgetsPass = [
+    wallScale,
+    appendScale,
+    workerChunkScale,
+    heapChunkScale,
+  ].every((scale) => !Number.isFinite(scale) || scale >= 1);
 
   const workerBytesPerSolverTime = sample.wasmWorkerMemoryEstimateBytes
     ? sample.wasmWorkerMemoryEstimateBytes / sample.chunkDuration
@@ -147,7 +156,7 @@ function createMeasuredRunThresholds(sample, limits) {
       limits.maxTargetDuration,
     ),
     maxChunkDuration: clampDuration(
-      sample.chunkDuration * chunkScale,
+      chunkBudgetsPass ? limits.maxChunkDuration : sample.chunkDuration * chunkScale,
       limits.minChunkDuration,
       limits.maxChunkDuration,
     ),
@@ -190,6 +199,8 @@ function applyThresholdsToPreset(preset, thresholds, { thresholdAuthority }) {
   const minChunkDuration = positiveNumber(preset.minChunkDuration, 2);
   const targetLimit = Math.max(minTargetDuration, thresholds.maxTargetDuration);
   const chunkLimit = Math.max(minChunkDuration, thresholds.maxChunkDuration);
+  const isForever =
+    preset.durationMode === "forever" || preset.targetDuration === Number.POSITIVE_INFINITY;
   const effectiveTargetDuration = clampDuration(
     preset.targetDuration,
     minTargetDuration,
@@ -202,7 +213,7 @@ function applyThresholdsToPreset(preset, thresholds, { thresholdAuthority }) {
   );
   return Object.freeze({
     ...preset,
-    effectiveTargetDuration,
+    effectiveTargetDuration: isForever ? Number.POSITIVE_INFINITY : effectiveTargetDuration,
     effectiveChunkDuration,
     thresholdAuthority,
     measuredTargetDurationLimit: thresholds.maxTargetDuration,
@@ -218,6 +229,9 @@ function normalizeLimits(limits) {
 }
 
 function formatDuration(value) {
+  if (value === Number.POSITIVE_INFINITY) {
+    return "forever";
+  }
   const number = Number(value);
   if (!Number.isFinite(number)) {
     return "static";

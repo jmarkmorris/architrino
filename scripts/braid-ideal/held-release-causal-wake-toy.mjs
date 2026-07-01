@@ -1,0 +1,726 @@
+#!/usr/bin/env node
+
+import fs from "node:fs";
+import path from "node:path";
+
+const DEFAULT_OUTPUT_DIR = path.join(".tmp", "braid-ideal", "held-release-causal-wake-toy");
+
+const INITIAL_PARTICLES = Object.freeze([
+  Object.freeze({ id: "p_x", chargeType: "positrino", q: 1, position: [1, 0, 0] }),
+  Object.freeze({ id: "p_y", chargeType: "positrino", q: 1, position: [0, 1, 0] }),
+  Object.freeze({ id: "p_z", chargeType: "positrino", q: 1, position: [0, 0, 1] }),
+  Object.freeze({ id: "e_x", chargeType: "electrino", q: -1, position: [-1, 0, 0] }),
+  Object.freeze({ id: "e_y", chargeType: "electrino", q: -1, position: [0, -1, 0] }),
+  Object.freeze({ id: "e_z", chargeType: "electrino", q: -1, position: [0, 0, -1] }),
+]);
+
+const options = parseArgs(process.argv.slice(2));
+if (options.help) {
+  printUsage(0);
+}
+
+const result = runHeldRelease(options);
+writeOutputs(result, options);
+
+console.log(JSON.stringify(createConsoleSummary(result), null, 2));
+
+function parseArgs(rawArgs) {
+  const parsed = {
+    help: false,
+    duration: 3,
+    dt: 0.002,
+    holdTime: 4,
+    fieldSpeed: 1,
+    coupling: 1,
+    softening: 0.05,
+    jacobianFloor: 0.05,
+    closeRadius: 0.15,
+    sampleEvery: 10,
+    outputDir: DEFAULT_OUTPUT_DIR,
+    causalWeight: true,
+    maxAcceleration: Infinity,
+  };
+
+  for (let index = 0; index < rawArgs.length; index += 1) {
+    const arg = rawArgs[index];
+    if (arg === "--help") {
+      parsed.help = true;
+    } else if (arg === "--duration") {
+      parsed.duration = positiveFiniteNumber(requireNext(rawArgs, index, arg), "duration");
+      index += 1;
+    } else if (arg === "--dt") {
+      parsed.dt = positiveFiniteNumber(requireNext(rawArgs, index, arg), "dt");
+      index += 1;
+    } else if (arg === "--hold-time") {
+      parsed.holdTime = positiveFiniteNumber(requireNext(rawArgs, index, arg), "hold-time");
+      index += 1;
+    } else if (arg === "--field-speed") {
+      parsed.fieldSpeed = positiveFiniteNumber(requireNext(rawArgs, index, arg), "field-speed");
+      index += 1;
+    } else if (arg === "--coupling") {
+      parsed.coupling = finiteNumber(requireNext(rawArgs, index, arg), "coupling");
+      index += 1;
+    } else if (arg === "--softening") {
+      parsed.softening = nonnegativeFiniteNumber(requireNext(rawArgs, index, arg), "softening");
+      index += 1;
+    } else if (arg === "--jacobian-floor") {
+      parsed.jacobianFloor = positiveFiniteNumber(requireNext(rawArgs, index, arg), "jacobian-floor");
+      index += 1;
+    } else if (arg === "--close-radius") {
+      parsed.closeRadius = positiveFiniteNumber(requireNext(rawArgs, index, arg), "close-radius");
+      index += 1;
+    } else if (arg === "--sample-every") {
+      parsed.sampleEvery = positiveInteger(requireNext(rawArgs, index, arg), "sample-every");
+      index += 1;
+    } else if (arg === "--out") {
+      parsed.outputDir = requireNext(rawArgs, index, arg);
+      index += 1;
+    } else if (arg === "--max-acceleration") {
+      parsed.maxAcceleration = positiveFiniteNumber(requireNext(rawArgs, index, arg), "max-acceleration");
+      index += 1;
+    } else if (arg === "--no-causal-weight") {
+      parsed.causalWeight = false;
+    } else {
+      throw new TypeError(`Unknown argument: ${arg}`);
+    }
+  }
+
+  return parsed;
+}
+
+function runHeldRelease(options) {
+  const particles = INITIAL_PARTICLES.map((particle) => ({
+    ...particle,
+    position: cloneVector(particle.position),
+    velocity: [0, 0, 0],
+  }));
+  const state = {
+    time: 0,
+    stepIndex: 0,
+    particles,
+  };
+  const history = [
+    snapshotState(state, -options.holdTime, {
+      positions: INITIAL_PARTICLES.map((particle) => cloneVector(particle.position)),
+      velocities: INITIAL_PARTICLES.map(() => [0, 0, 0]),
+    }),
+    snapshotState(state),
+  ];
+  const frames = [sampleFrame(state, history, options, null)];
+  const events = {
+    firstAnyClosePass: null,
+    firstOppositeClosePass: null,
+    firstSamePolarityClosePass: null,
+    firstFieldSpeedCrossing: null,
+    firstMissingRoot: null,
+    firstSmallJacobian: null,
+  };
+  const rootStats = {
+    totalRoots: 0,
+    missingRoots: 0,
+    smallJacobianRoots: 0,
+    maxRootsPerDirectedPair: 0,
+    maxBranchWeight: 0,
+  };
+
+  const totalSteps = Math.ceil(options.duration / options.dt);
+  for (let step = 0; step < totalSteps; step += 1) {
+    const accelerationResult = evaluateAccelerations(state, history, options);
+    mergeRootStats(rootStats, accelerationResult.rootStats);
+    detectRootEvents(events, accelerationResult, state);
+    applyAccelerationCap(accelerationResult.accelerations, options.maxAcceleration);
+    for (let i = 0; i < state.particles.length; i += 1) {
+      const particle = state.particles[i];
+      particle.velocity = add(particle.velocity, scale(accelerationResult.accelerations[i], options.dt));
+      particle.position = add(particle.position, scale(particle.velocity, options.dt));
+    }
+    state.time = cleanNumber(Math.min(options.duration, state.time + options.dt));
+    state.stepIndex += 1;
+    history.push(snapshotState(state));
+
+    const metrics = computeMetrics(state, history, options);
+    detectMetricEvents(events, metrics, state, options);
+    if (step === totalSteps - 1 || state.stepIndex % options.sampleEvery === 0) {
+      frames.push(sampleFrame(state, history, options, metrics));
+    }
+  }
+
+  const finalMetrics = computeMetrics(state, history, options);
+  return {
+    schema: "braid-ideal-held-release-causal-wake-toy-result.v1",
+    createdAt: new Date().toISOString(),
+    status: "priority_only_exploratory_toy",
+    warning:
+      "This runner is not a production central-solver claim. It is a scoped delayed-force toy for the held-release seed.",
+    configuration: {
+      initialCondition: {
+        particles: INITIAL_PARTICLES,
+        velocity: [0, 0, 0],
+        heldStationaryFor: options.holdTime,
+        releaseTime: 0,
+      },
+      duration: options.duration,
+      dt: options.dt,
+      fieldSpeed: options.fieldSpeed,
+      coupling: options.coupling,
+      softening: options.softening,
+      jacobianFloor: options.jacobianFloor,
+      causalWeight: options.causalWeight,
+      maxAcceleration: Number.isFinite(options.maxAcceleration) ? options.maxAcceleration : null,
+    },
+    modelNotes: [
+      "Each directed pair contributes through all detected causal roots in the retained history window.",
+      "The force law uses q_i q_j r / (|r|^2 + softening^2)^(3/2), multiplied by the optional causal branch weight.",
+      "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
+      "Architrinos are treated as primitives without physical mass; acceleration is a numerical response variable.",
+    ],
+    classification: classifyRun(finalMetrics, events, options),
+    events,
+    rootStats,
+    finalMetrics,
+    frames,
+  };
+}
+
+function evaluateAccelerations(state, history, options) {
+  const accelerations = state.particles.map(() => [0, 0, 0]);
+  const pairRows = [];
+  const rootStats = {
+    totalRoots: 0,
+    missingRoots: 0,
+    smallJacobianRoots: 0,
+    maxRootsPerDirectedPair: 0,
+    maxBranchWeight: 0,
+  };
+
+  for (let i = 0; i < state.particles.length; i += 1) {
+    const receiver = state.particles[i];
+    for (let j = 0; j < state.particles.length; j += 1) {
+      if (i === j) {
+        continue;
+      }
+      const source = state.particles[j];
+      const roots = findCausalRoots({ receiver, sourceIndex: j, hitTime: state.time, history, options });
+      rootStats.maxRootsPerDirectedPair = Math.max(rootStats.maxRootsPerDirectedPair, roots.length);
+      if (roots.length === 0) {
+        rootStats.missingRoots += 1;
+        pairRows.push({ receiver: receiver.id, source: source.id, rootCount: 0 });
+        continue;
+      }
+      for (const root of roots) {
+        rootStats.totalRoots += 1;
+        if (root.smallJacobian) {
+          rootStats.smallJacobianRoots += 1;
+        }
+        rootStats.maxBranchWeight = Math.max(rootStats.maxBranchWeight, root.branchWeight);
+        const displacement = subtract(receiver.position, root.sourcePosition);
+        const distanceSquared = dot(displacement, displacement);
+        const denominator = Math.pow(distanceSquared + options.softening * options.softening, 1.5);
+        const coefficient = options.coupling * receiver.q * source.q * root.branchWeight / denominator;
+        accelerations[i] = add(accelerations[i], scale(displacement, coefficient));
+      }
+      pairRows.push({
+        receiver: receiver.id,
+        source: source.id,
+        rootCount: roots.length,
+        roots: roots.map((root) => ({
+          emissionTime: root.emissionTime,
+          delay: root.delay,
+          distance: root.distance,
+          sourceJacobian: root.sourceJacobian,
+          branchWeight: root.branchWeight,
+        })),
+      });
+    }
+  }
+
+  return { accelerations, pairRows, rootStats };
+}
+
+function findCausalRoots({ receiver, sourceIndex, hitTime, history, options }) {
+  const sourceTimes = history.map((row) => row.time);
+  const roots = [];
+  const startTime = Math.max(-options.holdTime, sourceTimes[0]);
+  const endTime = hitTime;
+  let previousTime = startTime;
+  let previousResidual = causalResidual(receiver.position, sourceIndex, previousTime, hitTime, history, options);
+
+  for (const segmentEnd of sourceTimes) {
+    if (segmentEnd <= startTime) {
+      continue;
+    }
+    if (segmentEnd > endTime) {
+      break;
+    }
+    const currentTime = segmentEnd;
+    const currentResidual = causalResidual(receiver.position, sourceIndex, currentTime, hitTime, history, options);
+    if (Math.abs(previousResidual) <= 1e-10) {
+      roots.push(buildRoot(receiver, sourceIndex, previousTime, hitTime, history, options));
+    } else if (previousResidual * currentResidual < 0) {
+      const rootTime = refineRoot({
+        receiver,
+        sourceIndex,
+        low: previousTime,
+        high: currentTime,
+        lowResidual: previousResidual,
+        highResidual: currentResidual,
+        hitTime,
+        history,
+        options,
+      });
+      roots.push(buildRoot(receiver, sourceIndex, rootTime, hitTime, history, options));
+    }
+    previousTime = currentTime;
+    previousResidual = currentResidual;
+  }
+
+  return dedupeRoots(roots);
+}
+
+function refineRoot({ receiver, sourceIndex, low, high, lowResidual, highResidual, hitTime, history, options }) {
+  let lo = low;
+  let hi = high;
+  let fLo = lowResidual;
+  let fHi = highResidual;
+  for (let iteration = 0; iteration < 50; iteration += 1) {
+    const mid = 0.5 * (lo + hi);
+    const fMid = causalResidual(receiver.position, sourceIndex, mid, hitTime, history, options);
+    if (Math.abs(fMid) <= 1e-12 || Math.abs(hi - lo) <= 1e-12) {
+      return mid;
+    }
+    if (fLo * fMid <= 0) {
+      hi = mid;
+      fHi = fMid;
+    } else {
+      lo = mid;
+      fLo = fMid;
+    }
+  }
+  return Math.abs(fLo) <= Math.abs(fHi) ? lo : hi;
+}
+
+function buildRoot(receiver, sourceIndex, emissionTime, hitTime, history, options) {
+  const sourceSample = sampleHistory(sourceIndex, emissionTime, history);
+  const displacement = subtract(receiver.position, sourceSample.position);
+  const distance = norm(displacement);
+  const direction = distance > 0 ? scale(displacement, 1 / distance) : [0, 0, 0];
+  const sourceNormalSpeed = dot(sourceSample.velocity, direction);
+  const receiverNormalSpeed = dot(receiver.velocity, direction);
+  const sourceJacobian = (options.fieldSpeed - sourceNormalSpeed) / options.fieldSpeed;
+  const receiverNormalFactor = (options.fieldSpeed - receiverNormalSpeed) / options.fieldSpeed;
+  const smallJacobian = Math.abs(sourceJacobian) < options.jacobianFloor;
+  const clampedSourceJacobian = signPreservingMax(sourceJacobian, options.jacobianFloor);
+  const branchWeight = options.causalWeight
+    ? Math.abs(receiverNormalFactor / clampedSourceJacobian)
+    : 1;
+  return {
+    emissionTime: cleanNumber(emissionTime),
+    delay: cleanNumber(hitTime - emissionTime),
+    distance: cleanNumber(distance),
+    sourcePosition: sourceSample.position,
+    sourceVelocity: sourceSample.velocity,
+    sourceJacobian: cleanNumber(sourceJacobian),
+    receiverNormalFactor: cleanNumber(receiverNormalFactor),
+    smallJacobian,
+    branchWeight: cleanNumber(branchWeight),
+  };
+}
+
+function causalResidual(receiverPosition, sourceIndex, emissionTime, hitTime, history, options) {
+  const sourceSample = sampleHistory(sourceIndex, emissionTime, history);
+  const distance = norm(subtract(receiverPosition, sourceSample.position));
+  return distance - options.fieldSpeed * (hitTime - emissionTime);
+}
+
+function sampleHistory(particleIndex, time, history) {
+  if (time <= history[0].time) {
+    return {
+      position: cloneVector(history[0].positions[particleIndex]),
+      velocity: cloneVector(history[0].velocities[particleIndex]),
+    };
+  }
+  const last = history[history.length - 1];
+  if (time >= last.time) {
+    return {
+      position: cloneVector(last.positions[particleIndex]),
+      velocity: cloneVector(last.velocities[particleIndex]),
+    };
+  }
+
+  let low = 0;
+  let high = history.length - 1;
+  while (high - low > 1) {
+    const mid = Math.floor((low + high) / 2);
+    if (history[mid].time <= time) {
+      low = mid;
+    } else {
+      high = mid;
+    }
+  }
+
+  const a = history[low];
+  const b = history[high];
+  const span = b.time - a.time;
+  const fraction = span > 0 ? (time - a.time) / span : 0;
+  return {
+    position: lerp(a.positions[particleIndex], b.positions[particleIndex], fraction),
+    velocity: lerp(a.velocities[particleIndex], b.velocities[particleIndex], fraction),
+  };
+}
+
+function computeMetrics(state, history, options) {
+  const center = meanVector(state.particles.map((particle) => particle.position));
+  const radii = state.particles.map((particle) => norm(subtract(particle.position, center)));
+  const speeds = state.particles.map((particle) => norm(particle.velocity));
+  const sameDistances = [];
+  const oppositeDistances = [];
+  for (let i = 0; i < state.particles.length; i += 1) {
+    for (let j = i + 1; j < state.particles.length; j += 1) {
+      const distance = norm(subtract(state.particles[i].position, state.particles[j].position));
+      if (state.particles[i].q === state.particles[j].q) {
+        sameDistances.push(distance);
+      } else {
+        oppositeDistances.push(distance);
+      }
+    }
+  }
+  const pairedOppositionErrors = [
+    ["p_x", "e_x"],
+    ["p_y", "e_y"],
+    ["p_z", "e_z"],
+  ].map(([positiveId, negativeId]) => {
+    const positive = state.particles.find((particle) => particle.id === positiveId);
+    const negative = state.particles.find((particle) => particle.id === negativeId);
+    return norm(add(subtract(positive.position, center), subtract(negative.position, center)));
+  });
+  const radialVelocityMean = mean(
+    state.particles.map((particle) => {
+      const offset = subtract(particle.position, center);
+      const radius = norm(offset);
+      return radius > 0 ? dot(offset, particle.velocity) / radius : 0;
+    })
+  );
+  return {
+    time: cleanNumber(state.time),
+    center: cleanVector(center),
+    radiusMean: cleanNumber(mean(radii)),
+    radiusStd: cleanNumber(stddev(radii)),
+    speedMean: cleanNumber(mean(speeds)),
+    speedStd: cleanNumber(stddev(speeds)),
+    speedMax: cleanNumber(Math.max(...speeds)),
+    minSameDistance: cleanNumber(Math.min(...sameDistances)),
+    minOppositeDistance: cleanNumber(Math.min(...oppositeDistances)),
+    pairOppositionMean: cleanNumber(mean(pairedOppositionErrors)),
+    pairOppositionMax: cleanNumber(Math.max(...pairedOppositionErrors)),
+    radialVelocityMean: cleanNumber(radialVelocityMean),
+    retainedHistoryRows: history.length,
+    fieldSpeedRatioMax: cleanNumber(Math.max(...speeds) / options.fieldSpeed),
+  };
+}
+
+function sampleFrame(state, history, options, metrics) {
+  return {
+    time: cleanNumber(state.time),
+    stepIndex: state.stepIndex,
+    metrics: metrics ?? computeMetrics(state, history, options),
+    particles: state.particles.map((particle) => ({
+      id: particle.id,
+      chargeType: particle.chargeType,
+      q: particle.q,
+      position: cleanVector(particle.position),
+      velocity: cleanVector(particle.velocity),
+      speed: cleanNumber(norm(particle.velocity)),
+    })),
+  };
+}
+
+function classifyRun(finalMetrics, events, options) {
+  if (events.firstFieldSpeedCrossing && events.firstSamePolarityClosePass) {
+    return "same_polarity_close_pass_with_field_speed_crossing";
+  }
+  if (events.firstFieldSpeedCrossing && events.firstOppositeClosePass) {
+    return "opposite_polarity_close_pass_with_field_speed_crossing";
+  }
+  if (events.firstSamePolarityClosePass) {
+    return "same_polarity_close_pass_without_field_speed_crossing";
+  }
+  if (events.firstOppositeClosePass) {
+    return "opposite_polarity_close_pass_without_field_speed_crossing";
+  }
+  if (finalMetrics.radiusMean > 2 && finalMetrics.radialVelocityMean > 0) {
+    return "expanding_escape_candidate";
+  }
+  if (
+    finalMetrics.radiusMean > 0.25 &&
+    finalMetrics.radiusMean < 1.75 &&
+    finalMetrics.radiusStd < 0.05 &&
+    finalMetrics.speedMax < options.fieldSpeed
+  ) {
+    return "bounded_equal-radius_transient_candidate";
+  }
+  return "unclassified_transient";
+}
+
+function detectMetricEvents(events, metrics, state, options) {
+  if (!events.firstAnyClosePass && metrics.minOppositeDistance <= options.closeRadius) {
+    events.firstAnyClosePass = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      pairType: "opposite-polarity",
+      distance: metrics.minOppositeDistance,
+    };
+  }
+  if (!events.firstAnyClosePass && metrics.minSameDistance <= options.closeRadius) {
+    events.firstAnyClosePass = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      pairType: "same-polarity",
+      distance: metrics.minSameDistance,
+    };
+  }
+  if (!events.firstOppositeClosePass && metrics.minOppositeDistance <= options.closeRadius) {
+    events.firstOppositeClosePass = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      minOppositeDistance: metrics.minOppositeDistance,
+    };
+  }
+  if (!events.firstSamePolarityClosePass && metrics.minSameDistance <= options.closeRadius) {
+    events.firstSamePolarityClosePass = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      minSameDistance: metrics.minSameDistance,
+    };
+  }
+  if (!events.firstFieldSpeedCrossing && metrics.speedMax >= options.fieldSpeed) {
+    events.firstFieldSpeedCrossing = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      speedMax: metrics.speedMax,
+      fieldSpeed: options.fieldSpeed,
+    };
+  }
+}
+
+function detectRootEvents(events, accelerationResult, state) {
+  if (!events.firstMissingRoot && accelerationResult.rootStats.missingRoots > 0) {
+    events.firstMissingRoot = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      missingRoots: accelerationResult.rootStats.missingRoots,
+    };
+  }
+  if (!events.firstSmallJacobian && accelerationResult.rootStats.smallJacobianRoots > 0) {
+    events.firstSmallJacobian = {
+      time: cleanNumber(state.time),
+      stepIndex: state.stepIndex,
+      smallJacobianRoots: accelerationResult.rootStats.smallJacobianRoots,
+    };
+  }
+}
+
+function mergeRootStats(total, next) {
+  total.totalRoots += next.totalRoots;
+  total.missingRoots += next.missingRoots;
+  total.smallJacobianRoots += next.smallJacobianRoots;
+  total.maxRootsPerDirectedPair = Math.max(total.maxRootsPerDirectedPair, next.maxRootsPerDirectedPair);
+  total.maxBranchWeight = Math.max(total.maxBranchWeight, next.maxBranchWeight);
+}
+
+function applyAccelerationCap(accelerations, maxAcceleration) {
+  if (!Number.isFinite(maxAcceleration)) {
+    return;
+  }
+  for (let index = 0; index < accelerations.length; index += 1) {
+    const magnitude = norm(accelerations[index]);
+    if (magnitude > maxAcceleration) {
+      accelerations[index] = scale(accelerations[index], maxAcceleration / magnitude);
+    }
+  }
+}
+
+function writeOutputs(result, options) {
+  fs.mkdirSync(options.outputDir, { recursive: true });
+  const jsonPath = path.join(options.outputDir, "result.json");
+  const csvPath = path.join(options.outputDir, "metrics.csv");
+  fs.writeFileSync(jsonPath, `${JSON.stringify(result, null, 2)}\n`);
+  fs.writeFileSync(csvPath, createMetricsCsv(result.frames));
+}
+
+function createMetricsCsv(frames) {
+  const header = [
+    "time",
+    "radiusMean",
+    "radiusStd",
+    "speedMean",
+    "speedMax",
+    "minSameDistance",
+    "minOppositeDistance",
+    "pairOppositionMean",
+    "radialVelocityMean",
+    "fieldSpeedRatioMax",
+  ];
+  const rows = frames.map((frame) =>
+    header
+      .map((key) => {
+        const value = key === "time" ? frame.time : frame.metrics[key];
+        return Number.isFinite(value) ? String(value) : "";
+      })
+      .join(",")
+  );
+  return `${header.join(",")}\n${rows.join("\n")}\n`;
+}
+
+function createConsoleSummary(result) {
+  return {
+    schema: "braid-ideal-held-release-causal-wake-toy-console-summary.v1",
+    status: result.status,
+    classification: result.classification,
+    outputDir: options.outputDir,
+    configuration: result.configuration,
+    events: result.events,
+    rootStats: result.rootStats,
+    finalMetrics: result.finalMetrics,
+  };
+}
+
+function snapshotState(state, time = state.time, override = null) {
+  return {
+    time: cleanNumber(time),
+    positions: override?.positions?.map(cloneVector) ?? state.particles.map((particle) => cloneVector(particle.position)),
+    velocities:
+      override?.velocities?.map(cloneVector) ?? state.particles.map((particle) => cloneVector(particle.velocity)),
+  };
+}
+
+function dedupeRoots(roots) {
+  const deduped = [];
+  for (const root of roots) {
+    if (!deduped.some((candidate) => Math.abs(candidate.emissionTime - root.emissionTime) < 1e-8)) {
+      deduped.push(root);
+    }
+  }
+  return deduped;
+}
+
+function signPreservingMax(value, floor) {
+  if (Math.abs(value) >= floor) {
+    return value;
+  }
+  return value < 0 ? -floor : floor;
+}
+
+function add(a, b) {
+  return [a[0] + b[0], a[1] + b[1], a[2] + b[2]];
+}
+
+function subtract(a, b) {
+  return [a[0] - b[0], a[1] - b[1], a[2] - b[2]];
+}
+
+function scale(a, scalar) {
+  return [a[0] * scalar, a[1] * scalar, a[2] * scalar];
+}
+
+function dot(a, b) {
+  return a[0] * b[0] + a[1] * b[1] + a[2] * b[2];
+}
+
+function norm(a) {
+  return Math.sqrt(dot(a, a));
+}
+
+function lerp(a, b, fraction) {
+  return [
+    a[0] + (b[0] - a[0]) * fraction,
+    a[1] + (b[1] - a[1]) * fraction,
+    a[2] + (b[2] - a[2]) * fraction,
+  ];
+}
+
+function cloneVector(value) {
+  return [value[0], value[1], value[2]];
+}
+
+function meanVector(vectors) {
+  const total = vectors.reduce((sum, value) => add(sum, value), [0, 0, 0]);
+  return scale(total, 1 / vectors.length);
+}
+
+function mean(values) {
+  return values.reduce((sum, value) => sum + value, 0) / values.length;
+}
+
+function stddev(values) {
+  const valueMean = mean(values);
+  return Math.sqrt(mean(values.map((value) => (value - valueMean) ** 2)));
+}
+
+function cleanVector(vector) {
+  return vector.map(cleanNumber);
+}
+
+function cleanNumber(value) {
+  return Number.isFinite(value) ? Number(value.toPrecision(15)) : value;
+}
+
+function requireNext(rawArgs, index, arg) {
+  const value = rawArgs[index + 1];
+  if (value == null || value.startsWith("--")) {
+    throw new TypeError(`${arg} requires a value`);
+  }
+  return value;
+}
+
+function finiteNumber(value, name) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) {
+    throw new TypeError(`${name} must be finite`);
+  }
+  return number;
+}
+
+function positiveFiniteNumber(value, name) {
+  const number = finiteNumber(value, name);
+  if (number <= 0) {
+    throw new TypeError(`${name} must be positive`);
+  }
+  return number;
+}
+
+function nonnegativeFiniteNumber(value, name) {
+  const number = finiteNumber(value, name);
+  if (number < 0) {
+    throw new TypeError(`${name} must be nonnegative`);
+  }
+  return number;
+}
+
+function positiveInteger(value, name) {
+  const number = positiveFiniteNumber(value, name);
+  return Math.max(1, Math.round(number));
+}
+
+function printUsage(exitCode) {
+  console.log(`Usage: node scripts/braid-ideal/held-release-causal-wake-toy.mjs [options]
+
+Runs the priority-only six-architrino held-release seed:
+  p_x=(1,0,0), p_y=(0,1,0), p_z=(0,0,1)
+  e_x=(-1,0,0), e_y=(0,-1,0), e_z=(0,0,-1)
+
+Options:
+  --duration <number>          released integration duration, default 3
+  --dt <number>                integration step, default 0.002
+  --hold-time <number>         stationary prehistory duration, default 4
+  --field-speed <number>       causal wake speed, default 1
+  --coupling <number>          pair-force coupling, default 1
+  --softening <number>         distance softening, default 0.05
+  --jacobian-floor <number>    branch-weight floor, default 0.05
+  --close-radius <number>      close-pass event threshold, default 0.15
+  --sample-every <integer>     output sample stride, default 10
+  --max-acceleration <number>  optional acceleration cap
+  --no-causal-weight           disable causal branch weighting
+  --out <path>                 output directory, default ${DEFAULT_OUTPUT_DIR}
+`);
+  process.exit(exitCode);
+}

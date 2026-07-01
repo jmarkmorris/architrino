@@ -49,7 +49,11 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
     setRunLimits(nextLimits = {}) {
       targetDuration = Math.min(
         config.targetDuration,
-        Math.max(config.startTime + config.sampleInterval, positiveNumber(nextLimits.targetDuration, targetDuration)),
+        normalizeTargetDuration(
+          targetDurationNumber(nextLimits.targetDuration, targetDuration),
+          config.startTime,
+          config.sampleInterval,
+        ),
       );
       chunkDuration = Math.min(
         config.chunkDuration,
@@ -64,7 +68,10 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
         return createCompleteChunk(config, chunkIndex, nextStartTime);
       }
       const startTime = nextStartTime;
-      const endTime = Math.min(targetDuration, startTime + chunkDuration);
+      const chunkEndTime = roundSolverTime(startTime + chunkDuration);
+      const endTime = Number.isFinite(targetDuration)
+        ? Math.min(targetDuration, chunkEndTime)
+        : chunkEndTime;
       const request = createBorgDynamicMasterEquationRunRequest({
         manifest,
         config,
@@ -150,9 +157,10 @@ export function createBorgDynamicNativeRunConfig(manifest, options = {}) {
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
   );
   const startTime = finiteNumber(options.startTime, 0);
-  const targetDuration = Math.max(
-    startTime + sampleInterval,
-    positiveNumber(options.targetDuration, DEFAULT_TARGET_DURATION),
+  const targetDuration = normalizeTargetDuration(
+    targetDurationNumber(options.targetDuration, DEFAULT_TARGET_DURATION),
+    startTime,
+    sampleInterval,
   );
   const chunkDuration = Math.max(
     sampleInterval,
@@ -509,6 +517,24 @@ function frameRowKey(frame) {
 function finiteNumber(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) ? number : fallback;
+}
+
+function targetDurationNumber(value, fallback) {
+  if (value === "forever" || value === Number.POSITIVE_INFINITY) {
+    return Number.POSITIVE_INFINITY;
+  }
+  return positiveNumber(value, fallback);
+}
+
+function normalizeTargetDuration(value, startTime, sampleInterval) {
+  if (value === Number.POSITIVE_INFINITY) {
+    return Number.POSITIVE_INFINITY;
+  }
+  return Math.max(startTime + sampleInterval, value);
+}
+
+function roundSolverTime(value) {
+  return Number(value.toFixed(12));
 }
 
 function positiveNumber(value, fallback) {

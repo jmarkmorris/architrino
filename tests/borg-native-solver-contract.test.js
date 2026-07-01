@@ -95,23 +95,39 @@ test("Borg path-history renderer uses native row segments, not visual smoothing 
   assert.match(runtimeSource, /PLAYBACK_SPEED_PRESETS/);
   assert.doesNotMatch(runtimeSource, /PLAYBACK_MS_PER_NATIVE_STEP/);
   assert.match(runtimeSource, /RUN_CONTROL_PRESETS/);
+  assert.match(runtimeSource, /live-forever/);
+  assert.match(runtimeSource, /live-20s/);
   assert.match(runtimeSource, /borg-live-run-budget\.v1/);
   assert.match(runtimeSource, /BorgMeasuredRunPresets\.js/);
+  assert.match(runtimeSource, /BorgLiveRunRetentionPolicy\.js/);
+  assert.match(runtimeSource, /BorgReleaseBudgetManifest\.js/);
+  assert.match(runtimeSource, /releaseBudgetManifest/);
+  assert.match(runtimeSource, /releaseMaxChunk/);
   assert.match(runtimeSource, /measuredRunPresetCalibration/);
   assert.match(runtimeSource, /updateMeasuredRunPresetCalibration/);
   assert.match(runtimeSource, /effectiveTargetDuration/);
   assert.match(runtimeSource, /readLiveRunBudgetSnapshot/);
   assert.match(runtimeSource, /createSeededDistributionFrameRows/);
-  assert.equal(runtimeSource.includes("Live 3000 / 20"), true);
+  assert.equal(runtimeSource.includes("Live 3000 / 20"), false);
+  assert.match(runtimeSource, /toggleRunDurationMode/);
+  assert.match(runtimeSource, /startDynamicNativeRunnerIfNeeded/);
+  assert.match(runtimeSource, /applyLiveRunRetentionIfNeeded/);
+  assert.match(runtimeSource, /compactedPathHistory/);
   assert.match(runtimeSource, /switchRunControlPreset/);
   assert.match(runtimeSource, /startNewDistributionRun/);
   assert.match(runtimeSource, /createBorgDynamicNativeRunner/);
   assert.match(runtimeSource, /BorgSolverBridgeWorker\.js/);
   assert.match(runtimeSource, /mergeBorgFrameRows/);
+  assert.match(
+    runtimeSource,
+    /currentFrames = replaceFixture[\s\S]*applyLiveRunRetentionIfNeeded\(\);[\s\S]*frameSets = createBorgFrameSetsFromRows\(currentFrames\);/,
+  );
+  assert.match(runtimeSource, /appendedFrameRows = Array\.isArray\(chunk\.frames\)/);
   assert.doesNotMatch(htmlSource, /M9\.8 6\.2a6\.8/);
   assert.match(htmlSource, /id="borg-start-frame-button"/);
   assert.match(htmlSource, /id="borg-new-distribution-button"/);
-  assert.match(htmlSource, /id="borg-run-source"/);
+  assert.match(htmlSource, /id="borg-run-duration-button"/);
+  assert.doesNotMatch(htmlSource, /id="borg-run-source"/);
   assert.match(htmlSource, /id="borg-playback-speed"/);
 });
 
@@ -165,6 +181,37 @@ test("Borg dynamic native runner builds first-class live master-equation chunks"
   const frameSets = createBorgFrameSetsFromRows(mergedFrames);
   assert.deepEqual(frameSets.map((frameSet) => frameSet.frameIndex), [0, 1, 2, 3]);
   assert.equal(frameSets.at(-1).frames.length, 16);
+
+  await runner.dispose();
+});
+
+test("Borg dynamic native runner can continue beyond finite preset windows", async () => {
+  const requests = [];
+  const solverClient = {
+    async runSimulation(request) {
+      requests.push(request);
+      return createFakeBorgDynamicRunResponse(request);
+    },
+    async dispose() {},
+  };
+  const runner = createBorgDynamicNativeRunner(BORG_DATASET_MANIFEST_V1, {
+    solverClient,
+    targetDuration: Number.POSITIVE_INFINITY,
+    chunkDuration: 0.4,
+    sampleInterval: 0.2,
+  });
+
+  assert.equal(runner.targetDuration, Number.POSITIVE_INFINITY);
+
+  await runner.computeNextChunk();
+  await runner.computeNextChunk();
+  await runner.computeNextChunk();
+
+  assert.deepEqual(
+    requests.map((request) => request.config.masterEquationRequest.endTime),
+    [0.4, 0.8, 1.2],
+  );
+  assert.equal(runner.canComputeNextChunk(), true);
 
   await runner.dispose();
 });

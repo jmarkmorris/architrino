@@ -324,6 +324,7 @@
         "solveMovingCircularSourceCausalRootsF64",
         "solveMovingCircularSameSourceCausalRootsF64",
         "computeMovingCircularObserverFieldF64",
+        "solveMovingCircularAbsoluteHistoryRunF64",
         "solveCausalRootsNormalizedF64",
         "solveCausalRootBatchF64",
         "solveRootsAndHitsF64",
@@ -3182,6 +3183,7 @@
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveMovingCircularSourceCausalRootsF64",
               "solveMovingCircularSameSourceCausalRootsF64",
+              "solveMovingCircularAbsoluteHistoryRunF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64"
@@ -3333,7 +3335,14 @@
         "t3ParticleStepRowF64Bytes",
         "t3StepSummaryF64Bytes",
         "t3UnresolvedRootSegmentRowF64Bytes",
-        "t3RetainedCausalRootReplayRowF64Bytes"
+        "t3RetainedCausalRootReplayRowF64Bytes",
+        "movingCircularSourceHistoryF64Bytes",
+        "movingCircularSourceRootRequestF64Bytes",
+        "movingCircularRootRowF64Bytes",
+        "movingCircularObserverFieldRequestF64Bytes",
+        "movingCircularObserverFieldBranchF64Bytes",
+        "movingCircularObserverFieldContributionF64Bytes",
+        "movingCircularObserverFieldSummaryF64Bytes"
       ],
       "properties": {
         "abiMajor": { "type": "integer", "minimum": 0 },
@@ -3389,7 +3398,14 @@
         "t3ParticleStepRowF64Bytes": { "type": "integer", "minimum": 1 },
         "t3StepSummaryF64Bytes": { "type": "integer", "minimum": 1 },
         "t3UnresolvedRootSegmentRowF64Bytes": { "type": "integer", "minimum": 1 },
-        "t3RetainedCausalRootReplayRowF64Bytes": { "type": "integer", "minimum": 1 }
+        "t3RetainedCausalRootReplayRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularSourceHistoryF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularSourceRootRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularRootRowF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularObserverFieldRequestF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularObserverFieldBranchF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularObserverFieldContributionF64Bytes": { "type": "integer", "minimum": 1 },
+        "movingCircularObserverFieldSummaryF64Bytes": { "type": "integer", "minimum": 1 }
       }
     },
     "threadingPolicy": {

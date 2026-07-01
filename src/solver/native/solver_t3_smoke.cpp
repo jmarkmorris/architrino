@@ -146,7 +146,7 @@ int main() {
       abiReplayRows[0].same_record_replay_status == 2 &&
       abiReplayRows[0].caustic_route_status == 0 &&
       abiReplayRows[0].row_status == 2 &&
-      abiInfo.abi_minor == 20 &&
+      abiInfo.abi_minor == 22 &&
       abiInfo.t3_step_request_f64_bytes == 120 &&
       abiInfo.t3_particle_state_f64_bytes == 80 &&
       abiInfo.t3_particle_step_row_f64_bytes == 104 &&

@@ -31,7 +31,14 @@ static_assert(sizeof(ArchitrinoSolverLinearPathSegmentF64) == 72);
 static_assert(sizeof(ArchitrinoSolverCircularPathSegmentF64) == 120);
 static_assert(sizeof(ArchitrinoSolverCausalRootRequestF64) == 176);
 static_assert(sizeof(ArchitrinoSolverCircularSourceCausalRootRequestF64) == 224);
+static_assert(sizeof(ArchitrinoSolverMovingCircularSourceHistoryF64) == 128);
+static_assert(sizeof(ArchitrinoSolverMovingCircularSourceCausalRootRequestF64) == 248);
 static_assert(sizeof(ArchitrinoSolverCausalRootRowF64) == 176);
+static_assert(sizeof(ArchitrinoSolverMovingCircularRootRowF64) == 232);
+static_assert(sizeof(ArchitrinoSolverMovingCircularObserverFieldRequestF64) == 32);
+static_assert(sizeof(ArchitrinoSolverMovingCircularObserverFieldBranchF64) == 152);
+static_assert(sizeof(ArchitrinoSolverMovingCircularObserverFieldContributionF64) == 200);
+static_assert(sizeof(ArchitrinoSolverMovingCircularObserverFieldSummaryF64) == 144);
 static_assert(sizeof(ArchitrinoSolverRootLedgerDetailRowF64) == 248);
 static_assert(sizeof(ArchitrinoSolverDelayedHitRowF64) == 192);
 static_assert(sizeof(ArchitrinoSolverCausalRootBatchItemRowF64) == 24);
@@ -99,15 +106,29 @@ static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseOptionsF64) =
 static_assert(sizeof(ArchitrinoSolverEmissionShellIndexedBroadPhaseSummary) == 96);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRequestF64) == 208);
 static_assert(sizeof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64) == 40);
-static_assert(sizeof(ArchitrinoSolverAbiInfo) == 216);
+static_assert(sizeof(ArchitrinoSolverAbiInfo) == 244);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, hit_time) == 144);
 static_assert(offsetof(ArchitrinoSolverCausalRootRequestF64, max_iterations) == 168);
 static_assert(offsetof(ArchitrinoSolverCircularPathSegmentF64, radius_v) == 64);
 static_assert(offsetof(ArchitrinoSolverCircularSourceCausalRootRequestF64, hit_time) == 192);
+static_assert(offsetof(ArchitrinoSolverMovingCircularSourceHistoryF64, center_velocity) == 24);
+static_assert(offsetof(ArchitrinoSolverMovingCircularSourceCausalRootRequestF64, hit_time) == 200);
+static_assert(offsetof(ArchitrinoSolverMovingCircularSourceCausalRootRequestF64, source_start_time) == 216);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, emission_time) == 8);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_z) == 104);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, source_normal_speed) == 112);
 static_assert(offsetof(ArchitrinoSolverCausalRootRowF64, receiver_normal_status_code) == 168);
+static_assert(offsetof(ArchitrinoSolverMovingCircularRootRowF64, source_velocity) == 176);
+static_assert(offsetof(ArchitrinoSolverMovingCircularRootRowF64, source_phase_raw) == 200);
+static_assert(offsetof(ArchitrinoSolverMovingCircularRootRowF64, source_phase_cycle_index) == 224);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldRequestF64, unstable_gap_threshold) == 8);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldBranchF64, charge_sign) == 48);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldBranchF64, receiver_normal_status_code) == 144);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldContributionF64, delay) == 16);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldContributionF64, source_speed_ratio) == 120);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldContributionF64, electric) == 152);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldSummaryF64, average_delay) == 32);
+static_assert(offsetof(ArchitrinoSolverMovingCircularObserverFieldSummaryF64, electric) == 96);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, interval_start) == 32);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, source_x) == 112);
 static_assert(offsetof(ArchitrinoSolverRootLedgerDetailRowF64, source_normal_speed) == 160);
@@ -273,6 +294,8 @@ static_assert(offsetof(ArchitrinoSolverEmissionShellNarrowPhaseRowF64, residual)
 
 namespace {
 
+constexpr double kTwoPi = 6.283185307179586476925286766559;
+
 constexpr std::uint32_t kMasterEquationStatusOk = 0;
 constexpr std::uint32_t kMasterEquationFailureNone = 0;
 constexpr std::uint32_t kMasterEquationStatusSolverPending = 1;
@@ -320,6 +343,23 @@ architrino::solver::CircularPathSegment to_segment(
   };
 }
 
+architrino::solver::MovingCircularSourceHistory to_source_history(
+    ArchitrinoSolverMovingCircularSourceHistoryF64 value,
+    const char* pathId) {
+  return architrino::solver::MovingCircularSourceHistory{
+      pathId,
+      to_vector(value.center_at_epoch),
+      to_vector(value.center_velocity),
+      to_vector(value.radius_u),
+      to_vector(value.radius_v),
+      value.angular_velocity,
+      value.phase_at_epoch,
+      value.epoch_time,
+      architrino::solver::NumericType::F64,
+      value.error_bound,
+  };
+}
+
 architrino::solver::CausalRootRequest to_request(
     const ArchitrinoSolverCausalRootRequestF64* request,
     int itemIndex = -1) {
@@ -346,6 +386,23 @@ architrino::solver::CircularSourceCausalRootRequest to_request(
       to_segment(request->receiver, "receiver"),
       request->hit_time,
       request->signal_speed,
+      request->root_tolerance,
+      request->max_iterations,
+      request->scan_subdivisions,
+  };
+}
+
+architrino::solver::MovingCircularSourceCausalRootRequest to_request(
+    const ArchitrinoSolverMovingCircularSourceCausalRootRequestF64* request) {
+  return architrino::solver::MovingCircularSourceCausalRootRequest{
+      "receiver",
+      "moving-circular-source",
+      to_source_history(request->source, "moving-circular-source"),
+      to_segment(request->receiver, "receiver"),
+      request->hit_time,
+      request->signal_speed,
+      request->source_start_time,
+      request->source_end_time,
       request->root_tolerance,
       request->max_iterations,
       request->scan_subdivisions,
@@ -405,6 +462,216 @@ ArchitrinoSolverCausalRootRowF64 to_row(const architrino::solver::CausalRoot& ro
       root.unsignedReceiverNormalFactor,
       static_cast<int>(root.receiverNormalStatusCode),
       0,
+  };
+}
+
+double wrap_phase(double rawPhase) {
+  const double wrapped = std::fmod(rawPhase, kTwoPi);
+  return wrapped < 0.0 ? wrapped + kTwoPi : wrapped;
+}
+
+ArchitrinoSolverMovingCircularRootRowF64 to_moving_circular_row(
+    const architrino::solver::MovingCircularSourceCausalRootRequest& request,
+    const architrino::solver::CausalRoot& root) {
+  const architrino::solver::Vector3 sourceVelocity =
+      architrino::solver::velocity_at(request.source, root.emissionTime);
+  const double rawPhase = architrino::solver::phase_at(request.source, root.emissionTime);
+  const double wrappedPhase = wrap_phase(rawPhase);
+  return ArchitrinoSolverMovingCircularRootRowF64{
+      to_row(root),
+      ArchitrinoSolverVector3F64{sourceVelocity.x, sourceVelocity.y, sourceVelocity.z},
+      rawPhase,
+      wrappedPhase,
+      wrappedPhase * 180.0 / 3.1415926535897932384626433832795,
+      static_cast<int>(std::floor(rawPhase / kTwoPi)),
+      0,
+  };
+}
+
+constexpr int kMovingCircularObserverFieldEvidenceOk = 0;
+constexpr int kMovingCircularObserverFieldEvidenceMissing = 1;
+constexpr int kMovingCircularObserverFieldEvidenceInvalid = 2;
+
+double finite_or_zero(double value) {
+  return std::isfinite(value) ? value : 0.0;
+}
+
+double field_dot(ArchitrinoSolverVector3F64 left, ArchitrinoSolverVector3F64 right) {
+  return finite_or_zero(left.x) * finite_or_zero(right.x) +
+         finite_or_zero(left.y) * finite_or_zero(right.y) +
+         finite_or_zero(left.z) * finite_or_zero(right.z);
+}
+
+double field_magnitude(ArchitrinoSolverVector3F64 value) {
+  return std::sqrt(field_dot(value, value));
+}
+
+ArchitrinoSolverVector3F64 field_scale(ArchitrinoSolverVector3F64 value, double scalar) {
+  const double finiteScalar = finite_or_zero(scalar);
+  return ArchitrinoSolverVector3F64{
+      finite_or_zero(value.x) * finiteScalar,
+      finite_or_zero(value.y) * finiteScalar,
+      finite_or_zero(value.z) * finiteScalar,
+  };
+}
+
+ArchitrinoSolverVector3F64 field_add(ArchitrinoSolverVector3F64 left,
+                                     ArchitrinoSolverVector3F64 right) {
+  return ArchitrinoSolverVector3F64{
+      finite_or_zero(left.x) + finite_or_zero(right.x),
+      finite_or_zero(left.y) + finite_or_zero(right.y),
+      finite_or_zero(left.z) + finite_or_zero(right.z),
+  };
+}
+
+ArchitrinoSolverVector3F64 field_cross(ArchitrinoSolverVector3F64 left,
+                                       ArchitrinoSolverVector3F64 right) {
+  return ArchitrinoSolverVector3F64{
+      finite_or_zero(left.y) * finite_or_zero(right.z) -
+          finite_or_zero(left.z) * finite_or_zero(right.y),
+      finite_or_zero(left.z) * finite_or_zero(right.x) -
+          finite_or_zero(left.x) * finite_or_zero(right.z),
+      finite_or_zero(left.x) * finite_or_zero(right.y) -
+          finite_or_zero(left.y) * finite_or_zero(right.x),
+  };
+}
+
+bool close_scaled(double left, double right, double tolerance) {
+  const double scale = std::max({1.0, std::abs(left), std::abs(right)});
+  return std::abs(left - right) <= tolerance * scale;
+}
+
+int receiver_normal_evidence_status(
+    const ArchitrinoSolverMovingCircularObserverFieldBranchF64& branch) {
+  if (!std::isfinite(branch.branch_weight) ||
+      !std::isfinite(branch.source_normal_denominator) ||
+      !std::isfinite(branch.receiver_normal_numerator) ||
+      !std::isfinite(branch.receiver_normal_factor) ||
+      !std::isfinite(branch.unsigned_receiver_normal_factor)) {
+    return kMovingCircularObserverFieldEvidenceMissing;
+  }
+  const double expectedReceiverNormalFactor =
+      branch.receiver_normal_numerator / branch.source_normal_denominator;
+  if (branch.branch_weight < 0.0 ||
+      branch.unsigned_receiver_normal_factor < 0.0 ||
+      std::abs(branch.source_normal_denominator) <= 1e-12 ||
+      !std::isfinite(expectedReceiverNormalFactor) ||
+      !close_scaled(branch.receiver_normal_factor, expectedReceiverNormalFactor, 1e-9) ||
+      !close_scaled(
+          branch.unsigned_receiver_normal_factor,
+          std::abs(branch.receiver_normal_factor),
+          1e-9) ||
+      !close_scaled(branch.branch_weight, branch.unsigned_receiver_normal_factor, 1e-9)) {
+    return kMovingCircularObserverFieldEvidenceInvalid;
+  }
+  return kMovingCircularObserverFieldEvidenceOk;
+}
+
+ArchitrinoSolverMovingCircularObserverFieldContributionF64 make_moving_circular_field_contribution(
+    const ArchitrinoSolverMovingCircularObserverFieldRequestF64& request,
+    const ArchitrinoSolverMovingCircularObserverFieldBranchF64& branch,
+    int branchIndex) {
+  const double signalSpeed = std::max(1e-12, finite_or_zero(request.signal_speed));
+  const int evidenceStatus = receiver_normal_evidence_status(branch);
+  const double branchWeight =
+      evidenceStatus == kMovingCircularObserverFieldEvidenceOk ? branch.branch_weight : 0.0;
+  const double distance = std::max(1e-12, finite_or_zero(branch.distance));
+  const ArchitrinoSolverVector3F64 electric = field_scale(
+      branch.direction,
+      finite_or_zero(branch.charge_sign) * branchWeight / (distance * distance));
+  const ArchitrinoSolverVector3F64 comparisonB = field_scale(
+      field_cross(ArchitrinoSolverVector3F64{1.0, 0.0, 0.0}, electric),
+      1.0 / signalSpeed);
+  const double jacobian = finite_or_zero(branch.source_normal_denominator);
+  return ArchitrinoSolverMovingCircularObserverFieldContributionF64{
+      branchIndex,
+      evidenceStatus == kMovingCircularObserverFieldEvidenceOk
+          ? branch.receiver_normal_status_code
+          : -1,
+      evidenceStatus,
+      0,
+      std::max(0.0, finite_or_zero(branch.delay)),
+      distance,
+      std::abs(finite_or_zero(branch.residual)),
+      jacobian,
+      std::abs(jacobian),
+      branchWeight,
+      finite_or_zero(branch.source_normal_speed),
+      finite_or_zero(branch.receiver_normal_speed),
+      finite_or_zero(branch.source_normal_denominator),
+      finite_or_zero(branch.receiver_normal_numerator),
+      finite_or_zero(branch.receiver_normal_crossing_factor),
+      finite_or_zero(branch.receiver_normal_factor),
+      finite_or_zero(branch.unsigned_receiver_normal_factor),
+      field_magnitude(branch.source_velocity) / signalSpeed,
+      electric,
+      electric,
+      comparisonB,
+  };
+}
+
+ArchitrinoSolverMovingCircularObserverFieldSummaryF64 summarize_moving_circular_field(
+    const ArchitrinoSolverMovingCircularObserverFieldRequestF64& request,
+    const ArchitrinoSolverMovingCircularObserverFieldContributionF64* contributions,
+    int contributionCount,
+    int branchCount) {
+  double delaySum = 0.0;
+  double delaySolveGapMax = 0.0;
+  double maxSourceSpeedRatio = 0.0;
+  double jacobianAbsMin = std::numeric_limits<double>::infinity();
+  double nearestSourceDistance = std::numeric_limits<double>::infinity();
+  ArchitrinoSolverVector3F64 electric{0.0, 0.0, 0.0};
+  ArchitrinoSolverVector3F64 comparisonB{0.0, 0.0, 0.0};
+  int unstableContributionCount = 0;
+  int missingReceiverNormalCount = 0;
+  int receiverNormalFailureCode = 0;
+  const double unstableGapThreshold = std::isfinite(request.unstable_gap_threshold)
+                                          ? request.unstable_gap_threshold
+                                          : 0.05;
+  const double jacobianFloor =
+      std::max(1e-12, std::isfinite(request.jacobian_floor) ? request.jacobian_floor : 1e-4);
+  for (int index = 0; index < contributionCount; ++index) {
+    const ArchitrinoSolverMovingCircularObserverFieldContributionF64& contribution =
+        contributions[index];
+    delaySum += contribution.delay;
+    delaySolveGapMax = std::max(delaySolveGapMax, contribution.delay_solve_gap);
+    maxSourceSpeedRatio = std::max(maxSourceSpeedRatio, contribution.source_speed_ratio);
+    jacobianAbsMin = std::min(jacobianAbsMin, contribution.jacobian_abs);
+    nearestSourceDistance = std::min(nearestSourceDistance, contribution.distance);
+    electric = field_add(electric, contribution.electric);
+    comparisonB = field_add(comparisonB, contribution.comparison_b);
+    const bool receiverNormalMissing =
+        contribution.receiver_normal_evidence_status != kMovingCircularObserverFieldEvidenceOk;
+    if (receiverNormalMissing) {
+      missingReceiverNormalCount += 1;
+      if (receiverNormalFailureCode == 0) {
+        receiverNormalFailureCode = contribution.receiver_normal_evidence_status;
+      }
+    }
+    if (receiverNormalMissing || contribution.delay_solve_gap > unstableGapThreshold ||
+        contribution.jacobian_abs <= jacobianFloor) {
+      unstableContributionCount += 1;
+    }
+  }
+  return ArchitrinoSolverMovingCircularObserverFieldSummaryF64{
+      branchCount,
+      contributionCount,
+      unstableContributionCount,
+      missingReceiverNormalCount,
+      receiverNormalFailureCode,
+      static_cast<int>(architrino::solver::StatusCode::Ok),
+      missingReceiverNormalCount > 0
+          ? static_cast<int>(architrino::solver::StatusSeverity::Warning)
+          : static_cast<int>(architrino::solver::StatusSeverity::Ok),
+      0,
+      contributionCount > 0 ? delaySum / static_cast<double>(contributionCount) : 0.0,
+      delaySolveGapMax,
+      maxSourceSpeedRatio,
+      std::isfinite(jacobianAbsMin) ? jacobianAbsMin : 0.0,
+      std::isfinite(nearestSourceDistance) ? nearestSourceDistance : 0.0,
+      electric,
+      electric,
+      comparisonB,
   };
 }
 
@@ -2041,6 +2308,31 @@ int copy_roots(const std::vector<architrino::solver::CausalRoot>& source,
   return 0;
 }
 
+int copy_moving_circular_roots(
+    const architrino::solver::MovingCircularSourceCausalRootRequest& request,
+    const std::vector<architrino::solver::CausalRoot>& source,
+    ArchitrinoSolverMovingCircularRootRowF64* roots,
+    int maxRoots,
+    int* outRootCount) {
+  if (root_count_overflows(source.size())) {
+    *outRootCount = 0;
+    return -4;
+  }
+
+  const int requiredRoots = static_cast<int>(source.size());
+  *outRootCount = requiredRoots;
+  if (roots == nullptr || maxRoots == 0) {
+    return requiredRoots == 0 ? 0 : -3;
+  }
+  if (maxRoots < requiredRoots) {
+    return -3;
+  }
+  for (int index = 0; index < requiredRoots; ++index) {
+    roots[index] = to_moving_circular_row(request, source[static_cast<std::size_t>(index)]);
+  }
+  return 0;
+}
+
 int copy_hits(const std::vector<architrino::solver::DelayedHitEvent>& source,
               ArchitrinoSolverDelayedHitRowF64* hits,
               int maxHits,
@@ -2713,7 +3005,7 @@ int copy_assembly_graph_store_index_rows(
 extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
   return ArchitrinoSolverAbiInfo{
       0,
-      20,
+      22,
       0,
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRequestF64)),
       static_cast<int>(sizeof(ArchitrinoSolverCausalRootRowF64)),
@@ -2766,6 +3058,13 @@ extern "C" ArchitrinoSolverAbiInfo architrino_solver_abi_info() {
       static_cast<int>(sizeof(ArchitrinoSolverT3StepSummaryF64)),
       static_cast<int>(sizeof(ArchitrinoSolverT3UnresolvedRootSegmentRowF64)),
       static_cast<int>(sizeof(ArchitrinoSolverT3RetainedCausalRootReplayRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularSourceHistoryF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularSourceCausalRootRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularRootRowF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularObserverFieldRequestF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularObserverFieldBranchF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularObserverFieldContributionF64)),
+      static_cast<int>(sizeof(ArchitrinoSolverMovingCircularObserverFieldSummaryF64)),
   };
 }
 
@@ -2859,6 +3158,60 @@ extern "C" int architrino_solver_solve_circular_source_causal_roots_f64(
   }
 
   return copy_roots(result.roots, roots, max_roots, out_root_count);
+}
+
+extern "C" int architrino_solver_solve_moving_circular_source_causal_roots_f64(
+    const ArchitrinoSolverMovingCircularSourceCausalRootRequestF64* request,
+    ArchitrinoSolverMovingCircularRootRowF64* roots,
+    int max_roots,
+    int* out_root_count) {
+  if (request == nullptr || out_root_count == nullptr || max_roots < 0) {
+    return -1;
+  }
+
+  const architrino::solver::MovingCircularSourceCausalRootRequest cppRequest =
+      to_request(request);
+
+  const architrino::solver::CausalRootResult result =
+      architrino::solver::solve_moving_circular_source_causal_roots(cppRequest);
+  if (!result.validation.ok) {
+    *out_root_count = 0;
+    return -2;
+  }
+
+  return copy_moving_circular_roots(cppRequest, result.roots, roots, max_roots, out_root_count);
+}
+
+extern "C" int architrino_solver_compute_moving_circular_observer_field_f64(
+    const ArchitrinoSolverMovingCircularObserverFieldRequestF64* request,
+    const ArchitrinoSolverMovingCircularObserverFieldBranchF64* branches,
+    int branch_count,
+    ArchitrinoSolverMovingCircularObserverFieldContributionF64* contributions,
+    int max_contributions,
+    int* out_contribution_count,
+    ArchitrinoSolverMovingCircularObserverFieldSummaryF64* out_summary) {
+  if (request == nullptr || out_contribution_count == nullptr || out_summary == nullptr ||
+      branch_count < 0 || max_contributions < 0 ||
+      (branch_count > 0 && branches == nullptr)) {
+    return -1;
+  }
+
+  *out_contribution_count = branch_count;
+  if (contributions == nullptr || max_contributions < branch_count) {
+    *out_summary = ArchitrinoSolverMovingCircularObserverFieldSummaryF64{};
+    return branch_count == 0 ? 0 : -3;
+  }
+
+  for (int index = 0; index < branch_count; ++index) {
+    contributions[index] =
+        make_moving_circular_field_contribution(*request, branches[index], index);
+  }
+  *out_summary = summarize_moving_circular_field(
+      *request,
+      contributions,
+      branch_count,
+      branch_count);
+  return 0;
 }
 
 extern "C" int architrino_solver_solve_circular_source_roots_hits_ledger_f64(

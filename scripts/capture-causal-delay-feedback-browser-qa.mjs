@@ -81,11 +81,9 @@ const PROOFS = Object.freeze([
     requiredReplayStatus: "solver boundary replay",
     requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
     requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
     requiredPathConstraintPhysicalBoundarySolverClaim:
-      "retained_knot_guidance_not_physical_boundary_value_solve",
-    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
-      "physical_boundary_solver_not_implemented",
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
@@ -121,11 +119,9 @@ const PROOFS = Object.freeze([
     requiredReplayStatus: "solver boundary replay",
     requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
     requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
     requiredPathConstraintPhysicalBoundarySolverClaim:
-      "retained_knot_guidance_not_physical_boundary_value_solve",
-    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
-      "physical_boundary_solver_not_implemented",
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     requiredAdaptiveBoundaryRetry: false,
     requiredBoundaryRelaxationIterationCount: 64,
     requiredBoundaryRelaxationTolerance: 10,
@@ -224,11 +220,9 @@ const PROOFS = Object.freeze([
     requiredReplayStatus: "solver boundary replay",
     requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
     requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
     requiredPathConstraintPhysicalBoundarySolverClaim:
-      "retained_knot_guidance_not_physical_boundary_value_solve",
-    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
-      "physical_boundary_solver_not_implemented",
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,
@@ -263,11 +257,9 @@ const PROOFS = Object.freeze([
     requiredReplayStatus: "solver boundary replay",
     requiredPathConstraintSolverStatus: "discrete_boundary_value_converged",
     requiredPathConstraintSolverClaim: "finite_difference_pair_boundary_value_solve_converged",
-    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_solver_pending",
+    requiredPathConstraintPhysicalBoundarySolverStatus: "physical_boundary_value_converged",
     requiredPathConstraintPhysicalBoundarySolverClaim:
-      "retained_knot_guidance_not_physical_boundary_value_solve",
-    requiredPathConstraintPhysicalBoundarySolverBlockingReason:
-      "physical_boundary_solver_not_implemented",
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged",
     requiredBoundaryRelaxationIterationCount: [64, 256],
     requiredBoundaryRelaxationTolerance: [10, 1],
     requiredMaxBoundaryRelaxationResidualAfter: 1,

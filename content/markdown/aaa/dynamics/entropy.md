@@ -138,6 +138,53 @@ Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five 
 
 This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
+## Temperature As A Same-Record Ensemble Variable
+
+Temperature inherits the same discipline. It is not a primitive substrate property of an architrino, a single Noether braid, or the Euclidean void. It is an effective ensemble variable admitted only when a declared coarse-graining retains enough accessible energy exchange, state counting, and local stability for a thermodynamic or kinetic readout to be meaningful.
+
+A minimal temperature-availability record should declare the ensemble, retained window, measure, energy ledger, fixed inventory, fixed volume or access variable, retained Noether sea state, equilibrium or thermalization residual, and observer handoff. Schematically,
+
+$$
+\mathcal A_T(W)
+=
+\left(
+\mathcal Q,
+W,
+\mu,
+E_{\mathcal Q,W},
+\mathcal N,
+\mathcal V,
+\theta_{\text{sea}},
+\mathcal R_{\mathrm{eq}},
+\mathcal O_{\mathrm{obs}}
+\right)
+$$
+
+where $\mathcal R_{\mathrm{eq}}$ records whether local thermodynamic equilibrium, detailed balance, or another thermalization condition has been derived, and $\mathcal O_{\mathrm{obs}}$ records how the temperature is measured, redshifted, or reconstructed. If $S_{\mathcal Q,W}$ is physical entropy and the derivative is stable inside the declared record, the temperature channel is
+
+$$
+\frac{1}{T_{\mathcal Q,W}}
+=
+\left(
+\frac{\partial S_{\mathcal Q,W}}
+{\partial E_{\mathcal Q,W}}
+\right)_{\mathcal N,\mathcal V}
+$$
+
+A kinetic temperature is a special limit of the same rule, not a separate ontology. It is available only when the accessible velocity or mode distribution has thermalized under the local interaction rules. For example, a Maxwell-Boltzmann comparison may be used only after the retained packet shows
+
+$$
+f_{\mathcal Q}(\mathbf{v};\theta_{\text{sea}})
+\approx
+f_{\mathrm{MB}}(\mathbf{v};T_{\mathrm{kin}})
+$$
+
+inside a declared tolerance. Without that ensemble measure or entropy-energy derivative, a high cadence, high internal energy, strong medium response, or local excitation is not yet a temperature.
+
+At human scales, the temperature of matter is therefore a bulk property of Standard Model assemblies and their accessible modes. Atoms, molecules, solids, and plasmas redistribute energy through translational motion, molecular rotation and vibration, electron-envelope excitation, lattice or phonon occupation, photon exchange, recoil, and local Noether sea response. The scalar temperature summarizes the accessible distribution after coarse-graining; it does not measure all shielded internal assembly energy, and it is not a hidden sink for event-ledger imbalance. If a channel becomes heat, the event record must still route the energy into named electron-envelope, bonding or lattice, Noether sea, recoil, remnant, boundary, or radiation rows.
+
+For Noether sea cadence transport, the same-record condition means temperature may bias the rates of accepted branch-ledger transitions but may not be treated as a direct single-braid heat property. The theorem target is stated in [Noether Sea](../spacetime/noether-sea.md#temperature-conditioned-branch-transition-target).
+
 ## Work Availability And Energy Spread
 
 Traditional thermodynamics often introduces entropy as a measure of energy spread. In this chapter that is the work-availability face of record coarse-graining. A hot reservoir, chemical store, coherent photon-channel stream, or gravitational potential gradient is low entropy only relative to a work channel and comparison record that can use the concentration. After the same energy is distributed among many thermal, boundary, or wake-history microrecords, the total energy ledger may still close, but the retained record supports less extractable work.

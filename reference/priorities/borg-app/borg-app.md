@@ -10,6 +10,8 @@
 - Native bridge audit packet: [native-bridge-audit-and-first-screen](native-bridge-audit-and-first-screen.md)
 - Dataset manifest packet: [borg-dataset-manifest.v1](borg-dataset-manifest.v1.md)
 - Surface design packet: [borg-app-surface-design.v1](borg-app-surface-design.v1.md)
+- Release budget manifest packet: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json)
+- Live run retention policy: [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json)
 
 ## Scope
 
@@ -38,6 +40,8 @@ The workstream is not an implementation license for a new solver. Missing motion
 17. The outer computed cube must provide a `faceBufferMargin` that satisfies $b_{\mathrm{face}}(\mathcal C)\ge\max(c_fh,\ v_{\max}T_{\mathcal C})$ for strict central-volume buffer status, or else statistical inbound architrinos and reconstructed wake history are admissible only when $R_{\mathrm{boundary\to central}}\le\tau_{\mathcal C}$.
 18. Measure deployment budget separately from solver throughput: static bundle transfer, static asset transfer, browser heap, GPU memory, browser storage, GitHub Pages bandwidth, GitHub Actions artifacts, and native solver throughput are distinct budgets.
 19. Use `borg-dataset-manifest.v1` as the first app-facing run cover sheet, but defer save, export, import, and load workflows until the first-screen contract and native-backed fixture are stable.
+20. Use `borg-release-budget-manifest.v1` as the release-facing browser runtime budget cover sheet for measured run-preset ceilings. It binds the measured calibration sweep to UI fields and runtime limits, but does not upgrade solver, wake-history, face-boundary, benign-noise, or proof authority.
+21. Use `borg-live-run-retention-policy.v1` for forever-mode display retention: keep recent native frame rows for playback and current-state inspection, compact older path history into display-only sampled trail points, and keep native solver state and chunk requests unchanged.
 
 ## Task Queue
 

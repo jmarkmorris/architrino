@@ -1,0 +1,249 @@
+{
+  "schema": "borg-preset-calibration-sweep.v1",
+  "artifactId": "borg-preset-calibration-sweep-2026-07-01-iab-v1",
+  "claimLevel": "developer-test-surface-budget",
+  "valueAuthority": "measured-browser-runtime-budget",
+  "status": "release-ceilings-decided",
+  "collectedAt": "2026-07-01T18:59:59.543Z",
+  "appUrl": "http://127.0.0.1:5173/borg.html",
+  "browserSurface": "Codex in-app browser",
+  "nativeSolverContract": {
+    "appId": "borg",
+    "runKind": "masterEquation",
+    "motionAuthority": "native central solver",
+    "calibrationAuthority": "browser runtime measurement only"
+  },
+  "sampleMatrix": {
+    "viewportCount": 3,
+    "presetCount": 3,
+    "sampleCount": 9,
+    "viewports": [
+      {
+        "id": "desktop-1280x720",
+        "width": 1280,
+        "height": 720
+      },
+      {
+        "id": "tablet-900x720",
+        "width": 900,
+        "height": 720
+      },
+      {
+        "id": "mobile-390x844",
+        "width": 390,
+        "height": 844
+      }
+    ],
+    "presets": [
+      {
+        "id": "live-long",
+        "label": "Live"
+      },
+      {
+        "id": "live-fixture-scale",
+        "label": "Short"
+      },
+      {
+        "id": "live-large-chunk",
+        "label": "Chunk"
+      }
+    ]
+  },
+  "samples": [
+    {
+      "viewportId": "desktop-1280x720",
+      "presetId": "live-long",
+      "canvasSize": {
+        "width": 628,
+        "height": 612
+      },
+      "liveTarget": 2970,
+      "liveChunk": 20,
+      "lastChunkMs": 66.6,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 24260,
+      "heapGrowthBytes": 0,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 2970,
+      "chunkDurationLimit": 72.072072
+    },
+    {
+      "viewportId": "desktop-1280x720",
+      "presetId": "live-fixture-scale",
+      "canvasSize": {
+        "width": 628,
+        "height": 612
+      },
+      "liveTarget": 300,
+      "liveChunk": 20,
+      "lastChunkMs": 48.2,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 33530,
+      "heapGrowthBytes": 0,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 2970,
+      "chunkDurationLimit": 80
+    },
+    {
+      "viewportId": "desktop-1280x720",
+      "presetId": "live-large-chunk",
+      "canvasSize": {
+        "width": 628,
+        "height": 612
+      },
+      "liveTarget": 2970,
+      "liveChunk": 50,
+      "lastChunkMs": 63.7,
+      "chunkFrameRows": 4016,
+      "appendRowsPerSecond": 63050,
+      "heapGrowthBytes": 0,
+      "workerMemoryBytes": 737400,
+      "workerBudgetPressure": 0.010988,
+      "targetDurationLimit": 2988,
+      "chunkDurationLimit": 80
+    },
+    {
+      "viewportId": "tablet-900x720",
+      "presetId": "live-long",
+      "canvasSize": {
+        "width": 900,
+        "height": 446
+      },
+      "liveTarget": 2970,
+      "liveChunk": 20,
+      "lastChunkMs": 54.6,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 29600,
+      "heapGrowthBytes": 0,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 2970,
+      "chunkDurationLimit": 80
+    },
+    {
+      "viewportId": "tablet-900x720",
+      "presetId": "live-fixture-scale",
+      "canvasSize": {
+        "width": 900,
+        "height": 446
+      },
+      "liveTarget": 300,
+      "liveChunk": 20,
+      "lastChunkMs": 46.5,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 34750,
+      "heapGrowthBytes": 0,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 2970,
+      "chunkDurationLimit": 80
+    },
+    {
+      "viewportId": "tablet-900x720",
+      "presetId": "live-large-chunk",
+      "canvasSize": {
+        "width": 900,
+        "height": 446
+      },
+      "liveTarget": 851.492694,
+      "liveChunk": 50,
+      "lastChunkMs": 63,
+      "chunkFrameRows": 4016,
+      "appendRowsPerSecond": 63750,
+      "heapGrowthBytes": 3941000,
+      "workerMemoryBytes": 737400,
+      "workerBudgetPressure": 0.010988,
+      "targetDurationLimit": 851.492694,
+      "chunkDurationLimit": 80
+    },
+    {
+      "viewportId": "mobile-390x844",
+      "presetId": "live-long",
+      "canvasSize": {
+        "width": 390,
+        "height": 523
+      },
+      "liveTarget": 510.108382,
+      "liveChunk": 20,
+      "lastChunkMs": 50.6,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 31940,
+      "heapGrowthBytes": 2631000,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 510.108382,
+      "chunkDurationLimit": 63.763548
+    },
+    {
+      "viewportId": "mobile-390x844",
+      "presetId": "live-fixture-scale",
+      "canvasSize": {
+        "width": 390,
+        "height": 523
+      },
+      "liveTarget": 300,
+      "liveChunk": 20,
+      "lastChunkMs": 61.2,
+      "chunkFrameRows": 1616,
+      "appendRowsPerSecond": 26410,
+      "heapGrowthBytes": 2070000,
+      "workerMemoryBytes": 295800,
+      "workerBudgetPressure": 0.004408,
+      "targetDurationLimit": 648.530793,
+      "chunkDurationLimit": 78.431373
+    },
+    {
+      "viewportId": "mobile-390x844",
+      "presetId": "live-large-chunk",
+      "canvasSize": {
+        "width": 390,
+        "height": 523
+      },
+      "liveTarget": 648.530793,
+      "liveChunk": 50,
+      "lastChunkMs": 85.1,
+      "chunkFrameRows": 4016,
+      "appendRowsPerSecond": 47190,
+      "heapGrowthBytes": 4225000,
+      "workerMemoryBytes": 737400,
+      "workerBudgetPressure": 0.010988,
+      "targetDurationLimit": 794.229472,
+      "chunkDurationLimit": 80
+    }
+  ],
+  "browserErrors": [],
+  "observedExtrema": {
+    "maxChunkWallTimeMs": 85.1,
+    "minAppendRowsPerSecond": 24260,
+    "maxChunkWorkerMemoryBytes": 737400,
+    "maxChunkHeapGrowthBytes": 4225000,
+    "minTargetDurationLimit": 510.108382,
+    "maxTargetDurationLimit": 2988,
+    "maxMeasuredChunkDuration": 50
+  },
+  "releaseBudgetCeilings": {
+    "maxChunkWallTimeMs": 120,
+    "minFrameAppendRateRowsPerSecond": 20000,
+    "maxChunkWorkerMemoryBytes": 2097152,
+    "maxRunWorkerMemoryBytes": 67108864,
+    "maxChunkHeapGrowthBytes": 8388608,
+    "maxRunHeapGrowthBytes": 67108864,
+    "maxRunFrameRows": 240000,
+    "minTargetDuration": 20,
+    "maxTargetDuration": 3000,
+    "minChunkDuration": 2,
+    "maxChunkDuration": 50
+  },
+  "releaseDecision": {
+    "status": "accepted-for-developer-test-release",
+    "defaultPolicy": "Use measured preset calibration at runtime. Keep preset labels compact, but expose threshold authority, sample count, target limit, and chunk limit in the deployment budget drawer.",
+    "targetDurationDecision": "Keep desktop and tablet runs capped near 3000 solver-time units by the row-count ceiling. Let mobile heap growth clamp live-long runs to roughly 510 solver-time units under the measured 64 MB run-heap ceiling.",
+    "chunkDurationDecision": "Do not exceed the measured 50 solver-time unit chunk preset for release. Larger chunks require a later sweep before the ceiling can move above 50.",
+    "workerMemoryDecision": "Use a 2 MB per-chunk worker-buffer ceiling. The largest measured chunk was 737400 bytes, so the release ceiling preserves margin without pretending unmeasured larger chunks are safe.",
+    "appendRateDecision": "Require at least 20000 appended frame rows per second. The lowest measured rate was 24260 rows per second.",
+    "claimBoundary": "This sweep decides Borg browser/runtime budget ceilings only. It does not upgrade central-volume acceleration, wake history, face-boundary replay, benign-noise status, or proof claim authority."
+  },
+  "nextBuildBurden": "borg-release-budget-manifest-v1"
+}

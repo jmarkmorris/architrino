@@ -84,6 +84,9 @@ export interface SolverClient {
   computeMovingCircularObserverFieldF64(
     request: SolverMovingCircularObserverFieldF64Request
   ): Promise<SolverMovingCircularObserverFieldF64Response>;
+  solveMovingCircularAbsoluteHistoryRunF64(
+    request: SolverMovingCircularAbsoluteHistoryRunF64Request
+  ): Promise<SolverMovingCircularAbsoluteHistoryRunF64Response>;
   solveCausalRootsPrecisionF64(
     request: SolverCausalRootsPrecisionF64Request
   ): Promise<SolverCausalRootsPrecisionF64Response>;
@@ -1366,6 +1369,13 @@ export interface SolverMovingCircularSourceCausalRootsF64Request {
   maxRoots?: number;
 }
 
+export interface SolverMovingCircularAbsoluteHistorySourceRootF64Request
+  extends SolverMovingCircularSourceCausalRootsF64Request {
+  branchChargeSign?: number;
+  sourceHistoryProvider?: unknown;
+  solverBoundary?: unknown;
+}
+
 export interface SolverMovingCircularSameSourceCausalRootsF64Request {
   sourceRef?: unknown;
   source: SolverMovingCircularSourceHistoryF64;
@@ -1402,7 +1412,15 @@ export interface SolverMovingCircularObserverFieldF64Request {
   signalSpeed: number;
   jacobianFloor?: number;
   unstableGapThreshold?: number;
+  sourceHistoryProviderId?: string;
+  solverBoundary?: unknown;
   branches: SolverMovingCircularObserverFieldBranchF64[];
+}
+
+export interface SolverMovingCircularAbsoluteHistoryRunF64Request {
+  sourceRootRequests: SolverMovingCircularAbsoluteHistorySourceRootF64Request[];
+  observerFieldRequest?: Partial<SolverMovingCircularObserverFieldF64Request>;
+  signalSpeed?: number;
 }
 
 export interface SolverRootLedgerDetailF64Request extends SolverCausalRootsF64Request {
@@ -1582,6 +1600,7 @@ export interface SolverMovingCircularSourceCausalRootsF64Response {
   roots: SolverMovingCircularCausalRootF64[];
   scan?: Record<string, unknown> | null;
   rejectedReason?: string;
+  rowProductionOwner?: "native_wasm_c_abi" | "js_reference_facade";
   status: SolverStatusRecord;
   statuses: SolverStatusRecord[];
 }
@@ -1638,6 +1657,36 @@ export interface SolverMovingCircularObserverFieldF64Response {
   receiverAcceleration: SolverVector3F64;
   electric: SolverVector3F64;
   comparisonB: SolverVector3F64;
+  rowProductionOwner: "native_wasm_c_abi" | "js_reference_facade";
+  status: SolverStatusRecord;
+  statuses: SolverStatusRecord[];
+}
+
+export interface SolverMovingCircularAbsoluteHistoryRootF64 extends SolverMovingCircularCausalRootF64 {
+  sourceRootRequestIndex: number;
+  sourceRootIndex: number;
+  sourceRef?: unknown;
+  branchChargeSign: number;
+}
+
+export interface SolverMovingCircularAbsoluteHistorySourceRootF64Response
+  extends SolverMovingCircularSourceCausalRootsF64Response {
+  requestIndex: number;
+  sourceRef?: unknown;
+  branchChargeSign: number;
+}
+
+export interface SolverMovingCircularAbsoluteHistoryRunF64Response {
+  schema: "solver-moving-circular-absolute-history-run-f64.v1";
+  sourceHistoryKind: "moving-circular-source";
+  rowProductionOwner: "native_wasm_c_abi" | "js_reference_facade";
+  sourceCount: number;
+  rootCount: number;
+  unresolvedSourceCount: number;
+  sourceRootResponses: SolverMovingCircularAbsoluteHistorySourceRootF64Response[];
+  roots: SolverMovingCircularAbsoluteHistoryRootF64[];
+  observerFieldRequest: SolverMovingCircularObserverFieldF64Request;
+  observerField: SolverMovingCircularObserverFieldF64Response;
   status: SolverStatusRecord;
   statuses: SolverStatusRecord[];
 }
@@ -2840,6 +2889,7 @@ export interface SolverBroadPhaseQueryCapability {
     | "solveCircularSourceRootsHitsLedgerNormalizedF64"
     | "solveMovingCircularSourceCausalRootsF64"
     | "solveMovingCircularSameSourceCausalRootsF64"
+    | "solveMovingCircularAbsoluteHistoryRunF64"
     | "solveRootsAndHitsPrecisionF64"
     | "solveRootsAndHitsF64"
     | "refineEmissionShellCandidateRootsF64"
@@ -2921,6 +2971,13 @@ export interface SolverAbiInfo {
   t3StepSummaryF64Bytes: number;
   t3UnresolvedRootSegmentRowF64Bytes: number;
   t3RetainedCausalRootReplayRowF64Bytes: number;
+  movingCircularSourceHistoryF64Bytes: number;
+  movingCircularSourceRootRequestF64Bytes: number;
+  movingCircularRootRowF64Bytes: number;
+  movingCircularObserverFieldRequestF64Bytes: number;
+  movingCircularObserverFieldBranchF64Bytes: number;
+  movingCircularObserverFieldContributionF64Bytes: number;
+  movingCircularObserverFieldSummaryF64Bytes: number;
 }
 
 export interface SolverNumericSerializationDescriptor {

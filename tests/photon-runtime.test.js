@@ -798,6 +798,20 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
       },
     ],
   });
+  const absoluteHistoryRunResponse = await client.solveMovingCircularAbsoluteHistoryRunF64({
+    sourceRootRequests: [
+      {
+        ...request,
+        branchChargeSign: 1,
+      },
+    ],
+    observerFieldRequest: {
+      signalSpeed: 1,
+      jacobianFloor: 1e-4,
+      sourceHistoryProviderId: PHOTON_SOURCE_HISTORY_PROVIDER_ID,
+      solverBoundary: PHOTON_SOURCE_HISTORY_BOUNDARY,
+    },
+  });
 
   assert.equal(response.schema, "solver-moving-circular-source-causal-roots-f64.v1");
   assert.equal(response.sourceHistoryKind, "moving-circular-source");
@@ -818,6 +832,16 @@ test("Solver bridge exposes moving-circular absolute-history root methods withou
   assertNear(observerFieldResponse.comparisonB.z, 0.25);
   assert.equal(observerFieldResponse.contributions[0].receiverNormalEvidenceStatus, "ok");
   assert.equal(observerFieldResponse.contributions[0].branchWeight, 1);
+  assert.equal(
+    absoluteHistoryRunResponse.schema,
+    "solver-moving-circular-absolute-history-run-f64.v1"
+  );
+  assert.equal(absoluteHistoryRunResponse.sourceHistoryKind, "moving-circular-source");
+  assert.equal(absoluteHistoryRunResponse.sourceRootResponses.length, 1);
+  assert.equal(
+    absoluteHistoryRunResponse.observerField.schema,
+    "solver-moving-circular-observer-field-f64.v1"
+  );
   await client.dispose();
 });
 
@@ -884,7 +908,7 @@ test("Solver bridge observer field fails closed without complete receiver-normal
   await client.dispose();
 });
 
-test("Photon absolute-history observer field routes through the moving-circular solver bridge", async () => {
+test("Photon absolute-history field routes through the central moving-circular run bridge", async () => {
   const state = createDefaultPhotonState();
   state.measurement.sourceHistoryMode = "absolute_history";
   state.measurement.signalSpeedCf = 0.9;
@@ -892,14 +916,22 @@ test("Photon absolute-history observer field routes through the moving-circular 
   state.pair.photonSpeedCf = 0.5;
   const client = createSolverAppBridgeClient();
   await client.init(createPhotonTestSolverInitRequest());
-  let observerFieldCalls = 0;
-  const originalObserverField = client.computeMovingCircularObserverFieldF64.bind(client);
-  client.computeMovingCircularObserverFieldF64 = async (request) => {
-    observerFieldCalls += 1;
+  let absoluteHistoryRunCalls = 0;
+  const originalRun = client.solveMovingCircularAbsoluteHistoryRunF64.bind(client);
+  client.solveMovingCircularAbsoluteHistoryRunF64 = async (request) => {
+    absoluteHistoryRunCalls += 1;
     assert.equal(request.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
     assert.equal(request.solverBoundary.receiverNormalOwner, "central_solver");
     assert.equal(request.solverBoundary.fieldReconstructionOwner, "central_solver");
-    return originalObserverField(request);
+    assert.equal(request.observerFieldRequest.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);
+    assert.equal(request.observerFieldRequest.solverBoundary.receiverNormalOwner, "central_solver");
+    assert.ok(request.sourceRootRequests.length > 0);
+    assert.ok(request.sourceRootRequests.every((sourceRequest) =>
+      sourceRequest.sourceHistoryProvider?.providerId === PHOTON_SOURCE_HISTORY_PROVIDER_ID &&
+      sourceRequest.solverBoundary?.causalRootOwner === "central_solver" &&
+      Number.isFinite(sourceRequest.branchChargeSign)
+    ));
+    return originalRun(request);
   };
 
   const field = await computePhotonDelayedEmissionFieldWithSolverBridge(state, 0.5, {
@@ -908,7 +940,7 @@ test("Photon absolute-history observer field routes through the moving-circular 
     scanSubdivisions: 24,
   });
 
-  assert.equal(observerFieldCalls, 1);
+  assert.equal(absoluteHistoryRunCalls, 1);
   assert.equal(field.sourceMode, "solver_bridge_absolute_history_receiver_normal_root_branch_sum");
   assert.equal(field.solverFieldSchema, "solver-moving-circular-observer-field-f64.v1");
   assert.equal(field.sourceHistoryProviderId, PHOTON_SOURCE_HISTORY_PROVIDER_ID);

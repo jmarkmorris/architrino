@@ -50,6 +50,29 @@ struct ArchitrinoSolverCircularSourceCausalRootRequestF64 {
   int scan_subdivisions;
 };
 
+struct ArchitrinoSolverMovingCircularSourceHistoryF64 {
+  ArchitrinoSolverVector3F64 center_at_epoch;
+  ArchitrinoSolverVector3F64 center_velocity;
+  ArchitrinoSolverVector3F64 radius_u;
+  ArchitrinoSolverVector3F64 radius_v;
+  double angular_velocity;
+  double phase_at_epoch;
+  double epoch_time;
+  double error_bound;
+};
+
+struct ArchitrinoSolverMovingCircularSourceCausalRootRequestF64 {
+  ArchitrinoSolverMovingCircularSourceHistoryF64 source;
+  ArchitrinoSolverLinearPathSegmentF64 receiver;
+  double hit_time;
+  double signal_speed;
+  double source_start_time;
+  double source_end_time;
+  double root_tolerance;
+  int max_iterations;
+  int scan_subdivisions;
+};
+
 struct ArchitrinoSolverCausalRootRowF64 {
   int root_id;
   int status_code;
@@ -75,6 +98,86 @@ struct ArchitrinoSolverCausalRootRowF64 {
   double unsigned_receiver_normal_factor;
   int receiver_normal_status_code;
   int reserved0;
+};
+
+struct ArchitrinoSolverMovingCircularRootRowF64 {
+  ArchitrinoSolverCausalRootRowF64 root;
+  ArchitrinoSolverVector3F64 source_velocity;
+  double source_phase_raw;
+  double source_phase_wrapped;
+  double source_phase_degrees;
+  int source_phase_cycle_index;
+  int reserved0;
+};
+
+struct ArchitrinoSolverMovingCircularObserverFieldRequestF64 {
+  double signal_speed;
+  double unstable_gap_threshold;
+  double jacobian_floor;
+  int reserved0;
+  int reserved1;
+};
+
+struct ArchitrinoSolverMovingCircularObserverFieldBranchF64 {
+  ArchitrinoSolverVector3F64 direction;
+  ArchitrinoSolverVector3F64 source_velocity;
+  double charge_sign;
+  double distance;
+  double residual;
+  double delay;
+  double branch_weight;
+  double source_normal_speed;
+  double receiver_normal_speed;
+  double source_normal_denominator;
+  double receiver_normal_numerator;
+  double receiver_normal_crossing_factor;
+  double receiver_normal_factor;
+  double unsigned_receiver_normal_factor;
+  int receiver_normal_status_code;
+  int reserved0;
+};
+
+struct ArchitrinoSolverMovingCircularObserverFieldContributionF64 {
+  int branch_index;
+  int receiver_normal_status_code;
+  int receiver_normal_evidence_status;
+  int reserved0;
+  double delay;
+  double distance;
+  double delay_solve_gap;
+  double jacobian;
+  double jacobian_abs;
+  double branch_weight;
+  double source_normal_speed;
+  double receiver_normal_speed;
+  double source_normal_denominator;
+  double receiver_normal_numerator;
+  double receiver_normal_crossing_factor;
+  double receiver_normal_factor;
+  double unsigned_receiver_normal_factor;
+  double source_speed_ratio;
+  ArchitrinoSolverVector3F64 receiver_acceleration;
+  ArchitrinoSolverVector3F64 electric;
+  ArchitrinoSolverVector3F64 comparison_b;
+};
+
+struct ArchitrinoSolverMovingCircularObserverFieldSummaryF64 {
+  int branch_count;
+  int contribution_count;
+  int unstable_contribution_count;
+  int missing_receiver_normal_count;
+  int receiver_normal_failure_code;
+  int status_code;
+  int status_severity;
+  int reserved0;
+  double average_delay;
+  double delay_solve_gap_max;
+  double max_source_speed_ratio;
+  double jacobian_abs_min;
+  double nearest_source_distance;
+  ArchitrinoSolverVector3F64 receiver_acceleration;
+  ArchitrinoSolverVector3F64 electric;
+  ArchitrinoSolverVector3F64 comparison_b;
 };
 
 struct ArchitrinoSolverRootLedgerDetailRowF64 {
@@ -1085,6 +1188,13 @@ struct ArchitrinoSolverAbiInfo {
   int t3_step_summary_f64_bytes;
   int t3_unresolved_root_segment_row_f64_bytes;
   int t3_retained_causal_root_replay_row_f64_bytes;
+  int moving_circular_source_history_f64_bytes;
+  int moving_circular_source_root_request_f64_bytes;
+  int moving_circular_root_row_f64_bytes;
+  int moving_circular_observer_field_request_f64_bytes;
+  int moving_circular_observer_field_branch_f64_bytes;
+  int moving_circular_observer_field_contribution_f64_bytes;
+  int moving_circular_observer_field_summary_f64_bytes;
 };
 
 ArchitrinoSolverAbiInfo architrino_solver_abi_info();
@@ -1123,6 +1233,21 @@ int architrino_solver_solve_circular_source_roots_hits_ledger_f64(
     ArchitrinoSolverRootLedgerDetailRowF64* ledger_rows,
     int max_ledger_rows,
     int* out_ledger_row_count);
+
+int architrino_solver_solve_moving_circular_source_causal_roots_f64(
+    const ArchitrinoSolverMovingCircularSourceCausalRootRequestF64* request,
+    ArchitrinoSolverMovingCircularRootRowF64* roots,
+    int max_roots,
+    int* out_root_count);
+
+int architrino_solver_compute_moving_circular_observer_field_f64(
+    const ArchitrinoSolverMovingCircularObserverFieldRequestF64* request,
+    const ArchitrinoSolverMovingCircularObserverFieldBranchF64* branches,
+    int branch_count,
+    ArchitrinoSolverMovingCircularObserverFieldContributionF64* contributions,
+    int max_contributions,
+    int* out_contribution_count,
+    ArchitrinoSolverMovingCircularObserverFieldSummaryF64* out_summary);
 
 int architrino_solver_solve_roots_and_hits_f64(
     const ArchitrinoSolverCausalRootRequestF64* request,

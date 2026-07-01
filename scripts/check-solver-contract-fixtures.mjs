@@ -722,6 +722,7 @@ assertWorkerMethods([
   "solveMovingCircularSourceCausalRootsF64",
   "solveMovingCircularSameSourceCausalRootsF64",
   "computeMovingCircularObserverFieldF64",
+  "solveMovingCircularAbsoluteHistoryRunF64",
   "solveCausalRootsPrecisionF64",
   "solveRootsAndHitsPrecisionF64",
   "solveCausalRootsNormalizedF64",
@@ -4553,6 +4554,7 @@ function createBroadPhaseCapability(method) {
       "solveCircularSourceRootsHitsLedgerNormalizedF64",
       "solveMovingCircularSourceCausalRootsF64",
       "solveMovingCircularSameSourceCausalRootsF64",
+      "solveMovingCircularAbsoluteHistoryRunF64",
       "solveRootsAndHitsPrecisionF64",
       "solveRootsAndHitsF64",
       "refineEmissionShellCandidateRootsF64",
@@ -4563,7 +4565,7 @@ function createBroadPhaseCapability(method) {
 function createAbiInfoFixture() {
   return {
     abiMajor: 0,
-    abiMinor: 20,
+    abiMinor: 22,
     abiPatch: 0,
     rootRequestF64Bytes: 176,
     rootRowF64Bytes: ROOT_LEDGER_ROW_F64_BYTES,
@@ -4616,6 +4618,13 @@ function createAbiInfoFixture() {
     t3StepSummaryF64Bytes: 88,
     t3UnresolvedRootSegmentRowF64Bytes: 208,
     t3RetainedCausalRootReplayRowF64Bytes: 128,
+    movingCircularSourceHistoryF64Bytes: 128,
+    movingCircularSourceRootRequestF64Bytes: 248,
+    movingCircularRootRowF64Bytes: 232,
+    movingCircularObserverFieldRequestF64Bytes: 32,
+    movingCircularObserverFieldBranchF64Bytes: 152,
+    movingCircularObserverFieldContributionF64Bytes: 200,
+    movingCircularObserverFieldSummaryF64Bytes: 144,
   };
 }
 

@@ -127,7 +127,7 @@ keep `U*` operator-triage ranks because they are not top-level scored priorities
 | 8 | [`pressure-dependent-noether-sea-constitutive-response`](../braid-mass-response-map/pressure-dependent-noether-sea-constitutive-response.md) | The packet needs branch-derived pressure response coefficients or disciplined empirical replay; otherwise it becomes local fitting. |
 | 9 | [`braid-geometry-export-bridge`](../braid-geometry-export-bridge/braid-geometry-export-bridge.md) | The active packets are root-sensitive response, branch-local linearization, bordered inverses, interval/certificate geometry, and response-object population. |
 | 10 | [`transfer-operator-basin-measure`](../quantum-closure/transfer-operator-basin-measure.md) | Even before implementation, operator and invariant-measure closure is high-intuition mathematical work. |
-| 12 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Quark masses, CKM/PMNS overlap integrals, confinement energetics, weak-sector closure, and nuclear binding are benchmark-heavy derivations. |
+| 12 | [`standard-model-closure`](../standard-model-closure/standard-model-closure.md) | Quark masses, CKM/PMNS overlap integrals, confinement energetics, weak-sector closure, and downstream nuclear-potential dependencies are benchmark-heavy derivations. |
 | 14 | [`braid-dyadic-lock`](../braid-dyadic-lock/braid-dyadic-lock.md) | The reduced phase-amplitude map leads directly to fixed-point proofs, numerical demonstrations, and stability tests. |
 | 18 | [`strong-field-closure`](../strong-field-closure/strong-field-closure.md) | Horizon-interface boundary conditions, entropy packets, release channels, and discriminating observables are quantitative closure tasks. |
 | 20 | [`solver`](../solver/solver.md) | Solver requirements cover causal-root solving, delayed hits, path histories, precision, bridge contracts, app migration, and future validation replays; the current queue is closed, but the restored row keeps the project visible. |
@@ -156,6 +156,8 @@ keep `U*` operator-triage ranks because they are not top-level scored priorities
 | U11 | `deferred archives` | Archive indexing and parking-lot cleanup are organizational. Legacy product/outlook notes now route through [`source-mining`](../source-mining/source-mining.md). |
 | U12 | [`3x3`](../deferred/3x3/3x3.md) | Deferred binary-slot matrix notes can remain parked unless a target corpus destination is chosen. |
 | U13 | [`phenomenological-heuristics`](../braid-dyadic-lock/phenomenological-heuristics.md) | Archive/source material for dyadic lock can stay sibling reference material rather than an active reduced-map proof. |
+| U15 | [`nuclear-atomic-molecular-closure`](../nuclear-atomic-molecular-closure/nuclear-atomic-molecular-closure.md) | Low-slog discussion and staging lane for nuclear, atomic, molecular, enzyme, DNA/RNA, and biomolecular assembly topics. |
+| U16 | [`high-energy-astrophysics`](../high-energy-astrophysics/high-energy-astrophysics.md) | Low-slog routing lane for event-scale compact stars, black holes, explosive transients, jets, mergers, high-energy neutrinos, cosmic rays, and source/sink families before they enter equation-mapping or geometry closure. |
 
 ## Candidate And Archive References
 
@@ -179,6 +181,9 @@ are not top-level scored priority rows.
 | U11 | `deferred archives` | [priorities-legacy.md](../deferred/priorities-legacy.md) and sibling deferred notes | Archive and parking lot for non-current material; legacy product/outlook notes now route through [source-mining](../source-mining/source-mining.md). | Needs a deferred index later. |
 | U12 | `3x3` | [3x3.md](../deferred/3x3/3x3.md) | Deferred binary-slot matrix note. | Keep deferred unless a target $\mathbb{A}\mathbb{A}\mathbb{A}$ document is selected. |
 | U13 | `phenomenological-heuristics` | [phenomenological-heuristics.md](../braid-dyadic-lock/phenomenological-heuristics.md) | Dyadic resonance lock archive source. | Keep as sibling archive unless a shared archive convention is adopted. |
+| U14 | `braid-ideal` | [braid-ideal.md](../braid-ideal/braid-ideal.md) | Speculative same-level Noether braid lane for common branch energy/action level, comparable relative speeds, comparable support radius, translating ellipsoid support, and $h$-indexed basin patterns. | Newly started priority-candidate area; keep priority-only until a retained branch definition or simulation seed classifies the first basin. |
+| U15 | `nuclear-atomic-molecular-closure` | [nuclear-atomic-molecular-closure.md](../nuclear-atomic-molecular-closure/nuclear-atomic-molecular-closure.md) | Discussion and staging lane for repeated nuclear, atomic, molecular, enzyme, DNA/RNA, and biomolecular assembly topics above Standard Model closure. | Keep unscored and priority-candidate; it may own discussion and worked-example staging while hard derivation dependencies stay with Standard Model, mass-map, quantum, equation-mapping, and source-mining owners. |
+| U16 | `high-energy-astrophysics` | [high-energy-astrophysics.md](../high-energy-astrophysics/high-energy-astrophysics.md) | Event-scale routing lane for compact stars, black holes, explosive transients, jets, mergers, high-energy neutrinos, cosmic rays, and related source/sink families. | Keep unscored and priority-candidate; it maps source-window carriers and observer benchmarks into equation-mapping, residual-routing, strong-field, radiation, cosmology, and Standard Model closure rather than replacing those owners. |
 
 ## Current Focus
 
