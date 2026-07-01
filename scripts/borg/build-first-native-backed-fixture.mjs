@@ -73,6 +73,29 @@ const DEFAULT_MOTION_SETTINGS = Object.freeze({
     "Native motionSimulation integrates fixed-parameter inertial paths; many-body master-equation acceleration is not emitted by this fixture.",
   nextSolverBurden: "build-native-master-equation-fixed-parameter-fixture",
 });
+const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
+  "ok",
+  "native_capability_missing",
+  "native_solver_pending",
+]);
+const ALLOWED_NATIVE_MASTER_EQUATION_STATUSES = new Set([
+  "native-fixed-parameter-master-equation",
+  "native-fixture-capability-missing",
+  "native-fixture-solver-pending",
+]);
+
+const MASTER_EQUATION_FIXTURE_SETTINGS = Object.freeze({
+  runKind: "masterEquation",
+  solverMode: "native-fixed-parameter-master-equation",
+  motionLaw: DEFAULT_MOTION_SETTINGS.masterEquationForceLawVersion,
+  accelerationPolicy: "native-many-body-master-equation",
+  masterEquationSelectionDecision: "native-master-equation-selected",
+  canonicalEomEvidence: true,
+  eomEvidenceStatus: "native_master_equation_fixed_parameter_evidence",
+  eomEvidenceReason:
+    "Native central solver emitted fixed-parameter master-equation frames and path-history rows.",
+  nextSolverBurden: "build-native-wake-history-and-boundary-residual-fixture",
+});
 
 const INITIAL_STATE_COUNT = 16;
 const ELECTRINO_COUNT = 8;
@@ -98,6 +121,12 @@ export async function buildBorgFirstNativeBackedFixture() {
 }
 
 export function assertBorgFixtureManifest(manifest, native) {
+  const selectedMasterEquation =
+    manifest.sourceBridgeRun.nativeMasterEquationStatus ===
+    MASTER_EQUATION_FIXTURE_SETTINGS.solverMode;
+  const expectedSource = selectedMasterEquation
+    ? MASTER_EQUATION_FIXTURE_SETTINGS
+    : DEFAULT_MOTION_SETTINGS;
   assertEqual(manifest.schema, "borg-dataset-manifest.v1", "manifest schema");
   assertEqual(manifest.manifestId, FIXTURE_IDS.manifestId, "manifest id");
   assertEqual(manifest.runId, FIXTURE_IDS.runId, "manifest run id");
@@ -134,12 +163,12 @@ export function assertBorgFixtureManifest(manifest, native) {
   );
   assertEqual(
     manifest.sourceBridgeRun.motionLaw,
-    DEFAULT_MOTION_SETTINGS.motionLaw,
+    expectedSource.motionLaw,
     "motion law",
   );
   assertEqual(
     manifest.sourceBridgeRun.solverMode,
-    DEFAULT_MOTION_SETTINGS.solverMode,
+    expectedSource.solverMode,
     "solver mode",
   );
   assertEqual(
@@ -162,26 +191,36 @@ export function assertBorgFixtureManifest(manifest, native) {
     DEFAULT_MOTION_SETTINGS.visualBehaviorAuthority,
     "visual behavior authority",
   );
-  assertEqual(
-    manifest.sourceBridgeRun.nativeMasterEquationStatus,
-    DEFAULT_MOTION_SETTINGS.nativeMasterEquationStatus,
-    "native master-equation status",
+  assert(
+    ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(
+      manifest.sourceBridgeRun.nativeMasterEquationStatus,
+    ),
+    `native master-equation status ${manifest.sourceBridgeRun.nativeMasterEquationStatus}`,
   );
   assertEqual(
     manifest.sourceBridgeRun.nextSolverBurden,
-    DEFAULT_MOTION_SETTINGS.nextSolverBurden,
+    expectedSource.nextSolverBurden,
     "next solver burden",
   );
-  assertEqual(
-    manifest.nativeMasterEquationProbe.statusCode,
-    "native_capability_missing",
-    "native master-equation probe status",
+  assert(
+    ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(manifest.nativeMasterEquationProbe.statusCode),
+    `native master-equation probe status ${manifest.nativeMasterEquationProbe.statusCode}`,
   );
   assertEqual(
     manifest.nativeMasterEquationProbe.fallbackDecision,
-    DEFAULT_MOTION_SETTINGS.masterEquationFallbackDecision,
+    selectedMasterEquation
+      ? MASTER_EQUATION_FIXTURE_SETTINGS.masterEquationSelectionDecision
+      : DEFAULT_MOTION_SETTINGS.masterEquationFallbackDecision,
     "native master-equation fallback decision",
   );
+  if (selectedMasterEquation) {
+    assertEqual(manifest.sourceBridgeRun.canonicalEomEvidence, true, "canonical EOM evidence");
+    assertEqual(
+      manifest.sourceBridgeRun.eomEvidenceStatus,
+      MASTER_EQUATION_FIXTURE_SETTINGS.eomEvidenceStatus,
+      "master-equation EOM evidence status",
+    );
+  }
   assertEqual(
     manifest.nativeMasterEquationProbe.requiredNativeExport,
     DEFAULT_MOTION_SETTINGS.masterEquationRequiredNativeExport,
@@ -288,11 +327,21 @@ async function runNativeDefaultMotionFixture() {
   const initialStates = createSixteenInitialStates();
   const masterEquationProbeRequest = createNativeMasterEquationProbeRequest(initialStates);
   const masterEquationProbe = await client.runSimulation(masterEquationProbeRequest);
-  assertEqual(
-    masterEquationProbe.response.status.code,
-    "native_capability_missing",
-    "native master-equation probe status",
+  assert(
+    ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(masterEquationProbe.response.status.code),
+    `native master-equation probe status ${masterEquationProbe.response.status.code}`,
   );
+
+  if (masterEquationProbe.response.status.code === "ok") {
+    return {
+      init,
+      masterEquationProbeRequest,
+      masterEquationProbe,
+      requests: [masterEquationProbeRequest],
+      runs: [masterEquationProbe],
+      run: normalizeNativeMasterEquationFixtureRun(masterEquationProbe),
+    };
+  }
 
   const requests = initialStates.map((initialState) =>
     createNativeDefaultMotionRunRequest(initialState),
@@ -318,7 +367,7 @@ async function runNativeDefaultMotionFixture() {
 
 function createBorgDatasetManifest(native) {
   const nativeResponse = native.run.response;
-  const defaultMotionSummary = nativeResponse.defaultMotion;
+  const fixtureSource = nativeResponse.fixtureSource ?? nativeResponse.defaultMotion;
   const pathHistory = nativeResponse.pathHistory;
   const stream = nativeResponse.streams.find((entry) => entry.streamId === FIXTURE_IDS.pathHistoryStreamId);
   const wakeHorizon = SIMULATION_ENVELOPE.fieldSpeed * SIMULATION_ENVELOPE.historyDepth;
@@ -353,33 +402,33 @@ function createBorgDatasetManifest(native) {
     firstFailureCode,
     sourceBridgeRun: {
       appId: "causal-delay-feedback",
-      runKind: DEFAULT_MOTION_SETTINGS.runKind,
+      runKind: fixtureSource.runKind,
       nativeRunId: native.run.runId,
       nativeDatasetId: native.run.datasetId,
       requestId: native.run.requestId,
       fixtureProfileId: LONG_FIXTURE_PROFILE.fixtureProfileId,
       acceptedPrecisionPath: native.run.acceptedPrecisionPath,
-      executionPath: defaultMotionSummary.executionPath,
+      executionPath: fixtureSource.executionPath,
       statusCode: native.run.status.code,
       frameCount: nativeResponse.summary.frameCount,
       nativeKeyframeCount,
       sampleInterval: SIMULATION_ENVELOPE.sampleInterval,
       playbackFrameSource: LONG_FIXTURE_PROFILE.playbackFrameSource,
       interpolationAuthority: LONG_FIXTURE_PROFILE.interpolationAuthority,
-      solverMode: DEFAULT_MOTION_SETTINGS.solverMode,
-      motionLaw: DEFAULT_MOTION_SETTINGS.motionLaw,
-      fixedPhysicalParameterSetId: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterSetId,
-      fixedPhysicalParameterAuthority: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterAuthority,
-      fixedPhysicalParameters: createFixedPhysicalParameterSummary(),
-      accelerationPolicy: DEFAULT_MOTION_SETTINGS.accelerationPolicy,
-      acceleration: DEFAULT_MOTION_SETTINGS.acceleration,
-      visualTuningStatus: DEFAULT_MOTION_SETTINGS.visualTuningStatus,
-      visualBehaviorAuthority: DEFAULT_MOTION_SETTINGS.visualBehaviorAuthority,
+      solverMode: fixtureSource.solverMode,
+      motionLaw: fixtureSource.motionLaw,
+      fixedPhysicalParameterSetId: fixtureSource.fixedPhysicalParameterSetId,
+      fixedPhysicalParameterAuthority: fixtureSource.fixedPhysicalParameterAuthority,
+      fixedPhysicalParameters: fixtureSource.fixedPhysicalParameters,
+      accelerationPolicy: fixtureSource.accelerationPolicy,
+      acceleration: fixtureSource.acceleration,
+      visualTuningStatus: fixtureSource.visualTuningStatus,
+      visualBehaviorAuthority: fixtureSource.visualBehaviorAuthority,
       pathCount: nativeResponse.summary.pathCount,
       pathRowCount: pathHistory.rowCount,
       chunkCount: pathHistory.chunkCount,
       pathHistoryStreamId: pathHistory.streamId,
-      nativeMasterEquationStatus: DEFAULT_MOTION_SETTINGS.nativeMasterEquationStatus,
+      nativeMasterEquationStatus: fixtureSource.nativeMasterEquationStatus,
       nativeMasterEquationProbeStatusCode: native.masterEquationProbe.response.status.code,
       nativeMasterEquationProbeRunId: native.masterEquationProbe.runId,
       nativeMasterEquationProbeExecutionPath:
@@ -387,12 +436,12 @@ function createBorgDatasetManifest(native) {
       nativeMasterEquationProbeFirstFailureCode:
         native.masterEquationProbe.response.summary.firstFailureCode,
       nativeMasterEquationRequiredNativeExport:
-        DEFAULT_MOTION_SETTINGS.masterEquationRequiredNativeExport,
-      masterEquationFallbackDecision: DEFAULT_MOTION_SETTINGS.masterEquationFallbackDecision,
-      canonicalEomEvidence: defaultMotionSummary.canonicalEomEvidence,
-      eomEvidenceStatus: defaultMotionSummary.eomEvidenceStatus,
-      eomEvidenceReason: defaultMotionSummary.eomEvidenceReason,
-      nextSolverBurden: DEFAULT_MOTION_SETTINGS.nextSolverBurden,
+        fixtureSource.nativeMasterEquationRequiredNativeExport,
+      masterEquationFallbackDecision: fixtureSource.masterEquationFallbackDecision,
+      canonicalEomEvidence: fixtureSource.canonicalEomEvidence,
+      eomEvidenceStatus: fixtureSource.eomEvidenceStatus,
+      eomEvidenceReason: fixtureSource.eomEvidenceReason,
+      nextSolverBurden: fixtureSource.nextSolverBurden,
       valueAuthority: "authoritative-solver-output",
     },
     nativeMasterEquationProbe: createNativeMasterEquationProbeSummary(native.masterEquationProbe),
@@ -670,7 +719,7 @@ function createBorgDatasetManifest(native) {
       browserStorageBudget: null,
       actionsArtifactBudget: null,
       nativeSolverThroughput: {
-        executionPath: defaultMotionSummary.executionPath,
+        executionPath: fixtureSource.executionPath,
         frameCount: nativeResponse.summary.frameCount,
         pathRowCount: pathHistory.rowCount,
         measuredWallClockMs: null,
@@ -807,7 +856,7 @@ function createNativeMasterEquationProbeRequest(initialStates) {
           stateFlags: state.stateFlags,
         })),
       },
-      streamId: `${FIXTURE_IDS.pathHistoryStreamId}:master-equation-probe`,
+      streamId: FIXTURE_IDS.pathHistoryStreamId,
       rowsPerChunk: LONG_FIXTURE_PROFILE.rowsPerChunk,
       storagePolicy: {
         target: "caller-buffer",
@@ -828,7 +877,7 @@ function createNativeMasterEquationProbeRequest(initialStates) {
       },
     },
     output: {
-      outputs: ["summary", "diagnostics"],
+      outputs: ["summary", "frameBuffer", "pathStream", "diagnostics"],
       streamTarget: "caller-buffer",
       memoryBudgetBytes: 64 * 1024 * 1024,
       deterministic: true,
@@ -994,7 +1043,9 @@ function combineNativeDefaultMotionRuns(runs, { masterEquationProbe } = {}) {
         acceleration: DEFAULT_MOTION_SETTINGS.acceleration,
         visualTuningStatus: DEFAULT_MOTION_SETTINGS.visualTuningStatus,
         visualBehaviorAuthority: DEFAULT_MOTION_SETTINGS.visualBehaviorAuthority,
-        nativeMasterEquationStatus: DEFAULT_MOTION_SETTINGS.nativeMasterEquationStatus,
+        nativeMasterEquationStatus:
+          masterEquationProbe?.response?.summary?.nativeMasterEquationStatus ??
+          DEFAULT_MOTION_SETTINGS.nativeMasterEquationStatus,
         nativeMasterEquationProbeStatusCode: masterEquationProbe?.response?.status?.code ?? null,
         nativeMasterEquationProbeFirstFailureCode:
           masterEquationProbe?.response?.summary?.firstFailureCode ?? null,
@@ -1011,9 +1062,76 @@ function combineNativeDefaultMotionRuns(runs, { masterEquationProbe } = {}) {
   };
 }
 
+function normalizeNativeMasterEquationFixtureRun(masterEquationRun) {
+  const response = masterEquationRun.response;
+  const pathHistory = response.pathHistory;
+  const stream = response.streams.find((entry) => entry.streamId === pathHistory.streamId) ?? response.streams[0];
+  const normalizedStream = {
+    ...stream,
+    streamId: FIXTURE_IDS.pathHistoryStreamId,
+    metadata: {
+      ...(stream?.metadata ?? {}),
+      interpolationRule: "native-master-equation-integration",
+      provenance: {
+        ...(stream?.metadata?.provenance ?? {}),
+        runKind: MASTER_EQUATION_FIXTURE_SETTINGS.runKind,
+        source: "native-master-equation-fixed-parameter",
+        fixedPhysicalParameterSetId: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterSetId,
+      },
+      dynamicReplay: {
+        schema: "solver-path-history-dynamic-replay-set.v1",
+        replayKind: "native-master-equation-fixed-parameter-set",
+        pathCount: INITIAL_STATE_COUNT,
+        fixedPhysicalParameterSetId: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterSetId,
+      },
+    },
+  };
+  return {
+    requestId: masterEquationRun.requestId,
+    runId: masterEquationRun.runId,
+    datasetId: masterEquationRun.datasetId,
+    acceptedPrecisionPath: masterEquationRun.acceptedPrecisionPath,
+    status: masterEquationRun.status,
+    response: {
+      ...response,
+      streams: [normalizedStream],
+      pathHistory: {
+        ...pathHistory,
+        streamId: FIXTURE_IDS.pathHistoryStreamId,
+        metadata: normalizedStream.metadata,
+      },
+      fixtureSource: {
+        executionPath: response.summary.executionPath,
+        runKind: MASTER_EQUATION_FIXTURE_SETTINGS.runKind,
+        solverMode: MASTER_EQUATION_FIXTURE_SETTINGS.solverMode,
+        motionLaw: MASTER_EQUATION_FIXTURE_SETTINGS.motionLaw,
+        fixedPhysicalParameterSetId: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterSetId,
+        fixedPhysicalParameterAuthority: DEFAULT_MOTION_SETTINGS.fixedPhysicalParameterAuthority,
+        fixedPhysicalParameters: createFixedPhysicalParameterSummary(),
+        accelerationPolicy: MASTER_EQUATION_FIXTURE_SETTINGS.accelerationPolicy,
+        acceleration: null,
+        visualTuningStatus: DEFAULT_MOTION_SETTINGS.visualTuningStatus,
+        visualBehaviorAuthority: DEFAULT_MOTION_SETTINGS.visualBehaviorAuthority,
+        nativeMasterEquationStatus: response.summary.nativeMasterEquationStatus,
+        nativeMasterEquationProbeStatusCode: response.status.code,
+        nativeMasterEquationProbeFirstFailureCode: response.summary.firstFailureCode,
+        nativeMasterEquationRequiredNativeExport:
+          DEFAULT_MOTION_SETTINGS.masterEquationRequiredNativeExport,
+        masterEquationFallbackDecision:
+          MASTER_EQUATION_FIXTURE_SETTINGS.masterEquationSelectionDecision,
+        canonicalEomEvidence: response.summary.canonicalEomEvidence,
+        eomEvidenceStatus: response.summary.eomEvidenceStatus,
+        eomEvidenceReason: response.summary.eomEvidenceReason,
+        nextSolverBurden: MASTER_EQUATION_FIXTURE_SETTINGS.nextSolverBurden,
+      },
+    },
+  };
+}
+
 function createNativeMasterEquationProbeSummary(masterEquationProbe) {
   const response = masterEquationProbe.response;
   const summary = response.summary;
+  const selectedMasterEquation = response.status.code === "ok";
   return {
     schema: "borg-native-master-equation-probe.v1",
     runKind: DEFAULT_MOTION_SETTINGS.masterEquationRunKind,
@@ -1034,9 +1152,11 @@ function createNativeMasterEquationProbeSummary(masterEquationProbe) {
     requiredNativeExport:
       response.masterEquation?.requiredNativeExport ??
       DEFAULT_MOTION_SETTINGS.masterEquationRequiredNativeExport,
-    fallbackDecision: DEFAULT_MOTION_SETTINGS.masterEquationFallbackDecision,
-    fallbackRunKind: DEFAULT_MOTION_SETTINGS.runKind,
-    valueAuthority: "fail-closed-value",
+    fallbackDecision: selectedMasterEquation
+      ? MASTER_EQUATION_FIXTURE_SETTINGS.masterEquationSelectionDecision
+      : DEFAULT_MOTION_SETTINGS.masterEquationFallbackDecision,
+    fallbackRunKind: selectedMasterEquation ? null : DEFAULT_MOTION_SETTINGS.runKind,
+    valueAuthority: selectedMasterEquation ? "authoritative-solver-output" : "fail-closed-value",
   };
 }
 

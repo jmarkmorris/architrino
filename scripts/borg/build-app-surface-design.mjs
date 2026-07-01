@@ -7,7 +7,16 @@ import { buildBorgFirstNativeBackedFixture } from "./build-first-native-backed-f
 const SURFACE_DESIGN_SCHEMA = "borg-app-surface-design.v1";
 const SCREEN_SPEC_ID = "borg-first-screen-from-native-fixture";
 const REQUIRED_RENDER_PIXEL_SIZE = "3840x2160";
-const NEXT_BUILD_BURDEN = "build-native-master-equation-fixed-parameter-fixture";
+const ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES = new Set([
+  "ok",
+  "native_capability_missing",
+  "native_solver_pending",
+]);
+const ALLOWED_NATIVE_MASTER_EQUATION_STATUSES = new Set([
+  "native-fixed-parameter-master-equation",
+  "native-fixture-capability-missing",
+  "native-fixture-solver-pending",
+]);
 
 export async function buildBorgAppSurfaceDesign() {
   const { manifest, native } = await buildBorgFirstNativeBackedFixture();
@@ -253,11 +262,14 @@ export function createBorgAppSurfaceDesign(manifest) {
       benignNoiseAuthorityStatus: manifest.validation.benignNoiseAuthorityStatus,
       proofClaimStatus: manifest.validation.proofClaimStatus,
     },
-    nextBuildBurden: NEXT_BUILD_BURDEN,
+    nextBuildBurden: manifest.sourceBridgeRun.nextSolverBurden,
   };
 }
 
 export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
+  const selectedMasterEquation =
+    surfaceDesign.sourceManifest.nativeMasterEquationStatus ===
+    "native-fixed-parameter-master-equation";
   assertEqual(surfaceDesign.schema, SURFACE_DESIGN_SCHEMA, "surface design schema");
   assertEqual(surfaceDesign.screenSpecId, SCREEN_SPEC_ID, "screen spec id");
   assertEqual(surfaceDesign.sourceManifest.manifestId, manifest.manifestId, "source manifest id");
@@ -312,27 +324,29 @@ export function assertBorgAppSurfaceDesign(surfaceDesign, manifest) {
     "native-output-only",
     "visual behavior authority",
   );
-  assertEqual(
-    surfaceDesign.sourceManifest.nativeMasterEquationStatus,
-    "native-fixture-capability-missing",
-    "native master-equation status",
+  assert(
+    ALLOWED_NATIVE_MASTER_EQUATION_STATUSES.has(
+      surfaceDesign.sourceManifest.nativeMasterEquationStatus,
+    ),
+    `native master-equation status ${surfaceDesign.sourceManifest.nativeMasterEquationStatus}`,
   );
-  assertEqual(
-    surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode,
-    "native_capability_missing",
-    "native master-equation probe status",
+  assert(
+    ALLOWED_MASTER_EQUATION_PROBE_STATUS_CODES.has(
+      surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode,
+    ),
+    `native master-equation probe status ${surfaceDesign.sourceManifest.nativeMasterEquationProbe.statusCode}`,
   );
   assertEqual(
     surfaceDesign.sourceManifest.nativeMasterEquationProbe.fallbackDecision,
-    "default-motion-baseline-selected",
+    selectedMasterEquation ? "native-master-equation-selected" : "default-motion-baseline-selected",
     "native master-equation probe fallback decision",
   );
   assertEqual(
     surfaceDesign.sourceManifest.nextSolverBurden,
-    NEXT_BUILD_BURDEN,
+    manifest.sourceBridgeRun.nextSolverBurden,
     "next solver burden",
   );
-  assertEqual(surfaceDesign.nextBuildBurden, NEXT_BUILD_BURDEN, "next build burden");
+  assertEqual(surfaceDesign.nextBuildBurden, manifest.sourceBridgeRun.nextSolverBurden, "next build burden");
   assertEqual(surfaceDesign.nativeSolverBoundary.productionSolver, "native-central-solver", "production solver");
   assertEqual(surfaceDesign.nativeSolverBoundary.newSolverStatus, "forbidden", "new solver status");
   assertEqual(surfaceDesign.firstViewport.renderPixelSize, REQUIRED_RENDER_PIXEL_SIZE, "required render size");
@@ -417,6 +431,8 @@ function createLayerStrip(manifest) {
       layer: "path-history",
       state: "off",
       sourceFields: ["pathHistory.pathHistoryStreamIds", "pathHistory.pathReplayIndexIds"],
+      displayTransform: "adjacent-native-row-line-segments",
+      smoothingPolicy: "none",
       valueAuthority: manifest.pathHistory.streamSummary.valueAuthority,
     },
     {

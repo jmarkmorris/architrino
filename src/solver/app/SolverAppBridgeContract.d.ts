@@ -3292,6 +3292,7 @@ export interface SolverRunSummary {
   interactionLaw?: string;
   signalSpeed?: number;
   executionPath?: string;
+  nativeStatus?: number;
   nativeMasterEquationStatus?: string;
   fixedPhysicalParameterSetId?: string;
   fixedPhysicalParameterAuthority?: string;
@@ -3378,6 +3379,8 @@ export interface SolverMasterEquationSummary {
   schema: "solver-master-equation-run-summary.v1";
   runKind: "masterEquation";
   executionPath: string;
+  nativeStatus?: number;
+  nativeSummary?: SolverMasterEquationNativeSummary;
   nativeMasterEquationStatus: string;
   fixedPhysicalParameterSetId: string;
   fixedPhysicalParameterAuthority: string;
@@ -3389,12 +3392,34 @@ export interface SolverMasterEquationSummary {
   step: number;
   fieldSpeed: number;
   historyDepth: number;
+  integrationTolerance?: number;
   canonicalEomEvidence: boolean;
   eomEvidenceStatus: string;
   eomEvidenceReason: string;
   firstFailureCode: string;
   requiredNativeExport: string;
   fallbackPolicy: string;
+}
+
+export interface SolverMasterEquationNativeSummary {
+  statusCode: number;
+  firstFailureCode: number;
+  nativeMasterEquationStatusCode: number;
+  canonicalEomEvidenceCode: number;
+  initialStateCount: number;
+  frameCount: number;
+  pathRowCount: number;
+  wakeRowCount: number;
+  accelerationRowCount: number;
+  startTime: number;
+  endTime: number;
+  step: number;
+  fieldSpeed: number;
+  historyDepth: number;
+  integrationTolerance: number;
+  fixedParameterSetCode: number;
+  masterEquationVersionCode: number;
+  forceLawVersionCode: number;
 }
 
 export type SolverPairInteractionBoundaryResidualStatus =

@@ -69,9 +69,9 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `fixedPhysicalParameterAuthority` | `manifest-declared-fixed-parameter-contract` |
 | `visualTuningStatus` | `not-visual-tuned` |
 | `visualBehaviorAuthority` | `native-output-only` |
-| `nativeMasterEquationStatus` | `native-fixture-capability-missing` |
-| `nativeMasterEquationProbe.statusCode` | `native_capability_missing` |
-| `nativeMasterEquationProbe.firstFailureCode` | `native_master_equation_fixture_missing` |
+| `nativeMasterEquationStatus` | `native-fixture-solver-pending` |
+| `nativeMasterEquationProbe.statusCode` | `native_solver_pending` |
+| `nativeMasterEquationProbe.firstFailureCode` | `native_master_equation_solver_pending` |
 | `nativeMasterEquationProbe.requiredNativeExport` | `architrino_solver_integrate_master_equation_motion_f64` |
 | `nativeMasterEquationProbe.fallbackDecision` | `default-motion-baseline-selected` |
 | `initialLinePolicy` | `seeded-random-interior-cube` |
@@ -104,7 +104,7 @@ The visible default is `simulation-window`, `architrino-position`, and `diagnost
 
 The `architrino-position` layer renders architrinos as small fixed-screen points, not shaded 3D spheres. `electrino` rows render pure blue and `positrino` rows render pure red until a later Borg visual convention changes that polarity map.
 
-The `path-history` layer renders native path rows as high-contrast narrow trails so they remain visible against the cube. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows.
+The `path-history` layer renders adjacent native path rows as straight line segments with `smoothingPolicy = none`. Trail color and thickness are app-facing visualization only; the path authority still comes from the native path-history rows. The first static page must not spline, tube-smooth, or otherwise curve a native default-motion path before the native master-equation fixture emits curved solver rows.
 
 The first static page uses the native fixture frame sets as keyframes and may interpolate between adjacent keyframes for smoother display playback. Interpolated playback frames are display-only visualization and must not be counted as additional native solver output, path-history evidence, wake rows, face-boundary evidence, or proof evidence.
 

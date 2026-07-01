@@ -16,7 +16,6 @@ const DEFAULT_ROTATION_X = -0.44;
 const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
-const PATH_TUBE_RADIUS = 0.026;
 const PLAYBACK_MS_PER_NATIVE_STEP = 120;
 const PATH_RENDER_ORDER = 2;
 const ARCHITRINO_RENDER_ORDER = 6;
@@ -218,22 +217,15 @@ export function mountBorgApp(options = {}) {
       if (points.length < 2) {
         return;
       }
-      const curve = new THREE.CatmullRomCurve3(points, false, "centripetal");
-      const geometry = new THREE.TubeGeometry(
-        curve,
-        Math.max(12, points.length * 16),
-        PATH_TUBE_RADIUS,
-        8,
-        false,
-      );
-      const material = new THREE.MeshBasicMaterial({
+      const geometry = createPathSegmentGeometry(points);
+      const material = new THREE.LineBasicMaterial({
         color: style.pathColor ?? style.velocityColor ?? style.color,
         transparent: true,
-        opacity: 0.82,
+        opacity: 0.9,
         depthTest: false,
         depthWrite: false,
       });
-      const trail = new THREE.Mesh(geometry, material);
+      const trail = new THREE.LineSegments(geometry, material);
       trail.visible = false;
       trail.renderOrder = PATH_RENDER_ORDER;
       pathGroup.add(trail);
@@ -856,6 +848,14 @@ export function mountBorgApp(options = {}) {
       (left, right) => left - right,
     );
   }
+}
+
+function createPathSegmentGeometry(points) {
+  const segmentPoints = [];
+  for (let index = 1; index < points.length; index += 1) {
+    segmentPoints.push(points[index - 1], points[index]);
+  }
+  return new THREE.BufferGeometry().setFromPoints(segmentPoints);
 }
 
 function queryRequiredElement(documentLike, selector) {

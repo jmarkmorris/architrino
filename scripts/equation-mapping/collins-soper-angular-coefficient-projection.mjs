@@ -389,12 +389,14 @@ function componentRowsFromSweepProfile({ sweepInput, sweepCase, measurement }) {
   if (!profile || typeof profile !== "object" || Array.isArray(profile)) {
     return [];
   }
+  const projectionCoefficients =
+    measurement.projectionCoefficients?.map ?? measurement.coefficients.map;
   return BRANCH_DYNAMICS_COMPONENTS.map(({ component, coefficient, sourceTerm }) => {
     const profileRow = profile[component] ?? {};
     const fractions = profileRow.fractions ?? {};
     const value = finiteNumber(
-      measurement.coefficients?.[coefficient],
-      `measurement.coefficients.${coefficient}`,
+      projectionCoefficients?.[coefficient],
+      `measurement.projectionCoefficients.${coefficient}`,
     );
     const contributions = contributionsFromProfileFractions({
       component,
@@ -442,38 +444,64 @@ function contributionsFromProfileFractions({ component, value, fractions }) {
 
 function materializeSweepMeasurement(sweepInput, sweepCase) {
   const rawMeasurement = sweepCase.measurement ?? {};
+  const coefficientOrder = normalizeCoefficientOrder(
+    rawMeasurement.coefficientOrder ??
+      rawMeasurement.observedCoefficients ??
+      coefficientKeysPresent(rawMeasurement.coefficients ?? {}),
+    "measurement.coefficientOrder",
+  );
   const coefficientsWithUncertainties = parseSweepCoefficientEntries(
     rawMeasurement.coefficients ?? {},
+    coefficientOrder,
+    "measurement.coefficients",
+  );
+  const projectionCoefficientsWithUncertainties = parseSweepCoefficientEntries(
+    rawMeasurement.projectionCoefficients ??
+      rawMeasurement.generatedCoefficients ??
+      rawMeasurement.coefficients ??
+      {},
+    COEFFICIENT_ORDER,
+    "measurement.projectionCoefficients",
   );
   return {
     sourceId: rawMeasurement.sourceId ?? sweepInput.sourceId ?? "ATLAS_arXiv_1606_00689",
     benchmarkBin: rawMeasurement.benchmarkBin ?? sweepCase.benchmarkBin ?? caseBinLabel(sweepCase),
+    coefficientOrder,
     covarianceModel:
       rawMeasurement.covarianceModel ??
       sweepInput.covarianceModel ??
       "diagonal_from_stat_syst_quadrature",
     coefficients: Object.fromEntries(
-      COEFFICIENT_ORDER.map((coefficient) => [
+      coefficientOrder.map((coefficient) => [
         coefficient,
         coefficientsWithUncertainties[coefficient].value,
       ]),
     ),
+    projectionCoefficients: {
+      map: Object.fromEntries(
+        COEFFICIENT_ORDER.map((coefficient) => [
+          coefficient,
+          projectionCoefficientsWithUncertainties[coefficient].value,
+        ]),
+      ),
+    },
     covariance:
       rawMeasurement.covariance ??
-      diagonalCovarianceFromUncertainties(coefficientsWithUncertainties),
+      diagonalCovarianceFromUncertainties(coefficientsWithUncertainties, coefficientOrder),
     uncertainties: coefficientsWithUncertainties,
+    unobservedCoefficients: rawMeasurement.unobservedCoefficients ?? {},
   };
 }
 
-function parseSweepCoefficientEntries(rawCoefficients) {
+function parseSweepCoefficientEntries(rawCoefficients, coefficientOrder, label) {
   return Object.fromEntries(
-    COEFFICIENT_ORDER.map((coefficient) => {
+    coefficientOrder.map((coefficient) => {
       const entry = rawCoefficients[coefficient];
       if (typeof entry === "number") {
         return [
           coefficient,
           {
-            value: finiteNumber(entry, `measurement.coefficients.${coefficient}`),
+            value: finiteNumber(entry, `${label}.${coefficient}`),
             stat: 0,
             syst: 0,
           },
@@ -482,18 +510,18 @@ function parseSweepCoefficientEntries(rawCoefficients) {
       return [
         coefficient,
         {
-          value: finiteNumber(entry?.value, `measurement.coefficients.${coefficient}.value`),
-          stat: finiteNumber(entry?.stat ?? 0, `measurement.coefficients.${coefficient}.stat`),
-          syst: finiteNumber(entry?.syst ?? 0, `measurement.coefficients.${coefficient}.syst`),
+          value: finiteNumber(entry?.value, `${label}.${coefficient}.value`),
+          stat: finiteNumber(entry?.stat ?? 0, `${label}.${coefficient}.stat`),
+          syst: finiteNumber(entry?.syst ?? 0, `${label}.${coefficient}.syst`),
         },
       ];
     }),
   );
 }
 
-function diagonalCovarianceFromUncertainties(coefficientsWithUncertainties) {
-  return COEFFICIENT_ORDER.map((rowCoefficient) =>
-    COEFFICIENT_ORDER.map((columnCoefficient) => {
+function diagonalCovarianceFromUncertainties(coefficientsWithUncertainties, coefficientOrder) {
+  return coefficientOrder.map((rowCoefficient) =>
+    coefficientOrder.map((columnCoefficient) => {
       if (rowCoefficient !== columnCoefficient) {
         return 0;
       }
@@ -596,6 +624,12 @@ function summarizeSweep({ sweepInput, cases, schemaOk, baseInputPath }) {
     ),
     requireComponentUniquenessPass: allRequired("requireComponentUniquenessPass"),
     measurementPass: all("measurementPass"),
+    observedCoefficientCountTotal: summaries.reduce(
+      (sum, summary) => sum + (summary.observedCoefficientCount ?? 0),
+      0,
+    ),
+    minObservedCoefficientCount: minValue("observedCoefficientCount"),
+    maxObservedCoefficientCount: maxValue("observedCoefficientCount"),
     generatedEventCountTotal: summaries.reduce(
       (sum, summary) => sum + (summary.generatedEventCount ?? 0),
       0,
@@ -713,7 +747,7 @@ function evaluateProjection(input, inputPath) {
     extracted: simulation.extractedCoefficients.values,
     measurement,
   });
-  const aFB = evaluateAFB(simulation.extractedCoefficients.values, measurement.coefficients.values);
+  const aFB = evaluateAFB(simulation.extractedCoefficients.values, measurement);
   const status = decideStatus({
     schemaOk: input.schema === INPUT_SCHEMA,
     missingRows,
@@ -799,6 +833,9 @@ function evaluateProjection(input, inputPath) {
         ? componentUniqueness.passed
         : null,
       measurementPass: measurement.passed,
+      measurementCoefficientOrder: measurement.coefficientOrder,
+      observedCoefficientCount: measurement.observedCoefficientCount,
+      unobservedCoefficients: measurement.unobservedCoefficients,
       generatedEventCount: simulation.eventCount,
       weightNormalizationResidual: simulation.weightNormalizationResidual,
       weightNormalizationPass:
@@ -1944,18 +1981,50 @@ function selectIndependentRows(matrix, requiredRank, tolerance) {
   return selected;
 }
 
-function parseCoefficientMap(raw, label) {
-  const values = COEFFICIENT_ORDER.map((key) => finiteNumber(raw[key], `${label}.${key}`));
+function coefficientKeysPresent(rawCoefficients) {
+  return COEFFICIENT_ORDER.filter((coefficient) =>
+    Object.prototype.hasOwnProperty.call(rawCoefficients, coefficient),
+  );
+}
+
+function normalizeCoefficientOrder(rawOrder, label) {
+  const order = Array.isArray(rawOrder) && rawOrder.length > 0 ? rawOrder : COEFFICIENT_ORDER;
+  const seen = new Set();
+  return order.map((coefficient, index) => {
+    if (!COEFFICIENT_ORDER.includes(coefficient)) {
+      throw new Error(`${label}[${index}] must be one of ${COEFFICIENT_ORDER.join(", ")}.`);
+    }
+    if (seen.has(coefficient)) {
+      throw new Error(`${label} contains duplicate coefficient ${coefficient}.`);
+    }
+    seen.add(coefficient);
+    return coefficient;
+  });
+}
+
+function parseCoefficientMap(raw, label, coefficientOrder = COEFFICIENT_ORDER) {
+  const values = coefficientOrder.map((key) => finiteNumber(raw[key], `${label}.${key}`));
   return {
     values,
-    map: Object.fromEntries(COEFFICIENT_ORDER.map((key, index) => [key, values[index]])),
+    map: Object.fromEntries(coefficientOrder.map((key, index) => [key, values[index]])),
   };
 }
 
 function evaluateMeasurement(raw) {
-  const coefficients = parseCoefficientMap(raw.coefficients ?? {}, "measurement.coefficients");
-  const covariance = parseCovariance(raw.covariance ?? raw.covarianceMatrix);
+  const coefficientOrder = normalizeCoefficientOrder(
+    raw.coefficientOrder ??
+      raw.observedCoefficients ??
+      coefficientKeysPresent(raw.coefficients ?? {}),
+    "measurement.coefficientOrder",
+  );
+  const coefficients = parseCoefficientMap(
+    raw.coefficients ?? {},
+    "measurement.coefficients",
+    coefficientOrder,
+  );
+  const covariance = parseCovariance(raw.covariance ?? raw.covarianceMatrix, coefficientOrder);
   const passed =
+    coefficientOrder.length > 0 &&
     coefficients.values.every(Number.isFinite) &&
     covariance.passed &&
     concreteString(raw.sourceId) &&
@@ -1965,19 +2034,25 @@ function evaluateMeasurement(raw) {
     sourceId: raw.sourceId ?? null,
     benchmarkBin: raw.benchmarkBin ?? null,
     covarianceModel: raw.covarianceModel ?? null,
-    coefficientOrder: COEFFICIENT_ORDER,
+    coefficientOrder,
+    observedCoefficientCount: coefficientOrder.length,
+    unobservedCoefficients: COEFFICIENT_ORDER.filter(
+      (coefficient) => !coefficientOrder.includes(coefficient),
+    ),
     coefficients,
     covariance,
   };
 }
 
-function parseCovariance(raw) {
-  if (!Array.isArray(raw) || raw.length !== COEFFICIENT_ORDER.length) {
+function parseCovariance(raw, coefficientOrder = COEFFICIENT_ORDER) {
+  if (!Array.isArray(raw) || raw.length !== coefficientOrder.length) {
     return { passed: false, reason: "covariance_shape_invalid", matrix: null };
   }
   const matrix = raw.map((row, rowIndex) => {
-    if (!Array.isArray(row) || row.length !== COEFFICIENT_ORDER.length) {
-      throw new Error(`measurement.covariance[${rowIndex}] must have 8 entries.`);
+    if (!Array.isArray(row) || row.length !== coefficientOrder.length) {
+      throw new Error(
+        `measurement.covariance[${rowIndex}] must have ${coefficientOrder.length} entries.`,
+      );
     }
     return row.map((entry, columnIndex) =>
       finiteNumber(entry, `measurement.covariance[${rowIndex}][${columnIndex}]`),
@@ -2202,33 +2277,50 @@ function computeCoefficientResidual(extracted, generated) {
 }
 
 function compareWithMeasurement({ extracted, measurement }) {
-  const diff = extracted.map((value, index) => value - measurement.coefficients.values[index]);
+  const coefficientOrder = measurement.coefficientOrder;
+  const diff = coefficientOrder.map((coefficient, index) => {
+    const fullIndex = COEFFICIENT_ORDER.indexOf(coefficient);
+    return extracted[fullIndex] - measurement.coefficients.values[index];
+  });
   const solved = solveLinearSystem(measurement.covariance.matrix, diff);
   const chi2 = dot(diff, solved);
   const pulls = Object.fromEntries(
-    COEFFICIENT_ORDER.map((key, index) => [
+    coefficientOrder.map((key, index) => [
       key,
       diff[index] / Math.sqrt(measurement.covariance.matrix[index][index]),
     ]),
   );
   return {
-    coefficientOrder: COEFFICIENT_ORDER,
-    residuals: Object.fromEntries(COEFFICIENT_ORDER.map((key, index) => [key, diff[index]])),
+    coefficientOrder,
+    residuals: Object.fromEntries(coefficientOrder.map((key, index) => [key, diff[index]])),
     pulls,
     chi2,
-    ndof: COEFFICIENT_ORDER.length,
+    ndof: coefficientOrder.length,
     covarianceModel: measurement.covarianceModel,
   };
 }
 
-function evaluateAFB(extracted, measured) {
+function evaluateAFB(extracted, measurement) {
+  if (!measurement.coefficientOrder.includes("A4")) {
+    return {
+      relation: "A_FB = 3 A4 / 8",
+      projected: null,
+      measured: null,
+      residual: 0,
+      observed: false,
+      reason: "A4_not_observed_in_measurement_row",
+    };
+  }
+  const measuredIndex = measurement.coefficientOrder.indexOf("A4");
   const projected = (3 / 8) * extracted[4];
-  const measuredValue = (3 / 8) * measured[4];
+  const measuredValue = (3 / 8) * measurement.coefficients.values[measuredIndex];
   return {
     relation: "A_FB = 3 A4 / 8",
     projected,
     measured: measuredValue,
     residual: Math.abs(projected - measuredValue),
+    observed: true,
+    reason: "accepted",
   };
 }
 
