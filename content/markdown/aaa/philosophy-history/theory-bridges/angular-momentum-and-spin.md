@@ -2190,6 +2190,8 @@ $$
 
 The $m$ quantization is the same $2\pi$ azimuthal closure rule written above, while the allowed $\ell$ spectrum is the regularity / finite-solution condition for the angular envelope. Both belong to observer-level orbital quantum numbers.
 
+The usual space-quantization cone picture belongs to this same comparison layer. A fixed $\hat{\mathbf L}^2$ eigenvalue sets the allowed magnitude and a fixed $\hat L_z$ eigenvalue fixes one chosen-axis projection, but the diagram is not a literal classical vector precessing around the axis. It encodes that $L^2$ and one projection are jointly recordable while the transverse components are not simultaneously resolved. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the cone is a record-channel constraint on the effective envelope or apparatus context, not an additional substrate arrow.
+
 For a fermion assembly, the separate internal-spin recovery gate is
 
 $$

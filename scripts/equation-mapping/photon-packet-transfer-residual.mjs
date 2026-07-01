@@ -10,6 +10,10 @@ const INPUT_SCHEMA = "aaa-equation-map-photon-packet-transfer-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-photon-packet-transfer-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
+const THETA_GAMMA_PACKET_SOURCE_FAILURE_REASONS = new Set([
+  "raw_url_source_not_mirrored",
+  "theta_gamma_packet_source_metadata_mismatch",
+]);
 
 const REQUIRED_ROWS = [
   "theta_gamma_packet",
@@ -135,7 +139,7 @@ function evaluatePhotonPacketTransfer(input, inputPath) {
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId ?? input.commonCarrierId);
@@ -177,6 +181,7 @@ function evaluatePhotonPacketTransfer(input, inputPath) {
       nextBlocker: firstBlocker({
         status,
         missingRows,
+        rowChecks,
         carrierBinding,
         packetResidual,
         negativeControls,
@@ -434,7 +439,7 @@ function evaluateCarrierBinding(rows, commonCarrierId) {
   };
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, rowId) {
   if (!row) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -444,7 +449,7 @@ function evaluateAcceptedRow(row) {
   if (!hasConcreteIdentity(row)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  const sourceCheck = evaluateSourceReference(row);
+  const sourceCheck = evaluateSourceReference(row, rowId);
   if (!sourceCheck.accepted) {
     return { accepted: false, reason: sourceCheck.reason };
   }
@@ -460,12 +465,16 @@ function hasConcreteIdentity(row) {
   return typeof id === "string" && id.trim().length > 0 && !id.includes("attempt");
 }
 
-function evaluateSourceReference(row) {
+function evaluateSourceReference(row, rowId) {
   const source = row?.sourcePath ?? row?.source;
+  const isThetaGammaPacketRow = rowId === "theta_gamma_packet";
   if (typeof source !== "string" || source.trim().length === 0) {
     return { accepted: false, reason: "source_missing" };
   }
   if (/^https?:\/\//.test(source)) {
+    if (isThetaGammaPacketRow) {
+      return { accepted: false, reason: "raw_url_source_not_mirrored" };
+    }
     return { accepted: true, reason: "source_url" };
   }
   const resolved = path.resolve(REPO_ROOT, source.replace(/#.*/, ""));
@@ -479,7 +488,54 @@ function evaluateSourceReference(row) {
   if (fs.statSync(resolved).isDirectory()) {
     return { accepted: false, reason: "source_is_directory" };
   }
+  if (isThetaGammaPacketRow && !sourceSupportsThetaGammaPacket(resolved, row)) {
+    return { accepted: false, reason: "theta_gamma_packet_source_metadata_mismatch" };
+  }
   return { accepted: true, reason: "source_file" };
+}
+
+function sourceSupportsThetaGammaPacket(resolvedPath, row) {
+  let parsed;
+  try {
+    parsed = readJson(resolvedPath);
+  } catch {
+    return false;
+  }
+  const values = collectSourceSupportValues(parsed);
+  const exactValues = new Set(values.map((value) => value.toLowerCase()));
+  const joined = values.join("\n").toLowerCase();
+  const rowIdentity = String(row?.rowId ?? row?.id ?? "").toLowerCase();
+  const carrierIdentity = String(row?.carrierId ?? "").toLowerCase();
+  const rowIdentityPresent = rowIdentity.length > 0 && exactValues.has(rowIdentity);
+  const carrierIdentityPresent = carrierIdentity.length > 0 && exactValues.has(carrierIdentity);
+  return (
+    /\beq-?12\b/.test(joined) &&
+    joined.includes("theta_gamma_packet") &&
+    rowIdentityPresent &&
+    carrierIdentityPresent &&
+    /source_?provenance|sourceprovenance/.test(joined) &&
+    /artifact_?hash|sourceartifacthash|sha256/.test(joined) &&
+    /no_?hidden_?retune|nohiddenretune/.test(joined)
+  );
+}
+
+function collectSourceSupportValues(value) {
+  if (value === null || value === undefined) {
+    return [];
+  }
+  if (typeof value === "string") {
+    return [value];
+  }
+  if (typeof value === "number" || typeof value === "boolean") {
+    return [String(value)];
+  }
+  if (Array.isArray(value)) {
+    return value.flatMap((entry) => collectSourceSupportValues(entry));
+  }
+  if (typeof value === "object") {
+    return Object.entries(value).flatMap(([key, entry]) => [key, ...collectSourceSupportValues(entry)]);
+  }
+  return [];
 }
 
 function sourceEvidenceReason(resolvedPath) {
@@ -536,8 +592,12 @@ function decideStatus({ missingRows, carrierBinding, packetResidual, negativeCon
   return "populated";
 }
 
-function firstBlocker({ status, missingRows, carrierBinding, packetResidual, negativeControls }) {
+function firstBlocker({ status, missingRows, rowChecks, carrierBinding, packetResidual, negativeControls }) {
   if (missingRows.length > 0) {
+    const firstMissingReason = rowChecks?.[missingRows[0]]?.reason;
+    if (THETA_GAMMA_PACKET_SOURCE_FAILURE_REASONS.has(firstMissingReason)) {
+      return firstMissingReason;
+    }
     return `missing_accepted_${missingRows[0]}`;
   }
   if (!carrierBinding.passed) {

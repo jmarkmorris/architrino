@@ -203,6 +203,31 @@ $$
 
 where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
 
+## Born-Kramers Rule And Action-Angle Recovery
+
+The Born-Kramers rule marks the step between action-angle mechanics and the indexed quantities of matrix mechanics. In a classical action-angle chart, the frequency of a periodic branch is recovered from the action-dependent Hamiltonian. In old quantum language, Bohr's transition postulate compares the emitted frequency between nearby action-labeled states with the classical harmonic frequency in the large-quantum-number limit. Born and Kramers then generalized that comparison from energy to arbitrary periodic quantities, replacing classical derivatives with finite differences between indexed transition quantities. In sequence form, the useful recovery target is
+
+$$
+\text{canonical action-angle chart}
+\longrightarrow
+\frac{\partial H_\theta}{\partial I}
+\longrightarrow
+\frac{E_{n+\alpha}-E_n}{h}
+\longrightarrow
+\text{indexed transition quantities}
+\longrightarrow
+\widehat M_\theta
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every
+classical variable. It is a domain-limited bridge: the action chart must first
+be admitted by the same retained branch record, the emitted or absorbed
+frequency must be a calibrated transition record, and the finite-difference
+step must preserve the same apparatus-accessible quantities that later become
+matrix entries. If the derivative-to-difference move is applied outside that
+declared record domain, the rule has become a formal analogy rather than an
+operator recovery.
+
 ## Dirac's 1925 Poisson-Bracket Bridge
 
 Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is

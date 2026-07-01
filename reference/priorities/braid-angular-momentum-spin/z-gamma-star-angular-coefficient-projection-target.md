@@ -1,6 +1,6 @@
 # Z/gamma* Angular-Coefficient Projection Target
 
-Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
+Status. Priority-only source-mined target for braid-angular-momentum-spin. This packet captures the June 30, 2026 angular-observable mining pass and converts the first usable source family into a branch-chart projection target. It now carries a populated score-neutral projection instance that tests the Collins-Soper angular-basis handoff from retained event rows through detector-level lepton momenta. It does not edit reader-facing corpus prose, does not certify a spin recovery theorem, and does not promote a new validation gate.
 
 Claim level. Defer with blocker. The packet defines observer-level angular coefficients and parity-sensitive distributions that a future retained weak-corridor or neutral-current branch certificate should be able to project to. It does not supply that certificate.
 
@@ -122,6 +122,44 @@ The hat on $\widehat{\mathbf A}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ means the coef
 | Tau decay chain | CMS $P_\tau(Z)$ and polarimetric variables | Weak-corridor branch chart, missing-momentum handling, visible decay-product orientation, detector acceptance | Using visible tau templates without an event-ledger row for unobserved momentum. |
 | Top pair | CMS $B_i$ and $C_{ij}$ in $k,r,n$ axes | Two-source branch charts, axis recovery, pair correlation row, dilepton detector projection | Treating spin-correlation coefficients as direct ontology instead of recovered angular correlations. |
 
+## Populated Projection Instance
+
+The first populated instance is executable and score-neutral:
+
+```bash
+node scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs --require-populated --summary --pretty
+```
+
+Instance files:
+
+| File | Role |
+| --- | --- |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-projection.mjs` | Computes the Collins-Soper frame from visible lepton four-momenta, recovers $A_0,\ldots,A_7$ by angular moments, compares them with a covariance matrix, verifies $A_{\mathrm{FB}}=3A_4/8$, and rejects explicit intrinsic-spin, helicity, polarization, or density-matrix primitive imports. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-instance.v1.json` | Populated retained projection instance for the ATLAS yZ-integrated $22.0<p_T^Z<25.5$ GeV benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-retained-branch-evidence.v1.json` | Durable source/evidence mirror for the ATLAS [arXiv:1606.00689](https://arxiv.org/abs/1606.00689) Tables 11, 12, and 13 benchmark row. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-covariance-negative-control.v1.json` | Negative control that keeps all rows accepted-looking but shifts $A_0$ outside the covariance tolerance. |
+| `scripts/equation-mapping/collins-soper-angular-coefficient-intrinsic-spin-negative-control.v1.json` | Negative control that keeps the angular projection numerically valid but imports `intrinsic_spin` as a primitive. |
+
+Positive run result:
+
+| Check | Result |
+| --- | --- |
+| Status | `populated` |
+| Generated projected events | 384 deterministic quadrature events |
+| Detector projection | $\max|\Delta(\cos\theta_{\mathrm{CS}},\phi_{\mathrm{CS}})|=3.55\times10^{-15}$ |
+| Coefficient recovery | $\max_i|\widehat A_i-A_i|=2.73\times10^{-14}$ |
+| Covariance comparison | $\chi^2=1.33\times10^{-23}$ for 8 coefficient rows |
+| Parity relation | $|A_{\mathrm{FB}}-3A_4/8|=1.98\times10^{-16}$ |
+
+Control results:
+
+| Control | Expected block | Observed status |
+| --- | --- | --- |
+| Covariance shift | Coefficients outside measured uncertainty row | `blocked_covariance_comparison` with $\chi^2=142.78$ |
+| Intrinsic-spin primitive | Primitive ontology imports source interpretation language | `blocked_intrinsic_spin_primitive` |
+
+Claim boundary. This is a populated projection and detector-handoff success marker, not a branch-geometry theorem. It proves that a retained event-family row set can be projected into the Collins-Soper basis, moment-extracted into $A_0,\ldots,A_7$, and compared with a covariance row without using intrinsic spin as an input. It does not yet prove that native retained branch geometry derives the ATLAS coefficient values.
+
 ## Promotion Decision
 
-Keep this packet in priority material until a retained branch-chart implementation can emit the detector projection, angular basis, covariance-aware comparison, and event-ledger closure rows above. Reader-facing corpus promotion should wait for a branch-geometry certificate or simulation that recovers at least the Collins-Soper $Z/\gamma^\ast$ coefficient row without intrinsic-spin primitives.
+Keep this packet in priority material until a retained branch-chart implementation can emit the detector projection, angular basis, covariance-aware comparison, and event-ledger closure rows from native branch dynamics rather than from a declared projection-measure instance. Reader-facing corpus promotion should wait for a branch-geometry certificate or simulation that derives at least the Collins-Soper $Z/\gamma^\ast$ coefficient row without intrinsic-spin primitives.

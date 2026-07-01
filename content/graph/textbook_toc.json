@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1449
+      "sections": 1450
     }
   },
   "tocRoot": {
@@ -11011,6 +11011,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
                         "markdownSection": "Born-Jordan Commutator Bridge",
                         "sectionKey": "born jordan commutator bridge",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Born-Kramers Rule And Action-Angle Recovery",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/quantum-operator-mapping.md",
+                        "markdownSection": "Born-Kramers Rule And Action-Angle Recovery",
+                        "sectionKey": "born kramers rule and action angle recovery",
                         "headingLevel": 2
                       },
                       {

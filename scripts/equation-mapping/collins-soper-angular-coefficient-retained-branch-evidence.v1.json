@@ -1,0 +1,50 @@
+{
+  "schema": "aaa-equation-map-collins-soper-angular-coefficient-source-evidence/v1",
+  "sourceKind": "durable_retained_projection_instance_evidence",
+  "sourceFamily": "Collins-Soper angular coefficient projection",
+  "sourceSupport": "collins-soper angular coefficient projection",
+  "claimLevel": "source-mirrored benchmark row plus retained projection-instance evidence; score-neutral and not a branch-geometry certificate",
+  "domainId": "D_Zgamma_CS_yIntegrated_22_25p5_v1",
+  "branchRecordId": "B_Zgamma_CS_22_25p5_v1",
+  "detectorProvenanceId": "D_LHC_ATLAS_8TeV_Zll_CS_v1",
+  "supportedRows": [
+    "source_branch_chart",
+    "neutral_corridor_branch_chart",
+    "corridor_orientation_axis",
+    "source_depletion",
+    "recoil_balance",
+    "noether_sea_response",
+    "detector_provenance",
+    "visible_lepton_momenta",
+    "angular_basis_projection",
+    "coefficient_covariance_comparison"
+  ],
+  "benchmark": {
+    "sourceId": "ATLAS_arXiv_1606_00689_tables_11_12_13",
+    "arxiv": "1606.00689",
+    "experiment": "ATLAS",
+    "collisionSystem": "pp sqrt(s)=8 TeV",
+    "frame": "Collins-Soper",
+    "channel": "Z/gamma* -> lepton pairs, yZ-integrated eeCC + mumuCC measurement",
+    "bin": {
+      "pTZGeV": [22.0, 25.5],
+      "yZ": "integrated"
+    },
+    "coefficients": {
+      "A0": { "value": 0.159, "stat": 0.003, "syst": 0.007 },
+      "A1": { "value": 0.042, "stat": 0.002, "syst": 0.002 },
+      "A2": { "value": 0.100, "stat": 0.003, "syst": 0.003 },
+      "A3": { "value": 0.006, "stat": 0.001, "syst": 0.001 },
+      "A4": { "value": 0.065, "stat": 0.002, "syst": 0.002 },
+      "A5": { "value": 0.003, "stat": 0.002, "syst": 0.001 },
+      "A6": { "value": 0.000, "stat": 0.002, "syst": 0.001 },
+      "A7": { "value": 0.001, "stat": 0.001, "syst": 0.001 }
+    },
+    "covarianceModel": "diagonal_first_instance_from_stat_syst_quadrature",
+    "traceability": [
+      "ATLAS arXiv:1606.00689 Eq. (1) gives the angular basis in cos(theta) and phi.",
+      "ATLAS arXiv:1606.00689 Tables 11, 12, and 13 give the yZ-integrated measured A0..A7 rows with statistical and systematic uncertainties.",
+      "This evidence object mirrors one representative bin for a projection-instance benchmark; it is not a substitute for full HEPData covariance."
+    ]
+  }
+}

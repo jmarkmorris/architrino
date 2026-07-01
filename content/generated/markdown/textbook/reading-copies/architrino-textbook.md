@@ -14153,6 +14153,8 @@ The conjugate momenta are more than bookkeeping in ordinary mechanics. When a co
 
 This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM is a delayed path-history law, not an ordinary finite-dimensional phase-space law. The instantaneous pair $(\mathbf{x}_i(t),\mathbf{p}_i(t))$ does not contain all active causal-root, boundary, and wake-history data. A Hamiltonian chart is therefore an effective reduction: it is admissible only when a coarse-graining compresses the retained path history into coordinates and momenta while preserving the comparison invariants. The test is not merely that an expression called $H_{\text{eff}}$ can be written, but that the induced return map preserves the relevant measure, symplectic form, or Poisson-bracket structure to the declared tolerance.
 
+Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
 therefore not an arbitrary instantaneous snapshot. It is a replayable or
 phase-locked branch chart: a reduced description in which the retained internal
@@ -14169,6 +14171,28 @@ sub-assembly adds its own phase-action pair. Surrounding influences are
 admissible only when they are represented as fixed branch data, slow parameters,
 or additional coordinates over the comparison window; otherwise the chart is a
 driven open system rather than a closed Hamiltonian phase space.
+
+On a single periodic channel, the action variable is not an arbitrary label once
+the chart is required to be canonical and the angle is required to advance
+uniformly. With the local $2\pi$ convention, the reduced action is the
+closed-cycle integral of the canonical one-form,
+$$
+I_\alpha
+=
+\frac{1}{2\pi}
+\oint_{\gamma_\alpha}\Pi\,dQ
+$$
+and the frequency readout is
+$$
+\omega_\alpha
+=
+\frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
+$$
+on that reduced chart. The value of this comparison is methodological: a
+replayable branch can expose frequency and harmonic content before the full
+path-history solution is written, but only if the same causal-root ledger and
+retained branch record make the closed-cycle integral and canonical residual
+stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
 
@@ -43613,6 +43637,28 @@ c_\star
 $$
 in the regime where the clock's motion does not significantly disturb the local Noether sea. For SI comparison in the weak homogeneous observer branch, $c_\star$ is the measured low-gradient clock/signal speed $c_0=c_{\text{eff}}(\infty)$, not an independent replacement for the primitive wake speed $c_f$.
 
+###### Muon Lifetime Benchmark
+
+Cosmic-ray muons supply a compact observer-level benchmark for the moving-clock row. In the standard account, muons formed high in the atmosphere have a rest-frame mean lifetime near $2.2\,\mu\mathrm{s}$ and travel at a large fraction of $c_0$. Without time dilation, a particle moving near $c_0$ for only a few microseconds would cross less than a kilometer before the exponential survival law suppresses the population. Yet high-altitude and sea-level counts, such as the Frisch-Smith Mount Washington comparison, retain far more muons than the undilated lifetime permits.
+
+The benchmark is a clock-law test, not a new substrate-time claim. In the weak homogeneous observer branch, let $N_{\mathrm{high}}$ be the counted muon rate at the high detector, $N_{\mathrm{low}}$ the counted rate at the lower detector, $\Delta h$ the height separation, $\tau_{\mu,0}$ the rest-lifetime comparison value, and $\|\mathbf{w}_\mu\|$ the muon drift speed through the local Noether sea. The observer-level survival target is
+$$
+N_{\mathrm{low}}
+\approx
+N_{\mathrm{high}}
+\exp\!\left[
+-
+\frac{\Delta h/\|\mathbf{w}_\mu\|}
+{\gamma_\mu \tau_{\mu,0}}
+\right],
+\qquad
+\gamma_\mu
+=
+\frac{1}{\sqrt{1-\|\mathbf{w}_\mu\|^2/c_0^2}}.
+$$
+
+The same event can be described in the muon's effective rest chart as length contraction of the atmospheric path. In $\mathbb{A}\mathbb{A}\mathbb{A}$ both descriptions are downstream exports of one moving-assembly response: the external observer sees a slowed internal reaction clock, while the muon-channel description compresses the traversed distance. The native burden is to derive the same $\gamma_\mu$ from the assembly and Noether sea record that also supports clocks, rulers, photon synchronization, and bounded preferred-frame leakage.
+
 ###### Gravitational Effect (Medium Dependence)
 
 Massive assemblies polarize and densify the surrounding Noether sea. A clock deeper in this polarized region experiences:
@@ -56888,6 +56934,8 @@ The recoil-free spectral line is the branch with $\Delta N_s(\mathbf k)=0$ for t
 #### Spin-Sensitive Spectral Targets
 
 After the base resonance and clock/rate program is stable, the spin-sensitive spectrum should be revisited as a validation surface for the completed angular-momentum ledger. Fine-structure and spin-orbit terms must distinguish observer-level orbital angular momentum from internal Noether braid spinor behavior. Hyperfine terms must add the nuclear spin ledger without treating proton or neutron spin decomposition as already closed. Zeeman and related analyzer-response cases must use the finite-time measurement-response model rather than inserting preassigned spin labels.
+
+The anomalous Zeeman cases make this target concrete. A normal triplet can count as a successful classical-limit recovery of magnetic splitting, but quartets, sextets, and higher multiplets cannot be handled by one universal oscillator response plus per-line labels. The same spectral channel must recover the line-specific splitting pattern, polarization selection, and magnetic-field scaling from one atomic envelope, finite-time analyzer-response model, photon-channel event record, and angular-momentum/spinor ledger. A fit that handles the normal Zeeman effect while assigning anomalous multiplets to separate labels or per-line parameters has not recovered the spin-sensitive spectrum.
 
 The orbital part of this recovery should match the standard effective labels $\ell$ and $m$, including $L^2\to\ell(\ell+1)\hbar^2$ and chosen-axis projection $L_z\to m\hbar$. The spin-sensitive part is a separate validation target: it must couple that orbital envelope to the completed internal spinor ledger rather than treating atomic orbital quantization as a proof of fermion spin.
 
@@ -83592,6 +83640,31 @@ $$
 
 where every arrow is conditional on the same retained path-history and record window. If the commutator is inserted without deriving the transition matrix and action-cycle record from the substrate branch, the bridge has imported matrix mechanics as formal doctrine rather than recovered it as an observer-level compression.
 
+###### Born-Kramers Rule And Action-Angle Recovery
+
+The Born-Kramers rule marks the step between action-angle mechanics and the indexed quantities of matrix mechanics. In a classical action-angle chart, the frequency of a periodic branch is recovered from the action-dependent Hamiltonian. In old quantum language, Bohr's transition postulate compares the emitted frequency between nearby action-labeled states with the classical harmonic frequency in the large-quantum-number limit. Born and Kramers then generalized that comparison from energy to arbitrary periodic quantities, replacing classical derivatives with finite differences between indexed transition quantities. In sequence form, the useful recovery target is
+
+$$
+\text{canonical action-angle chart}
+\longrightarrow
+\frac{\partial H_\theta}{\partial I}
+\longrightarrow
+\frac{E_{n+\alpha}-E_n}{h}
+\longrightarrow
+\text{indexed transition quantities}
+\longrightarrow
+\widehat M_\theta
+$$
+
+For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a license to quantize every
+classical variable. It is a domain-limited bridge: the action chart must first
+be admitted by the same retained branch record, the emitted or absorbed
+frequency must be a calibrated transition record, and the finite-difference
+step must preserve the same apparatus-accessible quantities that later become
+matrix entries. If the derivative-to-difference move is applied outside that
+declared record domain, the rule has become a formal analogy rather than an
+operator recovery.
+
 ###### Dirac's 1925 Poisson-Bracket Bridge
 
 Dirac's first quantum-mechanics result is useful here because it shows the correct historical direction of the operator bridge. He did not start from already-known canonical commutation relations and then generalize by analogy. He started from Heisenberg's noncommutative product of indexed transition quantities, worked backward through the correspondence limit to action-angle variables, and recognized the Poisson bracket as the classical object shadowed by the quantum commutator. In modern comparison language, the sequence is
@@ -86220,6 +86293,8 @@ m\in\{-\ell,-\ell+1,\ldots,\ell\}
 $$
 
 The $m$ quantization is the same $2\pi$ azimuthal closure rule written above, while the allowed $\ell$ spectrum is the regularity / finite-solution condition for the angular envelope. Both belong to observer-level orbital quantum numbers.
+
+The usual space-quantization cone picture belongs to this same comparison layer. A fixed $\hat{\mathbf L}^2$ eigenvalue sets the allowed magnitude and a fixed $\hat L_z$ eigenvalue fixes one chosen-axis projection, but the diagram is not a literal classical vector precessing around the axis. It encodes that $L^2$ and one projection are jointly recordable while the transverse components are not simultaneously resolved. In $\mathbb{A}\mathbb{A}\mathbb{A}$ terms, the cone is a record-channel constraint on the effective envelope or apparatus context, not an additional substrate arrow.
 
 For a fermion assembly, the separate internal-spin recovery gate is
 
@@ -94745,12 +94820,14 @@ Bell's theorem adds a later physical-theorem caution to the same pattern. The EP
 | 1860s-1890s (Maxwell + finite propagation) | Field propagation speed, wave structure of electromagnetism | Physical medium interpretation with finite-speed causal transport | Field formalism was treated as sufficient; ontology of the carrier was deprioritized |
 | 1887-1904 (Michelson-Morley + Lorentz) | Null aether-wind result, dynamical contraction/time slowdown models | Emergent Lorentz symmetry from matter-medium interaction | "Undetectable medium = dispensable medium" became the decisive simplification |
 | 1900 (blackbody radiation and Planck's quantum) | Precision blackbody data, cavity standing-wave counting, and thermodynamic equipartition | Spectrum as data product plus mode-counting target, with quantization treated as a recovery rule requiring deeper thermalization mechanism | Planck's successful recovery hardened into quantum postulate before the physical implementation of mode occupation was derived |
+| 1905-1909 (Brownian motion and molecular reality) | Visible wandering of suspended particles, diffusion laws, osmotic-pressure analogy, and Perrin's Avogadro-number measurements | Treat stochastic-looking motion as a recovery target for hidden constituent population, transport coefficients, and unresolved microdynamics | The statistical law could be treated as the final description instead of as a demand to recover apparent randomness from the physical record underneath |
 | 1905 (Special Relativity) | Full Lorentz covariance of inertial laws | Could have been read as effective symmetry of assemblies in one substrate | Principle-theory victory reclassified kinematic effects as fundamental spacetime structure |
 | 1915-1920 (General Relativity) | Metric dynamics with exceptional predictive power | Metric as coarse-grained constitutive field of deeper Noether sea state | Geometrization succeeded so strongly that "geometry is fundamental" became default |
 | 1917 (Einstein World) | Boundary-condition pressure at spatial infinity, Machian relativity-of-inertia aims, and the first relativistic global cosmology | Global geometry could have been held as a closure hypothesis requiring observation, stability, and source/boundary residual tests | Logical consistency and aesthetic closedness could outrun empirical comparison and perturbative stability analysis |
 | 1924-1930 (de Broglie, pilot-wave, early quantum debates) | Deterministic alternatives existed, particle-wave dual structure observed | Deterministic microstate + contextual readout + basin selection | Copenhagen operationalism treated ontology as unnecessary overhead |
 | 1930s-1950s (QFT vacuum, renormalization) | Vacuum structure, divergence control, effective computational rules | Divergences as signs of missing microstructure and finite substrate scales | Renormalization success normalized continuum ontology plus parameter absorption |
 | 1941-1954 (Wheeler's particles-first to fields-first turn) | Wheeler-Feynman direct-action electrodynamics, Machian inertia pressure, liaison/light-ray reconstruction attempts, EIH point-particle motion, and geon-style nonsingular field configurations | A constituent-first program could have asked whether field-like and inertial behavior are derived summaries of causal interaction records rather than primitive continua | The failed liaison-action program and the success of GR/QED redirected pressure toward fields-first formalism before a delayed causal-wake ontology was available |
+| 1949 (Gödel universe) | Einstein-equation solution with rotating global structure, no reliance on negative energy density, and closed timelike curves | Treat metric solutions as effective comparison branches that still require causal-order and continuation promotion tests | "Solves the field equations" could be mistaken for "is a physically admissible world" unless global hyperbolicity, chronology protection, or an equivalent native continuation rule is supplied |
 | 1960s-1970s (Wheeler's collapse and law-without-law turn) | Gravitational-collapse singularity pressure, black-hole no-hair compression, and Wheeler's claim that baryon and lepton conservation lose operational content in collapse | Lawfulness could have been treated as an emergent closure whose conservation records survive only where the accessible exterior variables still carry the needed provenance | Collapse and no-hair results redirected Wheeler from lawlike geometrodynamics toward law-without-law, participatory cosmology, and universe-evolution language |
 | 1964-1982 (Bell + Aspect era) | EPR's nonlocality-or-incompleteness fork, Bell's local-factorization theorem, no-signaling correlations, and Aspect-era experimental pressure | Treat Bell as a physical theorem whose premises identify the failed observer-level compression: keep measurement independence and no-signaling while deriving a non-product pair-provenance response | The discourse often turned a precise no-go theorem into "hidden variables are impossible" or "local realism is dead," rather than asking which nonlocal or non-factorizable ontology could recover the data |
 | 1970s-1990s (SM success + naturalness programs) | Precision particle physics with many free parameters | Assembly geometry as origin of masses/charges/mixing patterns | Parameter-fit pragmatism displaced geometric micro-construction programs |
@@ -94869,6 +94946,8 @@ What physics already had was the Einstein field equations, a powerful explanator
 
 This opening matters because general relativity did more than solve a calculation problem. It offered a grand new picture. The very grandeur of that picture made it easy to conflate representational success with ontological finality.
 
+Gödel's 1949 rotating-universe solution sharpened this point after general relativity had already become the dominant gravitational grammar. The historical packet is not an import of time-travel ontology and not a rejection of general relativity. It is a layer warning: Einstein-equation solution -> weak-energy-condition-compatible counterexample to clean global causal ordering -> later global-hyperbolicity and chronology-protection restrictions -> recognition that solution space and physically promoted world-picture are different levels. A metric can satisfy the local field-equation rule while failing to supply an observer-level universe that admits one unambiguous initial-data evolution. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is that effective metric recovery must include causal-order and continuation discipline; the native substrate already has absolute time, but Physical Observers still need a recovered effective causal order that does not expose closed timelike-curve pathology in the validated regime.
+
 ##### What Current Physics Still Gets Right
 
 What still works is immense. General relativity remains one of the greatest achievements in theoretical physics. It accounts for orbital precession, light bending, gravitational time effects, black-hole phenomenology, and gravitational-wave propagation at observationally relevant scales. Any replacement architecture must recover this success with high fidelity.
@@ -94881,13 +94960,15 @@ The narrative lock-in was geometrization itself: the success of the metric forma
 
 What was occluded was the constitutive question. If metric structure is emergent, what medium variables and assembly dynamics produce it? What was left unfinished was not the mathematics of general relativity, but the possibility of treating that mathematics as the closure of a lower-level ontology. The unresolved residue persists today in quantum gravity and emergent-spacetime programs: many suspect that geometry is not fundamental, yet a concrete derivation remains elusive.
 
+Gödel adds a narrower residue inside the same lesson. Local field-equation success and local energy-condition discipline do not by themselves select a globally well-behaved effective spacetime. A physical branch also needs a promotion rule saying which causal and continuation class is being accepted, and why that class is derived from the same record that supplies the validated weak-field and strong-field observables.
+
 ##### Assessment from $\mathbb{A}\mathbb{A}\mathbb{A}$
 
 The relation to $\mathbb{A}\mathbb{A}\mathbb{A}$ is **directly supportive**. Transition relevance is maximal because one of the main architrino claims is precisely that spacetime geometry may belong to an effective layer rather than the substrate. This episode shows how predictive triumph can make that possibility seem unnecessary even when later tensions bring it back.
 
 ##### Recovery Target
 
-The long-term relevance of this episode is permanent process guidance. Recovery would require deriving metric behavior, geodesic motion, and gravitational effective phenomena from a non-geometric constitutive ontology without losing general relativity's observational success. Until such a derivation exists, the historical lesson remains cautionary but active.
+The long-term relevance of this episode is permanent process guidance. Recovery would require deriving metric behavior, geodesic motion, causal-order recovery, admissible continuation, and gravitational effective phenomena from a non-geometric constitutive ontology without losing general relativity's observational success. Until such a derivation exists, the historical lesson remains cautionary but active.
 
 ---
 
@@ -94955,15 +95036,23 @@ The long-term relevance of this episode is permanent process control for cosmolo
 
 What physics already had was particle-wave duality, de Broglie's pilot ideas, matrix and wave mechanics, and the brute empirical pressure of atomic and subatomic phenomena. Deterministic alternatives were not absent. The opening was to ask whether one exact microstate, evolving under hidden but lawful dynamics, could produce probabilistic-looking outcomes through multistability, path-history dependence, and measurement-context sensitivity.
 
+Brownian motion supplied a non-quantum comparison case for the same methodological fork. The data product was visible wandering of suspended particles, not a direct image of molecules. Einstein's 1905 bridge treated that wandering as diffusion, used the one-dimensional mean-square law
+$$
+\langle x^2\rangle = 2Dt
+$$
+and then connected $D$ to temperature, viscosity, particle radius, and $N_A$ by joining van't Hoff's osmotic-pressure analogy, Stokes drag, Fick diffusion, and drift-diffusion equilibrium. Perrin's 1908-1909 measurements then turned the same wandering trajectories into a value for Avogadro's constant. The historical sequence is therefore data product -> stochastic effective law -> transport-coefficient recovery -> hidden-population count -> later statistical lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is not that Brownian randomness is fundamental. It is that an observer-level statistical law can be a disciplined recovery target for hidden deterministic microstructure when the same record fixes the fluctuation scale, transport coefficient, and population count.
+
 An earlier bridge came from blackbody radiation. Experiments supplied a robust spectrum for hot objects that classical cavity reasoning could not match. Rayleigh and Jeans treated the cavity as a standing-wave mode inventory and applied equipartition to the allowed modes; that mode count was the right kind of structural data product, but continuous energy sharing made the high-frequency energy density diverge. Planck's move was to preserve the successful low-frequency limit while replacing continuous oscillator energy with discrete packets $\epsilon=h\nu$, giving a frequency-dependent occupation rule that suppressed ultraviolet modes. Historically, the sequence was data product, classical recovery attempt, ultraviolet failure, ad hoc quantum recovery rule, and then later operational lock-in.
 
 Einstein's 1905 light-quantum argument added a sharper bridge on the same path. Instead of beginning with the photoelectric effect as a detached anomaly, he asked what the entropy of high-frequency monochromatic radiation was counting. In the Wien regime, the volume-dependence of radiation entropy matched the volume-dependence for a gas of independent countable entities; combined with Boltzmann's principle and Planck's high-frequency constant, that comparison selected $E=h\nu$ per entity. The historical sequence was therefore spectrum data product -> entropy-counting argument -> countable radiation energy packet -> photoelectric threshold test -> later photon operational lock-in.
 
 The opening had been prepared by the old-quantum-theory sequence before the Copenhagen settlement itself. Rutherford scattering turned atomic internal structure into a measured data product: rare large-angle alpha events forced a dense nuclear center and made atomic stability a concrete dynamical problem. The classical planetary reading then failed in two connected ways: an accelerating charged electron should radiate and spiral inward, and a continuum of allowed orbits would not explain discrete emission and absorption lines. Bohr then showed that an ad hoc angular-momentum rule could recover the hydrogen spectrum and preserve a high-$n$ correspondence with classical mechanics, but the rule did not explain why only those states were stable, why jumps occurred when they did, or why line intensities had the observed pattern. De Broglie's matter-wave proposal sharpened the near miss by converting one hand-inserted rule into a stability criterion: a closed orbit is allowed when the associated action closes around the cycle rather than destructively failing to return to itself.
 
+The mechanics available for that bridge was already richer than orbit drawing. Delaunay's lunar theory had used canonical transformations to reorganize a perturbed Earth-Moon-Sun problem into slowly changing constants and linearly advancing angles. Poincare then showed that phase-space invariants and sensitivity to initial conditions were not peripheral complications but central facts about deterministic motion. Schwarzschild's action-angle formalization converted that celestial-mechanics grammar into a tool for atomic perturbations such as the Stark effect: the action variable was the closed-cycle phase-space integral, and the frequency could be read from the action-dependent Hamiltonian without first solving the full orbit. Historically, the sequence was periodic-orbit perturbation data -> canonical recovery chart -> invariant action variable and frequency readout -> Bohr-Sommerfeld action quantization with Schwarzschild's role made explicit -> Born-Kramers derivative-to-difference bridge -> matrix-mechanics operator lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the retained lesson is not that classical canonical variables are substrate objects. It is that any operator bridge has to earn its chart: the same branch record must preserve the effective bracket, action closure, frequency readout, and transition data before the algebra is promoted to a recovery target.
+
 Optical dispersion supplied the same lesson from the line-strength side. Lorentz-Drude dispersion treated each absorption line as if a population of resonating electrons with an experimentally inferred density produced the observed refractive response. Ladenburg and Loria made that coefficient a laboratory data product through anomalous-dispersion measurements, but Bohr's quantum jumps made the literal resonating-electron story untenable. Ladenburg's 1921 bridge was to equate the classical current-density expression with an Einstein-transition-probability expression, guided by the observed equality between resonance frequencies and spectral-line frequencies. The safe lesson is not that the old oscillator ontology was right. It is that measured line strengths, absorption, dispersion, and transition probabilities were already asking to be recovered as different projections of one event record and rate target.
 
-Zeeman splitting supplied a magnetic-field version of the same transition-record pressure. Faraday's 1862 null search for magnetic changes in spectral lines did not close the question; it marked an instrumentation limit. Zeeman's higher-resolution 1896 repetition turned magnetic line broadening, splitting, polarization, and field scaling into a data product. Lorentz's classical charged-oscillator model then recovered the normal triplet/doublet geometry and the charge-to-mass scale later recognized as electronic, but sodium's anomalous Zeeman patterns exposed that orbital oscillator bookkeeping was incomplete. The sequence is: null result; higher-resolution spectral split; classical normal-effect recovery; charge-to-mass readout; anomalous Zeeman failure; and spin, exclusion, and quantum angular-momentum structure as later recovery targets. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the target is not to import Lorentz's oscillator ontology or intrinsic spin as a primitive, but to recover magnetic splitting, polarization selection, and anomalous multiplets from one atomic envelope, magnetic-state map, photon-channel event record, and downstream angular-momentum/spinor ledger.
+Zeeman splitting supplied a magnetic-field version of the same transition-record pressure. Faraday's 1862 null search for magnetic changes in spectral lines did not close the question; it marked an instrumentation limit. Zeeman's higher-resolution 1896 repetition turned magnetic line broadening, splitting, polarization, and field scaling into a data product. Lorentz's classical charged-oscillator model then recovered the normal triplet/doublet geometry and the charge-to-mass scale later recognized as electronic, but sodium's anomalous Zeeman patterns exposed that orbital oscillator bookkeeping was incomplete. Preston's 1897-1899 work made the pressure sharper. In the same magnetic-field context where Lorentz's normal triplet succeeded, sodium's $D_1$ and $D_2$ lines gave quartet and sextet patterns, and Cornu's and Michelson's confirmations found line families with still more components. Preston's useful phrase was that the effect depended on a hidden "character" of the line: a line-specific datum that the single charged-oscillator model did not possess. Preston's rule then grouped elements by splitting pattern rather than by wavelength alone. The historical sequence is normal-effect success -> anomalous multiplet data product -> missing line-specific response variable -> later spin, exclusion, fine-structure, and quantum-angular-momentum recovery targets -> operational lock-in. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the target is not to import Lorentz's oscillator ontology or intrinsic spin as a primitive, but to recover magnetic splitting, polarization selection, and anomalous multiplets from one atomic envelope, magnetic-state map, photon-channel event record, and downstream angular-momentum/spinor ledger.
 
 The solar sequel sharpened that sequence by moving the same effect from the
 laboratory into an astronomical source record. Lockyer, Young, Cortie, and other
@@ -95033,6 +95122,8 @@ The long-term relevance of this episode is permanent until the outcome-selection
 The narrower old-quantum recovery target is to show how spectral regularities, action-cycle discreteness, transition timing, line intensities, optical dispersion, indexed transition quantities, noncommutative effective operators, and classical correspondence arise from one branch record rather than from separate postulates. Passing that target would not by itself solve measurement, but it would recover the Rutherford-Bohr-de Broglie-Ladenburg-Heisenberg sequence at the correct level: data, effective rule, stability condition or rate bridge, effective operator algebra, and then substrate derivation.
 
 The parallel blackbody recovery target is to show how a photon bath reaches Planck occupation from mode structure, transition rates, and ensemble thermalization rather than by stipulating the final spectrum. Passing that target would recover the Planck-Rayleigh-Jeans sequence at the correct level: measured spectrum, mode inventory, failed continuous equipartition, discrete recovery rule, and then derived thermalization mechanism.
+
+A Brownian-style recovery target runs in parallel: apparent randomness should close to a transport coefficient, hidden population or state count, and microhistory record when the comparison packet supplies enough information. The analogous $\mathbb{A}\mathbb{A}\mathbb{A}$ burden is to derive detector noise, basin weights, and effective diffusion from retained assembly, causal-wake, and Noether sea histories rather than assigning probabilities after the fact.
 
 ---
 

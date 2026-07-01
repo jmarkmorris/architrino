@@ -99,6 +99,108 @@ $$
 
 The failure condition is immediate: if $\sigma_{\mathrm{eff}}$ has to be inserted as a fitted parameter unrelated to the same axis-exceptionality, color-corridor, and Noether sea record that suppresses open color, then the packet has reproduced a QCD-looking force law rather than deriving confinement energetics.
 
+## First Native $\sigma_{\mathrm{eff}}$ Extraction Row
+
+The first native row extracts the open-corridor tension from a transverse Noether sea response problem. For one traceless axis-exceptionality charge $Q\in\{Q_H,Q_M,Q_L,-Q_H,-Q_M,-Q_L\}$, take the one-corridor ansatz
+
+$$
+\Theta_Q(r)=f(r)Q,
+\qquad
+f(0)=1,\quad f(a)=0,
+$$
+
+where $a$ is the variational corridor radius in the local Noether sea state. The extracted tension is
+
+$$
+\sigma_{\mathrm{eff}}(Q;\rho_{\text{NS}},\chi_{\text{sea}})
+=
+\min_{a,f}
+2\pi
+\int_0^a
+r
+\left[
+\frac{K_{\perp}}{2}
+\|Q\|_F^2
+\left(\frac{df}{dr}\right)^2
++
+V_{\mathrm{exc}}
+\left(
+f(r)Q;
+Q,\rho_{\text{NS}},\chi_{\text{sea}}
+\right)
+\right]dr.
+$$
+
+The corresponding Euler-Lagrange row is
+
+$$
+K_{\perp}\|Q\|_F^2
+\left(
+\frac{d^2f}{dr^2}
++
+\frac{1}{r}\frac{df}{dr}
+\right)
+=
+\partial_f
+V_{\mathrm{exc}}
+\left(
+fQ;
+Q,\rho_{\text{NS}},\chi_{\text{sea}}
+\right),
+$$
+
+with regularity at $r=0$ and relaxation to the ambient Noether sea at $r=a$. This makes $\sigma_{\mathrm{eff}}$ a derived response coefficient of the color-corridor record rather than a fitted string-tension parameter.
+
+The same row links directly to the downstream two-nucleon potential. Let $\Gamma_{N_1}$ and $\Gamma_{N_2}(r)$ be the closed color-corridor graphs for two accepted color-singlet nucleon source envelopes at separation $r$. Define the finite color-singlet corridor-overlap energy by
+
+$$
+\Delta E_{\mathrm{corr}}^{NN}(r)
+=
+\min_{\Theta_{12}\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_1}\cup\Gamma_{N_2}(r),
+\Theta_{12}
+\right]
+-
+\sum_{i=1}^{2}
+\min_{\Theta_i\in\Pi_{\mathrm{singlet}}}
+\mathcal{E}_{\mathrm{conf}}
+\left[
+\Gamma_{N_i},
+\Theta_i
+\right].
+$$
+
+The extraction is valid only if the same $K_{\perp}$, $V_{\mathrm{exc}}$, $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, and axis-exceptionality charges used above also determine this overlap residual. The nuclear-potential consumer is
+
+$$
+V_{\pi/\text{corr}}(r)
++
+V_{\text{sea-pol}}(r)
+\leftarrow
+\Delta E_{\mathrm{corr}}^{NN}(r),
+$$
+
+while $V_{\text{excl}}(r)$ and $V_{\text{Coul}}(r)$ remain separate envelope-overlap and electromagnetic rows. The required behavior is
+
+$$
+\Delta E_{\mathrm{corr}}^{NN}(r)\to0
+\quad
+\text{as}
+\quad
+r\to\infty,
+$$
+
+with no residual open-color far field. A successful first row may expose an intermediate attractive window for the $p+n$ channel after orientation, phase, and Coulomb rows are included, but it must not generate an unscreened long-range color force between color-singlet nucleons.
+
+Failure modes:
+
+- $\sigma_{\mathrm{eff}}$ can be fit to the lattice string-tension benchmark, but $\Delta E_{\mathrm{corr}}^{NN}(r)$ needs unrelated Noether sea variables.
+- The two-singlet overlap leaves an open-color far field instead of a finite residual interaction.
+- The residual nuclear potential is borrowed as a phenomenological Yukawa or hard-core form without being derived from the same color-corridor energy functional.
+- The row binds $p+p$ as easily as $p+n$ after Coulomb, orientation, and branch-interface rows are included.
+
 The nuclear-potential consumer remains:
 
 $$
@@ -122,7 +224,7 @@ This potential may consume QCD/hadronization benchmarks only after the participa
 | [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Add a compact benchmark paragraph tying color-singlet closure to no-free-color, static string tension, and lattice static-energy rows. | Needs an explicit native $\sigma_{\mathrm{eff}}$ extraction route, not just the source benchmark. |
 | [Gluons and the Strong Force](../../../content/markdown/aaa/assemblies/bosons/gluons.md) | Sharpen gluon language as color-corridor reconfiguration and event-shape/radiation recovery target. | Must not treat gluons as observed substrate products. |
 | [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md) | Add lattice light-hadron mass pressure and fragmentation/event-shape level separation where nucleon source envelopes are discussed. | Requires claim-level care so lattice QCD remains a benchmark, not a replaced derivation. |
-| [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Attach $V_{NN}$ derivation explicitly downstream of accepted color-singlet nucleon envelopes and static confinement energetics. | Needs a first native bridge from color-corridor closure to residual-strong range, sign, and saturation. |
+| [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md) | Attach $V_{NN}$ derivation explicitly downstream of accepted color-singlet nucleon envelopes and static confinement energetics. | Needs quantitative evaluation of $\Delta E_{\mathrm{corr}}^{NN}(r)$ for $p+n$ and $p+p$ channels with orientation, Coulomb, and branch-interface rows included. |
 
 ## Rejected Or Source-Lead-Only Moves
 
@@ -130,4 +232,4 @@ This potential may consume QCD/hadronization benchmarks only after the participa
 - Do not correct detector measurements to "parton level" and then treat that as the native target.
 - Do not treat a reconstructed jet, a heavy-flavor tag, or a fragmentation model component as direct quark or gluon observation.
 - Do not promote Lund strings, cluster models, preconfinement, or generator tune parameters as $\mathbb{A}\mathbb{A}\mathbb{A}$ ontology. They are source leads for finite color-singlet closure and corridor-breaking thresholds.
-- Do not add a new validation gate for this packet. The useful next step is a derivation row for $\sigma_{\mathrm{eff}}$ and its downstream $V_{NN}$ consumer under the existing Standard Model closure program.
+- Do not add a new validation gate for this packet. The useful next step is quantitative evaluation of the captured $\sigma_{\mathrm{eff}}$ row and its downstream $V_{NN}$ consumer under the existing Standard Model closure program.

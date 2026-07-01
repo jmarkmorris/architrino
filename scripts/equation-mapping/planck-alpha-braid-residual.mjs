@@ -170,6 +170,8 @@ function evaluatePlanckAlphaBraid(input, inputPath) {
   );
   const status = decideStatus({
     missingRows,
+    rowChecks,
+    sourceEvidence,
     carrierBinding,
     residual,
     negativeControls,

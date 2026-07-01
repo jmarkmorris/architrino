@@ -60,8 +60,9 @@ The current `borg-first-screen-from-native-fixture` surface contract binds these
 | `playbackFrameSource` | `native-keyframes` |
 | `interpolatedFrameCount` | `0` manifest rows; display interpolation remains visualization-only |
 | `initialLinePolicy` | `seeded-random-interior-cube` |
+| `polaritySignConvention` | `positrino-positive-electrino-negative`, with positrino charge `1` and electrino charge `-1` |
 | `velocityPolicy` | `seeded-random-small-3d`, with `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, and `velocityBoundScaleFromV1 = 1.2` |
-| `pairAccelerationScale` | `0.28` |
+| `pairAccelerationScale` | `1.2` |
 | `renderPixelSize` | `3840x2160` |
 | `centralArchitrinoCount` | `8` |
 | `architrinoCount` | `16` |

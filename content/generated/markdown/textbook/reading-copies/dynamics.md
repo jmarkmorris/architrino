@@ -11091,6 +11091,8 @@ The conjugate momenta are more than bookkeeping in ordinary mechanics. When a co
 
 This matters for $\mathbb{A}\mathbb{A}\mathbb{A}$ because the exact Master EOM is a delayed path-history law, not an ordinary finite-dimensional phase-space law. The instantaneous pair $(\mathbf{x}_i(t),\mathbf{p}_i(t))$ does not contain all active causal-root, boundary, and wake-history data. A Hamiltonian chart is therefore an effective reduction: it is admissible only when a coarse-graining compresses the retained path history into coordinates and momenta while preserving the comparison invariants. The test is not merely that an expression called $H_{\text{eff}}$ can be written, but that the induced return map preserves the relevant measure, symplectic form, or Poisson-bracket structure to the declared tolerance.
 
+Canonical transformations sharpen the same test. In ordinary Hamiltonian mechanics, a change from $(q,p)$ to $(Q,P)$ is not automatically an equivalent mechanics; it is canonical only when the new variables preserve Hamilton's equation form, equivalently the symplectic form or Poisson brackets on the admitted phase-space functions. Generating functions are useful because they construct such transformations and can expose cyclic coordinates, conserved momenta, action-angle variables, or Hamilton-Jacobi constants. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this remains an effective-chart claim: a reduced chart may be transformed for calculation only while the same branch record keeps the canonical-chart, bracket, or symplectic residual controlled. Otherwise the transformation is a coordinate fit that has lost causal-wake history, not a bridge to operator recovery.
+
 For $\mathbb{A}\mathbb{A}\mathbb{A}$, the strongest phase-space use case is
 therefore not an arbitrary instantaneous snapshot. It is a replayable or
 phase-locked branch chart: a reduced description in which the retained internal
@@ -11107,6 +11109,28 @@ sub-assembly adds its own phase-action pair. Surrounding influences are
 admissible only when they are represented as fixed branch data, slow parameters,
 or additional coordinates over the comparison window; otherwise the chart is a
 driven open system rather than a closed Hamiltonian phase space.
+
+On a single periodic channel, the action variable is not an arbitrary label once
+the chart is required to be canonical and the angle is required to advance
+uniformly. With the local $2\pi$ convention, the reduced action is the
+closed-cycle integral of the canonical one-form,
+$$
+I_\alpha
+=
+\frac{1}{2\pi}
+\oint_{\gamma_\alpha}\Pi\,dQ
+$$
+and the frequency readout is
+$$
+\omega_\alpha
+=
+\frac{\partial H_{\mathrm{eff}}}{\partial I_\alpha}
+$$
+on that reduced chart. The value of this comparison is methodological: a
+replayable branch can expose frequency and harmonic content before the full
+path-history solution is written, but only if the same causal-root ledger and
+retained branch record make the closed-cycle integral and canonical residual
+stable.
 
 The action variables are local objects unless the phase torus is globally unobstructed. For a three-layer nested shell braid chart, the phase circles of the outer, middle, and inner binaries need not form a trivial $T^3$ bundle over the retained branch family. A cycle that exchanges two orbital planes can carry an integer phase-bundle winding
 

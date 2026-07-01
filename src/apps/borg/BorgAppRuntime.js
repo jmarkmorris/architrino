@@ -18,6 +18,8 @@ const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const PATH_TUBE_RADIUS = 0.026;
 const PLAYBACK_MS_PER_NATIVE_STEP = 120;
+const PATH_RENDER_ORDER = 2;
+const ARCHITRINO_RENDER_ORDER = 6;
 const PLAY_ICON_PATH = "M8 5v14l11-7z";
 const PAUSE_ICON_PATH = "M8 5h3v14H8zM13 5h3v14h-3z";
 const HIDDEN_LAYER_BUTTONS = new Set(["simulation-window", "architrino-position"]);
@@ -231,7 +233,7 @@ export function mountBorgApp(options = {}) {
       });
       const trail = new THREE.Mesh(geometry, material);
       trail.visible = false;
-      trail.renderOrder = 2;
+      trail.renderOrder = PATH_RENDER_ORDER;
       pathGroup.add(trail);
     });
 
@@ -244,6 +246,7 @@ export function mountBorgApp(options = {}) {
         sizeAttenuation: false,
         alphaTest: 0.5,
         transparent: true,
+        depthTest: false,
         depthWrite: false,
       });
       const point = new THREE.Points(
@@ -252,6 +255,7 @@ export function mountBorgApp(options = {}) {
       );
       point.userData.pathKey = pathKey;
       point.userData.kind = "architrino";
+      point.renderOrder = ARCHITRINO_RENDER_ORDER;
       pointGroup.add(point);
       particleObjects.set(pathKey, point);
 

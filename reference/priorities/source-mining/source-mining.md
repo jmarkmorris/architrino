@@ -84,6 +84,8 @@ The completed target list lives in [source-mining-history](source-mining-history
 ## Comparison Packets
 
 - [Collider detector provenance and event reconstruction](collider-detector-provenance-event-reconstruction.md) captures CERN, ATLAS, and CMS detector, trigger, reconstruction, jet, missing-transverse-momentum, and uncertainty material for event-ledger mapping.
+- [QCD confinement and hadronization recovery targets](../standard-model-closure/qcd-confinement-hadronization-recovery-targets.md) captures PDG QCD, lattice-QCD, LEP event-shape, fragmentation-function, and LHC jet/hadron benchmark material for Standard Model closure without treating quarks, gluons, showers, or jets as directly observed substrate products.
+- [PDG particle mass, width, lifetime, and scheme benchmark map](pdg-particle-mass-width-lifetime-benchmark-map.md) captures scoped charged-lepton, selected light-hadron, $W/Z/H$, top, quark scheme, width, lifetime, and branching-ratio rows as downstream benchmark material without raw whole-catalog mining or standalone Koide work.
 - [Classical source-history electrodynamics](classical-source-history-electrodynamics.md) captures the Lienard-Wiechert, Jefimenko, Heaviside-Feynman, and Panofsky-Phillips comparison space for delayed source-history electrodynamics.
 
 ## Legacy Operational Parking Lot

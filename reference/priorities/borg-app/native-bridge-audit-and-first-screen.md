@@ -123,12 +123,12 @@ Minimum timeline:
 
 1. `nativeSolverStatus = native-backed-now`;
 2. `executionPath = native_c_abi`;
-3. `fixtureProfileId = borg-first-native-backed-long-fixture.v2`;
+3. `fixtureProfileId = borg-first-native-backed-long-fixture.v3`;
 4. `duration = 30` and `sampleInterval = 0.2`;
 5. native keyframe count is 151, with 2416 native current-state frame rows across sixteen architrinos;
 6. native path-history row count is 2400;
 7. `playbackFrameSource = native-keyframes` and `interpolatedFrameCount = 0`;
-8. `initialLinePolicy = seeded-random-interior-cube`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, `velocityBoundScaleFromV1 = 1.2`, and `pairAccelerationScale = 0.28`;
+8. `initialLinePolicy = seeded-random-interior-cube`, `polaritySignConvention = positrino-positive-electrino-negative`, `positrinoCharge = 1`, `electrinoCharge = -1`, `velocityPolicy = seeded-random-small-3d`, `randomVelocityMaxComponentMagnitude = 0.042`, `randomVelocityMinSpeed = 0.0144`, `velocityBoundScaleFromV1 = 1.2`, and `pairAccelerationScale = 1.2`;
 9. `centralArchitrinoCount = 8`, derived `architrinoCount = 16`, and `bufferArchitrinoCount = 8`;
 10. native path-history bounds stay inside the outer computed cube for this fixture;
 11. wake history, face-boundary rows, face influence, six-face boundary noise, velocity sampling, and `R_boundary->central` remain explicit fail-closed gap rows.
