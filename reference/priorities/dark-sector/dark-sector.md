@@ -83,7 +83,7 @@ where $A_{\mathrm{int}}$ is the internal action or assembly record, $\mathcal{B}
 ## Related Priorities
 
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
-- [strong-field hypothesis bank](../strong-field-closure/hypothesis-bank.md)
+- [strong-field brainstorming](../strong-field-closure/brainstorming.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)

@@ -172,7 +172,7 @@ Every downstream row must either consume the active-root law directly or consume
 | `EQ-02` through `EQ-04`, plus `EQ-04A` | Moving clocks, oblate spheroidal envelope rows, energy-momentum, exposed mass, and charged-lepton mass-root benchmarks must share one retained branch chart with active roots, causal-root Jacobians, wake tails, line-of-action geometry, and no hidden retune between clock, envelope, energy, and mass readouts. |
 | `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
 | `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
-| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` and `EQ-11A` | Effective metric, compact-star support, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
+| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A`, `EQ-07C`, and `EQ-11A` | Effective metric, compact-star support, black-hole-proper horizon/interior rows, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
 | `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-22B`, `EQ-26`, `EQ-26A`, `EQ-28`, `EQ-28A`, and `EQ-29` | Photon, action-quantum, blackbody, recombination/acoustic, atomic, coupling, recoil, path-frequency exchange, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, recombination clocks, frequency shifts, or emitted power independently. |
 | `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
 | `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
@@ -850,6 +850,57 @@ The first blocker is `missing_accepted_compact_region_carrier`: one source-backe
 ### Agent Target
 
 Populate the `EQ-07A` compact-region carrier behind the Chandrasekhar and TOV solver residuals. The next useful artifact is a source-backed carrier row that keeps dense-matter pressure, radial support, reaction inventory, and metric compliance on one retained record.
+
+## EQ-07C: Black-Hole Horizon-Interface Noether Braid Map
+
+Detailed packet: [EQ-07C Black-Hole Horizon-Interface Noether Braid Map](eq-07c-black-hole-horizon-interface-noether-braid-map.md).
+
+### Standard Form
+
+The black-hole-proper comparison starts with exterior mass, radius, surface-area, and spin benchmarks:
+
+$$
+r_s=\frac{2GM}{c_0^2},
+\qquad
+\chi_J=\frac{c_0|\mathbf J|}{GM^2},
+\qquad
+r_+=\frac{GM}{c_0^2}\left(1+\sqrt{1-\chi_J^2}\right),
+$$
+
+$$
+A_H
+=
+\frac{8\pi G^2M^2}{c_0^4}
+\left(1+\sqrt{1-\chi_J^2}\right),
+\qquad
+S_{\mathrm{BH}}^{\mathrm{std}}
+=
+\frac{k_B c_0^3 A_H}{4G\hbar}.
+$$
+
+These are observer-level recovery targets, not substrate ontology.
+
+### AAA Mapping
+
+`EQ-07C` asks whether one black-hole horizon-interface carrier can join:
+
+- exterior compact-source labels $(M,\mathbf J,Q_{\mathrm{eff}})$;
+- horizon radius $r_H$, area $A_H$, surface gravity $\kappa_H$, and entropy-area comparison rows;
+- native horizon-interface condition $F_H=0$;
+- finite interior continuation $\mathcal{R}_H(\Omega,W)<\infty$;
+- horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf J,Q_{\mathrm{eff}})$;
+- compact-region event ledger $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$;
+- and no-hidden-retune witness across exterior, horizon, interior, entropy, and remnant/ringdown rows.
+
+The packet explicitly separates black-hole-proper equations from accretion-disk, wind, jet, and feedback physics. Those release-channel rows may supply boundary data through `EQ-07B`, but they cannot replace the horizon/interior carrier.
+
+### Closure Status
+
+Current score: unscored; not integrated into the main score table.
+
+The first blocker is `missing_accepted_black_hole_horizon_interface_carrier`: one source-backed carrier must bind mass, spin, radius, surface area, $F_H$, finite interior continuation, horizon labels, event ledger, and no-retune rows before any score review or reader-facing promotion.
+
+No checker exists yet. The next useful artifact is a score-neutral identity shell only after the carrier contract in the detailed packet is stable.
 
 ## EQ-11: Einstein And Poisson Limits
 

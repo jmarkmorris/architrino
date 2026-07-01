@@ -1,8 +1,8 @@
-# Strong-Field Hypothesis Bank
+# Strong-Field Brainstorming
 
-## Hypothesis Bank Metadata
+## Brainstorming Metadata
 
-- Kind: `hypothesis-bank`
+- Kind: `brainstorming`
 - Parent: [strong-field-closure](strong-field-closure.md)
 - Status: `watchlist`
 
@@ -14,7 +14,7 @@
 
 ## Scope
 
-This is a sibling hypothesis bank for [strong-field-closure](strong-field-closure.md). It exists to keep strong-field and tri-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
+This is a sibling brainstorming file for [strong-field-closure](strong-field-closure.md). It exists to keep strong-field and tri-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
 
 This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [strong-field-closure](strong-field-closure.md), [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md), or another active workstream.
 

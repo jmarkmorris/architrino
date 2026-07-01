@@ -158,6 +158,15 @@ function createPathRecordingContext() {
     lineTo(x, y) {
       this.commands.push({ type: "lineTo", x, y });
     },
+    quadraticCurveTo(controlX, controlY, x, y) {
+      this.commands.push({
+        type: "quadraticCurveTo",
+        controlX,
+        controlY,
+        x,
+        y,
+      });
+    },
     bezierCurveTo(controlStartX, controlStartY, controlEndX, controlEndY, x, y) {
       this.commands.push({
         type: "bezierCurveTo",
@@ -730,8 +739,39 @@ test("causal delay feedback edited path trails render as continuous curve stroke
   runtime.drawPathTrail(context, "positrino", { r: 255, g: 0, b: 0, a: 1 });
 
   const commandTypes = context.commands.map((command) => command.type);
-  assert(commandTypes.includes("bezierCurveTo"));
+  assert(commandTypes.includes("quadraticCurveTo"));
   assert.equal(commandTypes.includes("lineTo"), false);
+});
+
+test("causal delay feedback path trail smoothing treats sharp interior tips as guide controls", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const context = createPathRecordingContext();
+  const tip = { x: 128, y: 72 };
+
+  runtime.drawSmoothLine(
+    context,
+    [
+      { x: 0, y: 0 },
+      tip,
+      { x: 0, y: 144 },
+    ],
+    { r: 0, g: 0, b: 255, a: 1 },
+    5,
+  );
+
+  const curveCommands = context.commands.filter((command) => command.type === "quadraticCurveTo");
+
+  assert.equal(curveCommands.length, 2);
+  assert(curveCommands.every((command) => command.controlX === tip.x && command.controlY === tip.y));
+  assert(
+    curveCommands.every((command) => (
+      Math.abs(command.x - tip.x) > 1e-6 ||
+      Math.abs(command.y - tip.y) > 1e-6
+    )),
+  );
 });
 
 test("causal delay feedback background depth field remains an internal render option", () => {
@@ -3144,6 +3184,47 @@ test("causal delay feedback path line drag keeps path endpoints fixed", () => {
   assert.equal(runtime.dataset.frames.at(-1).positrino.x, endBefore.frameX);
   assert.equal(runtime.dataset.frames.at(-1).positrino.y, endBefore.frameY);
   assert.notEqual(path.at(-2).y, endBefore.neighborY);
+});
+
+test("causal delay feedback path line drag fairs high-curvature bends", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const path = Array.from({ length: 101 }, (_unused, index) => {
+    const t = index / 100;
+    if (t <= 0.5) {
+      return { t, x: 200 * t, y: 200 * t };
+    }
+    return { t, x: 100 + 200 * (t - 0.5), y: 100 - 200 * (t - 0.5) };
+  });
+  runtime.dataset.paths.positrino = path;
+  runtime.dataset.frames = path.map((point) => ({ t: point.t, positrino: point }));
+  runtime.dataset.history.positrino = [
+    { kind: "positrino", depth: 1, t: 0, x: 0, y: 0, weight: 1 / 5, state: "older" },
+    { kind: "positrino", depth: 2, t: 0.25, x: 50, y: 50, weight: 2 / 5, state: "active" },
+    { kind: "positrino", depth: 3, t: 0.5, x: 100, y: 100, weight: 3 / 5, state: "active" },
+    { kind: "positrino", depth: 4, t: 0.75, x: 150, y: 50, weight: 4 / 5, state: "active" },
+    { kind: "positrino", depth: 5, t: 1, x: 200, y: 0, weight: 1, state: "newer" },
+  ];
+  const startBefore = { ...path[0] };
+  const endBefore = { ...path.at(-1) };
+
+  const didEdit = runtime.applyPathLineDrag("positrino", 0.5, { x: 0, y: -24 });
+
+  const previous = runtime.getReplayPathPoint("positrino", 0.49);
+  const anchor = runtime.getReplayPathPoint("positrino", 0.5);
+  const next = runtime.getReplayPathPoint("positrino", 0.51);
+  const incoming = { x: anchor.x - previous.x, y: anchor.y - previous.y };
+  const outgoing = { x: next.x - anchor.x, y: next.y - anchor.y };
+  const retainedAnchor = runtime.dataset.history.positrino.find((point) => point.depth === 3);
+
+  assert.equal(didEdit, true);
+  assert.deepEqual(path[0], startBefore);
+  assert.deepEqual(path.at(-1), endBefore);
+  assert(normalizedDot(incoming, outgoing) > 0.55);
+  assertNear(retainedAnchor.x, anchor.x, 1e-6);
+  assertNear(retainedAnchor.y, anchor.y, 1e-6);
 });
 
 test("causal delay feedback pointer drag on path line updates the path preview", () => {

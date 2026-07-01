@@ -2537,7 +2537,7 @@ class CausalDelayFeedbackRuntime {
     if (points.length < 2) {
       return;
     }
-    if (typeof ctx.bezierCurveTo !== "function") {
+    if (points.length === 2 || typeof ctx.quadraticCurveTo !== "function") {
       this.drawLine(ctx, points, color, width);
       return;
     }
@@ -2548,21 +2548,18 @@ class CausalDelayFeedbackRuntime {
     ctx.lineWidth = Math.max(1, width * this.viewport.scale);
     ctx.beginPath();
     ctx.moveTo(points[0].x, points[0].y);
-    for (let index = 0; index < points.length - 1; index += 1) {
-      const previous = points[Math.max(0, index - 1)];
-      const start = points[index];
-      const end = points[index + 1];
-      const next = points[Math.min(points.length - 1, index + 2)];
-      const controlStart = {
-        x: start.x + (end.x - previous.x) / 6,
-        y: start.y + (end.y - previous.y) / 6,
+    for (let index = 1; index < points.length - 1; index += 1) {
+      const control = points[index];
+      const next = points[index + 1];
+      const midpoint = {
+        x: (control.x + next.x) * 0.5,
+        y: (control.y + next.y) * 0.5,
       };
-      const controlEnd = {
-        x: end.x - (next.x - start.x) / 6,
-        y: end.y - (next.y - start.y) / 6,
-      };
-      ctx.bezierCurveTo(controlStart.x, controlStart.y, controlEnd.x, controlEnd.y, end.x, end.y);
+      ctx.quadraticCurveTo(control.x, control.y, midpoint.x, midpoint.y);
     }
+    const penultimate = points[points.length - 2];
+    const last = points.at(-1);
+    ctx.quadraticCurveTo(penultimate.x, penultimate.y, last.x, last.y);
     ctx.stroke();
     ctx.restore();
   }
@@ -3237,20 +3234,32 @@ class CausalDelayFeedbackRuntime {
       controls.push(control);
     };
 
+    const anchor = Number(anchorT);
+    const shoulder = Number.isFinite(anchor)
+      ? PATH_LINE_DRAG_FALLOFF_TIME * PATH_LINE_FAIRING_SHOULDER_FRACTION
+      : 0;
+
     addControl(path[0]);
     addControl(path.at(-1));
     path.forEach((point, index) => {
       if (index % PATH_LINE_FAIRING_CONTROL_STRIDE === 0) {
+        const time = Number(point?.t);
+        if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder) {
+          return;
+        }
         addControl(point);
       }
     });
     (this.dataset?.history?.[kind] ?? []).forEach((point) => {
+      const time = Number(point?.t);
+      const isAnchor = Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) <= TIME_EPSILON;
+      if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder && !isAnchor) {
+        return;
+      }
       addControl(point);
     });
 
-    const anchor = Number(anchorT);
     if (Number.isFinite(anchor)) {
-      const shoulder = PATH_LINE_DRAG_FALLOFF_TIME * PATH_LINE_FAIRING_SHOULDER_FRACTION;
       addControl(this.samplePathPoint(path, anchor - shoulder), anchor - shoulder);
       addControl(this.samplePathPoint(path, anchor), anchor);
       addControl(this.samplePathPoint(path, anchor + shoulder), anchor + shoulder);
