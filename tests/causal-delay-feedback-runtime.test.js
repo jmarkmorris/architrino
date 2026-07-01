@@ -14,6 +14,7 @@ import {
 import {
   CANVAS_COLORS,
   DIRECT_MANIPULATION_DRAFT_PREVIEW,
+  FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   PRESETS,
@@ -84,6 +85,20 @@ const fakeWindow = Object.freeze({
 
 function assertNear(actual, expected, epsilon = 1e-9) {
   assert.ok(Math.abs(actual - expected) <= epsilon, `${actual} should be near ${expected}`);
+}
+
+function formatTestCompactNumber(value) {
+  if (!Number.isFinite(value)) {
+    return "--";
+  }
+  if (value === 0) {
+    return "0";
+  }
+  const magnitude = Math.abs(value);
+  if (magnitude < 0.001 || magnitude >= 1000) {
+    return value.toExponential(1);
+  }
+  return value.toFixed(3).replace(/0+$/, "").replace(/\.$/, "");
 }
 
 function getTimingDistance(timing, link = null) {
@@ -739,38 +754,56 @@ test("causal delay feedback edited path trails render as continuous curve stroke
   runtime.drawPathTrail(context, "positrino", { r: 255, g: 0, b: 0, a: 1 });
 
   const commandTypes = context.commands.map((command) => command.type);
-  assert(commandTypes.includes("quadraticCurveTo"));
+  assert(commandTypes.includes("bezierCurveTo"));
   assert.equal(commandTypes.includes("lineTo"), false);
+  assert.equal(commandTypes.includes("quadraticCurveTo"), false);
 });
 
-test("causal delay feedback path trail smoothing treats sharp interior tips as guide controls", () => {
+test("causal delay feedback path trail smoothing uses Catmull-Rom cubic interpolation", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
   const context = createPathRecordingContext();
   const tip = { x: 128, y: 72 };
+  const end = { x: 0, y: 144 };
 
   runtime.drawSmoothLine(
     context,
     [
       { x: 0, y: 0 },
       tip,
-      { x: 0, y: 144 },
+      end,
     ],
     { r: 0, g: 0, b: 255, a: 1 },
     5,
   );
 
-  const curveCommands = context.commands.filter((command) => command.type === "quadraticCurveTo");
+  const curveCommands = context.commands.filter((command) => command.type === "bezierCurveTo");
 
   assert.equal(curveCommands.length, 2);
-  assert(curveCommands.every((command) => command.controlX === tip.x && command.controlY === tip.y));
-  assert(
-    curveCommands.every((command) => (
-      Math.abs(command.x - tip.x) > 1e-6 ||
-      Math.abs(command.y - tip.y) > 1e-6
-    )),
+  assert.equal(context.commands.some((command) => command.type === "quadraticCurveTo"), false);
+  assertNear(curveCommands[0].x, tip.x, 1e-9);
+  assertNear(curveCommands[0].y, tip.y, 1e-9);
+  assertNear(curveCommands[1].x, end.x, 1e-9);
+  assertNear(curveCommands[1].y, end.y, 1e-9);
+  assert.notEqual(curveCommands[0].controlStartX, curveCommands[0].controlEndX);
+  assert.notEqual(curveCommands[0].controlStartY, curveCommands[0].controlEndY);
+});
+
+test("causal delay feedback Catmull-Rom path uses centripetal parameter spacing", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+
+  assertNear(
+    runtime.getCentripetalCatmullRomParameterDistance({ x: 0, y: 0 }, { x: 16, y: 0 }),
+    4,
+  );
+  assertNear(
+    runtime.getCentripetalCatmullRomParameterDistance({ x: 0, y: 0 }, { x: 0, y: 9 }),
+    3,
   );
 });
 
@@ -985,6 +1018,7 @@ test("causal delay feedback mock paths span five to ninety-five percent of the t
   ["positrino", "electrino"].forEach((kind) => {
     const points = runtime.dataset.paths[kind];
     const startHistory = runtime.dataset.history[kind].find((point) => point.depth === 1);
+    assert.equal(points.length, FRAME_COUNT);
     assertNear(points[0].x, PATH_TIME_START_X);
     assertNear(points.at(-1).x, PATH_TIME_END_X);
     assertNear(startHistory.x, PATH_TIME_START_X);
@@ -1154,6 +1188,43 @@ test("causal delay feedback canvas swatches match the iOS reader theme colors", 
       { id: "dark", label: "Dark", color: "#0f172a" },
     ],
   );
+});
+
+test("causal delay feedback legend lozenges use selected canvas and trace colors", () => {
+  const html = readCausalDelayFeedbackHtml();
+  assert.equal(html.includes("background: var(--causal-selected-canvas-color, #4b0082);"), true);
+  assert.match(html, /\.causal-legend-line\s*\{[^}]*height: 16px;/);
+  assert.equal(html.includes("background: var(--causal-positrino-color, #ff0000);"), true);
+  assert.equal(html.includes("background: var(--causal-electrino-color, #0000ff);"), true);
+
+  const colorSwatches = new FakeElement();
+  const appStyle = {};
+  const app = {
+    style: {
+      setProperty(name, value) {
+        appStyle[name] = value;
+      },
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  runtime.dom = { app, colorSwatches };
+  runtime.render = () => {};
+  runtime.populateCanvasSwatches();
+
+  assert.equal(appStyle["--causal-selected-canvas-color"], "#4b0082");
+  assert.equal(appStyle["--causal-positrino-color"], "rgba(255, 0, 0, 1)");
+  assert.equal(appStyle["--causal-electrino-color"], "rgba(0, 0, 255, 1)");
+  assert.equal(appStyle["--causal-positrino-wake-color"], "rgba(255, 150, 166, 1)");
+  assert.equal(appStyle["--causal-electrino-wake-color"], "rgba(150, 170, 255, 1)");
+
+  runtime.setCanvasColor("warm");
+
+  assert.equal(appStyle["--causal-selected-canvas-color"], "#f4ecd8");
+  assert.equal(appStyle["--causal-legend-text-color"], "rgba(14, 9, 24, 0.88)");
+  assert.equal(appStyle["--causal-legend-border-color"], "rgba(14, 9, 24, 0.24)");
 });
 
 test("causal delay feedback settings sliders use themed range styling", () => {
@@ -2461,6 +2532,7 @@ test("causal delay feedback page accepts central motion policy review URL option
         "&pairSegmentCount=5.8&pairAccelerationScale=0.22" +
         "&pairInteractionSignalSpeed=1234.5" +
         "&pairInteractionLaw=inverse_distance_pair_attraction_v1" +
+        "&solverFrameCount=18000.9" +
         "&pathConstraintBoundaryResidualTolerance=0.015" +
         "&pathConstraintPositionResidualTolerance=0.003" +
         "&pathConstraintGuidanceAccelerationTolerance=0.45" +
@@ -2476,6 +2548,7 @@ test("causal delay feedback page accepts central motion policy review URL option
   assert.equal(options.pairAccelerationScale, 0.22);
   assert.equal(options.pairInteractionSignalSpeed, 1234.5);
   assert.equal(options.pairInteractionLaw, "inverse_distance_pair_attraction_v1");
+  assert.equal(options.frameCount, 18000);
   assert.equal(options.pathConstraintBoundaryResidualTolerance, 0.015);
   assert.equal(options.pathConstraintPositionResidualTolerance, 0.003);
   assert.equal(options.pathConstraintGuidanceAccelerationTolerance, 0.45);
@@ -3707,6 +3780,52 @@ test("causal delay feedback path line release submits central replay constraints
   assert.equal(replayStatus.textContent, "solver bridge replay");
 });
 
+test("causal delay feedback path line release keeps the smooth released draft geometry", async () => {
+  const replayStatus = new FakeElement();
+  const adapter = {
+    id: CENTRAL_SOLVER_REPLAY_ADAPTER,
+    async createReplayAsync({ presetId }) {
+      const dataset = createMockCausalDelayReplayDataset(presetId);
+      dataset.paths.positrino = dataset.paths.positrino.map((point, index) => ({
+        ...point,
+        y: point.y + (index % 2 === 0 ? 44 : -44),
+      }));
+      dataset.frames = dataset.frames.map((frame, index) => ({
+        ...frame,
+        positrino: dataset.paths.positrino[index],
+      }));
+      return {
+        ...dataset,
+        datasetSource: CENTRAL_SOLVER_REPLAY_DATASET_SOURCE,
+        solverIntegrationPath: CENTRAL_SOLVER_REPLAY_ADAPTER,
+      };
+    },
+  };
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+    replayAdapter: adapter,
+    autoLoadReplay: false,
+  });
+  runtime.dom = { replayStatus };
+  const anchorIndex = 82;
+  const anchor = runtime.dataset.paths.positrino[anchorIndex];
+
+  runtime.applyPathLineDrag("positrino", anchor.t, { x: 26, y: -31 });
+  const releasedAnchor = { ...runtime.dataset.paths.positrino[anchorIndex] };
+  runtime.dragState = { type: "path-line", kind: "positrino", anchorT: anchor.t, didEdit: true };
+  await runtime.finishDrag();
+
+  assert.equal(runtime.dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
+  assert(runtime.dataset.solverAcceptedPaths);
+  assert.notEqual(runtime.dataset.solverAcceptedPaths.positrino[anchorIndex].y, releasedAnchor.y);
+  assertNear(runtime.dataset.paths.positrino[anchorIndex].x, releasedAnchor.x);
+  assertNear(runtime.dataset.paths.positrino[anchorIndex].y, releasedAnchor.y);
+  assertNear(runtime.dataset.frames[anchorIndex].positrino.x, releasedAnchor.x);
+  assertNear(runtime.dataset.frames[anchorIndex].positrino.y, releasedAnchor.y);
+  assert.equal(replayStatus.textContent, "solver bridge replay");
+});
+
 test("causal delay feedback retained path releases retry weak default boundary solves", async () => {
   const replayStatus = new FakeElement();
   const capturedCalls = [];
@@ -4197,7 +4316,7 @@ test("causal delay feedback arrow keys pause and step solver replay frames", () 
   assert.equal(prevented, true);
   assert.equal(runtime.isPlaying, false);
   assertNear(runtime.getCurrentReplayTime(), frameTimes[1]);
-  assert.equal(nowValue.textContent, `t=${frameTimes[1].toFixed(3).replace(/0+$/, "").replace(/\.$/, "")}`);
+  assert.equal(nowValue.textContent, `t=${formatTestCompactNumber(frameTimes[1])}`);
 
   prevented = false;
   runtime.handleKeyDown({

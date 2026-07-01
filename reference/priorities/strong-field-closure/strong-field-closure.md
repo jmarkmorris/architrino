@@ -514,7 +514,7 @@ Failure modes to retain:
 - [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [dark-sector](../dark-sector/dark-sector.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

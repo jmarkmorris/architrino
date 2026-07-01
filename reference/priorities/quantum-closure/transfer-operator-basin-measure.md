@@ -501,7 +501,7 @@ The theorem can promote into [quantum-summary](../../../content/markdown/aaa/qua
 - [algorithmic-resonance-and-pilot-wave](algorithmic-resonance-and-pilot-wave.md)
 - [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
 - [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)
 - [validation-gates](../validation-gates/validation-gates.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

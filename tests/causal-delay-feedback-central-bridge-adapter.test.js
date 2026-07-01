@@ -12,6 +12,7 @@ import {
   normalizeCausalDelayFeedbackBridgeReplay,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackCentralBridgeAdapter.js";
 import {
+  FRAME_COUNT,
   PATH_TIME_END_X,
   PATH_TIME_START_X,
   createMockCausalDelayReplayDataset,
@@ -590,6 +591,19 @@ test("causal delay bridge replay request declares the central bridge contract", 
   ]);
 });
 
+test("causal delay bridge replay request uses high-resolution default path sampling", () => {
+  const request = createCausalDelayFeedbackBridgeReplayRequest({
+    presetId: "accepted_tight_bright",
+  });
+
+  assert.equal(request.config.replay.frameCount, FRAME_COUNT);
+  assert.equal(request.config.frames.filter((frame) => frame.pathKey === 1).length, FRAME_COUNT);
+  assert.equal(request.config.frames.filter((frame) => frame.pathKey === 2).length, FRAME_COUNT);
+  assert.equal(request.config.replay.outputStride, 1);
+  assertNear(request.envelope.timeWindow.stepHint, 1 / (FRAME_COUNT - 1));
+  assertNear(request.envelope.timeResolutionHint, 1 / (FRAME_COUNT - 1));
+});
+
 test("causal delay bridge replay normalizer accepts central appPlayback motion frames", () => {
   const request = createCausalDelayFeedbackBridgeReplayRequest({
     presetId: "accepted_tight_bright",
@@ -612,7 +626,7 @@ test("causal delay bridge replay normalizer accepts central appPlayback motion f
   });
 
   assert.equal(dataset.runId, "causal-delay-bridge-motion-frame-proof");
-  assert.equal(dataset.frames.length, 180);
+  assert.equal(dataset.frames.length, FRAME_COUNT);
   assert.equal(dataset.paths.positrino[0].x, request.config.frames[0].position.x);
   assert.equal(
     dataset.paths.electrino.at(-1).x,
@@ -819,7 +833,8 @@ test("causal delay central bridge adapter submits retained path constraints afte
   );
 
   assert.equal(capturedPairRequest.config.pairInteractionRequest.pathConstraints.length, 12);
-  assert.equal(capturedPairRequest.config.pairInteractionRequest.maxFrames, 199);
+  assert(capturedPairRequest.config.pairInteractionRequest.maxFrames >= FRAME_COUNT);
+  assert(capturedPairRequest.config.pairInteractionRequest.step <= 1 / (FRAME_COUNT - 1));
   assert.equal(
     capturedPairRequest.config.pairInteractionRequest.pathConstraintBoundaryRelaxationIterationCount,
     12,
@@ -1494,7 +1509,7 @@ test("causal delay central bridge adapter normalizes appPlayback-shaped bridge r
   assert.equal(dataset.datasetSource, CENTRAL_SOLVER_REPLAY_DATASET_SOURCE);
   assert.equal(dataset.solverIntegrationPath, CENTRAL_SOLVER_REPLAY_ADAPTER);
   assert.equal(dataset.solverStatus.code, "ok");
-  assert.equal(dataset.frames.length, 180);
+  assert.equal(dataset.frames.length, FRAME_COUNT);
   assert.equal(dataset.wakeLinks.length, 10);
   assert.equal(dataset.history.electrino[1].depth, 2);
   assert.equal(dataset.pathConstraintPhysicalBoundarySolverStatus, "physical_boundary_solver_pending");

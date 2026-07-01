@@ -21,7 +21,7 @@ function clone(value) {
 function readAuditDoc() {
   return fs.readFileSync(
     new URL(
-      "../reference/priorities/solver/h39-solver-impact-audit.md",
+      "../reference/priorities/app-solver/h39-solver-impact-audit.md",
       import.meta.url
     ),
     "utf8"
@@ -53,7 +53,7 @@ test("h39 terminal graph remainder budget replay report validates the second sol
   );
   assert.equal(
     artifact.next_replay_gate,
-    "Keep provider-boundary replay classified as missing solver capability until the solver owns H39 provider-boundary theorem objects."
+    "Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status and use the executable retained-record preimage fixture as the fail-closed target for any future accepted `P_-` / `P_+` provider-object branch producer."
   );
 });
 
@@ -66,7 +66,7 @@ test("h39 provider-boundary replay remains missing-capability gated", () => {
   );
   assert.match(
     auditDoc,
-    /\| Next audit action \| Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status until the solver owns H39 provider-boundary theorem objects\. \|/
+    /\| Next audit action \| Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status and use the executable retained-record preimage fixture as the fail-closed target for any future accepted `P_-` \/ `P_\+` provider-object branch producer\. \|/
   );
 });
 

@@ -38,4 +38,4 @@ The lane is priority-only. It does not change the claim level of any $\mathbb{A}
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [source-mining](../source-mining/source-mining.md)
 - [videos](../videos/videos.md)
-- [new-apps](../new-apps/brainstorming.md)
+- [app-ideas](../app-ideas/app-ideas.md)

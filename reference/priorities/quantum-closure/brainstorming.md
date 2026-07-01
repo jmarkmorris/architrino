@@ -1,0 +1,31 @@
+# Quantum Closure Brainstorming
+
+This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
+
+## Routing Rules
+
+- Keep loose ideas here until they have a concrete promotion target, claim level, and owner.
+- Promote material into the control file only when it becomes a queue item, proof route, app task, or document/app destination.
+- Keep speculative notes claim-limited and identify the existing or new document or app they may support.
+
+## Side Questions To Preserve
+
+- Keep alive the question of whether the missing neutrino chirality is tied to converting a pro-Noether braid.
+- Keep alive, but do not canonize, the ER=EPR-adjacent provenance-compliance question. The safe version is not that entanglement makes spacetime or that wormholes are substrate bridges. The safe version asks whether dense pair-provenance statistics can have a second local coarse-graining into Noether sea compliance, smoothness, or isotropy variables. Use $\Pi_{AB}$ for pair provenance, not bare $\lambda$, and test a local statistic of the form
+  $$
+  C_{\Pi}^{ab}(\mathbf{x},t)
+  =
+  \int
+  \Pi^{ab}(\Pi_{AB};\mathbf{x},t)\,
+  \rho_{\text{pair}}(\Pi_{AB})\,d\Pi_{AB}.
+  $$
+  This may only enter a medium-response or effective-metric map if it is built from locally available common-cause provenance and satisfies the no-signaling guardrail
+  $$
+  \frac{\delta C_{\Pi}^{ab}(\mathbf{x}_B,t)}
+  {\delta \hat{\mathbf{m}}_A(t_A)}
+  =
+  0
+  \quad
+  \text{for } t-t_A < \frac{\|\mathbf{x}_B-\mathbf{x}_A\|}{c_f}.
+  $$
+  If the construction requires distant setting dependence, superluminal causal-wake transfer, or treating information as ontology, reject it or leave it as a failed analogy. If it survives, route the quantum side through `pair_provenance_measure`, the black-hole / entropy side through [strong-field-closure](../strong-field-closure/strong-field-closure.md), and the compliance side through [mass-map medium-response probe](../braid-mass-response-map/a0-medium-response-tensor-probe.md).

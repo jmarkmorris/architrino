@@ -42,7 +42,7 @@ const BASE_PRESETS = Object.freeze([
 const BORG_PRESET_CALIBRATION_SWEEP_V1 = JSON.parse(
   readFileSync(
     new URL(
-      "../reference/priorities/borg-app/borg-preset-calibration-sweep.v1.json",
+      "../reference/priorities/app-borg/borg-preset-calibration-sweep.v1.json",
       import.meta.url,
     ),
     "utf8",
@@ -51,7 +51,7 @@ const BORG_PRESET_CALIBRATION_SWEEP_V1 = JSON.parse(
 const BORG_RELEASE_BUDGET_MANIFEST_JSON_V1 = JSON.parse(
   readFileSync(
     new URL(
-      "../reference/priorities/borg-app/borg-release-budget-manifest.v1.json",
+      "../reference/priorities/app-borg/borg-release-budget-manifest.v1.json",
       import.meta.url,
     ),
     "utf8",

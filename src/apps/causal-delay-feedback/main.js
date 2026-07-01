@@ -132,6 +132,12 @@ export function createCausalDelayFeedbackInitialReplayRequestOptions(windowLike 
   if (pairInteractionLaw) {
     requestOptions.pairInteractionLaw = pairInteractionLaw;
   }
+  const frameCount =
+    getInitialPositiveQueryNumber(windowLike, "frameCount") ??
+    getInitialPositiveQueryNumber(windowLike, "solverFrameCount");
+  if (frameCount != null) {
+    requestOptions.frameCount = Math.max(2, Math.floor(frameCount));
+  }
   const pathConstraintBoundaryResidualTolerance =
     getInitialNonnegativeQueryNumber(windowLike, "pathConstraintBoundaryResidualTolerance") ??
     getInitialNonnegativeQueryNumber(windowLike, "boundaryResidualTolerance");

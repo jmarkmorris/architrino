@@ -803,7 +803,7 @@ These rows are benchmark contracts. They do not say that Planck, DESI, SH0ES, Pa
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [strong-field brainstorming](../strong-field-closure/brainstorming.md)
 - [dark-sector](../dark-sector/dark-sector.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

@@ -100,7 +100,7 @@ Here $\Delta\phi_{ab}$ is the retained phase offset, $n_a\omega_a-n_b\omega_b$ i
 ## Related Priorities
 
 - [phenomenological-heuristics](phenomenological-heuristics.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 

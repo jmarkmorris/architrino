@@ -86,6 +86,74 @@ The useful negative result is that the bare partner-wake release does not reveal
 
 Next interpretation. This does not reject the ideal-braid hypothesis, because the known stabilizing candidates are missing from the toy: same-source self-hit, history-aware action accounting, angular-momentum-bearing initial conditions, shielding, and Noether sea response. It does narrow the next target: a serious run should promote the same seed into a retained-history solver row with self-hits enabled, then test whether any same-level invariant survives after the first near pass instead of only before it.
 
+### Symmetry Audit
+
+A dense rerun with `sampleEvery=1` over all `1501` released frames verified that the common-sphere observation is not a sparse-sampling artifact. The maximum residuals in the saved trajectory were:
+
+| Invariant residual | Maximum value |
+| --- | ---: |
+| Center norm | `5.612455273900489e-16` |
+| Radius standard deviation | `9.06493303673679e-16` |
+| Speed standard deviation | `6.2803698347351e-16` |
+| Opposite-pair antipodal position error | `1.4130832128153976e-14` |
+| Opposite-pair antipodal velocity error | `1.0311336425595837e-14` |
+| Positive-triangle permutation position error | `1.021405182655144e-14` |
+| Positive-triangle permutation velocity error | `1.0262809400873093e-14` |
+
+This supports a precise analytic target. For a symmetric held history, the trajectory should remain on the invariant manifold
+
+$$
+P_x(t)=(a(t),b(t),b(t)),
+\qquad
+P_y(t)=(b(t),a(t),b(t)),
+\qquad
+P_z(t)=(b(t),b(t),a(t)),
+$$
+
+with
+
+$$
+E_x(t)=-P_x(t),
+\qquad
+E_y(t)=-P_y(t),
+\qquad
+E_z(t)=-P_z(t).
+$$
+
+On this manifold the dynamic center is zero, opposite coordinate partners are antipodal, and all six architrinos lie on the same instantaneous sphere:
+
+$$
+|P_x(t)|^2=|P_y(t)|^2=|P_z(t)|^2=|E_x(t)|^2=|E_y(t)|^2=|E_z(t)|^2=a(t)^2+2b(t)^2.
+$$
+
+This is not yet a fixed-radius or stable-braid claim. The radius changes in the toy run. The point is stronger and narrower: the all-pairs causal wake law appears equivariant under coordinate permutations and global charge-conjugate inversion, so the held seed should remain in this two-coordinate symmetry manifold as long as the solver sums the symmetric retained-root set.
+
+Analytic proof target. Prove that any retained-history force law of the master-equation form, with all causal roots included and no asymmetric root pruning, maps the above manifold into accelerations of the same form:
+
+$$
+\ddot P_x(t)=(A(t),B(t),B(t)),
+\qquad
+\ddot P_y(t)=(B(t),A(t),B(t)),
+\qquad
+\ddot P_z(t)=(B(t),B(t),A(t)),
+$$
+
+with $\ddot E_i(t)=-\ddot P_i(t)$. Standard uniqueness for the declared delay equation would then make the common-sphere, center-zero, antipodal-pair invariant exact for the perfect seed.
+
+### Euclidean Void Versus Noether Sea
+
+The held-release result separates two claims that should not be conflated.
+
+First, there is a Euclidean-void symmetry claim. The perfect six-point seed appears to remain on the center-zero, common-sphere, antipodal-pair invariant manifold under the bare partner-wake toy. This may be analytically provable from coordinate-permutation symmetry plus charge-conjugate inversion. If proved, it would be a structural fact about the symmetric six-body configuration, not yet a stable braid.
+
+Second, there is a stability claim. The same run does not settle to a stable radius and does not complete a bounded breather cycle. It contracts once and then expands outward. That suggests the Euclidean-void version may be mathematically elegant but dynamically unstable.
+
+This is favorable for the larger Noether braid architecture rather than damaging to it. A Noether braid is not expected to be only a Euclidean-void all-pairs partner-wake problem. The missing stabilizing ingredients are precisely the ones the architecture already treats as central: same-source self-hit, retained wake energy, history-aware action accounting, shielding, angular-momentum accommodation, and Noether sea response. The Noether sea may be the medium-response layer that turns an exact symmetric scatter channel into a bounded basin, breather, or stable-radius branch.
+
+ELI5 summary. In empty space, the six architrinos can keep a beautifully fair dance on one changing sphere, but the sphere keeps growing after the first squeeze. The Noether sea may be the springy surrounding medium that supplies the return response needed for the dance to repeat or settle.
+
+Proof route. Prove the Euclidean-void invariant first, then test which additional retained-history or Noether sea response term changes the reduced radius equation from escape to bounded return. The next useful diagnostic is not just whether the common sphere survives; it is whether the reduced radial motion has a turning point after the first expansion, a stable fixed radius, or a bounded limit cycle.
+
 ## Ideal Braid Hypothesis
 
 The ideal-braid hypothesis generalizes the seed scenario from a coordinate release to a branch candidate:

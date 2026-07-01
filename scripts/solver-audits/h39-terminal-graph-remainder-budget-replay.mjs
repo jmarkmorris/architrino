@@ -22,7 +22,7 @@ const SOURCE_SCRIPT =
   "scripts/neutral-braid/theta3minus-fold-pair-first-y-gd-h39-recurrence-refined-subcover-diagnostic.mjs";
 const SOURCE_TEST =
   "tests/neutral-braid-theta3minus-fold-pair-first-y-gd-shared-domain-evaluator.test.js";
-const AUDIT_DOC = "reference/priorities/solver/h39-solver-impact-audit.md";
+const AUDIT_DOC = "reference/priorities/app-solver/h39-solver-impact-audit.md";
 const UNIT_CONVENTION = "dimensionless-h39-h38-expression-n38-terminal-graph";
 const SCALE_NORMALIZATION =
   "h39 expression-level N38 terminal graph remainder budget chart";
@@ -109,7 +109,7 @@ export function buildH39TerminalGraphRemainderBudgetReplayReport(options = {}) {
       "The terminal graph replay sharpens the producer interval overbudget diagnosis, but it does not supply the missing same-domain branch-bearing provider object before aggregate P.",
     next_replay_candidate: "h39_affine_endpoint_provider_boundary_replay",
     next_replay_gate:
-      "Keep provider-boundary replay classified as missing solver capability until the solver owns H39 provider-boundary theorem objects.",
+      "Hold `h39_affine_endpoint_provider_boundary_replay` at missing-capability status and use the executable retained-record preimage fixture as the fail-closed target for any future accepted `P_-` / `P_+` provider-object branch producer.",
   };
 }
 

@@ -199,6 +199,54 @@ test("neutral braid finite-mode artifact records fail-closed native replay sourc
   ]);
   assert.equal(boundary.first_missing_source_producing_input, "finite_mode_curve_path_segment_rows");
   assert.equal(boundary.first_missing_field, "source_path_segment");
+  assert.equal(boundary.source_object_request_status, "source_acquisition_blocked_internal_producer_owner");
+  assert.equal(
+    boundary.source_object_request.schema,
+    "bounded-speed-factor-finite-mode-curve-path-clock-map-source-object-request/v1"
+  );
+  assert.equal(
+    boundary.source_object_request.expected_source_object,
+    "bounded-speed-factor-finite-mode-solver-artifact-with-curve-path-clock-map-rows"
+  );
+  assert.equal(boundary.source_object_request.requested_row_family, "finite_mode_curve_path_segment_rows");
+  assert.equal(boundary.source_object_request.first_missing_field, "source_path_segment");
+  assert.equal(boundary.source_object_request.expected_row_count, 30);
+  assert.equal(boundary.source_object_request.rows.length, 30);
+  assert.equal(
+    boundary.source_object_request.rows.every((row) => row.chart_run_id === artifact.chart_run.run_id),
+    true
+  );
+  assert.equal(
+    boundary.source_object_request.rows.every((row) => row.row_family === "finite_mode_curve_path_segment_rows"),
+    true
+  );
+  assert.deepEqual(boundary.source_object_request.missing_per_row_fields, boundary.missing_source_fields);
+  assert.equal(
+    boundary.source_object_request.rows.every(
+      (row) =>
+        row.source_path_segment === null &&
+        row.receiver_path_segment === null &&
+        row.receiver_clock_map_values === null &&
+        row.source_clock_map_values === null &&
+        row.receiver_inverse_clock_map_values === null &&
+        row.source_inverse_clock_map_values === null &&
+        row.hitTime === null &&
+        row.signalSpeed === null &&
+        row.rootTolerance === null &&
+        row.source_provenance.retained_source_binding === null &&
+        row.source_provenance.provider_provenance === null &&
+        row.emits_request_grade_native_replay_source_row === false &&
+        row.accepted_same_run_source_row === null
+    ),
+    true
+  );
+  assert.deepEqual(boundary.source_object_request.authorization, {
+    accepted_same_run_native_replay_source_rows: false,
+    bounded_speed_delay_brackets: false,
+    accepted_active_roots: false,
+    bounded_speed_live_ledger: false,
+    same_ledger_action_measure_row: false,
+  });
   assert.deepEqual(boundary.emitted_request_grade_rows, []);
   assert.equal(boundary.accepted_same_run_native_replay_source_rows, null);
   assert.equal(boundary.certifies_native_causal_root_replay, false);

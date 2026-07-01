@@ -27,7 +27,7 @@ export const CENTRAL_SOLVER_DELAYED_HITS_RUN_KIND = "delayedHits";
 
 const DEFAULT_MEMORY_BUDGET_BYTES = 128 * 1024 * 1024;
 const DEFAULT_HISTORY_DEPTH = 4;
-const DEFAULT_FRAME_COUNT = 180;
+const DEFAULT_FRAME_COUNT = 1800;
 const TIME_EPSILON = 1e-6;
 const RECEIVER_NORMAL_UNAVAILABLE_STATUS_CODE = 14;
 const RECEIVER_NORMAL_TOLERANCE = 1e-9;
@@ -77,7 +77,7 @@ const SPACE_AXIS_TOP_Y = DESIGN_HEIGHT * 0.2;
 const SPACE_AXIS_BOTTOM_Y = DESIGN_HEIGHT * 0.8;
 const RETAINED_POINT_DRAG_PREVIEW_REASON = "retained_point_drag_preview";
 const PATH_LINE_DRAG_PREVIEW_REASON = "path_line_drag_preview";
-const PATH_LINE_CONSTRAINT_SAMPLE_COUNT_PER_PATH = 36;
+const PATH_LINE_CONSTRAINT_SAMPLE_COUNT_PER_PATH = 360;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const PATH_KEYS_BY_KIND = Object.freeze({ positrino: 1, electrino: 2 });
 const KIND_BY_PATH_KEY = Object.freeze(Object.fromEntries(
@@ -2753,16 +2753,19 @@ function createDefaultReplayModel() {
 }
 
 function createDefaultReplayEnvelope({ input, memoryBudgetBytes }) {
+  const runDuration = normalizePositiveNumber(input.runDuration, DEFAULT_RUN_DURATION, "runDuration");
+  const frameCount = normalizePositiveInteger(input.frameCount, DEFAULT_FRAME_COUNT, "frameCount");
+  const timeStepHint = runDuration / Math.max(1, frameCount - 1);
   return {
     entityCount: 16,
     assemblyCount: 1,
     timeWindow: {
       start: 0,
-      end: normalizePositiveNumber(input.runDuration, DEFAULT_RUN_DURATION, "runDuration"),
-      stepHint: 0.01,
+      end: runDuration,
+      stepHint: timeStepHint,
       units: "solver-time",
     },
-    timeResolutionHint: 0.01,
+    timeResolutionHint: timeStepHint,
     interactionPolicy: "neighbor-pruned",
     expectedBranchComplexity: "low",
     outputDetail: "playback",

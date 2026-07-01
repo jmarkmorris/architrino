@@ -60,9 +60,15 @@ const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
 const PATH_LINE_FAIRING_CONTROL_STRIDE = 12;
 const PATH_LINE_FAIRING_SHOULDER_FRACTION = 0.46;
 const PATH_LINE_FAIRING_TANGENT_SCALE = 0.62;
+const CENTRIPETAL_CATMULL_ROM_ALPHA = 0.5;
 const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
 const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
 const ELECTRINO_LABEL = Object.freeze({ r: 126, g: 219, b: 255, a: 1 });
+const LIGHT_CANVAS_COLOR_IDS = new Set(["light", "warm"]);
+const LEGEND_TEXT_ON_DARK_CANVAS = "rgba(246, 247, 255, 0.9)";
+const LEGEND_TEXT_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.88)";
+const LEGEND_BORDER_ON_DARK_CANVAS = "rgba(224, 207, 255, 0.34)";
+const LEGEND_BORDER_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.24)";
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
@@ -546,6 +552,7 @@ class CausalDelayFeedbackRuntime {
           return this.dataset;
         }
       }
+      this.preserveReleasedDraftPathGeometry(dataset, requestOptions?.replayDataset);
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -628,6 +635,46 @@ class CausalDelayFeedbackRuntime {
 
   usesPathConstraintDraft(draftPreview) {
     return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+  }
+
+  preserveReleasedDraftPathGeometry(dataset, draftDataset) {
+    if (!dataset || !draftDataset || !this.usesPathConstraintDraft(draftDataset?.draftPreview)) {
+      return;
+    }
+    if (!dataset.paths || !draftDataset.paths) {
+      return;
+    }
+    dataset.solverAcceptedPaths = cloneJson(dataset.paths);
+    dataset.history = dataset.history ?? {};
+    ARCHITRINO_KINDS.forEach((kind) => {
+      const draftPath = draftDataset.paths?.[kind];
+      if (Array.isArray(draftPath) && draftPath.length >= 2) {
+        dataset.paths[kind] = draftPath.map((point) => ({ ...point }));
+      }
+      const draftHistory = draftDataset.history?.[kind];
+      if (Array.isArray(draftHistory) && draftHistory.length > 0) {
+        dataset.history[kind] = draftHistory.map((point) => ({ ...point }));
+      }
+    });
+    this.syncDatasetFramesToPaths(dataset);
+  }
+
+  syncDatasetFramesToPaths(dataset) {
+    if (!Array.isArray(dataset?.frames) || !dataset?.paths) {
+      return;
+    }
+    dataset.frames.forEach((frame) => {
+      const frameTime = Number(frame?.t);
+      ARCHITRINO_KINDS.forEach((kind) => {
+        const path = dataset.paths?.[kind];
+        if (!Array.isArray(path) || path.length === 0) {
+          return;
+        }
+        const sampleT = Number.isFinite(frameTime) ? frameTime : Number(frame?.[kind]?.t);
+        const point = this.samplePathPoint(path, sampleT);
+        frame[kind] = point;
+      });
+    });
   }
 
   createAdaptivePathConstraintBoundaryRequestOptions(dataset, requestOptions) {
@@ -1557,12 +1604,34 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateCanvasSwatchSelection() {
+    this.updateCanvasThemeVariables();
     if (!this.dom?.colorSwatches) {
       return;
     }
     Array.from(this.dom.colorSwatches.children).forEach((button) => {
       button.classList.toggle("is-active", button.dataset.colorId === this.canvasColorId);
     });
+  }
+
+  updateCanvasThemeVariables() {
+    if (!this.dom?.app?.style) {
+      return;
+    }
+    const canvasColor = getCanvasColorById(this.canvasColorId);
+    const usesLightCanvas = LIGHT_CANVAS_COLOR_IDS.has(canvasColor.id);
+    this.dom.app.style.setProperty("--causal-selected-canvas-color", canvasColor.color);
+    this.dom.app.style.setProperty(
+      "--causal-legend-text-color",
+      usesLightCanvas ? LEGEND_TEXT_ON_LIGHT_CANVAS : LEGEND_TEXT_ON_DARK_CANVAS,
+    );
+    this.dom.app.style.setProperty(
+      "--causal-legend-border-color",
+      usesLightCanvas ? LEGEND_BORDER_ON_LIGHT_CANVAS : LEGEND_BORDER_ON_DARK_CANVAS,
+    );
+    this.dom.app.style.setProperty("--causal-positrino-color", colorToCss(POSITRINO));
+    this.dom.app.style.setProperty("--causal-electrino-color", colorToCss(ELECTRINO));
+    this.dom.app.style.setProperty("--causal-positrino-wake-color", colorToCss(POSITRINO_WAKE));
+    this.dom.app.style.setProperty("--causal-electrino-wake-color", colorToCss(ELECTRINO_WAKE));
   }
 
   updateSpeedControls() {
@@ -2534,11 +2603,12 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawSmoothLine(ctx, points, color, width) {
-    if (points.length < 2) {
+    const splinePoints = this.getDrawableSplinePoints(points);
+    if (splinePoints.length < 2) {
       return;
     }
-    if (points.length === 2 || typeof ctx.quadraticCurveTo !== "function") {
-      this.drawLine(ctx, points, color, width);
+    if (splinePoints.length === 2 || typeof ctx.bezierCurveTo !== "function") {
+      this.drawLine(ctx, splinePoints, color, width);
       return;
     }
     ctx.save();
@@ -2547,21 +2617,134 @@ class CausalDelayFeedbackRuntime {
     ctx.strokeStyle = colorToCss(color);
     ctx.lineWidth = Math.max(1, width * this.viewport.scale);
     ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let index = 1; index < points.length - 1; index += 1) {
-      const control = points[index];
-      const next = points[index + 1];
-      const midpoint = {
-        x: (control.x + next.x) * 0.5,
-        y: (control.y + next.y) * 0.5,
-      };
-      ctx.quadraticCurveTo(control.x, control.y, midpoint.x, midpoint.y);
+    ctx.moveTo(splinePoints[0].x, splinePoints[0].y);
+    for (let index = 0; index < splinePoints.length - 1; index += 1) {
+      const segment = this.getCentripetalCatmullRomBezierSegment(splinePoints, index);
+      if (!segment) {
+        continue;
+      }
+      ctx.bezierCurveTo(
+        segment.controlStart.x,
+        segment.controlStart.y,
+        segment.controlEnd.x,
+        segment.controlEnd.y,
+        segment.end.x,
+        segment.end.y,
+      );
     }
-    const penultimate = points[points.length - 2];
-    const last = points.at(-1);
-    ctx.quadraticCurveTo(penultimate.x, penultimate.y, last.x, last.y);
     ctx.stroke();
     ctx.restore();
+  }
+
+  getDrawableSplinePoints(points) {
+    if (!Array.isArray(points)) {
+      return [];
+    }
+    const drawablePoints = [];
+    points.forEach((point) => {
+      const x = Number(point?.x);
+      const y = Number(point?.y);
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        return;
+      }
+      const nextPoint = { x, y };
+      const previous = drawablePoints.at(-1);
+      if (previous && getDistance(previous, nextPoint) <= TIME_EPSILON) {
+        return;
+      }
+      drawablePoints.push(nextPoint);
+    });
+    return drawablePoints;
+  }
+
+  getCentripetalCatmullRomBezierSegment(points, index) {
+    const p0 = this.getCatmullRomSupportPoint(points, index - 1);
+    const p1 = points[index];
+    const p2 = points[index + 1];
+    const p3 = this.getCatmullRomSupportPoint(points, index + 2);
+    if (!p0 || !p1 || !p2 || !p3) {
+      return null;
+    }
+
+    const t0 = 0;
+    const t1 = t0 + this.getCentripetalCatmullRomParameterDistance(p0, p1);
+    const t2 = t1 + this.getCentripetalCatmullRomParameterDistance(p1, p2);
+    const t3 = t2 + this.getCentripetalCatmullRomParameterDistance(p2, p3);
+    const segmentSpan = t2 - t1;
+    if (!Number.isFinite(segmentSpan) || segmentSpan <= TIME_EPSILON) {
+      return null;
+    }
+
+    const tangentStart = this.getCentripetalCatmullRomTangent(p0, p1, p2, t0, t1, t2, segmentSpan);
+    const tangentEnd = this.getCentripetalCatmullRomTangent(p1, p2, p3, t1, t2, t3, segmentSpan);
+    return {
+      controlStart: {
+        x: p1.x + tangentStart.x / 3,
+        y: p1.y + tangentStart.y / 3,
+      },
+      controlEnd: {
+        x: p2.x - tangentEnd.x / 3,
+        y: p2.y - tangentEnd.y / 3,
+      },
+      end: p2,
+    };
+  }
+
+  getCatmullRomSupportPoint(points, index) {
+    if (index >= 0 && index < points.length) {
+      return points[index];
+    }
+    if (index < 0 && points.length >= 2) {
+      const first = points[0];
+      const second = points[1];
+      return {
+        x: first.x + (first.x - second.x),
+        y: first.y + (first.y - second.y),
+      };
+    }
+    if (index >= points.length && points.length >= 2) {
+      const last = points.at(-1);
+      const previous = points[points.length - 2];
+      return {
+        x: last.x + (last.x - previous.x),
+        y: last.y + (last.y - previous.y),
+      };
+    }
+    return null;
+  }
+
+  getCentripetalCatmullRomParameterDistance(left, right) {
+    return Math.pow(Math.max(getDistance(left, right), TIME_EPSILON), CENTRIPETAL_CATMULL_ROM_ALPHA);
+  }
+
+  getCentripetalCatmullRomTangent(left, center, right, leftT, centerT, rightT, segmentSpan) {
+    const leftSpan = centerT - leftT;
+    const rightSpan = rightT - centerT;
+    const fullSpan = rightT - leftT;
+    if (
+      leftSpan <= TIME_EPSILON ||
+      rightSpan <= TIME_EPSILON ||
+      fullSpan <= TIME_EPSILON ||
+      segmentSpan <= TIME_EPSILON
+    ) {
+      return { x: 0, y: 0 };
+    }
+    return {
+      x:
+        segmentSpan *
+        (
+          (center.x - left.x) / leftSpan -
+          (right.x - left.x) / fullSpan +
+          (right.x - center.x) / rightSpan
+        ),
+      y:
+        segmentSpan *
+        (
+          (center.y - left.y) / leftSpan -
+          (right.y - left.y) / fullSpan +
+          (right.y - center.y) / rightSpan
+        ),
+    };
   }
 
   drawCircle(ctx, point, radius, fill, outline = null, outlineWidth = 1) {

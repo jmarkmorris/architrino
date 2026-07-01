@@ -334,7 +334,7 @@ TOPICS = [
             "content/markdown/aaa/quantum",
             "content/markdown/aaa/dynamics",
             "reference/priorities/quantum-closure",
-            "reference/priorities/photon-app",
+            "reference/priorities/app-photon",
         ],
         "claim_bucket": "effective summary",
         "priority": 8,
@@ -516,7 +516,7 @@ TOPICS = [
         "destinations": [
             "reference/priorities/source-mining",
             "reference/priorities/future-physics-cosmology",
-            "reference/priorities/simulations",
+            "reference/priorities/app-simulation",
         ],
         "claim_bucket": "speculation",
         "priority": 3,

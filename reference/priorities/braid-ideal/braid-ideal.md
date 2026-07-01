@@ -11,11 +11,13 @@
 
 ## Task Queue
 
-1. `common_level_branch_definition` - Define the same-level branch constraints for six Noether braid architrinos without assuming circular orbits. Status: `active`. Depends on: none.
-2. `self_hit_held_release_solver_row` - Promote the held-release seed from the priority-only partner-wake toy into a retained-history solver row with same-source self-hits enabled. Status: `next`. Depends on: `common_level_branch_definition`.
-3. `translating_ellipsoid_family` - Generalize the rest-level support into a translating ellipsoid family with declared shape, drift, and retained-row variables. Status: `pending`. Depends on: `common_level_branch_definition`.
-4. `h_basin_atlas` - Search whether stable basin families can appear at every $h$-scale action level and identify the first solver or proof target. Status: `pending`. Depends on: `common_level_branch_definition`.
-5. `prior_material_disposition` - Compare this lane against the earlier equal-frequency, shell-braid rearchitecture, and same-level scaling packets so useful material is mined without promoting old overclaims. Status: `pending`. Depends on: `common_level_branch_definition`.
+1. `six_point_symmetry_invariant_lemma` - Prove that the held six-point seed remains on the center-zero, common-sphere, antipodal-pair invariant manifold under symmetric retained-root dynamics. Status: `active`. Depends on: none.
+2. `common_level_branch_definition` - Define the same-level branch constraints for six Noether braid architrinos without assuming circular orbits. Status: `next`. Depends on: `six_point_symmetry_invariant_lemma`.
+3. `self_hit_held_release_solver_row` - Promote the held-release seed from the priority-only partner-wake toy into a retained-history solver row with same-source self-hits enabled. Status: `next`. Depends on: `six_point_symmetry_invariant_lemma`.
+4. `noether_sea_stabilization_term` - Test which retained-history or Noether sea response term changes the reduced common-sphere radius from Euclidean-void escape into bounded return, breather behavior, or stable-radius settling. Status: `pending`. Depends on: `self_hit_held_release_solver_row`.
+5. `translating_ellipsoid_family` - Generalize the rest-level support into a translating ellipsoid family with declared shape, drift, and retained-row variables. Status: `pending`. Depends on: `common_level_branch_definition`.
+6. `h_basin_atlas` - Search whether stable basin families can appear at every $h$-scale action level and identify the first solver or proof target. Status: `pending`. Depends on: `common_level_branch_definition`.
+7. `prior_material_disposition` - Compare this lane against the earlier equal-frequency, shell-braid rearchitecture, and same-level scaling packets so useful material is mined without promoting old overclaims. Status: `pending`. Depends on: `common_level_branch_definition`.
 
 ## Scope
 
@@ -43,8 +45,10 @@ This area has prior relatives, but none of them is the same workstream:
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
+| `six_point_symmetry_invariant_lemma` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) or [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md) | The proof shows that coordinate permutations plus charge-conjugate inversion force the perfect held seed onto the common-sphere, center-zero, antipodal-pair invariant manifold for any symmetric retained-root force law. |
 | `common_level_branch_definition` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) or [noether-braid](../../../content/markdown/aaa/noether-braid/noether-braid.md) | The same-level branch state is defined with source/receiver path history, causal roots, wake rows, action/energy rows, angular-momentum rows, and stability rows on one retained row set. |
 | `self_hit_held_release_solver_row` | [brainstorming.md](brainstorming.md) | [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) or [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | The held-release seed is rerun with same-source self-hits, retained history, root-ledger rows, and a declared same-level failure or survival diagnostic after the first near pass. |
+| `noether_sea_stabilization_term` | [brainstorming.md](brainstorming.md) | [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), or [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md) | The reduced common-sphere radial equation identifies whether a declared self-hit, wake-energy, shielding, angular-momentum, or Noether sea response term supplies a second turning point, stable fixed radius, or bounded limit cycle. |
 | `translating_ellipsoid_family` | [brainstorming.md](brainstorming.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), or [nested-shell-braid-dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md) | The ellipsoid deformation is emitted by the same retained branch rather than assigned as a display envelope. |
 | `h_basin_atlas` | [brainstorming.md](brainstorming.md) | [energy](../../../content/markdown/aaa/dynamics/energy.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), or [dyadic-resonance-lock](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md) | A basin family has a declared action readout, branch frequency/readout convention, stability margin, and failure mode; $h$ enters as an action increment, with any energy increment reported through the branch readout. |
 
@@ -53,8 +57,8 @@ This area has prior relatives, but none of them is the same workstream:
 - [braid-retained-branch-closure](../braid-retained-branch-closure/braid-retained-branch-closure.md)
 - [braid-angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
 - [braid-dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
-- [simulations](../simulations/simulations.md)
-- [solver](../solver/solver.md)
+- [app-simulation](../app-simulation/app-simulation.md)
+- [app-solver](../app-solver/solver.md)
 
 ## Related AAA Notes
 

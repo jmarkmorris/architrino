@@ -560,7 +560,7 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
   assert.equal(nestedProbe.rejection_codes.includes("nested_target_provenance"), true);
 
   const branchProviderReport = report.candidates.find(
-    (candidate) => candidate.path === "reference/priorities/solver/branch-provider-evidence-report.md"
+    (candidate) => candidate.path === "reference/priorities/app-solver/branch-provider-evidence-report.md"
   );
   assert.ok(branchProviderReport);
   assert.equal(branchProviderReport.candidate_kind, "branch_provider_boundary_report");
@@ -591,7 +591,7 @@ test("pressure-row accepted-source scout keeps current repo candidates fail-clos
   );
   assert.equal(
     report.failure_family_delta.provider_boundary_candidate.path,
-    "reference/priorities/solver/branch-provider-evidence-report.md"
+    "reference/priorities/app-solver/branch-provider-evidence-report.md"
   );
 
   const provenanceDepth = report.failure_family_delta.provenance_depth_readout;

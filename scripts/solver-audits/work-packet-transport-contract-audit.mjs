@@ -8,7 +8,7 @@ const scriptDir = path.dirname(fileURLToPath(import.meta.url));
 const defaultRootDir = path.resolve(scriptDir, "..", "..");
 
 export const CONTRACT_DOC_PATH =
-  "reference/priorities/solver/work-packet-transport-contract.md";
+  "reference/priorities/app-solver/work-packet-transport-contract.md";
 export const SCHEMA_PATH = "src/contracts/solver-app-bridge/v1/schema.json";
 export const BRIDGE_CONTRACT_PATH = "src/solver/app/SolverAppBridgeContract.d.ts";
 export const NATIVE_HEADER_PATH = "src/solver/include/architrino/solver/WorkPacket.hpp";

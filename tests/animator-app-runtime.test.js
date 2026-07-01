@@ -40,7 +40,7 @@ test("animator app runtime wires animator ui and controls through the app layer"
       animatorSceneId: "animator",
       animatorPreviewSceneId: "animator_preview",
       animatorPreviewScenePath: "__animator_preview__",
-      animatorDocsPath: "reference/priorities/animator/animator.md",
+      animatorDocsPath: "reference/priorities/app-animator/animator.md",
       levelConfigs: {},
       levels: new Map(),
       initAnimatorCanvas() {},
