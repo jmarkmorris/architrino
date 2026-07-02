@@ -71,11 +71,12 @@ test("fixed-frequency artifact computes flattening, support, common-level, and a
 });
 
 test("source oblate row binding and retained-root blocker are preserved", () => {
-  const oblateArtifact = buildOblateSpheroidReducedResidualRow();
+  const oblateArtifact = buildOblateSpheroidReducedResidualRow({ v_orb: 0.4 });
   const artifact = buildOblateSpheroidFixedFrequencyReturnMarginRow({ oblateArtifact });
 
   assert.equal(artifact.source_oblate_spheroid_reduced_residual_row.row_id, oblateArtifact.row_id);
   assert.equal(artifact.source_oblate_spheroid_reduced_residual_row.artifact_hash, oblateArtifact.artifact_hash);
+  assert.equal(artifact.theta.v_orb, 0.4);
   assert.equal(artifact.root_ledger_status.retained_root_ledger_ref, null);
   assert.equal(artifact.root_ledger_status.accepted_retained_root_ledger_ref, null);
   assert.equal(artifact.root_ledger_status.first_missing_field, FIRST_MISSING_FIELD);

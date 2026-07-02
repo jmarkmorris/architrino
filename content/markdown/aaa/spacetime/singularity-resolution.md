@@ -175,6 +175,8 @@ F_H(t)=0,\qquad
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
 
+Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,t)$ only in an isolated stationary chart.
+
 ## Maximal Curvature vs Planck Scale
 
 The **inner binary** (maximal curvature, self-hit regime) is a stabilization outcome of wake dynamics. The **middle binary always rides field speed** ($v=c_f$), with **scale and cadence retuning**; it serves as the **energy-storage fulcrum** for transfers across the nested shell braid.

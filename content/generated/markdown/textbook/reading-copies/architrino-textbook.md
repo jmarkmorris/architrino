@@ -48667,7 +48667,7 @@ Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noet
 
 The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
 
-Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the local ontology, that translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the same interface record used for exterior mass, redshift, and release-channel comparisons.
+Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant or anisotropic-fluid source becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the external comparison, that requires apparent-horizon rather than static-horizon discipline, local/cosmological backreaction, and a mass split such as Misner-Sharp accounting so the compact-object contribution is not silently confused with the cosmological density term. In the local ontology, the same lesson translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the interface record used for exterior mass, redshift, and release-channel comparisons.
 
 ##### Interior Dynamics and Recycling
 
@@ -49238,6 +49238,8 @@ F_H(t)=0,\qquad
 0<\left|\mathcal{B}_{H}(t_f)\right|<\infty
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
+
+Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,t)$ only in an isolated stationary chart.
 
 ##### Maximal Curvature vs Planck Scale
 
@@ -67242,6 +67244,37 @@ $$
 
 This sets a strong dynamical condition on outer-binary relaxation.
 
+##### Quasi-Equilibrium and Release Channels
+
+The phrase "stretched beyond equilibrium" should be read as a local Noether sea state claim, not as a claim that the Euclidean void is stretched. For a representative Noether braid, let $R_{\mathrm{outer}}(t)$ be the outer-binary radius and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]$ be the radius selected by the surrounding Noether sea state record. A useful first strain variable is
+
+$$
+\epsilon_O
+=
+\frac{
+R_{\mathrm{outer}}-R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}{
+R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}
+$$
+
+This strain is not enough by itself to define pressure. The outer-binary sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
+
+The dark-energy pressure target is therefore a two-part constitutive statement. First, the retained Noether sea record must define stored strain energy in the outer-binary sector. Second, it must define the release or transfer rate that turns that stored energy into medium relaxation:
+
+$$
+\dot u_{O,\mathrm{rel}}
+=
+-\mathcal R_O\!\left(
+\epsilon_O,
+\theta_{\mathrm{sea}},
+\mathcal A_{\downarrow}
+\right)
++\mathcal S_O
+$$
+
+Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored outer-binary stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
+
 ##### Medium Relaxation and the Expansion History
 
 The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether sea state. Schematically:
@@ -67904,6 +67937,28 @@ $$
 
 where $a$ is the effective scale factor and $K$ measures the strength of the proposed cosmological coupling. In the source material motivating this scaffold, the interesting regime is the one in which $K$ is appreciably positive rather than consistent with zero after ordinary astrophysical channels are removed.
 
+The density-scaling reason this comparison is interesting is simple. If the number density of the relevant black-hole population dilutes as $a^{-3}$ while the inferred mass of each recycling site scales as $a^K$, then the effective population contribution behaves as
+
+$$
+\rho_{\mathrm{BH,coup}}(a)
+\propto
+a^{-3}a^K
+=
+a^{K-3}
+$$
+
+Comparing this with the observer-level continuity relation $d\ln\rho/d\ln a=-3(1+w_{\mathrm{eff}})$ gives the effective comparison
+
+$$
+w_{\mathrm{BH,eff}}
+=
+-\frac{K}{3}
+$$
+
+Thus $K\approx3$ is the special case in which the population contribution looks approximately constant at the effective level. This is not a native proof of dark energy. It is a compact recovery target: a Noether sea source history that claims an SMBH-correlated channel must explain why the inferred population behaves near this scaling, or why the observational reconstruction only appears to do so.
+
+The DESI DR2 matter-conversion comparison sharpens the source-history side of the same target. In that model, the dark-energy source term is tied to the cosmic star-formation-rate density rather than treated as a free homogeneous function. Its useful local role is to make $\mathcal{S}_{\mathrm{BH}}$ testable against the BAO/CMB expansion fit, BBN-facing baryon accounting, local-distance-ladder covariance, and summed-neutrino-mass constraints. The same comparison also carries caveats: supernova additions, CMB lensing, perturbation treatment, and the chosen star-formation history can change the inference. Those caveats keep the packet as comparison pressure rather than a promoted mechanism.
+
 ##### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer nested shell braid layers to become macroscopically visible.
@@ -68168,6 +68223,8 @@ $$
 \left(\frac{\langle p/T\rangle_\theta}{3.15}\right)
 $$
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
+
+Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
 
 ##### Linear and Nonlinear Dark-Sector Split
 

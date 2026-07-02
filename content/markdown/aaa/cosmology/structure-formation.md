@@ -152,6 +152,8 @@ $$
 $$
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
+Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
+
 ### Linear and Nonlinear Dark-Sector Split
 
 Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,

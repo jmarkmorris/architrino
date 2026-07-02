@@ -789,6 +789,28 @@ $$
 
 where $a$ is the effective scale factor and $K$ measures the strength of the proposed cosmological coupling. In the source material motivating this scaffold, the interesting regime is the one in which $K$ is appreciably positive rather than consistent with zero after ordinary astrophysical channels are removed.
 
+The density-scaling reason this comparison is interesting is simple. If the number density of the relevant black-hole population dilutes as $a^{-3}$ while the inferred mass of each recycling site scales as $a^K$, then the effective population contribution behaves as
+
+$$
+\rho_{\mathrm{BH,coup}}(a)
+\propto
+a^{-3}a^K
+=
+a^{K-3}
+$$
+
+Comparing this with the observer-level continuity relation $d\ln\rho/d\ln a=-3(1+w_{\mathrm{eff}})$ gives the effective comparison
+
+$$
+w_{\mathrm{BH,eff}}
+=
+-\frac{K}{3}
+$$
+
+Thus $K\approx3$ is the special case in which the population contribution looks approximately constant at the effective level. This is not a native proof of dark energy. It is a compact recovery target: a Noether sea source history that claims an SMBH-correlated channel must explain why the inferred population behaves near this scaling, or why the observational reconstruction only appears to do so.
+
+The DESI DR2 matter-conversion comparison sharpens the source-history side of the same target. In that model, the dark-energy source term is tied to the cosmic star-formation-rate density rather than treated as a free homogeneous function. Its useful local role is to make $\mathcal{S}_{\mathrm{BH}}$ testable against the BAO/CMB expansion fit, BBN-facing baryon accounting, local-distance-ladder covariance, and summed-neutrino-mass constraints. The same comparison also carries caveats: supernova additions, CMB lensing, perturbation treatment, and the chosen star-formation history can change the inference. Those caveats keep the packet as comparison pressure rather than a promoted mechanism.
+
 ### How $\mathbb{A}\mathbb{A}\mathbb{A}$ Would Read Such a Signal
 
 From the standpoint of $\mathbb{A}\mathbb{A}\mathbb{A}$, a positive coupling of this kind would not be read as black holes creating energy from nothing or as the Euclidean void itself driving mass growth. The relevant interpretation would instead be constitutive: black holes are regions where the Noether sea is driven into the strongest known alignment, compression, and recycling regimes, so they are natural places for energy partition between inner, middle, and outer nested shell braid layers to become macroscopically visible.

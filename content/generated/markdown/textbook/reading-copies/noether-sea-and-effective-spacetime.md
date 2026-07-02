@@ -7442,7 +7442,7 @@ Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noet
 
 The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
 
-Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the local ontology, that translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the same interface record used for exterior mass, redshift, and release-channel comparisons.
+Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant or anisotropic-fluid source becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the external comparison, that requires apparent-horizon rather than static-horizon discipline, local/cosmological backreaction, and a mass split such as Misner-Sharp accounting so the compact-object contribution is not silently confused with the cosmological density term. In the local ontology, the same lesson translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the interface record used for exterior mass, redshift, and release-channel comparisons.
 
 #### Interior Dynamics and Recycling
 
@@ -8013,6 +8013,8 @@ F_H(t)=0,\qquad
 0<\left|\mathcal{B}_{H}(t_f)\right|<\infty
 $$
 with the same finite boundary data driving the transition across the whole interval. A result that proves regularity only for an isolated stationary exterior remains a comparison result until it supplies this dynamical continuation.
+
+Recent regular-horizon cosmological-coupling constructions sharpen this warning. They show that horizon regularity in an embedded compact-object model depends on handling the cosmological background, apparent-horizon condition, and local/cosmological mass split together; a nonsingular core or stationary exterior is not enough by itself. The native lesson is not to import an anisotropic-fluid metric as ontology. The lesson is that the continuation map above must carry embedding-state backreaction inside $\theta_{\partial\Omega,W}$ and must not evaluate $\mathcal{R}_H(\Omega,t)$ only in an isolated stationary chart.
 
 #### Maximal Curvature vs Planck Scale
 
