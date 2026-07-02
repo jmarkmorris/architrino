@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { providerEvidenceStatusForPath } from "../spacetime/noether-sea-density-compression-provider-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -144,7 +145,7 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
   const packet = input.packet ?? input;
   const rows = packet.rows ?? {};
   const rowChecks = Object.fromEntries(
-    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId])]),
+    REQUIRED_ROWS.map((rowId) => [rowId, evaluateAcceptedRow(rows[rowId], rowId)]),
   );
   const missingRows = REQUIRED_ROWS.filter((rowId) => !rowChecks[rowId].accepted);
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId);
@@ -275,6 +276,7 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
           status: normalizeStatus(rows[rowId]),
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
+          providerEvidence: rowChecks[rowId].providerEvidence ?? null,
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
@@ -883,7 +885,7 @@ function firstBlocker({
   return status;
 }
 
-function evaluateAcceptedRow(row) {
+function evaluateAcceptedRow(row, rowId = null) {
   if (!row || typeof row !== "object" || Array.isArray(row)) {
     return { accepted: false, reason: "missing_row" };
   }
@@ -894,9 +896,23 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
-  const sourceCheck = firstSourceReferenceCheck(row.sourcePath, row.source);
+  const sourcePath = row.sourcePath ?? row.source;
+  const sourceCheck = firstSourceReferenceCheck(sourcePath);
   if (!sourceCheck.accepted) {
     return { accepted: false, reason: sourceCheck.reason };
+  }
+  if (rowId === "theta_sea_rho_NS") {
+    const providerEvidence = providerEvidenceStatusForPath(sourcePath, {
+      repoRoot: REPO_ROOT,
+    });
+    if (!providerEvidence.accepted) {
+      return {
+        accepted: false,
+        reason: `theta_sea_rho_NS_provider_${providerEvidence.reason}`,
+        providerEvidence,
+      };
+    }
+    return { accepted: true, reason: "accepted", providerEvidence };
   }
   return { accepted: true, reason: "accepted" };
 }

@@ -18,6 +18,12 @@ export const RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_FIELD =
   "retained_solver_vector_witness_rows[*].same_record_provider_acceleration_vector_row";
 export const RETAINED_SOLVER_VECTOR_WITNESS_ROW_SCHEMA =
   "retained_solver_internal_tangent_authority_vector_witness_row.v0";
+export const RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA =
+  "retained_history_tangent_response_witness_evaluation.v0";
+export const RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA =
+  "minimum_norm_retained_history_gain_witness_evaluation.v0";
+export const RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA =
+  "same_record_minimum_norm_retained_history_gain_witness_row.v0";
 
 const EPSILON = 1e-12;
 const DEFAULT_VECTOR_TOLERANCE = 1e-9;
@@ -140,6 +146,18 @@ function vectorWitnessMissingField(name) {
   return `least_norm_retained_vector_provider_witness.${name}`;
 }
 
+function retainedHistoryResponseMissingField(name) {
+  return `retained_history_tangent_response_witness.${name}`;
+}
+
+function retainedHistoryMinimumGainMissingField(name) {
+  return `minimum_norm_retained_history_gain_witness.${name}`;
+}
+
+function retainedHistoryMinimumGainRowMissingField(name) {
+  return `minimum_norm_retained_history_gain_witness_rows[*].${name}`;
+}
+
 function addMissingField(missingFields, condition, field) {
   if (condition) {
     missingFields.push(field);
@@ -148,6 +166,17 @@ function addMissingField(missingFields, condition, field) {
 
 function firstPresent(...values) {
   return values.find((value) => value != null) ?? null;
+}
+
+function outerProduct(left, right) {
+  return left.map((leftEntry) => right.map((rightEntry) => leftEntry * rightEntry));
+}
+
+function matrixFrobeniusNorm(matrix) {
+  return Math.sqrt(matrix.reduce(
+    (sum, row) => sum + row.reduce((rowSum, entry) => rowSum + entry * entry, 0),
+    0
+  ));
 }
 
 export function evaluateLeastNormRetainedVectorProviderWitness(candidate = {}) {
@@ -282,6 +311,478 @@ export function evaluateLeastNormRetainedVectorProviderWitness(candidate = {}) {
       "accepted_same_record_action_closure_row",
       "post_provider_root_margin_row",
     ],
+  };
+}
+
+export function evaluateRetainedHistoryTangentResponseWitness(candidate = {}) {
+  const tolerance = finiteNumber(candidate.vector_tolerance) ?? DEFAULT_VECTOR_TOLERANCE;
+  const tangentTarget = finiteVector(candidate.tangent_target_vector ?? candidate.T);
+  const tangentPositionError = finiteVector(candidate.tangent_position_error_vector ?? candidate.e_x);
+  const tangentVelocityError = finiteVector(candidate.tangent_velocity_error_vector ?? candidate.e_v);
+  const positionGainMatrix = finiteMatrix(candidate.retained_history_position_gain_matrix ?? candidate.K_x);
+  const velocityGainMatrix = finiteMatrix(candidate.retained_history_velocity_gain_matrix ?? candidate.K_v);
+  const tangentProjector = finiteMatrix(candidate.tangent_projector_matrix ?? candidate.P_T);
+  const tangentNullProjector = finiteMatrix(candidate.tangent_null_projector_matrix ?? candidate.P_N);
+  const activeMarginGradient = finiteVector(candidate.active_margin_gradient_vector ?? candidate.G_mu);
+  const mDyn = finiteNumber(candidate.dynamic_root_margin ?? candidate.m_dyn);
+  const deltaT = finiteNumber(candidate.tangent_response_horizon ?? candidate.Delta_T);
+  const deltaM = finiteNumber(candidate.margin_lift_response_horizon ?? candidate.Delta_M);
+  const epsilonMu = finiteNumber(candidate.minimum_dynamic_root_margin_reserve ?? candidate.epsilon_mu);
+  const missingFields = [];
+
+  if (!tangentTarget) missingFields.push(retainedHistoryResponseMissingField("tangent_target_vector"));
+  if (!tangentPositionError) missingFields.push(retainedHistoryResponseMissingField("tangent_position_error_vector"));
+  if (!tangentVelocityError) missingFields.push(retainedHistoryResponseMissingField("tangent_velocity_error_vector"));
+  if (!positionGainMatrix) missingFields.push(retainedHistoryResponseMissingField("retained_history_position_gain_matrix"));
+  if (!velocityGainMatrix) missingFields.push(retainedHistoryResponseMissingField("retained_history_velocity_gain_matrix"));
+  if (!tangentProjector) missingFields.push(retainedHistoryResponseMissingField("tangent_projector_matrix"));
+  if (!tangentNullProjector) missingFields.push(retainedHistoryResponseMissingField("tangent_null_projector_matrix"));
+  if (!activeMarginGradient) missingFields.push(retainedHistoryResponseMissingField("active_margin_gradient_vector"));
+  if (mDyn == null) missingFields.push(retainedHistoryResponseMissingField("dynamic_root_margin"));
+  if (deltaT == null) missingFields.push(retainedHistoryResponseMissingField("tangent_response_horizon"));
+  if (deltaM == null) missingFields.push(retainedHistoryResponseMissingField("margin_lift_response_horizon"));
+  if (epsilonMu == null) {
+    missingFields.push(retainedHistoryResponseMissingField("minimum_dynamic_root_margin_reserve"));
+  }
+
+  const dimension = tangentTarget?.length ?? null;
+  const matricesMatchDimension =
+    dimension != null &&
+    positionGainMatrix?.length === dimension &&
+    velocityGainMatrix?.length === dimension &&
+    tangentProjector?.length === dimension &&
+    tangentNullProjector?.length === dimension &&
+    positionGainMatrix.every((row) => row.length === dimension) &&
+    velocityGainMatrix.every((row) => row.length === dimension) &&
+    tangentProjector.every((row) => row.length === dimension) &&
+    tangentNullProjector.every((row) => row.length === dimension);
+  const vectorsMatchDimension =
+    dimension != null &&
+    tangentPositionError?.length === dimension &&
+    tangentVelocityError?.length === dimension &&
+    activeMarginGradient?.length === dimension;
+  if (missingFields.length === 0 && (!matricesMatchDimension || !vectorsMatchDimension)) {
+    missingFields.push(retainedHistoryResponseMissingField("dimension_consistency"));
+  }
+
+  if (missingFields.length > 0) {
+    return {
+      schema: RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA,
+      accepted: false,
+      mathematical_response_conditions_passed: false,
+      reason: "retained_history_tangent_response_input_missing_or_dimensionally_inconsistent",
+      missing_fields: missingFields,
+      first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+      first_missing_field: missingFields[0],
+    };
+  }
+
+  const positionResponse = multiplyMatrixVector(positionGainMatrix, tangentPositionError);
+  const velocityResponse = multiplyMatrixVector(velocityGainMatrix, tangentVelocityError);
+  const rawRetainedHistoryResponse = scale(-1, add(positionResponse, velocityResponse));
+  const tangentResponse = multiplyMatrixVector(tangentProjector, rawRetainedHistoryResponse);
+  const deltaMuRequired = Math.max(0, epsilonMu + deltaT * norm(tangentResponse) - mDyn);
+  const requiredMarginProjection =
+    deltaM <= EPSILON
+      ? (deltaMuRequired <= tolerance ? 0 : null)
+      : deltaMuRequired / deltaM;
+  const nullGradient = multiplyMatrixVector(tangentNullProjector, activeMarginGradient);
+  const nullGradientNormSquared = dot(nullGradient, nullGradient);
+  const tangentMarginProjection = dot(tangentResponse, activeMarginGradient);
+  const leastNormFeasible =
+    requiredMarginProjection == null
+      ? false
+      : nullGradientNormSquared > EPSILON ||
+        tangentMarginProjection + tolerance >= requiredMarginProjection;
+  const nullScale =
+    leastNormFeasible && requiredMarginProjection != null && nullGradientNormSquared > EPSILON
+      ? Math.max(0, requiredMarginProjection - tangentMarginProjection) / nullGradientNormSquared
+      : 0;
+  const leastNormNullCorrection = leastNormFeasible ? scale(nullScale, nullGradient) : [0];
+  const providerVector = leastNormNullCorrection.length === tangentResponse.length
+    ? add(tangentResponse, leastNormNullCorrection)
+    : tangentResponse;
+  const leastNormEvaluation = evaluateLeastNormRetainedVectorProviderWitness({
+    tangent_target_vector: tangentTarget,
+    active_margin_gradient_vector: activeMarginGradient,
+    tangent_projector_matrix: tangentProjector,
+    tangent_null_projector_matrix: tangentNullProjector,
+    provider_acceleration_vector: providerVector,
+    dynamic_root_margin: mDyn,
+    tangent_response_horizon: deltaT,
+    margin_lift_response_horizon: deltaM,
+    minimum_dynamic_root_margin_reserve: epsilonMu,
+    vector_tolerance: tolerance,
+  });
+  const tangentResponseErrorNorm = norm(subtract(tangentResponse, tangentTarget));
+  const tangentResponseMatchesTarget = tangentResponseErrorNorm <= tolerance;
+  const mathematicalResponseConditionsPassed =
+    tangentResponseMatchesTarget && leastNormEvaluation.mathematical_witness_conditions_passed === true;
+
+  return {
+    schema: RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA,
+    accepted: false,
+    mathematical_response_conditions_passed: mathematicalResponseConditionsPassed,
+    reason: mathematicalResponseConditionsPassed
+      ? "retained_history_tangent_response_passes_mathematically_but_acceptance_blocked"
+      : "retained_history_tangent_response_conditions_failed",
+    equation:
+      "a_RH = -P_T(K_x e_x + K_v e_v); a_provider^RH = a_RH + n_*",
+    variables: {
+      vector_tolerance: tolerance,
+      dynamic_root_margin: mDyn,
+      tangent_response_horizon: deltaT,
+      margin_lift_response_horizon: deltaM,
+      minimum_dynamic_root_margin_reserve: epsilonMu,
+    },
+    response_vectors: {
+      tangent_target_vector: tangentTarget,
+      tangent_position_error_vector: tangentPositionError,
+      tangent_velocity_error_vector: tangentVelocityError,
+      retained_history_position_gain_matrix: positionGainMatrix,
+      retained_history_velocity_gain_matrix: velocityGainMatrix,
+      raw_retained_history_response_vector: rawRetainedHistoryResponse,
+      tangent_retained_history_response_vector: tangentResponse,
+      least_norm_null_correction_vector: leastNormNullCorrection,
+      provider_acceleration_vector: providerVector,
+    },
+    computed: {
+      tangent_response_error_norm: tangentResponseErrorNorm,
+      delta_mu_required: deltaMuRequired,
+      required_margin_projection: requiredMarginProjection,
+      tangent_margin_projection: tangentMarginProjection,
+      null_gradient_vector: nullGradient,
+      null_gradient_norm_squared: nullGradientNormSquared,
+    },
+    checks: {
+      tangent_response_matches_target: tangentResponseMatchesTarget,
+      least_norm_solution_feasible: leastNormFeasible,
+      post_provider_root_margin_passed:
+        leastNormEvaluation.checks?.post_provider_root_margin_passed === true,
+      least_norm_provider_matched:
+        leastNormEvaluation.checks?.least_norm_provider_matched === true,
+    },
+    least_norm_provider_evaluation: leastNormEvaluation,
+    first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    acceptance_requirements: [
+      "same_record_retained_path_error_row",
+      "same_record_retained_history_response_matrix_row",
+      "same_record_active_causal_margin_gradient_row",
+      "same_record_retained_root_ledger",
+      "same_record_action_closure_row",
+      "accepted_provider_provenance",
+    ],
+  };
+}
+
+export function evaluateMinimumNormRetainedHistoryGainWitness(candidate = {}) {
+  const tolerance = finiteNumber(candidate.vector_tolerance) ?? DEFAULT_VECTOR_TOLERANCE;
+  const tangentTarget = finiteVector(candidate.tangent_target_vector ?? candidate.T);
+  const tangentPositionError = finiteVector(candidate.tangent_position_error_vector ?? candidate.e_x);
+  const tangentVelocityError = finiteVector(candidate.tangent_velocity_error_vector ?? candidate.e_v);
+  const tangentProjector = finiteMatrix(candidate.tangent_projector_matrix ?? candidate.P_T);
+  const tangentNullProjector = finiteMatrix(candidate.tangent_null_projector_matrix ?? candidate.P_N);
+  const activeMarginGradient = finiteVector(candidate.active_margin_gradient_vector ?? candidate.G_mu);
+  const mDyn = finiteNumber(candidate.dynamic_root_margin ?? candidate.m_dyn);
+  const deltaT = finiteNumber(candidate.tangent_response_horizon ?? candidate.Delta_T);
+  const deltaM = finiteNumber(candidate.margin_lift_response_horizon ?? candidate.Delta_M);
+  const epsilonMu = finiteNumber(candidate.minimum_dynamic_root_margin_reserve ?? candidate.epsilon_mu);
+  const missingFields = [];
+
+  if (!tangentTarget) missingFields.push(retainedHistoryMinimumGainMissingField("tangent_target_vector"));
+  if (!tangentPositionError) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("tangent_position_error_vector"));
+  }
+  if (!tangentVelocityError) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("tangent_velocity_error_vector"));
+  }
+  if (!tangentProjector) missingFields.push(retainedHistoryMinimumGainMissingField("tangent_projector_matrix"));
+  if (!tangentNullProjector) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("tangent_null_projector_matrix"));
+  }
+  if (!activeMarginGradient) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("active_margin_gradient_vector"));
+  }
+  if (mDyn == null) missingFields.push(retainedHistoryMinimumGainMissingField("dynamic_root_margin"));
+  if (deltaT == null) missingFields.push(retainedHistoryMinimumGainMissingField("tangent_response_horizon"));
+  if (deltaM == null) missingFields.push(retainedHistoryMinimumGainMissingField("margin_lift_response_horizon"));
+  if (epsilonMu == null) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("minimum_dynamic_root_margin_reserve"));
+  }
+
+  const dimension = tangentTarget?.length ?? null;
+  const matricesMatchDimension =
+    dimension != null &&
+    tangentProjector?.length === dimension &&
+    tangentNullProjector?.length === dimension &&
+    tangentProjector.every((row) => row.length === dimension) &&
+    tangentNullProjector.every((row) => row.length === dimension);
+  const vectorsMatchDimension =
+    dimension != null &&
+    tangentPositionError?.length === dimension &&
+    tangentVelocityError?.length === dimension &&
+    activeMarginGradient?.length === dimension;
+  if (missingFields.length === 0 && (!matricesMatchDimension || !vectorsMatchDimension)) {
+    missingFields.push(retainedHistoryMinimumGainMissingField("dimension_consistency"));
+  }
+
+  if (missingFields.length > 0) {
+    return {
+      schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+      accepted: false,
+      mathematical_gain_conditions_passed: false,
+      reason: "minimum_norm_retained_history_gain_input_missing_or_dimensionally_inconsistent",
+      missing_fields: missingFields,
+      first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+      first_missing_field: missingFields[0],
+    };
+  }
+
+  const combinedErrorNormSquared = dot(tangentPositionError, tangentPositionError) +
+    dot(tangentVelocityError, tangentVelocityError);
+  if (combinedErrorNormSquared <= EPSILON) {
+    return {
+      schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+      accepted: false,
+      mathematical_gain_conditions_passed: false,
+      reason: "minimum_norm_retained_history_gain_requires_nonzero_retained_path_error",
+      missing_fields: [retainedHistoryMinimumGainMissingField("nonzero_combined_retained_path_error")],
+      computed: {
+        combined_error_norm_squared: combinedErrorNormSquared,
+      },
+      first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+      first_missing_field: retainedHistoryMinimumGainMissingField("nonzero_combined_retained_path_error"),
+    };
+  }
+
+  const scaledTangentTarget = scale(-1 / combinedErrorNormSquared, tangentTarget);
+  const positionGainMatrix = outerProduct(scaledTangentTarget, tangentPositionError);
+  const velocityGainMatrix = outerProduct(scaledTangentTarget, tangentVelocityError);
+  const responseEvaluation = evaluateRetainedHistoryTangentResponseWitness({
+    tangent_target_vector: tangentTarget,
+    tangent_position_error_vector: tangentPositionError,
+    tangent_velocity_error_vector: tangentVelocityError,
+    retained_history_position_gain_matrix: positionGainMatrix,
+    retained_history_velocity_gain_matrix: velocityGainMatrix,
+    tangent_projector_matrix: tangentProjector,
+    tangent_null_projector_matrix: tangentNullProjector,
+    active_margin_gradient_vector: activeMarginGradient,
+    dynamic_root_margin: mDyn,
+    tangent_response_horizon: deltaT,
+    margin_lift_response_horizon: deltaM,
+    minimum_dynamic_root_margin_reserve: epsilonMu,
+    vector_tolerance: tolerance,
+  });
+  const positionGainNorm = matrixFrobeniusNorm(positionGainMatrix);
+  const velocityGainNorm = matrixFrobeniusNorm(velocityGainMatrix);
+  const combinedGainFrobeniusNorm = Math.sqrt(positionGainNorm * positionGainNorm + velocityGainNorm * velocityGainNorm);
+  const mathematicalGainConditionsPassed =
+    responseEvaluation.mathematical_response_conditions_passed === true;
+
+  return {
+    schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+    accepted: false,
+    mathematical_gain_conditions_passed: mathematicalGainConditionsPassed,
+    reason: mathematicalGainConditionsPassed
+      ? "minimum_norm_retained_history_gain_passes_mathematically_but_acceptance_blocked"
+      : "minimum_norm_retained_history_gain_conditions_failed",
+    equation:
+      "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)",
+    response_equation:
+      "a_RH^*=-P_T(K_x^* e_x+K_v^* e_v)",
+    variables: {
+      vector_tolerance: tolerance,
+      dynamic_root_margin: mDyn,
+      tangent_response_horizon: deltaT,
+      margin_lift_response_horizon: deltaM,
+      minimum_dynamic_root_margin_reserve: epsilonMu,
+    },
+    computed: {
+      combined_error_norm_squared: combinedErrorNormSquared,
+      combined_gain_frobenius_norm: combinedGainFrobeniusNorm,
+      position_gain_frobenius_norm: positionGainNorm,
+      velocity_gain_frobenius_norm: velocityGainNorm,
+    },
+    response_matrices: {
+      retained_history_position_gain_matrix: positionGainMatrix,
+      retained_history_velocity_gain_matrix: velocityGainMatrix,
+    },
+    response_evaluation: responseEvaluation,
+    first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    acceptance_requirements: [
+      "same_record_retained_path_error_row",
+      "accepted_minimum_norm_retained_history_gain_row",
+      "same_record_active_causal_margin_gradient_row",
+      "same_record_retained_root_ledger",
+      "same_record_action_closure_row",
+      "accepted_provider_provenance",
+    ],
+  };
+}
+
+export function evaluateMinimumNormRetainedHistoryGainWitnessRow(row = {}) {
+  const pathErrorRow = row.same_record_retained_path_error_row ?? {};
+  const tangentRow = row.retained_solver_tangent_target_vector_row ?? {};
+  const marginRow = row.active_causal_margin_gradient_vector_row ?? {};
+  const postProviderRow = row.post_provider_root_margin_row ?? {};
+  const closureRows = row.same_record_closure_rows ?? {};
+  const missingFields = [];
+
+  addMissingField(
+    missingFields,
+    row.same_record_retained_path_error_row == null,
+    retainedHistoryMinimumGainRowMissingField("same_record_retained_path_error_row")
+  );
+  addMissingField(
+    missingFields,
+    row.retained_solver_tangent_target_vector_row == null,
+    retainedHistoryMinimumGainRowMissingField("retained_solver_tangent_target_vector_row")
+  );
+  addMissingField(
+    missingFields,
+    row.active_causal_margin_gradient_vector_row == null,
+    retainedHistoryMinimumGainRowMissingField("active_causal_margin_gradient_vector_row")
+  );
+  addMissingField(
+    missingFields,
+    row.post_provider_root_margin_row == null,
+    retainedHistoryMinimumGainRowMissingField("post_provider_root_margin_row")
+  );
+  addMissingField(
+    missingFields,
+    row.same_record_closure_rows == null,
+    retainedHistoryMinimumGainRowMissingField("same_record_closure_rows")
+  );
+
+  const retainedRecordRefs = [
+    row.retained_record_id,
+    pathErrorRow.retained_record_id,
+    tangentRow.retained_record_id,
+    marginRow.retained_record_id,
+    postProviderRow.retained_record_id,
+    closureRows.retained_record_id,
+  ].filter((ref) => ref != null);
+  const uniqueRetainedRecordRefs = [...new Set(retainedRecordRefs)];
+  const retainedRecordId = uniqueRetainedRecordRefs.length === 1 ? uniqueRetainedRecordRefs[0] : null;
+  const sameRecordBindingPassed = retainedRecordRefs.length >= 5 && uniqueRetainedRecordRefs.length === 1;
+  addMissingField(
+    missingFields,
+    !sameRecordBindingPassed,
+    retainedHistoryMinimumGainRowMissingField("same_record_retained_record_id_binding")
+  );
+
+  const sourceRowRefs = [
+    row.source_row_id,
+    pathErrorRow.source_row_id,
+    tangentRow.source_row_id,
+  ].filter((ref) => ref != null);
+  const sourceRowBindingPassed = sourceRowRefs.length >= 2 && new Set(sourceRowRefs).size === 1;
+  addMissingField(
+    missingFields,
+    !sourceRowBindingPassed,
+    retainedHistoryMinimumGainRowMissingField("same_source_row_id_binding")
+  );
+
+  const closureBindingPassed =
+    closureRows.same_record_retained_root_ledger != null &&
+    closureRows.same_record_action_closure_row != null &&
+    closureRows.same_record_wake_history_ref != null &&
+    closureRows.same_record_path_history_ref != null;
+  addMissingField(
+    missingFields,
+    !closureBindingPassed,
+    retainedHistoryMinimumGainRowMissingField("same_record_closure_rows")
+  );
+
+  const tangentTargetVector = firstPresent(tangentRow.tangent_target_vector, row.tangent_target_vector);
+  const tangentPositionErrorVector = firstPresent(
+    pathErrorRow.tangent_position_error_vector,
+    row.tangent_position_error_vector
+  );
+  const tangentVelocityErrorVector = firstPresent(
+    pathErrorRow.tangent_velocity_error_vector,
+    row.tangent_velocity_error_vector
+  );
+  const tangentProjectorMatrix = firstPresent(tangentRow.tangent_projector_matrix, row.tangent_projector_matrix);
+  const tangentNullProjectorMatrix = firstPresent(
+    marginRow.tangent_null_projector_matrix,
+    row.tangent_null_projector_matrix
+  );
+  const activeMarginGradientVector = firstPresent(
+    marginRow.active_margin_gradient_vector,
+    row.active_margin_gradient_vector
+  );
+  const dynamicRootMargin = firstPresent(
+    marginRow.active_margin_value,
+    postProviderRow.dynamic_root_margin,
+    row.dynamic_root_margin
+  );
+  const tangentResponseHorizon = firstPresent(
+    postProviderRow.tangent_response_horizon,
+    row.tangent_response_horizon
+  );
+  const marginLiftResponseHorizon = firstPresent(
+    postProviderRow.margin_lift_response_horizon,
+    row.margin_lift_response_horizon
+  );
+  const minimumDynamicRootMarginReserve = firstPresent(
+    postProviderRow.minimum_dynamic_root_margin_reserve,
+    row.minimum_dynamic_root_margin_reserve
+  );
+  const evaluation = evaluateMinimumNormRetainedHistoryGainWitness({
+    tangent_target_vector: tangentTargetVector,
+    tangent_position_error_vector: tangentPositionErrorVector,
+    tangent_velocity_error_vector: tangentVelocityErrorVector,
+    tangent_projector_matrix: tangentProjectorMatrix,
+    tangent_null_projector_matrix: tangentNullProjectorMatrix,
+    active_margin_gradient_vector: activeMarginGradientVector,
+    dynamic_root_margin: dynamicRootMargin,
+    tangent_response_horizon: tangentResponseHorizon,
+    margin_lift_response_horizon: marginLiftResponseHorizon,
+    minimum_dynamic_root_margin_reserve: minimumDynamicRootMarginReserve,
+    vector_tolerance: row.vector_tolerance,
+  });
+  const mathematicalGainConditionsPassed =
+    missingFields.length === 0 &&
+    evaluation.mathematical_gain_conditions_passed === true &&
+    closureBindingPassed &&
+    sameRecordBindingPassed &&
+    sourceRowBindingPassed;
+
+  return {
+    schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA,
+    row_id: row.row_id ?? null,
+    source_row_id: row.source_row_id ?? pathErrorRow.source_row_id ?? tangentRow.source_row_id ?? null,
+    retained_record_id: retainedRecordId,
+    time: firstPresent(row.time, pathErrorRow.time, tangentRow.time),
+    particle_slot_order: Array.isArray(pathErrorRow.particle_slot_order)
+      ? [...pathErrorRow.particle_slot_order]
+      : (Array.isArray(tangentRow.particle_slot_order) ? [...tangentRow.particle_slot_order] : null),
+    source_row_schema: row.schema ?? null,
+    source_authority_class: row.authority_class ?? "same_record_minimum_norm_retained_history_gain_source_unclassified",
+    same_record_binding_passed: sameRecordBindingPassed,
+    source_row_binding_passed: sourceRowBindingPassed,
+    closure_binding_passed: closureBindingPassed,
+    required_rows_present: missingFields.length === 0,
+    missing_fields: missingFields,
+    evaluator_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+    evaluation,
+    mathematical_gain_conditions_passed: mathematicalGainConditionsPassed,
+    source_acquisition_status: mathematicalGainConditionsPassed
+      ? "same_record_minimum_norm_retained_history_gain_mathematical_pass_acceptance_blocked"
+      : "same_record_minimum_norm_retained_history_gain_failed_or_incomplete",
+    accepted_minimum_gain_ref: row.accepted_minimum_gain_ref ?? null,
+    accepted: false,
+    acceptance_boundary:
+      "mathematical same-record minimum-gain witness still requires accepted retained path history, retained-root ledger, action closure, wake history, and provider provenance before it can replace the assigned branch-clock lock",
+    first_missing_object: mathematicalGainConditionsPassed
+      ? RETAINED_HISTORY_FIRST_MISSING_OBJECT
+      : RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: mathematicalGainConditionsPassed
+      ? RETAINED_HISTORY_FIRST_MISSING_FIELD
+      : (missingFields[0] ?? RETAINED_HISTORY_FIRST_MISSING_FIELD),
   };
 }
 
@@ -647,6 +1148,87 @@ function makeRetainedSolverVectorSourceTarget(witnessEvaluations = []) {
   };
 }
 
+function minimumGainSourceStatusFromWitnessEvaluations(evaluations) {
+  if (evaluations.length === 0) {
+    return {
+      source_acquisition_status: "blocked_missing_same_record_minimum_norm_retained_history_gain_rows",
+      first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+      first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    };
+  }
+  if (evaluations.some((evaluation) => evaluation.mathematical_gain_conditions_passed === true)) {
+    return {
+      source_acquisition_status: "same_record_minimum_norm_retained_history_gain_mathematical_pass_acceptance_blocked",
+      first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+      first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    };
+  }
+  return {
+    source_acquisition_status: "same_record_minimum_norm_retained_history_gain_present_but_failed",
+    first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: evaluations[0]?.first_missing_field ?? RETAINED_HISTORY_FIRST_MISSING_FIELD,
+  };
+}
+
+function makeRetainedHistoryTangentResponseEquationTarget(minimumGainWitnessEvaluations = []) {
+  const minimumGainStatus = minimumGainSourceStatusFromWitnessEvaluations(minimumGainWitnessEvaluations);
+  return {
+    schema: "retained_history_tangent_response_equation_target.v0",
+    scope_note:
+      "candidate_internal_retained_history_response_equation_not_accepted_provider_evidence",
+    response_equation:
+      "a_RH = -P_T(K_x e_x + K_v e_v)",
+    minimum_gain_equation:
+      "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)",
+    minimum_gain_response_equation:
+      "a_RH^*=-P_T(K_x^* e_x+K_v^* e_v)",
+    provider_equation:
+      "a_provider^RH = a_RH + n_*",
+    tangent_replacement_condition:
+      "||a_RH - P_T(a_ansatz - a_wake - a_support)|| <= epsilon_vec",
+    margin_reserve_condition:
+      "m_dyn - Delta_T ||P_T a_provider^RH|| + Delta_M <a_provider^RH,G_mu> >= epsilon_mu",
+    input_definitions: {
+      e_x: "tangent projection of current position minus retained target position on the same branch record",
+      e_v: "tangent projection of current velocity minus retained target velocity on the same branch record",
+      K_x: "same-record retained-history position response matrix",
+      K_v: "same-record retained-history velocity response matrix",
+      G_mu: "active causal-margin gradient vector in the same global acceleration vector space",
+    },
+    evaluator_schema: RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA,
+    minimum_gain_evaluator_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+    minimum_gain_witness_row_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA,
+    required_same_record_rows: [
+      "same_record_retained_path_error_row",
+      "same_record_retained_history_response_matrix_row",
+      "retained_solver_tangent_target_vector_row",
+      "active_causal_margin_gradient_vector_row",
+      "post_provider_root_margin_row",
+      "same_record_retained_root_ledger",
+      "same_record_action_closure_row",
+    ],
+    minimum_gain_source_target: {
+      source_acquisition_status: minimumGainStatus.source_acquisition_status,
+      witness_row_count: minimumGainWitnessEvaluations.length,
+      witness_mathematical_pass_count: minimumGainWitnessEvaluations.filter(
+        (evaluation) => evaluation.mathematical_gain_conditions_passed === true
+      ).length,
+      witness_same_record_pass_count: minimumGainWitnessEvaluations.filter(
+        (evaluation) => evaluation.same_record_binding_passed === true
+      ).length,
+      accepted_minimum_gain_count: 0,
+      evaluator_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+      witness_row_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA,
+      first_missing_object: minimumGainStatus.first_missing_object,
+      first_missing_field: minimumGainStatus.first_missing_field,
+      accepted: false,
+    },
+    first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    accepted: false,
+  };
+}
+
 function makeSourceSummary(targetArtifact = {}, reserveArtifact = {}) {
   return {
     branch_clock_lock_target: {
@@ -698,7 +1280,22 @@ function collectRetainedSolverVectorWitnessRows(input, targetArtifact = {}, rese
   ];
 }
 
-function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow, vectorWitnessRows = []) {
+function collectMinimumNormRetainedHistoryGainWitnessRows(input, targetArtifact = {}, reserveArtifact = {}) {
+  return [
+    ...normalizeRows(input.minimumNormRetainedHistoryGainWitnessRows),
+    ...normalizeRows(input.minimum_norm_retained_history_gain_witness_rows),
+    ...normalizeRows(targetArtifact.minimum_norm_retained_history_gain_witness_rows),
+    ...normalizeRows(reserveArtifact.minimum_norm_retained_history_gain_witness_rows),
+  ];
+}
+
+function measuredNeedFromTargetRow(
+  rowPrefix,
+  targetRow,
+  reserveRow,
+  vectorWitnessRows = [],
+  minimumGainWitnessRows = []
+) {
   const branchClock = targetRow.assigned_branch_clock_lock_term ?? {};
   const support = targetRow.assigned_support_term ?? {};
   const reserve = reserveRow?.root_margin_reserve_status ?? {};
@@ -749,6 +1346,12 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow, vectorWitne
   );
   const retainedSolverVectorSourceTarget = makeRetainedSolverVectorSourceTarget(
     retainedSolverVectorWitnessEvaluations
+  );
+  const minimumNormRetainedHistoryGainWitnessEvaluations = minimumGainWitnessRows.map((row) =>
+    evaluateMinimumNormRetainedHistoryGainWitnessRow(row)
+  );
+  const retainedHistoryTangentResponseEquationTarget = makeRetainedHistoryTangentResponseEquationTarget(
+    minimumNormRetainedHistoryGainWitnessEvaluations
   );
   return {
     row_id: `${rowPrefix}:measured_need:${targetRow.row_id ?? rowJoinKey(targetRow)}`,
@@ -938,6 +1541,8 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow, vectorWitne
       accepted_vector_provider_ref: null,
       accepted: false,
     },
+    retained_history_tangent_response_equation_target: retainedHistoryTangentResponseEquationTarget,
+    minimum_norm_retained_history_gain_witness_evaluations: minimumNormRetainedHistoryGainWitnessEvaluations,
     normalized_diagnostic_vector_witness: normalizedDiagnosticWitness,
     retained_solver_vector_witness_evaluations: retainedSolverVectorWitnessEvaluations,
     retained_solver_vector_source_target: retainedSolverVectorSourceTarget,
@@ -947,16 +1552,24 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow, vectorWitne
   };
 }
 
-function makeMeasuredNeedRows(rowPrefix, targetArtifact = {}, reserveArtifact = {}, vectorWitnessRows = []) {
+function makeMeasuredNeedRows(
+  rowPrefix,
+  targetArtifact = {},
+  reserveArtifact = {},
+  vectorWitnessRows = [],
+  minimumGainWitnessRows = []
+) {
   const reserveByKey = reserveRowsByKey(reserveArtifact);
   const vectorWitnessByKey = vectorWitnessRowsByKey(vectorWitnessRows);
+  const minimumGainWitnessByKey = vectorWitnessRowsByKey(minimumGainWitnessRows);
   return normalizeRows(targetArtifact.rows)
     .filter((row) => row?.assigned_branch_clock_lock_term?.active === true)
     .map((row) => measuredNeedFromTargetRow(
       rowPrefix,
       row,
       reserveByKey.get(rowJoinKey(row)),
-      vectorWitnessByKey.get(rowJoinKey(row)) ?? []
+      vectorWitnessByKey.get(rowJoinKey(row)) ?? [],
+      minimumGainWitnessByKey.get(rowJoinKey(row)) ?? []
     ));
 }
 
@@ -1109,6 +1722,46 @@ function makeRouteRows(rowPrefix, measuredRows) {
     first_missing_object: RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_OBJECT,
     first_missing_field: RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_FIELD,
   };
+  const retainedHistoryTangentResponseEquationFields = {
+    measured_need_row_count: measuredRows.length,
+    equation_target_row_count: measuredRows.filter(
+      (row) => row.retained_history_tangent_response_equation_target?.schema ===
+        "retained_history_tangent_response_equation_target.v0"
+    ).length,
+    minimum_gain_witness_row_count: measuredRows.reduce(
+      (sum, row) => sum + (row.minimum_norm_retained_history_gain_witness_evaluations?.length ?? 0),
+      0
+    ),
+    minimum_gain_witness_mathematical_pass_count: measuredRows.reduce(
+      (sum, row) =>
+        sum + (row.minimum_norm_retained_history_gain_witness_evaluations ?? []).filter(
+          (evaluation) => evaluation.mathematical_gain_conditions_passed === true
+        ).length,
+      0
+    ),
+    minimum_gain_witness_same_record_pass_count: measuredRows.reduce(
+      (sum, row) =>
+        sum + (row.minimum_norm_retained_history_gain_witness_evaluations ?? []).filter(
+          (evaluation) => evaluation.same_record_binding_passed === true
+        ).length,
+      0
+    ),
+    response_equation:
+      "a_RH = -P_T(K_x e_x + K_v e_v)",
+    minimum_gain_equation:
+      "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)",
+    minimum_gain_response_equation:
+      "a_RH^*=-P_T(K_x^* e_x+K_v^* e_v)",
+    provider_equation:
+      "a_provider^RH = a_RH + n_*",
+    evaluator_schema: RETAINED_HISTORY_TANGENT_RESPONSE_WITNESS_SCHEMA,
+    minimum_gain_evaluator_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_SCHEMA,
+    minimum_gain_witness_row_schema: RETAINED_HISTORY_MINIMUM_GAIN_WITNESS_ROW_SCHEMA,
+    first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
+    first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
+    accepted_response_count: 0,
+    accepted_minimum_gain_count: 0,
+  };
   return [
     {
       rank: 1,
@@ -1141,6 +1794,7 @@ function makeRouteRows(rowPrefix, measuredRows) {
       least_norm_retained_vector_provider_fields: leastNormProviderFields,
       normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       retained_solver_vector_source_target_fields: retainedSolverVectorSourceTargetFields,
+      retained_history_tangent_response_equation_fields: retainedHistoryTangentResponseEquationFields,
       root_budget_margin_reserve_condition:
         "post-tangent-authority root-budget margin remains positive after retained-history tangent and margin-gradient components are applied",
       current_status: "fail_closed_missing_retained_record_id",
@@ -1168,6 +1822,7 @@ function makeRouteRows(rowPrefix, measuredRows) {
       least_norm_retained_vector_provider_fields: leastNormProviderFields,
       normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       retained_solver_vector_source_target_fields: retainedSolverVectorSourceTargetFields,
+      retained_history_tangent_response_equation_fields: retainedHistoryTangentResponseEquationFields,
       root_budget_margin_reserve_condition: "same-ledger action row must preserve positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "bounded_speed_same_ledger_action_measure_row",
@@ -1193,6 +1848,7 @@ function makeRouteRows(rowPrefix, measuredRows) {
       least_norm_retained_vector_provider_fields: leastNormProviderFields,
       normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       retained_solver_vector_source_target_fields: retainedSolverVectorSourceTargetFields,
+      retained_history_tangent_response_equation_fields: retainedHistoryTangentResponseEquationFields,
       root_budget_margin_reserve_condition: "wake tangent response cannot exhaust the positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "same_record_wake_ledger_tangent_response",
@@ -1219,6 +1875,7 @@ function makeRouteRows(rowPrefix, measuredRows) {
       least_norm_retained_vector_provider_fields: leastNormProviderFields,
       normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       retained_solver_vector_source_target_fields: retainedSolverVectorSourceTargetFields,
+      retained_history_tangent_response_equation_fields: retainedHistoryTangentResponseEquationFields,
       root_budget_margin_reserve_condition: "branch row and shielding response preserve positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "torque_wake_retained_active_row_branch_certificate_evidence_object",
@@ -1244,6 +1901,7 @@ function makeRouteRows(rowPrefix, measuredRows) {
       least_norm_retained_vector_provider_fields: leastNormProviderFields,
       normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       retained_solver_vector_source_target_fields: retainedSolverVectorSourceTargetFields,
+      retained_history_tangent_response_equation_fields: retainedHistoryTangentResponseEquationFields,
       root_budget_margin_reserve_condition: "Noether sea response leaves positive root-budget margin on the same retained record",
       current_status: "source_acquisition_blocked",
       first_missing_object: "retained_noether_sea_pressure_response_row",
@@ -1335,6 +1993,11 @@ export function buildOblateSpheroidInternalTangentAuthorityCertificate(input = {
     targetArtifact,
     reserveArtifact
   );
+  const minimumGainWitnessRows = collectMinimumNormRetainedHistoryGainWitnessRows(
+    input,
+    targetArtifact,
+    reserveArtifact
+  );
   const sourceSummary = makeSourceSummary(targetArtifact, reserveArtifact);
   const artifactKey = {
     schema: SCHEMA,
@@ -1365,6 +2028,13 @@ export function buildOblateSpheroidInternalTangentAuthorityCertificate(input = {
       provider_provenance: row.same_record_provider_acceleration_vector_row?.provider_provenance,
       accepted_provider_ref: row.same_record_provider_acceleration_vector_row?.accepted_provider_ref,
     })),
+    minimum_norm_retained_history_gain_witness_rows: minimumGainWitnessRows.map((row) => ({
+      row_id: row.row_id,
+      source_row_id: row.source_row_id,
+      retained_record_id: row.retained_record_id,
+      time: row.time,
+      accepted_minimum_gain_ref: row.accepted_minimum_gain_ref,
+    })),
   };
   const artifactHash = stableHash(artifactKey);
   const rowPrefix = `oblate_spheroid_internal_tangent_authority_certificate:${artifactHash.slice(0, 16)}`;
@@ -1372,7 +2042,8 @@ export function buildOblateSpheroidInternalTangentAuthorityCertificate(input = {
     rowPrefix,
     targetArtifact,
     reserveArtifact,
-    retainedSolverVectorWitnessRows
+    retainedSolverVectorWitnessRows,
+    minimumGainWitnessRows
   );
   const routeRows = makeRouteRows(rowPrefix, measuredRows);
   const missing = firstMissing(measuredRows);
@@ -1454,6 +2125,29 @@ export function buildOblateSpheroidInternalTangentAuthorityCertificate(input = {
       normalized_diagnostic_witness_missing_input_count: measuredRows.filter(
         (row) => row.normalized_diagnostic_vector_witness?.construction_status === "missing_scalar_inputs"
       ).length,
+      retained_history_tangent_response_equation_target_row_count: measuredRows.filter(
+        (row) => row.retained_history_tangent_response_equation_target?.schema ===
+          "retained_history_tangent_response_equation_target.v0"
+      ).length,
+      minimum_norm_retained_history_gain_witness_row_count: measuredRows.reduce(
+        (sum, row) => sum + (row.minimum_norm_retained_history_gain_witness_evaluations?.length ?? 0),
+        0
+      ),
+      minimum_norm_retained_history_gain_witness_mathematical_pass_count: measuredRows.reduce(
+        (sum, row) =>
+          sum + (row.minimum_norm_retained_history_gain_witness_evaluations ?? []).filter(
+            (evaluation) => evaluation.mathematical_gain_conditions_passed === true
+          ).length,
+        0
+      ),
+      minimum_norm_retained_history_gain_witness_same_record_pass_count: measuredRows.reduce(
+        (sum, row) =>
+          sum + (row.minimum_norm_retained_history_gain_witness_evaluations ?? []).filter(
+            (evaluation) => evaluation.same_record_binding_passed === true
+          ).length,
+        0
+      ),
+      accepted_minimum_norm_retained_history_gain_count: 0,
       retained_solver_vector_source_target_row_count: measuredRows.filter(
         (row) => row.retained_solver_vector_source_target?.schema ===
           "retained_solver_internal_tangent_authority_vector_source_target.v0"
@@ -1567,6 +2261,12 @@ export function validateOblateSpheroidInternalTangentAuthorityCertificate(artifa
     if (row.normalized_diagnostic_vector_witness?.evaluation?.accepted !== false) {
       errors.push("normalized diagnostic vector witness evaluation must remain non-authorizing");
     }
+    if (row.retained_history_tangent_response_equation_target?.accepted !== false) {
+      errors.push("retained-history tangent response equation target must remain non-authorizing");
+    }
+    if (row.retained_history_tangent_response_equation_target?.minimum_gain_source_target?.accepted !== false) {
+      errors.push("minimum-gain retained-history source target must remain non-authorizing");
+    }
     if (row.retained_solver_vector_source_target?.accepted !== false) {
       errors.push("retained solver vector source target must remain non-authorizing");
     }
@@ -1576,6 +2276,14 @@ export function validateOblateSpheroidInternalTangentAuthorityCertificate(artifa
     for (const evaluation of row.retained_solver_vector_witness_evaluations ?? []) {
       if (evaluation.accepted !== false) {
         errors.push("retained solver vector witness evaluations must remain non-authorizing");
+      }
+    }
+    for (const evaluation of row.minimum_norm_retained_history_gain_witness_evaluations ?? []) {
+      if (evaluation.accepted !== false) {
+        errors.push("minimum-norm retained-history gain witness evaluations must remain non-authorizing");
+      }
+      if (evaluation.accepted_minimum_gain_ref !== null) {
+        errors.push("minimum-norm retained-history gain witness evaluations must not claim accepted gain refs");
       }
     }
   }

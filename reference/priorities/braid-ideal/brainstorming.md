@@ -1925,6 +1925,85 @@ $$
 
 with $\mathbf G_\mu$ and $\mathbf P_N$ supplied by the active causal-margin row on the same retained record. A six-slot fixture can pass this vector equation with $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, and $\mathbf a_{\mathrm{provider}}^\ast=[0.1,0.085,0,0,0,0]$, but it remains non-authorizing. This separates the proof ladder into three clean levels: normalized scalar-derived algebra, same-record global-vector mathematical pass, and accepted central retained-solver evidence. Only the third level can replace the assigned branch-clock lock.
 
+The candidate retained-history response equation is now executable as its own mathematical witness:
+
+$$
+\mathbf a_{\mathrm{RH}}
+=-\mathbf P_T(\mathbf K_x\mathbf e_x+\mathbf K_v\mathbf e_v),
+\qquad
+\mathbf a_{\mathrm{provider}}^{\mathrm{RH}}
+=\mathbf a_{\mathrm{RH}}+\mathbf n_\ast.
+$$
+
+Here $\mathbf e_x$ and $\mathbf e_v$ are the same-record retained path-position and velocity errors, while $\mathbf K_x$ and $\mathbf K_v$ are retained-history response matrices. This is the internal-response form of the branch-clock-lock intuition: the tangent authority is not assigned as an external clock lock, but derived from a retained path-history displacement and velocity response. The witness passes only if
+
+$$
+\|\mathbf a_{\mathrm{RH}}-\mathbf T\|\le\epsilon_{\mathrm{vec}}
+$$
+
+and the same post-provider root-margin inequality passes. In the executable six-slot test, $\mathbf e_x=[-0.02,0,0,0,0,0]$ and $\mathbf K_x$ maps that error to $\mathbf a_{\mathrm{RH}}=[0.1,0,0,0,0,0]$; the same margin-lift component $0.085$ then restores the reserve. This is still non-authorizing because the response matrices, retained path-error row, retained-root ledger, action-closure row, and provider provenance are not accepted central retained-solver rows. It does, however, make the replacement equation concrete: an accepted internal tangent authority must be a retained-history response whose tangent projection equals $\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}})$ and whose tangent-null component preserves the causal-root margin.
+
+The response matrices need not be freely assigned. If the same-record retained path-error vector
+
+$$
+\mathbf z=
+\begin{bmatrix}
+\mathbf e_x\\
+\mathbf e_v
+\end{bmatrix}
+$$
+
+is nonzero, the minimum-Frobenius-norm gain that satisfies $-\mathbf P_T\mathbf K\mathbf z=\mathbf T$ is
+
+$$
+\mathbf K_x^\ast
+=
+-\frac{\mathbf T\mathbf e_x^\top}{\|\mathbf e_x\|^2+\|\mathbf e_v\|^2},
+\qquad
+\mathbf K_v^\ast
+=
+-\frac{\mathbf T\mathbf e_v^\top}{\|\mathbf e_x\|^2+\|\mathbf e_v\|^2},
+$$
+
+with
+
+$$
+\mathbf a_{\mathrm{RH}}^\ast
+=-\mathbf P_T(\mathbf K_x^\ast\mathbf e_x+\mathbf K_v^\ast\mathbf e_v).
+$$
+
+This removes one layer of arbitrariness from the internal tangent-authority target. The retained-history response can now be tested as a same-record minimum-gain law, not merely as a hand-selected pair of matrices. In the six-slot fixture, the formula recovers $\mathbf K_x^\ast[0,0]=5$ from $\mathbf T=[0.1,0,0,0,0,0]$ and $\mathbf e_x=[-0.02,0,0,0,0,0]$, while $\mathbf K_v^\ast=0$. If $\|\mathbf e_x\|^2+\|\mathbf e_v\|^2=0$, the gain evaluator fails closed because no retained-history displacement or velocity signal exists from which an internal tangent response can be inferred.
+
+The certificate can now consume a same-record minimum-gain witness row rather than only an isolated mathematical candidate. The row binds these inputs to one retained record:
+
+| Required row | Required equation or data |
+| --- | --- |
+| `same_record_retained_path_error_row` | $\mathbf e_x$ and $\mathbf e_v$ from the same retained path-history record and declared architrino slot order |
+| `retained_solver_tangent_target_vector_row` | $\mathbf T=\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}})$ |
+| `active_causal_margin_gradient_vector_row` | $\mathbf G_\mu$ and $\mathbf P_N$ for the active causal-margin channel on the same retained record |
+| `post_provider_root_margin_row` | $m_{\mathrm{dyn}}$, $\Delta_T$, $\Delta_M$, $\epsilon_\mu$, and the post-provider margin condition |
+| `same_record_closure_rows` | retained-root ledger, action closure, wake-history reference, and path-history reference |
+
+A six-slot same-record fixture can pass the minimum-gain equation, recover $\mathbf K_x^\ast[0,0]=5$, reconstruct $\mathbf a_{\mathrm{RH}}^\ast=\mathbf T$, and pass the post-provider margin check. It still remains non-authorizing. This adds a fourth rung to the proof ladder: normalized scalar-derived algebra, same-record global-vector provider pass, same-record retained-history minimum-gain pass, and accepted central retained-solver evidence. Only the accepted central retained-solver row can replace the assigned branch-clock lock or move the preferred configuration from diagnostic to retained branch claim.
+
+The central retained-history request now exposes that fourth rung as an explicit solver contract. The row [central-solver-retained-history-row.mjs](../../../scripts/braid-ideal/central-solver-retained-history-row.mjs) emits `central_solver_internal_tangent_authority_vector_request.v0`, and the provider object passes it through unchanged. The request names the exact same-record row families consumed by the internal tangent-authority evaluator:
+
+1. `same_record_retained_path_error_row`;
+2. `retained_solver_tangent_target_vector_row`;
+3. `active_causal_margin_gradient_vector_row`;
+4. `post_provider_root_margin_row`;
+5. `same_record_closure_rows`.
+
+This is the current bridge between the preferred $(u,v_{\mathrm{orb}})$ curve and the retained solver. It asks the central solver to emit $\mathbf e_x$, $\mathbf e_v$, $\mathbf T$, $\mathbf G_\mu$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}$, $\Delta_T$, $\Delta_M$, and $\epsilon_\mu$ on one retained record so the minimum-gain evaluator can run against actual retained path history instead of fixtures. The request remains non-authorizing: `minimum_norm_retained_history_gain_witness_row_ref`, `retained_solver_vector_witness_row_ref`, and `accepted_internal_tangent_authority_ref` are all null. The first source target is still `same_record_retained_solver_vector_rows_for_internal_tangent_authority`; the specific missing field is `central_solver_retained_history_row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref`.
+
+The bridge is now executable as a separate fail-closed artifact. The script [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) consumes a central retained-history row plus candidate minimum-gain and retained-vector witness rows, binds them back to the request retained record, and runs the existing evaluators. This creates a concrete three-step source ladder:
+
+1. a retained-history row emits `central_solver_internal_tangent_authority_vector_request.v0`;
+2. candidate same-record rows are evaluated by `central_solver_internal_tangent_authority_vector_rows.v0`;
+3. the internal tangent-authority certificate can consume the same rows and report whether the preferred-curve equation passes mathematically.
+
+In the executable bridge fixture, the same retained record carries $\mathbf e_x=[-0.02,0,0,0,0,0]$, $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$. The bridge recovers the minimum-gain response, checks the retained-vector provider, and reports `same_record_internal_tangent_authority_vector_rows_mathematical_pass_acceptance_blocked`. That is a useful success marker under the existing proof route: the algebraic replacement can now be evaluated at the central-row boundary. It is not accepted internal tangent authority, because the bridge still lacks the central retained-history acceptance certificate, retained-root ledger, action closure, wake history, path history, and provider provenance required to replace the assigned branch-clock lock.
+
 The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
 
 Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.

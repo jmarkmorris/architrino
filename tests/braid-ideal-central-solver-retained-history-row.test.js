@@ -3,6 +3,9 @@ import test from "node:test";
 
 import {
   FIRST_MISSING_SOURCE_PROOF_FIELD,
+  INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD,
+  INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_OBJECT,
+  INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA,
   NEGATIVE_CONTROL_REASONS,
   buildCentralSolverRetainedHistoryRow,
   evaluateRetainedHistoryEvidenceCandidate,
@@ -77,6 +80,61 @@ test("central solver retained-history row carries all same-record request famili
   assert.equal(row.action_ledger_hook_requirement.accepted_rows.length, 0);
   assert.equal(row.branch_row_identity_requirement.branch_row_identity_ref, null);
   assert.equal(row.oblate_spheroid_residual_row_requirement.residual_rows.length, 0);
+  assert.equal(row.internal_tangent_authority_vector_request.schema, INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA);
+  assert.equal(
+    row.internal_tangent_authority_vector_request.consumer_schema,
+    "oblate_spheroid_internal_tangent_authority_certificate.v0"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.vector_space,
+    "global retained acceleration vector over the declared architrino slot order for one preferred-curve row and one retained time slice"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.equations.tangent_target,
+    "T = P_T(a_ansatz - a_wake - a_support)"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.equations.minimum_gain,
+    "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)"
+  );
+  assert.deepEqual(
+    row.internal_tangent_authority_vector_request.required_same_record_rows.map((request) => request.row),
+    [
+      "same_record_retained_path_error_row",
+      "retained_solver_tangent_target_vector_row",
+      "active_causal_margin_gradient_vector_row",
+      "post_provider_root_margin_row",
+      "same_record_closure_rows",
+    ]
+  );
+  assert.deepEqual(row.internal_tangent_authority_vector_request.required_same_record_rows[0].required_fields, [
+    "source_row_id",
+    "retained_record_id",
+    "time",
+    "particle_slot_order",
+    "path_history_ref",
+    "tangent_position_error_vector",
+    "tangent_velocity_error_vector",
+  ]);
+  assert.equal(
+    row.internal_tangent_authority_vector_request.evaluator_binding.minimum_gain_evaluator_schema,
+    "minimum_norm_retained_history_gain_witness_evaluation.v0"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.evaluator_binding.same_record_witness_row_schema,
+    "same_record_minimum_norm_retained_history_gain_witness_row.v0"
+  );
+  assert.equal(row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref, null);
+  assert.equal(row.internal_tangent_authority_vector_request.accepted_internal_tangent_authority_ref, null);
+  assert.equal(row.internal_tangent_authority_vector_request.accepted, false);
+  assert.equal(
+    row.internal_tangent_authority_vector_request.first_missing_object,
+    INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_OBJECT
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.first_missing_field,
+    INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD
+  );
   assert.equal(row.retained_source_binding_requirement.retained_source_binding_ref, null);
   assert.equal(row.provider_provenance.provider_object_ref, null);
 });

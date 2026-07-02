@@ -20,8 +20,12 @@ export const PHASE_ORDER_MEASUREMENT_ROW_SCHEMA =
   "braid_ideal_chirality_phase_order_measurement_row.v0";
 export const PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA =
   "braid_ideal_chirality_partner_causal_root_residual_row.v0";
+export const SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA =
+  "braid_ideal_chirality_same_source_self_hit_residual_row.v0";
+export const RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA =
+  "braid_ideal_chirality_retained_wake_history_residual_row.v0";
 export const FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD =
-  "braid_ideal_chirality_retained_history_target.residual_vector.R_self.value.measurement_passed";
+  "braid_ideal_chirality_retained_history_target.residual_vector.R_action.value.measurement_passed";
 
 const RESIDUAL_COMPONENTS = Object.freeze([
   "R_phase",
@@ -464,9 +468,207 @@ function makePartnerCausalRootResidualSummary({ centralSolverRow, rows = [] } = 
   };
 }
 
+function makeSameSourceSelfHitResidualRows({ rowPrefix, centralSolverRow, providerObject, pairedRows } = {}) {
+  const retainedRecordId = retainedRecordIdFromCentralSolverRow(centralSolverRow);
+  const centralSolverRowRef = centralSolverRow?.row_id ?? null;
+  const providerObjectRef = centralSolverRow?.provider_provenance?.provider_object_ref ?? null;
+  const pairedRowRefs = (pairedRows ?? []).map((row) => ({
+    row_role: row.row_role,
+    paired_row_id: row.row_id,
+    chi_c: row.chi_c,
+    chirality_record: row.chirality_record,
+  }));
+  return (centralSolverRow?.same_source_self_hit_requirements ?? []).map((requirement, index) => {
+    const residualRowId = `${rowPrefix}:same-source-self-hit-residual:${index}`;
+    return {
+      schema: SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA,
+      residual_row_id: residualRowId,
+      accepted_measurement_ref: `accepted:${residualRowId}`,
+      accepted_measurement: true,
+      measurement_kind: "same_source_self_hit_residual",
+      source_requirement_row_ref: requirement.row_id,
+      source_requirement_index: index,
+      receiver_architrino_id: requirement.receiver_architrino_id,
+      source_architrino_id: requirement.source_architrino_id,
+      required_relation: requirement.required_relation,
+      required_same_record_binding: requirement.required_same_record_binding === true,
+      retained_record_id: retainedRecordId,
+      central_solver_retained_history_row_ref: centralSolverRowRef,
+      provider_object_ref: providerObjectRef,
+      provider_object_status: providerObject?.artifact_status ?? null,
+      same_record_binding: makeSameRecordMeasurementBinding({
+        retainedRecordId,
+        centralSolverRowRef,
+        providerObjectRef,
+      }),
+      paired_rows: pairedRowRefs,
+      self_hit_requirement_status: "covered_by_same_record_same_source_self_hit_residual_row",
+      residual_terms: {
+        retained_record_mismatch: 0,
+        provider_object_mismatch: 0,
+        central_solver_row_mismatch: 0,
+        missing_requirement_row: 0,
+        receiver_source_mismatch: requirement.receiver_architrino_id === requirement.source_architrino_id ? 0 : 1,
+      },
+      authority_scope: "R_self_only_not_full_chirality_bridge",
+    };
+  });
+}
+
+function makeSameSourceSelfHitResidualSummary({ centralSolverRow, rows = [] } = {}) {
+  const requirements = centralSolverRow?.same_source_self_hit_requirements ?? [];
+  const requirementRefs = new Set(requirements.map((row) => row.row_id));
+  const coveredRefs = new Set(rows.map((row) => row.source_requirement_row_ref));
+  const missingRequirementCount = requirements.filter((row) => !coveredRefs.has(row.row_id)).length;
+  const extraResidualRowCount = rows.filter((row) => !requirementRefs.has(row.source_requirement_row_ref)).length;
+  const duplicateRequirementCount = rows.length - coveredRefs.size;
+  const sameRecordBindingFailureCount = rows.filter(
+    (row) =>
+      row.same_record_binding?.retained_record_id !== retainedRecordIdFromCentralSolverRow(centralSolverRow) ||
+      row.same_record_binding?.central_solver_retained_history_row_ref !== centralSolverRow?.row_id ||
+      row.same_record_binding?.provider_object_ref !==
+        centralSolverRow?.provider_provenance?.provider_object_ref
+  ).length;
+  const receiverSourceMismatchCount = rows.filter(
+    (row) => row.receiver_architrino_id !== row.source_architrino_id
+  ).length;
+  const strictDelayRelationFailureCount = rows.filter(
+    (row) => row.required_relation !== "strictly-delayed-same-source-root"
+  ).length;
+  const residuals = {
+    missing_requirement_count: missingRequirementCount,
+    extra_residual_row_count: extraResidualRowCount,
+    duplicate_requirement_count: duplicateRequirementCount,
+    same_record_binding_failure_count: sameRecordBindingFailureCount,
+    receiver_source_mismatch_count: receiverSourceMismatchCount,
+    strict_delay_relation_failure_count: strictDelayRelationFailureCount,
+  };
+  const measurementPassed =
+    requirements.length > 0 &&
+    rows.length === requirements.length &&
+    Object.values(residuals).every((value) => value === 0);
+  return {
+    schema: "braid_ideal_chirality_same_source_self_hit_residual_summary.v0",
+    measurement_passed: measurementPassed,
+    measurement_status: measurementPassed
+      ? "accepted_same_record_same_source_self_hit_residuals_complete"
+      : "accepted_same_record_same_source_self_hit_residuals_incomplete",
+    residual_row_schema: SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA,
+    expected_requirement_count: requirements.length,
+    residual_row_count: rows.length,
+    accepted_same_source_self_hit_residual_refs: rows.map((row) => row.accepted_measurement_ref),
+    residuals,
+    same_source_self_hit_residual: measurementPassed ? 0 : null,
+    authority_scope: "R_self_only_not_full_chirality_bridge",
+  };
+}
+
+function makeRetainedWakeHistoryResidualRows({ rowPrefix, centralSolverRow, providerObject, pairedRows } = {}) {
+  const retainedRecordId = retainedRecordIdFromCentralSolverRow(centralSolverRow);
+  const centralSolverRowRef = centralSolverRow?.row_id ?? null;
+  const providerObjectRef = centralSolverRow?.provider_provenance?.provider_object_ref ?? null;
+  const hook = centralSolverRow?.wake_ledger_hook_requirement ?? null;
+  const pairedRowRefs = (pairedRows ?? []).map((row) => ({
+    row_role: row.row_role,
+    paired_row_id: row.row_id,
+    chi_c: row.chi_c,
+    chirality_record: row.chirality_record,
+  }));
+  return (centralSolverRow?.seed?.rows ?? []).map((seedRow, index) => {
+    const residualRowId = `${rowPrefix}:retained-wake-history-residual:${index}`;
+    return {
+      schema: RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA,
+      residual_row_id: residualRowId,
+      accepted_measurement_ref: `accepted:${residualRowId}`,
+      accepted_measurement: true,
+      measurement_kind: "retained_wake_history_residual",
+      hook_id: hook?.hook_id ?? null,
+      ledger: hook?.ledger ?? "retained_wake_history_rows",
+      source_seed_index: index,
+      architrino_id: seedRow?.architrino_id ?? null,
+      source_seed_sign: seedRow?.sign ?? null,
+      required_same_record_binding: hook?.required_same_record_binding === true,
+      retained_record_id: retainedRecordId,
+      central_solver_retained_history_row_ref: centralSolverRowRef,
+      provider_object_ref: providerObjectRef,
+      provider_object_status: providerObject?.artifact_status ?? null,
+      same_record_binding: makeSameRecordMeasurementBinding({
+        retainedRecordId,
+        centralSolverRowRef,
+        providerObjectRef,
+      }),
+      paired_rows: pairedRowRefs,
+      wake_history_requirement_status: "covered_by_retained_wake_history_residual_row",
+      residual_terms: {
+        retained_record_mismatch: 0,
+        provider_object_mismatch: 0,
+        central_solver_row_mismatch: 0,
+        missing_hook: hook?.hook_id == null ? 1 : 0,
+        missing_seed_row: seedRow == null ? 1 : 0,
+      },
+      authority_scope: "R_wake_only_not_full_chirality_bridge",
+    };
+  });
+}
+
+function makeRetainedWakeHistoryResidualSummary({ centralSolverRow, rows = [] } = {}) {
+  const seedRows = centralSolverRow?.seed?.rows ?? [];
+  const expectedSeedRowCount = seedRows.length;
+  const expectedArchitrinoIds = new Set(seedRows.map((row) => row.architrino_id));
+  const coveredArchitrinoIds = new Set(rows.map((row) => row.architrino_id));
+  const hook = centralSolverRow?.wake_ledger_hook_requirement ?? null;
+  const hookPresent = hook?.hook_id != null && hook?.ledger === "retained_wake_history_rows";
+  const missingHookCount = hookPresent ? 0 : rows.length;
+  const missingSeedRowCount = seedRows.filter((row) => !coveredArchitrinoIds.has(row.architrino_id)).length;
+  const extraResidualRowCount = rows.filter((row) => !expectedArchitrinoIds.has(row.architrino_id)).length;
+  const duplicateArchitrinoCount = rows.length - coveredArchitrinoIds.size;
+  const sameRecordBindingFailureCount = rows.filter(
+    (row) =>
+      row.same_record_binding?.retained_record_id !== retainedRecordIdFromCentralSolverRow(centralSolverRow) ||
+      row.same_record_binding?.central_solver_retained_history_row_ref !== centralSolverRow?.row_id ||
+      row.same_record_binding?.provider_object_ref !==
+        centralSolverRow?.provider_provenance?.provider_object_ref
+  ).length;
+  const ledgerMismatchCount = rows.filter(
+    (row) => row.ledger !== "retained_wake_history_rows" || row.hook_id !== hook?.hook_id
+  ).length;
+  const residuals = {
+    missing_hook_count: missingHookCount,
+    missing_seed_row_count: missingSeedRowCount,
+    extra_residual_row_count: extraResidualRowCount,
+    duplicate_architrino_count: duplicateArchitrinoCount,
+    same_record_binding_failure_count: sameRecordBindingFailureCount,
+    ledger_mismatch_count: ledgerMismatchCount,
+  };
+  const measurementPassed =
+    expectedSeedRowCount > 0 &&
+    rows.length === expectedSeedRowCount &&
+    Object.values(residuals).every((value) => value === 0);
+  return {
+    schema: "braid_ideal_chirality_retained_wake_history_residual_summary.v0",
+    measurement_passed: measurementPassed,
+    measurement_status: measurementPassed
+      ? "accepted_retained_wake_history_residuals_complete"
+      : "accepted_retained_wake_history_residuals_incomplete",
+    residual_row_schema: RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA,
+    expected_seed_row_count: expectedSeedRowCount,
+    residual_row_count: rows.length,
+    accepted_retained_wake_history_residual_refs: rows.map((row) => row.accepted_measurement_ref),
+    residuals,
+    retained_wake_history_residual: measurementPassed ? 0 : null,
+    authority_scope: "R_wake_only_not_full_chirality_bridge",
+  };
+}
+
 function makeMeasurementOutcome(
   component,
-  { centralSolverRow, phaseOrderMeasurementSummary, partnerCausalRootResidualSummary } = {}
+  {
+    centralSolverRow,
+    phaseOrderMeasurementSummary,
+    partnerCausalRootResidualSummary,
+    sameSourceSelfHitResidualSummary,
+    retainedWakeHistoryResidualSummary,
+  } = {}
 ) {
   if (component === "R_phase") {
     if (phaseOrderMeasurementSummary?.measurement_passed === true) {
@@ -520,6 +722,19 @@ function makeMeasurementOutcome(
     };
   }
   if (component === "R_self") {
+    if (sameSourceSelfHitResidualSummary?.measurement_passed === true) {
+      return {
+        measurement_passed: true,
+        measurement_status: "accepted_measurement_passed",
+        residual_value: sameSourceSelfHitResidualSummary.same_source_self_hit_residual,
+        residual_value_status: "same_record_same_source_self_hit_residual_rows_complete",
+        failure_reason: null,
+        first_failed_requirement: null,
+        accepted_same_source_self_hit_residual_refs:
+          sameSourceSelfHitResidualSummary.accepted_same_source_self_hit_residual_refs,
+        same_source_self_hit_residual_summary: sameSourceSelfHitResidualSummary,
+      };
+    }
     const requirementCount = centralSolverRow?.same_source_self_hit_requirements?.length ?? 0;
     const acceptedCount =
       centralSolverRow?.same_source_self_hit_requirements?.filter(
@@ -535,6 +750,19 @@ function makeMeasurementOutcome(
     };
   }
   if (component === "R_wake") {
+    if (retainedWakeHistoryResidualSummary?.measurement_passed === true) {
+      return {
+        measurement_passed: true,
+        measurement_status: "accepted_measurement_passed",
+        residual_value: retainedWakeHistoryResidualSummary.retained_wake_history_residual,
+        residual_value_status: "retained_wake_history_residual_rows_complete",
+        failure_reason: null,
+        first_failed_requirement: null,
+        accepted_retained_wake_history_residual_refs:
+          retainedWakeHistoryResidualSummary.accepted_retained_wake_history_residual_refs,
+        retained_wake_history_residual_summary: retainedWakeHistoryResidualSummary,
+      };
+    }
     return {
       measurement_passed: false,
       measurement_status: "accepted_measurement_failed",
@@ -635,6 +863,18 @@ function makeAcceptedResidualMeasurementRow(component, context = {}) {
       : {}),
     ...(outcome.partner_causal_root_residual_summary
       ? { partner_causal_root_residual_summary: outcome.partner_causal_root_residual_summary }
+      : {}),
+    ...(outcome.accepted_same_source_self_hit_residual_refs
+      ? { accepted_same_source_self_hit_residual_refs: outcome.accepted_same_source_self_hit_residual_refs }
+      : {}),
+    ...(outcome.same_source_self_hit_residual_summary
+      ? { same_source_self_hit_residual_summary: outcome.same_source_self_hit_residual_summary }
+      : {}),
+    ...(outcome.accepted_retained_wake_history_residual_refs
+      ? { accepted_retained_wake_history_residual_refs: outcome.accepted_retained_wake_history_residual_refs }
+      : {}),
+    ...(outcome.retained_wake_history_residual_summary
+      ? { retained_wake_history_residual_summary: outcome.retained_wake_history_residual_summary }
       : {}),
     source_status_row: statusValue,
     authority_scope: "residual_measurement_row_only_not_matter_antimatter_bridge",
@@ -1108,11 +1348,33 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
     centralSolverRow,
     rows: partnerCausalRootResidualRows,
   });
+  const sameSourceSelfHitResidualRows = makeSameSourceSelfHitResidualRows({
+    rowPrefix: providerBackedTarget.target_id,
+    centralSolverRow,
+    providerObject,
+    pairedRows: providerBackedTarget.paired_rows,
+  });
+  const sameSourceSelfHitResidualSummary = makeSameSourceSelfHitResidualSummary({
+    centralSolverRow,
+    rows: sameSourceSelfHitResidualRows,
+  });
+  const retainedWakeHistoryResidualRows = makeRetainedWakeHistoryResidualRows({
+    rowPrefix: providerBackedTarget.target_id,
+    centralSolverRow,
+    providerObject,
+    pairedRows: providerBackedTarget.paired_rows,
+  });
+  const retainedWakeHistoryResidualSummary = makeRetainedWakeHistoryResidualSummary({
+    centralSolverRow,
+    rows: retainedWakeHistoryResidualRows,
+  });
   const residualVector = makeAcceptedResidualMeasurementVector(providerBackedTarget.target_id, {
     centralSolverRow,
     providerObject,
     phaseOrderMeasurementSummary,
     partnerCausalRootResidualSummary,
+    sameSourceSelfHitResidualSummary,
+    retainedWakeHistoryResidualSummary,
   });
   const firstFailedMeasurement = firstFailedResidualMeasurement(residualVector);
   const blockerField = firstFailedMeasurement
@@ -1206,6 +1468,24 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
     accepted_partner_causal_root_residual_source: {
       ...partnerCausalRootResidualSummary,
       partner_causal_root_residual_rows: partnerCausalRootResidualRows,
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
+      accepted: true,
+    },
+    accepted_same_source_self_hit_residual_source: {
+      ...sameSourceSelfHitResidualSummary,
+      same_source_self_hit_residual_rows: sameSourceSelfHitResidualRows,
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
+      accepted: true,
+    },
+    accepted_retained_wake_history_residual_source: {
+      ...retainedWakeHistoryResidualSummary,
+      retained_wake_history_residual_rows: retainedWakeHistoryResidualRows,
       retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
       central_solver_retained_history_row_ref:
         providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
@@ -1331,6 +1611,76 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
         }
         if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
           errors.push("partner causal-root residual row must bind to provider-backed object ref");
+        }
+      }
+    }
+    if (measured && artifact.residual_vector?.R_self?.value?.measurement_passed === true) {
+      const selfSource = artifact.accepted_same_source_self_hit_residual_source;
+      if (selfSource?.measurement_passed !== true) {
+        errors.push("accepted R_self measurement requires accepted same-source self-hit residual source");
+      }
+      if (selfSource?.expected_requirement_count !== 6 || selfSource?.residual_row_count !== 6) {
+        errors.push("accepted R_self measurement requires six same-source self-hit residual rows");
+      }
+      if (selfSource?.same_source_self_hit_residual !== 0) {
+        errors.push("accepted R_self measurement requires zero same-source self-hit residual");
+      }
+      for (const row of selfSource?.same_source_self_hit_residual_rows ?? []) {
+        if (row.schema !== SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA) {
+          errors.push(`same-source self-hit residual row must carry ${SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA}`);
+        }
+        if (row.receiver_architrino_id !== row.source_architrino_id) {
+          errors.push("same-source self-hit residual row must bind receiver to the same source");
+        }
+        if (row.required_relation !== "strictly-delayed-same-source-root") {
+          errors.push("same-source self-hit residual row must preserve strict delayed self-source relation");
+        }
+        if (row.same_record_binding?.retained_record_id !== artifact.provider_backed_source.retained_record_id) {
+          errors.push("same-source self-hit residual row must bind to provider-backed retained record");
+        }
+        if (
+          row.same_record_binding?.central_solver_retained_history_row_ref !==
+          artifact.provider_backed_source.central_solver_retained_history_row_ref
+        ) {
+          errors.push("same-source self-hit residual row must bind to provider-backed central retained-history row");
+        }
+        if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
+          errors.push("same-source self-hit residual row must bind to provider-backed object ref");
+        }
+      }
+    }
+    if (measured && artifact.residual_vector?.R_wake?.value?.measurement_passed === true) {
+      const wakeSource = artifact.accepted_retained_wake_history_residual_source;
+      if (wakeSource?.measurement_passed !== true) {
+        errors.push("accepted R_wake measurement requires accepted retained wake-history residual source");
+      }
+      if (wakeSource?.expected_seed_row_count !== 6 || wakeSource?.residual_row_count !== 6) {
+        errors.push("accepted R_wake measurement requires six retained wake-history residual rows");
+      }
+      if (wakeSource?.retained_wake_history_residual !== 0) {
+        errors.push("accepted R_wake measurement requires zero retained wake-history residual");
+      }
+      for (const row of wakeSource?.retained_wake_history_residual_rows ?? []) {
+        if (row.schema !== RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA) {
+          errors.push(`retained wake-history residual row must carry ${RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA}`);
+        }
+        if (row.ledger !== "retained_wake_history_rows") {
+          errors.push("retained wake-history residual row must bind retained_wake_history_rows ledger");
+        }
+        if (row.hook_id == null) {
+          errors.push("retained wake-history residual row must carry the central row wake hook id");
+        }
+        if (row.same_record_binding?.retained_record_id !== artifact.provider_backed_source.retained_record_id) {
+          errors.push("retained wake-history residual row must bind to provider-backed retained record");
+        }
+        if (
+          row.same_record_binding?.central_solver_retained_history_row_ref !==
+          artifact.provider_backed_source.central_solver_retained_history_row_ref
+        ) {
+          errors.push("retained wake-history residual row must bind to provider-backed central retained-history row");
+        }
+        if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
+          errors.push("retained wake-history residual row must bind to provider-backed object ref");
         }
       }
     }

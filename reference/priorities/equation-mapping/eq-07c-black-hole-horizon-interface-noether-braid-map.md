@@ -261,7 +261,9 @@ The first accepted object must be a durable carrier row with:
 - one compact-region event ledger over energy, momentum, angular momentum, recoil, remnant, boundary, and medium updates;
 - one no-hidden-retune witness across exterior scale, spin, horizon area, terminal alignment, light-ring/null-orbit, planar-photon recovery, entropy, interior continuation, ringdown/remnant, and any imported release-channel rows.
 
-No checker is added by this packet. A future checker is useful only after the accepted carrier contract is stable enough to consume rows without treating priority prose, authored corpus prose, source-contract shells, attempts, probes, mocks, toys, generated files, or negative controls as retained evidence.
+The score-neutral retained-evidence-object starting contract is [eq07c-black-hole-horizon-interface-carrier-retained-evidence-object-contract.v1.json](../../../scripts/equation-mapping/eq07c-black-hole-horizon-interface-carrier-retained-evidence-object-contract.v1.json). It is not retained evidence by itself; it only fixes the row names, same-record ids, evidence exclusions, Direct Geometry Layer mapping, and smallest accepted object shape so the next worker can start from the carrier object rather than re-litigating the horizon/light-ring/planar-photon split.
+
+No checker is added by this packet. A future checker is useful only after the accepted carrier contract is stable enough to consume rows without treating priority prose, authored corpus prose, source-contract shells, attempts, probes, mocks, toys, generated files, contract-only JSON, or negative controls as retained evidence.
 
 ## Fail-Closed Negative Controls
 
@@ -290,7 +292,7 @@ No checker is added by this packet. A future checker is useful only after the ac
 | Exact first blocker | `missing_accepted_black_hole_horizon_interface_carrier` |
 | Existing packets consumed | `EQ-07` through `EQ-10` effective-metric discipline, `EQ-07A` compact-star predecessor support, `EQ-07B` release-channel boundary data only, `EQ-11A` merger/ringdown source rows when relevant, and strong-field-closure horizon-interface targets. |
 | Direct Geometry Layer | Present in this packet; it separates and same-carrier binds exterior mass/radius/area/spin, terminal alignment, light-ring/null-orbit, planar-photon recovery, finite interior continuation, entropy-area comparison, remnant/ringdown labels, event ledger, provenance, and no-hidden-retune witness to one black-hole-proper source identity. |
-| Safe implementation target | Create a score-neutral identity shell only after the carrier fields above are stable; do not add score review or a checker before the source-backed carrier contract is clear. |
+| Safe implementation target | Use the score-neutral retained-evidence-object contract at [eq07c-black-hole-horizon-interface-carrier-retained-evidence-object-contract.v1.json](../../../scripts/equation-mapping/eq07c-black-hole-horizon-interface-carrier-retained-evidence-object-contract.v1.json) as the starting object, then replace it with source-backed carrier rows before adding score review or a checker. |
 
 ## Promotion Classification
 

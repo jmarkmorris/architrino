@@ -445,8 +445,8 @@
         top: 50%;
         left: 50%;
         z-index: 2;
-        width: min(84vw, 980px);
-        max-width: calc(100vw - var(--index-width) - 80px);
+        width: min(96vw, 1320px);
+        max-width: calc(100vw - var(--index-width) - 24px);
         transform: translate(-50%, -50%);
       }
 
@@ -483,17 +483,17 @@
         justify-content: center;
         max-width: 100%;
         color: var(--text);
-        font-size: clamp(30px, 4.6vw, 62px);
+        font-size: var(--equation-fit-font-size, clamp(30px, 4.6vw, 62px));
         line-height: 1.25;
         text-align: center;
       }
 
       .equation-mapping-shell[data-equation-scale="small"] .equation-mapping-equation {
-        font-size: clamp(24px, 3.7vw, 52px);
+        font-size: var(--equation-fit-font-size, clamp(24px, 3.7vw, 52px));
       }
 
       .equation-mapping-shell[data-equation-scale="large"] .equation-mapping-equation {
-        font-size: clamp(36px, 5.6vw, 76px);
+        font-size: var(--equation-fit-font-size, clamp(36px, 5.6vw, 76px));
       }
 
       .equation-mapping-formula-part,
@@ -675,7 +675,7 @@
         .equation-mapping-equation-shell {
           position: static;
           transform: none;
-          width: min(92vw, 640px);
+          width: min(96vw, 760px);
           max-width: calc(100vw - 30px);
           margin: 0 auto;
         }

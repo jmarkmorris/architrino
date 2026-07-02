@@ -10,7 +10,10 @@ import {
   evaluateCentralSolverRetainedHistoryProviderObjectEvidence,
   validateCentralSolverRetainedHistoryProviderObject,
 } from "../scripts/braid-ideal/central-solver-retained-history-provider-object.mjs";
-import { buildCentralSolverRetainedHistoryRow } from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
+import {
+  INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA,
+  buildCentralSolverRetainedHistoryRow,
+} from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
 import { buildHeldReleaseSeedPathRows } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
 import { buildHeldReleasePathHistoryStreamManifestSet } from "../scripts/braid-ideal/held-release-path-history-stream-manifest-set.mjs";
 
@@ -50,6 +53,21 @@ test("provider object binds six seed rows and six stream manifests by same-run s
   assert.equal(artifact.path_segment_layout.required_layout, "path_segment.v1");
   assert.equal(artifact.path_segment_layout.local_manifest_count, 6);
   assert.equal(artifact.path_segment_layout.durable_stream_count, 0);
+  assert.equal(
+    artifact.internal_tangent_authority_vector_request.schema,
+    INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA
+  );
+  assert.deepEqual(
+    artifact.internal_tangent_authority_vector_request.required_same_record_rows.map((request) => request.row),
+    [
+      "same_record_retained_path_error_row",
+      "retained_solver_tangent_target_vector_row",
+      "active_causal_margin_gradient_vector_row",
+      "post_provider_root_margin_row",
+      "same_record_closure_rows",
+    ]
+  );
+  assert.equal(artifact.internal_tangent_authority_vector_request.accepted, false);
 
   for (let index = 0; index < 6; index += 1) {
     assert.equal(artifact.seed_row_refs[index].source_seed_row_id, seedArtifact.rows[index].row_id);
@@ -154,6 +172,14 @@ test("provider object can bind provider-backed source rows and durable stream re
   assert.equal(artifact.provider_provenance.provider_object_ref, providerObjectRef);
   assert.equal(artifact.provider_provenance.provider_artifact_hash, providerShell.artifact_hash);
   assert.equal(artifact.path_segment_layout.durable_stream_count, 6);
+  assert.equal(
+    artifact.internal_tangent_authority_vector_request.request_id,
+    retainedHistoryRow.internal_tangent_authority_vector_request.request_id
+  );
+  assert.equal(
+    artifact.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref,
+    null
+  );
   assert.equal(
     artifact.stream_manifest_refs.every(
       (row, index) =>

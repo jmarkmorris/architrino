@@ -75,10 +75,158 @@
       ]
     }
   },
+  "protonColorSingletEnvelopeCertificateRequestPacket": {
+    "claimLevel": "priority-only proton color-singlet envelope certificate request packet; not accepted source evidence and not promotion evidence",
+    "sourceRowId": "accepted_proton_color_singlet_envelope",
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "minimumFields": [
+      "retainedEventId",
+      "protonBranchInterfaceLedgerRef",
+      "sigmaEffDomainRef",
+      "sameRecordNoetherSeaResponseRef",
+      "sameRecordBranchInterfaceRef",
+      "Pi_singlet_X_ref",
+      "Pi_open_X_ref",
+      "W_locked_pX_ref",
+      "epsilon_pX",
+      "Delta_color_pX",
+      "E_color_pX_bound_ref",
+      "finiteEnvelopeBoundaryRef",
+      "R_p",
+      "refinementWindowRef",
+      "noFreeColorAsymptoticStateRef",
+      "coefficientExclusionAudit"
+    ],
+    "requiredRecordEqualities": [
+      "record(protonBranchInterfaceLedgerRef)=record(sigmaEffDomainRef)",
+      "record(protonBranchInterfaceLedgerRef)=record(sameRecordNoetherSeaResponseRef)",
+      "record(protonBranchInterfaceLedgerRef)=record(sameRecordBranchInterfaceRef)",
+      "record(protonBranchInterfaceLedgerRef)=record(Pi_singlet_X_ref)",
+      "record(protonBranchInterfaceLedgerRef)=record(Pi_open_X_ref)",
+      "record(protonBranchInterfaceLedgerRef)=record(W_locked_pX_ref)",
+      "record(protonBranchInterfaceLedgerRef)=record(finiteEnvelopeBoundaryRef)",
+      "record(protonBranchInterfaceLedgerRef)=record(noFreeColorAsymptoticStateRef)"
+    ],
+    "inequalityRequirements": [
+      "epsilon_pX>0",
+      "Delta_color_pX>=0",
+      "E_color_pX<=Delta_color_pX",
+      "R_p<infinity"
+    ],
+    "acceptedInputsAlreadyAvailable": [
+      "accepted_proton_branch_interface_ledger",
+      "same_record_noether_sea_response"
+    ],
+    "stillMissingBeforeAcceptance": [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
+      "no_free_color_asymptotic_state",
+      "same_sigma_eff_domain",
+      "same_record_branch_interface"
+    ],
+    "derivedRowsIfAccepted": [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "no_free_color_asymptotic_state",
+      "no_open_color_far_field"
+    ],
+    "notAcceptedByThisPacket": [
+      "accepted_proton_color_singlet_envelope",
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
+      "no_free_color_asymptotic_state",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the proton projection refs use a different retained event id than the branch-interface ledger",
+      "the open-color exposure ratio remains above Delta_color_pX",
+      "the finite envelope boundary R_p diverges or changes under refinement",
+      "no_free_color_asymptotic_state is target-only or uses a different confinement-functional domain",
+      "Delta_color_pX, epsilon_pX, R_p, or the projection normalization is tuned by A, Z, isotope, element, or Fe/Ni behavior"
+    ]
+  },
+  "candidateProtonColorSingletEnvelopeLemma": {
+    "claimLevel": "priority-only conditional proton color-singlet envelope lemma; accepts no source rows and does not prove accepted_proton_color_singlet_envelope, no_free_color_asymptotic_state, color_singlet_closure, or no_open_color_far_field",
+    "lemmaId": "proton_projection_boundary_no_free_color_implies_envelope_support_0001",
+    "statement": "If one retained event record supplies the accepted proton branch-interface ledger, same sigma_eff domain, same-record Noether sea response, same-record branch interface, bounded proton open-color projection ratio E_color_pX <= Delta_color_pX, finite proton envelope boundary R_p, refinement-stable proton envelope window, and accepted no_free_color_asymptotic_state, then the packet has the proton envelope support rows needed before accepted_proton_color_singlet_envelope can be promoted.",
+    "assumptions": [
+      "accepted_proton_branch_interface_ledger",
+      "same_sigma_eff_domain",
+      "same_record_noether_sea_response",
+      "same_record_branch_interface",
+      "bounded_E_color_pX_le_Delta_color_pX",
+      "finite_R_p",
+      "refinement_stable_proton_envelope_window",
+      "accepted_no_free_color_asymptotic_state",
+      "no_A_Z_isotope_or_element_indexed_envelope_coefficient"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_domain_projection_lock",
+        "derivation": "Require Pi_singlet,X, Pi_open,X, W_locked_pX, the proton branch-interface ledger, sigma_eff domain, and Noether sea response to resolve to the same retained event id."
+      },
+      {
+        "stepId": "bounded_open_color_exposure",
+        "derivation": "Use E_color_pX = ||Pi_open,X W_locked_pX||_X/(||Pi_singlet,X W_locked_pX||_X + epsilon_pX) <= Delta_color_pX with epsilon_pX>0 as the proton color-singlet closure support row."
+      },
+      {
+        "stepId": "finite_boundary",
+        "derivation": "Require a finite proton boundary scale R_p and a refinement-stable window for the retained proton envelope."
+      },
+      {
+        "stepId": "no_free_color_audit_consumption",
+        "derivation": "Consume no_free_color_asymptotic_state only when it shares the proton envelope domain and is accepted source evidence, not prose or target-only blocker text."
+      },
+      {
+        "stepId": "downstream_envelope_feed",
+        "derivation": "Feed proton_color_singlet_closure and finite_envelope_boundary only into accepted_proton_color_singlet_envelope and downstream color-singlet/no-open-color rows after the accepted no-free-color audit exists."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary"
+    ],
+    "missingAcceptanceRows": [
+      "same_sigma_eff_domain",
+      "same_record_branch_interface",
+      "bounded_E_color_pX_le_Delta_color_pX",
+      "finite_R_p",
+      "refinement_stable_proton_envelope_window",
+      "no_free_color_asymptotic_state"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "no_open_color_far_field"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "no_open_color_far_field",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "failureModes": [
+      "the proton projection ratio is supplied from a different retained event record",
+      "the finite envelope boundary is not refinement-stable",
+      "no_free_color_asymptotic_state remains target-only",
+      "the envelope constants are tuned by A, Z, isotope, element, or Fe/Ni behavior",
+      "accepted_proton_color_singlet_envelope is treated as accepted before the no-free-color audit exists"
+    ]
+  },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
     "notAcceptedByThisPacket": [
       "accepted_proton_color_singlet_envelope",
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
       "accepted_neutron_color_singlet_envelope",
       "no_free_color_asymptotic_state",
       "same_record_branch_interface",

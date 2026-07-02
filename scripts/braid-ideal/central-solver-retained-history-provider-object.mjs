@@ -9,6 +9,7 @@ import {
 import { buildHeldReleasePathHistoryStreamManifestSet } from "./held-release-path-history-stream-manifest-set.mjs";
 import {
   FIRST_MISSING_SOURCE_PROOF_FIELD as RETAINED_HISTORY_ROW_PROVIDER_FIELD,
+  INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA,
   buildCentralSolverRetainedHistoryRow,
 } from "./central-solver-retained-history-row.mjs";
 
@@ -180,6 +181,8 @@ function makeRetainedHistoryHashBinding(retainedHistoryRow) {
     seed_id: retainedHistoryRow?.seed_id ?? null,
     route_id: retainedHistoryRow?.route_id ?? null,
     retained_record_id: retainedHistoryRow?.retained_record_request?.retained_record_id ?? null,
+    internal_tangent_authority_vector_request_schema:
+      retainedHistoryRow?.internal_tangent_authority_vector_request?.schema ?? null,
   };
 }
 
@@ -419,6 +422,8 @@ export function buildCentralSolverRetainedHistoryProviderObject(options = {}) {
     branch_row_identity_requirement: retainedHistoryRow?.branch_row_identity_requirement ?? null,
     oblate_spheroid_residual_row_requirement:
       retainedHistoryRow?.oblate_spheroid_residual_row_requirement ?? null,
+    internal_tangent_authority_vector_request:
+      retainedHistoryRow?.internal_tangent_authority_vector_request ?? null,
     retained_source_binding_requirement: retainedHistoryRow?.retained_source_binding_requirement ?? null,
     provider_provenance: providerProvenance,
     artifact_status: missing.artifact_status,
@@ -500,6 +505,12 @@ export function validateCentralSolverRetainedHistoryProviderObject(artifact) {
   }
   if (artifact?.partner_causal_root_replay_requirement_refs?.length !== 30) {
     errors.push("thirty partner causal-root replay requirement refs are required");
+  }
+  if (artifact?.internal_tangent_authority_vector_request?.schema !== INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA) {
+    errors.push(`provider object must carry ${INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA}`);
+  }
+  if (artifact?.internal_tangent_authority_vector_request?.accepted !== false) {
+    errors.push("provider object internal tangent-authority vector request must remain non-authorizing");
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (artifact?.authorization?.[flag] !== false) {

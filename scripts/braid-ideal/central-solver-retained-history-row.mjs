@@ -23,6 +23,12 @@ const SIX_POINT_SEED = [
 
 export const FIRST_MISSING_SOURCE_PROOF_FIELD =
   "central_solver_retained_history_row.provider_provenance.provider_object_ref";
+export const INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA =
+  "central_solver_internal_tangent_authority_vector_request.v0";
+export const INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_OBJECT =
+  "same_record_retained_solver_vector_rows_for_internal_tangent_authority";
+export const INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD =
+  "central_solver_retained_history_row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref";
 
 export const NEGATIVE_CONTROL_REASONS = {
   fixture: "fixture_not_accepted_retained_history_evidence",
@@ -147,6 +153,140 @@ function makeLedgerRequirement(rowPrefix, ledgerName) {
     retained_record_id: null,
     provider_object_ref: null,
     first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+  };
+}
+
+function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
+  return {
+    schema: INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA,
+    request_id: `${rowPrefix}:internal-tangent-authority-vector-request`,
+    required: true,
+    consumer_schema: "oblate_spheroid_internal_tangent_authority_certificate.v0",
+    scope_note:
+      "central-retained-history row request for the same-record vectors consumed by the internal tangent-authority evaluator",
+    vector_space:
+      "global retained acceleration vector over the declared architrino slot order for one preferred-curve row and one retained time slice",
+    equations: {
+      tangent_target:
+        "T = P_T(a_ansatz - a_wake - a_support)",
+      least_norm_provider:
+        "a_provider^* = T + n_*",
+      retained_history_response:
+        "a_RH = -P_T(K_x e_x + K_v e_v)",
+      minimum_gain:
+        "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)",
+      post_provider_margin:
+        "m_dyn - Delta_T ||P_T a_provider|| + Delta_M <a_provider,G_mu> >= epsilon_mu",
+    },
+    preferred_curve_binding: {
+      required: true,
+      branch_clock_lock_target_row_ref: null,
+      branch_clock_lock_reserve_row_ref: null,
+      same_record_binding_required: true,
+      first_missing_field: INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD,
+    },
+    required_same_record_rows: [
+      {
+        row: "same_record_retained_path_error_row",
+        required_fields: [
+          "source_row_id",
+          "retained_record_id",
+          "time",
+          "particle_slot_order",
+          "path_history_ref",
+          "tangent_position_error_vector",
+          "tangent_velocity_error_vector",
+        ],
+        evaluator_input_mapping: {
+          tangent_position_error_vector:
+            "minimum_norm_retained_history_gain_witness.tangent_position_error_vector",
+          tangent_velocity_error_vector:
+            "minimum_norm_retained_history_gain_witness.tangent_velocity_error_vector",
+        },
+      },
+      {
+        row: "retained_solver_tangent_target_vector_row",
+        required_fields: [
+          "source_row_id",
+          "retained_record_id",
+          "time",
+          "particle_slot_order",
+          "a_ansatz_vector",
+          "a_wake_vector",
+          "a_support_vector",
+          "surface_normal_vectors",
+          "tangent_projector_matrix",
+          "tangent_target_vector",
+        ],
+        evaluator_input_mapping: {
+          tangent_target_vector: "minimum_norm_retained_history_gain_witness.tangent_target_vector",
+          tangent_projector_matrix: "minimum_norm_retained_history_gain_witness.tangent_projector_matrix",
+        },
+      },
+      {
+        row: "active_causal_margin_gradient_vector_row",
+        required_fields: [
+          "retained_record_id",
+          "active_margin_channel",
+          "active_margin_value",
+          "active_margin_event_ref",
+          "active_margin_gradient_vector",
+          "tangent_null_projector_matrix",
+        ],
+        evaluator_input_mapping: {
+          active_margin_gradient_vector:
+            "minimum_norm_retained_history_gain_witness.active_margin_gradient_vector",
+          tangent_null_projector_matrix:
+            "minimum_norm_retained_history_gain_witness.tangent_null_projector_matrix",
+          dynamic_root_margin: "minimum_norm_retained_history_gain_witness.dynamic_root_margin",
+        },
+      },
+      {
+        row: "post_provider_root_margin_row",
+        required_fields: [
+          "retained_record_id",
+          "post_provider_root_margin",
+          "minimum_dynamic_root_margin_reserve",
+          "tangent_response_horizon",
+          "margin_lift_response_horizon",
+          "positive_post_provider_root_margin",
+        ],
+        evaluator_input_mapping: {
+          minimum_dynamic_root_margin_reserve:
+            "minimum_norm_retained_history_gain_witness.minimum_dynamic_root_margin_reserve",
+          tangent_response_horizon:
+            "minimum_norm_retained_history_gain_witness.tangent_response_horizon",
+          margin_lift_response_horizon:
+            "minimum_norm_retained_history_gain_witness.margin_lift_response_horizon",
+        },
+      },
+      {
+        row: "same_record_closure_rows",
+        required_fields: [
+          "retained_record_id",
+          "same_record_retained_root_ledger",
+          "same_record_action_closure_row",
+          "same_record_wake_history_ref",
+          "same_record_path_history_ref",
+        ],
+        evaluator_input_mapping: {
+          same_record_closure_rows:
+            "minimum_norm_retained_history_gain_witness.same_record_closure_rows",
+        },
+      },
+    ],
+    evaluator_binding: {
+      minimum_gain_evaluator_schema: "minimum_norm_retained_history_gain_witness_evaluation.v0",
+      same_record_witness_row_schema: "same_record_minimum_norm_retained_history_gain_witness_row.v0",
+      retained_solver_vector_witness_row_schema: "retained_solver_internal_tangent_authority_vector_witness_row.v0",
+      mathematical_pass_is_non_authorizing: true,
+    },
+    retained_solver_vector_witness_row_ref: null,
+    minimum_norm_retained_history_gain_witness_row_ref: null,
+    accepted_internal_tangent_authority_ref: null,
+    accepted: false,
+    first_missing_object: INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_OBJECT,
+    first_missing_field: INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD,
   };
 }
 
@@ -301,6 +441,7 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
       ],
       first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
     },
+    internal_tangent_authority_vector_request: makeInternalTangentAuthorityVectorRequest(rowPrefix),
     retained_source_binding_requirement: {
       required: true,
       retained_source_binding_ref: null,
@@ -368,6 +509,18 @@ export function validateCentralSolverRetainedHistoryRow(row) {
     row.partner_causal_root_replay_requirements.length !== 30
   ) {
     errors.push("thirty directed partner causal-root replay requirements are required");
+  }
+  if (row?.internal_tangent_authority_vector_request?.schema !== INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA) {
+    errors.push(`internal tangent-authority vector request must use ${INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA}`);
+  }
+  if (row?.internal_tangent_authority_vector_request?.required_same_record_rows?.length !== 5) {
+    errors.push("internal tangent-authority vector request must name five same-record row families");
+  }
+  if (row?.internal_tangent_authority_vector_request?.accepted !== false) {
+    errors.push("internal tangent-authority vector request must remain non-authorizing");
+  }
+  if (row?.internal_tangent_authority_vector_request?.accepted_internal_tangent_authority_ref !== null) {
+    errors.push("internal tangent-authority vector request must not claim an accepted authority ref");
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (row?.authorization?.[flag] !== false) {

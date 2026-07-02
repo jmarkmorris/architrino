@@ -539,7 +539,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
+      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}\\cdot(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
     anchors: [
       anchor("lineElement", "effective line element", "observer-level effective metric"),
       anchor("lapse", "lapse", "clock channel lapse"),
@@ -552,6 +552,7 @@ const scoreFiveAndFourEquationMapDocuments = [
       mathPart("lapse", "-N^2c_0^2dt^2", "lapse"),
       textPart("plus", " + "),
       mathPart("spatialCompliance", "\\gamma_{ij}", "spatialCompliance"),
+      mathPart("spatialProduct", "\\cdot", ""),
       mathPart("drift", "(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)", "drift"),
     ],
     overlays: [
@@ -561,7 +562,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "lineElement",
         "This is an effective observer metric, not substrate geometry replacing the Euclidean void.",
         "ds_{\\mathrm{eff}}^2",
-        { x: 7, y: 8, width: 25, line: "above" }
+        { x: 4, y: 6, width: 30, line: "above" }
       ),
       overlay(
         "clock-channel",
@@ -569,15 +570,15 @@ const scoreFiveAndFourEquationMapDocuments = [
         "lapse",
         "The lapse term must come from the same Noether sea response as ruler and signal rows.",
         "N",
-        { x: 67, y: 22, width: 25, line: "above" }
+        { x: 35, y: 7, width: 33, line: "above" }
       ),
       overlay(
         "spatial-channel",
         "Spatial channel",
         "spatialCompliance",
-        "Spatial compliance is the part scalar-delay-only maps tend to miss.",
+        "Spatial compliance multiplies the lower-row displacement product; scalar-delay-only maps tend to miss it.",
         "\\gamma_{ij}",
-        { x: 7, y: 68, width: 26, line: "below" }
+        { x: 72, y: 7, width: 25, line: "above" }
       ),
       overlay(
         "drift-channel",

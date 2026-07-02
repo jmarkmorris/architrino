@@ -21,6 +21,7 @@ import {
   updateEquationOverlay,
 } from "../src/apps/equation-mapping/EquationMappingEditor.js";
 import {
+  calculateEquationAutoFit,
   createEquationMappingHomeHref,
   createPointerLineGeometry,
   EquationMappingRuntime,
@@ -28,6 +29,22 @@ import {
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
+}
+
+function createFakeStyle() {
+  return {
+    flexWrap: "",
+    values: new Map(),
+    getPropertyValue(name) {
+      return this.values.get(name) ?? "";
+    },
+    removeProperty(name) {
+      this.values.delete(name);
+    },
+    setProperty(name, value) {
+      this.values.set(name, value);
+    },
+  };
 }
 
 test("equation mapping seed document carries static layer anchors and comments", () => {
@@ -95,6 +112,25 @@ test("equation mapping keeps same-side seed callouts ordered with their target t
   });
 });
 
+test("equation mapping places EQ-07 upper-row callouts above and drift callout below", () => {
+  const document = createSeedEquationMapDocuments().find(
+    (entry) => entry.id === "eq-07-effective-metric-adm-cartan"
+  );
+  const placementByOverlayId = new Map(
+    document.overlays.map((overlay) => [overlay.id, overlay.sectionLinePlacement])
+  );
+
+  assert.equal(document.formulaTeX.includes("\\gamma_{ij}\\cdot("), true);
+  assert.equal(
+    document.formulaParts.some((part) => part.id === "spatialProduct" && part.tex === "\\cdot"),
+    true
+  );
+  assert.equal(placementByOverlayId.get("observer-level"), "above");
+  assert.equal(placementByOverlayId.get("clock-channel"), "above");
+  assert.equal(placementByOverlayId.get("spatial-channel"), "above");
+  assert.equal(placementByOverlayId.get("drift-channel"), "below");
+});
+
 test("equation mapping pointer geometry attaches comments to section line edges", () => {
   const stageRect = { left: 100, top: 50, width: 900, height: 600 };
   const targetRect = { left: 460, top: 280, right: 540, bottom: 330, width: 80, height: 50 };
@@ -113,6 +149,74 @@ test("equation mapping pointer geometry attaches comments to section line edges"
     x2: 400,
     y2: 280,
   });
+});
+
+test("equation mapping auto-fit shrinks long equations before wrapping", () => {
+  assert.deepEqual(
+    calculateEquationAutoFit({
+      availableWidth: 900,
+      naturalWidth: 800,
+      baseFontSize: 60,
+      minFontSize: 26,
+    }),
+    { fontSize: 60, shouldWrap: false, mode: "base" }
+  );
+  const scaled = calculateEquationAutoFit({
+    availableWidth: 900,
+    naturalWidth: 1200,
+    baseFontSize: 60,
+    minFontSize: 26,
+  });
+  assert.equal(Math.round(scaled.fontSize), 45);
+  assert.equal(scaled.shouldWrap, false);
+  assert.equal(scaled.mode, "scaled");
+  assert.deepEqual(
+    calculateEquationAutoFit({
+      availableWidth: 900,
+      naturalWidth: 2400,
+      baseFontSize: 60,
+      minFontSize: 26,
+    }),
+    { fontSize: 26, shouldWrap: true, mode: "wrapped" }
+  );
+});
+
+test("equation mapping runtime applies fitted font size before enabling wrap", () => {
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      getComputedStyle() {
+        return { fontSize: "60px" };
+      },
+    },
+  });
+  const equationStyle = createFakeStyle();
+  runtime.equationElement = {
+    dataset: {},
+    scrollWidth: 1200,
+    style: equationStyle,
+  };
+  runtime.equationShellElement = {
+    clientWidth: 900,
+    getBoundingClientRect() {
+      return { width: 900 };
+    },
+  };
+
+  const scaled = runtime.applyEquationAutoFit();
+
+  assert.equal(scaled.mode, "scaled");
+  assert.equal(runtime.equationElement.dataset.fitMode, "scaled");
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "45.00px");
+  assert.equal(equationStyle.flexWrap, "nowrap");
+
+  runtime.equationElement.scrollWidth = 2400;
+  const wrapped = runtime.applyEquationAutoFit();
+
+  assert.equal(wrapped.mode, "wrapped");
+  assert.equal(runtime.equationElement.dataset.fitMode, "wrapped");
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "26.00px");
+  assert.equal(equationStyle.flexWrap, "wrap");
 });
 
 test("equation mapping page loads KaTeX assets and focused runtime module", () => {
@@ -248,15 +352,19 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   const html = readRepoFile("equation-mapping.html");
   assert.match(
     html,
-    /\.equation-mapping-equation \{[\s\S]*?font-size: clamp\(30px, 4\.6vw, 62px\);/u
+    /\.equation-mapping-equation-shell \{[\s\S]*?width: min\(96vw, 1320px\);[\s\S]*?max-width: calc\(100vw - var\(--index-width\) - 24px\);/u
   );
   assert.match(
     html,
-    /\.equation-mapping-shell\[data-equation-scale="small"\] \.equation-mapping-equation \{[\s\S]*?font-size: clamp\(24px, 3\.7vw, 52px\);/u
+    /\.equation-mapping-equation \{[\s\S]*?font-size: var\(--equation-fit-font-size, clamp\(30px, 4\.6vw, 62px\)\);/u
   );
   assert.match(
     html,
-    /\.equation-mapping-shell\[data-equation-scale="large"\] \.equation-mapping-equation \{[\s\S]*?font-size: clamp\(36px, 5\.6vw, 76px\);/u
+    /\.equation-mapping-shell\[data-equation-scale="small"\] \.equation-mapping-equation \{[\s\S]*?font-size: var\(--equation-fit-font-size, clamp\(24px, 3\.7vw, 52px\)\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-equation-scale="large"\] \.equation-mapping-equation \{[\s\S]*?font-size: var\(--equation-fit-font-size, clamp\(36px, 5\.6vw, 76px\)\);/u
   );
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);

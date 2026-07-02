@@ -145,6 +145,68 @@
       ]
     }
   },
+  "tailLimitRowBridgeRequestPacket": {
+    "claimLevel": "priority-only tail-limit row bridge request packet; not accepted source evidence and not promotion evidence",
+    "sourceRowIds": [
+      "bounded_residual_overlap",
+      "large_r_zero_limit"
+    ],
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "minimumFields": [
+      "retainedEventId",
+      "Delta_E_corr_NN_tail_limit_ref",
+      "lim_R_to_infty_T_NN_R_eq_0_ref",
+      "O_NN_finite_ref",
+      "exists_R0_C_lambda_exp_decay_tail_ref",
+      "residualTailEnvelopeRef",
+      "corridorWeightRef",
+      "branchSameRecordLedgerRef",
+      "sameRecordNoetherSeaResponseRef",
+      "coefficientExclusionAudit"
+    ],
+    "requiredRecordEqualities": [
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(lim_R_to_infty_T_NN_R_eq_0_ref)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(O_NN_finite_ref)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(exists_R0_C_lambda_exp_decay_tail_ref)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(residualTailEnvelopeRef)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(corridorWeightRef)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(branchSameRecordLedgerRef)",
+      "record(Delta_E_corr_NN_tail_limit_ref)=record(sameRecordNoetherSeaResponseRef)"
+    ],
+    "mustBeSameRecordAs": [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response"
+    ],
+    "derivedRowsIfAccepted": [
+      "bounded_residual_overlap",
+      "large_r_zero_limit"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state"
+    ],
+    "notAcceptedByThisPacket": [
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the zero-limit and finite-overlap rows come from different retained event records",
+      "the corridor weight used by O_NN differs from the finite-tail graph-rule corridor",
+      "the large-r zero-limit is target-only or sample-level",
+      "the overlap bound depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
+      "finite_range_residual is treated as accepted before the row bridge and accepted upstream rows exist"
+    ]
+  },
   "candidateFiniteTailScaffold": {
     "claimLevel": "priority-only finite-tail proof scaffold; accepts no source rows and does not prove finite_range_residual",
     "tailEnvelope": "\\mathcal T_{NN}(R)=\\sup_{r\\ge R}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r;\\Gamma_{N_1},\\Gamma_{N_2},\\sigma_{\\mathrm{eff}},\\rho_{\\text{NS}},\\chi_{\\text{sea}})\\right|",
@@ -186,6 +248,78 @@
     ],
     "coefficientExclusion": "No element-indexed coefficient may appear in R_0, C, lambda, T_NN, O_NN, or w_corr."
   },
+  "candidateTailLimitRowBridgeLemma": {
+    "claimLevel": "priority-only conditional tail-limit row bridge lemma; accepts no source rows and does not prove finite_range_residual, same_record_no_open_color_audit, or no_open_color_far_field",
+    "lemmaId": "tail_limit_overlap_zero_rows_imply_finite_range_support_0001",
+    "statement": "If an accepted Delta_E_corr_NN_tail_limit row in one retained sigma_eff, color-singlet, branch-interface, and Noether sea response record carries accepted lim_R_to_infty_T_NN_R_eq_0, accepted O_NN_finite, and accepted exists_R0_C_lambda_exp_decay_tail rows with coefficient exclusion, then the same record supplies the finite-range support rows bounded_residual_overlap and large_r_zero_limit.",
+    "assumptions": [
+      "accepted_Delta_E_corr_NN_tail_limit",
+      "accepted_lim_R_to_infty_T_NN_R_eq_0",
+      "accepted_O_NN_finite",
+      "accepted_exists_R0_C_lambda_exp_decay_tail",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response",
+      "no_A_Z_isotope_or_element_indexed_tail_coefficient"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "tail_row_identity_lock",
+        "derivation": "Require Delta_E_corr_NN_tail_limit, T_NN(R), O_NN, the corridor weight, B_pn, B_pp, and the Noether sea response row to resolve to the same retained event id."
+      },
+      {
+        "stepId": "zero_limit_relabel",
+        "derivation": "Use accepted lim_R_to_infty_T_NN_R_eq_0 as the large_r_zero_limit support row for finite_range_residual, without treating it as no_open_color_far_field."
+      },
+      {
+        "stepId": "bounded_overlap_relabel",
+        "derivation": "Use accepted O_NN_finite over the same corridor weight as the bounded_residual_overlap support row consumed by finite-tail graph-rule locks."
+      },
+      {
+        "stepId": "coefficient_exclusion",
+        "derivation": "Reject any bridge whose R_0, C, lambda, O_NN, T_NN, or w_corr uses A-, Z-, isotope-, element-, or Fe/Ni-indexed coefficients."
+      },
+      {
+        "stepId": "downstream_finite_range_feed",
+        "derivation": "Feed bounded_residual_overlap and large_r_zero_limit only into finite_range_residual and downstream no-open/no-free-color audits after the accepted upstream rows exist."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "bounded_residual_overlap",
+      "large_r_zero_limit"
+    ],
+    "missingAcceptanceRows": [
+      "Delta_E_corr_NN_tail_limit",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state"
+    ],
+    "failureModes": [
+      "the tail-limit row and overlap row use different retained event ids",
+      "O_NN_finite is proven with a different corridor weight than the finite-tail graph rules consume",
+      "large_r_zero_limit is inferred from a sample row rather than an accepted tail limit",
+      "coefficient exclusion fails for the tail or overlap constants",
+      "the bridge is used to accept finite_range_residual before accepted sigma_eff and color-singlet rows exist"
+    ]
+  },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
     "notAcceptedByThisPacket": [
@@ -193,6 +327,9 @@
       "Delta_E_corr_NN_tail_limit",
       "bounded_residual_overlap",
       "large_r_zero_limit",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
       "accepted_delta_E_corr_NN",
       "delta_E_corr_NN",
       "finite_residual_corridor_overlap",

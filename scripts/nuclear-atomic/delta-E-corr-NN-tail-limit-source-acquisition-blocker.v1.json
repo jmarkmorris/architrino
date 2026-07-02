@@ -105,6 +105,90 @@
       ]
     }
   },
+  "uniformExponentialTailCertificateRequestPacket": {
+    "claimLevel": "priority-only uniform exponential tail certificate request packet; not accepted source evidence and not promotion evidence",
+    "sourceRowIds": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "minimumFields": [
+      "retainedEventId",
+      "Delta_E_corr_NN_ref",
+      "tailEnvelopeRef",
+      "R0",
+      "C",
+      "lambda",
+      "corridorWeightRef",
+      "C_w",
+      "eta",
+      "eta_lt_lambda_witness",
+      "sigmaEffExtractionRef",
+      "colorSingletNucleonEnvelopeRef",
+      "protonBranchInterfaceLedgerRef",
+      "neutronBranchInterfaceLedgerRef",
+      "sameRecordEnergyMomentumAngularMomentumLedgerRef",
+      "sameRecordNoetherSeaResponseRef",
+      "coefficientExclusionAudit"
+    ],
+    "requiredRecordEqualities": [
+      "record(Delta_E_corr_NN_ref)=record(tailEnvelopeRef)",
+      "record(Delta_E_corr_NN_ref)=record(corridorWeightRef)",
+      "record(Delta_E_corr_NN_ref)=record(sigmaEffExtractionRef)",
+      "record(Delta_E_corr_NN_ref)=record(colorSingletNucleonEnvelopeRef)",
+      "record(Delta_E_corr_NN_ref)=record(protonBranchInterfaceLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(neutronBranchInterfaceLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(sameRecordEnergyMomentumAngularMomentumLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(sameRecordNoetherSeaResponseRef)"
+    ],
+    "inequalityRequirements": [
+      "C>0",
+      "lambda>0",
+      "C_w>0",
+      "0<=eta<lambda"
+    ],
+    "acceptedInputsAlreadyAvailable": [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response"
+    ],
+    "stillMissingBeforeAcceptance": [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "uniform_large_r_bound_C_lambda_R0",
+      "corridor_weight_growth_eta_lt_lambda",
+      "coefficient_exclusion_audit"
+    ],
+    "derivedRowsIfAccepted": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "notAcceptedByThisPacket": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the residual tail bound uses a different retained event id than the branch-interface or Noether sea response rows",
+      "lambda is non-positive or eta is not strictly smaller than lambda",
+      "R0, C, lambda, C_w, eta, T_NN, O_NN, or w_corr depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
+      "the certificate is target-only, sample-level, fixture-only, or toy-only",
+      "no_open_color_far_field is assumed before the tail-limit rows are accepted"
+    ]
+  },
   "candidateTailLimitScaffold": {
     "claimLevel": "priority-only tail-limit proof scaffold; accepts no source rows and does not prove Delta_E_corr_NN_tail_limit",
     "tailEnvelope": "\\mathcal T_{NN}(R)=\\sup_{r\\ge R}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r;\\Gamma_{N_1},\\Gamma_{N_2},\\sigma_{\\mathrm{eff}},\\rho_{\\text{NS}},\\chi_{\\text{sea}})\\right|",
@@ -168,6 +252,7 @@
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
       "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+      "uniform_large_r_bound_C_lambda_R0",
       "corridor_weight_growth_eta_lt_lambda"
     ],
     "failureModes": [
@@ -181,6 +266,9 @@
     "acceptedSourceRowsByThisPacket": [],
     "notAcceptedByThisPacket": [
       "Delta_E_corr_NN_tail_limit",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
       "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "same_record_no_open_color_audit",

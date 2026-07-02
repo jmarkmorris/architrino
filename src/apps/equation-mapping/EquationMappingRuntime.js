@@ -30,6 +30,11 @@ const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 3;
 const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
 const SVG_NS = "http://www.w3.org/2000/svg";
+const EQUATION_AUTO_FIT_MIN_FONT_SIZE = Object.freeze({
+  small: 22,
+  medium: 26,
+  large: 30,
+});
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -54,6 +59,40 @@ function getRectCenter(rect) {
   return {
     x: rect.left + rect.width / 2,
     y: rect.top + rect.height / 2,
+  };
+}
+
+export function calculateEquationAutoFit({
+  availableWidth = 0,
+  naturalWidth = 0,
+  baseFontSize = 0,
+  minFontSize = 0,
+} = {}) {
+  const width = Number(availableWidth);
+  const natural = Number(naturalWidth);
+  const base = Number(baseFontSize);
+  const minimum = Number(minFontSize);
+  if (
+    width <= 0 ||
+    natural <= 0 ||
+    base <= 0 ||
+    minimum <= 0 ||
+    !Number.isFinite(width + natural + base + minimum)
+  ) {
+    return { fontSize: base || minimum || 0, shouldWrap: true, mode: "unmeasured" };
+  }
+  if (natural <= width) {
+    return { fontSize: base, shouldWrap: false, mode: "base" };
+  }
+  const fitFontSize = (width / natural) * base;
+  if (fitFontSize >= minimum) {
+    return { fontSize: fitFontSize, shouldWrap: false, mode: "scaled" };
+  }
+  const minimumWidth = (natural / base) * minimum;
+  return {
+    fontSize: minimum,
+    shouldWrap: minimumWidth > width,
+    mode: minimumWidth > width ? "wrapped" : "minimum",
   };
 }
 
@@ -204,6 +243,8 @@ export class EquationMappingRuntime {
     this.anchorElements = new Map();
     this.overlayElements = new Map();
     this.pointerLines = [];
+    this.equationShellElement = null;
+    this.equationElement = null;
   }
 
   get activeDocument() {
@@ -225,7 +266,7 @@ export class EquationMappingRuntime {
     if (!this.root) {
       throw new Error("Missing #equation-mapping-app");
     }
-    this.handleResize = () => this.updatePointerLines();
+    this.handleResize = () => this.scheduleEquationLayout();
     this.window?.addEventListener?.("resize", this.handleResize);
     this.render();
     return this;
@@ -371,7 +412,7 @@ export class EquationMappingRuntime {
     this.overlayElements = new Map();
     this.root.textContent = "";
     this.root.append(this.renderShell());
-    this.schedulePointerUpdate();
+    this.scheduleEquationLayout();
   }
 
   renderShell() {
@@ -705,6 +746,8 @@ export class EquationMappingRuntime {
     const document = this.activeDocument;
     const equationShell = createElement(this.document, "div", "equation-mapping-equation-shell");
     const equation = createElement(this.document, "div", "equation-mapping-equation");
+    this.equationShellElement = equationShell;
+    this.equationElement = equation;
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
     const activeTargetId = this.activeOverlay?.targetAnchorId ?? "";
@@ -774,13 +817,51 @@ export class EquationMappingRuntime {
     return layer;
   }
 
-  schedulePointerUpdate() {
-    const run = () => this.updatePointerLines();
+  scheduleEquationLayout() {
+    const run = () => {
+      this.applyEquationAutoFit();
+      this.updatePointerLines();
+    };
     if (typeof this.window?.requestAnimationFrame === "function") {
       this.window.requestAnimationFrame(run);
       return;
     }
     run();
+  }
+
+  applyEquationAutoFit() {
+    const equation = this.equationElement;
+    const shell = this.equationShellElement;
+    if (!equation || !shell) {
+      return null;
+    }
+    equation.style.removeProperty("--equation-fit-font-size");
+    equation.dataset.fitMode = "measuring";
+    equation.style.flexWrap = "nowrap";
+    const computedStyle = this.window?.getComputedStyle?.(equation);
+    const baseFontSize = Number.parseFloat(computedStyle?.fontSize ?? "");
+    const shellRect = shell.getBoundingClientRect();
+    const availableWidth = shell.clientWidth || shellRect.width;
+    const naturalWidth = equation.scrollWidth;
+    const fit = calculateEquationAutoFit({
+      availableWidth,
+      naturalWidth,
+      baseFontSize,
+      minFontSize:
+        EQUATION_AUTO_FIT_MIN_FONT_SIZE[this.equationScale] ?? EQUATION_AUTO_FIT_MIN_FONT_SIZE.medium,
+    });
+    if (fit.mode === "unmeasured") {
+      equation.style.removeProperty("--equation-fit-font-size");
+      equation.style.removeProperty("flex-wrap");
+      equation.dataset.fitMode = "unmeasured";
+      return fit;
+    }
+    if (fit.fontSize < baseFontSize) {
+      equation.style.setProperty("--equation-fit-font-size", `${fit.fontSize.toFixed(2)}px`);
+    }
+    equation.style.flexWrap = fit.shouldWrap ? "wrap" : "nowrap";
+    equation.dataset.fitMode = fit.mode;
+    return fit;
   }
 
   updatePointerLines() {

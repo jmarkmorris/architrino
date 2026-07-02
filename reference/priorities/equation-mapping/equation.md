@@ -1901,7 +1901,7 @@ Current `6/23 b` score: `3`.
 
 The mechanism is staged as a shared constitutive target, not merely a loose analogy. A fitted $\Lambda$ is still not a derivation.
 
-The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. Its numeric pressure, equation-of-state, $\Lambda_{\mathrm{eff}}$, FRW-handoff, source-provenance, and hidden-retune diagnostics pass, but those passes are not score evidence because the retained Noether sea pressure/tension/relaxation rows remain `attempt`.
+The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) consumes the accepted `theta_sea_rho_NS` density provider and moves the first provider-backed pressure blocker to `missing_accepted_pressure_law_row`. Its numeric pressure, equation-of-state, $\Lambda_{\mathrm{eff}}$, FRW-handoff, source-provenance, and hidden-retune diagnostics pass, but those passes are not score evidence because the retained Noether sea pressure/tension/relaxation rows remain `attempt`.
 
 ### Closure Burden
 
@@ -1925,7 +1925,7 @@ Then show how it projects into $w_{\mathrm{eff}}$ and $\Lambda_{\mathrm{eff}}$ w
 
 ### Agent Target
 
-Replace the pressure/$\Lambda_{\mathrm{eff}}$ attempt with a durable source-backed `theta_sea_rho_NS` density/pressure/tension/relaxation bundle, while preserving the inherited `theta_cos` handoff. Until the Noether sea and pressure checkers accept the same-window density, stress, pressure, tension, relaxation, effective-coupling, source-loading, provenance, and no-hidden-retune rows from durable source evidence, the dark-energy row remains score-neutral at `missing_accepted_theta_sea_rho_NS` and `missing_accepted_theta_cos`.
+Replace the provider-backed pressure candidate rows with a durable source-backed `theta_sea_rho_NS` pressure/tension/relaxation bundle, while preserving the inherited `theta_cos` handoff. Until the Noether sea and pressure checkers accept the same-window stress, pressure, tension, relaxation, effective-coupling, source-loading, provenance, and no-hidden-retune rows from durable source evidence, the dark-energy row remains score-neutral at `missing_accepted_pressure_law_row` on the provider-backed route and `missing_accepted_theta_cos` on the inherited FRW handoff.
 
 ## EQ-21: Structure Growth And Matter Power
 

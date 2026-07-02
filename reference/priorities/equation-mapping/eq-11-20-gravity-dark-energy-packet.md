@@ -260,7 +260,7 @@ The ontological ladder is:
 7. Pressure is the isotropic projection of that stress or tension row.
 8. Dark-energy pressure is an observer-level projection of the native Noether sea pressure, tension, density, coupling, and relaxation rows.
 
-This is the precise replacement for the loose phrase "tension reservoir." The reservoir is not a new substance. It is a same-window retained energy inventory plus a closed or slow release-channel row and a stress/tension response row.
+This is the precise replacement for the earlier reservoir wording. The slowly varying outer-binary tension sector is not a new substance. It is a same-window retained energy inventory plus a closed or slow release-channel row and a stress/tension response row.
 
 For a representative Noether braid $b$ in a coarse-graining window $W$, write the outer-binary row as
 
@@ -567,11 +567,14 @@ It should be zero only when the weak-gravity and dark-energy projections use the
 
 ## First Mathematical Object To Add Next
 
-The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its first outer-binary source-attempt fixture is [eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json](../../../scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json). That fixture still blocks first at `missing_accepted_theta_sea_rho_NS` because it is an attempt route, while the accepted density-compression provider in [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json) supplies the upstream density carrier that a later `EQ-20` pressure slice should consume. The outer-binary strain, release-channel availability, pressure-projection, pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics remain executable shape tests, not a dark-energy derivation. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`.
+The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its first outer-binary source-attempt fixture is [eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json](../../../scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json). That fixture still blocks first at `missing_accepted_theta_sea_rho_NS` because it is an attempt route. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) consumes the accepted density-compression provider in [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json), verifies the `theta_sea_rho_NS` provider object, and advances the first `EQ-20` blocker to `missing_accepted_pressure_law_row`. The outer-binary strain, release-channel availability, pressure-projection, pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics remain executable shape tests, not a dark-energy derivation. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`.
 
 ```bash
 node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
   --input scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json \
+  --summary --pretty
+node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
+  --input scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json \
   --summary --pretty
 ```
 
@@ -677,5 +680,5 @@ Do not update [equation.md](equation.md) from this packet. Recommended next scor
 - Claim bucket: derivation/closure target with observer-level effective summaries.
 - Corpus promotion status: priority-only.
 - Promote now: no.
-- Defer with blocker: no populated weak-field window, no accepted `theta_sea_rho_NS` row, no derived $G_{\mathrm{eff}}$ coefficient row, no native pressure law, no relaxation calculation, and no accepted shared local/cosmology hidden-retune evaluation.
-- Next safe action: instantiate $\mathcal R_{11\text{-}20}$ on a weak solar-system window and one homogeneous effective-cosmology window, then report which coefficient rows split before attempting any score above `3`.
+- Defer with blocker: no populated weak-field window, no accepted `delta_P_eff` pressure-law row, no derived $G_{\mathrm{eff}}$ coefficient row, no native pressure law, no relaxation calculation, and no accepted shared local/cosmology hidden-retune evaluation. The upstream `theta_sea_rho_NS` density provider exists, but it is not yet a pressure/tension/relaxation bundle.
+- Next safe action: replace the provider-backed `EQ-20` pressure candidate rows with one same-window `delta_P_eff` pressure projection report, then instantiate $\mathcal R_{11\text{-}20}$ on a weak solar-system window and one homogeneous effective-cosmology window before attempting any score above `3`.
