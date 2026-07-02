@@ -1,0 +1,118 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_text_answer_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Ask",
+  "requestSummary": {
+    "requestId": "request_ask_noether_sea_001",
+    "safeSummaryId": "safe_summary_noether_sea_001",
+    "contextRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": ["published_corpus", "archie_reference"],
+    "sourceChips": [
+      {
+        "route": "content/markdown/aaa/archie/system-card.md",
+        "label": "System Card",
+        "sourceClass": "archie_reference",
+        "authorityStatus": "primary",
+        "visibility": "public",
+        "sectionId": "overview",
+        "freshnessState": "fresh"
+      }
+    ],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": ["priority_material"],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "published corpus",
+    "unsupportedReasonClass": null,
+    "priorityVisibility": "hidden"
+  },
+  "answerBody": {
+    "displayedText": "The Noether sea should be explained from the cited source route, with claim status visible.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_001",
+        "text": "The Noether sea should be explained from the cited source route, with claim status visible."
+      }
+    ],
+    "readingPath": [
+      {
+        "route": "content/markdown/aaa/archie/system-card.md",
+        "label": "System Card",
+        "sourceClass": "archie_reference",
+        "authorityStatus": "primary",
+        "visibility": "public",
+        "sectionId": "overview",
+        "freshnessState": "fresh"
+      }
+    ]
+  },
+  "providerExecutionContext": {
+    "capabilityIds": ["capability.answer_text.fixture"],
+    "credentialBoundary": "service_side_only",
+    "noBrowserKeys": true
+  },
+  "artifacts": [
+    {
+      "artifactId": "artifact_text_001",
+      "artifactType": "text",
+      "purposeLabel": "source-grounded answer",
+      "sourceInheritance": "inherits_manifest_source_context",
+      "claimInheritance": "inherits_manifest_claim_context",
+      "retentionState": "ephemeral"
+    }
+  ],
+  "speechSync": {
+    "status": "not_requested",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_text_answer_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 4,
+    "heldTokens": 4,
+    "chargedTokens": 3,
+    "refundedTokens": 1,
+    "workUnits": ["source_navigation", "retrieval", "answer_generation"],
+    "sourceClassesUsed": ["archie_reference"],
+    "artifactCount": 1,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "disabled",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [
+    {
+      "actionType": "listen",
+      "preflightStatus": "ready",
+      "confirmationRequired": false,
+      "confirmationReasons": [],
+      "destinationClass": "same_manifest"
+    }
+  ],
+  "issueMiningContext": {
+    "enabled": false,
+    "originSurface": "Ask",
+    "duplicateKeys": [],
+    "ownerLane": null,
+    "smallestNextArtifact": null,
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": ["request_received", "source_context_resolved", "claim_label_assigned", "token_ledger_updated"],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

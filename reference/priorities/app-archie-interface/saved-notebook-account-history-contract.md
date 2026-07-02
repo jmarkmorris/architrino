@@ -13,6 +13,7 @@
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
@@ -68,7 +69,7 @@ Saved notebook items should include:
 | `token_storage_effect` | Storage cost, free local draft, or no-charge state. |
 | `evidence_status` | Must be `not_project_evidence` unless separately promoted through public/project review. |
 
-Notebook entries should avoid expanding private prompt text in receipts, issue-mining metadata, diagnostics, or support summaries.
+Notebook entries should avoid expanding private prompt text in receipts, issue-mining metadata, observability events, diagnostics, incidents, or support summaries.
 
 ## Save Scope Rules
 
@@ -214,12 +215,13 @@ The future implementation should include notebook fixtures for:
 Closure goal:
 Turn the Saved Notebook And Account History Contract into saved-note schemas, retention/deletion/export validators, action-broker save/share gates, token storage rules, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode saved-note draft, durable notebook entry, account history entry, submitted issue link, saved artifact, export, delete, and share schemas.
 - Define retention, deletion, export, storage-cost, and privacy validators.
 - Define saved-notebook/account-history terms validators and re-acceptance behavior.
+- Define observability redaction for saved-note, account-history, export, deletion, sharing, and support-summary events.
 - Add action-broker gates for save, share, public issue-link retention, and user-material inclusion.
 - Add token/storage rules for durable notebook and account-history features.
 - Add fixtures for session drafts, durable-save refusal, missing terms, deletion, export, share refusal, private-note evidence refusal, generated-media retention, issue-link retention, token storage, and no-private-prompt receipts.

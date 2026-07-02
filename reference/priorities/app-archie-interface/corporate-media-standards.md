@@ -8,6 +8,7 @@
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
@@ -22,6 +23,8 @@ Generated media includes text, audio, images, diagrams, animation storyboards, v
 Any media type the service can generate is allowed as an answer artifact when it satisfies this standard, preserves source authority, and fits the user's configured spending and privacy controls.
 
 Generated media must also fit the generated-media terms, privacy notices, token terms, saved-notebook terms, and legal-review state defined in [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+
+Generated media that depends on a provider must also use a registered provider capability under [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). Provider availability, moderation, fallback behavior, cost class, privacy/terms state, credential boundary, and quality gate must be known before generated media is enabled.
 
 Source authority for generated media must inherit the validated `source_context` defined in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). Media validation can refuse or weaken an artifact, but it cannot promote source status.
 
@@ -78,3 +81,5 @@ Examples:
 The corporate media standard is a launch gate for generated media. Public beta should not ship generated audio, generated images, animation, video, or other non-text artifacts until [acceptance fixtures](corporate-media-acceptance-fixtures.md) show that this standard is enforced across supported modes.
 
 Public beta should also keep generated-media features disabled until generated-media terms and legal-review state are current under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+
+Provider-backed generated media should remain disabled until provider capability fixtures prove no browser-side model calls, no missing cost map, no missing provider data-use policy, no missing fallback, and no source-authority inflation.

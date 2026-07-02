@@ -12,6 +12,7 @@
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
@@ -50,11 +51,14 @@ The mining pipeline should consume these safe inputs. Source routes, source-inde
 | `duplicate_keys` | Route, app id, source id, error class, topic id, concept id, or fixture id. |
 | `privacy_inclusion` | Included, excluded, redacted, or consented material state. |
 | `token_receipt_id` | Optional safe receipt id for cost/support review. |
+| `observability_refs` | Optional safe event, error-class, validator-disposition, or incident refs from the observability contract. |
 | `smallest_next_artifact` | Definition, equation, simulation target, source packet, app mockup, validation fixture, or issue. |
 
 Private prompt text, uploaded user media, account history, private conversation excerpts, and unsubmitted drafts are excluded unless a separate consent and retention policy explicitly allows their use.
 
 Issue submission and public handoff confirmation should follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). Issue mining should treat unconfirmed drafts as excluded unless account policy and consent explicitly allow retention.
+
+Operational signal handoff should follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). Safe error classes, validator dispositions, provider capability ids, fallback classes, public incident ids, and source-miss classes may support clustering; private prompt text and raw logs remain excluded.
 
 Saved notebook and account history behavior should follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). Private saved notes, account history, and session-local drafts are not issue-mining evidence by default.
 
@@ -193,6 +197,7 @@ Rules:
 5. receipts may be linked by safe receipt id but must not expand prompt text;
 6. diagnostics should remain redacted and operator/developer-safe.
 7. GitHub handoff notices and issue-mining disclosures must be current before public issue metadata is retained for mining.
+8. observability refs should remain safe ids/classes and should not include private prompts, raw provider payloads, account history, or private saved notes.
 
 If a cluster cannot be understood without private prompt text, the report should mark it `needs_public_reproduction` rather than exposing private data.
 
@@ -212,6 +217,7 @@ The future implementation should include issue-mining fixtures for:
 | `mining-owner-ambiguous-001` | Ambiguous ownership routes to issue ops with owner-decision action. |
 | `mining-fixture-candidate-001` | Reproducible issue generates a regression fixture candidate. |
 | `mining-source-index-001` | Missing source route reports generate a source-index repair candidate. |
+| `mining-observability-handoff-001` | Safe operational refs support clustering without private prompt text or raw logs. |
 | `mining-report-shape-001` | Periodic report includes clusters, noise summary, owner queues, recommended actions, and privacy statement. |
 
 ## Implementation Handoff
@@ -219,12 +225,13 @@ The future implementation should include issue-mining fixtures for:
 Closure goal:
 Turn the Issue Mining Signal Contract into report schemas, clustering rules, owner-routed fix queues, privacy-safe evidence handling, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode issue-mining input metadata and cluster schema.
 - Define signal scoring, noise classes, owner lanes, and fix queue records.
 - Define periodic signal report shape.
+- Define safe observability refs that can support clustering without private prompt text or raw logs.
 - Add privacy checks that prevent private prompt text, unsubmitted drafts, and unconsented media from entering reports.
 - Add GitHub handoff notice, issue-mining disclosure, public-feedback-use terms, and missing-terms refusal behavior.
 - Add fixtures for duplicate clustering, recurring confusion, unsupported gaps, app usability, noise classification, private exclusion, missing terms, ambiguous ownership, fixture candidates, source-index candidates, and report shape.
@@ -232,6 +239,7 @@ Task:
 Constraints:
 - Use public issue links and safe manifest metadata as evidence.
 - Do not mine private prompt text by default.
+- Do not mine raw logs, raw provider payloads, account history, or private saved notes by default.
 - Do not treat issue volume as proof or launch readiness.
 - Do not promote user proposals into corpus claims.
 - Do not add GitHub automation, credentials, deployment config, or public launch behavior unless explicitly requested.

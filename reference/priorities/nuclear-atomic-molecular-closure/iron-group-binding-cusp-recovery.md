@@ -327,8 +327,61 @@ The sweep emits one JSON report with:
 - the first fail-closed row;
 - comparison rows for deuteron, diproton, saturation, and a representative heavy split.
 
-The paired focused test is [iron-group-binding-cusp-toy-sweep.test.js](../../../tests/iron-group-binding-cusp-toy-sweep.test.js). The default coefficient set is a shared global toy set; the script deliberately fails closed for deuteron loss, diproton overbinding, missing saturation, wrong cusp region, hidden coefficient scope, ledger loss, and shielded-energy leakage.
+The paired focused test is [iron-group-binding-cusp-toy-sweep.test.js](../../../tests/iron-group-binding-cusp-toy-sweep.test.js). The default coefficient set is a shared global toy set; the script deliberately fails closed for deuteron loss, diproton overbinding, missing saturation, wrong cusp region, hidden coefficient scope, ledger loss, shielded-energy leakage, and missing source-binding promotion readiness.
 
-First run marker. The default summary run reports a toy peak at $(A,Z)=(62,28)$, `firstFailure: null`, a finite high-$A$ tail drop, a representative heavy-split binding gain, and `no_score_increase`.
+First run marker. The default summary run reports a toy peak at $(A,Z)=(62,28)$, `firstFailure: null`, a finite high-$A$ tail drop, a representative heavy-split binding gain, `sourceBindingStatus: blocked_missing_accepted_source_rows`, and `no_score_increase`.
+
+## Source-Binding Promotion Gate
+
+The source-binding manifest is [iron-group-binding-cusp-source-binding-candidates.v1.json](../../../scripts/nuclear-atomic/iron-group-binding-cusp-source-binding-candidates.v1.json). It ties the toy coefficients and graph rules to four required source families before any corpus promotion:
+
+| Source family | Toy rows it controls | Current status | First blocker |
+| --- | --- | --- | --- |
+| `branch_interface` | Pair corridor rewards, pair mismatch costs, bounded degree, local corridor saturation, and $p+n$ / $p+p$ channel selection. | Blocked; [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json) is durable and parseable, but its rows remain target/candidate rows rather than accepted source evidence. | `missing_accepted_nucleon_branch_interface_ledgers` |
+| `confinement_functional` | Corridor scale, surface loss, large-$A$ packing, shell/readout envelope, and finite saturation. | Blocked; [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) is durable and parseable, but its rows remain target rows rather than accepted source evidence. | `missing_accepted_sigma_eff_extraction` |
+| `weak_channel` | Beta-stable band, asymmetry pressure, weak reaction provenance, and weak/noether coupling consistency. | Blocked; retained muon ledger and weak projection are present, but downstream weak rows remain attempt-level. | `missing_accepted_weak_quotient` |
+| `noether_sea_response` | Local $\theta_{\mathrm{sea}}$, $\rho_{\text{NS}}$, density-compression response, and bounded sea-polarization row. | Accepted by the retained-window density-compression provider; [noether-sea-response-source-target-check.mjs](../../../scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs) verifies durable source evidence, retained-window agreement, and Fe/Ni toy row consumption. | none |
+
+The compact command for the promotion gate is:
+
+```bash
+node scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs --summary --require-promotion-ready
+```
+
+The branch-interface source target has its own algebraic success-marker check:
+
+```bash
+node scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs --summary --pretty
+```
+
+That check currently reports `algebraicPass: true` for the $p+n$/$p+p$ orientation extraction but keeps `--require-accepted` blocked until `nucleon_branch_interface_ledgers`, `pn_orientation_count`, `pp_orientation_count`, and `same_record_energy_momentum_angular_momentum_ledger` become accepted source rows.
+
+The confinement-functional source target also has a structural success-marker check:
+
+```bash
+node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --pretty
+```
+
+That check currently reports `structuralPass: true` for the $\sigma_{\mathrm{eff}}$, color-singlet envelope, $\Delta E_{\mathrm{corr}}^{NN}$, no-open-color, and toy-binding dependency chain but keeps `--require-accepted` blocked until `sigma_eff_extraction`, `color_singlet_nucleon_envelope`, `delta_E_corr_NN`, and `no_open_color_far_field` become accepted source rows.
+
+The weak-channel source target has the corresponding same-domain success-marker check:
+
+```bash
+node scripts/nuclear-atomic/weak-channel-source-target-check.mjs --summary --pretty
+```
+
+That check currently reports accepted `weak_visible_branch_ledger` and `weak_projection` rows, same-domain and stable-branch weak structure, and zero weak residuals, but keeps `--require-accepted` blocked until `weak_quotient`, `weak_exposure_record`, `reaction_event_ledger`, `noether_sea_response`, and the remaining downstream weak rows become accepted source rows.
+
+The Noether sea response source target has an accepted retained-window success-marker check:
+
+```bash
+node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summary --pretty
+```
+
+That check currently reports `accepted_noether_sea_response_rows`: the provider path is durable source evidence, the required $\rho_{\text{NS}}$, $\theta_{\mathrm{sea}}$, stress-strain, speed, causality, and correlation rows are accepted, acoustic-elastic agreement stays within the refinement tolerance, and the Fe/Ni `alphaSea`, `seaImbalancePenalty`, and `noether_sea_polarization_reward` rows consume accepted Noether sea response rows.
+
+The report emits row-level traceability in `sourceBinding.coefficientBindings` and `sourceBinding.graphRuleRowBindings`. A toy coefficient or graph rule is promotion-ready only when every required source row listed under its bound source families is accepted; family-level acceptance is not enough.
+
+This command is expected to fail until all required source families are accepted from durable non-priority source evidence. The toy-control pass therefore remains separate from promotion readiness: `--require-pass` may pass while `--require-promotion-ready` fails.
 
 The toy should be treated as a row-shape diagnostic. It demonstrates that the reduced row bundle has the right qualitative degrees of freedom in one controlled toy envelope; it cannot promote nuclear-binding recovery until its coefficients and graph rules are tied back to accepted branch-interface, confinement, weak-channel, and Noether sea response records.

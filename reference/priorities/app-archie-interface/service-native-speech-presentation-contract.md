@@ -11,6 +11,7 @@
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
@@ -35,6 +36,8 @@ Speech and presentation are rendering layers, not source authorities.
 The service may make an answer easier to hear, scan, narrate, or storyboard, but it cannot change source routes, claim labels, proof status, unsupported-answer behavior, or System Card routing. If presentation needs a summary, analogy, simplification, or alternate explanation, that must be a separate manifest artifact with its own source and claim context.
 
 Speech and presentation artifacts inherit `source_context` produced under [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). The speech layer must not reconstruct source authority from audio-provider output, narration style, voice quality, or animation framing.
+
+Speech provider capabilities must follow [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). High-quality speech, caption/transcript support, token cost class, provider health state, credential boundary, and text-only fallback must be declared before speech output can run.
 
 If narration scripts, comparison scripts, storyboards, transcripts, or future audio artifacts are saved, retention, export, deletion, and not-project-evidence behavior must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
 
@@ -213,6 +216,7 @@ The future implementation should include speech/presentation fixtures for:
 | --- | --- |
 | `speech-answer-high-quality-001` | Answer audio is high-quality, synchronized, captioned, ephemeral, and source/claim preserving. |
 | `speech-answer-fallback-001` | High-quality speech unavailable returns text-only fallback and no speech charge. |
+| `speech-provider-registry-negative-001` | Speech output is unavailable when no high-quality provider capability, fallback, cost map, or credential boundary is registered. |
 | `speech-unsynchronized-negative-001` | Audio without displayed verbatim text is refused or changed to text-only. |
 | `speech-hidden-summary-negative-001` | Audio cannot secretly speak a summary instead of displayed text. |
 | `speech-sphere-portion-001` | Sphere-initiated audio covers only the associated markdown portion. |
@@ -231,10 +235,11 @@ The future implementation should include speech/presentation fixtures for:
 Closure goal:
 Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, token/privacy checks, and regression fixtures.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode `speech_sync` and audio artifact schemas.
+- Encode speech provider capability, high-quality gate, health-state, credential-boundary, token-cost, and text-only fallback requirements.
 - Define answer audio, sphere-portion audio, and full-document audio boundaries.
 - Define narration script, comparison script, caption/transcript, and storyboard artifact schemas.
 - Add high-quality-only, synchronized-text, accessibility, voice-identity, token, and privacy validators.

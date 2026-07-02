@@ -3,9 +3,12 @@
 import fs from "node:fs";
 import path from "node:path";
 import {
-  providerEvidenceStatusForPath,
   providerSourcePathRejectionReason,
 } from "../spacetime/noether-sea-density-compression-provider-evidence.mjs";
+import { buildConfinementFunctionalSourceTargetCheck } from "./confinement-functional-source-target-check.mjs";
+import { buildNoetherSeaResponseSourceTargetCheck } from "./noether-sea-response-source-target-check.mjs";
+import { buildNucleonBranchInterfaceSourceTargetCheck } from "./nucleon-branch-interface-source-target-check.mjs";
+import { buildWeakChannelSourceTargetCheck } from "./weak-channel-source-target-check.mjs";
 
 export const SCHEMA = "iron_group_binding_cusp_toy_graph_sweep/v0";
 export const SOURCE_BINDING_SCHEMA =
@@ -73,6 +76,118 @@ const GRAPH_RULE_SOURCE_FAMILIES = Object.freeze({
   beta_stable_band_center: ["weak_channel"],
   noether_sea_polarization_reward: ["noether_sea_response"],
   finite_tail_saturation_check: ["confinement_functional", "branch_interface"],
+});
+
+const COEFFICIENT_SOURCE_ROW_REQUIREMENTS = Object.freeze({
+  alphaCorr: {
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+    confinement_functional: ["delta_E_corr_NN"],
+  },
+  alphaSea: {
+    noether_sea_response: ["rho_NS", "theta_sea", "stress_strain_row"],
+    confinement_functional: ["sigma_eff_extraction"],
+  },
+  alphaSurf: {
+    confinement_functional: [
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+    ],
+  },
+  alphaCoul: {
+    branch_interface: ["same_record_energy_momentum_angular_momentum_ledger"],
+  },
+  alphaAsym: {
+    weak_channel: ["weak_quotient", "weak_exposure_record", "reaction_event_ledger"],
+  },
+  alphaPair: {
+    confinement_functional: [
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+    ],
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+  },
+  alphaShell: {
+    confinement_functional: [
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+    ],
+  },
+  alphaPack: {
+    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+  },
+  boundaryDegreeLoss: {
+    confinement_functional: [
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+    ],
+  },
+  dSat: {
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+  },
+  maxDegree: {
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+  },
+  betaValleySlope: {
+    weak_channel: ["weak_quotient", "weak_projection", "reaction_event_ledger"],
+  },
+  seaImbalancePenalty: {
+    noether_sea_response: ["rho_NS", "theta_sea"],
+    weak_channel: ["weak_quotient", "noether_sea_response"],
+  },
+  packSoftA: {
+    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+  },
+  pnCorridorPairReward: {
+    branch_interface: ["pn_orientation_count"],
+    confinement_functional: ["sigma_eff_extraction", "delta_E_corr_NN"],
+  },
+  pnPairMismatchCost: {
+    branch_interface: [
+      "pn_orientation_count",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+  },
+  ppCorridorPairReward: {
+    branch_interface: ["pp_orientation_count"],
+    confinement_functional: ["sigma_eff_extraction", "delta_E_corr_NN"],
+  },
+  ppPairMismatchCost: {
+    branch_interface: [
+      "pp_orientation_count",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+  },
+  ppCoulombCost: {
+    branch_interface: ["same_record_energy_momentum_angular_momentum_ledger"],
+  },
+});
+
+const GRAPH_RULE_SOURCE_ROW_REQUIREMENTS = Object.freeze({
+  bounded_degree_surface_depleted_corridor_estimator: {
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+    confinement_functional: [
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+    ],
+  },
+  beta_stable_band_center: {
+    weak_channel: ["weak_quotient", "weak_exposure_record", "reaction_event_ledger"],
+  },
+  noether_sea_polarization_reward: {
+    noether_sea_response: [
+      "rho_NS",
+      "theta_sea",
+      "stress_strain_row",
+      "causality_row",
+    ],
+  },
+  finite_tail_saturation_check: {
+    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    branch_interface: ["nucleon_branch_interface_ledgers"],
+  },
 });
 
 const FAILURE_ORDER = Object.freeze([
@@ -382,6 +497,13 @@ export function validationErrors(report) {
     report.summary?.sourceBindingStatus !== report.sourceBinding.summary?.status
   ) {
     errors.push("source_binding_status_mismatch");
+  } else {
+    if (!report.sourceBinding?.graphRuleRowBindings) {
+      errors.push("source_binding_graph_rule_row_bindings_missing");
+    }
+    if (!report.sourceBinding?.coefficientBindings?.alphaCorr?.requiredRowsByFamily) {
+      errors.push("source_binding_coefficient_row_bindings_missing");
+    }
   }
   return errors;
 }
@@ -523,6 +645,482 @@ function parseNameValue(raw, flag, { numeric = true } = {}) {
     throw new Error(`${flag} ${name} value must be finite.`);
   }
   return { name, value };
+}
+
+function loadSourceBindingManifest(options) {
+  if (options.sourceBindingManifest) {
+    return options.sourceBindingManifest;
+  }
+  const sourcePath = options.sourceBindingPath ?? DEFAULT_SOURCE_BINDING_PATH;
+  return JSON.parse(fs.readFileSync(path.resolve(sourcePath), "utf8"));
+}
+
+export function buildSourceBindingReport(
+  manifest,
+  { sourceRef = DEFAULT_SOURCE_BINDING_PATH, coefficientRows = [] } = {},
+) {
+  const schemaOk = manifest?.schema === SOURCE_BINDING_SCHEMA;
+  const candidates = Array.isArray(manifest?.candidates) ? manifest.candidates : [];
+  const candidateResults = candidates.map((candidate, index) =>
+    evaluateSourceBindingCandidate(candidate, index),
+  );
+  const familyResults = Object.fromEntries(
+    REQUIRED_SOURCE_FAMILIES.map((family) => [
+      family,
+      summarizeSourceFamily(family, candidateResults),
+    ]),
+  );
+  const missingRequiredFamilies = REQUIRED_SOURCE_FAMILIES.filter(
+    (family) => familyResults[family].accepted !== true,
+  );
+  const firstMissingFamily = SOURCE_BINDING_ORDER.find((family) =>
+    missingRequiredFamilies.includes(family),
+  ) ?? null;
+  const firstMissingObject = firstMissingFamily
+    ? familyResults[firstMissingFamily].firstMissingObject
+    : null;
+  const allRequiredFamiliesAccepted = schemaOk && missingRequiredFamilies.length === 0;
+
+  return {
+    schema: SOURCE_BINDING_REPORT_SCHEMA,
+    generatedAt: new Date().toISOString(),
+    input: {
+      path: sourceRef,
+      schema: manifest?.schema ?? null,
+      schemaOk,
+      claimLevel: manifest?.claimLevel ?? null,
+    },
+    summary: {
+      status: allRequiredFamiliesAccepted
+        ? "all_required_source_families_accepted"
+        : "blocked_missing_accepted_source_rows",
+      requiredFamilyCount: REQUIRED_SOURCE_FAMILIES.length,
+      acceptedRequiredFamilyCount: REQUIRED_SOURCE_FAMILIES.filter(
+        (family) => familyResults[family].accepted === true,
+      ).length,
+      allRequiredFamiliesAccepted,
+      missingRequiredFamilies,
+      firstMissingFamily,
+      firstMissingObject,
+      scoreDecision: "no_score_increase",
+    },
+    requiredFamilies: [...REQUIRED_SOURCE_FAMILIES],
+    familyResults,
+    candidateResults,
+    coefficientBindings: coefficientSourceFamilyBindings(
+      coefficientRows,
+      candidateResults,
+    ),
+    graphRuleBindings: GRAPH_RULE_SOURCE_FAMILIES,
+    graphRuleRowBindings: graphRuleSourceRowBindings(candidateResults),
+    promotionRule:
+      "Corpus promotion remains blocked until every required source family is accepted from durable non-priority source evidence and the toy controls still pass.",
+  };
+}
+
+function evaluateSourceBindingCandidate(candidate, index) {
+  const family = candidate.family ?? candidate.sourceFamily ?? `candidate_${index}`;
+  const base = {
+    id: candidate.id ?? `${family}_${index}`,
+    family,
+    role: candidate.role ?? null,
+    sourcePath: candidate.sourcePath ?? null,
+    requiredRows: candidate.requiredRows ?? [],
+    accepted: false,
+    sourceStatus: null,
+    firstMissingObject:
+      candidate.firstMissingObject ?? `missing_accepted_${family}`,
+    missingOrRejectedFields: [],
+  };
+  if (!concreteString(candidate.sourcePath)) {
+    return {
+      ...base,
+      sourceStatus: "missing_source_path",
+      missingOrRejectedFields: ["sourcePath"],
+    };
+  }
+  const sourcePath = candidate.sourcePath.trim().replace(/#.*/, "");
+  const resolvedPath = path.isAbsolute(sourcePath)
+    ? sourcePath
+    : path.resolve(REPO_ROOT, sourcePath);
+  const pathReason = providerSourcePathRejectionReason(resolvedPath, REPO_ROOT);
+  if (pathReason) {
+    return {
+      ...base,
+      resolvedPath,
+      sourceStatus: pathReason,
+      missingOrRejectedFields: [pathReason],
+    };
+  }
+  let raw;
+  try {
+    raw = JSON.parse(fs.readFileSync(resolvedPath, "utf8"));
+  } catch (error) {
+    return {
+      ...base,
+      resolvedPath,
+      sourceStatus:
+        error.code === "ENOENT" ? "source_not_found" : "source_not_parseable_json",
+      missingOrRejectedFields: ["source_json"],
+    };
+  }
+  const status = evaluateSourceCandidateRows(family, raw, candidate, resolvedPath);
+  const sourceTargetCheck = sourceTargetCheckForFamily(family, raw, resolvedPath);
+  return {
+    ...base,
+    resolvedPath,
+    accepted: status.accepted,
+    sourceStatus: status.accepted ? "accepted_non_fixture_source" : status.reason,
+    firstMissingObject: status.accepted
+      ? null
+      : status.firstMissingObject ?? base.firstMissingObject,
+    missingOrRejectedFields: status.missingOrRejectedFields,
+    sourceSchema: raw.schema ?? null,
+    rowStatuses: status.rowStatuses,
+    ...(sourceTargetCheck ? { sourceTargetCheck } : {}),
+  };
+}
+
+function evaluateSourceCandidateRows(family, raw, candidate, resolvedPath) {
+  if (family === "weak_channel") {
+    return evaluateWeakChannelSource(raw, candidate);
+  }
+  if (family === "noether_sea_response") {
+    return evaluateNoetherSeaResponseSource(raw, candidate, resolvedPath);
+  }
+  return evaluateGenericAcceptedSource(raw, candidate);
+}
+
+function evaluateNoetherSeaResponseSource(raw, candidate, resolvedPath) {
+  const report = buildNoetherSeaResponseSourceTargetCheck(raw, {
+    inputPath: resolvedPath,
+  });
+  const accepted = report.summary.status === "accepted_noether_sea_response_rows";
+  return {
+    accepted,
+    reason: accepted ? "accepted" : report.summary.status,
+    firstMissingObject:
+      report.summary.firstMissingObject ??
+      candidate.firstMissingObject ??
+      "missing_accepted_noether_sea_response",
+    missingOrRejectedFields: [
+      ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
+      ...report.summary.structuralFailures,
+    ],
+    providerStatus: report.input.providerStatus,
+    agreementResidual: report.responseAgreementCheck.residual,
+    rowStatuses: sourceRowStatusesFromNoetherCheck(
+      report,
+      candidate.requiredRows ?? [],
+    ),
+  };
+}
+
+function evaluateWeakChannelSource(raw, candidate) {
+  const requiredRows = candidate.requiredRows ?? [];
+  const missing = [];
+  if (raw.schema !== "aaa-equation-map-weak-gauge-exposure-domain-input/v1") {
+    missing.push("source_schema");
+  }
+  const rows = raw.rows ?? {};
+  for (const row of requiredRows) {
+    if (!acceptedSourceRow(rows[row])) {
+      missing.push(`rows.${row}.accepted`);
+    }
+  }
+  const firstMissingRow = requiredRows.find((row) => !acceptedSourceRow(rows[row]));
+  return {
+    accepted: missing.length === 0,
+    reason: missing.length === 0 ? "accepted" : "weak_channel_rows_missing",
+    firstMissingObject: firstMissingRow
+      ? `missing_accepted_${firstMissingRow}`
+      : candidate.firstMissingObject,
+    missingOrRejectedFields: missing,
+    rowStatuses: sourceRowStatuses(rows, requiredRows),
+  };
+}
+
+function evaluateGenericAcceptedSource(raw, candidate) {
+  const requiredRows = candidate.requiredRows ?? [];
+  const rows = raw.rows ?? raw.sourceRows ?? raw;
+  const missing = [];
+  if (
+    candidate.acceptedObjectSchema &&
+    raw.schema !== candidate.acceptedObjectSchema
+  ) {
+    missing.push("source_schema");
+  }
+  for (const row of requiredRows) {
+    if (!acceptedSourceRow(rows[row])) {
+      missing.push(`rows.${row}.accepted`);
+    }
+  }
+  const firstMissingRow = requiredRows.find((row) => !acceptedSourceRow(rows[row]));
+  return {
+    accepted: missing.length === 0,
+    reason: missing.length === 0 ? "accepted" : "required_rows_missing",
+    firstMissingObject: firstMissingRow
+      ? `missing_accepted_${firstMissingRow}`
+      : candidate.firstMissingObject,
+    missingOrRejectedFields: missing,
+    rowStatuses: sourceRowStatuses(rows, requiredRows),
+  };
+}
+
+function summarizeSourceFamily(family, candidateResults) {
+  const familyCandidates = candidateResults.filter(
+    (candidate) => candidate.family === family,
+  );
+  const accepted = familyCandidates.find((candidate) => candidate.accepted);
+  const nearest = accepted ?? familyCandidates[0] ?? null;
+  return {
+    family,
+    accepted: accepted !== undefined,
+    acceptedCandidateId: accepted?.id ?? null,
+    candidateCount: familyCandidates.length,
+    nearestCandidateId: nearest?.id ?? null,
+    sourceStatus: nearest?.sourceStatus ?? "candidate_missing",
+    firstMissingObject:
+      accepted !== undefined
+        ? null
+        : nearest?.firstMissingObject ?? `missing_accepted_${family}`,
+    missingOrRejectedFields: nearest?.missingOrRejectedFields ?? [],
+  };
+}
+
+function sourceTargetCheckForFamily(family, raw, resolvedPath) {
+  if (family === "branch_interface") {
+    return compactBranchInterfaceSourceTargetCheck(
+      buildNucleonBranchInterfaceSourceTargetCheck(raw, {
+        inputPath: resolvedPath,
+      }),
+    );
+  }
+  if (family === "confinement_functional") {
+    return compactConfinementFunctionalSourceTargetCheck(
+      buildConfinementFunctionalSourceTargetCheck(raw, {
+        inputPath: resolvedPath,
+      }),
+    );
+  }
+  if (family === "weak_channel") {
+    return compactWeakChannelSourceTargetCheck(
+      buildWeakChannelSourceTargetCheck(raw, {
+        inputPath: resolvedPath,
+      }),
+    );
+  }
+  if (family === "noether_sea_response") {
+    return compactNoetherSeaResponseSourceTargetCheck(
+      buildNoetherSeaResponseSourceTargetCheck(raw, {
+        inputPath: resolvedPath,
+      }),
+    );
+  }
+  return null;
+}
+
+function compactBranchInterfaceSourceTargetCheck(report) {
+  return {
+    schema: report.schema,
+    summary: report.summary,
+    differential: report.differential,
+  };
+}
+
+function compactConfinementFunctionalSourceTargetCheck(report) {
+  return {
+    schema: report.schema,
+    summary: report.summary,
+    equationChecks: report.equationChecks,
+    toyBindingCheck: report.toyBindingCheck,
+  };
+}
+
+function compactWeakChannelSourceTargetCheck(report) {
+  return {
+    schema: report.schema,
+    summary: report.summary,
+    domainCheck: report.domainCheck,
+    sourceEvidenceCheck: report.sourceEvidenceCheck,
+    toyBindingCheck: report.toyBindingCheck,
+  };
+}
+
+function compactNoetherSeaResponseSourceTargetCheck(report) {
+  return {
+    schema: report.schema,
+    summary: report.summary,
+    sourceEvidenceCheck: report.sourceEvidenceCheck,
+    providerObjectCheck: report.providerObjectCheck,
+    responseAgreementCheck: report.responseAgreementCheck,
+    toyBindingCheck: report.toyBindingCheck,
+  };
+}
+
+function coefficientSourceFamilyBindings(coefficientRows, candidateResults = null) {
+  return Object.fromEntries(
+    coefficientRows.map((row) => [
+      row.name,
+      sourceBindingEntry({
+        sourceFamilies: COEFFICIENT_SOURCE_FAMILIES[row.name] ?? [],
+        sourceRowRequirements: COEFFICIENT_SOURCE_ROW_REQUIREMENTS[row.name] ?? {},
+        candidateResults,
+        status: row.status,
+      }),
+    ]),
+  );
+}
+
+function graphRuleSourceRowBindings(candidateResults) {
+  return Object.fromEntries(
+    Object.entries(GRAPH_RULE_SOURCE_ROW_REQUIREMENTS).map(([ruleId, requirements]) => [
+      ruleId,
+      sourceBindingEntry({
+        sourceFamilies: GRAPH_RULE_SOURCE_FAMILIES[ruleId] ?? [],
+        sourceRowRequirements: requirements,
+        candidateResults,
+      }),
+    ]),
+  );
+}
+
+function sourceBindingEntry({
+  sourceFamilies,
+  sourceRowRequirements,
+  candidateResults,
+  status = undefined,
+}) {
+  const entry = {
+    sourceFamilies,
+    ...(status === undefined ? {} : { status }),
+  };
+  if (!Array.isArray(candidateResults)) {
+    return entry;
+  }
+  const rowBindings = sourceRowBindingsByFamily(
+    sourceRowRequirements,
+    candidateResults,
+  );
+  return {
+    ...entry,
+    requiredRowsByFamily: rowBindings,
+    rowBindingStatus: rowBindingsAccepted(rowBindings)
+      ? "all_required_rows_accepted"
+      : "blocked_missing_accepted_rows",
+    firstMissingObject: firstMissingRowObject(rowBindings),
+  };
+}
+
+function sourceRowBindingsByFamily(sourceRowRequirements, candidateResults) {
+  return Object.fromEntries(
+    Object.entries(sourceRowRequirements).map(([family, requiredRows]) => [
+      family,
+      sourceRowBindingForFamily(family, requiredRows, candidateResults),
+    ]),
+  );
+}
+
+function sourceRowBindingForFamily(family, requiredRows, candidateResults) {
+  const candidates = candidateResults.filter((candidate) => candidate.family === family);
+  const accepted = candidates.find((candidate) => candidate.accepted);
+  const nearest = accepted ?? candidates[0] ?? null;
+  const missingRows = requiredRows.filter((row) => !sourceRowAccepted(nearest, row));
+  return {
+    family,
+    candidateId: nearest?.id ?? null,
+    sourceStatus: nearest?.sourceStatus ?? "candidate_missing",
+    requiredRows,
+    accepted: nearest !== null && missingRows.length === 0,
+    missingRows,
+    firstMissingObject:
+      missingRows.length === 0 ? null : `missing_accepted_${missingRows[0]}`,
+  };
+}
+
+function rowsBindingsList(rowBindings) {
+  return Object.values(rowBindings);
+}
+
+function rowBindingsAccepted(rowBindings) {
+  const bindings = rowsBindingsList(rowBindings);
+  return bindings.length > 0 && bindings.every((binding) => binding.accepted === true);
+}
+
+function firstMissingRowObject(rowBindings) {
+  return (
+    rowsBindingsList(rowBindings).find((binding) => binding.firstMissingObject)
+      ?.firstMissingObject ?? null
+  );
+}
+
+function sourceRowAccepted(candidate, row) {
+  return candidate?.rowStatuses?.[row]?.accepted === true;
+}
+
+function sourceRowStatuses(rows, requiredRows) {
+  return Object.fromEntries(
+    requiredRows.map((row) => {
+      const value = rows?.[row];
+      return [
+        row,
+        {
+          accepted: acceptedSourceRow(value),
+          status:
+            value && typeof value === "object" && !Array.isArray(value)
+              ? value.status ?? null
+              : null,
+          id:
+            value && typeof value === "object" && !Array.isArray(value)
+              ? value.id ?? value.rowId ?? value.eventId ?? null
+              : null,
+        },
+      ];
+    }),
+  );
+}
+
+function sourceRowStatusesFromAcceptedFlag(requiredRows, accepted) {
+  return Object.fromEntries(
+    requiredRows.map((row) => [
+      row,
+      {
+        accepted,
+        status: accepted ? "accepted" : null,
+        id: null,
+      },
+    ]),
+  );
+}
+
+function sourceRowStatusesFromNoetherCheck(report, requiredRows) {
+  return Object.fromEntries(
+    requiredRows.map((row) => {
+      const check = report.rowChecks?.[row];
+      return [
+        row,
+        {
+          accepted: check?.accepted === true,
+          status: check?.status ?? null,
+          id: check?.sourceRowId ?? null,
+        },
+      ];
+    }),
+  );
+}
+
+function acceptedSourceRow(row) {
+  return (
+    row &&
+    typeof row === "object" &&
+    !Array.isArray(row) &&
+    ACCEPTED_STATUSES.has(row.status)
+  );
+}
+
+function concreteString(value) {
+  const text = typeof value === "string" ? value.trim() : "";
+  return text !== "" && text !== "..." && !text.toLowerCase().includes("pending");
 }
 
 function makeCoefficientRows(coefficients, scopeOverrides) {

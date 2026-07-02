@@ -1,0 +1,159 @@
+{
+  "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; target-only and not accepted nuclear-binding recovery",
+  "status": "target_required",
+  "sourceIdentity": {
+    "sourceObjectId": "confinement_functional_source_target_0001",
+    "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md",
+    "consumer": "scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs",
+    "acceptedPromotionBlocker": "missing_accepted_confinement_functional"
+  },
+  "acceptanceCheck": {
+    "script": "scripts/nuclear-atomic/confinement-functional-source-target-check.mjs",
+    "summaryCommand": "node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --pretty",
+    "requiredAcceptedCommand": "node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --require-accepted",
+    "currentStatus": "missing_accepted_confinement_functional_rows",
+    "currentStructuralPass": true,
+    "firstMissingObject": "missing_accepted_sigma_eff_extraction"
+  },
+  "rows": {
+    "sigma_eff_extraction": {
+      "id": "sigma_eff_extraction_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "targetEquation": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} 2*pi*int_0^a r[(K_perp/2)||Q||_F^2(df/dr)^2+V_exc(f(r)Q;Q,rho_NS,chi_sea)]dr",
+      "requiredSourceRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    },
+    "color_singlet_nucleon_envelope": {
+      "id": "color_singlet_nucleon_envelope_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "requiredSourceRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints"
+    },
+    "delta_E_corr_NN": {
+      "id": "delta_E_corr_NN_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "targetEquation": "Delta E_corr_NN(r)=min_{Theta_12 in Pi_singlet} E_conf[Gamma_N1 union Gamma_N2(r),Theta_12]-sum_i min_{Theta_i in Pi_singlet} E_conf[Gamma_Ni,Theta_i]",
+      "requiredSourceRows": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    },
+    "no_open_color_far_field": {
+      "id": "no_open_color_far_field_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "requiredBehavior": "Delta E_corr_NN(r) tends to zero as r tends to infinity and leaves no residual open-color far field between color-singlet nucleons.",
+      "requiredSourceRows": [
+        "accepted_delta_E_corr_NN",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    }
+  },
+  "toyBindings": {
+    "coefficients": {
+      "alphaCorr": "delta_E_corr_NN residual-corridor scale",
+      "alphaSea": "sigma_eff_extraction plus same-record Noether sea response",
+      "alphaSurf": "surface corridor loss from color-singlet envelope boundary",
+      "alphaPair": "closed-pattern residual from color-singlet envelope overlap",
+      "alphaShell": "closed-pattern readout after color-singlet envelope acceptance",
+      "alphaPack": "finite packing pressure from confinement-functional overlap",
+      "boundaryDegreeLoss": "surface-depleted corridor capacity",
+      "dSat": "finite corridor saturation count",
+      "maxDegree": "finite corridor saturation count",
+      "packSoftA": "large-A packing pressure onset"
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": "requires accepted finite corridor capacity from the confinement functional",
+      "finite_tail_saturation_check": "requires accepted saturation of local residual benefit and no-open-color far-field behavior"
+    }
+  },
+  "toyBindingRows": {
+    "coefficients": {
+      "alphaCorr": [
+        "delta_E_corr_NN"
+      ],
+      "alphaSea": [
+        "sigma_eff_extraction"
+      ],
+      "alphaSurf": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaPair": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaShell": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaPack": [
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ],
+      "boundaryDegreeLoss": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "dSat": [
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ],
+      "maxDegree": [
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ],
+      "packSoftA": [
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ],
+      "pnCorridorPairReward": [
+        "sigma_eff_extraction",
+        "delta_E_corr_NN"
+      ],
+      "ppCorridorPairReward": [
+        "sigma_eff_extraction",
+        "delta_E_corr_NN"
+      ]
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "finite_tail_saturation_check": [
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ]
+    }
+  },
+  "failClosedRows": {
+    "no_saturation": "the confinement-functional rows must bound local corridor benefit so binding per nucleon cannot grow without a finite maximum",
+    "diproton_overbound": "the confinement-functional residual cannot erase p+p branch-interface mismatch and Coulomb costs",
+    "hidden_fit": "scale, range, surface, shell, and packing rows cannot be tuned by A, Z, or element",
+    "promotion_ready": "blocked until every row listed in requiredRows is accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

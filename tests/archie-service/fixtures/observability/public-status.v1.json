@@ -1,0 +1,14 @@
+{
+  "schema": "archie-service-status/v1",
+  "statusId": "service_status_fixture_001",
+  "serviceStatus": "degraded",
+  "answerStatus": "operational",
+  "sourceStatus": "operational",
+  "speechStatus": "degraded",
+  "visualStatus": "maintenance",
+  "issueHandoffStatus": "operational",
+  "tokenStatus": "operational",
+  "termsStatus": "operational",
+  "currentIncidents": ["incident_speech_fixture_001"],
+  "privatePromptIncluded": false
+}

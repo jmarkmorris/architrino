@@ -13,6 +13,7 @@
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
@@ -48,7 +49,8 @@ The user may see a natural-language answer, a spoken answer, an image, a diagram
 10. what privacy and retention state applies;
 11. what terms acceptance state governs paid, retained, public, media, or credentialed features;
 12. what user-confirmed actions are available;
-13. what issue-mining metadata should survive if the user files feedback.
+13. what issue-mining metadata should survive if the user files feedback;
+14. what privacy-safe observability, status, incident, and support-diagnostic hooks may be emitted.
 
 The manifest must never upgrade proof status. Source authority lives in the source and claim fields, and those fields must follow [answer-engine-source-contract.md](answer-engine-source-contract.md). Media polish, voice quality, token spend, issue urgency, or presentation style cannot strengthen them.
 
@@ -70,6 +72,7 @@ The manifest should drive service architecture by assigning each platform compon
 | `action_broker` | Populates `available_actions` and records confirmation requirements before public, durable, paid, or credentialed actions. |
 | `issue_signal_mining` | Consumes `issue_mining_context` for duplicate clustering, signal/noise classification, and owner-routed fix queues. |
 | `privacy_and_audit` | Populates `privacy_state` and operator/developer-safe diagnostics without private prompt leakage. |
+| `observability_status` | Populates safe event/status/incident/support-diagnostic refs without private prompt text, provider secrets, raw payloads, or proof-status effects. |
 
 If a component needs data that does not fit the manifest, the schema should be updated before that data becomes a product behavior. This prevents hidden side channels from becoming source authority, billing authority, privacy policy, or issue-mining authority.
 
@@ -93,7 +96,8 @@ If a component needs data that does not fit the manifest, the schema should be u
 | `terms_acceptance_state` | yes | Terms versions, acceptance scope, feature blockers, and legal-review state for paid, durable, retained, public, generated-media, or credentialed features. |
 | `available_actions` | yes | UI actions allowed from this answer, each with confirmation requirements. |
 | `issue_mining_context` | conditional | Required when issue draft, issue handoff, bug report, idea triage, or user feedback is present. |
-| `diagnostics` | optional | Operator/developer-safe diagnostic summary without private prompt leakage. |
+| `observability_context` | optional | Safe event, status, incident, support, and redaction refs governed by the observability contract. |
+| `diagnostics` | optional | Operator/developer-safe diagnostic summary without private prompt leakage and without source-authority effect. |
 
 ## Source Context
 
@@ -270,6 +274,25 @@ Required when issue drafting, issue submission, app feedback, idea triage, or so
 
 The issue-mining loop should be able to cluster duplicates, identify recurring signal, classify noise, and route fix queues from these fields without reading private prompt text.
 
+## Observability Context And Diagnostics
+
+`observability_context` records safe operational references for logs, metrics, public status, support summaries, incidents, and change history.
+
+The field must follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). The manifest records only safe ids/classes; the observability boundary owns event schemas, public status fields, incident records, support summaries, redaction, and issue-mining handoff rules.
+
+Allowed fields:
+
+| Field | Purpose |
+| --- | --- |
+| `event_refs` | Safe event ids or classes emitted for this manifest. |
+| `status_refs` | Product-level public status refs affected by this response, if any. |
+| `incident_refs` | Public or internal incident ids linked to a failure, degradation, or mitigation. |
+| `support_summary_ref` | Safe support summary id when support review is needed. |
+| `redaction_state` | Whether observability output is safe, redacted, omitted, or blocked. |
+| `source_authority_effect` | Must be `none`; metrics and incidents cannot alter claim labels. |
+
+`diagnostics` may summarize validator dispositions, source misses, provider fallback classes, token receipt ids, and safe error classes. It must not include private prompt text, private user media, provider secrets, raw provider payloads, account history, unsubmitted issue drafts, or private saved notes.
+
 ## Privacy State
 
 `privacy_state` records what is stored, what is ephemeral, and what needs consent.
@@ -444,6 +467,14 @@ The eventual API response should be stricter than this sketch, but the contract 
   },
   "available_actions": [],
   "issue_mining_context": null,
+  "observability_context": {
+    "event_refs": [],
+    "status_refs": [],
+    "incident_refs": [],
+    "support_summary_ref": null,
+    "redaction_state": "safe_summary_only",
+    "source_authority_effect": "none"
+  },
   "diagnostics": null
 }
 ```
@@ -466,14 +497,15 @@ The future service implementation should add manifest-level fixtures for:
 12. saved-note draft with opt-in retention, delete, export, share, and `not_project_evidence` state;
 13. terms missing case where a paid, durable, public, generated-media, or credentialed action is blocked through `terms_acceptance_state`;
 14. provider capability unavailable case with declared fallback and no browser-side provider secrets;
-15. priority-only answer with development-status label preserved across every artifact.
+15. observability redaction case where safe event refs exist but private prompt text is omitted;
+16. priority-only answer with development-status label preserved across every artifact.
 
 ## Implementation Handoff
 
 Closure goal:
 Turn the Answer Artifact Manifest into typed service contracts, response schemas, validator order, endpoint contracts, and validation fixtures that keep answers, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata aligned.
 
-Use this packet, [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Encode the typed schema for the manifest.
@@ -481,6 +513,7 @@ Task:
 - Map each v1 product requirement to manifest fields and service-boundary outputs.
 - Define provider-execution context, capability ids, quality gates, fallback, credential boundary, cost class, privacy/terms state, and safe error rendering obligations.
 - Define UI rendering obligations for source chips, claim labels, action rail, confirmation text, action results, audio synchronization, captions, token receipts, privacy notices, and issue previews.
+- Define observability context, public status refs, incident refs, support-summary refs, diagnostics redaction, and no-source-authority-effect obligations.
 - Define saved-note draft, notebook/account-history, delete, export, share, issue-link retention, and not-project-evidence rendering obligations.
 - Define terms-version, acceptance-state, reacceptance, feature-blocker, and legal-review rendering obligations for paid, durable, retained, public, generated-media, and credentialed actions.
 - Define API validation fixtures for each manifest and service-contract fixture.
@@ -490,4 +523,5 @@ Constraints:
 - Preserve TeX exactly.
 - Keep priority-only material visibly priority-only.
 - Do not let generated media, voice quality, token spend, or presentation style change source authority.
+- Do not let metrics, issue volume, provider success, public status, incidents, or diagnostics change source authority.
 - Do not create browser-side model calls.

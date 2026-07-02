@@ -11,6 +11,7 @@
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
@@ -98,6 +99,8 @@ If a visual artifact is saved, retention, export, deletion, sharing, storage cos
 
 Generated visual artifacts must also respect generated-media terms, privacy notices, token terms, saved-notebook terms, and legal-review state under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
 
+Generated-image provider capabilities must follow [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). Image generation, prompt drafting, moderation, provider health, fallback behavior, token cost class, credential boundary, privacy/terms state, and browser-key refusal must be declared before generated visual output can run.
+
 Rules:
 
 1. visual source context cannot outrank the answer source context;
@@ -182,6 +185,7 @@ The future implementation should include visual fixtures for:
 | `visual-accessibility-001` | Visual artifact includes caption and practical alt text, or text-only fallback. |
 | `visual-private-material-001` | Private user material is excluded unless explicit consent and destination exist. |
 | `visual-retention-001` | Generated image is ephemeral unless saved under explicit policy. |
+| `visual-provider-registry-negative-001` | Generated image action is unavailable when no provider capability, moderation gate, fallback, cost map, or credential boundary is registered. |
 | `visual-publication-draft-001` | Publication asset draft is marked human-review-required. |
 | `visual-rights-negative-001` | Rights-violating character, brand, or likeness request is refused. |
 
@@ -190,10 +194,11 @@ The future implementation should include visual fixtures for:
 Closure goal:
 Turn the Visual Artifact Contract into visual artifact schemas, media validators, purpose-label rendering, caption/alt-text checks, token/privacy checks, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode diagram, generated image, generated-image prompt, app mockup, candidate sketch, and publication draft artifact schemas.
+- Encode generated-image provider capability, moderation, health-state, fallback, token-cost, credential-boundary, and browser-key refusal requirements.
 - Define purpose labels and source-basis caption requirements.
 - Add source/claim inheritance, proof-status, accessibility, rights, token, and privacy validators.
 - Add fixtures for diagrams, generated images, prompt drafts, proof refusal, fake diagnostics, priority labels, external comparison charts, accessibility, private-material exclusion, retention, publication drafts, and rights refusal.

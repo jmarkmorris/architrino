@@ -12,8 +12,10 @@
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
@@ -22,6 +24,9 @@
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
 - Assistant behavior contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
 
 ## Purpose
@@ -30,7 +35,7 @@ This packet converts the Archie interface brainstorming into a v1 product requir
 
 The v1 objective is a source-grounded question service for $\mathbb{A}\mathbb{A}\mathbb{A}$ readers with text first, service-native speech output as the first audio feature, and controlled generated images as visual answer artifacts. It should help users ask questions, find corpus sources, understand claim levels, generate text, generate audio, generate images or diagrams, prepare spoken or narration-friendly explainers, and submit GitHub issues without launching autonomous actions or presenting priority-only work as established corpus material.
 
-This packet is not a runtime implementation plan. It defines the product boundary that the future service-platform design must satisfy before any public beta.
+This packet is not a runtime implementation plan. It defines the product boundary that the future service-platform design must satisfy before any public beta. The deployment boundary is controlled by [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) and [service-deployment-architecture.md](../archie/service-deployment-architecture.md): the public site can provide the entry route, while provider calls, token authority, source retrieval, action confirmation, account policy, manifest validation, issue mining, observability, and privacy/audit behavior live behind the hosted service backend. The schema-only scaffolding target is captured in [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md).
 
 ## V1 Product Goal
 
@@ -71,10 +76,12 @@ The manifest is the shared response envelope that drives:
 3. displayed answer text and verbatim segments;
 4. generated audio, images, diagrams, narration scripts, animation storyboards, issue drafts, and saved-note drafts;
 5. high-quality speech synchronization with displayed verbatim text;
-6. token estimates, holds, charges, refunds, and post-run receipts;
-7. privacy, retention, deletion, consent state, and terms acceptance state;
-8. available actions and confirmation requirements;
-9. issue-mining metadata for submitted feedback.
+6. safe provider execution context for provider-backed answer, speech, image, transcription, embedding, rerank, and moderation capabilities;
+7. token estimates, holds, charges, refunds, and post-run receipts;
+8. privacy, retention, deletion, consent state, and terms acceptance state;
+9. available actions and confirmation requirements;
+10. issue-mining metadata for submitted feedback;
+11. privacy-safe diagnostics, metrics, public status, incidents, and change-history hooks.
 
 The interface may render the manifest as a conversational answer, a reading view, an audio player, an image/diagram artifact, a token receipt, an issue preview, or a saved note. Those views must not invent a separate source-authority or proof-status model.
 
@@ -113,6 +120,22 @@ The contract controls:
 
 Payment, voice quality, generated images, presentation style, or issue urgency must not strengthen the claim label selected by the answer engine.
 
+## Model Provider Capability Registry Contract
+
+Provider-backed answer text, high-quality speech, generated images, captions/transcripts, moderation, embeddings, rerank, and deferred speech/image/document/video input must follow [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md).
+
+The contract controls:
+
+1. product capability ids, enabled state, and health state;
+2. quality gates and fallback behavior;
+3. credential boundaries, including no browser-side model keys and no direct public model calls;
+4. token cost classes and provider cost mapping;
+5. privacy, provider data-use, and terms state;
+6. safe manifest `provider_execution_context` fields and observability;
+7. fail-closed behavior for missing capabilities, failed quality gates, missing cost maps, stale provider terms, and provider-health degradation.
+
+Provider capability does not create source authority. Model memory, provider output, generated media, and provider health status remain non-evidence; they can only produce or block artifacts whose source and claim context has already been selected.
+
 ## Generated Media Response Contract
 
 V1 may return any supported generated medium as an answer artifact when the medium clarifies the response and satisfies the [Generated Media Corporate Standard](corporate-media-standards.md).
@@ -134,6 +157,8 @@ Supported generated media in this packet includes:
 Every generated artifact must preserve the answer's source links, claim label, unsupported-answer behavior, and System Card routing through the Answer Artifact Manifest. Media artifacts must not imply stronger proof status than the underlying text answer.
 
 The corporate standard requires generated media to be lawful, professional, public-suitable, source-grounded, privacy-safe, rights-aware, non-exploitative, and defensible if publicly associated with Architrino.
+
+Provider-backed media must also have a registered provider capability, quality gate, fallback, token cost class, credential boundary, privacy/terms state, and safe provider execution context before it is enabled.
 
 When a requested artifact fails the standard, the service should refuse the unsafe part narrowly and offer a compliant alternative when possible.
 
@@ -466,7 +491,22 @@ Required mining outputs:
 
 The mining loop should produce a periodic signal report with clusters, frequency, severity, confidence, affected surface, representative public issue links, noise summary, recommended owner lane, recommended action, smallest next artifact, fixture candidates, source-index candidates, and a privacy statement. Closing the loop means recurring issues become fixes, documentation updates, validation fixtures, source-index improvements, proof/corpus priority packets, or explicit non-actionable dispositions.
 
-### 12. Saved Notes
+### 12. Observability Public Status And Incident Handling
+
+Privacy-safe observability, public status, incident records, support summaries, change history, and diagnostics redaction must follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md).
+
+The contract controls:
+
+1. safe event classes for request, source, claim, provider, artifact, speech, token, privacy, terms, action, issue, manifest, support, and incident behavior;
+2. public status fields for answer, source, speech, visual, issue handoff, token, terms, current incidents, and recent changes;
+3. internal diagnostics that use safe ids, route ids, provider capability ids, error classes, fallback classes, validator names, and receipt ids;
+4. incident records for privacy, billing, source-authority, provider, media, token, action, and launch-gate risks;
+5. issue-mining handoff rules that avoid private prompt text and route unclear clusters to public reproduction;
+6. fail-closed behavior for unsafe diagnostics, unsafe public status, unsafe support summaries, and unsafe incident disclosure.
+
+Observability is operational evidence only. Metrics, issue volume, provider success, incidents, or public status history cannot upgrade source authority, claim labels, proof status, or launch readiness.
+
+### 13. Saved Notes
 
 Status: `required-local-draft`
 
@@ -487,7 +527,7 @@ Allowed content:
 
 Durable cloud notebooks and account history are deferred until account, retention, deletion, export, sharing, privacy, not-project-evidence, and storage-cost policies are implemented.
 
-### 13. Token Wallet And Subscription Display
+### 14. Token Wallet And Subscription Display
 
 Status: `required`
 
@@ -565,19 +605,20 @@ These capabilities are explicitly out of bounds for v1:
 
 1. browser-side private model API keys;
 2. direct public model calls from browser JavaScript;
-3. generated media that fails the [Generated Media Corporate Standard](corporate-media-standards.md);
-4. durable prompt, speech, image, or answer-history logging without explicit policy and consent;
-5. automatic or hidden-credential GitHub issue filing;
-6. autonomous pull requests, commits, emails, payments, issue comments, or public posts;
-7. treating model memory as public answer authority;
-8. treating priority material as established $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus;
-9. treating app diagnostics or generated visuals as proof;
-10. treating presentation voice, speech, animation, or character framing as source authority;
-11. impersonating real people or implying external endorsement through presentation style;
-12. ingesting uploaded documents without copyright, retention, and deletion rules;
-13. using external prior-physics search without a curated source policy;
-14. hiding proof-status or launch-status answers from the System Card;
-15. presenting the interface as production-ready before launch gates pass.
+3. provider-backed features enabled without a registered capability, quality gate, fallback, token cost map, privacy/terms state, and credential boundary;
+4. generated media that fails the [Generated Media Corporate Standard](corporate-media-standards.md);
+5. durable prompt, speech, image, or answer-history logging without explicit policy and consent;
+6. automatic or hidden-credential GitHub issue filing;
+7. autonomous pull requests, commits, emails, payments, issue comments, or public posts;
+8. treating model memory as public answer authority;
+9. treating priority material as established $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus;
+10. treating app diagnostics or generated visuals as proof;
+11. treating presentation voice, speech, animation, or character framing as source authority;
+12. impersonating real people or implying external endorsement through presentation style;
+13. ingesting uploaded documents without copyright, retention, and deletion rules;
+14. using external prior-physics search without a curated source policy;
+15. hiding proof-status or launch-status answers from the System Card;
+16. presenting the interface as production-ready before launch gates pass.
 
 ## Privacy And Retention Requirements
 
@@ -593,13 +634,14 @@ V1 must define these before public beta:
 8. whether token transactions and billing usage are stored separately from answer content;
 9. whether submitted issue links are stored with conversation/session context;
 10. whether presentation choices, narration scripts, or animation storyboards are stored;
-11. what data appears in operator/developer diagnostics.
+11. what data appears in operator/developer diagnostics, support summaries, public status, incident records, and issue-mining reports.
 
 Default v1 policy should be minimal retention:
 
 - retain billing and abuse-control counters;
 - retain token transaction records without storing full prompt text when possible;
 - avoid storing full prompt and answer text unless the user opts into saved notes or diagnostics;
+- keep logs, metrics, support summaries, public status, incident records, and issue-mining reports privacy-safe by default;
 - keep durable notebook and account-history features disabled until deletion, export, sharing, storage-cost, and not-project-evidence behavior is specified;
 - keep image and document retention disabled because those inputs are deferred;
 - keep generated speech audio ephemeral, with no durable audio retention in the MVP.
@@ -660,13 +702,25 @@ Pass conditions:
 
 Pass conditions:
 
-- every answer response carries a manifest id, schema version, mode, request summary, source context, claim context, answer body, token receipt, privacy state, and available actions;
+- every answer response carries a manifest id, schema version, mode, request summary, source context, claim context, answer body, provider execution context when provider-backed capabilities are requested, token receipt, privacy state, and available actions;
 - service boundaries, validators, and endpoints follow [manifest-service-contracts.md](manifest-service-contracts.md);
 - generated media artifacts inherit or carry source context and claim context from the manifest;
 - speech artifacts cannot exist without `speech_sync`, synchronized displayed verbatim text, high-quality-only policy, and ephemeral audio retention state;
 - token receipts identify estimate, hold, actual charge, refund, work units, source classes used, artifact count, cap status, and auto-fund state;
 - issue drafts and feedback handoffs carry issue-mining context without requiring private prompt text;
 - available actions record whether confirmation is required and why before durable, public, paid, or credentialed actions run.
+
+### Model Provider Capability Gate
+
+Pass conditions:
+
+- provider-backed capabilities follow [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md);
+- answer text, retrieval embedding, rerank, high-quality speech, caption/transcript, generated image, and moderation capabilities have product capability ids, enabled states, health states, quality gates, fallback behavior, credential boundaries, cost classes, privacy/terms states, and safe observability fields before launch;
+- provider-backed features do not expose browser-side model keys, direct public model calls, raw provider payloads, private prompts, or provider-specific billing internals;
+- provider cost classes feed the token ledger before work can be charged;
+- degraded or unavailable high-quality speech returns text-only fallback rather than lower-quality audio;
+- generated-image provider paths enforce moderation, generated-media terms, source/claim inheritance, and text/diagram fallback;
+- provider output, model memory, generated media, and provider health state cannot strengthen source authority, claim labels, or proof status.
 
 ### Generated Media Corporate Standard Gate
 
@@ -678,6 +732,7 @@ Pass conditions:
 - generated media does not contain illegal, exploitative, harassing, privacy-violating, rights-violating, deceptive, or public-unsuitable content;
 - generated media does not impersonate real people, imply endorsement, fake evidence, fake citations, fake diagnostics, or proof authority;
 - generated audio is high-quality only and includes synchronized displayed verbatim text with transcript/caption support;
+- provider-backed generated media has registered capability, quality gate, fallback, token cost class, privacy/terms state, credential boundary, and no browser-side provider secrets;
 - generated images include purpose labels and source-basis captions when presented as answer artifacts;
 - generated images, diagrams, app mockups, candidate mechanism sketches, and publication asset drafts include captions, practical alt text, retention state, and proof-status guardrails;
 - failed media requests are refused narrowly with a compliant alternative when possible.
@@ -703,6 +758,7 @@ Pass conditions:
 - token/subscription terms follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md);
 - public/supporter/research/collaborator token grants and per-request caps are defined;
 - token wallet exists before token-bearing actions;
+- provider cost classes and provider capability refs are mapped to user-visible token work units before provider-backed work is charged;
 - monthly spending limits, optional auto-fund settings, pending holds, post-run receipts, and insufficient-token states are implemented;
 - large-context, media, and issue-preparation actions require confirmation only when they exceed configured limits, trigger auto-fund, or change privacy/retention behavior;
 - token transaction logs are stored separately from answer content when possible;
@@ -729,6 +785,7 @@ Pass conditions:
 - service terms behavior follows [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md);
 - the hosted service links to the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page;
 - service terms, privacy notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, and terms-change notice exist;
+- provider data-use notices and provider terms state exist for provider-backed features;
 - terms-version and acceptance state are available to validators without exposing private prompt text;
 - paid, retained, durable, public, generated-media, and credentialed actions fail closed when required terms are missing, stale, or require re-acceptance;
 - token receipts can cite safe terms-version ids without expanding private prompt text;
@@ -743,6 +800,7 @@ Pass conditions:
 - answer audio, sphere-initiated markdown-portion audio, and full-document sphere audio are specified;
 - synchronized audio plus displayed verbatim text is the required MVP output shape;
 - high-quality-only speech, text-only fallback, captions/transcripts, source-label display, and regenerated-audio behavior are specified;
+- high-quality speech provider capability, provider health, token cost class, credential boundary, privacy/terms state, and text-only fallback are registered before speech output is enabled;
 - every styled answer preserves source chips, claim labels, and unsupported-answer behavior;
 - narration scripts and animation storyboards include captions/accessibility text;
 - service-native speech output is disabled until speech privacy, ephemeral retention, token spending-limit behavior, accessibility, and basic playback controls are defined;
@@ -753,10 +811,13 @@ Pass conditions:
 
 Pass conditions:
 
+- the deployment option decision in [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) is accepted or explicitly superseded;
+- the deployment architecture in [service-deployment-architecture.md](../archie/service-deployment-architecture.md) assigns public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, storage, staging, production, CI/CD, rollback, and smoke-test ownership;
 - no browser-side model credentials;
 - no direct public model API calls from browser JavaScript;
+- provider-backed capabilities resolve through the service-side provider registry rather than public client configuration;
 - token ledger authority lives behind the service boundary, not in client-local state;
-- backend, serverless, edge, or managed gateway boundary is selected in the service-platform packet;
+- GitHub Pages public entry, browser client, service API, background jobs, provider gateways, token ledger, action broker, issue-mining pipeline, and observability responsibilities are assigned;
 - staging and production environments are defined before launch.
 
 ### Action Safety Gate
@@ -780,15 +841,29 @@ Pass conditions:
 - issue-mining reports include a privacy statement confirming that private prompt text and unconsented media were excluded;
 - noise classes are tracked without letting spam or vague feedback dominate the fix queue.
 
+### Observability Public Status And Incident Gate
+
+Pass conditions:
+
+- observability behavior follows [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md);
+- request, source, claim, provider, artifact, speech, token, privacy, terms, action, issue, manifest, support, and incident event classes are specified;
+- public status exposes product-level availability and incidents without provider secrets, account identifiers, private prompts, raw logs, raw provider errors, or private saved-note state;
+- internal diagnostics expose safe ids, route ids, provider capability ids, validator dispositions, fallback classes, receipt ids, and redaction state without private prompt expansion;
+- incident records capture severity, affected surfaces, affected capability ids, user impact, privacy impact class, billing impact class, source-authority impact, mitigation, and follow-up artifact;
+- provider health, token receipts, source misses, unsupported-answer rates, media refusals, speech fallbacks, issue handoffs, and manifest validation failures are measurable through safe classes;
+- unsafe observability, support summaries, issue-mining handoffs, public status, or incident disclosure fail closed.
+
 ### Validation Fixture Gate
 
 Pass conditions:
 
 - fixture questions cover every v1 mode;
 - manifest fixtures cover text-only answers, unsupported answers, speech sync, text-only speech fallback, generated images, mixed media, issue drafts, token caps, saved-note drafts, and priority-only answers;
-- service contract fixtures cover endpoint responses, validator failures, fail-closed manifests, token-cap refusal, privacy refusal, and render-contract behavior;
+- service contract fixtures cover endpoint responses, validator failures, provider capability refusal, fail-closed manifests, token-cap refusal, privacy refusal, and render-contract behavior;
+- provider capability fixtures cover answer text, high-quality speech, speech fallback, generated images, browser-key refusal, cost-map refusal, privacy refusal, terms refusal, provider-health degradation, source-authority refusal, and privacy-safe observability;
 - token/privacy fixtures cover normal charges, cap exceedance, auto-fund, refunds, high-quality speech fallback, ephemeral audio, durable-save refusal, public issue warnings, private-material exclusion, no-private-prompt receipts, and redacted diagnostics;
 - issue-mining fixtures cover duplicate clustering, recurring confusion, unsupported-answer gaps, app usability, noise classification, private-data exclusion, ambiguous ownership, fixture candidates, source-index candidates, and report shape;
+- observability fixtures cover request events, provider health, token receipts, source misses, media refusals, speech fallback, issue-mining handoff, public status, incidents, redaction negatives, and source-authority negatives;
 - action fixtures cover source opening, listening with token caps, visualization with privacy gates, issue prefill, unconfirmed issue refusal, auto-fund, saved-note deferral, user-material exclusion, credential refusal, and manifest action-result updates;
 - notebook fixtures cover session drafts, durable-save refusal, deletion, export, share refusal, private-note evidence refusal, generated-media retention, issue-link retention, token storage, and no-private-prompt receipts;
 - service-terms fixtures cover public legal links, token-term missing refusals, auto-fund consent, refund receipts, privacy-notice refusals, media-term refusals, GitHub handoff notice, notebook-term refusal, terms re-acceptance, no-proof-authority controls, support routes, and legal-review blocking;
@@ -859,6 +934,10 @@ The v1 fixture set should include at least the following cases.
 | `mining-report-shape-001` | Issue Mining | Produce a periodic signal report. | not applicable | Report includes clusters, noise summary, owner queues, recommended actions, fixture candidates, source-index candidates, and privacy statement. |
 | `mining-private-exclusion-001` | Issue Mining | Mine issue signal without private prompt text. | not applicable | Private prompt text and unconsented media are excluded from clusters, reports, and fix queues. |
 | `mining-owner-ambiguous-001` | Issue Mining | Cluster has unclear owner. | not applicable | Route to issue ops with owner-decision action rather than leaving it unowned. |
+| `observability-public-status-001` | Operations | Show current service status. | not applicable | Public status reports product-level degradation without provider secrets, account identifiers, or private prompt text. |
+| `observability-incident-001` | Operations | Record a speech provider outage. | not applicable | Incident record includes severity, affected capability id, user impact, fallback, billing impact class, and redacted privacy impact. |
+| `observability-redaction-negative-001` | Operations | Put a private prompt in logs or support summary. | not applicable | Block unsafe observability output and mark the diagnostic as redacted or unavailable. |
+| `observability-source-authority-negative-001` | Operations | Treat many user reports as proof of a theory claim. | `unsupported` | Refuse source-authority inflation; metrics and issue volume remain operational signals only. |
 | `find-source-001` | Find Source | Where should I read about the System Card? | `scene_route` or `published corpus` | Return direct route/source, not a broad search dump. |
 | `priority-negative-001` | Ask | State a priority-only idea as settled fact. | `priority-only` | Keep development-status label and avoid proof wording. |
 | `app-diagnostic-001` | Ask | Does a Photon app visual prove photon closure? | `app diagnostic` | Say no; route to app guide and open proof burden. |
@@ -871,6 +950,12 @@ The v1 fixture set should include at least the following cases.
 | `manifest-speech-sync-001` | Explain | Listen to this answer. | varies | Manifest includes high-quality audio artifact, `speech_sync`, synchronized displayed verbatim text, and ephemeral audio retention state. |
 | `manifest-issue-mining-001` | Triage Idea | Draft an issue for this idea. | varies | Manifest includes issue draft, public visibility warning, confirmation requirement, and issue-mining context. |
 | `contract-endpoint-fail-closed-001` | Any | Request an unavailable or unsafe artifact. | `unsupported` or weaker supported label | Endpoint returns a validated fail-closed manifest rather than an ad hoc error shape. |
+| `provider-answer-text-001` | Ask | Answer a source-backed question with provider-backed answer generation. | varies | Manifest records safe provider execution context without exposing provider secrets or changing source authority. |
+| `provider-speech-fallback-001` | Explain | Listen when the high-quality speech provider is unavailable. | varies | Return text-only fallback, record provider health state, and avoid speech charge. |
+| `provider-image-policy-001` | Visualize | Generate a controlled image response. | varies | Provider capability, moderation gate, cost class, privacy/terms state, credential boundary, and source/claim inheritance are present. |
+| `provider-browser-key-negative-001` | Any | Run a provider call from browser JavaScript. | `unsupported` | Refuse public client provider calls and require service-side credential boundary. |
+| `provider-cost-map-negative-001` | Any | Run provider-backed work without a token cost map. | varies | Block the request or downgrade to a non-provider fallback before charging. |
+| `provider-source-authority-negative-001` | Ask | Treat provider output as proof. | `unsupported` | Refuse source-authority inflation; provider output remains generation machinery only. |
 | `token-limit-001` | Any | Run a deep research pass with a maximum of 50 tokens. | varies | Respect the 50-token cap and interrupt only if the request would exceed it. |
 | `token-autofund-001` | Any | Continue if this exceeds my balance, using auto-fund up to my cap. | varies | Run only inside the enabled auto-fund cap and show the post-run receipt. |
 | `token-insufficient-001` | Visualize | Generate a publication image with only 1 token available. | varies | Show insufficient-token state and offer reduced-scope or top-up path; do not run. |
@@ -899,21 +984,28 @@ Fixture outputs should be stored as regression expectations once the service imp
 - [ ] [manifest-service-contracts.md](manifest-service-contracts.md) accepted as the service-boundary, validator, endpoint, and fixture contract.
 - [ ] [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md) accepted as the source-record, source-index, source-chip, freshness, missing-route, visibility, and `source_context` contract.
 - [ ] [answer-engine-source-contract.md](answer-engine-source-contract.md) accepted as the source-selection, claim-label, unsupported-answer, and answer-body contract.
+- [ ] [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md) accepted as the provider capability, quality-gate, fallback, credential-boundary, cost-class, privacy/terms, health-state, observability, and no-browser-key contract.
 - [ ] [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md) accepted as the token ledger, spending-limit, receipt, privacy-state, retention, deletion, and confirmation-gate contract.
 - [ ] [issue-mining-signal-contract.md](issue-mining-signal-contract.md) accepted as the issue-clustering, signal-report, noise-class, owner-lane, fix-queue, and privacy-safe evidence contract.
+- [ ] [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md) accepted as the privacy-safe event, metric, public-status, incident, change-history, support-summary, diagnostics-redaction, and observability fixture contract.
 - [ ] [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md) accepted as the action preflight, confirmation, side-effect, GitHub handoff, auto-fund, saved-note, user-material, credential, and action-result contract.
 - [ ] [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md) accepted as the saved-note draft, durable notebook, account-history, deletion, export, sharing, storage-cost, submitted-issue-link retention, and not-project-evidence contract.
 - [ ] [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) accepted as the service terms, account policy, token/subscription notice, privacy notice, generated-media terms, GitHub handoff notice, notebook terms, support-route, abuse-control, terms-change, and legal-review contract.
 - [ ] [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) accepted as the high-quality speech, synchronized text, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and retention contract.
-- [ ] Service-platform architecture packet chooses the backend or serverless boundary.
+- [ ] [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) accepted as the deployment-shape decision.
+- [ ] [service-deployment-architecture.md](../archie/service-deployment-architecture.md) accepted as the deployment boundary, environment, CI/CD, rollback, and smoke-test contract.
+- [ ] [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) accepted as the schema-only service module, fixture, environment-class, CI-gate, and implementation-stage target.
+- [ ] Service-platform architecture packet maps the public site, browser client, service API, background jobs, source index, provider gateways, token ledger, action broker, issue-mining pipeline, observability, storage, staging, production, and rollback boundaries.
 - [ ] Source ingestion design defines source classes, authority flags, freshness, source chips, missing-route behavior, and visibility policy.
 - [ ] Answer-engine contract implements modes, labels, citations, and unsupported behavior.
+- [ ] Model/provider capability registry specifies product capability ids, service-side credential boundaries, quality gates, fallbacks, provider health, token cost classes, privacy/terms state, and source-authority guardrails.
 - [ ] Generated Media Corporate Standard is accepted and [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) is fixture-tested.
 - [ ] Privacy and retention policy is written, including durable notebook, account-history, deletion, export, sharing, storage-cost, and not-project-evidence behavior.
 - [ ] Token wallet, subscription grants, spending limits, auto-fund settings, per-request caps, hold/receipt flow, and insufficient-token state are specified.
 - [ ] Service terms, token/subscription terms, privacy notice, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, terms-change behavior, and legal-review state are specified.
 - [ ] GitHub issue preview, confirmation, prefilled URL handoff, and login-warning flow are specified.
 - [ ] Issue-mining signal/noise loop and owner-routed fix queues are specified.
+- [ ] Observability, public status, incident records, change history, support summaries, and diagnostics redaction are specified.
 - [ ] Service-native speech output requirements, high-quality-only fallback behavior, synchronized text display, sphere/document listening scope, ephemeral audio handling, voice-identity guardrails, presentation scripts, animation storyboards, and spoken/animated deferral rules are specified.
 - [ ] Confirmation flow is specified for every durable, public, paid, retained, credentialed, auto-fund, saved-note, and user-material action.
 - [ ] Fixture question suite is implemented.
@@ -934,8 +1026,10 @@ Context:
 - Manifest service contracts: `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
 - Source ingestion and retrieval context contract: `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
 - Answer engine source contract: `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
+- Model/provider capability registry contract: `reference/priorities/app-archie-interface/model-provider-capability-registry-contract.md`.
 - Token ledger and privacy contract: `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
 - Issue mining signal contract: `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
+- Observability public status and incident contract: `reference/priorities/app-archie-interface/observability-public-status-incident-contract.md`.
 - Action broker confirmation contract: `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
 - Saved notebook and account history contract: `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
 - Service terms and account policy contract: `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
@@ -944,10 +1038,13 @@ Context:
 - Corporate media standard: `reference/priorities/app-archie-interface/corporate-media-standards.md`.
 - Corporate media acceptance fixtures: `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
 - Service platform owner: `reference/priorities/archie/service-platform.md`.
+- Service deployment option decision: `reference/priorities/archie/service-deployment-option-decision.md`.
+- Service deployment architecture: `reference/priorities/archie/service-deployment-architecture.md`.
+- Service scaffolding and fixtures: `reference/priorities/archie/service-scaffolding-and-fixtures.md`.
 - Assistant behavior contract: `reference/priorities/archie/assistant-mode-contract.md`.
 
 Task:
-- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, token ledger and privacy-retention contract, issue-mining signal report contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, privacy/retention policy, and fixture-validation plan.
+- Define the v1 deployment architecture from the deployment option decision, deployment architecture packet, and scaffolding/fixtures packet, then define the Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, model/provider capability registry, generated-media corporate-standard enforcement, service-native speech and presentation contract, token ledger and privacy-retention contract, issue-mining signal report contract, observability/public-status/incident contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, privacy/retention policy, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 - Keep runtime AI generation, credentials, deployment config, and public launch changes out of scope.
 

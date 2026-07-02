@@ -13,6 +13,7 @@
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
@@ -110,6 +111,8 @@ Required output:
 
 The answer engine may use this retrieval context to assign claim labels and write answer text. Media layers, token receipts, issue drafts, saved notes, and issue mining should inherit or reference this same `source_context` instead of reconstructing it.
 
+Source-miss, stale-index, excluded-source, and retrieval-diagnostic observability must follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). Source observability may include route ids, source classes, freshness classes, missing-route classes, and source-index candidate ids; it must not include private prompt text or use model memory as a replacement source.
+
 ## Source Chip Rules
 
 Source chips are public-facing authority indicators, not decoration.
@@ -186,6 +189,7 @@ The future implementation should include retrieval fixtures for:
 | `retrieval-stale-index-001` | Stale index or generated-copy drift is reported with source-index candidate metadata. |
 | `retrieval-system-card-001` | Proof-status or launch-status question includes System Card route. |
 | `retrieval-source-chip-001` | Source chips include class, route, authority status, claim-label floor, and freshness summary when needed. |
+| `retrieval-observability-source-miss-001` | Source misses emit safe route/source-index classes without private prompt text or model-memory substitution. |
 | `retrieval-private-material-negative-001` | Private user material is not ingested as source without explicit policy. |
 
 ## Implementation Handoff
@@ -193,11 +197,12 @@ The future implementation should include retrieval fixtures for:
 Closure goal:
 Turn the Source Ingestion And Retrieval Context Contract into ingestion records, source indexes, source-chip payloads, freshness validators, missing-route fixtures, and `source_context` population tests for the Archie service.
 
-Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
+Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
 
 Task:
 - Define source record schemas for authored corpus, generated reading copies, scene routes, app guides, Archie references, priority material, and curated external comparison sources.
 - Encode source freshness, canonical-parent, visibility, source-chip, and missing-route validation.
+- Encode source-miss, stale-index, excluded-source, retrieval-diagnostic, and source-index candidate observability classes.
 - Populate manifest `source_context` before answer generation, speech, visuals, token receipts, issue drafts, saved notes, or issue mining.
 - Add fixtures for published corpus, generated-copy parent routing, scene routes, app guides, priority visibility, external-source deferral, missing routes, stale indexes, System Card routing, source chips, and private-material exclusion.
 

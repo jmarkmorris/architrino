@@ -1,0 +1,637 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://architrino.local/contracts/archie-service/v1/schema.json",
+  "title": "Archie Service Contract v1",
+  "oneOf": [
+    { "$ref": "#/$defs/answerArtifactManifest" },
+    { "$ref": "#/$defs/answerRequest" },
+    { "$ref": "#/$defs/sourceIndexSnapshot" },
+    { "$ref": "#/$defs/providerCapabilityRegistry" },
+    { "$ref": "#/$defs/tokenReceiptEnvelope" },
+    { "$ref": "#/$defs/actionPreflightEnvelope" },
+    { "$ref": "#/$defs/serviceStatus" },
+    { "$ref": "#/$defs/serviceTerms" },
+    { "$ref": "#/$defs/deploymentSmokePlan" }
+  ],
+  "$defs": {
+    "mode": {
+      "type": "string",
+      "enum": ["Ask", "Explain", "Compare", "Visualize", "Triage Idea", "Find Source"]
+    },
+    "sourceClass": {
+      "type": "string",
+      "enum": [
+        "published_corpus",
+        "generated_reading_copy",
+        "scene_route",
+        "app_guide",
+        "archie_reference",
+        "priority_material",
+        "external_prior_physics"
+      ]
+    },
+    "claimLabel": {
+      "type": "string",
+      "enum": [
+        "published corpus",
+        "derivation target",
+        "priority-only",
+        "app diagnostic",
+        "external comparison",
+        "AAA-native stance",
+        "unsupported"
+      ]
+    },
+    "artifactType": {
+      "type": "string",
+      "enum": [
+        "text",
+        "audio",
+        "image",
+        "diagram",
+        "generated_image_prompt",
+        "app_mockup",
+        "publication_asset_draft",
+        "narration_script",
+        "comparison_script",
+        "animation_storyboard",
+        "caption_track",
+        "transcript",
+        "issue_draft",
+        "saved_note_draft"
+      ]
+    },
+    "workUnit": {
+      "type": "string",
+      "enum": [
+        "source_navigation",
+        "retrieval",
+        "answer_generation",
+        "comparison",
+        "diagram",
+        "image",
+        "image_prompt",
+        "app_mockup",
+        "publication_asset_draft",
+        "high_quality_speech",
+        "caption_transcript",
+        "narration_script",
+        "comparison_script",
+        "animation_storyboard",
+        "issue_draft",
+        "saved_note",
+        "action_handoff"
+      ]
+    },
+    "capStatus": {
+      "type": "string",
+      "enum": [
+        "inside_limits",
+        "estimate_required",
+        "cap_exceeded",
+        "auto_fund_pending",
+        "insufficient_tokens",
+        "privacy_confirmation_required"
+      ]
+    },
+    "retentionState": {
+      "type": "string",
+      "enum": [
+        "ephemeral",
+        "ephemeral_unless_saved",
+        "minimal",
+        "session_local",
+        "durable_opt_in",
+        "disabled",
+        "redacted"
+      ]
+    },
+    "actionType": {
+      "type": "string",
+      "enum": [
+        "open_source",
+        "continue_reading",
+        "make_diagram",
+        "listen",
+        "submit_issue",
+        "save_note",
+        "auto_fund",
+        "include_user_material",
+        "share_artifact",
+        "confirm_action"
+      ]
+    },
+    "actionPreflightStatus": {
+      "type": "string",
+      "enum": ["ready", "estimate_required", "confirmation_required", "blocked", "unavailable"]
+    },
+    "confirmationReason": {
+      "type": "string",
+      "enum": [
+        "public_visibility",
+        "durable_save",
+        "token_cap",
+        "auto_fund",
+        "privacy",
+        "retention",
+        "credentialed_action",
+        "user_media_inclusion",
+        "external_handoff"
+      ]
+    },
+    "operationalStatus": {
+      "type": "string",
+      "enum": ["operational", "degraded", "partial_outage", "maintenance", "incident_active"]
+    },
+    "legalReviewState": {
+      "type": "string",
+      "enum": ["draft", "counsel_required", "approved_for_beta", "approved_for_public"]
+    },
+    "sourceChip": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["route", "label", "sourceClass", "authorityStatus", "visibility"],
+      "properties": {
+        "route": { "type": "string", "minLength": 1 },
+        "label": { "type": "string", "minLength": 1 },
+        "sourceClass": { "$ref": "#/$defs/sourceClass" },
+        "authorityStatus": {
+          "type": "string",
+          "enum": ["primary", "routing_only", "diagnostic", "priority_only", "comparison_only", "excluded", "unsupported"]
+        },
+        "visibility": {
+          "type": "string",
+          "enum": ["public", "development_status", "operator_developer", "external_curated", "excluded"]
+        },
+        "sectionId": { "type": ["string", "null"] },
+        "freshnessState": {
+          "type": "string",
+          "enum": ["fresh", "stale", "degraded", "unavailable", "rollback_snapshot"]
+        }
+      }
+    },
+    "tokenReceiptCore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "receiptId",
+        "capStatus",
+        "estimatedTokens",
+        "heldTokens",
+        "chargedTokens",
+        "refundedTokens",
+        "workUnits",
+        "sourceClassesUsed",
+        "artifactCount",
+        "autoFundApplied",
+        "privatePromptIncluded"
+      ],
+      "properties": {
+        "receiptId": { "type": "string", "minLength": 1 },
+        "capStatus": { "$ref": "#/$defs/capStatus" },
+        "estimatedTokens": { "type": "integer", "minimum": 0 },
+        "heldTokens": { "type": "integer", "minimum": 0 },
+        "chargedTokens": { "type": "integer", "minimum": 0 },
+        "refundedTokens": { "type": "integer", "minimum": 0 },
+        "workUnits": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/workUnit" }
+        },
+        "sourceClassesUsed": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceClass" }
+        },
+        "artifactCount": { "type": "integer", "minimum": 0 },
+        "autoFundApplied": { "type": "boolean" },
+        "privatePromptIncluded": { "const": false }
+      }
+    },
+    "tokenReceiptEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "receipt"],
+      "properties": {
+        "schema": { "const": "archie-token-receipt/v1" },
+        "receipt": { "$ref": "#/$defs/tokenReceiptCore" }
+      }
+    },
+    "answerArtifactManifest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "manifestId",
+        "createdAt",
+        "mode",
+        "requestSummary",
+        "sourceContext",
+        "claimContext",
+        "answerBody",
+        "providerExecutionContext",
+        "artifacts",
+        "speechSync",
+        "tokenReceipt",
+        "privacyState",
+        "availableActions",
+        "issueMiningContext",
+        "observabilityContext"
+      ],
+      "properties": {
+        "schema": { "const": "archie-answer-artifact-manifest/v1" },
+        "manifestId": { "type": "string", "minLength": 1 },
+        "createdAt": { "type": "string", "minLength": 1 },
+        "mode": { "$ref": "#/$defs/mode" },
+        "requestSummary": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["requestId", "safeSummaryId", "contextRoute"],
+          "properties": {
+            "requestId": { "type": "string", "minLength": 1 },
+            "safeSummaryId": { "type": "string", "minLength": 1 },
+            "contextRoute": { "type": ["string", "null"] }
+          }
+        },
+        "sourceContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["snapshotId", "sourceClasses", "sourceChips", "missingSourceRoutes", "excludedSourceClasses", "systemCardRoute"],
+          "properties": {
+            "snapshotId": { "type": "string", "minLength": 1 },
+            "sourceClasses": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/sourceClass" }
+            },
+            "sourceChips": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/sourceChip" }
+            },
+            "missingSourceRoutes": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "excludedSourceClasses": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/sourceClass" }
+            },
+            "systemCardRoute": { "type": "string", "minLength": 1 }
+          }
+        },
+        "claimContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["claimLabel", "unsupportedReasonClass", "priorityVisibility"],
+          "properties": {
+            "claimLabel": { "$ref": "#/$defs/claimLabel" },
+            "unsupportedReasonClass": { "type": ["string", "null"] },
+            "priorityVisibility": {
+              "type": "string",
+              "enum": ["hidden", "development_status_visible", "not_applicable"]
+            }
+          }
+        },
+        "answerBody": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["displayedText", "verbatimSegments", "readingPath"],
+          "properties": {
+            "displayedText": { "type": "string" },
+            "verbatimSegments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["segmentId", "text"],
+                "properties": {
+                  "segmentId": { "type": "string", "minLength": 1 },
+                  "text": { "type": "string" }
+                }
+              }
+            },
+            "readingPath": {
+              "type": "array",
+              "items": { "$ref": "#/$defs/sourceChip" }
+            }
+          }
+        },
+        "providerExecutionContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["capabilityIds", "credentialBoundary", "noBrowserKeys"],
+          "properties": {
+            "capabilityIds": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "credentialBoundary": {
+              "type": "string",
+              "enum": ["service_side_only", "not_required", "blocked"]
+            },
+            "noBrowserKeys": { "const": true }
+          }
+        },
+        "artifacts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["artifactId", "artifactType", "purposeLabel", "sourceInheritance", "claimInheritance", "retentionState"],
+            "properties": {
+              "artifactId": { "type": "string", "minLength": 1 },
+              "artifactType": { "$ref": "#/$defs/artifactType" },
+              "purposeLabel": { "type": "string", "minLength": 1 },
+              "sourceInheritance": { "const": "inherits_manifest_source_context" },
+              "claimInheritance": { "const": "inherits_manifest_claim_context" },
+              "retentionState": { "$ref": "#/$defs/retentionState" }
+            }
+          }
+        },
+        "speechSync": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "audioArtifactId", "segments"],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": ["not_requested", "synced", "text_only_fallback", "refused"]
+            },
+            "audioArtifactId": { "type": ["string", "null"] },
+            "segments": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": ["segmentId", "startsAtMs", "endsAtMs"],
+                "properties": {
+                  "segmentId": { "type": "string", "minLength": 1 },
+                  "startsAtMs": { "type": "integer", "minimum": 0 },
+                  "endsAtMs": { "type": "integer", "minimum": 0 }
+                }
+              }
+            }
+          }
+        },
+        "tokenReceipt": { "$ref": "#/$defs/tokenReceiptCore" },
+        "privacyState": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["promptRetention", "answerRetention", "mediaRetention", "durableSaveEnabled", "deletionRouteAvailable", "publicMaterialIncluded"],
+          "properties": {
+            "promptRetention": { "$ref": "#/$defs/retentionState" },
+            "answerRetention": { "$ref": "#/$defs/retentionState" },
+            "mediaRetention": { "$ref": "#/$defs/retentionState" },
+            "durableSaveEnabled": { "type": "boolean" },
+            "deletionRouteAvailable": { "type": "boolean" },
+            "publicMaterialIncluded": { "type": "boolean" }
+          }
+        },
+        "availableActions": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/actionPreflightCore" }
+        },
+        "issueMiningContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["enabled", "originSurface", "duplicateKeys", "ownerLane", "smallestNextArtifact", "publicIssueUrl", "privatePromptIncluded"],
+          "properties": {
+            "enabled": { "type": "boolean" },
+            "originSurface": { "type": "string", "minLength": 1 },
+            "duplicateKeys": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "ownerLane": { "type": ["string", "null"] },
+            "smallestNextArtifact": { "type": ["string", "null"] },
+            "publicIssueUrl": { "type": ["string", "null"] },
+            "privatePromptIncluded": { "const": false }
+          }
+        },
+        "observabilityContext": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["safeEventClasses", "redactionState", "publicStatusSafe"],
+          "properties": {
+            "safeEventClasses": {
+              "type": "array",
+              "items": { "type": "string", "minLength": 1 }
+            },
+            "redactionState": {
+              "type": "string",
+              "enum": ["redacted", "safe_ids_only", "blocked"]
+            },
+            "publicStatusSafe": { "type": "boolean" }
+          }
+        }
+      }
+    },
+    "answerRequest": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "requestId", "mode", "prompt", "contextRoute", "artifactRequests", "tokenCap", "privacyPreferences", "acceptedTerms"],
+      "properties": {
+        "schema": { "const": "archie-answer-request/v1" },
+        "requestId": { "type": "string", "minLength": 1 },
+        "mode": { "$ref": "#/$defs/mode" },
+        "prompt": { "type": "string", "minLength": 1 },
+        "contextRoute": { "type": ["string", "null"] },
+        "artifactRequests": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/artifactType" }
+        },
+        "tokenCap": { "type": "integer", "minimum": 0 },
+        "privacyPreferences": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["durableSaveRequested", "publicMaterialConsent"],
+          "properties": {
+            "durableSaveRequested": { "type": "boolean" },
+            "publicMaterialConsent": { "type": "boolean" }
+          }
+        },
+        "acceptedTerms": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["versionSetId", "scope"],
+          "properties": {
+            "versionSetId": { "type": "string", "minLength": 1 },
+            "scope": {
+              "type": "string",
+              "enum": ["anonymous_session", "account", "billing", "notebook", "github_handoff", "operator_developer"]
+            }
+          }
+        }
+      }
+    },
+    "actionPreflightCore": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["actionType", "preflightStatus", "confirmationRequired", "confirmationReasons", "destinationClass"],
+      "properties": {
+        "actionType": { "$ref": "#/$defs/actionType" },
+        "preflightStatus": { "$ref": "#/$defs/actionPreflightStatus" },
+        "confirmationRequired": { "type": "boolean" },
+        "confirmationReasons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/confirmationReason" }
+        },
+        "destinationClass": { "type": "string", "minLength": 1 }
+      }
+    },
+    "actionPreflightEnvelope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "action"],
+      "properties": {
+        "schema": { "const": "archie-action-preflight/v1" },
+        "action": { "$ref": "#/$defs/actionPreflightCore" }
+      }
+    },
+    "sourceIndexSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "snapshotId", "repositoryRef", "generatedArtifactRefs", "sourceRecordCountByClass", "visibilityPolicyVersion", "freshnessState", "rollbackParent"],
+      "properties": {
+        "schema": { "const": "archie-source-index-snapshot/v1" },
+        "snapshotId": { "type": "string", "minLength": 1 },
+        "repositoryRef": { "type": "string", "minLength": 1 },
+        "generatedArtifactRefs": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["sceneGraph", "markdownIndex", "readingCopies", "textbookToc"],
+          "properties": {
+            "sceneGraph": { "type": "string", "minLength": 1 },
+            "markdownIndex": { "type": "string", "minLength": 1 },
+            "readingCopies": { "type": "string", "minLength": 1 },
+            "textbookToc": { "type": "string", "minLength": 1 }
+          }
+        },
+        "sourceRecordCountByClass": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["published_corpus", "generated_reading_copy", "scene_route", "app_guide", "archie_reference", "priority_material", "external_prior_physics"],
+          "properties": {
+            "published_corpus": { "type": "integer", "minimum": 0 },
+            "generated_reading_copy": { "type": "integer", "minimum": 0 },
+            "scene_route": { "type": "integer", "minimum": 0 },
+            "app_guide": { "type": "integer", "minimum": 0 },
+            "archie_reference": { "type": "integer", "minimum": 0 },
+            "priority_material": { "type": "integer", "minimum": 0 },
+            "external_prior_physics": { "type": "integer", "minimum": 0 }
+          }
+        },
+        "visibilityPolicyVersion": { "type": "string", "minLength": 1 },
+        "freshnessState": {
+          "type": "string",
+          "enum": ["fresh", "stale", "degraded", "unavailable", "rollback_snapshot"]
+        },
+        "rollbackParent": { "type": ["string", "null"] }
+      }
+    },
+    "providerCapabilityRegistry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "registryId", "environment", "capabilities"],
+      "properties": {
+        "schema": { "const": "archie-provider-capability-registry/v1" },
+        "registryId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "capabilities": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["capabilityId", "capabilityType", "enabledState", "healthState", "costClass", "credentialBoundary", "fallbackBehavior", "noBrowserKeys"],
+            "properties": {
+              "capabilityId": { "type": "string", "minLength": 1 },
+              "capabilityType": {
+                "type": "string",
+                "enum": ["answer_text", "retrieval_embedding", "rerank", "speech_output", "speech_input", "image_generation", "image_input", "document_input", "caption_transcript", "moderation", "video_generation", "utility"]
+              },
+              "enabledState": {
+                "type": "string",
+                "enum": ["disabled", "internal_only", "beta_enabled", "public_enabled", "degraded"]
+              },
+              "healthState": {
+                "type": "string",
+                "enum": ["healthy", "degraded", "unavailable", "policy_blocked", "unknown"]
+              },
+              "costClass": {
+                "type": "string",
+                "enum": ["free_static", "low", "standard", "large_context", "media", "premium_media", "operator_only"]
+              },
+              "credentialBoundary": {
+                "type": "string",
+                "enum": ["service_side_only", "not_required", "blocked"]
+              },
+              "fallbackBehavior": { "type": "string", "minLength": 1 },
+              "noBrowserKeys": { "const": true }
+            }
+          }
+        }
+      }
+    },
+    "serviceStatus": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "statusId", "serviceStatus", "answerStatus", "sourceStatus", "speechStatus", "visualStatus", "issueHandoffStatus", "tokenStatus", "termsStatus", "currentIncidents", "privatePromptIncluded"],
+      "properties": {
+        "schema": { "const": "archie-service-status/v1" },
+        "statusId": { "type": "string", "minLength": 1 },
+        "serviceStatus": { "$ref": "#/$defs/operationalStatus" },
+        "answerStatus": { "$ref": "#/$defs/operationalStatus" },
+        "sourceStatus": { "$ref": "#/$defs/operationalStatus" },
+        "speechStatus": { "$ref": "#/$defs/operationalStatus" },
+        "visualStatus": { "$ref": "#/$defs/operationalStatus" },
+        "issueHandoffStatus": { "$ref": "#/$defs/operationalStatus" },
+        "tokenStatus": { "$ref": "#/$defs/operationalStatus" },
+        "termsStatus": { "$ref": "#/$defs/operationalStatus" },
+        "currentIncidents": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "privatePromptIncluded": { "const": false }
+      }
+    },
+    "serviceTerms": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "versionSetId", "legalTermsRoute", "serviceTermsVersion", "privacyNoticeVersion", "tokenSubscriptionTermsVersion", "generatedMediaTermsVersion", "githubHandoffNoticeVersion", "notebookTermsVersion", "supportRoute", "legalReviewState"],
+      "properties": {
+        "schema": { "const": "archie-service-terms/v1" },
+        "versionSetId": { "type": "string", "minLength": 1 },
+        "legalTermsRoute": { "type": "string", "minLength": 1 },
+        "serviceTermsVersion": { "type": "string", "minLength": 1 },
+        "privacyNoticeVersion": { "type": "string", "minLength": 1 },
+        "tokenSubscriptionTermsVersion": { "type": "string", "minLength": 1 },
+        "generatedMediaTermsVersion": { "type": "string", "minLength": 1 },
+        "githubHandoffNoticeVersion": { "type": "string", "minLength": 1 },
+        "notebookTermsVersion": { "type": "string", "minLength": 1 },
+        "supportRoute": { "type": "string", "minLength": 1 },
+        "legalReviewState": { "$ref": "#/$defs/legalReviewState" }
+      }
+    },
+    "deploymentSmokePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["schema", "planId", "environment", "checks"],
+      "properties": {
+        "schema": { "const": "archie-deployment-smoke-plan/v1" },
+        "planId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["staging", "production"] },
+        "checks": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": ["id", "requiredProof", "status"],
+            "properties": {
+              "id": { "type": "string", "minLength": 1 },
+              "requiredProof": { "type": "string", "minLength": 1 },
+              "status": { "type": "string", "enum": ["pending", "pass", "fail_closed"] }
+            }
+          }
+        }
+      }
+    }
+  }
+}

@@ -12,6 +12,27 @@ Packet. The reduced recovery packet is [Iron Group Binding Cusp Recovery](iron-g
 
 Executable diagnostic. The first priority-only toy graph sweep is [iron-group-binding-cusp-toy-sweep.mjs](../../../scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs).
 
+Source-binding gate. The source-binding manifest is [iron-group-binding-cusp-source-binding-candidates.v1.json](../../../scripts/nuclear-atomic/iron-group-binding-cusp-source-binding-candidates.v1.json). The first source targets are [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json) and [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json). The row-shape sweep currently passes, but promotion readiness is blocked at `missing_accepted_nucleon_branch_interface_ledgers`.
+
+Branch-interface success marker. [nucleon-branch-interface-source-target-check.mjs](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs) verifies that the current $p+n$ and $p+p$ orientation extraction is algebraically consistent and keeps `--require-accepted` fail-closed until `nucleon_branch_interface_ledgers`, `pn_orientation_count`, `pp_orientation_count`, and `same_record_energy_momentum_angular_momentum_ledger` are accepted rows. This is a success marker for the reduced branch-interface algebra, not corpus promotion.
+
+Confinement-functional success marker. [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs) verifies that the current $\sigma_{\mathrm{eff}}$, color-singlet envelope, $\Delta E_{\mathrm{corr}}^{NN}$, no-open-color, and toy-binding dependency structure is internally consistent and keeps `--require-accepted` fail-closed until `sigma_eff_extraction`, `color_singlet_nucleon_envelope`, `delta_E_corr_NN`, and `no_open_color_far_field` are accepted rows. This is a success marker for the confinement-functional dependency chain, not corpus promotion.
+
+Weak-channel success marker. [weak-channel-source-target-check.mjs](../../../scripts/nuclear-atomic/weak-channel-source-target-check.mjs) verifies that the current muon weak-channel source accepts `weak_visible_branch_ledger` and `weak_projection`, keeps the weak rows in one retained domain and branch record, preserves zero weak residuals, and ties the Fe/Ni beta-stability, asymmetry, and sea-imbalance toy rows to weak source rows. It keeps `--require-accepted` fail-closed until `weak_quotient`, `weak_exposure_record`, `reaction_event_ledger`, `noether_sea_response`, and the remaining downstream weak rows become accepted.
+
+Noether sea response success marker. [noether-sea-response-source-target-check.mjs](../../../scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs) verifies that the retained-window density-compression provider is durable source evidence, accepts the required $\rho_{\text{NS}}$, $\theta_{\mathrm{sea}}$, stress-strain, speed, causality, and correlation rows, keeps acoustic-elastic agreement within the refinement tolerance, and ties `alphaSea`, `seaImbalancePenalty`, and `noether_sea_polarization_reward` to accepted Noether sea response rows. This is currently the one accepted source family in the Fe/Ni toy source-binding report.
+
+Next mathematical target. Do not tune the Fe/Ni result as an isolated curve fit. Tie each toy coefficient and graph rule back to accepted source rows, then ask whether the same reduced row bundle still produces the deuteron, diproton, saturation, beta-stability, fusion, fission, and Fe/Ni-window checks.
+
+Report surface. The executable report now exposes row-level obligations under `sourceBinding.coefficientBindings` and `sourceBinding.graphRuleRowBindings`; these are the rows that must become accepted before any corpus promotion.
+
+| Source family | What it must justify before promotion | Current blocker |
+| --- | --- | --- |
+| `branch_interface` | Pair corridor rewards, pair mismatch costs, bounded local degree, corridor saturation, and the $p+n$ versus $p+p$ channel distinction. | `missing_accepted_nucleon_branch_interface_ledgers` |
+| `confinement_functional` | Corridor scale, surface loss, large-$A$ packing behavior, shell/readout envelope, and finite saturation. | `missing_accepted_sigma_eff_extraction` |
+| `weak_channel` | Beta-stable band, asymmetry pressure, beta-decay provenance, and weak-channel consistency with the Noether sea response row. | `missing_accepted_weak_quotient` |
+| `noether_sea_response` | Local $\theta_{\mathrm{sea}}$, $\rho_{\text{NS}}$, density-compression response, and bounded sea-polarization reward. | Accepted by the retained-window provider and checked by `noether-sea-response-source-target-check.mjs`. |
+
 Question. Can a native $\mathbb{A}\mathbb{A}\mathbb{A}$ nuclear assembly model reproduce the iron-group binding-energy cusp: fusion from lighter nuclei and fission from heavier nuclei both move nuclear inventories toward the same total mass-energy trough near the Fe/Ni region?
 
 Candidate recovery object:

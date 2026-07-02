@@ -13,6 +13,7 @@
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
@@ -113,6 +114,8 @@ The action broker should use this sequence:
 
 The action broker should not receive raw private prompt text unless policy explicitly requires it. It should work from manifest-safe summaries, source context, artifact ids, consent state, and receipt ids.
 
+Action preflight, confirmation, failure, and result observability must follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). Logs, support summaries, public status, and incident records may include action type, confirmation reason, destination class, token effect class, privacy effect class, and result status; they must not include private prompt text or unconsented user material.
+
 ## GitHub Issue Handoff
 
 V1 issue submission should follow the reader-feedback pattern:
@@ -204,12 +207,13 @@ The future implementation should include action fixtures for:
 Closure goal:
 Turn the Action Broker Confirmation Contract into action schemas, confirmation dialogs, endpoint validators, side-effect guards, and action fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode `available_actions`, confirmation reasons, preflight states, destination fields, and action results.
 - Encode terms-effect, accepted-version, re-acceptance, feature-blocker, and legal-review checks for paid, durable, public, retained, generated-media, and credentialed actions.
 - Define endpoint behavior for confirmed public, durable, paid, retained, and credentialed actions.
+- Define privacy-safe action preflight, confirmation, failure, result, and incident observability classes.
 - Add fixtures for source opening, listening with token caps, visualization with privacy gates, issue prefill, unconfirmed issue refusal, auto-fund, terms refusal, saved-note deferral, user-material exclusion, credential refusal, and manifest action-result updates.
 - Keep action execution subordinate to source context, claim labels, token ledger, privacy state, media policy, and issue-mining metadata.
 

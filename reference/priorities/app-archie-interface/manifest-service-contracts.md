@@ -13,6 +13,7 @@
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
@@ -20,6 +21,9 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](../archie/service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md)
 
 ## Purpose
 
@@ -28,6 +32,8 @@ This packet turns the [Answer Artifact Manifest](answer-artifact-manifest.md) an
 It is not runtime code. It defines the contracts a future implementation should encode in TypeScript, JSON Schema, API validators, integration tests, and UI rendering tests.
 
 The core invariant is simple: every service endpoint returns either a validated Answer Artifact Manifest or a fail-closed manifest-shaped refusal/error response. No endpoint should return a separate ad hoc answer shape.
+
+The deployment boundary for these contracts follows [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md): public static entry and browser rendering are separate from the service API, provider gateways, token authority, source retrieval, action broker, issue-mining pipeline, observability, and privacy/audit state.
 
 ## Shared Type Vocabulary
 
@@ -55,6 +61,9 @@ The future typed schema should start with these closed or controlled vocabularie
 | `ProviderEnabledState` | `disabled`, `internal_only`, `beta_enabled`, `public_enabled`, `degraded` |
 | `ProviderHealthState` | `healthy`, `degraded`, `unavailable`, `policy_blocked`, `unknown` |
 | `ProviderCostClass` | `free_static`, `low`, `standard`, `large_context`, `media`, `premium_media`, `operator_only` |
+| `OperationalStatus` | `operational`, `degraded`, `partial_outage`, `maintenance`, `incident_active` |
+| `IncidentSeverity` | `critical`, `high`, `medium`, `low`, `info` |
+| `IncidentStatus` | `open`, `mitigated`, `resolved`, `postmortem_required` |
 | `TermsAcceptanceScope` | `anonymous_session`, `account`, `billing`, `notebook`, `github_handoff`, `operator_developer` |
 | `LegalReviewState` | `draft`, `counsel_required`, `approved_for_beta`, `approved_for_public` |
 | `ValidatorDisposition` | `pass`, `fail_closed`, `allow_with_changes`, `refuse_artifact`, `text_only_fallback` |
@@ -108,6 +117,7 @@ Each service boundary reads a narrow input, writes a narrow output, and leaves t
 | `terms_policy` | Manifest, requested feature set, account/session terms state, legal-review state. | `terms_acceptance_state`, feature blockers, re-acceptance requirements. | service terms and account policy contract, terms versions, feature blockers, legal-review state. |
 | `token_ledger` | Work plan, provider costs, user caps, completed work units. | `token_receipt`. | token ledger and privacy contract, receipt consistency, cap status, auto-fund state. |
 | `privacy_and_audit` | Manifest, consent state, retention policy, generated artifacts. | `privacy_state`, safe diagnostics. | token ledger and privacy contract, retention, deletion route, private data redaction. |
+| `observability_status` | Manifest, validator dispositions, provider health, token receipt, issue context, privacy redaction state, incident policy. | Safe event classes, aggregate metrics, public-status state, support-summary redaction state, incident/change-history candidates. | observability public status and incident contract, redaction, public status, incident safety, no-proof-authority metrics. |
 | `action_broker` | Manifest, action request, confirmation state, consent state, token state. | Updated `available_actions`, confirmation text, destination, credential boundary, and optional action result. | action broker confirmation contract, side-effect guard, credentialed-action boundary. |
 | `manifest_validator` | Complete candidate manifest. | Validated manifest or fail-closed manifest-shaped response. | all validators in defined order. |
 | `conversation_surface` | Validated manifest. | Rendered UI only. | no new authority fields, no unmanifested actions. |
@@ -126,10 +136,11 @@ Validators should run in this order because later validators depend on earlier a
 8. `token_receipt_validator` checks estimate, hold, charge, refund, work units, cap status, and auto-fund state.
 9. `privacy_state_validator` checks prompt retention, answer retention, media retention, uploaded material, consent, visibility, and deletion route.
 10. `terms_policy_validator` checks service terms, token/subscription terms, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, support-route availability, re-acceptance state, feature blockers, and legal-review state.
-11. `action_confirmation_validator` checks durable, public, paid, retained, and credentialed action confirmation requirements.
-12. `notebook_history_validator` checks saved-note draft, durable-save availability, account-history state, deletion route, export route, share state, storage cost, and not-project-evidence labels.
-13. `issue_mining_validator` checks public issue metadata, duplicate keys, source routes, privacy inclusion, owner routing, and smallest next artifact.
-14. `render_contract_validator` checks that the UI can render the manifest without inventing source authority, claim status, provider state, billing state, action state, terms state, or notebook evidence state.
+11. `observability_redaction_validator` checks logs, metrics, public status, support summaries, issue-mining handoff, and incident records for private prompt text, provider secrets, raw payloads, account history, private saved notes, and no-proof-authority metrics.
+12. `action_confirmation_validator` checks durable, public, paid, retained, and credentialed action confirmation requirements.
+13. `notebook_history_validator` checks saved-note draft, durable-save availability, account-history state, deletion route, export route, share state, storage cost, and not-project-evidence labels.
+14. `issue_mining_validator` checks public issue metadata, duplicate keys, source routes, privacy inclusion, owner routing, and smallest next artifact.
+15. `render_contract_validator` checks that the UI can render the manifest without inventing source authority, claim status, provider state, billing state, action state, terms state, observability state, or notebook evidence state.
 
 If a validator fails, the response should either remove the invalid artifact, return text-only fallback, require confirmation, or return a manifest-shaped refusal. The system should not patch source authority or proof status invisibly.
 
@@ -275,6 +286,25 @@ Required response fields:
 
 The endpoint must not return provider secrets, raw model references, direct model-call configuration, or provider-specific billing internals.
 
+### `GET /service-status`
+
+Return public-safe product status and incident/change-history state.
+
+Required response fields:
+
+- service status;
+- answer status;
+- source status;
+- speech status;
+- visual status;
+- issue handoff status;
+- token status;
+- terms status;
+- active public incident ids and severity;
+- recent public-safe changes.
+
+The endpoint must not return private prompt text, raw logs, provider secrets, raw provider errors, account identifiers, unsubmitted issue drafts, or private saved-note state.
+
 ### `GET /answers/{manifest_id}/receipt`
 
 Return token receipt and privacy state without expanding private prompt text.
@@ -311,7 +341,7 @@ Required fail-closed fields:
 | `available_actions` | Only safe alternatives or confirmation-gated actions. |
 | `diagnostics` | Safe developer summary without private prompt leakage. |
 
-Fail-closed responses should be regression-tested for unsupported answers, unavailable high-quality speech, insufficient tokens, missing source routes, media-standard refusal, privacy refusal, and unconfirmed public issue submission.
+Fail-closed responses should be regression-tested for unsupported answers, unavailable high-quality speech, insufficient tokens, missing source routes, media-standard refusal, privacy refusal, unsafe observability redaction, and unconfirmed public issue submission.
 
 ## Speech Sync Contract
 
@@ -395,6 +425,9 @@ The future implementation should include fixtures for:
 | `contract-visual-publication-draft-001` | Publication asset draft records human-review-required state and does not imply final approval. |
 | `contract-issue-draft-001` | Issue draft includes public warning, confirmation requirement, and issue-mining context. |
 | `contract-issue-mining-report-001` | Mining report emits clusters, signal scores, noise classes, owner queues, representative public issues, and privacy statement. |
+| `contract-observability-status-001` | Public status endpoint exposes product-level degradation and incident ids without provider secrets or private prompt text. |
+| `contract-observability-redaction-negative-001` | Unsafe log, support summary, issue-mining handoff, or incident disclosure is blocked or redacted. |
+| `contract-observability-source-authority-negative-001` | Metrics, issue volume, provider success, or incidents cannot upgrade claim label or source class. |
 | `contract-confirm-issue-001` | Submit issue action requires confirmation and exposes GitHub public-visibility warning. |
 | `contract-confirm-unsubmitted-negative-001` | Unconfirmed issue submission, auto-fund, save, share, or user-material inclusion produces no side effect. |
 | `contract-action-result-001` | Confirmed action writes result status, destination, privacy effect, and token effect back into the manifest. |
@@ -414,23 +447,27 @@ The future implementation should include fixtures for:
 Closure goal:
 Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+
+Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the deployment responsibility split before assigning endpoint ownership and schema fixture locations.
 
 Task:
 - Encode the shared type vocabulary.
 - Encode source record, source chip, source visibility, freshness, and missing-route types.
 - Encode provider capability, enabled-state, health-state, quality-gate, fallback, credential-boundary, cost-class, privacy/terms, and observability types.
+- Encode observability event, public-status, incident, change-history, support-summary, and redaction types.
 - Encode action preflight, confirmation reason, credential boundary, destination, and result-status types.
 - Encode saved-note, notebook item, account-history, share-state, export/delete, and evidence-status types.
 - Encode service terms, accepted-version, acceptance-scope, re-acceptance, feature-blocker, support-route, and legal-review-state types.
 - Define request and response types for each service boundary.
 - Implement validator ordering and fail-closed result types.
 - Define endpoint request/response schemas.
-- Create fixtures for retrieval context, text answers, unsupported answers, provider context, high-quality speech, speech fallback, visuals, issue drafts, notebooks, terms state, confirmations, action results, token caps, privacy refusals, and rendering.
+- Create fixtures for retrieval context, text answers, unsupported answers, provider context, high-quality speech, speech fallback, visuals, issue drafts, observability/public-status/incidents, notebooks, terms state, confirmations, action results, token caps, privacy refusals, and rendering.
 
 Constraints:
 - Preserve source authority and claim labels across every artifact.
 - Keep high-quality speech only; use text-only fallback if the bar is not met.
 - Do not charge for omitted low-quality speech fallback.
 - Do not expose private prompt text in receipts or issue-mining metadata.
+- Do not expose private prompt text, provider secrets, raw provider payloads, account history, or private saved notes in logs, metrics, public status, support summaries, or incident records.
 - Do not create runtime AI calls, credentials, deployment config, or public launch behavior unless explicitly requested.

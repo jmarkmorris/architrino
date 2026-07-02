@@ -10,7 +10,9 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
@@ -41,12 +43,14 @@ The hosted service should expose these user-facing surfaces before public beta:
 | `public_legal_terms` | Link to the existing public Legal Terms page for MIT license, good-faith posture, no warranty, and use-at-your-own-risk language. |
 | `service_terms` | Hosted-service terms covering accounts, acceptable use, generated outputs, tokens, subscriptions, public handoff, support, and changes. |
 | `privacy_retention_notice` | Plain-language notice for prompts, answers, speech, generated media, uploads, logs, diagnostics, saved notebooks, account history, deletion, and export. |
+| `provider_data_use_notice` | Provider-backed feature notice covering what data can be sent to a model provider, provider retention/abuse-review limits when known, no browser-side secrets, and provider terms dependencies. |
 | `token_subscription_terms` | Token grants, paid top-ups, auto-fund, caps, refunds, expiration or rollover, cancellation, failed payment, and billing support policy. |
 | `generated_media_terms` | User-facing statement that generated media is explanatory, source-labeled, policy-bound, and not proof, advice, endorsement, or a guarantee. |
 | `github_handoff_notice` | GitHub login, public visibility, included material, destination, deletion limits, project-use terms, and issue-mining metadata disclosure. |
 | `saved_notebook_terms` | Durable save, account history, submitted issue-link retention, deletion, export, sharing, storage cost, and not-project-evidence rules. |
 | `support_refund_route` | Contact or support path for billing, token, refund, privacy, deletion, export, issue handoff, and account problems. |
 | `abuse_and_rate_limit_policy` | Service limits, misuse rules, credential boundaries, automated abuse controls, and account restriction behavior. |
+| `status_incident_notice` | Public status, incident, support-summary, diagnostics-redaction, and change-history disclosure boundaries. |
 | `terms_change_notice` | Versioned terms change policy and when re-acceptance is required. |
 
 Public beta should not launch if any required surface is missing, unreachable, stale, or inconsistent with the token ledger, action broker, privacy, notebook, generated-media, or issue-mining contracts.
@@ -61,6 +65,7 @@ Required fields:
 | --- | --- |
 | `terms_version` | Version of service terms accepted or required. |
 | `privacy_notice_version` | Version of privacy/retention notice accepted or required. |
+| `provider_terms_version` | Version of provider data-use or provider-backed feature terms accepted or required. |
 | `token_terms_version` | Version of token/subscription terms accepted or required. |
 | `media_terms_version` | Version of generated-media terms accepted or required. |
 | `github_handoff_notice_version` | Version accepted before issue handoff. |
@@ -107,13 +112,14 @@ The notice must disclose:
 1. whether prompt text is stored, redacted, minimized, or ephemeral;
 2. whether answer text is stored by default;
 3. whether source misses, errors, usage events, diagnostics, and token transactions are retained;
-4. whether generated speech audio, transcripts, images, diagrams, scripts, storyboards, and future media are ephemeral or durable;
-5. whether uploaded screenshots, images, documents, or app-state snapshots are disabled, ephemeral, or retained;
-6. whether account history stores safe summaries, full text, action history, token receipts, or submitted issue links;
-7. how users delete durable saved content;
-8. how users export durable saved content;
-9. what cannot be deleted locally because it is public, external, billing-required, abuse-control-required, or provider-retained;
-10. what operator/developer diagnostics can contain.
+4. whether provider-backed features send request text, source snippets, transcripts, generated-media prompts, or metadata to a provider;
+5. whether generated speech audio, transcripts, images, diagrams, scripts, storyboards, and future media are ephemeral or durable;
+6. whether uploaded screenshots, images, documents, or app-state snapshots are disabled, ephemeral, or retained;
+7. whether account history stores safe summaries, full text, action history, token receipts, or submitted issue links;
+8. how users delete durable saved content;
+9. how users export durable saved content;
+10. what cannot be deleted locally because it is public, external, billing-required, abuse-control-required, or provider-retained;
+11. what operator/developer diagnostics, support summaries, public status, incident records, and change history can contain.
 
 If the service cannot state retention behavior for a feature, that feature should be unavailable.
 
@@ -132,6 +138,8 @@ The service terms must state that generated media:
 7. may require human review before publication-asset use.
 
 The terms must not promise exclusive rights, publication readiness, diagnostic correctness, likeness permission, or proof status for generated media unless a separate reviewed policy supports that promise.
+
+Provider-backed generated media should remain unavailable when the provider capability lacks a current provider data-use notice, provider terms state, credential boundary, token cost class, moderation gate, or fallback behavior.
 
 ## GitHub Issue Handoff Terms
 
@@ -192,11 +200,13 @@ The service should fail closed when:
 2. token/subscription terms are missing for a token-bearing paid action;
 3. privacy/retention notice is missing for retained or uploaded material;
 4. generated-media terms are missing for media output;
-5. GitHub handoff notice is missing for public issue actions;
-6. notebook/account-history terms are missing for durable save, export, sharing, or account history;
-7. legal review state is not sufficient for the requested public beta surface;
-8. terms acceptance state is unknown for a feature that requires acceptance;
-9. a terms change requires re-acceptance.
+5. provider data-use notice or provider terms state is missing for a provider-backed feature;
+6. GitHub handoff notice is missing for public issue actions;
+7. notebook/account-history terms are missing for durable save, export, sharing, or account history;
+8. legal review state is not sufficient for the requested public beta surface;
+9. terms acceptance state is unknown for a feature that requires acceptance;
+10. public status, support summary, or incident disclosure would exceed the approved privacy/status notice;
+11. a terms change requires re-acceptance.
 
 Fail-closed behavior should return a clear unavailable action, reduced-scope response, text-only answer, draft-only note, or confirmation-required state. It should not silently charge, retain, publish, open GitHub, share content, or generate media under missing terms.
 
@@ -211,12 +221,14 @@ The future implementation should include service-terms fixtures for:
 | `terms-autofund-confirm-001` | Auto-fund requires accepted token terms and explicit capped consent. |
 | `terms-refund-receipt-001` | Receipt states hold, charge, refund, and terms version without private prompt text. |
 | `terms-privacy-retention-negative-001` | Retained prompt/media/account-history feature is blocked when privacy notice is missing. |
+| `terms-provider-data-use-negative-001` | Provider-backed feature is blocked when provider data-use notice, provider terms state, or credential boundary is missing. |
 | `terms-media-negative-001` | Generated media is blocked or reduced when generated-media terms are missing. |
 | `terms-github-handoff-001` | Public issue handoff shows GitHub login, public visibility, included material, and deletion limits. |
 | `terms-notebook-negative-001` | Durable notebook/account-history action is blocked when notebook terms are missing. |
 | `terms-reacceptance-001` | Changed terms block affected paid/durable/public features until re-accepted. |
 | `terms-proof-authority-negative-001` | Payment, terms acceptance, saved history, or public issue filing cannot upgrade claim labels or proof status. |
 | `terms-support-route-001` | Billing, refund, deletion, export, issue handoff, and account problems expose a support route. |
+| `terms-status-incident-negative-001` | Public status, support summary, or incident disclosure is blocked when status/incident notice or privacy notice is missing. |
 | `terms-counsel-review-negative-001` | Public beta is blocked while legal review state remains `draft` or `counsel_required`. |
 
 ## Implementation Handoff
@@ -224,14 +236,14 @@ The future implementation should include service-terms fixtures for:
 Closure goal:
 Turn the Service Terms And Account Policy Contract into terms-version schemas, account acceptance validators, service-term launch gates, token/subscription disclosures, privacy/retention disclosures, public issue notices, and regression fixtures for the Archie service.
 
-Use this packet, [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [corporate-media-standards.md](corporate-media-standards.md), [v1-product-requirements.md](v1-product-requirements.md), and the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page as the source of truth.
+Use this packet, [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [corporate-media-standards.md](corporate-media-standards.md), [v1-product-requirements.md](v1-product-requirements.md), and the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page as the source of truth.
 
 Task:
-- Define service terms, privacy notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook/account-history terms, support route, abuse policy, and terms-change notice.
+- Define service terms, privacy notice, provider data-use notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook/account-history terms, support route, status/incident notice, abuse policy, and terms-change notice.
 - Encode terms acceptance state, version fields, re-acceptance requirements, feature blockers, and legal review state.
-- Add validators that block paid, durable, retained, public, generated-media, and credentialed actions when required terms are missing or stale.
+- Add validators that block paid, durable, retained, public, provider-backed, generated-media, and credentialed actions when required terms are missing or stale.
 - Add token/subscription fixtures for auto-fund, refund, cancellation, failed payment, cap changes, and no-proof-authority behavior.
-- Add privacy, GitHub handoff, generated-media, notebook/account-history, support-route, and counsel-review fixtures.
+- Add privacy, GitHub handoff, generated-media, notebook/account-history, support-route, status/incident, and counsel-review fixtures.
 
 Constraints:
 - Do not present this packet as final legal advice or final legal copy.

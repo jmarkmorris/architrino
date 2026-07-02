@@ -47,6 +47,7 @@ Every fermion contains a central engine composed of nested binary pairs.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Positrino/Electrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
@@ -104,7 +105,7 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid** 
 *   **Core:** Anti-Nested Shell Braid (3P, 3E, Neutral, Antimatter-chirality).
 *   **Axial Layer:** 6 Positrinos ($6P$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
-*   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
+*   **Note:** The positron is not antimatter because its axial layer uses Positrinos. Its antimatter status belongs to the anti-braid branch record; the $6P$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
 
 **The Electron Neutrino ($\nu_e$)**
 *   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.

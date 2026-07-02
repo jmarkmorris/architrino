@@ -11,6 +11,7 @@
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
@@ -146,6 +147,8 @@ Registry entries should state:
 
 If provider-side data use cannot be disclosed or bounded enough for the service terms, the capability should remain disabled.
 
+Provider-health telemetry, fallback rates, latency/error classes, cost classes, public status, and incident records must follow [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md). Provider observability may expose safe product capability ids and error classes; it must not expose provider secrets, raw provider payloads, private prompt text, or source-authority effects.
+
 ## Manifest Integration
 
 Provider execution details should enter the Answer Artifact Manifest as safe capability context, not as source authority.
@@ -203,10 +206,11 @@ The future implementation should include provider-registry fixtures for:
 Closure goal:
 Turn the Model Provider Capability Registry Contract into provider-capability schemas, model-gateway boundaries, quality gates, fallback rules, token cost mappings, privacy/terms checks, credential guards, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode provider capability entries, capability families, enabled states, health states, credential boundaries, quality gates, fallback behavior, cost classes, and observability fields.
+- Map provider health, fallback, latency, error, refusal, public-status, and incident fields through privacy-safe observability classes.
 - Define provider gateway behavior for answer text, speech output, caption/transcript, generated image, moderation, embedding/rerank, and deferred input capabilities.
 - Add validators that block browser-side model calls, missing cost maps, missing provider data-use policy, missing terms, missing fallback, failed quality gates, and proof-status inflation.
 - Add manifest `provider_execution_context` or equivalent safe capability context.

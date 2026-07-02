@@ -13,6 +13,7 @@
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Observability, public status, and incident contract: [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md)
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
@@ -23,7 +24,7 @@
 
 This packet defines the token ledger and privacy-retention contract for the future Archie question service.
 
-The Answer Artifact Manifest already carries `token_receipt` and `privacy_state`. This contract defines how those fields are produced, when the user must be interrupted, what can be charged, what must remain ephemeral, and how receipts, saved artifacts, generated media, notebook/account-history entries, and issue handoffs avoid leaking private prompt text.
+The Answer Artifact Manifest already carries `token_receipt` and `privacy_state`. This contract defines how those fields are produced, when the user must be interrupted, what can be charged, what must remain ephemeral, and how receipts, saved artifacts, generated media, notebook/account-history entries, issue handoffs, support summaries, and observability events avoid leaking private prompt text.
 
 It is not runtime payment code. It is the policy and data-contract target for future wallet state, subscription grants, spending-limit enforcement, token holds, receipts, privacy notices, retention state, deletion routes, service terms, and regression fixtures.
 
@@ -176,7 +177,7 @@ V1 should default to minimal retention.
 | issue drafts | Ephemeral until user confirms public handoff or saved note policy applies. |
 | submitted issue links | Retain only with user consent or account policy. |
 | token transaction records | Minimal durable records allowed for billing, abuse controls, refunds, and support. |
-| diagnostics | Safe summaries only; no private prompt leakage. |
+| diagnostics and observability | Safe summaries, ids, and classes only; no private prompt leakage. |
 
 Any durable user content needs a deletion route before public beta.
 
@@ -267,7 +268,8 @@ The token/privacy contract should fail closed when:
 8. high-quality speech is unavailable;
 9. media validation fails after a hold is placed;
 10. required terms are missing, stale, or require re-acceptance;
-11. receipt would need to expose private prompt text to be understandable.
+11. receipt would need to expose private prompt text to be understandable;
+12. token metrics, support summaries, public status, or incident records would expose private prompt text or account history.
 
 Fail-closed responses should return a manifest-shaped refusal or fallback with `actual_tokens_charged` set to zero unless a narrow attempted-provider charge policy was shown before work.
 
@@ -293,13 +295,14 @@ The future implementation should include token/privacy fixtures for:
 | `privacy-private-material-001` | Private user material is excluded from issue text without explicit consent. |
 | `receipt-no-private-prompt-001` | Receipt view does not expand private prompt text. |
 | `diagnostics-redacted-001` | Operator/developer diagnostics omit private prompt and private media contents. |
+| `ledger-observability-redacted-001` | Token metrics, support summaries, and incident records use receipt ids, work units, and charge/refund classes without private prompt text. |
 
 ## Implementation Handoff
 
 Closure goal:
 Turn the Token Ledger And Privacy Contract into wallet state, receipt schema, retention-state validators, confirmation gates, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode wallet, cap, hold, charge, refund, and auto-fund state.
@@ -308,12 +311,12 @@ Task:
 - Encode safe terms-version refs in receipts without private prompt expansion.
 - Define confirmation gates for auto-fund, cap exceedance, durable save, notebook/account-history opt-in, public issue submission, user-material inclusion, and credentialed actions.
 - Add terms gates for paid work, auto-fund, refunds, cancellation, failed payment, support route, and re-acceptance requirements.
-- Add validators that prevent private prompt text from leaking into receipts, issue-mining metadata, or diagnostics.
-- Add fixtures for normal answers, cap exceedance, auto-fund, refunds, terms gating, provider cost-map refusal, speech fallback, ephemeral audio, durable save, notebook/account-history evidence refusal, public issue warnings, private-material exclusion, and redacted diagnostics.
+- Add validators that prevent private prompt text from leaking into receipts, issue-mining metadata, observability events, support summaries, incident records, or diagnostics.
+- Add fixtures for normal answers, cap exceedance, auto-fund, refunds, terms gating, provider cost-map refusal, speech fallback, ephemeral audio, durable save, notebook/account-history evidence refusal, public issue warnings, private-material exclusion, observability redaction, and redacted diagnostics.
 
 Constraints:
 - Do not charge for omitted low-quality speech fallback.
 - Do not retain generated audio durably in the MVP.
-- Do not expose private prompt text in receipts, issue-mining metadata, or diagnostics.
+- Do not expose private prompt text in receipts, issue-mining metadata, observability, support summaries, incident records, or diagnostics.
 - Do not let token spend alter source authority, claim labels, media-standard validation, or unsupported-answer behavior.
 - Do not add runtime payments, credentials, deployment config, or public launch behavior unless explicitly requested.

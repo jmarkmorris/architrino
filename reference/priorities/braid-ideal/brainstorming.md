@@ -511,10 +511,10 @@ E:\{-x,-y,-z\}
 \right\}.
 $$
 
-At the support-display level, the charge-conjugate mirror of this support reverses all polarity signs while preserving the same opposite-face geometry:
+At the support-display level, one useful finite-geometry control reverses the displayed polarity signs while preserving the same opposite-face geometry:
 
 $$
-\overline{\mathcal S}_{\mathrm{fo}}
+\mathcal S_{\mathrm{fo}}^{\mathrm{pol}}
 =
 \left\{
 E:\{+x,+y,+z\},
@@ -523,32 +523,32 @@ P:\{-x,-y,-z\}
 \right\}.
 $$
 
-Polarity-swap convention. In this packet, a `P/E swap` is only shorthand for complete charge conjugation of an already declared branch record. It must not be read as erasing an Electrino identity and installing a Positrino identity, or the reverse, at the same site. Architrino identity is provenance-bearing: it includes the retained path history, causal-root rows, wake-history rows, action rows, momentum/angular-momentum rows, and stability rows that still belong to that branch.
+Primitive-polarity convention. Positrino/Electrino polarity is charge and interaction bookkeeping; it is not the matter/antimatter distinction. A `P/E swap` in this packet means only a polarity-inverted support display or a charged-sector ledger operation. It must not be read as the matter/antimatter operation by itself, and it must not be read as erasing an Electrino identity and installing a Positrino identity, or the reverse, at the same site. Architrino identity is provenance-bearing: it includes the retained path history, causal-root rows, wake-history rows, action rows, momentum/angular-momentum rows, and stability rows that still belong to that branch.
 
 $$
 q_i\mapsto -q_i
-\quad\text{only together with the conjugate same-record history rows for every participating architrino }i.
+\quad\text{only as the polarity-ledger part of a declared charged-sector conjugation.}
 $$
 
-The local notation can therefore display a support-level mirror, but a physical matter/antimatter mirror requires a retained solver row that carries the identity-bearing history through the conjugation. A partial rearrangement may be a different balanced inventory, but it is not the charge-conjugate mirror of the starting branch. Likewise, a label-only replacement without the wake-history provenance is not a branch identity statement.
+The local notation can therefore display a support-level polarity mirror, but a physical matter/antimatter mirror requires a retained solver row that carries the pro/anti braid orientation and identity-bearing history through the conjugation. Charged branches may also require the sector-visible polarity ledger to map to the opposite charge row, but the P/E inventory is not the matter/antimatter axis. A partial rearrangement may be a different balanced inventory, but it is not the anti-branch of the starting branch by itself. Likewise, a label-only replacement without the wake-history provenance is not a branch identity statement.
 
-Because both displayed support rows retain one Positrino and one Electrino on every axis, the mirror keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and complete branch-record conjugation. This is only the local support-level reason that a matter branch and its antimatter branch should be mirror candidates. The identity claim still belongs to the retained path-history and wake-history record, not to a site-label table by itself.
+Because both displayed support rows retain one Positrino and one Electrino on every axis, the polarity-inverted support keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and polarity-ledger inversion. This is only a local support-control fact. The matter/antimatter identity claim belongs to ordered braid chirality plus retained path-history and wake-history record, not to a site-label table by itself.
 
 Candidate chirality statement. The existing fermion mapping does not identify matter/antimatter with the raw choice of which face carries Positrinos. It identifies matter/antimatter with pro/anti braid orientation, recorded as ordered braid chirality. Therefore the disciplined target is a chiral lift of the same support class:
 
 $$
 \mathcal B_{\mathrm{matter}}
 \sim
-\left(\mathcal S_{\mathrm{fo}},\chi_c=+1\right),
+\left(\mathcal S,\chi_c=+1,\mathcal H\right),
 \qquad
 \mathcal B_{\mathrm{antimatter}}
 \sim
-\left(\overline{\mathcal S}_{\mathrm{fo}},\chi_c=-1\right),
+\left(\mathcal S',\chi_c=-1,\overline{\mathcal H}\right),
 $$
 
-where $\chi_c$ abbreviates the pro/anti ordered-braid chirality record only after a retained branch supplies the required phase, winding, causal-root, wake, action, and stability rows. The sign convention is schematic; the proof burden is to recover the HML/HLM orientation distinction from the same retained branch record that carries the six-site support.
+where $\chi_c$ abbreviates the pro/anti ordered-braid chirality record and $\mathcal H$ abbreviates the retained history record only after a retained branch supplies the required phase, winding, causal-root, wake, action, and stability rows. The support section $\mathcal S'$ is not fixed by P/E naming. It may be the same support, a polarity-inverted charged-sector ledger, an `axial-paired` section, or another projection only if the retained solver supplies the same-record history. The sign convention is schematic; the proof burden is to recover the HML/HLM orientation distinction from the same retained branch record that carries the six-site support.
 
-Explicit exclusion. The `axial-paired` control is not the antimatter identification for the `face-opposite` seed:
+Support-level exclusion. The `axial-paired` control is not the simple support-level polarity mirror of the static `face-opposite` seed:
 
 $$
 \mathcal S_{\mathrm{ap}}
@@ -560,11 +560,23 @@ E:\{-y,+z,-z\}
 \right\}.
 $$
 
-It changes the opposite-pair pattern by introducing one $P/P$ axis and one $E/E$ axis. That is a partial redistribution of the balanced inventory, not complete charge conjugation of the `face-opposite` branch. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Until a central-solver retained-history row proves otherwise, `axial-paired` should remain a negative control for support loss, not an antimatter branch.
+It changes the opposite-pair pattern by introducing one $P/P$ axis and one $E/E$ axis. That is a partial redistribution of the balanced inventory, not polarity inversion of the static `face-opposite` support table. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Therefore `axial-paired` is excluded only as a label-table or support-table polarity mirror of the `face-opposite` seed.
 
-First proof route. Prove the `face-opposite` invariant-manifold lemma first. Then add the ordered chirality variable $\chi_c$ only after the retained branch supplies phase order, winding counts, causal-root ledgers, wake rows, action rows, and stability rows. The proof must show that complete charge conjugation plus pro/anti orientation reversal preserves the identity-bearing retained history, mass-facing ledger, and support-facing ledger while reversing the exposed charge-like projection, consistent with the charge-conjugate mass-equality constraint in [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#charge-conjugate-mass-equality).
+Braid-level open question. This does not exclude `axial-paired` as an antimatter-related retained braid candidate. The untested question is whether the matter/antimatter operation reverses the ordered orbit of the planar binary and then lifts through oblate and spherical support sections in a way that can display the `axial-paired` class without losing the identity-bearing history. In a planar binary projection, the candidate orientation reversal is schematically
 
-Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the attempted P/E conjugation cannot preserve the identity-bearing wake-history record, if the chirality record cannot be tied to the same branch identity as the support geometry, or if an accepted `axial-paired` retained branch later appears with a complete pro/anti mirror ledger and equal support quality. Until then, the safe claim is only that `face-opposite` is the first admissible support candidate for the matter/antimatter chirality rule, while `axial-paired` is an excluded antimatter interpretation in the present evidence record.
+$$
+\theta(t)\mapsto -\theta(t),
+\qquad
+\omega=\dot\theta\mapsto -\omega,
+\qquad
+\mathbf L_{\mathrm{int}}\mapsto -\mathbf L_{\mathrm{int}},
+$$
+
+together with conjugate retained path-history, causal-root, wake-history, action, and stability rows. That is an orbit-order and angular-momentum reversal, not a site relabel. In the oblate-spheroid ansatz, the corresponding test should act on the branch phase and body rotation variables, for example by tracking the sign reversal of $\dot\psi$ and the relevant component of $\Omega$ while preserving same-record causal-root and wake-history provenance. In the spherical limit, a frozen six-site support table can test common-sphere symmetry, but it cannot by itself decide the braid chirality because the phase-order history has been suppressed.
+
+First proof route. Prove the `face-opposite` invariant-manifold lemma first. Then add the ordered chirality variable $\chi_c$ only after the retained branch supplies phase order, winding counts, causal-root ledgers, wake rows, action rows, angular-momentum rows, and stability rows. The proof must show that pro/anti orientation reversal preserves the identity-bearing retained history, mass-facing ledger, and support-facing ledger while mapping any charged-sector exposed polarity projection to its conjugate row, consistent with the charge-conjugate mass-equality constraint in [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#charge-conjugate-mass-equality). A separate retained-history test must then decide whether `axial-paired` is rejected completely, appears only as a transient section, or becomes the support signature of the anti-branch under orbit reversal.
+
+Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the attempted charged-sector polarity conjugation cannot preserve the identity-bearing wake-history record, if the chirality record cannot be tied to the same branch identity as the support geometry, or if no orbit-reversal lift can map the planar, oblate, and spherical diagnostics into one retained anti-branch record. Until then, the safe claim is only that `face-opposite` is the first admissible static support candidate for the matter/antimatter chirality rule, while `axial-paired` is excluded only as a simple support-table polarity mirror and remains open as a braid-level orbit-reversal candidate.
 
 ### Diagonal Group-Velocity Baseline - 2026-07-01
 

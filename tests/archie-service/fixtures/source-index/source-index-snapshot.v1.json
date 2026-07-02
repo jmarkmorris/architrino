@@ -1,0 +1,23 @@
+{
+  "schema": "archie-source-index-snapshot/v1",
+  "snapshotId": "source_snapshot_fixture_001",
+  "repositoryRef": "fixture-ref",
+  "generatedArtifactRefs": {
+    "sceneGraph": "content/graph/scene_graph.json",
+    "markdownIndex": "content/markdown/markdown_index.json",
+    "readingCopies": "content/generated/markdown/textbook/reading-copies/",
+    "textbookToc": "content/graph/textbook_toc.json"
+  },
+  "sourceRecordCountByClass": {
+    "published_corpus": 1,
+    "generated_reading_copy": 1,
+    "scene_route": 1,
+    "app_guide": 1,
+    "archie_reference": 1,
+    "priority_material": 1,
+    "external_prior_physics": 0
+  },
+  "visibilityPolicyVersion": "visibility_fixture_v1",
+  "freshnessState": "fresh",
+  "rollbackParent": null
+}

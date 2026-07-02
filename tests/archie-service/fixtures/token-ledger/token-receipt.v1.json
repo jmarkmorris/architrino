@@ -1,0 +1,16 @@
+{
+  "schema": "archie-token-receipt/v1",
+  "receipt": {
+    "receiptId": "receipt_fixture_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 8,
+    "heldTokens": 8,
+    "chargedTokens": 6,
+    "refundedTokens": 2,
+    "workUnits": ["retrieval", "answer_generation", "issue_draft"],
+    "sourceClassesUsed": ["published_corpus", "priority_material"],
+    "artifactCount": 2,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  }
+}

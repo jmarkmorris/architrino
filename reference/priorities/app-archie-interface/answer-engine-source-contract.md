@@ -11,6 +11,7 @@
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
 - Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
@@ -28,6 +29,8 @@ It is not runtime code. It is the contract a future implementation should encode
 The answer engine may explain, route, compare, triage, and draft. It may not promote source status.
 
 The strongest supported claim label must be determined before generated media, speech, token spending, saved notes, or issue submission add presentation layers. Later service components can inherit or weaken source and claim context; they cannot strengthen it.
+
+Provider-backed answer generation is generation machinery, not source authority. The provider registry may enable, block, downgrade, or meter an answer capability, but provider model output, model memory, provider health, provider quality score, or provider cost class cannot raise the claim label selected from validated sources.
 
 ## Answer Engine Inputs
 
@@ -47,6 +50,8 @@ Required inputs:
 | `external_prior_physics_policy` | Whether curated external prior-physics sources are available for this mode. |
 
 The engine should not receive private credentials, token-wallet internals, raw provider cost data, or media-generation instructions. Those belong to other service boundaries.
+
+If provider-backed answer generation is requested, the manifest should carry only the safe provider execution context defined by [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). Missing provider capability, failed provider quality gate, missing fallback, missing provider terms, or missing cost map should produce an unsupported or downgraded response, not a source-authority substitute.
 
 ## Source Selection Rules
 
@@ -175,18 +180,20 @@ The future implementation should include answer-engine fixtures for:
 | `engine-missing-route-001` | Missing source route is reported rather than replaced by model memory. |
 | `engine-tex-preserve-001` | User/source TeX is preserved in `display_text` and `verbatim_segments`. |
 | `engine-issue-triage-001` | Idea triage outputs category, duplicate keys, owner lane, claim label, and smallest next artifact. |
+| `engine-provider-source-authority-negative-001` | Provider output and model memory cannot become source authority or raise a claim label. |
 
 ## Implementation Handoff
 
 Closure goal:
 Turn the Answer Engine Source Contract into retrieval rules, claim-label assignment tests, unsupported-answer fixtures, and manifest population checks.
 
-Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
+Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
 
 Task:
 - Consume validated source records, source chips, missing routes, and source freshness from the retrieval context.
 - Encode source-class allow/deny policy per mode.
 - Define deterministic claim-label assignment.
+- Confirm provider-backed answer generation cannot change source class, claim label, or unsupported-answer behavior.
 - Populate `source_context`, `claim_context`, and `answer_body`.
 - Add unsupported-answer and missing-route fixtures.
 - Add issue-triage classification fields before issue draft generation.
@@ -194,5 +201,5 @@ Task:
 Constraints:
 - Preserve TeX exactly.
 - Do not use model memory as public source authority.
-- Do not let generated media, token spend, voice quality, or presentation style strengthen claim labels.
+- Do not let provider output, provider health, generated media, token spend, voice quality, or presentation style strengthen claim labels.
 - Do not add runtime AI calls, credentials, deployment config, or public launch behavior unless explicitly requested.

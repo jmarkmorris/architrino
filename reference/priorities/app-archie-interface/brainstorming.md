@@ -59,6 +59,8 @@ Useful output modes:
 
 A question response can include generated text, generated audio, generated images, diagrams, animation storyboards, future video, or any other supported generated medium when that medium clarifies the answer. The interface should expose them as answer artifacts with the same source basis and claim label as the text answer, not as independent evidence.
 
+Provider-backed output should run through the [model/provider capability registry contract](model-provider-capability-registry-contract.md). The service should know the product capability id, quality gate, fallback behavior, token cost class, credential boundary, privacy/terms state, and provider health before enabling a generated artifact.
+
 ## Generated Media Corporate Standard
 
 All generated media must satisfy the [Generated Media Corporate Standard](corporate-media-standards.md).
@@ -312,6 +314,8 @@ Good first visual-output families:
 
 Visual generation should prefer diagrams when accuracy matters, and generated illustrative images when intuition or outreach is the goal. Generated images can be returned directly in response to a question when Visualize mode or an answer action requests them, subject to source labels, spending limits, and retention policy.
 
+Generated-image provider paths should not be wired directly into the browser. They need registered capabilities, moderation, fallback behavior, token cost mapping, provider data-use disclosure, and source-authority guardrails before launch.
+
 ## Source Authority And Claim Labels
 
 Every answer should carry a source-status shape:
@@ -339,14 +343,16 @@ Product modules:
 4. `retrieval_context` - Corpus, generated reading copy, scene route, app guide, Archie reference, System Card, priority, and curated external source retrieval with source records, freshness, source chips, missing-route behavior, and authority flags.
 5. `answer_engine` - Source selection, claim-label assignment, unsupported-answer behavior, TeX-preserving answer body, idea-triage classification, and citation payloads.
 6. `answer_artifact_manifest` - Shared response envelope for source context, claim labels, answer text, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata.
-7. `speech_and_presentation_layer` - High-quality service-native speech output, synchronized text display, narration scripts, animation storyboards, captions, and source-authority guardrails.
-8. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
-9. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, auto-fund, user-material inclusion, credentialed actions, and account actions; follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md).
-10. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls, and no-private-prompt receipts.
-11. `notebook_and_history` - Session-local saved-note drafts, durable notebook entries when enabled, account history, submitted issue-link retention, export, deletion, sharing, storage-cost behavior, and not-project-evidence boundaries.
-12. `terms_and_account_policy` - Service terms, token/subscription notices, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, support routes, abuse policy, terms re-acceptance, and legal-review launch gates.
-13. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, owner-routed fix queues, fixture candidates, source-index candidates, and privacy-safe evidence handling.
-14. `privacy_and_audit` - Consent, retention, deletion, public-inclusion warnings, redacted diagnostics, logs, incident review, and user-data boundaries.
+7. `provider_capability_registry` - Provider-backed answer, speech, image, transcription, embedding, rerank, and moderation capabilities with enabled state, health state, quality gates, fallbacks, token cost classes, credential boundaries, provider privacy/terms state, and no-browser-key enforcement.
+8. `speech_and_presentation_layer` - High-quality service-native speech output, synchronized text display, narration scripts, animation storyboards, captions, and source-authority guardrails.
+9. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
+10. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, auto-fund, user-material inclusion, credentialed actions, and account actions; follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md).
+11. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, provider cost-class mapping, speech/image/presentation token schedules, abuse controls, and no-private-prompt receipts.
+12. `notebook_and_history` - Session-local saved-note drafts, durable notebook entries when enabled, account history, submitted issue-link retention, export, deletion, sharing, storage-cost behavior, and not-project-evidence boundaries.
+13. `terms_and_account_policy` - Service terms, token/subscription notices, privacy notices, provider data-use notices, generated-media terms, GitHub handoff notices, notebook terms, support routes, abuse policy, terms re-acceptance, and legal-review launch gates.
+14. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, owner-routed fix queues, fixture candidates, source-index candidates, and privacy-safe evidence handling.
+15. `observability_status_incident` - Privacy-safe event classes, metrics, public status, incident records, change history, support summaries, diagnostics redaction, and source-authority guardrails for operational data.
+16. `privacy_and_audit` - Consent, retention, deletion, public-inclusion warnings, provider-transmitted data boundaries, redacted diagnostics, logs, incident review, and user-data boundaries.
 
 The existing service-platform packet should own deployment choices for these modules.
 
@@ -375,14 +381,16 @@ This v1 would test whether users actually ask useful questions and whether the s
 
 ## Open Product Questions
 
-1. Should the first version live as a public Archie page, a separate authenticated app, or a hybrid entry from the public site into a hosted service?
+1. Which host, domain route, and framework should implement the selected GitHub Pages public entry plus hosted service backend shape?
 2. What is the minimum corpus maturity needed before public Q&A creates more clarity than confusion?
 3. Which answer modes should be free, and which should require subscription?
 4. Should issue submission be available to all signed-in users, or only to approved collaborators?
 5. Which speech provider can satisfy the high-quality-only bar for the first native narration pass, and how should the selected voice avoid implying a character identity?
-6. Should generated images be stored by default, transient by default, or always user-selected?
-7. What exact System Card fields must appear next to any answer about closure status?
-8. Which apps should expose app-state snapshots to Archie first?
+6. Which provider capability health, fallback, cost-class, and data-use states should be user-visible, and which should remain operator/developer diagnostics?
+7. Which service-status and incident fields should be public, and which should remain internal diagnostics?
+8. Should generated images be stored by default, transient by default, or always user-selected?
+9. What exact System Card fields must appear next to any answer about closure status?
+10. Which apps should expose app-state snapshots to Archie first?
 
 ## Future Prompt
 
@@ -398,8 +406,10 @@ Context:
 - The manifest service contracts are `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
 - The source ingestion and retrieval context contract is `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
 - The answer engine source contract is `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
+- The model/provider capability registry contract is `reference/priorities/app-archie-interface/model-provider-capability-registry-contract.md`.
 - The token ledger and privacy contract is `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
 - The issue mining signal contract is `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
+- The observability public status and incident contract is `reference/priorities/app-archie-interface/observability-public-status-incident-contract.md`.
 - The action broker confirmation contract is `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
 - The saved notebook and account history contract is `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
 - The service terms and account policy contract is `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
@@ -407,12 +417,15 @@ Context:
 - The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
 - The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
+- The deployment option decision is `reference/priorities/archie/service-deployment-option-decision.md`.
+- The deployment architecture is `reference/priorities/archie/service-deployment-architecture.md`.
+- The service scaffolding and fixtures packet is `reference/priorities/archie/service-scaffolding-and-fixtures.md`.
 - The assistant behavior contract is `reference/priorities/archie/assistant-mode-contract.md`.
 - The interface should support source-grounded corpus guidance, text-first v1 modes, diagram drafts, generated image responses, service-native speech output, narration scripts, animation storyboards, idea triage, token-based cost controls, confirmation-gated GitHub issue submission, and issue signal mining.
 
 Task:
-- Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, animation-storyboard boundary, token ledger and privacy-retention contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining signal report loop, privacy/retention policy, and fixture-validation plan.
+- Read the v1 product requirements, deployment option decision, deployment architecture, service scaffolding and fixtures packet, Archie service-platform packet, and assistant-contract files.
+- Define schema-only implementation support from the selected GitHub Pages public entry plus hosted service backend shape, then define the Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, model/provider capability registry, generated-media corporate-standard enforcement, service-native speech and presentation contract, animation-storyboard boundary, token ledger and privacy-retention contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining signal report loop, observability/public-status/incident contract, privacy/retention policy, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:
