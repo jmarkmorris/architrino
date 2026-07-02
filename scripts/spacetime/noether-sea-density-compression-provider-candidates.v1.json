@@ -1,0 +1,41 @@
+{
+  "schema": "aaa-noether-sea-density-compression-provider-candidates/v1",
+  "claimLevel": "current theta_sea_rho_NS provider search manifest; score-neutral and not accepted retained evidence",
+  "candidates": [
+    {
+      "id": "rho_ns_source_attempt",
+      "role": "retained-window source-attempt field shape",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json"
+    },
+    {
+      "id": "retained_surface_slice_attempt",
+      "role": "retained surface-slice attempt skeleton",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json"
+    },
+    {
+      "id": "eq32_delta_a_star_source_attempt",
+      "role": "downstream low-acceleration projection attempt",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-eq32-delta-a-star-source-attempt.v1.json"
+    },
+    {
+      "id": "eq20_outer_binary_pressure_source_attempt",
+      "role": "downstream pressure source-attempt shape",
+      "sourcePath": "scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json"
+    },
+    {
+      "id": "coordination_source_negative_control",
+      "role": "priority-source rejection control",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json"
+    },
+    {
+      "id": "authored_prose_source_negative_control",
+      "role": "authored-prose rejection control",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json"
+    },
+    {
+      "id": "source_field_map_priority_packet",
+      "role": "priority-only source-field map",
+      "sourcePath": "reference/priorities/equation-mapping/eq-24-theta-sea-rho-ns-source-field-map.md"
+    }
+  ]
+}

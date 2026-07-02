@@ -12,6 +12,7 @@
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
+- Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -53,7 +54,7 @@ No component should emit user-visible answer content outside the manifest.
 | `answer_engine` | `source_context`, mode, request summary | `claim_context`, `answer_body` | generate media or charge tokens directly |
 | `artifact_orchestrator` | manifest, requested actions, token limits | artifact work plan | bypass corporate media standard |
 | `speech_service` | `answer_body.verbatim_segments`, claim/source context, token limits | `audio` artifact, `speech_sync`, text-only fallback state | return low-quality audio or unsynchronized audio |
-| `visual_artifact_service` | answer body, source/claim context, media standard | image/diagram artifacts | imply proof status through visuals |
+| `visual_artifact_service` | answer body, source/claim context, media standard | image/diagram/mockup/prompt artifacts | imply proof status through visuals |
 | `issue_draft_service` | answer body, source/claim context, user category | `issue_draft`, `issue_mining_context` | open GitHub without confirmation |
 | `token_ledger` | work plan, provider costs, user caps | `token_receipt` | alter source or claim labels |
 | `privacy_and_audit` | manifest, retention policy, consent state | `privacy_state`, safe diagnostics | retain private prompt or media beyond policy |
@@ -142,6 +143,17 @@ The later implementation can map this architecture to endpoints such as:
 
 Endpoint names are illustrative. The required invariant is that each endpoint returns a validated manifest or a fail-closed error state.
 
+## Visual Artifact Architecture
+
+The visual path should follow [visual-artifact-contract.md](visual-artifact-contract.md):
+
+1. `visual_artifact_service` receives only validated answer text, source context, claim context, token allowance, and visual request.
+2. The service assigns one purpose label before rendering or generation.
+3. The service adds source-basis captions and alt text when practical.
+4. The service records retention state and human-review state where required.
+5. The media validator rejects visuals that imply proof, validation, endorsement, or stronger claim labels.
+6. The conversation surface renders the visual with source chips, claim label, purpose label, caption, and any warning.
+
 ## Open Architecture Questions
 
 1. Should manifest validation run as a shared library, a backend service, or both?
@@ -156,7 +168,7 @@ Endpoint names are illustrative. The required invariant is that each endpoint re
 Closure goal:
 Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and contract-fixture implementation for the Archie question service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), and [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Define service components, input/output types, validator responsibilities, and fail-closed behavior.

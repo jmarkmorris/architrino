@@ -511,7 +511,7 @@ export class EquationMappingRuntime {
     const fields = createElement(this.document, "div", "equation-mapping-editor-grid");
     fields.append(
       this.renderEditorInput("Label", "anchor-label", activeAnchor?.label ?? ""),
-      this.renderEditorInput("TeX", "anchor-tex", getFormulaPartTeXForAnchor(this.activeDocument, activeAnchor?.id)),
+      this.renderEditorInput("Formula", "anchor-tex", getFormulaPartTeXForAnchor(this.activeDocument, activeAnchor?.id)),
       this.renderEditorInput("Search text", "anchor-search-text", activeAnchor?.searchText ?? "")
     );
     const actions = createElement(this.document, "div", "equation-mapping-editor-actions");

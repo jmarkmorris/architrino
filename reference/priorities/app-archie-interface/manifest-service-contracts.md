@@ -12,6 +12,7 @@
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
+- Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -32,9 +33,9 @@ The future typed schema should start with these closed or controlled vocabularie
 | `Mode` | `Ask`, `Explain`, `Compare`, `Visualize`, `Triage Idea`, `Find Source` |
 | `SourceClass` | `published_corpus`, `generated_reading_copy`, `scene_route`, `app_guide`, `priority_material`, `external_prior_physics` |
 | `ClaimLabel` | `published corpus`, `derivation target`, `priority-only`, `app diagnostic`, `external comparison`, `AAA-native stance`, `unsupported` |
-| `ArtifactType` | `text`, `audio`, `image`, `diagram`, `narration_script`, `comparison_script`, `animation_storyboard`, `caption_track`, `transcript`, `issue_draft`, `saved_note_draft` |
+| `ArtifactType` | `text`, `audio`, `image`, `diagram`, `generated_image_prompt`, `app_mockup`, `publication_asset_draft`, `narration_script`, `comparison_script`, `animation_storyboard`, `caption_track`, `transcript`, `issue_draft`, `saved_note_draft` |
 | `ActionType` | `open_source`, `make_diagram`, `listen`, `submit_issue`, `save_note`, `continue_reading`, `confirm_action` |
-| `WorkUnit` | `source_navigation`, `retrieval`, `answer_generation`, `comparison`, `diagram`, `image`, `high_quality_speech`, `caption_transcript`, `narration_script`, `comparison_script`, `animation_storyboard`, `issue_draft`, `saved_note`, `action_handoff` |
+| `WorkUnit` | `source_navigation`, `retrieval`, `answer_generation`, `comparison`, `diagram`, `image`, `image_prompt`, `app_mockup`, `publication_asset_draft`, `high_quality_speech`, `caption_transcript`, `narration_script`, `comparison_script`, `animation_storyboard`, `issue_draft`, `saved_note`, `action_handoff` |
 | `CapStatus` | `inside_limits`, `estimate_required`, `cap_exceeded`, `auto_fund_pending`, `insufficient_tokens`, `privacy_confirmation_required` |
 | `RetentionState` | `ephemeral`, `ephemeral_unless_saved`, `minimal`, `session_local`, `durable_opt_in`, `disabled`, `redacted` |
 | `ConfirmationReason` | `public_visibility`, `durable_save`, `token_cap`, `auto_fund`, `privacy`, `retention`, `credentialed_action`, `user_media_inclusion` |
@@ -294,6 +295,8 @@ The future implementation should include fixtures for:
 | `contract-presentation-storyboard-001` | Storyboard includes scene beats, captions, source basis, claim label, and no proof overclaim. |
 | `contract-presentation-hidden-summary-001` | Audio cannot secretly speak a summary instead of displayed verbatim text. |
 | `contract-visualize-001` | Visualize action adds purpose-labeled image or diagram with caption, alt text, source context, and claim context. |
+| `contract-visual-proof-negative-001` | Visual request that asks for proof is refused or reshaped to a concept diagram or analogy. |
+| `contract-visual-publication-draft-001` | Publication asset draft records human-review-required state and does not imply final approval. |
 | `contract-issue-draft-001` | Issue draft includes public warning, confirmation requirement, and issue-mining context. |
 | `contract-issue-mining-report-001` | Mining report emits clusters, signal scores, noise classes, owner queues, representative public issues, and privacy statement. |
 | `contract-confirm-issue-001` | Submit issue action requires confirmation and exposes GitHub public-visibility warning. |
@@ -306,7 +309,7 @@ The future implementation should include fixtures for:
 Closure goal:
 Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), and [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Encode the shared type vocabulary.

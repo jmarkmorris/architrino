@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { providerEvidenceStatusForPath } from "./noether-sea-density-compression-provider-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -910,34 +911,7 @@ function sourceReferenceExists(value) {
 }
 
 function sourceEvidenceReferenceExists(value) {
-  if (!sourceReferenceExists(value)) {
-    return false;
-  }
-  return isEvidenceSourcePath(path.resolve(value.trim()));
-}
-
-function isEvidenceSourcePath(filePath) {
-  const normalized = path.normalize(filePath);
-  const relative = path.relative(REPO_ROOT, normalized);
-  if (
-    relative === "" ||
-    relative.startsWith("..") ||
-    path.isAbsolute(relative)
-  ) {
-    return false;
-  }
-  if (relative.startsWith(`reference${path.sep}priorities${path.sep}`)) {
-    return false;
-  }
-  if (relative.startsWith(`content${path.sep}markdown${path.sep}aaa${path.sep}`)) {
-    return false;
-  }
-  const lowerBasename = path.basename(normalized).toLowerCase();
-  return !(
-    lowerBasename.includes("attempt") ||
-    lowerBasename.includes("mock") ||
-    lowerBasename.includes("negative-control")
-  );
+  return providerEvidenceStatusForPath(value, { repoRoot: REPO_ROOT }).accepted;
 }
 
 function isNonDurableSourcePath(filePath) {

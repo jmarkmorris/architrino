@@ -78,6 +78,9 @@ V1 work units should start with this accounting policy.
 | `comparison` | Prompt only for broad or external-source work that exceeds caps. | Charge after local/external source separation is validated. |
 | `diagram` | Prompt only above cap or for expensive rendering. | Charge after compliant diagram artifact exists. |
 | `image` | Prompt for generated images unless account policy allows silent low-cost image work. | Charge after media-standard validation and privacy state pass. |
+| `image_prompt` | No prompt inside normal caps unless publication use is requested. | Charge after the prompt is marked as a draft artifact with source and claim context. |
+| `app_mockup` | Prompt only above cap or when durable save/public use is requested. | Charge after mockup validation and privacy state pass. |
+| `publication_asset_draft` | Prompt before meaningful work. | Charge only after human-review-required state, caption, alt text, and retention state are recorded. |
 | `high_quality_speech` | Prompt only above cap or auto-fund threshold. | Charge only for high-quality synchronized audio; no low-quality fallback charge. |
 | `caption_transcript` | No prompt inside normal speech/presentation caps. | Charge only when caption/transcript work is separate from the speech work unit. |
 | `narration_script` | Prompt only above cap. | Charge after source/claim-preserving script validation. |
