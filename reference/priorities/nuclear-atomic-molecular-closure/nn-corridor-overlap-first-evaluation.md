@@ -200,7 +200,7 @@ All entries are in MeV except $r$.
 | $p+n$ intermediate window | Negative from $1.0$ to $4.0\,\mathrm{fm}$ in this corridor-only row, with a deuteron-scale trough near $1.9\,\mathrm{fm}$. | Hard benchmark pattern matched; full core behavior still needs $V_{\text{excl}}(r)$. |
 | $p+p$ nonbinding check | Positive at every sampled radius after orientation suppression, branch-interface mismatch, and Coulomb are included. | Hard benchmark pattern matched for this reduced row. |
 | Finite range | Corridor attraction falls to $-0.045\,\mathrm{MeV}$ by $4.0\,\mathrm{fm}$ for $p+n$ and does not leave a color far field. | Hard no-open-color target is respected at sample level; proof still needed. |
-| Channel provenance | $W_c$ and $M_c$ are extracted from $\mathcal B_{ij}^{\mathrm{int},0}$ through $\sigma_{\mathrm{orient},c}$ and $P_c$. | Native first row; still provisional until accepted proton and neutron branch-interface ledgers certify the counted orientation rows. |
+| Channel provenance | $W_c$ and $M_c$ are extracted from $\mathcal B_{ij}^{\mathrm{int},0}$ through $\sigma_{\mathrm{orient},c}$ and $P_c$. | Native first row; branch-side ledgers and same-record conservation are source-acquired, but no-open-color and top-level branch-interface rows still block accepted orientation rows. |
 | Scale provenance | $A_{\mathrm{corr}}$, radii, and widths remain reduced-row parameters. | Source lead only until extracted from the same $\sigma_{\mathrm{eff}}$ functional. |
 
 ## Branch-Interface Source-Acquisition Bundle
@@ -236,10 +236,10 @@ $$
 \qquad
 \mathrm{firstMissing}
 =
-\texttt{missing\_same\_record\_energy\_momentum\_angular\_momentum\_ledger}.
+\texttt{missing\_no\_open\_color\_far\_field}.
 $$
 
-This is the correct status after both branch-side ledgers landed as [proton-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json) and [neutron-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json). The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra and proton/neutron source acquisition only.
+This is the correct status after the branch-side ledgers landed as [proton-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json) and [neutron-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json), and the same-record conservation ledger landed as [same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json). The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra and source acquisition only.
 
 The checker also treats the component shape above as part of source acquisition. A source-acquisition target that is marked accepted but lacks one required component fails as `source_acquisition_target_shape_mismatch`; a target with the right component shape but without accepted durable non-fixture evidence still fails as `source_acquisition_target_not_accepted`.
 

@@ -1,0 +1,66 @@
+{
+  "schema": "aaa-nuclear-atomic-K-perp-transverse-stiffness-functional-evidence/v1",
+  "claimLevel": "durable non-fixture K_perp source-acquisition row for the Fe/Ni confinement-functional lane; transverse stiffness functional basis only; not accepted sigma_eff extraction, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "K_perp",
+  "sourceSupport": [
+    "confinement_functional",
+    "K_perp",
+    "transverse_stiffness_functional",
+    "color_charge_domain",
+    "sigma_eff_variation_record"
+  ],
+  "evidenceSupports": [
+    "transverse_stiffness_functional",
+    "color_charge_domain",
+    "sigma_eff_variation_record"
+  ],
+  "sourceIdentity": {
+    "transverseStiffnessId": "K_perp_0001",
+    "sourceTargetId": "K_perp_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "transverseStiffnessFunctional": {
+    "rowId": "K_perp_0001",
+    "functionalBoundary": "Positive transverse stiffness weighting radial color-charge deformation inside the sigma_eff extraction target equation; this is not a numeric fitted coefficient.",
+    "sigmaEffVariationRecord": {
+      "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+      "variationRole": "K_perp weights ||Q||_F^2 (df/dr)^2 inside the sigma_eff target equation."
+    },
+    "colorChargeDomain": {
+      "chargeNorm": "||Q||_F^2",
+      "domainBoundary": "Same color-charge and sigma_eff variation domain named by confinement-functional-source-target.v1.json."
+    },
+    "transverseStiffnessFunctional": {
+      "positivity": "K_perp > 0",
+      "term": "(K_perp/2)||Q||_F^2(df/dr)^2",
+      "purpose": "Penalizes transverse deformation gradient; cannot by itself set V_exc, rho_NS, chi_sea, axis_exceptionality_charge, or same_record_noether_sea_response."
+    }
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "K_perp"
+    ],
+    "notAcceptedByThisEvidence": [
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row does not accept V_exc, rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until the confinement-functional source rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

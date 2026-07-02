@@ -10,6 +10,7 @@ import {
   evaluateCentralSolverRetainedHistoryProviderObjectEvidence,
   validateCentralSolverRetainedHistoryProviderObject,
 } from "../scripts/braid-ideal/central-solver-retained-history-provider-object.mjs";
+import { buildCentralSolverRetainedHistoryRow } from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
 import { buildHeldReleaseSeedPathRows } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
 import { buildHeldReleasePathHistoryStreamManifestSet } from "../scripts/braid-ideal/held-release-path-history-stream-manifest-set.mjs";
 
@@ -95,6 +96,80 @@ test("retained-record injected path sharpens to provider provenance and durable 
   assert.equal(artifact.provider_provenance.provider_object_ref, null);
   assert.equal(artifact.authorization.central_solver_retained_history_provider_object, false);
   assert.equal(artifact.authorization.accepted_same_record_evidence, false);
+});
+
+test("provider object can bind provider-backed source rows and durable stream refs without authorizing evidence", () => {
+  const retainedRecordId = "retained-record:held-release-six-point:provider-backed";
+  const durableManifestRefs = Array.from(
+    { length: 6 },
+    (_, index) => `durable:braid-ideal:test:path-history-stream:${index}`
+  );
+  const baseSeedArtifact = buildHeldReleaseSeedPathRows({ retainedRecordId });
+  const baseManifestSet = buildHeldReleasePathHistoryStreamManifestSet({
+    seedArtifact: baseSeedArtifact,
+    durableManifestRefs,
+  });
+  const requestRow = buildCentralSolverRetainedHistoryRow({ retainedRecordId });
+  const providerShell = buildCentralSolverRetainedHistoryProviderObject({
+    seedArtifact: baseSeedArtifact,
+    manifestSetArtifact: baseManifestSet,
+    retainedHistoryRow: requestRow,
+  });
+  const providerObjectRef = providerShell.candidate_provider_object_ref;
+
+  const seedArtifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId,
+    providerObjectRef,
+    providerArtifactHash: providerShell.artifact_hash,
+  });
+  const manifestSet = buildHeldReleasePathHistoryStreamManifestSet({
+    seedArtifact,
+    providerObjectRef,
+    providerArtifactHash: providerShell.artifact_hash,
+    durableManifestRefs,
+  });
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef,
+    providerArtifactHash: providerShell.artifact_hash,
+  });
+  const artifact = buildCentralSolverRetainedHistoryProviderObject({
+    seedArtifact,
+    manifestSetArtifact: manifestSet,
+    retainedHistoryRow,
+  });
+
+  assert.equal(artifact.candidate_provider_object_ref, providerObjectRef);
+  assert.equal(artifact.artifact_hash, providerShell.artifact_hash);
+  assert.equal(artifact.artifact_status, "fail_closed_missing_acceptance_certificate");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(
+    artifact.first_missing_object,
+    "central_solver_retained_history_provider_object_acceptance_certificate"
+  );
+  assert.equal(
+    artifact.first_missing_field,
+    "central_solver_retained_history_provider_object.acceptance_certificate_ref"
+  );
+  assert.equal(artifact.provider_provenance.provider_object_ref, providerObjectRef);
+  assert.equal(artifact.provider_provenance.provider_artifact_hash, providerShell.artifact_hash);
+  assert.equal(artifact.path_segment_layout.durable_stream_count, 6);
+  assert.equal(
+    artifact.stream_manifest_refs.every(
+      (row, index) =>
+        row.provider_object_ref === providerObjectRef &&
+        row.durable_manifest_ref === durableManifestRefs[index]
+    ),
+    true
+  );
+  assert.deepEqual(evaluateCentralSolverRetainedHistoryProviderObjectEvidence(artifact), {
+    accepted: false,
+    reason: "producer_does_not_authorize_accepted_provider_object_evidence",
+    first_missing_field: "central_solver_retained_history_provider_object.acceptance_certificate_ref",
+  });
+  assert.equal(artifact.authorization.central_solver_retained_history_provider_object, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateCentralSolverRetainedHistoryProviderObject(artifact), []);
 });
 
 test("generic provider metadata without same-record binding is rejected", () => {

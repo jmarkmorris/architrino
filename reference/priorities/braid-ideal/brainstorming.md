@@ -578,6 +578,8 @@ First proof route. Prove the `face-opposite` invariant-manifold lemma first. The
 
 Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the attempted charged-sector polarity conjugation cannot preserve the identity-bearing wake-history record, if the chirality record cannot be tied to the same branch identity as the support geometry, or if no orbit-reversal lift can map the planar, oblate, and spherical diagnostics into one retained anti-branch record. Until then, the safe claim is only that `face-opposite` is the first admissible static support candidate for the matter/antimatter chirality rule, while `axial-paired` is excluded only as a simple support-table polarity mirror and remains open as a braid-level orbit-reversal candidate.
 
+Target extraction. The executable version of this bridge is now isolated in [Matter/Antimatter Chirality Retained-History Target](matter-antimatter-chirality-retained-history-target.md). That target keeps the bridge priority-only, but makes the paired retained-history rows, residual vector, support-projection rules, and fail-closed conditions explicit so the next solver work tests branch chirality instead of static support decoration.
+
 ### Diagonal Group-Velocity Baseline - 2026-07-01
 
 Claim level. Priority-only translating toy baseline. This run is not a retained branch certificate and does not authorize a moving retained branch certificate.

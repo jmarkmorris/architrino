@@ -59,7 +59,7 @@
     ],
     "expectedCheckerStatus": "missing_accepted_branch_interface_rows",
     "expectedFirstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
-    "expectedSourceAcquisitionFirstMissingObject": "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
     "scoreDecision": "no_score_increase"
   },
   "failClosedNotes": [

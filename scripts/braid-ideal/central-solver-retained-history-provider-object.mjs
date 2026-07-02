@@ -162,6 +162,27 @@ function makeSourceArtifacts(seedArtifact, manifestSet, retainedHistoryRow) {
   };
 }
 
+function makeHashableSeedRowRefs(seedRowRefs) {
+  return seedRowRefs.map(
+    ({ provider_object_ref: _providerObjectRef, first_missing_field: _firstMissingField, ...row }) => row
+  );
+}
+
+function makeHashableStreamManifestRefs(streamManifestRefs) {
+  return streamManifestRefs.map(
+    ({ provider_object_ref: _providerObjectRef, first_missing_field: _firstMissingField, ...row }) => row
+  );
+}
+
+function makeRetainedHistoryHashBinding(retainedHistoryRow) {
+  return {
+    schema: retainedHistoryRow?.schema ?? null,
+    seed_id: retainedHistoryRow?.seed_id ?? null,
+    route_id: retainedHistoryRow?.route_id ?? null,
+    retained_record_id: retainedHistoryRow?.retained_record_request?.retained_record_id ?? null,
+  };
+}
+
 function makeSameRunBinding({ seedArtifact, manifestSet, seedRowRefs, streamManifestRefs }) {
   const seedRun = sameRunIdentityForSeedArtifact(seedArtifact);
   const manifestRun = sameRunIdentityForManifestSet(manifestSet);
@@ -325,26 +346,29 @@ export function buildCentralSolverRetainedHistoryProviderObject(options = {}) {
   const sameRunBinding = makeSameRunBinding({ seedArtifact, manifestSet, seedRowRefs, streamManifestRefs });
   const providerObjectHash = stableHash({
     schema: SCHEMA,
-    sourceArtifacts,
+    source_artifact_hashes: {
+      held_release_seed_path_rows: seedArtifact?.artifact_hash ?? null,
+      held_release_path_history_stream_manifest_set: manifestSet?.artifact_hash ?? null,
+    },
     sameRunBinding,
-    seedRowRefs,
-    streamManifestRefs,
-    retainedHistoryRowId: retainedHistoryRow?.row_id ?? null,
+    seedRowRefs: makeHashableSeedRowRefs(seedRowRefs),
+    streamManifestRefs: makeHashableStreamManifestRefs(streamManifestRefs),
+    retainedHistoryBinding: makeRetainedHistoryHashBinding(retainedHistoryRow),
   });
   const providerObjectId = `central_solver_retained_history_provider_object:${providerObjectHash.slice(0, 16)}`;
   const providerObjectRef = `candidate:${providerObjectId}`;
+  const providerProvenancePresent =
+    missing.evidence_reason !== "retained_record_id_missing" &&
+    missing.evidence_reason !== "provider_provenance_missing";
   const providerProvenance = {
     required: true,
     provider_object_id: providerObjectId,
     candidate_provider_object_ref: providerObjectRef,
-    provider_object_ref: null,
-    provider_artifact_hash: null,
+    provider_object_ref: providerProvenancePresent ? providerObjectRef : null,
+    provider_artifact_hash: providerProvenancePresent ? providerObjectHash : null,
     source_run_id: sameRunBinding.source_run_id,
     source_dataset_id: sameRunBinding.source_dataset_id,
-    status:
-      missing.evidence_reason === "provider_provenance_missing"
-        ? "missing_provider_object_ref"
-        : "provider_object_ref_not_authorized",
+    status: providerProvenancePresent ? "provider_object_ref_present_unaccepted" : "missing_provider_object_ref",
     first_missing_field: PROVIDER_OBJECT_REF_FIELD,
   };
   const artifact = {
@@ -398,7 +422,10 @@ export function buildCentralSolverRetainedHistoryProviderObject(options = {}) {
     retained_source_binding_requirement: retainedHistoryRow?.retained_source_binding_requirement ?? null,
     provider_provenance: providerProvenance,
     artifact_status: missing.artifact_status,
-    source_status: "source_acquisition_blocked",
+    source_status:
+      missing.evidence_reason === "producer_does_not_authorize_accepted_provider_object_evidence"
+        ? "candidate_provider_backed_source_unaccepted"
+        : "source_acquisition_blocked",
     first_missing_object: missing.first_missing_object,
     first_missing_field: missing.first_missing_field,
     first_internal_blocker: missing.first_internal_blocker ?? null,
@@ -419,6 +446,7 @@ export function buildCentralSolverRetainedHistoryProviderObject(options = {}) {
 
 export function validateCentralSolverRetainedHistoryProviderObject(artifact) {
   const errors = [];
+  const providerBacked = artifact?.source_status === "candidate_provider_backed_source_unaccepted";
   if (artifact?.schema !== SCHEMA) {
     errors.push(`schema must be ${SCHEMA}`);
   }
@@ -443,17 +471,29 @@ export function validateCentralSolverRetainedHistoryProviderObject(artifact) {
   ) {
     errors.push(`retained-history row input must use ${RETAINED_HISTORY_ROW_SCHEMA}`);
   }
-  if (artifact?.first_missing_field !== SEED_PATH_ROWS_FIRST_MISSING_FIELD) {
+  if (!providerBacked && artifact?.first_missing_field !== SEED_PATH_ROWS_FIRST_MISSING_FIELD) {
     errors.push(`default first missing field must be ${SEED_PATH_ROWS_FIRST_MISSING_FIELD}`);
   }
-  if (artifact?.provider_provenance?.provider_object_ref != null) {
+  if (
+    providerBacked &&
+    artifact?.first_missing_field !== "central_solver_retained_history_provider_object.acceptance_certificate_ref"
+  ) {
+    errors.push("provider-backed provider object must point to the missing acceptance certificate");
+  }
+  if (!providerBacked && artifact?.provider_provenance?.provider_object_ref != null) {
     errors.push("provider_object_ref must not be authorized");
+  }
+  if (providerBacked && artifact?.provider_provenance?.provider_object_ref == null) {
+    errors.push("provider-backed provider object must carry provider_object_ref");
   }
   if (artifact?.accepted_provider_object_ref != null) {
     errors.push("accepted_provider_object_ref must remain null");
   }
-  if (artifact?.path_segment_layout?.durable_stream_count !== 0) {
+  if (!providerBacked && artifact?.path_segment_layout?.durable_stream_count !== 0) {
     errors.push("default durable stream count must remain zero");
+  }
+  if (providerBacked && artifact?.path_segment_layout?.durable_stream_count !== 6) {
+    errors.push("provider-backed provider object must carry six durable stream refs");
   }
   if (artifact?.same_source_self_hit_requirement_refs?.length !== 6) {
     errors.push("six same-source self-hit requirement refs are required");

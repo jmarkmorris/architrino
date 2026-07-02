@@ -1,0 +1,88 @@
+{
+  "schema": "aaa-nuclear-atomic-chi-sea-confinement-delay-factor-evidence/v1",
+  "claimLevel": "durable non-fixture chi_sea source-acquisition row for the Fe/Ni confinement-functional lane; Noether sea delay-factor consumption only; not accepted axis_exceptionality_charge, same-record Noether sea response, sigma_eff extraction, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "chi_sea",
+  "sourceSupport": [
+    "confinement_functional",
+    "chi_sea",
+    "noether_sea_delay_factor_row",
+    "same_record_noether_sea_response",
+    "effective_speed_relation"
+  ],
+  "evidenceSupports": [
+    "noether_sea_delay_factor_row",
+    "same_record_noether_sea_response",
+    "effective_speed_relation"
+  ],
+  "sourceIdentity": {
+    "chiSeaConfinementId": "chi_sea_confinement_0001",
+    "sourceTargetId": "chi_sea_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "providerSourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json#/responseRows/speed_row",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "providerRows": {
+    "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "providerStatus": "accepted",
+    "speedRow": {
+      "sourceRowId": "speed-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_c_X_squared",
+      "c_X_disp_squared": 2.5
+    },
+    "stressStrainRow": {
+      "sourceRowId": "stress-strain-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_C_ij_kl",
+      "C1111_X": 2.49
+    },
+    "causalityRow": {
+      "sourceRowId": "causality-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0
+    },
+    "acousticElasticAgreement": {
+      "status": "accepted",
+      "rowId": "acoustic-elastic-agreement-provider-0001",
+      "rhoRowId": "rho-NS-provider-0001",
+      "speedRowId": "speed-row-provider-0001",
+      "stressStrainRowId": "stress-strain-row-provider-0001",
+      "residual": 0.009999999999999787,
+      "tolerance": 0.02
+    }
+  },
+  "confinementUse": {
+    "rowId": "chi_sea_confinement_0001",
+    "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+    "argumentRole": "Supplies the Noether sea delay-factor argument consumed by the sigma_eff target equation.",
+    "effectiveSpeedRelation": "chi_sea = c_f / c_eff for the retained Noether sea response channel named by the provider speed row.",
+    "domainBoundary": "This accepts chi_sea consumption by the confinement-functional sigma_eff target; it does not accept axis_exceptionality_charge or the same_record_noether_sea_response bundle."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "chi_sea"
+    ],
+    "notAcceptedByThisEvidence": [
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row consumes the accepted provider speed/response rows but does not accept the broader same-record Noether sea response bundle for the confinement functional.",
+    "This row does not accept axis_exceptionality_charge, same_record_noether_sea_response, sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until the confinement-functional source rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

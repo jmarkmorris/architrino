@@ -56,7 +56,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(
     report.summary.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_K_perp",
+    "missing_accepted_accepted_proton_color_singlet_envelope",
   );
   assert.equal(report.summary.toyBindingRowsPass, true);
   assert.equal(report.summary.firstMissingObject, "missing_accepted_sigma_eff_extraction");
@@ -70,22 +70,122 @@ test("current confinement target passes structure but blocks accepted source row
     report.sourceAcquisitionCheck.targetChecks.K_perp.componentShapePass,
     true,
   );
+  assert.equal(report.sourceAcquisitionCheck.targetChecks.K_perp.accepted, true);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.K_perp.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.K_perp.sourceTargetPath,
+    "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json",
+  );
   assert.deepEqual(report.sourceAcquisitionCheck.targetChecks.K_perp.requiredLedgerComponents, [
     "transverse_stiffness_functional",
     "color_charge_domain",
     "sigma_eff_variation_record",
   ]);
+  assert.equal(report.sourceAcquisitionCheck.targetChecks.V_exc.accepted, true);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.V_exc.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.V_exc.sourceTargetPath,
+    "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json",
+  );
+  assert.deepEqual(report.sourceAcquisitionCheck.targetChecks.V_exc.requiredLedgerComponents, [
+    "excitation_potential_functional",
+    "vacuum_exceptionality_profile",
+    "rho_NS_chi_sea_arguments",
+  ]);
+  assert.equal(report.sourceAcquisitionCheck.targetChecks.rho_NS.accepted, true);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.rho_NS.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.rho_NS.sourceTargetPath,
+    "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json",
+  );
+  assert.deepEqual(report.sourceAcquisitionCheck.targetChecks.rho_NS.requiredLedgerComponents, [
+    "retained_window_density_row",
+    "same_record_noether_sea_response",
+    "provider_source_path",
+  ]);
+  assert.equal(report.sourceAcquisitionCheck.targetChecks.chi_sea.accepted, true);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.chi_sea.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.chi_sea.sourceTargetPath,
+    "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json",
+  );
+  assert.deepEqual(report.sourceAcquisitionCheck.targetChecks.chi_sea.requiredLedgerComponents, [
+    "noether_sea_delay_factor_row",
+    "same_record_noether_sea_response",
+    "effective_speed_relation",
+  ]);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.axis_exceptionality_charge.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.axis_exceptionality_charge.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.axis_exceptionality_charge.sourceTargetPath,
+    "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.axis_exceptionality_charge.requiredLedgerComponents,
+    [
+      "axis_exceptionality_definition",
+      "charge_normalization_row",
+      "same_sigma_eff_domain",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_record_noether_sea_response.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_record_noether_sea_response.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_record_noether_sea_response.sourceTargetPath,
+    "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.same_record_noether_sea_response.requiredLedgerComponents,
+    [
+      "rho_NS",
+      "theta_sea",
+      "stress_strain_row",
+      "same_event_ledger",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
+      .accepted,
+    false,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
+      .currentEvidenceStatus,
+    "blocked_missing_no_free_color_audit",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
+  );
   assert.deepEqual(
     report.sourceAcquisitionCheck.rowChecks.sigma_eff_extraction
       .missingAcceptedSourceRows,
-    [
-      "K_perp",
-      "V_exc",
-      "rho_NS",
-      "chi_sea",
-      "axis_exceptionality_charge",
-      "same_record_noether_sea_response",
-    ],
+    [],
   );
   assert.equal(report.toyBindingCheck.unconsumedRequiredRows.length, 0);
 });
@@ -121,12 +221,12 @@ test("accepted confinement rows fail closed when source rows are named but targe
   assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(
     report.sourceAcquisitionCheck.firstMissingSourceRow,
-    "K_perp",
+    "accepted_proton_color_singlet_envelope",
   );
   assert.equal(
     report.sourceAcquisitionCheck.failures.some(
       (failure) =>
-        failure.sourceRowId === "K_perp" &&
+        failure.sourceRowId === "accepted_proton_color_singlet_envelope" &&
         failure.reason === "source_acquisition_target_not_accepted",
     ),
     true,

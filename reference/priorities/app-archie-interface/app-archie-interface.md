@@ -29,6 +29,7 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 
 ## Current
 
@@ -93,14 +94,15 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 14. `service_terms_account_policy_contract` - Define hosted-service terms, token/subscription disclosures, account acceptance, privacy notices, public issue notices, generated-media terms, support routes, abuse controls, and legal-review launch gates. Status: `candidate`.
 15. `service_native_speech_and_presentation_contract` - Define high-quality speech, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token, and retention rules. Status: `candidate`.
 16. `visual_artifact_contract` - Define diagrams, generated images, generated-image prompts, app mockups, candidate sketches, purpose labels, captions, alt text, retention, and proof-status guardrails. Status: `candidate`.
-17. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
-18. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
-19. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
-20. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
-21. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
-22. `service_deployment_option_decision` - Use the GitHub Pages public entry plus hosted service backend decision as the boundary between the public site, browser client, service API, background jobs, and external providers. Status: `candidate`.
-23. `service_deployment_architecture` - Assign public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, rollback, and smoke-test responsibilities. Status: `candidate`.
-24. `service_scaffolding_and_fixtures` - Define schema-only service module targets, fixture families, environment variable classes, CI gates, and implementation stages before runtime providers or public launch. Status: `candidate`.
+17. `ai_communication_standards` - Track emerging standards for AI disclosure, generated-media labeling, provenance, user control, accessibility, and service-status communication, then translate any adoption into normal user-facing language. Status: `candidate`.
+18. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
+19. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
+20. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
+21. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
+22. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
+23. `service_deployment_option_decision` - Use the GitHub Pages public entry plus hosted service backend decision as the boundary between the public site, browser client, service API, background jobs, and external providers. Status: `candidate`.
+24. `service_deployment_architecture` - Assign public site, browser client, service API, background jobs, source-index, provider gateway, token ledger, action broker, issue-mining, observability, staging, production, CI/CD, rollback, and smoke-test responsibilities. Status: `candidate`.
+25. `service_scaffolding_and_fixtures` - Define schema-only service module targets, fixture families, environment variable classes, CI gates, and implementation stages before runtime providers or public launch. Status: `candidate`.
 
 ## Next Work
 
@@ -122,7 +124,8 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 16. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
 17. Convert the fixture-question list into executable regression expectations after the service implementation exists.
 18. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
-19. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.
-20. Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) to keep the public site, browser client, service API, background jobs, provider gateways, token ledger, action broker, issue-mining pipeline, and observability boundary explicit.
-21. Use [service-deployment-architecture.md](../archie/service-deployment-architecture.md) to drive service scaffolding, environment classes, source-index build ownership, CI/CD gates, rollback fixtures, and public beta smoke tests.
-22. Use [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) before adding service code, providers, payments, durable storage, deployment config, or public routes.
+19. Use [ai-communication-standards.md](ai-communication-standards.md) to research emerging AI disclosure, generated-media labeling, provenance, accessibility, user-control, and service-status standards before turning those concepts into Archie copy or service metadata.
+20. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.
+21. Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) to keep the public site, browser client, service API, background jobs, provider gateways, token ledger, action broker, issue-mining pipeline, and observability boundary explicit.
+22. Use [service-deployment-architecture.md](../archie/service-deployment-architecture.md) to drive service scaffolding, environment classes, source-index build ownership, CI/CD gates, rollback fixtures, and public beta smoke tests.
+23. Use [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) before adding service code, providers, payments, durable storage, deployment config, or public routes.

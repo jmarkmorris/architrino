@@ -5,7 +5,7 @@
     {
       "id": "nucleon_branch_interface_source_target_current",
       "family": "branch_interface",
-      "role": "durable branch-interface source target for p+n and p+p channel weights; proton and neutron source-acquisition ledgers accepted, target-only until same-record, no-open-color, and top-level branch-interface rows exist",
+      "role": "durable branch-interface source target for p+n and p+p channel weights; proton, neutron, and same-record source-acquisition ledgers accepted, target-only until no-open-color and top-level branch-interface rows exist",
       "sourcePath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
       "acceptedObjectSchema": "aaa-nuclear-atomic-nucleon-branch-interface-source-target/v1",
       "requiredRows": [

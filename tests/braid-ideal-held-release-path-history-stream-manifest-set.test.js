@@ -99,6 +99,55 @@ test("retained record presence sharpens the manifest blocker to provider provena
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
 });
 
+test("path-history stream manifests can carry provider backing and durable refs without authorizing evidence", () => {
+  const durableManifestRefs = Array.from(
+    { length: 6 },
+    (_, index) => `durable:braid-ideal:test:path-history-stream:${index}`
+  );
+  const seedArtifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId: "retained-record:held-release-six-point:provider-backed",
+    providerObjectRef: "candidate:central_solver_retained_history_provider_object:test",
+    providerArtifactHash: "provider-hash-test",
+  });
+  const artifact = buildHeldReleasePathHistoryStreamManifestSet({
+    seedArtifact,
+    providerObjectRef: "candidate:central_solver_retained_history_provider_object:test",
+    providerArtifactHash: "provider-hash-test",
+    durableManifestRefs,
+  });
+
+  assert.equal(artifact.artifact_status, "provider_backed_stream_manifest_set_present_acceptance_blocked");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(
+    artifact.first_missing_object,
+    "held_release_path_history_stream_manifest_set_acceptance_certificate"
+  );
+  assert.equal(
+    artifact.first_missing_field,
+    "held_release_path_history_stream_manifest_set.acceptance_certificate_ref"
+  );
+  assert.equal(artifact.durable_stream_requirement.durable_stream_count, 6);
+  assert.deepEqual(artifact.durable_stream_requirement.durable_manifest_refs, durableManifestRefs);
+  assert.equal(
+    artifact.stream_manifest_rows.every(
+      (row, index) =>
+        row.provider_provenance.provider_object_ref ===
+          "candidate:central_solver_retained_history_provider_object:test" &&
+        row.durable_stream_binding.durable_manifest_ref === durableManifestRefs[index] &&
+        row.stream_identity.durable_manifest_ref === durableManifestRefs[index]
+    ),
+    true
+  );
+  assert.deepEqual(evaluateHeldReleasePathHistoryStreamManifestSetEvidence(artifact), {
+    accepted: false,
+    reason: "producer_does_not_authorize_accepted_stream_manifest_evidence",
+    first_missing_field: "held_release_path_history_stream_manifest_set.acceptance_certificate_ref",
+  });
+  assert.equal(artifact.authorization.held_release_path_history_stream_manifest_set, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateHeldReleasePathHistoryStreamManifestSet(artifact), []);
+});
+
 test("generic stream metadata without same-record binding is rejected", () => {
   assert.deepEqual(
     evaluateHeldReleasePathHistoryStreamManifestSetEvidence({

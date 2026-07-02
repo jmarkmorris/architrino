@@ -67,6 +67,10 @@ function normalizeVector(value, fallback) {
   });
 }
 
+function normalizeStringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
 function formatIdPart(value) {
   return String(value)
     .replaceAll("+", "plus")
@@ -187,6 +191,10 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
   const seedId = options.seedId ?? DEFAULT_SEED_ID;
   const routeId = options.routeId ?? DEFAULT_ROUTE_ID;
   const groupVelocity = normalizeVector(options.groupVelocity, DEFAULT_GROUP_VELOCITY);
+  const retainedRecordId = normalizeStringRef(options.retainedRecordId);
+  const providerObjectRef = normalizeStringRef(options.providerObjectRef);
+  const providerArtifactHash = normalizeStringRef(options.providerArtifactHash);
+  const providerBacked = providerObjectRef != null && retainedRecordId != null;
   const seedRows = makeSeedRows();
   const rowKey = {
     schema: SCHEMA,
@@ -198,9 +206,17 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
     dt: Number(options.dt ?? DEFAULT_TIME_STEP),
     holdTime: Number(options.holdTime ?? DEFAULT_HOLD_TIME),
     groupVelocity,
+    retainedRecordId,
+    providerObjectRef,
   };
   const artifactHash = stableHash(rowKey);
   const rowPrefix = `central_solver_retained_history_row:${artifactHash.slice(0, 16)}`;
+  const firstMissingObject = providerBacked
+    ? "central_solver_retained_history_row_acceptance_certificate"
+    : "central_solver_retained_history_provider_object";
+  const firstMissingField = providerBacked
+    ? "central_solver_retained_history_row.acceptance_certificate_ref"
+    : FIRST_MISSING_SOURCE_PROOF_FIELD;
 
   return {
     schema: SCHEMA,
@@ -210,15 +226,19 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
     route_id: routeId,
     retained_record_request: {
       required: true,
-      retained_record_id: null,
-      same_record_binding_status: "missing_provider_provenance",
+      retained_record_id: retainedRecordId,
+      same_record_binding_status: providerBacked
+        ? "provider_backed_retained_record_present_unaccepted"
+        : "missing_provider_provenance",
       accepted_same_record_evidence: false,
-      first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+      first_missing_field: firstMissingField,
     },
-    artifact_status: "fail_closed_missing_provider_provenance",
-    source_status: "source_acquisition_blocked",
-    first_missing_object: "central_solver_retained_history_provider_object",
-    first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+    artifact_status: providerBacked
+      ? "provider_backed_retained_history_row_present_acceptance_blocked"
+      : "fail_closed_missing_provider_provenance",
+    source_status: providerBacked ? "candidate_provider_backed_source_unaccepted" : "source_acquisition_blocked",
+    first_missing_object: firstMissingObject,
+    first_missing_field: firstMissingField,
     consumer_blocker_replacement: {
       consumer_schema: "self_hit_held_release_solver_row.v0",
       previous_first_missing_field: "central_solver_retained_history_row",
@@ -289,10 +309,11 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
     },
     provider_provenance: {
       required: true,
-      provider_object_ref: null,
-      provider_artifact_hash: null,
+      provider_object_ref: providerObjectRef,
+      provider_artifact_hash: providerArtifactHash,
       producer_owner: "central_solver_retained_history_row.v0",
-      first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+      status: providerBacked ? "provider_object_ref_present_unaccepted" : "missing_provider_object_ref",
+      first_missing_field: firstMissingField,
     },
     authorization: makeAuthorization(),
     negative_controls: Object.entries(NEGATIVE_CONTROL_REASONS).map(([evidence_class, reason]) => ({
@@ -305,14 +326,33 @@ export function buildCentralSolverRetainedHistoryRow(options = {}) {
 
 export function validateCentralSolverRetainedHistoryRow(row) {
   const errors = [];
+  const providerBacked = row?.provider_provenance?.provider_object_ref != null;
   if (row?.schema !== SCHEMA) {
     errors.push("schema must be central_solver_retained_history_row.v0");
   }
-  if (row?.artifact_status !== "fail_closed_missing_provider_provenance") {
-    errors.push("artifact must fail closed at missing provider provenance");
+  if (
+    !providerBacked &&
+    row?.artifact_status !== "fail_closed_missing_provider_provenance"
+  ) {
+    errors.push("artifact must fail closed at missing provider provenance when provider ref is absent");
   }
-  if (row?.first_missing_field !== FIRST_MISSING_SOURCE_PROOF_FIELD) {
+  if (
+    providerBacked &&
+    row?.artifact_status !== "provider_backed_retained_history_row_present_acceptance_blocked"
+  ) {
+    errors.push("provider-backed row must remain blocked at acceptance");
+  }
+  if (!providerBacked && row?.first_missing_field !== FIRST_MISSING_SOURCE_PROOF_FIELD) {
     errors.push(`first missing field must be ${FIRST_MISSING_SOURCE_PROOF_FIELD}`);
+  }
+  if (
+    providerBacked &&
+    row?.first_missing_field !== "central_solver_retained_history_row.acceptance_certificate_ref"
+  ) {
+    errors.push("provider-backed row must point to the missing acceptance certificate");
+  }
+  if (providerBacked && row?.retained_record_request?.retained_record_id == null) {
+    errors.push("provider-backed row must carry retained_record_id");
   }
   if (row?.consumer_blocker_replacement?.previous_first_missing_field !== "central_solver_retained_history_row") {
     errors.push("consumer blocker replacement must sharpen central_solver_retained_history_row");

@@ -1,0 +1,96 @@
+{
+  "schema": "aaa-nuclear-atomic-axis-exceptionality-charge-confinement-evidence/v1",
+  "claimLevel": "durable non-fixture axis_exceptionality_charge source-acquisition row for the Fe/Ni confinement-functional lane; color axis-exceptionality basis and same sigma_eff-domain charge normalization only; not accepted same-record Noether sea response, sigma_eff extraction, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "axis_exceptionality_charge",
+  "sourceSupport": [
+    "confinement_functional",
+    "axis_exceptionality_charge",
+    "axis_exceptionality_definition",
+    "charge_normalization_row",
+    "same_sigma_eff_domain"
+  ],
+  "evidenceSupports": [
+    "axis_exceptionality_definition",
+    "charge_normalization_row",
+    "same_sigma_eff_domain"
+  ],
+  "sourceIdentity": {
+    "axisExceptionalityChargeConfinementId": "axis_exceptionality_charge_confinement_0001",
+    "sourceTargetId": "axis_exceptionality_charge_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "definitionSourcePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#color-charge-and-strong-confinement",
+    "su3SourcePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md#color-hilbert-space-and-su3-structure",
+    "sameSigmaEffDomainPath": "reference/priorities/standard-model-closure/geometry-first-program.md#confinement-as-color-line-defect-strain",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "axisExceptionalityRows": {
+    "definitionRow": {
+      "status": "accepted_corpus_definition",
+      "sourcePath": "content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md",
+      "definition": "color is the axis-exceptionality state of a Noether braid with an axial layer; H, M, and L exceptionality span the quark color triplet",
+      "basisStates": [
+        "|q_H>",
+        "|q_M>",
+        "|q_L>"
+      ]
+    },
+    "su3BasisRow": {
+      "status": "accepted_corpus_definition",
+      "sourcePath": "content/markdown/aaa/assemblies/fermions/color-charge-su3.md",
+      "colorStateSpace": "H_color_q = span{|q_H>,|q_M>,|q_L>} ~= C^3",
+      "orderedBasis": [
+        "H",
+        "M",
+        "L"
+      ],
+      "generatorBasis": "T^a = lambda_a/2 in the ordered H/M/L basis",
+      "normalizationConstraints": [
+        "preserve_one_axis_exceptionality_sector",
+        "preserve_Born_norm",
+        "det_U_equals_1",
+        "traceless_su3_generator_basis"
+      ]
+    },
+    "sameSigmaEffDomainRow": {
+      "status": "priority_domain_row",
+      "sourcePath": "reference/priorities/standard-model-closure/geometry-first-program.md",
+      "chargeTensors": [
+        "Q_H=E_HH-I_3/3",
+        "Q_M=E_MM-I_3/3",
+        "Q_L=E_LL-I_3/3"
+      ],
+      "singletClosureIdentity": "Q_H+Q_M+Q_L=0",
+      "sigmaEffDomain": "sigma_eff(Q;rho_NS,chi_sea) uses the same traceless axis-exceptionality charges as the downstream nuclear residual"
+    }
+  },
+  "confinementUse": {
+    "rowId": "axis_exceptionality_charge_confinement_0001",
+    "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+    "argumentRole": "Supplies the traceless axis-exceptionality charge Q consumed by the sigma_eff target equation and finite two-singlet residual.",
+    "sameDomainBoundary": "The retained row fixes the H/M/L charge basis and traceless normalization for the same sigma_eff domain; it does not accept the broader same-record Noether sea response bundle.",
+    "failureModePreserved": "If the nuclear residual survives only by tuning an independent potential or by changing the color-charge domain, this row cannot authorize promotion."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "axis_exceptionality_charge"
+    ],
+    "notAcceptedByThisEvidence": [
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row consumes accepted corpus color-axis definitions and the priority sigma_eff same-domain charge tensors without accepting sigma_eff itself.",
+    "This row does not accept same_record_noether_sea_response, sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until the confinement-functional source rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

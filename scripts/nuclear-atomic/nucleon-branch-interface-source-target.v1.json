@@ -1,6 +1,6 @@
 {
   "schema": "aaa-nuclear-atomic-nucleon-branch-interface-source-target/v1",
-  "claimLevel": "durable branch-interface source target for the Fe/Ni cusp toy sweep; proton and neutron branch-interface source-acquisition rows accepted, top-level rows still target-only and not accepted nuclear-binding recovery",
+  "claimLevel": "durable branch-interface source target for the Fe/Ni cusp toy sweep; proton, neutron, and same-record conservation source-acquisition rows accepted, top-level rows still target-only and not accepted nuclear-binding recovery",
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "nucleon_branch_interface_source_target_0001",
@@ -17,7 +17,7 @@
     "currentSourceAcquisitionPass": false,
     "requiredEvidenceStatus": "accepted_non_fixture_source",
     "firstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
-    "firstMissingAcceptedSourceRow": "same_record_energy_momentum_angular_momentum_ledger"
+    "firstMissingAcceptedSourceRow": "no_open_color_far_field"
   },
   "sourceAcquisitionTargets": {
     "accepted_proton_branch_interface_ledger": {
@@ -52,8 +52,8 @@
     },
     "same_record_energy_momentum_angular_momentum_ledger": {
       "id": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "declared in priority packet, not accepted source row",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "one accepted same-record ledger that carries p+n and p+p branch-interface rows, energy, momentum, angular momentum, branch exposure, and Coulomb separation together",
       "requiredLedgerComponents": [
         "pn_orientation_count",
@@ -64,7 +64,7 @@
         "coulomb_separation_row"
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
-      "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json#/rows/same_record_energy_momentum_angular_momentum_ledger"
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json"
     },
     "no_open_color_far_field": {
       "id": "no_open_color_far_field_target_0001",
@@ -93,7 +93,8 @@
       ],
       "acceptedSourceRows": [
         "accepted_proton_branch_interface_ledger",
-        "accepted_neutron_branch_interface_ledger"
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
     },
@@ -115,7 +116,8 @@
       ],
       "acceptedSourceRows": [
         "accepted_proton_branch_interface_ledger",
-        "accepted_neutron_branch_interface_ledger"
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "sourceExpression": "B_pn_int_0=(chi_p,chi_n,4/4,0,0,0,0,L_EpJ_pn_bal)",
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
@@ -136,16 +138,18 @@
         "no_open_color_far_field"
       ],
       "acceptedSourceRows": [
-        "accepted_proton_branch_interface_ledger"
+        "accepted_proton_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "sourceExpression": "B_pp_int_0=(chi_p,chi_p,1/4,0,0,0,0,L_EpJ_pp_same)",
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
     },
     "same_record_energy_momentum_angular_momentum_ledger": {
       "id": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
-      "status": "target_required",
+      "status": "accepted",
       "requiredScope": "one accepted record that carries the p+n and p+p branch-interface rows, energy, momentum, angular momentum, branch exposure, Coulomb separation, and no-open-color far-field check together",
-      "currentEvidenceStatus": "declared in priority packet, not accepted source row",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
     }
   },

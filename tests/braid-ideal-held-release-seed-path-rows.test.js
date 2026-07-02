@@ -92,6 +92,38 @@ test("retained record presence sharpens the blocker to provider provenance witho
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
 });
 
+test("held-release seed path rows can carry candidate provider backing without authorizing evidence", () => {
+  const artifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId: "retained-record:held-release-six-point:provider-backed",
+    providerObjectRef: "candidate:central_solver_retained_history_provider_object:test",
+    providerArtifactHash: "provider-hash-test",
+  });
+
+  assert.equal(artifact.artifact_status, "provider_backed_seed_path_rows_present_acceptance_blocked");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(artifact.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(artifact.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+  assert.equal(
+    artifact.rows.every(
+      (row) =>
+        row.same_record_binding.retained_record_id ===
+          "retained-record:held-release-six-point:provider-backed" &&
+        row.provider_provenance.provider_object_ref ===
+          "candidate:central_solver_retained_history_provider_object:test" &&
+        row.provider_provenance.provider_artifact_hash === "provider-hash-test"
+    ),
+    true
+  );
+  assert.deepEqual(evaluateHeldReleaseSeedPathRowsEvidence(artifact), {
+    accepted: false,
+    reason: "producer_does_not_authorize_accepted_path_row_evidence",
+    first_missing_field: "held_release_seed_path_rows.acceptance_certificate_ref",
+  });
+  assert.equal(artifact.authorization.held_release_seed_path_rows, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateHeldReleaseSeedPathRows(artifact), []);
+});
+
 test("generic path rows without same-record binding are rejected as source evidence", () => {
   const generic = {
     schema: "held_release_seed_path_rows.v0",

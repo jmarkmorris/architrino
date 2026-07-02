@@ -95,6 +95,38 @@ test("central solver retained-history row remains unauthorized for downstream cl
   assert.equal(row.authorization.score_movement, "no_score_increase");
 });
 
+test("central solver retained-history row can carry candidate provider backing without authorizing evidence", () => {
+  const row = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId: "retained-record:braid-ideal:test-provider-backed",
+    providerObjectRef: "candidate:central_solver_retained_history_provider_object:test",
+    providerArtifactHash: "provider-hash-test",
+  });
+
+  assert.equal(row.artifact_status, "provider_backed_retained_history_row_present_acceptance_blocked");
+  assert.equal(row.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(row.first_missing_object, "central_solver_retained_history_row_acceptance_certificate");
+  assert.equal(row.first_missing_field, "central_solver_retained_history_row.acceptance_certificate_ref");
+  assert.equal(row.retained_record_request.retained_record_id, "retained-record:braid-ideal:test-provider-backed");
+  assert.equal(
+    row.retained_record_request.same_record_binding_status,
+    "provider_backed_retained_record_present_unaccepted"
+  );
+  assert.equal(
+    row.provider_provenance.provider_object_ref,
+    "candidate:central_solver_retained_history_provider_object:test"
+  );
+  assert.equal(row.provider_provenance.provider_artifact_hash, "provider-hash-test");
+  assert.equal(row.provider_provenance.status, "provider_object_ref_present_unaccepted");
+  assert.equal(row.authorization.central_solver_retained_history_row, false);
+  assert.equal(row.authorization.score_movement, "no_score_increase");
+  assert.deepEqual(validateCentralSolverRetainedHistoryRow(row), []);
+  assert.deepEqual(evaluateRetainedHistoryEvidenceCandidate(row), {
+    accepted: false,
+    reason: "adapter_does_not_authorize_retained_history_evidence",
+    first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+  });
+});
+
 test("central solver retained-history evidence guard rejects non-evidence classes", () => {
   const rejectedClasses = Object.keys(NEGATIVE_CONTROL_REASONS);
   assert.equal(rejectedClasses.length, 15);

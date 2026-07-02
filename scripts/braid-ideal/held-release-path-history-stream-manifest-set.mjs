@@ -70,6 +70,10 @@ function formatIdPart(value) {
     .replaceAll("/", "_");
 }
 
+function normalizeStringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
@@ -77,7 +81,7 @@ function makeAuthorization() {
   ]);
 }
 
-function firstMissingForSeedRow(seedRow) {
+function firstMissingForSeedRow(seedRow, { providerObjectRef, durableManifestRef } = {}) {
   if (seedRow?.same_record_binding?.retained_record_id == null) {
     return {
       first_missing_object: FIRST_MISSING_OBJECT,
@@ -85,24 +89,46 @@ function firstMissingForSeedRow(seedRow) {
       status: "missing_retained_record_id",
     };
   }
-  if (seedRow?.provider_provenance?.provider_object_ref == null) {
+  if (seedRow?.provider_provenance?.provider_object_ref == null || providerObjectRef == null) {
     return {
       first_missing_object: "held_release_path_history_stream_manifest_set_provider_object",
       first_missing_field: PROVIDER_OBJECT_MISSING_FIELD,
       status: "missing_provider_object_ref",
     };
   }
+  if (durableManifestRef == null) {
+    return {
+      first_missing_object: "held_release_path_history_stream_durable_manifest",
+      first_missing_field: DURABLE_STREAM_MISSING_FIELD,
+      status: "missing_durable_stream_manifest_ref",
+    };
+  }
   return {
-    first_missing_object: "held_release_path_history_stream_durable_manifest",
-    first_missing_field: DURABLE_STREAM_MISSING_FIELD,
-    status: "missing_durable_stream_manifest_ref",
+    first_missing_object: "held_release_path_history_stream_manifest_set_acceptance_certificate",
+    first_missing_field: "held_release_path_history_stream_manifest_set.acceptance_certificate_ref",
+    status: "provider_backed_stream_manifest_present_unaccepted",
   };
 }
 
-function makeManifestRow({ rowPrefix, seedArtifact, seedRow, index }) {
+function makeManifestRow({
+  rowPrefix,
+  seedArtifact,
+  seedRow,
+  index,
+  providerObjectRef,
+  providerArtifactHash,
+  durableManifestRef,
+}) {
   const pathRow = seedRow.solver_path_history_row_f64;
   const retainedRecordId = seedRow.same_record_binding?.retained_record_id ?? null;
-  const missing = firstMissingForSeedRow(seedRow);
+  const rowProviderObjectRef =
+    providerObjectRef ?? normalizeStringRef(seedRow.provider_provenance?.provider_object_ref);
+  const rowProviderArtifactHash =
+    providerArtifactHash ?? normalizeStringRef(seedRow.provider_provenance?.provider_artifact_hash);
+  const missing = firstMissingForSeedRow(seedRow, {
+    providerObjectRef: rowProviderObjectRef,
+    durableManifestRef,
+  });
   const sourceSeedRowHash = seedRow.artifact_hash;
   const streamId = `${seedArtifact.source_run_identity.source_run_id}:path-history-stream:${index}:${formatIdPart(
     seedRow.path_identity.architrino_id
@@ -145,17 +171,18 @@ function makeManifestRow({ rowPrefix, seedArtifact, seedRow, index }) {
           end: pathRow.endTime,
         },
         chunkDigest,
-        durableChunkRef: null,
+        durableChunkRef: durableManifestRef == null ? null : `${durableManifestRef}:chunk:0`,
       },
     ],
     index: {
       schema: "solver-stream-index.v1",
       indexLayout: "stream_index.v1",
       rowCount: 1,
-      durableIndexRef: null,
+      durableIndexRef: durableManifestRef == null ? null : `${durableManifestRef}:index`,
     },
   };
   const localManifestHash = stableHash(localManifest);
+  const providerBacked = rowProviderObjectRef != null && durableManifestRef != null;
   return {
     row_id: streamManifestId,
     schema: STREAM_MANIFEST_SCHEMA,
@@ -163,7 +190,9 @@ function makeManifestRow({ rowPrefix, seedArtifact, seedRow, index }) {
     authority_class:
       retainedRecordId == null
         ? "same_run_stream_manifest_request_missing_retained_record"
-        : "same_run_stream_manifest_request_missing_provider_provenance",
+        : providerBacked
+          ? "same_run_stream_manifest_provider_backed_acceptance_blocked"
+          : "same_run_stream_manifest_request_missing_provider_provenance",
     held_release_seed_id: seedArtifact.seed_id,
     same_run_identity: {
       same_run_required: true,
@@ -182,7 +211,7 @@ function makeManifestRow({ rowPrefix, seedArtifact, seedRow, index }) {
       stream_manifest_id: streamManifestId,
       local_stream_manifest_ref: `local:${streamManifestId}`,
       stream_manifest_ref: `local:${streamManifestId}`,
-      durable_manifest_ref: null,
+      durable_manifest_ref: durableManifestRef,
     },
     path_segment_stream: {
       required_layout: PATH_SEGMENT_LAYOUT,
@@ -198,24 +227,34 @@ function makeManifestRow({ rowPrefix, seedArtifact, seedRow, index }) {
     retained_record_binding: {
       required: true,
       retained_record_id: retainedRecordId,
-      status: retainedRecordId == null ? "missing_retained_record_id" : "retained_record_id_present_unaccepted",
-      first_missing_field: retainedRecordId == null ? FIRST_MISSING_FIELD : PROVIDER_OBJECT_MISSING_FIELD,
+      status: providerBacked
+        ? "provider_backed_retained_record_present_unaccepted"
+        : retainedRecordId == null
+          ? "missing_retained_record_id"
+          : "retained_record_id_present_unaccepted",
+      first_missing_field: missing.first_missing_field,
     },
     durable_stream_binding: {
       required: true,
-      durable_manifest_ref: null,
-      durable_chunk_refs: [],
-      status: "missing_durable_stream_manifest_ref",
-      first_missing_field: DURABLE_STREAM_MISSING_FIELD,
+      durable_manifest_ref: durableManifestRef,
+      durable_chunk_refs: durableManifestRef == null ? [] : [`${durableManifestRef}:chunk:0`],
+      status: durableManifestRef == null
+        ? "missing_durable_stream_manifest_ref"
+        : "durable_manifest_ref_present_unaccepted",
+      first_missing_field: durableManifestRef == null
+        ? DURABLE_STREAM_MISSING_FIELD
+        : "held_release_path_history_stream_manifest_set.acceptance_certificate_ref",
     },
     provider_provenance: {
       required: true,
-      provider_object_ref: null,
-      provider_artifact_hash: null,
+      provider_object_ref: rowProviderObjectRef,
+      provider_artifact_hash: rowProviderArtifactHash,
       source_run_id: seedArtifact.source_run_identity.source_run_id,
       source_dataset_id: seedArtifact.source_run_identity.source_dataset_id,
-      status: "missing_provider_object_ref",
-      first_missing_field: PROVIDER_OBJECT_MISSING_FIELD,
+      status: rowProviderObjectRef == null ? "missing_provider_object_ref" : "provider_object_ref_present_unaccepted",
+      first_missing_field: rowProviderObjectRef == null
+        ? PROVIDER_OBJECT_MISSING_FIELD
+        : missing.first_missing_field,
     },
     first_missing_object: missing.first_missing_object,
     first_missing_field: missing.first_missing_field,
@@ -283,6 +322,9 @@ export function evaluateHeldReleasePathHistoryStreamManifestSetEvidence(candidat
 
 export function buildHeldReleasePathHistoryStreamManifestSet(options = {}) {
   const seedArtifact = options.seedArtifact ?? buildHeldReleaseSeedPathRows(options.seedPathRowOptions ?? {});
+  const providerObjectRef = normalizeStringRef(options.providerObjectRef);
+  const providerArtifactHash = normalizeStringRef(options.providerArtifactHash);
+  const durableManifestRefs = Array.isArray(options.durableManifestRefs) ? options.durableManifestRefs : [];
   const seedArtifactStatus =
     seedArtifact?.schema === SEED_PATH_ROWS_SCHEMA
       ? "seed_path_rows_consumed"
@@ -300,7 +342,15 @@ export function buildHeldReleasePathHistoryStreamManifestSet(options = {}) {
   const streamManifestRows =
     seedArtifact?.schema === SEED_PATH_ROWS_SCHEMA && Array.isArray(seedArtifact.rows)
       ? seedArtifact.rows.map((seedRow, index) =>
-          makeManifestRow({ rowPrefix, seedArtifact, seedRow, index })
+          makeManifestRow({
+            rowPrefix,
+            seedArtifact,
+            seedRow,
+            index,
+            providerObjectRef,
+            providerArtifactHash,
+            durableManifestRef: normalizeStringRef(durableManifestRefs[index]),
+          })
         )
       : [];
   const evidence = evaluateHeldReleasePathHistoryStreamManifestSetEvidence({
@@ -310,7 +360,15 @@ export function buildHeldReleasePathHistoryStreamManifestSet(options = {}) {
   const firstMissingObject =
     evidence.first_missing_field === FIRST_MISSING_FIELD
       ? FIRST_MISSING_OBJECT
-      : "held_release_path_history_stream_manifest_set_provider_object";
+      : evidence.reason === "provider_provenance_missing"
+        ? "held_release_path_history_stream_manifest_set_provider_object"
+        : evidence.reason === "durable_stream_manifest_ref_missing"
+          ? "held_release_path_history_stream_durable_manifest"
+          : "held_release_path_history_stream_manifest_set_acceptance_certificate";
+  const providerBacked = evidence.reason === "producer_does_not_authorize_accepted_stream_manifest_evidence";
+  const populatedDurableManifestRefs = streamManifestRows
+    .map((row) => row.durable_stream_binding?.durable_manifest_ref)
+    .filter((ref) => typeof ref === "string" && ref.length > 0);
 
   return {
     schema: SCHEMA,
@@ -345,26 +403,39 @@ export function buildHeldReleasePathHistoryStreamManifestSet(options = {}) {
     retained_record_requirement: {
       required: true,
       retained_record_id: streamManifestRows[0]?.retained_record_binding?.retained_record_id ?? null,
-      same_record_binding_status:
-        evidence.reason === "retained_record_id_missing"
+      same_record_binding_status: providerBacked
+        ? "provider_backed_retained_record_present_unaccepted"
+        : evidence.reason === "retained_record_id_missing"
           ? "missing_retained_record_id"
           : "retained_record_id_present_unaccepted",
       first_missing_field:
-        evidence.reason === "retained_record_id_missing" ? FIRST_MISSING_FIELD : PROVIDER_OBJECT_MISSING_FIELD,
+        evidence.reason === "retained_record_id_missing"
+          ? FIRST_MISSING_FIELD
+          : evidence.reason === "provider_provenance_missing"
+            ? PROVIDER_OBJECT_MISSING_FIELD
+            : evidence.first_missing_field,
     },
     durable_stream_requirement: {
       required: true,
-      durable_manifest_refs: [],
-      durable_stream_count: 0,
+      durable_manifest_refs: populatedDurableManifestRefs,
+      durable_stream_count: populatedDurableManifestRefs.length,
       local_manifest_count: streamManifestRows.length,
-      status: "local_manifest_objects_constructed_but_not_durable_evidence",
-      first_missing_field: DURABLE_STREAM_MISSING_FIELD,
+      status: populatedDurableManifestRefs.length === streamManifestRows.length && streamManifestRows.length > 0
+        ? "durable_manifest_refs_present_unaccepted"
+        : "local_manifest_objects_constructed_but_not_durable_evidence",
+      first_missing_field: populatedDurableManifestRefs.length === streamManifestRows.length && streamManifestRows.length > 0
+        ? "held_release_path_history_stream_manifest_set.acceptance_certificate_ref"
+        : DURABLE_STREAM_MISSING_FIELD,
     },
     artifact_status:
       evidence.reason === "retained_record_id_missing"
         ? "fail_closed_missing_retained_record_id"
-        : "fail_closed_missing_provider_provenance",
-    source_status: "source_acquisition_blocked",
+        : evidence.reason === "provider_provenance_missing"
+          ? "fail_closed_missing_provider_provenance"
+          : evidence.reason === "durable_stream_manifest_ref_missing"
+            ? "fail_closed_missing_durable_stream_manifest_refs"
+            : "provider_backed_stream_manifest_set_present_acceptance_blocked",
+    source_status: providerBacked ? "candidate_provider_backed_source_unaccepted" : "source_acquisition_blocked",
     first_missing_object: firstMissingObject,
     first_missing_field: evidence.first_missing_field,
     evidence_evaluation: evidence,
@@ -379,16 +450,23 @@ export function buildHeldReleasePathHistoryStreamManifestSet(options = {}) {
 
 export function validateHeldReleasePathHistoryStreamManifestSet(artifact) {
   const errors = [];
+  const providerBacked = artifact?.source_status === "candidate_provider_backed_source_unaccepted";
   if (artifact?.schema !== SCHEMA) {
     errors.push(`schema must be ${SCHEMA}`);
   }
   if (!Array.isArray(artifact?.stream_manifest_rows) || artifact.stream_manifest_rows.length !== 6) {
     errors.push("six path-history stream manifest rows are required");
   }
-  if (artifact?.first_missing_field !== FIRST_MISSING_FIELD) {
+  if (!providerBacked && artifact?.first_missing_field !== FIRST_MISSING_FIELD) {
     errors.push(`first missing field must be ${FIRST_MISSING_FIELD}`);
   }
-  if (artifact?.retained_record_requirement?.retained_record_id != null) {
+  if (
+    providerBacked &&
+    artifact?.first_missing_field !== "held_release_path_history_stream_manifest_set.acceptance_certificate_ref"
+  ) {
+    errors.push("provider-backed manifest set must point to the missing acceptance certificate");
+  }
+  if (!providerBacked && artifact?.retained_record_requirement?.retained_record_id != null) {
     errors.push("default manifest-set output must not claim retained_record_id");
   }
   const runIds = new Set(artifact?.stream_manifest_rows?.map((row) => row?.same_run_identity?.source_run_id));
@@ -414,14 +492,23 @@ export function validateHeldReleasePathHistoryStreamManifestSet(artifact) {
     if (row?.path_segment_stream?.row_count !== 1) {
       errors.push("each seed stream manifest must carry one path segment row");
     }
-    if (row?.retained_record_binding?.retained_record_id != null) {
+    if (!providerBacked && row?.retained_record_binding?.retained_record_id != null) {
       errors.push("default stream manifest rows must not claim retained_record_id");
     }
-    if (row?.provider_provenance?.provider_object_ref != null) {
+    if (!providerBacked && row?.provider_provenance?.provider_object_ref != null) {
       errors.push("default stream manifest rows must not claim provider_object_ref");
     }
-    if (row?.durable_stream_binding?.durable_manifest_ref != null) {
+    if (!providerBacked && row?.durable_stream_binding?.durable_manifest_ref != null) {
       errors.push("default stream manifest rows must not claim durable_manifest_ref");
+    }
+    if (providerBacked && row?.retained_record_binding?.retained_record_id == null) {
+      errors.push("provider-backed stream manifest rows must carry retained_record_id");
+    }
+    if (providerBacked && row?.provider_provenance?.provider_object_ref == null) {
+      errors.push("provider-backed stream manifest rows must carry provider_object_ref");
+    }
+    if (providerBacked && row?.durable_stream_binding?.durable_manifest_ref == null) {
+      errors.push("provider-backed stream manifest rows must carry durable_manifest_ref");
     }
   }
   for (const flag of AUTHORIZATION_FLAGS) {

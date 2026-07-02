@@ -79,6 +79,10 @@ function normalizeVector(value, fallback) {
   return value.map((entry, index) => normalizeNumber(entry, fallback[index]));
 }
 
+function normalizeStringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
 function addVectors(left, right) {
   return left.map((value, index) => value + right[index]);
 }
@@ -97,7 +101,16 @@ function makeSeedRows() {
   }));
 }
 
-function makePathRow({ rowPrefix, seedRow, index, rowKey, groupVelocity, retainedRecordId }) {
+function makePathRow({
+  rowPrefix,
+  seedRow,
+  index,
+  rowKey,
+  groupVelocity,
+  retainedRecordId,
+  providerObjectRef,
+  providerArtifactHash,
+}) {
   const pathKey = stableUint32(`${rowKey.seedId}:${seedRow.architrino_id}`);
   const pathRow = {
     pathKey,
@@ -135,12 +148,20 @@ function makePathRow({ rowPrefix, seedRow, index, rowKey, groupVelocity, retaine
   };
   const artifactHash = stableHash(artifactInput);
   const retainedRecordPresent = typeof retainedRecordId === "string" && retainedRecordId.length > 0;
+  const providerBacked = retainedRecordPresent && providerObjectRef != null;
+  const firstMissingField = retainedRecordPresent
+    ? providerBacked
+      ? "held_release_seed_path_rows.acceptance_certificate_ref"
+      : "held_release_seed_path_rows[*].provider_provenance.provider_object_ref"
+    : FIRST_MISSING_FIELD;
   return {
     row_id: `${rowPrefix}:path-row:${index}:${pathKey.toString(16)}`,
     schema: "held_release_seed_path_row.v0",
-    authority_class: retainedRecordPresent
-      ? "same_run_path_row_missing_provider_provenance"
-      : "same_run_path_row_request_missing_retained_record",
+    authority_class: providerBacked
+      ? "same_run_path_row_provider_backed_acceptance_blocked"
+      : retainedRecordPresent
+        ? "same_run_path_row_missing_provider_provenance"
+        : "same_run_path_row_request_missing_retained_record",
     accepted: false,
     path_identity: pathIdentity,
     solver_path_history_row_f64: pathRow,
@@ -161,27 +182,29 @@ function makePathRow({ rowPrefix, seedRow, index, rowKey, groupVelocity, retaine
     same_record_binding: {
       required: true,
       retained_record_id: retainedRecordId ?? null,
-      status: retainedRecordPresent ? "retained_record_id_present_unaccepted" : "missing_retained_record_id",
-      first_missing_field: retainedRecordPresent
-        ? "held_release_seed_path_rows[*].provider_provenance.provider_object_ref"
-        : FIRST_MISSING_FIELD,
+      status: providerBacked
+        ? "provider_backed_retained_record_present_unaccepted"
+        : retainedRecordPresent
+          ? "retained_record_id_present_unaccepted"
+          : "missing_retained_record_id",
+      first_missing_field: firstMissingField,
     },
     provider_provenance: {
       required: true,
-      provider_object_ref: null,
-      provider_artifact_hash: null,
+      provider_object_ref: providerObjectRef,
+      provider_artifact_hash: providerArtifactHash,
       source_run_id: rowKey.sourceRunId,
       source_dataset_id: rowKey.sourceDatasetId,
-      status: "missing_provider_object_ref",
-      first_missing_field: "held_release_seed_path_rows[*].provider_provenance.provider_object_ref",
+      status: providerBacked ? "provider_object_ref_present_unaccepted" : "missing_provider_object_ref",
+      first_missing_field: firstMissingField,
     },
     artifact_hash: artifactHash,
-    first_missing_object: retainedRecordPresent
-      ? "held_release_seed_path_rows_provider_object"
-      : FIRST_MISSING_OBJECT,
-    first_missing_field: retainedRecordPresent
-      ? "held_release_seed_path_rows[*].provider_provenance.provider_object_ref"
-      : FIRST_MISSING_FIELD,
+    first_missing_object: providerBacked
+      ? "held_release_seed_path_rows_acceptance_certificate"
+      : retainedRecordPresent
+        ? "held_release_seed_path_rows_provider_object"
+        : FIRST_MISSING_OBJECT,
+    first_missing_field: firstMissingField,
   };
 }
 
@@ -231,6 +254,8 @@ export function evaluateHeldReleaseSeedPathRowsEvidence(candidate = {}) {
 
 export function buildHeldReleaseSeedPathRows(options = {}) {
   const groupVelocity = normalizeVector(options.groupVelocity, DEFAULT_GROUP_VELOCITY);
+  const providerObjectRef = normalizeStringRef(options.providerObjectRef);
+  const providerArtifactHash = normalizeStringRef(options.providerArtifactHash);
   const rowKey = {
     schema: SCHEMA,
     seedId: options.seedId ?? DEFAULT_SEED_ID,
@@ -251,13 +276,25 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
   const artifactHash = stableHash({ ...rowKey, retainedRecordId });
   const rowPrefix = `held_release_seed_path_rows:${artifactHash.slice(0, 16)}`;
   const rows = makeSeedRows().map((seedRow, index) =>
-    makePathRow({ rowPrefix, seedRow, index, rowKey, groupVelocity, retainedRecordId })
+    makePathRow({
+      rowPrefix,
+      seedRow,
+      index,
+      rowKey,
+      groupVelocity,
+      retainedRecordId,
+      providerObjectRef,
+      providerArtifactHash,
+    })
   );
   const evidence = evaluateHeldReleaseSeedPathRowsEvidence({ schema: SCHEMA, rows });
   const firstMissingObject =
     evidence.first_missing_field === FIRST_MISSING_FIELD
       ? FIRST_MISSING_OBJECT
-      : "held_release_seed_path_rows_provider_object";
+      : evidence.reason === "provider_provenance_missing"
+        ? "held_release_seed_path_rows_provider_object"
+        : "held_release_seed_path_rows_acceptance_certificate";
+  const providerBacked = evidence.reason === "producer_does_not_authorize_accepted_path_row_evidence";
 
   return {
     schema: SCHEMA,
@@ -280,12 +317,16 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
     retained_record_requirement: {
       required: true,
       retained_record_id: retainedRecordId,
-      same_record_binding_status: retainedRecordId
-        ? "retained_record_id_present_unaccepted"
-        : "missing_retained_record_id",
-      first_missing_field: retainedRecordId
-        ? "held_release_seed_path_rows[*].provider_provenance.provider_object_ref"
-        : FIRST_MISSING_FIELD,
+      same_record_binding_status: providerBacked
+        ? "provider_backed_retained_record_present_unaccepted"
+        : retainedRecordId
+          ? "retained_record_id_present_unaccepted"
+          : "missing_retained_record_id",
+      first_missing_field: providerBacked
+        ? "held_release_seed_path_rows.acceptance_certificate_ref"
+        : retainedRecordId
+          ? "held_release_seed_path_rows[*].provider_provenance.provider_object_ref"
+          : FIRST_MISSING_FIELD,
     },
     dynamic_replay_requirements: {
       required: true,
@@ -301,8 +342,10 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
     artifact_status:
       evidence.reason === "retained_record_id_missing"
         ? "fail_closed_missing_retained_record_id"
-        : "fail_closed_missing_provider_provenance",
-    source_status: "source_acquisition_blocked",
+        : evidence.reason === "provider_provenance_missing"
+          ? "fail_closed_missing_provider_provenance"
+          : "provider_backed_seed_path_rows_present_acceptance_blocked",
+    source_status: providerBacked ? "candidate_provider_backed_source_unaccepted" : "source_acquisition_blocked",
     first_missing_object: firstMissingObject,
     first_missing_field: evidence.first_missing_field,
     evidence_evaluation: evidence,
@@ -317,16 +360,20 @@ export function buildHeldReleaseSeedPathRows(options = {}) {
 
 export function validateHeldReleaseSeedPathRows(artifact) {
   const errors = [];
+  const providerBacked = artifact?.source_status === "candidate_provider_backed_source_unaccepted";
   if (artifact?.schema !== SCHEMA) {
     errors.push(`schema must be ${SCHEMA}`);
   }
   if (!Array.isArray(artifact?.rows) || artifact.rows.length !== 6) {
     errors.push("six held-release seed path rows are required");
   }
-  if (artifact?.first_missing_field !== FIRST_MISSING_FIELD) {
+  if (!providerBacked && artifact?.first_missing_field !== FIRST_MISSING_FIELD) {
     errors.push(`first missing field must be ${FIRST_MISSING_FIELD}`);
   }
-  if (artifact?.retained_record_requirement?.retained_record_id != null) {
+  if (providerBacked && artifact?.first_missing_field !== "held_release_seed_path_rows.acceptance_certificate_ref") {
+    errors.push("provider-backed seed path rows must point to the missing acceptance certificate");
+  }
+  if (!providerBacked && artifact?.retained_record_requirement?.retained_record_id != null) {
     errors.push("default producer output must not claim retained_record_id");
   }
   const runIds = new Set(artifact?.rows?.map((row) => row?.path_identity?.same_run_id));
@@ -347,11 +394,17 @@ export function validateHeldReleaseSeedPathRows(artifact) {
     if (row?.solver_path_history_row_f64?.startTime !== 0) {
       errors.push("each seed row must start at time 0");
     }
-    if (row?.same_record_binding?.retained_record_id != null) {
+    if (!providerBacked && row?.same_record_binding?.retained_record_id != null) {
       errors.push("default seed path rows must not claim retained_record_id");
     }
-    if (row?.provider_provenance?.provider_object_ref != null) {
+    if (!providerBacked && row?.provider_provenance?.provider_object_ref != null) {
       errors.push("default seed path rows must not claim provider_object_ref");
+    }
+    if (providerBacked && row?.same_record_binding?.retained_record_id == null) {
+      errors.push("provider-backed seed path rows must carry retained_record_id");
+    }
+    if (providerBacked && row?.provider_provenance?.provider_object_ref == null) {
+      errors.push("provider-backed seed path rows must carry provider_object_ref");
     }
   }
   for (const flag of AUTHORIZATION_FLAGS) {

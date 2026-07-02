@@ -1,6 +1,6 @@
 {
   "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
-  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; target-only and not accepted nuclear-binding recovery",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response source-acquisition rows accepted; top-level rows remain target-only and not accepted nuclear-binding recovery",
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "confinement_functional_source_target_0001",
@@ -17,13 +17,13 @@
     "requiredEvidenceStatus": "accepted_non_fixture_source",
     "firstMissingObject": "missing_accepted_sigma_eff_extraction",
     "currentSourceAcquisitionPass": false,
-    "firstMissingSourceAcquisitionObject": "missing_accepted_K_perp"
+    "firstMissingSourceAcquisitionObject": "missing_accepted_accepted_proton_color_singlet_envelope"
   },
   "sourceAcquisitionTargets": {
     "K_perp": {
       "id": "K_perp_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted transverse stiffness functional in the same color-charge and sigma_eff variation domain",
       "requiredLedgerComponents": [
         "transverse_stiffness_functional",
@@ -31,12 +31,12 @@
         "sigma_eff_variation_record"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json"
     },
     "V_exc": {
       "id": "V_exc_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted excitation potential functional over the same axis-exceptionality and Noether sea arguments",
       "requiredLedgerComponents": [
         "excitation_potential_functional",
@@ -44,12 +44,12 @@
         "rho_NS_chi_sea_arguments"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json"
     },
     "rho_NS": {
       "id": "rho_NS_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "candidate_provider_available_not_confinement_accepted",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "same-record retained-window Noether sea density row consumable by the sigma_eff extraction",
       "requiredLedgerComponents": [
         "retained_window_density_row",
@@ -57,12 +57,12 @@
         "provider_source_path"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json#/thetaSeaRows/rho_NS"
+      "sourceTargetPath": "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json"
     },
     "chi_sea": {
       "id": "chi_sea_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted Noether sea delay-factor row in the same sigma_eff extraction record",
       "requiredLedgerComponents": [
         "noether_sea_delay_factor_row",
@@ -70,12 +70,12 @@
         "effective_speed_relation"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json"
     },
     "axis_exceptionality_charge": {
       "id": "axis_exceptionality_charge_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted axis-exceptionality charge basis and normalization used by the confinement functional",
       "requiredLedgerComponents": [
         "axis_exceptionality_definition",
@@ -83,12 +83,12 @@
         "same_sigma_eff_domain"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json"
     },
     "same_record_noether_sea_response": {
       "id": "same_record_noether_sea_response_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "candidate_provider_available_not_confinement_accepted",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted same-record Noether sea response bundle used by the sigma_eff extraction",
       "requiredLedgerComponents": [
         "rho_NS",
@@ -97,12 +97,12 @@
         "same_event_ledger"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
     },
     "accepted_proton_color_singlet_envelope": {
       "id": "accepted_proton_color_singlet_envelope_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
       "requiredScope": "accepted proton color-singlet envelope with finite boundary and no-free-color audit",
       "requiredLedgerComponents": [
         "proton_color_singlet_closure",
@@ -110,7 +110,7 @@
         "no_free_color_asymptotic_state"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json"
     },
     "accepted_neutron_color_singlet_envelope": {
       "id": "accepted_neutron_color_singlet_envelope_source_target_0001",
@@ -271,6 +271,14 @@
       "currentEvidenceStatus": "priority_packet_only",
       "targetEquation": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} 2*pi*int_0^a r[(K_perp/2)||Q||_F^2(df/dr)^2+V_exc(f(r)Q;Q,rho_NS,chi_sea)]dr",
       "requiredSourceRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "acceptedSourceRows": [
         "K_perp",
         "V_exc",
         "rho_NS",

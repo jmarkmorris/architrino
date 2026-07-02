@@ -1,0 +1,117 @@
+{
+  "schema": "aaa-nuclear-atomic-same-record-noether-sea-response-confinement-evidence/v1",
+  "claimLevel": "durable non-fixture same_record_noether_sea_response source-acquisition row for the Fe/Ni confinement-functional lane; accepted provider rho_NS, theta_sea, stress-strain, speed, causality, and same-event ledger consumption only; not accepted sigma_eff extraction, color-singlet envelope, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "same_record_noether_sea_response",
+  "sourceSupport": [
+    "confinement_functional",
+    "same_record_noether_sea_response",
+    "rho_NS",
+    "theta_sea",
+    "stress_strain_row",
+    "same_event_ledger"
+  ],
+  "evidenceSupports": [
+    "rho_NS",
+    "theta_sea",
+    "stress_strain_row",
+    "same_event_ledger"
+  ],
+  "sourceIdentity": {
+    "sameRecordNoetherSeaResponseConfinementId": "same_record_noether_sea_response_confinement_0001",
+    "sourceTargetId": "same_record_noether_sea_response_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "providerSourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "providerRows": {
+    "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "providerStatus": "accepted",
+    "authorization": {
+      "acceptedProvider": true,
+      "downstreamConsumerAuthorization": true
+    },
+    "window": {
+      "windowId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "retainedInventoryId": "noether-sea-retained-inventory-provider-0001",
+      "smoothingKernelId": "W_ell_theta_sea_rho_ns_provider_0001",
+      "refinementFamilyId": "density-compression-refinement-family-provider-0001"
+    },
+    "rhoNSRow": {
+      "sourceRowId": "rho-NS-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+      "rho_NS": 1
+    },
+    "thetaSeaRow": {
+      "sourceRowId": "theta-sea-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "thetaSeaId": "theta-sea-density-compression-provider-0001"
+    },
+    "stressStrainRow": {
+      "sourceRowId": "stress-strain-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_C_ij_kl",
+      "C1111_X": 2.49
+    },
+    "speedRow": {
+      "sourceRowId": "speed-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_c_X_squared",
+      "c_X_disp_squared": 2.5
+    },
+    "causalityRow": {
+      "sourceRowId": "causality-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0
+    },
+    "correlationRow": {
+      "sourceRowId": "correlation-row-provider-0001",
+      "status": "accepted",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sameWindow": true
+    },
+    "acousticElasticAgreement": {
+      "status": "accepted",
+      "rowId": "acoustic-elastic-agreement-provider-0001",
+      "rhoRowId": "rho-NS-provider-0001",
+      "speedRowId": "speed-row-provider-0001",
+      "stressStrainRowId": "stress-strain-row-provider-0001",
+      "residual": 0.009999999999999787,
+      "tolerance": 0.02
+    }
+  },
+  "confinementUse": {
+    "rowId": "same_record_noether_sea_response_confinement_0001",
+    "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+    "argumentRole": "Supplies the same-event Noether sea response bundle consumed by the sigma_eff target equation after rho_NS, chi_sea, and axis-exceptionality charge are acquired.",
+    "sameRecordBoundary": "This accepts the provider bundle as the same-record Noether sea response consumed by the confinement functional; it does not accept sigma_eff extraction or downstream confinement rows."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "same_record_noether_sea_response"
+    ],
+    "notAcceptedByThisEvidence": [
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row consumes the accepted Noether sea density-compression provider as a same-event response bundle for the confinement functional.",
+    "This row does not accept sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, no_open_color_far_field, or Fe/Ni nuclear-binding promotion.",
+    "Fe/Ni promotion remains blocked until the top confinement-functional rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

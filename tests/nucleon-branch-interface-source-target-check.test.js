@@ -56,7 +56,7 @@ test("current branch-interface target passes algebra but blocks accepted source 
   assert.equal(report.summary.firstMissingObject, "missing_accepted_nucleon_branch_interface_ledgers");
   assert.equal(
     report.summary.sourceAcquisitionFirstMissingObject,
-    "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "missing_no_open_color_far_field",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
@@ -98,6 +98,21 @@ test("current branch-interface target passes algebra but blocks accepted source 
       .componentShapePass,
     true,
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.sourceTargetPath,
+    "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+  );
   assert.deepEqual(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
       .requiredLedgerComponents,
@@ -113,17 +128,13 @@ test("current branch-interface target passes algebra but blocks accepted source 
     "nucleon_branch_interface_ledgers",
     "pn_orientation_count",
     "pp_orientation_count",
-    "same_record_energy_momentum_angular_momentum_ledger",
   ]);
   assert.equal(report.channelChecks.pn_orientation_count.values.W_c, 1);
   assert.equal(report.channelChecks.pp_orientation_count.values.W_c, 0.25);
   assert.deepEqual(
     report.sourceAcquisitionCheck.rowChecks.nucleon_branch_interface_ledgers
       .missingAcceptedSourceRows,
-    [
-      "same_record_energy_momentum_angular_momentum_ledger",
-      "no_open_color_far_field",
-    ],
+    ["no_open_color_far_field"],
   );
   assert.equal(report.differential.passed, true);
 });
@@ -196,15 +207,12 @@ test("accepted branch-interface rows fail closed when source rows are named but 
   assert.deepEqual(
     report.sourceAcquisitionCheck.rowChecks.pn_orientation_count
       .unacceptedSourceTargets,
-    [
-      "same_record_energy_momentum_angular_momentum_ledger",
-      "no_open_color_far_field",
-    ],
+    ["no_open_color_far_field"],
   );
   assert.equal(
     report.sourceAcquisitionCheck.failures.some(
       (failure) =>
-        failure.sourceRowId === "same_record_energy_momentum_angular_momentum_ledger" &&
+        failure.sourceRowId === "no_open_color_far_field" &&
         failure.reason === "source_acquisition_target_not_accepted",
     ),
     true,
@@ -228,15 +236,12 @@ test("accepted branch-interface rows fail closed without upstream source acquisi
   assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(
     report.sourceAcquisitionCheck.firstMissingAcceptedSourceRow,
-    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
   );
   assert.deepEqual(report.sourceAcquisitionCheck.failures[0], {
     rowId: "nucleon_branch_interface_ledgers",
     reason: "missing_accepted_source_rows",
-    missingAcceptedSourceRows: [
-      "same_record_energy_momentum_angular_momentum_ledger",
-      "no_open_color_far_field",
-    ],
+    missingAcceptedSourceRows: ["no_open_color_far_field"],
   });
 });
 
@@ -268,17 +273,11 @@ test("branch-interface checker fails closed on accepted-looking priority-only ro
       currentEvidenceStatus: null,
       reason: "accepted_status_without_accepted_non_fixture_source",
     },
-    {
-      rowId: "same_record_energy_momentum_angular_momentum_ledger",
-      currentEvidenceStatus: "declared in priority packet, not accepted source row",
-      reason: "accepted_status_without_accepted_non_fixture_source",
-    },
   ]);
   assert.deepEqual(report.summary.missingRows, [
     "nucleon_branch_interface_ledgers",
     "pn_orientation_count",
     "pp_orientation_count",
-    "same_record_energy_momentum_angular_momentum_ledger",
   ]);
 });
 

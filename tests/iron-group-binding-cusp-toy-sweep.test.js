@@ -71,13 +71,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.familyResults.branch_interface
       .sourceAcquisitionFirstMissingObject,
-    "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "missing_no_open_color_far_field",
   );
   assert.deepEqual(report.sourceBinding.familyResults.branch_interface.missingOrRejectedFields, [
     "rows.nucleon_branch_interface_ledgers.accepted",
     "rows.pn_orientation_count.accepted",
     "rows.pp_orientation_count.accepted",
-    "rows.same_record_energy_momentum_angular_momentum_ledger.accepted",
   ]);
   const branchCandidate = report.sourceBinding.candidateResults.find(
     (candidate) => candidate.family === "branch_interface",
@@ -90,15 +89,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(branchCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
   assert.equal(
     branchCandidate.sourceAcquisitionFirstMissingObject,
-    "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "missing_no_open_color_far_field",
   );
   assert.deepEqual(
     branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.rowChecks
       .pn_orientation_count.missingAcceptedSourceRows,
-    [
-      "same_record_energy_momentum_angular_momentum_ledger",
-      "no_open_color_far_field",
-    ],
+    ["no_open_color_far_field"],
   );
   assert.equal(
     branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -130,6 +126,21 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       .accepted_neutron_branch_interface_ledger.sourceTargetPath,
     "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
   );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.accepted,
+    true,
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_energy_momentum_angular_momentum_ledger.sourceTargetPath,
+    "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+  );
   assert.equal(branchCandidate.sourceTargetCheck.differential.passed, true);
   assert.equal(
     report.sourceBinding.familyResults.confinement_functional.sourceStatus,
@@ -149,7 +160,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.familyResults.confinement_functional
       .sourceAcquisitionFirstMissingObject,
-    "missing_accepted_K_perp",
+    "missing_accepted_accepted_proton_color_singlet_envelope",
   );
   const confinementCandidate = report.sourceBinding.candidateResults.find(
     (candidate) => candidate.family === "confinement_functional",
@@ -167,19 +178,117 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(confinementCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
   assert.equal(
     confinementCandidate.sourceTargetCheck.summary.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_K_perp",
+    "missing_accepted_accepted_proton_color_singlet_envelope",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.K_perp
+      .accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.K_perp
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.K_perp
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.V_exc
+      .accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.V_exc
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.V_exc
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.rho_NS
+      .accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.rho_NS
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.rho_NS
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.chi_sea
+      .accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.chi_sea
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.chi_sea
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .axis_exceptionality_charge.accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .axis_exceptionality_charge.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .axis_exceptionality_charge.sourceTargetPath,
+    "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_noether_sea_response.accepted,
+    true,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_noether_sea_response.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .same_record_noether_sea_response.sourceTargetPath,
+    "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_color_singlet_envelope.accepted,
+    false,
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_color_singlet_envelope.currentEvidenceStatus,
+    "blocked_missing_no_free_color_audit",
+  );
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_color_singlet_envelope.sourceTargetPath,
+    "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
   );
   assert.deepEqual(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.rowChecks
       .sigma_eff_extraction.missingAcceptedSourceRows,
-    [
-      "K_perp",
-      "V_exc",
-      "rho_NS",
-      "chi_sea",
-      "axis_exceptionality_charge",
-      "same_record_noether_sea_response",
-    ],
+    [],
   );
   assert.equal(
     report.sourceBinding.familyResults.weak_channel.firstMissingObject,
@@ -282,7 +391,22 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.branch_interface
       .sourceAcquisitionFirstMissingObject,
-    "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "missing_no_open_color_far_field",
+  );
+  assert.deepEqual(
+    report.sourceBinding.coefficientBindings.alphaCoul.requiredRowsByFamily.branch_interface
+      .missingRows,
+    [],
+  );
+  assert.equal(
+    report.sourceBinding.coefficientBindings.alphaCoul.requiredRowsByFamily.branch_interface
+      .firstMissingObject,
+    "missing_accepted_nucleon_branch_interface_ledgers",
+  );
+  assert.equal(
+    report.sourceBinding.coefficientBindings.alphaCoul.requiredRowsByFamily.branch_interface
+      .sourceAcquisitionFirstMissingObject,
+    "missing_no_open_color_far_field",
   );
   assert.deepEqual(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.confinement_functional.missingRows,
@@ -291,7 +415,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.confinement_functional
       .sourceAcquisitionFirstMissingObject,
-    "missing_accepted_K_perp",
+    "missing_accepted_accepted_proton_color_singlet_envelope",
   );
   assert.equal(
     report.sourceBinding.coefficientBindings.alphaSea.requiredRowsByFamily.noether_sea_response.accepted,
@@ -330,12 +454,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
       .requiredRowsByFamily.confinement_functional.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_K_perp",
+    "missing_accepted_accepted_proton_color_singlet_envelope",
   );
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
       .requiredRowsByFamily.branch_interface.sourceAcquisitionFirstMissingObject,
-    "missing_same_record_energy_momentum_angular_momentum_ledger",
+    "missing_no_open_color_far_field",
   );
 });
 
