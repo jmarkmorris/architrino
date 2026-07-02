@@ -7,12 +7,15 @@ import {
   LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
   LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_FIELD,
+  RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_OBJECT,
   RETAINED_HISTORY_FIRST_MISSING_FIELD,
   RETAINED_HISTORY_FIRST_MISSING_OBJECT,
   SCHEMA,
   buildOblateSpheroidInternalTangentAuthorityCertificate,
   evaluateLeastNormRetainedVectorProviderWitness,
   evaluateOblateSpheroidInternalTangentAuthorityEvidence,
+  evaluateRetainedSolverVectorProviderWitnessRow,
   validateOblateSpheroidInternalTangentAuthorityCertificate,
 } from "../scripts/braid-ideal/oblate-spheroid-internal-tangent-authority-certificate.mjs";
 
@@ -184,6 +187,86 @@ function makeReserveArtifact(rows) {
   };
 }
 
+function makeRetainedSolverVectorWitnessRow({ rowSuffix = "preferred" } = {}) {
+  const retainedRecordId = `retained-record:${rowSuffix}`;
+  const sourceRowId = `two-speed-row:${rowSuffix}`;
+  const particleSlotOrder = ["P:0", "E:0", "P:1", "E:1", "P:2", "E:2"];
+  const tangentProjector = [
+    [1, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+    [0, 0, 0, 0, 0, 0],
+  ];
+  const tangentNullProjector = [
+    [0, 0, 0, 0, 0, 0],
+    [0, 1, 0, 0, 0, 0],
+    [0, 0, 1, 0, 0, 0],
+    [0, 0, 0, 1, 0, 0],
+    [0, 0, 0, 0, 1, 0],
+    [0, 0, 0, 0, 0, 1],
+  ];
+  return {
+    row_id: `retained-vector-witness:${rowSuffix}`,
+    schema: "retained_solver_internal_tangent_authority_vector_witness_row.v0",
+    source_row_id: sourceRowId,
+    retained_record_id: retainedRecordId,
+    time: 0.25,
+    authority_class: "diagnostic_same_record_vector_fixture_not_accepted_evidence",
+    retained_solver_tangent_target_vector_row: {
+      source_row_id: sourceRowId,
+      retained_record_id: retainedRecordId,
+      time: 0.25,
+      particle_slot_order: particleSlotOrder,
+      a_ansatz_vector: [0.11, 0, 0, 0, 0, 0],
+      a_wake_vector: [0.01, 0, 0, 0, 0, 0],
+      a_support_vector: [0, 0, 0, 0, 0, 0],
+      surface_normal_vectors: [
+        [0, 0, 1],
+        [0, 0, -1],
+        [0, 0, 1],
+        [0, 0, -1],
+        [0, 0, 1],
+        [0, 0, -1],
+      ],
+      tangent_projector_matrix: tangentProjector,
+      tangent_target_vector: [0.1, 0, 0, 0, 0, 0],
+    },
+    active_causal_margin_gradient_vector_row: {
+      retained_record_id: retainedRecordId,
+      active_margin_channel: "field_speed",
+      active_margin_value: 0.025,
+      active_margin_event_ref: "event:field-speed-edge",
+      active_margin_gradient_vector: [0, 1, 0, 0, 0, 0],
+      tangent_null_projector_matrix: tangentNullProjector,
+    },
+    same_record_provider_acceleration_vector_row: {
+      retained_record_id: retainedRecordId,
+      provider_acceleration_vector: [0.1, 0.085, 0, 0, 0, 0],
+      least_norm_null_correction_vector: [0, 0.085, 0, 0, 0, 0],
+      provider_equation: "a_provider^* = T + n_*",
+      provider_provenance: "synthetic_test_vector_not_accepted",
+      accepted_provider_ref: null,
+    },
+    post_provider_root_margin_row: {
+      retained_record_id: retainedRecordId,
+      post_provider_root_margin: 0.01,
+      minimum_dynamic_root_margin_reserve: 0.01,
+      tangent_response_horizon: 1,
+      margin_lift_response_horizon: 1,
+      positive_post_provider_root_margin: true,
+    },
+    same_record_closure_rows: {
+      retained_record_id: retainedRecordId,
+      same_record_retained_root_ledger: "diagnostic:root-ledger",
+      same_record_action_closure_row: "diagnostic:action-closure",
+      same_record_wake_history_ref: "diagnostic:wake-history",
+      same_record_path_history_ref: "diagnostic:path-history",
+    },
+  };
+}
+
 test("internal tangent authority certificate emits deterministic fail-closed route rows", () => {
   const targetArtifact = makeTargetArtifact([makeTargetRow()]);
   const reserveArtifact = makeReserveArtifact([makeReserveRow()]);
@@ -217,6 +300,12 @@ test("internal tangent authority certificate emits deterministic fail-closed rou
   assert.equal(artifact.summary.normalized_diagnostic_witness_row_count, 1);
   assert.equal(artifact.summary.normalized_diagnostic_witness_pass_count, 1);
   assert.equal(artifact.summary.normalized_diagnostic_witness_missing_input_count, 0);
+  assert.equal(artifact.summary.retained_solver_vector_source_target_row_count, 1);
+  assert.equal(artifact.summary.retained_solver_vector_witness_row_count, 0);
+  assert.equal(artifact.summary.retained_solver_vector_witness_mathematical_pass_count, 0);
+  assert.equal(artifact.summary.retained_solver_vector_witness_same_record_pass_count, 0);
+  assert.equal(artifact.summary.missing_same_record_retained_solver_vector_row_count, 1);
+  assert.equal(artifact.summary.accepted_retained_solver_vector_provider_count, 0);
   assert.deepEqual(validateOblateSpheroidInternalTangentAuthorityCertificate(artifact), []);
 });
 
@@ -281,6 +370,19 @@ test("retained-history tangent projection is top-ranked and names the sharper re
   assert.equal(retainedHistoryRoute.normalized_diagnostic_vector_witness_fields.normalized_diagnostic_witness_row_count, 1);
   assert.equal(retainedHistoryRoute.normalized_diagnostic_vector_witness_fields.normalized_diagnostic_witness_pass_count, 1);
   assert.equal(retainedHistoryRoute.normalized_diagnostic_vector_witness_fields.accepted_provider_count, 0);
+  assert.equal(retainedHistoryRoute.retained_solver_vector_source_target_fields.source_target_row_count, 1);
+  assert.equal(retainedHistoryRoute.retained_solver_vector_source_target_fields.witness_row_count, 0);
+  assert.equal(retainedHistoryRoute.retained_solver_vector_source_target_fields.witness_mathematical_pass_count, 0);
+  assert.equal(retainedHistoryRoute.retained_solver_vector_source_target_fields.witness_same_record_pass_count, 0);
+  assert.equal(
+    retainedHistoryRoute.retained_solver_vector_source_target_fields.first_missing_object,
+    RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_OBJECT
+  );
+  assert.equal(
+    retainedHistoryRoute.retained_solver_vector_source_target_fields.first_missing_field,
+    RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_FIELD
+  );
+  assert.equal(retainedHistoryRoute.retained_solver_vector_source_target_fields.accepted_retained_solver_vector_provider_count, 0);
   assert.equal(retainedHistoryRoute.first_missing_object, RETAINED_HISTORY_FIRST_MISSING_OBJECT);
   assert.equal(retainedHistoryRoute.first_missing_field, RETAINED_HISTORY_FIRST_MISSING_FIELD);
   assert.equal(actionRoute.route_id, "same_ledger_action_measure_tangent_row");
@@ -457,6 +559,51 @@ test("measured tangent need remains finite and tied to target and reserve rows",
   assert.equal(measured.normalized_diagnostic_vector_witness.evaluation.mathematical_witness_conditions_passed, true);
   assert.equal(measured.normalized_diagnostic_vector_witness.evaluation.accepted, false);
   assert.equal(measured.normalized_diagnostic_vector_witness.accepted, false);
+  assert.deepEqual(measured.retained_solver_vector_witness_evaluations, []);
+  assert.equal(
+    measured.retained_solver_vector_source_target.schema,
+    "retained_solver_internal_tangent_authority_vector_source_target.v0"
+  );
+  assert.equal(
+    measured.retained_solver_vector_source_target.scope_note,
+    "same_record_source_target_for_actual_retained_solver_vectors_not_satisfied_by_normalized_diagnostic_witness"
+  );
+  assert.equal(
+    measured.retained_solver_vector_source_target.required_same_record_rows[0].equation,
+    "T = P_T(a_ansatz - a_wake - a_support)"
+  );
+  assert.deepEqual(measured.retained_solver_vector_source_target.required_same_record_rows[0].required_fields, [
+    "source_row_id",
+    "retained_record_id",
+    "time",
+    "particle_slot_order",
+    "a_ansatz_vector",
+    "a_wake_vector",
+    "a_support_vector",
+    "surface_normal_vectors",
+    "tangent_projector_matrix",
+    "tangent_target_vector",
+  ]);
+  assert.equal(
+    measured.retained_solver_vector_source_target.required_same_record_rows[1].equation,
+    "G_mu = gradient of the active min(c_f-|v|, D_s, D_t) factor in the same global acceleration vector space"
+  );
+  assert.equal(
+    measured.retained_solver_vector_source_target.evaluator_binding.input_mapping.provider_acceleration_vector,
+    "same_record_provider_acceleration_vector_row.provider_acceleration_vector"
+  );
+  assert.equal(
+    measured.retained_solver_vector_source_target.normalized_diagnostic_witness_policy,
+    "normalized diagnostic witness rows may seed algebra checks but cannot satisfy any required same-record retained solver vector row"
+  );
+  assert.equal(
+    measured.retained_solver_vector_source_target.source_acquisition_status,
+    "blocked_missing_same_record_retained_solver_vector_rows"
+  );
+  assert.equal(measured.retained_solver_vector_source_target.first_missing_object, RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_OBJECT);
+  assert.equal(measured.retained_solver_vector_source_target.first_missing_field, RETAINED_SOLVER_VECTOR_SOURCE_TARGET_FIRST_MISSING_FIELD);
+  assert.equal(measured.retained_solver_vector_source_target.accepted_vector_provider_ref, null);
+  assert.equal(measured.retained_solver_vector_source_target.accepted, false);
   assert.equal(measured.retained_root_ledger_ref, null);
   assert.equal(measured.accepted, false);
 });
@@ -496,6 +643,51 @@ test("least-norm provider witness can pass mathematically while staying non-auth
   assert.equal(evaluation.checks.post_provider_root_margin_passed, true);
   assert.equal(evaluation.first_missing_object, LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT);
   assert.equal(evaluation.first_missing_field, LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD);
+});
+
+test("same-record retained solver vector witness can pass mathematically while staying non-authorizing", () => {
+  const witnessRow = makeRetainedSolverVectorWitnessRow({ rowSuffix: "vector-pass" });
+  const rowEvaluation = evaluateRetainedSolverVectorProviderWitnessRow(witnessRow);
+  assert.equal(rowEvaluation.schema, "retained_solver_internal_tangent_authority_vector_witness_row.v0");
+  assert.equal(rowEvaluation.same_record_binding_passed, true);
+  assert.equal(rowEvaluation.closure_binding_passed, true);
+  assert.equal(rowEvaluation.required_rows_present, true);
+  assert.deepEqual(rowEvaluation.missing_fields, []);
+  assert.equal(rowEvaluation.evaluation.mathematical_witness_conditions_passed, true);
+  assert.equal(rowEvaluation.mathematical_witness_conditions_passed, true);
+  assert.equal(
+    rowEvaluation.source_acquisition_status,
+    "same_record_retained_solver_vector_witness_mathematical_pass_acceptance_blocked"
+  );
+  assert.equal(rowEvaluation.accepted, false);
+  assert.equal(rowEvaluation.first_missing_object, LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT);
+  assert.equal(rowEvaluation.first_missing_field, LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD);
+
+  const artifact = buildOblateSpheroidInternalTangentAuthorityCertificate({
+    targetArtifact: makeTargetArtifact([makeTargetRow({ rowSuffix: "vector-pass" })]),
+    reserveArtifact: makeReserveArtifact([makeReserveRow({ rowSuffix: "vector-pass" })]),
+    retainedSolverVectorWitnessRows: [witnessRow],
+  });
+  const measured = artifact.measured_tangent_authority_rows[0];
+  const attachedEvaluation = measured.retained_solver_vector_witness_evaluations[0];
+  assert.equal(artifact.summary.retained_solver_vector_witness_row_count, 1);
+  assert.equal(artifact.summary.retained_solver_vector_witness_mathematical_pass_count, 1);
+  assert.equal(artifact.summary.retained_solver_vector_witness_same_record_pass_count, 1);
+  assert.equal(artifact.summary.missing_same_record_retained_solver_vector_row_count, 0);
+  assert.equal(artifact.summary.accepted_retained_solver_vector_provider_count, 0);
+  assert.equal(attachedEvaluation.source_row_id, "two-speed-row:vector-pass");
+  assert.equal(attachedEvaluation.mathematical_witness_conditions_passed, true);
+  assert.equal(attachedEvaluation.accepted, false);
+  assert.equal(
+    measured.retained_solver_vector_source_target.source_acquisition_status,
+    "same_record_retained_solver_vector_witness_mathematical_pass_acceptance_blocked"
+  );
+  assert.equal(measured.retained_solver_vector_source_target.retained_solver_vector_witness_row_count, 1);
+  assert.equal(measured.retained_solver_vector_source_target.retained_solver_vector_witness_mathematical_pass_count, 1);
+  assert.equal(measured.retained_solver_vector_source_target.accepted, false);
+  assert.equal(artifact.authorization.accepted_internal_tangent_authority, false);
+  assert.equal(artifact.authorization.preferred_configuration_claim, false);
+  assert.deepEqual(validateOblateSpheroidInternalTangentAuthorityCertificate(artifact), []);
 });
 
 test("least-norm provider witness fails when the active margin gradient has no null lift", () => {

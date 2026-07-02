@@ -165,6 +165,142 @@
       "no_open_color_far_field"
     ]
   },
+  "candidateSameRecordAuditLemma": {
+    "claimLevel": "priority-only conditional same-record audit lemma; accepts no source rows and does not prove same_record_no_open_color_audit",
+    "lemmaId": "finite_tail_color_singlet_event_ledger_implies_same_record_no_open_color_audit_0001",
+    "statement": "If one retained event record supplies accepted Delta_E_corr_NN_tail_limit, accepted finite_range_residual, accepted color_singlet_closure, an accepted same_event_ledger shared with the proton and neutron branch-interface ledgers and same_record_energy_momentum_angular_momentum_ledger, and a finite K_open projection bound N_open(R) <= K_open T_NN(R)^2, then the packet has the support shape needed for same_record_no_open_color_audit.",
+    "assumptions": [
+      "accepted_Delta_E_corr_NN_tail_limit",
+      "accepted_finite_range_residual",
+      "accepted_color_singlet_closure",
+      "accepted_same_event_ledger",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_branch_interface_confinement_functional_audit",
+      "K_open_finite",
+      "N_open_R_le_K_open_T_NN_R_squared"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_event_record_lock",
+        "derivation": "Require record(L_EpJ)=record(B_pn)=record(B_pp)=record(Delta E_corr_NN)=record(N_open), so the audit cannot splice a residual tail from a different event."
+      },
+      {
+        "stepId": "residual_tail_input",
+        "derivation": "Consume Delta_E_corr_NN_tail_limit and finite_range_residual only after their large-r zero-limit and bounded-overlap rows are accepted in the same retained record."
+      },
+      {
+        "stepId": "color_singlet_input",
+        "derivation": "Consume color_singlet_closure only after the proton and neutron envelopes are accepted as color-singlet rows, preventing open-color fragments from entering the audit."
+      },
+      {
+        "stepId": "event_ledger_input",
+        "derivation": "Consume same_event_ledger only when energy, momentum, angular momentum, branch-interface extraction, and Coulomb separation remain in one event record."
+      },
+      {
+        "stepId": "audit_witness",
+        "derivation": "Package W_audit=(A_no_open,T_NN,K_open,B_br) with finite K_open and N_open(R) <= K_open T_NN(R)^2 as the same-record witness for the audit row."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "same_record_no_open_color_audit",
+      "same_record_branch_interface_confinement_functional_audit",
+      "N_open_R_le_K_open_T_NN_R_squared"
+    ],
+    "missingAcceptanceRows": [
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+      "K_open_finite",
+      "same_record_branch_interface_confinement_functional_audit"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_branch_interface_rows",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the residual tail comes from a different event record",
+      "color-singlet closure remains target-only",
+      "same_event_ledger does not include the branch-interface extraction",
+      "K_open is not finite in the same retained record",
+      "no_open_color_far_field is used as a prerequisite instead of a downstream row"
+    ]
+  },
+  "candidateFiniteKOpenProjectionBoundLemma": {
+    "claimLevel": "priority-only conditional finite-K_open projection-bound lemma; accepts no source rows and does not prove K_open_finite, N_open_R_le_K_open_T_NN_R_squared, same_record_no_open_color_audit, or no_open_color_far_field",
+    "lemmaId": "same_record_bounded_open_projection_implies_finite_K_open_0001",
+    "statement": "If the same retained event record supplies accepted bounded_residual_overlap, accepted Delta_E_corr_NN_tail_limit, accepted finite_range_residual, accepted color_singlet_closure, an accepted same_event_ledger, and a bounded open-color projection operator Pi_open over the same residual corridor with no element-indexed coefficient, then there is a finite K_open such that N_open(R) <= K_open T_NN(R)^2 in that record.",
+    "assumptions": [
+      "accepted_bounded_residual_overlap",
+      "accepted_Delta_E_corr_NN_tail_limit",
+      "accepted_finite_range_residual",
+      "accepted_color_singlet_closure",
+      "accepted_same_event_ledger",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure",
+      "no_element_indexed_projection_coefficient"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_record_projection_domain",
+        "derivation": "Require Pi_open, Delta E_corr_NN, T_NN, N_open, B_pn, B_pp, and the color-singlet envelopes to be evaluated in the same retained branch-interface and confinement-functional event record."
+      },
+      {
+        "stepId": "bounded_projection_operator",
+        "derivation": "Use the accepted bounded_residual_overlap row and the same-record color-singlet closure to bound ||Pi_open delta C|| by kappa_open |Delta E_corr_NN| over the open-color projection domain, with kappa_open finite and independent of A, Z, isotope, or element."
+      },
+      {
+        "stepId": "surface_norm_bound",
+        "derivation": "Integrate the squared projection bound over the same finite open-color surface measure used by N_open(R), giving N_open(R) <= Omega_open kappa_open^2 T_NN(R)^2."
+      },
+      {
+        "stepId": "define_K_open",
+        "derivation": "Set K_open=Omega_open kappa_open^2 in the same retained event record; finiteness of Omega_open and kappa_open gives K_open_finite."
+      },
+      {
+        "stepId": "downstream_audit_feed",
+        "derivation": "Feed K_open_finite and N_open_R_le_K_open_T_NN_R_squared only into the same-record audit and no-open-color far-field lemmas after the accepted rows above exist; do not use them as Fe/Ni toy tuning parameters."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "K_open_finite",
+      "N_open_R_le_K_open_T_NN_R_squared"
+    ],
+    "missingAcceptanceRows": [
+      "bounded_residual_overlap",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows"
+    ],
+    "failureModes": [
+      "Pi_open is evaluated in a different residual corridor or event record",
+      "the projection operator norm depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
+      "the open-color surface measure is not finite in the retained record",
+      "bounded_residual_overlap remains target-only",
+      "K_open_finite is used as accepted evidence before the projection-bound inputs are accepted"
+    ]
+  },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
     "notAcceptedByThisPacket": [
@@ -172,8 +308,11 @@
       "no_open_color_far_field",
       "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
+      "bounded_residual_overlap",
       "color_singlet_closure",
       "same_event_ledger",
+      "K_open_finite",
+      "N_open_R_le_K_open_T_NN_R_squared",
       "accepted_branch_interface_rows",
       "nucleon_branch_interface_ledgers",
       "finite_tail_saturation_check",
@@ -193,6 +332,7 @@
       "accepted finite_range_residual row",
       "accepted color_singlet_closure row",
       "accepted same event ledger shared with branch-interface extraction",
+      "accepted finite K_open projection-bound row",
       "same-record proof that no open-color far field remains"
     ],
     "failureModes": [

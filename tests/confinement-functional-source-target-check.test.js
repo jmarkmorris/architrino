@@ -1224,6 +1224,83 @@ test("current confinement target passes structure but blocks accepted source row
     ["accepted_branch_interface_rows", "no_open_color_far_field"],
   );
   assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma.lemmaId,
+    "finite_tail_color_singlet_event_ledger_implies_same_record_no_open_color_audit_0001",
+  );
+  assert.deepEqual(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
+      .derivedRowsIfAccepted,
+    [
+      "same_record_no_open_color_audit",
+      "same_record_branch_interface_confinement_functional_audit",
+      "N_open_R_le_K_open_T_NN_R_squared",
+    ],
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma.proofSteps.some(
+      (step) => step.stepId === "same_event_record_lock",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma.proofSteps.some(
+      (step) => step.stepId === "audit_witness",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
+      .missingAcceptanceRows.includes("K_open_finite"),
+    true,
+  );
+  assert.deepEqual(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
+      .notRequiredBeforeAcceptance,
+    ["accepted_branch_interface_rows", "no_open_color_far_field"],
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma
+      .lemmaId,
+    "same_record_bounded_open_projection_implies_finite_K_open_0001",
+  );
+  assert.deepEqual(
+    sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma
+      .derivedRowsIfAccepted,
+    ["K_open_finite", "N_open_R_le_K_open_T_NN_R_squared"],
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma.proofSteps.some(
+      (step) => step.stepId === "define_K_open",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma
+      .missingAcceptanceRows.includes("bounded_residual_overlap"),
+    true,
+  );
+  assert.deepEqual(
+    sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma
+      .notRequiredBeforeAcceptance,
+    [
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows",
+    ],
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(
+      "K_open_finite",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(
+      "N_open_R_le_K_open_T_NN_R_squared",
+    ),
+    true,
+  );
+  assert.equal(
     sameRecordNoOpenColorAuditBlocker.localEvidenceBoundary.scoreDecision,
     "no_score_increase",
   );

@@ -1903,6 +1903,28 @@ $$
 
 This is a local two-axis algebraic model: the first axis is the measured tangent-authority direction, and the second axis is a unit tangent-null direction that lifts the active margin. It answers a narrower question than the retained solver must answer. It shows that the least-norm equation is internally consistent whenever the row has scalar inputs and a nonzero margin-lift response horizon; it does not show that the Noether braid actually supplies that tangent-null direction. In the focused test row, $A_T=0.1$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$, so the normalized witness uses $\delta\mu_{\mathrm{req}}=0.085$ and $\mathbf a_{\mathrm{provider}}=[0.1,0.085]$. The evaluator passes the tangent and margin equations while keeping `accepted=false`.
 
+The next retained-solver source target is now explicit. A same-record provider row must replace the normalized two-axis basis with actual global retained acceleration vectors over the declared architrino slot order. The required vector rows are:
+
+| Required row | Required equation or data |
+| --- | --- |
+| `retained_solver_tangent_target_vector_row` | $\mathbf T=\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}})$ with `a_ansatz_vector`, `a_wake_vector`, `a_support_vector`, `surface_normal_vectors`, `tangent_projector_matrix`, and `tangent_target_vector` |
+| `active_causal_margin_gradient_vector_row` | $\mathbf G_\mu$ as the gradient of the active $\min(c_f-\|\mathbf v\|,D_s,D_t)$ factor in the same global acceleration vector space, with an active margin channel and event reference |
+| `same_record_provider_acceleration_vector_row` | $\mathbf a_{\mathrm{provider}}^\ast=\mathbf T+\mathbf n_\ast$ with provider provenance and accepted provider reference |
+| `post_provider_root_margin_row` | $m_{\mathrm{dyn}}-\Delta_T\|\mathbf P_T\mathbf a_{\mathrm{provider}}^\ast\|+\Delta_M\langle\mathbf a_{\mathrm{provider}}^\ast,\mathbf G_\mu\rangle\ge\epsilon_\mu$ |
+| `same_record_closure_rows` | Same retained-root ledger, action-closure row, wake-history reference, and path-history reference for all vector rows |
+
+The first missing object is now `same_record_retained_solver_vector_rows_for_internal_tangent_authority`, specifically `retained_solver_vector_witness_rows[*].same_record_provider_acceleration_vector_row`. This sharpens the proof burden: an algebraic witness can pass in the normalized basis, but the assigned branch-clock lock is not replaceable until the central retained solver emits these same-record vectors and the evaluator passes on those vectors.
+
+The certificate can now evaluate that next level when a candidate same-record vector row exists. The row-level evaluator consumes a global acceleration vector over the declared architrino slot order and checks the same least-norm equation on actual vectors rather than on the normalized two-axis diagnostic basis:
+
+$$
+\mathbf T=\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}}),
+\qquad
+\mathbf a_{\mathrm{provider}}^\ast=\mathbf T+\mathbf n_\ast,
+$$
+
+with $\mathbf G_\mu$ and $\mathbf P_N$ supplied by the active causal-margin row on the same retained record. A six-slot fixture can pass this vector equation with $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, and $\mathbf a_{\mathrm{provider}}^\ast=[0.1,0.085,0,0,0,0]$, but it remains non-authorizing. This separates the proof ladder into three clean levels: normalized scalar-derived algebra, same-record global-vector mathematical pass, and accepted central retained-solver evidence. Only the third level can replace the assigned branch-clock lock.
+
 The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
 
 Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.
