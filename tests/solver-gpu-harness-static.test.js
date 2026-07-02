@@ -8,11 +8,11 @@ const runtime = readFileSync(
   "utf8"
 );
 const priorityDoc = readFileSync(
-  new URL("../reference/priorities/solver/gpu-feasibility-harness.md", import.meta.url),
+  new URL("../reference/priorities/app-solver/gpu-feasibility-harness.md", import.meta.url),
   "utf8"
 );
 const solverDoc = readFileSync(
-  new URL("../reference/priorities/solver/solver.md", import.meta.url),
+  new URL("../reference/priorities/app-solver/solver.md", import.meta.url),
   "utf8"
 );
 

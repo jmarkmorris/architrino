@@ -1,6 +1,10 @@
 import * as THREE from "../../../vendor/three/three.module.js";
 import { createMarkdownRuntime } from "../../runtime/MarkdownRuntime.js";
 import { extractMarkdownSection } from "../../services/MarkdownPolicyService.js";
+import {
+  STANDALONE_APP_HOME_HREF,
+  navigateStandaloneAppHome,
+} from "../navigator/StandaloneAppHomeRuntime.js";
 import { createAnimatorDefaultCoreSpec } from "../animator/AnimatorDraftScaffoldRuntime.js";
 import { createAnimatorStructureGeometryRuntime } from "../animator/AnimatorStructureGeometryRuntime.js";
 import { createSolverAppBridgeClient } from "../../solver/app/SolverAppBridge.mjs";
@@ -106,7 +110,7 @@ const IDEAL_BRAID_DOCS = {
     markdownColumns: 1,
   },
 };
-export const IDEAL_BRAID_NAVIGATOR_HREF = "./index.html";
+export const IDEAL_BRAID_NAVIGATOR_HREF = STANDALONE_APP_HOME_HREF;
 const ORBIT_PATH_TRAIL_LAYERS = [
   {
     role: "headlamp-glow",
@@ -1501,12 +1505,7 @@ export function navigateIdealBraidHome(
   locationLike = globalThis.window?.location,
   href = IDEAL_BRAID_NAVIGATOR_HREF
 ) {
-  const resolvedHref = String(href ?? "").trim();
-  if (!resolvedHref || typeof locationLike?.assign !== "function") {
-    return false;
-  }
-  locationLike.assign(resolvedHref);
-  return true;
+  return navigateStandaloneAppHome(locationLike, href);
 }
 
 function createIdealBraidMarkdownRenderer(windowLike) {

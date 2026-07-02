@@ -147,7 +147,10 @@ For content and scene graph work, typical checks are:
 ```bash
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-textbook-md-pdf.mjs --check
 ```
+
+Use [codex-pr-branch.md](codex-pr-branch.md) for the full branch, commit, push, and PR validation set.
 
 For iOS Reader package work, typical checks are:
 

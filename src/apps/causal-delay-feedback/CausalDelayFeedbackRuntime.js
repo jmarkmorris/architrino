@@ -38,9 +38,13 @@ const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
 const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
-const FIELD_SPEED_MIN = 0.25;
-const FIELD_SPEED_MAX = 2.5;
-const DEFAULT_FIELD_SPEED_SCALE = 1;
+const FIELD_SPEED_CONTROL_MIN = 0.25;
+const FIELD_SPEED_CONTROL_MAX = 1.75;
+const DEFAULT_FIELD_SPEED_CONTROL_SCALE = 1;
+const FIELD_SPEED_BASE_MULTIPLIER = 0.98;
+const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN * FIELD_SPEED_BASE_MULTIPLIER;
+const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX * FIELD_SPEED_BASE_MULTIPLIER;
+const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE * FIELD_SPEED_BASE_MULTIPLIER;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
@@ -54,17 +58,31 @@ const LIVE_WAKE_ROOT_REFINE_STEPS = 32;
 const DEFAULT_LIVE_WAKE_SIGNAL_SPEED = 3000;
 const PATH_LINE_HIT_RADIUS = 18;
 const PATH_LINE_DRAG_FALLOFF_TIME = 0.32;
+const PATH_LINE_FAIRING_CONTROL_STRIDE = 12;
+const PATH_LINE_FAIRING_SHOULDER_FRACTION = 0.46;
+const PATH_LINE_FAIRING_TANGENT_SCALE = 0.62;
+const CENTRIPETAL_CATMULL_ROM_ALPHA = 0.5;
+const PATH_ENDPOINT_HANDLE_RADIUS = 5.5;
+const PATH_ENDPOINT_HANDLE_HIT_RADIUS = 18;
 const ELECTRINO_LABEL = Object.freeze({ r: 126, g: 219, b: 255, a: 1 });
+const LIGHT_CANVAS_COLOR_IDS = new Set(["light", "warm"]);
+const LEGEND_TEXT_ON_DARK_CANVAS = "rgba(246, 247, 255, 0.9)";
+const LEGEND_TEXT_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.88)";
+const LEGEND_BORDER_ON_DARK_CANVAS = "rgba(224, 207, 255, 0.34)";
+const LEGEND_BORDER_ON_LIGHT_CANVAS = "rgba(14, 9, 24, 0.24)";
 const CENTRAL_PAIR_INTERACTION_REPLAY_MODE = "pairInteraction";
 const BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS = "boundary_seeded_constraint_path";
 const DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS = "discrete_boundary_value_converged";
 const PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS = "physical_boundary_solver_pending";
+const PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS = "physical_boundary_value_converged";
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
-const WEAK_CONTRIBUTION_CUE_OFF = "off";
-const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
+const WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER = 8;
+const WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE = 0.36;
+const WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE = 0.56;
+const WEAK_CONTRIBUTION_CUE_MAX_DESATURATION = 0.28;
 const WAKE_VISUAL_SWITCHES = Object.freeze({
   arcWakesEnabled: "arcWakesEnabled",
   fullCircularWakesEnabled: "fullCircularWakesEnabled",
@@ -193,7 +211,6 @@ class CausalDelayFeedbackRuntime {
       options.reducedMotionEnabled ?? this.prefersReducedMotion(),
     );
     this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
-    this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
     this.isPlaying = !this.reducedMotionEnabled;
     this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
     this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
@@ -284,7 +301,6 @@ class CausalDelayFeedbackRuntime {
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
-      weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
@@ -396,7 +412,7 @@ class CausalDelayFeedbackRuntime {
       this.setReplayNowSliderValue(this.dom.nowInput.value);
     });
     this.dom.cfSpeedInput.addEventListener("input", () => {
-      this.setFieldSpeedScale(this.dom.cfSpeedInput.value);
+      this.setFieldSpeedControlScale(this.dom.cfSpeedInput.value);
     });
     this.dom.architrinoSpeedInput.addEventListener("input", () => {
       this.setArchitrinoSpeedIndex(this.dom.architrinoSpeedInput.value);
@@ -410,9 +426,6 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
-    });
-    this.dom.weakContributionCueInput.addEventListener("change", () => {
-      this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
     this.dom.canvas.addEventListener("pointermove", (event) => {
       this.handleCanvasPointerMove(event);
@@ -527,6 +540,7 @@ class CausalDelayFeedbackRuntime {
           return this.dataset;
         }
       }
+      this.preserveReleasedDraftPathGeometry(dataset, requestOptions?.replayDataset);
       this.applyReplayDataset(dataset, { loadState: "ready" });
       this.elapsedSeconds = 0;
       this.selectedItem = null;
@@ -608,6 +622,46 @@ class CausalDelayFeedbackRuntime {
 
   usesPathConstraintDraft(draftPreview) {
     return PATH_CONSTRAINT_DRAFT_REASONS.has(String(draftPreview?.reason ?? ""));
+  }
+
+  preserveReleasedDraftPathGeometry(dataset, draftDataset) {
+    if (!dataset || !draftDataset || !this.usesPathConstraintDraft(draftDataset?.draftPreview)) {
+      return;
+    }
+    if (!dataset.paths || !draftDataset.paths) {
+      return;
+    }
+    dataset.solverAcceptedPaths = cloneJson(dataset.paths);
+    dataset.history = dataset.history ?? {};
+    ARCHITRINO_KINDS.forEach((kind) => {
+      const draftPath = draftDataset.paths?.[kind];
+      if (Array.isArray(draftPath) && draftPath.length >= 2) {
+        dataset.paths[kind] = draftPath.map((point) => ({ ...point }));
+      }
+      const draftHistory = draftDataset.history?.[kind];
+      if (Array.isArray(draftHistory) && draftHistory.length > 0) {
+        dataset.history[kind] = draftHistory.map((point) => ({ ...point }));
+      }
+    });
+    this.syncDatasetFramesToPaths(dataset);
+  }
+
+  syncDatasetFramesToPaths(dataset) {
+    if (!Array.isArray(dataset?.frames) || !dataset?.paths) {
+      return;
+    }
+    dataset.frames.forEach((frame) => {
+      const frameTime = Number(frame?.t);
+      ARCHITRINO_KINDS.forEach((kind) => {
+        const path = dataset.paths?.[kind];
+        if (!Array.isArray(path) || path.length === 0) {
+          return;
+        }
+        const sampleT = Number.isFinite(frameTime) ? frameTime : Number(frame?.[kind]?.t);
+        const point = this.samplePathPoint(path, sampleT);
+        frame[kind] = point;
+      });
+    });
   }
 
   createAdaptivePathConstraintBoundaryRequestOptions(dataset, requestOptions) {
@@ -1101,6 +1155,8 @@ class CausalDelayFeedbackRuntime {
           : "";
         const isDiscreteBoundaryConverged =
           constraintSolverStatus === DISCRETE_BOUNDARY_VALUE_CONVERGED_STATUS;
+        const isPhysicalBoundaryConverged =
+          physicalBoundarySolverStatus === PHYSICAL_BOUNDARY_SOLVER_CONVERGED_STATUS;
         const isBoundarySeededConstraint =
           constraintSolverStatus === BOUNDARY_SEEDED_CONSTRAINT_PATH_STATUS;
         const effectiveBoundaryStatus =
@@ -1295,7 +1351,11 @@ class CausalDelayFeedbackRuntime {
               effectivePositionResidualStatus === "unchecked"
                 ? " Retained-position preservation evidence remains unchecked."
                 : ""
-            } This remains the finite-difference retained-knot boundary relaxation, not the full physical pair-interaction/path-constraint boundary-value solver.`
+            }${
+              isPhysicalBoundaryConverged
+                ? " This is the solver-owned discrete physical boundary-value solve for the current pair-interaction law."
+                : " This remains the finite-difference retained-knot boundary relaxation, not the full physical pair-interaction/path-constraint boundary-value solver."
+            }`
           : guidanceDetail
             ? guidanceMode === "retained_knot_boundary"
               ? " Retained path constraints used retained-knot boundary guidance; this is not yet the final physical boundary-value path solve."
@@ -1306,6 +1366,8 @@ class CausalDelayFeedbackRuntime {
         const physicalBoundarySolverHelp =
           physicalBoundarySolverStatus === PHYSICAL_BOUNDARY_SOLVER_PENDING_STATUS
             ? " The full physical pair-interaction/path-constraint boundary-value solver is still pending behind this replay."
+            : isPhysicalBoundaryConverged
+              ? " The physical pair-interaction/path-constraint boundary-value solver converged for this discrete replay."
             : "";
         return {
           state: isDiscreteBoundaryConverged
@@ -1397,6 +1459,10 @@ class CausalDelayFeedbackRuntime {
     this.updateFieldSpeedControl();
   }
 
+  setFieldSpeedControlScale(controlScale) {
+    this.setFieldSpeedScale(this.getFieldSpeedScaleForControlScale(controlScale));
+  }
+
   setArchitrinoSpeedIndex(speedIndex, { submit = false } = {}) {
     const nextIndex = this.normalizeArchitrinoSpeedIndex(speedIndex);
     const didIndexChange = nextIndex !== this.architrinoSpeedIndex;
@@ -1483,25 +1549,6 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  setWeakContributionCueMode(mode) {
-    const nextMode = this.normalizeWeakContributionCueMode(mode);
-    if (nextMode === this.weakContributionCueMode) {
-      this.updateDisplaySettingControls();
-      return;
-    }
-    this.weakContributionCueMode = nextMode;
-    this.updateDisplaySettingControls();
-    if (this.context) {
-      this.render();
-    }
-    if (this.dom?.readout) {
-      this.updateReadout();
-    }
-    if (this.dom?.settingsPanel) {
-      this.hideSettings();
-    }
-  }
-
   applyDatasetCanvasColor(dataset) {
     const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
     if (!colorId) {
@@ -1512,6 +1559,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateCanvasSwatchSelection() {
+    this.updateCanvasThemeVariables();
     if (!this.dom?.colorSwatches) {
       return;
     }
@@ -1520,18 +1568,39 @@ class CausalDelayFeedbackRuntime {
     });
   }
 
+  updateCanvasThemeVariables() {
+    if (!this.dom?.app?.style) {
+      return;
+    }
+    const canvasColor = getCanvasColorById(this.canvasColorId);
+    const usesLightCanvas = LIGHT_CANVAS_COLOR_IDS.has(canvasColor.id);
+    this.dom.app.style.setProperty("--causal-selected-canvas-color", canvasColor.color);
+    this.dom.app.style.setProperty(
+      "--causal-legend-text-color",
+      usesLightCanvas ? LEGEND_TEXT_ON_LIGHT_CANVAS : LEGEND_TEXT_ON_DARK_CANVAS,
+    );
+    this.dom.app.style.setProperty(
+      "--causal-legend-border-color",
+      usesLightCanvas ? LEGEND_BORDER_ON_LIGHT_CANVAS : LEGEND_BORDER_ON_DARK_CANVAS,
+    );
+    this.dom.app.style.setProperty("--causal-positrino-color", colorToCss(POSITRINO));
+    this.dom.app.style.setProperty("--causal-electrino-color", colorToCss(ELECTRINO));
+    this.dom.app.style.setProperty("--causal-positrino-wake-color", colorToCss(POSITRINO_WAKE));
+    this.dom.app.style.setProperty("--causal-electrino-wake-color", colorToCss(ELECTRINO_WAKE));
+  }
+
   updateSpeedControls() {
     this.updateFieldSpeedControl();
     this.updateArchitrinoSpeedControl();
   }
 
   updateDisplaySettingControls() {
-    if (this.dom?.weakContributionCueInput) {
-      this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
-    }
     if (this.dom?.visualSwitches) {
       Array.from(this.dom.visualSwitches.children).forEach((button) => {
         const switchId = button.dataset.visualSwitch;
+        if (!switchId) {
+          return;
+        }
         const isActive = this.wakeVisualSettings[switchId] === true;
         button.classList.toggle("is-active", isActive);
         button.setAttribute("aria-pressed", isActive ? "true" : "false");
@@ -1541,7 +1610,8 @@ class CausalDelayFeedbackRuntime {
 
   updateFieldSpeedControl() {
     if (this.dom?.cfSpeedInput) {
-      this.dom.cfSpeedInput.value = String(this.fieldSpeedScale);
+      const roundedControlScale = Math.round(this.getFieldSpeedControlScale(this.fieldSpeedScale) * 100) / 100;
+      this.dom.cfSpeedInput.value = String(roundedControlScale);
     }
     if (this.dom?.cfSpeedValue) {
       this.dom.cfSpeedValue.textContent = this.formatFieldSpeedScale(this.fieldSpeedScale);
@@ -1592,6 +1662,24 @@ class CausalDelayFeedbackRuntime {
     return clamp(candidate, FIELD_SPEED_MIN, FIELD_SPEED_MAX);
   }
 
+  normalizeFieldSpeedControlScale(controlScale) {
+    const numericScale = Number(controlScale);
+    const candidate = Number.isFinite(numericScale) ? numericScale : DEFAULT_FIELD_SPEED_CONTROL_SCALE;
+    return clamp(candidate, FIELD_SPEED_CONTROL_MIN, FIELD_SPEED_CONTROL_MAX);
+  }
+
+  getFieldSpeedScaleForControlScale(controlScale) {
+    return this.normalizeFieldSpeedControlScale(controlScale) * FIELD_SPEED_BASE_MULTIPLIER;
+  }
+
+  getFieldSpeedControlScale(speedScale = this.fieldSpeedScale) {
+    return clamp(
+      this.normalizeFieldSpeedScale(speedScale) / FIELD_SPEED_BASE_MULTIPLIER,
+      FIELD_SPEED_CONTROL_MIN,
+      FIELD_SPEED_CONTROL_MAX,
+    );
+  }
+
   normalizeArchitrinoSpeedIndex(speedIndex) {
     const numericIndex = Number(speedIndex);
     const candidate = Number.isFinite(numericIndex) ? Math.round(numericIndex) : DEFAULT_ARCHITRINO_SPEED_INDEX;
@@ -1600,12 +1688,6 @@ class CausalDelayFeedbackRuntime {
 
   normalizeBooleanSetting(value) {
     return value === true || value === "true" || value === "1" || value === 1;
-  }
-
-  normalizeWeakContributionCueMode(mode) {
-    return mode === WEAK_CONTRIBUTION_CUE_OFF
-      ? WEAK_CONTRIBUTION_CUE_OFF
-      : WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
   }
 
   prefersReducedMotion() {
@@ -1624,7 +1706,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   formatFieldSpeedScale(speedScale) {
-    const rounded = Math.round(this.normalizeFieldSpeedScale(speedScale) * 100) / 100;
+    const rounded = Math.round(this.getFieldSpeedControlScale(speedScale) * 100) / 100;
     return `${String(rounded).replace(/\.0+$/, "")}x`;
   }
 
@@ -1653,7 +1735,7 @@ class CausalDelayFeedbackRuntime {
     if (!receiverKind) {
       return null;
     }
-    const receiver = this.getReplayPathPoint(receiverKind, replayTime);
+    const receiver = this.getTraversalPathPoint(receiverKind, replayTime);
     const signalSpeed = this.getLiveWakeSignalSpeed();
     const emission = this.solveLiveWakeEmissionPoint(sourceKind, receiver, replayTime, signalSpeed);
     if (!emission) {
@@ -1713,7 +1795,7 @@ class CausalDelayFeedbackRuntime {
       return null;
     }
     const residualAt = (candidateTime) => {
-      const source = this.getReplayPathPoint(sourceKind, candidateTime);
+      const source = this.getTraversalPathPoint(sourceKind, candidateTime);
       return getDistance(source, receiver) - speed * Math.max(0, now - candidateTime);
     };
     let highT = now;
@@ -1722,7 +1804,7 @@ class CausalDelayFeedbackRuntime {
       return null;
     }
     if (Math.abs(highResidual) <= TIME_EPSILON) {
-      const source = this.getReplayPathPoint(sourceKind, highT);
+      const source = this.getTraversalPathPoint(sourceKind, highT);
       return { source, residual: highResidual };
     }
 
@@ -1751,7 +1833,7 @@ class CausalDelayFeedbackRuntime {
           }
         }
         const emissionT = (lowT + highT) * 0.5;
-        const source = this.getReplayPathPoint(sourceKind, emissionT);
+        const source = this.getTraversalPathPoint(sourceKind, emissionT);
         return { source, residual: residualAt(emissionT) };
       }
       previousT = candidateT;
@@ -2130,6 +2212,8 @@ class CausalDelayFeedbackRuntime {
     this.drawWakes(ctx, replayTime);
     this.drawPathTrail(ctx, "positrino", POSITRINO);
     this.drawPathTrail(ctx, "electrino", ELECTRINO);
+    this.drawForegroundWakeEmissionLines(ctx, replayTime);
+    this.drawPathEndpointHandles(ctx);
     this.drawSelection(ctx);
     this.drawLiveMarkers(ctx, replayTime);
   }
@@ -2199,7 +2283,7 @@ class CausalDelayFeedbackRuntime {
     return {
       ...basePreset,
       finalSpan: 7,
-      startSpan: 1.25,
+      startSpan: 7,
       dotRadius,
       alphaScale,
       falloffPower: 1,
@@ -2226,18 +2310,23 @@ class CausalDelayFeedbackRuntime {
     if (drawFullCircularWakes) {
       this.drawFullCircularWakes(ctx, replayTime);
     }
-    if (!drawArcWakes) {
+    if (!drawArcWakes || drawFullCircularWakes) {
       return;
     }
     const visibleWakeSeries = this.getVisibleWakeSeries(replayTime);
-    if (drawFullCircularWakes) {
-      visibleWakeSeries.forEach((link) => {
-        this.drawWakeEmissionLine(ctx, link, replayTime);
-      });
-      return;
-    }
     visibleWakeSeries.forEach((link) => {
       this.drawWakeProgression(ctx, link, replayTime);
+    });
+  }
+
+  drawForegroundWakeEmissionLines(ctx, replayTime = this.getCurrentReplayTime()) {
+    const drawArcWakes = this.wakeVisualSettings.arcWakesEnabled === true;
+    const drawFullCircularWakes = this.wakeVisualSettings.fullCircularWakesEnabled === true;
+    if (!drawArcWakes || !drawFullCircularWakes) {
+      return;
+    }
+    this.getVisibleWakeSeries(replayTime).forEach((link) => {
+      this.drawWakeEmissionLine(ctx, link, replayTime);
     });
   }
 
@@ -2323,8 +2412,8 @@ class CausalDelayFeedbackRuntime {
     const visualWeight = this.getWakeVisualWeight(link);
     const falloffWeight = Math.pow(link.weight, preset.falloffPower);
     const wakeColor = mixColor(link.color, WHITE, visualWeight.desaturation);
-    const alpha = 0.34 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale;
-    const width = preset.dotRadius * 0.9 * visualWeight.radiusScale;
+    const alpha = 0.52 * preset.alphaScale * (0.5 + 0.5 * falloffWeight) * visualWeight.alphaScale;
+    const width = preset.dotRadius * 1.18 * visualWeight.radiusScale;
     this.drawLine(
       ctx,
       [this.worldToScreen(timing.receiver), this.worldToScreen(timing.source)],
@@ -2345,9 +2434,7 @@ class CausalDelayFeedbackRuntime {
         continue;
       }
       const bandRadius = radius * progress;
-      const wakeSpan = fullCircle
-        ? 360
-        : wakePreset.startSpan + (wakePreset.finalSpan - wakePreset.startSpan) * progress;
+      const wakeSpan = fullCircle ? 360 : wakePreset.finalSpan;
       const emitterBias = 1 - progress;
       const alpha =
         ((84 + 124 * emitterBias) / 255) *
@@ -2379,6 +2466,21 @@ class CausalDelayFeedbackRuntime {
     this.drawSmoothLine(ctx, points, color, 5);
   }
 
+  drawPathEndpointHandles(ctx) {
+    ARCHITRINO_KINDS.forEach((kind) => {
+      this.getPathEndpointHandles(kind).forEach((point) => {
+        this.drawCircle(
+          ctx,
+          this.worldToScreen(point),
+          PATH_ENDPOINT_HANDLE_RADIUS,
+          withAlpha(WHITE, 0.12),
+          withAlpha(WHITE, 0.92),
+          1.5,
+        );
+      });
+    });
+  }
+
   drawSelection(ctx) {
     if (!this.selectedItem) {
       return;
@@ -2396,11 +2498,11 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawLiveMarkers(ctx, replayTime = this.getCurrentReplayTime()) {
-    this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getReplayPathPoint("positrino", replayTime), "positrino", {
+    this.drawLiveMarker(ctx, "positrino", POSITRINO, this.getTraversalPathPoint("positrino", replayTime), "positrino", {
       x: 0,
       y: -36,
     });
-    this.drawLiveMarker(ctx, "electrino", ELECTRINO, this.getReplayPathPoint("electrino", replayTime), "electrino", {
+    this.drawLiveMarker(ctx, "electrino", ELECTRINO, this.getTraversalPathPoint("electrino", replayTime), "electrino", {
       x: 0,
       y: 36,
     });
@@ -2458,11 +2560,12 @@ class CausalDelayFeedbackRuntime {
   }
 
   drawSmoothLine(ctx, points, color, width) {
-    if (points.length < 2) {
+    const splinePoints = this.getDrawableSplinePoints(points);
+    if (splinePoints.length < 2) {
       return;
     }
-    if (typeof ctx.bezierCurveTo !== "function") {
-      this.drawLine(ctx, points, color, width);
+    if (splinePoints.length === 2 || typeof ctx.bezierCurveTo !== "function") {
+      this.drawLine(ctx, splinePoints, color, width);
       return;
     }
     ctx.save();
@@ -2471,24 +2574,134 @@ class CausalDelayFeedbackRuntime {
     ctx.strokeStyle = colorToCss(color);
     ctx.lineWidth = Math.max(1, width * this.viewport.scale);
     ctx.beginPath();
-    ctx.moveTo(points[0].x, points[0].y);
-    for (let index = 0; index < points.length - 1; index += 1) {
-      const previous = points[Math.max(0, index - 1)];
-      const start = points[index];
-      const end = points[index + 1];
-      const next = points[Math.min(points.length - 1, index + 2)];
-      const controlStart = {
-        x: start.x + (end.x - previous.x) / 6,
-        y: start.y + (end.y - previous.y) / 6,
-      };
-      const controlEnd = {
-        x: end.x - (next.x - start.x) / 6,
-        y: end.y - (next.y - start.y) / 6,
-      };
-      ctx.bezierCurveTo(controlStart.x, controlStart.y, controlEnd.x, controlEnd.y, end.x, end.y);
+    ctx.moveTo(splinePoints[0].x, splinePoints[0].y);
+    for (let index = 0; index < splinePoints.length - 1; index += 1) {
+      const segment = this.getCentripetalCatmullRomBezierSegment(splinePoints, index);
+      if (!segment) {
+        continue;
+      }
+      ctx.bezierCurveTo(
+        segment.controlStart.x,
+        segment.controlStart.y,
+        segment.controlEnd.x,
+        segment.controlEnd.y,
+        segment.end.x,
+        segment.end.y,
+      );
     }
     ctx.stroke();
     ctx.restore();
+  }
+
+  getDrawableSplinePoints(points) {
+    if (!Array.isArray(points)) {
+      return [];
+    }
+    const drawablePoints = [];
+    points.forEach((point) => {
+      const x = Number(point?.x);
+      const y = Number(point?.y);
+      if (!Number.isFinite(x) || !Number.isFinite(y)) {
+        return;
+      }
+      const nextPoint = { x, y };
+      const previous = drawablePoints.at(-1);
+      if (previous && getDistance(previous, nextPoint) <= TIME_EPSILON) {
+        return;
+      }
+      drawablePoints.push(nextPoint);
+    });
+    return drawablePoints;
+  }
+
+  getCentripetalCatmullRomBezierSegment(points, index) {
+    const p0 = this.getCatmullRomSupportPoint(points, index - 1);
+    const p1 = points[index];
+    const p2 = points[index + 1];
+    const p3 = this.getCatmullRomSupportPoint(points, index + 2);
+    if (!p0 || !p1 || !p2 || !p3) {
+      return null;
+    }
+
+    const t0 = 0;
+    const t1 = t0 + this.getCentripetalCatmullRomParameterDistance(p0, p1);
+    const t2 = t1 + this.getCentripetalCatmullRomParameterDistance(p1, p2);
+    const t3 = t2 + this.getCentripetalCatmullRomParameterDistance(p2, p3);
+    const segmentSpan = t2 - t1;
+    if (!Number.isFinite(segmentSpan) || segmentSpan <= TIME_EPSILON) {
+      return null;
+    }
+
+    const tangentStart = this.getCentripetalCatmullRomTangent(p0, p1, p2, t0, t1, t2, segmentSpan);
+    const tangentEnd = this.getCentripetalCatmullRomTangent(p1, p2, p3, t1, t2, t3, segmentSpan);
+    return {
+      controlStart: {
+        x: p1.x + tangentStart.x / 3,
+        y: p1.y + tangentStart.y / 3,
+      },
+      controlEnd: {
+        x: p2.x - tangentEnd.x / 3,
+        y: p2.y - tangentEnd.y / 3,
+      },
+      end: p2,
+    };
+  }
+
+  getCatmullRomSupportPoint(points, index) {
+    if (index >= 0 && index < points.length) {
+      return points[index];
+    }
+    if (index < 0 && points.length >= 2) {
+      const first = points[0];
+      const second = points[1];
+      return {
+        x: first.x + (first.x - second.x),
+        y: first.y + (first.y - second.y),
+      };
+    }
+    if (index >= points.length && points.length >= 2) {
+      const last = points.at(-1);
+      const previous = points[points.length - 2];
+      return {
+        x: last.x + (last.x - previous.x),
+        y: last.y + (last.y - previous.y),
+      };
+    }
+    return null;
+  }
+
+  getCentripetalCatmullRomParameterDistance(left, right) {
+    return Math.pow(Math.max(getDistance(left, right), TIME_EPSILON), CENTRIPETAL_CATMULL_ROM_ALPHA);
+  }
+
+  getCentripetalCatmullRomTangent(left, center, right, leftT, centerT, rightT, segmentSpan) {
+    const leftSpan = centerT - leftT;
+    const rightSpan = rightT - centerT;
+    const fullSpan = rightT - leftT;
+    if (
+      leftSpan <= TIME_EPSILON ||
+      rightSpan <= TIME_EPSILON ||
+      fullSpan <= TIME_EPSILON ||
+      segmentSpan <= TIME_EPSILON
+    ) {
+      return { x: 0, y: 0 };
+    }
+    return {
+      x:
+        segmentSpan *
+        (
+          (center.x - left.x) / leftSpan -
+          (right.x - left.x) / fullSpan +
+          (right.x - center.x) / rightSpan
+        ),
+      y:
+        segmentSpan *
+        (
+          (center.y - left.y) / leftSpan -
+          (right.y - left.y) / fullSpan +
+          (right.y - center.y) / rightSpan
+        ),
+    };
   }
 
   drawCircle(ctx, point, radius, fill, outline = null, outlineWidth = 1) {
@@ -2537,6 +2750,9 @@ class CausalDelayFeedbackRuntime {
       if (this.dragState.type === "initial-velocity") {
         this.dragSelectedInitialVelocity(event);
       }
+      if (this.dragState.type === "history") {
+        this.dragSelectedHistoryPoint(event);
+      }
       if (this.dragState.type === "path-line") {
         this.dragSelectedPathLine(event);
       }
@@ -2562,6 +2778,9 @@ class CausalDelayFeedbackRuntime {
     this.updateReadout(hit);
     if (hit.type === "initial-velocity") {
       this.startInitialVelocityDrag(event, hit);
+    }
+    if (hit.type === "history") {
+      this.startHistoryPointDrag(event, hit);
     }
     if (hit.type === "path-line") {
       this.startPathLineDrag(event, hit);
@@ -2656,6 +2875,38 @@ class CausalDelayFeedbackRuntime {
     const world = this.screenToWorld(screen);
     this.dragState.lastWorld = world;
     if (this.applyInitialVelocityDrag(this.dragState.kind, world)) {
+      this.dragState.didEdit = true;
+      this.updateReadout();
+      this.render();
+    }
+  }
+
+  startHistoryPointDrag(event, hit) {
+    this.clearBackgroundPointers();
+    const screen = this.canvasScreenPointFromEvent(event);
+    this.dragState = {
+      type: "history",
+      kind: hit.selection.kind,
+      depth: hit.selection.depth,
+      lastWorld: this.screenToWorld(screen),
+      didEdit: false,
+    };
+    this.setPlaying(false);
+    if (typeof this.dom.canvas.setPointerCapture === "function") {
+      this.dom.canvas.setPointerCapture(event.pointerId);
+    }
+    event.preventDefault?.();
+  }
+
+  dragSelectedHistoryPoint(event) {
+    const screen = this.canvasScreenPointFromEvent(event);
+    const world = this.screenToWorld(screen);
+    const delta = {
+      x: world.x - this.dragState.lastWorld.x,
+      y: world.y - this.dragState.lastWorld.y,
+    };
+    this.dragState.lastWorld = world;
+    if (this.applyRetainedPointDrag(this.dragState.kind, this.dragState.depth, delta)) {
       this.dragState.didEdit = true;
       this.updateReadout();
       this.render();
@@ -2995,7 +3246,7 @@ class CausalDelayFeedbackRuntime {
     const pathPointSet = new Set(path);
     let didEdit = false;
     const applyDelta = (point, fallbackT = point?.t) => {
-      if (!point) {
+      if (!point || this.isPathEndpointPoint(kind, point, fallbackT)) {
         return;
       }
       const weight = this.getPathLineDragWeight(anchorT, fallbackT);
@@ -3020,11 +3271,50 @@ class CausalDelayFeedbackRuntime {
     (this.dataset?.history?.[kind] ?? []).forEach((point) => {
       applyDelta(point, point.t);
     });
+    if (didEdit) {
+      this.fairPathLineDrag(kind, anchorT);
+    }
     const startPoint = this.getHistoryStartPoint(kind);
     if (startPoint) {
       this.syncInitialConditionToHistoryStart(kind, startPoint);
     }
     return didEdit;
+  }
+
+  getPathEndpointHandles(kind) {
+    const history = this.getSortedFiniteHistory(kind);
+    if (history.length === 0) {
+      return [];
+    }
+    const start = history.find((point) => Number(point.depth) === 1) ?? history[0];
+    const endDepth = this.getMaxHistoryDepth(kind);
+    const end = history.find((point) => Number(point.depth) === endDepth) ?? history.at(-1);
+    return start === end ? [start] : [start, end];
+  }
+
+  isPathEndpointPoint(kind, point, fallbackT = point?.t) {
+    const depth = Number(point?.depth);
+    if (depth === 1 || depth === this.getMaxHistoryDepth(kind)) {
+      return true;
+    }
+    return this.isPathEndpointTime(kind, fallbackT);
+  }
+
+  isPathEndpointTime(kind, sampleT) {
+    const path = this.dataset?.paths?.[kind] ?? [];
+    if (path.length === 0) {
+      return false;
+    }
+    const time = Number(sampleT);
+    if (!Number.isFinite(time)) {
+      return false;
+    }
+    const startT = Number(path[0]?.t);
+    const endT = Number(path.at(-1)?.t);
+    return (
+      (Number.isFinite(startT) && Math.abs(time - startT) <= TIME_EPSILON) ||
+      (Number.isFinite(endT) && Math.abs(time - endT) <= TIME_EPSILON)
+    );
   }
 
   getPathLineDragWeight(anchorT, sampleT) {
@@ -3039,6 +3329,111 @@ class CausalDelayFeedbackRuntime {
     }
     const amount = 1 - normalizedDistance;
     return amount * amount * (3 - 2 * amount);
+  }
+
+  fairPathLineDrag(kind, anchorT) {
+    const path = this.dataset?.paths?.[kind];
+    if (!Array.isArray(path) || path.length < 4) {
+      return false;
+    }
+    const controls = this.getPathLineFairingControls(kind, path, anchorT);
+    if (controls.length < 3) {
+      return false;
+    }
+    path.forEach((point) => {
+      const sampleT = Number(point?.t);
+      if (!Number.isFinite(sampleT)) {
+        return;
+      }
+      const smoothPoint = this.isPathEndpointTime(kind, sampleT)
+        ? this.samplePathPoint(path, sampleT)
+        : this.sampleSmoothControlPath(controls, sampleT, PATH_LINE_FAIRING_TANGENT_SCALE);
+      point.t = sampleT;
+      point.x = smoothPoint.x;
+      point.y = smoothPoint.y;
+    });
+    this.syncPathDependentSamplesFromPath(kind);
+    return true;
+  }
+
+  getPathLineFairingControls(kind, path, anchorT) {
+    const controls = [];
+    const addControl = (point, fallbackT = point?.t) => {
+      const time = Number(fallbackT);
+      const x = Number(point?.x);
+      const y = Number(point?.y);
+      if (!Number.isFinite(time) || !Number.isFinite(x) || !Number.isFinite(y)) {
+        return;
+      }
+      const existingIndex = controls.findIndex((candidate) => Math.abs(candidate.t - time) <= TIME_EPSILON);
+      const control = { t: time, x, y };
+      if (existingIndex >= 0) {
+        controls[existingIndex] = control;
+        return;
+      }
+      controls.push(control);
+    };
+
+    const anchor = Number(anchorT);
+    const shoulder = Number.isFinite(anchor)
+      ? PATH_LINE_DRAG_FALLOFF_TIME * PATH_LINE_FAIRING_SHOULDER_FRACTION
+      : 0;
+
+    addControl(path[0]);
+    addControl(path.at(-1));
+    path.forEach((point, index) => {
+      if (index % PATH_LINE_FAIRING_CONTROL_STRIDE === 0) {
+        const time = Number(point?.t);
+        if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder) {
+          return;
+        }
+        addControl(point);
+      }
+    });
+    (this.dataset?.history?.[kind] ?? []).forEach((point) => {
+      const time = Number(point?.t);
+      const isAnchor = Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) <= TIME_EPSILON;
+      if (Number.isFinite(anchor) && Number.isFinite(time) && Math.abs(time - anchor) < shoulder && !isAnchor) {
+        return;
+      }
+      addControl(point);
+    });
+
+    if (Number.isFinite(anchor)) {
+      addControl(this.samplePathPoint(path, anchor - shoulder), anchor - shoulder);
+      addControl(this.samplePathPoint(path, anchor), anchor);
+      addControl(this.samplePathPoint(path, anchor + shoulder), anchor + shoulder);
+    }
+
+    return controls.sort((left, right) => left.t - right.t);
+  }
+
+  syncPathDependentSamplesFromPath(kind) {
+    const path = this.dataset?.paths?.[kind];
+    if (!Array.isArray(path) || path.length === 0) {
+      return;
+    }
+    const pathPointSet = new Set(path);
+    const syncPoint = (point, fallbackT = point?.t) => {
+      if (!point || pathPointSet.has(point)) {
+        return;
+      }
+      const sampleT = Number(fallbackT);
+      if (!Number.isFinite(sampleT)) {
+        return;
+      }
+      const pathPoint = this.samplePathPoint(path, sampleT);
+      point.t = sampleT;
+      point.x = pathPoint.x;
+      point.y = pathPoint.y;
+    };
+
+    (this.dataset?.frames ?? []).forEach((frame) => {
+      syncPoint(frame?.[kind], Number.isFinite(Number(frame?.[kind]?.t)) ? frame[kind].t : frame?.t);
+    });
+    (this.dataset?.history?.[kind] ?? []).forEach((point) => {
+      syncPoint(point, point.t);
+    });
   }
 
   rebuildSmoothPathFromHistory(kind) {
@@ -3092,13 +3487,17 @@ class CausalDelayFeedbackRuntime {
   }
 
   sampleSmoothHistoryPath(history, sampleT) {
+    return this.sampleSmoothControlPath(history, sampleT, RETAINED_PATH_SPLINE_TANGENT_SCALE);
+  }
+
+  sampleSmoothControlPath(controlPoints, sampleT, tangentScale) {
     const t = Number(sampleT);
-    const exactPoint = history.find((point) => Math.abs(point.t - t) <= TIME_EPSILON);
+    const exactPoint = controlPoints.find((point) => Math.abs(point.t - t) <= TIME_EPSILON);
     if (exactPoint) {
       return { t, x: exactPoint.x, y: exactPoint.y };
     }
-    const first = history[0];
-    const last = history.at(-1);
+    const first = controlPoints[0];
+    const last = controlPoints.at(-1);
     if (t <= first.t) {
       return { t, x: first.x, y: first.y };
     }
@@ -3106,17 +3505,17 @@ class CausalDelayFeedbackRuntime {
       return { t, x: last.x, y: last.y };
     }
 
-    const rightIndex = history.findIndex((point) => point.t >= t);
+    const rightIndex = controlPoints.findIndex((point) => point.t >= t);
     const leftIndex = Math.max(0, rightIndex - 1);
-    const left = history[leftIndex];
-    const right = history[rightIndex];
+    const left = controlPoints[leftIndex];
+    const right = controlPoints[rightIndex];
     const span = right.t - left.t;
     if (!Number.isFinite(span) || span <= TIME_EPSILON) {
       return { t, x: left.x, y: left.y };
     }
     const amount = clamp((t - left.t) / span, 0, 1);
-    const leftTangent = this.getSmoothHistoryPathTangent(history, leftIndex);
-    const rightTangent = this.getSmoothHistoryPathTangent(history, rightIndex);
+    const leftTangent = this.getSmoothControlPathTangent(controlPoints, leftIndex, tangentScale);
+    const rightTangent = this.getSmoothControlPathTangent(controlPoints, rightIndex, tangentScale);
     const amount2 = amount * amount;
     const amount3 = amount2 * amount;
     const h00 = 2 * amount3 - 3 * amount2 + 1;
@@ -3131,15 +3530,20 @@ class CausalDelayFeedbackRuntime {
   }
 
   getSmoothHistoryPathTangent(history, index) {
-    const previous = history[Math.max(0, index - 1)];
-    const next = history[Math.min(history.length - 1, index + 1)];
+    return this.getSmoothControlPathTangent(history, index, RETAINED_PATH_SPLINE_TANGENT_SCALE);
+  }
+
+  getSmoothControlPathTangent(controlPoints, index, tangentScale = RETAINED_PATH_SPLINE_TANGENT_SCALE) {
+    const previous = controlPoints[Math.max(0, index - 1)];
+    const next = controlPoints[Math.min(controlPoints.length - 1, index + 1)];
     const span = next.t - previous.t;
     if (!Number.isFinite(span) || span <= TIME_EPSILON) {
       return { x: 0, y: 0 };
     }
+    const scale = Number.isFinite(Number(tangentScale)) ? Number(tangentScale) : RETAINED_PATH_SPLINE_TANGENT_SCALE;
     return {
-      x: ((next.x - previous.x) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
-      y: ((next.y - previous.y) / span) * RETAINED_PATH_SPLINE_TANGENT_SCALE,
+      x: ((next.x - previous.x) / span) * scale,
+      y: ((next.y - previous.y) / span) * scale,
     };
   }
 
@@ -3155,6 +3559,37 @@ class CausalDelayFeedbackRuntime {
       point.x = smoothPoint.x;
       point.y = smoothPoint.y;
     });
+  }
+
+  samplePathPoint(path, sampleT) {
+    if (!Array.isArray(path) || path.length === 0) {
+      return { t: Number(sampleT) || 0, x: 0, y: 0 };
+    }
+    const t = Number(sampleT);
+    if (!Number.isFinite(t)) {
+      const first = path[0];
+      return { t: Number(first?.t) || 0, x: Number(first?.x) || 0, y: Number(first?.y) || 0 };
+    }
+    if (path.length === 1 || t <= Number(path[0]?.t)) {
+      return { t, x: Number(path[0]?.x) || 0, y: Number(path[0]?.y) || 0 };
+    }
+    const last = path.at(-1);
+    if (t >= Number(last?.t)) {
+      return { t, x: Number(last?.x) || 0, y: Number(last?.y) || 0 };
+    }
+    let rightIndex = path.findIndex((point) => Number(point?.t) >= t);
+    if (rightIndex <= 0) {
+      rightIndex = 1;
+    }
+    const left = path[rightIndex - 1];
+    const right = path[rightIndex] ?? last;
+    const span = Number(right?.t) - Number(left?.t);
+    const amount = span === 0 ? 0 : clamp((t - Number(left?.t)) / span, 0, 1);
+    return {
+      t,
+      x: Number(left?.x) + (Number(right?.x) - Number(left?.x)) * amount,
+      y: Number(left?.y) + (Number(right?.y) - Number(left?.y)) * amount,
+    };
   }
 
   syncInitialConditionToHistoryStart(kind, point) {
@@ -3198,6 +3633,65 @@ class CausalDelayFeedbackRuntime {
       x: left.x + (right.x - left.x) * amount,
       y: left.y + (right.y - left.y) * amount,
     };
+  }
+
+  getTraversalPathPoint(kind, t) {
+    return this.getFixedSpeedReplayPathPoint(kind, t);
+  }
+
+  getFixedSpeedReplayPathPoint(kind, t) {
+    const points = this.dataset.paths[kind] ?? [];
+    if (points.length < 2) {
+      return this.getReplayPathPoint(kind, t);
+    }
+    const first = points[0];
+    const last = points[points.length - 1];
+    const startTime = Number(first.t);
+    const endTime = Number(last.t);
+    const span = endTime - startTime;
+    if (!Number.isFinite(startTime) || !Number.isFinite(endTime) || !Number.isFinite(span) || span <= TIME_EPSILON) {
+      return this.getReplayPathPoint(kind, t);
+    }
+    const sampleTime = clamp(Number(t) || 0, startTime, endTime);
+    const segmentLengths = [];
+    let totalLength = 0;
+    for (let index = 1; index < points.length; index += 1) {
+      const segmentLength = getDistance(points[index - 1], points[index]);
+      segmentLengths.push(segmentLength);
+      if (Number.isFinite(segmentLength) && segmentLength > 0) {
+        totalLength += segmentLength;
+      }
+    }
+    if (!Number.isFinite(totalLength) || totalLength <= TIME_EPSILON) {
+      return this.getReplayPathPoint(kind, t);
+    }
+    const targetLength = totalLength * clamp((sampleTime - startTime) / span, 0, 1);
+    if (targetLength <= TIME_EPSILON) {
+      return { ...first, t: sampleTime };
+    }
+    if (targetLength >= totalLength - TIME_EPSILON) {
+      return { ...last, t: sampleTime };
+    }
+    let traveled = 0;
+    for (let index = 1; index < points.length; index += 1) {
+      const segmentLength = segmentLengths[index - 1];
+      if (!Number.isFinite(segmentLength) || segmentLength <= TIME_EPSILON) {
+        continue;
+      }
+      if (traveled + segmentLength < targetLength - TIME_EPSILON) {
+        traveled += segmentLength;
+        continue;
+      }
+      const left = points[index - 1];
+      const right = points[index];
+      const amount = clamp((targetLength - traveled) / segmentLength, 0, 1);
+      return {
+        t: sampleTime,
+        x: left.x + (right.x - left.x) * amount,
+        y: left.y + (right.y - left.y) * amount,
+      };
+    }
+    return { ...last, t: sampleTime };
   }
 
   getCurrentReplayTime() {
@@ -3411,7 +3905,7 @@ class CausalDelayFeedbackRuntime {
       spheres.push({
         id: `${kind}-isochron-${index}`,
         kind,
-        origin: this.getReplayPathPoint(kind, emissionTime),
+        origin: this.getTraversalPathPoint(kind, emissionTime),
         emissionTime,
         replayTime: now,
         age,
@@ -3603,6 +4097,10 @@ class CausalDelayFeedbackRuntime {
     const candidates = [];
     if (includePaths) {
       ARCHITRINO_KINDS.forEach((kind) => {
+        const endpointHit = this.findNearestPathEndpointHit(kind, screen);
+        if (endpointHit) {
+          candidates.push(endpointHit);
+        }
         const hit = this.findNearestPathLineHit(kind, screen);
         if (hit) {
           candidates.push(hit);
@@ -3623,8 +4121,25 @@ class CausalDelayFeedbackRuntime {
         candidates.push(this.createWakeHit(link, distance));
       });
     }
-    const nearest = candidates.sort((a, b) => a.distance - b.distance)[0];
+    const nearest = candidates.sort((a, b) => (a.sortDistance ?? a.distance) - (b.sortDistance ?? b.distance))[0];
     return nearest && nearest.distance <= nearest.hitRadius ? nearest : null;
+  }
+
+  findNearestPathEndpointHit(kind, screen) {
+    let nearest = null;
+    this.getPathEndpointHandles(kind).forEach((point) => {
+      const distance = getDistance(screen, this.worldToScreen(point));
+      if (nearest && distance >= nearest.distance) {
+        return;
+      }
+      nearest = this.createHistoryHit(point, distance);
+      nearest.hitRadius = PATH_ENDPOINT_HANDLE_HIT_RADIUS;
+      nearest.sortDistance =
+        distance <= PATH_ENDPOINT_HANDLE_HIT_RADIUS
+          ? distance - PATH_ENDPOINT_HANDLE_HIT_RADIUS - PATH_LINE_HIT_RADIUS
+          : distance;
+    });
+    return nearest;
   }
 
   findNearestPathLineHit(kind, screen) {
@@ -4315,24 +4830,16 @@ class CausalDelayFeedbackRuntime {
   getWakeVisualWeight(link) {
     const status = this.getWakeStatus(link);
     const thresholdState = this.getWakeThresholdState(link);
-    const contributionScale = clamp(this.getWakeContributionMagnitude(link) / this.getAssemblyThreshold(), 0, 1);
-    const usesWeakThresholdCue = this.weakContributionCueMode === WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
+    const contribution = this.getWakeContributionMagnitude(link);
+    const threshold = this.getAssemblyThreshold();
+    const contributionScale = clamp(contribution / threshold, 0, 1);
+    const visualThreshold = threshold * WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER;
+    const weakCueScale = clamp(contribution / visualThreshold, 0, 1);
     const thresholdAlphaScale =
-      !usesWeakThresholdCue
-        ? 1
-        : thresholdState === "below_threshold"
-          ? 0.62
-          : thresholdState === "near_threshold"
-            ? 0.82
-            : 1;
+      WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE + (1 - WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE) * weakCueScale;
     const thresholdRadiusScale =
-      !usesWeakThresholdCue
-        ? 1
-        : thresholdState === "below_threshold"
-          ? 0.78
-          : thresholdState === "near_threshold"
-            ? 0.9
-            : 1;
+      WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE + (1 - WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE) * weakCueScale;
+    const thresholdDesaturation = WEAK_CONTRIBUTION_CUE_MAX_DESATURATION * (1 - weakCueScale);
     if (status.status === "active") {
       return {
         status: status.status,
@@ -4340,7 +4847,7 @@ class CausalDelayFeedbackRuntime {
         contributionScale,
         alphaScale: thresholdAlphaScale,
         radiusScale: thresholdRadiusScale,
-        desaturation: usesWeakThresholdCue && thresholdState === "below_threshold" ? 0.18 : 0,
+        desaturation: thresholdDesaturation,
       };
     }
     const inactiveVisualTier = INACTIVE_WAKE_VISUAL_TIERS[status.status] ?? INACTIVE_WAKE_VISUAL_TIERS.rejected;

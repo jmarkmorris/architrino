@@ -6,7 +6,10 @@
     "type": "Scene-Index",
     "units": "relative",
     "layout": {
-      "type": "rings"
+      "type": "rings",
+      "centerNode": null,
+      "order": "objects",
+      "direction": "clockwise"
     },
     "wrapLabels": true,
     "textbookToc": {
@@ -48,6 +51,10 @@
       {
         "nodeId": "causal_delay_feedback",
         "scenePath": "content/scenes/archie/causal_delay_feedback.json"
+      },
+      {
+        "nodeId": "equation_mapping",
+        "scenePath": "content/scenes/archie/equation_mapping.json"
       },
       {
         "nodeId": "animator",
@@ -125,6 +132,14 @@
       "radius": 2.2,
       "color": "#8b5cf6",
       "labelTitle": "Causal Delay",
+      "labelBadge": ""
+    },
+    {
+      "id": "equation_mapping",
+      "title": "Equation Mapping",
+      "radius": 2.2,
+      "color": "#146c74",
+      "labelTitle": "Equation Mapping",
       "labelBadge": ""
     },
     {

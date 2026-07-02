@@ -15,17 +15,17 @@ The six-unit inventory has seven possible net charge sums. The table records the
 
 | Axial inventory | Net electric bookkeeping | Interpretation |
 | --- | ---: | --- |
-| $0P,6E$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
-| $1P,5E$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
-| $2P,4E$ | $-2\epsilon=-1/3e$ | down-type quark row |
-| $3P,3E$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer |
-| $4P,2E$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
-| $5P,1E$ | $+4\epsilon=+2/3e$ | up-type quark row |
-| $6P,0E$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
+| $0\epsilon_+,6\epsilon_-$ | $-6\epsilon=-1e$ | charged lepton row on a pro-braid branch |
+| $1\epsilon_+,5\epsilon_-$ | $-4\epsilon=-2/3e$ | anti-up-type charge row when paired with the corresponding antimatter geometry |
+| $2\epsilon_+,4\epsilon_-$ | $-2\epsilon=-1/3e$ | down-type quark row |
+| $3\epsilon_+,3\epsilon_-$ | $0$ | neutral weak projection or non-charged inventory candidate; not automatically a stable neutrino axial layer |
+| $4\epsilon_+,2\epsilon_-$ | $+2\epsilon=+1/3e$ | anti-down-type charge row when paired with the corresponding antimatter geometry |
+| $5\epsilon_+,1\epsilon_-$ | $+4\epsilon=+2/3e$ | up-type quark row |
+| $6\epsilon_+,0\epsilon_-$ | $+6\epsilon=+1e$ | charged antilepton row on an anti-braid branch |
 
 This table is an inventory ledger, not a particle list. A row becomes a Standard Model assembly only after the Noether braid branch, axial-frame exposure, color-sector status, handed weak channel, and null-result exclusions are all supplied.
 
-Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3P,3E$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
+Neutrinos are the exception to this inventory model. They are treated as near-photon neutral pro/anti braid pairings; balanced $3\epsilon_+,3\epsilon_-$ language in this chapter is therefore weak-interaction bookkeeping, not a stable six-site axial-layer claim. See [Neutrinos](./neutrinos.md).
 
 Note: **Mass is derived**, not a quantum number here; it comes from shielded internal causal history and medium-dressed Noether sea response. See [Particle Masses](../particle-masses.md) for the mass thesis and [Emergent Metric](../../spacetime/emergent-metric.md) for metric-level translation.
 
@@ -34,19 +34,20 @@ Note: **Mass is derived**, not a quantum number here; it comes from shielded int
 ## The Assembly Architecture
 
 ### The Fundamental Substrate
-*   **Architrino polarity unit ($\epsilon$):** Magnitude $|e/6|$ in observer-level electric bookkeeping.
+*   **Architrino polarity unit ($\epsilon$):** Magnitude $|e/6|$ in observer-level electric bookkeeping, with positive and negative polarity units denoted $\epsilon_+$ and $\epsilon_-$.
 *   **Polarity:**
-    *   **Positrino ($P$):** positive-polarity architrino, labeled $+1\epsilon$ in electric bookkeeping.
-    *   **Electrino ($E$):** negative-polarity architrino, labeled $-1\epsilon$ in electric bookkeeping.
+    *   **Positrino:** positive-polarity architrino, labeled $\epsilon_+$ in electric bookkeeping.
+    *   **Electrino:** negative-polarity architrino, labeled $\epsilon_-$ in electric bookkeeping.
 
 ### The Noether Braid
 Every fermion contains a central engine composed of nested binary pairs.
-*   **Composition:** Each binary contains 1 Positrino + 1 Electrino (Neutral).
-*   **Generation-I Noether braid (nested shell braid):** 3 nested binaries (inner, middle, outer). Total 6 architrinos (3P, 3E).
+*   **Composition:** Each binary contains one Positrino and one Electrino, giving a neutral primitive-polarity pair.
+*   **Generation-I Noether braid (nested shell braid):** 3 nested binaries (inner, middle, outer). Total 6 architrinos ($3\epsilon_+,3\epsilon_-$).
 *   **Nested-scale picture:** The three binaries should be read as a genuine radial hierarchy, not just as three items in a list. The middle binary sits inside the shielding domain of the outer binary, and the inner binary sits inside the shielding domains of both. In that sense, the higher-generation core may be viewed as what is revealed when the outer shielding tier is removed and the assembly is read further inward.
 *   **Chirality (Matter vs. Antimatter):**
     *   **Pro-Braid:** The braiding/precession of the binaries follows a "Left-Handed" (Matter) orientation.
     *   **Anti-Braid:** The braiding/precession follows a "Right-Handed" (Antimatter) orientation.
+    *   **Conjugation rule:** Matter/antimatter conjugation is carried by the whole retained branch record: pro/anti orientation, path-history rows, causal-root rows, wake-history rows, action rows, and stability rows. Positrino/Electrino polarity is charge bookkeeping, not the matter/antimatter label. In charged sectors the sector-visible polarity inventory must also map to the conjugate charge row, but that polarity map is not a constituent relabel.
 *   **Net Charge:** Always $0$.
 
 ### The Axial Layer
@@ -95,21 +96,21 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid** 
 ### Leptons
 
 **The Electron ($e^-$)**
-*   **Core:** Pro-Nested Shell Braid (3P, 3E, Neutral, Matter-chirality).
-*   **Axial Layer:** 6 Electrinos ($6E$).
+*   **Core:** Pro-Nested Shell Braid ($3\epsilon_+,3\epsilon_-$, Neutral, Matter-chirality).
+*   **Axial Layer:** 6 Electrinos ($6\epsilon_-$).
 *   **Net Charge:** $0 (\text{core}) - 6\epsilon (\text{axial}) = -6\epsilon = -1e$.
 *   **Total Count:** 12 architrinos.
 
 **The Positron ($e^+$)**
-*   **Core:** Anti-Nested Shell Braid (3P, 3E, Neutral, Antimatter-chirality).
-*   **Axial Layer:** 6 Positrinos ($6P$).
+*   **Core:** Anti-Nested Shell Braid ($3\epsilon_+,3\epsilon_-$, Neutral, Antimatter-chirality).
+*   **Axial Layer:** 6 Positrinos ($6\epsilon_+$).
 *   **Net Charge:** $0 + 6\epsilon = +1e$.
-*   **Note:** Antimatter is a geometric inversion of *both* the core braiding and the axial polarity.
+*   **Note:** The positron is not antimatter because its axial layer uses positive-polarity units. Its antimatter status belongs to the anti-braid branch record; the $6\epsilon_+$ axial layer supplies the conjugate electric-charge inventory and must be retained with the same history-bearing branch.
 
 **The Electron Neutrino ($\nu_e$)**
 *   **Geometry:** Near-planar pro/anti Noether braid pairing, close to the fully locked photon channel modeled as a coaxial contra-rotating pro/anti planar pair but not fully locked into it.
 *   **Stable Axial Layer:** None in the charged-fermion sense.
-*   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3P,3E$ weak-coupling projection.
+*   **Weak Bookkeeping:** During charged-current coupling, the exposed neutral ledger can be represented as a balanced $3\epsilon_+,3\epsilon_-$ weak-coupling projection.
 *   **Net Charge:** $0$.
 *   **Note:** Oscillation is assigned to residual internal-binary exposure in the near-photon pair, not to an ordinary six-site axial layer flipping among constituent patterns.
 
@@ -117,23 +118,23 @@ Charged Generation I leptons and quarks utilize the full **nested shell braid** 
 
 **The Up Quark ($u$)**
 *   **Core:** Pro-Nested Shell Braid.
-*   **Axial Layer:** 5 Positrinos, 1 Electrino ($5P, 1E$).
+*   **Axial Layer:** 5 Positrinos, 1 Electrino ($5\epsilon_+,1\epsilon_-$).
 *   **Net Charge:** $+5\epsilon - 1\epsilon = +4\epsilon = +2/3e$.
 
 **The Down Quark ($d$)**
 *   **Core:** Pro-Nested Shell Braid.
-*   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2P, 4E$).
+*   **Axial Layer:** 2 Positrinos, 4 Electrinos ($2\epsilon_+,4\epsilon_-$).
 *   **Net Charge:** $+2\epsilon - 4\epsilon = -2\epsilon = -1/3e$.
 
 ### Summary Table (Gen I)
 
 | Particle | Core Type | Axial Layer | Net Charge ($e$) | Total Architrinos |
 | :--- | :--- | :--- | :--- | :--- |
-| **Electron** ($e^-$) | Pro-Nested Shell Braid | 6E | -1 | 12 |
-| **Positron** ($e^+$) | Anti-Nested Shell Braid | 6P | +1 | 12 |
-| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3P,3E$ weak ledger | 0 | geometry-dependent |
-| **Up Quark** ($u$) | Pro-Nested Shell Braid | 5P, 1E | +2/3 | 12 |
-| **Down Quark** ($d$) | Pro-Nested Shell Braid | 2P, 4E | -1/3 | 12 |
+| **Electron** ($e^-$) | Pro-Nested Shell Braid | $6\epsilon_-$ | -1 | 12 |
+| **Positron** ($e^+$) | Anti-Nested Shell Braid | $6\epsilon_+$ | +1 | 12 |
+| **Neutrino** ($\nu_e$) | Near-planar pro/anti braid pair | no stable axial layer; effective $3\epsilon_+,3\epsilon_-$ weak ledger | 0 | geometry-dependent |
+| **Up Quark** ($u$) | Pro-Nested Shell Braid | $5\epsilon_+,1\epsilon_-$ | +2/3 | 12 |
+| **Down Quark** ($d$) | Pro-Nested Shell Braid | $2\epsilon_+,4\epsilon_-$ | -1/3 | 12 |
 
 ---
 
@@ -143,7 +144,7 @@ Standard Model quantum numbers are observer-level bookkeeping rows extracted fro
 
 | Observer quantum-number row | $\mathbb{A}\mathbb{A}\mathbb{A}$ ledger source | Reaction use |
 | --- | --- | --- |
-| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved $P/E$ routing and axial-layer exposure explain the before/after charge. |
+| Electric charge $Q$ | Signed six-unit polarity inventory, with $\epsilon=|e|/6$ and any shielding/exposure state declared. | Charge-changing notation is allowed only after conserved Positrino/Electrino routing and axial-layer exposure explain the before/after charge. |
 | Weak isospin $T_3$ | Exposed weak-coupling triad selected from the axial frame or, for neutrinos, from the near-photon neutral weak projection. | Charged weak reactions change the exposed triad payload while preserving primitive polarity inventory. |
 | Hypercharge $Y$ | Complementary polar-site bookkeeping plus core-offset and weak-sector exposure record. | The relation $Q=T_3+Y/2$ is a recovery target for the same assembly record, not an independent charge assignment. |
 | Color | Axis exceptionality of the Noether braid plus axial-layer pattern in quark rows. | Strong reactions must preserve color-singlet closure for observed hadrons while allowing axis reconfiguration through effective gluon channels. |
@@ -201,30 +202,30 @@ Once $\mathcal{E}_{\mathrm{WCT}}$ selects an exposed triad with positive margin,
 ### Mapping the Doublets
 
 **The Lepton Doublet ($\nu_e, e^-_L$)**
-*   **Base (Shielded):** 3 Electrinos ($3E$).
-*   **Neutrino ($\nu_e$):** Effective exposed neutral ledger: Shielded ($3E$) + Active ($3P$).
-    *   Net: $3E, 3P$ (neutral weak projection, not a stable axial layer).
+*   **Base (Shielded):** 3 Electrinos ($3\epsilon_-$).
+*   **Neutrino ($\nu_e$):** Effective exposed neutral ledger: Shielded ($3\epsilon_-$) + Active ($3\epsilon_+$).
+    *   Net: $3\epsilon_-,3\epsilon_+$ (neutral weak projection, not a stable axial layer).
     *   State: weak-coupling triad is positive $\to T_3 = +1/2$.
-*   **Electron ($e^-_L$):** Shielded ($3E$) + Active ($3E$).
-    *   Net: $6E$ (Charge -1).
+*   **Electron ($e^-_L$):** Shielded ($3\epsilon_-$) + Active ($3\epsilon_-$).
+    *   Net: $6\epsilon_-$ (Charge -1).
     *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
-*   **The Transformation:** The $W^-$ boson is the packet that removes $3P$ and replaces them with $3E$.
+*   **The Transformation:** The $W^-$ boson is the packet that removes three positive-polarity units and replaces them with three negative-polarity units.
 
 **The Quark Doublet ($u_L, d_L$)**
-*   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2P, 1E$).
-*   **Up Quark ($u_L$):** Shielded ($2P, 1E$) + Active ($3P$).
-    *   Net: $5P, 1E$ (Charge +2/3).
+*   **Base (Shielded):** 2 Positrinos, 1 Electrino ($2\epsilon_+,1\epsilon_-$).
+*   **Up Quark ($u_L$):** Shielded ($2\epsilon_+,1\epsilon_-$) + Active ($3\epsilon_+$).
+    *   Net: $5\epsilon_+,1\epsilon_-$ (Charge +2/3).
     *   State: weak-coupling triad is positive $\to T_3 = +1/2$.
-*   **Down Quark ($d_L$):** Shielded ($2P, 1E$) + Active ($3E$).
-    *   Net: $2P, 4E$ (Charge -1/3).
+*   **Down Quark ($d_L$):** Shielded ($2\epsilon_+,1\epsilon_-$) + Active ($3\epsilon_-$).
+    *   Net: $2\epsilon_+,4\epsilon_-$ (Charge -1/3).
     *   State: weak-coupling triad is negative $\to T_3 = -1/2$.
 
 ### Gell-Mann–Nishijima consistency check
 Using a single symbol $Y$ for hypercharge, $Q = T_3 + Y/2$:
 
 **Leptons ($Y=-1$):**
-*   $\nu_e$: $T_3 (+1/2) + Y/2 (-1/2) = 0$. (Matches the effective neutral weak ledger: $3P3E = 0$.)
-*   $e^-$: $T_3 (-1/2) + Y/2 (-1/2) = -1$. (Matches geometry: 6E = -1).
+*   $\nu_e$: $T_3 (+1/2) + Y/2 (-1/2) = 0$. (Matches the effective neutral weak ledger: $3\epsilon_+ + 3\epsilon_- = 0$.)
+*   $e^-$: $T_3 (-1/2) + Y/2 (-1/2) = -1$. (Matches geometry: $6\epsilon_-=-1e$).
 
 **Quarks ($Y=+1/3$):**
 *   $u$: $T_3 (+1/2) + Y/2 (+1/6) = +2/3$.
@@ -276,8 +277,8 @@ In the Standard Model, quarks carry one of three color labels, while leptons are
 Use the ordered-frame axes $(H,M,L)$.
 
 - **Charged leptons:** the three axes remain equivalent, so there is no distinguished axis and no color degree of freedom. Neutrinos are also colorless, but by the near-photon neutral-pair route rather than by a stable charged-fermion axial layer.
-- **Up-type quarks:** the six-site axial count $5P,1E$ forces one mixed axis $P^{m}$ against two $P^+$ axes, so color is the choice of which axis carries the mixed pattern.
-- **Down-type quarks:** the six-site axial count $2P,4E$ admits two allowed families, $(P^+,P^-,P^-)$ and $(P^-,P^{m},P^{m})$, but in both cases color is again the choice of exceptional axis.
+- **Up-type quarks:** the six-site axial count $5\epsilon_+,1\epsilon_-$ forces one mixed polarity dyad against two positive-polarity dyads, so color is the choice of which axis carries the mixed pattern.
+- **Down-type quarks:** the six-site axial count $2\epsilon_+,4\epsilon_-$ admits two allowed polarity-dyad families, two negative-polarity dyads plus one positive-polarity dyad, or one negative-polarity dyad plus two mixed dyads. In both cases color is again the choice of exceptional axis.
 
 With the usual naming convention,
 $$
@@ -350,11 +351,11 @@ This is not yet a derivation of local gauge dynamics. The remaining closure targ
 
 | Field | SU(3) | SU(2) | $Y$ | $Q = T_3 + Y/2$ | Geometric handle |
 | --- | --- | --- | --- | --- | --- |
-| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad P- or E-dominant on Noether braid; axis exceptionality sets color |
-| $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry 5P/1E fixes $Q$ |
-| $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry 2P/4E |
+| $q_L = (u_L, d_L)$ | 3 | 2 | +1/3 | $(+2/3, -1/3)$ | weak-coupling triad is positive- or negative-polarity dominant on Noether braid; axis exceptionality sets color |
+| $u_R$ | 3 | 1 | +4/3 | +2/3 | weak-coupling triad hidden; asymmetry $5\epsilon_+,1\epsilon_-$ fixes $Q$ |
+| $d_R$ | 3 | 1 | -2/3 | -1/3 | weak-coupling triad hidden; asymmetry $2\epsilon_+,4\epsilon_-$ |
 | $\ell_L = (\nu_L, e_L)$ | 1 | 2 | -1 | $(0, -1)$ | neutrino uses effective near-photon weak ledger; electron uses axial-layer weak-coupling triad; both colorless |
-| $e_R$ | 1 | 1 | -2 | -1 | weak-coupling triad hidden; axial layer 6E |
+| $e_R$ | 1 | 1 | -2 | -1 | weak-coupling triad hidden; axial layer $6\epsilon_-$ |
 | (optional) $\nu_R$ | 1 | 1 | 0 | 0 | Not present in the minimal architecture; would require a sterile near-photon singlet branch |
 
 ### Gauge boson summary
@@ -371,11 +372,11 @@ Hypercharge is set by the net charge on the **Shielded Triad** (three hidden pol
 
 | Field | Shielded triad charge (e units) | $Y$ from shielded charge | SM $Y$ |
 | --- | --- | --- | --- |
-| $q_L = (u_L,d_L)$ | $+1/6$ (2P,1E) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
-| $u_R$ | $+2/3$ (axial layer 5P1E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
-| $d_R$ | $-1/3$ (axial layer 2P4E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
-| $\ell_L = (\nu_L,e_L)$ | $-1/2$ (3E) | $2 \times (-1/2) = -1$ | $-1$ |
-| $e_R$ | $-1$ (axial layer 6E, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
+| $q_L = (u_L,d_L)$ | $+1/6$ ($2\epsilon_+,1\epsilon_-$) | $2 \times (+1/6) = +1/3$ | $+1/3$ |
+| $u_R$ | $+2/3$ (axial layer $5\epsilon_+,1\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=+4/3$ | $+4/3$ |
+| $d_R$ | $-1/3$ (axial layer $2\epsilon_+,4\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2/3$ | $-2/3$ |
+| $\ell_L = (\nu_L,e_L)$ | $-1/2$ ($3\epsilon_-$) | $2 \times (-1/2) = -1$ | $-1$ |
+| $e_R$ | $-1$ (axial layer $6\epsilon_-$, shielded=visible here) | $T_3=0 \Rightarrow Y=2Q=-2$ | $-2$ |
 | (optional) $\nu_R$ | none in the minimal near-photon architecture | $Y=0$ only if introduced as a sterile singlet | (not in SM) |
 
 Notes: the shielded charge is common within a doublet; for the neutrino branch this is effective weak bookkeeping rather than a bound axial inventory. Right-handed singlets set $Y$ via $Q$ with $T_3=0$.
@@ -720,24 +721,24 @@ The explicit shared fitting packet lives in [Particle Masses](../particle-masses
 ### Generation II (Muon, Charm, Strange)
 *   **Architecture:** Outer shielding coherence depleted.
 *   **Core readout:** **Bi-binary shielding branch** (Inner, Middle coherently support the branch).
-    *   Composition: 2P, 2E (4 architrinos).
+    *   Composition: $2\epsilon_+,2\epsilon_-$ (4 architrinos).
 *   **Axial Layer:** 6 axial architrinos (unchanged).
 *   **Physics:** Without coherent outer shielding support, the high-energy inner binaries are more exposed to the Noether sea, increasing the externally exposed response of the internal causal ledger. The H/M/L axial frame remains defined during the branch lifetime, so the generation change affects mass response and lifetime without changing the gauge representation.
 *   **Example: The Muon ($\mu^-$)**
     *   Core: Pro-Bi-Binary (4 architrinos).
-    *   Axial Layer: 6E.
+    *   Axial Layer: $6\epsilon_-$.
     *   Total Count: 10 architrinos.
 
 ### Generation III (Tau, Top, Bottom)
 *   **Architecture:** Outer and middle shielding coherence depleted.
 *   **Core readout:** **Uni-binary shielding branch** (Inner coherently supports the branch).
-    *   Composition: 1P, 1E (2 architrinos).
+    *   Composition: $1\epsilon_+,1\epsilon_-$ (2 architrinos).
     *   *Note:* This is the bare high-energy engine, extremely unstable/reactive.
 *   **Axial Layer:** 6 axial architrinos (unchanged).
 *   **Physics:** Maximal exposure of the maximum-curvature regime. Highest mass. Shortest lifetime. In the nested shielding picture, this is the innermost engine with essentially no outer energy screen remaining, while the metastable axial dyads still carry charge, color, and weak-coupling bookkeeping until dissociation.
 *   **Example: The Top Quark ($t$)**
     *   Core: Pro-Uni-Binary (2 architrinos).
-    *   Axial Layer: 5P, 1E.
+    *   Axial Layer: $5\epsilon_+,1\epsilon_-$.
     *   Total Count: 8 architrinos.
 
 ### Core Depletion, Axial Vortices, and Lifetime (plain view)
@@ -760,17 +761,17 @@ Baryons are bound states of 3 quarks held together by shared flux/gluon planar a
 
 *   **Proton ($uud$):**
     *   3 Pro-Braids (Gen I).
-    *   Axial layers: $(5P,1E) + (5P,1E) + (2P,4E)$.
-    *   Total axial P: $5+5+2 = 12$.
-    *   Total axial E: $1+1+4 = 6$.
+    *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
+    *   Total positive-polarity units: $5+5+2 = 12$.
+    *   Total negative-polarity units: $1+1+4 = 6$.
     *   Net: $+6\epsilon = +1e$.
     *   Total Architrinos: $3 \times 6 \text{ (Cores)} + 18 \text{ (Axial)} = 36$.
 
 *   **Neutron ($udd$):**
     *   3 Pro-Braids (Gen I).
-    *   Axial layers: $(5P,1E) + (2P,4E) + (2P,4E)$.
-    *   Total axial P: $5+2+2 = 9$.
-    *   Total axial E: $1+4+4 = 9$.
+    *   Axial layers: $(5\epsilon_+,1\epsilon_-) + (2\epsilon_+,4\epsilon_-) + (2\epsilon_+,4\epsilon_-)$.
+    *   Total positive-polarity units: $5+2+2 = 9$.
+    *   Total negative-polarity units: $1+4+4 = 9$.
     *   Net: $0$.
     *   Total Architrinos: 36.
 
@@ -787,8 +788,8 @@ This table consolidates the mapping between Abstract Standard Model Quantum Numb
 
 | Quantum Number | Symbol | Standard Model Definition | Architrino Geometric Definition |
 | :--- | :---: | :--- | :--- |
-| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \sum P - \sum E$; in the axial-layer realization this is the net axial count. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
-| **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = P-dominant, -1/2 = E-dominant). |
+| **Electric Charge** | $Q$ | Coupling strength to the Photon ($\gamma$). | For charged fermions: net signed count of the protected six-unit polarity inventory, $Q = \epsilon(N_+ - N_-)$; in the axial-layer realization this is the net axial count. For neutrinos: neutral pro/anti near-photon cancellation with an effective weak ledger. |
+| **Weak Isospin** | $T_3$ | Coupling to $W^\pm$ bosons; transforms doublets. | **Polarity of the weak-coupling triad.** The net charge state of the 3 exposed polar sites. (+1/2 = positive-polarity dominant, -1/2 = negative-polarity dominant). |
 | **Weak Hypercharge** | $Y$ | $Y = 2(Q - T_3)$. | **Charge of the Shielded Triad.** The net charge of the 3 hidden polar sites plus any core offset. |
 | **Color Charge** | $C$ | Strong Force charge (Red, Green, Blue). | **Axis exceptionality.** The ordered-basis choice $|q_H\rangle$, $|q_M\rangle$, or $|q_L\rangle$ for which core axis is exceptional relative to the other two. |
 | **Spin** | $s$, $\mathbf{S}$; $\mathbf{J}$ for total angular momentum | Intrinsic angular-momentum representation. For a spin-$\tfrac{1}{2}$ fermion, $s=\tfrac{1}{2}$, $\mathbf{S}^2=s(s+1)\hbar^2$, and a chosen-axis projection is $m_s\hbar=\pm\tfrac{1}{2}\hbar$. | **Ordered-frame spinor topology.** The nested shell braid is modeled as an ordered non-coplanar frame whose internal phase changes sign under a $2\pi$ rotation and closes only after $4\pi$. Fermion spin-$\tfrac{1}{2}$ is therefore a closure target of the $SU(2)\to SO(3)$ double-cover map, not merely a literal mechanical orbit. |
@@ -855,7 +856,7 @@ The weak-sector handoff now uses one shared exposure problem. The weak-coupling 
 - CKM and PMNS closure must use the same exposed domain when defining weak-basis states,
 - weak-reaction provenance must record how the charged corridor routes the triad payload and whether final-state Noether braid provenance is supplied by the corridor or by the local Noether sea.
 
-The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3E\to3P$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
+The first concrete test case is the $d\to u$ beta-reaction exposure operator in [Weak-Mixing CKM](../../philosophy-history/theory-bridges/weak-mixing-ckm.md). It uses the same weak-coupling-triad domain to gate left-handed docking, apply the $3\epsilon_-\to3\epsilon_+$ active-triad change, attach the $V_{ud}$ overlap factor, and hand the opposite $W^-$ transaction to the reaction ledger.
 
 This does not make the weak derivation complete. It fixes the integration boundary: if those three tasks require different definitions of the weak-coupling triad, the weak-sector architecture has not closed.
 

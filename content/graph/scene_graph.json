@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 578,
-      "edges": 1338,
-      "scenes": 376,
+      "nodes": 583,
+      "edges": 1343,
+      "scenes": 379,
       "markdownIndexes": 0,
-      "markdownDocs": 189,
+      "markdownDocs": 191,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2405,6 +2405,24 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json",
+      "nodeType": "scene"
+    },
+    {
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2561,6 +2579,12 @@
       "nodeType": "markdown_doc"
     },
     {
+      "id": "content/markdown/aaa/archie/legal-terms.md",
+      "name": "Legal Terms",
+      "path": "content/markdown/aaa/archie/legal-terms.md",
+      "nodeType": "markdown_doc"
+    },
+    {
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
       "name": "Licenses & Attributions",
       "path": "content/markdown/aaa/archie/licenses-attributions.md",
@@ -2630,6 +2654,12 @@
       "id": "content/markdown/aaa/archie/ui-guidelines.md",
       "name": "UI Guidelines",
       "path": "content/markdown/aaa/archie/ui-guidelines.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/values.md",
+      "name": "Values",
+      "path": "content/markdown/aaa/archie/values.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3793,6 +3823,15 @@
       "implicit": false
     },
     {
+      "nodeId": "scene:content/scenes/archie/equation_mapping.json",
+      "nodeType": "scene",
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json",
+      "searchTarget": "content/scenes/archie/equation_mapping.json",
+      "implicit": false
+    },
+    {
       "nodeId": "scene:content/scenes/archie/github_presence_and_community.json",
       "nodeType": "scene",
       "id": "archie__github_presence_and_community",
@@ -3826,6 +3865,15 @@
       "name": "Ideal Noether Braid: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/legal_terms.json",
+      "nodeType": "scene",
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json",
+      "searchTarget": "content/scenes/archie/legal_terms.json",
       "implicit": false
     },
     {
@@ -3979,6 +4027,15 @@
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
       "searchTarget": "content/scenes/archie/user_interface.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/values.json",
+      "nodeType": "scene",
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json",
+      "searchTarget": "content/scenes/archie/values.json",
       "implicit": false
     },
     {
@@ -7159,6 +7216,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/legal-terms.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/legal-terms.md",
+      "name": "Legal Terms",
+      "path": "content/markdown/aaa/archie/legal-terms.md",
+      "searchTarget": "content/markdown/aaa/archie/legal-terms.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
@@ -7264,6 +7330,15 @@
       "name": "UI Guidelines",
       "path": "content/markdown/aaa/archie/ui-guidelines.md",
       "searchTarget": "content/markdown/aaa/archie/ui-guidelines.md",
+      "implicit": false
+    },
+    {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/values.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/values.md",
+      "name": "Values",
+      "path": "content/markdown/aaa/archie/values.md",
+      "searchTarget": "content/markdown/aaa/archie/values.md",
       "implicit": false
     },
     {
@@ -8749,7 +8824,7 @@
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8763,7 +8838,7 @@
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8771,6 +8846,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/equation_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -9061,10 +9143,17 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/legal_terms.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -9078,14 +9167,21 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[7]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/values.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -13526,6 +13622,13 @@
       "field": "scene.source.path"
     },
     {
+      "from": "scene:content/scenes/archie/legal_terms.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/legal-terms.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/legal_terms.json",
+      "field": "scene.source.path"
+    },
+    {
       "from": "scene:content/scenes/archie/licenses_attributions.json",
       "to": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "edgeType": "markdown_doc",
@@ -13614,6 +13717,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/ui-guidelines.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/ui_guidelines.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/values.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/values.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/values.json",
       "field": "scene.source.path"
     },
     {

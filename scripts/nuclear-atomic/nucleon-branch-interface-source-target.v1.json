@@ -1,0 +1,315 @@
+{
+  "schema": "aaa-nuclear-atomic-nucleon-branch-interface-source-target/v1",
+  "claimLevel": "durable branch-interface source target for the Fe/Ni cusp toy sweep; proton, neutron, and same-record conservation source-acquisition rows accepted, top-level rows still target-only and not accepted nuclear-binding recovery",
+  "status": "target_required",
+  "sourceIdentity": {
+    "sourceObjectId": "nucleon_branch_interface_source_target_0001",
+    "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+    "consumer": "scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs",
+    "acceptedPromotionBlocker": "missing_accepted_nucleon_branch_interface_ledgers"
+  },
+  "acceptanceCheck": {
+    "script": "scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs",
+    "summaryCommand": "node scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs --summary --pretty",
+    "requiredAcceptedCommand": "node scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs --summary --require-accepted",
+    "currentStatus": "missing_accepted_branch_interface_rows",
+    "currentAlgebraicPass": true,
+    "currentSourceAcquisitionPass": false,
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "firstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
+    "firstMissingAcceptedSourceRow": "no_open_color_far_field"
+  },
+  "sourceAcquisitionTargets": {
+    "accepted_proton_branch_interface_ledger": {
+      "id": "accepted_proton_branch_interface_ledger_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted proton branch-interface ledger with retained local orientation rows, closed-corridor sharing count, branch exposure, same-record energy-momentum-angular-momentum accounting, and no open-color far-field check",
+      "requiredLedgerComponents": [
+        "retained_orientation_rows",
+        "closed_corridor_sharing_count",
+        "branch_exposure_row",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json"
+    },
+    "accepted_neutron_branch_interface_ledger": {
+      "id": "accepted_neutron_branch_interface_ledger_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted neutron branch-interface ledger with retained local orientation rows, closed-corridor sharing count, branch exposure, same-record energy-momentum-angular-momentum accounting, and no open-color far-field check",
+      "requiredLedgerComponents": [
+        "retained_orientation_rows",
+        "closed_corridor_sharing_count",
+        "branch_exposure_row",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction",
+      "sourceTargetPath": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json"
+    },
+    "same_record_energy_momentum_angular_momentum_ledger": {
+      "id": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "one accepted same-record ledger that carries p+n and p+p branch-interface rows, energy, momentum, angular momentum, branch exposure, and Coulomb separation together",
+      "requiredLedgerComponents": [
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "coulomb_separation_row"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json"
+    },
+    "no_open_color_far_field": {
+      "id": "no_open_color_far_field_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_same_record_no_open_color_audit",
+      "requiredScope": "accepted no-open-color far-field row shared with the confinement-functional target so the branch-interface corridor residual does not leave an asymptotic color field",
+      "requiredLedgerComponents": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
+      "sourceTargetPath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json"
+    }
+  },
+  "acceptedSourceRowProofTargets": {
+    "no_open_color_far_field": {
+      "id": "no_open_color_far_field_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "requiredSameRecordRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "requiredClosureRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "requiredLimitStatements": [
+        "lim_R_to_infty_N_open_R_eq_0",
+        "N_open_R_le_K_open_T_NN_R_squared",
+        "lim_R_to_infty_T_NN_R_eq_0"
+      ],
+      "requiredSufficientConditionRows": [
+        "Delta_E_corr_NN_tail_limit",
+        "bounded_residual_overlap",
+        "large_r_zero_limit",
+        "K_open_finite"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "candidate_extracted",
+        "sample_level_finite_tail",
+        "target_only_no_open_color"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/brainstorming.md#branch-interface-aaa-capture"
+    },
+    "nucleon_branch_interface_ledgers": {
+      "id": "nucleon_branch_interface_ledgers_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "requiredSameRecordRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "requiredClosureRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "requiredLimitStatements": [
+        "lim_R_to_infty_N_open_R_eq_0",
+        "N_open_R_le_K_open_T_NN_R_squared",
+        "lim_R_to_infty_T_NN_R_eq_0"
+      ],
+      "requiredInequalities": [
+        "W_pn > W_pp",
+        "M_pn < M_pp"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "candidate_extracted",
+        "target_only_no_open_color"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#accepted-branch-interface-ledger-proof-target"
+    }
+  },
+  "rows": {
+    "nucleon_branch_interface_ledgers": {
+      "id": "nucleon_branch_interface_ledgers_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "requiredAcceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "acceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
+    },
+    "pn_orientation_count": {
+      "id": "pn_orientation_count_candidate_0001",
+      "status": "candidate_extracted",
+      "channel": "p+n",
+      "N_share": 4,
+      "N_ret": 4,
+      "sigma_orient": 1,
+      "P_c": 1,
+      "W_c": 1,
+      "M_c": 0,
+      "requiredAcceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "acceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "sourceExpression": "B_pn_int_0=(chi_p,chi_n,4/4,0,0,0,0,L_EpJ_pn_bal)",
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+    },
+    "pp_orientation_count": {
+      "id": "pp_orientation_count_candidate_0001",
+      "status": "candidate_extracted",
+      "channel": "p+p",
+      "N_share": 1,
+      "N_ret": 4,
+      "sigma_orient": 0.25,
+      "P_c": 1,
+      "W_c": 0.25,
+      "M_c": 0.75,
+      "requiredAcceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "acceptedSourceRows": [
+        "accepted_proton_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "sourceExpression": "B_pp_int_0=(chi_p,chi_p,1/4,0,0,0,0,L_EpJ_pp_same)",
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+    },
+    "same_record_energy_momentum_angular_momentum_ledger": {
+      "id": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
+      "status": "accepted",
+      "requiredScope": "one accepted record that carries the p+n and p+p branch-interface rows, energy, momentum, angular momentum, branch exposure, Coulomb separation, and no-open-color far-field check together",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md"
+    }
+  },
+  "toyBindings": {
+    "coefficients": {
+      "pnCorridorPairReward": "pn_orientation_count.W_c plus confinement-functional scale",
+      "pnPairMismatchCost": "pn_orientation_count.M_c",
+      "ppCorridorPairReward": "pp_orientation_count.W_c plus confinement-functional scale",
+      "ppPairMismatchCost": "pp_orientation_count.M_c",
+      "alphaCoul": "same-record branch-interface ledger with separated p+p Coulomb row",
+      "dSat": "nucleon_branch_interface_ledgers plus confinement-functional finite-capacity row",
+      "maxDegree": "nucleon_branch_interface_ledgers plus confinement-functional finite-capacity row"
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": "requires accepted nucleon_branch_interface_ledgers before promotion",
+      "finite_tail_saturation_check": "requires accepted branch-interface corridor capacity plus accepted confinement functional before promotion"
+    }
+  },
+  "toyBindingRows": {
+    "coefficients": {
+      "alphaCorr": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "alphaCoul": [
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "alphaPair": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "alphaPack": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "dSat": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "maxDegree": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "pnCorridorPairReward": [
+        "pn_orientation_count"
+      ],
+      "pnPairMismatchCost": [
+        "pn_orientation_count",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "ppCorridorPairReward": [
+        "pp_orientation_count"
+      ],
+      "ppPairMismatchCost": [
+        "pp_orientation_count",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "ppCoulombCost": [
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ]
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": [
+        "nucleon_branch_interface_ledgers"
+      ],
+      "finite_tail_saturation_check": [
+        "nucleon_branch_interface_ledgers"
+      ]
+    }
+  },
+  "failClosedRows": {
+    "deuteron_unbound": "p+n candidate row must not lose the intermediate attractive window under accepted rows",
+    "diproton_overbound": "p+p candidate row must remain unbound after branch-interface mismatch and Coulomb rows are included",
+    "hidden_fit": "branch-interface counts cannot be retuned by A, Z, or element",
+    "promotion_ready": "blocked until every row listed in requiredRows is accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

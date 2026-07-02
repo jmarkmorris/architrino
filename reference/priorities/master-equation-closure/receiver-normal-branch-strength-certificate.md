@@ -405,7 +405,7 @@ fields, projection or normalization identity, and consumer checksum before
 aggregation erases branch identity.
 
 The executable H39 branch-provider audit sharpens this boundary in
-[Branch Provider Evidence Report](../solver/branch-provider-evidence-report.md#receiver-normal-first-derivative-readout):
+[Branch Provider Evidence Report](../app-solver/branch-provider-evidence-report.md#receiver-normal-first-derivative-readout):
 the target names five shared source cells, 15 terminal rows, and 30 `P_-` /
 `P_+` branch rows, but the manifest emits zero accepted provider-object branch
 intervals and no same-record $D_s$, $D_t$, $D_vD_s$, $D_vD_t$, or

@@ -1,0 +1,119 @@
+{
+  "family": "noether-braid-crossing-wake-sheets",
+  "source": "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-sheets-master-2560x1440.png",
+  "selectedFrom": "reference/design/banners/working/noether-braid-path-wake-candidates/crossing-wake-sheets-2560x1440.png",
+  "generated": [
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-youtube-channel-banner-2560x1440.png",
+      "platform": "youtube",
+      "role": "channel-banner",
+      "width": 2560,
+      "height": 1440,
+      "focusY": 0.5
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-discord-server-banner-960x540.png",
+      "platform": "discord",
+      "role": "server-banner",
+      "width": 960,
+      "height": 540,
+      "focusY": 0.5
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-linkedin-profile-cover-1584x396.png",
+      "platform": "linkedin",
+      "role": "profile-cover",
+      "width": 1584,
+      "height": 396,
+      "focusY": 0.43
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-linkedin-company-cover-1128x191.png",
+      "platform": "linkedin",
+      "role": "company-cover",
+      "width": 1128,
+      "height": 191,
+      "focusY": 0.4
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-small-1920x128.png",
+      "platform": "reddit",
+      "role": "community-banner-small",
+      "width": 1920,
+      "height": 128,
+      "focusY": 0.38
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-medium-1920x256.png",
+      "platform": "reddit",
+      "role": "community-banner-medium",
+      "width": 1920,
+      "height": 256,
+      "focusY": 0.39
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-large-1920x384.png",
+      "platform": "reddit",
+      "role": "community-banner-large",
+      "width": 1920,
+      "height": 384,
+      "focusY": 0.4
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-x-profile-header-1500x500.png",
+      "platform": "x",
+      "role": "profile-header",
+      "width": 1500,
+      "height": 500,
+      "focusY": 0.43
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-bluesky-profile-banner-1500x500.png",
+      "platform": "bluesky",
+      "role": "profile-banner",
+      "width": 1500,
+      "height": 500,
+      "focusY": 0.43
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-mastodon-profile-header-1500x500.png",
+      "platform": "mastodon",
+      "role": "profile-header",
+      "width": 1500,
+      "height": 500,
+      "focusY": 0.43
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-facebook-page-cover-1640x924.png",
+      "platform": "facebook",
+      "role": "page-cover",
+      "width": 1640,
+      "height": 924,
+      "focusY": 0.5
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-twitch-profile-banner-1200x480.png",
+      "platform": "twitch",
+      "role": "profile-banner",
+      "width": 1200,
+      "height": 480,
+      "focusY": 0.48
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-open-graph-preview-1200x630.png",
+      "platform": "open-graph",
+      "role": "preview",
+      "width": 1200,
+      "height": 630,
+      "focusY": 0.5
+    },
+    {
+      "file": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-github-social-preview-1280x640.png",
+      "platform": "github",
+      "role": "social-preview",
+      "width": 1280,
+      "height": 640,
+      "focusY": 0.5
+    }
+  ]
+}

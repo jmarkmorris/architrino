@@ -1,0 +1,738 @@
+{
+  "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response source-acquisition rows accepted; top-level rows remain target-only and not accepted nuclear-binding recovery",
+  "status": "target_required",
+  "sourceIdentity": {
+    "sourceObjectId": "confinement_functional_source_target_0001",
+    "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md",
+    "consumer": "scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs",
+    "acceptedPromotionBlocker": "missing_accepted_confinement_functional"
+  },
+  "acceptanceCheck": {
+    "script": "scripts/nuclear-atomic/confinement-functional-source-target-check.mjs",
+    "summaryCommand": "node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --pretty",
+    "requiredAcceptedCommand": "node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --require-accepted",
+    "currentStatus": "missing_accepted_confinement_functional_rows",
+    "currentStructuralPass": true,
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "firstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "currentSourceAcquisitionPass": false,
+    "firstMissingSourceAcquisitionObject": "missing_accepted_accepted_proton_color_singlet_envelope"
+  },
+  "sourceAcquisitionTargets": {
+    "K_perp": {
+      "id": "K_perp_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted transverse stiffness functional in the same color-charge and sigma_eff variation domain",
+      "requiredLedgerComponents": [
+        "transverse_stiffness_functional",
+        "color_charge_domain",
+        "sigma_eff_variation_record"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json"
+    },
+    "V_exc": {
+      "id": "V_exc_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted excitation potential functional over the same axis-exceptionality and Noether sea arguments",
+      "requiredLedgerComponents": [
+        "excitation_potential_functional",
+        "vacuum_exceptionality_profile",
+        "rho_NS_chi_sea_arguments"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json"
+    },
+    "rho_NS": {
+      "id": "rho_NS_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "same-record retained-window Noether sea density row consumable by the sigma_eff extraction",
+      "requiredLedgerComponents": [
+        "retained_window_density_row",
+        "same_record_noether_sea_response",
+        "provider_source_path"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json"
+    },
+    "chi_sea": {
+      "id": "chi_sea_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted Noether sea delay-factor row in the same sigma_eff extraction record",
+      "requiredLedgerComponents": [
+        "noether_sea_delay_factor_row",
+        "same_record_noether_sea_response",
+        "effective_speed_relation"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json"
+    },
+    "axis_exceptionality_charge": {
+      "id": "axis_exceptionality_charge_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted axis-exceptionality charge basis and normalization used by the confinement functional",
+      "requiredLedgerComponents": [
+        "axis_exceptionality_definition",
+        "charge_normalization_row",
+        "same_sigma_eff_domain"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json"
+    },
+    "same_record_noether_sea_response": {
+      "id": "same_record_noether_sea_response_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted same-record Noether sea response bundle used by the sigma_eff extraction",
+      "requiredLedgerComponents": [
+        "rho_NS",
+        "theta_sea",
+        "stress_strain_row",
+        "same_event_ledger"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
+    },
+    "proton_color_singlet_closure": {
+      "id": "proton_color_singlet_closure_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local proton color-singlet closure support row for the accepted_proton_color_singlet_envelope route without A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "Pi_singlet_X_ref",
+        "Pi_open_X_ref",
+        "W_locked_pX_ref",
+        "E_color_pX_bound",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
+    "finite_envelope_boundary": {
+      "id": "finite_envelope_boundary_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite retained proton/neutron envelope boundary support row used by the proton and neutron color-singlet envelope routes",
+      "requiredLedgerComponents": [
+        "R_p",
+        "R_n",
+        "refinement_window",
+        "same_sigma_eff_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
+    "accepted_proton_color_singlet_envelope": {
+      "id": "accepted_proton_color_singlet_envelope_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "requiredScope": "accepted proton color-singlet envelope with finite boundary and no-free-color audit",
+      "requiredLedgerComponents": [
+        "proton_color_singlet_closure",
+        "finite_envelope_boundary",
+        "no_free_color_asymptotic_state"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json"
+    },
+    "accepted_neutron_color_singlet_envelope": {
+      "id": "accepted_neutron_color_singlet_envelope_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "requiredScope": "accepted neutron color-singlet envelope with finite boundary and no-free-color audit",
+      "requiredLedgerComponents": [
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "no_free_color_asymptotic_state"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "sourceTargetPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json"
+    },
+    "no_free_color_asymptotic_state": {
+      "id": "no_free_color_asymptotic_state_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_asymptotic_field_audit",
+      "requiredScope": "accepted no-free-color asymptotic-state row for color-singlet nucleon envelopes",
+      "requiredLedgerComponents": [
+        "color_singlet_closure",
+        "asymptotic_field_audit",
+        "finite_range_residual"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json"
+    },
+    "same_record_branch_interface": {
+      "id": "same_record_branch_interface_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_same_record_branch_interface",
+      "requiredScope": "accepted same-record branch-interface bundle shared with the p+n and p+p orientation extraction",
+      "requiredLedgerComponents": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json"
+    },
+    "accepted_sigma_eff_extraction": {
+      "id": "accepted_sigma_eff_extraction_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_sigma_eff_extraction_acceptance",
+      "requiredScope": "accepted sigma_eff extraction row with all upstream functional and Noether sea arguments",
+      "requiredLedgerComponents": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json"
+    },
+    "accepted_color_singlet_nucleon_envelope": {
+      "id": "accepted_color_singlet_nucleon_envelope_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_color_singlet_nucleon_envelope_acceptance",
+      "requiredScope": "accepted proton and neutron color-singlet envelope bundle in the same branch-interface record",
+      "requiredLedgerComponents": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "sourceTargetPath": "scripts/nuclear-atomic/accepted-color-singlet-nucleon-envelope-source-acquisition-blocker.v1.json"
+    },
+    "accepted_branch_interface_rows": {
+      "id": "accepted_branch_interface_rows_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_accepted_branch_interface_rows",
+      "requiredScope": "accepted branch-interface row bundle consumed by Delta E_corr_NN",
+      "requiredLedgerComponents": [
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "nucleon_branch_interface_ledgers",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "sourceTargetPath": "scripts/nuclear-atomic/accepted-branch-interface-rows-source-acquisition-blocker.v1.json"
+    },
+    "finite_residual_corridor_overlap": {
+      "id": "finite_residual_corridor_overlap_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_finite_range_residual_audit",
+      "requiredScope": "accepted finite-range residual corridor overlap row for Delta E_corr_NN",
+      "requiredLedgerComponents": [
+        "Delta_E_corr_NN_finite_range",
+        "corridor_overlap_window",
+        "no_open_color_far_field"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-residual-corridor-overlap-source-acquisition-blocker.v1.json"
+    },
+    "accepted_delta_E_corr_NN": {
+      "id": "accepted_delta_E_corr_NN_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_same_domain_residual_derivation",
+      "requiredScope": "accepted Delta E_corr_NN residual row derived from sigma_eff, color-singlet envelopes, branch-interface rows, and finite overlap",
+      "requiredLedgerComponents": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/accepted-delta-E-corr-NN-source-acquisition-blocker.v1.json"
+    },
+    "Delta_E_corr_NN_tail_limit": {
+      "id": "Delta_E_corr_NN_tail_limit_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_limit_derivation",
+      "requiredScope": "accepted same-domain tail-limit row proving T_NN tends to zero for the Delta E_corr_NN residual without element-specific tuning",
+      "requiredLedgerComponents": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "O_NN_finite",
+        "exists_R0_C_lambda_exp_decay_tail"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json"
+    },
+    "finite_range_residual": {
+      "id": "finite_range_residual_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_audit",
+      "requiredScope": "accepted finite-range residual row showing Delta E_corr_NN tends to zero at large separation",
+      "requiredLedgerComponents": [
+        "Delta_E_corr_NN_tail_limit",
+        "bounded_residual_overlap",
+        "large_r_zero_limit"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json"
+    },
+    "color_singlet_closure": {
+      "id": "color_singlet_closure_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_color_singlet_closure",
+      "requiredScope": "accepted color-singlet closure row shared by no-free-color and no-open-color checks",
+      "requiredLedgerComponents": [
+        "proton_color_singlet_envelope",
+        "neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "sourceTargetPath": "scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json"
+    },
+    "same_record_no_open_color_audit": {
+      "id": "same_record_no_open_color_audit_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_same_record_no_open_color_audit",
+      "requiredScope": "accepted same-record audit that the finite residual leaves no open-color far field",
+      "requiredLedgerComponents": [
+        "Delta_E_corr_NN_tail_limit",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_event_ledger"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "sourceTargetPath": "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json"
+    },
+    "bounded_open_color_projection_operator_norm": {
+      "id": "bounded_open_color_projection_operator_norm_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted bounded open-color projection operator norm used by the future finite-K_open and no-open-color audit route",
+      "requiredLedgerComponents": [
+        "Pi_open_operator",
+        "projection_domain",
+        "operator_norm_bound",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json"
+    },
+    "finite_open_color_surface_measure": {
+      "id": "finite_open_color_surface_measure_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite open-color audit surface measure used by the future finite-K_open and no-open-color audit route",
+      "requiredLedgerComponents": [
+        "open_color_surface_measure",
+        "finite_measure_witness",
+        "projection_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json"
+    },
+    "corridor_weight_growth_eta_lt_lambda": {
+      "id": "corridor_weight_growth_eta_lt_lambda_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted corridor-weight growth row for the Delta_E_corr_NN tail-limit route with eta strictly below any future accepted positive decay lambda",
+      "requiredLedgerComponents": [
+        "corridor_weight_bound",
+        "C_w",
+        "eta",
+        "eta_lt_lambda_witness"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
+    },
+    "uniform_large_r_bound_C_lambda_R0": {
+      "id": "uniform_large_r_bound_C_lambda_R0_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted uniform large-R exponential tail-bound support row for the Delta_E_corr_NN tail-limit route without A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "R0",
+        "C",
+        "lambda",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json"
+    },
+    "coefficient_exclusion_audit": {
+      "id": "coefficient_exclusion_audit_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted audit that the Delta_E_corr_NN tail constants and corridor weight do not use A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "no_A_indexed_tail_coefficient",
+        "no_Z_indexed_tail_coefficient",
+        "no_isotope_or_element_indexed_tail_coefficient",
+        "no_Fe_Ni_tuned_tail_coefficient"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json"
+    }
+  },
+  "acceptedSourceRowProofTargets": {
+    "sigma_eff_extraction": {
+      "id": "sigma_eff_extraction_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "requiredSameRecordRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response",
+        "sigma_eff_extraction"
+      ],
+      "requiredClosureRows": [
+        "same_domain_minimizer_certificate",
+        "refinement_stable_sigma_eff_row",
+        "source_path_tying_extraction_to_inputs"
+      ],
+      "requiredExtractionCertificateRows": [
+        "same_domain_minimizer_or_variational_certificate",
+        "refinement_stable_sigma_eff_row",
+        "source_path_tying_extraction_to_accepted_upstream_rows"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "accepted_inputs_only",
+        "target_equation_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+    },
+    "color_singlet_nucleon_envelope": {
+      "id": "color_singlet_nucleon_envelope_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "requiredSameRecordRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface",
+        "color_singlet_nucleon_envelope",
+        "same_sigma_eff_domain"
+      ],
+      "requiredClosureRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "requiredEnvelopeBundleRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "separate_target_only_envelope_blockers",
+        "color_singlet_closure_blocker_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+    },
+    "delta_E_corr_NN": {
+      "id": "delta_E_corr_NN_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "requiredSameRecordRows": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap",
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ],
+      "requiredClosureRows": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "requiredResidualDerivationRows": [
+        "same_domain_residual_derivation",
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "target_equation_only",
+        "finite_overlap_blocker_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+    },
+    "finite_range_residual": {
+      "id": "finite_range_residual_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "Delta_E_corr_NN_tail_limit",
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response"
+      ],
+      "requiredSameRecordRows": [
+        "Delta_E_corr_NN_tail_limit",
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response",
+        "finite_range_residual"
+      ],
+      "requiredClosureRows": [
+        "Delta_E_corr_NN_tail_limit",
+        "bounded_residual_overlap",
+        "large_r_zero_limit"
+      ],
+      "requiredTailLimitStatements": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "O_NN_finite",
+        "exists_R0_C_lambda_exp_decay_tail"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "sample_level_finite_tail",
+        "target_equation_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#confinement-source-acquisition-marker"
+    },
+    "no_open_color_far_field": {
+      "id": "no_open_color_far_field_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "requiredSameRecordRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response"
+      ],
+      "requiredClosureRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "requiredLimitStatements": [
+        "lim_R_to_infty_N_open_R_eq_0",
+        "N_open_R_le_K_open_T_NN_R_squared",
+        "lim_R_to_infty_T_NN_R_eq_0"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "sample_level_finite_tail",
+        "target_only_no_open_color"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#no-open-color-proof-target"
+    }
+  },
+  "rows": {
+    "sigma_eff_extraction": {
+      "id": "sigma_eff_extraction_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "targetEquation": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} 2*pi*int_0^a r[(K_perp/2)||Q||_F^2(df/dr)^2+V_exc(f(r)Q;Q,rho_NS,chi_sea)]dr",
+      "requiredSourceRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "acceptedSourceRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    },
+    "color_singlet_nucleon_envelope": {
+      "id": "color_singlet_nucleon_envelope_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "requiredSourceRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "same_record_branch_interface"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints"
+    },
+    "delta_E_corr_NN": {
+      "id": "delta_E_corr_NN_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "targetEquation": "Delta E_corr_NN(r)=min_{Theta_12 in Pi_singlet} E_conf[Gamma_N1 union Gamma_N2(r),Theta_12]-sum_i min_{Theta_i in Pi_singlet} E_conf[Gamma_Ni,Theta_i]",
+      "requiredSourceRows": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows",
+        "finite_residual_corridor_overlap"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    },
+    "no_open_color_far_field": {
+      "id": "no_open_color_far_field_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "priority_packet_only",
+      "requiredBehavior": "Delta E_corr_NN(r) tends to zero as r tends to infinity and leaves no residual open-color far field between color-singlet nucleons.",
+      "requiredSourceRows": [
+        "accepted_delta_E_corr_NN",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+    }
+  },
+  "toyBindings": {
+    "coefficients": {
+      "alphaCorr": "delta_E_corr_NN residual-corridor scale",
+      "alphaSea": "sigma_eff_extraction plus same-record Noether sea response",
+      "alphaSurf": "surface corridor loss from color-singlet envelope boundary",
+      "alphaPair": "closed-pattern residual from color-singlet envelope overlap",
+      "alphaShell": "closed-pattern readout after color-singlet envelope acceptance",
+      "alphaPack": "finite packing pressure from confinement-functional residual-tail overlap",
+      "boundaryDegreeLoss": "surface-depleted corridor capacity",
+      "dSat": "finite corridor saturation count",
+      "maxDegree": "finite corridor saturation count",
+      "packSoftA": "large-A packing pressure onset"
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": "requires accepted finite corridor capacity from the confinement functional",
+      "finite_tail_saturation_check": "requires accepted finite residual tail, saturation of local residual benefit, and no-open-color far-field behavior"
+    }
+  },
+  "toyBindingRows": {
+    "coefficients": {
+      "alphaCorr": [
+        "delta_E_corr_NN"
+      ],
+      "alphaSea": [
+        "sigma_eff_extraction"
+      ],
+      "alphaSurf": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaPair": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaShell": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "alphaPack": [
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ],
+      "boundaryDegreeLoss": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "dSat": [
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ],
+      "maxDegree": [
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ],
+      "packSoftA": [
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ],
+      "pnCorridorPairReward": [
+        "sigma_eff_extraction",
+        "delta_E_corr_NN"
+      ],
+      "ppCorridorPairReward": [
+        "sigma_eff_extraction",
+        "delta_E_corr_NN"
+      ]
+    },
+    "graphRules": {
+      "bounded_degree_surface_depleted_corridor_estimator": [
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN"
+      ],
+      "finite_tail_saturation_check": [
+        "delta_E_corr_NN",
+        "finite_range_residual",
+        "no_open_color_far_field"
+      ]
+    }
+  },
+  "failClosedRows": {
+    "no_saturation": "the confinement-functional rows must bound local corridor benefit so binding per nucleon cannot grow without a finite maximum",
+    "diproton_overbound": "the confinement-functional residual cannot erase p+p branch-interface mismatch and Coulomb costs",
+    "hidden_fit": "scale, range, surface, shell, and packing rows cannot be tuned by A, Z, or element",
+    "promotion_ready": "blocked until every row listed in requiredRows is accepted"
+  },
+  "scoreDecision": "no_score_increase"
+}

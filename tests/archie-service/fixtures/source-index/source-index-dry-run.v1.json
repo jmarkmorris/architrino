@@ -1,0 +1,209 @@
+{
+  "schema": "archie-source-index-dry-run/v1",
+  "dryRunId": "source_index_dry_run_fixture_001",
+  "snapshotId": "source_snapshot_fixture_001",
+  "routeCases": [
+    {
+      "caseId": "source-route-markdown-section-001",
+      "mode": "Ask",
+      "requestedRoute": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+      "routeSurface": "markdown_section",
+      "expectedDisposition": "resolved",
+      "expectedSourceChip": {
+        "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+        "label": "Ontology",
+        "sourceClass": "published_corpus",
+        "authorityStatus": "primary",
+        "visibility": "public",
+        "sectionId": "purpose-and-scope",
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": ["published_corpus"],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-sphere-portion-001",
+      "mode": "Explain",
+      "requestedRoute": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+      "routeSurface": "sphere_portion",
+      "expectedDisposition": "resolved_with_canonical_parent",
+      "expectedSourceChip": {
+        "route": "scene:foundations__foundational_ontology#section:purpose-and-scope",
+        "label": "Ontology sphere portion",
+        "sourceClass": "scene_route",
+        "authorityStatus": "routing_only",
+        "visibility": "public",
+        "sectionId": "purpose-and-scope",
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": ["scene_route", "published_corpus"],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-full-document-sphere-001",
+      "mode": "Explain",
+      "requestedRoute": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+      "routeSurface": "full_document_sphere",
+      "expectedDisposition": "resolved_with_canonical_parent",
+      "expectedSourceChip": {
+        "route": "document-sphere:content/markdown/aaa/foundations/ontology.md",
+        "label": "Ontology full document sphere",
+        "sourceClass": "generated_reading_copy",
+        "authorityStatus": "routing_only",
+        "visibility": "public",
+        "sectionId": null,
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": ["generated_reading_copy", "published_corpus"],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-app-guide-001",
+      "mode": "Find Source",
+      "requestedRoute": "content/markdown/aaa/archie/about-the-webapp.md#what-the-webapp-is",
+      "routeSurface": "app_guide",
+      "expectedDisposition": "resolved",
+      "expectedSourceChip": {
+        "route": "content/markdown/aaa/archie/about-the-webapp.md#what-the-webapp-is",
+        "label": "About the webapp",
+        "sourceClass": "app_guide",
+        "authorityStatus": "diagnostic",
+        "visibility": "public",
+        "sectionId": "what-the-webapp-is",
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": ["app_guide"],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-system-card-001",
+      "mode": "Ask",
+      "requestedRoute": "content/markdown/aaa/archie/system-card.md#answering-posture",
+      "routeSurface": "system_card",
+      "expectedDisposition": "resolved",
+      "expectedSourceChip": {
+        "route": "content/markdown/aaa/archie/system-card.md#answering-posture",
+        "label": "System Card",
+        "sourceClass": "archie_reference",
+        "authorityStatus": "primary",
+        "visibility": "public",
+        "sectionId": "answering-posture",
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": ["archie_reference"],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-priority-excluded-001",
+      "mode": "Ask",
+      "requestedRoute": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+      "routeSurface": "priority_packet",
+      "expectedDisposition": "excluded_visibility",
+      "expectedSourceChip": {
+        "route": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+        "label": "Source ingestion priority packet",
+        "sourceClass": "priority_material",
+        "authorityStatus": "excluded",
+        "visibility": "excluded",
+        "sectionId": null,
+        "freshnessState": "fresh"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": [],
+        "missingSourceRoutes": [],
+        "excludedSourceClasses": ["priority_material"],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "source-route-missing-001",
+      "mode": "Find Source",
+      "requestedRoute": "content/markdown/aaa/missing/not-real.md",
+      "routeSurface": "missing_route",
+      "expectedDisposition": "missing_route",
+      "expectedSourceChip": {
+        "route": "content/markdown/aaa/missing/not-real.md",
+        "label": "Missing source route",
+        "sourceClass": "scene_route",
+        "authorityStatus": "unsupported",
+        "visibility": "excluded",
+        "sectionId": null,
+        "freshnessState": "unavailable"
+      },
+      "expectedSourceContextFragment": {
+        "sourceClasses": [],
+        "missingSourceRoutes": ["content/markdown/aaa/missing/not-real.md"],
+        "excludedSourceClasses": [],
+        "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+      },
+      "feedsManifestSourceContext": true,
+      "noModelMemorySubstitution": true,
+      "privatePromptIncluded": false
+    }
+  ],
+  "validatorPlaceholders": [
+    {
+      "validatorId": "source_record_shape_check",
+      "status": "fixture_backed",
+      "requiredProof": "Every dry-run route case declares route surface, source chip, source class, authority status, visibility, and manifest source-context fragment."
+    },
+    {
+      "validatorId": "sphere_source_context_check",
+      "status": "fixture_backed",
+      "requiredProof": "Sphere-portion and full-document sphere routes resolve through canonical corpus parents before speech or answer generation can use them."
+    },
+    {
+      "validatorId": "source_authority_inflation_negative",
+      "status": "fixture_backed",
+      "requiredProof": "Scene routes, generated reading copies, priority packets, and missing routes do not increase claim authority beyond their source-class limits."
+    },
+    {
+      "validatorId": "model_memory_substitution_negative",
+      "status": "fixture_backed",
+      "requiredProof": "Missing routes produce missing-source context instead of model-memory substitution."
+    },
+    {
+      "validatorId": "private_prompt_leak_negative",
+      "status": "fixture_backed",
+      "requiredProof": "Dry-run cases and source-context fragments record privatePromptIncluded as false."
+    }
+  ]
+}

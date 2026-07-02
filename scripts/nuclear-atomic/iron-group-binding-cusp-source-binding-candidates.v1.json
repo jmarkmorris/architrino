@@ -1,0 +1,83 @@
+{
+  "schema": "iron_group_binding_cusp_source_binding_candidates/v1",
+  "claimLevel": "source-binding manifest for the Fe/Ni cusp toy sweep; score-neutral and not accepted nuclear-binding recovery",
+  "candidates": [
+    {
+      "id": "nucleon_branch_interface_source_target_current",
+      "family": "branch_interface",
+      "role": "durable branch-interface source target for p+n and p+p channel weights; proton, neutron, and same-record source-acquisition ledgers accepted, target-only until no-open-color and top-level branch-interface rows exist",
+      "sourcePath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
+      "acceptedObjectSchema": "aaa-nuclear-atomic-nucleon-branch-interface-source-target/v1",
+      "requiredRows": [
+        "nucleon_branch_interface_ledgers",
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "firstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers"
+    },
+    {
+      "id": "confinement_functional_source_target_current",
+      "family": "confinement_functional",
+      "role": "durable confinement-functional source target for replacing reduced corridor scales and ranges; target-only until accepted confinement rows exist",
+      "sourcePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+      "acceptedObjectSchema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
+      "requiredRows": [
+        "sigma_eff_extraction",
+        "color_singlet_nucleon_envelope",
+        "delta_E_corr_NN",
+        "no_open_color_far_field"
+      ],
+      "firstMissingObject": "missing_accepted_sigma_eff_extraction"
+    },
+    {
+      "id": "weak_channel_muon_projection_current",
+      "family": "weak_channel",
+      "role": "current weak-sector retained muon projection lane; beta-stability coefficients cannot promote until the same domain supplies the downstream weak rows",
+      "sourcePath": "scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json",
+      "requiredRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "ckm_overlap_readout",
+        "pmns_overlap_readout",
+        "weak_corridor_provenance",
+        "effective_gauge_covariance_witness",
+        "reaction_event_ledger",
+        "noether_sea_response"
+      ],
+      "firstMissingObject": "missing_accepted_va_chirality_gate"
+    },
+    {
+      "id": "theta_sea_rho_ns_density_compression_provider",
+      "family": "noether_sea_response",
+      "role": "accepted retained-window theta_sea_rho_NS provider object for local Noether sea density and response rows",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+      "acceptedObjectSchema": "aaa-noether-sea-density-compression-provider/v1",
+      "acceptanceCheck": {
+        "script": "scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs",
+        "summaryCommand": "node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summary --pretty",
+        "requiredAcceptedCommand": "node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summary --require-accepted",
+        "currentStatus": "accepted_noether_sea_response_rows",
+        "currentStructuralPass": true,
+        "firstMissingObject": null
+      },
+      "requiredRows": [
+        "rho_NS",
+        "n",
+        "u_sea",
+        "e_sea",
+        "theta_sea",
+        "f_N",
+        "channel_declaration_row",
+        "speed_row",
+        "stress_strain_row",
+        "causality_row",
+        "correlation_row"
+      ],
+      "firstMissingObject": "missing_accepted_noether_sea_response"
+    }
+  ]
+}

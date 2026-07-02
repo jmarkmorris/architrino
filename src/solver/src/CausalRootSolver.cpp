@@ -66,6 +66,13 @@ bool finite_segment(const CircularPathSegment& segment) {
          finite_nonnegative(segment.errorBound);
 }
 
+bool finite_source(const MovingCircularSourceHistory& source) {
+  return finite_vector(source.centerAtEpoch) && finite_vector(source.centerVelocity) &&
+         finite_vector(source.radiusU) && finite_vector(source.radiusV) &&
+         std::isfinite(source.angularVelocity) && std::isfinite(source.phaseAtEpoch) &&
+         std::isfinite(source.epochTime) && finite_nonnegative(source.errorBound);
+}
+
 EvalState evaluate_root_function(const CausalRootRequest& request, Real emissionTime) {
   const Real hitTime = to_real(request.hitTime);
   const Real signalSpeed = to_real(request.signalSpeed);
@@ -123,6 +130,48 @@ EvalState evaluate_circular_source_root_function(
                   to_real(request.source.radiusV.y) * sinPhase;
   const Real sz = to_real(request.source.center.z) +
                   to_real(request.source.radiusU.z) * cosPhase +
+                  to_real(request.source.radiusV.z) * sinPhase;
+
+  const Real dx = rx - sx;
+  const Real dy = ry - sy;
+  const Real dz = rz - sz;
+  const Real distance = sqrt(dx * dx + dy * dy + dz * dz);
+  const Real residual = distance - signalSpeed * (hitTime - emissionTime);
+  return EvalState{residual, distance, dx, dy, dz};
+}
+
+EvalState evaluate_moving_circular_source_root_function(
+    const MovingCircularSourceCausalRootRequest& request,
+    Real emissionTime) {
+  const Real hitTime = to_real(request.hitTime);
+  const Real signalSpeed = to_real(request.signalSpeed);
+
+  const Real receiverDt = hitTime - to_real(request.receiver.startTime);
+  const Real sourceDt = emissionTime - to_real(request.source.epochTime);
+  const Real phase = to_real(request.source.phaseAtEpoch) +
+                     to_real(request.source.angularVelocity) * sourceDt;
+  const Real cosPhase = cos(phase);
+  const Real sinPhase = sin(phase);
+
+  const Real rx = to_real(request.receiver.positionAtStart.x) +
+                  to_real(request.receiver.velocity.x) * receiverDt;
+  const Real ry = to_real(request.receiver.positionAtStart.y) +
+                  to_real(request.receiver.velocity.y) * receiverDt;
+  const Real rz = to_real(request.receiver.positionAtStart.z) +
+                  to_real(request.receiver.velocity.z) * receiverDt;
+
+  const Real centerX =
+      to_real(request.source.centerAtEpoch.x) + to_real(request.source.centerVelocity.x) * sourceDt;
+  const Real centerY =
+      to_real(request.source.centerAtEpoch.y) + to_real(request.source.centerVelocity.y) * sourceDt;
+  const Real centerZ =
+      to_real(request.source.centerAtEpoch.z) + to_real(request.source.centerVelocity.z) * sourceDt;
+
+  const Real sx = centerX + to_real(request.source.radiusU.x) * cosPhase +
+                  to_real(request.source.radiusV.x) * sinPhase;
+  const Real sy = centerY + to_real(request.source.radiusU.y) * cosPhase +
+                  to_real(request.source.radiusV.y) * sinPhase;
+  const Real sz = centerZ + to_real(request.source.radiusU.z) * cosPhase +
                   to_real(request.source.radiusV.z) * sinPhase;
 
   const Real dx = rx - sx;
@@ -298,6 +347,59 @@ CausalRoot make_root(const CircularSourceCausalRootRequest& request,
   };
 }
 
+CausalRoot make_root(const MovingCircularSourceCausalRootRequest& request,
+                     double emissionTime,
+                     double bracketStart,
+                     double bracketEnd,
+                     int iterations,
+                     int rootId) {
+  const Vector3 sourcePoint = position_at(request.source, emissionTime);
+  const Vector3 sourceVelocity = velocity_at(request.source, emissionTime);
+  const Vector3 receiverPoint = position_at(request.receiver, request.hitTime);
+  const EvalState eval =
+      evaluate_moving_circular_source_root_function(request, to_real(emissionTime));
+  const double distance = eval.distance.convert_to<double>();
+  const double delay = request.hitTime - emissionTime;
+  const double residual = eval.residual.convert_to<double>();
+  const ReceiverNormalFields normal = compute_receiver_normal_fields(
+      eval, request.signalSpeed, sourceVelocity, request.receiver.velocity, request.rootTolerance);
+  const Real jacobianReal = normal.sourceNormalDenominatorReal;
+  const double jacobian = jacobianReal.convert_to<double>();
+  const double branchWeight = std::isfinite(normal.unsignedReceiverNormalFactor)
+                                  ? normal.unsignedReceiverNormalFactor
+                                  : std::numeric_limits<double>::infinity();
+  const StatusCode rootStatus =
+      std::abs(jacobian) <= request.rootTolerance ? StatusCode::SmallJacobian : StatusCode::Ok;
+
+  return CausalRoot{
+      request.receiverId,
+      request.sourceId,
+      rootId,
+      "partner",
+      emissionTime,
+      request.hitTime,
+      delay,
+      distance,
+      residual,
+      jacobian,
+      branchWeight,
+      normal.sourceNormalSpeed,
+      normal.receiverNormalSpeed,
+      normal.sourceNormalDenominator,
+      normal.receiverNormalNumerator,
+      normal.receiverNormalCrossingFactor,
+      normal.receiverNormalFactor,
+      normal.unsignedReceiverNormalFactor,
+      bracketStart,
+      bracketEnd,
+      iterations,
+      sourcePoint,
+      receiverPoint,
+      rootStatus,
+      rootStatus == StatusCode::SmallJacobian ? StatusCode::SmallJacobian : normal.statusCode,
+  };
+}
+
 bool is_duplicate_root(const std::vector<CausalRoot>& roots, double emissionTime, double tolerance) {
   return std::any_of(roots.begin(), roots.end(), [emissionTime, tolerance](const CausalRoot& root) {
     return std::abs(root.emissionTime - emissionTime) <= tolerance * 8.0;
@@ -334,6 +436,41 @@ Vector3 velocity_at(const CircularPathSegment& segment, double time) {
       segment.angularVelocity * (-segment.radiusU.x * sinPhase + segment.radiusV.x * cosPhase),
       segment.angularVelocity * (-segment.radiusU.y * sinPhase + segment.radiusV.y * cosPhase),
       segment.angularVelocity * (-segment.radiusU.z * sinPhase + segment.radiusV.z * cosPhase),
+  };
+}
+
+double phase_at(const MovingCircularSourceHistory& source, double time) {
+  return source.phaseAtEpoch + source.angularVelocity * (time - source.epochTime);
+}
+
+Vector3 position_at(const MovingCircularSourceHistory& source, double time) {
+  const double phase = phase_at(source, time);
+  const double cosPhase = std::cos(phase);
+  const double sinPhase = std::sin(phase);
+  const double dt = time - source.epochTime;
+  const Vector3 center{
+      source.centerAtEpoch.x + source.centerVelocity.x * dt,
+      source.centerAtEpoch.y + source.centerVelocity.y * dt,
+      source.centerAtEpoch.z + source.centerVelocity.z * dt,
+  };
+  return Vector3{
+      center.x + source.radiusU.x * cosPhase + source.radiusV.x * sinPhase,
+      center.y + source.radiusU.y * cosPhase + source.radiusV.y * sinPhase,
+      center.z + source.radiusU.z * cosPhase + source.radiusV.z * sinPhase,
+  };
+}
+
+Vector3 velocity_at(const MovingCircularSourceHistory& source, double time) {
+  const double phase = phase_at(source, time);
+  const double cosPhase = std::cos(phase);
+  const double sinPhase = std::sin(phase);
+  return Vector3{
+      source.centerVelocity.x +
+          source.angularVelocity * (-source.radiusU.x * sinPhase + source.radiusV.x * cosPhase),
+      source.centerVelocity.y +
+          source.angularVelocity * (-source.radiusU.y * sinPhase + source.radiusV.y * cosPhase),
+      source.centerVelocity.z +
+          source.angularVelocity * (-source.radiusU.z * sinPhase + source.radiusV.z * cosPhase),
   };
 }
 
@@ -615,6 +752,149 @@ CausalRootResult solve_circular_source_causal_roots(
                           StatusSeverity::Ok,
                           "circular-source causal roots solved",
                           "circular-source-causal-root");
+  }
+
+  return result;
+}
+
+CausalRootResult solve_moving_circular_source_causal_roots(
+    const MovingCircularSourceCausalRootRequest& request) {
+  CausalRootResult result;
+  if (request.receiverId.empty() || request.sourceId.empty()) {
+    result.validation.add(StatusCode::AppContractError,
+                          StatusSeverity::Error,
+                          "source id and receiver id are required",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (!finite_positive(request.signalSpeed)) {
+    result.validation.add(StatusCode::AppContractError,
+                          StatusSeverity::Error,
+                          "signal speed must be positive and finite",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (!finite_positive(request.rootTolerance)) {
+    result.validation.add(StatusCode::PrecisionFailed,
+                          StatusSeverity::Error,
+                          "root tolerance must be positive and finite",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (request.maxIterations <= 0 || request.scanSubdivisions <= 0) {
+    result.validation.add(StatusCode::AppContractError,
+                          StatusSeverity::Error,
+                          "max iterations and scan subdivisions must be positive",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (!std::isfinite(request.hitTime) || !std::isfinite(request.sourceStartTime) ||
+      !std::isfinite(request.sourceEndTime) || !finite_source(request.source) ||
+      !finite_segment(request.receiver)) {
+    result.validation.add(StatusCode::AppContractError,
+                          StatusSeverity::Error,
+                          "hit time and source/receiver history numeric fields must be finite",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (request.sourceEndTime < request.sourceStartTime ||
+      request.receiver.endTime < request.receiver.startTime) {
+    result.validation.add(StatusCode::AppContractError,
+                          StatusSeverity::Error,
+                          "source and receiver histories must have ordered time bounds",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+  if (request.hitTime < request.receiver.startTime || request.hitTime > request.receiver.endTime) {
+    result.validation.add(StatusCode::InsufficientHistoryDepth,
+                          StatusSeverity::Halt,
+                          "hit time is outside the receiver segment",
+                          "moving-circular-source-causal-root",
+                          false);
+    return result;
+  }
+
+  const double lower = request.sourceStartTime;
+  const double upper = std::min(request.sourceEndTime, request.hitTime);
+  if (upper < lower) {
+    result.validation.add(StatusCode::InsufficientHistoryDepth,
+                          StatusSeverity::Warning,
+                          "source history ends before the causal search window starts",
+                          "moving-circular-source-causal-root");
+    return result;
+  }
+
+  const int subdivisions = std::max(1, request.scanSubdivisions);
+  const double tolerance = request.rootTolerance;
+  const double step = (upper - lower) / static_cast<double>(subdivisions);
+
+  int rootId = 0;
+  Real previousTime = to_real(lower);
+  EvalState previous = evaluate_moving_circular_source_root_function(request, previousTime);
+
+  if (near_zero(previous.residual, tolerance)) {
+    result.roots.push_back(make_root(request, lower, lower, lower, 0, rootId++));
+  }
+
+  for (int index = 1; index <= subdivisions; ++index) {
+    const double currentTimeDouble = index == subdivisions ? upper : lower + step * index;
+    const Real currentTime = to_real(currentTimeDouble);
+    const EvalState current = evaluate_moving_circular_source_root_function(request, currentTime);
+
+    if (near_zero(current.residual, tolerance) &&
+        !is_duplicate_root(result.roots, currentTimeDouble, tolerance)) {
+      result.roots.push_back(
+          make_root(request, currentTimeDouble, currentTimeDouble, currentTimeDouble, 0, rootId++));
+    } else if (has_opposite_sign(previous.residual, current.residual)) {
+      Real lo = previousTime;
+      Real hi = currentTime;
+      Real fLo = previous.residual;
+      Real fHi = current.residual;
+      int iterations = 0;
+      for (; iterations < request.maxIterations; ++iterations) {
+        const Real mid = (lo + hi) / 2;
+        const EvalState midEval = evaluate_moving_circular_source_root_function(request, mid);
+        if (near_zero(midEval.residual, tolerance) || abs(hi - lo) <= Real(tolerance)) {
+          lo = mid;
+          hi = mid;
+          fLo = midEval.residual;
+          fHi = midEval.residual;
+          break;
+        }
+        if (has_opposite_sign(fLo, midEval.residual)) {
+          hi = mid;
+          fHi = midEval.residual;
+        } else {
+          lo = mid;
+          fLo = midEval.residual;
+        }
+      }
+      const double emissionTime = ((lo + hi) / 2).convert_to<double>();
+      if (!is_duplicate_root(result.roots, emissionTime, tolerance)) {
+        CausalRoot root = make_root(
+            request, emissionTime, previousTime.convert_to<double>(), currentTimeDouble, iterations, rootId);
+        root.statusCode = abs(fLo) <= Real(tolerance) || abs(fHi) <= Real(tolerance)
+                              ? root.statusCode
+                              : StatusCode::RootUnresolved;
+        result.roots.push_back(root);
+        ++rootId;
+      }
+    }
+
+    previousTime = currentTime;
+    previous = current;
+  }
+
+  if (result.roots.empty()) {
+    result.validation.add(StatusCode::RootNotBracketed,
+                          StatusSeverity::Info,
+                          "no moving-circular-source causal roots were found in the retained source segment",
+                          "moving-circular-source-causal-root");
+  } else {
+    result.validation.add(StatusCode::Ok,
+                          StatusSeverity::Ok,
+                          "moving-circular-source causal roots solved",
+                          "moving-circular-source-causal-root");
   }
 
   return result;

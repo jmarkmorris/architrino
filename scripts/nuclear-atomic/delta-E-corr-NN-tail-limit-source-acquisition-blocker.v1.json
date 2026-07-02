@@ -1,0 +1,344 @@
+{
+  "schema": "aaa-nuclear-atomic-delta-E-corr-NN-tail-limit-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for Delta_E_corr_NN_tail_limit; records the exact same-domain tail-limit derivation target; not accepted Delta E_corr_NN evidence, not accepted finite_range_residual evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "Delta_E_corr_NN_tail_limit",
+  "currentStatus": "blocked_missing_delta_E_corr_tail_limit_derivation",
+  "sourceSupportSought": [
+    "lim_R_to_infty_T_NN_R_eq_0",
+    "O_NN_finite",
+    "exists_R0_C_lambda_exp_decay_tail"
+  ],
+  "nearestCandidateInputs": {
+    "confinementFunctionalDeltaTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/delta_E_corr_NN",
+      "usableFor": [
+        "Delta E_corr_NN residual equation shape",
+        "same confinement-functional dependency chain",
+        "residual-tail variable naming"
+      ],
+      "notUsableFor": [
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_delta_E_corr_NN",
+        "accepted_finite_range_residual"
+      ],
+      "boundary": "The Delta E_corr_NN target row defines the residual expression but does not prove the large-separation tail limit."
+    },
+    "finiteRangeResidualBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "finite-range residual proof target",
+        "bounded overlap criterion",
+        "downstream finite-tail graph-rule locks"
+      ],
+      "notUsableFor": [
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_finite_range_residual",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The finite-range residual blocker consumes the tail-limit row but explicitly accepts no source rows."
+    },
+    "acceptedSigmaEffInputs": {
+      "candidatePaths": [
+        "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
+      ],
+      "usableFor": [
+        "accepted input rows for the sigma_eff extraction domain",
+        "same-record Noether sea response arguments"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_color_singlet_nucleon_envelope"
+      ],
+      "boundary": "Accepted sigma_eff input rows constrain the domain but are not the accepted sigma_eff extraction or residual tail proof."
+    },
+    "branchInterfaceRetainedLedgers": {
+      "candidatePaths": [
+        "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json"
+      ],
+      "usableFor": [
+        "accepted proton branch-interface ledger",
+        "accepted neutron branch-interface ledger",
+        "same-record energy, momentum, and angular-momentum ledger"
+      ],
+      "notUsableFor": [
+        "accepted_branch_interface_rows",
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained branch-interface ledgers provide same-record inputs but do not prove the residual tail limit."
+    },
+    "tailCorridorWeightSupport": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_tail_corridor_weight_support_0001",
+      "acceptedRowsProvided": [
+        "corridor_weight_growth_eta_lt_lambda",
+        "coefficient_exclusion_audit"
+      ],
+      "usableFor": [
+        "accepted corridor-weight growth support for O_NN_finite",
+        "accepted coefficient-exclusion audit for the tail constants and corridor weight"
+      ],
+      "notUsableFor": [
+        "accepted_uniform_large_r_bound_C_lambda_R0",
+        "accepted_lim_R_to_infty_T_NN_R_eq_0",
+        "accepted_O_NN_finite",
+        "accepted_Delta_E_corr_NN_tail_limit"
+      ],
+      "boundary": "The retained corridor-weight support accepts eta=0<C_lambda for any future positive lambda and excludes element-indexed tail coefficients, but it does not prove the residual exponential tail or the tail-limit rows."
+    },
+    "uniformTailBoundSupport": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_uniform_tail_bound_support_0001",
+      "acceptedRowsProvided": [
+        "uniform_large_r_bound_C_lambda_R0"
+      ],
+      "usableFor": [
+        "accepted uniform large-R exponential bound support form",
+        "accepted non-element-indexed R0, C, and lambda support constants for the tail route"
+      ],
+      "notUsableFor": [
+        "accepted_lim_R_to_infty_T_NN_R_eq_0",
+        "accepted_O_NN_finite",
+        "accepted_exists_R0_C_lambda_exp_decay_tail",
+        "accepted_Delta_E_corr_NN_tail_limit"
+      ],
+      "boundary": "The retained uniform tail-bound support accepts only the uniform_large_r_bound_C_lambda_R0 row; it does not join accepted sigma_eff, accepted color-singlet envelopes, and same-record branch-interface evidence into the top tail-limit row."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "Delta_E_corr_NN_tail_limit_source_target_0001",
+    "tailEnvelope": {
+      "requiredBehavior": "Define the same-domain tail envelope T_NN(R) from Delta E_corr_NN over the accepted sigma_eff, color-singlet, branch-interface, and Noether sea response record.",
+      "mustBindTo": [
+        "Delta_E_corr_NN_tail_limit",
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response"
+      ]
+    },
+    "zeroLimit": {
+      "requiredBehavior": "Prove lim_R_to_infty_T_NN_R_eq_0 without changing coefficients by A, Z, isotope, or element.",
+      "mustProvideRows": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "exists_R0_C_lambda_exp_decay_tail"
+      ]
+    },
+    "boundedOverlap": {
+      "requiredBehavior": "Show the weighted residual overlap O_NN is finite in the same corridor window consumed by the finite-tail graph rules.",
+      "mustProvideRows": [
+        "O_NN_finite"
+      ]
+    }
+  },
+  "uniformExponentialTailCertificateRequestPacket": {
+    "claimLevel": "priority-only uniform exponential tail certificate request packet; not accepted source evidence and not promotion evidence",
+    "sourceRowIds": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "minimumFields": [
+      "retainedEventId",
+      "Delta_E_corr_NN_ref",
+      "tailEnvelopeRef",
+      "R0",
+      "C",
+      "lambda",
+      "corridorWeightRef",
+      "C_w",
+      "eta",
+      "eta_lt_lambda_witness",
+      "sigmaEffExtractionRef",
+      "colorSingletNucleonEnvelopeRef",
+      "protonBranchInterfaceLedgerRef",
+      "neutronBranchInterfaceLedgerRef",
+      "sameRecordEnergyMomentumAngularMomentumLedgerRef",
+      "sameRecordNoetherSeaResponseRef",
+      "coefficientExclusionAudit"
+    ],
+    "requiredRecordEqualities": [
+      "record(Delta_E_corr_NN_ref)=record(tailEnvelopeRef)",
+      "record(Delta_E_corr_NN_ref)=record(corridorWeightRef)",
+      "record(Delta_E_corr_NN_ref)=record(sigmaEffExtractionRef)",
+      "record(Delta_E_corr_NN_ref)=record(colorSingletNucleonEnvelopeRef)",
+      "record(Delta_E_corr_NN_ref)=record(protonBranchInterfaceLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(neutronBranchInterfaceLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(sameRecordEnergyMomentumAngularMomentumLedgerRef)",
+      "record(Delta_E_corr_NN_ref)=record(sameRecordNoetherSeaResponseRef)"
+    ],
+    "inequalityRequirements": [
+      "C>0",
+      "lambda>0",
+      "C_w>0",
+      "0<=eta<lambda"
+    ],
+    "acceptedInputsAlreadyAvailable": [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response",
+      "corridor_weight_growth_eta_lt_lambda",
+      "uniform_large_r_bound_C_lambda_R0",
+      "coefficient_exclusion_audit"
+    ],
+    "stillMissingBeforeAcceptance": [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope"
+    ],
+    "derivedRowsIfAccepted": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "notAcceptedByThisPacket": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the residual tail bound uses a different retained event id than the branch-interface or Noether sea response rows",
+      "lambda is non-positive or eta is not strictly smaller than lambda",
+      "R0, C, lambda, C_w, eta, T_NN, O_NN, or w_corr depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
+      "the certificate is target-only, sample-level, fixture-only, or toy-only",
+      "no_open_color_far_field is assumed before the tail-limit rows are accepted"
+    ]
+  },
+  "candidateTailLimitScaffold": {
+    "claimLevel": "priority-only tail-limit proof scaffold; accepts no source rows and does not prove Delta_E_corr_NN_tail_limit",
+    "tailEnvelope": "\\mathcal T_{NN}(R)=\\sup_{r\\ge R}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r;\\Gamma_{N_1},\\Gamma_{N_2},\\sigma_{\\mathrm{eff}},\\rho_{\\text{NS}},\\chi_{\\text{sea}})\\right|",
+    "zeroLimit": "\\lim_{R\\to\\infty}\\mathcal T_{NN}(R)=0",
+    "boundedOverlapCriterion": "\\mathcal O_{NN}=\\int_{R_0}^{\\infty}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r)\\right|\\,w_{\\mathrm{corr}}(r)\\,dr<\\infty",
+    "sufficientDecayCondition": "\\exists R_0,C,\\lambda>0:\\;|\\Delta E_{\\mathrm{corr}}^{NN}(r)|\\le C e^{-\\lambda(r-R_0)}\\;\\text{for}\\;r\\ge R_0",
+    "sameRecordConstraint": "\\operatorname{record}(\\Delta E_{\\mathrm{corr}}^{NN})=\\operatorname{record}(\\sigma_{\\mathrm{eff}})=\\operatorname{record}(\\Gamma_{N_1})=\\operatorname{record}(\\Gamma_{N_2})=\\operatorname{record}(\\mathcal R_{\\mathrm{NS}}^{\\mathrm{same}})",
+    "requiredLedgerComponents": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field"
+    ],
+    "coefficientExclusion": "No A-indexed, Z-indexed, isotope-indexed, or element-indexed coefficient may appear in T_NN, O_NN, R_0, C, lambda, or w_corr."
+  },
+  "candidateTailLimitLemma": {
+    "claimLevel": "priority-only conditional lemma; not accepted source evidence and not promotion evidence",
+    "lemmaId": "delta_E_corr_NN_uniform_exponential_tail_implies_tail_limit_0001",
+    "statement": "If the same retained sigma_eff, color-singlet envelope, branch-interface, and Noether sea response record supplies a uniform bound |Delta E_corr_NN(r)| <= C exp(-lambda(r-R0)) for r >= R0 with C>0 and lambda>0, and the corridor weight satisfies w_corr(r) <= C_w exp(eta(r-R0)) with 0 <= eta < lambda, then Delta_E_corr_NN_tail_limit follows: lim_R_to_infty T_NN(R)=0 and O_NN is finite.",
+    "assumptions": [
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+      "uniform_large_r_bound_C_lambda_R0",
+      "no_A_Z_isotope_or_element_indexed_tail_coefficient",
+      "corridor_weight_growth_eta_lt_lambda"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "tail_envelope_bound",
+        "derivation": "For R >= R0, T_NN(R)=sup_{r>=R}|Delta E_corr_NN(r)| <= C exp(-lambda(R-R0))."
+      },
+      {
+        "stepId": "zero_limit",
+        "derivation": "Because lambda>0, C exp(-lambda(R-R0)) tends to zero as R tends to infinity, so lim_R_to_infty_T_NN_R_eq_0 follows."
+      },
+      {
+        "stepId": "finite_overlap",
+        "derivation": "O_NN <= integral_R0^infty C C_w exp(-(lambda-eta)(r-R0)) dr = C C_w/(lambda-eta), so O_NN_finite follows when eta < lambda."
+      },
+      {
+        "stepId": "downstream_feed",
+        "derivation": "The accepted tail-limit row can feed finite_range_residual, same_record_no_open_color_audit, and no_open_color_far_field only after the same-record and accepted-upstream-row assumptions are also satisfied."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
+    "missingAcceptanceRows": [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
+    ],
+    "failureModes": [
+      "lambda <= 0",
+      "corridor weight grows with eta >= lambda",
+      "the exponential bound changes by A, Z, isotope, or element",
+      "the bound is proven in a different record than the finite_range_residual consumes"
+    ]
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "Delta_E_corr_NN_tail_limit",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_branch_interface_rows",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_sigma_eff_extraction",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Derive Delta_E_corr_NN_tail_limit by proving the same-domain tail envelope T_NN(R) tends to zero and has finite overlap without element-specific tuning.",
+    "minimalInputNeeded": [
+      "accepted sigma_eff extraction row",
+      "accepted proton and neutron color-singlet envelope bundle",
+      "accepted proton and neutron branch-interface ledgers plus same-record conservation ledger",
+      "accepted same-record Noether sea response row",
+      "same-record tail-limit certificate that joins the accepted uniform large-r bound support to the accepted sigma_eff and color-singlet rows",
+      "finite weighted-overlap audit O_NN_finite"
+    ],
+    "failureModes": [
+      "the proof uses a target-only Delta E_corr_NN equation as accepted evidence",
+      "the tail bound depends on element-specific Fe/Ni tuning",
+      "the tail row uses a different sigma_eff, color-singlet, branch-interface, or Noether sea response record than the finite-range residual consumes",
+      "the proof assumes no_open_color_far_field instead of feeding it after the tail limit is accepted"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the Delta E_corr_NN target equation, accepted sigma_eff input rows, branch-interface retained ledgers, or finite-range residual blocker from being mistaken for accepted Delta_E_corr_NN_tail_limit evidence.",
+    "Fe/Ni promotion remains blocked until Delta_E_corr_NN_tail_limit, finite_range_residual, same_record_no_open_color_audit, no_open_color_far_field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}

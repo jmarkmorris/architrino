@@ -1,0 +1,95 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_fail_closed_source_authority_inflation_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Visualize",
+  "requestSummary": {
+    "requestId": "request_source_authority_inflation_negative_001",
+    "safeSummaryId": "safe_summary_source_authority_inflation_negative_001",
+    "contextRoute": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md"
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": [],
+    "sourceChips": [
+      {
+        "route": "reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md",
+        "label": "Source ingestion priority packet",
+        "sourceClass": "priority_material",
+        "authorityStatus": "excluded",
+        "visibility": "excluded",
+        "sectionId": null,
+        "freshnessState": "fresh"
+      }
+    ],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": ["priority_material"],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "unsupported",
+    "unsupportedReasonClass": "source_authority_inflation_refused",
+    "priorityVisibility": "hidden"
+  },
+  "answerBody": {
+    "displayedText": "The requested artifact is refused because generated media, provider output, payment, issue volume, or priority-only material cannot upgrade source authority or proof status.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_source_authority_inflation_001",
+        "text": "The requested artifact is refused because generated media, provider output, payment, issue volume, or priority-only material cannot upgrade source authority or proof status."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": [],
+    "credentialBoundary": "blocked",
+    "noBrowserKeys": true
+  },
+  "artifacts": [],
+  "speechSync": {
+    "status": "not_requested",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_source_authority_inflation_negative_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 10,
+    "heldTokens": 10,
+    "chargedTokens": 0,
+    "refundedTokens": 10,
+    "workUnits": ["source_navigation"],
+    "sourceClassesUsed": [],
+    "artifactCount": 0,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "disabled",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [],
+  "issueMiningContext": {
+    "enabled": true,
+    "originSurface": "Visualize",
+    "duplicateKeys": ["source-authority-inflation-negative-001"],
+    "ownerLane": "source_authority_policy",
+    "smallestNextArtifact": "source_authority_refusal_fixture",
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": [
+      "source-authority-inflation-negative-001",
+      "source_authority_validator",
+      "manifest_validation_completed"
+    ],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

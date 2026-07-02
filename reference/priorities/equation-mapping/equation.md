@@ -172,7 +172,7 @@ Every downstream row must either consume the active-root law directly or consume
 | `EQ-02` through `EQ-04`, plus `EQ-04A` | Moving clocks, oblate spheroidal envelope rows, energy-momentum, exposed mass, and charged-lepton mass-root benchmarks must share one retained branch chart with active roots, causal-root Jacobians, wake tails, line-of-action geometry, and no hidden retune between clock, envelope, energy, and mass readouts. |
 | `EQ-05` | Conservation rows must include wake energy, wake momentum, angular momentum, event work, and boundary flux on the same finite window; ordinary local mechanical totals alone are not enough in a delay system. |
 | `EQ-06`, `EQ-24`, and `EQ-25` | Noether sea continuity, medium response, acoustic/elastic rows, and thermal/statistical rows must be low-moment or finite-window projections of retained Noether braid population dynamics, not independent continuum postulates. |
-| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A` and `EQ-11A` | Effective metric, compact-star support, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
+| `EQ-07` through `EQ-11`, `EQ-17` through `EQ-20`, and `EQ-32`, plus `EQ-07A`, `EQ-07C`, and `EQ-11A` | Effective metric, compact-star support, black-hole-proper horizon/interior rows, weak-gravity, gravitational-wave source, redshift, cosmology, dark-energy, and low-acceleration rows must project from Noether sea density, cadence, delay, stress, flow, and response variables whose source record is ultimately a coarse-grained causal-root and wake ledger. |
 | `EQ-12`, `EQ-12A`, `EQ-22A`, `EQ-22B`, `EQ-26`, `EQ-26A`, `EQ-28`, `EQ-28A`, and `EQ-29` | Photon, action-quantum, blackbody, recombination/acoustic, atomic, coupling, recoil, path-frequency exchange, and radiation rows must preserve source-event provenance, photon-channel event balance, recoil/remnant rows, and wake/Noether sea exchange rather than assigning $h$, $\alpha$, $c_\gamma$, recombination clocks, frequency shifts, or emitted power independently. |
 | `EQ-13`, `EQ-15`, `EQ-16`, `EQ-16A`, and `EQ-27` | Field, spinor, gauge, neutrino, and magnetic-moment rows must retain branch identity, ordered-frame or phase-history data, angular-momentum ledgers, and exposed-sector records back to a causal-root branch instead of importing field labels as substrate ontology. |
 | `EQ-14`, `EQ-30`, and `EQ-31` | Probability-current, cross-section, form-factor, width, lifetime, and branching-fraction rows must arise from finite-window branch pushforwards, event outcome partitions, detector kernels, and admissible escape corridors seeded by retained causal-root histories. |
@@ -851,6 +851,60 @@ The first blocker is `missing_accepted_compact_region_carrier`: one source-backe
 
 Populate the `EQ-07A` compact-region carrier behind the Chandrasekhar and TOV solver residuals. The next useful artifact is a source-backed carrier row that keeps dense-matter pressure, radial support, reaction inventory, and metric compliance on one retained record.
 
+## EQ-07C: Black-Hole Horizon-Interface Noether Braid Map
+
+Detailed packet: [EQ-07C Black-Hole Horizon-Interface Noether Braid Map](eq-07c-black-hole-horizon-interface-noether-braid-map.md).
+
+### Standard Form
+
+The black-hole-proper comparison starts with exterior mass, radius, surface-area, and spin benchmarks:
+
+$$
+r_s=\frac{2GM}{c_0^2},
+\qquad
+\chi_J=\frac{c_0|\mathbf J|}{GM^2},
+\qquad
+r_+=\frac{GM}{c_0^2}\left(1+\sqrt{1-\chi_J^2}\right),
+$$
+
+$$
+A_H
+=
+\frac{8\pi G^2M^2}{c_0^4}
+\left(1+\sqrt{1-\chi_J^2}\right),
+\qquad
+S_{\mathrm{BH}}^{\mathrm{std}}
+=
+\frac{k_B c_0^3 A_H}{4G\hbar}.
+$$
+
+These are observer-level recovery targets, not substrate ontology.
+
+### AAA Mapping
+
+`EQ-07C` asks whether one black-hole horizon-interface carrier can join:
+
+- exterior compact-source labels $(M,\mathbf J,Q_{\mathrm{eff}})$;
+- horizon radius $r_H$, area $A_H$, surface gravity $\kappa_H$, and entropy-area comparison rows;
+- native horizon-interface condition $F_H=0$;
+- terminal-alignment rows for the braid symmetry-breaking point at the horizon-interface candidate;
+- light-ring / null-orbit rows, kept distinct from $r_H$ unless the same carrier derives a spin/branch coincidence condition;
+- planar-photon recovery rows when photon-path or light-ring evidence is used;
+- finite interior continuation $\mathcal{R}_H(\Omega,W)<\infty$;
+- horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf J,Q_{\mathrm{eff}})$;
+- compact-region event ledger $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$;
+- and no-hidden-retune witness across exterior, horizon, interior, entropy, and remnant/ringdown rows.
+
+The packet explicitly separates black-hole-proper equations from accretion-disk, wind, jet, and feedback physics. Those release-channel rows may supply boundary data through `EQ-07B`, but they cannot replace the horizon/interior carrier.
+
+### Closure Status
+
+Current score: unscored; not integrated into the main score table.
+
+The first blocker is `missing_accepted_black_hole_horizon_interface_carrier`: one source-backed carrier must bind mass, spin, radius, surface area, $F_H$, terminal alignment, light-ring/null-orbit separation or derived coincidence, planar-photon recovery when used, finite interior continuation, horizon labels, event ledger, and no-retune rows before any score review or reader-facing promotion.
+
+No checker exists yet. The next useful artifact is a score-neutral identity shell only after the carrier contract in the detailed packet is stable.
+
 ## EQ-11: Einstein And Poisson Limits
 
 ### Standard Form
@@ -1422,7 +1476,7 @@ not a field equation imported as ontology.
 
 The score-neutral executable route for the spinor side is now [spin-magnetic-moment-certificate.mjs](../../../scripts/equation-mapping/spin-magnetic-moment-certificate.mjs). Its attempt fixture reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_ordered_frame_loop`. The source-attempt fixture [eq15-27-ordered-frame-loop-source-attempt.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-source-attempt.v1.json) has the intended spin-lift and leading-$g$ numeric shape, but all rows remain `attempt`. The priority-source control [eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json](../../../scripts/equation-mapping/eq15-27-ordered-frame-loop-priority-source-negative-control.v1.json) now fails closed at `accepted_without_evidence_source` with `sourceEvidenceFailureCount: 7`, so priority/source-map prose cannot satisfy accepted ordered-frame rows. `EQ-15` stays at `2`.
 
-The score-neutral executable route for the weak/gauge side is now [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs). Its baseline attempt fixture [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_weak_visible_branch_ledger`. The source-attempt fixture [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json) fails closed at `accepted_without_evidence_source` because its accepted-looking ledger row points to a priority map. The muon projection evidence lane [weak-gauge-exposure-domain-muon-projection-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json) now accepts the durable `weak_visible_branch_ledger` source [weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json) plus the same-domain `weak_projection` source [weak-projection-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json), and advances the first live blocker to `missing_accepted_weak_quotient`, still with `scoreDecision=no_score_increase`. The domain, gauge-branch, covariance, `V-A`, CKM, PMNS, provenance, and retune diagnostics are executable, but they remain shape checks until the same-domain quotient, exposure, chirality, overlap, provenance, covariance, reaction-event, and Noether sea rows are accepted. The [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) now carries a Direct Geometry Layer binding those rows to one weak-visible domain.
+The score-neutral executable route for the weak/gauge side is now [weak-gauge-exposure-domain.mjs](../../../scripts/equation-mapping/weak-gauge-exposure-domain.mjs). Its baseline attempt fixture [weak-gauge-exposure-domain-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision=no_score_increase`, and first blocker `missing_accepted_weak_visible_branch_ledger`. The source-attempt fixture [weak-gauge-exposure-domain-source-attempt.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-source-attempt.v1.json) fails closed at `accepted_without_evidence_source` because its accepted-looking ledger row points to a priority map. The muon projection evidence lane [weak-gauge-exposure-domain-muon-projection-evidence.v1.json](../../../scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json) now accepts the durable `weak_visible_branch_ledger` source [weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json), the same-domain `weak_projection` source [weak-projection-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json), the same-domain `weak_quotient` source [weak-quotient-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json), and the same-domain `weak_exposure_record` source [weak-exposure-record-muon-decay-retained-evidence.v1.json](../../../scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json), and advances the first live blocker to `missing_accepted_va_chirality_gate`, still with `scoreDecision=no_score_increase`. The domain, gauge-branch, covariance, `V-A`, CKM, PMNS, provenance, and retune diagnostics are executable, but they remain shape checks until the same-domain chirality, overlap, provenance, covariance, reaction-event, and Noether sea rows are accepted. The [EQ-16 Weak-Visible Branch Ledger Source-Field Map](eq-16-weak-visible-branch-ledger-source-field-map.md) now carries a Direct Geometry Layer binding those rows to one weak-visible domain.
 
 ### Agent Target
 
@@ -1847,7 +1901,7 @@ Current `6/23 b` score: `3`.
 
 The mechanism is staged as a shared constitutive target, not merely a loose analogy. A fitted $\Lambda$ is still not a derivation.
 
-The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. Its numeric pressure, equation-of-state, $\Lambda_{\mathrm{eff}}$, FRW-handoff, source-provenance, and hidden-retune diagnostics pass, but those passes are not score evidence because the retained Noether sea pressure/tension/relaxation rows remain `attempt`.
+The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) now consumes the accepted `theta_sea_rho_NS` density provider and the retained [eq20-delta-p-eff-pressure-projection-report.v1.json](../../../scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json). It reports no missing pressure rows or shared keys, accepts the pressure-law, sea-pressure, sea-tension, relaxation, effective-density, effective-pressure, effective-coupling, effective-$\Lambda$, source-provenance, and no-hidden-retune rows from the same provider window, and then stops at `blocked_missing_frw_handoff` with `nextBlocker=missing_accepted_theta_cos`. The route remains score-neutral because the accepted pressure projection has not yet cleared the inherited `theta_cos` cosmology handoff or the shared weak-gravity/growth/CMB coupling tests.
 
 ### Closure Burden
 
@@ -1871,7 +1925,7 @@ Then show how it projects into $w_{\mathrm{eff}}$ and $\Lambda_{\mathrm{eff}}$ w
 
 ### Agent Target
 
-Replace the pressure/$\Lambda_{\mathrm{eff}}$ attempt with a durable source-backed `theta_sea_rho_NS` density/pressure/tension/relaxation bundle, while preserving the inherited `theta_cos` handoff. Until the Noether sea and pressure checkers accept the same-window density, stress, pressure, tension, relaxation, effective-coupling, source-loading, provenance, and no-hidden-retune rows from durable source evidence, the dark-energy row remains score-neutral at `missing_accepted_theta_sea_rho_NS` and `missing_accepted_theta_cos`.
+Build the accepted `theta_cos` cosmology handoff for the provider-backed `EQ-20` pressure route, then reuse the same pressure, coupling, and source-provenance rows in the shared `EQ-11`/`EQ-20` residual. Until the inherited FRW handoff clears and the same $G_{\mathrm{eff}}$, pressure, relaxation, growth, CMB, and low-acceleration consumers remain no-retune on the shared record, the dark-energy row remains score-neutral at `missing_accepted_theta_cos`.
 
 ## EQ-21: Structure Growth And Matter Power
 

@@ -79,49 +79,14 @@
       "height": 512
     },
     {
-      "file": "content/assets/images/brand/noether-braid-youtube-channel-banner-2560x1440.png",
+      "file": "content/assets/images/brand/banners/noether-braid-sea/noether-braid-youtube-channel-banner-2560x1440.png",
       "platform": "youtube",
       "role": "channel-banner",
       "width": 2560,
       "height": 1440
     },
     {
-      "file": "content/assets/images/brand/noether-braid-linkedin-company-cover-1128x191.png",
-      "platform": "linkedin",
-      "role": "company-cover",
-      "width": 1128,
-      "height": 191
-    },
-    {
-      "file": "content/assets/images/brand/noether-braid-linkedin-profile-background-1584x396.png",
-      "platform": "linkedin",
-      "role": "profile-background",
-      "width": 1584,
-      "height": 396
-    },
-    {
-      "file": "content/assets/images/brand/noether-braid-reddit-community-banner-small-4000x128.png",
-      "platform": "reddit",
-      "role": "community-banner-small",
-      "width": 4000,
-      "height": 128
-    },
-    {
-      "file": "content/assets/images/brand/noether-braid-reddit-community-banner-medium-4000x192.png",
-      "platform": "reddit",
-      "role": "community-banner-medium",
-      "width": 4000,
-      "height": 192
-    },
-    {
-      "file": "content/assets/images/brand/noether-braid-reddit-community-banner-large-4000x384.png",
-      "platform": "reddit",
-      "role": "community-banner-large",
-      "width": 4000,
-      "height": 384
-    },
-    {
-      "file": "content/assets/images/brand/noether-braid-discord-server-banner-960x540.png",
+      "file": "content/assets/images/brand/banners/noether-braid-sea/noether-braid-discord-server-banner-960x540.png",
       "platform": "discord",
       "role": "server-banner",
       "width": 960,

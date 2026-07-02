@@ -1,0 +1,190 @@
+{
+  "schema": "aaa-equation-map-va-chirality-gate-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for va_chirality_gate in the retained muon weak-exposure domain; records nearest candidate evidence and missing closure conditions; not accepted V-A chirality evidence, not accepted reaction-event evidence, and not equation-map score movement",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "va_chirality_gate",
+  "currentStatus": "blocked_missing_same_domain_va_chirality_gate",
+  "sourceSupportSought": [
+    "same_domain_va_chirality_gate",
+    "charged_current_left_channel_selection",
+    "right_channel_charged_current_suppression",
+    "muon_decay_michel_parameter_binding"
+  ],
+  "nearestCandidateInputs": {
+    "weakQuotientEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
+      "candidateRowId": "Q_weak_muon_decay_0001",
+      "acceptedRowsProvided": [
+        "weak_quotient"
+      ],
+      "usableFor": [
+        "same retained weak-visible domain",
+        "same branch record",
+        "quotient equivalence class"
+      ],
+      "notUsableFor": [
+        "va_chirality_gate",
+        "charged_current_left_channel_selection",
+        "right_channel_charged_current_suppression"
+      ],
+      "boundary": "The quotient row preserves D_weak_visible_attempt_0001 and A_weak_attempt_0001 but explicitly does not accept V-A chirality."
+    },
+    "weakExposureEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json",
+      "candidateRowId": "E_weak_muon_decay_0001",
+      "acceptedRowsProvided": [
+        "weak_exposure_record"
+      ],
+      "usableFor": [
+        "same-domain weak exposure boundary",
+        "measured charged-lepton spectrum and lifetime row context",
+        "inferred neutral bookkeeping boundary"
+      ],
+      "notUsableFor": [
+        "va_chirality_gate",
+        "ckm_overlap_readout",
+        "pmns_overlap_readout",
+        "reaction_event_ledger",
+        "noether_sea_response"
+      ],
+      "boundary": "The exposure row records the retained weak-exposure boundary; it does not prove the chirality selector or weak event ledger."
+    },
+    "weakFlavorBenchmarkPacket": {
+      "candidatePath": "reference/priorities/standard-model-closure/weak-flavor-event-ledger-benchmark-packet.md#benchmark-table",
+      "usableFor": [
+        "PDG muon V-A spectrum benchmark pressure",
+        "Michel-parameter comparison target",
+        "left-neutrino spectrum benchmark pressure"
+      ],
+      "notUsableFor": [
+        "accepted_same_domain_va_chirality_gate",
+        "accepted_weak_event_ledger"
+      ],
+      "boundary": "The packet is priority-only benchmark material; the Standard Model V-A point is a target to recover, not a retained source row by itself."
+    },
+    "weakSectorGaugeClosure": {
+      "candidatePath": "reference/priorities/standard-model-closure/weak-sector-gauge-closure.md#weak-exposure-operator",
+      "usableFor": [
+        "native weak-exposure functional target",
+        "left-channel selection and right-channel suppression burden",
+        "same-domain exposure grammar"
+      ],
+      "notUsableFor": [
+        "accepted_va_chirality_gate"
+      ],
+      "boundary": "The priority packet defines the closure target; it does not supply accepted retained evidence for the gate."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "va_chirality_gate_source_target_0001",
+    "sameDomainGate": {
+      "requiredDomainId": "D_weak_visible_attempt_0001",
+      "requiredBranchRecordId": "A_weak_attempt_0001",
+      "mustConsumeRows": [
+        "weak_quotient",
+        "weak_exposure_record"
+      ],
+      "mustNotIntroduce": [
+        "replacement_weak_domain",
+        "replacement_branch_record",
+        "detached_standard_model_label"
+      ]
+    },
+    "chiralityClosureTarget": {
+      "requiredBehavior": "The retained weak-exposure domain must select charged-current left-channel coupling and suppress right-channel charged-current coupling in the validated regime.",
+      "requiredRow": "va_chirality_row",
+      "mustBindTo": [
+        "muon_decay_charged_current_0001",
+        "weak_exposure_record",
+        "weak_quotient"
+      ]
+    },
+    "benchmarkBinding": {
+      "comparisonRows": [
+        "Michel-parameter spectrum",
+        "Standard Model V-A benchmark point",
+        "left-neutrino spectrum parameter benchmark"
+      ],
+      "boundary": "Benchmark agreement is necessary pressure but cannot replace the same-domain retained chirality row."
+    }
+  },
+  "acceptedSourceRowProofTarget": {
+    "id": "va_chirality_gate_accepted_source_row_proof_target_0001",
+    "status": "target_required",
+    "currentEvidenceStatus": "proof_target_only",
+    "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+    "requiredAcceptedSourceRowsBeforeUse": [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_row",
+      "same_domain_rows"
+    ],
+    "requiredSameRecordRows": [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "va_chirality_row",
+      "same_domain_rows",
+      "same_branch_record"
+    ],
+    "requiredClosureRows": [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "muon_decay_michel_parameter_binding"
+    ],
+    "requiredChiralitySelectionRows": [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "va_chirality_row",
+      "muon_decay_michel_parameter_binding"
+    ],
+    "forbiddenPromotionSources": [
+      "priority_packet_only",
+      "target_required",
+      "retained_weak_exposure_only",
+      "standard_model_benchmark_table_only"
+    ]
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "va_chirality_gate",
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "reaction_event_ledger",
+      "noether_sea_response",
+      "accepted_weak_channel_source_rows"
+    ],
+    "expectedCheckerStatus": "missing_accepted_weak_channel_rows",
+    "expectedFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Build a durable same-domain V-A chirality gate over D_weak_visible_attempt_0001 / A_weak_attempt_0001 that consumes the accepted weak quotient and exposure rows, then leaves CKM/PMNS overlap, weak-corridor provenance, reaction-event, and Noether sea rows as downstream blockers.",
+    "minimalInputNeeded": [
+      "accepted va_chirality_row in the retained muon weak-exposure domain",
+      "left-channel charged-current selection check",
+      "right-channel charged-current suppression check",
+      "Michel-parameter benchmark binding without score movement"
+    ],
+    "failureModes": [
+      "the chirality selector requires a different weak domain",
+      "the chirality selector changes the branch record",
+      "right-channel charged-current suppression is inserted as a label rather than recovered from the exposure gate",
+      "benchmark fit rows are mistaken for retained source evidence",
+      "reaction-event or Noether sea rows are accepted before their ledgers exist"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the retained weak quotient, weak exposure record, or priority-only V-A benchmark table from being mistaken for accepted va_chirality_gate evidence.",
+    "Fe/Ni beta-stability and asymmetry toy terms remain blocked until V-A, reaction-event, and weak Noether sea rows are accepted from durable non-fixture evidence in the same weak-exposure domain."
+  ]
+}

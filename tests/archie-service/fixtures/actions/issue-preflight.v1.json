@@ -1,0 +1,10 @@
+{
+  "schema": "archie-action-preflight/v1",
+  "action": {
+    "actionType": "submit_issue",
+    "preflightStatus": "confirmation_required",
+    "confirmationRequired": true,
+    "confirmationReasons": ["public_visibility", "external_handoff"],
+    "destinationClass": "github_prefilled_url"
+  }
+}

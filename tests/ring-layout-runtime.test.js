@@ -75,6 +75,10 @@ function createTestSceneGraphRuntime(nodes, layoutConfig) {
   return runtime.buildLevel("test_scene");
 }
 
+function uniqueRoundedCoordinateCount(positions, axis) {
+  return new Set(positions.map((position) => position[axis].toFixed(2))).size;
+}
+
 test("ring layout options allow scenes to disable inner rings", () => {
   assert.equal(normalizeRingLayoutOptions().allowInnerRings, true);
   assert.equal(normalizeRingLayoutOptions({ allowInnerRings: false }).allowInnerRings, false);
@@ -123,4 +127,47 @@ test("ring layout centers overview and orders twelve sections from noon", () => 
   assert.ok(ringPositions[0].y > 0);
   assert.ok(ringPositions[1].x > 0);
   assert.ok(ringPositions[1].y > 0);
+});
+
+test("ring layout keeps twelve or fewer auto nodes on the standard single circle", () => {
+  for (let count = 2; count <= 12; count += 1) {
+    const nodes = Array.from({ length: count }, (_, index) => ({
+      id: `application_${count}_${index + 1}`,
+      name: `Application ${index + 1}`,
+      radius: 1,
+    }));
+
+    const level = createTestSceneGraphRuntime(nodes, {
+      type: "rings",
+      direction: "clockwise",
+      order: "objects",
+    });
+
+    const ringPositions = nodes.map((node) => level.nodeById.get(node.id).group.position);
+    const ringRadius = ringPositions[0].length();
+    assert.ok(ringRadius > 0);
+    ringPositions.forEach((position) => {
+      assert.ok(Math.abs(position.length() - ringRadius) < 0.01);
+    });
+  }
+});
+
+test("ring layout switches fifteen or more auto nodes to grid", () => {
+  const nodes = Array.from({ length: 15 }, (_, index) => ({
+    id: `application_${index + 1}`,
+    name: `Application ${index + 1}`,
+    radius: 1,
+  }));
+
+  const level = createTestSceneGraphRuntime(nodes, {
+    type: "rings",
+    direction: "clockwise",
+    order: "objects",
+  });
+
+  assert.equal(level.layoutType, "grid");
+
+  const positions = nodes.map((node) => level.nodeById.get(node.id).group.position);
+  assert.equal(uniqueRoundedCoordinateCount(positions, "x"), 5);
+  assert.equal(uniqueRoundedCoordinateCount(positions, "y"), 3);
 });

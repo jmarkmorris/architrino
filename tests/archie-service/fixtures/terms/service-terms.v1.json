@@ -1,0 +1,13 @@
+{
+  "schema": "archie-service-terms/v1",
+  "versionSetId": "terms_fixture_v1",
+  "legalTermsRoute": "content/markdown/aaa/archie/legal-terms.md",
+  "serviceTermsVersion": "service_terms_fixture_v1",
+  "privacyNoticeVersion": "privacy_fixture_v1",
+  "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+  "generatedMediaTermsVersion": "media_terms_fixture_v1",
+  "githubHandoffNoticeVersion": "github_handoff_fixture_v1",
+  "notebookTermsVersion": "notebook_terms_fixture_v1",
+  "supportRoute": "support_fixture_route",
+  "legalReviewState": "draft"
+}

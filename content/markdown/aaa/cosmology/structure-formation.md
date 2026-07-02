@@ -152,6 +152,8 @@ $$
 $$
 The key variable is not mass alone but the momentum distribution inherited from the production channel. A branch that changes $\langle p/T\rangle_\theta$, $f_\nu^\theta$, or $\lambda_{\mathrm{FS}}^\theta$ independently of its BBN and CMB records has split the shared cosmology state.
 
+Cosmological neutrino-mass bounds also depend on the late matter-source accounting used by the expansion fit. A DESI-era matter-conversion comparison can relax or shift $\Sigma m_\nu$ constraints because converting part of the late matter budget into an effective dark-energy component changes the nonrelativistic matter inventory sampled by BAO, CMB, and growth. For $\mathbb{A}\mathbb{A}\mathbb{A}$, the lesson is not that the neutrino branch has changed ontology. The lesson is that any bound on $\Sigma m_\nu^\theta$ must be read together with the same late-time source term, baryon-accounting record, and Noether sea transport history used for expansion and structure formation.
+
 ### Linear and Nonlinear Dark-Sector Split
 
 Hybrid dark-sector comparisons make one useful mathematical demand explicit: the linear growth record and the nonlinear rotation-curve record must be separated before they are recombined. A nearly pressureless fluid, scalar, or neutral-assembly population can reproduce the expansion history, acoustic peak loading, and linear matter power spectrum if its effective equation of state and sound speed are small,
@@ -211,7 +213,7 @@ The effective growth equation accommodates both CDM-like and self-interacting sc
 
 ### Medium Energy (Dark-Energy Role)
 
-The baseline energy density of the Noether sea ($u_{\text{sea}}$) acts as an effective cosmological constant or dark energy. Its contribution enters the effective Hubble-like term $H(t)$. If the Noether sea has internal equation of state is $w_{\text{sea}} \approx -1$ (the Noether braids in the Noether sea resist compression, exerting negative effective pressure), the late-time acceleration of the effective expansion follows directly. Any evolution of $w_{\text{sea}}(t)$ from slow Noether sea thermodynamic relaxation produces a dynamical dark-energy signature testable against supernova and BAO data.
+The baseline energy density of the Noether sea ($u_{\text{sea}}$) is the candidate carrier for an effective cosmological-constant or dark-energy role. Its contribution enters the effective Hubble-like term $H(t)$ only after the same Noether sea constitutive record supplies the pressure and coupling rows. If the projected equation of state satisfies $w_{\text{sea}} \approx -1$, with the slowly varying outer-binary tension sector reading out as effective negative pressure, the observer-level expansion history accelerates. Any evolution of $w_{\text{sea}}(t)$ from slow Noether sea thermodynamic relaxation would produce a dynamical dark-energy signature testable against supernova and BAO data.
 
 ---
 

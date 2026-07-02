@@ -23,8 +23,16 @@
         "scenePath": "content/scenes/archie/people.json"
       },
       {
+        "nodeId": "values",
+        "scenePath": "content/scenes/archie/values.json"
+      },
+      {
         "nodeId": "licenses_attributions",
         "scenePath": "content/scenes/archie/licenses_attributions.json"
+      },
+      {
+        "nodeId": "legal_terms",
+        "scenePath": "content/scenes/archie/legal_terms.json"
       },
       {
         "nodeId": "website_stats",
@@ -62,11 +70,27 @@
       "labelBadge": "doc"
     },
     {
+      "id": "values",
+      "title": "Values",
+      "radius": 2.2,
+      "color": "#7c3aed",
+      "labelTitle": "Values",
+      "labelBadge": "doc"
+    },
+    {
       "id": "licenses_attributions",
       "title": "Licenses & Attributions",
       "radius": 2.2,
       "color": "#6a3c3c",
       "labelTitle": "Licenses & Attributions",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "legal_terms",
+      "title": "Legal Terms",
+      "radius": 2.2,
+      "color": "#4b5563",
+      "labelTitle": "Legal Terms",
       "labelBadge": "doc"
     },
     {

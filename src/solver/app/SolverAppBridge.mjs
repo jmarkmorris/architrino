@@ -845,8 +845,12 @@ const PAIR_INTERACTION_CONSTRAINT_SOLVER_CLAIM_DISCRETE_BOUNDARY_CONVERGED =
   "finite_difference_pair_boundary_value_solve_converged";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_PENDING =
   "physical_boundary_solver_pending";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_CONVERGED =
+  "physical_boundary_value_converged";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_PENDING =
   "retained_knot_guidance_not_physical_boundary_value_solve";
+const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_CONVERGED =
+  "discrete_pair_interaction_path_constraint_boundary_value_solve_converged";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_GUIDANCE_ACCELERATION =
   "retained_knot_guidance_acceleration_required";
 const PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_RELAXATION_UNCONVERGED =
@@ -913,6 +917,18 @@ const CIRCULAR_SELF_HIT_REQUEST_F64_BYTES = 48;
 const CIRCULAR_SELF_HIT_ROW_F64_BYTES = 72;
 const CIRCULAR_PATH_SEGMENT_F64_BYTES = 120;
 const CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES = 224;
+const MOVING_CIRCULAR_SOURCE_HISTORY_F64_BYTES = 128;
+const MOVING_CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES = 248;
+const MOVING_CIRCULAR_ROOT_ROW_F64_BYTES = 232;
+const MOVING_CIRCULAR_OBSERVER_FIELD_REQUEST_F64_BYTES = 32;
+const MOVING_CIRCULAR_OBSERVER_FIELD_BRANCH_F64_BYTES = 152;
+const MOVING_CIRCULAR_OBSERVER_FIELD_CONTRIBUTION_F64_BYTES = 200;
+const MOVING_CIRCULAR_OBSERVER_FIELD_SUMMARY_F64_BYTES = 144;
+const MOVING_CIRCULAR_OBSERVER_FIELD_EVIDENCE_STATUS_BY_CODE = Object.freeze({
+  0: "ok",
+  1: "receiver_normal_branch_rows_missing",
+  2: "receiver_normal_branch_rows_invalid",
+});
 const ASSEMBLY_STATE_ROW_F64_BYTES = 112;
 const ASSEMBLY_MEMBERSHIP_ROW_F64_BYTES = 80;
 const ASSEMBLY_HIERARCHY_ROW_F64_BYTES = 56;
@@ -937,7 +953,7 @@ const DEFAULT_MAX_ROOT_LEDGER_DETAIL_ROWS = 4096;
 const DEFAULT_MAX_MOTION_FRAMES = 65536;
 const DEFAULT_MAX_MOTION_PATH_ROWS = DEFAULT_MAX_MOTION_FRAMES;
 const DEFAULT_MAX_SPACETIME_INDEX_ROWS = 65536;
-const ABI_INFO_BYTES = 216;
+const ABI_INFO_BYTES = 244;
 
 export class SolverBridgeError extends Error {
   constructor(status) {
@@ -1208,7 +1224,11 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async solveMovingCircularSourceCausalRootsF64(request) {
       assertNotDisposed(state);
-      return solveMovingCircularSourceCausalRootsF64(request);
+      return solveMovingCircularSourceCausalRootsF64(
+        request,
+        state.module,
+        state.abiInfo || defaultAbiInfo()
+      );
     },
 
     async solveMovingCircularSameSourceCausalRootsF64(request) {
@@ -1218,7 +1238,20 @@ export function createSolverAppBridgeClient(options = {}) {
 
     async computeMovingCircularObserverFieldF64(request) {
       assertNotDisposed(state);
-      return computeMovingCircularObserverFieldF64(request);
+      return computeMovingCircularObserverFieldF64(
+        request,
+        state.module,
+        state.abiInfo ?? defaultAbiInfo()
+      );
+    },
+
+    async solveMovingCircularAbsoluteHistoryRunF64(request) {
+      assertNotDisposed(state);
+      return solveMovingCircularAbsoluteHistoryRunF64(
+        request,
+        state.module,
+        state.abiInfo || defaultAbiInfo()
+      );
     },
 
     async solveCausalRootsNormalizedF64(request) {
@@ -1514,6 +1547,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveMovingCircularSourceCausalRootsF64",
               "solveMovingCircularSameSourceCausalRootsF64",
+              "solveMovingCircularAbsoluteHistoryRunF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -1532,6 +1566,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveMovingCircularSourceCausalRootsF64",
               "solveMovingCircularSameSourceCausalRootsF64",
+              "solveMovingCircularAbsoluteHistoryRunF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -1550,6 +1585,7 @@ function createCapabilities(hasWasmModuleFactory) {
               "solveCircularSourceRootsHitsLedgerNormalizedF64",
               "solveMovingCircularSourceCausalRootsF64",
               "solveMovingCircularSameSourceCausalRootsF64",
+              "solveMovingCircularAbsoluteHistoryRunF64",
               "solveRootsAndHitsPrecisionF64",
               "solveRootsAndHitsF64",
               "refineEmissionShellCandidateRootsF64",
@@ -5390,10 +5426,16 @@ function createPairInteractionPhysicalBoundarySolverMetadata(
     retainedPositionsPreserved &&
     initialVelocityPreserved &&
     boundaryResidualAccepted;
-  let blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
   if (hasConvergedBoundaryEvidence) {
-    blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
-  } else if (
+    return {
+      pathConstraintPhysicalBoundarySolverStatus:
+        PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_STATUS_CONVERGED,
+      pathConstraintPhysicalBoundarySolverClaim:
+        PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_CLAIM_CONVERGED,
+    };
+  }
+  let blockingReason = PAIR_INTERACTION_PHYSICAL_BOUNDARY_SOLVER_BLOCKING_REASON_NOT_IMPLEMENTED;
+  if (
     boundaryRelaxationStatus ===
       PAIR_INTERACTION_PATH_CONSTRAINT_BOUNDARY_RELAXATION_STATUS_CONVERGED &&
     retainedPositionsPreserved &&
@@ -9364,9 +9406,14 @@ function createCircularSourceRunPrecisionSummary(response, precisionRequest) {
   };
 }
 
-function solveMovingCircularSourceCausalRootsF64(request = {}) {
+function solveMovingCircularSourceCausalRootsF64(request = {}, module = null, abiInfo = defaultAbiInfo()) {
   const normalizedRequest = createMovingCircularSourceRootRequest(request);
-  const response = solveMovingCircularSourceCausalRoots(normalizedRequest);
+  const response = module && hasNativeMovingCircularSourceRootExport(module)
+    ? solveMovingCircularSourceCausalRootsF64WithModule(module, normalizedRequest, abiInfo)
+    : {
+        ...solveMovingCircularSourceCausalRoots(normalizedRequest),
+        rowProductionOwner: "js_reference_facade",
+      };
   const status = response.status ?? createStatus(
     "ok",
     "ok",
@@ -9379,6 +9426,7 @@ function solveMovingCircularSourceCausalRootsF64(request = {}) {
     roots: response.roots ?? [],
     scan: response.scan ?? null,
     rejectedReason: response.rejectedReason ?? "",
+    rowProductionOwner: response.rowProductionOwner ?? "js_reference_facade",
     status,
     statuses: [status],
   };
@@ -9562,7 +9610,14 @@ function computeMovingCircularObserverFieldContribution(branch = {}, index = 0, 
   };
 }
 
-export function computeMovingCircularObserverFieldF64(request = {}) {
+export function computeMovingCircularObserverFieldF64(
+  request = {},
+  module = null,
+  abiInfo = defaultAbiInfo()
+) {
+  if (module && hasNativeMovingCircularObserverFieldExport(module)) {
+    return computeMovingCircularObserverFieldF64WithModule(module, request, abiInfo);
+  }
   const branches = Array.isArray(request.branches) ? request.branches : [];
   const contributions = branches.map((branch, index) =>
     computeMovingCircularObserverFieldContribution(branch, index, request)
@@ -9627,8 +9682,136 @@ export function computeMovingCircularObserverFieldF64(request = {}) {
     receiverAcceleration: electric,
     electric,
     comparisonB,
+    rowProductionOwner: "js_reference_facade",
     status,
     statuses: [status],
+  };
+}
+
+function createMovingCircularAbsoluteHistoryBranch(root = {}, rootResponse = {}, requestIndex = 0) {
+  const sourcePoint = bridgeVector(root.sourcePoint);
+  const receiverPoint = bridgeVector(root.receiverPoint);
+  const delta = {
+    x: receiverPoint.x - sourcePoint.x,
+    y: receiverPoint.y - sourcePoint.y,
+    z: receiverPoint.z - sourcePoint.z,
+  };
+  const deltaDistance = bridgeMagnitude(delta);
+  const distance = Math.max(
+    1e-12,
+    bridgeFiniteNumber(root.distance, deltaDistance)
+  );
+  const direction = deltaDistance > 1e-12
+    ? bridgeScaleVector(delta, 1 / deltaDistance)
+    : { x: 1, y: 0, z: 0 };
+  const sourceVelocity = bridgeVector(root.sourceVelocity);
+  return {
+    sourceRootRequestIndex: requestIndex,
+    sourceRef: rootResponse.sourceRef ?? rootResponse.request?.sourceRef ?? null,
+    chargeSign: bridgeFiniteNumber(rootResponse.branchChargeSign, 0),
+    direction,
+    sourceVelocity,
+    distance,
+    residual: root.residual,
+    delay: root.delay,
+    branchWeight: root.branchWeight,
+    sourceNormalSpeed: root.sourceNormalSpeed,
+    receiverNormalSpeed: root.receiverNormalSpeed,
+    sourceNormalDenominator: root.sourceNormalDenominator,
+    receiverNormalNumerator: root.receiverNormalNumerator,
+    receiverNormalCrossingFactor: root.receiverNormalCrossingFactor,
+    receiverNormalFactor: root.receiverNormalFactor,
+    unsignedReceiverNormalFactor: root.unsignedReceiverNormalFactor,
+    receiverNormalStatusCode: root.receiverNormalStatusCode,
+    sourceHistoryKind: root.sourceHistoryKind,
+  };
+}
+
+export function solveMovingCircularAbsoluteHistoryRunF64(
+  request = {},
+  module = null,
+  abiInfo = defaultAbiInfo()
+) {
+  const sourceRootRequests = Array.isArray(request.sourceRootRequests)
+    ? request.sourceRootRequests
+    : [];
+  const sourceRootResponses = sourceRootRequests.map((sourceRootRequest, requestIndex) => {
+    const response = solveMovingCircularSourceCausalRootsF64(sourceRootRequest, module, abiInfo);
+    return {
+      ...response,
+      requestIndex,
+      sourceRef: sourceRootRequest?.sourceRef ?? response.request?.sourceRef ?? null,
+      branchChargeSign: bridgeFiniteNumber(sourceRootRequest?.branchChargeSign, 0),
+    };
+  });
+  const roots = sourceRootResponses.flatMap((rootResponse, requestIndex) =>
+    (Array.isArray(rootResponse.roots) ? rootResponse.roots : []).map((root, rootIndex) => ({
+      ...root,
+      sourceRootRequestIndex: requestIndex,
+      sourceRootIndex: rootIndex,
+      sourceRef: rootResponse.sourceRef,
+      branchChargeSign: rootResponse.branchChargeSign,
+    }))
+  );
+  const branches = roots.map((root) =>
+    createMovingCircularAbsoluteHistoryBranch(
+      root,
+      sourceRootResponses[root.sourceRootRequestIndex] ?? {},
+      root.sourceRootRequestIndex
+    )
+  );
+  const observerFieldRequest = {
+    ...(request.observerFieldRequest ?? {}),
+    signalSpeed:
+      request.observerFieldRequest?.signalSpeed ??
+      request.signalSpeed ??
+      sourceRootResponses[0]?.request?.signalSpeed ??
+      1,
+    branches,
+  };
+  const observerField = computeMovingCircularObserverFieldF64(
+    observerFieldRequest,
+    module,
+    abiInfo
+  );
+  const unresolvedSourceCount = sourceRootResponses.filter(
+    (rootResponse) => (Array.isArray(rootResponse.roots) ? rootResponse.roots.length : 0) === 0
+  ).length;
+  const status = createStatus(
+    "ok",
+    "ok",
+    "moving-circular absolute-history root and observer-field run solved",
+    {
+      details: {
+        sourceCount: sourceRootResponses.length,
+        rootCount: roots.length,
+        unresolvedSourceCount,
+      },
+    }
+  );
+  return {
+    schema: "solver-moving-circular-absolute-history-run-f64.v1",
+    sourceHistoryKind: "moving-circular-source",
+    rowProductionOwner: sourceRootResponses.every(
+      (rootResponse) => rootResponse.rowProductionOwner === "native_wasm_c_abi"
+    ) && observerField.rowProductionOwner === "native_wasm_c_abi"
+      ? "native_wasm_c_abi"
+      : "js_reference_facade",
+    sourceCount: sourceRootResponses.length,
+    rootCount: roots.length,
+    unresolvedSourceCount,
+    sourceRootResponses,
+    roots,
+    observerFieldRequest,
+    observerField,
+    status,
+    statuses: [
+      status,
+      ...sourceRootResponses.flatMap((rootResponse) =>
+        Array.isArray(rootResponse.statuses) ? rootResponse.statuses : []
+      ),
+      ...(Array.isArray(observerField.statuses) ? observerField.statuses : []),
+    ],
   };
 }
 
@@ -15192,6 +15375,8 @@ export function hasSolverCAbi(module) {
     typeof module?._architrino_solver_solve_causal_roots_f64 === "function" &&
     typeof module?._architrino_solver_solve_circular_source_causal_roots_f64 === "function" &&
     typeof module?._architrino_solver_solve_circular_source_roots_hits_ledger_f64 === "function" &&
+    hasNativeMovingCircularSourceRootExport(module) &&
+    hasNativeMovingCircularObserverFieldExport(module) &&
     typeof module?._architrino_solver_solve_roots_and_hits_f64 === "function" &&
     typeof module?._architrino_solver_build_root_ledger_detail_f64 === "function" &&
     typeof module?._architrino_solver_solve_causal_root_batch_f64 === "function" &&
@@ -15223,6 +15408,14 @@ export function hasSolverCAbi(module) {
 
 function hasNativeMasterEquationIntegrationExport(module) {
   return typeof module?._architrino_solver_integrate_master_equation_motion_f64 === "function";
+}
+
+function hasNativeMovingCircularSourceRootExport(module) {
+  return typeof module?._architrino_solver_solve_moving_circular_source_causal_roots_f64 === "function";
+}
+
+function hasNativeMovingCircularObserverFieldExport(module) {
+  return typeof module?._architrino_solver_compute_moving_circular_observer_field_f64 === "function";
 }
 
 function readAbiInfo(module) {
@@ -15292,6 +15485,13 @@ function readAbiInfo(module) {
       t3StepSummaryF64Bytes: module.getValue(ptr + 204, "i32"),
       t3UnresolvedRootSegmentRowF64Bytes: module.getValue(ptr + 208, "i32"),
       t3RetainedCausalRootReplayRowF64Bytes: module.getValue(ptr + 212, "i32"),
+      movingCircularSourceHistoryF64Bytes: module.getValue(ptr + 216, "i32"),
+      movingCircularSourceRootRequestF64Bytes: module.getValue(ptr + 220, "i32"),
+      movingCircularRootRowF64Bytes: module.getValue(ptr + 224, "i32"),
+      movingCircularObserverFieldRequestF64Bytes: module.getValue(ptr + 228, "i32"),
+      movingCircularObserverFieldBranchF64Bytes: module.getValue(ptr + 232, "i32"),
+      movingCircularObserverFieldContributionF64Bytes: module.getValue(ptr + 236, "i32"),
+      movingCircularObserverFieldSummaryF64Bytes: module.getValue(ptr + 240, "i32"),
     };
   } finally {
     module._free(ptr);
@@ -15301,7 +15501,7 @@ function readAbiInfo(module) {
 function defaultAbiInfo() {
   return {
     abiMajor: 0,
-    abiMinor: 20,
+    abiMinor: 22,
     abiPatch: 0,
     rootRequestF64Bytes: CAUSAL_ROOT_REQUEST_F64_BYTES,
     rootRowF64Bytes: CAUSAL_ROOT_ROW_F64_BYTES,
@@ -15354,13 +15554,24 @@ function defaultAbiInfo() {
     t3StepSummaryF64Bytes: T3_STEP_SUMMARY_F64_BYTES,
     t3UnresolvedRootSegmentRowF64Bytes: T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES,
     t3RetainedCausalRootReplayRowF64Bytes: T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES,
+    movingCircularSourceHistoryF64Bytes: MOVING_CIRCULAR_SOURCE_HISTORY_F64_BYTES,
+    movingCircularSourceRootRequestF64Bytes: MOVING_CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES,
+    movingCircularRootRowF64Bytes: MOVING_CIRCULAR_ROOT_ROW_F64_BYTES,
+    movingCircularObserverFieldRequestF64Bytes:
+      MOVING_CIRCULAR_OBSERVER_FIELD_REQUEST_F64_BYTES,
+    movingCircularObserverFieldBranchF64Bytes:
+      MOVING_CIRCULAR_OBSERVER_FIELD_BRANCH_F64_BYTES,
+    movingCircularObserverFieldContributionF64Bytes:
+      MOVING_CIRCULAR_OBSERVER_FIELD_CONTRIBUTION_F64_BYTES,
+    movingCircularObserverFieldSummaryF64Bytes:
+      MOVING_CIRCULAR_OBSERVER_FIELD_SUMMARY_F64_BYTES,
   };
 }
 
 function assertAbiInfo(abiInfo) {
   if (
     abiInfo.abiMajor !== 0 ||
-    abiInfo.abiMinor !== 20 ||
+    abiInfo.abiMinor !== 22 ||
     abiInfo.abiPatch !== 0 ||
     abiInfo.rootRequestF64Bytes !== CAUSAL_ROOT_REQUEST_F64_BYTES ||
     abiInfo.rootRowF64Bytes !== CAUSAL_ROOT_ROW_F64_BYTES ||
@@ -15413,7 +15624,19 @@ function assertAbiInfo(abiInfo) {
     abiInfo.t3StepSummaryF64Bytes !== T3_STEP_SUMMARY_F64_BYTES ||
     abiInfo.t3UnresolvedRootSegmentRowF64Bytes !== T3_UNRESOLVED_ROOT_SEGMENT_ROW_F64_BYTES ||
     abiInfo.t3RetainedCausalRootReplayRowF64Bytes !==
-      T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES
+      T3_RETAINED_CAUSAL_ROOT_REPLAY_ROW_F64_BYTES ||
+    abiInfo.movingCircularSourceHistoryF64Bytes !== MOVING_CIRCULAR_SOURCE_HISTORY_F64_BYTES ||
+    abiInfo.movingCircularSourceRootRequestF64Bytes !==
+      MOVING_CIRCULAR_SOURCE_ROOT_REQUEST_F64_BYTES ||
+    abiInfo.movingCircularRootRowF64Bytes !== MOVING_CIRCULAR_ROOT_ROW_F64_BYTES ||
+    abiInfo.movingCircularObserverFieldRequestF64Bytes !==
+      MOVING_CIRCULAR_OBSERVER_FIELD_REQUEST_F64_BYTES ||
+    abiInfo.movingCircularObserverFieldBranchF64Bytes !==
+      MOVING_CIRCULAR_OBSERVER_FIELD_BRANCH_F64_BYTES ||
+    abiInfo.movingCircularObserverFieldContributionF64Bytes !==
+      MOVING_CIRCULAR_OBSERVER_FIELD_CONTRIBUTION_F64_BYTES ||
+    abiInfo.movingCircularObserverFieldSummaryF64Bytes !==
+      MOVING_CIRCULAR_OBSERVER_FIELD_SUMMARY_F64_BYTES
   ) {
     throw new SolverBridgeError(
       createStatus("app_contract_error", "error", "solver ABI row sizes do not match bridge layout", {
@@ -15474,6 +15697,199 @@ function solveCircularSourceCausalRootsF64WithModule(module, request, abiInfo) {
     module._free(requestPtr);
     module._free(rootsPtr);
     module._free(outCountPtr);
+  }
+}
+
+function solveMovingCircularSourceCausalRootsF64WithModule(module, request, abiInfo) {
+  const normalizedRequest = createMovingCircularSourceRootRequest(request);
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!hasNativeMovingCircularSourceRootExport(module)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "moving-circular source root C ABI export is required", {
+        recoverable: false,
+      })
+    );
+  }
+  const maxRoots = normalizedRequest.maxRoots ?? DEFAULT_MAX_CAUSAL_ROOTS;
+  const requestPtr = module._malloc(abiInfo.movingCircularSourceRootRequestF64Bytes);
+  const rootsPtr = module._malloc(abiInfo.movingCircularRootRowF64Bytes * maxRoots);
+  const outCountPtr = module._malloc(4);
+
+  try {
+    writeMovingCircularSourceCausalRootRequestF64(module, requestPtr, normalizedRequest);
+    module.setValue(outCountPtr, 0, "i32");
+    const solve = module.cwrap("architrino_solver_solve_moving_circular_source_causal_roots_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = solve(requestPtr, rootsPtr, maxRoots, outCountPtr);
+    const rootCount = module.getValue(outCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus(
+          "internal_solver_error",
+          "halt",
+          `moving-circular source causal root C ABI returned ${status}`,
+          {
+            recoverable: false,
+            details: { status, rootCount },
+          }
+        )
+      );
+    }
+    const roots = [];
+    for (let index = 0; index < rootCount; index += 1) {
+      roots.push(
+        readMovingCircularRootRowF64(
+          module,
+          rootsPtr + index * abiInfo.movingCircularRootRowF64Bytes
+        )
+      );
+    }
+    return {
+      request: normalizedRequest,
+      roots,
+      rowProductionOwner: "native_wasm_c_abi",
+      status: createStatus("ok", "ok", "moving-circular source causal roots solved by native C ABI"),
+    };
+  } finally {
+    module._free(requestPtr);
+    module._free(rootsPtr);
+    module._free(outCountPtr);
+  }
+}
+
+function computeMovingCircularObserverFieldF64WithModule(module, request, abiInfo) {
+  if (typeof module._malloc !== "function" || typeof module._free !== "function") {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "WebAssembly allocator exports are required", {
+        recoverable: false,
+      })
+    );
+  }
+  if (!hasNativeMovingCircularObserverFieldExport(module)) {
+    throw new SolverBridgeError(
+      createStatus("app_contract_error", "error", "moving-circular observer field C ABI export is required", {
+        recoverable: false,
+      })
+    );
+  }
+  const branches = Array.isArray(request.branches) ? request.branches : [];
+  const branchCount = branches.length;
+  const requestPtr = module._malloc(abiInfo.movingCircularObserverFieldRequestF64Bytes);
+  const branchesPtr = branchCount > 0
+    ? module._malloc(abiInfo.movingCircularObserverFieldBranchF64Bytes * branchCount)
+    : 0;
+  const contributionsPtr = branchCount > 0
+    ? module._malloc(abiInfo.movingCircularObserverFieldContributionF64Bytes * branchCount)
+    : 0;
+  const outCountPtr = module._malloc(4);
+  const summaryPtr = module._malloc(abiInfo.movingCircularObserverFieldSummaryF64Bytes);
+
+  try {
+    writeMovingCircularObserverFieldRequestF64(module, requestPtr, request);
+    for (let index = 0; index < branchCount; index += 1) {
+      writeMovingCircularObserverFieldBranchF64(
+        module,
+        branchesPtr + index * abiInfo.movingCircularObserverFieldBranchF64Bytes,
+        branches[index]
+      );
+    }
+    module.setValue(outCountPtr, 0, "i32");
+    const compute = module.cwrap("architrino_solver_compute_moving_circular_observer_field_f64", "number", [
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+      "number",
+    ]);
+    const status = compute(
+      requestPtr,
+      branchesPtr,
+      branchCount,
+      contributionsPtr,
+      branchCount,
+      outCountPtr,
+      summaryPtr
+    );
+    const contributionCount = module.getValue(outCountPtr, "i32");
+    if (status !== 0) {
+      throw new SolverBridgeError(
+        createStatus(
+          "internal_solver_error",
+          "halt",
+          `moving-circular observer field C ABI returned ${status}`,
+          {
+            recoverable: false,
+            details: { status, contributionCount },
+          }
+        )
+      );
+    }
+    const contributions = [];
+    for (let index = 0; index < contributionCount; index += 1) {
+      contributions.push(
+        readMovingCircularObserverFieldContributionF64(
+          module,
+          contributionsPtr + index * abiInfo.movingCircularObserverFieldContributionF64Bytes
+        )
+      );
+    }
+    const summary = readMovingCircularObserverFieldSummaryF64(module, summaryPtr);
+    const receiverNormalFailureCode = summary.receiverNormalFailureCode
+      ? MOVING_CIRCULAR_OBSERVER_FIELD_EVIDENCE_STATUS_BY_CODE[
+          summary.receiverNormalFailureCode
+        ] ?? "receiver_normal_branch_rows_invalid"
+      : null;
+    const statusRow = createStatus(
+      receiverNormalFailureCode ?? "ok",
+      summary.missingReceiverNormalCount > 0 ? "warn" : "ok",
+      summary.missingReceiverNormalCount > 0
+        ? "moving-circular observer field has branches without complete receiver-normal branch rows"
+        : "moving-circular observer field computed by native C ABI",
+      summary.missingReceiverNormalCount > 0
+        ? { details: { missingReceiverNormalCount: summary.missingReceiverNormalCount } }
+        : {}
+    );
+    return {
+      schema: "solver-moving-circular-observer-field-f64.v1",
+      sourceHistoryKind: "moving-circular-source",
+      branchCount: summary.branchCount,
+      contributionCount: summary.contributionCount,
+      contributions,
+      averageDelay: summary.averageDelay,
+      delaySolveGapMax: summary.delaySolveGapMax,
+      maxSourceSpeedRatio: summary.maxSourceSpeedRatio,
+      jacobianAbsMin: summary.jacobianAbsMin,
+      unstableContributionCount: summary.unstableContributionCount,
+      nearestSourceDistance: summary.nearestSourceDistance,
+      receiverAcceleration: summary.receiverAcceleration,
+      electric: summary.electric,
+      comparisonB: summary.comparisonB,
+      rowProductionOwner: "native_wasm_c_abi",
+      status: statusRow,
+      statuses: [statusRow],
+    };
+  } finally {
+    module._free(requestPtr);
+    if (branchesPtr) {
+      module._free(branchesPtr);
+    }
+    if (contributionsPtr) {
+      module._free(contributionsPtr);
+    }
+    module._free(outCountPtr);
+    module._free(summaryPtr);
   }
 }
 
@@ -16945,6 +17361,17 @@ function writeCircularPathSegmentF64(module, ptr, segment) {
   module.setValue(ptr + 112, segment.errorBound ?? 0, "double");
 }
 
+function writeMovingCircularSourceHistoryF64(module, ptr, source) {
+  writeVector(module, ptr, source.centerAtEpoch ?? source.center);
+  writeVector(module, ptr + 24, source.centerVelocity);
+  writeVector(module, ptr + 48, source.radiusU);
+  writeVector(module, ptr + 72, source.radiusV);
+  module.setValue(ptr + 96, source.angularVelocity, "double");
+  module.setValue(ptr + 104, source.phaseAtEpoch ?? 0, "double");
+  module.setValue(ptr + 112, source.epochTime ?? 0, "double");
+  module.setValue(ptr + 120, source.errorBound ?? 0, "double");
+}
+
 function writeCircularSourceCausalRootRequestF64(module, ptr, request) {
   writeCircularPathSegmentF64(module, ptr, request.source);
   writeSegment(module, ptr + CIRCULAR_PATH_SEGMENT_F64_BYTES, request.receiver);
@@ -16953,6 +17380,56 @@ function writeCircularSourceCausalRootRequestF64(module, ptr, request) {
   module.setValue(ptr + 208, request.rootTolerance ?? 1e-12, "double");
   module.setValue(ptr + 216, request.maxIterations ?? 96, "i32");
   module.setValue(ptr + 220, request.scanSubdivisions ?? 128, "i32");
+}
+
+function writeMovingCircularSourceCausalRootRequestF64(module, ptr, request) {
+  writeMovingCircularSourceHistoryF64(module, ptr, request.source);
+  writeSegment(module, ptr + MOVING_CIRCULAR_SOURCE_HISTORY_F64_BYTES, request.receiver);
+  module.setValue(ptr + 200, request.hitTime, "double");
+  module.setValue(ptr + 208, request.signalSpeed, "double");
+  module.setValue(ptr + 216, request.sourceStartTime, "double");
+  module.setValue(ptr + 224, request.sourceEndTime, "double");
+  module.setValue(ptr + 232, request.rootTolerance ?? 1e-12, "double");
+  module.setValue(ptr + 240, request.maxIterations ?? 96, "i32");
+  module.setValue(ptr + 244, request.scanSubdivisions ?? 128, "i32");
+}
+
+function nativeOptionalFiniteNumber(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? number : Number.NaN;
+}
+
+function writeMovingCircularObserverFieldRequestF64(module, ptr, request) {
+  module.setValue(ptr, bridgeFiniteNumber(request.signalSpeed, 1), "double");
+  module.setValue(ptr + 8, bridgeFiniteNumber(request.unstableGapThreshold, 0.05), "double");
+  module.setValue(ptr + 16, bridgeFiniteNumber(request.jacobianFloor, 1e-4), "double");
+  module.setValue(ptr + 24, 0, "i32");
+  module.setValue(ptr + 28, 0, "i32");
+}
+
+function writeMovingCircularObserverFieldBranchF64(module, ptr, branch) {
+  writeVector(module, ptr, branch.direction ?? { x: 1, y: 0, z: 0 });
+  writeVector(module, ptr + 24, branch.sourceVelocity ?? { x: 0, y: 0, z: 0 });
+  module.setValue(ptr + 48, bridgeFiniteNumber(branch.chargeSign, 0), "double");
+  module.setValue(ptr + 56, bridgeFiniteNumber(branch.distance, 0), "double");
+  module.setValue(ptr + 64, bridgeFiniteNumber(branch.residual, 0), "double");
+  module.setValue(ptr + 72, bridgeFiniteNumber(branch.delay, 0), "double");
+  module.setValue(ptr + 80, nativeOptionalFiniteNumber(branch.branchWeight), "double");
+  module.setValue(ptr + 88, bridgeFiniteNumber(branch.sourceNormalSpeed, 0), "double");
+  module.setValue(ptr + 96, bridgeFiniteNumber(branch.receiverNormalSpeed, 0), "double");
+  module.setValue(ptr + 104, nativeOptionalFiniteNumber(branch.sourceNormalDenominator), "double");
+  module.setValue(ptr + 112, nativeOptionalFiniteNumber(branch.receiverNormalNumerator), "double");
+  module.setValue(ptr + 120, bridgeFiniteNumber(branch.receiverNormalCrossingFactor, 0), "double");
+  module.setValue(ptr + 128, nativeOptionalFiniteNumber(branch.receiverNormalFactor), "double");
+  module.setValue(ptr + 136, nativeOptionalFiniteNumber(branch.unsignedReceiverNormalFactor), "double");
+  module.setValue(
+    ptr + 144,
+    Number.isFinite(Number(branch.receiverNormalStatusCode))
+      ? Number(branch.receiverNormalStatusCode)
+      : -1,
+    "i32"
+  );
+  module.setValue(ptr + 148, 0, "i32");
 }
 
 function writeMotionSampleRequestF64(module, ptr, request) {
@@ -17287,6 +17764,71 @@ function readCausalRootRowF64(module, ptr) {
     receiverNormalFactor: module.getValue(ptr + 152, "double"),
     unsignedReceiverNormalFactor: module.getValue(ptr + 160, "double"),
     receiverNormalStatusCode: module.getValue(ptr + 168, "i32"),
+  };
+}
+
+function readMovingCircularRootRowF64(module, ptr) {
+  return {
+    ...readCausalRootRowF64(module, ptr),
+    sourceVelocity: readVector(module, ptr + 176),
+    sourcePhase: {
+      rawRadians: module.getValue(ptr + 200, "double"),
+      radians: module.getValue(ptr + 208, "double"),
+      degrees: module.getValue(ptr + 216, "double"),
+      cycleIndex: module.getValue(ptr + 224, "i32"),
+    },
+    sourceHistoryKind: "moving-circular-source",
+  };
+}
+
+function readMovingCircularObserverFieldEvidenceStatus(module, ptr) {
+  const code = module.getValue(ptr, "i32");
+  return MOVING_CIRCULAR_OBSERVER_FIELD_EVIDENCE_STATUS_BY_CODE[code] ??
+    "receiver_normal_branch_rows_invalid";
+}
+
+function readMovingCircularObserverFieldContributionF64(module, ptr) {
+  return {
+    branchIndex: module.getValue(ptr, "i32"),
+    delay: module.getValue(ptr + 16, "double"),
+    distance: module.getValue(ptr + 24, "double"),
+    delaySolveGap: module.getValue(ptr + 32, "double"),
+    jacobian: module.getValue(ptr + 40, "double"),
+    jacobianAbs: module.getValue(ptr + 48, "double"),
+    branchWeight: module.getValue(ptr + 56, "double"),
+    sourceNormalSpeed: module.getValue(ptr + 64, "double"),
+    receiverNormalSpeed: module.getValue(ptr + 72, "double"),
+    sourceNormalDenominator: module.getValue(ptr + 80, "double"),
+    receiverNormalNumerator: module.getValue(ptr + 88, "double"),
+    receiverNormalCrossingFactor: module.getValue(ptr + 96, "double"),
+    receiverNormalFactor: module.getValue(ptr + 104, "double"),
+    unsignedReceiverNormalFactor: module.getValue(ptr + 112, "double"),
+    receiverNormalStatusCode: module.getValue(ptr + 4, "i32"),
+    receiverNormalEvidenceStatus: readMovingCircularObserverFieldEvidenceStatus(module, ptr + 8),
+    sourceSpeedRatio: module.getValue(ptr + 120, "double"),
+    receiverAcceleration: readVector(module, ptr + 128),
+    electric: readVector(module, ptr + 152),
+    comparisonB: readVector(module, ptr + 176),
+  };
+}
+
+function readMovingCircularObserverFieldSummaryF64(module, ptr) {
+  return {
+    branchCount: module.getValue(ptr, "i32"),
+    contributionCount: module.getValue(ptr + 4, "i32"),
+    unstableContributionCount: module.getValue(ptr + 8, "i32"),
+    missingReceiverNormalCount: module.getValue(ptr + 12, "i32"),
+    receiverNormalFailureCode: module.getValue(ptr + 16, "i32"),
+    statusCode: module.getValue(ptr + 20, "i32"),
+    statusSeverity: module.getValue(ptr + 24, "i32"),
+    averageDelay: module.getValue(ptr + 32, "double"),
+    delaySolveGapMax: module.getValue(ptr + 40, "double"),
+    maxSourceSpeedRatio: module.getValue(ptr + 48, "double"),
+    jacobianAbsMin: module.getValue(ptr + 56, "double"),
+    nearestSourceDistance: module.getValue(ptr + 64, "double"),
+    receiverAcceleration: readVector(module, ptr + 72),
+    electric: readVector(module, ptr + 96),
+    comparisonB: readVector(module, ptr + 120),
   };
 }
 

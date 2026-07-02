@@ -1,0 +1,273 @@
+{
+  "schema": "aaa-nuclear-atomic-accepted-sigma-eff-extraction-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for accepted_sigma_eff_extraction; records the exact same-domain sigma_eff extraction target and accepted upstream inputs; not accepted sigma_eff evidence, not accepted confinement-functional evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "accepted_sigma_eff_extraction",
+  "currentStatus": "blocked_missing_sigma_eff_extraction_acceptance",
+  "sourceSupportSought": [
+    "K_perp",
+    "V_exc",
+    "rho_NS",
+    "chi_sea",
+    "axis_exceptionality_charge",
+    "same_record_noether_sea_response"
+  ],
+  "nearestCandidateInputs": {
+    "confinementFunctionalSigmaTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/sigma_eff_extraction",
+      "usableFor": [
+        "sigma_eff target equation shape",
+        "toy coefficient and graph-rule row binding",
+        "same confinement-functional dependency chain"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_confinement_functional_source_rows",
+        "accepted_nuclear_binding_recovery"
+      ],
+      "boundary": "The sigma_eff row is structurally checked and has accepted source-acquisition inputs, but the top extraction row remains priority-packet-only."
+    },
+    "transverseStiffnessEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/K-perp-transverse-stiffness-functional-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "K_perp"
+      ],
+      "usableFor": [
+        "transverse stiffness functional input",
+        "color-charge domain component",
+        "sigma_eff variation-record component"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The retained K_perp row is an accepted input row, not the completed sigma_eff extraction."
+    },
+    "excitationPotentialEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/V-exc-excitation-potential-functional-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "V_exc"
+      ],
+      "usableFor": [
+        "excitation potential functional input",
+        "vacuum exceptionality profile component",
+        "rho_NS and chi_sea argument component"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The retained V_exc row is an accepted input row, not the completed sigma_eff extraction."
+    },
+    "noetherSeaConfinementInputs": {
+      "candidatePaths": [
+        "scripts/nuclear-atomic/rho-NS-confinement-domain-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/chi-sea-confinement-delay-factor-retained-evidence.v1.json",
+        "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
+      ],
+      "acceptedRowsProvided": [
+        "rho_NS",
+        "chi_sea",
+        "same_record_noether_sea_response"
+      ],
+      "usableFor": [
+        "same-record Noether sea density input",
+        "same-record Noether sea delay-factor input",
+        "same-event Noether sea response bundle"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_confinement_functional_source_rows"
+      ],
+      "boundary": "The retained Noether sea rows are accepted input rows, not the completed confinement functional."
+    },
+    "axisExceptionalityChargeEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/axis-exceptionality-charge-confinement-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "axis_exceptionality_charge"
+      ],
+      "usableFor": [
+        "axis-exceptionality charge basis",
+        "charge normalization row",
+        "same sigma_eff domain component"
+      ],
+      "notUsableFor": [
+        "accepted_sigma_eff_extraction",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The retained axis-exceptionality charge row is an accepted input row, not the completed sigma_eff extraction."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "accepted_sigma_eff_extraction_source_target_0001",
+    "sameDomainFunctionalExtraction": {
+      "requiredBehavior": "The accepted sigma_eff extraction must derive the corridor energy functional in the same color-charge, axis-exceptionality, and Noether sea response domain consumed by the Fe/Ni toy rows.",
+      "mustConsumeRows": [
+        "K_perp",
+        "V_exc",
+        "rho_NS",
+        "chi_sea",
+        "axis_exceptionality_charge",
+        "same_record_noether_sea_response"
+      ]
+    },
+    "extractionCertificate": {
+      "requiredBehavior": "The minimization and variation record must certify the sigma_eff extraction itself, not only the availability of its input rows.",
+      "mustProvide": [
+        "same-domain minimizer or variational certificate",
+        "refinement-stable sigma_eff row",
+        "source path tying the extraction to the accepted upstream rows"
+      ]
+    },
+    "toyCoefficientBinding": {
+      "requiredBehavior": "The alphaSea, pnCorridorPairReward, and ppCorridorPairReward bindings must consume an accepted sigma_eff_extraction row rather than the target equation or accepted inputs alone.",
+      "mustBindTo": [
+        "alphaSea",
+        "pnCorridorPairReward",
+        "ppCorridorPairReward"
+      ]
+    }
+  },
+  "candidateSigmaEffExtractionScaffold": {
+    "claimLevel": "priority-only same-domain sigma_eff extraction scaffold; accepts no source rows and does not prove accepted_sigma_eff_extraction",
+    "extractionFunctional": "\\mathcal S_{\\sigma}[a,f;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]=K_{\\perp}[a,Q]+V_{\\mathrm{exc}}[fQ;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]",
+    "sigmaEffDefinition": "\\sigma_{\\mathrm{eff}}(Q;\\rho_{\\text{NS}},\\chi_{\\text{sea}})=\\inf_{a,f}\\mathcal S_{\\sigma}[a,f;Q,\\rho_{\\text{NS}},\\chi_{\\text{sea}}]",
+    "certificateTuple": "\\mathcal C_{\\sigma}=(K_{\\perp},V_{\\mathrm{exc}},\\rho_{\\text{NS}},\\chi_{\\text{sea}},Q_{\\mathrm{axis}},R_{\\mathrm{NS}},a_*,f_*,\\epsilon_{\\mathrm{ref}})",
+    "stationarityCondition": "\\delta_{a,f}\\mathcal S_{\\sigma}[a_*,f_*]=0\\;\\text{within}\\;\\epsilon_{\\mathrm{ref}}",
+    "refinementStabilityCriterion": "\\left|\\sigma_{\\mathrm{eff}}^{(h)}-\\sigma_{\\mathrm{eff}}^{(h/2)}\\right|\\le\\epsilon_{\\mathrm{ref}}",
+    "sameRecordConstraint": "\\operatorname{record}(\\sigma_{\\mathrm{eff}})=\\operatorname{record}(K_{\\perp})=\\operatorname{record}(V_{\\mathrm{exc}})=\\operatorname{record}(\\rho_{\\text{NS}})=\\operatorname{record}(\\chi_{\\text{sea}})=\\operatorname{record}(Q_{\\mathrm{axis}})=\\operatorname{record}(R_{\\mathrm{NS}})",
+    "requiredAcceptedRowsBeforeUse": [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_nucleon_envelope"
+    ],
+    "coefficientLocks": [
+      "alphaSea",
+      "pnCorridorPairReward",
+      "ppCorridorPairReward"
+    ],
+    "coefficientExclusion": "No element-indexed coefficient may appear in a, f, epsilon_ref, K_perp, V_exc, rho_NS, chi_sea, Q_axis, R_NS, or sigma_eff."
+  },
+  "candidateSigmaEffExtractionLemma": {
+    "claimLevel": "priority-only conditional extraction lemma; accepts no source rows and does not prove accepted_sigma_eff_extraction",
+    "lemmaId": "sigma_eff_same_domain_variational_certificate_0001",
+    "statement": "If one retained confinement-functional record supplies the accepted K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response rows, an admissible same-domain class A_sigma(Q) with fixed color-charge and Noether sea boundary data, compactness for minimizing sequences, a lower-bounded coercive extraction functional S_sigma, a minimizer (a_*, f_*), a stationarity residual within epsilon_ref, and refinement stability |sigma_eff^(h)-sigma_eff^(h/2)| <= epsilon_ref, then the packet has the certificate shape needed to support accepted_sigma_eff_extraction.",
+    "assumptions": [
+      "accepted_K_perp_V_exc_rho_NS_chi_sea_axis_exceptionality_same_record_noether_sea_response",
+      "same_domain_admissible_class_A_sigma_Q",
+      "fixed_color_charge_and_noether_sea_boundary_data",
+      "compactness_for_minimizing_sequences",
+      "coercive_lower_bounded_S_sigma",
+      "stationarity_residual_within_epsilon_ref",
+      "refinement_stability_sigma_eff_h_to_h_over_2",
+      "no_A_Z_isotope_or_element_indexed_sigma_eff_coefficient"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_domain_inputs",
+        "derivation": "Use the accepted input rows only to define the same retained domain for S_sigma; do not treat those inputs as the accepted sigma_eff extraction."
+      },
+      {
+        "stepId": "coercive_existence",
+        "derivation": "A lower-bounded coercive S_sigma over a compact same-domain admissible class gives a minimizing sequence with a convergent subsequence and a minimizer (a_*, f_*)."
+      },
+      {
+        "stepId": "stationarity_residual",
+        "derivation": "The minimizer must satisfy delta_{a,f} S_sigma[a_*,f_*]=0 within epsilon_ref in the same retained record."
+      },
+      {
+        "stepId": "refinement_stability",
+        "derivation": "The extracted value must obey |sigma_eff^(h)-sigma_eff^(h/2)| <= epsilon_ref, preventing a grid-only or sample-only row from becoming accepted evidence."
+      },
+      {
+        "stepId": "source_path_lock",
+        "derivation": "The certificate path must name the accepted upstream rows, the same-domain minimizer or variational certificate, and the refinement-stable sigma_eff row before any toy coefficient can consume sigma_eff_extraction."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "same_domain_minimizer_or_variational_certificate",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_accepted_upstream_rows"
+    ],
+    "missingAcceptanceRows": [
+      "accepted_same_domain_admissible_class",
+      "accepted_coercive_lower_bound_for_S_sigma",
+      "same_domain_minimizer_or_variational_certificate",
+      "accepted_stationarity_residual",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_accepted_upstream_rows"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "accepted_sigma_eff_extraction",
+      "delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_nucleon_envelope"
+    ],
+    "failureModes": [
+      "accepted inputs are mistaken for the accepted sigma_eff extraction",
+      "the admissible class changes the color-charge or Noether sea response record",
+      "S_sigma is not lower bounded or coercive in the retained domain",
+      "the minimizer exists only in a sample grid without refinement stability",
+      "a toy coefficient consumes sigma_eff before the extraction certificate is accepted"
+    ]
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "acceptedInputRowsOnly": [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response"
+    ],
+    "notAcceptedByThisPacket": [
+      "accepted_sigma_eff_extraction",
+      "sigma_eff_extraction",
+      "accepted_delta_E_corr_NN",
+      "delta_E_corr_NN",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery",
+      "alphaSea",
+      "pnCorridorPairReward",
+      "ppCorridorPairReward"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Promote sigma_eff_extraction only after the accepted K_perp, V_exc, rho_NS, chi_sea, axis-exceptionality charge, and same-record Noether sea response rows are consumed by a same-domain extraction certificate for sigma_eff itself.",
+    "minimalInputNeeded": [
+      "accepted K_perp row",
+      "accepted V_exc row",
+      "accepted rho_NS row",
+      "accepted chi_sea row",
+      "accepted axis_exceptionality_charge row",
+      "accepted same_record_noether_sea_response row",
+      "refinement-stable sigma_eff extraction certificate"
+    ],
+    "failureModes": [
+      "accepted inputs are mistaken for the accepted sigma_eff row",
+      "the extraction certificate uses a different Noether sea response record",
+      "the sigma_eff minimizer is not stable under refinement",
+      "a toy coefficient binds to the target equation without accepted source evidence",
+      "accepted Delta E_corr_NN is attempted before sigma_eff_extraction is accepted"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent accepted K_perp, V_exc, rho_NS, chi_sea, axis-exceptionality, Noether sea response rows, or row-shape toy passes from being mistaken for accepted_sigma_eff_extraction evidence.",
+    "Fe/Ni promotion remains blocked until accepted_sigma_eff_extraction, accepted color-singlet nucleon envelope, accepted_delta_E_corr_NN, no_open_color_far_field, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}

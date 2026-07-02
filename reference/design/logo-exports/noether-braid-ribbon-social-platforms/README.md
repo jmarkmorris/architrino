@@ -1,6 +1,6 @@
 # Noether Braid Ribbon Social Platform Exports
 
-This package documents platform-named social branding exports generated from the current Noether Braid ribbon app icon master. The image files are stored in the central brand image library.
+This package documents platform-named social branding exports. Avatar and icon files are stored in the central brand image library. Banner files are stored in the deployed banner family under `content/assets/images/brand/banners/noether-braid-sea/`.
 
 - Source PNG: `../../../../content/assets/images/brand/noether-braid-ribbon-app-icon-1024.png`
 - Manifest: `manifest.json`
@@ -18,10 +18,17 @@ This package documents platform-named social branding exports generated from the
 
 ## Banner Assets
 
-- YouTube channel banner: `../../../../content/assets/images/brand/noether-braid-youtube-channel-banner-2560x1440.png`
-- LinkedIn company cover: `../../../../content/assets/images/brand/noether-braid-linkedin-company-cover-1128x191.png`
-- LinkedIn profile background: `../../../../content/assets/images/brand/noether-braid-linkedin-profile-background-1584x396.png`
-- Reddit community banners: `../../../../content/assets/images/brand/noether-braid-reddit-community-banner-small-4000x128.png`, `../../../../content/assets/images/brand/noether-braid-reddit-community-banner-medium-4000x192.png`, `../../../../content/assets/images/brand/noether-braid-reddit-community-banner-large-4000x384.png`
-- Discord server banner: `../../../../content/assets/images/brand/noether-braid-discord-server-banner-960x540.png`
+- Working master: `../../banners/working/noether-braid-sea/noether-braid-youtube-banner-sea-2048x1152.png`
+- Deployed family: `../../../../content/assets/images/brand/banners/noether-braid-sea/`
+- YouTube channel banner: `../../../../content/assets/images/brand/banners/noether-braid-sea/noether-braid-youtube-channel-banner-2560x1440.png`
+- Discord server banner: `../../../../content/assets/images/brand/banners/noether-braid-sea/noether-braid-discord-server-banner-960x540.png`
 
-The Reddit banner set includes small, medium, and large height variants because Reddit community banner presentation depends on the selected layout.
+The shallow LinkedIn and Reddit crop variants were retired because they create a dark middle stripe rather than preserving the darker-corner vignette.
+
+## Crossing Wake Banner Assets
+
+- Working master: `../../banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-sheets-master-2560x1440.png`
+- Deployed family: `../../../../content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/`
+- Platform manifest: `../../banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json`
+
+Use the Crossing Wake family for the current social banner pass. It keeps the Noether Braid mark as the separate profile logo and uses red, purple, and blue path/wake fields as the banner artwork.

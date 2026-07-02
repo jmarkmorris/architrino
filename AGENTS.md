@@ -48,6 +48,11 @@ This document distinguishes three audience scopes:
 
 - For software architecture, cleanup discipline, canonical-path decisions, and anti-cruft maintenance guidance, follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md).
 - For thread startup, thread splitting, issue-work handoffs, branch/PR mechanics, and source-mining starts, read the operator routing index at [reference/op/README.md](reference/op/README.md) first. Treat [reference/op/codex-goal-seeking-prompt-template.md](reference/op/codex-goal-seeking-prompt-template.md) as the default meta-optimization wrapper for any Codex thread, then read only the additional linked procedure file that matches the selected workflow.
+- For theory-facing startup, use [reference/op/theory-orientation.md](reference/op/theory-orientation.md) to choose the smallest relevant set of foundation, dynamics, glossary, and priority documents before editing or reporting.
+- The operator often runs many agents in this same checkout at the same time. Treat a dirty working tree as normal ambient state, not as an exceptional condition by itself.
+- The operator does not use git worktrees for this repo because they do not meet the workflow requirements. Do not propose or request a git worktree as the default isolation strategy unless the operator explicitly asks for one.
+- At the start of work, inspect `git status --short --untracked-files=all`, then keep the write set scoped to the files the current task owns. Report unrelated dirty files only when they block the task, create overwrite risk, affect validation, or matter for staging, committing, pushing, or PR publication.
+- In closeouts, distinguish scoped edits from ambient multi-agent worktree state. Avoid generic warnings such as "the broader working tree has additional user changes" unless those changes alter the next action.
 
 - If you are working on a task in a priority list and you complete that task, remove it from the priority list and renumber any items that follow.
 
@@ -67,9 +72,10 @@ This document distinguishes three audience scopes:
 
 ### Theory Advancement Capture
 
+- At startup for theory-facing work, identify the likely durable capture home: direct corpus destination, owning priority workstream, or the workstream's `brainstorming.md` for provisional insight capture.
 - Do not leave substantive theory advancements only in chat. After a discussion produces a new derivation, equation, invariant, mechanism, simulation target, proof route, terminology decision, or corrected claim level, make a capture decision before closing the thread.
 - Prefer direct promotion into `content/markdown/aaa` when the advancement is solid enough for reader-facing corpus prose and can be stated with its assumptions and remaining obligations.
-- If the advancement is valuable but not yet corpus-solid, stage it in `reference/priorities` as priority material with its claim level, assumptions, proof burden, and intended corpus destination.
+- If the advancement is valuable but not yet corpus-solid, stage it in `reference/priorities` as priority material with its claim level, assumptions, proof burden, and intended corpus destination. Prefer the owning priority area's `brainstorming.md` for exploratory insights, or a focused workstream packet when the advancement is already an executable closure target.
 - If no durable capture is made, state why in the operator/developer handoff so the gap is visible rather than silently losing the advancement.
 
 ### Authoring and Editorial Policy
@@ -96,7 +102,7 @@ This document distinguishes three audience scopes:
 
 - For textbook-facing prose, notation, terminology, and usage canon, rely on Archie guides, glossaries, and references in `content/markdown/aaa/archie/`.
 - Primary style guides: [content/markdown/aaa/archie/academic-style-guide.md](content/markdown/aaa/archie/academic-style-guide.md) and [content/markdown/aaa/archie/mathematics-style-guide.md](content/markdown/aaa/archie/mathematics-style-guide.md).
-- Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md) and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
+- Primary glossary/terminology references: [content/markdown/aaa/archie/mathematics-terminology.md](content/markdown/aaa/archie/mathematics-terminology.md), [content/markdown/aaa/archie/terminology-usage.md](content/markdown/aaa/archie/terminology-usage.md), and [content/markdown/aaa/archie/comparative-glossary.md](content/markdown/aaa/archie/comparative-glossary.md).
 - Treat the Archie canon of guides and glossaries as controlled references, not casual edit targets.
 - For ordinary content work, conform documents to the canon; do not silently rewrite the canon to match a draft.
 - Treat terminology drift as an error to correct, not as a stylistic variation to preserve. When a draft uses a non-canonical substitute for an established project term, normalize it back to the canonical term unless the task explicitly changes terminology policy.
@@ -130,20 +136,19 @@ This document distinguishes three audience scopes:
 
 - In end-user-facing web app communication, use plain language and avoid internal software jargon.
 - If a technical term cannot be avoided, explain it immediately in ordinary language.
+- For reader-facing UI standards and current UI preference decisions, follow [content/markdown/aaa/archie/ui-guidelines.md](content/markdown/aaa/archie/ui-guidelines.md) and [content/markdown/aaa/archie/navigation-and-controls.md](content/markdown/aaa/archie/navigation-and-controls.md).
 
 ## SWE Architecture and Modularity
 
 ### Code Structure
 
-- Prefer small, single-purpose modules over extending large coordinator files.
-- Treat `app.js` and similarly large entrypoint/runtime files as startup and assembly files, not as the long-term home for new feature logic.
-- When adding a discrete feature, UI mode, workflow, data transform, or interaction model, first look for a new or existing focused runtime/service/helper file where that logic can live; keep the top-level file changes limited to straightforward setup only.
-- Reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel one-off implementations.
-- When coding in this workspace, do not design for backward compatibility unless the operator/developer explicitly requests it. We are in development mode, so prefer clean replacements over compatibility shims, dual paths, adapter layers, or preserving superseded interfaces.
-- If a file is already large or hard to reason about, do not keep piling onto it unless the change is genuinely tiny; extract related logic while the feature is being added so the codebase moves toward clearer boundaries rather than away from them.
-- Prefer boundaries based on responsibility: rendering, state, parsing/normalization, menu construction, domain logic, and persistence should be separable when practical.
-- If a refactor is too large to finish in one pass, still isolate the new work behind a small dedicated module or helper so later extraction is straightforward instead of leaving another layer of spaghetti.
-- Once a product, UI, architecture, content, or terminology decision is accepted, apply it consistently across the affected app/repo surface. Do not preserve a mixed old/new implementation, compatibility shim, partial migration, or parallel behavior unless the operator/developer explicitly requests a temporary transition. Keep rationale or historical records in [reference/architectural-decisions](reference/architectural-decisions/README.md), priority ledgers, issues, PRs, or git history; keep the live code and ordinary docs on the decided current design.
+- Follow [content/markdown/aaa/archie/software-architecture-and-maintenance.md](content/markdown/aaa/archie/software-architecture-and-maintenance.md) for detailed architecture, cleanup, canonical-path, and anti-cruft policy. The non-negotiable summary is:
+  - keep large entrypoints as composition roots;
+  - put discrete behavior in focused modules, services, or helpers;
+  - reuse existing helpers, factories, normalization paths, and UI primitives before adding parallel implementations;
+  - avoid backward-compatibility shims, dual paths, and partial migrations unless the operator/developer explicitly requests a temporary transition;
+  - separate responsibilities such as rendering, state, parsing/normalization, menu construction, domain logic, and persistence when practical;
+  - record rationale in [reference/architectural-decisions](reference/architectural-decisions/README.md), priority ledgers, issues, PRs, or git history rather than preserving stale paths in live code.
 
 ### Solver Ownership
 
@@ -166,10 +171,15 @@ This document distinguishes three audience scopes:
 ### Required Checks
 
 - Git hooks are configured via `core.hooksPath=.githooks`.
-- Required content and scene-graph checks are enforced automatically by the repo hooks.
+- Treat the hook scripts under `.githooks` as the source of truth for required commit and push checks.
 - `pre-commit` runs:
   - `node scripts/validate-content.mjs --check --strict`
   - `node scripts/build-scene-graph.mjs --check --strict`
+  - `node scripts/build-textbook-md-pdf.mjs --check`
+  - `node scripts/check-receiver-normal-clean-slate.mjs`
+  - `node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs`
+  - `node scripts/check-polarity-notation-drift.mjs`
+  - `node scripts/check-animator-runtime-wiring.mjs`
 - `pre-push` runs the shared Content Integrity gate before push:
   - `node scripts/check-content-integrity.mjs`
   - `node scripts/check-animator-runtime-wiring.mjs`
@@ -178,6 +188,9 @@ This document distinguishes three audience scopes:
 
 - If a hook reports scene-graph drift, regenerate and re-check:
   - `node scripts/build-scene-graph.mjs --write --strict`
+  - `node scripts/build-textbook-md-pdf.mjs --write`
   - `node scripts/validate-content.mjs --check --strict`
   - `node scripts/build-scene-graph.mjs --check --strict`
-- If `--write` updates generated files (for example `content/graph/scene_graph.json`), stage those updates and retry the commit or push.
+  - `node scripts/build-textbook-md-pdf.mjs --check`
+  - the additional affected hook mirrors when committing or pushing.
+- If `--write` updates generated files (for example `content/graph/scene_graph.json` or reading-copy markdown), stage those updates and retry the commit or push.

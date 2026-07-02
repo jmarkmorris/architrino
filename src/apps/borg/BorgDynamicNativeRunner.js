@@ -24,6 +24,8 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
   );
   let chunkIndex = 0;
   let nextStartTime = config.startTime;
+  let targetDuration = config.targetDuration;
+  let chunkDuration = config.chunkDuration;
   let disposed = false;
 
   return {
@@ -32,21 +34,44 @@ export function createBorgDynamicNativeRunner(manifest, options = {}) {
     get nextStartTime() {
       return nextStartTime;
     },
+    get targetDuration() {
+      return targetDuration;
+    },
+    get chunkDuration() {
+      return chunkDuration;
+    },
     get chunkIndex() {
       return chunkIndex;
     },
     canComputeNextChunk() {
-      return !disposed && nextStartTime < config.targetDuration;
+      return !disposed && nextStartTime < targetDuration;
+    },
+    setRunLimits(nextLimits = {}) {
+      targetDuration = Math.min(
+        config.targetDuration,
+        normalizeTargetDuration(
+          targetDurationNumber(nextLimits.targetDuration, targetDuration),
+          config.startTime,
+          config.sampleInterval,
+        ),
+      );
+      chunkDuration = Math.min(
+        config.chunkDuration,
+        Math.max(config.sampleInterval, positiveNumber(nextLimits.chunkDuration, chunkDuration)),
+      );
     },
     async computeNextChunk() {
       if (disposed) {
         throw new Error("Borg dynamic native runner has been disposed.");
       }
-      if (nextStartTime >= config.targetDuration) {
+      if (nextStartTime >= targetDuration) {
         return createCompleteChunk(config, chunkIndex, nextStartTime);
       }
       const startTime = nextStartTime;
-      const endTime = Math.min(config.targetDuration, startTime + config.chunkDuration);
+      const chunkEndTime = roundSolverTime(startTime + chunkDuration);
+      const endTime = Number.isFinite(targetDuration)
+        ? Math.min(targetDuration, chunkEndTime)
+        : chunkEndTime;
       const request = createBorgDynamicMasterEquationRunRequest({
         manifest,
         config,
@@ -132,9 +157,10 @@ export function createBorgDynamicNativeRunConfig(manifest, options = {}) {
     manifest.simulationEnvelope?.sampleInterval ?? 0.2,
   );
   const startTime = finiteNumber(options.startTime, 0);
-  const targetDuration = Math.max(
-    startTime + sampleInterval,
-    positiveNumber(options.targetDuration, DEFAULT_TARGET_DURATION),
+  const targetDuration = normalizeTargetDuration(
+    targetDurationNumber(options.targetDuration, DEFAULT_TARGET_DURATION),
+    startTime,
+    sampleInterval,
   );
   const chunkDuration = Math.max(
     sampleInterval,
@@ -491,6 +517,24 @@ function frameRowKey(frame) {
 function finiteNumber(value, fallback) {
   const number = Number(value);
   return Number.isFinite(number) ? number : fallback;
+}
+
+function targetDurationNumber(value, fallback) {
+  if (value === "forever" || value === Number.POSITIVE_INFINITY) {
+    return Number.POSITIVE_INFINITY;
+  }
+  return positiveNumber(value, fallback);
+}
+
+function normalizeTargetDuration(value, startTime, sampleInterval) {
+  if (value === Number.POSITIVE_INFINITY) {
+    return Number.POSITIVE_INFINITY;
+  }
+  return Math.max(startTime + sampleInterval, value);
+}
+
+function roundSolverTime(value) {
+  return Number(value.toFixed(12));
 }
 
 function positiveNumber(value, fallback) {

@@ -1028,12 +1028,12 @@ The proton is the lowest stable nested shell braid with quark content `uud`.
 
 Using the current quark templates:
 
-- two constituents are up-type quarks with axial pattern $5P,1E$,
-- one constituent is a down-type quark with pattern $2P,4E$.
+- two constituents are up-type quarks with axial pattern $5\epsilon_+ + 1\epsilon_-$,
+- one constituent is a down-type quark with pattern $2\epsilon_+ + 4\epsilon_-$.
 
 So the total axial count is
 $$
-(5P,1E)+(5P,1E)+(2P,4E)=(12P,6E)
+(5\epsilon_+ + 1\epsilon_-)+(5\epsilon_+ + 1\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)=(12\epsilon_+ + 6\epsilon_-)
 $$
 which gives net charge
 $$
@@ -1046,7 +1046,7 @@ The neutron is the lowest stable nested shell braid with quark content `udd`.
 
 Its total axial count is
 $$
-(5P,1E)+(2P,4E)+(2P,4E)=(9P,9E)
+(5\epsilon_+ + 1\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)+(2\epsilon_+ + 4\epsilon_-)=(9\epsilon_+ + 9\epsilon_-)
 $$
 so the net charge is
 $$
@@ -1067,7 +1067,7 @@ $$
 \qquad
 \sum_{a\in A_n}\sigma_a=0
 $$
-The second condition is the neutron's neutral axial inventory $(9P,9E)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
+The second condition is the neutron's neutral axial inventory $(9\epsilon_+ + 9\epsilon_-)$; it cancels net charge but does not by itself prove that the first moment vanishes. For a declared neutron envelope scale $R_n$ and spin direction $\hat{\mathbf{J}}_n$, define the dimensionless CP-odd axial imbalance
 $$
 \vartheta_n
 =

@@ -16,7 +16,7 @@ test("work-packet transport contract stays aligned with live packet surfaces", (
   assert.equal(result.ok, true);
   assert.equal(
     result.docPath,
-    "reference/priorities/solver/work-packet-transport-contract.md"
+    "reference/priorities/app-solver/work-packet-transport-contract.md"
   );
 });
 

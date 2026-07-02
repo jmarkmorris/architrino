@@ -11,6 +11,17 @@ import {
   createBorgFrameSetsFromRows,
   mergeBorgFrameRows,
 } from "./BorgDynamicNativeRunner.js";
+import {
+  createMeasuredRunPresetCalibration,
+  resolveMeasuredRunControlPreset,
+  updateMeasuredRunPresetCalibration,
+} from "./BorgMeasuredRunPresets.js";
+import {
+  BORG_LIVE_RUN_RETENTION_POLICY_V1,
+  createBorgLiveRunRetentionSnapshot,
+  applyBorgLiveRunRetention,
+} from "./BorgLiveRunRetentionPolicy.js";
+import { BORG_RELEASE_BUDGET_MANIFEST_V1 } from "./BorgReleaseBudgetManifest.js";
 
 const TARGET_CENTRAL_WORLD_SIDE = 4.96;
 const BORG_LIVE_RUN_BUDGET_VERSION = "borg-live-run-budget.v1";
@@ -23,7 +34,8 @@ const DEFAULT_ROTATION_Y = 0.66;
 const ARCHITRINO_POINT_PIXEL_SIZE = 8;
 const ARCHITRINO_PICK_THRESHOLD = 0.22;
 const DEFAULT_PLAYBACK_SPEED_PRESET_ID = "normal";
-const DEFAULT_RUN_CONTROL_PRESET_ID = "live-long";
+const DEFAULT_RUN_CONTROL_PRESET_ID = "live-forever";
+const FINITE_RUN_CONTROL_PRESET_ID = "live-20s";
 const DEFAULT_DISTRIBUTION_LABEL = "manifest initial distribution";
 const DISTRIBUTION_POSITION_INSET_RATIO = 0.08;
 const PLAYBACK_SPEED_PRESETS = Object.freeze([
@@ -33,32 +45,24 @@ const PLAYBACK_SPEED_PRESETS = Object.freeze([
 ]);
 const RUN_CONTROL_PRESETS = Object.freeze([
   Object.freeze({
-    id: "live-long",
-    label: "Live 3000 / 20",
+    id: DEFAULT_RUN_CONTROL_PRESET_ID,
+    label: "Forever",
+    displayLabel: "Forever",
     sourceMode: "live",
-    targetDuration: 3000,
+    durationMode: "forever",
+    targetDuration: Number.POSITIVE_INFINITY,
     chunkDuration: 20,
+    minChunkDuration: 4,
   }),
   Object.freeze({
-    id: "live-fixture-scale",
-    label: "Live 300 / 20",
+    id: FINITE_RUN_CONTROL_PRESET_ID,
+    label: "20 seconds",
+    displayLabel: "20 s",
     sourceMode: "live",
-    targetDuration: 300,
+    targetDuration: 20,
     chunkDuration: 20,
-  }),
-  Object.freeze({
-    id: "live-large-chunk",
-    label: "Live 3000 / 50",
-    sourceMode: "live",
-    targetDuration: 3000,
-    chunkDuration: 50,
-  }),
-  Object.freeze({
-    id: "fixture",
-    label: "Fixture 300 / static",
-    sourceMode: "fixture",
-    targetDuration: null,
-    chunkDuration: null,
+    minTargetDuration: 20,
+    minChunkDuration: 4,
   }),
 ]);
 const PATH_RENDER_ORDER = 2;
@@ -152,7 +156,7 @@ export function mountBorgApp(options = {}) {
     selectedTag: queryRequiredElement(documentLike, "#borg-selected-tag"),
     timelineRange: queryRequiredElement(documentLike, "#borg-time-range"),
     timelineOutput: queryRequiredElement(documentLike, "#borg-time-output"),
-    runSource: queryRequiredElement(documentLike, "#borg-run-source"),
+    runDurationButton: queryRequiredElement(documentLike, "#borg-run-duration-button"),
     playbackSpeed: queryRequiredElement(documentLike, "#borg-playback-speed"),
     playButton: queryRequiredElement(documentLike, "#borg-play-button"),
     playButtonIcon: queryRequiredElement(documentLike, "#borg-play-button path"),
@@ -240,6 +244,11 @@ export function mountBorgApp(options = {}) {
     dynamicChunkDuration: null,
     dynamicRunGeneration: 0,
     liveRunBudget: createEmptyLiveRunBudget(),
+    compactedPathHistory: Object.freeze({}),
+    liveRunRetention: createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames }),
+    measuredRunPresetCalibration: createMeasuredRunPresetCalibration({
+      basePresets: RUN_CONTROL_PRESETS,
+    }),
     distributionFrameRows: null,
     distributionSeedIndex: 0,
     distributionLabel: DEFAULT_DISTRIBUTION_LABEL,
@@ -381,6 +390,9 @@ export function mountBorgApp(options = {}) {
 
   function renderDeploymentFields() {
     const budget = state.liveRunBudget;
+    const calibration = state.measuredRunPresetCalibration;
+    const releaseBudget = BORG_RELEASE_BUDGET_MANIFEST_V1;
+    const releaseCeilings = releaseBudget.releaseBudgetCeilings;
     renderFieldRows(dom.deploymentFields, [
       ["deploymentBudgetStatus", manifest.deploymentBudget.deploymentBudgetStatus],
       ["bundleSizeBytes", manifest.deploymentBudget.bundleSizeBytes ?? "not-measured"],
@@ -396,19 +408,46 @@ export function mountBorgApp(options = {}) {
       ["heapGrowthBytes", budget.browserHeapGrowthBytes ?? budget.browserHeapAuthority],
       ["workerMemoryBytes", budget.wasmWorkerMemoryEstimateBytes ?? budget.wasmWorkerMemoryAuthority],
       ["workerBudgetPressure", budget.wasmWorkerMemoryPressure ?? "not-measured"],
+      ["liveRunRetention", BORG_LIVE_RUN_RETENTION_POLICY_V1.schema],
+      ["retentionStatus", state.liveRunRetention.status],
+      ["retentionFrameLimit", state.liveRunRetention.retainedFrameSetLimit],
+      ["measuredRunPresets", calibration.schema],
+      ["presetThresholdStatus", calibration.status],
+      ["presetThresholdAuthority", calibration.thresholdAuthority],
+      ["presetSamples", calibration.sampleCount],
+      ["targetDurationLimit", calibration.thresholds.maxTargetDuration],
+      ["chunkDurationLimit", calibration.thresholds.maxChunkDuration],
+      ["releaseBudgetManifest", releaseBudget.manifestId],
+      ["releaseBudgetStatus", releaseBudget.status],
+      ["releaseBudgetAuthority", releaseBudget.valueAuthority],
+      ["releaseBudgetSamples", releaseBudget.sampleMatrix.sampleCount],
+      ["releaseMaxChunkMs", releaseCeilings.maxChunkWallTimeMs],
+      ["releaseMinAppendRowsSec", releaseCeilings.minFrameAppendRateRowsPerSecond],
+      ["releaseWorkerChunkBytes", releaseCeilings.maxChunkWorkerMemoryBytes],
+      ["releaseRunHeapBytes", releaseCeilings.maxRunHeapGrowthBytes],
+      ["releaseMaxTarget", releaseCeilings.maxTargetDuration],
+      ["releaseMaxChunk", releaseCeilings.maxChunkDuration],
     ]);
   }
 
   function renderSourceFields() {
+    const activePreset = getRunControlPreset(state.runControlPresetId);
     renderFieldRows(dom.sourceFields, [
       ["Run source", state.sourceMode],
-      ["Run preset", runControlPresetById(state.runControlPresetId).label],
+      ["Run duration", formatRunDurationLabel(activePreset)],
+      ["Preset basis", activePreset?.thresholdAuthority ?? "not-measured"],
+      ["Preset target", formatRunTargetDuration(activePreset)],
+      ["Preset chunk", activePreset?.effectiveChunkDuration ?? "static"],
       ["Distribution", state.distributionLabel],
       ["Run budget", state.liveRunBudget.status],
       ["Live status", state.dynamicRunnerStatus],
       ["Live target", state.dynamicTargetDuration ?? "not-started"],
       ["Live chunk", state.dynamicChunkDuration ?? "not-started"],
       ["Live chunks", state.dynamicChunksComputed],
+      ["Retention", state.liveRunRetention.status],
+      ["Retained frames", state.liveRunRetention.retainedFrameRows],
+      ["Retained keyframes", state.liveRunRetention.retainedFrameSetCount],
+      ["Compacted path points", state.liveRunRetention.compactedPathPointCount],
       ["Live message", state.dynamicRunnerMessage],
       ["Manifest", manifest.manifestId],
       ["Model contract", manifest.modelContractId],
@@ -529,14 +568,7 @@ export function mountBorgApp(options = {}) {
 
   function configureTimeline() {
     updateTimelineBounds();
-    dom.runSource.textContent = "";
-    RUN_CONTROL_PRESETS.forEach((preset) => {
-      const option = documentLike.createElement("option");
-      option.value = preset.id;
-      option.textContent = preset.label;
-      dom.runSource.append(option);
-    });
-    dom.runSource.value = runControlPresetById(state.runControlPresetId).id;
+    syncRunDurationButton();
     dom.playbackSpeed.textContent = "";
     PLAYBACK_SPEED_PRESETS.forEach((preset) => {
       const option = documentLike.createElement("option");
@@ -545,6 +577,15 @@ export function mountBorgApp(options = {}) {
       dom.playbackSpeed.append(option);
     });
     dom.playbackSpeed.value = state.playbackSpeedPresetId;
+  }
+
+  function syncRunDurationButton() {
+    const preset = getRunControlPreset(state.runControlPresetId);
+    const label = formatRunDurationLabel(preset);
+    dom.runDurationButton.textContent = label;
+    dom.runDurationButton.dataset.runDuration = preset.id;
+    dom.runDurationButton.setAttribute("aria-label", `Run duration: ${label}`);
+    dom.runDurationButton.title = "Toggle run duration";
   }
 
   function updateTimelineBounds() {
@@ -567,9 +608,7 @@ export function mountBorgApp(options = {}) {
     });
     dom.startButton.addEventListener("click", goToStartFrame);
     dom.newDistributionButton.addEventListener("click", startNewDistributionRun);
-    dom.runSource.addEventListener("change", () => {
-      switchRunControlPreset(dom.runSource.value);
-    });
+    dom.runDurationButton.addEventListener("click", toggleRunDurationMode);
     dom.playbackSpeed.addEventListener("change", () => {
       state.playbackSpeedPresetId = playbackSpeedPresetById(dom.playbackSpeed.value).id;
       if (state.playing) {
@@ -712,6 +751,7 @@ export function mountBorgApp(options = {}) {
     if (state.playing || frameSets.length < 2) {
       return;
     }
+    startDynamicNativeRunnerIfNeeded();
     let currentSetIndex = getFrameSetIndex(state.activeFrameIndex);
     if (currentSetIndex >= frameSets.length - 1) {
       currentSetIndex = 0;
@@ -1044,8 +1084,31 @@ export function mountBorgApp(options = {}) {
     return state.distributionFrameRows ?? fixtureFrames;
   }
 
+  function getRunControlPreset(presetId) {
+    return resolveMeasuredRunControlPreset(
+      state.measuredRunPresetCalibration,
+      presetId,
+      RUN_CONTROL_PRESETS,
+    );
+  }
+
+  function applyMeasuredPresetLimitsToDynamicRunner() {
+    if (!state.dynamicRunner) {
+      state.dynamicTargetDuration = null;
+      state.dynamicChunkDuration = null;
+      return;
+    }
+    const preset = getRunControlPreset(state.runControlPresetId);
+    state.dynamicRunner.setRunLimits?.({
+      targetDuration: preset?.effectiveTargetDuration,
+      chunkDuration: preset?.effectiveChunkDuration,
+    });
+    state.dynamicTargetDuration = state.dynamicRunner.targetDuration ?? state.dynamicRunner.config.targetDuration;
+    state.dynamicChunkDuration = state.dynamicRunner.chunkDuration ?? state.dynamicRunner.config.chunkDuration;
+  }
+
   function startDynamicNativeRunner() {
-    const preset = runControlPresetById(state.runControlPresetId);
+    const preset = getRunControlPreset(state.runControlPresetId);
     if (preset.sourceMode === "fixture") {
       restoreFixtureRun();
       return;
@@ -1057,8 +1120,6 @@ export function mountBorgApp(options = {}) {
       getRunInitialFrameRows(),
     );
     if (!runnerOptions) {
-      state.runControlPresetId = "fixture";
-      dom.runSource.value = "fixture";
       restoreFixtureRun();
       state.dynamicRunnerStatus = "fixture-fallback";
       state.dynamicRunnerMessage = "live native runner unavailable";
@@ -1069,8 +1130,7 @@ export function mountBorgApp(options = {}) {
     }
     const generation = state.dynamicRunGeneration;
     state.dynamicRunner = createBorgDynamicNativeRunner(manifest, runnerOptions);
-    state.dynamicTargetDuration = state.dynamicRunner.config.targetDuration;
-    state.dynamicChunkDuration = state.dynamicRunner.config.chunkDuration;
+    applyMeasuredPresetLimitsToDynamicRunner();
     state.dynamicRunnerStatus = "live-native-running";
     state.dynamicRunnerMessage = "computing native chunks";
     updateSourceStatusPresentation();
@@ -1107,6 +1167,8 @@ export function mountBorgApp(options = {}) {
         currentFrames = replaceFixture
           ? [...chunk.frames]
           : mergeBorgFrameRows(currentFrames, chunk.frames);
+        const appendedFrameRows = Array.isArray(chunk.frames) ? chunk.frames.length : 0;
+        applyLiveRunRetentionIfNeeded();
         frameSets = createBorgFrameSetsFromRows(currentFrames);
         state.liveRunBudget = createLiveRunBudgetMeasurement({
           before: budgetBefore,
@@ -1115,8 +1177,17 @@ export function mountBorgApp(options = {}) {
           previousFrameRowCount,
           nextFrameRowCount: currentFrames.length,
           replaceFixture,
+          appendedFrameRows,
+          presetId: state.runControlPresetId,
           memoryBudgetBytes: state.dynamicRunner?.config?.memoryBudgetBytes ?? null,
         });
+        state.measuredRunPresetCalibration = updateMeasuredRunPresetCalibration(
+          state.measuredRunPresetCalibration,
+          state.liveRunBudget,
+          RUN_CONTROL_PRESETS,
+        );
+        applyMeasuredPresetLimitsToDynamicRunner();
+        syncRunDurationButton();
         rebuildPathTrails();
         updateTimelineBounds();
         if (replaceFixture) {
@@ -1142,6 +1213,7 @@ export function mountBorgApp(options = {}) {
           state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
           currentFrames = [...fixtureFrames];
           frameSets = createBorgFrameSetsFromRows(currentFrames);
+          resetLiveRunRetentionState();
           rebuildPathTrails();
           updateTimelineBounds();
           updateFrame(frameSets[0]?.frameIndex ?? 0);
@@ -1176,8 +1248,30 @@ export function mountBorgApp(options = {}) {
     }
   }
 
+  function applyLiveRunRetentionIfNeeded() {
+    if (!isForeverRunPreset(getRunControlPreset(state.runControlPresetId))) {
+      state.compactedPathHistory = Object.freeze({});
+      state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
+      return;
+    }
+    const result = applyBorgLiveRunRetention({
+      frameRows: currentFrames,
+      compactedPathHistory: state.compactedPathHistory,
+      policy: BORG_LIVE_RUN_RETENTION_POLICY_V1,
+    });
+    currentFrames = [...result.frameRows];
+    state.compactedPathHistory = result.compactedPathHistory;
+    state.liveRunRetention = result.summary;
+  }
+
+  function resetLiveRunRetentionState() {
+    state.compactedPathHistory = Object.freeze({});
+    state.liveRunRetention = createBorgLiveRunRetentionSnapshot({ frameRows: currentFrames });
+  }
+
   function rebuildPathTrails() {
     disposePathTrails();
+    renderCompactedPathTrails();
     getPathKeys().forEach((pathKey) => {
       const style = getParticleStyle(pathKey, particleStyles);
       const points = currentFrames
@@ -1202,6 +1296,29 @@ export function mountBorgApp(options = {}) {
     });
   }
 
+  function renderCompactedPathTrails() {
+    Object.entries(state.compactedPathHistory).forEach(([pathKey, points]) => {
+      if (!Array.isArray(points) || points.length < 2) {
+        return;
+      }
+      const style = getParticleStyle(Number(pathKey), particleStyles);
+      const geometry = createPathSegmentGeometry(
+        points.map((point) => solverPositionToWorld(point.position)),
+      );
+      const material = new THREE.LineBasicMaterial({
+        color: style.pathColor ?? style.velocityColor ?? style.color,
+        transparent: true,
+        opacity: 0.42,
+        depthTest: false,
+        depthWrite: false,
+      });
+      const trail = new THREE.LineSegments(geometry, material);
+      trail.visible = pathGroup.visible;
+      trail.renderOrder = PATH_RENDER_ORDER - 1;
+      pathGroup.add(trail);
+    });
+  }
+
   function disposePathTrails() {
     while (pathGroup.children.length > 0) {
       const child = pathGroup.children[0];
@@ -1217,10 +1334,10 @@ export function mountBorgApp(options = {}) {
   }
 
   function switchRunControlPreset(presetId) {
-    const preset = runControlPresetById(presetId);
+    const preset = getRunControlPreset(presetId);
     stopPlayback();
     state.runControlPresetId = preset.id;
-    dom.runSource.value = preset.id;
+    syncRunDurationButton();
     disposeDynamicRunner();
     if (preset.sourceMode === "fixture") {
       restoreFixtureRun();
@@ -1230,12 +1347,28 @@ export function mountBorgApp(options = {}) {
     startDynamicNativeRunner();
   }
 
+  function toggleRunDurationMode() {
+    const nextPresetId = state.runControlPresetId === DEFAULT_RUN_CONTROL_PRESET_ID
+      ? FINITE_RUN_CONTROL_PRESET_ID
+      : DEFAULT_RUN_CONTROL_PRESET_ID;
+    switchRunControlPreset(nextPresetId);
+  }
+
+  function startDynamicNativeRunnerIfNeeded() {
+    const preset = getRunControlPreset(state.runControlPresetId);
+    if (preset.sourceMode === "fixture" || state.dynamicRunner) {
+      return;
+    }
+    startDynamicNativeRunner();
+  }
+
   function restoreFixtureRun() {
     disposeDynamicRunner();
     state.distributionFrameRows = null;
     state.distributionLabel = DEFAULT_DISTRIBUTION_LABEL;
     currentFrames = [...fixtureFrames];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
+    resetLiveRunRetentionState();
     rebuildPathTrails();
     state.sourceMode = "precomputed-fixture";
     state.dynamicRunnerStatus = "precomputed-fixture";
@@ -1246,6 +1379,7 @@ export function mountBorgApp(options = {}) {
     state.liveRunBudget = createEmptyLiveRunBudget();
     updateTimelineBounds();
     updateFrame(frameSets[0]?.frameIndex ?? 0);
+    syncRunDurationButton();
     updateSourceStatusPresentation();
     renderSourceFields();
     renderDeploymentFields();
@@ -1254,6 +1388,7 @@ export function mountBorgApp(options = {}) {
   function resetDynamicRunState() {
     currentFrames = [...getRunInitialFrameRows()];
     frameSets = createBorgFrameSetsFromRows(currentFrames);
+    resetLiveRunRetentionState();
     rebuildPathTrails();
     state.sourceMode = state.distributionFrameRows
       ? "seeded-random-live-initial-state"
@@ -1280,10 +1415,8 @@ export function mountBorgApp(options = {}) {
       state.distributionSeedIndex,
     );
     state.distributionLabel = `seeded distribution ${state.distributionSeedIndex}`;
-    if (runControlPresetById(state.runControlPresetId).sourceMode === "fixture") {
-      state.runControlPresetId = DEFAULT_RUN_CONTROL_PRESET_ID;
-      dom.runSource.value = state.runControlPresetId;
-    }
+    state.runControlPresetId = getRunControlPreset(state.runControlPresetId).id;
+    syncRunDurationButton();
     disposeDynamicRunner();
     resetDynamicRunState();
     startDynamicNativeRunner();
@@ -1349,6 +1482,34 @@ function playbackSpeedPresetById(presetId) {
   );
 }
 
+function formatRunDurationLabel(preset) {
+  if (isForeverRunPreset(preset)) {
+    return "Forever";
+  }
+  const target = preset?.effectiveTargetDuration ?? preset?.targetDuration;
+  if (Number.isFinite(Number(target))) {
+    return `${Number(target)} s`;
+  }
+  return preset?.displayLabel ?? preset?.label ?? "Run";
+}
+
+function formatRunTargetDuration(preset) {
+  if (
+    isForeverRunPreset(preset)
+  ) {
+    return "forever";
+  }
+  return preset?.effectiveTargetDuration ?? preset?.targetDuration ?? "static";
+}
+
+function isForeverRunPreset(preset) {
+  return (
+    preset?.durationMode === "forever" ||
+    preset?.targetDuration === Number.POSITIVE_INFINITY ||
+    preset?.effectiveTargetDuration === Number.POSITIVE_INFINITY
+  );
+}
+
 function runControlPresetById(presetId) {
   return (
     RUN_CONTROL_PRESETS.find((preset) => preset.id === presetId) ??
@@ -1393,8 +1554,8 @@ function createDefaultDynamicRunnerOptions(
     : {};
   return {
     ...configured,
-    targetDuration: configured.targetDuration ?? preset.targetDuration,
-    chunkDuration: configured.chunkDuration ?? preset.chunkDuration,
+    targetDuration: configured.targetDuration ?? preset.effectiveTargetDuration ?? preset.targetDuration,
+    chunkDuration: configured.chunkDuration ?? preset.effectiveChunkDuration ?? preset.chunkDuration,
     initialFrameRows: configured.initialFrameRows ?? initialFrameRows ?? undefined,
     scope: windowLike,
     ...workerOptions,
@@ -1415,6 +1576,10 @@ function createEmptyLiveRunBudget() {
     wasmWorkerMemoryEstimateBytes: null,
     wasmWorkerMemoryAuthority: "not-measured",
     wasmWorkerMemoryPressure: null,
+    memoryBudgetBytes: null,
+    chunkDuration: null,
+    sampleInterval: null,
+    sourcePresetId: null,
     chunkIndex: null,
   });
 }
@@ -1433,15 +1598,20 @@ function createLiveRunBudgetMeasurement({
   previousFrameRowCount,
   nextFrameRowCount,
   replaceFixture,
+  appendedFrameRows,
+  presetId,
   memoryBudgetBytes,
 }) {
   const wallTimeMs = Math.max(0, finiteBudgetNumber(after?.timestampMs - before?.timestampMs) ?? 0);
+  const chunkDuration = Math.max(0, finiteBudgetNumber(chunk?.endTime - chunk?.startTime) ?? 0);
   const computedFrameRows = Array.isArray(chunk?.frames) ? chunk.frames.length : 0;
-  const appendedFrameRows = replaceFixture
-    ? computedFrameRows
-    : Math.max(0, (finiteBudgetNumber(nextFrameRowCount) ?? 0) - (finiteBudgetNumber(previousFrameRowCount) ?? 0));
+  const measuredAppendedFrameRows =
+    finiteBudgetNumber(appendedFrameRows) ??
+    (replaceFixture
+      ? computedFrameRows
+      : Math.max(0, (finiteBudgetNumber(nextFrameRowCount) ?? 0) - (finiteBudgetNumber(previousFrameRowCount) ?? 0)));
   const frameAppendRateRowsPerSecond =
-    wallTimeMs > 0 ? appendedFrameRows / (wallTimeMs / 1000) : null;
+    wallTimeMs > 0 ? measuredAppendedFrameRows / (wallTimeMs / 1000) : null;
   const heapGrowthBytes =
     before?.usedJSHeapSize != null && after?.usedJSHeapSize != null
       ? Math.max(0, after.usedJSHeapSize - before.usedJSHeapSize)
@@ -1467,7 +1637,7 @@ function createLiveRunBudgetMeasurement({
     status,
     lastChunkWallTimeMs: wallTimeMs,
     computedFrameRows,
-    appendedFrameRows,
+    appendedFrameRows: measuredAppendedFrameRows,
     frameAppendRateRowsPerSecond,
     browserHeapGrowthBytes: heapGrowthBytes,
     browserHeapAuthority:
@@ -1478,6 +1648,10 @@ function createLiveRunBudgetMeasurement({
         ? "estimated-from-native-output-buffers"
         : "not-exposed-by-worker",
     wasmWorkerMemoryPressure: memoryBudgetPressure,
+    memoryBudgetBytes: finiteBudgetNumber(memoryBudgetBytes),
+    chunkDuration,
+    sampleInterval: finiteBudgetNumber(chunk?.sampleInterval),
+    sourcePresetId: presetId ?? null,
     chunkIndex: chunk?.chunkIndex ?? null,
   });
 }

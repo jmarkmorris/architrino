@@ -68,6 +68,11 @@ const fixtureResponse = readJson("src/solver/fixtures/roots-and-hits-f64-smoke.r
 const ROOT_LEDGER_ROW_F64_BYTES = 176;
 const DELAYED_HIT_ROW_F64_BYTES = 192;
 const ROOT_LEDGER_DETAIL_ROW_F64_BYTES = 248;
+const MOVING_CIRCULAR_ROOT_ROW_F64_BYTES = 232;
+const MOVING_CIRCULAR_OBSERVER_FIELD_REQUEST_F64_BYTES = 32;
+const MOVING_CIRCULAR_OBSERVER_FIELD_BRANCH_F64_BYTES = 152;
+const MOVING_CIRCULAR_OBSERVER_FIELD_CONTRIBUTION_F64_BYTES = 200;
+const MOVING_CIRCULAR_OBSERVER_FIELD_SUMMARY_F64_BYTES = 144;
 const pairBoundaryRelaxationLineSearchFactors = Object.freeze([
   1.25,
   1,
@@ -407,6 +412,38 @@ assert(
 assert(
   initResponse.capabilities.abiInfo?.circularSourceRootRequestF64Bytes === 224,
   "expected circular-source root request ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularSourceHistoryF64Bytes === 128,
+  "expected moving-circular source history ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularSourceRootRequestF64Bytes === 248,
+  "expected moving-circular source root request ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularRootRowF64Bytes === MOVING_CIRCULAR_ROOT_ROW_F64_BYTES,
+  "expected moving-circular root row ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularObserverFieldRequestF64Bytes ===
+    MOVING_CIRCULAR_OBSERVER_FIELD_REQUEST_F64_BYTES,
+  "expected moving-circular observer-field request ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularObserverFieldBranchF64Bytes ===
+    MOVING_CIRCULAR_OBSERVER_FIELD_BRANCH_F64_BYTES,
+  "expected moving-circular observer-field branch ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularObserverFieldContributionF64Bytes ===
+    MOVING_CIRCULAR_OBSERVER_FIELD_CONTRIBUTION_F64_BYTES,
+  "expected moving-circular observer-field contribution ABI size"
+);
+assert(
+  initResponse.capabilities.abiInfo?.movingCircularObserverFieldSummaryF64Bytes ===
+    MOVING_CIRCULAR_OBSERVER_FIELD_SUMMARY_F64_BYTES,
+  "expected moving-circular observer-field summary ABI size"
 );
 assert(
   initResponse.capabilities.abiInfo?.assemblyStateRowF64Bytes === 112,
@@ -1614,6 +1651,15 @@ assert(
 const circularSourceRootResponse =
   await client.solveCircularSourceCausalRootsF64(makeCircularSourceCausalRootRequest());
 assertCircularSourceRootResponse(circularSourceRootResponse, "direct circular-source");
+const movingCircularSourceRootResponse =
+  await client.solveMovingCircularSourceCausalRootsF64(makeMovingCircularSourceCausalRootRequest());
+assertMovingCircularSourceRootResponse(movingCircularSourceRootResponse, "direct moving-circular-source");
+const movingCircularObserverFieldResponse =
+  await client.computeMovingCircularObserverFieldF64(makeMovingCircularObserverFieldRequest());
+assertMovingCircularObserverFieldResponse(
+  movingCircularObserverFieldResponse,
+  "direct moving-circular observer-field"
+);
 const circularSourceRootsHitsLedgerResponse =
   await client.solveCircularSourceRootsHitsLedgerF64(
     makeCircularSourceCausalRootRequest({ streamId: "direct-circular-source-roots-hits-ledger" })
@@ -4841,13 +4887,12 @@ assert(
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary.pathConstraintSolverClaim ===
       "finite_difference_pair_boundary_value_solve_converged" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
-      .pathConstraintPhysicalBoundarySolverStatus === "physical_boundary_solver_pending" &&
+      .pathConstraintPhysicalBoundarySolverStatus === "physical_boundary_value_converged" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
       .pathConstraintPhysicalBoundarySolverClaim ===
-      "retained_knot_guidance_not_physical_boundary_value_solve" &&
+      "discrete_pair_interaction_path_constraint_boundary_value_solve_converged" &&
     causalDelayPairBoundaryRelaxationTunedRunHandle.response.summary
-      .pathConstraintPhysicalBoundarySolverBlockingReason ===
-      "physical_boundary_solver_not_implemented",
+      .pathConstraintPhysicalBoundarySolverBlockingReason == null,
   "expected causal-delay pair boundary relaxation convergence override"
 );
 const causalDelayPairBoundaryRelaxationStepTunedRunHandle = await client.runSimulation(
@@ -5831,6 +5876,63 @@ function makeCircularSourceCausalRootRequest(options = {}) {
   return request;
 }
 
+function makeMovingCircularSourceCausalRootRequest() {
+  return {
+    source: {
+      centerAtEpoch: { x: -2, y: 0, z: 0 },
+      centerVelocity: { x: 0.5, y: 0, z: 0 },
+      radiusU: { x: 0, y: 0, z: 0 },
+      radiusV: { x: 0, y: 0, z: 0 },
+      angularVelocity: 1,
+      phaseAtEpoch: 0,
+      epochTime: 0,
+      errorBound: 1e-15,
+    },
+    receiver: {
+      startTime: 0,
+      endTime: 10,
+      positionAtStart: { x: 10, y: 0, z: 0 },
+      velocity: { x: 0, y: 0, z: 0 },
+      errorBound: 1e-15,
+    },
+    hitTime: 10,
+    signalSpeed: 1,
+    sourceStartTime: -6,
+    sourceEndTime: 10,
+    rootTolerance: 1e-13,
+    maxIterations: 96,
+    scanSubdivisions: 128,
+    maxRoots: 4,
+  };
+}
+
+function makeMovingCircularObserverFieldRequest() {
+  return {
+    signalSpeed: 1,
+    unstableGapThreshold: 0.05,
+    jacobianFloor: 1e-4,
+    branches: [
+      {
+        chargeSign: 1,
+        direction: { x: 1, y: 0, z: 0 },
+        sourceVelocity: { x: 0.5, y: 0, z: 0 },
+        distance: 14,
+        residual: 0,
+        delay: 14,
+        branchWeight: 2,
+        sourceNormalSpeed: 0.5,
+        receiverNormalSpeed: 0,
+        sourceNormalDenominator: 0.5,
+        receiverNormalNumerator: 1,
+        receiverNormalCrossingFactor: 1,
+        receiverNormalFactor: 2,
+        unsignedReceiverNormalFactor: 2,
+        receiverNormalStatusCode: 0,
+      },
+    ],
+  };
+}
+
 function assertCircularSourceRootResponse(response, label) {
   const expectedDelay = Math.sqrt(101);
   const expectedEmissionTime = 10 - expectedDelay;
@@ -5842,6 +5944,35 @@ function assertCircularSourceRootResponse(response, label) {
       Math.abs(response.roots[0].distance - expectedDelay) <= 1e-10 &&
       Math.abs(response.roots[0].jacobian - 1) <= 1e-10,
     `expected ${label} closed-form circular-source causal root`
+  );
+}
+
+function assertMovingCircularSourceRootResponse(response, label) {
+  assert(response.status.code === "ok", `expected ${label} status ok`);
+  assert(response.rowProductionOwner === "native_wasm_c_abi", `expected ${label} native rows`);
+  assert(response.roots.length === 1, `expected one ${label} causal root`);
+  assert(
+    Math.abs(response.roots[0].emissionTime + 4) <= 1e-10 &&
+      Math.abs(response.roots[0].delay - 14) <= 1e-10 &&
+      Math.abs(response.roots[0].distance - 14) <= 1e-10 &&
+      Math.abs(response.roots[0].sourceVelocity.x - 0.5) <= 1e-10 &&
+      Math.abs(response.roots[0].sourcePhase.rawRadians + 4) <= 1e-10,
+    `expected ${label} native moving-circular row values`
+  );
+}
+
+function assertMovingCircularObserverFieldResponse(response, label) {
+  const expectedElectricX = 2 / (14 * 14);
+  assert(response.status.code === "ok", `expected ${label} status ok`);
+  assert(response.rowProductionOwner === "native_wasm_c_abi", `expected ${label} native rows`);
+  assert(response.contributions.length === 1, `expected one ${label} contribution`);
+  assert(response.unstableContributionCount === 0, `expected stable ${label} contribution`);
+  assert(
+    Math.abs(response.electric.x - expectedElectricX) <= 1e-12 &&
+      Math.abs(response.receiverAcceleration.x - expectedElectricX) <= 1e-12 &&
+      Math.abs(response.contributions[0].branchWeight - 2) <= 1e-12 &&
+      response.contributions[0].receiverNormalEvidenceStatus === "ok",
+    `expected ${label} native field row values`
   );
 }
 

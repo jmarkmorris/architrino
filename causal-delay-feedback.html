@@ -151,7 +151,8 @@
 
       .causal-now-scrub {
         display: grid;
-        grid-template-columns: minmax(118px, 18vw) 48px;
+        flex: 1 1 520px;
+        grid-template-columns: minmax(320px, 1fr) 48px;
         align-items: center;
         gap: 8px;
         min-width: 170px;
@@ -243,10 +244,10 @@
         gap: 8px;
         min-height: 30px;
         padding: 6px 10px;
-        border: 1px solid rgba(224, 207, 255, 0.28);
+        border: 1px solid var(--causal-legend-border-color, rgba(224, 207, 255, 0.28));
         border-radius: 6px;
-        background: rgba(34, 18, 54, 0.78);
-        color: rgba(246, 247, 255, 0.86);
+        background: var(--causal-selected-canvas-color, #4b0082);
+        color: var(--causal-legend-text-color, rgba(246, 247, 255, 0.86));
         font-size: 12px;
         font-weight: 700;
         line-height: 1;
@@ -254,8 +255,8 @@
       }
 
       .causal-legend-line {
-        width: 28px;
-        height: 12px;
+        width: 34px;
+        height: 22px;
         position: relative;
       }
 
@@ -264,36 +265,63 @@
         position: absolute;
         left: 0;
         right: 0;
-        height: 2px;
+        height: 5px;
+        border-radius: 999px;
         content: "";
       }
 
       .causal-legend-line::before {
         top: 3px;
-        background: #ff0000;
+        background: var(--causal-positrino-color, #ff0000);
       }
 
       .causal-legend-line::after {
         bottom: 3px;
-        background: #0000ff;
+        background: var(--causal-electrino-color, #0000ff);
       }
 
       .causal-legend-dots {
-        display: inline-grid;
-        grid-template-columns: repeat(5, 4px);
-        grid-auto-rows: 4px;
-        gap: 3px;
+        position: relative;
+        width: 34px;
+        height: 18px;
+        flex: 0 0 34px;
       }
 
       .causal-legend-dots i {
-        width: 4px;
-        height: 4px;
+        position: absolute;
+        width: 3px;
+        height: 3px;
         border-radius: 999px;
-        background: #ff96a6;
+        background: var(--causal-positrino-wake-color, #ff96a6);
       }
 
       .causal-legend-dots i:nth-child(even) {
-        background: #96aaff;
+        background: var(--causal-electrino-wake-color, #96aaff);
+      }
+
+      .causal-legend-dots i:nth-child(1) {
+        left: 1px;
+        top: 12px;
+      }
+
+      .causal-legend-dots i:nth-child(2) {
+        left: 8px;
+        top: 7px;
+      }
+
+      .causal-legend-dots i:nth-child(3) {
+        left: 16px;
+        top: 5px;
+      }
+
+      .causal-legend-dots i:nth-child(4) {
+        left: 24px;
+        top: 7px;
+      }
+
+      .causal-legend-dots i:nth-child(5) {
+        left: 31px;
+        top: 12px;
       }
 
       .causal-settings {
@@ -351,6 +379,13 @@
         grid-template-columns: 28px minmax(118px, 1fr) 28px 78px;
       }
 
+      .causal-range-wrap {
+        position: relative;
+        display: grid;
+        align-items: start;
+        min-height: 32px;
+      }
+
       .causal-range {
         height: 18px;
         width: 100%;
@@ -405,6 +440,28 @@
         outline-offset: 4px;
       }
 
+      .causal-range-midpoint {
+        position: absolute;
+        top: 15px;
+        left: 50%;
+        display: grid;
+        justify-items: center;
+        gap: 2px;
+        color: rgba(246, 247, 255, 0.78);
+        font-size: 10px;
+        font-weight: 760;
+        line-height: 1;
+        pointer-events: none;
+        transform: translateX(-50%);
+      }
+
+      .causal-range-midpoint::before {
+        width: 1px;
+        height: 8px;
+        background: rgba(246, 247, 255, 0.62);
+        content: "";
+      }
+
       .causal-step-button {
         display: inline-grid;
         place-items: center;
@@ -449,23 +506,6 @@
         border-color: rgba(246, 247, 255, 0.72);
         color: #ffffff;
         outline: none;
-      }
-
-      .causal-setting-select {
-        width: 100%;
-        height: 30px;
-        border: 1px solid rgba(224, 207, 255, 0.34);
-        border-radius: 6px;
-        background: rgba(36, 20, 55, 0.9);
-        color: rgba(246, 247, 255, 0.9);
-        font-size: 12px;
-        font-weight: 760;
-        outline: none;
-      }
-
-      .causal-setting-select:hover,
-      .causal-setting-select:focus-visible {
-        border-color: rgba(246, 247, 255, 0.72);
       }
 
       .causal-speed-value {
@@ -722,22 +762,6 @@
       >
         <div class="causal-settings-label">Canvas</div>
         <div class="causal-swatch-row" id="causal-delay-feedback-color-swatches"></div>
-        <div class="causal-settings-label">
-          <span class="causal-math-label">c<sub>f</sub></span> speed
-        </div>
-        <div class="causal-slider-row">
-          <input
-            id="causal-delay-feedback-cf-speed"
-            class="causal-range"
-            type="range"
-            min="0.25"
-            max="2.5"
-            step="0.05"
-            value="1"
-            aria-label="c f animation speed"
-          />
-          <output id="causal-delay-feedback-cf-speed-value" class="causal-speed-value">1x</output>
-        </div>
         <div class="causal-settings-label">Architrino speed</div>
         <div class="causal-slider-row has-step-buttons">
           <button
@@ -764,15 +788,23 @@
           >&gt;</button>
           <output id="causal-delay-feedback-architrino-speed-value" class="causal-speed-value">0.7 c<sub>f</sub></output>
         </div>
-        <div class="causal-settings-label">Weak cue</div>
-        <select
-          id="causal-delay-feedback-weak-cue"
-          class="causal-setting-select"
-          aria-label="Weak contribution cue"
-        >
-          <option value="threshold_only">Threshold only</option>
-          <option value="off">Off</option>
-        </select>
+        <div class="causal-settings-label">Animation speed</div>
+        <div class="causal-slider-row">
+          <div class="causal-range-wrap">
+            <input
+              id="causal-delay-feedback-cf-speed"
+              class="causal-range"
+              type="range"
+              min="0.25"
+              max="1.75"
+              step="0.05"
+              value="1"
+              aria-label="Animation speed"
+            />
+            <span class="causal-range-midpoint" aria-hidden="true">1</span>
+          </div>
+          <output id="causal-delay-feedback-cf-speed-value" class="causal-speed-value">1x</output>
+        </div>
         <button
           id="causal-delay-feedback-reset-preset"
           class="causal-settings-action"

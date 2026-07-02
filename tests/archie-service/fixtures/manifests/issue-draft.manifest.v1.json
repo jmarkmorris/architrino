@@ -1,0 +1,108 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_issue_draft_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Triage Idea",
+  "requestSummary": {
+    "requestId": "request_triage_idea_001",
+    "safeSummaryId": "safe_summary_triage_idea_001",
+    "contextRoute": null
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": ["published_corpus", "priority_material"],
+    "sourceChips": [
+      {
+        "route": "reference/priorities/app-archie-interface/v1-product-requirements.md",
+        "label": "V1 Product Requirements",
+        "sourceClass": "priority_material",
+        "authorityStatus": "priority_only",
+        "visibility": "development_status",
+        "sectionId": "triage-idea-mode",
+        "freshnessState": "fresh"
+      }
+    ],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": [],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "priority-only",
+    "unsupportedReasonClass": null,
+    "priorityVisibility": "development_status_visible"
+  },
+  "answerBody": {
+    "displayedText": "This idea is suitable for a reviewed issue draft, not an automatic public claim.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_001",
+        "text": "This idea is suitable for a reviewed issue draft, not an automatic public claim."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": ["capability.answer_text.fixture"],
+    "credentialBoundary": "service_side_only",
+    "noBrowserKeys": true
+  },
+  "artifacts": [
+    {
+      "artifactId": "artifact_issue_draft_001",
+      "artifactType": "issue_draft",
+      "purposeLabel": "review-before-public-github-handoff",
+      "sourceInheritance": "inherits_manifest_source_context",
+      "claimInheritance": "inherits_manifest_claim_context",
+      "retentionState": "session_local"
+    }
+  ],
+  "speechSync": {
+    "status": "not_requested",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_issue_draft_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 8,
+    "heldTokens": 8,
+    "chargedTokens": 7,
+    "refundedTokens": 1,
+    "workUnits": ["retrieval", "issue_draft"],
+    "sourceClassesUsed": ["priority_material"],
+    "artifactCount": 1,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "disabled",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [
+    {
+      "actionType": "submit_issue",
+      "preflightStatus": "confirmation_required",
+      "confirmationRequired": true,
+      "confirmationReasons": ["public_visibility", "external_handoff"],
+      "destinationClass": "github_prefilled_url"
+    }
+  ],
+  "issueMiningContext": {
+    "enabled": true,
+    "originSurface": "Triage Idea",
+    "duplicateKeys": ["triage-idea:service-interface"],
+    "ownerLane": "service_platform",
+    "smallestNextArtifact": "github_issue",
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": ["issue_handoff_created", "action_preflight_checked"],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

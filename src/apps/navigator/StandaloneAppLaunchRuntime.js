@@ -1,6 +1,7 @@
 const standaloneAppPathBySceneToken = Object.freeze({
   "assembly-explorer": "assembly-explorer.html",
   "causal-delay-feedback": "causal-delay-feedback.html",
+  "equation-mapping": "equation-mapping.html",
   animator: "animator.html",
   archie__ideal_braid: "ideal-braid.html",
   archie__photon: "photon.html",
@@ -10,6 +11,7 @@ const standaloneAppPathBySceneToken = Object.freeze({
   "content/scenes/archie/assembly_explorer.json": "assembly-explorer.html",
   "content/scenes/archie/borg.json": "borg.html",
   "content/scenes/archie/causal_delay_feedback.json": "causal-delay-feedback.html",
+  "content/scenes/archie/equation_mapping.json": "equation-mapping.html",
   "content/scenes/archie/molecule.json": "molecule.html",
   "content/scenes/archie/website_stats.json": "website-stats.html",
   "content/scenes/chemistry/molecule.json": "molecule.html",

@@ -1,0 +1,138 @@
+{
+  "schema": "archie-endpoint-response-contracts/v1",
+  "contractId": "endpoint_response_contracts_fixture_001",
+  "endpointResponses": [
+    {
+      "caseId": "endpoint-post-answers-text-001",
+      "endpointId": "POST /answers",
+      "responseKind": "answer_manifest",
+      "requestFixture": "tests/archie-service/fixtures/endpoints/post-answers.request.v1.json",
+      "responseFixture": "tests/archie-service/fixtures/manifests/text-answer.manifest.v1.json",
+      "expectedSchema": "archie-answer-artifact-manifest/v1",
+      "expectedDisposition": "pass",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": true,
+        "includesTokenReceipt": true,
+        "includesPrivacyState": true,
+        "preservesActionConfirmation": true,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": true,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "endpoint-listen-speech-sync-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/listen",
+      "responseKind": "partial_manifest_update",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/speech-sync.manifest.v1.json",
+      "expectedSchema": "archie-answer-artifact-manifest/v1",
+      "expectedDisposition": "partial_update",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": true,
+        "includesTokenReceipt": true,
+        "includesPrivacyState": true,
+        "preservesActionConfirmation": true,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": true,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "endpoint-visualize-terms-stale-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/visualize",
+      "responseKind": "manifest_refusal",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/fail-closed/terms-stale.manifest.v1.json",
+      "expectedSchema": "archie-answer-artifact-manifest/v1",
+      "expectedDisposition": "unavailable",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": true,
+        "includesTokenReceipt": true,
+        "includesPrivacyState": true,
+        "preservesActionConfirmation": true,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": true,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "endpoint-issue-draft-confirmation-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/issue-draft",
+      "responseKind": "partial_manifest_update",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/issue-draft.manifest.v1.json",
+      "expectedSchema": "archie-answer-artifact-manifest/v1",
+      "expectedDisposition": "confirmation_required",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": true,
+        "includesTokenReceipt": true,
+        "includesPrivacyState": true,
+        "preservesActionConfirmation": true,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": true,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "endpoint-service-terms-001",
+      "endpointId": "GET /service-terms",
+      "responseKind": "service_terms",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/terms/service-terms.v1.json",
+      "expectedSchema": "archie-service-terms/v1",
+      "expectedDisposition": "pass",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": false,
+        "includesTokenReceipt": false,
+        "includesPrivacyState": false,
+        "preservesActionConfirmation": false,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "endpoint-service-status-001",
+      "endpointId": "GET /service-status",
+      "responseKind": "service_status",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/observability/public-status.v1.json",
+      "expectedSchema": "archie-service-status/v1",
+      "expectedDisposition": "pass",
+      "invariants": {
+        "validatesResponseShape": true,
+        "preservesSourceContext": false,
+        "includesTokenReceipt": false,
+        "includesPrivacyState": false,
+        "preservesActionConfirmation": false,
+        "observabilityRedacted": true,
+        "includesIssueMiningMetadata": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    }
+  ]
+}

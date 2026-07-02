@@ -663,7 +663,7 @@ $A_0$ branch-source frontier partial, the cross-row negative control, the
 current-status fixture, the finite-branch Hessian target packet, the branch-chart
 revision contract, the Fe/Cr toy and empirical replay packets, and the exposure
 and Noether sea response theorem targets. The scout also auto-discovers the
-shared [branch-provider evidence report](../solver/branch-provider-evidence-report.md)
+shared [branch-provider evidence report](../app-solver/branch-provider-evidence-report.md)
 as a branch-provider boundary candidate, so the emitted source scope now covers
 13 manifest candidates plus one provider-boundary report. The scout reports
 zero accepted non-fixture candidates and stable rejection codes for target-only,

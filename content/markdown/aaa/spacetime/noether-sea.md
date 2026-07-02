@@ -432,6 +432,37 @@ $$
 
 where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per braid and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether braids see a sharper boundary condition and retune more discretely around the assembly.
 
+### Temperature-Conditioned Branch Transition Target
+
+A temperature channel can enter this transport law only through the same retained ensemble record used to define [temperature](../dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable). It is not a property of one Noether braid, and it does not change $h$. The braid-level event remains an accepted branch-ledger transition with $\Delta A_{\mathrm{cyc}}=\pm h$; temperature can only bias the rates at which those admissible transitions are accepted inside a declared coarse-graining cell.
+
+When the retained record licenses a temperature variable $T_{\mathcal Q,W}$, the temperature-conditioned part of the cadence current has the candidate form
+
+$$
+J_\nu^{(T)}(\nu,\mathbf{x},t)
+=
+\sum_{\sigma=\pm1}
+f_N(\nu,\mathbf{x},t)\,
+r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})\,
+\Delta\nu_N^{(q,\sigma)}
++
+O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
+$$
+
+where $r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})$ is the accepted rate for the $\sigma$ branch transition under the same temperature-availability record. The detailed-balance residual for a neighboring $+h/-h$ pair is
+
+$$
+\mathcal R_{\mathrm{db}}^{(T)}(\nu,\mathbf{x},t)
+=
+f_N(\nu,\mathbf{x},t)\,
+r_+(\nu,\mathbf{x},t;T_{\mathcal Q,W})
+-
+f_N(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t)\,
+r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t;T_{\mathcal Q,W})
+$$
+
+If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed shell-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\sigma$, the retuning increments $\Delta\nu_N^{(q,\sigma)}$, and the layer partition of the same action transaction from a closed nested shell braid branch record rather than treating temperature as an external force.
+
 The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
 
 $$

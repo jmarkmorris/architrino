@@ -1,0 +1,353 @@
+{
+  "schema": "aaa-nuclear-atomic-no-open-color-far-field-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for no_open_color_far_field in the Fe/Ni branch-interface and confinement-functional lanes; records nearest candidate evidence and missing closure conditions; not accepted no-open-color evidence, not accepted confinement-functional evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "no_open_color_far_field",
+  "currentStatus": "blocked_missing_same_record_no_open_color_audit",
+  "sourceSupportSought": [
+    "finite_range_residual",
+    "color_singlet_closure",
+    "same_record_no_open_color_audit"
+  ],
+  "nearestCandidateInputs": {
+    "protonBranchInterfaceLedger": {
+      "candidatePath": "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+      "candidateRowId": "L_BI_p_0001",
+      "acceptedRowsProvided": [
+        "accepted_proton_branch_interface_ledger"
+      ],
+      "usableFor": [
+        "retained p+n and p+p orientation rows",
+        "closed-corridor sharing count",
+        "proton branch exposure row"
+      ],
+      "notUsableFor": [
+        "no_open_color_far_field",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "boundary": "The proton branch-interface ledger carries the no-open-color slot but explicitly does not accept no_open_color_far_field."
+    },
+    "neutronBranchInterfaceLedger": {
+      "candidatePath": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+      "candidateRowId": "L_BI_n_0001",
+      "acceptedRowsProvided": [
+        "accepted_neutron_branch_interface_ledger"
+      ],
+      "usableFor": [
+        "retained p+n orientation row",
+        "closed-corridor sharing count",
+        "neutron branch exposure row"
+      ],
+      "notUsableFor": [
+        "no_open_color_far_field",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "boundary": "The neutron branch-interface ledger carries the no-open-color slot but explicitly does not accept no_open_color_far_field."
+    },
+    "sameRecordBranchLedger": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+      "candidateRowId": "L_EpJ_pn_pp_0001",
+      "acceptedRowsProvided": [
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "usableFor": [
+        "p+n and p+p orientation rows in one record",
+        "energy, momentum, and angular-momentum bookkeeping",
+        "Coulomb separation row"
+      ],
+      "notUsableFor": [
+        "no_open_color_far_field",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "boundary": "The same-record branch ledger carries the no-open-color slot but does not accept the no-open-color far-field row."
+    },
+    "confinementFunctionalTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/no_open_color_far_field",
+      "usableFor": [
+        "target equation boundary for large-separation residual decay",
+        "shared branch-interface and confinement-functional source-acquisition shape"
+      ],
+      "notUsableFor": [
+        "accepted_no_open_color_far_field",
+        "accepted_delta_E_corr_NN",
+        "accepted_color_singlet_closure"
+      ],
+      "boundary": "The confinement-functional row states the no-open-color recovery target but remains target-required and priority-packet-only."
+    },
+    "nnCorridorOverlapSample": {
+      "candidatePath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "usableFor": [
+        "sample-level finite-tail pressure",
+        "p+n versus p+p channel comparison",
+        "branch-interface source-acquisition shape"
+      ],
+      "notUsableFor": [
+        "accepted_no_open_color_far_field",
+        "accepted_finite_range_residual",
+        "accepted_same_record_no_open_color_audit"
+      ],
+      "boundary": "The sample respects the hard no-open-color target at the current numerical row, but it is not a proof that the residual leaves no asymptotic color field."
+    },
+    "sameRecordNoOpenColorAuditBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-record no-open-color audit target shape",
+        "Delta_E_corr_NN tail-limit, finite residual, color-singlet, and same-event ledger dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The same-record audit blocker names the audit target but explicitly accepts no source rows."
+    },
+    "colorSingletClosureBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "color-singlet closure acceptance condition",
+        "proton, neutron, and no-free-color dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_closure",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The color-singlet closure blocker names the shared closure proof burden but explicitly accepts no source rows."
+    },
+    "sameRecordBranchInterfaceBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-record branch-interface bundle target",
+        "accepted branch ledgers and no-open-color dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_branch_interface",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The same-record branch-interface blocker records why accepted input ledgers are not accepted no-open-color or top branch-interface evidence."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "no_open_color_far_field_target_0001",
+    "finiteRangeResidual": {
+      "requiredBehavior": "The accepted residual corridor row must tend to zero at large separation in the same two-nucleon branch-interface and confinement-functional record.",
+      "mustBindTo": [
+        "Delta_E_corr_NN_tail_limit",
+        "bounded_residual_overlap",
+        "large_r_zero_limit"
+      ]
+    },
+    "colorSingletClosure": {
+      "requiredBehavior": "Both nucleons must enter the residual-corridor calculation as accepted color-singlet envelopes, not as free quark assemblies or open-color fragments.",
+      "mustConsumeRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state"
+      ]
+    },
+    "sameRecordNoOpenColorAudit": {
+      "requiredBehavior": "The same record that carries the p+n and p+p branch-interface extraction must audit that the finite residual leaves no open-color far field.",
+      "mustConsumeRows": [
+        "Delta_E_corr_NN_tail_limit",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_event_ledger"
+      ],
+      "mustShareWith": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ]
+    }
+  },
+  "candidateClosureScaffold": {
+    "claimLevel": "priority-only sufficient-condition scaffold; accepts no source rows and does not prove no_open_color_far_field",
+    "openColorFarFieldNorm": "\\mathcal N_{\\mathrm{open}}(R)=\\int_{S_R}\\left\\|\\Pi_{\\mathrm{open}}\\,\\delta\\mathcal C[\\Gamma_{N_1},\\Gamma_{N_2};\\Delta E_{\\mathrm{corr}}^{NN}]\\right\\|^2\\,d\\Omega",
+    "largeRClosure": "\\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0",
+    "tailToFarFieldBound": "\\mathcal N_{\\mathrm{open}}(R)\\le K_{\\mathrm{open}}\\,\\mathcal T_{NN}(R)^2",
+    "finiteTailSufficientCondition": "\\exists R_0,C,\\lambda>0:\\;|\\Delta E_{\\mathrm{corr}}^{NN}(r)|\\le C e^{-\\lambda(r-R_0)}\\;\\text{for}\\;r>R_0",
+    "largeRClosureRoute": "\\lim_{R\\to\\infty}\\mathcal T_{NN}(R)=0\\;\\wedge\\;K_{\\mathrm{open}}<\\infty\\;\\Rightarrow\\;\\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0",
+    "sameRecordConstraint": "\\operatorname{record}(\\mathcal N_{\\mathrm{open}})=\\operatorname{record}(\\Delta E_{\\mathrm{corr}}^{NN})=\\operatorname{record}(B_{pn})=\\operatorname{record}(B_{pp})",
+    "sameRecordWitness": "\\mathcal W_{\\mathrm{no\\ open}}=(\\mathcal A_{\\mathrm{no\\ open}},\\mathcal T_{NN},K_{\\mathrm{open}},\\mathcal B_{\\mathrm{br}})",
+    "requiredAcceptedRowsBeforeUse": [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "accepted_branch_interface_rows"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count"
+    ],
+    "coefficientExclusion": "No element-indexed coefficient may appear in R_0, C, lambda, or the projection Pi_open.",
+    "failureMode": "If the limit is satisfied only by changing coefficients for the Fe/Ni window, the scaffold fails as a source-binding route."
+  },
+  "candidateNoOpenColorFarFieldLemma": {
+    "claimLevel": "priority-only conditional no-open-color far-field lemma; accepts no source rows and does not prove no_open_color_far_field",
+    "lemmaId": "finite_tail_same_record_audit_implies_no_open_color_far_field_0001",
+    "statement": "If the same retained branch-interface and confinement-functional record supplies accepted finite_range_residual, accepted color_singlet_closure, accepted same_record_no_open_color_audit, accepted proton and neutron branch-interface ledgers, the same_record_energy_momentum_angular_momentum_ledger, Delta_E_corr_NN_tail_limit, bounded_residual_overlap, large_r_zero_limit, and finite K_open, and the audit proves N_open(R) <= K_open T_NN(R)^2 with lim_R_to_infty T_NN(R)=0, then lim_R_to_infty N_open(R)=0 and the packet has the exact support shape for no_open_color_far_field.",
+    "assumptions": [
+      "accepted_finite_range_residual",
+      "accepted_color_singlet_closure",
+      "accepted_same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "same_record_branch_interface_confinement_functional_audit"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_record_witness",
+        "derivation": "Build W_no_open=(A_no_open,T_NN,K_open,B_br) in one retained record shared by the branch-interface ledgers, finite residual, color-singlet closure, and audit row."
+      },
+      {
+        "stepId": "tail_bound_consumption",
+        "derivation": "Consume Delta_E_corr_NN_tail_limit, bounded_residual_overlap, and large_r_zero_limit only as accepted same-record finite-tail rows; do not substitute sample-level finite-tail behavior."
+      },
+      {
+        "stepId": "finite_projection_bound",
+        "derivation": "Use N_open(R) <= K_open T_NN(R)^2 with finite K_open to make the open-color far-field norm controlled by the accepted residual tail."
+      },
+      {
+        "stepId": "zero_limit_transfer",
+        "derivation": "Since lim_R_to_infty T_NN(R)=0 and K_open is finite, K_open T_NN(R)^2 tends to zero, so lim_R_to_infty_N_open_R_eq_0 follows."
+      },
+      {
+        "stepId": "downstream_feed",
+        "derivation": "Only after this same-record zero-limit audit is accepted can no_open_color_far_field feed nucleon_branch_interface_ledgers, pn_orientation_count, pp_orientation_count, and accepted_branch_interface_rows."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "no_open_color_far_field"
+    ],
+    "missingAcceptanceRows": [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite",
+      "same_record_branch_interface_confinement_functional_audit"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "accepted_branch_interface_rows"
+    ],
+    "failureModes": [
+      "K_open is not finite in the same retained record",
+      "lim_R_to_infty T_NN(R)=0 is supplied by target-only or sample-level evidence",
+      "the same-record audit does not share the branch-interface ledgers",
+      "color-singlet closure remains target-only",
+      "no_open_color_far_field is used as a prerequisite instead of a downstream row"
+    ]
+  },
+  "acceptedSourceRowProofTarget": {
+    "id": "no_open_color_far_field_accepted_source_row_proof_target_0001",
+    "status": "target_required",
+    "currentEvidenceStatus": "proof_target_only",
+    "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+    "requiredAcceptedSourceRowsBeforeUse": [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger"
+    ],
+    "requiredSameRecordRows": [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field"
+    ],
+    "requiredClosureRows": [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit"
+    ],
+    "requiredLimitStatements": [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "lim_R_to_infty_T_NN_R_eq_0"
+    ],
+    "requiredSufficientConditionRows": [
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite"
+    ],
+    "forbiddenPromotionSources": [
+      "priority_packet_only",
+      "target_required",
+      "candidate_extracted",
+      "sample_level_finite_tail",
+      "target_only_no_open_color"
+    ],
+    "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/brainstorming.md#branch-interface-aaa-capture"
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "no_open_color_far_field",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_delta_E_corr_NN",
+      "accepted_color_singlet_nucleon_envelope",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count"
+    ],
+    "expectedBranchCheckerStatus": "missing_accepted_branch_interface_rows",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "expectedConfinementCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Prove the no-open-color far-field row in the same two-nucleon record that carries the p+n and p+p branch-interface extraction, using accepted finite-range residual, color-singlet closure, and same-record audit rows.",
+    "minimalInputNeeded": [
+      "accepted finite_range_residual row",
+      "accepted color_singlet_closure row for proton and neutron envelopes",
+      "accepted same_record_no_open_color_audit row",
+      "same-record linkage to the p+n and p+p branch-interface ledgers"
+    ],
+    "failureModes": [
+      "finite residual tail does not tend to zero at large separation",
+      "the no-open-color audit uses a different record than the branch-interface extraction",
+      "color-singlet closure remains target-only",
+      "sample-level finite-tail behavior is mistaken for an accepted proof",
+      "the proof requires a different confinement-functional domain than the Fe/Ni toy consumes"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the accepted proton branch-interface ledger, accepted neutron branch-interface ledger, same-record conservation ledger, or sample-level finite-tail row from being mistaken for accepted no_open_color_far_field evidence.",
+    "Fe/Ni promotion remains blocked until no_open_color_far_field, top branch-interface rows, confinement-functional rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}

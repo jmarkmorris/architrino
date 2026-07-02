@@ -1,0 +1,94 @@
+{
+  "schema": "aaa-nuclear-atomic-same-record-energy-momentum-angular-momentum-ledger-evidence/v1",
+  "claimLevel": "durable source-backed same_record_energy_momentum_angular_momentum_ledger evidence row for the Fe/Ni branch-interface source-acquisition lane; reduced branch-interface same-record conservation only, score-neutral and not accepted nuclear-binding recovery",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "same_record_energy_momentum_angular_momentum_ledger",
+  "sourceSupport": "branch_interface same_record_energy_momentum_angular_momentum_ledger pn_orientation_count pp_orientation_count energy_conservation_row momentum_conservation_row angular_momentum_conservation_row coulomb_separation_row",
+  "evidenceSupports": [
+    "branch_interface",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "pn_orientation_count",
+    "pp_orientation_count",
+    "energy_conservation_row",
+    "momentum_conservation_row",
+    "angular_momentum_conservation_row",
+    "coulomb_separation_row"
+  ],
+  "sourceIdentity": {
+    "sameRecordLedgerId": "L_BI_EpJ_0001",
+    "sourceTargetId": "same_record_energy_momentum_angular_momentum_ledger_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle"
+  },
+  "sameRecordLedger": {
+    "rowId": "L_BI_EpJ_0001",
+    "recordBoundary": "The record carries the p+n and p+p branch-interface orientation rows, conservation rows, and Coulomb separation in one reduced extraction record before any top-level branch-interface row is accepted.",
+    "branchInterfaceRows": [
+      {
+        "rowId": "pn_orientation_count_candidate_0001",
+        "channel": "p+n",
+        "sourceExpression": "B_pn_int_0=(chi_p,chi_n,4/4,0,0,0,0,L_EpJ_pn_bal)",
+        "N_share": 4,
+        "N_ret": 4,
+        "W_c": 1,
+        "M_c": 0
+      },
+      {
+        "rowId": "pp_orientation_count_candidate_0001",
+        "channel": "p+p",
+        "sourceExpression": "B_pp_int_0=(chi_p,chi_p,1/4,0,0,0,0,L_EpJ_pp_same)",
+        "N_share": 1,
+        "N_ret": 4,
+        "W_c": 0.25,
+        "M_c": 0.75
+      }
+    ],
+    "energyConservationRow": {
+      "rowId": "energy_conservation_row_0001",
+      "statement": "The reduced extraction records branch-interface compatibility and mismatch weights without creating or losing external energy; Coulomb energy is separated into the p+p Coulomb row before toy binding use.",
+      "externalEnergyLeak": 0,
+      "coulombSeparationRowId": "coulomb_separation_row_0001"
+    },
+    "momentumConservationRow": {
+      "rowId": "momentum_conservation_row_0001",
+      "statement": "The paired branch-interface extraction is same-record bookkeeping for local channel rows and carries no unpaired external momentum output.",
+      "netExternalMomentumLeak": 0
+    },
+    "angularMomentumConservationRow": {
+      "rowId": "angular_momentum_conservation_row_0001",
+      "statement": "The retained orientation counts are recorded in the same branch-interface ledger so channel comparison does not silently discard angular-momentum bookkeeping.",
+      "netExternalAngularMomentumLeak": 0
+    },
+    "coulombSeparationRow": {
+      "rowId": "coulomb_separation_row_0001",
+      "pnChargeFactor": 0,
+      "ppChargeFactor": 1,
+      "statement": "The p+n Coulomb row is zero and the p+p Coulomb row is separated from the branch-interface mismatch row before the Fe/Ni toy consumes ppCoulombCost."
+    },
+    "noOpenColorBoundary": "This same-record ledger carries the required no-open-color slot but does not accept no_open_color_far_field."
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRows": [
+      "same_record_energy_momentum_angular_momentum_ledger"
+    ],
+    "requiredPriorSourceRows": [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger"
+    ],
+    "notAcceptedRows": [
+      "no_open_color_far_field",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count"
+    ],
+    "expectedCheckerStatus": "missing_accepted_branch_interface_rows",
+    "expectedFirstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose and is not a raw URL source.",
+    "The row cannot satisfy no_open_color_far_field or the top-level branch-interface rows.",
+    "The row cannot promote the Fe/Ni toy sweep because the branch-interface family still lacks accepted top-level rows and the confinement family remains target-only."
+  ]
+}

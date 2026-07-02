@@ -1,0 +1,17 @@
+{
+  "schema": "archie-answer-request/v1",
+  "requestId": "request_ask_noether_sea_001",
+  "mode": "Ask",
+  "prompt": "What is the Noether sea?",
+  "contextRoute": "content/markdown/aaa/archie/system-card.md",
+  "artifactRequests": ["text"],
+  "tokenCap": 12,
+  "privacyPreferences": {
+    "durableSaveRequested": false,
+    "publicMaterialConsent": false
+  },
+  "acceptedTerms": {
+    "versionSetId": "terms_fixture_v1",
+    "scope": "anonymous_session"
+  }
+}

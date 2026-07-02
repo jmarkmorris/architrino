@@ -1,5 +1,7 @@
 # Licenses & Attributions
 
+- For plain-language use boundaries, see [Legal Terms](legal-terms.md).
+
 - The [Architrino Assembly Architecture repo on GitHub](https://github.com/jmarkmorris/architrino) is open source with this license: [MIT License](../../../../LICENSE), Copyright (c) 2026 J Mark Morris.
 
 - PDG REST API data used by the project: licensed under the same terms as the corresponding edition of the *Review of Particle Physics*; starting with the 2024 edition, the *Review of Particle Physics* is published under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/).

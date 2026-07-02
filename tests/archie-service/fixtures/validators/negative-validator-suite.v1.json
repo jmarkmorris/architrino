@@ -1,0 +1,135 @@
+{
+  "schema": "archie-service-validation-plan/v1",
+  "planId": "service_negative_validator_suite_fixture_001",
+  "checkModeBuilderContract": {
+    "builderId": "source_index_builder_check",
+    "scriptTarget": "scripts/archie-service/build-source-index.mjs --check",
+    "status": "planned",
+    "inputArtifactClasses": [
+      "authored_markdown",
+      "generated_reading_copy",
+      "scene_graph",
+      "markdown_index",
+      "app_guides",
+      "archie_references",
+      "priority_packets"
+    ],
+    "expectedOutputClasses": [
+      "source_records",
+      "source_chips",
+      "source_index_snapshot",
+      "source_index_dry_run_cases",
+      "manifest_source_context_fragments",
+      "source_index_candidate_records"
+    ],
+    "checkModeWriteBehavior": "no_write",
+    "runtimeProvidersEnabled": false,
+    "publicRoutesEnabled": false
+  },
+  "negativeValidatorCases": [
+    {
+      "caseId": "provider-browser-key-negative-001",
+      "validatorId": "provider_capability_validator",
+      "trigger": "A browser client requests provider-backed answer generation with a browser-visible model key or direct model-call configuration.",
+      "requestedBehavior": "Render a provider-backed answer from public client configuration.",
+      "expectedDisposition": "blocked",
+      "failClosedReason": "Provider-backed capabilities require service-side credential boundaries and no browser-visible model keys.",
+      "manifestFieldTargets": [
+        "providerExecutionContext.noBrowserKeys",
+        "providerExecutionContext.credentialBoundary",
+        "observabilityContext.safeEventClasses"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    },
+    {
+      "caseId": "privacy-private-prompt-leak-negative-001",
+      "validatorId": "observability_redaction_validator",
+      "trigger": "A receipt, support summary, issue-mining record, or public status event tries to include private prompt text.",
+      "requestedBehavior": "Persist or expose the private prompt as diagnostics for support or mining.",
+      "expectedDisposition": "blocked",
+      "failClosedReason": "Receipts, public status, support summaries, and issue-mining metadata must use safe ids and summaries without private prompt expansion.",
+      "manifestFieldTargets": [
+        "tokenReceipt.privatePromptIncluded",
+        "issueMiningContext.privatePromptIncluded",
+        "observabilityContext.redactionState"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    },
+    {
+      "caseId": "speech-low-quality-fallback-negative-001",
+      "validatorId": "speech_sync_validator",
+      "trigger": "High-quality speech is unavailable and the requested fallback is medium-quality or low-quality audio.",
+      "requestedBehavior": "Generate cheaper unsynchronized or lower-quality audio instead of the high-quality service-native speech path.",
+      "expectedDisposition": "text_only_fallback",
+      "failClosedReason": "V1 speech is high-quality only; unavailable high-quality speech falls back to displayed text with no low-quality audio charge.",
+      "manifestFieldTargets": [
+        "speechSync.status",
+        "artifacts.audio",
+        "tokenReceipt.workUnits"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    },
+    {
+      "caseId": "action-issue-unconfirmed-negative-001",
+      "validatorId": "action_confirmation_validator",
+      "trigger": "A GitHub issue handoff is requested before the user confirms public visibility, destination, and included material.",
+      "requestedBehavior": "Open or submit the GitHub issue without a final confirmation step.",
+      "expectedDisposition": "confirmation_required",
+      "failClosedReason": "Public, external, durable, or credentialed actions require explicit action-broker confirmation before side effects.",
+      "manifestFieldTargets": [
+        "availableActions.submit_issue",
+        "issueMiningContext.publicIssueUrl",
+        "privacyState.publicMaterialIncluded"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    },
+    {
+      "caseId": "terms-stale-negative-001",
+      "validatorId": "terms_policy_validator",
+      "trigger": "A paid, retained, public, provider-backed, generated-media, or GitHub handoff action is requested under stale service terms.",
+      "requestedBehavior": "Proceed with the action because the user accepted an older terms version.",
+      "expectedDisposition": "unavailable",
+      "failClosedReason": "Paid, retained, public, provider-backed, generated-media, and credentialed features require current applicable terms and legal-review state.",
+      "manifestFieldTargets": [
+        "availableActions",
+        "providerExecutionContext",
+        "tokenReceipt",
+        "privacyState"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    },
+    {
+      "caseId": "source-authority-inflation-negative-001",
+      "validatorId": "source_authority_validator",
+      "trigger": "Provider output, generated media polish, issue volume, token spend, or priority-only material attempts to upgrade a claim to published-corpus authority.",
+      "requestedBehavior": "Raise the claim label or source class because the answer sounds convincing or because the user paid for a richer artifact.",
+      "expectedDisposition": "unsupported",
+      "failClosedReason": "Only validated source context and answer-engine source rules can set claim labels; media quality, payment, provider output, and issue volume cannot strengthen authority.",
+      "manifestFieldTargets": [
+        "sourceContext.sourceChips",
+        "claimContext.claimLabel",
+        "artifacts.claimInheritance",
+        "observabilityContext.safeEventClasses"
+      ],
+      "blocksRuntimeSideEffect": true,
+      "privatePromptIncluded": false,
+      "browserSecretExposed": false,
+      "sourceAuthorityUpgraded": false
+    }
+  ]
+}

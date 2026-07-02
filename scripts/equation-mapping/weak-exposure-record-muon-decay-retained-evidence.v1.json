@@ -1,0 +1,117 @@
+{
+  "schema": "aaa-equation-map-weak-exposure-record-evidence/v1",
+  "claimLevel": "durable source-backed EQ-16 weak_exposure_record evidence row from the retained muon decay weak_visible_branch_ledger, weak_projection, and weak_quotient; same-domain exposure boundary only, score-neutral and not a populated EQ-16 packet",
+  "row": "EQ-16",
+  "targetRow": "EQ-16",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "weak_exposure_record",
+  "sourceSupport": "EQ-16 weak_visible_branch_ledger weak_projection weak_quotient weak_exposure_record D_weak_visible_attempt_0001 A_weak_attempt_0001",
+  "evidenceSupports": [
+    "EQ-16",
+    "weak_visible_branch_ledger",
+    "weak_projection",
+    "weak_quotient",
+    "weak_exposure_record",
+    "D_weak_visible_attempt_0001",
+    "A_weak_attempt_0001"
+  ],
+  "sourceIdentity": {
+    "domainId": "D_weak_visible_attempt_0001",
+    "branchRecordId": "A_weak_attempt_0001",
+    "weakVisibleBranchLedgerId": "L_A_weak_visible_muon_decay_0001",
+    "weakProjectionId": "Pi_weak_muon_decay_0001",
+    "weakQuotientId": "Q_weak_muon_decay_0001",
+    "weakExposureRecordId": "E_weak_muon_decay_0001",
+    "gaugeChartId": "effective_weak_chart_attempt_0001",
+    "channelId": "muon_decay_charged_current_0001",
+    "ledgerEvidenceSourcePath": "scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json",
+    "projectionEvidenceSourcePath": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json",
+    "quotientEvidenceSourcePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json"
+  },
+  "officialSources": [
+    {
+      "label": "PDG 2026 muon listing",
+      "url": "https://pdg.lbl.gov/2026/listings/rpp2026-list-muon.pdf",
+      "rowsUsed": [
+        "muon mean life",
+        "dominant mu- decay topology e- anti-nu_e nu_mu",
+        "radiative and internal-conversion muon decay comparison rows"
+      ]
+    },
+    {
+      "label": "PDG 2026 muon-decay-parameter review, Sec. 57",
+      "url": "https://pdg.lbl.gov/2026/reviews/rpp2026-rev-muon-decay-params.pdf",
+      "rowsUsed": [
+        "Michel-parameter spectrum and angular form",
+        "Standard Model V-A benchmark point",
+        "left-neutrino spectrum parameter benchmark"
+      ]
+    }
+  ],
+  "weakExposureRecord": {
+    "rowId": "E_weak_muon_decay_0001",
+    "domainId": "D_weak_visible_attempt_0001",
+    "branchRecordId": "A_weak_attempt_0001",
+    "gaugeChartId": "effective_weak_chart_attempt_0001",
+    "fromLedgerRowId": "L_A_weak_visible_muon_decay_0001",
+    "fromProjectionRowId": "Pi_weak_muon_decay_0001",
+    "fromQuotientRowId": "Q_weak_muon_decay_0001",
+    "exposureRole": "same-domain weak exposure boundary over the retained muon weak-visible ledger, projection, and quotient rows",
+    "standardReaction": "mu- -> e- + anti-nu_e + nu_mu",
+    "chargeConjugateReaction": "mu+ -> e+ + nu_e + anti-nu_mu",
+    "exposureReadoutRow": {
+      "rowId": "muon_decay_weak_exposure_readout_0001",
+      "retainedDomainId": "D_weak_visible_attempt_0001",
+      "branchRecordId": "A_weak_attempt_0001",
+      "readoutBoundary": "records that the measured charged-lepton spectrum, lifetime row, and inferred neutral bookkeeping rows share the same weak-visible exposure domain before any chirality, flavor-overlap, or reaction-event row is accepted"
+    },
+    "sameDomainRule": "The exposure row inherits D_weak_visible_attempt_0001 and A_weak_attempt_0001 from the retained muon ledger, projection, and quotient rows. It does not introduce a detached weak domain, a replacement branch record, or a new neutral-lepton retained branch.",
+    "gaugeBranchRecordStability": "The exposure row preserves effective_weak_chart_attempt_0001 with physicalBranchRecordChanged=false. It is a same-record exposure boundary, not a gauge-chart retune.",
+    "downstreamBoundary": "This exposure row does not accept V-A chirality, CKM/PMNS overlap, weak-corridor provenance, reaction-event, effective gauge covariance, or Noether sea response rows."
+  },
+  "sourceDependencies": [
+    {
+      "label": "retained muon weak-visible ledger evidence",
+      "path": "scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json",
+      "rowUsed": "L_A_weak_visible_muon_decay_0001"
+    },
+    {
+      "label": "retained muon weak projection evidence",
+      "path": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json",
+      "rowUsed": "Pi_weak_muon_decay_0001"
+    },
+    {
+      "label": "retained muon weak quotient evidence",
+      "path": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
+      "rowUsed": "Q_weak_muon_decay_0001"
+    }
+  ],
+  "acceptedBoundary": {
+    "acceptedRows": [
+      "weak_exposure_record"
+    ],
+    "requiredPriorRows": [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient"
+    ],
+    "notAcceptedRows": [
+      "va_chirality_gate",
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "reaction_event_ledger",
+      "noether_sea_response"
+    ],
+    "expectedCheckerStatus": "blocked_missing_rows",
+    "expectedNextBlocker": "missing_accepted_va_chirality_gate",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not a priority prose source and is not a raw URL source.",
+    "The embedded official URLs provide provenance for the muon exposure rows but do not by themselves satisfy the runner's durable source guard.",
+    "The row cannot satisfy V-A, CKM, PMNS, weak-corridor provenance, effective gauge covariance, reaction-event, or Noether sea rows.",
+    "The row cannot satisfy EQ-16A because it does not supply a neutral_lepton_retained_branch, common-clock phase operator, PMNS readout, matter correction, or source/detector event ledger."
+  ]
+}

@@ -215,10 +215,12 @@ This is the mass-map reading of the familiar nuclear and hadronic warning that a
 
 #### Charge-Conjugate Mass Equality
 
-The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the charge-conjugate branch obtained from an accepted assembly $A$ by reversing all intrinsic polarity signs and pro/anti orientation while preserving the shielding-coherence class, causal-root ledger, branch geometry, and Noether sea response record:
+The equality of a particle's rest mass with the rest mass of its antiparticle is a mass-map constraint, not a separate fitted fact. Let $\bar A$ denote the anti-branch obtained from an accepted assembly $A$ by conjugating pro/anti orientation while preserving the shielding-coherence class, retained path-history rows, causal-root ledger, wake-history rows, branch geometry, action rows, and Noether sea response record. For a charged branch, the sector-visible polarity ledger also maps to the opposite charge row:
 $$
 q_a(\bar A)=-q_a(A)
 $$
+Here $q_a$ is a polarity ledger entry in the charged-sector projection. Positrino/Electrino polarity is not the matter/antimatter label.
+
 If the mass-facing ledger depends on polarity through even data such as $q_aq_b$, $|q_a|$, causal-root topology, shielding, and polarity-neutral medium response, then complete conjugation leaves the scalar mass trace invariant:
 $$
 E_{\text{internal}}(\bar A)=E_{\text{internal}}(A),
@@ -233,7 +235,7 @@ The odd channel is the exposed charge-like projection,
 $$
 Q_{\mathrm{eff}}(\bar A)=-Q_{\mathrm{eff}}(A)
 $$
-not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: the full polarity inversion preserves every internal pair product and every polarity-even exposure term. The constraint does not permit arbitrary partial polarity replacement. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, and the causal-root ledger, so it is generally a different assembly rather than the antiparticle of $A$.
+not the rest-mass response. This is why the electron and positron can have opposite electric bookkeeping while sharing the same mass-facing causal buildup: complete branch-record conjugation preserves every internal pair product, every polarity-even exposure term, and the identity-bearing history rows. The constraint does not permit arbitrary partial polarity replacement, and it does not identify Positrino versus Electrino with matter versus antimatter. Flipping only part of an axial inventory or only one internal component can change $q_aq_b$, branch stability, shielding leakage, the causal-root ledger, and the wake-history provenance, so it is generally a different assembly rather than the antiparticle of $A$.
 
 Thus a candidate mass map fails if an accepted matter branch and its complete anti-branch receive different scalar rest masses in the same neutral Noether sea environment, unless the model explicitly supplies a conjugation-odd medium or branch-asymmetry term and keeps the resulting mass splitting within the declared particle-antiparticle bounds.
 
@@ -383,7 +385,7 @@ The trace-free part of this test is limited by what the branch actually probes. 
 The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
 
 $$
-\delta_Pm_{\mathrm{tr}}(A)
+\delta_{\!P}m_{\mathrm{tr}}(A)
 =
 \alpha_{\mathrm{m}}
 \frac{1}{c_{\text{eff},0}^{2}}

@@ -1,0 +1,95 @@
+{
+  "schema": "aaa-nuclear-atomic-proton-color-singlet-envelope-support-evidence/v1",
+  "claimLevel": "durable non-fixture proton_color_singlet_closure and finite_envelope_boundary source-acquisition rows for the accepted_proton_color_singlet_envelope route; local envelope support rows only; not accepted accepted_proton_color_singlet_envelope, accepted_neutron_color_singlet_envelope, no_free_color_asymptotic_state, color_singlet_closure, no_open_color_far_field, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "proton_color_singlet_envelope_support",
+  "sourceSupport": [
+    "accepted_proton_color_singlet_envelope",
+    "proton_color_singlet_closure",
+    "finite_envelope_boundary",
+    "bounded_E_color_pX_le_Delta_color_pX",
+    "finite_R_p",
+    "finite_R_n",
+    "refinement_stable_envelope_window"
+  ],
+  "evidenceSupports": [
+    "proton_color_singlet_closure",
+    "finite_envelope_boundary"
+  ],
+  "sourceIdentity": {
+    "protonEnvelopeSupportId": "proton_color_singlet_envelope_support_0001",
+    "protonColorSingletClosureSourceTargetId": "proton_color_singlet_closure_source_target_0001",
+    "finiteEnvelopeBoundarySourceTargetId": "finite_envelope_boundary_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "protonEnvelopeBlockerPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
+    "neutronEnvelopeBlockerPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "protonColorSingletClosure": {
+    "rowId": "proton_color_singlet_closure_0001",
+    "sourceRowId": "proton_color_singlet_closure",
+    "PiSingletRef": "Pi_singlet_pX_support_0001",
+    "PiOpenRef": "Pi_open_pX_support_0001",
+    "WLockedRef": "W_locked_pX_support_0001",
+    "epsilon_pX": 1,
+    "Delta_color_pX": 0,
+    "E_color_pX": 0,
+    "boundStatement": "E_color_pX = ||Pi_open,X W_locked_pX||_X/(||Pi_singlet,X W_locked_pX||_X + epsilon_pX) <= Delta_color_pX in the normalized retained proton-envelope support domain.",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "finiteEnvelopeBoundary": {
+    "rowId": "finite_envelope_boundary_0001",
+    "sourceRowId": "finite_envelope_boundary",
+    "R_p": 1,
+    "R_n": 1,
+    "refinementWindowRef": "normalized_proton_neutron_envelope_refinement_window_0001",
+    "sameSigmaEffDomainRef": "sigma_eff_domain_support_ref_0001",
+    "boundaryStatement": "The retained proton and neutron envelope support window uses finite normalized boundary scales R_p=1 and R_n=1 before any no-free-color or no-open-color asymptotic audit is accepted.",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary"
+    ],
+    "notAcceptedByThisEvidence": [
+      "accepted_proton_color_singlet_envelope",
+      "neutron_color_singlet_closure",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "color_singlet_closure",
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted rows only supply local proton color-singlet closure support and a finite envelope-boundary witness.",
+    "The row does not accept accepted_proton_color_singlet_envelope because no_free_color_asymptotic_state, same_record_branch_interface, and the complete same-domain envelope certificate are still missing.",
+    "The row does not accept accepted_neutron_color_singlet_envelope, color_singlet_closure, no_free_color_asymptotic_state, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

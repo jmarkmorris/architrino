@@ -1,0 +1,114 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_speech_sync_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Explain",
+  "requestSummary": {
+    "requestId": "request_listen_001",
+    "safeSummaryId": "safe_summary_listen_001",
+    "contextRoute": "content/generated/markdown/textbook/reading-copies/foundations.md"
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": ["generated_reading_copy", "published_corpus"],
+    "sourceChips": [
+      {
+        "route": "content/generated/markdown/textbook/reading-copies/foundations.md",
+        "label": "Foundations Reading Copy",
+        "sourceClass": "generated_reading_copy",
+        "authorityStatus": "routing_only",
+        "visibility": "public",
+        "sectionId": "selected-sphere",
+        "freshnessState": "fresh"
+      }
+    ],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": [],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "published corpus",
+    "unsupportedReasonClass": null,
+    "priorityVisibility": "not_applicable"
+  },
+  "answerBody": {
+    "displayedText": "This is the verbatim text that the high-quality speech service may read.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_001",
+        "text": "This is the verbatim text that the high-quality speech service may read."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": ["capability.speech_output.high_quality.fixture"],
+    "credentialBoundary": "service_side_only",
+    "noBrowserKeys": true
+  },
+  "artifacts": [
+    {
+      "artifactId": "artifact_audio_001",
+      "artifactType": "audio",
+      "purposeLabel": "high-quality synchronized speech",
+      "sourceInheritance": "inherits_manifest_source_context",
+      "claimInheritance": "inherits_manifest_claim_context",
+      "retentionState": "ephemeral"
+    },
+    {
+      "artifactId": "artifact_transcript_001",
+      "artifactType": "transcript",
+      "purposeLabel": "displayed verbatim text",
+      "sourceInheritance": "inherits_manifest_source_context",
+      "claimInheritance": "inherits_manifest_claim_context",
+      "retentionState": "ephemeral"
+    }
+  ],
+  "speechSync": {
+    "status": "synced",
+    "audioArtifactId": "artifact_audio_001",
+    "segments": [
+      {
+        "segmentId": "seg_001",
+        "startsAtMs": 0,
+        "endsAtMs": 4200
+      }
+    ]
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_speech_sync_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 10,
+    "heldTokens": 10,
+    "chargedTokens": 9,
+    "refundedTokens": 1,
+    "workUnits": ["high_quality_speech", "caption_transcript"],
+    "sourceClassesUsed": ["generated_reading_copy"],
+    "artifactCount": 2,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "ephemeral",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [],
+  "issueMiningContext": {
+    "enabled": false,
+    "originSurface": "Explain",
+    "duplicateKeys": [],
+    "ownerLane": null,
+    "smallestNextArtifact": null,
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": ["artifact_requested", "speech_sync_checked", "token_ledger_updated"],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

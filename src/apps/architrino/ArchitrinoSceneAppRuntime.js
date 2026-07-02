@@ -5370,7 +5370,7 @@ const animatorSceneId = "animator";
 const animatorPreviewSceneId = "animator_preview";
 const animatorPreviewScenePath = "__animator_preview__";
 const animatorDocsPath =
-  "reference/priorities/animator/animator.md";
+  "reference/priorities/app-animator/animator.md";
 const appMode = getAnimatorAppMode(globalThis.window);
 const isStandaloneAnimatorApp = isStandaloneAnimatorAppMode(appMode);
 const standaloneNavigatorHref = STANDALONE_ANIMATOR_NAVIGATOR_HREF;

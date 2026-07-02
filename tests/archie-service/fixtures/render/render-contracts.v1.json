@@ -1,0 +1,121 @@
+{
+  "schema": "archie-render-contracts/v1",
+  "contractId": "render_contracts_fixture_001",
+  "renderCases": [
+    {
+      "caseId": "render-answer-text-001",
+      "endpointId": "POST /answers",
+      "requestFixture": "tests/archie-service/fixtures/endpoints/post-answers.request.v1.json",
+      "selectedResponseFixture": "tests/archie-service/fixtures/manifests/text-answer.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1",
+      "requiredSurfaces": ["source_chips", "claim_label", "displayed_verbatim_text", "token_receipt"],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "render-listen-speech-sync-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/listen",
+      "requestFixture": null,
+      "selectedResponseFixture": "tests/archie-service/fixtures/manifests/speech-sync.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1",
+      "requiredSurfaces": ["source_chips", "claim_label", "displayed_verbatim_text", "token_receipt", "speech_sync"],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "render-visualize-terms-stale-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/visualize",
+      "requestFixture": null,
+      "selectedResponseFixture": "tests/archie-service/fixtures/manifests/fail-closed/terms-stale.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1",
+      "requiredSurfaces": ["source_chips", "claim_label", "displayed_verbatim_text", "token_receipt", "action_confirmations"],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "render-issue-draft-001",
+      "endpointId": "POST /answers/{manifest_id}/actions/issue-draft",
+      "requestFixture": null,
+      "selectedResponseFixture": "tests/archie-service/fixtures/manifests/issue-draft.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1",
+      "requiredSurfaces": [
+        "source_chips",
+        "claim_label",
+        "displayed_verbatim_text",
+        "token_receipt",
+        "action_confirmations",
+        "issue_draft"
+      ],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "render-service-terms-001",
+      "endpointId": "GET /service-terms",
+      "requestFixture": null,
+      "selectedResponseFixture": "tests/archie-service/fixtures/terms/service-terms.v1.json",
+      "responseSchema": "archie-service-terms/v1",
+      "requiredSurfaces": ["service_terms"],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    },
+    {
+      "caseId": "render-service-status-001",
+      "endpointId": "GET /service-status",
+      "requestFixture": null,
+      "selectedResponseFixture": "tests/archie-service/fixtures/observability/public-status.v1.json",
+      "responseSchema": "archie-service-status/v1",
+      "requiredSurfaces": ["service_status"],
+      "invariants": {
+        "selectedResponseOnlyAuthority": true,
+        "sideChannelAuthorityAllowed": false,
+        "privatePromptIncluded": false,
+        "providerSecretsAllowed": false,
+        "runtimeProvidersEnabled": false,
+        "publicRoutesEnabled": false,
+        "durableStorageEnabled": false,
+        "paymentsEnabled": false
+      }
+    }
+  ]
+}

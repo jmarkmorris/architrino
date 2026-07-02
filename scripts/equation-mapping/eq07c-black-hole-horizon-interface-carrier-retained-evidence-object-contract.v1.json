@@ -1,0 +1,220 @@
+{
+  "schema": "aaa-equation-map-eq07c-black-hole-horizon-interface-carrier-retained-evidence-object-contract/v1",
+  "claimLevel": "contract-only specification for the smallest accepted EQ-07C black-hole horizon-interface carrier; score-neutral and not retained evidence by itself",
+  "sourceRole": "retained_evidence_object_contract",
+  "supportsEquationRows": [
+    "EQ-07C"
+  ],
+  "requiredCarrier": "Theta_BH_07C(Omega,W)",
+  "exactFirstBlocker": "missing_accepted_black_hole_horizon_interface_carrier",
+  "requiredCarrierIdentity": {
+    "carrierId": "bhHorizonCarrierId",
+    "thetaWId": "theta_W",
+    "sourceWindowId": "sourceWindowId",
+    "supportId": "supportId",
+    "eventLedgerId": "eventLedgerId",
+    "horizonInterfaceId": "horizonInterfaceId",
+    "interiorContinuationId": "interiorContinuationId",
+    "retuneWitnessId": "retuneWitnessId"
+  },
+  "requiredRows": [
+    "black_hole_horizon_interface_carrier",
+    "theta_W_parent_support",
+    "exterior_scale_row",
+    "mass_readout_row",
+    "spin_readout_row",
+    "horizon_radius_area_row",
+    "surface_gravity_row",
+    "horizon_interface_row",
+    "terminal_alignment_row",
+    "light_ring_null_orbit_row",
+    "finite_interior_continuation_row",
+    "horizon_label_ensemble_row",
+    "entropy_area_row",
+    "event_ledger_row",
+    "source_provenance",
+    "no_hidden_retune_witness"
+  ],
+  "conditionalRows": [
+    {
+      "row": "planar_photon_recovery_row",
+      "requiredWhen": "photon-path, light-ring, or photon-carrier evidence is consumed"
+    },
+    {
+      "row": "ringdown_label_row",
+      "requiredWhen": "the selected source window is a collapse or merger remnant window"
+    },
+    {
+      "row": "release_channel_boundary_data",
+      "requiredWhen": "EQ-07B accretion, jet, wind, or release-channel rows are imported as boundary data"
+    }
+  ],
+  "sameRecordBinding": [
+    "every required and conditional row shares bhHorizonCarrierId, sourceWindowId, supportId, eventLedgerId, horizonInterfaceId, and retuneWitnessId before residuals can count",
+    "mass, spin, radius, area, surface gravity, and entropy rows bind to the same exterior compact-source labels and horizon-interface label ensemble",
+    "F_H, terminal-alignment rows, light-ring/null-orbit rows, and planar-photon rows remain separate row families until the same carrier derives a spin or branch coincidence condition",
+    "finite-interior continuation, event ledger, remnant/ringdown rows, and no-hidden-retune witness share the same source history and cannot be imported from release-channel carriers"
+  ],
+  "requiredNonContractEvidence": {
+    "sourcePaths": "durable non-priority, non-generated, non-attempt, non-probe, non-mock, non-negative-control evidence files that are not contract-only objects",
+    "sourceEvidencePerRow": true,
+    "artifactHashes": "required when rows are extracted from local numerical, observational, simulation, or source-mined artifact families",
+    "sameRecordIds": [
+      "bhHorizonCarrierId",
+      "sourceWindowId",
+      "supportId",
+      "eventLedgerId",
+      "horizonInterfaceId",
+      "interiorContinuationId",
+      "retuneWitnessId"
+    ],
+    "excludedEvidenceSources": [
+      "reference/priorities prose",
+      "reference/entourage review packets",
+      "content/markdown/aaa prose",
+      "generated files",
+      "attempt fixtures",
+      "probe fixtures",
+      "mock fixtures",
+      "toy fixtures",
+      "negative controls",
+      "source-contract shells",
+      "this retained-evidence-object contract"
+    ]
+  },
+  "rowContract": {
+    "black_hole_horizon_interface_carrier": {
+      "mustBind": [
+        "bhHorizonCarrierId",
+        "thetaWId",
+        "sourceWindowId",
+        "supportId",
+        "eventLedgerId"
+      ],
+      "mustSupport": [
+        "EQ-07C",
+        "Theta_BH_07C",
+        "black-hole-proper horizon/interior carrier"
+      ],
+      "currentBlockerIfMissing": "missing_accepted_black_hole_horizon_interface_carrier"
+    },
+    "horizon_interface_row": {
+      "mustProvide": [
+        "F_H=0",
+        "rho_NS",
+        "Sigma_sea",
+        "u_sea",
+        "Lambda_NS_H",
+        "partial_Omega"
+      ],
+      "currentBlockerIfMissing": "horizon_interface_condition_not_source_backed"
+    },
+    "terminal_alignment_row": {
+      "mustProvide": [
+        "v_trans_to_c_eff",
+        "c_eff_to_c_f",
+        "s_M_equals_c_f",
+        "s_O_to_c_f",
+        "d_align_to_zero"
+      ],
+      "mustNotSubstituteFor": [
+        "light_ring_null_orbit_row",
+        "planar_photon_recovery_row",
+        "finite_interior_continuation_row"
+      ],
+      "currentBlockerIfMissing": "terminal_alignment_row_not_source_backed"
+    },
+    "light_ring_null_orbit_row": {
+      "mustProvide": [
+        "r_ph_or_r_LR",
+        "mass_spin_binding",
+        "horizon_light_ring_separation_or_derived_coincidence"
+      ],
+      "mustNotSubstituteFor": [
+        "horizon_interface_row"
+      ],
+      "currentBlockerIfMissing": "light_ring_null_orbit_row_not_source_backed"
+    },
+    "planar_photon_recovery_row": {
+      "mustProvide": [
+        "coaxial_contra_rotating_pro_anti_planar_pair_readout",
+        "planar_tri_binary_reduced_chart_binding",
+        "photon_event_ledger_binding"
+      ],
+      "requiredWhen": "photon-path or light-ring evidence is consumed",
+      "mustNotSubstituteFor": [
+        "horizon_interface_row"
+      ],
+      "currentBlockerIfMissing": "planar_photon_recovery_row_missing_when_photon_path_used"
+    },
+    "finite_interior_continuation_row": {
+      "mustProvide": [
+        "R_H_finite_over_Omega_W",
+        "boundary_data_binding",
+        "nonzero_or_finite_packed_state_continuation"
+      ],
+      "currentBlockerIfMissing": "finite_interior_continuation_not_source_backed"
+    },
+    "event_ledger_row": {
+      "mustProvide": [
+        "energy_balance",
+        "momentum_balance",
+        "angular_momentum_balance",
+        "recoil_or_remnant_update_when_relevant",
+        "boundary_update",
+        "medium_update"
+      ],
+      "currentBlockerIfMissing": "compact_region_event_ledger_not_source_backed"
+    },
+    "no_hidden_retune_witness": {
+      "mustProvide": [
+        "one-source-state witness across exterior scale, spin, horizon area, terminal alignment, light-ring/null-orbit, planar-photon recovery when used, entropy, interior continuation, ringdown/remnant, and imported release-channel rows"
+      ],
+      "currentBlockerIfMissing": "no_hidden_retune_witness_not_source_backed"
+    }
+  },
+  "directGeometryLayer": [
+    {
+      "standardComparisonTerm": "Schwarzschild/Kerr exterior scale, horizon radius, area, spin, surface gravity, and entropy rows",
+      "aaaGeometricReadout": "observer-level compact-source labels projected from one black-hole-proper horizon-interface carrier",
+      "requiredCarrierOrRow": "black_hole_horizon_interface_carrier with exterior_scale_row, mass_readout_row, spin_readout_row, horizon_radius_area_row, surface_gravity_row, horizon_label_ensemble_row, and entropy_area_row",
+      "sameRecordBinding": "bhHorizonCarrierId, thetaWId, sourceWindowId, supportId, eventLedgerId, horizonInterfaceId, and retuneWitnessId stay shared",
+      "failClosedNegativeControl": "bhp.metric_only_import, bhp.spin_radius_split, bhp.private_horizon_entropy",
+      "smallestAcceptedEvidenceObject": "source-backed accepted black_hole_horizon_interface_carrier with exterior mass, spin, radius, area, surface-gravity, and entropy rows bound to the same horizon-interface state"
+    },
+    {
+      "standardComparisonTerm": "F_H=0 with v_trans->c_eff, c_eff->c_f, s_M=c_f, s_O->c_f, and d_align->0",
+      "aaaGeometricReadout": "terminal-alignment readout for the braid symmetry-breaking point at the horizon-interface candidate",
+      "requiredCarrierOrRow": "horizon_interface_row, terminal_alignment_row, nested_shell_braid_speed_rows",
+      "sameRecordBinding": "the same carrier binds F_H, v_trans, c_eff, c_f, s_M, s_O, d_align, Lambda_NS_H, and retuneWitnessId",
+      "failClosedNegativeControl": "bhp.alignment_without_carrier",
+      "smallestAcceptedEvidenceObject": "accepted terminal_alignment_row on the same source-backed horizon-interface carrier"
+    },
+    {
+      "standardComparisonTerm": "r_ph=3GM/c0^2 and spin-dependent r_LR(M,J)",
+      "aaaGeometricReadout": "light-ring/null-orbit readout for photon-path comparison",
+      "requiredCarrierOrRow": "light_ring_null_orbit_row, spin_readout_row, photon_path_row",
+      "sameRecordBinding": "the same carrier binds M, J, r_H, r_LR, exterior photon-path readout, and the declared horizon/light-ring separation or coincidence condition",
+      "failClosedNegativeControl": "bhp.horizon_light_ring_collapse",
+      "smallestAcceptedEvidenceObject": "accepted light-ring/null-orbit row bound to the same horizon-interface carrier but not substituted for it"
+    },
+    {
+      "standardComparisonTerm": "coaxial contra-rotating pro/anti planar pair and planar tri-binary reduced chart",
+      "aaaGeometricReadout": "planar-photon recovery row for photon-path or light-ring evidence",
+      "requiredCarrierOrRow": "planar_photon_recovery_row, planar_tri_binary_reduced_chart_row, photon_event_ledger",
+      "sameRecordBinding": "photon-path evidence binds the planar-pair readout, light-ring row, event ledger, and horizon-interface carrier without replacing the horizon row",
+      "failClosedNegativeControl": "bhp.planar_photon_horizon_substitution",
+      "smallestAcceptedEvidenceObject": "accepted planar-photon recovery row when photon-path or light-ring evidence is consumed"
+    },
+    {
+      "standardComparisonTerm": "finite interior continuation, ringdown/remnant labels, conservation ledger, source provenance, and no-hidden-retune",
+      "aaaGeometricReadout": "one source history carrying interior regularity, remnant labels when present, compact-region energy-momentum-angular-momentum balance, provenance, and retune witness",
+      "requiredCarrierOrRow": "finite_interior_continuation_row, event_ledger_row, source_provenance, no_hidden_retune_witness, and conditional ringdown_label_row",
+      "sameRecordBinding": "all rows share bhHorizonCarrierId, sourceWindowId, supportId, eventLedgerId, interiorContinuationId, and retuneWitnessId",
+      "failClosedNegativeControl": "bhp.singularity_disguised, bhp.ringdown_without_remnant_label, bhp.accretion_release_substitution, bhp.release_channel_parent_leak",
+      "smallestAcceptedEvidenceObject": "source-backed retained black-hole-proper carrier whose rows are accepted, durable, same-record bound, and not sourced to this contract"
+    }
+  ],
+  "scoreDecision": "no_score_increase",
+  "nextImplementationStep": "replace this contract with a source-backed black_hole_horizon_interface_carrier evidence object whose required rows cite durable evidence sources and share the ids above; do not add score review or promote reader-facing prose until that object exists"
+}

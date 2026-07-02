@@ -1,0 +1,67 @@
+{
+  "schema": "archie-provider-capability-registry/v1",
+  "registryId": "provider_registry_fixture_001",
+  "environment": "staging",
+  "capabilities": [
+    {
+      "capabilityId": "capability.answer_text.fixture",
+      "capabilityType": "answer_text",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "low",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "manifest_shaped_refusal",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.speech_output.high_quality.fixture",
+      "capabilityType": "speech_output",
+      "enabledState": "internal_only",
+      "healthState": "degraded",
+      "costClass": "media",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "text_only_fallback",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.image_generation.fixture",
+      "capabilityType": "image_generation",
+      "enabledState": "disabled",
+      "healthState": "policy_blocked",
+      "costClass": "media",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "diagram_or_prompt_draft",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.moderation.fixture",
+      "capabilityType": "moderation",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "low",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "fail_closed_public_media",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.retrieval_embedding.fixture",
+      "capabilityType": "retrieval_embedding",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "standard",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "keyword_route_retrieval",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.rerank.fixture",
+      "capabilityType": "rerank",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "low",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "preserve_source_order",
+      "noBrowserKeys": true
+    }
+  ]
+}

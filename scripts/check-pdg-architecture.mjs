@@ -67,11 +67,11 @@ export function auditPdgArchitecture() {
 
   const docsToAudit = [
     resolveFirstExistingRepoPath([
-      "reference/priorities/deferred/pdg/pdg.md",
+      "reference/priorities/dormant-deferred/pdg/pdg.md",
       "reference/priorities/pdg/pdg.md",
     ]),
     resolveFirstExistingRepoPath([
-      "reference/priorities/deferred/pdg/pdgapps.md",
+      "reference/priorities/dormant-deferred/pdg/pdgapps.md",
       "reference/priorities/pdg/pdgapps.md",
     ]),
   ].filter(Boolean);

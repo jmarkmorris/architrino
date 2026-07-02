@@ -1,0 +1,385 @@
+{
+  "schema": "archie-token-ledger-sandbox-contracts/v1",
+  "contractId": "token_ledger_sandbox_fixture_001",
+  "providerGatewayContractId": "provider_gateway_contracts_fixture_001",
+  "environment": "staging",
+  "termsVersionSetId": "terms_fixture_v1",
+  "tokenCostMapEntries": [
+    {
+      "workUnit": "retrieval",
+      "costClass": "low",
+      "unitTokenEstimate": 2,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "answer_generation",
+      "costClass": "low",
+      "unitTokenEstimate": 5,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "high_quality_speech",
+      "costClass": "media",
+      "unitTokenEstimate": 10,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "caption_transcript",
+      "costClass": "low",
+      "unitTokenEstimate": 2,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "image",
+      "costClass": "media",
+      "unitTokenEstimate": 12,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "image_prompt",
+      "costClass": "media",
+      "unitTokenEstimate": 4,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "retrieval_embedding",
+      "costClass": "standard",
+      "unitTokenEstimate": 6,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    },
+    {
+      "workUnit": "rerank",
+      "costClass": "low",
+      "unitTokenEstimate": 6,
+      "providerBacked": true,
+      "requiresCurrentTerms": true
+    }
+  ],
+  "tokenLedgerCases": [
+    {
+      "caseId": "ledger-normal-answer-001",
+      "gatewayCaseId": "gateway-answer-text-001",
+      "requestClass": "source_grounded_answer",
+      "expectedLedgerDisposition": "estimate_hold_charge_refund",
+      "estimateShown": true,
+      "holdPlaced": true,
+      "confirmationRequired": false,
+      "confirmationReasons": [],
+      "spendingControl": {
+        "availableBalanceTokens": 30,
+        "perRequestCapTokens": 20,
+        "monthlyRemainingTokens": 120,
+        "autoFundEnabled": false,
+        "autoFundCapTokens": 0
+      },
+      "tokenWorkUnits": ["retrieval", "answer_generation"],
+      "costMapAvailable": true,
+      "receipt": {
+        "receiptId": "receipt_ledger_normal_answer_001",
+        "capStatus": "inside_limits",
+        "estimatedTokens": 7,
+        "heldTokens": 7,
+        "chargedTokens": 5,
+        "refundedTokens": 2,
+        "workUnits": ["retrieval", "answer_generation"],
+        "sourceClassesUsed": ["published_corpus"],
+        "artifactCount": 1,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.answer_text.fixture",
+          "costClass": "low",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "ephemeral_no_retention",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "ledger-speech-sync-001",
+      "gatewayCaseId": "gateway-speech-high-quality-001",
+      "requestClass": "speech_sync_output",
+      "expectedLedgerDisposition": "charge_validated_work",
+      "estimateShown": true,
+      "holdPlaced": true,
+      "confirmationRequired": false,
+      "confirmationReasons": [],
+      "spendingControl": {
+        "availableBalanceTokens": 40,
+        "perRequestCapTokens": 20,
+        "monthlyRemainingTokens": 120,
+        "autoFundEnabled": false,
+        "autoFundCapTokens": 0
+      },
+      "tokenWorkUnits": ["high_quality_speech", "caption_transcript"],
+      "costMapAvailable": true,
+      "receipt": {
+        "receiptId": "receipt_ledger_speech_sync_001",
+        "capStatus": "inside_limits",
+        "estimatedTokens": 12,
+        "heldTokens": 12,
+        "chargedTokens": 12,
+        "refundedTokens": 0,
+        "workUnits": ["high_quality_speech", "caption_transcript"],
+        "sourceClassesUsed": ["generated_reading_copy"],
+        "artifactCount": 2,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.speech_output.high_quality.fixture",
+          "costClass": "media",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "ephemeral_no_retention",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "ledger-terms-missing-negative-001",
+      "gatewayCaseId": "gateway-image-policy-001",
+      "requestClass": "generated_image_request",
+      "expectedLedgerDisposition": "terms_block",
+      "estimateShown": true,
+      "holdPlaced": false,
+      "confirmationRequired": true,
+      "confirmationReasons": ["privacy"],
+      "spendingControl": {
+        "availableBalanceTokens": 50,
+        "perRequestCapTokens": 25,
+        "monthlyRemainingTokens": 120,
+        "autoFundEnabled": false,
+        "autoFundCapTokens": 0
+      },
+      "tokenWorkUnits": ["image", "image_prompt"],
+      "costMapAvailable": true,
+      "receipt": {
+        "receiptId": "receipt_ledger_terms_missing_negative_001",
+        "capStatus": "privacy_confirmation_required",
+        "estimatedTokens": 16,
+        "heldTokens": 0,
+        "chargedTokens": 0,
+        "refundedTokens": 0,
+        "workUnits": ["image", "image_prompt"],
+        "sourceClassesUsed": ["published_corpus"],
+        "artifactCount": 0,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.image_generation.fixture",
+          "costClass": "media",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "disabled_until_terms",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "ledger-provider-cost-map-negative-001",
+      "gatewayCaseId": "gateway-moderation-001",
+      "requestClass": "public_media_moderation",
+      "expectedLedgerDisposition": "provider_cost_map_block",
+      "estimateShown": false,
+      "holdPlaced": false,
+      "confirmationRequired": false,
+      "confirmationReasons": [],
+      "spendingControl": {
+        "availableBalanceTokens": 20,
+        "perRequestCapTokens": 10,
+        "monthlyRemainingTokens": 100,
+        "autoFundEnabled": false,
+        "autoFundCapTokens": 0
+      },
+      "tokenWorkUnits": ["moderation"],
+      "costMapAvailable": false,
+      "receipt": {
+        "receiptId": "receipt_ledger_provider_cost_map_negative_001",
+        "capStatus": "estimate_required",
+        "estimatedTokens": 0,
+        "heldTokens": 0,
+        "chargedTokens": 0,
+        "refundedTokens": 0,
+        "workUnits": ["moderation"],
+        "sourceClassesUsed": ["published_corpus"],
+        "artifactCount": 0,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.moderation.fixture",
+          "costClass": "low",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "receipt_only_no_content",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "ledger-auto-fund-001",
+      "gatewayCaseId": "gateway-retrieval-embedding-001",
+      "requestClass": "retrieval_embedding_support",
+      "expectedLedgerDisposition": "auto_fund_pending_block",
+      "estimateShown": true,
+      "holdPlaced": false,
+      "confirmationRequired": true,
+      "confirmationReasons": ["auto_fund"],
+      "spendingControl": {
+        "availableBalanceTokens": 4,
+        "perRequestCapTokens": 15,
+        "monthlyRemainingTokens": 100,
+        "autoFundEnabled": true,
+        "autoFundCapTokens": 20
+      },
+      "tokenWorkUnits": ["retrieval", "retrieval_embedding"],
+      "costMapAvailable": true,
+      "receipt": {
+        "receiptId": "receipt_ledger_auto_fund_001",
+        "capStatus": "auto_fund_pending",
+        "estimatedTokens": 8,
+        "heldTokens": 0,
+        "chargedTokens": 0,
+        "refundedTokens": 0,
+        "workUnits": ["retrieval", "retrieval_embedding"],
+        "sourceClassesUsed": ["published_corpus"],
+        "artifactCount": 0,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.retrieval_embedding.fixture",
+          "costClass": "standard",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "receipt_only_no_content",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    },
+    {
+      "caseId": "ledger-cap-exceeded-001",
+      "gatewayCaseId": "gateway-rerank-001",
+      "requestClass": "rerank_candidates",
+      "expectedLedgerDisposition": "cap_exceeded_block",
+      "estimateShown": true,
+      "holdPlaced": false,
+      "confirmationRequired": true,
+      "confirmationReasons": ["token_cap"],
+      "spendingControl": {
+        "availableBalanceTokens": 50,
+        "perRequestCapTokens": 2,
+        "monthlyRemainingTokens": 100,
+        "autoFundEnabled": false,
+        "autoFundCapTokens": 0
+      },
+      "tokenWorkUnits": ["rerank"],
+      "costMapAvailable": true,
+      "receipt": {
+        "receiptId": "receipt_ledger_cap_exceeded_001",
+        "capStatus": "cap_exceeded",
+        "estimatedTokens": 6,
+        "heldTokens": 0,
+        "chargedTokens": 0,
+        "refundedTokens": 0,
+        "workUnits": ["rerank"],
+        "sourceClassesUsed": ["published_corpus"],
+        "artifactCount": 0,
+        "autoFundApplied": false,
+        "privatePromptIncluded": false
+      },
+      "providerCapabilityRefs": [
+        {
+          "capabilityId": "capability.rerank.fixture",
+          "costClass": "low",
+          "noProviderBillingInternals": true
+        }
+      ],
+      "termsVersionRefs": {
+        "serviceTermsVersion": "service_terms_fixture_v1",
+        "privacyNoticeVersion": "privacy_fixture_v1",
+        "tokenSubscriptionTermsVersion": "token_terms_fixture_v1",
+        "generatedMediaTermsVersion": "media_terms_fixture_v1"
+      },
+      "privacySummary": "receipt_only_no_content",
+      "sourceAuthorityEffect": "none",
+      "runtimeProviderCallAllowed": false,
+      "paymentsEnabled": false,
+      "paymentAttempted": false,
+      "durableStorageEnabled": false,
+      "providerPayloadIncluded": false,
+      "privatePromptIncluded": false
+    }
+  ]
+}

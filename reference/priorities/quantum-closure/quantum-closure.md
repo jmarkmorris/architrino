@@ -40,6 +40,7 @@ Measurement-record formation consumes the shared [residual-routing event-ledger 
 | [agency-decision-and-decider.md](agency-decision-and-decider.md) | Detailed packet for Noether braid metastability, the minimal Switch/Decider distinction, basin-control topology, work ledger, hold time, and measurable basin-weight shift. | [reality-quantum-causality](../../../content/markdown/aaa/quantum/reality-quantum-causality.md), [agency-and-internal-causation](../../../content/markdown/aaa/philosophy-history/agency-and-internal-causation.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [wavefunction-ontology](../../../content/markdown/aaa/quantum/wavefunction-ontology.md) |
 | [algorithmic-resonance-and-pilot-wave.md](algorithmic-resonance-and-pilot-wave.md) | Downstream transfer-operator packet for single-ontology pilot-wave guidance and quantum-register coherence-depth bounds. | [pilot-wave-character](../../../content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md), [algorithmic-resonance](../../../content/markdown/aaa/quantum/algorithmic-resonance.md), [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) |
 | [xenon-isotope-spin-biology.md](xenon-isotope-spin-biology.md) | External validation watch for xenon isotope anesthetic-potency claims, preserving the spin-class contrast and nuisance-control gate without importing consciousness or radical-pair ontology. | [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), [angular-momentum-and-spin](../../../content/markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [known-tensions](../../../content/markdown/aaa/validation/known-tensions.md) |
+| [brainstorming.md](brainstorming.md) | Side-question and idea parking for quantum closure material that is not ready to become a task, theorem obligation, proof packet, or corpus destination. | Existing quantum, strong-field, or medium-response targets after a concrete promotion route is selected. |
 
 ## Promotion Map
 
@@ -192,33 +193,15 @@ Do not rewrite [bell-theorem.md](../../../content/markdown/aaa/philosophy-histor
 - Show that the basin weights recover $P \propto |\psi|^2$ and the squared amplitudes of the effective linear envelope equation rather than only qualitative multistability.
 - Use that closure to support quantitative scattering and decay predictions rather than interpretive rhetoric alone.
 
-## Side Question To Preserve
+## Brainstorming
 
-- Keep alive the question of whether the missing neutrino chirality is tied to converting a pro-Noether braid.
-- Keep alive, but do not canonize, the ER=EPR-adjacent provenance-compliance question. The safe version is not that entanglement makes spacetime or that wormholes are substrate bridges. The safe version asks whether dense pair-provenance statistics can have a second local coarse-graining into Noether sea compliance, smoothness, or isotropy variables. Use $\Pi_{AB}$ for pair provenance, not bare $\lambda$, and test a local statistic of the form
-  $$
-  C_{\Pi}^{ab}(\mathbf{x},t)
-  =
-  \int
-  \Pi^{ab}(\Pi_{AB};\mathbf{x},t)\,
-  \rho_{\text{pair}}(\Pi_{AB})\,d\Pi_{AB}.
-  $$
-  This may only enter a medium-response or effective-metric map if it is built from locally available common-cause provenance and satisfies the no-signaling guardrail
-  $$
-  \frac{\delta C_{\Pi}^{ab}(\mathbf{x}_B,t)}
-  {\delta \hat{\mathbf{m}}_A(t_A)}
-  =
-  0
-  \quad
-  \text{for } t-t_A < \frac{\|\mathbf{x}_B-\mathbf{x}_A\|}{c_f}.
-  $$
-  If the construction requires distant setting dependence, superluminal causal-wake transfer, or treating information as ontology, reject it or leave it as a failed analogy. If it survives, route the quantum side through `pair_provenance_measure`, the black-hole / entropy side through [strong-field-closure](../strong-field-closure/strong-field-closure.md), and the compliance side through [mass-map medium-response probe](../braid-mass-response-map/a0-medium-response-tensor-probe.md).
+Preserved quantum side questions have been moved to [brainstorming.md](brainstorming.md). Keep this file as the quantum closure queue/control surface; promote items back here only when they become concrete theorem obligations, proof packets, or corpus destinations.
 
 ## Related Priorities
 
 - [master-equation-closure](../master-equation-closure/master-equation-closure.md)
 - [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)
 - [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [validation-gates](../validation-gates/validation-gates.md)

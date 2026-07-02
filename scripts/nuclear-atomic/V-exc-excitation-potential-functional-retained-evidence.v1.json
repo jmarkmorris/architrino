@@ -1,0 +1,65 @@
+{
+  "schema": "aaa-nuclear-atomic-V-exc-excitation-potential-functional-evidence/v1",
+  "claimLevel": "durable non-fixture V_exc source-acquisition row for the Fe/Ni confinement-functional lane; excitation potential functional basis only; not accepted sigma_eff extraction, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "V_exc",
+  "sourceSupport": [
+    "confinement_functional",
+    "V_exc",
+    "excitation_potential_functional",
+    "vacuum_exceptionality_profile",
+    "rho_NS_chi_sea_arguments"
+  ],
+  "evidenceSupports": [
+    "excitation_potential_functional",
+    "vacuum_exceptionality_profile",
+    "rho_NS_chi_sea_arguments"
+  ],
+  "sourceIdentity": {
+    "excitationPotentialId": "V_exc_0001",
+    "sourceTargetId": "V_exc_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "excitationPotentialFunctional": {
+    "rowId": "V_exc_0001",
+    "functionalBoundary": "Excitation potential functional evaluated on the same color-charge variation, axis-exceptionality, and Noether sea argument domain as the sigma_eff extraction target equation.",
+    "sigmaEffVariationRecord": {
+      "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+      "variationRole": "V_exc(f(r)Q;Q,rho_NS,chi_sea) supplies the local excitation-potential term inside the sigma_eff target equation."
+    },
+    "vacuumExceptionalityProfile": {
+      "profileRole": "Couples the color-charge deformation profile f(r)Q to the local exceptionality environment without setting a final nuclear-binding coefficient.",
+      "domainBoundary": "Same axis-exceptionality and Noether sea argument domain named by confinement-functional-source-target.v1.json."
+    },
+    "rhoNSChiSeaArguments": {
+      "rhoArgument": "rho_NS",
+      "chiArgument": "chi_sea",
+      "argumentBoundary": "Arguments are required by the V_exc functional form but are not accepted by this row."
+    }
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "V_exc"
+    ],
+    "notAcceptedByThisEvidence": [
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row does not accept rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until the confinement-functional source rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

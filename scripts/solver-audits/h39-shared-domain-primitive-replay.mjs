@@ -22,7 +22,7 @@ const SOURCE_SCRIPT =
   "scripts/neutral-braid/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.mjs";
 const SOURCE_TEST =
   "tests/neutral-braid-octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.test.js";
-const AUDIT_DOC = "reference/priorities/solver/h39-solver-impact-audit.md";
+const AUDIT_DOC = "reference/priorities/app-solver/h39-solver-impact-audit.md";
 const UNIT_CONVENTION = "dimensionless-h39-shared-domain-primitives";
 const SCALE_NORMALIZATION = "h39 graph-centered shared-domain primitive chart";
 const GLOBAL_TOLERANCE = 1e-12;

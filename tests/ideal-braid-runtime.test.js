@@ -57,7 +57,7 @@ test("standalone Ideal Braid home navigation returns to the main webapp", () => 
   };
 
   assert.equal(navigateIdealBraidHome(locationLike), true);
-  assert.deepEqual(assigned, ["./index.html"]);
+  assert.deepEqual(assigned, ["./index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"]);
   assert.equal(navigateIdealBraidHome(locationLike, ""), false);
 });
 

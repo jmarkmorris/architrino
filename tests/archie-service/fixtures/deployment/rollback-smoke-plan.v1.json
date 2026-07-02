@@ -1,0 +1,60 @@
+{
+  "schema": "archie-rollback-smoke-plan/v1",
+  "planId": "rollback_smoke_fixture_001",
+  "serviceVersionId": "archie_service_fixture_v1",
+  "environment": "staging",
+  "sourceSnapshotId": "source_snapshot_fixture_001",
+  "expectedRollbackParent": null,
+  "providerRegistryId": "provider_registry_fixture_001",
+  "requiredCapabilityIds": [
+    "capability.answer_text.fixture",
+    "capability.speech_output.high_quality.fixture",
+    "capability.image_generation.fixture",
+    "capability.moderation.fixture",
+    "capability.retrieval_embedding.fixture",
+    "capability.rerank.fixture"
+  ],
+  "termsVersionSetId": "terms_fixture_v1",
+  "endpointCompatibility": [
+    {
+      "endpointId": "POST /answers",
+      "requestFixture": "tests/archie-service/fixtures/endpoints/post-answers.request.v1.json",
+      "responseFixture": "tests/archie-service/fixtures/manifests/text-answer.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1"
+    },
+    {
+      "endpointId": "POST /answers/{manifest_id}/actions/listen",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/speech-sync.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1"
+    },
+    {
+      "endpointId": "POST /answers/{manifest_id}/actions/visualize",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/fail-closed/terms-stale.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1"
+    },
+    {
+      "endpointId": "POST /answers/{manifest_id}/actions/issue-draft",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/manifests/issue-draft.manifest.v1.json",
+      "responseSchema": "archie-answer-artifact-manifest/v1"
+    },
+    {
+      "endpointId": "GET /service-terms",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/terms/service-terms.v1.json",
+      "responseSchema": "archie-service-terms/v1"
+    },
+    {
+      "endpointId": "GET /service-status",
+      "requestFixture": null,
+      "responseFixture": "tests/archie-service/fixtures/observability/public-status.v1.json",
+      "responseSchema": "archie-service-status/v1"
+    }
+  ],
+  "requiresNoRuntimeProviders": true,
+  "requiresNoPayments": true,
+  "requiresNoDurableStorage": true,
+  "requiresNoPublicRoutes": true
+}

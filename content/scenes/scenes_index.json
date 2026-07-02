@@ -1879,6 +1879,21 @@
       "id": "causal-delay-feedback",
       "name": "Causal Delay Feedback",
       "path": "content/scenes/archie/causal_delay_feedback.json"
+    },
+    {
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json"
+    },
+    {
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json"
+    },
+    {
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json"
     }
   ]
 }

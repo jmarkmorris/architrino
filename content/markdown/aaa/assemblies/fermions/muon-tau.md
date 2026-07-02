@@ -14,11 +14,11 @@ Muon and tau branches do not introduce new charged-lepton axial inventories. The
 
 | Branch | Shielding-coherence class | Core readout | Charged axial inventory | Claim status |
 | --- | --- | --- | --- | --- |
-| $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6E$ | reference charged-lepton branch |
-| $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6E$ | Generation-II charged-lepton target |
-| $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6E$ | Generation-III charged-lepton target |
+| $e^-$ | $(1,1,1)$ | nested shell braid shielding branch | $6\epsilon_-$ | reference charged-lepton branch |
+| $\mu^-$ | $(1,1,0)$ | bi-binary shielding branch | $6\epsilon_-$ | Generation-II charged-lepton target |
+| $\tau^-$ | $(1,0,0)$ | uni-binary shielding branch | $6\epsilon_-$ | Generation-III charged-lepton target |
 
-The corresponding antileptons use anti-braid orientation and $6P$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
+The corresponding antileptons use anti-braid orientation and $6\epsilon_+$ axial inventory. Generation changes exposed mass response, shielding leakage, and branch lifetime; it must not change electric charge, weak hypercharge bookkeeping, or the existence of the charged-lepton weak-coupling triad.
 
 This gives the charged-lepton side of lepton universality in a disciplined form. The common axial inventory supplies the shared electromagnetic and weak bookkeeping for $e$, $\mu$, and $\tau$. Differences in observed rates, lifetimes, and response corrections are allowed only after the same weak-coupling-triad exposure rule, shielding map, and Noether sea response record have been declared.
 

@@ -1,0 +1,727 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#4b0082" />
+    <title>Equation Mapping</title>
+    <link
+      rel="stylesheet"
+      href="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.css"
+    />
+    <script defer src="./apps/ios/ArchitrinoReader/ArchitrinoReader/ReaderAssets/katex/katex.min.js"></script>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        background: #4b0082;
+        color: #ffffff;
+        font-family: "Helvetica Neue", Arial, sans-serif;
+      }
+
+      button,
+      input,
+      select,
+      textarea {
+        font: inherit;
+      }
+
+      #equation-mapping-app {
+        width: 100%;
+        height: 100%;
+      }
+
+      .equation-mapping-shell {
+        --index-width: 276px;
+        --control-top: max(18px, env(safe-area-inset-top));
+        --control-right: max(18px, env(safe-area-inset-right));
+        --equation-ink: #4b0082;
+        --line-ink: #4b0082;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(75, 0, 130, 0.18);
+        --strong-rule: rgba(75, 0, 130, 0.42);
+        --panel: rgba(255, 255, 255, 0.88);
+        --panel-strong: rgba(255, 255, 255, 0.96);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(75, 0, 130, 0.12);
+        display: grid;
+        grid-template-columns: var(--index-width) minmax(0, 1fr);
+        width: 100%;
+        height: 100%;
+        background: var(--equation-mapping-background, #fdfdfd);
+        color: var(--text);
+      }
+
+      .equation-mapping-shell[data-background="architrinoPurple"] {
+        --equation-ink: #ffffff;
+        --line-ink: #ffffff;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(255, 255, 255, 0.22);
+        --strong-rule: rgba(255, 255, 255, 0.46);
+        --panel: rgba(22, 10, 32, 0.76);
+        --panel-strong: rgb(22, 10, 32);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(255, 255, 255, 0.14);
+      }
+
+      .equation-mapping-shell[data-background="warm"] {
+        --equation-ink: #4b0082;
+        --line-ink: #4b0082;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(75, 0, 130, 0.18);
+        --strong-rule: rgba(75, 0, 130, 0.42);
+        --panel: rgba(255, 250, 239, 0.88);
+        --panel-strong: rgba(255, 250, 239, 0.97);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(75, 0, 130, 0.12);
+      }
+
+      .equation-mapping-shell[data-background="dark"] {
+        --equation-ink: #ffffff;
+        --line-ink: #ffffff;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(255, 255, 255, 0.2);
+        --strong-rule: rgba(255, 255, 255, 0.46);
+        --panel: rgba(15, 23, 42, 0.78);
+        --panel-strong: rgb(15, 23, 42);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(255, 255, 255, 0.14);
+      }
+
+      .equation-mapping-shell[data-index-collapsed="true"] {
+        --index-width: 72px;
+      }
+
+      .equation-mapping-index {
+        position: relative;
+        z-index: 3;
+        min-width: 0;
+        overflow: hidden;
+        border-right: 1px solid var(--rule);
+        background: var(--panel);
+      }
+
+      .equation-mapping-index-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        min-height: 66px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .equation-mapping-index-header strong {
+        font-size: 22px;
+        line-height: 1;
+      }
+
+      .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-header strong,
+      .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-groups {
+        display: none;
+      }
+
+      .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index-collapse svg {
+        transform: rotate(180deg);
+      }
+
+      .equation-mapping-index-groups {
+        display: grid;
+        gap: 18px;
+        max-height: calc(100vh - 66px);
+        overflow: auto;
+        padding: 18px;
+      }
+
+      .equation-mapping-index-group h2 {
+        margin: 0 0 10px;
+        color: var(--muted);
+        font-size: 20px;
+        font-weight: 760;
+        line-height: 1.1;
+      }
+
+      .equation-mapping-index-item {
+        display: grid;
+        width: 100%;
+        min-height: 64px;
+        padding: 14px;
+        border: 1px solid transparent;
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .equation-mapping-index-item span {
+        font-size: 21px;
+        font-weight: 720;
+        line-height: 1.18;
+      }
+
+      .equation-mapping-index-item.is-active,
+      .equation-mapping-index-item:hover,
+      .equation-mapping-index-item:focus-visible {
+        border-color: var(--strong-rule);
+        background: var(--accent-soft);
+        outline: none;
+      }
+
+      .equation-mapping-canvas {
+        position: relative;
+        min-width: 0;
+        min-height: 0;
+      }
+
+      .equation-mapping-stage {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        min-width: 0;
+        min-height: 0;
+        overflow: hidden;
+      }
+
+      .equation-mapping-controls {
+        position: absolute;
+        top: var(--control-top);
+        right: var(--control-right);
+        z-index: 5;
+        display: flex;
+        align-items: flex-start;
+        gap: 8px;
+      }
+
+      .equation-mapping-icon-button {
+        display: inline-grid;
+        place-items: center;
+        width: 36px;
+        height: 36px;
+        padding: 0;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: var(--panel-strong);
+        color: var(--text);
+        cursor: pointer;
+      }
+
+      .equation-mapping-icon-button:hover,
+      .equation-mapping-icon-button:focus-visible,
+      .equation-mapping-icon-button.is-active {
+        border-color: var(--strong-rule);
+        color: var(--text);
+        outline: none;
+      }
+
+      .equation-mapping-icon-button svg {
+        width: 18px;
+        height: 18px;
+      }
+
+      .equation-mapping-popover {
+        position: absolute;
+        top: 44px;
+        right: 0;
+        width: min(340px, calc(100vw - var(--index-width) - 30px));
+        border: 1px solid var(--rule);
+        border-radius: 8px;
+        background: var(--panel-strong);
+        box-shadow: 0 18px 34px rgba(0, 0, 0, 0.16);
+      }
+
+      .equation-mapping-search-panel,
+      .equation-mapping-settings-panel,
+      .equation-mapping-editor-panel {
+        padding: 10px;
+      }
+
+      .equation-mapping-editor-panel {
+        display: grid;
+        gap: 10px;
+        width: min(430px, calc(100vw - var(--index-width) - 30px));
+        max-height: calc(100vh - 86px);
+        overflow: auto;
+      }
+
+      .equation-mapping-editor-panel-header,
+      .equation-mapping-editor-section-header,
+      .equation-mapping-editor-actions {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+      }
+
+      .equation-mapping-editor-panel-header strong,
+      .equation-mapping-editor-section-header strong {
+        font-size: 12px;
+      }
+
+      .equation-mapping-editor-section {
+        display: grid;
+        gap: 8px;
+        padding-top: 10px;
+        border-top: 1px solid var(--rule);
+      }
+
+      .equation-mapping-editor-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+
+      .equation-mapping-editor-field {
+        display: grid;
+        gap: 4px;
+        min-width: 0;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .equation-mapping-editor-field-wide {
+        grid-column: 1 / -1;
+      }
+
+      .equation-mapping-editor-input,
+      .equation-mapping-editor-select,
+      .equation-mapping-editor-textarea {
+        width: 100%;
+        min-width: 0;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text);
+        outline: none;
+      }
+
+      .equation-mapping-editor-input,
+      .equation-mapping-editor-select {
+        height: 32px;
+        padding: 0 8px;
+      }
+
+      .equation-mapping-editor-textarea {
+        resize: vertical;
+        min-height: 68px;
+        padding: 7px 8px;
+        line-height: 1.35;
+      }
+
+      .equation-mapping-editor-input:focus,
+      .equation-mapping-editor-select:focus,
+      .equation-mapping-editor-textarea:focus {
+        border-color: var(--strong-rule);
+      }
+
+      .equation-mapping-editor-action {
+        min-height: 28px;
+        padding: 0 9px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: var(--accent-soft);
+        color: var(--text);
+        cursor: pointer;
+        font-size: 11px;
+        font-weight: 720;
+      }
+
+      .equation-mapping-editor-action.is-secondary {
+        background: transparent;
+        color: var(--muted);
+      }
+
+      .equation-mapping-editor-action:hover,
+      .equation-mapping-editor-action:focus-visible {
+        border-color: var(--strong-rule);
+        color: var(--text);
+        outline: none;
+      }
+
+      .equation-mapping-search-input {
+        width: 100%;
+        height: 34px;
+        padding: 0 10px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text);
+        outline: none;
+      }
+
+      .equation-mapping-search-input:focus {
+        border-color: var(--strong-rule);
+      }
+
+      .equation-mapping-search-results {
+        display: grid;
+        gap: 6px;
+        margin-top: 8px;
+      }
+
+      .equation-mapping-search-result {
+        display: grid;
+        gap: 2px;
+        padding: 8px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        text-align: left;
+      }
+
+      .equation-mapping-search-result span,
+      .equation-mapping-empty {
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .equation-mapping-settings-row {
+        display: grid;
+        grid-template-columns: 92px minmax(0, 1fr);
+        align-items: center;
+        gap: 8px;
+        min-height: 38px;
+      }
+
+      .equation-mapping-settings-label {
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 720;
+      }
+
+      .equation-mapping-swatches,
+      .equation-mapping-segmented {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px;
+      }
+
+      .equation-mapping-swatch {
+        width: 26px;
+        height: 26px;
+        border: 1px solid var(--rule);
+        border-radius: 50%;
+        cursor: pointer;
+      }
+
+      .equation-mapping-swatch.is-active {
+        border-color: var(--accent);
+        box-shadow: 0 0 0 2px var(--accent-soft);
+      }
+
+      .equation-mapping-segment {
+        min-width: 54px;
+        height: 28px;
+        padding: 0 8px;
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        background: transparent;
+        color: var(--text);
+        cursor: pointer;
+        font-size: 11px;
+      }
+
+      .equation-mapping-segment.is-active {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+
+      .equation-mapping-equation-shell {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        z-index: 2;
+        width: min(96vw, 1320px);
+        max-width: calc(100vw - var(--index-width) - 24px);
+        transform: translate(-50%, -50%);
+      }
+
+      .equation-mapping-equation-title {
+        position: absolute;
+        top: max(22px, env(safe-area-inset-top));
+        right: clamp(116px, 16vw, 204px);
+        left: clamp(116px, 16vw, 204px);
+        z-index: 4;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+        gap: 7px 10px;
+        padding: 0 8px;
+        color: var(--muted);
+        font-size: 18px;
+        line-height: 1.18;
+        text-align: center;
+        pointer-events: none;
+      }
+
+      .equation-mapping-equation-title strong {
+        color: var(--text);
+        font-size: 22px;
+        min-width: 0;
+        overflow-wrap: anywhere;
+      }
+
+      .equation-mapping-equation {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        justify-content: center;
+        max-width: 100%;
+        color: var(--text);
+        font-size: var(--equation-fit-font-size, clamp(30px, 4.6vw, 62px));
+        line-height: 1.25;
+        text-align: center;
+      }
+
+      .equation-mapping-shell[data-equation-scale="small"] .equation-mapping-equation {
+        font-size: var(--equation-fit-font-size, clamp(24px, 3.7vw, 52px));
+      }
+
+      .equation-mapping-shell[data-equation-scale="large"] .equation-mapping-equation {
+        font-size: var(--equation-fit-font-size, clamp(36px, 5.6vw, 76px));
+      }
+
+      .equation-mapping-formula-part,
+      .equation-mapping-formula-text {
+        position: relative;
+        display: inline-block;
+        flex: 0 0 auto;
+        padding: 10px 2px;
+        white-space: nowrap;
+      }
+
+      .equation-mapping-formula-text {
+        white-space: pre;
+      }
+
+      .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before,
+      .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {
+        position: absolute;
+        left: 3px;
+        right: 3px;
+        height: 1px;
+        background: var(--line-ink);
+        content: "";
+      }
+
+      .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before {
+        top: -6px;
+      }
+
+      .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {
+        bottom: 3px;
+      }
+
+      .equation-mapping-formula-part.is-editor-selected-anchor {
+        color: var(--equation-ink);
+      }
+
+      .equation-mapping-overlay-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 3;
+        pointer-events: none;
+      }
+
+      .equation-mapping-comment {
+        position: absolute;
+        left: calc(var(--overlay-x) * 1%);
+        top: calc(var(--overlay-y) * 1%);
+        width: min(calc(var(--overlay-width) * 1%), 330px);
+        min-width: 220px;
+        padding: 10px;
+        border: 1px solid var(--line-ink);
+        border-radius: 8px;
+        background: var(--panel);
+        color: var(--text);
+        pointer-events: auto;
+        cursor: pointer;
+      }
+
+      .equation-mapping-comment.is-active {
+        border-color: var(--line-ink);
+      }
+
+      .equation-mapping-comment-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 8px;
+        margin-bottom: 6px;
+      }
+
+      .equation-mapping-comment-header strong {
+        font-size: 21px;
+      }
+
+      .equation-mapping-comment-body {
+        display: grid;
+        gap: 6px;
+        color: var(--text);
+        font-size: 21px;
+        line-height: 1.35;
+      }
+
+      .equation-mapping-comment-body p {
+        margin: 0;
+      }
+
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-body {
+        font-size: 18px;
+      }
+
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
+        font-size: 24px;
+      }
+
+      .equation-mapping-comment-math {
+        color: var(--text);
+      }
+
+      .equation-mapping-pointer-layer {
+        position: absolute;
+        inset: 0;
+        z-index: 1;
+        width: 100%;
+        height: 100%;
+        overflow: visible;
+        pointer-events: none;
+      }
+
+      .equation-mapping-pointer-line {
+        stroke: var(--line-ink);
+        stroke-width: 1;
+        vector-effect: non-scaling-stroke;
+      }
+
+      .equation-mapping-pointer-line.is-active {
+        stroke: var(--line-ink);
+      }
+
+      .equation-mapping-math-fallback {
+        font-family: "Times New Roman", Times, serif;
+      }
+
+      @media (max-width: 760px) {
+        html,
+        body {
+          height: auto;
+          min-height: 100%;
+          overflow: auto;
+        }
+
+        #equation-mapping-app {
+          height: auto;
+          min-height: 100%;
+        }
+
+        .equation-mapping-shell {
+          --index-width: 0px;
+          display: block;
+          height: auto;
+          min-height: 100%;
+        }
+
+        .equation-mapping-index {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: min(82vw, 280px);
+          height: 100%;
+          transform: translateX(0);
+        }
+
+        .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index {
+          width: 72px;
+        }
+
+        .equation-mapping-canvas,
+        .equation-mapping-stage {
+          height: auto;
+          min-height: 100vh;
+        }
+
+        .equation-mapping-canvas {
+          overflow: visible;
+        }
+
+        .equation-mapping-stage {
+          display: grid;
+          align-content: start;
+          gap: 18px;
+          overflow: visible;
+          padding: 132px 15px 36px;
+        }
+
+        .equation-mapping-pointer-layer {
+          display: none;
+        }
+
+        .equation-mapping-equation-shell {
+          position: static;
+          transform: none;
+          width: min(96vw, 760px);
+          max-width: calc(100vw - 30px);
+          margin: 0 auto;
+        }
+
+        .equation-mapping-equation-title {
+          position: static;
+          margin-bottom: 10px;
+        }
+
+        .equation-mapping-equation-title strong {
+          flex-basis: 100%;
+        }
+
+        .equation-mapping-overlay-layer {
+          position: static;
+          display: grid;
+          gap: 12px;
+          width: min(76vw, 300px);
+          margin: 0 auto;
+          pointer-events: auto;
+        }
+
+        .equation-mapping-comment {
+          position: static;
+          width: 100%;
+          min-width: 0;
+        }
+
+        .equation-mapping-popover {
+          width: min(320px, calc(100vw - 30px));
+        }
+
+        .equation-mapping-editor-panel {
+          width: min(336px, calc(100vw - 30px));
+        }
+
+        .equation-mapping-editor-grid {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="equation-mapping-app"></div>
+    <script type="module" src="./src/apps/equation-mapping/main.js"></script>
+  </body>
+</html>

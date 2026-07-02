@@ -1,0 +1,66 @@
+{
+  "schema": "aaa-nuclear-atomic-rho-NS-confinement-domain-evidence/v1",
+  "claimLevel": "durable non-fixture rho_NS source-acquisition row for the Fe/Ni confinement-functional lane; retained-window Noether sea density consumption only; not accepted chi_sea, same-record Noether sea response, sigma_eff extraction, Delta E_corr_NN recovery, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "rho_NS",
+  "sourceSupport": [
+    "confinement_functional",
+    "rho_NS",
+    "retained_window_density_row",
+    "same_record_noether_sea_response",
+    "provider_source_path"
+  ],
+  "evidenceSupports": [
+    "retained_window_density_row",
+    "same_record_noether_sea_response",
+    "provider_source_path"
+  ],
+  "sourceIdentity": {
+    "rhoNSConfinementId": "rho_NS_confinement_0001",
+    "sourceTargetId": "rho_NS_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "providerSourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json#/thetaSeaRows/rho_NS",
+    "priorityContextPath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
+  },
+  "providerRow": {
+    "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "providerStatus": "accepted",
+    "sourceRowId": "rho-NS-provider-0001",
+    "rowStatus": "accepted",
+    "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "retainedInventoryId": "noether-sea-retained-inventory-provider-0001",
+    "smoothingKernelId": "W_ell_theta_sea_rho_ns_provider_0001",
+    "refinementFamilyId": "density-compression-refinement-family-provider-0001",
+    "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))"
+  },
+  "confinementUse": {
+    "rowId": "rho_NS_confinement_0001",
+    "targetEquationToken": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} ...",
+    "argumentRole": "Supplies the retained-window Noether sea density argument consumed by the sigma_eff target equation.",
+    "domainBoundary": "This accepts rho_NS consumption by the confinement-functional sigma_eff target; it does not accept chi_sea, axis_exceptionality_charge, or the same_record_noether_sea_response bundle."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "rho_NS"
+    ],
+    "notAcceptedByThisEvidence": [
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+      "color_singlet_nucleon_envelope",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This retained source row is not priority prose, a raw URL, or fixture-only data.",
+    "This row consumes the accepted rho_NS provider row but does not accept the broader same-record Noether sea response bundle for the confinement functional.",
+    "This row does not accept chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, sigma_eff_extraction, color_singlet_nucleon_envelope, delta_E_corr_NN, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until the confinement-functional source rows and their remaining upstream acquisition rows are accepted."
+  ]
+}

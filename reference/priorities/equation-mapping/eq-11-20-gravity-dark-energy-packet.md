@@ -46,10 +46,10 @@ If weak gravity requires one Noether sea state while dark energy requires anothe
 
 - Current score snapshot: `EQ-11` current score `2`, recommended `3`; `EQ-20` current score `2`, recommended `3`. This pass does not update [equation.md](equation.md).
 - Closure driver: one retained $\Theta_{11\text{-}20}^{(\ell,W)}$ record must produce the weak-gravity Poisson/curvature readout and the dark-energy pressure/$\Lambda_{\mathrm{eff}}$ readout through the same Noether sea constitutive-response component.
-- Exact first blockers: `EQ-11` blocks at `missing_accepted_theta_11_20`; `EQ-20` blocks at `missing_accepted_theta_sea_rho_NS` and inherits the upstream FRW blocker `missing_accepted_theta_cos`.
-- First implementation target for this packet: replace the priority-only constitutive-response route with a durable non-priority `theta_11_20` or `theta_sea_rho_NS` source object that the weak-gravity and pressure/$\Lambda_{\mathrm{eff}}$ checkers can evaluate. No score change follows until the same-window Noether sea rows are accepted from durable source evidence.
-- Smallest accepted evidence object: a source-backed retained Noether sea constitutive-response bundle with accepted density, stress, pressure, tension, relaxation, effective-coupling, source-loading, provenance, and no-hidden-retune rows on one same-window record.
-- Smallest next artifact: one same-window Noether sea source report that names `theta_11_20`, `theta_sea_rho_NS`, density/stress/pressure/tension rows, effective-coupling rows, source-loading rows, and the inherited `theta_cos` handoff ids.
+- Exact first blockers: `EQ-11` still blocks at `missing_accepted_theta_11_20`. The density-compression `theta_sea_rho_NS` provider exists for the `EQ-24` slice, and the provider-backed `EQ-20` pressure slice now consumes a retained `delta_P_eff` pressure projection report. The provider-backed `EQ-20` route has no missing pressure rows or shared keys, but still stops at the inherited `missing_accepted_theta_cos` FRW handoff.
+- First implementation target for this packet: carry the accepted pressure projection into an accepted `theta_cos` cosmology handoff and then into a shared weak-gravity/dark-energy residual. No score change follows until the same-window pressure, coupling, source-loading, provenance, no-hidden-retune, and cosmology handoff rows survive the downstream families without hidden retuning.
+- Smallest accepted evidence object now present for `EQ-20`: [eq20-delta-p-eff-pressure-projection-report.v1.json](../../../scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json), which consumes the accepted density provider and adds outer-binary strain, release-channel, stress/tension, pressure-law, effective-density, effective-pressure, effective-coupling, effective-$\Lambda$, provenance, and no-hidden-retune rows on the same retained window.
+- Smallest next artifact: an accepted `theta_cos` FRW/cosmology handoff that consumes the same `delta_P_eff` report without retuning, followed by the weak-field `theta_11_20` metric/coupling rows needed for the shared `EQ-11`/`EQ-20` residual.
 
 ## Standard Equations And Regimes
 
@@ -245,6 +245,250 @@ Here $w_{\mathrm{bench}}$ is a declared observer-level benchmark for the window 
 
 The acceleration comparison is admissible only after $R_p^{20}$, $R_w^{20}$, and the Friedmann/continuity residuals from the effective-metric/cosmology packet use the same $\Theta_{11\text{-}20}$ projection family.
 
+## Outer-Binary Equilibrium And Relaxation Wireframe
+
+This section captures a candidate mechanism-level wireframe. It is priority-only and does not promote a completed dark-energy derivation. The useful insight is that an outer binary can be away from its local lower-energy branch without immediately releasing energy if the surrounding Noether sea offers no accepting channel. In that case the relevant state is a collective no-current balance, not an isolated single-braid minimum.
+
+The ontological ladder is:
+
+1. A Noether sea window contains a retained inventory of Noether braids, not a smooth fluid as a primitive object.
+2. Each retained braid has internal rows, including outer-binary radius, cadence, phase, retained energy, and path history.
+3. A coarse-grained density row $\rho_{\text{NS}}$ counts that retained braid inventory through a smoothing kernel.
+4. A local energy row records how much outer-binary strain energy is stored in that inventory.
+5. A current row records whether neighbouring braids, boundaries, or lower-energy channels can accept that energy.
+6. A stress or tension row is the response of the stored energy to a declared deformation of the retained window.
+7. Pressure is the isotropic projection of that stress or tension row.
+8. Dark-energy pressure is an observer-level projection of the native Noether sea pressure, tension, density, coupling, and relaxation rows.
+
+This is the precise replacement for the earlier reservoir wording. The slowly varying outer-binary tension sector is not a new substance. It is a same-window retained energy inventory plus a closed or slow release-channel row and a stress/tension response row.
+
+For a representative Noether braid $b$ in a coarse-graining window $W$, write the outer-binary row as
+
+$$
+O_b(t)
+=
+\left(
+R_{O,b},
+\nu_{O,b},
+\phi_{O,b},
+E_{O,b},
+\mathcal H_{O,b}
+\right),
+$$
+
+where $R_{O,b}$ is the outer-binary radius, $\nu_{O,b}$ its cadence, $\phi_{O,b}$ its phase, $E_{O,b}$ its retained energy, and $\mathcal H_{O,b}$ its retained path-history row. The surrounding Noether sea state selects a local reference branch
+
+$$
+R_{O,\mathrm{eq},b}
+=
+R_{O,\mathrm{eq}}
+\left[
+\theta_{\mathrm{sea}}^{(\ell,W)};
+\mathcal H_{\partial W}
+\right]
+$$
+
+only after the density, delay, cadence, boundary, source-loading, and retained-history rows are declared. The scalar outer-binary strain candidate is
+
+$$
+\epsilon_{O,b}
+=
+\frac{
+R_{O,b}-R_{O,\mathrm{eq},b}
+}{
+R_{O,\mathrm{eq},b}
+}.
+$$
+
+The branch energy row should be written before any pressure claim:
+
+$$
+E_{O,b}
+=
+E_{O,\mathrm{eq},b}
++
+\frac{1}{2}
+K_{O,b}
+R_{O,\mathrm{eq},b}^2
+\epsilon_{O,b}^2
++
+O(\epsilon_{O,b}^3),
+$$
+
+where $K_{O,b}$ is accepted only if it is derived from the retained branch response, not fitted from a dark-energy target. The local energy-cadence potential is then
+
+$$
+\mu_{O,b}
+=
+\frac{\partial E_{O,b}}{\partial N_b}
++
+\Omega_{O,b}
++
+\frac{\partial E_{O,b}}{\partial \nu_{O,b}},
+$$
+
+with $N_b$ standing for the retained occupation or inventory weight of the braid row and $\Omega_{O,b}$ collecting declared cadence, phase, and path-history terms. This is the object whose gradients can drive neighbour-to-neighbour exchange.
+
+A first stored-energy row is
+
+$$
+u_{O,\mathrm{str}}^{(W)}
+=
+\rho_{\text{NS}}^{(W)}
+\left\langle
+\frac{1}{2}
+K_O[\theta_{\mathrm{sea}}]
+R_{O,\mathrm{eq}}^2
+\epsilon_O^2
+\right\rangle_W,
+$$
+
+where $K_O[\theta_{\mathrm{sea}}]$ is the branch-derived outer-binary stiffness and $\langle\cdot\rangle_W$ averages over the retained Noether braid population in the window. This row is not yet pressure. It is the candidate energy inventory from which pressure, tension, or relaxation may be projected.
+
+The missing equilibrium distinction is the release-channel row. Let $\mathcal A_{\downarrow,b}$ measure whether lower-energy or accepting channels are available to braid $b$ through neighbours, boundary transport, compact-source recycling, or other declared Noether sea routes. Let $\mu_{O,b}$ be the packet-local energy-cadence potential extracted from $E_{O,b}$ and the retained cadence distribution. Then a useful relaxation-current template is
+
+$$
+J_{E,O}^{ab}
+=
+\Gamma_{ab}
+\mathcal A_{\downarrow}^{ab}
+\left[
+\mu_{O,a}-\mu_{O,b}
+\right],
+$$
+
+with sign convention chosen so positive $J_{E,O}^{ab}$ transports outer-binary energy from $a$ to $b$. The quasi-equilibrium condition is therefore not $\epsilon_O=0$. It is the no-current condition
+
+$$
+\sum_{b\sim a}J_{E,O}^{ab}
++J_{E,O}^{a\partial W}
+\approx 0,
+$$
+
+with possible nonzero $\epsilon_{O,a}$. This is the controlled mathematical form of a floating balance point: the outer-binary sector can retain strain energy because neighbouring states are similarly diffused or because the boundary and lower-energy channels are effectively closed.
+
+The corresponding site-level energy balance is
+
+$$
+\dot E_{O,a}
+=
+\sum_{b\sim a}
+\left(
+J_{E,O}^{ba}-J_{E,O}^{ab}
+\right)
+-
+\mathcal R_{O,\downarrow,a}
++
+\mathcal S_{O,\mathrm{load},a}.
+$$
+
+This equation captures both directions of exchange. If neighbouring braids have higher $\mu_O$ and an available channel, braid $a$ can gain outer-binary energy. If a lower-energy channel opens for $a$, $\mathcal R_{O,\downarrow,a}$ increases and the stored energy can release into a cascade. A cascade is therefore not a separate law; it is a sharp change in the availability row $\mathcal A_{\downarrow}$, release row $\mathcal R_{O,\downarrow}$, or boundary current.
+
+The local relaxation equation can be written as
+
+$$
+\dot u_{O,\mathrm{str}}^{(W)}
+=
+-\nabla\cdot J_{E,O}^{(W)}
+-\mathcal R_{O,\downarrow}
+\left(
+\epsilon_O,
+\theta_{\mathrm{sea}},
+\mathcal A_{\downarrow}
+\right)
++\mathcal S_{O,\mathrm{load}},
+$$
+
+where $\mathcal R_{O,\downarrow}$ is the retained lower-channel release row and $\mathcal S_{O,\mathrm{load}}$ is incoming source, neighbour, or recycling loading. If $\mathcal A_{\downarrow}$ rises sharply in one region, the same equation can seed a relaxation cascade. A cascade is promotable only if the packet supplies the event ledger for the released energy and shows that CMB, redshift, weak-gravity, lensing, growth, and BBN consumers still use the same $\theta_{\mathrm{sea}}$ record.
+
+The scalar pressure readout should be derived from the retained stress or tension tensor, not assigned by analogy. Start from the retained energy response:
+
+$$
+\Sigma_{\mathrm{sea}}^{ab,(W)}
+=
+\frac{1}{V_W}
+\frac{\partial E_{\mathrm{NS}}^{(W)}}{\partial \epsilon_{ab}},
+\qquad
+p_{\mathrm{sea}}^{(W)}
+=
+-
+\frac{\partial E_{\mathrm{NS}}^{(W)}}{\partial V_W}
+\bigg|_{\mathcal I_W,\mathcal H_W,\mathcal A_{\downarrow}},
+$$
+
+where $E_{\mathrm{NS}}^{(W)}$ is the retained Noether sea energy in the window, $\epsilon_{ab}$ is a declared coarse deformation, and the derivative holds fixed the retained inventory, path-history, and release-channel declaration. In isotropic comparison windows the candidate sign convention is
+
+$$
+p_{\mathrm{sea}}^{(W)}
+=
+-\frac{1}{3}
+h_{ab}\mathcal T_{\mathrm{sea}}^{ab,(W)}
++p_{\mathrm{kin}}^{(W)}
++p_{\mathrm{src}}^{(W)},
+$$
+
+where $\mathcal T_{\mathrm{sea}}^{ab}$ is the tensile stress row, $p_{\mathrm{kin}}$ records kinetic or cadence-distribution pressure, and $p_{\mathrm{src}}$ records declared source or boundary loading. The effective dark-energy row is then allowed only as a projection,
+
+$$
+p_{\mathrm{DE,eff}}
+=
+\Pi_{\mathrm{DE}}p_{\mathrm{sea}},
+\qquad
+w_{\mathrm{eff}}
+=
+\frac{
+p_{\mathrm{DE,eff}}
+}{
+\rho_{\mathrm{DE,eff}}c_0^2
+}.
+$$
+
+The effective-GR bridge is the standard acceleration comparison,
+
+$$
+\frac{\ddot a_{\mathrm{eff}}}{a_{\mathrm{eff}}}
+=
+-\frac{4\pi G_{\mathrm{eff}}}{3}
+\left(
+\rho_{\mathrm{eff}}
++\frac{3p_{\mathrm{eff}}}{c_0^2}
+\right),
+$$
+
+but in this packet $a_{\mathrm{eff}}$ is only an observer-level scale variable. The native work is to derive $p_{\mathrm{sea}}$, $\rho_{\mathrm{DE,eff}}$, and $G_{\mathrm{eff}}$ from one Noether sea record. Acceleration follows in the effective comparison only if the projected pressure is negative enough:
+
+$$
+\rho_{\mathrm{eff}}
++\frac{3p_{\mathrm{eff}}}{c_0^2}
+<0.
+$$
+
+### Stepwise Closure Ladder
+
+1. Consume the accepted `theta_sea_rho_NS` density-compression provider as the upstream $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, and event-ledger carrier.
+2. Add the missing cadence, delay, boundary, source-loading, and retained-history rows needed for the `EQ-20` pressure window.
+3. Extract $R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]$ and $\epsilon_O$ for the retained outer-binary population.
+4. Derive $u_{O,\mathrm{str}}$ from an accepted branch stiffness $K_O$ rather than fitting it as a dark-energy density.
+5. Declare $\mathcal A_{\downarrow}$ and the energy-current row $J_{E,O}$ so that no-current quasi-equilibrium and open-channel relaxation are distinguishable.
+6. Derive $\Sigma_{\mathrm{sea}}^{ab}$ and $p_{\mathrm{sea}}$ from the retained energy response under a declared deformation, with separate kinetic/source pressure rows.
+7. Compute $p_{\mathrm{DE,eff}}$, $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and $\Lambda_{\mathrm{eff}}$ through one projection family $\Pi_{\mathrm{DE}}$.
+8. Reuse the same $\theta_{\mathrm{sea}}$ record for weak gravity, effective Friedmann bookkeeping, growth, CMB, BBN, lensing, and low-acceleration rows.
+9. Fail the packet if the pressure sign, release rate, or effective coupling is changed independently between observer families.
+
+### Candidate Lemma
+
+For one retained Noether sea window $W$, if the outer-binary strain row $\epsilon_O$, stiffness row $K_O$, release-channel row $\mathcal A_{\downarrow}$, energy-current row $J_{E,O}$, and tensile-stress row $\mathcal T_{\mathrm{sea}}^{ab}$ are all populated from the same $\Theta_{\mathrm{sea}}^{(\ell,W)}$, then a nonzero stored outer-binary strain can produce an effective negative-pressure readout only when the isotropic projection of $\mathcal T_{\mathrm{sea}}^{ab}$ dominates kinetic and source pressure rows. The same packet must also show that opening a lower-energy channel changes $\mathcal R_{O,\downarrow}$ or $J_{E,O}$ rather than silently changing $\rho_{\mathrm{DE,eff}}$ by fit.
+
+### Failure Modes Specific To This Wireframe
+
+| Failure mode | Meaning |
+| --- | --- |
+| `outer_binary_strain_without_branch` | $\epsilon_O$ is named without an accepted $R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]$ branch. |
+| `pressure_from_energy_inventory_only` | $u_{O,\mathrm{str}}$ is treated as pressure before a stress/tension projection exists. |
+| `closed_channel_named_equilibrium` | A no-current state is called equilibrium without reporting whether lower-energy channels are unavailable or merely unmodeled. |
+| `cascade_without_event_ledger` | A release cascade is claimed without energy, momentum, source, boundary, and Noether sea transfer rows. |
+| `effective_gr_import` | The Friedmann acceleration equation is used as if it were substrate dynamics rather than an observer-level comparison consuming $p_{\mathrm{sea}}$. |
+
 ## Required Noether Braid And Assembly Variables
 
 | Variable / row | Required content | Consumed by |
@@ -321,13 +565,16 @@ $$
 
 It should be zero only when the weak-gravity and dark-energy projections use the same declared record up to the explicitly permitted coarse-graining map.
 
-## First Mathematical Object To Add Next
+## Current Executable Objects And Next Residual
 
-The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) blocks first at `missing_accepted_theta_sea_rho_NS` while the pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics pass. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`, so this is an executable residual shape, not a dark-energy derivation.
+The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its first outer-binary source-attempt fixture is [eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json](../../../scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json). That fixture still blocks first at `missing_accepted_theta_sea_rho_NS` because it is an attempt route. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) consumes the accepted density-compression provider in [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json) and the retained pressure report in [eq20-delta-p-eff-pressure-projection-report.v1.json](../../../scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json). The checker verifies the `theta_sea_rho_NS` provider object, verifies the retained `delta_P_eff` pressure report for the pressure/tension/relaxation/effective rows, reports `missingRows=[]` and `missingSharedKeys=[]`, and then stops at `blocked_missing_frw_handoff` with `nextBlocker=missing_accepted_theta_cos`. The route remains an executable pressure projection and handoff blocker, not a completed dark-energy derivation or score increase.
 
 ```bash
 node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
-  --input scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json \
+  --input scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json \
+  --summary --pretty
+node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
+  --input scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json \
   --summary --pretty
 ```
 
@@ -433,5 +680,5 @@ Do not update [equation.md](equation.md) from this packet. Recommended next scor
 - Claim bucket: derivation/closure target with observer-level effective summaries.
 - Corpus promotion status: priority-only.
 - Promote now: no.
-- Defer with blocker: no populated weak-field window, no accepted `theta_sea_rho_NS` row, no derived $G_{\mathrm{eff}}$ coefficient row, no native pressure law, no relaxation calculation, and no accepted shared local/cosmology hidden-retune evaluation.
-- Next safe action: instantiate $\mathcal R_{11\text{-}20}$ on a weak solar-system window and one homogeneous effective-cosmology window, then report which coefficient rows split before attempting any score above `3`.
+- Defer with blocker: no populated weak-field window, no accepted `theta_cos` FRW/cosmology handoff, no derived weak-field $G_{\mathrm{eff}}$ coefficient row, no native pressure law beyond the retained `delta_P_eff` slice, no relaxation evolution calculation, and no accepted shared local/cosmology hidden-retune evaluation. The upstream `theta_sea_rho_NS` density provider and the same-window `delta_P_eff` pressure report exist, but the shared weak-gravity/cosmology route is not closed.
+- Next safe action: build the accepted `theta_cos` handoff for the provider-backed `EQ-20` pressure route, then instantiate $\mathcal R_{11\text{-}20}$ on a weak solar-system window and one homogeneous effective-cosmology window before attempting any score above `3`.

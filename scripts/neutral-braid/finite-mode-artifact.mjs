@@ -19,6 +19,10 @@ const DEFAULT_SAME_SOURCE_POLICY = "ordinary-same-source-excluded";
 const DEFAULT_CHART_ID = "neutral-braid-finite-mode-concrete-chart.v1";
 const DEFAULT_CHART_PERIOD = 2 * Math.PI;
 const DEFAULT_PERIOD_CONVENTION = "single-winding-common-period";
+const PATH_CLOCK_SOURCE_OBJECT_ID =
+  "bounded-speed-factor-finite-mode-solver-artifact-with-curve-path-clock-map-rows";
+const PATH_CLOCK_SOURCE_ROW_FAMILY = "finite_mode_curve_path_segment_rows";
+const PATH_CLOCK_FIRST_MISSING_FIELD = "source_path_segment";
 const NON_AUTHORIZING_ACTION_MEASURE_REJECTIONS = [
   "fixture-row",
   "fixed-speed-off-ledger-provenance",
@@ -185,6 +189,18 @@ const CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS = [
 const MISSING_REQUEST_GRADE_SOURCE_FIELDS = REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS.filter(
   (field) => !CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS.includes(field)
 );
+
+const PATH_CLOCK_SOURCE_OBJECT_ACCEPTANCE_PREDICATES = [
+  "each row chart_run_id equals the finite-mode chart_run_id",
+  "each row binds one bounded_speed_active_root_prerequisite row by id and root label",
+  "source_path_segment and receiver_path_segment carry concrete endpoints and velocities",
+  "receiver/source clock-map values and inverse-clock-map values are numeric for the same chart_run",
+  "hitTime is finite for the receiver/source pair",
+  "signalSpeed is positive and finite",
+  "rootTolerance is positive and finite",
+  "source_provenance carries non-fixture retained source binding and provider provenance status",
+  "rejected evidence kinds remain non-accepting",
+];
 
 const TAIL_TERMINAL_PREDICATES = [
   "excluded-gap",
@@ -485,14 +501,111 @@ function buildActiveRootPrerequisiteRows(chartRun, pairs) {
   }));
 }
 
+function localArtifactRef(chartRun) {
+  return {
+    schema: SCHEMA_ID,
+    packet_id: PACKET_ID,
+    artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
+    chart_run_id: chartRun.run_id,
+    source_kind: chartRun.source_kind,
+    promotion_status: PROMOTION_STATUS,
+  };
+}
+
+function buildPathClockSourceObjectRequestRows(chartRun, activeRootPrerequisiteRows) {
+  return activeRootPrerequisiteRows.map((row) => ({
+    row: "finite_mode_curve_path_segment_row_request",
+    row_family: PATH_CLOCK_SOURCE_ROW_FAMILY,
+    row_id: `${row.row_id}:path-clock-source-request`,
+    chart_run_id: row.chart_run_id,
+    active_root_prerequisite_row_id: row.row_id,
+    root_label: row.root_label,
+    receiver: row.receiver,
+    source: row.source,
+    current_present_fields: {
+      chart_run_id: row.chart_run_id,
+      active_root_prerequisite_row_id: row.row_id,
+      root_label: row.root_label,
+      receiver: row.receiver,
+      source: row.source,
+      local_artifact_ref: localArtifactRef(chartRun),
+    },
+    symbolic_clock_map_names: {
+      receiver_clock_map: row.clock_lift_binding.receiver_clock_map,
+      source_clock_map: row.clock_lift_binding.source_clock_map,
+      receiver_inverse_clock_map: row.clock_lift_binding.receiver_inverse_clock_map,
+      source_inverse_clock_map: row.clock_lift_binding.source_inverse_clock_map,
+    },
+    required_fields: [...REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS],
+    missing_fields: [...MISSING_REQUEST_GRADE_SOURCE_FIELDS],
+    first_missing_field: PATH_CLOCK_FIRST_MISSING_FIELD,
+    source_path_segment: null,
+    receiver_path_segment: null,
+    receiver_clock_map_values: null,
+    source_clock_map_values: null,
+    receiver_inverse_clock_map_values: null,
+    source_inverse_clock_map_values: null,
+    hitTime: null,
+    signalSpeed: null,
+    rootTolerance: null,
+    source_provenance: {
+      status: "missing_request_grade_source_row",
+      retained_source_binding: null,
+      provider_provenance: null,
+    },
+    emits_request_grade_native_replay_source_row: false,
+    accepted_same_run_source_row: null,
+    fixture: false,
+    proxy: false,
+    off_ledger: false,
+    sampled_diagnostic: false,
+    cross_row_bundle: false,
+  }));
+}
+
+function buildPathClockSourceObjectRequest(chartRun, pairs, activeRootPrerequisiteRows) {
+  return {
+    schema: "bounded-speed-factor-finite-mode-curve-path-clock-map-source-object-request/v1",
+    status: "source_acquisition_blocked_internal_producer_owner",
+    expected_source_object: PATH_CLOCK_SOURCE_OBJECT_ID,
+    requested_row_family: PATH_CLOCK_SOURCE_ROW_FAMILY,
+    chart_run_id: chartRun.run_id,
+    chart_id: chartRun.chart_id,
+    expected_row_count: pairs.length,
+    current_internal_producer_owner: "scripts/neutral-braid/finite-mode-artifact.mjs",
+    first_missing_source_producing_input: PATH_CLOCK_SOURCE_ROW_FAMILY,
+    first_missing_field: PATH_CLOCK_FIRST_MISSING_FIELD,
+    required_per_row_fields: [...REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS],
+    current_chart_data_available: [...CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS],
+    missing_per_row_fields: [...MISSING_REQUEST_GRADE_SOURCE_FIELDS],
+    acceptance_predicates: [...PATH_CLOCK_SOURCE_OBJECT_ACCEPTANCE_PREDICATES],
+    rows: buildPathClockSourceObjectRequestRows(chartRun, activeRootPrerequisiteRows),
+    native_consumer_boundary: {
+      expected_consumer_row_family: "bounded_speed_active_root_prerequisites",
+      expected_consumer_row_count: pairs.length,
+      request_shape: "CausalRootRequest",
+      consumer_status: "blocked_until_finite_mode_curve_path_segment_rows_exist",
+    },
+    authorization: {
+      accepted_same_run_native_replay_source_rows: false,
+      bounded_speed_delay_brackets: false,
+      accepted_active_roots: false,
+      bounded_speed_live_ledger: false,
+      same_ledger_action_measure_row: false,
+    },
+    rejected_evidence_kinds: [...NATIVE_REPLAY_SOURCE_REJECTIONS],
+  };
+}
+
 function buildNativeReplaySourceBoundary(chartRun, pairs, activeRootPrerequisiteRows) {
+  const sourceObjectRequest = buildPathClockSourceObjectRequest(chartRun, pairs, activeRootPrerequisiteRows);
   return {
     schema: "neutral-braid-same-run-native-replay-source-boundary/v1",
     status: "fail_closed_missing_source_producing_input",
     row_family: "same_run_finite_mode_path_clock_source_boundary",
     chart_run_id: chartRun.run_id,
     chart_id: chartRun.chart_id,
-    expected_source_object: "bounded-speed-factor-finite-mode-solver-artifact-with-curve-path-clock-map-rows",
+    expected_source_object: PATH_CLOCK_SOURCE_OBJECT_ID,
     expected_consumer_row_family: "bounded_speed_active_root_prerequisites",
     expected_consumer_row_count: pairs.length,
     expected_bindings: activeRootPrerequisiteRows.map((row) => ({
@@ -506,17 +619,12 @@ function buildNativeReplaySourceBoundary(chartRun, pairs, activeRootPrerequisite
     required_per_pair_fields: [...REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS],
     current_chart_data_available: [...CURRENT_CHART_REQUEST_GRADE_SOURCE_FIELDS],
     missing_source_fields: [...MISSING_REQUEST_GRADE_SOURCE_FIELDS],
-    first_missing_source_producing_input: "finite_mode_curve_path_segment_rows",
-    first_missing_field: "source_path_segment",
+    first_missing_source_producing_input: PATH_CLOCK_SOURCE_ROW_FAMILY,
+    first_missing_field: PATH_CLOCK_FIRST_MISSING_FIELD,
+    source_object_request_status: sourceObjectRequest.status,
+    source_object_request: sourceObjectRequest,
     emitted_request_grade_rows: [],
-    local_artifact_ref: {
-      schema: SCHEMA_ID,
-      packet_id: PACKET_ID,
-      artifact_id: "neutral_braid_finite_mode_search.audit_shape.v1",
-      chart_run_id: chartRun.run_id,
-      source_kind: chartRun.source_kind,
-      promotion_status: PROMOTION_STATUS,
-    },
+    local_artifact_ref: localArtifactRef(chartRun),
     provenance_status: "same-run-chart-source-open",
     retained_source_binding: null,
     provider_provenance: null,
@@ -1351,9 +1459,53 @@ export function validateArtifact(artifact) {
   );
   assertField(
     MISSING_REQUEST_GRADE_SOURCE_FIELDS.every((field) => nativeReplaySourceBoundary.missing_source_fields?.includes(field)) &&
-      nativeReplaySourceBoundary.first_missing_source_producing_input === "finite_mode_curve_path_segment_rows" &&
-      nativeReplaySourceBoundary.first_missing_field === "source_path_segment",
+      nativeReplaySourceBoundary.first_missing_source_producing_input === PATH_CLOCK_SOURCE_ROW_FAMILY &&
+      nativeReplaySourceBoundary.first_missing_field === PATH_CLOCK_FIRST_MISSING_FIELD,
     "native replay source boundary must name the exact missing source-producing input",
+    errors
+  );
+  const sourceObjectRequest = nativeReplaySourceBoundary.source_object_request ?? {};
+  assertField(
+    sourceObjectRequest.schema === "bounded-speed-factor-finite-mode-curve-path-clock-map-source-object-request/v1" &&
+      sourceObjectRequest.status === "source_acquisition_blocked_internal_producer_owner" &&
+      sourceObjectRequest.expected_source_object === PATH_CLOCK_SOURCE_OBJECT_ID &&
+      sourceObjectRequest.requested_row_family === PATH_CLOCK_SOURCE_ROW_FAMILY &&
+      sourceObjectRequest.first_missing_field === PATH_CLOCK_FIRST_MISSING_FIELD,
+    "native replay source boundary must carry the exact finite-mode path/clock source-object request",
+    errors
+  );
+  assertField(
+    Array.isArray(sourceObjectRequest.rows) &&
+      sourceObjectRequest.rows.length === expectedPairs.length &&
+      sourceObjectRequest.rows.every((row) => row.chart_run_id === chartRun?.run_id),
+    "finite-mode path/clock source-object request rows must cover the same chart run",
+    errors
+  );
+  assertField(
+    MISSING_REQUEST_GRADE_SOURCE_FIELDS.every((field) => sourceObjectRequest.missing_per_row_fields?.includes(field)) &&
+      REQUEST_GRADE_PATH_CLOCK_REQUIRED_FIELDS.every((field) => sourceObjectRequest.required_per_row_fields?.includes(field)),
+    "finite-mode path/clock source-object request fields are incomplete",
+    errors
+  );
+  assertField(
+    sourceObjectRequest.rows?.every(
+      (row) =>
+        row.row_family === PATH_CLOCK_SOURCE_ROW_FAMILY &&
+        row.source_path_segment === null &&
+        row.receiver_path_segment === null &&
+        row.receiver_clock_map_values === null &&
+        row.source_clock_map_values === null &&
+        row.receiver_inverse_clock_map_values === null &&
+        row.source_inverse_clock_map_values === null &&
+        row.hitTime === null &&
+        row.signalSpeed === null &&
+        row.rootTolerance === null &&
+        row.source_provenance?.retained_source_binding === null &&
+        row.source_provenance?.provider_provenance === null &&
+        row.emits_request_grade_native_replay_source_row === false &&
+        row.accepted_same_run_source_row === null
+    ),
+    "finite-mode path/clock source-object request rows must remain fail-closed and non-fabricated",
     errors
   );
   assertField(

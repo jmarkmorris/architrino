@@ -1,0 +1,81 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_unsupported_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Ask",
+  "requestSummary": {
+    "requestId": "request_unsupported_001",
+    "safeSummaryId": "safe_summary_unsupported_001",
+    "contextRoute": null
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": [],
+    "sourceChips": [],
+    "missingSourceRoutes": ["unresolved/direct-proof-route"],
+    "excludedSourceClasses": ["priority_material", "external_prior_physics"],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "unsupported",
+    "unsupportedReasonClass": "missing_supported_source",
+    "priorityVisibility": "hidden"
+  },
+  "answerBody": {
+    "displayedText": "The requested claim is unsupported by the available source context.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_001",
+        "text": "The requested claim is unsupported by the available source context."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": [],
+    "credentialBoundary": "blocked",
+    "noBrowserKeys": true
+  },
+  "artifacts": [],
+  "speechSync": {
+    "status": "not_requested",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_unsupported_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 1,
+    "heldTokens": 1,
+    "chargedTokens": 0,
+    "refundedTokens": 1,
+    "workUnits": ["source_navigation"],
+    "sourceClassesUsed": [],
+    "artifactCount": 0,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "disabled",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [],
+  "issueMiningContext": {
+    "enabled": true,
+    "originSurface": "Ask",
+    "duplicateKeys": ["unsupported:missing-supported-source"],
+    "ownerLane": "source_authority",
+    "smallestNextArtifact": "source_index_candidate",
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": ["source_context_resolved", "claim_label_assigned", "manifest_validation_completed"],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

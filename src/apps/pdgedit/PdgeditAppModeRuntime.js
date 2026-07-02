@@ -1,5 +1,10 @@
+import {
+  STANDALONE_APP_HOME_HREF,
+  navigateStandaloneAppHome,
+} from "../navigator/StandaloneAppHomeRuntime.js";
+
 export const PDGEDIT_APP_MODE = "pdgedit";
-export const STANDALONE_PDGEDIT_NAVIGATOR_HREF = "./index.html";
+export const STANDALONE_PDGEDIT_NAVIGATOR_HREF = STANDALONE_APP_HOME_HREF;
 
 export function getPdgeditAppMode(windowLike = globalThis.window) {
   return String(windowLike?.__ARCHITRINO_APP_MODE__ ?? "").trim().toLowerCase();
@@ -13,11 +18,5 @@ export function navigateStandalonePdgeditHome(
   locationLike = globalThis.window?.location,
   href = STANDALONE_PDGEDIT_NAVIGATOR_HREF
 ) {
-  const resolvedHref = String(href ?? "").trim();
-  if (!resolvedHref || typeof locationLike?.assign !== "function") {
-    return false;
-  }
-  locationLike.assign(resolvedHref);
-  return true;
+  return navigateStandaloneAppHome(locationLike, href);
 }
-

@@ -6,12 +6,14 @@
 - Parent: [EQ-06, EQ-24, And EQ-25 Continuum, Medium, And Thermodynamic Closure Packet](eq-06-24-25-continuum-medium-thermo-packet.md)
 - Source runner: [noether-sea-density-compression-surface-slice.mjs](../../../scripts/spacetime/noether-sea-density-compression-surface-slice.mjs)
 - Source fixture: [noether-sea-density-compression-surface-slice-retained-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json)
+- Accepted provider: [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json)
+- Provider-backed slice: [noether-sea-density-compression-provider-surface-slice.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json)
 - Claim level: candidate source-field map and attack card
 - Promotion status: priority-only
 
 ## Boundary
 
-This map does not populate accepted retained evidence. It names the smallest source-backed object that could make `EQ-24` score-review eligible beyond the current score `3` state only after the checker accepts `theta_sea_rho_NS`; the live blocker remains `missing_accepted_theta_sea_rho_NS`.
+This map now has one accepted non-priority provider object for the density-compression `theta_sea_rho_NS` row family. The priority packet remains coordination material and does not itself raise any equation score. The provider-backed surface slice is populated for the `EQ-24` density-compression coefficients, while metric, pressure, weak-gravity, and low-acceleration outputs remain declared missing downstream projections.
 
 The retained-attempt fixture already supplies the arithmetic shape of the density-compression slice, but every retained row remains attempt-level with `sourcePath=pending-retained-source`. Changing a status field, pointing a row back to this packet, or pointing a row back to the attempt fixture does not count as accepted evidence.
 
@@ -24,12 +26,12 @@ No score changes.
 | Row | `EQ-24` |
 | Current score and closure driver | Score `3`; acoustic, elastic, stress-strain, and medium equations must be derived as low-moment Noether sea response projections. |
 | Primary AAA carrier | $\Theta_{\mathrm{sea}}^{(\ell,W)}$ for one retained density-compression window, with `theta_sea_rho_NS` as the first source-backed row. |
-| Smallest accepted evidence object | A source-backed same-window density-compression bundle: accepted $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event ledger, channel declaration, speed row, stress/strain row, delayed-support or $\mathcal R_{\mathrm{KK}}$ row, correlation row, acoustic/elastic agreement row, refinement family, and zero-retune witness. |
-| Exact first blocker | `missing_accepted_theta_sea_rho_NS`. |
-| Existing scripts, fixtures, and packets found | The Noether sea density-compression surface-slice runner, retained-attempt fixture, and continuum-medium packet listed above. |
-| Candidate breakthrough angle | `EQ-24` is the narrowest Noether sea coefficient discriminator because it can accept speed plus bulk stress/strain without first claiming metric, pressure, or low-acceleration outputs. A retained `theta_sea_rho_NS` source row would also become the first concrete input for `EQ-20` and `EQ-32`, and a later consumer for `EQ-11`. |
+| Smallest accepted evidence object | [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json), with accepted $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event ledger, channel declaration, speed row, stress/strain row, causality row, correlation row, acoustic/elastic agreement row, refinement family, and zero-retune witness. |
+| Exact first blocker | Provider-backed route: `nextBlocker=null` for the `EQ-24` density-compression slice. Retained-attempt and source-attempt routes still block at `missing_accepted_theta_sea_rho_NS`. The downstream `EQ-20` pressure route now has a retained `delta_P_eff` report and blocks at inherited `missing_accepted_theta_cos`; `EQ-11` still needs metric/coupling projections and `EQ-32` still needs `delta_a_star`. |
+| Existing scripts, fixtures, and packets found | The Noether sea density-compression surface-slice runner, retained-attempt fixture, accepted provider, provider-backed slice, provider-intake runner, and continuum-medium packet listed above. |
+| Candidate breakthrough angle | `EQ-24` is the narrowest Noether sea coefficient discriminator because it can accept speed plus bulk stress/strain without first claiming metric, pressure, or low-acceleration outputs. The accepted `theta_sea_rho_NS` provider now gives `EQ-20`, `EQ-32`, and later `EQ-11` a concrete density carrier. `EQ-20` has consumed it through a retained pressure projection report; `EQ-32` and `EQ-11` still need their own output projections. |
 | Fail-closed negative control | A numerically agreeing acoustic/elastic row with pending, missing, directory, generated-reading-copy, temp, or self-referential source evidence must remain blocked even when $c_{X,\mathrm{disp}}^2$ and $C_{1111}^X/\rho_{\text{NS}}$ agree. |
-| Smaller-than-report next action | Build one durable source-backed `rho_NS` retained-window row with `windowId`, `ell`, `rowId`, source file, event ledger, and refinement-family identifiers, then rerun the retained-attempt checker before adding other rows. |
+| Smaller-than-report next action | Use the accepted provider-backed slice as the upstream density carrier, then add the next downstream rows without changing the provider record: the accepted `theta_cos` handoff for `EQ-20`, metric/coupling projections for `EQ-11`, or `delta_a_star` for `EQ-32`. |
 
 ## Retained Fixture Inventory
 
@@ -126,6 +128,29 @@ $$
 
 with $\varepsilon_{\mathrm{ref}}(\ell)$ tied to the declared refinement family. Until that bundle is source-backed, the current arithmetic agreement is only a diagnostic.
 
+## Accepted Provider Object
+
+The current accepted provider is [noether-sea-density-compression-provider.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider.v1.json). It carries `schema=aaa-noether-sea-density-compression-provider/v1`, `providerStatus=accepted`, `authorization.acceptedProvider=true`, and `authorization.downstreamConsumerAuthorization=true`.
+
+The provider binds one retained window:
+
+| Field | Provider value |
+| --- | --- |
+| `windowId` | `theta-sea-density-compression-provider-0001` |
+| `ell` | `ell_theta_sea_rho_ns_provider_0001` |
+| `retainedInventoryId` | `noether-sea-retained-inventory-provider-0001` |
+| `smoothingKernelId` | `W_ell_theta_sea_rho_ns_provider_0001` |
+| `eventLedgerId` | `event-ledger-theta-sea-rho-ns-provider-0001` |
+| `refinementFamilyId` | `density-compression-refinement-family-provider-0001` |
+
+The accepted provider-backed surface slice is [noether-sea-density-compression-provider-surface-slice.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json):
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json --summary --pretty --require-populated
+```
+
+The expected result is `status=populated`, `nextBlocker=null`, no missing retained theta rows, no missing required response rows, and `consumerReadiness.EQ24_density_compression.readiness=ready_for_consumer_review`. Within the density surface slice itself, the downstream outputs `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, and `delta_a_star` remain declared missing. The separate `EQ-20` pressure report now supplies a retained `delta_P_eff` projection from the same provider window, so the live `EQ-20` blocker has moved to inherited `missing_accepted_theta_cos`.
+
 ## Direct Geometry Layer
 
 This layer keeps the continuum comparison as one retained-window Noether sea response. It does not let acoustic/elastic arithmetic, authored Noether sea prose, a pressure row, or a metric consumer stand in for the source-backed `theta_sea_rho_NS` row.
@@ -136,12 +161,12 @@ This layer keeps the continuum comparison as one retained-window Noether sea res
 | $c_{X,\mathrm{disp}}^2$ | Channel speed projection from the same density-compression window. | `channel_declaration_row`, `speed_row`, `rho_NS` | Channel id, channel type, `windowId`, $\ell$, and density row bind the speed projection to the retained carrier. | `speed_without_stress` rejects speed-only evidence before a same-window stress/strain or metric-compliance row exists. | Accepted channel declaration and speed row on the accepted `theta_sea_rho_NS` window. |
 | $C_{1111}^{X}/\rho_{\text{NS}}$ | Stress/strain projection read against the same retained density row. | `stress_strain_row`, `acousticElasticAgreement`, `rho_NS` | $C_{1111}^{X}$, $\rho_{\text{NS}}$, $\varepsilon_{\mathrm{ref}}(\ell)$, speed row, and agreement row share one response kernel and refinement family. | Numeric agreement without an accepted same-window agreement row remains `attempt_numeric_passed`. | Accepted stress/strain row plus accepted acoustic/elastic agreement row. |
 | Delayed-support or $\mathcal R_{\mathrm{KK}}$ response | Causal support and correlation readout for the coefficient extraction. | `causality_row`, `correlation_row`, delayed-support or $\mathcal R_{\mathrm{KK}}$ row | Causality, correlation, channel declaration, speed, and stress/strain rows use the same retained window and event ledger. | Missing delayed-support/correlation evidence keeps the same-theta-sea-record gate failed. | Accepted causality and correlation rows tied to the same response kernel. |
-| $\delta_N$, $\delta\gamma_{ij}$, $\delta G_{\mathrm{eff}}$, $\delta P_{\mathrm{eff}}$, $\delta a_\star$ | Downstream metric, pressure, and low-acceleration projections from the same surface slice. | metric embedding, pressure/effective-$\Lambda$, and low-acceleration output rows | Declared missing outputs cannot be consumed by `EQ-11`, `EQ-20`, or `EQ-32` until projected from the same accepted density-compression slice. | `missing_output_substitution` rejects treating declared missing outputs as derived rows. | Accepted output projection rows downstream of the accepted `rho_NS` slice. |
+| $\delta_N$, $\delta\gamma_{ij}$, $\delta G_{\mathrm{eff}}$, $\delta P_{\mathrm{eff}}$, $\delta a_\star$ | Downstream metric, pressure, and low-acceleration projections from the same surface slice. | metric embedding, pressure/effective-$\Lambda$, and low-acceleration output rows | Declared missing outputs cannot be consumed by `EQ-11`, `EQ-20`, or `EQ-32` until projected from the same accepted density-compression slice. `EQ-20` now has the first retained $\delta P_{\mathrm{eff}}$ projection report, but the metric/coupling and low-acceleration outputs remain missing. | `missing_output_substitution` rejects treating declared missing outputs as derived rows outside an accepted downstream projection report. | Accepted output projection rows downstream of the accepted `rho_NS` slice. |
 | $\mathcal S_{\mathrm{retune}}$ and source provenance | No-hidden-retune witness for density, speed, stress/strain, support, and output rows. | retune witness, durable source references, all required rows | All rows cite durable non-priority evidence with one `windowId`, one $\ell$, one channel, one response kernel, and one event ledger. | `attempt_source_copy` and coordination-source controls reject copied fixtures and priority packets as retained-window evidence. | A retained density-compression bundle whose required rows are accepted, source-backed, same-window bound, and checker consumable. |
 
 ## Cross-Row Use
 
-The most direct downstream consumer is `EQ-20`, because its pressure and effective-$\Lambda$ checker already blocks at `missing_accepted_theta_sea_rho_NS`. `EQ-32` can only consume the row after `delta_a_star` is actually projected from the same retained window. `EQ-11` and `EQ-07A` may consume later metric or compact-region outputs, but they should not be treated as the first accepted object for `EQ-24`.
+The most direct downstream consumer is `EQ-20`, because its pressure and effective-$\Lambda$ checker now consumes the accepted density provider and retained $\delta P_{\mathrm{eff}}$ pressure report before stopping at inherited `missing_accepted_theta_cos`. `EQ-32` can only consume the row after `delta_a_star` is actually projected from the same retained window. `EQ-11` and `EQ-07A` may consume later metric or compact-region outputs, but they should not be treated as the first accepted object for `EQ-24`.
 
 ## Fail-Closed Controls
 
@@ -149,7 +174,7 @@ The most direct downstream consumer is `EQ-20`, because its pressure and effecti
 - `self_reference`: this map, the retained-attempt fixture, and the continuum-medium packet are coordination artifacts, not retained evidence for $\rho_{\text{NS}}$.
 - `authored_prose_source`: authored Noether sea prose defines variables and doctrine, but it is not retained-window coefficient evidence for $\rho_{\text{NS}}$.
 - `attempt_source_copy`: copying the fixture fields into a new source note without retained-window derivation must not satisfy the source-backed requirement; this is a design/falsifier requirement until a standalone fixture exists.
-- `missing_output_substitution`: using `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, or `delta_a_star` as if they were derived must fail until those outputs are projected from the same row.
+- `missing_output_substitution`: using `delta_N`, `delta_gamma_ij`, `delta_G_eff`, `delta_P_eff`, or `delta_a_star` as if they were derived must fail until those outputs are projected from the same row; the current exception is the accepted downstream `EQ-20` $\delta P_{\mathrm{eff}}$ pressure report, which still does not authorize the missing metric/coupling or low-acceleration outputs.
 - `speed_without_stress`: a speed row without a same-window stress/strain or metric-compliance row must remain below accepted evidence; this is a design/falsifier requirement until a standalone fixture exists.
 
 The coordination-source and authored-prose controls are executable:
@@ -172,15 +197,29 @@ node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input
 
 The fixture names `theta-sea-density-compression-rho-ns-source-attempt-0001`, `ell_rho_ns_source_attempt`, the retained inventory id, smoothing kernel id, projection formula, event ledger id, and refinement-family id for `theta_sea_rho_NS`. It also carries same-window row ids for the speed row, stress/strain row, acoustic/elastic agreement row, and retune witness. Every retained row remains `attempt`, so the expected result is still `status: blocked_missing_rows`, `scoreDecision: no_score_increase`, and `nextBlocker: missing_accepted_theta_sea_rho_NS`. The priority-map `sourcePath` is a contract pointer, not accepted retained evidence.
 
-## Next Action
+## Provider Intake Boundary
 
-Create one durable source-backed `rho_NS` retained-window row, then run the retained-attempt, source-attempt, and source-guard routes:
+The retained-window provider search is now executable in [noether-sea-density-compression-provider-intake.mjs](../../../scripts/spacetime/noether-sea-density-compression-provider-intake.mjs), with the current candidate manifest [noether-sea-density-compression-provider-candidates.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-candidates.v1.json):
 
 ```sh
+node scripts/spacetime/noether-sea-density-compression-provider-intake.mjs --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-provider-intake.mjs --summary --pretty --require-accepted
+```
+
+The current report is `verdict=accepted_theta_sea_rho_NS_provider_found`, `firstFailure=null`, `acceptedProviderCount=1`, `theta_sea_rho_NS_provider_ready=true`, and `scoreDecision=no_score_increase`. This is stronger than a path-existence check: the accepted candidate parses as `aaa-noether-sea-density-compression-provider/v1`, carries accepted same-window $\rho_{\text{NS}}$, $n$, $\mathbf u_{\mathrm{sea}}$, $e_{\mathrm{sea}}$, $\boldsymbol\theta_{\mathrm{sea}}$, $f_N$, event-ledger, channel, speed, causality, correlation, stress/metric, acoustic/elastic agreement, and zero-retune rows, and projects the speed and stress outputs before downstream consumers can treat the provider as ready. The attempt fixtures and negative controls remain rejected as `control_or_attempt_source_path` or `coordination_source_path`.
+
+## Next Action
+
+Use the accepted provider-backed slice as the upstream density-compression carrier, then run the retained-attempt, source-attempt, provider, and source-guard routes:
+
+```sh
+node scripts/spacetime/noether-sea-density-compression-provider-intake.mjs --summary --pretty
+node scripts/spacetime/noether-sea-density-compression-provider-intake.mjs --summary --pretty --require-accepted
+node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json --summary --pretty --require-populated
 node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty
 node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json --summary --pretty
 node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-coordination-source-negative-control.v1.json --summary --pretty
 node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-authored-prose-source-negative-control.v1.json --summary --pretty
 ```
 
-The retained-attempt and source-attempt routes must remain blocked at `missing_accepted_theta_sea_rho_NS` until a durable retained-window source exists. Coordination and authored-prose controls must report `accepted_without_evidence_source`; if the row is only a status relabel or a placeholder source, the correct outcome remains `missing_accepted_theta_sea_rho_NS`.
+The provider-backed route must remain populated for `EQ-24` density-compression review. The retained-attempt and source-attempt routes must remain blocked at `missing_accepted_theta_sea_rho_NS`; they prove that copied attempt rows still do not count as accepted retained-window evidence. Coordination and authored-prose controls must report `accepted_without_evidence_source`; if a future row is only a status relabel or a placeholder source, the correct outcome remains `missing_accepted_theta_sea_rho_NS`. The next mathematical additions are the accepted `theta_cos` handoff for the current `EQ-20` pressure route, metric/coupling rows for `EQ-11`, or `delta_a_star` for `EQ-32`, all derived from the same provider window rather than a private record.

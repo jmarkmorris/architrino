@@ -64,7 +64,7 @@ Provenance lens (interpretive): in $\mathbb{A}\mathbb{A}\mathbb{A}$, $\lvert V_{
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ shielding language used below, these three terms correspond to overlap with down-type states at nested shell braid (IMO), bi-binary (IM-), and uni-binary (I--) tiers. Large CKM entries indicate strong geometric overlap; small entries indicate shielding/transport mismatch.
 
 ### Weak mixing in $\mathbb{A}\mathbb{A}\mathbb{A}$ terms
-- The weak force is the only one that swaps quark types (down ↔ up, strange ↔ charm, etc.).
+- The weak force is the only one that transforms quark types (down ↔ up, strange ↔ charm, etc.).
 - Each quark has two “bases”: a **weak basis** (set by the weak-coupling triad) and a **mass basis** (set by shielding and medium-dressed inertial response). These bases aren’t aligned.
 - When a W acts, it “sees” the weak basis; the chance to land in a particular mass state is set by the overlap between these bases → the CKM numbers.
 - Big overlaps (similar shielding) give big CKM entries; mismatched shielding gives tiny entries.
@@ -186,7 +186,7 @@ $$
 
 If these rows are missing, the weak exposure model remains a validation target for handedness, not an independent derivation of left/right selection.
 
-The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3E$. The right-handed channel is blocked at this finite-state level:
+The beta gate is open only when $h=L$, $\lvert\Sigma_{\mathrm{WCT}}^{(L)}\rvert=3$, and the exposed sites have the down-state inventory $A_{\Sigma}=3\epsilon_-$. The right-handed channel is blocked at this finite-state level:
 $$
 \mathcal{W}_{-}^{du}\lvert d_R;c,\alpha\rangle=0
 $$
@@ -195,11 +195,11 @@ with later simulations allowed to replace this hard zero by a bounded suppressio
 For the active left-handed branch, write the down-like and up-like states as
 $$
 \lvert d_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3E;\ c,\alpha\rangle
+=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_-;\ c,\alpha\rangle
 $$
 $$
 \lvert u_L;c,\alpha\rangle
-=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(1E,2P),\ A_{\Sigma}=3P;\ c,\alpha\rangle
+=\lvert C_{\mathrm{IMO}};\ A_{\mathrm{sh}}=(2\epsilon_+ + 1\epsilon_-),\ A_{\Sigma}=3\epsilon_+;\ c,\alpha\rangle
 $$
 Here $C_{\mathrm{IMO}}$ is the generation-I Noether braid, $A_{\mathrm{sh}}$ is the shielded axial inventory outside the exposed triad, and $(c,\alpha)$ records the color-sector branch and axial-frame offset inherited from the weak-mixing-angle program.
 
@@ -209,12 +209,12 @@ $$
 =g_{\mathrm W}\,\eta_L(R_{\mathrm{rel}},\hat{\mathbf v})\,V_{ud}\,
 \lvert u_L;c,\alpha\rangle
 \otimes
-\lvert W^-;\Delta A_W=3(E-P)\rangle
+\lvert W^-;\Delta A_W=3(\epsilon_- - \epsilon_+)\rangle
 $$
-Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the generation-I nested shell braid shielding tier. The $W^-$ state records the opposite transaction to the quark-side $3E\to3P$ change:
+Here $g_{\mathrm W}$ is the effective charged-corridor coupling normalization. The factor $\eta_L$ is $1$ when the finite-state gate above is open and $0$ otherwise. $V_{ud}$ is the same weak-basis to shielding-eigenstate overlap used by the CKM section; it is near unity here because both the incoming $d$ and outgoing $u$ occupy the generation-I nested shell braid shielding tier. The $W^-$ state records the opposite transaction to the quark-side $3\epsilon_-\to3\epsilon_+$ change:
 $$
-\Delta Q_q=3(q_P-q_E)=6\epsilon=e,\qquad
-\Delta Q_{W^-}=3(q_E-q_P)=-6\epsilon=-e
+\Delta Q_q=3(\epsilon_+-\epsilon_-)=6\epsilon=e,\qquad
+\Delta Q_{W^-}=3(\epsilon_- - \epsilon_+)=-6\epsilon=-e
 $$
 
 In the neutron, this operator acts on one active down-like quark while the spectator $u$ and $d$ assemblies pass through by identity. The conservative provenance stance is the transaction-payload corridor: the $W^-$ carries the charged triad transaction and phase relation, while the electron and antineutrino braid material must still be identified from local Noether sea or incoming-assembly provenance in the reaction ledger.
@@ -247,9 +247,9 @@ $$
 
 ### Charged $W$ corridor (architrino budget, descriptive)
 
-Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether braids (3P/3E each)** plus a **six-charge excess** that carries net charge $\pm e$:
-- $W^+$ payload: 9 positrinos + 3 electrinos (net $+6(e/6)=+e$) on the outer sites of the two cores.
-- $W^-$ payload: 3 positrinos + 9 electrinos (net $-6(e/6)=-e$).
+Think of a $W^\pm$ as a short-lived corridor built from **two neutral Noether braids ($3\epsilon_+ + 3\epsilon_-$ each)** plus a **six-charge excess** that carries net charge $\pm e$:
+- $W^+$ payload: $9\epsilon_+ + 3\epsilon_-$ (net $+6(e/6)=+e$) on the outer sites of the two cores.
+- $W^-$ payload: $3\epsilon_+ + 9\epsilon_-$ (net $-6(e/6)=-e$).
 
 The two cores provide the massive, phase-stable bundle; the charge excess rides on their decorations. During emission/absorption the excess transfers to the quark/lepton legs, and the cores relax back to neutral sea content. Corridor sourcing is assumed forward of the translating assembly (outside its wake); core/charge numbers must close under this budget.
 Ontology note ($\mathbb{A}\mathbb{A}\mathbb{A}$): this corridor is a transient bound excitation of the Noether sea assembled from local polarization + transferred Active-Triad excess, not ex nihilo particle creation.
@@ -571,19 +571,19 @@ The conjectural weak-provenance material below is an illustration of what a futu
 
 | Reactant set | Noether braid shielding (IMO/HML) | weak-coupling-triad polarity | Noether sea braids tapped? | Candidate products | Corridor(s) | Illustrative status | Reason/constraint |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
-| $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | E→P swap | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
-| $b$ (I--) → $c$ (IM-) + $W^-$ | uni → bi | E→P swap | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
-| $t$ (I--) → $b$ (I--) + $W^+$ | uni → uni | P→E swap | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
-| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | E→P swap | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
+| $d$ (IMO) → $u$ (IMO) + $W^-$ | tri → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | likely | Matches $V_{ud}$; charge quantized |
+| $s$ (IM-) → $u$ (IMO) + $W^-$ | bi → tri | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $u + e^- + \bar\nu_e$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{us}\rvert$ |
+| $b$ (I--) → $c$ (IM-) + $W^-$ | uni → bi | $\epsilon_-\to\epsilon_+$ triad transition | 0 | $c + \,\, \ell^- + \bar\nu$ | $W^-$ | allowed (suppressed) | shielding mismatch → $\lvert V_{cb}\rvert$ |
+| $t$ (I--) → $b$ (I--) + $W^+$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0 | $b + W^+$ | $W^+$ | allowed (dominant) | minimal mismatch; $\lvert V_{tb}\rvert\approx1$ |
+| $d$ (IMO) + Sea (4 cores) → $u$ (IMO) + $W^-$ | tri + sea | $\epsilon_-\to\epsilon_+$ triad transition | 4 | $u + W^-$ | $W^-$ | speculative | Sea supplies corridor, check energy budget |
 | $q$ + Sea → $q$ (same) + $Z$ | any | none | 4 | $Z$ | $Z$ | speculative | Neutral corridor, no flavor change |
-| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | E→P | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
-| $t$ (I--; weak-active sites 1/5) → $b$ (I--; weak-active 4/2) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | P→E swap | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet (0/6) |
-| $t$ (I--; 1/5) → $b$ (I--; 4/2) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | P→E swap | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active 2/4, up 1/5); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
-| $e^- (6/0)$ + $e^+ (0/6)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: e 6/0, e+ 0/6 | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active 3/0, 0/3 |
-| $\mu^- (Gen\ II, 6E)$ → $e^- (Gen\ I, 6E) + \bar\nu_e + \nu_\mu$ | bi → tri | E→P swap on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
-| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | E→P on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ flip; lepton leg weak-active (6/0), $\bar\nu_e$ weak singlet (0/3) |
-| $W$ corridor budget (generic) | — | — | 2 neutral braids + 6 excess decorations | returns neutral braids to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral braids + (9P,3E) → +e; $W^-$: 2 neutral braids + (3P,9E) → –e; braids end neutral |
+| $d$ (IMO) → $u$ (IMO) without $W$ | tri → tri | $\epsilon_-\to\epsilon_+$ transition | 0 | forbidden | — | no | Need $W$ to carry charge/spin |
+| $t$ (I--; weak-active sites $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; weak-active $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + e^+ + \nu_e$ | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 (corridor draw) | $b + e^+ + \nu_e$ | $W^+$ forward corridor | allowed (dominant) | CKM $\lvert V_{tb}\rvert\approx1$; forward Sea braids assemble $W^+$; lepton leg is weak singlet ($6\epsilon_+ + 0\epsilon_-$) |
+| $t$ (I--; $5\epsilon_+ + 1\epsilon_-$) → $b$ (I--; $2\epsilon_+ + 4\epsilon_-$) + $W^+$ → $b + q\bar q$ (e.g., $u\bar d$ or $c\bar s$) | uni → uni | $\epsilon_+\to\epsilon_-$ triad transition | 0–4 | $b + q\bar q$ | $W^+$ forward corridor | allowed (dominant; SM $W\to q\bar q$ branching $\sim67\%$) | CKM $\lvert V_{tb}\rvert\approx1$; $q\bar q$ from $W^+$ (anti-down weak-active $4\epsilon_+ + 2\epsilon_-$, up $5\epsilon_+ + 1\epsilon_-$); charge hand-off via corridor. Branching fraction note is an SM reference point, not an $\mathbb{A}\mathbb{A}\mathbb{A}$-derived output. |
+| $e^- (0\epsilon_+ + 6\epsilon_-)$ + $e^+ (6\epsilon_+ + 0\epsilon_-)$ → $Z$ → $\nu_\mu + \bar\nu_\mu$ | leptons | WK: $e^-$ has $0\epsilon_+ + 6\epsilon_-$; $e^+$ has $6\epsilon_+ + 0\epsilon_-$ | 0–4 | $\nu_\mu + \bar\nu_\mu$ | neutral corridor ($Z$) | allowed (NC) | $Z$ neutral; couples to L/R leptons; final $\nu,\bar\nu$ weak-active triads are $3\epsilon_-$ and $3\epsilon_+$ |
+| $\mu^-$ (Gen II, $0\epsilon_+ + 6\epsilon_-$) → $e^-$ (Gen I, $0\epsilon_+ + 6\epsilon_-$) + $\bar\nu_e + \nu_\mu$ | bi → tri | $\epsilon_-\to\epsilon_+$ transition on weak-coupling triad; shed outer binary | 0–4 | $e^- + \bar\nu_e + \nu_\mu$ | $W^-$ corridor | allowed (leptonic) | Shielding drop (Gen II→I); forward $W^-$ transfers charge; stripped core re-emerges as $\nu_\mu$, Sea/anti-sea absorbs balance ($\bar\nu_e$) |
+| Neutron $n(udd)$ → Proton $p(uud)$ + $e^- + \bar\nu_e$ | tri → tri (one $d\to u$; two spectators) | $\epsilon_-\to\epsilon_+$ transition on one $d$ | 0–4 | $p + e^- + \bar\nu_e$ | $W^-$ forward corridor | allowed (`beta reaction`; SM label: `beta decay`) | spectators intact; $d\to u$ transition; lepton leg weak-active ($0\epsilon_+ + 6\epsilon_-$), $\bar\nu_e$ weak singlet ($3\epsilon_+$) |
+| $W$ corridor budget (generic) | — | — | 2 neutral braids + 6 excess decorations | returns neutral braids to Sea; transfers net $\pm e$ | charged corridor | accounting rule | $W^+$: 2 neutral braids + ($9\epsilon_+ + 3\epsilon_-$) → +e; $W^-$: 2 neutral braids + ($3\epsilon_+ + 9\epsilon_-$) → –e; braids end neutral |
 
 Notes:
 - "Noether sea braids tapped" means how many Noether sea braids are pulled transiently, if any. Default 0 unless the corridor assembly needs external cores.

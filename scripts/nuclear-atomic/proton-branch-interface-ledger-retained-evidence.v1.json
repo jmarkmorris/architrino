@@ -1,0 +1,79 @@
+{
+  "schema": "aaa-nuclear-atomic-proton-branch-interface-ledger-evidence/v1",
+  "claimLevel": "durable source-backed accepted_proton_branch_interface_ledger evidence row for the Fe/Ni branch-interface source-acquisition lane; proton-side ledger boundary only, score-neutral and not accepted nuclear-binding recovery",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "accepted_proton_branch_interface_ledger",
+  "sourceSupport": "branch_interface accepted_proton_branch_interface_ledger pn_orientation_count pp_orientation_count retained_orientation_rows closed_corridor_sharing_count branch_exposure_row",
+  "evidenceSupports": [
+    "branch_interface",
+    "accepted_proton_branch_interface_ledger",
+    "retained_orientation_rows",
+    "closed_corridor_sharing_count",
+    "branch_exposure_row"
+  ],
+  "sourceIdentity": {
+    "branchInterfaceLedgerId": "L_BI_p_0001",
+    "sourceTargetId": "accepted_proton_branch_interface_ledger_target_0001",
+    "protonBranchLabel": "p",
+    "sourceTargetPath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#native-branch-interface-channel-extraction"
+  },
+  "protonBranchInterfaceLedger": {
+    "rowId": "L_BI_p_0001",
+    "branchLabel": "p",
+    "retainedOrientationRows": [
+      {
+        "rowId": "pn_orientation_count_candidate_0001",
+        "channel": "p+n",
+        "N_share": 4,
+        "N_ret": 4,
+        "sigma_orient": 1,
+        "P_c": 1,
+        "W_c": 1,
+        "M_c": 0
+      },
+      {
+        "rowId": "pp_orientation_count_candidate_0001",
+        "channel": "p+p",
+        "N_share": 1,
+        "N_ret": 4,
+        "sigma_orient": 0.25,
+        "P_c": 1,
+        "W_c": 0.25,
+        "M_c": 0.75
+      }
+    ],
+    "closedCorridorSharingCount": {
+      "pn": "4/4 retained local orientation rows share the p+n corridor in the current algebraic extraction.",
+      "pp": "1/4 retained local orientation rows share the p+p corridor in the current algebraic extraction."
+    },
+    "branchExposureRow": {
+      "rowId": "proton_branch_exposure_row_0001",
+      "exposureBoundary": "The proton branch-interface ledger exposes the p+n and p+p orientation-count rows under the same extraction rule before any top-level branch-interface row is accepted."
+    },
+    "sameRecordBoundary": "This proton ledger carries the required same-record ledger slot but does not accept same_record_energy_momentum_angular_momentum_ledger.",
+    "noOpenColorBoundary": "This proton ledger carries the required no-open-color slot but does not accept no_open_color_far_field."
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRows": [
+      "accepted_proton_branch_interface_ledger"
+    ],
+    "notAcceptedRows": [
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count"
+    ],
+    "expectedCheckerStatus": "missing_accepted_branch_interface_rows",
+    "expectedFirstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose and is not a raw URL source.",
+    "The row cannot satisfy the neutron branch-interface ledger, same-record energy-momentum-angular-momentum ledger, no-open-color far-field row, or top-level branch-interface rows.",
+    "The row cannot promote the Fe/Ni toy sweep because the branch-interface family still lacks accepted top-level rows and the confinement family remains target-only."
+  ]
+}

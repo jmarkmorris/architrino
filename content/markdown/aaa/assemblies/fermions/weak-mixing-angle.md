@@ -66,7 +66,7 @@ This note proposes that physically stable fermion assemblies use only a restrict
 
 The [electron](./electron.md) provides the clean reference case.
 
-In the Generation-I electron, the axial layer is $6E$. At coarse-grained level:
+In the Generation-I electron, the axial layer is $6\epsilon_-$. At coarse-grained level:
 
 - no axis is exceptional,
 - the load on the three axes is equivalent,
@@ -95,8 +95,8 @@ Quarks are different for two independent reasons already present in the existing
 
 For up-type and down-type quarks the imbalance differs:
 
-- up-type: $5P,1E$,
-- down-type: $2P,4E$.
+- up-type: $5\epsilon_+,1\epsilon_-$,
+- down-type: $2\epsilon_+,4\epsilon_-$.
 
 This means the axial layer does not merely carry a net observer-level charge. It also carries a nontrivial anisotropic load. That anisotropic load can be encoded in an axial-moment tensor
 $$
@@ -206,7 +206,7 @@ The up and down quarks should not be distinguished only by total charge. Their a
 
 ### Up-type expectation
 
-For $5P,1E$:
+For $5\epsilon_+,1\epsilon_-$:
 
 - two axes are effectively positrino-rich,
 - one axis contains the exceptional mixed or depleted structure,
@@ -216,7 +216,7 @@ This suggests a relatively stiff anisotropy with a sharply defined exceptional d
 
 ### Down-type expectation
 
-For $2P,4E$:
+For $2\epsilon_+,4\epsilon_-$:
 
 - the imbalance is weaker in net positive charge but stronger in electrino loading,
 - the exceptional axis can arise through more than one admissible family of axis assignments,
@@ -338,7 +338,7 @@ Potential redundancies include:
 - reversing a principal axis together with a pole relabeling,
 - rotating by $180^\circ$ and exchanging equivalent background axes,
 - relabelings of the color basis that can be absorbed into the existing SU(3)-like axis labeling,
-- matter/antimatter conjugation that flips polarity signs without requiring a new core scaffold.
+- matter/antimatter branch-record conjugation, where pro/anti orientation and retained path-history, wake-history, causal-root, and stability rows conjugate with the same scaffold, while any polarity reversal belongs to the charged-sector ledger rather than the primitive matter/antimatter label.
 
 So the real task is not to enumerate all multiples of $30^\circ$, but to identify the **small quotient set of inequivalent minima** after these symmetries are imposed.
 

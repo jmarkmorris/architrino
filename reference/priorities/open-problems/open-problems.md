@@ -67,19 +67,20 @@ If any item is missing, the chapter should be marked `direction-ready`, `appendi
 | Candidate section | Primary priority route | Primary corpus route | Promotion gate |
 | --- | --- | --- | --- |
 | Foundations and spacetime | [master-equation-closure](../master-equation-closure/master-equation-closure.md), [braid-retained-branch-closure](../braid-retained-branch-closure/braid-retained-branch-closure.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) | Spacetime and dynamics corpus documents. | One effective metric and one path-history record recover known clock, ruler, null-path, and phase benchmarks. |
-| Strong-field gravity | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [dark-sector](../dark-sector/dark-sector.md), [simulations](../simulations/simulations.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
+| Strong-field gravity | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [dark-sector](../dark-sector/dark-sector.md), [app-simulation](../app-simulation/app-simulation.md) | Black-hole, singularity, radiation, and nested shell braid documents. | Boundary conditions, entropy counts, event ledgers, and release channels are expressed without hidden singular sinks. |
 | Cosmology and large-scale structure | [cosmology-closure](../cosmology-closure/cosmology-closure.md), [dark-sector](../dark-sector/dark-sector.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) | Cosmology, CMB, BBN, structure, dark-sector, and redshift documents. | The same Noether sea variables support redshift, distance, growth, CMB, lensing, and structure records. |
 | Quantum and statistical emergence | [quantum-closure](../quantum-closure/quantum-closure.md), [braid-angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md), [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md) | Quantum, measurement, Bell, entropy, and radiation documents. | Basin measures, detector response, pair provenance, and path-history phase recover the benchmark probabilities without free collapse postulates. |
 | Standard Model and particle closure | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [braid-mass-response-map](../braid-mass-response-map/braid-mass-response-map.md), [braid-angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md) | Assemblies, fermions, bosons, gauge, mass, nuclear, and validation documents. | Branch geometry, exposure maps, mixing integrals, confinement energetics, and event provenance produce testable particle records. |
-| Astrophysical engines | [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [standard-model-closure](../standard-model-closure/standard-model-closure.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers. |
+| Astrophysical engines | [high-energy-astrophysics](../high-energy-astrophysics/high-energy-astrophysics.md), [strong-field-closure](../strong-field-closure/strong-field-closure.md), [cosmology-closure](../cosmology-closure/cosmology-closure.md), [standard-model-closure](../standard-model-closure/standard-model-closure.md) | Radiation, reactions, compact-object, nucleosynthesis, and structure documents. | High-energy events close energy, momentum, angular momentum, composition, remnant, and medium-update ledgers before being read as native geometry evidence. |
 
 ## Related Priorities
 
 - [cross-theory-mapping](../cross-theory-mapping/cross-theory-mapping.md)
+- [high-energy-astrophysics](../high-energy-astrophysics/high-energy-astrophysics.md)
 - [cosmology-closure](../cosmology-closure/cosmology-closure.md)
 - [strong-field-closure](../strong-field-closure/strong-field-closure.md)
 - [quantum-closure](../quantum-closure/quantum-closure.md)
 - [standard-model-closure](../standard-model-closure/standard-model-closure.md)
 - [braid-mass-response-map](../braid-mass-response-map/braid-mass-response-map.md)
 - [braid-angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
-- [simulations](../simulations/simulations.md)
+- [app-simulation](../app-simulation/app-simulation.md)

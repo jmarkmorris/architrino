@@ -1209,7 +1209,7 @@ Only after all five rows are verified on the same certified domain does the cond
 ## Related Priorities
 
 - [master-equation-closure](../../master-equation-closure/master-equation-closure.md)
-- [simulations](../../simulations/simulations.md)
+- [app-simulation](../../app-simulation/app-simulation.md)
 - [source-mining](../../source-mining/source-mining.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes

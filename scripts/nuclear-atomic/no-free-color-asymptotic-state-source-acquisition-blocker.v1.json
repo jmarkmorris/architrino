@@ -1,0 +1,302 @@
+{
+  "schema": "aaa-nuclear-atomic-no-free-color-asymptotic-state-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for no_free_color_asymptotic_state; records the exact closure target and nearest candidate evidence; not accepted no-free-color evidence, not accepted color-singlet closure evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "no_free_color_asymptotic_state",
+  "currentStatus": "blocked_missing_asymptotic_field_audit",
+  "sourceSupportSought": [
+    "color_singlet_closure",
+    "asymptotic_field_audit",
+    "finite_range_residual"
+  ],
+  "nearestCandidateInputs": {
+    "protonColorSingletEnvelopeBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "proton_color_singlet_closure_target_shape",
+        "finite proton envelope boundary requirement"
+      ],
+      "notUsableFor": [
+        "accepted_proton_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "asymptotic_field_audit"
+      ],
+      "boundary": "The proton blocker names the no-free-color audit as required evidence, but explicitly accepts no source rows."
+    },
+    "neutronColorSingletEnvelopeBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "neutron_color_singlet_closure_target_shape",
+        "finite neutron envelope boundary requirement"
+      ],
+      "notUsableFor": [
+        "accepted_neutron_color_singlet_envelope",
+        "no_free_color_asymptotic_state",
+        "asymptotic_field_audit"
+      ],
+      "boundary": "The neutron blocker names the no-free-color audit as required evidence, but explicitly accepts no source rows."
+    },
+    "nucleonStructureClosureTarget": {
+      "candidatePath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md#color-singlet-closure",
+      "usableFor": [
+        "nucleon_color_singlet_closure_shape",
+        "open_color_projection_ratio_shape"
+      ],
+      "notUsableFor": [
+        "accepted_no_free_color_asymptotic_state",
+        "accepted_asymptotic_field_audit"
+      ],
+      "boundary": "The prose supplies the closure target and open-color projection language, not a durable audit that residual open color vanishes asymptotically."
+    },
+    "confinementFunctionalTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/sourceAcquisitionTargets/no_free_color_asymptotic_state",
+      "usableFor": [
+        "required component shape",
+        "same confinement-functional dependency chain"
+      ],
+      "notUsableFor": [
+        "accepted_no_free_color_asymptotic_state",
+        "accepted_color_singlet_closure",
+        "accepted_finite_range_residual"
+      ],
+      "boundary": "The source target preserves the ledger component shape but remains target-required and not accepted evidence."
+    },
+    "colorSingletClosureBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "color-singlet closure acceptance condition",
+        "proton, neutron, and no-free-color dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_closure",
+        "accepted_no_free_color_asymptotic_state"
+      ],
+      "boundary": "The color-singlet closure blocker names the shared closure proof burden but explicitly accepts no source rows."
+    },
+    "sameRecordBranchInterfaceBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-record branch-interface bundle target",
+        "same confinement-functional and branch-interface domain requirement"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_branch_interface",
+        "accepted_no_free_color_asymptotic_state"
+      ],
+      "boundary": "The same-record branch-interface blocker names the shared-domain branch-interface target but explicitly accepts no source rows."
+    },
+    "qcdBenchmarkConstraint": {
+      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "usableFor": [
+        "hard no-free-color recovery burden",
+        "static confinement benchmark pressure"
+      ],
+      "notUsableFor": [
+        "accepted_no_free_color_asymptotic_state"
+      ],
+      "boundary": "The QCD priority packet treats no-free-color as a benchmark recovery target until a native confinement proof supplies the same-domain audit."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "no_free_color_asymptotic_state_source_target_0001",
+    "colorSingletClosure": {
+      "requiredBehavior": "The proton and neutron envelopes must both be accepted color-singlet branches before any no-free-color asymptotic audit can be accepted.",
+      "mustConsumeRows": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope"
+      ]
+    },
+    "asymptoticFieldAudit": {
+      "requiredBehavior": "For each accepted color-singlet nucleon envelope, the open-color projection must remain below the declared tolerance and vanish as an asymptotic free field outside the finite envelope boundary.",
+      "auditShape": "lim_{R -> infinity} sup_X E_color_NX(R) = 0 for N in {p,n} in the same confinement-functional domain.",
+      "mustShareDomainWith": [
+        "same_sigma_eff_domain",
+        "same_record_noether_sea_response",
+        "same_record_branch_interface"
+      ]
+    },
+    "finiteRangeResidual": {
+      "requiredBehavior": "The residual corridor tail must be finite-range, so color-singlet nucleons do not leave an open-color field at large separation.",
+      "mustBindTo": [
+        "Delta_E_corr_NN_tail_limit",
+        "bounded_residual_overlap",
+        "large_r_zero_limit"
+      ]
+    }
+  },
+  "asymptoticFieldAuditRequestPacket": {
+    "claimLevel": "priority-only asymptotic field audit source-acquisition request packet; not accepted source evidence and not promotion evidence",
+    "sourceRowId": "asymptotic_field_audit",
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
+    "minimumFields": [
+      "retainedEventId",
+      "acceptedProtonColorSingletEnvelopeRef",
+      "acceptedNeutronColorSingletEnvelopeRef",
+      "finiteRangeResidualRef",
+      "sameSigmaEffDomainRef",
+      "sameRecordNoetherSeaResponseRef",
+      "sameRecordBranchInterfaceRef",
+      "protonFiniteEnvelopeBoundaryRef",
+      "neutronFiniteEnvelopeBoundaryRef",
+      "R_p",
+      "R_n",
+      "Pi_open_pX_ref",
+      "Pi_open_nX_ref",
+      "E_color_pX_R_definition",
+      "E_color_nX_R_definition",
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0_ref",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0_ref",
+      "coefficientExclusionAudit"
+    ],
+    "requiredRecordEqualities": [
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(acceptedNeutronColorSingletEnvelopeRef)",
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(finiteRangeResidualRef)",
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(sameSigmaEffDomainRef)",
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(sameRecordNoetherSeaResponseRef)",
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(sameRecordBranchInterfaceRef)",
+      "record(acceptedProtonColorSingletEnvelopeRef)=record(protonFiniteEnvelopeBoundaryRef)",
+      "record(acceptedNeutronColorSingletEnvelopeRef)=record(neutronFiniteEnvelopeBoundaryRef)"
+    ],
+    "inequalityRequirements": [
+      "R_p<infinity",
+      "R_n<infinity",
+      "lim_R_to_infty_sup_X_E_color_pX_R=0",
+      "lim_R_to_infty_sup_X_E_color_nX_R=0"
+    ],
+    "derivedRowsIfAccepted": [
+      "asymptotic_field_audit"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "no_free_color_asymptotic_state",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "color_singlet_closure",
+      "no_open_color_far_field"
+    ],
+    "notAcceptedByThisPacket": [
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "color_singlet_closure",
+      "no_open_color_far_field"
+    ],
+    "failureModes": [
+      "the proton and neutron asymptotic rows use different retained event ids",
+      "one open-color projection limit remains target-only or sample-level",
+      "the finite envelope boundary diverges or is not refinement-stable",
+      "finite_range_residual is not accepted in the same confinement-functional domain",
+      "the asymptotic audit assumes no_open_color_far_field before feeding it"
+    ]
+  },
+  "candidateNoFreeColorAsymptoticAuditLemma": {
+    "claimLevel": "priority-only conditional no-free-color asymptotic audit lemma; accepts no source rows and does not prove no_free_color_asymptotic_state, color_singlet_closure, or no_open_color_far_field",
+    "lemmaId": "finite_envelope_open_projection_limits_imply_asymptotic_field_audit_0001",
+    "statement": "If one retained confinement-functional record supplies accepted proton and neutron color-singlet envelopes, finite envelope boundaries R_p and R_n, finite_range_residual, same sigma_eff domain, same-record Noether sea response, same-record branch-interface, and vanishing open-color projection limits lim_R_to_infty sup_X E_color_pX(R)=0 and lim_R_to_infty sup_X E_color_nX(R)=0, then the packet supplies the asymptotic_field_audit support row needed by no_free_color_asymptotic_state.",
+    "assumptions": [
+      "accepted_proton_color_singlet_envelope and accepted_neutron_color_singlet_envelope are durable non-fixture rows in the same retained record",
+      "finite_range_residual is accepted in the same confinement-functional domain",
+      "same_sigma_eff_domain, same_record_noether_sea_response, and same_record_branch_interface refer to the same retained event id",
+      "R_p and R_n are finite and refinement-stable envelope boundaries",
+      "the proton and neutron open-color projection energy functionals are defined on the same exterior window family",
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0 and lim_R_to_infty_sup_X_E_color_nX_R_eq_0 are accepted rows rather than target equations"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_domain_envelope_lock",
+        "obligation": "Lock proton and neutron color-singlet envelopes, sigma_eff, Noether sea response, and branch-interface records to one retained event id."
+      },
+      {
+        "stepId": "finite_boundary_lock",
+        "obligation": "Use finite R_p and R_n to define exterior windows where only the open-color projection audit remains."
+      },
+      {
+        "stepId": "proton_open_projection_zero_limit",
+        "obligation": "Show lim_R_to_infty sup_X E_color_pX(R)=0 in the same retained domain."
+      },
+      {
+        "stepId": "neutron_open_projection_zero_limit",
+        "obligation": "Show lim_R_to_infty sup_X E_color_nX(R)=0 in the same retained domain."
+      },
+      {
+        "stepId": "finite_residual_tail_lock",
+        "obligation": "Bind the zero open-color projection limits to accepted finite_range_residual so the residual corridor tail cannot reintroduce open color at large separation."
+      },
+      {
+        "stepId": "downstream_no_free_color_feed",
+        "obligation": "Feed asymptotic_field_audit into no_free_color_asymptotic_state without accepting no_free_color_asymptotic_state or downstream no-open-color rows inside this packet."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "asymptotic_field_audit"
+    ],
+    "missingAcceptanceRows": [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "finite_range_residual",
+      "same_sigma_eff_domain",
+      "same_record_branch_interface",
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "no_free_color_asymptotic_state",
+      "color_singlet_closure",
+      "no_open_color_far_field"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "no_free_color_asymptotic_state",
+      "color_singlet_closure",
+      "no_open_color_far_field",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "failureModes": [
+      "the open-color projection limits depend on a different sigma_eff extraction than the color-singlet envelopes",
+      "the proton or neutron finite envelope boundary is only sample-level and not accepted evidence",
+      "finite_range_residual is assumed from no_open_color_far_field rather than proven first",
+      "one nucleon species supplies a zero limit while the other remains target-only",
+      "the proof smuggles in Fe/Ni toy coefficient behavior as evidence for the asymptotic field audit"
+    ]
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "asymptotic_field_audit",
+      "no_free_color_asymptotic_state",
+      "color_singlet_closure",
+      "finite_range_residual",
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_delta_E_corr_NN",
+      "no_open_color_far_field",
+      "sigma_eff_extraction",
+      "delta_E_corr_NN"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Prove the no-free-color asymptotic-state row in the same confinement-functional domain that supplies the proton and neutron color-singlet envelopes, finite residual corridor tail, and branch-interface ledger.",
+    "minimalInputNeeded": [
+      "accepted proton color-singlet envelope",
+      "accepted neutron color-singlet envelope",
+      "accepted finite_range_residual row",
+      "accepted asymptotic field audit in the same sigma_eff and Noether sea response domain"
+    ],
+    "failureModes": [
+      "open-color projection does not vanish outside the finite envelope boundary",
+      "the audit uses a different confinement-functional domain than sigma_eff",
+      "the finite residual tail remains target-only",
+      "color-singlet closure remains priority prose or blocker text rather than accepted source evidence",
+      "the proof requires retuning the Fe/Ni toy coefficients"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent color-singlet closure prose or proton/neutron envelope blockers from being mistaken for accepted no_free_color_asymptotic_state evidence.",
+    "Fe/Ni promotion remains blocked until no_free_color_asymptotic_state, color-singlet closure, finite residual, no-open-color far-field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}

@@ -1,6 +1,6 @@
 export const DESIGN_WIDTH = 1920;
 export const DESIGN_HEIGHT = 1080;
-export const FRAME_COUNT = 180;
+export const FRAME_COUNT = 1800;
 export const PARTIAL_PROPAGATING_ARCS = "partial_propagating_arcs";
 export const FULL_CIRCULAR_ARCS = "full_circular_arcs";
 export const DEFAULT_PRESET_ID = "accepted_tight_bright";

@@ -13,6 +13,9 @@
 - System Card markdown: [System Card markdown](../../../content/markdown/aaa/archie/system-card.md)
 - Assistant contract: [assistant-mode-contract.md](assistant-mode-contract.md)
 - Long-term service platform: [service-platform.md](service-platform.md)
+- Service deployment option decision: [service-deployment-option-decision.md](service-deployment-option-decision.md)
+- Service deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
+- Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
 - Runtime files to inspect: [AppSceneChromeRuntime](../../../src/runtime/AppSceneChromeRuntime.js), [ArchitrinoSceneAppRuntime](../../../src/apps/architrino/ArchitrinoSceneAppRuntime.js), and [index.html](../../../index.html)
 
 ## Current State
@@ -30,7 +33,7 @@ Active public reference material and public image assets now use Archie-owned pa
 
 The first assistant behavior contract is captured in [assistant-mode-contract.md](assistant-mode-contract.md). It defines initial modes, source classes, claim labels, citation behavior, unsupported-answer behavior, the $\mathbb{A}\mathbb{A}\mathbb{A}$-native explanatory stance, multimodal outreach objectives, the System Card sphere disclosure model, and public UI blockers. No runtime AI answer generation is implemented yet.
 
-The deployed site currently runs through GitHub Pages via `architrino.com`. The Archie question interface should not be reduced to a static/local-source UI prototype. Treat a real Archie question service as long-term platform work: a separately designed deployment with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, cost controls, observability, and rollback behavior. The long-term platform packet is [service-platform.md](service-platform.md). This platform work should wait behind the current theory-closure push unless it directly unblocks public readiness.
+The deployed site currently runs through GitHub Pages via `architrino.com`. The Archie question interface should not be reduced to a static/local-source UI prototype. Treat a real Archie question service as long-term platform work: a separately designed deployment with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, cost controls, observability, and rollback behavior. The long-term platform packet is [service-platform.md](service-platform.md); the deployment option decision is [service-deployment-option-decision.md](service-deployment-option-decision.md); the concrete deployment boundary map is [service-deployment-architecture.md](service-deployment-architecture.md); and the first schema-only implementation target is [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md). This platform work should wait behind the current theory-closure push unless it directly unblocks public readiness.
 
 ## Working Impression
 
@@ -52,9 +55,10 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 1. `theory_closure_first` - Return near-term effort to the strongest core theory-closure targets so future Archie answers have stable substance to explain. Status: `active`.
 2. `service_platform_priority` - Maintain the long-term Archie service plan in [service-platform.md](service-platform.md), including deployment, backend/serverless boundary, source authority, privacy, logging, cost, and operations. Status: `long-term`. Depends on: `assistant-mode-contract.md`.
 3. `source_authority_boundary` - Convert the contract's source classes into a deployed-service allowlist for public, operator/developer, priority-only, curated external, and excluded sources. Status: `deferred`. Depends on: `service_platform_priority`.
-4. `platform_architecture_packet` - When platform work is selected, compare deployment routes: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, or managed AI gateway. Status: `deferred`. Depends on: `theory_closure_first`.
-5. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `platform_architecture_packet`.
-6. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
+4. `platform_architecture_packet` - Use [service-deployment-option-decision.md](service-deployment-option-decision.md) and [service-deployment-architecture.md](service-deployment-architecture.md) as the deployment route and boundary map for the future service. Status: `draft`. Depends on: `theory_closure_first`.
+5. `service_scaffolding_and_fixtures` - Use [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md) to drive schema-only service contracts, fixture locations, environment classes, CI gates, staging smoke tests, and rollback fixtures before runtime providers or public launch. Status: `draft`. Depends on: `platform_architecture_packet`.
+6. `privacy_security_cost_boundary` - For the deployed Archie platform, define what user text, speech, images, and answer history leave the browser, what model/service is used, rate limits, logs, retention, cost controls, abuse controls, and failure behavior. Status: `deferred`. Depends on: `service_scaffolding_and_fixtures`.
+7. `validation_and_qa` - Define the service validation checklist for source authority, answer citations, claim-level correctness, multimodal handling, System Card links, privacy behavior, deployment smoke tests, and rollback readiness. Status: `deferred`. Depends on: `privacy_security_cost_boundary`.
 
 ## Promotion Map
 
@@ -63,7 +67,8 @@ The main risk is scope drift. If Archie becomes an AI persona, it must not sound
 | `theory_closure_first` | Core proof/corpus readiness. | Archie has stable enough source substance to explain publicly. |
 | `service_platform_priority` | Long-term platform plan. | Archie is treated as a deployed service, not a static UI mockup. |
 | `source_authority_boundary` | Public-answer source policy. | Priority-only and speculative material cannot appear as established corpus claims. |
-| `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting. |
+| `platform_architecture_packet` | Deployment architecture task. | Secrets, model calls, user data, and operations live outside GitHub Pages static hosting, with ownership split by [service-deployment-architecture.md](service-deployment-architecture.md). |
+| `service_scaffolding_and_fixtures` | Schema-only implementation target. | Service code starts from contracts, fixtures, environment classes, and fail-closed gates before providers or public launch. |
 | `privacy_security_cost_boundary` | Platform launch gate. | User data, service use, logging, retention, abuse controls, and budget limits are explicit before public beta. |
 | `validation_and_qa` | Launch checklist. | Source, answer, privacy, multimodal, deployment, and rollback checks pass. |
 
@@ -100,16 +105,20 @@ Context:
 - The deployed site currently runs through GitHub Pages via `architrino.com`.
 - The operator does not want a static/local-source Archie UI prototype.
 - The desired Archie question interface is long-term platform work with deployment, backend/serverless runtime, model/provider boundary, privacy, logging, rate limits, cost controls, source authority, System Card disclosure, operations, monitoring, and rollback.
+- The deployment option decision is captured in `reference/priorities/archie/service-deployment-option-decision.md`.
+- The deployment boundary map is captured in `reference/priorities/archie/service-deployment-architecture.md`.
+- The schema-only scaffolding target is captured in `reference/priorities/archie/service-scaffolding-and-fixtures.md`.
 - This work should wait behind core theory closure unless platform design directly unblocks public readiness.
 
 Task:
 - Use `reference/priorities/archie/service-platform.md` as the long-term platform priority.
-- Compare deployment options: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, and managed AI gateway.
+- Use the deployment option decision and deployment architecture packet as the current deployment source of truth.
+- Use the service scaffolding and fixtures packet as the current schema-only implementation target.
 - Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/cost policy, observability, staging/production split, and rollback plan.
 - Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:
-- Inspect `reference/priorities/archie/service-platform.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/archie.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, runtime entry points, and generated scene/markdown index behavior.
+- Inspect `reference/priorities/archie/service-platform.md`, `reference/priorities/archie/service-deployment-option-decision.md`, `reference/priorities/archie/service-deployment-architecture.md`, `reference/priorities/archie/service-scaffolding-and-fixtures.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/archie.md`, `content/scenes/archie/archie.json`, `content/scenes/archie/system_card.json`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, runtime entry points, and generated scene/markdown index behavior.
 - Do not promote priority-only material into reader-facing corpus prose.
 - Do not build runtime code unless explicitly requested.
 

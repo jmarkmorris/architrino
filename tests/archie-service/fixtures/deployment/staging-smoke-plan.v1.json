@@ -1,0 +1,27 @@
+{
+  "schema": "archie-deployment-smoke-plan/v1",
+  "planId": "deployment_smoke_fixture_001",
+  "environment": "staging",
+  "checks": [
+    {
+      "id": "deploy-static-entry-001",
+      "requiredProof": "Public site links to the service entry and Legal Terms without embedding service secrets.",
+      "status": "pending"
+    },
+    {
+      "id": "deploy-answer-text-001",
+      "requiredProof": "Staging returns a validated text Answer Artifact Manifest from a source-backed question.",
+      "status": "pending"
+    },
+    {
+      "id": "deploy-secret-scan-001",
+      "requiredProof": "Browser bundle and static output contain no provider, GitHub, payment, database, signing, or monitoring secrets.",
+      "status": "pending"
+    },
+    {
+      "id": "deploy-rollback-001",
+      "requiredProof": "Staging rollback restores prior service code and compatible source-index snapshot.",
+      "status": "pending"
+    }
+  ]
+}

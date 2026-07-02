@@ -30,7 +30,7 @@ const REJECTION_CODE_LEGEND = {
 
 const AUTO_DISCOVERED_CANDIDATES = [
   {
-    path: "reference/priorities/solver/branch-provider-evidence-report.md",
+    path: "reference/priorities/app-solver/branch-provider-evidence-report.md",
     candidate_kind: "branch_provider_boundary_report",
     source_status: "same_domain_branch_provider_missing_not_retained_pressure_row",
     rejection_codes: [

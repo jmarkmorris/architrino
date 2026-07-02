@@ -1,15 +1,318 @@
 {
   "schema": "aaa-equation-map-weak-gauge-exposure-domain-input/v1",
-  "claimLevel": "EQ-16 weak/gauge exposure-domain muon projection evidence lane; weak_visible_branch_ledger and weak_projection accepted from durable sources while all downstream rows remain attempt-level; score-neutral and not populated",
+  "claimLevel": "EQ-16 weak/gauge exposure-domain muon projection evidence lane; weak_visible_branch_ledger, weak_projection, weak_quotient, and weak_exposure_record accepted from durable sources while downstream chirality, overlap, and event rows remain attempt-level; score-neutral and not populated",
   "residualId": "Theta_weak_gauge_EQ16_muon_projection_evidence_0001",
   "sourceIdentity": {
     "domainId": "D_weak_visible_attempt_0001",
     "branchRecordId": "A_weak_attempt_0001",
     "weakVisibleBranchLedgerId": "L_A_weak_visible_muon_decay_0001",
     "weakProjectionId": "Pi_weak_muon_decay_0001",
+    "weakQuotientId": "Q_weak_muon_decay_0001",
+    "weakExposureRecordId": "E_weak_muon_decay_0001",
     "gaugeChartId": "effective_weak_chart_attempt_0001",
     "ledgerEvidenceSourcePath": "scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json",
-    "projectionEvidenceSourcePath": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json"
+    "projectionEvidenceSourcePath": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json",
+    "quotientEvidenceSourcePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
+    "exposureEvidenceSourcePath": "scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json"
+  },
+  "acceptanceCheck": {
+    "script": "scripts/nuclear-atomic/weak-channel-source-target-check.mjs",
+    "summaryCommand": "node scripts/nuclear-atomic/weak-channel-source-target-check.mjs --summary --pretty",
+    "requiredAcceptedCommand": "node scripts/nuclear-atomic/weak-channel-source-target-check.mjs --summary --require-accepted",
+    "currentStatus": "missing_accepted_weak_channel_rows",
+    "currentStructuralPass": true,
+    "currentSourceAcquisitionPass": false,
+    "firstMissingObject": "missing_accepted_va_chirality_gate",
+    "firstMissingSourceAcquisitionObject": "missing_accepted_va_chirality_gate"
+  },
+  "sourceAcquisitionTargets": {
+    "weak_visible_branch_ledger": {
+      "id": "weak_visible_branch_ledger_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted retained muon weak-visible branch ledger in one domain and branch record",
+      "requiredLedgerComponents": [
+        "retained_muon_decay_event",
+        "same_domain_rows",
+        "branch_record_stability",
+        "durable_source_path"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json"
+    },
+    "weak_projection": {
+      "id": "weak_projection_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted same-domain projection from the retained muon weak-visible ledger",
+      "requiredLedgerComponents": [
+        "weak_visible_branch_ledger",
+        "projection_operator",
+        "same_domain_rows",
+        "durable_source_path"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json"
+    },
+    "weak_quotient": {
+      "id": "weak_quotient_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted weak quotient on the same retained muon domain and branch record",
+      "requiredLedgerComponents": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "quotient_equivalence_class",
+        "same_domain_rows",
+        "gauge_branch_record_stability"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json"
+    },
+    "weak_exposure_record": {
+      "id": "weak_exposure_record_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted weak exposure record derived from the same retained weak quotient and projection",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_projection",
+        "weak_visible_branch_ledger",
+        "exposure_readout_row",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json"
+    },
+    "va_chirality_gate": {
+      "id": "va_chirality_gate_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_same_domain_va_chirality_gate",
+      "requiredScope": "accepted V-A chirality gate in the retained weak-exposure domain",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_row",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json"
+    },
+    "ckm_overlap_readout": {
+      "id": "ckm_overlap_readout_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "not_acquired",
+      "requiredScope": "accepted CKM overlap readout in the retained weak-exposure domain",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_exposure_record",
+        "ckm_overlap_matrix",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": null
+    },
+    "pmns_overlap_readout": {
+      "id": "pmns_overlap_readout_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "not_acquired",
+      "requiredScope": "accepted PMNS overlap readout in the retained weak-exposure domain",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_exposure_record",
+        "pmns_overlap_matrix",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": null
+    },
+    "weak_corridor_provenance": {
+      "id": "weak_corridor_provenance_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "not_acquired",
+      "requiredScope": "accepted weak-corridor provenance row in the retained weak-exposure domain",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_exposure_record",
+        "corridor_source_field_map",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": null
+    },
+    "effective_gauge_covariance_witness": {
+      "id": "effective_gauge_covariance_witness_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "not_acquired",
+      "requiredScope": "accepted effective gauge covariance witness with stable branch-record behavior",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "weak_projection",
+        "gauge_branch_record_stability",
+        "covariance_residual_row"
+      ],
+      "sourceTargetPath": null
+    },
+    "reaction_event_ledger": {
+      "id": "reaction_event_ledger_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_reaction_event_ledger",
+      "requiredScope": "accepted reaction event ledger for weak-channel energy, momentum, angular momentum, and emitted-product accounting",
+      "requiredLedgerComponents": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "energy_momentum_angular_momentum_accounting"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-reaction-event-ledger-source-acquisition-blocker.v1.json"
+    },
+    "noether_sea_response": {
+      "id": "noether_sea_response_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_weak_noether_sea_response",
+      "requiredScope": "accepted Noether sea update row in the retained weak event ledger",
+      "requiredLedgerComponents": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "sourceTargetPath": "scripts/equation-mapping/weak-noether-sea-response-source-acquisition-blocker.v1.json"
+    }
+  },
+  "acceptedSourceRowProofTargets": {
+    "va_chirality_gate": {
+      "id": "va_chirality_gate_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_row",
+        "same_domain_rows"
+      ],
+      "requiredSameRecordRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "va_chirality_row",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "charged_current_left_channel_selection",
+        "right_channel_charged_current_suppression",
+        "muon_decay_michel_parameter_binding"
+      ],
+      "requiredChiralitySelectionRows": [
+        "charged_current_left_channel_selection",
+        "right_channel_charged_current_suppression",
+        "va_chirality_row",
+        "muon_decay_michel_parameter_binding"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "retained_weak_exposure_only",
+        "standard_model_benchmark_table_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+    },
+    "reaction_event_ledger": {
+      "id": "reaction_event_ledger_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "energy_momentum_angular_momentum_accounting"
+      ],
+      "requiredSameRecordRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "reaction_event_ledger",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting"
+      ],
+      "requiredConservationRows": [
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting"
+      ],
+      "requiredEventBalanceRows": [
+        "incoming_weak_domain_rows",
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting",
+        "weak_event_noether_sea_update_route"
+      ],
+      "eventBalanceEquation": "L_{weak}^{in}+L_{sea}^{in}=L_{emitted}+L_{recoil}+L_{heat/radiation}+Delta L_{sea}^{weak}",
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "attempt_level_weak_rows",
+        "retained_weak_exposure_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+    },
+    "noether_sea_response": {
+      "id": "weak_noether_sea_response_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "requiredSameRecordRows": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_response",
+        "noether_sea_update_row",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "requiredUpdateRows": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "mustRemainDistinctFrom": [
+        "retained_window_noether_sea_response_provider"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "retained_window_noether_sea_response_provider",
+        "generic_Noether_sea_provider_as_event_update"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+    }
   },
   "tolerances": {
     "covariance": 1e-12,
@@ -35,16 +338,16 @@
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_quotient": {
-      "id": "Q_weak_attempt_0001",
-      "status": "attempt",
-      "sourcePath": "pending-retained-source",
+      "id": "Q_weak_muon_decay_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },
     "weak_exposure_record": {
-      "id": "E_weak_attempt_0001",
-      "status": "attempt",
-      "sourcePath": "pending-retained-source",
+      "id": "E_weak_muon_decay_0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json",
       "domainId": "D_weak_visible_attempt_0001",
       "branchRecordId": "A_weak_attempt_0001"
     },

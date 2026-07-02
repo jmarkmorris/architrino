@@ -334,7 +334,7 @@ TOPICS = [
             "content/markdown/aaa/quantum",
             "content/markdown/aaa/dynamics",
             "reference/priorities/quantum-closure",
-            "reference/priorities/photon-app",
+            "reference/priorities/app-photon",
         ],
         "claim_bucket": "effective summary",
         "priority": 8,
@@ -493,7 +493,7 @@ TOPICS = [
         "destinations": [
             "content/markdown/aaa/philosophy-history",
             "content/markdown/aaa/philosophy-history/perspectives.md",
-            "reference/priorities/future-physics-cosmology",
+            "reference/priorities/aaa-futures",
         ],
         "claim_bucket": "historical/provenance only",
         "priority": 4,
@@ -515,8 +515,8 @@ TOPICS = [
         "title": "AI, simulation, technology, and operational planning",
         "destinations": [
             "reference/priorities/source-mining",
-            "reference/priorities/future-physics-cosmology",
-            "reference/priorities/simulations",
+            "reference/priorities/aaa-futures",
+            "reference/priorities/app-simulation",
         ],
         "claim_bucket": "speculation",
         "priority": 3,
