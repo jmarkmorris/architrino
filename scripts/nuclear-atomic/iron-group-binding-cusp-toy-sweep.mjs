@@ -2070,6 +2070,8 @@ function sourceRowEvidence(candidate, family, row) {
       currentEvidenceStatus: acquisitionTarget.currentEvidenceStatus ?? null,
       sourceTargetPath: acquisitionTarget.sourceTargetPath ?? null,
       componentShapePass: acquisitionTarget.componentShapePass ?? null,
+      ...sourceAcquisitionRouteEvidenceFields(candidate, row, acquisitionTarget),
+      ...acceptedSourceRowProofTargetEvidenceFields(candidate, row),
     };
   }
 

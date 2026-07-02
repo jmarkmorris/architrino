@@ -129,6 +129,24 @@
         "accepted_no_open_color_far_field"
       ],
       "boundary": "The same-record branch-interface blocker records why accepted input ledgers are not accepted no-open-color or top branch-interface evidence."
+    },
+    "sameRecordBranchInterfaceConfinementFunctionalAuditSupport": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json",
+      "candidateRowId": "same_record_branch_interface_confinement_functional_audit_0001",
+      "acceptedRowsProvided": [
+        "same_record_branch_interface_confinement_functional_audit"
+      ],
+      "usableFor": [
+        "accepted support-domain join between branch-interface rows and confinement-functional support rows",
+        "future same-record no-open audit support"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field",
+        "accepted_finite_range_residual",
+        "accepted_color_singlet_closure"
+      ],
+      "boundary": "The support-domain audit removes only the same-record branch-interface/confinement-functional join subblocker; it does not prove the residual zero-limit, color-singlet closure, same-record no-open audit, or no-open-color far field."
     }
   },
   "requiredAcceptanceCondition": {
@@ -245,8 +263,7 @@
       "color_singlet_closure",
       "same_record_no_open_color_audit",
       "Delta_E_corr_NN_tail_limit",
-      "K_open_finite",
-      "same_record_branch_interface_confinement_functional_audit"
+      "K_open_finite"
     ],
     "feedsRowsAfterAcceptance": [
       "nucleon_branch_interface_ledgers",

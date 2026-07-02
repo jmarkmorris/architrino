@@ -1,0 +1,305 @@
+{
+  "schema": "aaa-equation-map-eq11-weak-gravity-constitutive-input/v1",
+  "claimLevel": "accepted theta_11_20 weak-gravity constitutive input consuming accepted density, pressure, and theta_cos handoff records; score-neutral",
+  "residualId": "R_11_weak_gravity_theta_11_20_provider_backed_0001",
+  "commonCarrierId": "theta-sea-density-compression-provider-0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "poisson": 1e-12,
+    "curvature": 1e-12,
+    "coupling": 1e-12,
+    "ppn": 1,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_11_20_weak_gravity_provider_backed_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "rows": {
+      "theta_11_20": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "theta_sea": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "theta_src": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "constitutive_response": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "source_branch_ledger": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "wake_ledger": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "mass_loading_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "metric_projection": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "effective_coupling_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "poisson_handoff_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "sea_stress_pressure_source_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "curvature_readout_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "stress_energy_readout_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "effective_coupling_continuity_row": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "ppn_metric_handoff": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "source_provenance": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq11-theta-11-20-weak-gravity-evidence.v1.json"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_11_20_id",
+        "values": [
+          "theta_11_20_weak_gravity_provider_backed_0001",
+          "theta_11_20_weak_gravity_provider_backed_0001",
+          "theta_11_20_weak_gravity_provider_backed_0001"
+        ]
+      },
+      {
+        "key": "theta_W_id",
+        "values": [
+          "theta_W_static_weak_provider_backed_0001",
+          "theta_W_static_weak_provider_backed_0001",
+          "theta_W_static_weak_provider_backed_0001"
+        ]
+      },
+      {
+        "key": "theta_cos_id",
+        "values": [
+          "theta_cos_FRW_handoff_0001",
+          "theta_cos_FRW_handoff_0001",
+          "theta_cos_FRW_handoff_0001"
+        ]
+      },
+      {
+        "key": "rho_NS",
+        "values": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "key": "G_eff",
+        "values": [
+          1,
+          1,
+          1
+        ]
+      },
+      {
+        "key": "M_sea_ab",
+        "values": [
+          "M_sea_ab_provider_backed_0001",
+          "M_sea_ab_provider_backed_0001",
+          "M_sea_ab_provider_backed_0001"
+        ]
+      },
+      {
+        "key": "p_DE_eff",
+        "values": [
+          -0.7,
+          -0.7,
+          -0.7
+        ]
+      },
+      {
+        "key": "Lambda_eff",
+        "values": [
+          17.59291886010284,
+          17.59291886010284,
+          17.59291886010284
+        ]
+      }
+    ],
+    "weakGravity": {
+      "constants": {
+        "c0": 1
+      },
+      "poisson": {
+        "laplacian_phi_eff": 0.25232741228718347,
+        "G_eff": 1,
+        "rho_src_eff": 0.02,
+        "sea_source_phi": 0.001
+      },
+      "curvature": {
+        "G_tensor": [
+          0.1,
+          0.2,
+          0.3,
+          0.4
+        ],
+        "lambda_eff": 17.59291886010284,
+        "metric_tensor": [
+          0,
+          0,
+          0,
+          0
+        ],
+        "G_eff": 1,
+        "T_eff": [
+          0.0039788735772973835,
+          0.007957747154594767,
+          0.01193662073189215,
+          0.015915494309189534
+        ]
+      },
+      "couplingContinuity": {
+        "projection": 1,
+        "rows": [
+          {
+            "id": "local",
+            "G_eff": 1,
+            "sigma": 0.01
+          },
+          {
+            "id": "cos",
+            "G_eff": 1,
+            "sigma": 0.01
+          },
+          {
+            "id": "growth",
+            "G_eff": 1,
+            "sigma": 0.01
+          },
+          {
+            "id": "CMBlens",
+            "G_eff": 1,
+            "sigma": 0.01
+          },
+          {
+            "id": "RAR",
+            "G_eff": 1,
+            "sigma": 0.01
+          }
+        ],
+        "provenanceResidual": 0
+      },
+      "ppnHandoff": {
+        "gamma_PPN": 1,
+        "beta_PPN": 1,
+        "alpha1": 0,
+        "alpha2": 0,
+        "alpha3": 0,
+        "bounds": {
+          "gamma_PPN_minus_1": 0.000023,
+          "beta_PPN_minus_1": 0.00008,
+          "alpha1": 0.00004,
+          "alpha2": 0.000000002,
+          "alpha3": 4e-20
+        }
+      },
+      "sourceProvenance": {
+        "residual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "poisson_only_scalar_half_test",
+        "expectedFailedCheck": "ppnHandoff",
+        "overrides": {
+          "ppnHandoff": {
+            "gamma_PPN": 0
+          }
+        }
+      },
+      {
+        "id": "split_effective_coupling",
+        "expectedFailedCheck": "couplingContinuity",
+        "overrides": {
+          "couplingContinuity": {
+            "rows": [
+              {
+                "id": "local",
+                "G_eff": 1,
+                "sigma": 0.01
+              },
+              {
+                "id": "cos",
+                "G_eff": 1.08,
+                "sigma": 0.01
+              }
+            ]
+          }
+        }
+      },
+      {
+        "id": "unledgered_source_loading",
+        "expectedFailedCheck": "sourceProvenance",
+        "overrides": {
+          "sourceProvenance": {
+            "residual": 0.000001
+          }
+        }
+      },
+      {
+        "id": "hidden_gravity_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0.000001
+          }
+        }
+      }
+    ]
+  }
+}

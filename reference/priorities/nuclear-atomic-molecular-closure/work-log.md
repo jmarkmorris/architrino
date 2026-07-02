@@ -6,6 +6,96 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 — Finite-range residual row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the accepted `Delta_E_corr_NN_tail_limit`, `bounded_residual_overlap`, and `large_r_zero_limit` rows.
+- Added [finite-range-residual-retained-evidence.v1.json](../../../scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json) as durable non-fixture evidence accepting only `finite_range_residual`.
+- Wired that row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json), [finite-range-residual-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json), [no-free-color-asymptotic-state-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json), and the Fe/Ni source-binding report path so finite-tail toy consumers now carry `finite_range_residual` as a local accepted marker while still blocking promotion.
+- Current blocker: `no_free_color_asymptotic_state` now waits on same-domain retained evidence over accepted `local_color_singlet_closure_support`, `asymptotic_field_audit`, and `finite_range_residual`; `finite_residual_corridor_overlap`, `accepted_delta_E_corr_NN`, `same_event_ledger`, `K_open_finite`, `same_record_no_open_color_audit`, and `no_open_color_far_field` remain unaccepted.
+- Verification: `node --test tests/confinement-functional-source-target-check.test.js tests/iron-group-binding-cusp-toy-sweep.test.js`, `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+- Next action: derive or acquire the same-domain `no_free_color_asymptotic_state` retained evidence without treating finite residual as color-singlet closure, same-record no-open audit, no-open-color, accepted $\Delta E_{\mathrm{corr}}^{NN}$, or Fe/Ni promotion evidence.
+
+### 2026-07-02 — Delta E corr NN tail-limit row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the accepted local nucleon-envelope support row.
+- Added [delta-E-corr-NN-tail-limit-retained-evidence.v1.json](../../../scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json) as durable non-fixture evidence accepting only `Delta_E_corr_NN_tail_limit`.
+- Wired that row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json), [delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json), and [finite-range-residual-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json) so the finite-tail route now consumes the accepted top tail-limit row without accepting finite residual, no-free-color, same-record no-open audit, no-open-color, or Fe/Ni promotion rows.
+- Current blocker: `finite_range_residual` now waits on same-domain retained evidence joining `Delta_E_corr_NN_tail_limit`, `bounded_residual_overlap`, and `large_r_zero_limit` with accepted $\sigma_{\mathrm{eff}}$, local nucleon-envelope support, branch-interface ledgers, same-record $E,\mathbf p,\mathbf J$ accounting, and same-record Noether sea response.
+- Next action: derive or acquire that `finite_range_residual` retained evidence before attempting `no_free_color_asymptotic_state`, `same_record_no_open_color_audit`, `K_open_finite`, or `no_open_color_far_field`.
+
+### 2026-07-02 — Local color-singlet nucleon-envelope support row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the finite-tail dependency cycle after the local `local_color_singlet_closure_support` row.
+- Added [local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json](../../../scripts/nuclear-atomic/local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json) as durable non-fixture support accepting only `local_color_singlet_nucleon_envelope_support`.
+- Wired that support row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json), [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs), [delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json), and [finite-range-residual-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json) so the tail-limit route consumes local support instead of requiring the downstream top `accepted_color_singlet_nucleon_envelope` first.
+- Current blocker: `Delta_E_corr_NN_tail_limit` now waits on `same_domain_Delta_E_corr_NN_tail_limit_retained_evidence`; `accepted_color_singlet_nucleon_envelope`, `finite_range_residual`, `no_free_color_asymptotic_state`, `same_record_no_open_color_audit`, and `no_open_color_far_field` remain unaccepted.
+- Next action: derive or acquire the same-domain `Delta_E_corr_NN_tail_limit` retained evidence over accepted $\sigma_{\mathrm{eff}}$, local nucleon-envelope support, branch-interface ledgers, same-record $E,\mathbf p,\mathbf J$ accounting, same-record Noether sea response, and accepted tail-calculus rows.
+
+### 2026-07-02 — Local color-singlet closure support row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the live checker state after the accepted `asymptotic_field_audit` support row.
+- Added [local-color-singlet-closure-support-retained-evidence.v1.json](../../../scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json) as durable non-fixture support accepting only `local_color_singlet_closure_support`.
+- Wired that support row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) and [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs), then updated the no-free-color and color-singlet-closure blocker packets so the local support row cannot be mistaken for top `color_singlet_closure` or `no_free_color_asymptotic_state`.
+- Current blocker: `no_free_color_asymptotic_state` now waits on `finite_range_residual`; top `color_singlet_closure`, accepted proton/neutron envelope rows, accepted color-singlet nucleon envelope, same-record branch interface, same-record no-open audit, and no-open-color far-field remain unaccepted.
+- Next action: derive or acquire the `finite_range_residual` route without treating the local support rows as accepted no-free-color, top color-singlet closure, or no-open-color evidence.
+
+### 2026-07-02 — Asymptotic field audit support row accepted
+
+- Continued the no-open / no-free dependency-cycle audit under the current priority-file split after re-reading the priority README, tracker, brainstorming file, and work log.
+- Added [asymptotic-field-audit-retained-evidence.v1.json](../../../scripts/nuclear-atomic/asymptotic-field-audit-retained-evidence.v1.json) as durable non-fixture support accepting only `asymptotic_field_audit`.
+- Wired that support row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) and [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs), then updated the no-free-color blocker so its active status is now missing `color_singlet_closure` and `finite_range_residual` rather than missing `asymptotic_field_audit`.
+- Current blocker: `no_free_color_asymptotic_state`, accepted proton/neutron envelope rows, accepted color-singlet nucleon envelope, same-record branch interface, finite residual, same-record no-open audit, and no-open-color far-field remain unaccepted.
+- Next action: derive or acquire a same-domain `color_singlet_closure` and `finite_range_residual` route without treating the local `asymptotic_field_audit` support row as no-free-color or no-open-color evidence.
+
+### 2026-07-02 — No-open dependency cycle audit
+
+- Re-read `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log before editing under the current priority-file partition.
+- Re-ran the owning checkers. [nucleon-branch-interface-source-target-check.mjs](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs) still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`, and [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs) still reports `sourceAcquisitionFirstMissingObject: missing_accepted_accepted_proton_color_singlet_envelope`.
+- Inspected the no-open audit, no-open-color, no-free-color, tail-limit, proton-envelope, and neutron-envelope blockers. No further accepted row is contract-safe from the currently accepted support rows alone: `K_open_finite` and `N_open_R_le_K_open_T_NN_R_squared` still require accepted `Delta_E_corr_NN_tail_limit`, `finite_range_residual`, `color_singlet_closure`, and `same_event_ledger`; the top proton/neutron envelope rows still require `no_free_color_asymptotic_state` and `same_record_branch_interface`; and `no_free_color_asymptotic_state` still requires the accepted envelope pair plus `finite_range_residual`.
+- Current blocker: the source-acquisition frontier is now a dependency-order problem, not a missing Fe/Ni toy coefficient or another projection-support row.
+- Next action: derive a retained object or contract revision that can join the accepted local color-singlet support rows, finite envelope boundary, accepted $\sigma_{\mathrm{eff}}$ extraction, accepted branch-interface ledgers, and same-record Noether sea response without assuming `no_free_color_asymptotic_state`, `finite_range_residual`, or `no_open_color_far_field` first.
+
+### 2026-07-02 — Same-record branch/confinement support audit accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the live checker state: branch acquisition still first-misses `no_open_color_far_field`, and confinement acquisition still first-misses `accepted_proton_color_singlet_envelope`.
+- Added [same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json](../../../scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json) as durable non-fixture retained support accepting only `same_record_branch_interface_confinement_functional_audit`.
+- Wired that support row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) and [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs), then updated the no-open audit and no-open-color blocker packets so this support-domain join is no longer listed as missing acceptance evidence.
+- Current blocker: `same_event_ledger`, `K_open_finite`, `N_open_R_le_K_open_T_NN_R_squared`, `same_record_no_open_color_audit`, and `no_open_color_far_field` remain unaccepted; the top `Delta_E_corr_NN_tail_limit` path still waits on `accepted_color_singlet_nucleon_envelope`.
+- Next action: derive `same_event_ledger` or `K_open_finite` only after `Delta_E_corr_NN_tail_limit`, `finite_range_residual`, and `color_singlet_closure` are accepted in the same retained record; otherwise continue attacking the accepted color-singlet envelope/no-free-color cycle without using no-open-color as a prerequisite.
+
+### 2026-07-02 — Same-record tail support join accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the live checker state, with branch acquisition still first-missing `no_open_color_far_field` and confinement acquisition still first-missing `accepted_proton_color_singlet_envelope`.
+- Added [same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json](../../../scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json) as durable non-fixture retained support accepting only `same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response`.
+- Wired that support row into [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) and [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs), then updated the `Delta_E_corr_NN_tail_limit` blocker so the same-record support join is no longer listed as a missing acceptance row.
+- Current blocker: `Delta_E_corr_NN_tail_limit` remains unaccepted because `accepted_color_singlet_nucleon_envelope` is still missing; `finite_range_residual`, `same_record_no_open_color_audit`, `no_open_color_far_field`, and branch-interface promotion rows remain downstream.
+- Next action: derive the accepted color-singlet nucleon envelope bundle or a non-circular no-free-color/envelope join before attempting `Delta_E_corr_NN_tail_limit`, `finite_range_residual`, or `no_open_color_far_field`.
+
+### 2026-07-02 — Partition resume source-row triage
+
+- Resumed the paused branch-interface / no-open-color source-acquisition lane under the current priority-file split after reading `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log.
+- Live checker state is unchanged: `nucleon-branch-interface-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`, and `confinement-functional-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_accepted_accepted_proton_color_singlet_envelope`.
+- The finite-tail route is not safely promotable yet. `Delta_E_corr_NN_tail_limit` still requires an accepted `accepted_color_singlet_nucleon_envelope` join; the accepted tail-calculus rows, finite-tail aliases, and open-color projection support rows remain support rows only.
+- The envelope/no-free-color route is also not safely promotable yet. `accepted_proton_color_singlet_envelope`, `accepted_neutron_color_singlet_envelope`, `no_free_color_asymptotic_state`, `same_record_branch_interface`, `finite_range_residual`, `same_event_ledger`, `K_open_finite`, `same_record_no_open_color_audit`, and `no_open_color_far_field` remain blocked behind the same retained event/domain join rather than independent Fe/Ni toy tuning.
+- Current blocker: no additional accepted row should be claimed from this resume without a retained object that binds the accepted color-singlet envelope route to the accepted $\sigma_{\mathrm{eff}}$, tail-calculus, branch-interface ledger, and Noether sea response rows in one domain.
+- Next action: acquire or derive that accepted color-singlet envelope / same-event join before attempting `Delta_E_corr_NN_tail_limit`, `finite_range_residual`, `same_record_no_open_color_audit`, or `no_open_color_far_field`.
+
+### 2026-07-02 — Open-color projection zero-limit support rows accepted
+
+- Continued the no-open-color source-acquisition route after verifying the live branch and confinement checkers still block at `missing_no_open_color_far_field` and `missing_accepted_accepted_proton_color_singlet_envelope`.
+- Added [open-color-asymptotic-projection-limits-retained-evidence.v1.json](../../../scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json) as durable non-fixture support accepting only `lim_R_to_infty_sup_X_E_color_pX_R_eq_0` and `lim_R_to_infty_sup_X_E_color_nX_R_eq_0` from the accepted local proton/neutron color-singlet closure rows, finite envelope-boundary support, and `same_sigma_eff_domain`.
+- Updated the no-free-color asymptotic-state blocker so the two open-color projection limit rows are no longer counted as missing support; `asymptotic_field_audit`, `no_free_color_asymptotic_state`, accepted proton/neutron envelope rows, `finite_range_residual`, `same_record_branch_interface`, and `no_open_color_far_field` remain unaccepted.
+- Current blocker: branch source acquisition still first-misses `no_open_color_far_field`; confinement source acquisition still first-misses `accepted_proton_color_singlet_envelope`.
+- Next action: derive a same-record route for `finite_range_residual` or the accepted proton/neutron envelope chain before attempting `asymptotic_field_audit`, `no_free_color_asymptotic_state`, `same_record_no_open_color_audit`, or `no_open_color_far_field`.
+
+### 2026-07-02 — Same sigma-eff domain support row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition route under the current priority-file partition after checking the tracker, brainstorming file, and work log.
+- Added [same-sigma-eff-domain-retained-evidence.v1.json](../../../scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json) as durable non-fixture support accepting only `same_sigma_eff_domain` from the accepted axis-exceptionality charge, accepted $\sigma_{\mathrm{eff}}$ extraction, finite envelope-boundary support, accepted same-record Noether sea response input, and source-path extraction row.
+- Updated the proton-envelope, neutron-envelope, and no-free-color audit blockers so `same_sigma_eff_domain` is no longer counted as missing support; the top envelope rows, `no_free_color_asymptotic_state`, `same_record_branch_interface`, `finite_range_residual`, `same_record_no_open_color_audit`, and `no_open_color_far_field` remain unaccepted.
+- Current blocker: `nucleon-branch-interface-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`, and `confinement-functional-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_accepted_accepted_proton_color_singlet_envelope`.
+- Next action: derive the accepted no-free-color asymptotic audit or finite-range residual path before attempting `accepted_proton_color_singlet_envelope`, `color_singlet_closure`, `same_record_no_open_color_audit`, or `no_open_color_far_field`.
+
 ### 2026-07-02 — Finite-tail support aliases accepted
 
 - Continued the branch-interface source-acquisition route after re-reading `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log under the current priority-file partition.

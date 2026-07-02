@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { theta1120WeakGravityEvidenceStatusForPath } from "./eq11-theta-11-20-weak-gravity-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -187,6 +188,8 @@ function evaluateEq11WeakGravity(input, inputPath) {
           status: normalizeStatus(rows[rowId]),
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
+          sourceReason: rowChecks[rowId].sourceReason ?? null,
+          theta1120Evidence: rowChecks[rowId].theta1120Evidence ?? null,
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
@@ -440,9 +443,32 @@ function evaluateAcceptedRow(row) {
   const sourcePath = row?.sourcePath ?? row?.source;
   const source = evaluateSourcePath(sourcePath);
   if (!source.accepted) {
-    return { accepted: false, reason: source.reason };
+    return { accepted: false, reason: source.reason, sourceReason: source.reason };
   }
-  return { accepted: true, reason: "accepted" };
+  const theta1120Evidence = theta1120WeakGravityEvidenceStatusForPath(sourcePath, {
+    repoRoot: REPO_ROOT,
+  });
+  if (!theta1120Evidence.accepted) {
+    return {
+      accepted: false,
+      reason: `theta_11_20_weak_gravity_${theta1120Evidence.reason}`,
+      sourceReason: theta1120Evidence.reason,
+      theta1120Evidence,
+    };
+  }
+  if (
+    theta1120Evidence.commonCarrierId &&
+    row?.carrierId &&
+    theta1120Evidence.commonCarrierId !== row.carrierId
+  ) {
+    return {
+      accepted: false,
+      reason: "theta_11_20_weak_gravity_row_carrier_mismatch",
+      sourceReason: "row_carrier_mismatch",
+      theta1120Evidence,
+    };
+  }
+  return { accepted: true, reason: "accepted", theta1120Evidence };
 }
 
 function evaluateSourcePath(sourcePath) {

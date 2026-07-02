@@ -134,11 +134,11 @@
       "accepted_neutron_branch_interface_ledger",
       "same_record_noether_sea_response",
       "neutron_color_singlet_closure",
-      "finite_envelope_boundary"
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain"
     ],
     "stillMissingBeforeAcceptance": [
       "no_free_color_asymptotic_state",
-      "same_sigma_eff_domain",
       "same_record_branch_interface"
     ],
     "derivedRowsIfAccepted": [
@@ -209,7 +209,6 @@
       "neutron_color_singlet_closure"
     ],
     "missingAcceptanceRows": [
-      "same_sigma_eff_domain",
       "same_record_branch_interface",
       "no_free_color_asymptotic_state"
     ],

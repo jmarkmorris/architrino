@@ -496,7 +496,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .no_free_color_asymptotic_state.currentEvidenceStatus,
-    "blocked_missing_asymptotic_field_audit",
+    "blocked_missing_no_free_color_asymptotic_state_evidence",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -596,17 +596,17 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .finite_range_residual.accepted,
-    false,
+    true,
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .finite_range_residual.currentEvidenceStatus,
-    "blocked_missing_delta_E_corr_tail_audit",
+    "accepted_non_fixture_source",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .finite_range_residual.sourceTargetPath,
-    "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -1048,14 +1048,19 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       "coefficient_alphaSea_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_alphaCoul_branch_interface_partial_source_marker_not_promotion",
       "coefficient_alphaAsym_weak_channel_partial_source_marker_not_promotion",
+      "coefficient_alphaPack_confinement_functional_partial_source_marker_not_promotion",
+      "coefficient_dSat_confinement_functional_partial_source_marker_not_promotion",
+      "coefficient_maxDegree_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_betaValleySlope_weak_channel_partial_source_marker_not_promotion",
       "coefficient_seaImbalancePenalty_weak_channel_partial_source_marker_not_promotion",
+      "coefficient_packSoftA_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_pnCorridorPairReward_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_pnPairMismatchCost_branch_interface_partial_source_marker_not_promotion",
       "coefficient_ppCorridorPairReward_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_ppPairMismatchCost_branch_interface_partial_source_marker_not_promotion",
       "coefficient_ppCoulombCost_branch_interface_partial_source_marker_not_promotion",
       "graphRule_beta_stable_band_center_weak_channel_partial_source_marker_not_promotion",
+      "graphRule_finite_tail_saturation_check_confinement_functional_partial_source_marker_not_promotion",
     ],
   );
   const alphaCoulPartialLock = partialLocks.find(
@@ -1697,11 +1702,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.deepEqual(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
       .requiredRowsByFamily.confinement_functional.missingRows,
-    [
-      "delta_E_corr_NN",
-      "finite_range_residual",
-      "no_open_color_far_field",
-    ],
+    ["delta_E_corr_NN", "no_open_color_far_field"],
   );
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check

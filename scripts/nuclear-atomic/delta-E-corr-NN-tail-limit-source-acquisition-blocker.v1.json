@@ -1,10 +1,11 @@
 {
   "schema": "aaa-nuclear-atomic-delta-E-corr-NN-tail-limit-source-acquisition-blocker/v1",
-  "claimLevel": "fail-closed source-acquisition blocker packet for Delta_E_corr_NN_tail_limit; records the exact same-domain tail-limit derivation target; not accepted Delta E_corr_NN evidence, not accepted finite_range_residual evidence, and not nuclear-binding promotion evidence",
+  "claimLevel": "resolved fail-closed source-acquisition blocker packet for Delta_E_corr_NN_tail_limit; records the exact same-domain tail-limit derivation target and the retained evidence that accepts the top tail-limit row only; not accepted Delta E_corr_NN evidence, not accepted finite_range_residual evidence, and not nuclear-binding promotion evidence",
   "sourceRole": "source_acquisition_blocker_packet",
   "sourceKind": "Delta_E_corr_NN_tail_limit",
-  "currentStatus": "blocked_missing_same_record_sigma_eff_color_singlet_join",
+  "currentStatus": "resolved_by_same_domain_tail_limit_retained_evidence",
   "sourceSupportSought": [
+    "local_color_singlet_nucleon_envelope_support",
     "lim_R_to_infty_T_NN_R_eq_0",
     "O_NN_finite",
     "exists_R0_C_lambda_exp_decay_tail"
@@ -61,6 +62,24 @@
         "accepted_color_singlet_nucleon_envelope"
       ],
       "boundary": "The retained sigma_eff extraction evidence accepts the sigma_eff row and source-acquisition target, but it does not join the color-singlet envelope, branch-interface rows, and tail support into the top residual tail-limit row."
+    },
+    "localColorSingletNucleonEnvelopeSupportEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json",
+      "candidateRowId": "local_color_singlet_nucleon_envelope_support_0001",
+      "acceptedRowsProvided": [
+        "local_color_singlet_nucleon_envelope_support"
+      ],
+      "usableFor": [
+        "accepted local nucleon-envelope support row",
+        "same local sigma_eff, branch-interface, conservation, and Noether sea support domain for the tail-limit route"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_finite_range_residual",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained local nucleon-envelope support accepts only the local support row consumed by this tail-limit route. It does not accept the top color-singlet nucleon envelope, Delta_E_corr_NN_tail_limit, finite_range_residual, or no-open-color rows."
     },
     "branchInterfaceRetainedLedgers": {
       "candidatePaths": [
@@ -135,17 +154,53 @@
         "accepted_finite_range_residual",
         "accepted_no_open_color_far_field"
       ],
-      "boundary": "The retained tail-calculus support accepts only the three local tail-calculus support rows; it does not bind accepted sigma_eff extraction, accepted color-singlet nucleon envelope, branch-interface rows, and same-record Noether sea response into the top Delta_E_corr_NN_tail_limit row."
+      "boundary": "The retained tail-calculus support accepts only the three local tail-calculus support rows; it does not bind accepted sigma_eff extraction, local nucleon-envelope support, branch-interface rows, and same-record Noether sea response into the top Delta_E_corr_NN_tail_limit row."
+    },
+    "sameRecordSigmaEffColorSingletBranchInterfaceNoetherSeaResponse": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json",
+      "candidateRowId": "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response_0001",
+      "acceptedRowsProvided": [
+        "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
+      ],
+      "usableFor": [
+        "accepted same-record support join for sigma_eff, local color-singlet closure support, branch-interface ledgers, Noether sea response, and tail-calculus rows",
+        "same retained support-domain input to the Delta_E_corr_NN_tail_limit route"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_finite_range_residual",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained support join accepts only the same-record join row already named by this blocker. It does not accept the top color-singlet envelope, Delta_E_corr_NN_tail_limit, finite_range_residual, same-record no-open audit, or no-open-color rows."
+    },
+    "deltaECorrNNTailLimitEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_tail_limit_0001",
+      "acceptedRowsProvided": [
+        "Delta_E_corr_NN_tail_limit"
+      ],
+      "usableFor": [
+        "accepted same-domain Delta_E_corr_NN_tail_limit row",
+        "accepted tail envelope limit over the local nucleon-envelope support domain",
+        "accepted upstream input for the finite_range_residual route"
+      ],
+      "notUsableFor": [
+        "accepted_finite_range_residual",
+        "accepted_delta_E_corr_NN",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained evidence accepts only Delta_E_corr_NN_tail_limit. It does not accept finite_range_residual, accepted_delta_E_corr_NN, same_record_no_open_color_audit, no_open_color_far_field, or no-free-color rows."
     }
   },
   "requiredAcceptanceCondition": {
     "rowId": "Delta_E_corr_NN_tail_limit_source_target_0001",
     "tailEnvelope": {
-      "requiredBehavior": "Define the same-domain tail envelope T_NN(R) from Delta E_corr_NN over the accepted sigma_eff, color-singlet, branch-interface, and Noether sea response record.",
+      "requiredBehavior": "Define the same-domain tail envelope T_NN(R) from Delta E_corr_NN over the accepted sigma_eff, local nucleon-envelope support, branch-interface, and Noether sea response record.",
       "mustBindTo": [
         "Delta_E_corr_NN_tail_limit",
         "accepted_sigma_eff_extraction",
-        "accepted_color_singlet_nucleon_envelope",
+        "local_color_singlet_nucleon_envelope_support",
         "accepted_proton_branch_interface_ledger",
         "accepted_neutron_branch_interface_ledger",
         "same_record_energy_momentum_angular_momentum_ledger",
@@ -186,7 +241,7 @@
       "eta",
       "eta_lt_lambda_witness",
       "sigmaEffExtractionRef",
-      "colorSingletNucleonEnvelopeRef",
+      "localColorSingletNucleonEnvelopeSupportRef",
       "protonBranchInterfaceLedgerRef",
       "neutronBranchInterfaceLedgerRef",
       "sameRecordEnergyMomentumAngularMomentumLedgerRef",
@@ -197,7 +252,7 @@
       "record(Delta_E_corr_NN_ref)=record(tailEnvelopeRef)",
       "record(Delta_E_corr_NN_ref)=record(corridorWeightRef)",
       "record(Delta_E_corr_NN_ref)=record(sigmaEffExtractionRef)",
-      "record(Delta_E_corr_NN_ref)=record(colorSingletNucleonEnvelopeRef)",
+      "record(Delta_E_corr_NN_ref)=record(localColorSingletNucleonEnvelopeSupportRef)",
       "record(Delta_E_corr_NN_ref)=record(protonBranchInterfaceLedgerRef)",
       "record(Delta_E_corr_NN_ref)=record(neutronBranchInterfaceLedgerRef)",
       "record(Delta_E_corr_NN_ref)=record(sameRecordEnergyMomentumAngularMomentumLedgerRef)",
@@ -211,10 +266,12 @@
     ],
     "acceptedInputsAlreadyAvailable": [
       "accepted_sigma_eff_extraction",
+      "local_color_singlet_nucleon_envelope_support",
       "accepted_proton_branch_interface_ledger",
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
       "corridor_weight_growth_eta_lt_lambda",
       "uniform_large_r_bound_C_lambda_R0",
       "coefficient_exclusion_audit",
@@ -222,18 +279,15 @@
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail"
     ],
-    "stillMissingBeforeAcceptance": [
-      "accepted_color_singlet_nucleon_envelope"
-    ],
+    "stillMissingBeforeAcceptance": [],
     "acceptedRowsAlreadyAvailable": [
+      "Delta_E_corr_NN_tail_limit",
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail"
     ],
     "derivedRowsIfAccepted": [
-      "lim_R_to_infty_T_NN_R_eq_0",
-      "O_NN_finite",
-      "exists_R0_C_lambda_exp_decay_tail"
+      "Delta_E_corr_NN_tail_limit"
     ],
     "feedsRowsAfterAcceptance": [
       "Delta_E_corr_NN_tail_limit",
@@ -287,9 +341,10 @@
   "candidateTailLimitLemma": {
     "claimLevel": "priority-only conditional lemma; not accepted source evidence and not promotion evidence",
     "lemmaId": "delta_E_corr_NN_uniform_exponential_tail_implies_tail_limit_0001",
-    "statement": "If the same retained sigma_eff, color-singlet envelope, branch-interface, and Noether sea response record supplies a uniform bound |Delta E_corr_NN(r)| <= C exp(-lambda(r-R0)) for r >= R0 with C>0 and lambda>0, and the corridor weight satisfies w_corr(r) <= C_w exp(eta(r-R0)) with 0 <= eta < lambda, then Delta_E_corr_NN_tail_limit follows: lim_R_to_infty T_NN(R)=0 and O_NN is finite.",
+    "statement": "If the same retained sigma_eff, local nucleon-envelope support, branch-interface, and Noether sea response record supplies a uniform bound |Delta E_corr_NN(r)| <= C exp(-lambda(r-R0)) for r >= R0 with C>0 and lambda>0, and the corridor weight satisfies w_corr(r) <= C_w exp(eta(r-R0)) with 0 <= eta < lambda, then Delta_E_corr_NN_tail_limit follows: lim_R_to_infty T_NN(R)=0 and O_NN is finite.",
     "assumptions": [
       "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+      "local_color_singlet_nucleon_envelope_support",
       "uniform_large_r_bound_C_lambda_R0",
       "no_A_Z_isotope_or_element_indexed_tail_coefficient",
       "corridor_weight_growth_eta_lt_lambda"
@@ -313,14 +368,15 @@
       }
     ],
     "derivedRowsIfAccepted": [
+      "Delta_E_corr_NN_tail_limit"
+    ],
+    "acceptedRowsAlreadyAvailable": [
+      "Delta_E_corr_NN_tail_limit",
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail"
     ],
-    "missingAcceptanceRows": [
-      "accepted_color_singlet_nucleon_envelope",
-      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
-    ],
+    "missingAcceptanceRows": [],
     "failureModes": [
       "lambda <= 0",
       "corridor weight grows with eta >= lambda",
@@ -330,6 +386,18 @@
   },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
+    "acceptedRowsAvailableFromEvidence": [
+      "Delta_E_corr_NN_tail_limit",
+      "local_color_singlet_nucleon_envelope_support",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "accepted_sigma_eff_extraction",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response"
+    ],
     "notAcceptedByThisPacket": [
       "Delta_E_corr_NN_tail_limit",
       "lim_R_to_infty_T_NN_R_eq_0",
@@ -351,13 +419,12 @@
     "scoreDecision": "no_score_increase"
   },
   "nextProofStep": {
-    "target": "Derive Delta_E_corr_NN_tail_limit by proving the same-domain tail envelope T_NN(R) tends to zero and has finite overlap without element-specific tuning.",
+    "target": "Derive finite_range_residual by joining the accepted Delta_E_corr_NN_tail_limit row with bounded_residual_overlap and large_r_zero_limit in the same retained support domain without element-specific tuning.",
     "minimalInputNeeded": [
-      "accepted sigma_eff extraction row",
-      "accepted proton and neutron color-singlet envelope bundle",
-      "accepted proton and neutron branch-interface ledgers plus same-record conservation ledger",
-      "accepted same-record Noether sea response row",
-      "same-record tail-limit certificate that joins the accepted zero-limit, finite-overlap, and exponential-tail support rows to the accepted sigma_eff and color-singlet rows"
+      "same-domain finite_range_residual retained evidence",
+      "accepted Delta_E_corr_NN_tail_limit row",
+      "accepted bounded_residual_overlap and large_r_zero_limit support rows",
+      "accepted sigma_eff extraction, local color-singlet nucleon-envelope support, branch-interface ledgers, same-record conservation ledger, and same-record Noether sea response rows"
     ],
     "failureModes": [
       "the proof uses a target-only Delta E_corr_NN equation as accepted evidence",

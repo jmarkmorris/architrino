@@ -76,6 +76,44 @@ const SIGMA_EFF_EXTRACTION_EVIDENCE_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const SAME_SIGMA_EFF_DOMAIN_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
+const SAME_RECORD_SIGMA_EFF_COLOR_SINGLET_BRANCH_INTERFACE_NOETHER_SEA_RESPONSE_EVIDENCE_PATH =
+  fileURLToPath(
+    new URL(
+      "../scripts/nuclear-atomic/same-record-sigma-eff-color-singlet-branch-interface-noether-sea-response-retained-evidence.v1.json",
+      import.meta.url,
+    ),
+  );
+const OPEN_COLOR_ASYMPTOTIC_PROJECTION_LIMITS_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/open-color-asymptotic-projection-limits-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
+const ASYMPTOTIC_FIELD_AUDIT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/asymptotic-field-audit-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
+const LOCAL_COLOR_SINGLET_CLOSURE_SUPPORT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/local-color-singlet-closure-support-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
+const LOCAL_COLOR_SINGLET_NUCLEON_ENVELOPE_SUPPORT_EVIDENCE_PATH =
+  fileURLToPath(
+    new URL(
+      "../scripts/nuclear-atomic/local-color-singlet-nucleon-envelope-support-retained-evidence.v1.json",
+      import.meta.url,
+    ),
+  );
 const ACCEPTED_COLOR_SINGLET_NUCLEON_ENVELOPE_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/accepted-color-singlet-nucleon-envelope-source-acquisition-blocker.v1.json",
@@ -94,6 +132,12 @@ const FINITE_RANGE_RESIDUAL_BLOCKER_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const FINITE_RANGE_RESIDUAL_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const ACCEPTED_DELTA_E_CORR_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/accepted-delta-E-corr-NN-source-acquisition-blocker.v1.json",
@@ -103,6 +147,12 @@ const ACCEPTED_DELTA_E_CORR_BLOCKER_PATH = fileURLToPath(
 const DELTA_E_CORR_TAIL_LIMIT_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+    import.meta.url,
+  ),
+);
+const DELTA_E_CORR_TAIL_LIMIT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json",
     import.meta.url,
   ),
 );
@@ -148,6 +198,13 @@ const OPEN_COLOR_PROJECTION_SURFACE_SUPPORT_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const SAME_RECORD_BRANCH_INTERFACE_CONFINEMENT_FUNCTIONAL_AUDIT_SUPPORT_PATH =
+  fileURLToPath(
+    new URL(
+      "../scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json",
+      import.meta.url,
+    ),
+  );
 
 function readTarget() {
   return JSON.parse(fs.readFileSync(TARGET_PATH, "utf8"));
@@ -468,6 +525,329 @@ test("current confinement target passes structure but blocks accepted source row
     ],
   );
   assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_sigma_eff_domain.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_sigma_eff_domain
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.same_sigma_eff_domain
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/same-sigma-eff-domain-retained-evidence.v1.json",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.same_sigma_eff_domain
+      .requiredLedgerComponents,
+    [
+      "axis_exceptionality_charge",
+      "accepted_sigma_eff_extraction",
+      "finite_envelope_boundary",
+      "same_record_noether_sea_response",
+      "source_path_tying_extraction_to_accepted_upstream_rows",
+    ],
+  );
+  const sameSigmaEffDomainEvidence = JSON.parse(
+    fs.readFileSync(SAME_SIGMA_EFF_DOMAIN_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    sameSigmaEffDomainEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["same_sigma_eff_domain"],
+  );
+  assert.equal(
+    sameSigmaEffDomainEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_proton_color_singlet_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    sameSigmaEffDomainEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    sameSigmaEffDomainEvidence.sameSigmaEffDomain.coefficientExclusionAudit
+      .usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response
+      .accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response
+      .requiredLedgerComponents,
+    [
+      "accepted_sigma_eff_extraction",
+      "proton_color_singlet_closure",
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const sameRecordTailSupportJoinEvidence = JSON.parse(
+    fs.readFileSync(
+      SAME_RECORD_SIGMA_EFF_COLOR_SINGLET_BRANCH_INTERFACE_NOETHER_SEA_RESPONSE_EVIDENCE_PATH,
+      "utf8",
+    ),
+  );
+  assert.deepEqual(
+    sameRecordTailSupportJoinEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"],
+  );
+  assert.equal(
+    sameRecordTailSupportJoinEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_color_singlet_nucleon_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordTailSupportJoinEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordTailSupportJoinEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordTailSupportJoinEvidence.sameRecordSupportJoin
+      .coefficientExclusionAudit.usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .lim_R_to_infty_sup_X_E_color_pX_R_eq_0.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .lim_R_to_infty_sup_X_E_color_pX_R_eq_0.requiredLedgerComponents,
+    [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "open_color_exterior_window",
+      "zero_limit_derivation",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .lim_R_to_infty_sup_X_E_color_nX_R_eq_0.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .lim_R_to_infty_sup_X_E_color_nX_R_eq_0.requiredLedgerComponents,
+    [
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "open_color_exterior_window",
+      "zero_limit_derivation",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const openColorProjectionLimitsEvidence = JSON.parse(
+    fs.readFileSync(
+      OPEN_COLOR_ASYMPTOTIC_PROJECTION_LIMITS_EVIDENCE_PATH,
+      "utf8",
+    ),
+  );
+  assert.deepEqual(
+    openColorProjectionLimitsEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    [
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+    ],
+  );
+  assert.equal(
+    openColorProjectionLimitsEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "asymptotic_field_audit",
+    ),
+    true,
+  );
+  assert.equal(
+    openColorProjectionLimitsEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    openColorProjectionLimitsEvidence.protonOpenColorProjectionZeroLimit
+      .limitValue,
+    0,
+  );
+  assert.equal(
+    openColorProjectionLimitsEvidence.neutronOpenColorProjectionZeroLimit
+      .limitValue,
+    0,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.asymptotic_field_audit.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.asymptotic_field_audit
+      .requiredLedgerComponents,
+    [
+      "proton_color_singlet_closure",
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "same_record_noether_sea_response",
+      "same_record_branch_interface_confinement_functional_audit",
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const asymptoticFieldAuditEvidence = JSON.parse(
+    fs.readFileSync(ASYMPTOTIC_FIELD_AUDIT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    asymptoticFieldAuditEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["asymptotic_field_audit"],
+  );
+  assert.equal(
+    asymptoticFieldAuditEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_free_color_asymptotic_state",
+    ),
+    true,
+  );
+  assert.equal(
+    asymptoticFieldAuditEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    asymptoticFieldAuditEvidence.asymptoticFieldAudit.protonExteriorLimitValue,
+    0,
+  );
+  assert.equal(
+    asymptoticFieldAuditEvidence.asymptoticFieldAudit.neutronExteriorLimitValue,
+    0,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .local_color_singlet_closure_support.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .local_color_singlet_closure_support.requiredLedgerComponents,
+    [
+      "proton_color_singlet_closure",
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "same_record_noether_sea_response",
+      "asymptotic_field_audit",
+      "same_record_branch_interface_confinement_functional_audit",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const localColorSingletClosureSupportEvidence = JSON.parse(
+    fs.readFileSync(LOCAL_COLOR_SINGLET_CLOSURE_SUPPORT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    localColorSingletClosureSupportEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["local_color_singlet_closure_support"],
+  );
+  assert.equal(
+    localColorSingletClosureSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "color_singlet_closure",
+    ),
+    true,
+  );
+  assert.equal(
+    localColorSingletClosureSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_free_color_asymptotic_state",
+    ),
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .local_color_singlet_nucleon_envelope_support.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .local_color_singlet_nucleon_envelope_support.requiredLedgerComponents,
+    [
+      "local_color_singlet_closure_support",
+      "proton_color_singlet_closure",
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "same_sigma_eff_domain",
+      "accepted_sigma_eff_extraction",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response",
+      "same_record_branch_interface_confinement_functional_audit",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const localColorSingletNucleonEnvelopeSupportEvidence = JSON.parse(
+    fs.readFileSync(
+      LOCAL_COLOR_SINGLET_NUCLEON_ENVELOPE_SUPPORT_EVIDENCE_PATH,
+      "utf8",
+    ),
+  );
+  assert.deepEqual(
+    localColorSingletNucleonEnvelopeSupportEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["local_color_singlet_nucleon_envelope_support"],
+  );
+  assert.equal(
+    localColorSingletNucleonEnvelopeSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_color_singlet_nucleon_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    localColorSingletNucleonEnvelopeSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
+    true,
+  );
+  assert.equal(
+    localColorSingletNucleonEnvelopeSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "finite_range_residual",
+    ),
+    true,
+  );
+  assert.equal(
+    localColorSingletNucleonEnvelopeSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
       .accepted,
     false,
@@ -585,6 +965,7 @@ test("current confinement target passes structure but blocks accepted source row
       "same_record_noether_sea_response",
       "proton_color_singlet_closure",
       "finite_envelope_boundary",
+      "same_sigma_eff_domain",
     ],
   );
   assert.equal(
@@ -630,6 +1011,11 @@ test("current confinement target passes structure but blocks accepted source row
     protonBlocker.candidateProtonColorSingletEnvelopeLemma
       .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
     true,
+  );
+  assert.equal(
+    protonBlocker.candidateProtonColorSingletEnvelopeLemma
+      .missingAcceptanceRows.includes("same_sigma_eff_domain"),
+    false,
   );
   assert.equal(
     protonBlocker.candidateProtonColorSingletEnvelopeLemma
@@ -734,6 +1120,7 @@ test("current confinement target passes structure but blocks accepted source row
       "same_record_noether_sea_response",
       "neutron_color_singlet_closure",
       "finite_envelope_boundary",
+      "same_sigma_eff_domain",
     ],
   );
   assert.equal(
@@ -770,6 +1157,11 @@ test("current confinement target passes structure but blocks accepted source row
       .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
     true,
   );
+  assert.equal(
+    neutronBlocker.candidateNeutronColorSingletEnvelopeLemma
+      .missingAcceptanceRows.includes("same_sigma_eff_domain"),
+    false,
+  );
   assert.equal(neutronBlocker.localEvidenceBoundary.scoreDecision, "no_score_increase");
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
@@ -779,7 +1171,16 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
       .currentEvidenceStatus,
-    "blocked_missing_asymptotic_field_audit",
+    "blocked_missing_no_free_color_asymptotic_state_evidence",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
+      .requiredLedgerComponents,
+    [
+      "local_color_singlet_closure_support",
+      "asymptotic_field_audit",
+      "finite_range_residual",
+    ],
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
@@ -792,7 +1193,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(noFreeColorBlocker.sourceKind, "no_free_color_asymptotic_state");
   assert.equal(
     noFreeColorBlocker.currentStatus,
-    "blocked_missing_asymptotic_field_audit",
+    "blocked_missing_no_free_color_asymptotic_state_evidence",
   );
   assert.deepEqual(
     noFreeColorBlocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket,
@@ -828,6 +1229,11 @@ test("current confinement target passes structure but blocks accepted source row
     noFreeColorBlocker.asymptoticFieldAuditRequestPacket.derivedRowsIfAccepted,
     ["asymptotic_field_audit"],
   );
+  assert.deepEqual(
+    noFreeColorBlocker.asymptoticFieldAuditRequestPacket
+      .acceptedRowsAlreadyAvailable,
+    ["asymptotic_field_audit"],
+  );
   assert.equal(
     noFreeColorBlocker.asymptoticFieldAuditRequestPacket.notAcceptedByThisPacket.includes(
       "no_free_color_asymptotic_state",
@@ -847,7 +1253,57 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     noFreeColorBlocker.candidateNoFreeColorAsymptoticAuditLemma
       .missingAcceptanceRows.includes("finite_range_residual"),
-    true,
+    false,
+  );
+  assert.equal(
+    noFreeColorBlocker.candidateNoFreeColorAsymptoticAuditLemma
+      .missingAcceptanceRows.includes("same_sigma_eff_domain"),
+    false,
+  );
+  assert.equal(
+    noFreeColorBlocker.candidateNoFreeColorAsymptoticAuditLemma
+      .missingAcceptanceRows.includes(
+        "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      ),
+    false,
+  );
+  assert.equal(
+    noFreeColorBlocker.candidateNoFreeColorAsymptoticAuditLemma
+      .missingAcceptanceRows.includes(
+        "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+      ),
+    false,
+  );
+  assert.deepEqual(
+    noFreeColorBlocker.nearestCandidateInputs.openColorProjectionLimitSupport
+      .acceptedRowsProvided,
+    [
+      "lim_R_to_infty_sup_X_E_color_pX_R_eq_0",
+      "lim_R_to_infty_sup_X_E_color_nX_R_eq_0",
+    ],
+  );
+  assert.deepEqual(
+    noFreeColorBlocker.nearestCandidateInputs.asymptoticFieldAuditEvidence
+      .acceptedRowsProvided,
+    ["asymptotic_field_audit"],
+  );
+  assert.deepEqual(
+    noFreeColorBlocker.nearestCandidateInputs
+      .localColorSingletClosureSupportEvidence.acceptedRowsProvided,
+    ["local_color_singlet_closure_support"],
+  );
+  assert.deepEqual(
+    noFreeColorBlocker.nearestCandidateInputs.finiteRangeResidualEvidence
+      .acceptedRowsProvided,
+    ["finite_range_residual"],
+  );
+  assert.deepEqual(
+    noFreeColorBlocker.localEvidenceBoundary.acceptedRowsAvailableFromEvidence,
+    [
+      "local_color_singlet_closure_support",
+      "asymptotic_field_audit",
+      "finite_range_residual",
+    ],
   );
   assert.equal(
     noFreeColorBlocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(
@@ -1237,20 +1693,27 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.Delta_E_corr_NN_tail_limit
       .accepted,
-    false,
+    true,
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.Delta_E_corr_NN_tail_limit
       .currentEvidenceStatus,
-    "blocked_missing_same_record_sigma_eff_color_singlet_join",
+    "accepted_non_fixture_source",
   );
   assert.deepEqual(
     report.sourceAcquisitionCheck.targetChecks.Delta_E_corr_NN_tail_limit
       .requiredLedgerComponents,
     [
+      "local_color_singlet_nucleon_envelope_support",
+      "accepted_sigma_eff_extraction",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "same_record_noether_sea_response",
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail",
+      "coefficient_exclusion_audit",
     ],
   );
   assert.equal(
@@ -1261,7 +1724,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.Delta_E_corr_NN_tail_limit
       .sourceTargetPath,
-    "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.corridor_weight_growth_eta_lt_lambda
@@ -1431,6 +1894,41 @@ test("current confinement target passes structure but blocks accepted source row
     ),
     true,
   );
+  const deltaTailLimitEvidence = JSON.parse(
+    fs.readFileSync(DELTA_E_CORR_TAIL_LIMIT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.equal(deltaTailLimitEvidence.sourceKind, "Delta_E_corr_NN_tail_limit");
+  assert.deepEqual(
+    deltaTailLimitEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["Delta_E_corr_NN_tail_limit"],
+  );
+  assert.equal(
+    deltaTailLimitEvidence.deltaECorrNNTailLimit.tailLimitDerivation
+      .lim_R_to_infty_T_NN_R_eq_0,
+    true,
+  );
+  assert.equal(
+    deltaTailLimitEvidence.deltaECorrNNTailLimit.tailLimitDerivation
+      .O_NN_upper_bound,
+    1,
+  );
+  assert.equal(
+    deltaTailLimitEvidence.deltaECorrNNTailLimit.coefficientExclusionAudit
+      .usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    deltaTailLimitEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "finite_range_residual",
+    ),
+    true,
+  );
+  assert.equal(
+    deltaTailLimitEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.bounded_residual_overlap.accepted,
     true,
@@ -1495,7 +1993,12 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(deltaECorrTailLimitBlocker.sourceKind, "Delta_E_corr_NN_tail_limit");
   assert.equal(
     deltaECorrTailLimitBlocker.currentStatus,
-    "blocked_missing_same_record_sigma_eff_color_singlet_join",
+    "resolved_by_same_domain_tail_limit_retained_evidence",
+  );
+  assert.deepEqual(
+    deltaECorrTailLimitBlocker.nearestCandidateInputs
+      .localColorSingletNucleonEnvelopeSupportEvidence.acceptedRowsProvided,
+    ["local_color_singlet_nucleon_envelope_support"],
   );
   assert.deepEqual(
     deltaECorrTailLimitBlocker.nearestCandidateInputs.tailCalculusSupport
@@ -1561,10 +2064,12 @@ test("current confinement target passes structure but blocks accepted source row
       .acceptedInputsAlreadyAvailable,
     [
       "accepted_sigma_eff_extraction",
+      "local_color_singlet_nucleon_envelope_support",
       "accepted_proton_branch_interface_ledger",
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
       "corridor_weight_growth_eta_lt_lambda",
       "uniform_large_r_bound_C_lambda_R0",
       "coefficient_exclusion_audit",
@@ -1592,6 +2097,20 @@ test("current confinement target passes structure but blocks accepted source row
   );
   assert.equal(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes(
+        "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+      ),
+    false,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes(
+        "local_color_singlet_nucleon_envelope_support",
+      ),
+    false,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
       .stillMissingBeforeAcceptance.includes("coefficient_exclusion_audit"),
     false,
   );
@@ -1599,6 +2118,7 @@ test("current confinement target passes structure but blocks accepted source row
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
       .acceptedRowsAlreadyAvailable,
     [
+      "Delta_E_corr_NN_tail_limit",
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail",
@@ -1607,11 +2127,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.deepEqual(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
       .derivedRowsIfAccepted,
-    [
-      "lim_R_to_infty_T_NN_R_eq_0",
-      "O_NN_finite",
-      "exists_R0_C_lambda_exp_decay_tail",
-    ],
+    ["Delta_E_corr_NN_tail_limit"],
   );
   assert.equal(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
@@ -1620,11 +2136,7 @@ test("current confinement target passes structure but blocks accepted source row
   );
   assert.deepEqual(
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.derivedRowsIfAccepted,
-    [
-      "lim_R_to_infty_T_NN_R_eq_0",
-      "O_NN_finite",
-      "exists_R0_C_lambda_exp_decay_tail",
-    ],
+    ["Delta_E_corr_NN_tail_limit"],
   );
   assert.equal(
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.proofSteps.some(
@@ -1660,6 +2172,33 @@ test("current confinement target passes structure but blocks accepted source row
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(
       "accepted_color_singlet_nucleon_envelope",
     ),
+    false,
+  );
+  assert.deepEqual(
+    deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows,
+    [],
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+    ),
+    false,
+  );
+  assert.deepEqual(
+    deltaECorrTailLimitBlocker.nearestCandidateInputs
+      .sameRecordSigmaEffColorSingletBranchInterfaceNoetherSeaResponse
+      .acceptedRowsProvided,
+    ["same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"],
+  );
+  assert.deepEqual(
+    deltaECorrTailLimitBlocker.nearestCandidateInputs.deltaECorrNNTailLimitEvidence
+      .acceptedRowsProvided,
+    ["Delta_E_corr_NN_tail_limit"],
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.localEvidenceBoundary.acceptedRowsAvailableFromEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
     true,
   );
   assert.equal(
@@ -1674,17 +2213,17 @@ test("current confinement target passes structure but blocks accepted source row
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.finite_range_residual.accepted,
-    false,
+    true,
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.finite_range_residual
       .currentEvidenceStatus,
-    "blocked_missing_delta_E_corr_tail_audit",
+    "accepted_non_fixture_source",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.finite_range_residual
       .sourceTargetPath,
-    "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/finite-range-residual-retained-evidence.v1.json",
   );
   const finiteRangeBlockerEntry = report.sourceAcquisitionBlockerMap.blockers.find(
     (blockerEntry) => blockerEntry.sourceRowId === "finite_range_residual",
@@ -1694,7 +2233,7 @@ test("current confinement target passes structure but blocks accepted source row
     [
       "Delta_E_corr_NN_tail_limit",
       "accepted_sigma_eff_extraction",
-      "accepted_color_singlet_nucleon_envelope",
+      "local_color_singlet_nucleon_envelope_support",
       "accepted_proton_branch_interface_ledger",
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
@@ -1726,12 +2265,48 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(finiteRangeResidualBlocker.sourceKind, "finite_range_residual");
   assert.equal(
     finiteRangeResidualBlocker.currentStatus,
-    "blocked_missing_delta_E_corr_tail_audit",
+    "resolved_by_same_domain_finite_range_residual_retained_evidence",
   );
   assert.equal(
-    finiteRangeResidualBlocker.nearestCandidateInputs.deltaECorrTailLimitBlocker
+    finiteRangeResidualBlocker.nearestCandidateInputs.deltaECorrTailLimitEvidence
       .candidatePath,
-    "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-retained-evidence.v1.json",
+  );
+  assert.deepEqual(
+    finiteRangeResidualBlocker.nearestCandidateInputs.finiteRangeResidualEvidence
+      .acceptedRowsProvided,
+    ["finite_range_residual"],
+  );
+  const finiteRangeResidualEvidence = JSON.parse(
+    fs.readFileSync(FINITE_RANGE_RESIDUAL_EVIDENCE_PATH, "utf8"),
+  );
+  assert.equal(finiteRangeResidualEvidence.sourceKind, "finite_range_residual");
+  assert.deepEqual(
+    finiteRangeResidualEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["finite_range_residual"],
+  );
+  assert.equal(
+    finiteRangeResidualEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_free_color_asymptotic_state",
+    ),
+    true,
+  );
+  assert.equal(
+    finiteRangeResidualEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "same_record_no_open_color_audit",
+    ),
+    true,
+  );
+  assert.equal(
+    finiteRangeResidualEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    finiteRangeResidualEvidence.finiteRangeResidual.finiteRangeDerivation
+      .finite_range_residual,
+    true,
   );
   assert.deepEqual(
     finiteRangeResidualBlocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket,
@@ -1836,6 +2411,23 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     finiteRangeResidualBlocker.candidateTailLimitRowBridgeLemma.notRequiredBeforeAcceptance.includes(
       "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.deepEqual(
+    finiteRangeResidualBlocker.candidateTailLimitRowBridgeLemma
+      .missingAcceptanceRows,
+    [],
+  );
+  assert.equal(
+    finiteRangeResidualBlocker.localEvidenceBoundary.acceptedRowsAvailableFromEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
+    true,
+  );
+  assert.equal(
+    finiteRangeResidualBlocker.localEvidenceBoundary.acceptedRowsAvailableFromEvidence.includes(
+      "finite_range_residual",
     ),
     true,
   );
@@ -1979,6 +2571,61 @@ test("current confinement target passes structure but blocks accepted source row
     ),
     true,
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_branch_interface_confinement_functional_audit.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_branch_interface_confinement_functional_audit
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_branch_interface_confinement_functional_audit
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/same-record-branch-interface-confinement-functional-audit-retained-evidence.v1.json",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .same_record_branch_interface_confinement_functional_audit
+      .requiredLedgerComponents,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "accepted_sigma_eff_extraction",
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  const sameRecordBranchConfinementAuditSupport = JSON.parse(
+    fs.readFileSync(
+      SAME_RECORD_BRANCH_INTERFACE_CONFINEMENT_FUNCTIONAL_AUDIT_SUPPORT_PATH,
+      "utf8",
+    ),
+  );
+  assert.deepEqual(
+    sameRecordBranchConfinementAuditSupport.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["same_record_branch_interface_confinement_functional_audit"],
+  );
+  assert.equal(
+    sameRecordBranchConfinementAuditSupport.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "same_record_no_open_color_audit",
+    ),
+    true,
+  );
+  assert.equal(
+    sameRecordBranchConfinementAuditSupport.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
   const sameRecordAuditBlockerEntry =
     report.sourceAcquisitionBlockerMap.blockers.find(
       (blockerEntry) =>
@@ -2088,7 +2735,6 @@ test("current confinement target passes structure but blocks accepted source row
       .derivedRowsIfAccepted,
     [
       "same_record_no_open_color_audit",
-      "same_record_branch_interface_confinement_functional_audit",
       "N_open_R_le_K_open_T_NN_R_squared",
     ],
   );
@@ -2108,6 +2754,13 @@ test("current confinement target passes structure but blocks accepted source row
     sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
       .missingAcceptanceRows.includes("K_open_finite"),
     true,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
+      .missingAcceptanceRows.includes(
+        "same_record_branch_interface_confinement_functional_audit",
+      ),
+    false,
   );
   assert.deepEqual(
     sameRecordNoOpenColorAuditBlocker.candidateSameRecordAuditLemma
