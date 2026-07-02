@@ -126,7 +126,13 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "rows.color_singlet_nucleon_envelope.accepted",
     "rows.delta_E_corr_NN.accepted",
     "rows.no_open_color_far_field.accepted",
+    "source_acquisition",
   ]);
+  assert.equal(
+    report.sourceBinding.familyResults.confinement_functional
+      .sourceAcquisitionFirstMissingObject,
+    "missing_accepted_K_perp",
+  );
   const confinementCandidate = report.sourceBinding.candidateResults.find(
     (candidate) => candidate.family === "confinement_functional",
   );
@@ -140,11 +146,46 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     confinementCandidate.sourceTargetCheck.summary.firstMissingObject,
     "missing_accepted_sigma_eff_extraction",
   );
-  assert.equal(report.sourceBinding.familyResults.weak_channel.firstMissingObject, "missing_accepted_weak_quotient");
+  assert.equal(confinementCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    confinementCandidate.sourceTargetCheck.summary.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_K_perp",
+  );
+  assert.deepEqual(
+    confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.rowChecks
+      .sigma_eff_extraction.missingAcceptedSourceRows,
+    [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+    ],
+  );
+  assert.equal(
+    report.sourceBinding.familyResults.weak_channel.firstMissingObject,
+    "missing_accepted_va_chirality_gate",
+  );
+  assert.equal(
+    report.sourceBinding.familyResults.weak_channel
+      .sourceAcquisitionFirstMissingObject,
+    "missing_accepted_va_chirality_gate",
+  );
   assert.equal(
     report.sourceBinding.familyResults.weak_channel.sourceStatus,
     "missing_accepted_weak_channel_rows",
   );
+  assert.deepEqual(report.sourceBinding.familyResults.weak_channel.missingOrRejectedFields, [
+    "rows.va_chirality_gate.accepted",
+    "rows.ckm_overlap_readout.accepted",
+    "rows.pmns_overlap_readout.accepted",
+    "rows.weak_corridor_provenance.accepted",
+    "rows.effective_gauge_covariance_witness.accepted",
+    "rows.reaction_event_ledger.accepted",
+    "rows.noether_sea_response.accepted",
+    "source_acquisition",
+  ]);
   const weakCandidate = report.sourceBinding.candidateResults.find(
     (candidate) => candidate.family === "weak_channel",
   );
@@ -155,10 +196,42 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.deepEqual(weakCandidate.sourceTargetCheck.summary.acceptedRows, [
     "weak_visible_branch_ledger",
     "weak_projection",
+    "weak_quotient",
+    "weak_exposure_record",
   ]);
   assert.equal(
     weakCandidate.sourceTargetCheck.summary.firstMissingObject,
-    "missing_accepted_weak_quotient",
+    "missing_accepted_va_chirality_gate",
+  );
+  assert.equal(weakCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    weakCandidate.sourceTargetCheck.summary.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_va_chirality_gate",
+  );
+  assert.equal(
+    weakCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .weak_visible_branch_ledger.accepted,
+    true,
+  );
+  assert.equal(
+    weakCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.weak_projection
+      .accepted,
+    true,
+  );
+  assert.equal(
+    weakCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks.weak_quotient
+      .accepted,
+    true,
+  );
+  assert.equal(
+    weakCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .weak_exposure_record.accepted,
+    true,
+  );
+  assert.equal(
+    weakCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .va_chirality_gate.accepted,
+    false,
   );
   assert.equal(weakCandidate.sourceTargetCheck.summary.structuralPass, true);
   assert.equal(report.sourceBinding.familyResults.noether_sea_response.accepted, true);
@@ -198,16 +271,36 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     ["delta_E_corr_NN"],
   );
   assert.equal(
+    report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.confinement_functional
+      .sourceAcquisitionFirstMissingObject,
+    "missing_accepted_K_perp",
+  );
+  assert.equal(
     report.sourceBinding.coefficientBindings.alphaSea.requiredRowsByFamily.noether_sea_response.accepted,
     true,
   );
   assert.equal(
     report.sourceBinding.coefficientBindings.betaValleySlope.firstMissingObject,
-    "missing_accepted_weak_quotient",
+    "missing_accepted_reaction_event_ledger",
+  );
+  assert.equal(
+    report.sourceBinding.coefficientBindings.betaValleySlope.requiredRowsByFamily
+      .weak_channel.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_va_chirality_gate",
   );
   assert.deepEqual(report.sourceBinding.graphRuleBindings.beta_stable_band_center, [
     "weak_channel",
   ]);
+  assert.equal(
+    report.sourceBinding.graphRuleRowBindings.beta_stable_band_center
+      .firstMissingObject,
+    "missing_accepted_reaction_event_ledger",
+  );
+  assert.equal(
+    report.sourceBinding.graphRuleRowBindings.beta_stable_band_center
+      .requiredRowsByFamily.weak_channel.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_va_chirality_gate",
+  );
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.noether_sea_polarization_reward.rowBindingStatus,
     "all_required_rows_accepted",
@@ -215,6 +308,11 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check.firstMissingObject,
     "missing_accepted_delta_E_corr_NN",
+  );
+  assert.equal(
+    report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
+      .requiredRowsByFamily.confinement_functional.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_K_perp",
   );
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check

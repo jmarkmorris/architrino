@@ -12,6 +12,9 @@
     { "$ref": "#/$defs/renderContracts" },
     { "$ref": "#/$defs/secretBoundaryPlan" },
     { "$ref": "#/$defs/providerCapabilityRegistry" },
+    { "$ref": "#/$defs/providerSandboxContracts" },
+    { "$ref": "#/$defs/providerGatewayContracts" },
+    { "$ref": "#/$defs/tokenLedgerSandboxContracts" },
     { "$ref": "#/$defs/tokenReceiptEnvelope" },
     { "$ref": "#/$defs/actionPreflightEnvelope" },
     { "$ref": "#/$defs/serviceStatus" },
@@ -72,8 +75,11 @@
       "enum": [
         "source_navigation",
         "retrieval",
+        "retrieval_embedding",
+        "rerank",
         "answer_generation",
         "comparison",
+        "moderation",
         "diagram",
         "image",
         "image_prompt",
@@ -548,6 +554,173 @@
       "properties": {
         "schema": { "const": "archie-token-receipt/v1" },
         "receipt": { "$ref": "#/$defs/tokenReceiptCore" }
+      }
+    },
+    "tokenLedgerDisposition": {
+      "type": "string",
+      "enum": [
+        "estimate_hold_charge_refund",
+        "charge_validated_work",
+        "cap_exceeded_block",
+        "auto_fund_pending_block",
+        "terms_block",
+        "provider_cost_map_block"
+      ]
+    },
+    "tokenLedgerCostClass": {
+      "type": "string",
+      "enum": ["free_static", "low", "standard", "large_context", "media", "premium_media", "operator_only"]
+    },
+    "tokenLedgerCostMapEntry": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["workUnit", "costClass", "unitTokenEstimate", "providerBacked", "requiresCurrentTerms"],
+      "properties": {
+        "workUnit": { "$ref": "#/$defs/workUnit" },
+        "costClass": { "$ref": "#/$defs/tokenLedgerCostClass" },
+        "unitTokenEstimate": { "type": "integer", "minimum": 0 },
+        "providerBacked": { "type": "boolean" },
+        "requiresCurrentTerms": { "const": true }
+      }
+    },
+    "tokenLedgerSpendingControl": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "availableBalanceTokens",
+        "perRequestCapTokens",
+        "monthlyRemainingTokens",
+        "autoFundEnabled",
+        "autoFundCapTokens"
+      ],
+      "properties": {
+        "availableBalanceTokens": { "type": "integer", "minimum": 0 },
+        "perRequestCapTokens": { "type": "integer", "minimum": 0 },
+        "monthlyRemainingTokens": { "type": "integer", "minimum": 0 },
+        "autoFundEnabled": { "type": "boolean" },
+        "autoFundCapTokens": { "type": "integer", "minimum": 0 }
+      }
+    },
+    "tokenLedgerTermsVersionRefs": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "serviceTermsVersion",
+        "privacyNoticeVersion",
+        "tokenSubscriptionTermsVersion",
+        "generatedMediaTermsVersion"
+      ],
+      "properties": {
+        "serviceTermsVersion": { "type": "string", "minLength": 1 },
+        "privacyNoticeVersion": { "type": "string", "minLength": 1 },
+        "tokenSubscriptionTermsVersion": { "type": "string", "minLength": 1 },
+        "generatedMediaTermsVersion": { "type": "string", "minLength": 1 }
+      }
+    },
+    "tokenLedgerProviderCapabilityRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capabilityId", "costClass", "noProviderBillingInternals"],
+      "properties": {
+        "capabilityId": { "type": "string", "minLength": 1 },
+        "costClass": { "$ref": "#/$defs/tokenLedgerCostClass" },
+        "noProviderBillingInternals": { "const": true }
+      }
+    },
+    "tokenLedgerSandboxCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "gatewayCaseId",
+        "requestClass",
+        "expectedLedgerDisposition",
+        "estimateShown",
+        "holdPlaced",
+        "confirmationRequired",
+        "confirmationReasons",
+        "spendingControl",
+        "tokenWorkUnits",
+        "costMapAvailable",
+        "receipt",
+        "providerCapabilityRefs",
+        "termsVersionRefs",
+        "privacySummary",
+        "sourceAuthorityEffect",
+        "runtimeProviderCallAllowed",
+        "paymentsEnabled",
+        "paymentAttempted",
+        "durableStorageEnabled",
+        "providerPayloadIncluded",
+        "privatePromptIncluded"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "gatewayCaseId": { "type": "string", "minLength": 1 },
+        "requestClass": { "$ref": "#/$defs/providerGatewayRequestClass" },
+        "expectedLedgerDisposition": { "$ref": "#/$defs/tokenLedgerDisposition" },
+        "estimateShown": { "type": "boolean" },
+        "holdPlaced": { "type": "boolean" },
+        "confirmationRequired": { "type": "boolean" },
+        "confirmationReasons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/confirmationReason" }
+        },
+        "spendingControl": { "$ref": "#/$defs/tokenLedgerSpendingControl" },
+        "tokenWorkUnits": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/workUnit" }
+        },
+        "costMapAvailable": { "type": "boolean" },
+        "receipt": { "$ref": "#/$defs/tokenReceiptCore" },
+        "providerCapabilityRefs": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/tokenLedgerProviderCapabilityRef" }
+        },
+        "termsVersionRefs": { "$ref": "#/$defs/tokenLedgerTermsVersionRefs" },
+        "privacySummary": {
+          "type": "string",
+          "enum": ["ephemeral_no_retention", "disabled_until_terms", "receipt_only_no_content"]
+        },
+        "sourceAuthorityEffect": { "const": "none" },
+        "runtimeProviderCallAllowed": { "const": false },
+        "paymentsEnabled": { "const": false },
+        "paymentAttempted": { "const": false },
+        "durableStorageEnabled": { "const": false },
+        "providerPayloadIncluded": { "const": false },
+        "privatePromptIncluded": { "const": false }
+      }
+    },
+    "tokenLedgerSandboxContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "providerGatewayContractId",
+        "environment",
+        "termsVersionSetId",
+        "tokenCostMapEntries",
+        "tokenLedgerCases"
+      ],
+      "properties": {
+        "schema": { "const": "archie-token-ledger-sandbox-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "providerGatewayContractId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "tokenCostMapEntries": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/tokenLedgerCostMapEntry" }
+        },
+        "tokenLedgerCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/tokenLedgerSandboxCase" }
+        }
       }
     },
     "answerArtifactManifest": {
@@ -1034,6 +1207,212 @@
               "noBrowserKeys": { "const": true }
             }
           }
+        }
+      }
+    },
+    "providerSandboxCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "capabilityId",
+        "capabilityType",
+        "expectedEnabledState",
+        "expectedHealthState",
+        "expectedCostClass",
+        "expectedCredentialBoundary",
+        "expectedFallbackBehavior",
+        "qualityGate",
+        "tokenWorkUnits",
+        "privacyState",
+        "termsState",
+        "sourceAuthorityEffect",
+        "fallbackManifestFixture",
+        "publicEnabled",
+        "runtimeProvidersEnabled",
+        "browserKeysAllowed",
+        "providerPayloadAllowed",
+        "privatePromptAllowed"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "capabilityId": { "type": "string", "minLength": 1 },
+        "capabilityType": {
+          "type": "string",
+          "enum": ["answer_text", "retrieval_embedding", "rerank", "speech_output", "image_generation", "moderation"]
+        },
+        "expectedEnabledState": {
+          "type": "string",
+          "enum": ["disabled", "internal_only", "beta_enabled", "public_enabled", "degraded"]
+        },
+        "expectedHealthState": {
+          "type": "string",
+          "enum": ["healthy", "degraded", "unavailable", "policy_blocked", "unknown"]
+        },
+        "expectedCostClass": {
+          "type": "string",
+          "enum": ["free_static", "low", "standard", "large_context", "media", "premium_media", "operator_only"]
+        },
+        "expectedCredentialBoundary": {
+          "type": "string",
+          "enum": ["service_side_only", "not_required", "blocked"]
+        },
+        "expectedFallbackBehavior": { "type": "string", "minLength": 1 },
+        "qualityGate": { "type": "string", "minLength": 1 },
+        "tokenWorkUnits": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/workUnit" }
+        },
+        "privacyState": {
+          "type": "string",
+          "enum": ["terms_bound_ephemeral", "terms_bound_no_retention", "disabled_until_terms"]
+        },
+        "termsState": {
+          "type": "string",
+          "enum": ["fixture_terms_current", "blocked_until_media_terms", "blocked_until_provider_terms"]
+        },
+        "sourceAuthorityEffect": { "const": "none" },
+        "fallbackManifestFixture": { "type": ["string", "null"] },
+        "publicEnabled": { "const": false },
+        "runtimeProvidersEnabled": { "const": false },
+        "browserKeysAllowed": { "const": false },
+        "providerPayloadAllowed": { "const": false },
+        "privatePromptAllowed": { "const": false }
+      }
+    },
+    "providerSandboxContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "registryId",
+        "environment",
+        "termsVersionSetId",
+        "providerSandboxCases"
+      ],
+      "properties": {
+        "schema": { "const": "archie-provider-sandbox-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "registryId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "providerSandboxCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/providerSandboxCase" }
+        }
+      }
+    },
+    "providerGatewayRequestClass": {
+      "type": "string",
+      "enum": [
+        "source_grounded_answer",
+        "speech_sync_output",
+        "generated_image_request",
+        "public_media_moderation",
+        "retrieval_embedding_support",
+        "rerank_candidates"
+      ]
+    },
+    "providerGatewayDisposition": {
+      "type": "string",
+      "enum": ["fixture_manifest_context", "declared_fallback", "fixture_safe_context"]
+    },
+    "safeProviderExecutionContext": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["capabilityIds", "credentialBoundary", "noBrowserKeys", "adapterMode"],
+      "properties": {
+        "capabilityIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "credentialBoundary": {
+          "type": "string",
+          "enum": ["service_side_only", "not_required", "blocked"]
+        },
+        "noBrowserKeys": { "const": true },
+        "adapterMode": { "const": "no_call_fixture_adapter" }
+      }
+    },
+    "providerGatewayCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "capabilityId",
+        "sandboxCaseId",
+        "requestClass",
+        "expectedGatewayDisposition",
+        "safeProviderExecutionContext",
+        "responseFixture",
+        "fallbackManifestFixture",
+        "tokenWorkUnits",
+        "privacyState",
+        "termsState",
+        "sourceAuthorityEffect",
+        "publicEnabled",
+        "runtimeProviderCallAllowed",
+        "browserKeyAllowed",
+        "providerPayloadAllowed",
+        "privatePromptAllowed"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "capabilityId": { "type": "string", "minLength": 1 },
+        "sandboxCaseId": { "type": "string", "minLength": 1 },
+        "requestClass": { "$ref": "#/$defs/providerGatewayRequestClass" },
+        "expectedGatewayDisposition": { "$ref": "#/$defs/providerGatewayDisposition" },
+        "safeProviderExecutionContext": { "$ref": "#/$defs/safeProviderExecutionContext" },
+        "responseFixture": { "type": ["string", "null"] },
+        "fallbackManifestFixture": { "type": ["string", "null"] },
+        "tokenWorkUnits": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/workUnit" }
+        },
+        "privacyState": {
+          "type": "string",
+          "enum": ["terms_bound_ephemeral", "terms_bound_no_retention", "disabled_until_terms"]
+        },
+        "termsState": {
+          "type": "string",
+          "enum": ["fixture_terms_current", "blocked_until_media_terms", "blocked_until_provider_terms"]
+        },
+        "sourceAuthorityEffect": { "const": "none" },
+        "publicEnabled": { "const": false },
+        "runtimeProviderCallAllowed": { "const": false },
+        "browserKeyAllowed": { "const": false },
+        "providerPayloadAllowed": { "const": false },
+        "privatePromptAllowed": { "const": false }
+      }
+    },
+    "providerGatewayContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "registryId",
+        "providerSandboxContractId",
+        "environment",
+        "termsVersionSetId",
+        "providerGatewayCases"
+      ],
+      "properties": {
+        "schema": { "const": "archie-provider-gateway-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "registryId": { "type": "string", "minLength": 1 },
+        "providerSandboxContractId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["development", "staging", "production"] },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "providerGatewayCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/providerGatewayCase" }
         }
       }
     },

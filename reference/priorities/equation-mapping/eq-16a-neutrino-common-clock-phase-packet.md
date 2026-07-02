@@ -431,7 +431,7 @@ inheritedSEqBlocker: missing_accepted_raw_labeled_rows_preserved_on_retained_his
 
 This is the intended disposition. The checker is a common-clock/residual-phase guardrail, not a PMNS fit and not proof that `(f,f,f)` has been retained.
 
-The `EQ-16` muon weak-visible projection evidence lane now accepts `weak_visible_branch_ledger` plus same-domain `weak_projection` and blocks next at `missing_accepted_weak_quotient`. Those rows do not change `EQ-16A`: they contain inferred neutral-lepton bookkeeping for muon decay, but they do not provide a retained neutral-lepton branch, common-clock residual operator, PMNS readout, matter correction, cancellation row, or source/detector event ledger.
+The `EQ-16` muon weak-visible projection evidence lane now accepts `weak_visible_branch_ledger`, same-domain `weak_projection`, and same-domain `weak_quotient`, and blocks next at `missing_accepted_weak_exposure_record`. Those rows do not change `EQ-16A`: they contain inferred neutral-lepton bookkeeping for muon decay, but they do not provide a retained neutral-lepton branch, common-clock residual operator, PMNS readout, matter correction, cancellation row, or source/detector event ledger.
 
 The existing domain-split negative control remains a fail-closed diagnostic: with the hardened source guard, its accepted-looking rows block first at `missing_accepted_neutral_lepton_retained_branch` because their source paths point at an attempt fixture, and the same run still records `weakDomainIdentityPass: false` with split weak-domain ids. This keeps the source-evidence boundary first while preserving the weak-domain falsifier.
 

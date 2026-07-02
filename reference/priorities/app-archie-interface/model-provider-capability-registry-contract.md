@@ -185,6 +185,8 @@ Fail-closed behavior should return a manifest-shaped unsupported, unavailable, t
 
 ## Regression Fixtures
 
+The current schema-only service scaffold includes [provider-registry.v1.json](../../../tests/archie-service/fixtures/provider-registry/provider-registry.v1.json), [provider-sandbox-contracts.v1.json](../../../tests/archie-service/fixtures/provider-registry/provider-sandbox-contracts.v1.json), [provider-gateway-contracts.v1.json](../../../tests/archie-service/fixtures/provider-registry/provider-gateway-contracts.v1.json), [validate-provider-sandbox.mjs](../../../scripts/archie-service/validate-provider-sandbox.mjs), and [validate-provider-gateway.mjs](../../../scripts/archie-service/validate-provider-gateway.mjs). These fixtures cover answer text, high-quality speech, generated image, moderation, retrieval embedding, and rerank capability gates, then map those gates through no-call gateway request classes without selecting a real provider or enabling runtime provider calls.
+
 The future implementation should include provider-registry fixtures for:
 
 | Fixture | Required proof |
@@ -204,17 +206,14 @@ The future implementation should include provider-registry fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Model Provider Capability Registry Contract into provider-capability schemas, model-gateway boundaries, quality gates, fallback rules, token cost mappings, privacy/terms checks, credential guards, and regression fixtures for the Archie service.
+Route provider capability refs and token-ledger receipt ids into issue-mining signal fixtures without exposing provider payloads, provider billing internals, private prompt text, or source-authority effects.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Encode provider capability entries, capability families, enabled states, health states, credential boundaries, quality gates, fallback behavior, cost classes, and observability fields.
-- Map provider health, fallback, latency, error, refusal, public-status, and incident fields through privacy-safe observability classes.
-- Define provider gateway behavior for answer text, speech output, caption/transcript, generated image, moderation, embedding/rerank, and deferred input capabilities.
-- Add validators that block browser-side model calls, missing cost maps, missing provider data-use policy, missing terms, missing fallback, failed quality gates, and proof-status inflation.
-- Add manifest `provider_execution_context` or equivalent safe capability context.
-- Add fixtures for answer text, high-quality speech, speech fallback, generated image, browser-key refusal, cost-map refusal, privacy refusal, terms refusal, degraded provider health, source-authority refusal, and observability.
+- Add issue-mining fixtures that may reference safe provider capability ids, cost classes, token receipt ids, and work-unit classes.
+- Block provider payloads, provider-specific billing internals, private prompt text, and source-authority effects from issue-mining metadata.
+- Preserve provider-sandbox, provider-gateway, and token-ledger sandbox checks as prerequisites for issue-mining signal generation.
 
 Constraints:
 - Do not select a real provider, add runtime model calls, add credentials, change deployment config, or launch public provider-backed features unless explicitly requested.

@@ -182,7 +182,26 @@ V_{\text{sea-pol}}(r)
 \Delta E_{\mathrm{corr}}^{NN}(r),
 $$
 
-while $V_{\text{excl}}(r)$ and $V_{\text{Coul}}(r)$ remain separate envelope-overlap and electromagnetic rows. The required behavior is
+while $V_{\text{excl}}(r)$ and $V_{\text{Coul}}(r)$ remain separate envelope-overlap and electromagnetic rows.
+
+The executable confinement source target now records the upstream source-acquisition shape for this extraction. The first accepted target is not another nuclear coefficient: it is the $\sigma_{\mathrm{eff}}$ source bundle
+
+$$
+\mathcal S_{\sigma}^{\mathrm{conf}}
+=
+\left(
+K_{\perp},
+V_{\mathrm{exc}},
+\rho_{\text{NS}},
+\chi_{\text{sea}},
+Q_{\mathrm{axis}},
+\mathcal R_{\mathrm{NS}}^{\mathrm{same}}
+\right),
+$$
+
+where $K_{\perp}$ is the transverse stiffness functional, $V_{\mathrm{exc}}$ is the excitation potential functional, $\rho_{\text{NS}}$ and $\chi_{\text{sea}}$ are same-record Noether sea arguments, $Q_{\mathrm{axis}}$ is the accepted axis-exceptionality charge row, and $\mathcal R_{\mathrm{NS}}^{\mathrm{same}}$ is the same-event Noether sea response record. The current checker deliberately reports `sourceAcquisitionPass: false` and `sourceAcquisitionFirstMissingObject: missing_accepted_K_perp`; this is the first upstream blocker before $\sigma_{\mathrm{eff}}$, $\Delta E_{\mathrm{corr}}^{NN}$, or any Fe/Ni toy coefficient can promote.
+
+The required no-open-color behavior is
 
 $$
 \Delta E_{\mathrm{corr}}^{NN}(r)\to0

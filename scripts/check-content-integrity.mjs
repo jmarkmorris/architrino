@@ -36,6 +36,10 @@ const CHECKS = [
     args: ["scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs"],
   },
   {
+    name: "Check polarity notation drift",
+    args: ["scripts/check-polarity-notation-drift.mjs"],
+  },
+  {
     name: "Smoke test manifest runtime routes/search",
     args: ["scripts/smoke-option3.mjs"],
   },

@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 180,
-      "sections": 1450
+      "sections": 1451
     }
   },
   "tocRoot": {
@@ -1380,6 +1380,14 @@
                 "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
                 "markdownSection": "Minimum Specification",
                 "sectionKey": "minimum specification",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Temperature As A Same-Record Ensemble Variable",
+                "markdownPath": "content/markdown/aaa/dynamics/entropy.md",
+                "markdownSection": "Temperature As A Same-Record Ensemble Variable",
+                "sectionKey": "temperature as a same record ensemble variable",
                 "headingLevel": 2
               },
               {

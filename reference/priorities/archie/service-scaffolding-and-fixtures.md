@@ -33,7 +33,7 @@ The first schema-only scaffold is now present:
 
 | Surface | Path | Role |
 | --- | --- | --- |
-| Root contract schema | [schema.json](../../../src/archie-service/contracts/v1/schema.json) | Validates Answer Artifact Manifest, answer request, source-index snapshot, source-index dry-run, service validation plan, endpoint response contracts, provider capability registry, token receipt, action preflight, service status, service terms, and deployment smoke-plan fixture shapes. |
+| Root contract schema | [schema.json](../../../src/archie-service/contracts/v1/schema.json) | Validates Answer Artifact Manifest, answer request, source-index snapshot, source-index dry-run, service validation plan, endpoint response contracts, provider capability registry, provider-sandbox contracts, provider-gateway contracts, token-ledger sandbox contracts, token receipt, action preflight, service status, service terms, and deployment smoke-plan fixture shapes. |
 | Contract validator | [validate-contracts.mjs](../../../scripts/archie-service/validate-contracts.mjs) | Checks all Archie service fixture JSON files against the root schema and runs a simple secret-boundary scan. |
 | Source-index check-mode script | [build-source-index.mjs](../../../scripts/archie-service/build-source-index.mjs) | Checks generated artifact refs, real markdown anchors, scene-source routing, canonical parent expectations, priority exclusion, and missing-route source-context behavior without writing artifacts. |
 | Negative validator script | [validate-negative-validators.mjs](../../../scripts/archie-service/validate-negative-validators.mjs) | Checks the negative validator suite for no-write behavior, no runtime side effects, no browser secrets, no private prompt leakage, and no source-authority upgrades. |
@@ -45,7 +45,10 @@ The first schema-only scaffold is now present:
 | Secret-boundary script | [check-secret-boundary.mjs](../../../scripts/archie-service/check-secret-boundary.mjs) | Scans service fixtures, browser-client helpers, fixture HTTP source, and static-output candidates for forbidden provider, GitHub, payment, database, signing, monitoring, browser-key, provider-payload, and private-prompt secret classes. |
 | Staging smoke script | [run-staging-smoke.mjs](../../../scripts/archie-service/run-staging-smoke.mjs) | Exercises the fixture-backed static entry, answer response, terms response, status response, secret-boundary gate, and rollback-readiness expectations locally without network or writes. |
 | Rollback smoke script | [check-rollback.mjs](../../../scripts/archie-service/check-rollback.mjs) | Verifies fixture service version, source-index snapshot, provider registry, service terms, and selected response fixtures remain rollback-compatible without network or writes. |
-| Node test wrapper | [archie-service-contracts.test.js](../../../tests/archie-service-contracts.test.js) | Runs the contract validator, source-index dry-run check, negative-validator check, endpoint-response check, fixture service selector check, render-contract check, secret-boundary check, staging-smoke check, and rollback check through `node --test`. |
+| Provider-sandbox script | [validate-provider-sandbox.mjs](../../../scripts/archie-service/validate-provider-sandbox.mjs) | Checks answer, speech, image, moderation, embedding, and rerank capability gates for enabled state, health, cost class, fallback, quality gate, terms/privacy state, no-browser-key behavior, token work units, source-authority neutrality, and fallback manifest compatibility. |
+| Provider-gateway script | [validate-provider-gateway.mjs](../../../scripts/archie-service/validate-provider-gateway.mjs) | Checks sandbox capabilities against no-call provider-gateway request classes, fixture manifest contexts, declared fallbacks, token work units, privacy/terms gates, safe provider execution context, and source-authority neutrality. |
+| Token-ledger sandbox script | [validate-token-ledger-sandbox.mjs](../../../scripts/archie-service/validate-token-ledger-sandbox.mjs) | Checks provider-gateway work units against cost-map coverage, estimates, holds, charges, refunds, cap-exceeded blocks, auto-fund-pending blocks, terms blocks, provider-cost-map blocks, and no-payment/no-private-prompt invariants. |
+| Node test wrapper | [archie-service-contracts.test.js](../../../tests/archie-service-contracts.test.js) | Runs the contract validator, source-index dry-run check, negative-validator check, endpoint-response check, fixture service selector check, render-contract check, secret-boundary check, staging-smoke check, rollback check, provider-sandbox check, provider-gateway check, and token-ledger sandbox check through `node --test`. |
 | Manifest fixture example | [text-answer.manifest.v1.json](../../../tests/archie-service/fixtures/manifests/text-answer.manifest.v1.json) | Stores schema-only manifest expectations for source context, claim context, answer body, token receipt, privacy state, actions, issue-mining metadata, and observability context. |
 | Fail-closed manifest fixtures | [fail-closed](../../../tests/archie-service/fixtures/manifests/fail-closed/provider-browser-key.manifest.v1.json) | Stores manifest-shaped refusal/fallback responses for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. |
 | Endpoint response contracts | [endpoint-response-contracts.v1.json](../../../tests/archie-service/fixtures/endpoints/endpoint-response-contracts.v1.json) | Stores fixture-backed response contracts for answer creation, listen, visualize, issue draft, service terms, and service status endpoints. |
@@ -56,6 +59,9 @@ The first schema-only scaffold is now present:
 | Negative validator suite | [negative-validator-suite.v1.json](../../../tests/archie-service/fixtures/validators/negative-validator-suite.v1.json) | Stores schema-only check-mode builder expectations and fail-closed cases for browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. |
 | Deployment fixture example | [staging-smoke-plan.v1.json](../../../tests/archie-service/fixtures/deployment/staging-smoke-plan.v1.json) | Stores schema-only deployment smoke expectations for static entry, text answer, secret scan, and rollback checks. |
 | Rollback smoke fixture | [rollback-smoke-plan.v1.json](../../../tests/archie-service/fixtures/deployment/rollback-smoke-plan.v1.json) | Stores service-version, source-index, provider-registry, terms, and endpoint-response compatibility expectations for local rollback checks. |
+| Provider sandbox contracts | [provider-sandbox-contracts.v1.json](../../../tests/archie-service/fixtures/provider-registry/provider-sandbox-contracts.v1.json) | Stores provider-sandbox gate expectations for answer text, high-quality speech, generated image, moderation, retrieval embedding, and rerank capabilities. |
+| Provider gateway contracts | [provider-gateway-contracts.v1.json](../../../tests/archie-service/fixtures/provider-registry/provider-gateway-contracts.v1.json) | Stores no-call provider-gateway expectations that map answer, speech, image, moderation, retrieval embedding, and rerank requests to fixture manifest contexts, declared fallbacks, or safe internal contexts. |
+| Token-ledger sandbox contracts | [token-ledger-sandbox.v1.json](../../../tests/archie-service/fixtures/token-ledger/token-ledger-sandbox.v1.json) | Stores provider-gateway accounting expectations for normal answer refunds, high-quality speech charges, terms blocks, provider cost-map blocks, auto-fund-pending blocks, and cap-exceeded blocks. |
 
 Current validation command:
 
@@ -69,6 +75,9 @@ node scripts/archie-service/validate-render-contracts.mjs --check
 node scripts/archie-service/check-secret-boundary.mjs --check
 node scripts/archie-service/run-staging-smoke.mjs --check
 node scripts/archie-service/check-rollback.mjs --check
+node scripts/archie-service/validate-provider-sandbox.mjs --check
+node scripts/archie-service/validate-provider-gateway.mjs --check
+node scripts/archie-service/validate-token-ledger-sandbox.mjs --check
 node --test tests/archie-service-contracts.test.js
 ```
 
@@ -92,7 +101,10 @@ Before any provider-backed answer generation exists, the repo should be able to 
 10. endpoint response fixture shape;
 11. render contract fixture shape;
 12. secret-boundary fixture shape and scan behavior;
-13. deployment smoke fixtures and rollback fixtures.
+13. deployment smoke fixtures and rollback fixtures;
+14. provider-sandbox capability gate fixtures;
+15. provider-gateway no-call boundary fixtures;
+16. token-ledger sandbox accounting fixtures.
 
 Only after those contract fixtures pass should the project wire real providers, payments, durable storage, or public routes.
 
@@ -131,6 +143,9 @@ The first script layer should produce and verify artifacts without running runti
 | `scripts/archie-service/check-secret-boundary.mjs --check` | Present. Scans fixture JSON, browser-client helpers, fixture HTTP source, and static-output candidates for forbidden provider, GitHub, payment, database, signing, monitoring, browser-key, provider-payload, and private-prompt secret classes. |
 | `scripts/archie-service/run-staging-smoke.mjs --check` | Present. Exercises fixture-backed static entry, answer, terms, status, secret-boundary, and rollback-readiness expectations without network, writes, public routes, providers, payments, durable storage, or production secrets. |
 | `scripts/archie-service/check-rollback.mjs --check` | Present. Verifies service version, source-index snapshot, provider registry, service terms, selected response fixtures, side-effect-disabled invariants, and private-prompt/no-browser-key boundaries. |
+| `scripts/archie-service/validate-provider-sandbox.mjs --check` | Present. Verifies provider-sandbox capability gates for answer, speech, image, moderation, embedding, rerank, token cost, fallback, privacy, terms, and no-browser-key boundaries. |
+| `scripts/archie-service/validate-provider-gateway.mjs --check` | Present. Verifies no-call provider-gateway request classes, fixture manifest contexts, declared fallbacks, safe internal contexts, token work units, privacy/terms gates, and source-authority neutrality. |
+| `scripts/archie-service/validate-token-ledger-sandbox.mjs --check` | Present. Verifies provider-gateway work units can produce estimates, holds, charges, refunds, cap-exceeded blocks, auto-fund-pending blocks, terms blocks, and provider-cost-map blocks without payments or private prompt leakage. |
 
 Do not add the remaining scripts until implementation is selected. This packet names them so the next code pass has a concrete target.
 
@@ -146,8 +161,8 @@ Fixtures now live in a service-owned test area rather than being mixed into app 
 | `tests/archie-service/fixtures/security/` | Present. Secret-boundary scan plan for fixture JSON, browser-client helpers, fixture HTTP source, and static-output candidates. |
 | `tests/archie-service/fixtures/static-output/` | Present. Static entry candidate fixture with public terms/status links and disabled provider/payment flags. |
 | `tests/archie-service/fixtures/source-index/` | Present. Source-index snapshot fixture with generated artifact refs, source counts, visibility policy, freshness, and rollback parent; dry-run route fixture for markdown sections, sphere portions, full-document spheres, app guides, System Card routes, priority exclusion, and missing routes. |
-| `tests/archie-service/fixtures/provider-registry/` | Present. Answer text, high-quality speech fallback, generated image policy block, cost class, health state, and no-browser-key fixture. |
-| `tests/archie-service/fixtures/token-ledger/` | Present. Standalone token receipt with hold, charge, refund, work units, source classes, and no-private-prompt flag. |
+| `tests/archie-service/fixtures/provider-registry/` | Present. Provider registry, provider-sandbox contracts, and provider-gateway contracts for answer text, high-quality speech fallback, generated image policy block, moderation, retrieval embedding, rerank, cost class, health state, fallback, privacy/terms state, no-call adapter behavior, and no-browser-key fixtures. |
+| `tests/archie-service/fixtures/token-ledger/` | Present. Standalone token receipt plus token-ledger sandbox contracts with hold, charge, refund, work units, source classes, cap-exceeded, auto-fund-pending, terms-block, provider-cost-map, payment-disabled, and no-private-prompt expectations. |
 | `tests/archie-service/fixtures/actions/` | Present. GitHub issue preflight requiring public-visibility and external-handoff confirmation. |
 | `tests/archie-service/fixtures/validators/` | Present. Negative validation plan for check-mode source-index builder expectations, browser-key refusal, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation. |
 | `tests/archie-service/fixtures/observability/` | Present. Public status fixture with product-level degradation and no private prompt. |
@@ -190,7 +205,7 @@ The suffix `_SECRET_REF` is intentional: deployment code should reference secret
 | `stage_2_source_index_dry_run` | Add source-index builder in check mode, snapshot fixtures from existing static artifacts, and route-resolution dry-run fixtures that feed manifest `sourceContext`. | External live source search and public service answers. |
 | `stage_3_fixture_backed_service_stub` | Add local/staging endpoint stubs that return fixture-backed manifests and refusals. | Real provider-backed generation and paid work. |
 | `stage_4_staging_smoke` | Exercise staging with fixture providers, sandbox token ledger, public-status redaction, and rollback fixtures. | Production launch and real paid capabilities. |
-| `stage_5_provider_sandbox` | Add sandbox provider adapters behind provider registry and terms/token gates. | Public beta until launch gates pass. |
+| `stage_5_provider_sandbox` | Add sandbox provider adapters, no-call provider-gateway boundaries, and token-ledger sandbox accounting behind provider registry and terms/token gates. | Public beta until launch gates pass. |
 | `stage_6_public_beta_candidate` | Enable limited public beta only after source, manifest, token, terms, action, issue-mining, observability, speech, visual, deployment, legal, cost, privacy, and rollback gates pass. | Any capability whose provider, terms, privacy, cost, or media gate is not green. |
 
 ## CI Gate Names
@@ -209,7 +224,10 @@ The future service pipeline should expose named gates so failures are actionable
 10. `archie_service_speech_visual_media_fixture_check`;
 11. `archie_service_secret_boundary_check`;
 12. `archie_service_staging_smoke_check`;
-13. `archie_service_rollback_smoke_check`.
+13. `archie_service_rollback_smoke_check`;
+14. `archie_service_provider_sandbox_check`;
+15. `archie_service_provider_gateway_no_call_check`;
+16. `archie_service_token_ledger_sandbox_check`.
 
 These gates should run after the existing content-integrity checks when service implementation exists.
 
@@ -231,13 +249,14 @@ This scaffold must not:
 ## Implementation Handoff
 
 Closure goal:
-Extend the provider-registry fixture into provider-sandbox contract fixtures and checks for disabled/internal answer, speech, image, moderation, embedding, rerank, token-cost, fallback, privacy, and terms gates without enabling real provider calls or public launch.
+Add issue-mining signal sandbox fixtures that consume manifest source context, claim labels, token receipt ids, action preflight state, and draft issue metadata without exposing private prompt text, enabling hidden GitHub writes, durable storage, or source-authority changes.
 
 Use this packet, [service-deployment-architecture.md](service-deployment-architecture.md), [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md), [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md), [source-ingestion-retrieval-context-contract.md](../app-archie-interface/source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](../app-archie-interface/model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](../app-archie-interface/token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](../app-archie-interface/action-broker-confirmation-contract.md), [issue-mining-signal-contract.md](../app-archie-interface/issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](../app-archie-interface/observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](../app-archie-interface/service-terms-account-policy-contract.md) as source of truth.
 
 Task:
-- Add provider-sandbox contract fixtures and a check-mode provider-sandbox script that verifies capability ids, enabled state, health state, quality gate, fallback behavior, token cost class, privacy/terms state, credential boundary, no-browser-key behavior, and manifest fallback compatibility.
-- Keep the provider-sandbox pass no-network, no-write, fixture-backed, and local, with real provider calls, payments, durable storage, deployment config, public routes, and production secrets disabled.
+- Add issue-mining signal fixtures and a check-mode issue-mining script that verifies duplicate keys, owner lane, smallest next artifact, public issue URL state, receipt id linkage, source/claim inheritance, and private-prompt exclusion.
+- Require issue-mining metadata to consume only safe manifest fields, token receipt ids, action preflight state, and user-visible issue drafts.
+- Keep the issue-mining pass no-network, no-write, fixture-backed, and local, with hidden GitHub writes, provider calls, payments, durable storage, deployment config, public routes, and production secrets disabled.
 - Do not add provider integrations, payment integrations, account storage, generated media calls, deployment config, public routes, or production secrets.
 
 Constraints:

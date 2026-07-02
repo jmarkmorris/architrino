@@ -37,6 +37,7 @@ import {
   createSolverAppWorkerClient,
 } from "../../solver/app/SolverAppWorkerBridge.mjs";
 import { createPhotonSolverBridgeOptions } from "./PhotonSolverBridgeOptions.js";
+import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
 
 const PHOTON_DOCS = {
   guide: {
@@ -461,7 +462,7 @@ function createPhotonDownload(documentLike, windowLike, filename, text) {
 export function createPhotonRuntime({
   documentLike = globalThis.document,
   windowLike = globalThis.window,
-  homeHref = "./index.html",
+  homeHref = STANDALONE_APP_HOME_HREF,
   solverBridgeOptions: solverBridgeOptionOverrides = {},
 } = {}) {
   const stageCanvas = queryPhotonElement(documentLike, "#photon-stage-canvas");

@@ -55,6 +55,13 @@ At the architrino level, the ontological term is not `charge`. The primitive is 
 | effective electric bookkeeping | `electric charge`, `charge`, $q=\pm\epsilon$ | comparison, bookkeeping, gauge language, or observer-level description | "The axial inventory yields net electric charge $-e$." |
 | a fermion’s outward six-site contribution | `axial inventory`, `axial pattern`, `axial architrinos` | not applicable | "The quark’s axial inventory determines its electric bookkeeping." |
 
+Polarity notation rule:
+
+- Use full words, `Positrino` and `Electrino`, when naming the entity species.
+- Use $\epsilon_+$ and $\epsilon_-$ when writing compact polarity inventories, axial-inventory counts, weak-coupling-triad inventories, or neutral Noether braid content.
+- Prefer count expressions such as $5\epsilon_+ + 1\epsilon_-$ or $A_{\Sigma}=3\epsilon_-$.
+- Avoid initial-letter polarity shorthand such as `6E`, `5P,1E`, `P/E`, `P+`, or `P-`. Those collide with electron/proton language, energy $E$, parity/probability/pressure $P$, and Standard Model notation.
+
 Sentence guidance:
 
 - Prefer: "The architrino has definite polarity."

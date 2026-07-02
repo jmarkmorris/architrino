@@ -3,6 +3,7 @@ import {
   setWebsiteAnalyticsOptOut,
   WEBSITE_ANALYTICS_OPT_OUT_STORAGE_KEY,
 } from "./WebsiteAnalyticsOptOutRuntime.js";
+import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
 
 const DEFAULT_PERIOD_LABEL = "Aggregate Window";
 const BREAKDOWN_COLORS = ["#ff0000", "#4b0082", "#0000ff"];
@@ -246,7 +247,7 @@ function renderShell(data, options = {}) {
     appendChildren(createElement("nav", "website-stats-actions"), [
       renderOptOutControl({ storage: options.storage }),
       createNavLink("./index.html#scene=content%2Fscenes%2Farchie%2Fproject.json", "Archie"),
-      createNavLink("./index.html", "Home"),
+      createNavLink(STANDALONE_APP_HOME_HREF, "Home"),
     ]),
   ]);
 

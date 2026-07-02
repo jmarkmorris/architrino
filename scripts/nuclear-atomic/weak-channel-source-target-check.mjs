@@ -10,6 +10,7 @@ export const OUTPUT_SCHEMA =
 
 const REPO_ROOT = path.resolve(fileURLToPath(new URL("../..", import.meta.url)));
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
+const ACCEPTED_EVIDENCE_STATUSES = new Set(["accepted_non_fixture_source"]);
 const DEFAULT_INPUT =
   "scripts/equation-mapping/weak-gauge-exposure-domain-muon-projection-evidence.v1.json";
 const TOLERANCE = 1e-12;
@@ -55,6 +56,78 @@ const REQUIRED_TOY_BINDING_ROWS = Object.freeze({
   },
 });
 
+const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
+  weak_visible_branch_ledger: [
+    "retained_muon_decay_event",
+    "same_domain_rows",
+    "branch_record_stability",
+    "durable_source_path",
+  ],
+  weak_projection: [
+    "weak_visible_branch_ledger",
+    "projection_operator",
+    "same_domain_rows",
+    "durable_source_path",
+  ],
+  weak_quotient: [
+    "weak_visible_branch_ledger",
+    "weak_projection",
+    "quotient_equivalence_class",
+    "same_domain_rows",
+    "gauge_branch_record_stability",
+  ],
+  weak_exposure_record: [
+    "weak_quotient",
+    "weak_projection",
+    "weak_visible_branch_ledger",
+    "exposure_readout_row",
+    "same_domain_rows",
+  ],
+  va_chirality_gate: [
+    "weak_quotient",
+    "weak_exposure_record",
+    "va_chirality_row",
+    "same_domain_rows",
+  ],
+  ckm_overlap_readout: [
+    "weak_quotient",
+    "weak_exposure_record",
+    "ckm_overlap_matrix",
+    "same_domain_rows",
+  ],
+  pmns_overlap_readout: [
+    "weak_quotient",
+    "weak_exposure_record",
+    "pmns_overlap_matrix",
+    "same_domain_rows",
+  ],
+  weak_corridor_provenance: [
+    "weak_quotient",
+    "weak_exposure_record",
+    "corridor_source_field_map",
+    "same_domain_rows",
+  ],
+  effective_gauge_covariance_witness: [
+    "weak_quotient",
+    "weak_projection",
+    "gauge_branch_record_stability",
+    "covariance_residual_row",
+  ],
+  reaction_event_ledger: [
+    "weak_visible_branch_ledger",
+    "weak_projection",
+    "weak_quotient",
+    "weak_exposure_record",
+    "energy_momentum_angular_momentum_accounting",
+  ],
+  noether_sea_response: [
+    "weak_quotient",
+    "reaction_event_ledger",
+    "noether_sea_update_row",
+    "same_domain_rows",
+  ],
+});
+
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = parseArgs(process.argv.slice(2));
   if (args.help) {
@@ -82,6 +155,9 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
   const gaugeCheck = evaluateGauge(input?.gauge ?? {}, rows);
   const residualCheck = evaluateResiduals(input?.residuals ?? {}, input?.tolerances ?? {});
   const sourceEvidenceCheck = evaluateAcceptedSourceEvidence(rowChecks);
+  const sourceAcquisitionCheck = evaluateSourceAcquisition(
+    input?.sourceAcquisitionTargets ?? {},
+  );
   const toyBindingCheck = evaluateToyBindingRows(input?.toyBindingRows ?? defaultToyBindingRows());
   const structuralFailures = [
     ...(domainCheck.passed ? [] : ["same_domain_rows"]),
@@ -91,7 +167,12 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
     ...(toyBindingCheck.passed ? [] : ["toyBindingRows"]),
   ];
   const schemaOk = input?.schema === INPUT_SCHEMA;
-  const status = decideStatus({ schemaOk, structuralFailures, missingRows });
+  const status = decideStatus({
+    schemaOk,
+    structuralFailures,
+    sourceAcquisitionCheck,
+    missingRows,
+  });
   const firstMissingRow = missingRows[0] ?? null;
 
   return {
@@ -116,6 +197,11 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
       gaugePass: gaugeCheck.passed,
       residualPass: residualCheck.passed,
       sourceEvidencePass: sourceEvidenceCheck.passed,
+      sourceAcquisitionPass: sourceAcquisitionCheck.passed,
+      sourceAcquisitionFirstMissingObject:
+        sourceAcquisitionCheck.firstMissingSourceRow
+          ? `missing_accepted_${sourceAcquisitionCheck.firstMissingSourceRow}`
+          : null,
       toyBindingRowsPass: toyBindingCheck.passed,
       allRequiredRowsAccepted: schemaOk && missingRows.length === 0,
       scoreDecision: "no_score_increase",
@@ -126,9 +212,10 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
     gaugeCheck,
     residualCheck,
     sourceEvidenceCheck,
+    sourceAcquisitionCheck,
     toyBindingCheck,
     acceptanceRule:
-      "The weak-channel target is promotion-ready only when every required weak row is accepted from durable source evidence and the same-domain, gauge-stability, weak-residual, source-evidence, and toy-binding checks still pass.",
+      "The weak-channel target is promotion-ready only when every required weak row is accepted from durable source evidence, each required row's source-acquisition target preserves its component shape, and the same-domain, gauge-stability, weak-residual, source-evidence, and toy-binding checks still pass.",
   };
 }
 
@@ -174,7 +261,8 @@ Options:
   --help                Show this help.
 
 This checker keeps the Fe/Ni weak-channel source target fail-closed: it can
-verify accepted weak_visible_branch_ledger and weak_projection rows plus
+verify accepted weak_visible_branch_ledger, weak_projection, weak_quotient, and
+weak_exposure_record rows plus
 same-domain weak structure without treating downstream attempt rows as accepted.`);
 }
 
@@ -189,6 +277,7 @@ function writeReport(report, args) {
         domainCheck: report.domainCheck,
         gaugeCheck: report.gaugeCheck,
         sourceEvidenceCheck: report.sourceEvidenceCheck,
+        sourceAcquisitionCheck: report.sourceAcquisitionCheck,
         toyBindingCheck: report.toyBindingCheck,
       }
     : report;
@@ -304,6 +393,85 @@ function evaluateAcceptedSourceEvidence(rowChecks) {
     failures,
     passed: failures.length === 0,
   };
+}
+
+function evaluateSourceAcquisition(sourceAcquisitionTargets) {
+  const targetChecks = Object.fromEntries(
+    REQUIRED_ROWS.map((rowId) => [
+      rowId,
+      evaluateSourceAcquisitionTarget(rowId, sourceAcquisitionTargets[rowId]),
+    ]),
+  );
+  const failures = Object.values(targetChecks)
+    .filter((check) => check.accepted !== true)
+    .map((check) => ({
+      sourceRowId: check.sourceRowId,
+      reason: sourceAcquisitionTargetFailureReason(check),
+      status: check.status,
+      currentEvidenceStatus: check.currentEvidenceStatus,
+      missingRequiredComponents: check.missingRequiredComponents,
+      extraRequiredComponents: check.extraRequiredComponents,
+    }));
+  return {
+    sourceAcquisitionTargetsField: "sourceAcquisitionTargets",
+    targetChecks,
+    failures,
+    firstMissingSourceRow:
+      Object.values(targetChecks).find((check) => check.accepted !== true)
+        ?.sourceRowId ?? null,
+    passed: failures.length === 0,
+  };
+}
+
+function evaluateSourceAcquisitionTarget(sourceRowId, target) {
+  const present = target && typeof target === "object" && !Array.isArray(target);
+  const status = present ? normalizeStatus(target) : "missing";
+  const currentEvidenceStatus = present
+    ? target.currentEvidenceStatus ?? null
+    : null;
+  const acceptedStatus = ACCEPTED_STATUSES.has(status);
+  const evidenceAccepted = ACCEPTED_EVIDENCE_STATUSES.has(currentEvidenceStatus);
+  const expectedRequiredComponents =
+    REQUIRED_SOURCE_TARGET_COMPONENTS[sourceRowId] ?? [];
+  const requiredLedgerComponents = Array.isArray(target?.requiredLedgerComponents)
+    ? target.requiredLedgerComponents
+    : [];
+  const missingRequiredComponents = expectedRequiredComponents.filter(
+    (component) => !requiredLedgerComponents.includes(component),
+  );
+  const extraRequiredComponents = requiredLedgerComponents.filter(
+    (component) => !expectedRequiredComponents.includes(component),
+  );
+  const componentShapePass =
+    missingRequiredComponents.length === 0 &&
+    extraRequiredComponents.length === 0;
+  return {
+    sourceRowId,
+    targetId: present ? target.id ?? target.rowId ?? null : null,
+    present,
+    status,
+    currentEvidenceStatus,
+    acceptedStatus,
+    evidenceAccepted,
+    expectedRequiredComponents,
+    requiredLedgerComponents,
+    missingRequiredComponents,
+    extraRequiredComponents,
+    componentShapePass,
+    accepted: acceptedStatus && evidenceAccepted && componentShapePass,
+    sourceTargetPath: present ? target.sourceTargetPath ?? null : null,
+    requiredScope: present ? target.requiredScope ?? null : null,
+  };
+}
+
+function sourceAcquisitionTargetFailureReason(check) {
+  if (check.present !== true) {
+    return "source_acquisition_target_missing";
+  }
+  if (check.componentShapePass !== true) {
+    return "source_acquisition_target_shape_mismatch";
+  }
+  return "source_acquisition_target_not_accepted";
 }
 
 function evaluateToyBindingRows(raw) {
@@ -489,7 +657,12 @@ function collectSourceSupportValues(value) {
   return typeof value === "string" ? [value] : [];
 }
 
-function decideStatus({ schemaOk, structuralFailures, missingRows }) {
+function decideStatus({
+  schemaOk,
+  structuralFailures,
+  sourceAcquisitionCheck,
+  missingRows,
+}) {
   if (!schemaOk) {
     return "schema_mismatch";
   }
@@ -498,6 +671,9 @@ function decideStatus({ schemaOk, structuralFailures, missingRows }) {
   }
   if (missingRows.length > 0) {
     return "missing_accepted_weak_channel_rows";
+  }
+  if (sourceAcquisitionCheck.passed !== true) {
+    return "weak_channel_source_acquisition_incomplete";
   }
   return "accepted_weak_channel_source_rows";
 }

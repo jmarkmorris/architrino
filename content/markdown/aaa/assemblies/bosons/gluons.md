@@ -21,19 +21,19 @@ A Noether braid also has three ordered axes $(H,M,L)$, each carrying two polar s
 
 #### Case A: The Up Quark ($u$)
 
-- **Composition:** $5P,1E$, so $Q=+\frac{2}{3}e$.
-- **Axis pattern:** two axes of class $P^+$ and one exceptional axis of class $P^{m}$.
+- **Composition:** $5\epsilon_+ + 1\epsilon_-$, so $Q=+\frac{2}{3}e$.
+- **Axis pattern:** two positive-polarity dyads and one exceptional mixed dyad.
 - **Color basis:**
-  - Red: $|u_H\rangle \equiv (P^{m},P^+,P^+)$
-  - Green: $|u_M\rangle \equiv (P^+,P^{m},P^+)$
-  - Blue: $|u_L\rangle \equiv (P^+,P^+,P^{m})$
+  - Red: $|u_H\rangle$ has the mixed dyad on $H$.
+  - Green: $|u_M\rangle$ has the mixed dyad on $M$.
+  - Blue: $|u_L\rangle$ has the mixed dyad on $L$.
 
 #### Case B: The Down Quark ($d$)
 
-- **Composition:** $2P,4E$, so $Q=-\frac{1}{3}e$.
+- **Composition:** $2\epsilon_+ + 4\epsilon_-$, so $Q=-\frac{1}{3}e$.
 - **Axis pattern:** the architecture admits two families:
-  - Family I: one $P^+$ axis and two $P^-$ axes.
-  - Family II: one $P^-$ axis and two $P^{m}$ axes.
+  - Family I: one positive-polarity dyad and two negative-polarity dyads.
+  - Family II: one negative-polarity dyad and two mixed dyads.
 - **Color basis:** in either family, color is still the position of the exceptional axis:
   - Red: exceptional on $H$
   - Green: exceptional on $M$

@@ -46,4 +46,8 @@ test("animator standalone home navigation uses the standalone navigator href", (
 
   assert.equal(navigated, true);
   assert.equal(assignedHref, STANDALONE_ANIMATOR_NAVIGATOR_HREF);
+  assert.equal(
+    assignedHref,
+    "./index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
+  );
 });

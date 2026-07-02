@@ -1,3 +1,5 @@
+import { resolveStandaloneAppHomeHref } from "../navigator/StandaloneAppHomeRuntime.js";
+
 const DATASET_SCHEMA = "assembly-configuration-explorer.dataset.v1";
 const DEFAULT_FIELD_SPEED = 1;
 const SPEED_TOLERANCE = 1e-9;
@@ -431,7 +433,7 @@ export class AssemblyConfigurationExplorerRuntime {
     home.type = "button";
     home.title = "Return to main app";
     home.addEventListener("click", () => {
-      this.window?.location?.assign?.("./index.html");
+      this.window?.location?.assign?.(resolveStandaloneAppHomeHref(this.window?.location?.href));
     });
     header.append(title, home);
     return header;

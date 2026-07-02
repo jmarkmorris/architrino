@@ -24,6 +24,7 @@ import {
   updateEquationAnchor,
   updateEquationOverlay,
 } from "./EquationMappingEditor.js";
+import { resolveStandaloneAppHomeHref } from "../navigator/StandaloneAppHomeRuntime.js";
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
 const SIZE_CALIBRATION_VERSION = 2;
@@ -69,6 +70,10 @@ export function createPointerLineGeometry(stageRect, targetRect, commentRect, pl
     x2: targetX - stageRect.left,
     y2: targetY - stageRect.top,
   };
+}
+
+export function createEquationMappingHomeHref(windowLike = globalThis.window) {
+  return resolveStandaloneAppHomeHref(windowLike?.location?.href);
 }
 
 function renderMath(windowLike, element, tex, { displayMode = false } = {}) {
@@ -410,7 +415,7 @@ export class EquationMappingRuntime {
     const controls = createElement(this.document, "div", "equation-mapping-controls");
     controls.append(
       this.renderIconButton("home", "Go to home", () => {
-        this.window?.location?.assign?.("./index.html");
+        this.window?.location?.assign?.(createEquationMappingHomeHref(this.window));
       }),
       this.renderIconButton("search", "Search equations", () => {
         this.searchOpen = !this.searchOpen;

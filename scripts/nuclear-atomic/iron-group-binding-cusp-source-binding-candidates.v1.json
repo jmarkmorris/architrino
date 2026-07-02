@@ -48,7 +48,7 @@
         "reaction_event_ledger",
         "noether_sea_response"
       ],
-      "firstMissingObject": "missing_accepted_weak_quotient"
+      "firstMissingObject": "missing_accepted_va_chirality_gate"
     },
     {
       "id": "theta_sea_rho_ns_density_compression_provider",

@@ -191,6 +191,7 @@ Plain language: With slightly thick causal wake surfaces, the usual “force is 
 - Core dynamics chapters often set field speed to $v=1$ (equivalently $c_f=1$).
 - In spacetime closure chapters, keep $c_f$ explicit and use $v$ for drift speed only through $\beta=v/c_f$.
 - $\epsilon = |e|/6$ is the potential polarity-unit magnitude in observer-level electric bookkeeping; Electrino $q=-\epsilon$, Positrino $q=+\epsilon$.
+- In axial-inventory and weak-coupling-triad counts, write signed polarity units as $\epsilon_+$ and $\epsilon_-$, for example $5\epsilon_+ + 1\epsilon_-$. Do not use initial-letter polarity shorthand for these inventories.
 - $\kappa>0$ universal coupling.
 - $\eta>0$ mollifier width (regularization parameter).
 - Emission cadence and per-wavefront amplitude are constant. Receiver-normal velocity enters the branch strength through $D_t$ and enters instantaneous power through $\,\mathbf{F}\cdot\mathbf{v} = |\mathbf{F}|\,v_r$.

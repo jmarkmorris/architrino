@@ -1,4 +1,5 @@
 import { PDGEDIT_APP_MODE } from "./PdgeditAppModeRuntime.js";
+import { STANDALONE_APP_HOME_HREF } from "../navigator/StandaloneAppHomeRuntime.js";
 import {
   DEFAULT_PDGEDIT_MANIFEST_URL,
   DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
@@ -12,7 +13,7 @@ export function bootstrapPdgeditApp({
   manifestUrl = DEFAULT_PDGEDIT_MANIFEST_URL,
   tileCatalogUrl = DEFAULT_PDGEDIT_TILE_CATALOG_URL,
   templateCatalogUrl = DEFAULT_PDGEDIT_TEMPLATE_CATALOG_URL,
-  homeHref = "./index.html",
+  homeHref = STANDALONE_APP_HOME_HREF,
 } = {}) {
   if (!documentLike) {
     throw new Error("pdgedit bootstrap requires document.");

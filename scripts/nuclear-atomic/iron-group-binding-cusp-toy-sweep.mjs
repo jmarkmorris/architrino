@@ -843,11 +843,14 @@ function evaluateConfinementFunctionalSource(raw, candidate, resolvedPath) {
       report.summary.firstMissingObject ??
       candidate.firstMissingObject ??
       "missing_accepted_confinement_functional",
+    sourceAcquisitionFirstMissingObject:
+      report.summary.sourceAcquisitionFirstMissingObject ?? null,
     missingOrRejectedFields: [
       ...(report.input.schemaOk ? [] : ["source_schema"]),
       ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
       ...report.summary.structuralFailures,
       ...(report.summary.sourceEvidencePass ? [] : ["accepted_source_evidence"]),
+      ...(report.summary.sourceAcquisitionPass ? [] : ["source_acquisition"]),
     ],
     rowStatuses: sourceRowStatusesFromSourceTargetCheck(
       report,
@@ -893,10 +896,13 @@ function evaluateWeakChannelSource(raw, candidate, resolvedPath) {
       report.summary.firstMissingObject ??
       candidate.firstMissingObject ??
       "missing_accepted_weak_channel",
+    sourceAcquisitionFirstMissingObject:
+      report.summary.sourceAcquisitionFirstMissingObject ?? null,
     missingOrRejectedFields: [
       ...(report.input.schemaOk ? [] : ["source_schema"]),
       ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
       ...report.summary.structuralFailures,
+      ...(report.summary.sourceAcquisitionPass ? [] : ["source_acquisition"]),
     ],
     rowStatuses: sourceRowStatusesFromSourceTargetCheck(
       report,
@@ -1003,6 +1009,8 @@ function compactConfinementFunctionalSourceTargetCheck(report) {
   return {
     schema: report.schema,
     summary: report.summary,
+    sourceEvidenceCheck: report.sourceEvidenceCheck,
+    sourceAcquisitionCheck: report.sourceAcquisitionCheck,
     equationChecks: report.equationChecks,
     toyBindingCheck: report.toyBindingCheck,
   };
@@ -1014,6 +1022,7 @@ function compactWeakChannelSourceTargetCheck(report) {
     summary: report.summary,
     domainCheck: report.domainCheck,
     sourceEvidenceCheck: report.sourceEvidenceCheck,
+    sourceAcquisitionCheck: report.sourceAcquisitionCheck,
     toyBindingCheck: report.toyBindingCheck,
   };
 }

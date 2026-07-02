@@ -32,6 +32,36 @@
       "credentialBoundary": "service_side_only",
       "fallbackBehavior": "diagram_or_prompt_draft",
       "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.moderation.fixture",
+      "capabilityType": "moderation",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "low",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "fail_closed_public_media",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.retrieval_embedding.fixture",
+      "capabilityType": "retrieval_embedding",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "standard",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "keyword_route_retrieval",
+      "noBrowserKeys": true
+    },
+    {
+      "capabilityId": "capability.rerank.fixture",
+      "capabilityType": "rerank",
+      "enabledState": "internal_only",
+      "healthState": "healthy",
+      "costClass": "low",
+      "credentialBoundary": "service_side_only",
+      "fallbackBehavior": "preserve_source_order",
+      "noBrowserKeys": true
     }
   ]
 }

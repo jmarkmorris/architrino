@@ -9,7 +9,10 @@
   "requiredCapabilityIds": [
     "capability.answer_text.fixture",
     "capability.speech_output.high_quality.fixture",
-    "capability.image_generation.fixture"
+    "capability.image_generation.fixture",
+    "capability.moderation.fixture",
+    "capability.retrieval_embedding.fixture",
+    "capability.rerank.fixture"
   ],
   "termsVersionSetId": "terms_fixture_v1",
   "endpointCompatibility": [

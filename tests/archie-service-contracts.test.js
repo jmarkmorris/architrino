@@ -91,3 +91,33 @@ test("Archie rollback smoke preserves fixture compatibility", () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   assert.match(result.stdout, /Archie rollback check passed/);
 });
+
+test("Archie provider sandbox stays gated and fixture-backed", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-provider-sandbox.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie provider-sandbox check passed/);
+});
+
+test("Archie provider gateway stays no-call and fixture-backed", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-provider-gateway.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie provider-gateway check passed/);
+});
+
+test("Archie token-ledger sandbox keeps provider work payment-free", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-token-ledger-sandbox.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie token-ledger sandbox check passed/);
+});

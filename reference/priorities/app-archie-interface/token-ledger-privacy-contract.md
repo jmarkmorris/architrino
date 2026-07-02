@@ -275,6 +275,8 @@ Fail-closed responses should return a manifest-shaped refusal or fallback with `
 
 ## Regression Fixtures
 
+The current schema-only service scaffold includes [token-receipt.v1.json](../../../tests/archie-service/fixtures/token-ledger/token-receipt.v1.json), [token-ledger-sandbox.v1.json](../../../tests/archie-service/fixtures/token-ledger/token-ledger-sandbox.v1.json), and [validate-token-ledger-sandbox.mjs](../../../scripts/archie-service/validate-token-ledger-sandbox.mjs). These fixtures cover provider-gateway accounting for normal answer holds/charges/refunds, high-quality speech charges, terms-blocked generated media, provider-cost-map blocks, auto-fund-pending blocks, cap-exceeded blocks, safe provider capability refs, safe terms refs, payment-disabled state, and no private prompt expansion.
+
 The future implementation should include token/privacy fixtures for:
 
 | Fixture | Required proof |
@@ -300,19 +302,15 @@ The future implementation should include token/privacy fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Token Ledger And Privacy Contract into wallet state, receipt schema, retention-state validators, confirmation gates, and regression fixtures for the Archie service.
+Connect token receipt ids, privacy summaries, and confirmation states into issue-mining signal fixtures without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Encode wallet, cap, hold, charge, refund, and auto-fund state.
-- Encode `token_receipt` and `privacy_state` schemas.
-- Encode provider capability refs and cost classes without exposing provider-specific billing internals.
-- Encode safe terms-version refs in receipts without private prompt expansion.
-- Define confirmation gates for auto-fund, cap exceedance, durable save, notebook/account-history opt-in, public issue submission, user-material inclusion, and credentialed actions.
-- Add terms gates for paid work, auto-fund, refunds, cancellation, failed payment, support route, and re-acceptance requirements.
-- Add validators that prevent private prompt text from leaking into receipts, issue-mining metadata, observability events, support summaries, incident records, or diagnostics.
-- Add fixtures for normal answers, cap exceedance, auto-fund, refunds, terms gating, provider cost-map refusal, speech fallback, ephemeral audio, durable save, notebook/account-history evidence refusal, public issue warnings, private-material exclusion, observability redaction, and redacted diagnostics.
+- Add issue-mining fixtures that reference token receipt ids, source classes, claim labels, owner lanes, duplicate keys, and smallest next artifacts without copying private prompt text.
+- Add confirmation-state checks for public issue text, durable save exclusion, user-material exclusion, and external GitHub handoff.
+- Preserve receipt privacy: issue-mining metadata may use receipt ids and safe work-unit classes, but not provider payloads, provider billing internals, or private prompt text.
+- Keep hidden GitHub writes, durable notebooks, account history, payment integrations, provider calls, deployment config, public routes, and production secrets disabled.
 
 Constraints:
 - Do not charge for omitted low-quality speech fallback.

@@ -20,7 +20,10 @@ import {
   updateEquationAnchor,
   updateEquationOverlay,
 } from "../src/apps/equation-mapping/EquationMappingEditor.js";
-import { createPointerLineGeometry } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
+import {
+  createEquationMappingHomeHref,
+  createPointerLineGeometry,
+} from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -154,6 +157,21 @@ test("equation mapping settings omit the global section-line control", () => {
   assert.equal(runtime.includes("normalizeSectionLinePlacement"), false);
   assert.equal(runtime.includes('this.renderEditorSelect("Line"'), true);
   assert.equal(requirements.includes("section-line placement: above or below formula section"), false);
+});
+
+test("equation mapping home button targets the Applications scene without replacing history", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(
+    createEquationMappingHomeHref({
+      location: {
+        href: "http://127.0.0.1:5173/equation-mapping.html",
+      },
+    }),
+    "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
+  );
+  assert.equal(runtime.includes('assign?.("./index.html")'), false);
+  assert.equal(runtime.includes("location?.replace"), false);
+  assert.equal(runtime.includes("createEquationMappingHomeHref(this.window)"), true);
 });
 
 test("equation mapping resets stale saved sizing into the new medium defaults", () => {

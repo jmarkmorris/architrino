@@ -32,6 +32,11 @@ function acceptedTarget() {
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
     row.currentEvidenceStatus = "accepted_non_fixture_source";
+    row.acceptedSourceRows = row.requiredSourceRows ?? [];
+  }
+  for (const sourceTarget of Object.values(target.sourceAcquisitionTargets ?? {})) {
+    sourceTarget.status = "accepted";
+    sourceTarget.currentEvidenceStatus = "accepted_non_fixture_source";
   }
   return target;
 }
@@ -48,6 +53,11 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(report.summary.dependencyPass, true);
   assert.equal(report.summary.equationPass, true);
   assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    report.summary.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_K_perp",
+  );
   assert.equal(report.summary.toyBindingRowsPass, true);
   assert.equal(report.summary.firstMissingObject, "missing_accepted_sigma_eff_extraction");
   assert.deepEqual(report.summary.missingRows, [
@@ -56,6 +66,27 @@ test("current confinement target passes structure but blocks accepted source row
     "delta_E_corr_NN",
     "no_open_color_far_field",
   ]);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.K_perp.componentShapePass,
+    true,
+  );
+  assert.deepEqual(report.sourceAcquisitionCheck.targetChecks.K_perp.requiredLedgerComponents, [
+    "transverse_stiffness_functional",
+    "color_charge_domain",
+    "sigma_eff_variation_record",
+  ]);
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.rowChecks.sigma_eff_extraction
+      .missingAcceptedSourceRows,
+    [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+    ],
+  );
   assert.equal(report.toyBindingCheck.unconsumedRequiredRows.length, 0);
 });
 
@@ -69,6 +100,67 @@ test("accepted confinement rows pass when the same dependency structure is retai
   assert.deepEqual(report.summary.missingRows, []);
   assert.equal(report.summary.structuralPass, true);
   assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, true);
+});
+
+test("accepted confinement rows fail closed when source rows are named but target-only", () => {
+  const target = readTarget();
+  for (const row of Object.values(target.rows)) {
+    row.status = "accepted";
+    row.currentEvidenceStatus = "accepted_non_fixture_source";
+    row.acceptedSourceRows = row.requiredSourceRows ?? [];
+  }
+
+  const report = buildConfinementFunctionalSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "confinement_functional_source_acquisition_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    report.sourceAcquisitionCheck.firstMissingSourceRow,
+    "K_perp",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.failures.some(
+      (failure) =>
+        failure.sourceRowId === "K_perp" &&
+        failure.reason === "source_acquisition_target_not_accepted",
+    ),
+    true,
+  );
+});
+
+test("accepted confinement rows fail closed when a source-acquisition target loses its required component shape", () => {
+  const target = acceptedTarget();
+  target.sourceAcquisitionTargets.K_perp.requiredLedgerComponents =
+    target.sourceAcquisitionTargets.K_perp.requiredLedgerComponents.filter(
+      (component) => component !== "transverse_stiffness_functional",
+    );
+
+  const report = buildConfinementFunctionalSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "confinement_functional_source_acquisition_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.equal(report.sourceAcquisitionCheck.targetChecks.K_perp.componentShapePass, false);
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.K_perp.missingRequiredComponents,
+    ["transverse_stiffness_functional"],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.failures.some(
+      (failure) =>
+        failure.sourceRowId === "K_perp" &&
+        failure.reason === "source_acquisition_target_shape_mismatch",
+    ),
+    true,
+  );
 });
 
 test("confinement checker fails closed on accepted-looking priority-only rows", () => {

@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-01T17:05:32.902Z",
-  "total_links": 1584,
+  "generated_at": "2026-07-02T07:23:58.088Z",
+  "total_links": 1587,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -2978,6 +2978,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea-pro-anti-coupling.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/spacetime/noether-sea.md#temperature-conditioned-branch-transition-target",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/noether-sea.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -8982,6 +8990,14 @@
     {
       "sourceChapterId": "spacetime",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
+    },
+    {
+      "sourceChapterId": "spacetime",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-sea-and-effective-spacetime.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -10874,6 +10890,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/entropy.md"
     },
     {
       "sourceChapterId": "validation",

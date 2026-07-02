@@ -6,6 +6,11 @@ import {
   getStandaloneAppPathForScene,
   resolveStandaloneAppHrefForScene,
 } from "../src/apps/navigator/StandaloneAppLaunchRuntime.js";
+import {
+  APPLICATIONS_SCENE_PATH,
+  STANDALONE_APP_HOME_HREF,
+  resolveStandaloneAppHomeHref,
+} from "../src/apps/navigator/StandaloneAppHomeRuntime.js";
 
 function readRepoFile(relativePath) {
   return readFileSync(new URL(`../${relativePath}`, import.meta.url), "utf8");
@@ -66,6 +71,38 @@ test("work-in-progress public app scenes resolve to standalone app paths", () =>
     ),
     "http://127.0.0.1:5173/borg.html"
   );
+});
+
+test("standalone app home href returns to the Applications scene", () => {
+  assert.equal(APPLICATIONS_SCENE_PATH, "content/scenes/archie/applications.json");
+  assert.equal(
+    STANDALONE_APP_HOME_HREF,
+    "./index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
+  );
+  assert.equal(
+    resolveStandaloneAppHomeHref("http://127.0.0.1:5173/photon.html"),
+    "http://127.0.0.1:5173/index.html#scene=content%2Fscenes%2Farchie%2Fapplications.json"
+  );
+});
+
+test("standalone app home controls avoid bare index navigation", () => {
+  const appRuntimes = [
+    "src/apps/assembly-explorer/AssemblyConfigurationExplorerRuntime.js",
+    "src/apps/equation-mapping/EquationMappingRuntime.js",
+    "src/apps/photon/PhotonRuntime.js",
+    "src/apps/website-stats/WebsiteStatsRuntime.js",
+    "src/apps/animator/AnimatorAppModeRuntime.js",
+    "src/apps/pdgedit/PdgeditAppModeRuntime.js",
+    "src/apps/ideal-braid/IdealBraidRuntime.js",
+  ];
+
+  for (const runtimePath of appRuntimes) {
+    const runtime = readRepoFile(runtimePath);
+    assert.equal(runtime.includes('assign?.("./index.html")'), false, runtimePath);
+    assert.equal(runtime.includes('homeHref = "./index.html"'), false, runtimePath);
+    assert.equal(runtime.includes('NAVIGATOR_HREF = "./index.html"'), false, runtimePath);
+    assert.equal(runtime.includes('createNavLink("./index.html", "Home")'), false, runtimePath);
+  }
 });
 
 test("Applications scene exposes Equation Mapping as a standalone app scene", () => {

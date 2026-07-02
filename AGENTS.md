@@ -178,6 +178,7 @@ This document distinguishes three audience scopes:
   - `node scripts/build-textbook-md-pdf.mjs --check`
   - `node scripts/check-receiver-normal-clean-slate.mjs`
   - `node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs`
+  - `node scripts/check-polarity-notation-drift.mjs`
   - `node scripts/check-animator-runtime-wiring.mjs`
 - `pre-push` runs the shared Content Integrity gate before push:
   - `node scripts/check-content-integrity.mjs`
