@@ -6,6 +6,16 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Retained-Source Adapter Producer Boundary Added
+
+Advanced the `internal_tangent_authority_derivation` evidence boundary from a consumer-side accepted-bridge criterion to a source-side adapter target. [central-solver-retained-source-adapter.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter.mjs) emits `central_solver_retained_source_adapter.v0`, which binds six held-release seed path rows, six durable path-history stream manifest refs, one central retained-history provider object ref, one preferred-curve `source_row_id`, thirty-six native root-ledger detail refs, thirty-six causal-root replay refs, same-record action closure, retained wake history, retained record id, and provider provenance before asking for an adapter acceptance certificate.
+
+Executable status: the adapter fails closed first at `held_release_seed_path_rows[*].retained_record_id`; with a provider-backed retained record and six durable streams it sharpens to `central_solver_retained_source_adapter.same_record_binding.source_row_id`; with source row, root details, causal replay, action closure, and wake history present it sharpens to `central_solver_retained_source_adapter.acceptance_certificate_ref`. It remains non-authorizing: `accepted_retained_source_adapter_ref=null`, retained-branch authorization flags stay false, and the artifact cannot itself promote accepted internal tangent authority.
+
+Checker status: `node --check scripts/braid-ideal/central-solver-retained-source-adapter.mjs` passed, the focused adapter test passed with 4 tests, the full `node --test tests/braid-ideal-*.test.js` suite passed with 132 tests, and `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Current blocker: acquire or produce the accepted adapter certificate and external accepted-authority verification for the same retained record and source row, then connect that accepted retained-source adapter to the central internal tangent-authority accepted-bridge criterion.
+
 ### 2026-07-02 - Chirality `R_J` Producer-Owner Scout Handoff
 
 Thread 3 completed the read-only `R_J` producer-owner scout with no repo file changes. It found no clean repo-local central/native, quantum, angular-momentum, or retained-history producer surface that can emit or adapt a non-fixture same-record `same_record_angular_momentum_residual_row` for `braid_ideal_chirality_retained_history_target.v0`.

@@ -6,6 +6,13 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 — Finite-tail support aliases accepted
+
+- Continued the branch-interface source-acquisition route after re-reading `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log under the current priority-file partition.
+- Added [finite-range-tail-support-retained-evidence.v1.json](../../../scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json) as durable non-fixture support accepting only `bounded_residual_overlap` and `large_r_zero_limit` from the already accepted normalized tail-calculus rows `lim_R_to_infty_T_NN_R_eq_0`, `O_NN_finite`, and `exists_R0_C_lambda_exp_decay_tail`.
+- Current blocker: `finite_range_residual` remains blocked because `Delta_E_corr_NN_tail_limit`, accepted color-singlet nucleon envelope, and the same-domain branch-interface / Noether sea response join are still missing; `nucleon-branch-interface-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`.
+- Next action: derive the same-domain `Delta_E_corr_NN_tail_limit` join or the accepted color-singlet envelope chain before attempting `finite_range_residual`, `same_record_no_open_color_audit`, `K_open_finite`, or `no_open_color_far_field`.
+
 ### 2026-07-02 — Accepted sigma-eff extraction support row
 
 - Resumed from the current priority-file partition after reading `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log.

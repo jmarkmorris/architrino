@@ -124,6 +124,12 @@ const DELTA_E_CORR_TAIL_CALCULUS_EVIDENCE_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const FINITE_RANGE_TAIL_SUPPORT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const COLOR_SINGLET_CLOSURE_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
@@ -1425,6 +1431,64 @@ test("current confinement target passes structure but blocks accepted source row
     ),
     true,
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.bounded_residual_overlap.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.bounded_residual_overlap
+      .requiredLedgerComponents,
+    [
+      "O_NN_finite",
+      "corridor_weight_ref",
+      "finite_overlap_integral",
+      "same_tail_support_domain",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.large_r_zero_limit.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.large_r_zero_limit
+      .requiredLedgerComponents,
+    [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "tail_envelope_bound",
+      "zero_limit_derivation",
+      "same_tail_support_domain",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.large_r_zero_limit
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json",
+  );
+  const finiteRangeTailSupportEvidence = JSON.parse(
+    fs.readFileSync(FINITE_RANGE_TAIL_SUPPORT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    finiteRangeTailSupportEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["bounded_residual_overlap", "large_r_zero_limit"],
+  );
+  assert.equal(
+    finiteRangeTailSupportEvidence.tailSupportInputs.sameFullConfinementRecord,
+    false,
+  );
+  assert.equal(
+    finiteRangeTailSupportEvidence.boundedResidualOverlap
+      .coefficientExclusionAudit.usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    finiteRangeTailSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "finite_range_residual",
+    ),
+    true,
+  );
   const deltaECorrTailLimitBlocker = JSON.parse(
     fs.readFileSync(DELTA_E_CORR_TAIL_LIMIT_BLOCKER_PATH, "utf8"),
   );
@@ -1740,7 +1804,14 @@ test("current confinement target passes structure but blocks accepted source row
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
     ],
+  );
+  assert.deepEqual(
+    finiteRangeResidualBlocker.tailLimitRowBridgeRequestPacket
+      .acceptedRowsAlreadyAvailable,
+    ["bounded_residual_overlap", "large_r_zero_limit"],
   );
   assert.equal(
     finiteRangeResidualBlocker.tailLimitRowBridgeRequestPacket.notAcceptedByThisPacket.includes(
@@ -2196,7 +2267,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma
       .missingAcceptanceRows.includes("bounded_residual_overlap"),
-    true,
+    false,
   );
   assert.deepEqual(
     sameRecordNoOpenColorAuditBlocker.candidateFiniteKOpenProjectionBoundLemma

@@ -576,13 +576,10 @@
       "N_open_R_le_K_open_T_NN_R_squared"
     ],
     "missingAcceptanceRows": [
-      "bounded_residual_overlap",
       "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
-      "same_event_ledger",
-      "bounded_open_color_projection_operator_norm",
-      "finite_open_color_surface_measure"
+      "same_event_ledger"
     ],
     "feedsRowsAfterAcceptance": [
       "same_record_no_open_color_audit",
@@ -597,7 +594,7 @@
       "Pi_open is evaluated in a different residual corridor or event record",
       "the projection operator norm depends on A, Z, isotope, element, or Fe/Ni-specific tuning",
       "the open-color surface measure is not finite in the retained record",
-      "bounded_residual_overlap remains target-only",
+      "bounded_residual_overlap remains a normalized support alias and is not joined to the same retained event record",
       "K_open_finite is used as accepted evidence before the projection-bound inputs are accepted"
     ]
   },

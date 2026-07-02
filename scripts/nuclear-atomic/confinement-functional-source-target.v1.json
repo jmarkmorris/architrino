@@ -332,6 +332,36 @@
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
     },
+    "bounded_residual_overlap": {
+      "id": "bounded_residual_overlap_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite-tail support alias from O_NN_finite for the finite_range_residual route; not the top finite_range_residual row",
+      "requiredLedgerComponents": [
+        "O_NN_finite",
+        "corridor_weight_ref",
+        "finite_overlap_integral",
+        "same_tail_support_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
+    },
+    "large_r_zero_limit": {
+      "id": "large_r_zero_limit_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite-tail support alias from lim_R_to_infty_T_NN_R_eq_0 for the finite_range_residual route; not no_open_color_far_field",
+      "requiredLedgerComponents": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "tail_envelope_bound",
+        "zero_limit_derivation",
+        "same_tail_support_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/finite-range-tail-support-retained-evidence.v1.json"
+    },
     "finite_range_residual": {
       "id": "finite_range_residual_source_target_0001",
       "status": "target_required",

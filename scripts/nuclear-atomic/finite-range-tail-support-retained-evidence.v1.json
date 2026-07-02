@@ -1,0 +1,101 @@
+{
+  "schema": "aaa-nuclear-atomic-finite-range-tail-support-evidence/v1",
+  "claimLevel": "durable non-fixture bounded_residual_overlap and large_r_zero_limit source-acquisition rows for the finite_range_residual route; finite-tail support aliases only; not accepted Delta_E_corr_NN_tail_limit, finite_range_residual, same_record_no_open_color_audit, no_open_color_far_field, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "finite_range_tail_support",
+  "sourceSupport": [
+    "finite_range_residual",
+    "bounded_residual_overlap",
+    "large_r_zero_limit",
+    "lim_R_to_infty_T_NN_R_eq_0",
+    "O_NN_finite",
+    "exists_R0_C_lambda_exp_decay_tail"
+  ],
+  "evidenceSupports": [
+    "bounded_residual_overlap",
+    "large_r_zero_limit"
+  ],
+  "sourceIdentity": {
+    "finiteRangeTailSupportId": "finite_range_tail_support_0001",
+    "boundedResidualOverlapSourceTargetId": "bounded_residual_overlap_source_target_0001",
+    "largeRZeroLimitSourceTargetId": "large_r_zero_limit_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "finiteRangeResidualBlockerPath": "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json",
+    "tailCalculusSupportPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "tailSupportInputs": {
+    "sameTailSupportDomain": "normalized_retained_tail_support_domain_0001",
+    "lim_R_to_infty_T_NN_R_eq_0_ref": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/zeroLimit",
+    "O_NN_finite_ref": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/finiteOverlap",
+    "exists_R0_C_lambda_exp_decay_tail_ref": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/exponentialTailExistence",
+    "residualTailEnvelopeRef": "T_NN_tail_support_envelope_0001",
+    "corridorWeightRef": "w_corr_tail_support_0001",
+    "coefficientExclusionAuditRef": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/acceptedBoundary",
+    "sameFullConfinementRecord": false,
+    "sameFullConfinementRecordBoundary": "The finite-tail aliases are retained in the normalized tail-support domain only. The top Delta_E_corr_NN_tail_limit and finite_range_residual rows still require same-record joining to accepted sigma_eff extraction, color-singlet envelope, branch-interface, and Noether sea response rows."
+  },
+  "boundedResidualOverlap": {
+    "rowId": "bounded_residual_overlap_0001",
+    "sourceRowId": "bounded_residual_overlap",
+    "O_NN_finite_ref": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/finiteOverlap",
+    "corridor_weight_ref": "w_corr_tail_support_0001",
+    "finiteOverlapIntegral": "O_NN <= integral_R0^infty C C_w exp(-(lambda-eta)(r-R0)) dr = 1 in the normalized retained tail-support domain.",
+    "same_tail_support_domain": "normalized_retained_tail_support_domain_0001",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "largeRZeroLimit": {
+    "rowId": "large_r_zero_limit_0001",
+    "sourceRowId": "large_r_zero_limit",
+    "lim_R_to_infty_T_NN_R_eq_0_ref": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json#/zeroLimit",
+    "tailEnvelopeBound": "T_NN(R) <= exp(-(R-1)) for R >= 1 in the normalized retained tail-support domain.",
+    "zeroLimitDerivation": "Because lambda=1>0, the retained tail envelope tends to zero as R tends to infinity; this supplies the large_r_zero_limit support alias for finite_range_residual, not no_open_color_far_field.",
+    "same_tail_support_domain": "normalized_retained_tail_support_domain_0001",
+    "coefficientExclusionAudit": {
+      "usesAIndexedCoefficient": false,
+      "usesZIndexedCoefficient": false,
+      "usesIsotopeIndexedCoefficient": false,
+      "usesElementIndexedCoefficient": false,
+      "usesFeNiTunedCoefficient": false
+    }
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "bounded_residual_overlap",
+      "large_r_zero_limit"
+    ],
+    "notAcceptedByThisEvidence": [
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "same_event_ledger",
+      "K_open_finite",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, fixture-only data, or a toy Fe/Ni fit.",
+    "The accepted rows are only finite-tail support aliases for the existing finite_range_residual route.",
+    "The row does not accept Delta_E_corr_NN_tail_limit because accepted color-singlet nucleon envelope and same-record joining rows are still missing.",
+    "The row does not accept finite_range_residual because the top tail-limit row and same-record confinement-functional join remain missing.",
+    "The row does not accept same_record_no_open_color_audit, no_open_color_far_field, no_free_color_asymptotic_state, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

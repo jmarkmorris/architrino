@@ -185,6 +185,20 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "lambda_positive",
     "coefficient_exclusion_audit",
   ],
+  bounded_residual_overlap: [
+    "O_NN_finite",
+    "corridor_weight_ref",
+    "finite_overlap_integral",
+    "same_tail_support_domain",
+    "coefficient_exclusion_audit",
+  ],
+  large_r_zero_limit: [
+    "lim_R_to_infty_T_NN_R_eq_0",
+    "tail_envelope_bound",
+    "zero_limit_derivation",
+    "same_tail_support_domain",
+    "coefficient_exclusion_audit",
+  ],
   finite_range_residual: [
     "Delta_E_corr_NN_tail_limit",
     "bounded_residual_overlap",
