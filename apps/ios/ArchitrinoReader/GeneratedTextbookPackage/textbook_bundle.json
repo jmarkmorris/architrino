@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "manifest_schema": "textbook_bundle_schema_v1",
-  "generated_at": "2026-07-02T07:23:58.088Z",
+  "generated_at": "2026-07-02T18:27:54.087Z",
   "package_version": "1.0.0-c3dedd9c",
   "schema_version_note": "content_bundle_schema_v1",
   "textbook_toc": {
@@ -188,16 +188,16 @@
       "sourcePath": "__generated__/reading-copies/cosmology.html",
       "role": "chapter",
       "type": "html",
-      "size": 4900001,
-      "sha256": "5e21608b9ad7b1fd5cda8dea265cc3eaf7bf851f774f18f3e0148e1dab8a3182"
+      "size": 4900199,
+      "sha256": "2069a71fb8f750501370ca141b0af4a8ecc08078603fcca77a98607ef1f4ab19"
     },
     {
       "path": "reading-copies/cosmology.md",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "role": "chapter",
       "type": "markdown",
-      "size": 367336,
-      "sha256": "9f107410d39742596c89c92809f6f26802a37e6a86a9a76300807b6916b6deba"
+      "size": 367534,
+      "sha256": "13809fb55338a0953179a8b18130f0a089d4cec08d23f1814f67043cea5c1461"
     },
     {
       "path": "reading-copies/dynamics.html",
@@ -428,8 +428,8 @@
       "sourcePath": "__generated__/textbook_bundle_search_index.json",
       "role": "search",
       "type": "json",
-      "size": 9709667,
-      "sha256": "3060cb51057a1c12daf2636eaffe4d3f6d80a5e0736fc4e3d7c02d456e946fcb"
+      "size": 9709856,
+      "sha256": "69c6111dd2ce63f421fcda68c52752dae434d40ddf09fd99a7c2a94360fdb8ab"
     }
   ],
   "links": []

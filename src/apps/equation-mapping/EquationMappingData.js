@@ -234,7 +234,7 @@ const scoreFiveAndFourEquationMapDocuments = [
       anchor("acceleration", "acceleration response", "per-hit acceleration active root"),
       anchor("polarity", "source polarity", "kappa sigma source receiver polarity"),
       anchor("inverseSquare", "wake dilution", "inverse-square causal wake dilution"),
-      anchor("branchStrength", "branch strength", "receiver-normal source-normal branch strength"),
+      anchor("branchStrength", "branch strength", "receiver-normal source-normal denominator branch factor"),
       anchor("direction", "line of action", "line-of-action causal-root direction"),
     ],
     formulaParts: [
