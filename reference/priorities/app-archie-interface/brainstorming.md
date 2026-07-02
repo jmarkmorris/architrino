@@ -14,10 +14,10 @@ Recommended v1 layout:
 - input buttons for text, microphone, image upload, screenshot upload, and pasted diagram or equation;
 - a source panel that shows which corpus, app guide, System Card, or priority class the answer used;
 - a claim-level chip on each answer: `published corpus`, `priority-only`, `comparison`, `speculation`, or `unsupported`;
-- an action rail for `open source`, `make diagram`, `read aloud`, `submit issue`, `save note`, and `continue reading`;
-- a token wallet that shows available tokens, preflight quotes, per-request caps, pending holds, and post-run receipts.
+- an action rail for `open source`, `make diagram`, `listen`, `submit issue`, `save note`, and `continue reading`;
+- a token wallet that shows available tokens, spending limits, auto-fund status, per-request caps, pending holds, and post-run receipts.
 
-The interface should feel like a working lab guide: quiet, direct, and source-aware. It can use a pleasant narration voice when read aloud, but it should stay disciplined about proof status.
+The interface should feel like a working lab guide: quiet, direct, and source-aware. It should offer a pleasant service-native narration voice for papers and explanations while staying disciplined about proof status.
 
 ## Multimodal Input
 
@@ -46,15 +46,37 @@ The intake pipeline should classify each input before answer generation:
 Useful output modes:
 
 1. Cited text answer.
-2. Read-aloud friendly answer for accessibility and paper listening.
+2. Generated audio answer with verbatim text for accessibility and paper listening.
 3. Narration or explanation script.
 4. Animated concept storyboard.
-5. Diagram or generated image.
-6. Step-by-step reading path through corpus pages.
-7. App deep link or preset recommendation.
-8. GitHub issue submission.
-9. Saved research note.
-10. Follow-up prompt that the user can run in a deeper thread.
+5. Diagram or generated image response.
+6. Future generated video or animation when policy and validation exist.
+7. Step-by-step reading path through corpus pages.
+8. App deep link or preset recommendation.
+9. GitHub issue submission.
+10. Saved research note.
+11. Follow-up prompt that the user can run in a deeper thread.
+
+A question response can include generated text, generated audio, generated images, diagrams, animation storyboards, future video, or any other supported generated medium when that medium clarifies the answer. The interface should expose them as answer artifacts with the same source basis and claim label as the text answer, not as independent evidence.
+
+## Generated Media Corporate Standard
+
+All generated media must satisfy the [Generated Media Corporate Standard](corporate-media-standards.md).
+
+The standard applies to text, audio, images, diagrams, animation storyboards, video when supported, issue drafts, captions, transcripts, alt text, and any future artifact format the service can produce.
+
+The basic rule is:
+
+- lawful;
+- professional;
+- public-suitable;
+- source-grounded;
+- privacy-safe;
+- rights-aware;
+- non-exploitative;
+- not embarrassing to defend if it appears publicly online with Architrino attribution.
+
+When a requested media artifact fails the standard, the service should refuse that part narrowly and offer a compliant alternative.
 
 Generated images should have explicit purpose labels:
 
@@ -66,15 +88,23 @@ Generated images should have explicit purpose labels:
 
 No generated image should be allowed to carry more proof authority than the source answer that requested it.
 
-## Read-Aloud And Presentation Voice
+## Service-Native Speech And Presentation Voice
 
 The user should not need to choose a character persona. Presentation voice is the assistant's responsibility: the service should decide when a slower explanation, a technical review stance, a visual narration, or a compact direct answer best serves the user and the source material.
 
-The practical need is pleasant, accessible reading of papers and explanations. Browser/system narration surfaces such as Microsoft Edge Read Aloud should work well on generated reading views, paper excerpts, and answer pages before the project attempts service-native voice or animated avatars.
+The practical need is pleasant, accessible reading of papers and explanations. The product should start with service-native speech output instead of depending on browser read-aloud. Browser/system narration can remain a compatibility fallback, but it should not define the quality bar.
+
+V1 speech content scope:
+
+1. spoken answers;
+2. the markdown portion associated with a sphere when listening is initiated from that sphere;
+3. the full markdown document when listening is initiated from a full-document sphere.
+
+The initial output shape should be audio plus verbatim text. Later accessibility expansion can add more modes, but the MVP should not rewrite source text into summaries or alternate narration unless the user explicitly asks for a separate explanation.
 
 Good uses:
 
-1. a read-aloud paper view with clean headings, math-safe text, and short spoken summaries;
+1. a native spoken paper mode with a pleasant voice, clean pacing, verbatim text, captions, and source labels;
 2. a beginner-friendly explanation stance that speaks slowly and uses analogies;
 3. a technical reviewer stance that asks what source or proof burden supports a claim;
 4. an app-helper stance that walks through controls and diagnostics;
@@ -87,11 +117,13 @@ Guardrails:
 - presentation changes must preserve source chips, claim labels, and System Card routing;
 - presentation voice must not impersonate real people or imply endorsement;
 - styled output should always be recoverable as a plain source-grounded answer;
-- read-aloud paper views should keep canonical text separate from optional speech-friendly summaries;
+- spoken paper mode should expose verbatim text and keep any optional explanatory rewrite separate;
+- generated audio should be ephemeral by default, with no saved audio retention in the MVP;
+- voice selection should not create a character persona, imply external authority, or use real-person imitation;
 - animated concept explainers should include captions, source basis, and claim-level labels;
-- spoken and animated outputs need token quotes, privacy/retention rules, accessibility controls, and user controls before release.
+- spoken and animated outputs need spending-limit behavior, privacy/retention rules, accessibility controls, and user controls before release.
 
-V1 can support read-aloud friendly answer formatting, narration scripts, and animation storyboards. Service-native speech, animated avatars, generated video, persistent presentation-style memory, and user-custom character personas should remain deferred until the service-platform packet defines speech/media handling.
+V1 can support service-native spoken narration for selected answers and paper excerpts, plus narration scripts and animation storyboards. Animated avatars, generated video, persistent presentation-style memory, and user-custom character personas should remain deferred until the service-platform packet defines speech/media handling.
 
 ## Conversation Modes
 
@@ -210,7 +242,7 @@ Issue bodies should therefore include enough structured metadata for mining: Arc
 
 A subscription service is reasonable because multimodal AI, retrieval, speech, image generation, and GitHub actions all create real operating costs.
 
-The interface should be token-based. Archie questions can require very different resources: static source lookup, corpus retrieval, curated external comparison, longer reasoning, diagram drafting, read-aloud formatting, narration scripting, animation storyboarding, issue preparation, GitHub issue handoff, speech, image analysis, document intake, or saved-note storage. A user should see one token wallet rather than separate hidden limits for model calls, retrieval, diagrams, narration, images, speech, issues, and saved notes. Backend accounting can translate real provider costs into the product token unit, but the user-facing experience should stay unified.
+The interface should be token-based. Archie questions can require very different resources: static source lookup, corpus retrieval, curated external comparison, longer reasoning, diagram drafting, service-native speech generation, narration scripting, animation storyboarding, issue preparation, GitHub issue handoff, image analysis, document intake, or saved-note storage. A user should see one token wallet rather than separate hidden limits for model calls, retrieval, diagrams, narration, images, speech, issues, and saved notes. Backend accounting can translate real provider costs into the product token unit, but the user-facing experience should stay unified.
 
 Possible tiers:
 
@@ -221,15 +253,19 @@ Possible tiers:
 | Research | Deeper idea triage, issue preparation, app-state help, larger context windows. | Higher monthly token grant, larger per-request caps, clear overage controls. |
 | Collaborator | Project-approved users who can route drafts into GitHub or priority packets. | Project-approved token grant plus explicit action permissions and audit logs. |
 
-The service should show usage in ordinary terms:
+The service should make usage understandable without making users think about tokens on every action:
 
 - available token balance;
-- quoted tokens before work runs;
-- maximum token cap for the request;
+- monthly spending limit;
+- optional auto-fund status and cap;
+- estimated tokens before unusually large work, cap changes, or auto-fund events;
+- maximum token cap for the request when set;
 - pending token hold while a request is running;
 - actual tokens charged after completion;
-- refunded tokens when a held request spends less than quoted;
+- refunded tokens when a held request spends less than estimated;
 - token history for billing and abuse review.
+
+Normal actions should run inside the user's configured limits. The interface should interrupt only when a request would exceed the user's cap, trigger an auto-fund event, or use a capability with unusual privacy or retention consequences.
 
 Payment should not buy higher claim authority. A paid answer can spend more tokens, but it still must obey the same source and proof-status rules.
 
@@ -267,7 +303,7 @@ Good first visual-output families:
 4. Mechanism sketches for user proposals, marked as candidate sketches.
 5. Issue thumbnails or small diagrams that make a bug or idea easier to understand.
 
-Visual generation should prefer diagrams when accuracy matters, and generated illustrative images when intuition or outreach is the goal.
+Visual generation should prefer diagrams when accuracy matters, and generated illustrative images when intuition or outreach is the goal. Generated images can be returned directly in response to a question when Visualize mode or an answer action requests them, subject to source labels, spending limits, and retention policy.
 
 ## Source Authority And Claim Labels
 
@@ -293,10 +329,10 @@ Product modules:
 3. `mode_router` - Ask, Explain, Compare, Visualize, Triage Idea, Find Source.
 4. `retrieval_context` - Corpus, app guide, System Card, priority, and curated external source retrieval with authority flags.
 5. `answer_engine` - Prompt assembly, source labels, unsupported-answer behavior, citation payloads.
-6. `presentation_layer` - Read-aloud formatting, tone/pacing selection, narration scripts, animation storyboards, captions, and source-authority guardrails.
+6. `speech_and_presentation_layer` - Service-native speech output, tone/pacing selection, narration scripts, animation storyboards, captions, and source-authority guardrails.
 7. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
 8. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, and account actions.
-9. `billing_and_limits` - Subscription tier, token grants, quote/hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls.
+9. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls.
 10. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, and owner-routed fix queues.
 11. `privacy_and_audit` - Consent, retention, deletion, logs, incident review, and user-data boundaries.
 
@@ -311,14 +347,16 @@ A constrained first public beta could support:
 - Find Source mode;
 - claim-level chips;
 - System Card routing;
-- limited Visualize mode for diagrams only;
-- read-aloud friendly answer text, narration scripts, and animation storyboards only;
+- limited Visualize mode for diagrams and controlled generated-image responses;
+- generated audio answers for selected explanations or paper excerpts;
+- generated image responses for selected visual explanations;
+- narration scripts and animation storyboards only for longer explainers;
 - user-confirmed GitHub issue handoff through a prefilled issue URL;
 - structured issue metadata for later signal mining;
 - public/supporter token grants and per-request caps;
 - no uploaded documents;
-- no durable image retention unless explicitly saved;
-- no service-generated speech, animated avatar, or video output in v1 unless platform policy explicitly promotes it;
+- no durable image or audio retention unless explicitly saved in a later policy;
+- no animated avatar or video output in v1 unless platform policy explicitly promotes it;
 - no autonomous GitHub actions or hidden credentials.
 
 This v1 would test whether users actually ask useful questions and whether the source-grounding behavior is strong enough before adding expensive media and deeper account features.
@@ -329,7 +367,7 @@ This v1 would test whether users actually ask useful questions and whether the s
 2. What is the minimum corpus maturity needed before public Q&A creates more clarity than confusion?
 3. Which answer modes should be free, and which should require subscription?
 4. Should issue submission be available to all signed-in users, or only to approved collaborators?
-5. Which read-aloud target should be optimized first: browser read-aloud for papers, service-native speech, or generated narration scripts?
+5. Which speech provider and voice-quality bar should the first native narration pass use, and how should the voice avoid implying a character identity?
 6. Should generated images be stored by default, transient by default, or always user-selected?
 7. What exact System Card fields must appear next to any answer about closure status?
 8. Which apps should expose app-state snapshots to Archie first?
@@ -343,13 +381,15 @@ Turn the Archie Interface V1 product requirements into an implementation-ready s
 Context:
 - The interface bucket is `reference/priorities/app-archie-interface/`.
 - The product requirements are `reference/priorities/app-archie-interface/v1-product-requirements.md`.
+- The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
+- The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
 - The assistant behavior contract is `reference/priorities/archie/assistant-mode-contract.md`.
-- The interface should support source-grounded corpus guidance, text-first v1 modes, diagram drafts, read-aloud friendly answers, narration scripts, animation storyboards, idea triage, token-based cost controls, confirmation-gated GitHub issue submission, and issue signal mining.
+- The interface should support source-grounded corpus guidance, text-first v1 modes, diagram drafts, generated image responses, service-native speech output, narration scripts, animation storyboards, idea triage, token-based cost controls, confirmation-gated GitHub issue submission, and issue signal mining.
 
 Task:
 - Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, read-aloud and presentation layer, animation-storyboard boundary, token ledger, quote/hold/receipt model, GitHub issue handoff, issue-mining loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, generated-media corporate-standard enforcement, service-native speech and presentation layer, animation-storyboard boundary, token ledger, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:

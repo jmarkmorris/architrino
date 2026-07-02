@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 578,
-      "edges": 1338,
-      "scenes": 376,
+      "nodes": 580,
+      "edges": 1340,
+      "scenes": 377,
       "markdownIndexes": 0,
-      "markdownDocs": 189,
+      "markdownDocs": 190,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2405,6 +2405,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2630,6 +2636,12 @@
       "id": "content/markdown/aaa/archie/ui-guidelines.md",
       "name": "UI Guidelines",
       "path": "content/markdown/aaa/archie/ui-guidelines.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/values.md",
+      "name": "Values",
+      "path": "content/markdown/aaa/archie/values.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3979,6 +3991,15 @@
       "name": "User Interface",
       "path": "content/scenes/archie/user_interface.json",
       "searchTarget": "content/scenes/archie/user_interface.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/values.json",
+      "nodeType": "scene",
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json",
+      "searchTarget": "content/scenes/archie/values.json",
       "implicit": false
     },
     {
@@ -7267,6 +7288,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/values.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/values.md",
+      "name": "Values",
+      "path": "content/markdown/aaa/archie/values.md",
+      "searchTarget": "content/markdown/aaa/archie/values.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/assemblies/bosons/electroweak-bosons.md",
@@ -9064,7 +9094,7 @@
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[3]"
+      "field": "scene.children[4]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -9078,14 +9108,21 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/values.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[3]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[4]"
+      "field": "scene.children[5]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -13614,6 +13651,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/ui-guidelines.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/ui_guidelines.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/values.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/values.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/values.json",
       "field": "scene.source.path"
     },
     {

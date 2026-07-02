@@ -23,6 +23,10 @@
         "scenePath": "content/scenes/archie/people.json"
       },
       {
+        "nodeId": "values",
+        "scenePath": "content/scenes/archie/values.json"
+      },
+      {
         "nodeId": "licenses_attributions",
         "scenePath": "content/scenes/archie/licenses_attributions.json"
       },
@@ -59,6 +63,14 @@
       "radius": 2.2,
       "color": "#166534",
       "labelTitle": "People",
+      "labelBadge": "doc"
+    },
+    {
+      "id": "values",
+      "title": "Values",
+      "radius": 2.2,
+      "color": "#7c3aed",
+      "labelTitle": "Values",
       "labelBadge": "doc"
     },
     {

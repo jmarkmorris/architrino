@@ -326,6 +326,145 @@ Legacy high-field note. A longer `face-opposite` group-zero diagnostic was previ
 
 The corresponding legacy self-hit probe still had no delayed self-hit roots. This makes the group-zero blocker sharper: repeatedly extending the Euclidean-void toy is less useful than adding a solver-owned retained-history row, a same-source self-hit row source, or a separately labeled Noether sea support-term diagnostic.
 
+### Collapse-Stop-Reversion Mechanism Map - 2026-07-01
+
+Claim level. Priority-only mechanism map and reduced-equation target. This section answers the three live questions: what starts the collapse, what stops the collapse, and what would make the collapse/release cycle reverse into a retained Noether braid basin. It does not certify a stable branch.
+
+On the common-sphere invariant manifold, write the center-frame vectors as
+
+$$
+\mathbf y_i(t)=\mathbf x_i(t)-C(t),
+\qquad
+R_i(t)=|\mathbf y_i(t)|,
+\qquad
+\hat{\mathbf e}_i(t)=\frac{\mathbf y_i(t)}{R_i(t)}.
+$$
+
+For any one architrino the exact radial kinematic identity is
+
+$$
+\dot R_i=\hat{\mathbf e}_i\cdot \dot{\mathbf y}_i,
+$$
+
+and
+
+$$
+\ddot R_i
+=
+\hat{\mathbf e}_i\cdot \ddot{\mathbf y}_i
++
+\frac{|\dot{\mathbf y}_i|^2-\dot R_i^2}{R_i}.
+$$
+
+The second term is the curvature or transverse-speed contribution. It is always outward in the reduced radius equation. On the exact `face-opposite` channel all six $R_i$ are equal, so the branch can be projected to a common radius $R(t)$ and an averaged equation
+
+$$
+\ddot R
+=
+F_{\mathrm{rad}}^{\mathrm{wake}}
++
+\frac{\langle v_\perp^2\rangle}{R}
++
+F_{\mathrm{rad}}^{\mathrm{self}}
++
+F_{\mathrm{rad}}^{\mathrm{wake\,ledger}}
++
+F_{\mathrm{rad}}^{\mathrm{shield}}
++
+F_{\mathrm{rad}}^{\mathrm{sea}}.
+$$
+
+The current JavaScript toy includes only the bare partner-wake part and the kinematic curvature term. The other terms are placeholders for solver-owned retained-history rows, not accepted mechanisms.
+
+Collapse begins because the held wake field supplies a nonzero inward radial acceleration at release even though the initial velocity is zero. In the stripped instantaneous inverse-square picture at the unit-sphere seed, the Positrino at $P_x=(1,0,0)$ receives the radial components
+
+$$
+E_x:\ -\frac14,
+\qquad
+E_y,E_z:\ -\frac{1}{2\sqrt2}\ \text{each},
+\qquad
+P_y,P_z:\ +\frac{1}{2\sqrt2}\ \text{each}.
+$$
+
+The transverse radial pieces cancel, leaving the direct opposite-axis partner with a net inward radial component
+
+$$
+F_{\mathrm{rad}}(0)\sim -\frac14
+$$
+
+before causal weighting, softening, and source-normal factors are applied. The full held-release toy changes the magnitude but keeps the same qualitative start: in the canonical weak-coupling $c_f=1$ row, $R$ has already decreased by `t=0.12` and $\dot R<0$.
+
+Collapse stops when the radial velocity reaches zero while the radial acceleration has become outward:
+
+$$
+\dot R(t_\min)=0,
+\qquad
+\ddot R(t_\min)>0.
+$$
+
+In the canonical weak-coupling $c_f=1$ `face-opposite` row, the first compression-to-expansion turn is
+
+$$
+t_\min=6.576,
+\qquad
+R(t_\min)=0.908722875419364,
+\qquad
+\dot R(t_\min)=0.0000988254525907554,
+$$
+
+with reduced radial acceleration
+
+$$
+\ddot R(t_\min)\approx0.0194858855242135.
+$$
+
+The candidate causes of that stop are not a fixed sphere and not a proved pressure term. In the toy they are: accumulated transverse speed through $\langle v_\perp^2\rangle/R$, the changed radial projection of the delayed wake roots, source-normal weighting, and softening near the close-pass regime. Same-polarity repulsion becomes important in the later scatter, but the first turn appears before a certified same-polarity retained branch event.
+
+Collapse reversion has two meanings that must be kept separate.
+
+First, the toy shows a one-way reversion from inward collapse to outward expansion. After the first turn in the canonical weak-coupling row, the reduced-radius diagnostic reports `952` outward acceleration rows, `0` inward acceleration rows, and no later return turn. That is not a bounded Noether braid. It is a symmetric contraction-and-scatter channel.
+
+Second, a stable Noether braid would require the outward expansion itself to revert. That means a later interval must satisfy
+
+$$
+\dot R>0,
+\qquad
+\ddot R<0,
+$$
+
+long enough to produce an expansion-to-compression turn, or else a stable fixed support radius
+
+$$
+\ddot R(R_\ast,\dot R=0)=0,
+\qquad
+\partial_R\ddot R\big|_{R_\ast}<0
+$$
+
+with the retained history and action ledger returning to the same branch identity. The current toy has no such row.
+
+The Noether braid mapping is therefore:
+
+| Behavior | Euclidean-void toy explanation | Noether braid closure target |
+| --- | --- | --- |
+| Collapse begins | Held partner wakes give a net inward radial projection at zero initial velocity. | Retained-root attraction that starts a same-level compression without moving the dynamic center. |
+| Collapse stops | Curvature, delayed-root geometry, weighting, and short-range regularization overcome the inward radial projection at the first minimum. | A short-range, angular-momentum, shielding, self-hit, or Noether sea response term prevents destructive collapse while preserving root-ledger identity. |
+| Collapse reverts outward | The first radial turn converts inward motion into outward scatter. | The first half-cycle of a possible breather or action transaction. |
+| Expansion reverts inward | Not present in the current toy. | Required evidence for a bounded basin, stable support radius, or retained-history limit cycle. |
+
+This may be the exact behavioral template for the Noether braid only if the missing retained-history terms supply the second reversion without breaking the `face-opposite` invariant support. The next analytic object is therefore the sign sequence of the reduced-radius equation:
+
+$$
+\ddot R<0
+\quad\rightarrow\quad
+\dot R=0,\ \ddot R>0
+\quad\rightarrow\quad
+\ddot R<0
+\quad\rightarrow\quad
+\text{bounded return or stable }R_\ast.
+$$
+
+The next solver object should report that sign sequence on one retained record, with causal roots, same-source self-hit rows, wake-history rows, action rows, angular-momentum rows, and Noether sea response rows all attached to the same branch identity.
+
 ### Matter/Antimatter Chirality Bridge - 2026-07-01
 
 Claim level. Priority-only lemma target. This is not a matter/antimatter discovery claim, not a particle-sector promotion, and not a retained branch certificate. It records a possible bridge between the `face-opposite` invariant channel and the existing matter/antimatter braid-chirality rule in [Color Charge SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter), [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-assembly-architecture), and the anti-braid mirror bookkeeping in [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md#anti-braid-mirror-bookkeeping-conjectural-reverse-engineered-candidate).
@@ -557,6 +696,251 @@ $$
 
 for fixed $R_\perp$ and $R_\parallel$. Radius changes add the obvious $\dot R_\perp$ and $\dot R_\parallel$ terms and should be retained in a solver packet.
 
+### Two-Speed Deformation Sweep Target
+
+Claim level. Priority-only validation target. The translating-oblate hypothesis should be tested in two independent velocity directions, not only by increasing group velocity through the Noether sea:
+
+$$
+u=|\mathbf V_g|,
+\qquad
+v_{\mathrm{orb}}
+=
+R_\perp\sqrt{1-\zeta^2}\,|\omega|
+$$
+
+for the simple latitude-ring ansatz, with $c_f=1$ throughout. The group velocity $u$ tests how the whole branch moves through the Noether sea. The orbital velocity $v_{\mathrm{orb}}$ tests how tightly the internal same-level braid is wound at a fixed dynamic center, or at a fixed translating center.
+
+The first sweep should therefore be a two-dimensional map
+
+$$
+\mathcal M_{\mathrm{2v}}
+:
+(u,v_{\mathrm{orb}})
+\longmapsto
+\left(
+\chi,
+\frac{\mathcal V}{\mathcal V_0},
+T_{\mathrm{branch}},
+\frac{\nu_{\mathrm{branch}}}{\nu_0},
+\Delta\mathcal A,
+\mathcal S_{\mathrm{root}},
+\mathcal S_{\mathrm{return}}
+\right),
+$$
+
+where
+
+$$
+\chi=\frac{R_\parallel}{R_\perp},
+\qquad
+\mathcal V=\frac{4\pi}{3}R_\perp^2R_\parallel.
+$$
+
+Here $T_{\mathrm{branch}}$ is a retained branch-clock period, not merely a displayed orbit period. It must be defined by recurrence of the same retained path-history, causal-root, wake-history, and action rows. The root status $\mathcal S_{\mathrm{root}}$ records root counts, root loss, source-normal denominator floors, and same-source self-hit rows. The return status $\mathcal S_{\mathrm{return}}$ records escape, one-turn scatter, bounded return, stable support radius, or same-level loss.
+
+The natural diagnostic slices are:
+
+| Slice | Held fixed | Varied | Primary question |
+| --- | --- | --- | --- |
+| group sweep | internal action level or $v_{\mathrm{orb}}$ | $u$ | Does the branch deform into an oblate support with Lorentz-like branch-clock scaling? |
+| orbital sweep | $u=0$ or fixed $u$ | $v_{\mathrm{orb}}$ | Does increasing internal braid speed scale the support, volume, branch frequency, return margin, or failure mode? |
+| joint sweep | declared action row and retained branch identity | both $u$ and $v_{\mathrm{orb}}$ | Is there a combined field-speed budget, denominator-floor boundary, or stable-basin surface? |
+
+The candidate Lorentz-style recovery test belongs first on the group sweep at fixed internal action level:
+
+$$
+\frac{\nu_{\mathrm{branch}}(u,v_{\mathrm{orb}})}{\nu_{\mathrm{branch}}(0,v_{\mathrm{orb}})}
+\stackrel{?}{\approx}
+\sqrt{1-u^2},
+$$
+
+and
+
+$$
+\chi(u,v_{\mathrm{orb}})
+\stackrel{?}{\approx}
+\sqrt{1-u^2}
+$$
+
+for a branch whose deformation is mostly longitudinal. If $R_\perp$ remains approximately fixed, this also predicts
+
+$$
+\frac{\mathcal V(u,v_{\mathrm{orb}})}{\mathcal V(0,v_{\mathrm{orb}})}
+\stackrel{?}{\approx}
+\sqrt{1-u^2}.
+$$
+
+The orbital-speed sweep is different. At $u=0$, increasing $v_{\mathrm{orb}}$ changes the internal action, root incidence, angular-momentum accommodation, and short-range return margin. It may create its own scale ladder or volume compression, but that would be an internal branch-energy effect, not automatically the same as translational Lorentz contraction. The diagnostic should therefore report an orbital-speed scaling law only after the retained row shows whether
+
+$$
+\mathcal A(v_{\mathrm{orb}})\approx n h,
+\qquad
+\nu_{\mathrm{branch}}(0,v_{\mathrm{orb}})
+\quad\text{and}\quad
+\mathcal V(0,v_{\mathrm{orb}})
+$$
+
+organize into stable basin families.
+
+The shared failure surface is the absolute field-frame speed and causal-root denominator budget:
+
+$$
+\dot{\mathbf x}_{a}
+=
+\mathbf V_g+\mathbf v_{a,\mathrm{int}},
+\qquad
+\beta_{\max}
+=
+\max_a |\dot{\mathbf x}_a|
+$$
+
+with $c_f=1$. As either $u$ or $v_{\mathrm{orb}}$ increases, the sweep must record field-speed crossings, small source-normal denominators, multiple roots, same-source self-hit rows, and root-loss windows before interpreting any oblate fit or clock ratio.
+
+### Candidate Preferred Two-Speed Configuration
+
+Claim level. Priority-only hypothesis and validation criterion. The two-speed sweep should test whether the branch selects a preferred relation between group velocity and orbital velocity rather than allowing arbitrary pairs. The disciplined version of the intuition is not a single guessed speed. It is a constrained extremum or stable branch curve in the map
+
+$$
+(u,v_{\mathrm{orb}})
+\longmapsto
+\mathcal M_{\mathrm{2v}}.
+$$
+
+A candidate preferred configuration should satisfy at least three same-record conditions:
+
+$$
+\mathcal E(u,v_{\mathrm{orb}})\approx0,
+\qquad
+\Delta\mathcal A(u,v_{\mathrm{orb}})\approx0,
+\qquad
+\mathcal S_{\mathrm{return}}=\text{bounded return or stable support radius},
+$$
+
+where $\mathcal E$ is the reduced residual norm over the retained-root equation, $\Delta\mathcal A$ is action drift over one branch-clock period, and $\mathcal S_{\mathrm{return}}$ is measured on the same retained path-history, wake-history, and root ledger. Among rows satisfying those constraints, the preferred row or curve should also maximize a root-budget margin such as
+
+$$
+\mathcal M_{\mathrm{root}}
+=
+\min_{a,b,\tau}
+\left(
+D_{s,ab},
+D_{t,ab},
+1-\beta_{\max}
+\right),
+$$
+
+or at least keep that margin safely positive. A numerical search can express the same idea through an objective
+
+$$
+\mathcal J(u,v_{\mathrm{orb}})
+=
+w_E\|\mathcal E\|^2
++
+w_A\left(\frac{\Delta\mathcal A}{h}\right)^2
++
+w_R\,\mathcal R_{\mathrm{return}}^2
+-
+w_M\,\mathcal M_{\mathrm{root}},
+$$
+
+with a preferred row satisfying
+
+$$
+\partial_u\mathcal J=0,
+\qquad
+\partial_{v_{\mathrm{orb}}}\mathcal J=0,
+\qquad
+\operatorname{Hess}\mathcal J>0
+$$
+
+inside a root-complete, sub-field-speed window. This is only a diagnostic objective; the weights cannot define the physics. The physics would be the retained branch whose residual, action, root, and return rows make the extremum robust without tuning.
+
+The most interesting possible outcome is a speed-budget relation. If a stable branch keeps its fastest field-frame architrino speed near a preferred value $\beta_\ast<1$, then the accessible rows may cluster near
+
+$$
+u^2+v_{\mathrm{orb}}^2\approx \beta_\ast^2
+$$
+
+when cross terms average away by symmetry, or near the more exact field-frame condition
+
+$$
+\beta_{\max}(u,v_{\mathrm{orb}},Q,\zeta,\psi)
+\approx
+\beta_\ast.
+$$
+
+In the special case $\beta_\ast\approx1$, this would give the light-clock-like relation
+
+$$
+v_{\mathrm{orb}}(u)
+\approx
+v_{\mathrm{orb}}(0)\sqrt{1-u^2}
+$$
+
+for a branch whose internal clock is set by orbital cadence. That would make the branch-clock ratio
+
+$$
+\frac{\nu_{\mathrm{branch}}(u)}{\nu_{\mathrm{branch}}(0)}
+\approx
+\sqrt{1-u^2}
+$$
+
+feel less like an imposed Lorentz rule and more like the selected kinematic closure of a finite-speed retained-history braid.
+
+This is exactly where the intuition becomes testable. The solver should not assume the square-root law. It should sweep $(u,v_{\mathrm{orb}})$, fit any low-residual basin curve, and then compare the fitted curve against:
+
+1. constant $\beta_{\max}$ surfaces;
+2. constant or quantized action rows $\mathcal A\approx n h$;
+3. maximum root-budget margin rows;
+4. maximum return-margin rows;
+5. Lorentz-style clock rows $\nu_{\mathrm{branch}}(u)/\nu_{\mathrm{branch}}(0)\approx\sqrt{1-u^2}$;
+6. volume rows $\mathcal V(u)/\mathcal V(0)$ and oblateness rows $\chi(u)$.
+
+Failure modes are clean. The intuition fails if the low-residual rows spread broadly across $(u,v_{\mathrm{orb}})$ with no basin, if the preferred rows depend mainly on artificial Noether sea pressure weights, if action drift remains large, if root margins collapse before the branch clock can be measured, or if the selected curve does not survive central-solver retained-history promotion.
+
+### Executable Two-Speed Prefilter Run - 2026-07-02
+
+Claim level. Priority-only executable prefilter. The runner [oblate-spheroid-two-speed-sweep.mjs](../../../scripts/braid-ideal/oblate-spheroid-two-speed-sweep.mjs) implements the first $c_f=1$ two-speed sweep on top of the reduced oblate-spheroid and fixed-frequency row producers. It is not a central-solver retained-history row, does not compute accepted wake residuals, and does not authorize a preferred branch claim.
+
+The first run used:
+
+- field speed: $c_f=1$;
+- group direction: $(1,1,1)/\sqrt3$;
+- $u\in\{0,0.1,0.2,0.3,0.4,0.5,0.6\}$;
+- $v_{\mathrm{orb}}\in\{0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8\}$;
+- speed-budget target: $\beta_\ast=0.8$;
+- $\chi(u)=\sqrt{1-u^2}$ as a Lorentz-style candidate deformation target, not as a solved deformation law.
+
+The sweep generated `56` rows. Of those, `46` kept positive field-frame speed margin in the kinematic prefilter, but `0` had bounded return. The artifact status remains
+
+$$
+\texttt{fail\_closed\_missing\_retained\_root\_ledger}.
+$$
+
+The candidate prefilter rows, one per group speed, were:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\chi$ | $\mathcal V/\mathcal V_0$ | $\beta_{\max}$ | root margin | action-drift proxy | Return status |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `0` | `0.8` | `1` | `1` | `0.8000000000000003` | `0.19999999999999973` | `0.3750432608922054` | missing retained-root return row |
+| `0.1` | `0.8` | `0.99498743710662` | `0.99498743710662` | `0.8810153355845574` | `0.11898466441544264` | `0.3750432608922054` | missing retained-root return row |
+| `0.2` | `0.7` | `0.9797958971132712` | `0.9797958971132712` | `0.8665039167173727` | `0.1334960832826273` | `0.4531628532806842` | missing retained-root return row |
+| `0.3` | `0.7` | `0.9539392014169457` | `0.9539392014169457` | `0.9545907796170156` | `0.04540922038298445` | `0.4531628532806842` | missing retained-root return row |
+| `0.4` | `0.6` | `0.916515138991168` | `0.916515138991168` | `0.9479261915389352` | `0.0520738084610648` | `0.4687175543308406` | missing retained-root return row |
+| `0.5` | `0.5` | `0.8660254037844386` | `0.8660254037844386` | `0.9456942250523721` | `0.054305774947627894` | `0.3905979619423636` | missing retained-root return row |
+| `0.6` | `0.4` | `0.8` | `0.8` | `0.9479261915389353` | `0.052073808461064686` | `0.3124783695538973` | missing retained-root return row |
+
+Interpretation. The prefilter does show the expected qualitative pattern: as $u$ rises, the preferred kinematic row shifts toward smaller $v_{\mathrm{orb}}$, while $\chi$ and the candidate volume ratio decrease. This is the first executable sign of the translation/orbital-speed selection intuition. However, the exact field-frame maximum speed $\beta_{\max}$ is not the same as the simple quadrature estimate $\sqrt{u^2+v_{\mathrm{orb}}^2}$, because some internal velocities align with the group velocity during the cycle. That makes the more exact condition
+
+$$
+\beta_{\max}(u,v_{\mathrm{orb}},Q,\zeta,\psi)\approx\beta_\ast
+$$
+
+more important than the simplified relation $u^2+v_{\mathrm{orb}}^2\approx\beta_\ast^2$.
+
+The negative result is equally important. This run has no accepted reduced residual norm, no accepted action closure, no retained root ledger, and no bounded return. The current status is therefore `kinematic_prefilter_only_no_bounded_return`, not `preferred_configuration_found`.
+
+Next solver target. Promote this prefilter into a retained-history residual sweep in which $\chi$ is fitted rather than assigned, causal roots and source-normal denominator floors are computed on the same record, action drift is measured from the retained action ledger, and return status is measured by the stability or return-margin row rather than by phase closure alone.
+
 Frequency has at least three meanings:
 
 | Symbol | Meaning | Closure use |
@@ -774,10 +1158,10 @@ A solver validation row can hold an integer resonance candidate fixed and measur
 $$
 \Theta
 =
-(u,R_\perp,\chi,\zeta_0,\omega,\Omega,K_{\mathrm{sea}})
+(u,v_{\mathrm{orb}},R_\perp,\chi,\zeta_0,\omega,\Omega,K_{\mathrm{sea}})
 $$
 
-and a period $T$ satisfying the declared closure convention. Then evaluate:
+with either $v_{\mathrm{orb}}$ derived from $(R_\perp,\zeta_0,\omega)$ or $\omega$ solved from a declared $v_{\mathrm{orb}}$. Choose a period $T$ satisfying the declared closure convention. Then evaluate:
 
 1. all causal roots $\mathcal C_{ab}(t)$, including same-source roots when they exist;
 2. the residual projections $\mathcal R_\psi,\mathcal R_\zeta,\mathcal R_\perp,\mathcal R_\parallel,\mathcal R_C,\mathcal R_J$;
@@ -791,7 +1175,9 @@ and a period $T$ satisfying the declared closure convention. Then evaluate:
    \dot{\mathbf x}_a\cdot d\mathbf x_a;
    $$
 4. the root-ledger status: root counts, source-normal denominator floors, self-hit rows, and root-loss windows;
-5. the return status: whether the spheroid state closes, precesses by an allowed integer, or escapes.
+5. the oblate deformation and volume rows $\chi$ and $\mathcal V/\mathcal V_0$;
+6. the retained branch-clock ratio $\nu_{\mathrm{branch}}/\nu_0$ or $T_{\mathrm{branch}}/T_0$;
+7. the return status: whether the spheroid state closes, precesses by an allowed integer, or escapes.
 
 Integer frequencies become interesting only after this residual test is same-record:
 

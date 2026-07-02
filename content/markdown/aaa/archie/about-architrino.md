@@ -19,7 +19,7 @@ Architrino currently has several public-facing surfaces:
 - generated reading copies and review artifacts for exchange and annotation;
 - support and contact routes for readers, critics, contributors, and patrons.
 
-The [About the Webapp](about-the-webapp.md) page explains the runtime and reader experience. This page explains the project and company frame. The [People](people.md) page separates the founder/CEO and CTO spheres.
+The [About the Webapp](about-the-webapp.md) page explains the runtime and reader experience. This page explains the project and company frame. The [People](people.md) page separates the founder/CEO and CTO spheres. The [Values](values.md) page states the public operating standard for claim discipline, generated media, privacy, rights, accessibility, and professional conduct.
 
 ## Operating Standard
 
