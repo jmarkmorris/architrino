@@ -65,6 +65,7 @@ test("provider object binds six seed rows and six stream manifests by same-run s
       "retained_solver_tangent_target_vector_row",
       "active_causal_margin_gradient_vector_row",
       "post_provider_root_margin_row",
+      "same_record_action_closure_row",
       "same_record_closure_rows",
     ]
   );

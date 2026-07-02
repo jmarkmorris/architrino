@@ -6,6 +6,44 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Chirality `R_J` Producer-Owner Scout Handoff
+
+Thread 3 completed the read-only `R_J` producer-owner scout with no repo file changes. It found no clean repo-local central/native, quantum, angular-momentum, or retained-history producer surface that can emit or adapt a non-fixture same-record `same_record_angular_momentum_residual_row` for `braid_ideal_chirality_retained_history_target.v0`.
+
+Exact first missing object/field remains `same_record_angular_momentum_residual_row` -> `braid_ideal_chirality_retained_history_target.residual_vector.R_J.value.measurement_passed`; live failure reason `same_record_angular_momentum_residual_row_missing`. The owning chirality target names the `R_J` relation, including internal angular-momentum sign reversal with magnitude preservation, but it is a consumer/target surface rather than a source producer.
+
+Producer-owner decision: `source_acquisition_blocked`. Central retained-history rows, native/app solver path-history and motion surfaces, the quantum history-layer phase extractor, the tri-binary angular-momentum runner, braid-angular-momentum priority packets, oblate residual artifacts, and sampled or cross-lane angular-momentum rows do not bind the braid-ideal retained record, provider object, retained root ledger, causal-root replay, same-record action closure, and `R_J` angular-momentum relation on one accepted retained record. Dirty checkpoint rows, target contracts, diagnostics, fixtures, priority prose, proxy refs, candidate refs, T3 rows, H39/theta3minus quotient rows, sampled residuals, equation-mapping rows, and nuclear-atomic rows remain non-authorizing.
+
+Next action: acquire or produce a same-record angular-momentum residual source object for `R_J` with retained record binding, provider provenance, retained root ledger identity, causal-root replay, same-record action closure, the `L_int` sign-reversal / magnitude-preservation row, and negative controls. Do not reopen chirality authorization, retained branch output, particle-sector promotion, or score movement from another target-only checker.
+
+### 2026-07-02 - Same-Record Action Closure Added To The Central Bridge
+
+Advanced the `internal_tangent_authority_derivation` bridge from tangent/root-margin compatibility to tangent/root-margin/action compatibility. [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) now consumes `same_record_action_closure_row.v0` rows and checks $\left|\Delta A_{\mathrm{internal}}-\Delta A_{\mathrm{clock}}\right|\le\epsilon_A$ on the same retained record.
+
+Executable status: the full mathematical bridge now requires a shared `source_row_id` across the minimum-gain row, retained-vector witness row, preferred-curve equation artifact, retained-root detail rows, and same-record action closure row. If preferred-curve math and root-detail rows pass but action rows are absent, the bridge reports `preferred_curve_passed_same_record_action_closure_rows_missing`; if the action residual exceeds its tolerance, it reports `fail_closed_same_record_action_closure_rows_failed`; if the action rows belong to a different source row, it reports `fail_closed_same_record_source_row_binding_missing`.
+
+Checker status: focused bridge, retained-history request, provider object, and tangent-certificate tests passed with 39 tests after the action-closure evaluator and request row family were added. The full `node --test tests/braid-ideal-*.test.js` suite passed with 128 tests, and `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Current blocker: accepted central retained-solver refs must still replace the diagnostic action closure row with accepted same-record action evidence, while also carrying accepted retained-root detail rows, retained path-history/path-error rows, tangent target, active margin gradient, post-provider margin, retained root/wake/path ledgers, provider provenance, and acceptance certificates.
+
+### 2026-07-02 - Retained-Root Detail Rows Evaluated At The Central Bridge
+
+Advanced the `internal_tangent_authority_derivation` bridge from requesting retained-root detail rows to evaluating them at the same-record central bridge boundary. [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) now consumes `same_record_retained_root_ledger_detail_row.v0` rows and checks the causal-root residual/sensitivity carrier, same retained-record binding, nonzero root `jacobian`, nonzero source-normal denominator, finite branch weight, finite receiver-normal factor, and source-row identity.
+
+Executable status: the full mathematical bridge now requires a shared `source_row_id` across the minimum-gain row, retained-vector witness row, preferred-curve equation artifact, and retained-root detail rows. If preferred-curve math passes but root-detail rows are missing, the bridge reports `preferred_curve_passed_retained_root_ledger_detail_rows_missing`; if root-detail rows are present but belong to a different source row, it reports `fail_closed_same_record_source_row_binding_missing`.
+
+Checker status: the focused central bridge test passed with 13 tests after the evaluator and negative controls were added. The focused touched-artifact set passed with 36 tests, the full `node --test tests/braid-ideal-*.test.js` suite passed with 125 tests, and `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+
+Current blocker: accepted central retained-solver refs must still replace the diagnostic retained-root detail rows with accepted same-record root-detail evidence plus retained path-history/path-error rows, tangent target, active margin gradient, post-provider margin, retained root/action/wake/path ledgers, provider provenance, and acceptance certificates.
+
+### 2026-07-02 - Chirality `R_J` Angular-Momentum Source Scout Handoff
+
+Thread 2 completed the read-only `R_J` source-acquisition scout with no repo file changes. It found no clean repo-local non-fixture accepted or nearer-accepted same-record angular-momentum residual source object for `braid_ideal_chirality_retained_history_target.v0`.
+
+Exact first missing object/field: `same_record_angular_momentum_residual_row` -> `braid_ideal_chirality_retained_history_target.residual_vector.R_J.value.measurement_passed`; live failure reason `same_record_angular_momentum_residual_row_missing`. Cross-lane angular-momentum ledgers, wake-history diagnostics, priority prose, and central retained-history hooks are non-authorizing because they do not bind the braid-ideal retained record, central retained-history row, provider object, retained root ledger, causal-root replay, same-record action closure, and angular-momentum reversal relation on one retained record.
+
+Evidence decision: `source_acquisition_blocked`. The smallest useful next artifact is a non-fixture same-record `same_record_angular_momentum_residual_row` source object for `R_J`, with retained record binding, provider provenance, retained root ledger, causal-root replay, same-record action closure, and the declared `L_int` sign-reversal / magnitude-preservation row. Do not reopen chirality authorization, retained branch output, particle-sector promotion, or score movement from diagnostics, fixtures, cross-row bundles, H39/theta3minus quotient rows, or mathematical-pass-but-unaccepted rows.
+
 ### 2026-07-02 - Chirality `R_action` Residual Rows Added
 
 Advanced the accepted measurement-row mode for `braid_ideal_chirality_retained_history_target.v0` so `R_action` now has two accepted same-record action/energy residual rows, one for each paired pro/anti branch row. The rows bind to the same retained record, central retained-history row, provider object, and `same_record_action_ledger_rows` hook, preserve the charge-conjugate action/energy equality relation, and report zero action and energy difference residuals.

@@ -20,9 +20,17 @@ The current next action remains unchanged: land a source-backed positive-width `
 
 ### 2026-07-02 EQ-20 Provider-Backed Pressure Projection
 
-Paused `EQ-20` closure work is partitioned here as status and checker narrative. The accepted density-compression provider and provider-backed `EQ-24` surface slice were already complete. The provider-backed `EQ-20` pressure slice now consumes `scripts/spacetime/noether-sea-density-compression-provider.v1.json` and `scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json`; the checker reports no missing pressure rows or shared keys, then stops at `blocked_missing_frw_handoff` with `nextBlocker=missing_accepted_theta_cos`.
+Paused `EQ-20` closure work is partitioned here as status and checker narrative. At this checkpoint, the accepted density-compression provider and provider-backed `EQ-24` surface slice were already complete. The provider-backed `EQ-20` pressure slice consumed `scripts/spacetime/noether-sea-density-compression-provider.v1.json` and `scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json`; the checker reported no missing pressure rows or shared keys, then stopped at `blocked_missing_frw_handoff` with `nextBlocker=missing_accepted_theta_cos`.
 
-The source-attempt route still blocks first at `missing_accepted_theta_sea_rho_NS`, preserving the negative control that attempt/source rows do not satisfy retained evidence. The next action is an accepted `theta_cos` FRW/cosmology handoff that consumes the same `delta_P_eff` report without retuning, followed by `EQ-11` metric/coupling rows and the `EQ-32` `delta_a_star` consumer as secondary downstream routes. No score change follows from the pressure projection by itself.
+The source-attempt route still blocked first at `missing_accepted_theta_sea_rho_NS`, preserving the negative control that attempt/source rows do not satisfy retained evidence. The next action was an accepted `theta_cos` FRW/cosmology handoff that consumes the same `delta_P_eff` report without retuning, followed by `EQ-11` metric/coupling rows and the `EQ-32` `delta_a_star` consumer as secondary downstream routes. No score change followed from the pressure projection by itself.
+
+### 2026-07-02 EQ-20 Accepted Theta-Cos Handoff
+
+The accepted handoff object is now `scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json`, with executable input `scripts/equation-mapping/effective-frw-handoff-theta-cos-accepted.v1.json`. The effective-FRW checker reports `status=populated`, `nextBlocker=null`, `sourceEvidenceFailureCount=0`, `missingSharedKeys=[]`, and zero Friedmann, continuity, fixed-void, pressure-handoff, and hidden-retune residuals for this handoff.
+
+The provider-backed `EQ-20` pressure/effective-$\Lambda$ slice in `scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json` now consumes the accepted `theta_cos` handoff and reports `status=populated`, `nextBlocker=null`, `frwHandoffAccepted=true`, `frwHandoffPass=true`, and `inheritedFrwBlocker=null`. The lower-level `eq20-delta-p-eff-pressure-projection-report.v1.json` still records the historical inherited `missing_accepted_theta_cos` blocker because it is the retained pressure-projection evidence object, not the final provider-backed `EQ-20` slice. No equation score changes follow from this accepted handoff.
+
+The remaining next action is the shared weak-gravity/dark-energy route: instantiate the `theta_11_20` metric/coupling rows and the shared local/cosmology no-hidden-retune residual without changing the accepted density, pressure, or `theta_cos` records. `EQ-32` still needs a same-window `delta_a_star` consumer.
 
 ### 2026-07-02 EQ-02-04 Supersession Note
 

@@ -106,6 +106,10 @@ test("central solver retained-history row carries all same-record request famili
     "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau"
   );
   assert.equal(
+    row.internal_tangent_authority_vector_request.equations.action_closure,
+    "abs(Delta A_internal(q)-Delta A_clock(q)) <= epsilon_A"
+  );
+  assert.equal(
     row.internal_tangent_authority_vector_request.equations.minimum_gain,
     "K_x^*(q)=-T(q) e_x^T/(||e_x||^2+||e_v||^2), K_v^*(q)=-T(q) e_v^T/(||e_x||^2+||e_v||^2)"
   );
@@ -125,6 +129,7 @@ test("central solver retained-history row carries all same-record request famili
       "retained_solver_tangent_target_vector_row",
       "active_causal_margin_gradient_vector_row",
       "post_provider_root_margin_row",
+      "same_record_action_closure_row",
       "same_record_closure_rows",
     ]
   );
@@ -156,6 +161,16 @@ test("central solver retained-history row carries all same-record request famili
     "rootKind",
     "statusCode",
     "stateFlags",
+  ]);
+  assert.deepEqual(row.internal_tangent_authority_vector_request.required_same_record_rows[5].required_fields, [
+    "source_row_id",
+    "retained_record_id",
+    "action_ledger_ref",
+    "assigned_clock_lock_action_increment",
+    "internal_replacement_action_increment",
+    "action_increment_residual",
+    "action_residual_tolerance",
+    "action_closure_passed",
   ]);
   assert.equal(
     row.internal_tangent_authority_vector_request.evaluator_binding.minimum_gain_evaluator_schema,

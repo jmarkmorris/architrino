@@ -29,6 +29,14 @@ export const ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_OBJECT =
   "same_record_accepted_central_solver_evidence_for_internal_tangent_authority_bridge";
 export const ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_FIELD =
   "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence";
+export const RETAINED_ROOT_LEDGER_DETAIL_ROW_SCHEMA =
+  "same_record_retained_root_ledger_detail_row.v0";
+export const RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD =
+  "central_solver_internal_tangent_authority_vector_rows.same_record_retained_root_ledger_detail_rows";
+export const SAME_RECORD_ACTION_CLOSURE_ROW_SCHEMA =
+  "same_record_action_closure_row.v0";
+export const SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD =
+  "central_solver_internal_tangent_authority_vector_rows.same_record_action_closure_rows";
 
 export const NEGATIVE_CONTROL_REASONS = Object.freeze({
   fixture: "fixture_not_accepted_internal_tangent_authority_vector_rows_evidence",
@@ -79,6 +87,38 @@ const ACCEPTED_BRIDGE_BINDING_FIELDS = Object.freeze([
   "source_row_id",
 ]);
 
+const RETAINED_ROOT_LEDGER_DETAIL_REQUIRED_FIELDS = Object.freeze([
+  "source_row_id",
+  "retained_record_id",
+  "ledgerKey",
+  "sourceKey",
+  "receiverKey",
+  "rootKey",
+  "emissionTime",
+  "hitTime",
+  "delay",
+  "residual",
+  "jacobian",
+  "branchWeight",
+  "sourceNormalDenominator",
+  "receiverNormalFactor",
+  "entryKind",
+  "rootKind",
+  "statusCode",
+  "stateFlags",
+]);
+
+const SAME_RECORD_ACTION_CLOSURE_REQUIRED_FIELDS = Object.freeze([
+  "source_row_id",
+  "retained_record_id",
+  "action_ledger_ref",
+  "assigned_clock_lock_action_increment",
+  "internal_replacement_action_increment",
+  "action_increment_residual",
+  "action_residual_tolerance",
+  "action_closure_passed",
+]);
+
 function stableHash(value) {
   return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
@@ -117,6 +157,282 @@ function sourceRowSummary(row) {
     source_row_id: row?.source_row_id ?? null,
     retained_record_id: row?.retained_record_id ?? null,
     time: row?.time ?? null,
+  };
+}
+
+function finiteNumber(value) {
+  return typeof value === "number" && Number.isFinite(value);
+}
+
+function minOrNull(values) {
+  return values.length > 0 ? Math.min(...values) : null;
+}
+
+function maxOrNull(values) {
+  return values.length > 0 ? Math.max(...values) : null;
+}
+
+export function evaluateSameRecordRetainedRootLedgerDetailRows(rows = [], retainedRecordId = null) {
+  const normalizedRows = normalizeRows(rows);
+  const rowEvaluations = normalizedRows.map((row, index) => {
+    const missingFields = [];
+    if (row?.schema !== RETAINED_ROOT_LEDGER_DETAIL_ROW_SCHEMA) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].schema`);
+    }
+    for (const field of RETAINED_ROOT_LEDGER_DETAIL_REQUIRED_FIELDS) {
+      if (row?.[field] == null) {
+        missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].${field}`);
+      }
+    }
+    const sameRecordBindingPassed =
+      retainedRecordId != null && row?.retained_record_id === retainedRecordId;
+    if (!sameRecordBindingPassed) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].retained_record_id`);
+    }
+    const sourceRowId = stringRef(row?.source_row_id);
+    if (sourceRowId == null) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].source_row_id`);
+    }
+    const residualFinite = finiteNumber(row?.residual);
+    const jacobianFinite = finiteNumber(row?.jacobian);
+    const branchWeightFinite = finiteNumber(row?.branchWeight);
+    const sourceNormalFinite = finiteNumber(row?.sourceNormalDenominator);
+    const receiverNormalFinite = finiteNumber(row?.receiverNormalFactor);
+    if (!residualFinite) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].residual`);
+    }
+    if (!jacobianFinite) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].jacobian`);
+    }
+    if (!branchWeightFinite) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].branchWeight`);
+    }
+    if (!sourceNormalFinite) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].sourceNormalDenominator`);
+    }
+    if (!receiverNormalFinite) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].receiverNormalFactor`);
+    }
+    const epsilonTau = Math.max(
+      finiteNumber(row?.epsilon_tau) ? Math.abs(row.epsilon_tau) : 1e-12,
+      1e-12
+    );
+    const jacobianAbs = jacobianFinite ? Math.abs(row.jacobian) : null;
+    const rootJacobianAwayFromZero = jacobianAbs != null && jacobianAbs >= epsilonTau;
+    if (!rootJacobianAwayFromZero) {
+      missingFields.push(`${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].jacobian_nonzero_floor`);
+    }
+    const sourceNormalAbs = sourceNormalFinite ? Math.abs(row.sourceNormalDenominator) : null;
+    const sourceNormalAwayFromZero = sourceNormalAbs != null && sourceNormalAbs >= epsilonTau;
+    if (!sourceNormalAwayFromZero) {
+      missingFields.push(
+        `${RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD}[${index}].sourceNormalDenominator_nonzero_floor`
+      );
+    }
+    const rowPassed = missingFields.length === 0;
+    return {
+      schema: "same_record_retained_root_ledger_detail_row_evaluation.v0",
+      row_id: row?.row_id ?? null,
+      source_row_id: sourceRowId,
+      retained_record_id: row?.retained_record_id ?? null,
+      request_retained_record_id: retainedRecordId,
+      same_record_binding_passed: sameRecordBindingPassed,
+      causal_root_residual_equation:
+        "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0",
+      root_sensitivity_equation:
+        "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau",
+      root_residual_abs: residualFinite ? Math.abs(row.residual) : null,
+      jacobian_abs: jacobianAbs,
+      source_normal_denominator_abs: sourceNormalAbs,
+      receiver_normal_factor_abs: receiverNormalFinite ? Math.abs(row.receiverNormalFactor) : null,
+      branch_weight: branchWeightFinite ? row.branchWeight : null,
+      root_jacobian_away_from_zero: rootJacobianAwayFromZero,
+      source_normal_denominator_away_from_zero: sourceNormalAwayFromZero,
+      root_detail_differential_row_passed: rowPassed,
+      missing_fields: missingFields,
+      first_missing_field:
+        rowPassed
+          ? "central_solver_internal_tangent_authority_vector_rows.same_record_retained_root_ledger_detail_rows_acceptance_certificate_ref"
+          : (missingFields[0] ?? RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD),
+      accepted: false,
+    };
+  });
+  const mathematicalRootDifferentialConditionsPassed =
+    rowEvaluations.length > 0 &&
+    rowEvaluations.every((evaluation) => evaluation.root_detail_differential_row_passed === true);
+  const passedRows = mathematicalRootDifferentialConditionsPassed ? rowEvaluations : [];
+  return {
+    schema: "same_record_retained_root_ledger_detail_rows_evaluation.v0",
+    row_schema: RETAINED_ROOT_LEDGER_DETAIL_ROW_SCHEMA,
+    request_retained_record_id: retainedRecordId,
+    causal_root_residual_equation:
+      "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0",
+    root_sensitivity_equation:
+      "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau",
+    required_fields: [...RETAINED_ROOT_LEDGER_DETAIL_REQUIRED_FIELDS],
+    row_count: rowEvaluations.length,
+    valid_row_count: countPassed(
+      rowEvaluations,
+      (evaluation) => evaluation.root_detail_differential_row_passed === true
+    ),
+    same_record_binding_pass_count: countPassed(
+      rowEvaluations,
+      (evaluation) => evaluation.same_record_binding_passed === true
+    ),
+    source_row_ids: uniqueStrings(passedRows.map((evaluation) => evaluation.source_row_id)),
+    root_residual_abs_max: maxOrNull(
+      rowEvaluations.map((evaluation) => evaluation.root_residual_abs).filter(finiteNumber)
+    ),
+    jacobian_abs_min: minOrNull(
+      rowEvaluations.map((evaluation) => evaluation.jacobian_abs).filter(finiteNumber)
+    ),
+    source_normal_denominator_abs_min: minOrNull(
+      rowEvaluations.map((evaluation) => evaluation.source_normal_denominator_abs).filter(finiteNumber)
+    ),
+    receiver_normal_factor_abs_max: maxOrNull(
+      rowEvaluations.map((evaluation) => evaluation.receiver_normal_factor_abs).filter(finiteNumber)
+    ),
+    mathematical_root_differential_conditions_passed: mathematicalRootDifferentialConditionsPassed,
+    row_evaluations: rowEvaluations,
+    first_missing_field:
+      mathematicalRootDifferentialConditionsPassed
+        ? "central_solver_internal_tangent_authority_vector_rows.same_record_retained_root_ledger_detail_rows_acceptance_certificate_ref"
+        : (rowEvaluations.find((evaluation) => evaluation.root_detail_differential_row_passed !== true)
+            ?.first_missing_field ?? RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD),
+    accepted: false,
+  };
+}
+
+export function evaluateSameRecordActionClosureRows(rows = [], retainedRecordId = null) {
+  const normalizedRows = normalizeRows(rows);
+  const rowEvaluations = normalizedRows.map((row, index) => {
+    const missingFields = [];
+    if (row?.schema !== SAME_RECORD_ACTION_CLOSURE_ROW_SCHEMA) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].schema`);
+    }
+    for (const field of SAME_RECORD_ACTION_CLOSURE_REQUIRED_FIELDS) {
+      if (row?.[field] == null) {
+        missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].${field}`);
+      }
+    }
+    const sameRecordBindingPassed =
+      retainedRecordId != null && row?.retained_record_id === retainedRecordId;
+    if (!sameRecordBindingPassed) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].retained_record_id`);
+    }
+    const sourceRowId = stringRef(row?.source_row_id);
+    if (sourceRowId == null) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].source_row_id`);
+    }
+    const assignedActionFinite = finiteNumber(row?.assigned_clock_lock_action_increment);
+    const replacementActionFinite = finiteNumber(row?.internal_replacement_action_increment);
+    const residualFinite = finiteNumber(row?.action_increment_residual);
+    const toleranceFinite = finiteNumber(row?.action_residual_tolerance);
+    if (!assignedActionFinite) {
+      missingFields.push(
+        `${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].assigned_clock_lock_action_increment`
+      );
+    }
+    if (!replacementActionFinite) {
+      missingFields.push(
+        `${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].internal_replacement_action_increment`
+      );
+    }
+    if (!residualFinite) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].action_increment_residual`);
+    }
+    if (!toleranceFinite || row.action_residual_tolerance < 0) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].action_residual_tolerance`);
+    }
+    const computedResidual =
+      assignedActionFinite && replacementActionFinite
+        ? Math.abs(row.internal_replacement_action_increment - row.assigned_clock_lock_action_increment)
+        : null;
+    const residualConsistencyTolerance = Math.max(
+      1e-12,
+      toleranceFinite ? row.action_residual_tolerance * 1e-9 : 1e-12
+    );
+    const residualConsistent =
+      computedResidual != null &&
+      residualFinite &&
+      Math.abs(row.action_increment_residual - computedResidual) <= residualConsistencyTolerance;
+    if (!residualConsistent) {
+      missingFields.push(
+        `${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].action_increment_residual_consistency`
+      );
+    }
+    const actionResidualWithinTolerance =
+      computedResidual != null &&
+      toleranceFinite &&
+      computedResidual <= row.action_residual_tolerance;
+    if (!actionResidualWithinTolerance) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].action_residual_tolerance_pass`);
+    }
+    if (row?.action_closure_passed !== true) {
+      missingFields.push(`${SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD}[${index}].action_closure_passed`);
+    }
+    const rowPassed = missingFields.length === 0;
+    return {
+      schema: "same_record_action_closure_row_evaluation.v0",
+      row_id: row?.row_id ?? null,
+      source_row_id: sourceRowId,
+      retained_record_id: row?.retained_record_id ?? null,
+      request_retained_record_id: retainedRecordId,
+      same_record_binding_passed: sameRecordBindingPassed,
+      action_closure_equation:
+        "abs(Delta A_internal(q)-Delta A_clock(q)) <= epsilon_A",
+      assigned_clock_lock_action_increment:
+        assignedActionFinite ? row.assigned_clock_lock_action_increment : null,
+      internal_replacement_action_increment:
+        replacementActionFinite ? row.internal_replacement_action_increment : null,
+      computed_action_increment_residual: computedResidual,
+      supplied_action_increment_residual:
+        residualFinite ? row.action_increment_residual : null,
+      action_residual_tolerance:
+        toleranceFinite ? row.action_residual_tolerance : null,
+      action_increment_residual_consistent: residualConsistent,
+      action_residual_within_tolerance: actionResidualWithinTolerance,
+      action_closure_row_passed: rowPassed,
+      missing_fields: missingFields,
+      first_missing_field:
+        rowPassed
+          ? "central_solver_internal_tangent_authority_vector_rows.same_record_action_closure_rows_acceptance_certificate_ref"
+          : (missingFields[0] ?? SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD),
+      accepted: false,
+    };
+  });
+  const mathematicalActionClosureConditionsPassed =
+    rowEvaluations.length > 0 &&
+    rowEvaluations.every((evaluation) => evaluation.action_closure_row_passed === true);
+  const passedRows = mathematicalActionClosureConditionsPassed ? rowEvaluations : [];
+  return {
+    schema: "same_record_action_closure_rows_evaluation.v0",
+    row_schema: SAME_RECORD_ACTION_CLOSURE_ROW_SCHEMA,
+    request_retained_record_id: retainedRecordId,
+    action_closure_equation:
+      "abs(Delta A_internal(q)-Delta A_clock(q)) <= epsilon_A",
+    required_fields: [...SAME_RECORD_ACTION_CLOSURE_REQUIRED_FIELDS],
+    row_count: rowEvaluations.length,
+    valid_row_count: countPassed(
+      rowEvaluations,
+      (evaluation) => evaluation.action_closure_row_passed === true
+    ),
+    same_record_binding_pass_count: countPassed(
+      rowEvaluations,
+      (evaluation) => evaluation.same_record_binding_passed === true
+    ),
+    source_row_ids: uniqueStrings(passedRows.map((evaluation) => evaluation.source_row_id)),
+    action_increment_residual_abs_max: maxOrNull(
+      rowEvaluations.map((evaluation) => evaluation.computed_action_increment_residual).filter(finiteNumber)
+    ),
+    mathematical_action_closure_conditions_passed: mathematicalActionClosureConditionsPassed,
+    row_evaluations: rowEvaluations,
+    first_missing_field:
+      mathematicalActionClosureConditionsPassed
+        ? "central_solver_internal_tangent_authority_vector_rows.same_record_action_closure_rows_acceptance_certificate_ref"
+        : (rowEvaluations.find((evaluation) => evaluation.action_closure_row_passed !== true)
+            ?.first_missing_field ?? SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD),
+    accepted: false,
   };
 }
 
@@ -200,6 +516,8 @@ function summarizeSameRecordBridgeBinding({
   minimumGainEvaluations,
   vectorEvaluations,
   preferredCurveEvaluations,
+  rootDetailEvaluation,
+  actionClosureEvaluation,
 }) {
   const passingMinimumGainRows = minimumGainEvaluations.filter(
     (evaluation) =>
@@ -219,9 +537,20 @@ function summarizeSameRecordBridgeBinding({
   const minimumGainSourceRowIds = uniqueStrings(passingMinimumGainRows.map((evaluation) => evaluation.source_row_id));
   const vectorSourceRowIds = uniqueStrings(passingVectorRows.map((evaluation) => evaluation.source_row_id));
   const preferredCurveSourceRowIds = uniqueStrings(passingPreferredCurveRows.map((evaluation) => evaluation.source_row_id));
+  const rootDetailSourceRowIds =
+    rootDetailEvaluation?.mathematical_root_differential_conditions_passed === true
+      ? uniqueStrings(rootDetailEvaluation.source_row_ids ?? [])
+      : [];
+  const actionClosureSourceRowIds =
+    actionClosureEvaluation?.mathematical_action_closure_conditions_passed === true
+      ? uniqueStrings(actionClosureEvaluation.source_row_ids ?? [])
+      : [];
   const candidateSourceRowIds = intersectStrings(
-    intersectStrings(minimumGainSourceRowIds, vectorSourceRowIds),
-    preferredCurveSourceRowIds
+    intersectStrings(
+      intersectStrings(minimumGainSourceRowIds, vectorSourceRowIds),
+      preferredCurveSourceRowIds
+    ),
+    intersectStrings(rootDetailSourceRowIds, actionClosureSourceRowIds)
   );
 
   return {
@@ -230,6 +559,8 @@ function summarizeSameRecordBridgeBinding({
     minimum_gain_source_row_ids: minimumGainSourceRowIds,
     retained_solver_vector_source_row_ids: vectorSourceRowIds,
     preferred_curve_source_row_ids: preferredCurveSourceRowIds,
+    retained_root_detail_source_row_ids: rootDetailSourceRowIds,
+    same_record_action_closure_source_row_ids: actionClosureSourceRowIds,
     candidate_source_row_ids: candidateSourceRowIds,
     source_row_id_binding_available: candidateSourceRowIds.length > 0,
   };
@@ -324,7 +655,16 @@ function evaluateAcceptedBridgeEvidenceCriterion({
   };
 }
 
-function firstMissing({ retainedRecordId, request, minimumGainEvaluations, vectorEvaluations, preferredCurveEvaluations }) {
+function firstMissing({
+  retainedRecordId,
+  request,
+  minimumGainEvaluations,
+  vectorEvaluations,
+  preferredCurveEvaluations,
+  rootDetailEvaluation,
+  actionClosureEvaluation,
+  sameRecordBridgeBinding,
+}) {
   const requestPresent = request?.schema === INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA;
   if (!requestPresent) {
     return {
@@ -431,6 +771,53 @@ function firstMissing({ retainedRecordId, request, minimumGainEvaluations, vecto
       reason: "preferred_curve_internal_tangent_authority_equation_failed_or_not_bound_to_request",
     };
   }
+  if (rootDetailEvaluation?.row_count === 0) {
+    return {
+      artifact_status: "preferred_curve_passed_retained_root_ledger_detail_rows_missing",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field: RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD,
+      reason: "retained_root_ledger_detail_rows_missing_after_preferred_curve_pass",
+    };
+  }
+  if (rootDetailEvaluation?.mathematical_root_differential_conditions_passed !== true) {
+    return {
+      artifact_status: "fail_closed_retained_root_ledger_detail_rows_failed",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field: rootDetailEvaluation?.first_missing_field ?? RETAINED_ROOT_LEDGER_DETAIL_FIRST_MISSING_FIELD,
+      reason: "retained_root_ledger_detail_rows_failed_or_not_bound_to_request",
+    };
+  }
+  if (actionClosureEvaluation?.row_count === 0) {
+    return {
+      artifact_status: "preferred_curve_passed_same_record_action_closure_rows_missing",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field: SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD,
+      reason: "same_record_action_closure_rows_missing_after_preferred_curve_pass",
+    };
+  }
+  if (actionClosureEvaluation?.mathematical_action_closure_conditions_passed !== true) {
+    return {
+      artifact_status: "fail_closed_same_record_action_closure_rows_failed",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field:
+        actionClosureEvaluation?.first_missing_field ?? SAME_RECORD_ACTION_CLOSURE_FIRST_MISSING_FIELD,
+      reason: "same_record_action_closure_rows_failed_or_not_bound_to_request",
+    };
+  }
+  if (sameRecordBridgeBinding?.source_row_id_binding_available !== true) {
+    return {
+      artifact_status: "fail_closed_same_record_source_row_binding_missing",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field:
+        "central_solver_internal_tangent_authority_vector_rows.same_record_source_row_binding",
+      reason: "minimum_gain_vector_preferred_curve_root_detail_and_action_rows_do_not_share_source_row_id",
+    };
+  }
   return {
     artifact_status: "same_record_preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked",
     source_status: "candidate_same_record_preferred_curve_equation_unaccepted",
@@ -480,6 +867,14 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     ...normalizeRows(input.preferredCurveInternalTangentAuthorityEquationArtifacts),
     ...normalizeRows(input.preferred_curve_internal_tangent_authority_equation_artifacts),
   ];
+  const retainedRootLedgerDetailRows = [
+    ...normalizeRows(input.sameRecordRetainedRootLedgerDetailRows),
+    ...normalizeRows(input.same_record_retained_root_ledger_detail_rows),
+  ];
+  const sameRecordActionClosureRows = [
+    ...normalizeRows(input.sameRecordActionClosureRows),
+    ...normalizeRows(input.same_record_action_closure_rows),
+  ];
   const minimumGainEvaluations = minimumGainRows
     .map((row) => evaluateMinimumNormRetainedHistoryGainWitnessRow(row))
     .map((evaluation) => addRequestBinding(evaluation, retainedRecordId));
@@ -488,13 +883,14 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     .map((evaluation) => addRequestBinding(evaluation, retainedRecordId));
   const preferredCurveEvaluations = preferredCurveEquationArtifacts
     .map((artifact) => evaluatePreferredCurveEquationArtifact(artifact, retainedRecordId));
-  const missing = firstMissing({
-    retainedRecordId,
-    request,
-    minimumGainEvaluations,
-    vectorEvaluations,
-    preferredCurveEvaluations,
-  });
+  const rootDetailEvaluation = evaluateSameRecordRetainedRootLedgerDetailRows(
+    retainedRootLedgerDetailRows,
+    retainedRecordId
+  );
+  const actionClosureEvaluation = evaluateSameRecordActionClosureRows(
+    sameRecordActionClosureRows,
+    retainedRecordId
+  );
   const artifactHash = stableHash({
     schema: SCHEMA,
     retained_history_row: {
@@ -506,6 +902,8 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     },
     minimum_gain_rows: minimumGainRows.map(sourceRowSummary),
     vector_rows: vectorRows.map(sourceRowSummary),
+    retained_root_ledger_detail_rows: retainedRootLedgerDetailRows.map(sourceRowSummary),
+    same_record_action_closure_rows: sameRecordActionClosureRows.map(sourceRowSummary),
     preferred_curve_equation_artifacts: preferredCurveEquationArtifacts.map((artifact) => ({
       schema: artifact?.schema ?? null,
       artifact_id: artifact?.artifact_id ?? null,
@@ -525,19 +923,34 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
         evaluation.mathematical_witness_conditions_passed === true &&
         evaluation.request_retained_record_binding_passed === true
     );
+  const sameRecordBridgeBinding = summarizeSameRecordBridgeBinding({
+    retainedRecordId,
+    minimumGainEvaluations,
+    vectorEvaluations,
+    preferredCurveEvaluations,
+    rootDetailEvaluation,
+    actionClosureEvaluation,
+  });
   const mathematicalPreferredCurveBridgePassed =
     mathematicalVectorBridgePassed &&
+    rootDetailEvaluation.mathematical_root_differential_conditions_passed === true &&
+    actionClosureEvaluation.mathematical_action_closure_conditions_passed === true &&
+    sameRecordBridgeBinding.source_row_id_binding_available === true &&
     preferredCurveEvaluations.some(
       (evaluation) =>
         evaluation.mathematical_preferred_curve_equation_passed === true &&
         evaluation.branch_clock_lock_replacement_residual_passed === true &&
         evaluation.request_retained_record_binding_passed === true
     );
-  const sameRecordBridgeBinding = summarizeSameRecordBridgeBinding({
+  const missing = firstMissing({
     retainedRecordId,
+    request,
     minimumGainEvaluations,
     vectorEvaluations,
     preferredCurveEvaluations,
+    rootDetailEvaluation,
+    actionClosureEvaluation,
+    sameRecordBridgeBinding,
   });
   const acceptedBridgeCriterion = evaluateAcceptedBridgeEvidenceCriterion({
     mathematicalBridgePassed: mathematicalPreferredCurveBridgePassed,
@@ -561,10 +974,14 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     internal_tangent_authority_vector_request: request,
     minimum_norm_retained_history_gain_witness_rows: minimumGainRows,
     retained_solver_vector_witness_rows: vectorRows,
+    same_record_retained_root_ledger_detail_rows: retainedRootLedgerDetailRows,
+    same_record_action_closure_rows: sameRecordActionClosureRows,
     preferred_curve_internal_tangent_authority_equation_artifacts: preferredCurveEquationArtifacts,
     same_record_accepted_evidence: sameRecordAcceptedEvidence,
     minimum_norm_retained_history_gain_witness_evaluations: minimumGainEvaluations,
     retained_solver_vector_witness_evaluations: vectorEvaluations,
+    same_record_retained_root_ledger_detail_rows_evaluation: rootDetailEvaluation,
+    same_record_action_closure_rows_evaluation: actionClosureEvaluation,
     preferred_curve_internal_tangent_authority_equation_evaluations: preferredCurveEvaluations,
     accepted_internal_tangent_authority_bridge_criterion: acceptedBridgeCriterion,
     summary: {
@@ -605,6 +1022,19 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
         preferredCurveEvaluations,
         (evaluation) => evaluation.branch_clock_lock_replacement_residual_passed === true
       ),
+      retained_root_detail_row_count: rootDetailEvaluation.row_count,
+      retained_root_detail_valid_row_count: rootDetailEvaluation.valid_row_count,
+      retained_root_detail_same_record_binding_pass_count: rootDetailEvaluation.same_record_binding_pass_count,
+      retained_root_detail_differential_passed:
+        rootDetailEvaluation.mathematical_root_differential_conditions_passed,
+      retained_root_detail_source_row_ids: rootDetailEvaluation.source_row_ids,
+      same_record_action_closure_row_count: actionClosureEvaluation.row_count,
+      same_record_action_closure_valid_row_count: actionClosureEvaluation.valid_row_count,
+      same_record_action_closure_binding_pass_count: actionClosureEvaluation.same_record_binding_pass_count,
+      same_record_action_closure_passed:
+        actionClosureEvaluation.mathematical_action_closure_conditions_passed,
+      same_record_action_closure_source_row_ids: actionClosureEvaluation.source_row_ids,
+      same_record_bridge_source_row_ids: sameRecordBridgeBinding.candidate_source_row_ids,
       mathematical_internal_tangent_authority_vector_bridge_passed: mathematicalVectorBridgePassed,
       mathematical_internal_tangent_authority_bridge_passed: mathematicalPreferredCurveBridgePassed,
       accepted_internal_tangent_authority_bridge_criterion_passed:
@@ -652,6 +1082,18 @@ export function validateCentralSolverInternalTangentAuthorityVectorRows(artifact
   if (!Array.isArray(artifact?.retained_solver_vector_witness_evaluations)) {
     errors.push("retained solver vector witness evaluations must be an array");
   }
+  if (
+    artifact?.same_record_retained_root_ledger_detail_rows_evaluation?.schema !==
+    "same_record_retained_root_ledger_detail_rows_evaluation.v0"
+  ) {
+    errors.push("retained-root ledger detail rows evaluation must be present");
+  }
+  if (
+    artifact?.same_record_action_closure_rows_evaluation?.schema !==
+    "same_record_action_closure_rows_evaluation.v0"
+  ) {
+    errors.push("same-record action closure rows evaluation must be present");
+  }
   if (!Array.isArray(artifact?.preferred_curve_internal_tangent_authority_equation_evaluations)) {
     errors.push("preferred-curve equation evaluations must be an array");
   }
@@ -681,6 +1123,22 @@ export function validateCentralSolverInternalTangentAuthorityVectorRows(artifact
       errors.push("retained solver vector evaluations must remain non-authorizing");
     }
   }
+  if (artifact?.same_record_retained_root_ledger_detail_rows_evaluation?.accepted !== false) {
+    errors.push("retained-root detail rows evaluation must remain non-authorizing");
+  }
+  for (const evaluation of artifact?.same_record_retained_root_ledger_detail_rows_evaluation?.row_evaluations ?? []) {
+    if (evaluation.accepted !== false) {
+      errors.push("retained-root detail row evaluations must remain non-authorizing");
+    }
+  }
+  if (artifact?.same_record_action_closure_rows_evaluation?.accepted !== false) {
+    errors.push("same-record action closure rows evaluation must remain non-authorizing");
+  }
+  for (const evaluation of artifact?.same_record_action_closure_rows_evaluation?.row_evaluations ?? []) {
+    if (evaluation.accepted !== false) {
+      errors.push("same-record action closure row evaluations must remain non-authorizing");
+    }
+  }
   for (const evaluation of artifact?.preferred_curve_internal_tangent_authority_equation_evaluations ?? []) {
     if (evaluation.accepted !== false) {
       errors.push("preferred-curve equation evaluations must remain non-authorizing");
@@ -708,6 +1166,26 @@ export function validateCentralSolverInternalTangentAuthorityVectorRows(artifact
     artifact?.summary?.preferred_curve_branch_clock_lock_replacement_residual_pass_count < 1
   ) {
     errors.push("mathematical bridge pass requires a preferred-curve replacement residual pass");
+  }
+  if (
+    artifact?.summary?.mathematical_internal_tangent_authority_bridge_passed === true &&
+    artifact?.same_record_retained_root_ledger_detail_rows_evaluation
+      ?.mathematical_root_differential_conditions_passed !== true
+  ) {
+    errors.push("mathematical bridge pass requires retained-root detail differential rows");
+  }
+  if (
+    artifact?.summary?.mathematical_internal_tangent_authority_bridge_passed === true &&
+    artifact?.same_record_action_closure_rows_evaluation
+      ?.mathematical_action_closure_conditions_passed !== true
+  ) {
+    errors.push("mathematical bridge pass requires same-record action closure rows");
+  }
+  if (
+    artifact?.summary?.mathematical_internal_tangent_authority_bridge_passed === true &&
+    !(artifact?.summary?.same_record_bridge_source_row_ids?.length > 0)
+  ) {
+    errors.push("mathematical bridge pass requires a shared source row across all bridge row families");
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (artifact?.authorization?.[flag] !== false) {

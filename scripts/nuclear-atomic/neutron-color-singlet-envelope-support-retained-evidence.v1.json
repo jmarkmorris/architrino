@@ -68,7 +68,7 @@
       "accepted_nuclear_binding_recovery"
     ],
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
-    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
     "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
     "scoreDecision": "no_score_increase"

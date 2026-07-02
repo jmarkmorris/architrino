@@ -52,6 +52,26 @@
       ],
       "boundary": "The tail-limit blocker records the exact upstream proof packet but explicitly accepts no source rows."
     },
+    "tailCalculusSupport": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_tail_calculus_support_0001",
+      "acceptedRowsProvided": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "O_NN_finite",
+        "exists_R0_C_lambda_exp_decay_tail"
+      ],
+      "usableFor": [
+        "accepted local zero-limit support for the finite-range route",
+        "accepted local finite weighted-overlap support for the finite-range route",
+        "accepted exponential-tail support constants without element-specific tuning"
+      ],
+      "notUsableFor": [
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_finite_range_residual",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The tail-calculus support provides the local zero-limit and finite-overlap rows, but finite_range_residual still waits on an accepted same-record Delta_E_corr_NN_tail_limit plus accepted sigma_eff and color-singlet rows."
+    },
     "noOpenColorFarFieldBlocker": {
       "candidatePath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
       "usableFor": [
@@ -181,6 +201,11 @@
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response"
     ],
+    "acceptedInputsAlreadyAvailable": [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail"
+    ],
     "derivedRowsIfAccepted": [
       "bounded_residual_overlap",
       "large_r_zero_limit"
@@ -296,7 +321,6 @@
       "lim_R_to_infty_T_NN_R_eq_0",
       "O_NN_finite",
       "exists_R0_C_lambda_exp_decay_tail",
-      "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope"
     ],
     "feedsRowsAfterAcceptance": [
@@ -341,7 +365,7 @@
       "sigma_eff_extraction"
     ],
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
-    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
     "expectedFiniteTailGraphRuleFirstMissingObject": "missing_Delta_E_corr_NN_tail_limit",
     "scoreDecision": "no_score_increase"

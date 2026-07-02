@@ -179,6 +179,8 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
         "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0",
       causal_root_sensitivity:
         "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau",
+      action_closure:
+        "abs(Delta A_internal(q)-Delta A_clock(q)) <= epsilon_A",
       least_norm_provider:
         "a_provider^* = T + n_*",
       retained_history_response:
@@ -305,6 +307,27 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
             "minimum_norm_retained_history_gain_witness.tangent_response_horizon",
           margin_lift_response_horizon:
             "minimum_norm_retained_history_gain_witness.margin_lift_response_horizon",
+        },
+      },
+      {
+        row: "same_record_action_closure_row",
+        required_fields: [
+          "source_row_id",
+          "retained_record_id",
+          "action_ledger_ref",
+          "assigned_clock_lock_action_increment",
+          "internal_replacement_action_increment",
+          "action_increment_residual",
+          "action_residual_tolerance",
+          "action_closure_passed",
+        ],
+        evaluator_input_mapping: {
+          action_closure_equation:
+            "central_solver_internal_tangent_authority_vector_rows.same_record_action_closure_rows_evaluation.action_closure_equation",
+          assigned_clock_lock_action_increment:
+            "same_record_action_closure_row.assigned_clock_lock_action_increment",
+          internal_replacement_action_increment:
+            "same_record_action_closure_row.internal_replacement_action_increment",
         },
       },
       {
@@ -562,8 +585,8 @@ export function validateCentralSolverRetainedHistoryRow(row) {
   if (row?.internal_tangent_authority_vector_request?.schema !== INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA) {
     errors.push(`internal tangent-authority vector request must use ${INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA}`);
   }
-  if (row?.internal_tangent_authority_vector_request?.required_same_record_rows?.length !== 6) {
-    errors.push("internal tangent-authority vector request must name six same-record row families");
+  if (row?.internal_tangent_authority_vector_request?.required_same_record_rows?.length !== 7) {
+    errors.push("internal tangent-authority vector request must name seven same-record row families");
   }
   if (
     row?.internal_tangent_authority_vector_request?.preferred_curve_binding?.required_equation_schema !==

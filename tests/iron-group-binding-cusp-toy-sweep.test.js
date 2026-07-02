@@ -277,7 +277,6 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "confinement_functional_source_target_current",
   );
   assert.deepEqual(report.sourceBinding.familyResults.confinement_functional.missingOrRejectedFields, [
-    "rows.sigma_eff_extraction.accepted",
     "rows.color_singlet_nucleon_envelope.accepted",
     "rows.delta_E_corr_NN.accepted",
     "rows.no_open_color_far_field.accepted",
@@ -303,7 +302,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.summary.firstMissingObject,
-    "missing_accepted_sigma_eff_extraction",
+    "missing_accepted_color_singlet_nucleon_envelope",
   );
   assert.equal(confinementCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
   assert.equal(
@@ -522,17 +521,17 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_sigma_eff_extraction.accepted,
-    false,
+    true,
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_sigma_eff_extraction.currentEvidenceStatus,
-    "blocked_missing_sigma_eff_extraction_acceptance",
+    "accepted_non_fixture_source",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_sigma_eff_extraction.sourceTargetPath,
-    "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -1046,11 +1045,14 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.deepEqual(
     partialLocks.map((lock) => lock.id),
     [
+      "coefficient_alphaSea_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_alphaCoul_branch_interface_partial_source_marker_not_promotion",
       "coefficient_alphaAsym_weak_channel_partial_source_marker_not_promotion",
       "coefficient_betaValleySlope_weak_channel_partial_source_marker_not_promotion",
       "coefficient_seaImbalancePenalty_weak_channel_partial_source_marker_not_promotion",
+      "coefficient_pnCorridorPairReward_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_pnPairMismatchCost_branch_interface_partial_source_marker_not_promotion",
+      "coefficient_ppCorridorPairReward_confinement_functional_partial_source_marker_not_promotion",
       "coefficient_ppPairMismatchCost_branch_interface_partial_source_marker_not_promotion",
       "coefficient_ppCoulombCost_branch_interface_partial_source_marker_not_promotion",
       "graphRule_beta_stable_band_center_weak_channel_partial_source_marker_not_promotion",
@@ -2055,7 +2057,11 @@ test("validation rejects missing coefficient and graph-rule row-binding coverage
   );
 
   const failedPartialMarkerLock = JSON.parse(JSON.stringify(report));
-  failedPartialMarkerLock.sourceBinding.partialSourceMarkerLocks[0].lockPass = false;
+  failedPartialMarkerLock.sourceBinding.partialSourceMarkerLocks.find(
+    (lock) =>
+      lock.id ===
+      "coefficient_alphaCoul_branch_interface_partial_source_marker_not_promotion",
+  ).lockPass = false;
   assert.equal(
     validationErrors(failedPartialMarkerLock).includes(
       "source_binding_partial_source_marker_lock_failed_coefficient_alphaCoul_branch_interface_partial_source_marker_not_promotion",

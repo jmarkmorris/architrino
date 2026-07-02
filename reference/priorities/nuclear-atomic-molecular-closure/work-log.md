@@ -6,6 +6,21 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 — Accepted sigma-eff extraction support row
+
+- Resumed from the current priority-file partition after reading `reference/priorities/README.md`, [nuclear-atomic-molecular-closure.md](nuclear-atomic-molecular-closure.md), [brainstorming.md](brainstorming.md), and this work log.
+- Added [sigma-eff-extraction-retained-evidence.v1.json](../../../scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json) as durable non-fixture support accepting only `sigma_eff_extraction` and `accepted_sigma_eff_extraction` from the accepted $K_{\perp}$, $V_{\mathrm{exc}}$, $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, axis-exceptionality, and same-record Noether sea response rows plus the same-domain certificate rows.
+- Tightened [confinement-functional-source-target-check.mjs](../../../scripts/nuclear-atomic/confinement-functional-source-target-check.mjs) so `accepted_sigma_eff_extraction` must retain `same_domain_minimizer_or_variational_certificate`, `refinement_stable_sigma_eff_row`, and `source_path_tying_extraction_to_accepted_upstream_rows`; accepted inputs alone no longer satisfy the source target.
+- Current blocker: `confinement-functional-source-target-check.mjs --summary` now reports `firstMissingObject: missing_accepted_color_singlet_nucleon_envelope` and still reports `sourceAcquisitionFirstMissingObject: missing_accepted_accepted_proton_color_singlet_envelope`; `nucleon-branch-interface-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`.
+- Next action: derive the accepted proton/neutron color-singlet envelope chain through `no_free_color_asymptotic_state`, `same_record_branch_interface`, `finite_range_residual`, and no-open-color, without treating the accepted $\sigma_{\mathrm{eff}}$ row as downstream residual or branch-interface evidence.
+
+### 2026-07-02 — Tail-calculus support rows for finite-range route
+
+- Continued the branch-interface source-acquisition goal through the no-open-color prerequisite chain. `nucleon-branch-interface-source-target-check.mjs --summary` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`; the confinement checker still reports `sourceAcquisitionFirstMissingObject: missing_accepted_accepted_proton_color_singlet_envelope`.
+- Added [delta-E-corr-NN-tail-calculus-retained-evidence.v1.json](../../../scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json) as a durable non-fixture support object accepting only `lim_R_to_infty_T_NN_R_eq_0`, `O_NN_finite`, and `exists_R0_C_lambda_exp_decay_tail` from the already accepted uniform tail-bound and corridor-weight support rows.
+- Current blocker: the accepted tail-calculus rows do not accept `Delta_E_corr_NN_tail_limit`, `finite_range_residual`, `same_record_no_open_color_audit`, `no_open_color_far_field`, `no_free_color_asymptotic_state`, or any branch-interface promotion row.
+- Next action: join the accepted tail-calculus support rows to accepted $\sigma_{\mathrm{eff}}$ extraction and accepted color-singlet nucleon envelope rows in one retained record before attempting `Delta_E_corr_NN_tail_limit` or `finite_range_residual`.
+
 ### 2026-07-02 — Neutron color-singlet support row for no-open-color route
 
 - Resumed the branch-interface source-acquisition goal from the owning checker. `nucleon-branch-interface-source-target-check.mjs --summary --pretty` still reports `sourceAcquisitionFirstMissingObject: missing_no_open_color_far_field`; direct no-open-color acceptance remains blocked by missing accepted `finite_range_residual`, `color_singlet_closure`, and `same_record_no_open_color_audit`.

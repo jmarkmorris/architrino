@@ -2052,6 +2052,7 @@ function sourceRowEvidence(candidate, family, row) {
       status: sourceRow.status ?? null,
       currentEvidenceStatus: sourceRow.currentEvidenceStatus ?? null,
       acceptedEvidenceTrace: acceptedSourceRowEvidenceTrace(sourceRow),
+      ...acceptedSourceRowProofTargetEvidenceFields(candidate, row),
     };
   }
 

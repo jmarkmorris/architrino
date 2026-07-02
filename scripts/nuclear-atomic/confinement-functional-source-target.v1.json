@@ -1,6 +1,6 @@
 {
   "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
-  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response source-acquisition rows accepted; top-level rows remain target-only and not accepted nuclear-binding recovery",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, and sigma_eff_extraction source-acquisition rows accepted; remaining top-level rows stay target-only and not accepted nuclear-binding recovery",
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "confinement_functional_source_target_0001",
@@ -15,7 +15,7 @@
     "currentStatus": "missing_accepted_confinement_functional_rows",
     "currentStructuralPass": true,
     "requiredEvidenceStatus": "accepted_non_fixture_source",
-    "firstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "firstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "currentSourceAcquisitionPass": false,
     "firstMissingSourceAcquisitionObject": "missing_accepted_accepted_proton_color_singlet_envelope"
   },
@@ -199,8 +199,8 @@
     },
     "accepted_sigma_eff_extraction": {
       "id": "accepted_sigma_eff_extraction_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_sigma_eff_extraction_acceptance",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted sigma_eff extraction row with all upstream functional and Noether sea arguments",
       "requiredLedgerComponents": [
         "K_perp",
@@ -208,10 +208,13 @@
         "rho_NS",
         "chi_sea",
         "axis_exceptionality_charge",
-        "same_record_noether_sea_response"
+        "same_record_noether_sea_response",
+        "same_domain_minimizer_or_variational_certificate",
+        "refinement_stable_sigma_eff_row",
+        "source_path_tying_extraction_to_accepted_upstream_rows"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
-      "sourceTargetPath": "scripts/nuclear-atomic/accepted-sigma-eff-extraction-source-acquisition-blocker.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json"
     },
     "accepted_color_singlet_nucleon_envelope": {
       "id": "accepted_color_singlet_nucleon_envelope_source_target_0001",
@@ -271,7 +274,7 @@
     "Delta_E_corr_NN_tail_limit": {
       "id": "Delta_E_corr_NN_tail_limit_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_limit_derivation",
+      "currentEvidenceStatus": "blocked_missing_same_record_sigma_eff_color_singlet_join",
       "requiredScope": "accepted same-domain tail-limit row proving T_NN tends to zero for the Delta E_corr_NN residual without element-specific tuning",
       "requiredLedgerComponents": [
         "lim_R_to_infty_T_NN_R_eq_0",
@@ -280,6 +283,54 @@
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json"
+    },
+    "lim_R_to_infty_T_NN_R_eq_0": {
+      "id": "lim_R_to_infty_T_NN_R_eq_0_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted zero-limit support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "R0",
+        "C",
+        "lambda",
+        "zero_limit_derivation",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
+    },
+    "O_NN_finite": {
+      "id": "O_NN_finite_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite weighted-overlap support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "corridor_weight_bound",
+        "C_w",
+        "eta_lt_lambda_witness",
+        "finite_overlap_integral",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
+    },
+    "exists_R0_C_lambda_exp_decay_tail": {
+      "id": "exists_R0_C_lambda_exp_decay_tail_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted exponential-tail support row for the normalized Delta_E_corr_NN tail-calculus route; not the top same-domain Delta_E_corr_NN_tail_limit row",
+      "requiredLedgerComponents": [
+        "tail_envelope_bound",
+        "R0",
+        "C",
+        "lambda",
+        "lambda_positive",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-calculus-retained-evidence.v1.json"
     },
     "finite_range_residual": {
       "id": "finite_range_residual_source_target_0001",
@@ -600,8 +651,8 @@
   "rows": {
     "sigma_eff_extraction": {
       "id": "sigma_eff_extraction_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "priority_packet_only",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "targetEquation": "sigma_eff(Q;rho_NS,chi_sea)=min_{a,f} 2*pi*int_0^a r[(K_perp/2)||Q||_F^2(df/dr)^2+V_exc(f(r)Q;Q,rho_NS,chi_sea)]dr",
       "requiredSourceRows": [
         "K_perp",
@@ -619,6 +670,7 @@
         "axis_exceptionality_charge",
         "same_record_noether_sea_response"
       ],
+      "sourceEvidencePath": "scripts/nuclear-atomic/sigma-eff-extraction-retained-evidence.v1.json",
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },
     "color_singlet_nucleon_envelope": {
@@ -643,6 +695,9 @@
         "accepted_color_singlet_nucleon_envelope",
         "accepted_branch_interface_rows",
         "finite_residual_corridor_overlap"
+      ],
+      "acceptedSourceRows": [
+        "accepted_sigma_eff_extraction"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row"
     },

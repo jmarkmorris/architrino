@@ -64,9 +64,9 @@ test("theta_sea_rho_NS source-attempt computes outer-binary pressure diagnostics
 test("provider-backed EQ-20 slice consumes accepted density provider and retained delta_P_eff report", () => {
   const report = runEq20(providerBackedSlicePath);
 
-  assert.equal(report.summary.status, "blocked_missing_frw_handoff");
+  assert.equal(report.summary.status, "populated");
   assert.equal(report.summary.scoreDecision, "no_score_increase");
-  assert.equal(report.summary.nextBlocker, "missing_accepted_theta_cos");
+  assert.equal(report.summary.nextBlocker, null);
   assert.deepEqual(report.summary.missingRows, []);
   assert.deepEqual(report.summary.missingSharedKeys, []);
   assert.equal(report.rows.theta_sea_rho_NS.accepted, true);
@@ -95,9 +95,13 @@ test("provider-backed EQ-20 slice consumes accepted density provider and retaine
   assert.equal(report.summary.releaseChannelPass, true);
   assert.equal(report.summary.pressureProjectionPass, true);
   assert.equal(report.summary.hiddenRetunePass, true);
-  assert.equal(report.summary.inheritedFrwBlocker, "missing_accepted_theta_cos");
+  assert.equal(report.summary.inheritedFrwBlocker, null);
   assert.equal(report.frwHandoff.rowReason, "accepted");
-  assert.equal(report.summary.frwHandoffAccepted, false);
+  assert.equal(report.summary.frwHandoffAccepted, true);
+  assert.equal(report.summary.frwHandoffPass, true);
+  assert.equal(report.frwHandoff.handoffEvidence.accepted, true);
+  assert.equal(report.frwHandoff.thetaCosId, "theta_cos_FRW_handoff_0001");
+  assert.equal(report.frwHandoff.thetaCosIdMatches, true);
 });
 
 test("EQ-20 priority-source negative control remains rejected as retained evidence", () => {
