@@ -1,5 +1,5 @@
 export const EQUATION_MAP_SCHEMA = "equation-map-document.v1";
-export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "poisson-weak-field-source-map";
+export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "eq-01-causal-wake-master-equation";
 export const DEFAULT_BACKGROUND_ID = "architrinoPurple";
 export const DEFAULT_SECTION_LINE_PLACEMENT = "below";
 export const DEFAULT_EQUATION_SCALE = "medium";
@@ -186,58 +186,567 @@ export function normalizeEquationMapDocuments(documents = []) {
   return normalized;
 }
 
+function anchor(id, label, searchText = label) {
+  return { id, label, searchText };
+}
+
+function mathPart(id, tex, anchorId = id) {
+  return { id, kind: "math", tex, anchorId };
+}
+
+function textPart(id, text) {
+  return { id, kind: "text", text };
+}
+
+function overlay(
+  id,
+  title,
+  targetAnchorId,
+  text,
+  tex,
+  { x = 10, y = 12, width = 24, line = "above" } = {}
+) {
+  const content = [{ type: "text", text }];
+  if (tex) {
+    content.push({ type: "math", tex, displayMode: false });
+  }
+  return {
+    id,
+    title,
+    status: "candidate",
+    targetAnchorId,
+    sectionLinePlacement: line,
+    position: { x, y, width },
+    content,
+  };
+}
+
+const scoreFiveAndFourEquationMapDocuments = [
+  {
+    id: "eq-01-causal-wake-master-equation",
+    title: "EQ-01 Causal Wake Master Equation",
+    subject: "AAA native rows",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "accepted-aaa-derivation",
+    formulaTeX:
+      "\\mathbf a_{o'\\leftarrow o}=\\kappa\\sigma_{q_oq_{o'}}\\frac{|q_oq_{o'}|}{r^2}W_{o'\\leftarrow o}^{\\mathrm{rec}}\\hat{\\mathbf r}",
+    anchors: [
+      anchor("acceleration", "acceleration response", "per-hit acceleration active root"),
+      anchor("polarity", "source polarity", "kappa sigma source receiver polarity"),
+      anchor("inverseSquare", "wake dilution", "inverse-square causal wake dilution"),
+      anchor("branchStrength", "branch strength", "receiver-normal source-normal branch strength"),
+      anchor("direction", "line of action", "line-of-action causal-root direction"),
+    ],
+    formulaParts: [
+      mathPart("acceleration", "\\mathbf a_{o'\\leftarrow o}", "acceleration"),
+      textPart("eq", " = "),
+      mathPart("polarity", "\\kappa\\sigma_{q_oq_{o'}}", "polarity"),
+      textPart("space-1", " "),
+      mathPart("inverseSquare", "\\frac{|q_oq_{o'}|}{r^2}", "inverseSquare"),
+      textPart("space-2", " "),
+      mathPart("branchStrength", "W_{o'\\leftarrow o}^{\\mathrm{rec}}", "branchStrength"),
+      textPart("space-3", " "),
+      mathPart("direction", "\\hat{\\mathbf r}", "direction"),
+    ],
+    overlays: [
+      overlay(
+        "native-root",
+        "Native root",
+        "acceleration",
+        "Score 5 row: later maps must still consume active roots, wake ledgers, event ledgers, or Noether sea moments.",
+        "\\mathbf a_{o'\\leftarrow o}",
+        { x: 7, y: 8, width: 25, line: "above" }
+      ),
+      overlay(
+        "wake-dilution",
+        "Wake dilution",
+        "inverseSquare",
+        "The familiar inverse-square section is read as causal wake spread, not as a standalone field postulate.",
+        "r^{-2}",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "receiver-normal",
+        "History factor",
+        "branchStrength",
+        "This is where source-normal and receiver-normal history enter the per-hit law.",
+        "W^{\\mathrm{rec}}=\\left|D_t/D_s\\right|",
+        { x: 7, y: 68, width: 25, line: "below" }
+      ),
+      overlay(
+        "line-of-action",
+        "Line of action",
+        "direction",
+        "The direction term keeps force geometry tied to the active causal root.",
+        "\\hat{\\mathbf r}",
+        { x: 67, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-02-lorentz-clock-rate",
+    title: "EQ-02 Lorentz Factor And Clock Rate",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "\\gamma_\\star(\\mathbf w)=\\frac{1}{\\sqrt{1-\\lVert\\mathbf w\\rVert^2/c_\\star^2}},\\quad d\\tau/dt=1/\\gamma_\\star",
+    anchors: [
+      anchor("gammaFactor", "Lorentz factor", "gamma clock ruler factor"),
+      anchor("driftSpeed", "drift speed", "motion through local Noether sea"),
+      anchor("clockRate", "clock rate", "moving clock readout"),
+    ],
+    formulaParts: [
+      mathPart("gammaFactor", "\\gamma_\\star(\\mathbf w)", "gammaFactor"),
+      textPart("eq", " = "),
+      mathPart("driftSpeed", "\\frac{1}{\\sqrt{1-\\lVert\\mathbf w\\rVert^2/c_\\star^2}}", "driftSpeed"),
+      mathPart("comma", ",\\quad", ""),
+      mathPart("clockRate", "d\\tau/dt=1/\\gamma_\\star", "clockRate"),
+    ],
+    overlays: [
+      overlay(
+        "drift-through-sea",
+        "Drift through sea",
+        "driftSpeed",
+        "Read the speed term as drift through the local Noether sea, not as motion through substrate spacetime.",
+        "\\mathbf w=\\mathbf V_{\\mathrm{cm}}-\\mathbf u_{\\mathrm{sea}}",
+        { x: 7, y: 8, width: 26, line: "above" }
+      ),
+      overlay(
+        "clock-consumer",
+        "Clock consumer",
+        "clockRate",
+        "The clock row is a consumer of the same retained branch ledger that must also support ruler behavior.",
+        "d\\tau/dt=1/\\gamma_\\star",
+        { x: 67, y: 68, width: 25, line: "below" }
+      ),
+      overlay(
+        "branch-blocker",
+        "Shared branch row",
+        "gammaFactor",
+        "Score 4 means the map is strong, but the retained branch ledger still has to bind clock and ruler rows together.",
+        "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
+        { x: 8, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-03-oblate-spheroidal-envelope",
+    title: "EQ-03 Oblate Spheroidal Envelope",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "\\xi(v)\\equiv\\frac{R_{\\parallel}(v)}{R_{\\perp}(v)}\\to\\frac{1}{\\gamma_{\\mathrm{eff}}(v)}",
+    anchors: [
+      anchor("shapeRatio", "shape ratio", "Noether braid envelope xi"),
+      anchor("parallelRadius", "parallel radius", "R parallel moving envelope"),
+      anchor("perpendicularRadius", "perpendicular radius", "R perpendicular moving envelope"),
+      anchor("gammaEff", "effective gamma", "weak homogeneous Lorentz target"),
+    ],
+    formulaParts: [
+      mathPart("shapeRatio", "\\xi(v)", "shapeRatio"),
+      mathPart("equiv", "\\equiv", ""),
+      mathPart("parallelRadius", "R_{\\parallel}(v)", "parallelRadius"),
+      textPart("slash", " / "),
+      mathPart("perpendicularRadius", "R_{\\perp}(v)", "perpendicularRadius"),
+      mathPart("arrow", "\\to", ""),
+      mathPart("gammaEff", "\\frac{1}{\\gamma_{\\mathrm{eff}}(v)}", "gammaEff"),
+    ],
+    overlays: [
+      overlay(
+        "envelope-readout",
+        "Envelope readout",
+        "shapeRatio",
+        "This diagram asks whether moving Noether braid geometry exposes the Lorentz shape ratio directly.",
+        "\\xi=R_{\\parallel}/R_{\\perp}",
+        { x: 7, y: 8, width: 25, line: "above" }
+      ),
+      overlay(
+        "return-cycle",
+        "Return cycle",
+        "gammaEff",
+        "The visual match is not enough; the return-cycle ledger has to produce the ratio without a private fit.",
+        "\\xi\\to\\gamma_{\\mathrm{eff}}^{-1}",
+        { x: 67, y: 68, width: 25, line: "below" }
+      ),
+      overlay(
+        "scale-separation",
+        "Shape, not scale",
+        "parallelRadius",
+        "Keep this separate from the independent scale channel; the envelope shape is the target here.",
+        "\\lambda(v,E,n)\\neq\\xi(v)",
+        { x: 8, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-04-energy-momentum-rest-energy",
+    title: "EQ-04 Energy Momentum And Rest Energy",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "E^2=p^2c_{\\mathrm{eff}}^2+M_0^2c_{\\mathrm{eff}}^4",
+    anchors: [
+      anchor("energy", "energy", "observer exposed energy"),
+      anchor("momentum", "momentum term", "momentum response"),
+      anchor("effectiveSpeed", "effective speed", "Noether sea dressed speed"),
+      anchor("restMass", "rest mass", "exposed mass response"),
+    ],
+    formulaParts: [
+      mathPart("energy", "E^2", "energy"),
+      textPart("eq", " = "),
+      mathPart("momentum", "p^2", "momentum"),
+      mathPart("effectiveSpeed", "c_{\\mathrm{eff}}^2", "effectiveSpeed"),
+      textPart("plus", " + "),
+      mathPart("restMass", "M_0^2c_{\\mathrm{eff}}^4", "restMass"),
+    ],
+    overlays: [
+      overlay(
+        "energy-readout",
+        "Energy readout",
+        "energy",
+        "Energy is an exposed readout of branch history and Noether sea response, not a free label.",
+        "E^2",
+        { x: 7, y: 8, width: 24, line: "above" }
+      ),
+      overlay(
+        "motion-response",
+        "Motion response",
+        "momentum",
+        "The momentum side must share the same branch and medium-response tensor as the mass side.",
+        "p^2c_{\\mathrm{eff}}^2",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "mass-response",
+        "Mass response",
+        "restMass",
+        "Mass maps to trapped internal causal history, shielding, and Noether sea coupling.",
+        "M_0^2c_{\\mathrm{eff}}^4",
+        { x: 7, y: 68, width: 26, line: "below" }
+      ),
+      overlay(
+        "speed-role",
+        "Speed role",
+        "effectiveSpeed",
+        "The speed symbol must keep its declared role; changing it per observable is hidden retuning.",
+        "c_{\\mathrm{eff}}",
+        { x: 67, y: 82, width: 24, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-05-noether-conservation",
+    title: "EQ-05 Noether Conservation Rows",
+    subject: "AAA native rows",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "\\frac{dE_{\\mathrm{tot}}}{dt}=0,\\quad \\mathbf P_{\\mathrm{tot}}=\\mathbf P_{\\mathrm{mech}}+\\mathbf P_{\\mathrm{wake}}",
+    anchors: [
+      anchor("energyConservation", "energy conservation", "finite-window total energy"),
+      anchor("totalMomentum", "total momentum", "finite-window total momentum"),
+      anchor("mechanicalMomentum", "mechanical momentum", "mechanical subsystem"),
+      anchor("wakeMomentum", "wake momentum", "wake boundary flux history"),
+    ],
+    formulaParts: [
+      mathPart("energyConservation", "\\frac{dE_{\\mathrm{tot}}}{dt}=0", "energyConservation"),
+      mathPart("comma", ",\\quad", ""),
+      mathPart("totalMomentum", "\\mathbf P_{\\mathrm{tot}}", "totalMomentum"),
+      textPart("eq", " = "),
+      mathPart("mechanicalMomentum", "\\mathbf P_{\\mathrm{mech}}", "mechanicalMomentum"),
+      textPart("plus", " + "),
+      mathPart("wakeMomentum", "\\mathbf P_{\\mathrm{wake}}", "wakeMomentum"),
+    ],
+    overlays: [
+      overlay(
+        "finite-window-total",
+        "Finite-window total",
+        "energyConservation",
+        "The conserved total has to include the delay-history channel and boundary flux, not only local mechanics.",
+        "dE_{\\mathrm{tot}}/dt=0",
+        { x: 7, y: 8, width: 26, line: "above" }
+      ),
+      overlay(
+        "mechanical-side",
+        "Mechanical side",
+        "mechanicalMomentum",
+        "Mechanical momentum is only one row in the conserved finite-window ledger.",
+        "\\mathbf P_{\\mathrm{mech}}",
+        { x: 67, y: 68, width: 25, line: "below" }
+      ),
+      overlay(
+        "wake-side",
+        "Wake side",
+        "wakeMomentum",
+        "The wake term makes the conservation law native to a causal-delay system.",
+        "\\mathbf P_{\\mathrm{wake}}",
+        { x: 8, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-06-noether-sea-continuity",
+    title: "EQ-06 Noether Sea Continuity",
+    subject: "Statistical mechanics and thermodynamics",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "\\partial_t\\rho_{\\mathrm{NS}}+\\nabla\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})=S_{\\rho}+r_{\\rho}",
+    anchors: [
+      anchor("densityChange", "density change", "Noether sea density time derivative"),
+      anchor("flowDivergence", "flow divergence", "Noether sea transport flow"),
+      anchor("sourceTerm", "source term", "source loading row"),
+      anchor("residual", "residual", "moment closure residual"),
+    ],
+    formulaParts: [
+      mathPart("densityChange", "\\partial_t\\rho_{\\mathrm{NS}}", "densityChange"),
+      textPart("plus", " + "),
+      mathPart("flowDivergence", "\\nabla\\cdot(\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}})", "flowDivergence"),
+      textPart("eq", " = "),
+      mathPart("sourceTerm", "S_{\\rho}", "sourceTerm"),
+      textPart("plus-2", " + "),
+      mathPart("residual", "r_{\\rho}", "residual"),
+    ],
+    overlays: [
+      overlay(
+        "density-row",
+        "Density row",
+        "densityChange",
+        "Use the physical Noether braid density row, not a generic fluid density.",
+        "\\rho_{\\mathrm{NS}}(\\mathbf x,t)",
+        { x: 7, y: 8, width: 25, line: "above" }
+      ),
+      overlay(
+        "transport-row",
+        "Transport row",
+        "flowDivergence",
+        "The flow term should be a low-moment projection of retained Noether braid population dynamics.",
+        "\\rho_{\\mathrm{NS}}\\mathbf u_{\\mathrm{sea}}",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "source-residual",
+        "Source and residual",
+        "sourceTerm",
+        "Source and residual rows make missing carrier evidence visible instead of hiding it in a continuum fit.",
+        "S_{\\rho}+r_{\\rho}",
+        { x: 7, y: 68, width: 26, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-07-effective-metric-adm-cartan",
+    title: "EQ-07 Effective Metric ADM/Cartan Map",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX:
+      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
+    anchors: [
+      anchor("lineElement", "effective line element", "observer-level effective metric"),
+      anchor("lapse", "lapse", "clock channel lapse"),
+      anchor("spatialCompliance", "spatial compliance", "spatial metric compliance"),
+      anchor("drift", "sea drift", "Noether sea drift"),
+    ],
+    formulaParts: [
+      mathPart("lineElement", "ds_{\\mathrm{eff}}^2", "lineElement"),
+      textPart("eq", " = "),
+      mathPart("lapse", "-N^2c_0^2dt^2", "lapse"),
+      textPart("plus", " + "),
+      mathPart("spatialCompliance", "\\gamma_{ij}", "spatialCompliance"),
+      mathPart("drift", "(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)", "drift"),
+    ],
+    overlays: [
+      overlay(
+        "observer-level",
+        "Observer-level metric",
+        "lineElement",
+        "This is an effective observer metric, not substrate geometry replacing the Euclidean void.",
+        "ds_{\\mathrm{eff}}^2",
+        { x: 7, y: 8, width: 25, line: "above" }
+      ),
+      overlay(
+        "clock-channel",
+        "Clock channel",
+        "lapse",
+        "The lapse term must come from the same Noether sea response as ruler and signal rows.",
+        "N",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "spatial-channel",
+        "Spatial channel",
+        "spatialCompliance",
+        "Spatial compliance is the part scalar-delay-only maps tend to miss.",
+        "\\gamma_{ij}",
+        { x: 7, y: 68, width: 26, line: "below" }
+      ),
+      overlay(
+        "drift-channel",
+        "Drift channel",
+        "drift",
+        "The drift term reads local Noether sea flow into null paths, clocks, and weak-field observables.",
+        "u^i_{\\mathrm{sea}}",
+        { x: 67, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-08-weak-field-clock-redshift",
+    title: "EQ-08 Weak-Field Clock And Redshift",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "d\\tau/dt\\approx1+\\Phi_N/c_0^2-\\lVert\\mathbf w\\rVert^2/(2c_0^2)",
+    anchors: [
+      anchor("clockRate", "clock rate", "weak-field proper time readout"),
+      anchor("potentialTerm", "potential term", "Newtonian potential cadence"),
+      anchor("motionTerm", "motion term", "velocity clock correction"),
+    ],
+    formulaParts: [
+      mathPart("clockRate", "d\\tau/dt", "clockRate"),
+      mathPart("approx", "\\approx", ""),
+      mathPart("one", "1", ""),
+      textPart("plus", " + "),
+      mathPart("potentialTerm", "\\Phi_N/c_0^2", "potentialTerm"),
+      textPart("minus", " - "),
+      mathPart("motionTerm", "\\lVert\\mathbf w\\rVert^2/(2c_0^2)", "motionTerm"),
+    ],
+    overlays: [
+      overlay(
+        "cadence-readout",
+        "Cadence readout",
+        "clockRate",
+        "The clock rate should be extracted from Noether sea cadence, density, delay, and potential response.",
+        "\\Gamma_N\\rightarrow d\\tau/dt",
+        { x: 7, y: 8, width: 26, line: "above" }
+      ),
+      overlay(
+        "potential-response",
+        "Potential response",
+        "potentialTerm",
+        "The potential term is a weak-field projection from the shared response record.",
+        "\\Phi_N/c_0^2",
+        { x: 67, y: 68, width: 25, line: "below" }
+      ),
+      overlay(
+        "moving-clock",
+        "Moving clock",
+        "motionTerm",
+        "The velocity correction must share the Lorentz branch row instead of becoming a private clock fit.",
+        "\\lVert\\mathbf w\\rVert^2/(2c_0^2)",
+        { x: 8, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-09-shapiro-lensing-ppn",
+    title: "EQ-09 Shapiro Lensing And PPN Rows",
+    subject: "Relativity and effective metric",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "\\Delta\\theta=2(1+\\gamma_{\\mathrm{PPN}})GM/(bc_0^2)",
+    anchors: [
+      anchor("deflection", "deflection angle", "lensing deflection observable"),
+      anchor("ppn", "PPN coefficient", "gamma PPN coefficient"),
+      anchor("sourceMass", "source loading", "source mass loading"),
+      anchor("impact", "path geometry", "impact parameter and signal path"),
+    ],
+    formulaParts: [
+      mathPart("deflection", "\\Delta\\theta", "deflection"),
+      textPart("eq", " = "),
+      mathPart("ppn", "2(1+\\gamma_{\\mathrm{PPN}})", "ppn"),
+      mathPart("sourceMass", "GM", "sourceMass"),
+      textPart("slash", "/"),
+      mathPart("impact", "(bc_0^2)", "impact"),
+    ],
+    overlays: [
+      overlay(
+        "lensing-readout",
+        "Lensing readout",
+        "deflection",
+        "This row tests whether the effective metric gives the observed null-path deflection.",
+        "\\Delta\\theta",
+        { x: 7, y: 8, width: 25, line: "above" }
+      ),
+      overlay(
+        "ppn-handoff",
+        "PPN handoff",
+        "ppn",
+        "The PPN coefficient must be read from the same response record as Shapiro, acceleration, and redshift.",
+        "\\gamma_{\\mathrm{PPN}}",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "path-geometry",
+        "Path geometry",
+        "impact",
+        "The impact and signal path terms make scalar-only maps fail if spatial compliance is missing.",
+        "b c_0^2",
+        { x: 7, y: 68, width: 26, line: "below" }
+      ),
+    ],
+  },
+  {
+    id: "eq-17-redshift-factorization",
+    title: "EQ-17 Redshift Factorization",
+    subject: "Cosmology and astrophysics",
+    backgroundId: DEFAULT_BACKGROUND_ID,
+    claimLevel: "candidate-commentary",
+    formulaTeX: "1+z_X\\approx\\Gamma_{N,E}\\mathcal P_{E\\to R}/(\\Gamma_{N,R}B_XD_v)",
+    anchors: [
+      anchor("redshift", "redshift factor", "observed redshift budget"),
+      anchor("emitterCadence", "emitter cadence", "source endpoint Noether sea cadence"),
+      anchor("pathTransfer", "path transfer", "path-history propagation"),
+      anchor("receiverCadence", "receiver cadence", "receiver endpoint cadence"),
+      anchor("sourceDoppler", "source and motion factors", "source branch and Doppler factors"),
+    ],
+    formulaParts: [
+      mathPart("redshift", "1+z_X", "redshift"),
+      mathPart("approx", "\\approx", ""),
+      mathPart("emitterCadence", "\\Gamma_{N,E}", "emitterCadence"),
+      mathPart("pathTransfer", "\\mathcal P_{E\\to R}", "pathTransfer"),
+      textPart("slash", "/"),
+      mathPart("receiverCadence", "\\Gamma_{N,R}", "receiverCadence"),
+      mathPart("sourceDoppler", "B_XD_v", "sourceDoppler"),
+    ],
+    overlays: [
+      overlay(
+        "factor-budget",
+        "Frequency budget",
+        "redshift",
+        "The equation splits redshift into endpoint cadence, source, motion, and path-history factors.",
+        "1+z_X",
+        { x: 7, y: 8, width: 26, line: "above" }
+      ),
+      overlay(
+        "endpoint-cadence",
+        "Endpoint cadence",
+        "emitterCadence",
+        "Emitter and receiver clock rows must stay on one signed transfer ledger.",
+        "\\Gamma_{N,E}/\\Gamma_{N,R}",
+        { x: 67, y: 22, width: 25, line: "above" }
+      ),
+      overlay(
+        "path-history",
+        "Path history",
+        "pathTransfer",
+        "The path term is where propagation through the Noether sea enters before comparison to cosmology.",
+        "\\mathcal P_{E\\to R}",
+        { x: 7, y: 68, width: 26, line: "below" }
+      ),
+      overlay(
+        "source-motion",
+        "Source and motion",
+        "sourceDoppler",
+        "Source-branch and velocity factors must not be retuned independently of the endpoint and path rows.",
+        "B_XD_v",
+        { x: 67, y: 82, width: 25, line: "below" }
+      ),
+    ],
+  },
+];
+
 export function createSeedEquationMapDocuments() {
-  return normalizeEquationMapDocuments([
-    {
-      id: DEFAULT_EQUATION_MAP_DOCUMENT_ID,
-      title: "Poisson Weak-Field Source Map",
-      subject: "Relativity and effective metric",
-      backgroundId: DEFAULT_BACKGROUND_ID,
-      claimLevel: "candidate-commentary",
-      formulaTeX: "\\nabla^2 \\Phi = 4\\pi G\\rho",
-      anchors: [
-        { id: "laplacian", label: "spatial response", searchText: "laplacian operator" },
-        { id: "potential", label: "potential", searchText: "gravitational potential" },
-        { id: "coupling", label: "coupling", searchText: "4 pi G" },
-        { id: "source", label: "source density", searchText: "rho density source" },
-      ],
-      formulaParts: [
-        { id: "laplacian", kind: "math", tex: "\\nabla^2", anchorId: "laplacian" },
-        { id: "space-1", kind: "text", text: " " },
-        { id: "potential", kind: "math", tex: "\\Phi", anchorId: "potential" },
-        { id: "equals", kind: "text", text: " = " },
-        { id: "coupling", kind: "math", tex: "4\\pi G", anchorId: "coupling" },
-        { id: "space-2", kind: "text", text: " " },
-        { id: "source", kind: "math", tex: "\\rho", anchorId: "source" },
-      ],
-      overlays: [
-        {
-          id: "operator-comment",
-          title: "Response operator",
-          status: "candidate",
-          targetAnchorId: "laplacian",
-          sectionLinePlacement: "above",
-          position: { x: 9, y: 22, width: 26 },
-          content: [
-            { type: "text", text: "Start by naming what the spatial response operator becomes in the native map." },
-            { type: "math", tex: "\\nabla^2 \\Phi", displayMode: false },
-          ],
-        },
-        {
-          id: "source-comment",
-          title: "Source side",
-          status: "candidate",
-          targetAnchorId: "source",
-          sectionLinePlacement: "below",
-          position: { x: 66, y: 58, width: 25 },
-          content: [
-            { type: "text", text: "Do not treat the source term as accepted until the carrier and evidence row are named." },
-            { type: "math", tex: "\\rho \\rightarrow \\text{declared source row}", displayMode: false },
-          ],
-        },
-      ],
-    },
-  ]);
+  return normalizeEquationMapDocuments(scoreFiveAndFourEquationMapDocuments);
 }
 
 export function getEquationSearchText(document = {}) {

@@ -19,6 +19,12 @@ const TARGET_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const VA_CHIRALITY_BLOCKER_PATH = fileURLToPath(
+  new URL(
+    "../scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json",
+    import.meta.url,
+  ),
+);
 
 function readTarget() {
   return JSON.parse(fs.readFileSync(TARGET_PATH, "utf8"));
@@ -72,6 +78,23 @@ test("current weak-channel target accepts ledger, projection, quotient, and expo
     report.sourceAcquisitionCheck.targetChecks.va_chirality_gate.accepted,
     false,
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.va_chirality_gate.currentEvidenceStatus,
+    "blocked_missing_same_domain_va_chirality_gate",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.va_chirality_gate.sourceTargetPath,
+    "scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json",
+  );
+  const blocker = JSON.parse(fs.readFileSync(VA_CHIRALITY_BLOCKER_PATH, "utf8"));
+  assert.equal(blocker.sourceKind, "va_chirality_gate");
+  assert.equal(blocker.currentStatus, "blocked_missing_same_domain_va_chirality_gate");
+  assert.deepEqual(blocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket, []);
+  assert.equal(
+    blocker.localEvidenceBoundary.notAcceptedByThisPacket.includes("va_chirality_gate"),
+    true,
+  );
+  assert.equal(blocker.localEvidenceBoundary.scoreDecision, "no_score_increase");
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.weak_quotient.componentShapePass,
     true,

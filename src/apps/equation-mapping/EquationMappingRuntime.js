@@ -132,6 +132,21 @@ function readSavedDocuments(windowLike) {
   }
 }
 
+function mergeSeedAndSavedDocuments(seedDocuments, savedDocuments) {
+  if (!Array.isArray(savedDocuments) || savedDocuments.length === 0) {
+    return seedDocuments;
+  }
+  const savedById = new Map(savedDocuments.map((document) => [document.id, document]));
+  const mergedDocuments = seedDocuments.map((seedDocument) => savedById.get(seedDocument.id) ?? seedDocument);
+  const seedIds = new Set(seedDocuments.map((document) => document.id));
+  savedDocuments.forEach((document) => {
+    if (!seedIds.has(document.id)) {
+      mergedDocuments.push(document);
+    }
+  });
+  return mergedDocuments;
+}
+
 function saveDocuments(windowLike, documents) {
   try {
     windowLike?.localStorage?.setItem?.(DOCUMENTS_STORAGE_KEY, JSON.stringify(documents));
@@ -156,8 +171,11 @@ export class EquationMappingRuntime {
   constructor(options = {}) {
     this.document = options.document ?? globalThis.document;
     this.window = options.window ?? globalThis.window;
+    const seedDocuments = createSeedEquationMapDocuments();
     const savedDocuments = options.documents == null ? readSavedDocuments(this.window) : null;
-    this.documents = normalizeEquationMapDocuments(options.documents ?? savedDocuments ?? createSeedEquationMapDocuments());
+    this.documents = normalizeEquationMapDocuments(
+      options.documents ?? mergeSeedAndSavedDocuments(seedDocuments, savedDocuments)
+    );
     const savedSettings = readSavedSettings(this.window);
     this.activeDocumentId =
       options.initialDocumentId ??

@@ -31,19 +31,21 @@ function readRepoFile(relativePath) {
 
 test("equation mapping seed document carries static layer anchors and comments", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(documents.length, 1);
+  assert.equal(documents.length, 10);
   const [document] = documents;
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
   assert.equal(document.schema, "equation-map-document.v1");
   assert.equal(document.backgroundId, "architrinoPurple");
+  assert.equal(document.claimLevel, "accepted-aaa-derivation");
   assert.deepEqual(
     document.anchors.map((anchor) => anchor.id),
-    ["laplacian", "potential", "coupling", "source"]
+    ["acceleration", "polarity", "inverseSquare", "branchStrength", "direction"]
   );
-  assert.equal(document.formulaParts.some((part) => part.anchorId === "laplacian"), true);
-  assert.equal(document.overlays.length, 2);
-  assert.equal(document.overlays[0].targetAnchorId, "laplacian");
+  assert.equal(document.formulaParts.some((part) => part.anchorId === "branchStrength"), true);
+  assert.equal(document.overlays.length, 4);
+  assert.equal(document.overlays[0].targetAnchorId, "acceleration");
   assert.equal(document.overlays[0].content.some((block) => block.type === "math"), true);
+  assert.equal(documents.some((entry) => entry.id === "eq-17-redshift-factorization"), true);
 });
 
 test("equation mapping rejects overlays that do not target a formula section", () => {
@@ -64,9 +66,9 @@ test("equation mapping rejects overlays that do not target a formula section", (
 
 test("equation mapping search includes subject, formula text, anchors, and overlay content", () => {
   const documents = createSeedEquationMapDocuments();
-  assert.equal(filterEquationMapDocuments(documents, "weak-field").length, 1);
-  assert.equal(filterEquationMapDocuments(documents, "source density").length, 1);
-  assert.equal(filterEquationMapDocuments(documents, "declared source row").length, 1);
+  assert.equal(filterEquationMapDocuments(documents, "Lorentz factor").length >= 1, true);
+  assert.equal(filterEquationMapDocuments(documents, "receiver-normal").length >= 1, true);
+  assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
 });
 
@@ -187,6 +189,13 @@ test("equation mapping resets stale saved sizing into the new medium defaults", 
   assert.equal(runtime.includes("sizeCalibrationVersion: SIZE_CALIBRATION_VERSION"), true);
 });
 
+test("equation mapping merges built-in seed maps with saved draft maps", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(runtime.includes("function mergeSeedAndSavedDocuments"), true);
+  assert.equal(runtime.includes("savedById.get(seedDocument.id) ?? seedDocument"), true);
+  assert.equal(runtime.includes("mergedDocuments.push(document)"), true);
+});
+
 test("equation mapping defaults to medium equation scale", () => {
   assert.equal(DEFAULT_EQUATION_SCALE, "medium");
 });
@@ -267,51 +276,51 @@ test("equation mapping editor creates a formula section anchor without mutating 
 test("equation mapping editor updates anchor labels and formula TeX", () => {
   const [document] = createSeedEquationMapDocuments();
   const nextDocument = normalizeEquationMapDocument(
-    updateEquationAnchor(document, "source", {
-      label: "native source row",
-      tex: "\\rho_W",
-      searchText: "weak field source row",
+    updateEquationAnchor(document, "branchStrength", {
+      label: "receiver-normal factor",
+      tex: "W^{\\mathrm{rec}}",
+      searchText: "retained branch ledger",
     })
   );
-  const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "source");
+  const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "branchStrength");
 
-  assert.equal(sourceAnchor.label, "native source row");
-  assert.equal(sourceAnchor.searchText, "weak field source row");
-  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "source"), "\\rho_W");
-  assert.equal(nextDocument.formulaTeX.includes("\\rho_W"), true);
+  assert.equal(sourceAnchor.label, "receiver-normal factor");
+  assert.equal(sourceAnchor.searchText, "retained branch ledger");
+  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "branchStrength"), "W^{\\mathrm{rec}}");
+  assert.equal(nextDocument.formulaTeX.includes("W^{\\mathrm{rec}}"), true);
 });
 
 test("equation mapping editor creates and retargets overlay comments", () => {
   const [document] = createSeedEquationMapDocuments();
   const withOverlay = normalizeEquationMapDocument(
     createEquationOverlay(document, {
-      title: "Coupling note",
-      targetAnchorId: "coupling",
-      text: "Compare the coupling term before accepting a map.",
-      mathTex: "4\\pi G",
+      title: "Polarity note",
+      targetAnchorId: "polarity",
+      text: "Compare the polarity term before accepting a map.",
+      mathTex: "\\kappa\\sigma",
       sectionLinePlacement: "above",
     })
   );
-  const createdOverlay = withOverlay.overlays.find((overlay) => overlay.id === "coupling-note");
+  const createdOverlay = withOverlay.overlays.find((overlay) => overlay.id === "polarity-note");
 
-  assert.equal(createdOverlay.targetAnchorId, "coupling");
+  assert.equal(createdOverlay.targetAnchorId, "polarity");
   assert.equal(createdOverlay.sectionLinePlacement, "above");
-  assert.equal(getOverlayContentDraft(createdOverlay).mathTex, "4\\pi G");
+  assert.equal(getOverlayContentDraft(createdOverlay).mathTex, "\\kappa\\sigma");
 
   const retargeted = normalizeEquationMapDocument(
     updateEquationOverlay(withOverlay, createdOverlay.id, {
-      targetAnchorId: "potential",
+      targetAnchorId: "direction",
       sectionLinePlacement: "below",
-      text: "Retarget the pointer to the potential side.",
-      mathTex: "\\Phi",
+      text: "Retarget the pointer to the line-of-action side.",
+      mathTex: "\\hat{\\mathbf r}",
       position: { x: 30, y: 44, width: 28 },
     })
   );
   const overlay = retargeted.overlays.find((entry) => entry.id === createdOverlay.id);
 
-  assert.equal(overlay.targetAnchorId, "potential");
+  assert.equal(overlay.targetAnchorId, "direction");
   assert.equal(overlay.sectionLinePlacement, "below");
   assert.deepEqual(overlay.position, { x: 30, y: 44, width: 28 });
-  assert.equal(getOverlayContentDraft(overlay).text, "Retarget the pointer to the potential side.");
-  assert.equal(getOverlayContentDraft(overlay).mathTex, "\\Phi");
+  assert.equal(getOverlayContentDraft(overlay).text, "Retarget the pointer to the line-of-action side.");
+  assert.equal(getOverlayContentDraft(overlay).mathTex, "\\hat{\\mathbf r}");
 });

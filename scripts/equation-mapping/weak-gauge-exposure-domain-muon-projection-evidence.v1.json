@@ -83,7 +83,7 @@
     "va_chirality_gate": {
       "id": "va_chirality_gate_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "currentEvidenceStatus": "blocked_missing_same_domain_va_chirality_gate",
       "requiredScope": "accepted V-A chirality gate in the retained weak-exposure domain",
       "requiredLedgerComponents": [
         "weak_quotient",
@@ -91,7 +91,7 @@
         "va_chirality_row",
         "same_domain_rows"
       ],
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json"
     },
     "ckm_overlap_readout": {
       "id": "ckm_overlap_readout_source_target_0001",
