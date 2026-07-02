@@ -103,7 +103,13 @@ function makeSourceArtifact(rows) {
 
 test("bounded branch-clock-lock row with root-margin reserve emits a non-authorizing certificate", () => {
   const rows = [
-    makeSweepRow({ rowSuffix: "preferred", supportRmsAcceleration: 0.04, branchClockLockRmsAcceleration: 0.1 }),
+    makeSweepRow({
+      rowSuffix: "preferred",
+      dynamicBetaMax: 0.75,
+      dynamicRootMargin: 0.25,
+      supportRmsAcceleration: 0.04,
+      branchClockLockRmsAcceleration: 0.1,
+    }),
   ];
   const artifact = buildOblateSpheroidBranchClockLockReserveCertificate({
     sourceArtifact: makeSourceArtifact(rows),
@@ -118,24 +124,64 @@ test("bounded branch-clock-lock row with root-margin reserve emits a non-authori
   assert.equal(artifact.schema, SCHEMA);
   assert.equal(
     artifact.artifact_status,
-    "priority_only_branch_clock_lock_reserve_certificate_present_retained_evidence_blocked"
+    "priority_only_internal_tangent_authority_reserve_certificate_present_retained_evidence_blocked"
   );
-  assert.equal(artifact.hard_math_status, "branch_clock_lock_tangent_reserve_certificate_present");
+  assert.equal(artifact.hard_math_status, "internal_tangent_authority_reserve_certificate_present");
   assert.equal(artifact.first_missing_object, FIRST_MISSING_OBJECT);
   assert.equal(artifact.first_missing_field, FIRST_MISSING_FIELD);
   assert.equal(artifact.summary.hard_math_candidate_count, 1);
+  assert.equal(artifact.summary.preferred_branch_curve_row_count, 1);
+  assert.equal(artifact.summary.preferred_branch_curve_positive_tangent_reserve_row_count, 1);
+  assert.equal(artifact.summary.full_preferred_curve_tangent_reserve_pass, true);
+  assert.equal(artifact.summary.rows_requiring_margin_lift_count, 0);
+  assert.equal(artifact.summary.max_required_margin_lift, 0);
+  assert.equal(artifact.summary.max_minimum_margin_lift_acceleration_proxy, 0);
   assert.deepEqual(validateOblateSpheroidBranchClockLockReserveCertificate(artifact), []);
 
   const candidate = artifact.branch_clock_lock_reserve_candidate_rows[0];
   assert.equal(candidate.dynamic_return_status.bounded_dynamic_return, true);
   assert.equal(candidate.branch_clock_lock_term.status, "branch_clock_lock_active");
   assert.equal(candidate.root_margin_reserve_status.positive_dynamic_root_margin_reserve, true);
+  assert.equal(candidate.tangent_authority_reserve_status.positive_rms_tangent_authority_reserve, true);
+  assert.equal(candidate.tangent_authority_reserve_status.raw_dynamic_margin_allows_minimum_reserve, true);
+  assert.equal(candidate.tangent_authority_reserve_status.raw_margin_deficit_before_tangent_authority, 0);
+  assert.equal(candidate.tangent_authority_reserve_status.required_dynamic_root_margin_for_full_tangent_authority, 0.11);
+  assert.equal(candidate.tangent_authority_reserve_status.minimum_margin_lift_for_full_tangent_authority, 0);
+  assert.equal(candidate.tangent_authority_reserve_status.maximum_tangent_authority_fraction_without_margin_lift, 2.4);
+  assert.equal(candidate.tangent_authority_reserve_status.minimum_tangent_authority_compression_without_margin_lift, 0);
+  assert.equal(candidate.tangent_authority_reserve_status.dynamic_root_margin_after_rms_tangent_authority, 0.15);
+  assert.equal(candidate.tangent_authority_reserve_status.tangent_response_horizon_upper_bound_for_minimum_reserve, 2.4);
+  assert.equal(candidate.tangent_authority_reserve_status.rms_tangent_reserve_deficit, 0);
+  assert.equal(
+    candidate.tangent_authority_reserve_status.mechanism_requirement_equation,
+    "dynamic_root_margin + margin_lift - tangent_response_horizon*authority_fraction*branch_clock_lock_rms_acceleration >= minimum_dynamic_root_margin_reserve"
+  );
+  assert.equal(candidate.margin_lift_mechanism_requirement.required_margin_lift, 0);
+  assert.equal(candidate.margin_lift_mechanism_requirement.minimum_margin_lift_acceleration_proxy, 0);
+  assert.equal(
+    candidate.margin_lift_mechanism_requirement.first_order_margin_lift_equation,
+    "delta_mu ~= margin_lift_response_horizon * <a_internal_margin, g_mu>"
+  );
+  assert.equal(
+    candidate.margin_lift_mechanism_requirement.combined_internal_acceleration_equation,
+    "a_internal = P_T(a_ansatz-a_wake-a_support) + a_internal_margin + a_internal_null"
+  );
+  assert.deepEqual(
+    candidate.margin_lift_mechanism_requirement.margin_gradient_cases.map((entry) => entry.active_margin),
+    ["field_speed_margin", "receiver_normal_margin", "source_normal_margin"]
+  );
+  assert.equal(candidate.margin_lift_mechanism_requirement.accepted_provider_ref, null);
   assert.equal(candidate.preferred_branch_curve_selection_status, "selected_preferred_branch_curve_row");
   assert.equal(candidate.tangent_correction.ratio, 2.5);
+  assert.equal(
+    candidate.internal_tangent_authority_equation.equation,
+    "P_T a_internal = P_T(a_ansatz - a_wake - a_support)"
+  );
   assert.equal(
     candidate.internal_term_proof_obligation.required_artifact,
     "retained_history_tangent_projection_approximating_branch_clock_lock_diagnostic"
   );
+  assert.equal(candidate.internal_tangent_authority_ref, null);
   assert.equal(candidate.accepted, false);
 });
 
@@ -173,15 +219,121 @@ test("branch-clock-lock rows with insufficient root-margin reserve fail closed",
     minDynamicRootMarginReserve: 0.01,
   });
 
-  assert.equal(artifact.artifact_status, "fail_closed_missing_dynamic_root_margin_reserve");
-  assert.equal(artifact.hard_math_status, "dynamic_root_margin_reserve_missing");
+  assert.equal(artifact.artifact_status, "fail_closed_missing_full_preferred_curve_tangent_margin_reserve");
+  assert.equal(artifact.hard_math_status, "preferred_curve_tangent_margin_reserve_missing");
   assert.equal(
     artifact.first_missing_field,
-    "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].root_margin_reserve_status"
+    "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].tangent_authority_reserve_status"
   );
   assert.equal(artifact.summary.active_branch_clock_lock_row_count, 1);
   assert.equal(artifact.summary.positive_dynamic_root_margin_reserve_row_count, 0);
+  assert.equal(artifact.summary.positive_tangent_authority_reserve_row_count, 0);
+  assert.equal(artifact.summary.full_preferred_curve_tangent_reserve_pass, false);
+  assert.equal(artifact.summary.rows_requiring_margin_lift_count, 1);
+  assert.equal(artifact.summary.max_required_margin_lift, 0.105);
+  assert.equal(artifact.summary.max_minimum_margin_lift_acceleration_proxy, 0.105);
   assert.equal(artifact.summary.hard_math_candidate_count, 0);
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.raw_dynamic_margin_allows_minimum_reserve,
+    false
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.raw_margin_deficit_before_tangent_authority,
+    0.005
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.minimum_margin_lift_for_full_tangent_authority,
+    0.105
+  );
+  assert.equal(
+    Math.abs(
+      artifact.rows[0].tangent_authority_reserve_status.maximum_tangent_authority_fraction_without_margin_lift +
+        0.05
+    ) < 1e-12,
+    true
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.minimum_tangent_authority_compression_without_margin_lift,
+    1
+  );
+  assert.equal(
+    artifact.rows[0].margin_lift_mechanism_requirement.required_margin_lift,
+    0.105
+  );
+  assert.equal(
+    artifact.rows[0].margin_lift_mechanism_requirement.minimum_margin_lift_acceleration_proxy,
+    0.105
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.tangent_response_horizon_upper_bound_for_minimum_reserve,
+    null
+  );
+});
+
+test("non-selected branch-clock-lock rows with insufficient tangent reserve fail at tangent reserve", () => {
+  const artifact = buildOblateSpheroidBranchClockLockReserveCertificate({
+    sourceArtifact: makeSourceArtifact([
+      makeSweepRow({
+        rowSuffix: "low-tangent-reserve",
+        dynamicBetaMax: 0.95,
+        dynamicRootMargin: 0.05,
+        branchClockLockRmsAcceleration: 0.08,
+        branchCurveCandidate: false,
+      }),
+    ]),
+    minDynamicRootMarginReserve: 0.01,
+  });
+
+  assert.equal(artifact.artifact_status, "fail_closed_missing_tangent_authority_root_margin_reserve");
+  assert.equal(artifact.hard_math_status, "tangent_authority_root_margin_reserve_missing");
+  assert.equal(
+    artifact.first_missing_field,
+    "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].tangent_authority_reserve_status"
+  );
+  assert.equal(artifact.summary.preferred_branch_curve_row_count, 0);
+  assert.equal(artifact.summary.positive_dynamic_root_margin_reserve_row_count, 1);
+  assert.equal(artifact.summary.positive_tangent_authority_reserve_row_count, 0);
+  assert.equal(artifact.summary.rows_requiring_margin_lift_count, 1);
+  assert.equal(artifact.summary.hard_math_candidate_count, 0);
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.raw_dynamic_margin_allows_minimum_reserve,
+    true
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.tangent_response_horizon_upper_bound_for_minimum_reserve,
+    0.5
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.required_dynamic_root_margin_for_full_tangent_authority,
+    0.09
+  );
+  assert.equal(
+    Math.abs(
+      artifact.rows[0].tangent_authority_reserve_status.minimum_margin_lift_for_full_tangent_authority - 0.04
+    ) < 1e-12,
+    true
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.maximum_tangent_authority_fraction_without_margin_lift,
+    0.5
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.minimum_tangent_authority_compression_without_margin_lift,
+    0.5
+  );
+  assert.equal(
+    artifact.rows[0].tangent_authority_reserve_status.rms_tangent_reserve_deficit,
+    0.04
+  );
+  assert.equal(
+    Math.abs(artifact.rows[0].margin_lift_mechanism_requirement.required_margin_lift - 0.04) < 1e-12,
+    true
+  );
+  assert.equal(
+    Math.abs(artifact.rows[0].margin_lift_mechanism_requirement.minimum_margin_lift_acceleration_proxy - 0.04) <
+      1e-12,
+    true
+  );
 });
 
 test("non-positive dynamic root margin cannot satisfy bounded dynamic return", () => {
@@ -213,6 +365,7 @@ test("retained authorization and excluded evidence classes remain rejected", () 
   assert.equal(artifact.authorization.bounded_speed_live_ledger, false);
   assert.equal(artifact.authorization.receiver_normal_branch_strength, false);
   assert.equal(artifact.authorization.preferred_configuration_claim, false);
+  assert.equal(artifact.authorization.internal_tangent_authority_derived, false);
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
 
   for (const [evidenceClass, reason] of Object.entries(NEGATIVE_CONTROL_REASONS)) {

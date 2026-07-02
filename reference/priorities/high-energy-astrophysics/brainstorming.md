@@ -70,7 +70,15 @@ $$
 
 That separation matters. A translation or infall-speed row reaching the local effective signal limit is naturally a horizon-interface clue. An orbital-speed row reaching the light limit is naturally a photon-sphere or light-ring clue. For Schwarzschild, the circular null-orbit surface is $r_{\mathrm{ph}}$, not $r_s$. For rotating Kerr comparisons, the prograde light ring can move inward with spin and can become horizon-coincident only in an extremal or near-extremal branch. So `EQ-07C` should not collapse "horizon" and "orbital velocity reaches $c_f$" into one scalar condition. It should bind both rows to the same carrier and then ask whether the light-ring row coincides with the horizon row only under declared spin and branch conditions.
 
-The photon geometry sharpens the reading. The photon carrier is the coaxial contra-rotating pro/anti planar pair, so a black-hole light-ring or photon-path equation is also a test of the planar tri-binary reduced chart. But that does not make the photon ring the native horizon by itself. The horizon-interface row must still bind mass, spin, area, entropy, finite interior continuation, and the event ledger:
+The photon geometry sharpens the reading. The photon carrier is the coaxial contra-rotating pro/anti planar pair, so a black-hole light-ring or photon-path equation is also a test of the planar tri-binary reduced chart. But that does not make the photon ring the native horizon by itself. The horizon-interface row must still bind mass, spin, area, entropy, finite interior continuation, and the event ledger.
+
+Operationally, the black-hole equation set should split into three same-carrier rows:
+
+1. Horizon-interface terminal alignment: $F_H=0$, translation speed approaching the local effective signal limit, $c_{\text{eff}}\to c_f$, and nested shell braid terminal-alignment rows.
+2. Light-ring / null-orbit recovery: $r_{\mathrm{ph}}$ or $r_{\mathrm{LR}}(M,\mathbf J)$ plus the orbital/null-speed comparison row, kept distinct from $r_H$ unless the same branch derives coincidence.
+3. Planar-photon recovery: photon-path or light-ring evidence must pass through the coaxial contra-rotating pro/anti planar pair and planar tri-binary reduced chart without replacing the horizon-interface carrier.
+
+The horizon-interface alignment residual is therefore:
 
 $$
 \mathcal{R}_{\mathrm{align,H}}
@@ -79,6 +87,8 @@ $$
 \|F_H\|,
 \left|\frac{s_M}{c_f}-1\right|,
 \left|\frac{s_O}{c_f}-1\right|,
+\left|\frac{v_{\text{trans}}}{c_{\text{eff}}}-1\right|,
+\left|\frac{c_{\text{eff}}}{c_f}-1\right|,
 d_{\mathrm{align}},
 \mathcal{S}_{\mathrm{retune}}
 \right).

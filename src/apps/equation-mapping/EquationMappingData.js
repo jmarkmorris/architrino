@@ -422,7 +422,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "restMass",
         "Mass maps to trapped internal causal history, shielding, and Noether sea coupling.",
         "M_0^2c_{\\mathrm{eff}}^4",
-        { x: 7, y: 68, width: 26, line: "below" }
+        { x: 67, y: 68, width: 26, line: "below" }
       ),
       overlay(
         "speed-role",
@@ -430,7 +430,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "effectiveSpeed",
         "The speed symbol must keep its declared role; changing it per observable is hidden retuning.",
         "c_{\\mathrm{eff}}",
-        { x: 67, y: 82, width: 24, line: "below" }
+        { x: 7, y: 82, width: 24, line: "below" }
       ),
     ],
   },
@@ -471,7 +471,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "mechanicalMomentum",
         "Mechanical momentum is only one row in the conserved finite-window ledger.",
         "\\mathbf P_{\\mathrm{mech}}",
-        { x: 67, y: 68, width: 25, line: "below" }
+        { x: 8, y: 68, width: 25, line: "below" }
       ),
       overlay(
         "wake-side",
@@ -479,7 +479,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "wakeMomentum",
         "The wake term makes the conservation law native to a causal-delay system.",
         "\\mathbf P_{\\mathrm{wake}}",
-        { x: 8, y: 82, width: 25, line: "below" }
+        { x: 67, y: 82, width: 25, line: "below" }
       ),
     ],
   },
@@ -625,7 +625,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "potentialTerm",
         "The potential term is a weak-field projection from the shared response record.",
         "\\Phi_N/c_0^2",
-        { x: 67, y: 68, width: 25, line: "below" }
+        { x: 8, y: 68, width: 25, line: "below" }
       ),
       overlay(
         "moving-clock",
@@ -633,7 +633,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "motionTerm",
         "The velocity correction must share the Lorentz branch row instead of becoming a private clock fit.",
         "\\lVert\\mathbf w\\rVert^2/(2c_0^2)",
-        { x: 8, y: 82, width: 25, line: "below" }
+        { x: 67, y: 82, width: 25, line: "below" }
       ),
     ],
   },

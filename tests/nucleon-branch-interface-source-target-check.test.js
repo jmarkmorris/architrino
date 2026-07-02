@@ -127,19 +127,55 @@ test("current branch-interface target passes algebra but blocks accepted source 
       "same_record_no_open_color_audit",
     ],
     requiredAcceptedRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
     ],
     feedsRowsAfterAcceptance: [
       "nucleon_branch_interface_ledgers",
       "pn_orientation_count",
       "pp_orientation_count",
     ],
-    notRequiredBeforeAcceptance: [],
+    notRequiredBeforeAcceptance: [
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+    ],
   });
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .no_open_color_far_field.requiredSufficientConditionRows,
+    [
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite",
+    ],
+  );
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .no_open_color_far_field.requiredAcceptedSourceRowsBeforeUse,
+    [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+  );
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .no_open_color_far_field.directToyConsumers,
+    {
+      coefficients: [],
+      graphRules: [],
+    },
+  );
   assert.deepEqual(
     noOpenColorBlocker.acceptedSourceRowProofTargets
       .nucleon_branch_interface_ledgers.requiredSameRecordRows,
@@ -242,7 +278,87 @@ test("current branch-interface target passes algebra but blocks accepted source 
     blocker.candidateClosureScaffold.requiredAcceptedRowsBeforeUse.includes(
       "accepted_branch_interface_rows",
     ),
+    false,
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.requiredAcceptedRowsBeforeUse.includes(
+      "accepted_proton_branch_interface_ledger",
+    ),
     true,
+  );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.lemmaId,
+    "finite_tail_same_record_audit_implies_no_open_color_far_field_0001",
+  );
+  assert.deepEqual(
+    blocker.candidateNoOpenColorFarFieldLemma.derivedRowsIfAccepted,
+    ["lim_R_to_infty_N_open_R_eq_0", "no_open_color_far_field"],
+  );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.proofSteps.some(
+      (step) => step.stepId === "same_record_witness",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.proofSteps.some(
+      (step) => step.stepId === "zero_limit_transfer",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.missingAcceptanceRows.includes(
+      "K_open_finite",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateNoOpenColorFarFieldLemma.missingAcceptanceRows.includes(
+      "same_record_no_open_color_audit",
+    ),
+    true,
+  );
+  assert.deepEqual(
+    blocker.candidateNoOpenColorFarFieldLemma.feedsRowsAfterAcceptance,
+    [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "accepted_branch_interface_rows",
+    ],
+  );
+  assert.deepEqual(blocker.acceptedSourceRowProofTarget.requiredSufficientConditionRows, [
+    "Delta_E_corr_NN_tail_limit",
+    "bounded_residual_overlap",
+    "large_r_zero_limit",
+    "K_open_finite",
+  ]);
+  assert.deepEqual(blocker.acceptedSourceRowProofTarget.requiredSameRecordRows, [
+    "finite_range_residual",
+    "color_singlet_closure",
+    "same_record_no_open_color_audit",
+    "accepted_proton_branch_interface_ledger",
+    "accepted_neutron_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ]);
+  assert.deepEqual(
+    blocker.requiredAcceptanceCondition.sameRecordNoOpenColorAudit.mustConsumeRows,
+    [
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+    ],
+  );
+  assert.deepEqual(
+    blocker.candidateClosureScaffold.notRequiredBeforeAcceptance,
+    [
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+    ],
   );
   assert.equal(blocker.localEvidenceBoundary.scoreDecision, "no_score_increase");
   assert.equal(
@@ -372,6 +488,31 @@ test("branch-interface rows fail closed when the accepted-row proof target loses
       reason: "accepted_source_row_proof_target_shape_mismatch",
       missingFields: [],
       mismatchedFields: ["requiredLimitStatements"],
+    },
+  ]);
+});
+
+test("branch-interface rows fail closed when the no-open proof target loses finite-tail sufficient conditions", () => {
+  const target = acceptedTarget();
+  target.acceptedSourceRowProofTargets.no_open_color_far_field.requiredSufficientConditionRows =
+    target.acceptedSourceRowProofTargets.no_open_color_far_field
+      .requiredSufficientConditionRows.filter(
+        (row) => row !== "K_open_finite",
+      );
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_proof_target_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.acceptedSourceRowProofTargetPass, false);
+  assert.deepEqual(report.summary.acceptedSourceRowProofTargetFailures, [
+    {
+      rowId: "no_open_color_far_field",
+      reason: "accepted_source_row_proof_target_shape_mismatch",
+      missingFields: [],
+      mismatchedFields: ["requiredSufficientConditionRows"],
     },
   ]);
 });

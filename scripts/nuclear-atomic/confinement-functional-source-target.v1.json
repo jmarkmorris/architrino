@@ -223,6 +223,19 @@
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/accepted-delta-E-corr-NN-source-acquisition-blocker.v1.json"
     },
+    "Delta_E_corr_NN_tail_limit": {
+      "id": "Delta_E_corr_NN_tail_limit_source_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "blocked_missing_delta_E_corr_tail_limit_derivation",
+      "requiredScope": "accepted same-domain tail-limit row proving T_NN tends to zero for the Delta E_corr_NN residual without element-specific tuning",
+      "requiredLedgerComponents": [
+        "lim_R_to_infty_T_NN_R_eq_0",
+        "O_NN_finite",
+        "exists_R0_C_lambda_exp_decay_tail"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json"
+    },
     "finite_range_residual": {
       "id": "finite_range_residual_source_target_0001",
       "status": "target_required",
@@ -255,7 +268,7 @@
       "currentEvidenceStatus": "blocked_missing_same_record_no_open_color_audit",
       "requiredScope": "accepted same-record audit that the finite residual leaves no open-color far field",
       "requiredLedgerComponents": [
-        "accepted_delta_E_corr_NN",
+        "Delta_E_corr_NN_tail_limit",
         "finite_range_residual",
         "color_singlet_closure",
         "same_event_ledger"
@@ -391,17 +404,21 @@
       "currentEvidenceStatus": "proof_target_only",
       "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
       "requiredAcceptedSourceRowsBeforeUse": [
-        "accepted_delta_E_corr_NN",
+        "Delta_E_corr_NN_tail_limit",
         "accepted_sigma_eff_extraction",
         "accepted_color_singlet_nucleon_envelope",
-        "accepted_branch_interface_rows",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
         "same_record_noether_sea_response"
       ],
       "requiredSameRecordRows": [
-        "accepted_delta_E_corr_NN",
+        "Delta_E_corr_NN_tail_limit",
         "accepted_sigma_eff_extraction",
         "accepted_color_singlet_nucleon_envelope",
-        "accepted_branch_interface_rows",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
         "same_record_noether_sea_response",
         "finite_range_residual"
       ],
@@ -429,19 +446,20 @@
       "currentEvidenceStatus": "proof_target_only",
       "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
       "requiredAcceptedSourceRowsBeforeUse": [
-        "accepted_delta_E_corr_NN",
         "finite_range_residual",
         "color_singlet_closure",
         "same_record_no_open_color_audit",
-        "accepted_branch_interface_rows"
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
       ],
       "requiredSameRecordRows": [
-        "accepted_delta_E_corr_NN",
         "finite_range_residual",
         "color_singlet_closure",
         "same_record_no_open_color_audit",
-        "accepted_branch_interface_rows",
-        "same_record_branch_interface",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
         "same_record_noether_sea_response"
       ],
       "requiredClosureRows": [

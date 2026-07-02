@@ -8,6 +8,8 @@ import {
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA,
+  PHASE_ORDER_MEASUREMENT_ROW_SCHEMA,
   RESIDUAL_MEASUREMENT_ROW_SCHEMA,
   SCHEMA,
   buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget,
@@ -211,7 +213,7 @@ test("provider-backed chirality target populates paired rows without authorizing
   });
 });
 
-test("accepted measurement chirality target replaces residual status rows with measured failure rows", () => {
+test("accepted measurement chirality target measures phase/order and root residuals", () => {
   const artifact = buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget({
     retainedRecordId: "retained-record:braid-ideal:test-chirality-accepted-measurements",
   });
@@ -232,19 +234,31 @@ test("accepted measurement chirality target replaces residual status rows with m
   assert.deepEqual(artifact.first_blocker, {
     object: "chirality_residual_measurement_failed",
     field: FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD,
-    reason: "same_record_phase_order_measurement_row_missing",
+    reason: "same_source_self_hit_residual_rows_missing",
   });
   assert.equal(artifact.accepted_residual_measurement_source.measurement_row_count, 9);
   assert.equal(artifact.accepted_residual_measurement_source.accepted_measurement_row_count, 9);
-  assert.equal(artifact.accepted_residual_measurement_source.passing_measurement_row_count, 1);
-  assert.equal(artifact.accepted_residual_measurement_source.failing_measurement_row_count, 8);
+  assert.equal(artifact.accepted_residual_measurement_source.passing_measurement_row_count, 3);
+  assert.equal(artifact.accepted_residual_measurement_source.failing_measurement_row_count, 6);
 
   const phaseMeasurement = artifact.residual_vector.R_phase.value;
   assert.equal(phaseMeasurement.schema, RESIDUAL_MEASUREMENT_ROW_SCHEMA);
   assert.equal(phaseMeasurement.accepted_measurement, true);
   assert.equal(phaseMeasurement.measured, true);
-  assert.equal(phaseMeasurement.measurement_passed, false);
-  assert.equal(phaseMeasurement.failure_reason, "same_record_phase_order_measurement_row_missing");
+  assert.equal(phaseMeasurement.measurement_passed, true);
+  assert.equal(phaseMeasurement.measurement_status, "accepted_measurement_passed");
+  assert.equal(phaseMeasurement.residual_value, 0);
+  assert.equal(
+    phaseMeasurement.residual_value_status,
+    "same_record_phase_order_reversal_residual_zero"
+  );
+  assert.equal(phaseMeasurement.failure_reason, null);
+  assert.equal(phaseMeasurement.first_failed_requirement, null);
+  assert.deepEqual(
+    phaseMeasurement.accepted_phase_order_measurement_refs,
+    artifact.accepted_phase_order_measurement_source.accepted_phase_order_measurement_refs
+  );
+  assert.equal(phaseMeasurement.phase_order_measurement_summary.measurement_passed, true);
   assert.equal(
     phaseMeasurement.same_record_binding.retained_record_id,
     artifact.provider_backed_source.retained_record_id
@@ -257,11 +271,96 @@ test("accepted measurement chirality target replaces residual status rows with m
     artifact.residual_vector.R_phase.accepted_measurement_ref,
     phaseMeasurement.accepted_measurement_ref
   );
-  assert.equal(artifact.residual_vector.R_phase.accepted, false);
+  assert.equal(artifact.residual_vector.R_phase.accepted, true);
+  assert.equal(artifact.accepted_phase_order_measurement_source.measurement_passed, true);
+  assert.equal(artifact.accepted_phase_order_measurement_source.phase_order_row_count, 2);
+  assert.equal(artifact.accepted_phase_order_measurement_source.phase_order_row_schema, PHASE_ORDER_MEASUREMENT_ROW_SCHEMA);
+  assert.equal(artifact.accepted_phase_order_measurement_source.phase_order_reversal_residual, 0);
+  assert.deepEqual(artifact.accepted_phase_order_measurement_source.residuals, {
+    theta_orb_orientation_sum: 0,
+    psi_orientation_sum: 0,
+    Omega_chi_signed_component_sum: 0,
+  });
+  assert.deepEqual(
+    artifact.accepted_phase_order_measurement_source.phase_order_rows.map((row) => row.schema),
+    [PHASE_ORDER_MEASUREMENT_ROW_SCHEMA, PHASE_ORDER_MEASUREMENT_ROW_SCHEMA]
+  );
+  assert.deepEqual(
+    artifact.accepted_phase_order_measurement_source.phase_order_rows.map((row) => row.orientation_sign),
+    [1, -1]
+  );
+  for (const row of artifact.accepted_phase_order_measurement_source.phase_order_rows) {
+    assert.equal(row.accepted_measurement, true);
+    assert.equal(row.same_record_binding.retained_record_id, artifact.provider_backed_source.retained_record_id);
+    assert.equal(
+      row.same_record_binding.central_solver_retained_history_row_ref,
+      artifact.provider_backed_source.central_solver_retained_history_row_ref
+    );
+    assert.equal(row.same_record_binding.provider_object_ref, artifact.provider_backed_source.provider_object_ref);
+  }
+  const rootMeasurement = artifact.residual_vector.R_root.value;
+  assert.equal(rootMeasurement.measurement_passed, true);
+  assert.equal(rootMeasurement.measurement_status, "accepted_measurement_passed");
+  assert.equal(rootMeasurement.residual_value, 0);
+  assert.equal(
+    rootMeasurement.residual_value_status,
+    "same_record_partner_causal_root_residual_rows_complete"
+  );
+  assert.equal(rootMeasurement.failure_reason, null);
+  assert.equal(rootMeasurement.first_failed_requirement, null);
+  assert.equal(rootMeasurement.partner_causal_root_residual_summary.measurement_passed, true);
+  assert.deepEqual(
+    rootMeasurement.accepted_partner_causal_root_residual_refs,
+    artifact.accepted_partner_causal_root_residual_source.accepted_partner_causal_root_residual_refs
+  );
+  assert.equal(artifact.residual_vector.R_root.accepted, true);
+  assert.equal(artifact.accepted_partner_causal_root_residual_source.measurement_passed, true);
+  assert.equal(artifact.accepted_partner_causal_root_residual_source.expected_requirement_count, 30);
+  assert.equal(artifact.accepted_partner_causal_root_residual_source.residual_row_count, 30);
+  assert.equal(
+    artifact.accepted_partner_causal_root_residual_source.residual_row_schema,
+    PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA
+  );
+  assert.equal(artifact.accepted_partner_causal_root_residual_source.partner_causal_root_reversal_residual, 0);
+  assert.deepEqual(artifact.accepted_partner_causal_root_residual_source.residuals, {
+    missing_requirement_count: 0,
+    extra_residual_row_count: 0,
+    duplicate_requirement_count: 0,
+    same_record_binding_failure_count: 0,
+    asymmetric_directed_pair_count: 0,
+  });
+  assert.equal(
+    artifact.accepted_partner_causal_root_residual_source.partner_causal_root_residual_rows.length,
+    30
+  );
+  for (const row of artifact.accepted_partner_causal_root_residual_source.partner_causal_root_residual_rows) {
+    assert.equal(row.schema, PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA);
+    assert.equal(row.accepted_measurement, true);
+    assert.equal(row.same_record_binding.retained_record_id, artifact.provider_backed_source.retained_record_id);
+    assert.equal(
+      row.same_record_binding.central_solver_retained_history_row_ref,
+      artifact.provider_backed_source.central_solver_retained_history_row_ref
+    );
+    assert.equal(row.same_record_binding.provider_object_ref, artifact.provider_backed_source.provider_object_ref);
+    assert.equal(row.required_relation, "directed-partner-causal-root-replay");
+  }
+  assert.equal(artifact.residual_vector.R_self.value.measurement_passed, false);
+  assert.equal(
+    artifact.residual_vector.R_self.value.failure_reason,
+    "same_source_self_hit_residual_rows_missing"
+  );
   assert.equal(artifact.residual_vector.R_charge.value.measurement_passed, true);
   assert.equal(artifact.residual_vector.R_charge.accepted, true);
   assert.equal(
     artifact.paired_rows.every((row) => row.first_missing_field === FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD),
+    true
+  );
+  assert.equal(
+    artifact.paired_rows.every((row) => row.phase_order_requirement.first_missing_field === null),
+    true
+  );
+  assert.equal(
+    artifact.paired_rows.every((row) => row.phase_order_requirement.accepted_phase_order_measurement_ref != null),
     true
   );
   assert.equal(artifact.authorization.accepted_chirality_retained_history_target, false);
@@ -351,7 +450,11 @@ test("chirality target CLI can emit accepted residual measurement rows", () => {
   );
   assert.equal(artifact.residual_vector.R_phase.value.schema, RESIDUAL_MEASUREMENT_ROW_SCHEMA);
   assert.equal(artifact.residual_vector.R_phase.value.accepted_measurement, true);
-  assert.equal(artifact.residual_vector.R_phase.value.measurement_passed, false);
+  assert.equal(artifact.residual_vector.R_phase.value.measurement_passed, true);
+  assert.equal(artifact.residual_vector.R_root.value.measurement_passed, true);
+  assert.equal(artifact.residual_vector.R_self.value.measurement_passed, false);
+  assert.equal(artifact.accepted_phase_order_measurement_source.phase_order_row_count, 2);
+  assert.equal(artifact.accepted_partner_causal_root_residual_source.residual_row_count, 30);
   assert.equal(artifact.residual_vector.R_phase.accepted_measurement_ref.startsWith("accepted:"), true);
   assert.deepEqual(validateBraidIdealChiralityRetainedHistoryTarget(artifact), []);
 });

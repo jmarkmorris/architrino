@@ -38,6 +38,20 @@
       ],
       "boundary": "The finite-overlap blocker depends on the finite residual tail but explicitly accepts no finite-range residual evidence."
     },
+    "deltaECorrTailLimitBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "Delta_E_corr_NN_tail_limit request packet",
+        "tail envelope limit target",
+        "finite weighted-overlap target"
+      ],
+      "notUsableFor": [
+        "accepted_Delta_E_corr_NN_tail_limit",
+        "accepted_finite_range_residual",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The tail-limit blocker records the exact upstream proof packet but explicitly accepts no source rows."
+    },
     "noOpenColorFarFieldBlocker": {
       "candidatePath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
       "usableFor": [
@@ -96,8 +110,13 @@
     "deltaECorrTailLimit": {
       "requiredBehavior": "The accepted Delta E_corr_NN residual must have a same-domain tail limit that tends to zero at large separation.",
       "mustBindTo": [
-        "accepted_delta_E_corr_NN",
         "Delta_E_corr_NN_tail_limit",
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "same_record_noether_sea_response",
         "large_r_zero_limit"
       ]
     },
@@ -106,7 +125,9 @@
       "mustShareDomainWith": [
         "accepted_sigma_eff_extraction",
         "accepted_color_singlet_nucleon_envelope",
-        "accepted_branch_interface_rows"
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
       ]
     },
     "largeRZeroLimit": {
@@ -132,10 +153,12 @@
     "sufficientDecayCondition": "\\exists R_0,C,\\lambda>0:\\;|\\Delta E_{\\mathrm{corr}}^{NN}(r)|\\le C e^{-\\lambda(r-R_0)}\\;\\text{for}\\;r\\ge R_0",
     "sameRecordConstraint": "\\operatorname{record}(\\Delta E_{\\mathrm{corr}}^{NN})=\\operatorname{record}(\\sigma_{\\mathrm{eff}})=\\operatorname{record}(\\Gamma_{N_1})=\\operatorname{record}(\\Gamma_{N_2})=\\operatorname{record}(B_{pn})=\\operatorname{record}(B_{pp})",
     "requiredAcceptedRowsBeforeUse": [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response"
     ],
     "feedsRowsAfterAcceptance": [
@@ -145,6 +168,8 @@
       "no_free_color_asymptotic_state"
     ],
     "notRequiredBeforeFiniteRangeAcceptance": [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
       "no_open_color_far_field",
       "same_record_no_open_color_audit",
       "no_free_color_asymptotic_state"
@@ -181,16 +206,16 @@
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
     "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
-    "expectedFiniteTailGraphRuleFirstMissingObject": "missing_accepted_delta_E_corr_NN",
+    "expectedFiniteTailGraphRuleFirstMissingObject": "missing_Delta_E_corr_NN_tail_limit",
     "scoreDecision": "no_score_increase"
   },
   "nextProofStep": {
     "target": "Derive the finite_range_residual row as the large-separation tail limit of Delta E_corr_NN in the same sigma_eff, color-singlet envelope, branch-interface, and Noether sea response domain consumed by the Fe/Ni finite-tail controls.",
     "minimalInputNeeded": [
-      "accepted Delta E_corr_NN row",
+      "accepted Delta E_corr_NN tail-limit row",
       "accepted sigma_eff extraction row",
       "accepted proton and neutron color-singlet envelope bundle",
-      "accepted branch-interface rows",
+      "accepted proton and neutron branch-interface ledgers plus same-record conservation ledger",
       "accepted same-record Noether sea response row",
       "same-domain large-r zero-limit audit that later feeds no-open-color and no-free-color checks"
     ],

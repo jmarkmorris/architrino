@@ -8,8 +8,13 @@ export const FIRST_MISSING_FIELD =
   "oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref";
 export const RETAINED_HISTORY_FIRST_MISSING_OBJECT = "six_held_release_seed_path_rows_for_retained_record";
 export const RETAINED_HISTORY_FIRST_MISSING_FIELD = "held_release_seed_path_rows[*].retained_record_id";
+export const LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT =
+  "accepted_same_record_least_norm_retained_vector_provider_for_internal_tangent_authority";
+export const LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD =
+  "oblate_spheroid_internal_tangent_authority_certificate.measured_tangent_authority_rows[*].least_norm_retained_vector_provider.accepted_vector_provider_ref";
 
 const EPSILON = 1e-12;
+const DEFAULT_VECTOR_TOLERANCE = 1e-9;
 
 const AUTHORIZATION_FLAGS = Object.freeze([
   "accepted_same_record_evidence",
@@ -53,6 +58,50 @@ function finiteNumber(value) {
   return Number.isFinite(number) ? number : null;
 }
 
+function finiteVector(value) {
+  if (!Array.isArray(value)) {
+    return null;
+  }
+  const vector = value.map((entry) => finiteNumber(entry));
+  return vector.every((entry) => entry != null) ? vector : null;
+}
+
+function finiteMatrix(value) {
+  if (!Array.isArray(value) || value.length === 0) {
+    return null;
+  }
+  const rows = value.map((row) => finiteVector(row));
+  if (rows.some((row) => row == null)) {
+    return null;
+  }
+  const width = rows[0].length;
+  return width > 0 && rows.every((row) => row.length === width) ? rows : null;
+}
+
+function dot(a, b) {
+  return a.reduce((sum, entry, index) => sum + entry * b[index], 0);
+}
+
+function norm(a) {
+  return Math.sqrt(dot(a, a));
+}
+
+function add(a, b) {
+  return a.map((entry, index) => entry + b[index]);
+}
+
+function subtract(a, b) {
+  return a.map((entry, index) => entry - b[index]);
+}
+
+function scale(scalar, vector) {
+  return vector.map((entry) => scalar * entry);
+}
+
+function multiplyMatrixVector(matrix, vector) {
+  return matrix.map((row) => dot(row, vector));
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
@@ -81,6 +130,233 @@ function routeEvidenceStatus({ firstMissingObject, firstMissingField, status = "
   };
 }
 
+function vectorWitnessMissingField(name) {
+  return `least_norm_retained_vector_provider_witness.${name}`;
+}
+
+export function evaluateLeastNormRetainedVectorProviderWitness(candidate = {}) {
+  const tolerance = finiteNumber(candidate.vector_tolerance) ?? DEFAULT_VECTOR_TOLERANCE;
+  const tangentTarget = finiteVector(candidate.tangent_target_vector ?? candidate.T);
+  const marginGradient = finiteVector(candidate.active_margin_gradient_vector ?? candidate.G_mu);
+  const tangentProjector = finiteMatrix(candidate.tangent_projector_matrix ?? candidate.P_T);
+  const tangentNullProjector = finiteMatrix(candidate.tangent_null_projector_matrix ?? candidate.P_N);
+  const provider = finiteVector(candidate.provider_acceleration_vector ?? candidate.a_provider);
+  const mDyn = finiteNumber(candidate.dynamic_root_margin ?? candidate.m_dyn);
+  const deltaT = finiteNumber(candidate.tangent_response_horizon ?? candidate.Delta_T);
+  const deltaM = finiteNumber(candidate.margin_lift_response_horizon ?? candidate.Delta_M);
+  const epsilonMu = finiteNumber(candidate.minimum_dynamic_root_margin_reserve ?? candidate.epsilon_mu);
+  const missingFields = [];
+  if (!tangentTarget) missingFields.push(vectorWitnessMissingField("tangent_target_vector"));
+  if (!marginGradient) missingFields.push(vectorWitnessMissingField("active_margin_gradient_vector"));
+  if (!tangentProjector) missingFields.push(vectorWitnessMissingField("tangent_projector_matrix"));
+  if (!tangentNullProjector) missingFields.push(vectorWitnessMissingField("tangent_null_projector_matrix"));
+  if (!provider) missingFields.push(vectorWitnessMissingField("provider_acceleration_vector"));
+  if (mDyn == null) missingFields.push(vectorWitnessMissingField("dynamic_root_margin"));
+  if (deltaT == null) missingFields.push(vectorWitnessMissingField("tangent_response_horizon"));
+  if (deltaM == null) missingFields.push(vectorWitnessMissingField("margin_lift_response_horizon"));
+  if (epsilonMu == null) missingFields.push(vectorWitnessMissingField("minimum_dynamic_root_margin_reserve"));
+
+  const dimension = tangentTarget?.length ?? null;
+  const matricesAreSquare =
+    dimension != null &&
+    tangentProjector?.length === dimension &&
+    tangentNullProjector?.length === dimension &&
+    tangentProjector.every((row) => row.length === dimension) &&
+    tangentNullProjector.every((row) => row.length === dimension);
+  const vectorsMatchDimension =
+    dimension != null &&
+    marginGradient?.length === dimension &&
+    provider?.length === dimension;
+  if (missingFields.length === 0 && (!matricesAreSquare || !vectorsMatchDimension)) {
+    missingFields.push(vectorWitnessMissingField("dimension_consistency"));
+  }
+
+  if (missingFields.length > 0) {
+    return {
+      schema: "least_norm_retained_vector_provider_witness_evaluation.v0",
+      accepted: false,
+      mathematical_witness_conditions_passed: false,
+      reason: "least_norm_vector_witness_input_missing_or_dimensionally_inconsistent",
+      missing_fields: missingFields,
+      first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+      first_missing_field: missingFields[0],
+    };
+  }
+
+  const projectedProvider = multiplyMatrixVector(tangentProjector, provider);
+  const tangentReplacementErrorNorm = norm(subtract(projectedProvider, tangentTarget));
+  const tangentReplacementPassed = tangentReplacementErrorNorm <= tolerance;
+  const tangentTargetNorm = norm(tangentTarget);
+  const deltaMuRequired = Math.max(0, epsilonMu + deltaT * tangentTargetNorm - mDyn);
+  const requiredMarginProjection =
+    deltaM <= EPSILON
+      ? (deltaMuRequired <= tolerance ? 0 : null)
+      : deltaMuRequired / deltaM;
+  const nullGradient = multiplyMatrixVector(tangentNullProjector, marginGradient);
+  const nullGradientNormSquared = dot(nullGradient, nullGradient);
+  const tangentMarginProjection = dot(tangentTarget, marginGradient);
+  const leastNormFeasible =
+    requiredMarginProjection == null
+      ? false
+      : nullGradientNormSquared > EPSILON ||
+        tangentMarginProjection + tolerance >= requiredMarginProjection;
+  const nullScale =
+    leastNormFeasible && requiredMarginProjection != null && nullGradientNormSquared > EPSILON
+      ? Math.max(0, requiredMarginProjection - tangentMarginProjection) / nullGradientNormSquared
+      : 0;
+  const leastNormNullCorrection = leastNormFeasible
+    ? scale(nullScale, nullGradient)
+    : null;
+  const leastNormProvider = leastNormNullCorrection
+    ? add(tangentTarget, leastNormNullCorrection)
+    : null;
+  const leastNormProviderErrorNorm = leastNormProvider
+    ? norm(subtract(provider, leastNormProvider))
+    : null;
+  const leastNormProviderMatched =
+    leastNormProviderErrorNorm != null && leastNormProviderErrorNorm <= tolerance;
+  const postProviderRootMargin =
+    mDyn - deltaT * norm(projectedProvider) + deltaM * dot(provider, marginGradient);
+  const postProviderRootMarginPassed = postProviderRootMargin + tolerance >= epsilonMu;
+  const mathematicalWitnessConditionsPassed =
+    tangentReplacementPassed &&
+    leastNormFeasible &&
+    leastNormProviderMatched &&
+    postProviderRootMarginPassed;
+
+  return {
+    schema: "least_norm_retained_vector_provider_witness_evaluation.v0",
+    accepted: false,
+    mathematical_witness_conditions_passed: mathematicalWitnessConditionsPassed,
+    reason: mathematicalWitnessConditionsPassed
+      ? "mathematical_witness_passes_but_same_record_acceptance_blocked"
+      : "mathematical_witness_conditions_failed",
+    variables: {
+      dynamic_root_margin: mDyn,
+      tangent_response_horizon: deltaT,
+      margin_lift_response_horizon: deltaM,
+      minimum_dynamic_root_margin_reserve: epsilonMu,
+      vector_tolerance: tolerance,
+    },
+    computed: {
+      tangent_target_norm: tangentTargetNorm,
+      delta_mu_required: deltaMuRequired,
+      required_margin_projection: requiredMarginProjection,
+      tangent_margin_projection: tangentMarginProjection,
+      null_gradient_vector: nullGradient,
+      null_gradient_norm_squared: nullGradientNormSquared,
+      least_norm_null_correction_vector: leastNormNullCorrection,
+      least_norm_provider_vector: leastNormProvider,
+      projected_provider_tangent_vector: projectedProvider,
+      tangent_replacement_error_norm: tangentReplacementErrorNorm,
+      least_norm_provider_error_norm: leastNormProviderErrorNorm,
+      post_provider_root_margin: postProviderRootMargin,
+    },
+    checks: {
+      tangent_replacement_passed: tangentReplacementPassed,
+      least_norm_solution_feasible: leastNormFeasible,
+      least_norm_provider_matched: leastNormProviderMatched,
+      post_provider_root_margin_passed: postProviderRootMarginPassed,
+    },
+    first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+    first_missing_field: LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
+    acceptance_requirements: [
+      "accepted_same_record_least_norm_provider_acceleration_vector_row",
+      "accepted_same_record_retained_root_ledger",
+      "accepted_same_record_action_closure_row",
+      "post_provider_root_margin_row",
+    ],
+  };
+}
+
+function makeNormalizedDiagnosticVectorWitness({
+  branchClockRms,
+  dynamicRootMargin,
+  tangentResponseHorizon,
+  marginLiftResponseHorizon,
+  minimumReserve,
+}) {
+  const missingFields = [];
+  if (branchClockRms == null) missingFields.push("branch_clock_lock_rms_acceleration");
+  if (dynamicRootMargin == null) missingFields.push("dynamic_root_margin");
+  if (tangentResponseHorizon == null) missingFields.push("tangent_response_horizon");
+  if (marginLiftResponseHorizon == null) missingFields.push("margin_lift_response_horizon");
+  if (minimumReserve == null) missingFields.push("minimum_dynamic_root_margin_reserve");
+  if (missingFields.length > 0) {
+    return {
+      schema: "oblate_spheroid_internal_tangent_authority_normalized_diagnostic_witness.v0",
+      scope_note: "diagnostic_normalized_basis_not_retained_solver_vector_evidence",
+      construction_status: "missing_scalar_inputs",
+      missing_fields: missingFields,
+      mathematical_witness_conditions_passed: false,
+      accepted: false,
+      first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+      first_missing_field: LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
+    };
+  }
+
+  const deltaMuRequired = Math.max(0, minimumReserve + tangentResponseHorizon * branchClockRms - dynamicRootMargin);
+  const requiredNullLift =
+    marginLiftResponseHorizon <= EPSILON
+      ? (deltaMuRequired <= DEFAULT_VECTOR_TOLERANCE ? 0 : null)
+      : deltaMuRequired / marginLiftResponseHorizon;
+  const tangentTarget = [branchClockRms, 0];
+  const activeMarginGradient = [0, 1];
+  const tangentProjector = [
+    [1, 0],
+    [0, 0],
+  ];
+  const tangentNullProjector = [
+    [0, 0],
+    [0, 1],
+  ];
+  const provider = [branchClockRms, requiredNullLift ?? 0];
+  const evaluation = evaluateLeastNormRetainedVectorProviderWitness({
+    tangent_target_vector: tangentTarget,
+    active_margin_gradient_vector: activeMarginGradient,
+    tangent_projector_matrix: tangentProjector,
+    tangent_null_projector_matrix: tangentNullProjector,
+    provider_acceleration_vector: provider,
+    dynamic_root_margin: dynamicRootMargin,
+    tangent_response_horizon: tangentResponseHorizon,
+    margin_lift_response_horizon: marginLiftResponseHorizon,
+    minimum_dynamic_root_margin_reserve: minimumReserve,
+  });
+
+  return {
+    schema: "oblate_spheroid_internal_tangent_authority_normalized_diagnostic_witness.v0",
+    scope_note: "diagnostic_normalized_basis_not_retained_solver_vector_evidence",
+    construction_status: "normalized_local_tangent_margin_basis_constructed",
+    basis_definition:
+      "e_T is the measured tangent-authority axis and e_N is a unit tangent-null active-margin-lift axis",
+    construction_equation:
+      "T=[A_T,0], G_mu=[0,1], P_T=diag(1,0), P_N=diag(0,1), a_provider=[A_T,delta_mu_req/Delta_M]",
+    input_scalars: {
+      A_T: branchClockRms,
+      m_dyn: dynamicRootMargin,
+      Delta_T: tangentResponseHorizon,
+      Delta_M: marginLiftResponseHorizon,
+      epsilon_mu: minimumReserve,
+      delta_mu_required: deltaMuRequired,
+      required_null_lift: requiredNullLift,
+    },
+    witness_vectors: {
+      tangent_target_vector: tangentTarget,
+      active_margin_gradient_vector: activeMarginGradient,
+      tangent_projector_matrix: tangentProjector,
+      tangent_null_projector_matrix: tangentNullProjector,
+      provider_acceleration_vector: provider,
+    },
+    evaluation,
+    mathematical_witness_conditions_passed: evaluation.mathematical_witness_conditions_passed,
+    accepted: false,
+    acceptance_boundary:
+      "normalized diagnostic witness must be replaced by same-record retained solver vectors before it can replace the assigned branch-clock lock",
+    first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+    first_missing_field: LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
+  };
+}
+
 function makeSourceSummary(targetArtifact = {}, reserveArtifact = {}) {
   return {
     branch_clock_lock_target: {
@@ -103,9 +379,11 @@ function makeSourceSummary(targetArtifact = {}, reserveArtifact = {}) {
 }
 
 function reserveRowsByKey(reserveArtifact = {}) {
+  const reserveRows = normalizeRows(reserveArtifact.rows);
+  const candidateRows = normalizeRows(reserveArtifact.branch_clock_lock_reserve_candidate_rows);
+  const rows = reserveRows.length > 0 ? reserveRows : candidateRows;
   return new Map(
-    normalizeRows(reserveArtifact.branch_clock_lock_reserve_candidate_rows ?? reserveArtifact.rows)
-      .map((row) => [rowJoinKey(row), row])
+    rows.map((row) => [rowJoinKey(row), row])
   );
 }
 
@@ -113,6 +391,8 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow) {
   const branchClock = targetRow.assigned_branch_clock_lock_term ?? {};
   const support = targetRow.assigned_support_term ?? {};
   const reserve = reserveRow?.root_margin_reserve_status ?? {};
+  const tangentReserve = reserveRow?.tangent_authority_reserve_status ?? {};
+  const marginLift = reserveRow?.margin_lift_mechanism_requirement ?? {};
   const localValues = targetRow.local_values ?? {};
   const target = targetRow.tangent_authority_target ?? {};
   const branchClockRms = finiteNumber(branchClock.rms_acceleration ?? reserveRow?.branch_clock_lock_term?.rms_acceleration);
@@ -122,6 +402,37 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow) {
   const positiveReserve = reserveFlagIsPresent
     ? reserve.positive_dynamic_root_margin_reserve
     : dynamicRootMargin != null && dynamicRootMargin > 0 && branchClockRms != null;
+  const tangentResponseHorizon = finiteNumber(tangentReserve.tangent_response_horizon);
+  const minimumReserve = finiteNumber(tangentReserve.minimum_dynamic_root_margin_reserve);
+  const marginLiftResponseHorizon = finiteNumber(marginLift.margin_lift_response_horizon);
+  const fullReplacementRequiredLift =
+    dynamicRootMargin == null || branchClockRms == null || tangentResponseHorizon == null || minimumReserve == null
+      ? null
+      : Math.max(0, minimumReserve + tangentResponseHorizon * branchClockRms - dynamicRootMargin);
+  const zeroTangentRequiredLift =
+    dynamicRootMargin == null || minimumReserve == null
+      ? null
+      : Math.max(0, minimumReserve - dynamicRootMargin);
+  const maximumTangentFractionWithoutLift =
+    dynamicRootMargin == null ||
+      branchClockRms == null ||
+      tangentResponseHorizon == null ||
+      minimumReserve == null ||
+      branchClockRms <= EPSILON ||
+      tangentResponseHorizon <= EPSILON
+      ? null
+      : (dynamicRootMargin - minimumReserve) / (tangentResponseHorizon * branchClockRms);
+  const clampedNoLiftFraction =
+    maximumTangentFractionWithoutLift == null
+      ? null
+      : Math.max(0, Math.min(1, maximumTangentFractionWithoutLift));
+  const normalizedDiagnosticWitness = makeNormalizedDiagnosticVectorWitness({
+    branchClockRms,
+    dynamicRootMargin,
+    tangentResponseHorizon,
+    marginLiftResponseHorizon,
+    minimumReserve,
+  });
   return {
     row_id: `${rowPrefix}:measured_need:${targetRow.row_id ?? rowJoinKey(targetRow)}`,
     schema: "oblate_spheroid_internal_tangent_authority_measured_need_row.v0",
@@ -156,6 +467,161 @@ function measuredNeedFromTargetRow(rowPrefix, targetRow, reserveRow) {
       positive_dynamic_root_margin_reserve: positiveReserve,
       status: positiveReserve ? "positive_root_budget_margin_reserve_measured" : "missing_positive_root_budget_margin_reserve",
     },
+    post_tangent_authority_reserve_condition: {
+      minimum_dynamic_root_margin_reserve: finiteNumber(tangentReserve.minimum_dynamic_root_margin_reserve),
+      tangent_response_horizon: finiteNumber(tangentReserve.tangent_response_horizon),
+      dynamic_root_margin_after_rms_tangent_authority: finiteNumber(
+        tangentReserve.dynamic_root_margin_after_rms_tangent_authority
+      ),
+      positive_rms_tangent_authority_reserve:
+        tangentReserve.positive_rms_tangent_authority_reserve === true,
+      required_dynamic_root_margin_for_full_tangent_authority: finiteNumber(
+        tangentReserve.required_dynamic_root_margin_for_full_tangent_authority
+      ),
+      minimum_margin_lift_for_full_tangent_authority: finiteNumber(
+        tangentReserve.minimum_margin_lift_for_full_tangent_authority
+      ),
+      maximum_tangent_authority_fraction_without_margin_lift: finiteNumber(
+        tangentReserve.maximum_tangent_authority_fraction_without_margin_lift
+      ),
+      minimum_tangent_authority_compression_without_margin_lift: finiteNumber(
+        tangentReserve.minimum_tangent_authority_compression_without_margin_lift
+      ),
+      status: tangentReserve.status ?? null,
+    },
+    margin_lift_requirement: {
+      active_margin_gradient_equation: marginLift.active_margin_gradient_equation ?? null,
+      first_order_margin_lift_equation: marginLift.first_order_margin_lift_equation ?? null,
+      combined_internal_acceleration_equation: marginLift.combined_internal_acceleration_equation ?? null,
+      required_margin_lift: finiteNumber(marginLift.required_margin_lift),
+      minimum_margin_lift_acceleration_proxy: finiteNumber(marginLift.minimum_margin_lift_acceleration_proxy),
+      margin_lift_response_horizon: finiteNumber(marginLift.margin_lift_response_horizon),
+      candidate_provider_classes: Array.isArray(marginLift.candidate_provider_classes)
+        ? [...marginLift.candidate_provider_classes]
+        : [],
+      accepted_provider_ref: marginLift.accepted_provider_ref ?? null,
+      accepted: marginLift.accepted === true,
+    },
+    scalar_tangent_replacement_feasibility: {
+      scope_note: "scalar_rms_proxy_not_vector_provider_proof",
+      tangent_authority_fraction_symbol: "lambda_T",
+      margin_lift_symbol: "delta_mu(lambda_T)",
+      replacement_curve_equation:
+        "delta_mu(lambda_T)=max(0, epsilon_mu + Delta_T*lambda_T*A_T - m_dyn)",
+      full_replacement_condition:
+        "lambda_T=1 and delta_mu(1) supplied by same-record internal provider",
+      no_margin_lift_condition:
+        "0 <= lambda_T <= (m_dyn-epsilon_mu)/(Delta_T*A_T)",
+      variables: {
+        epsilon_mu: minimumReserve,
+        Delta_T: tangentResponseHorizon,
+        Delta_M: marginLiftResponseHorizon,
+        A_T: branchClockRms,
+        m_dyn: dynamicRootMargin,
+      },
+      required_margin_lift_at_full_measured_tangent_authority: fullReplacementRequiredLift,
+      required_margin_lift_at_zero_tangent_authority: zeroTangentRequiredLift,
+      maximum_tangent_authority_fraction_without_margin_lift: maximumTangentFractionWithoutLift,
+      clamped_tangent_authority_fraction_without_margin_lift: clampedNoLiftFraction,
+      minimum_tangent_authority_compression_without_margin_lift:
+        clampedNoLiftFraction == null ? null : 1 - clampedNoLiftFraction,
+      full_measured_tangent_authority_passes_without_margin_lift:
+        clampedNoLiftFraction != null && clampedNoLiftFraction >= 1,
+      raw_margin_passes_without_tangent_authority:
+        zeroTangentRequiredLift != null && zeroTangentRequiredLift === 0,
+      retained_vector_provider_required: true,
+      accepted_vector_provider_ref: null,
+      accepted: false,
+    },
+    vector_tangent_margin_compatibility: {
+      scope_note: "symbolic_vector_condition_not_accepted_provider_evidence",
+      tangent_target_definition:
+        "T = P_T(a_ansatz - a_wake - a_support)",
+      tangent_projection_equation:
+        "P_T a_internal = T",
+      active_margin_gradient_definition:
+        "G_mu = velocity-gradient vector of the active causal-margin factor on receiver/source slots",
+      tangent_null_projector:
+        "P_N = I - P_T",
+      general_solution:
+        "a_internal = T + n, with P_T n = 0",
+      margin_lift_compatibility_inequality:
+        "<T,G_mu> + <n,P_N G_mu> >= delta_mu_req / Delta_M",
+      minimum_null_correction:
+        "n_* = max(0, delta_mu_req/Delta_M - <T,G_mu>) * P_N G_mu / ||P_N G_mu||^2 when ||P_N G_mu|| > 0",
+      no_null_lift_condition:
+        "if ||P_N G_mu|| = 0, then the tangent solution must already satisfy <T,G_mu> >= delta_mu_req/Delta_M",
+      incompatibility_condition:
+        "||P_N G_mu|| = 0 and <T,G_mu> < delta_mu_req/Delta_M",
+      required_vector_rows: [
+        "retained_tangent_target_vector_row",
+        "active_causal_margin_gradient_vector_row",
+        "tangent_null_projection_row",
+        "same_record_provider_acceleration_vector_row",
+        "post_provider_root_margin_row",
+      ],
+      provider_claim_status: "vector_provider_missing",
+      accepted_vector_provider_ref: null,
+      accepted: false,
+    },
+    least_norm_retained_vector_provider: {
+      scope_note: "least_norm_symbolic_provider_equation_not_accepted_same_record_vector_evidence",
+      provider_equation:
+        "a_provider^* = T + n_*",
+      tangent_component_equation:
+        "T = P_T(a_ansatz - a_wake - a_support)",
+      tangent_replacement_condition:
+        "P_T a_provider^* = T",
+      null_component_equation:
+        "n_* = max(0, delta_mu_req/Delta_M - <T,G_mu>) * P_N G_mu / ||P_N G_mu||^2 when ||P_N G_mu|| > 0",
+      no_null_component_condition:
+        "n_*=0 when <T,G_mu> >= delta_mu_req/Delta_M",
+      zero_null_gradient_feasibility_condition:
+        "if ||P_N G_mu|| = 0, require <T,G_mu> >= delta_mu_req/Delta_M",
+      minimum_norm_objective:
+        "minimize ||n|| subject to P_T n = 0 and m_dyn - Delta_T ||T|| + Delta_M <T+n,G_mu> >= epsilon_mu",
+      post_provider_root_margin_condition:
+        "m_dyn - Delta_T ||P_T a_provider^*|| + Delta_M <a_provider^*,G_mu> >= epsilon_mu",
+      scalar_proxy_binding:
+        "||T|| is represented by A_T in the scalar rms replacement curve until retained vector rows exist",
+      witness_evaluation_schema: "least_norm_retained_vector_provider_witness_evaluation.v0",
+      required_witness_input_slots: [
+        "tangent_target_vector",
+        "active_margin_gradient_vector",
+        "tangent_projector_matrix",
+        "tangent_null_projector_matrix",
+        "provider_acceleration_vector",
+        "dynamic_root_margin",
+        "tangent_response_horizon",
+        "margin_lift_response_horizon",
+        "minimum_dynamic_root_margin_reserve",
+      ],
+      witness_pass_conditions: {
+        tangent_replacement:
+          "||P_T a_provider - T|| <= epsilon_vec",
+        least_norm_solution:
+          "||a_provider - (T+n_*)|| <= epsilon_vec",
+        post_provider_root_margin:
+          "m_dyn - Delta_T ||P_T a_provider|| + Delta_M <a_provider,G_mu> >= epsilon_mu",
+        same_record_acceptance:
+          "mathematical pass plus accepted retained-root ledger, action closure, provider vector row, and post-provider root-margin row",
+      },
+      provider_claim_status: "least_norm_provider_equation_missing_same_record_vectors",
+      required_same_record_rows: [
+        "retained_tangent_target_vector_row",
+        "active_causal_margin_gradient_vector_row",
+        "tangent_null_projection_row",
+        "least_norm_provider_acceleration_vector_row",
+        "post_provider_root_margin_row",
+        "same_record_retained_root_ledger",
+        "same_record_action_closure_row",
+      ],
+      first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+      first_missing_field: LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
+      accepted_vector_provider_ref: null,
+      accepted: false,
+    },
+    normalized_diagnostic_vector_witness: normalizedDiagnosticWitness,
     tangent_authority_target_status: target.target_status ?? null,
     retained_root_ledger_ref: targetRow.retained_root_ledger_ref ?? reserveRow?.retained_root_ledger_ref ?? null,
     accepted: false,
@@ -180,16 +646,123 @@ function makeRouteRows(rowPrefix, measuredRows) {
     ).length,
     measured_need_row_refs: measuredRows.map((row) => row.row_id),
   };
+  const measuredMarginLiftFields = {
+    post_tangent_authority_reserve_pass_count: measuredRows.filter(
+      (row) => row.post_tangent_authority_reserve_condition.positive_rms_tangent_authority_reserve
+    ).length,
+    rows_requiring_margin_lift_count: measuredRows.filter(
+      (row) => (row.margin_lift_requirement.required_margin_lift ?? 0) > 0
+    ).length,
+    max_required_margin_lift: measuredRows.length > 0
+      ? Math.max(...measuredRows.map((row) => row.margin_lift_requirement.required_margin_lift ?? 0))
+      : null,
+    max_minimum_margin_lift_acceleration_proxy: measuredRows.length > 0
+      ? Math.max(...measuredRows.map((row) => row.margin_lift_requirement.minimum_margin_lift_acceleration_proxy ?? 0))
+      : null,
+    margin_lift_equation:
+      "delta_mu ~= Delta_M <a_internal_margin,g_mu>",
+    combined_internal_acceleration_equation:
+      "a_internal = P_T(a_ansatz-a_wake-a_support) + a_internal_margin + a_internal_null",
+  };
+  const scalarFeasibilityFields = {
+    full_replacement_without_margin_lift_count: measuredRows.filter(
+      (row) =>
+        row.scalar_tangent_replacement_feasibility.full_measured_tangent_authority_passes_without_margin_lift
+    ).length,
+    full_replacement_requires_margin_lift_count: measuredRows.filter(
+      (row) =>
+        (row.scalar_tangent_replacement_feasibility.required_margin_lift_at_full_measured_tangent_authority ?? 0) > 0
+    ).length,
+    rows_with_raw_margin_deficit_before_tangent_count: measuredRows.filter(
+      (row) => row.scalar_tangent_replacement_feasibility.raw_margin_passes_without_tangent_authority === false
+    ).length,
+    max_required_margin_lift_at_full_measured_tangent_authority: measuredRows.length > 0
+      ? Math.max(
+        ...measuredRows.map(
+          (row) =>
+            row.scalar_tangent_replacement_feasibility.required_margin_lift_at_full_measured_tangent_authority ?? 0
+        )
+      )
+      : null,
+    equation:
+      "delta_mu(lambda_T)=max(0, epsilon_mu + Delta_T*lambda_T*A_T - m_dyn)",
+  };
+  const vectorCompatibilityFields = {
+    measured_need_row_count: measuredRows.length,
+    accepted_vector_provider_count: measuredRows.filter(
+      (row) => row.vector_tangent_margin_compatibility.accepted === true
+    ).length,
+    vector_provider_missing_count: measuredRows.filter(
+      (row) => row.vector_tangent_margin_compatibility.provider_claim_status === "vector_provider_missing"
+    ).length,
+    tangent_projection_equation:
+      "P_T a_internal = P_T(a_ansatz - a_wake - a_support)",
+    minimum_null_correction:
+      "n_* = max(0, delta_mu_req/Delta_M - <T,G_mu>) * P_N G_mu / ||P_N G_mu||^2",
+    incompatibility_condition:
+      "||P_N G_mu|| = 0 and <T,G_mu> < delta_mu_req/Delta_M",
+  };
+  const leastNormProviderFields = {
+    measured_need_row_count: measuredRows.length,
+    least_norm_provider_equation_row_count: measuredRows.filter(
+      (row) => row.least_norm_retained_vector_provider?.provider_equation === "a_provider^* = T + n_*"
+    ).length,
+    accepted_least_norm_provider_count: measuredRows.filter(
+      (row) => row.least_norm_retained_vector_provider?.accepted === true
+    ).length,
+    provider_equation_vector_row_missing_count: measuredRows.filter(
+      (row) =>
+        row.least_norm_retained_vector_provider?.provider_claim_status ===
+        "least_norm_provider_equation_missing_same_record_vectors"
+    ).length,
+    provider_equation:
+      "a_provider^* = T + n_*",
+    tangent_replacement_condition:
+      "P_T a_provider^* = T",
+    post_provider_root_margin_condition:
+      "m_dyn - Delta_T ||P_T a_provider^*|| + Delta_M <a_provider^*,G_mu> >= epsilon_mu",
+    witness_evaluation_schema: "least_norm_retained_vector_provider_witness_evaluation.v0",
+    witness_pass_conditions: [
+      "||P_T a_provider - T|| <= epsilon_vec",
+      "||a_provider - (T+n_*)|| <= epsilon_vec",
+      "m_dyn - Delta_T ||P_T a_provider|| + Delta_M <a_provider,G_mu> >= epsilon_mu",
+    ],
+    first_missing_object: LEAST_NORM_PROVIDER_FIRST_MISSING_OBJECT,
+    first_missing_field: LEAST_NORM_PROVIDER_FIRST_MISSING_FIELD,
+  };
+  const normalizedDiagnosticWitnessFields = {
+    measured_need_row_count: measuredRows.length,
+    normalized_diagnostic_witness_row_count: measuredRows.filter(
+      (row) => row.normalized_diagnostic_vector_witness?.construction_status ===
+        "normalized_local_tangent_margin_basis_constructed"
+    ).length,
+    normalized_diagnostic_witness_pass_count: measuredRows.filter(
+      (row) => row.normalized_diagnostic_vector_witness?.mathematical_witness_conditions_passed === true
+    ).length,
+    normalized_diagnostic_witness_missing_input_count: measuredRows.filter(
+      (row) => row.normalized_diagnostic_vector_witness?.construction_status === "missing_scalar_inputs"
+    ).length,
+    normalized_witness_scope:
+      "algebraic two-axis diagnostic only; not retained solver vector evidence",
+    construction_equation:
+      "T=[A_T,0], G_mu=[0,1], P_T=diag(1,0), P_N=diag(0,1), a_provider=[A_T,delta_mu_req/Delta_M]",
+    accepted_provider_count: 0,
+  };
   return [
     {
       rank: 1,
       route_id: "retained_history_tangent_projection",
       row_id: `${rowPrefix}:route:retained_history_tangent_projection`,
       equation_form: "a_parallel^RH = -k_RH e_x - c_RH e_v",
+      tangent_authority_equation:
+        "P_T a_internal = P_T(a_ansatz - a_wake - a_support)",
+      margin_lift_equation:
+        "<a_internal_margin,g_mu> >= required_margin_lift/margin_lift_response_horizon",
       variables: {
         e_x: "Pi_T(x_i - x_i^ret(t))",
         e_v: "Pi_T(v_i - v_i^ret(t))",
         Pi_T: "tangent projection to the oblate support surface",
+        g_mu: "active causal-margin gradient in field-speed, receiver-normal, or source-normal channel",
       },
       required_same_record_input_rows: [
         "held-release seed path row",
@@ -197,11 +770,17 @@ function makeRouteRows(rowPrefix, measuredRows) {
         "same_record_retained_root_ledger",
         "same_record_action_closure_row",
         "retained_history_tangent_projection_row",
+        "retained_history_causal_margin_gradient_row",
       ],
       expected_tangent_acceleration_direction: "opposes tangent position and velocity error measured by branch-clock lock",
       measured_branch_clock_lock_acceleration_fields: measuredFields,
+      measured_margin_lift_fields: measuredMarginLiftFields,
+      scalar_replacement_feasibility_fields: scalarFeasibilityFields,
+      vector_tangent_margin_compatibility_fields: vectorCompatibilityFields,
+      least_norm_retained_vector_provider_fields: leastNormProviderFields,
+      normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       root_budget_margin_reserve_condition:
-        "dynamic root-budget margin remains positive after the retained-history tangent projection residual is applied",
+        "post-tangent-authority root-budget margin remains positive after retained-history tangent and margin-gradient components are applied",
       current_status: "fail_closed_missing_retained_record_id",
       first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
       first_missing_field: RETAINED_HISTORY_FIRST_MISSING_FIELD,
@@ -221,6 +800,11 @@ function makeRouteRows(rowPrefix, measuredRows) {
       ],
       expected_tangent_acceleration_direction: "same tangent sign as the measured branch-clock lock correction",
       measured_branch_clock_lock_acceleration_fields: measuredFields,
+      measured_margin_lift_fields: measuredMarginLiftFields,
+      scalar_replacement_feasibility_fields: scalarFeasibilityFields,
+      vector_tangent_margin_compatibility_fields: vectorCompatibilityFields,
+      least_norm_retained_vector_provider_fields: leastNormProviderFields,
+      normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       root_budget_margin_reserve_condition: "same-ledger action row must preserve positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "bounded_speed_same_ledger_action_measure_row",
@@ -240,6 +824,11 @@ function makeRouteRows(rowPrefix, measuredRows) {
       ],
       expected_tangent_acceleration_direction: "wake response pulls along the preferred branch-curve tangent",
       measured_branch_clock_lock_acceleration_fields: measuredFields,
+      measured_margin_lift_fields: measuredMarginLiftFields,
+      scalar_replacement_feasibility_fields: scalarFeasibilityFields,
+      vector_tangent_margin_compatibility_fields: vectorCompatibilityFields,
+      least_norm_retained_vector_provider_fields: leastNormProviderFields,
+      normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       root_budget_margin_reserve_condition: "wake tangent response cannot exhaust the positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "same_record_wake_ledger_tangent_response",
@@ -260,6 +849,11 @@ function makeRouteRows(rowPrefix, measuredRows) {
       ],
       expected_tangent_acceleration_direction: "angular-momentum and shielding correction carries the branch curve tangent reserve",
       measured_branch_clock_lock_acceleration_fields: measuredFields,
+      measured_margin_lift_fields: measuredMarginLiftFields,
+      scalar_replacement_feasibility_fields: scalarFeasibilityFields,
+      vector_tangent_margin_compatibility_fields: vectorCompatibilityFields,
+      least_norm_retained_vector_provider_fields: leastNormProviderFields,
+      normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       root_budget_margin_reserve_condition: "branch row and shielding response preserve positive root-budget margin",
       current_status: "source_acquisition_blocked",
       first_missing_object: "torque_wake_retained_active_row_branch_certificate_evidence_object",
@@ -279,6 +873,11 @@ function makeRouteRows(rowPrefix, measuredRows) {
       ],
       expected_tangent_acceleration_direction: "Noether sea pressure or tension response supplies the tangent reserve",
       measured_branch_clock_lock_acceleration_fields: measuredFields,
+      measured_margin_lift_fields: measuredMarginLiftFields,
+      scalar_replacement_feasibility_fields: scalarFeasibilityFields,
+      vector_tangent_margin_compatibility_fields: vectorCompatibilityFields,
+      least_norm_retained_vector_provider_fields: leastNormProviderFields,
+      normalized_diagnostic_vector_witness_fields: normalizedDiagnosticWitnessFields,
       root_budget_margin_reserve_condition: "Noether sea response leaves positive root-budget margin on the same retained record",
       current_status: "source_acquisition_blocked",
       first_missing_object: "retained_noether_sea_pressure_response_row",
@@ -419,6 +1018,58 @@ export function buildOblateSpheroidInternalTangentAuthorityCertificate(input = {
       positive_root_budget_margin_reserve_count: measuredRows.filter(
         (row) => row.root_budget_margin_reserve_condition.positive_dynamic_root_margin_reserve
       ).length,
+      positive_post_tangent_authority_reserve_count: measuredRows.filter(
+        (row) => row.post_tangent_authority_reserve_condition.positive_rms_tangent_authority_reserve
+      ).length,
+      rows_requiring_margin_lift_count: measuredRows.filter(
+        (row) => (row.margin_lift_requirement.required_margin_lift ?? 0) > 0
+      ).length,
+      max_required_margin_lift: measuredRows.length > 0
+        ? Math.max(...measuredRows.map((row) => row.margin_lift_requirement.required_margin_lift ?? 0))
+        : null,
+      max_minimum_margin_lift_acceleration_proxy: measuredRows.length > 0
+        ? Math.max(
+          ...measuredRows.map((row) => row.margin_lift_requirement.minimum_margin_lift_acceleration_proxy ?? 0)
+        )
+        : null,
+      full_replacement_without_margin_lift_count: measuredRows.filter(
+        (row) =>
+          row.scalar_tangent_replacement_feasibility.full_measured_tangent_authority_passes_without_margin_lift
+      ).length,
+      full_replacement_requires_margin_lift_count: measuredRows.filter(
+        (row) =>
+          (row.scalar_tangent_replacement_feasibility.required_margin_lift_at_full_measured_tangent_authority ?? 0) > 0
+      ).length,
+      rows_with_raw_margin_deficit_before_tangent_count: measuredRows.filter(
+        (row) => row.scalar_tangent_replacement_feasibility.raw_margin_passes_without_tangent_authority === false
+      ).length,
+      accepted_vector_provider_count: measuredRows.filter(
+        (row) => row.vector_tangent_margin_compatibility.accepted === true
+      ).length,
+      vector_provider_missing_count: measuredRows.filter(
+        (row) => row.vector_tangent_margin_compatibility.provider_claim_status === "vector_provider_missing"
+      ).length,
+      least_norm_provider_equation_row_count: measuredRows.filter(
+        (row) => row.least_norm_retained_vector_provider?.provider_equation === "a_provider^* = T + n_*"
+      ).length,
+      accepted_least_norm_provider_count: measuredRows.filter(
+        (row) => row.least_norm_retained_vector_provider?.accepted === true
+      ).length,
+      provider_equation_vector_row_missing_count: measuredRows.filter(
+        (row) =>
+          row.least_norm_retained_vector_provider?.provider_claim_status ===
+          "least_norm_provider_equation_missing_same_record_vectors"
+      ).length,
+      normalized_diagnostic_witness_row_count: measuredRows.filter(
+        (row) => row.normalized_diagnostic_vector_witness?.construction_status ===
+          "normalized_local_tangent_margin_basis_constructed"
+      ).length,
+      normalized_diagnostic_witness_pass_count: measuredRows.filter(
+        (row) => row.normalized_diagnostic_vector_witness?.mathematical_witness_conditions_passed === true
+      ).length,
+      normalized_diagnostic_witness_missing_input_count: measuredRows.filter(
+        (row) => row.normalized_diagnostic_vector_witness?.construction_status === "missing_scalar_inputs"
+      ).length,
       retained_evidence_first_missing_object: FIRST_MISSING_OBJECT,
       retained_evidence_first_missing_field: FIRST_MISSING_FIELD,
       retained_history_first_missing_object: RETAINED_HISTORY_FIRST_MISSING_OBJECT,
@@ -477,6 +1128,30 @@ export function validateOblateSpheroidInternalTangentAuthorityCertificate(artifa
     }
     if (row.retained_root_ledger_ref != null) {
       errors.push("measured tangent authority rows must not claim retained_root_ledger_ref");
+    }
+    if (row.scalar_tangent_replacement_feasibility?.accepted !== false) {
+      errors.push("scalar tangent replacement feasibility must remain non-authorizing");
+    }
+    if (row.scalar_tangent_replacement_feasibility?.accepted_vector_provider_ref !== null) {
+      errors.push("scalar tangent replacement feasibility must not claim an accepted vector provider");
+    }
+    if (row.vector_tangent_margin_compatibility?.accepted !== false) {
+      errors.push("vector tangent-margin compatibility must remain non-authorizing");
+    }
+    if (row.vector_tangent_margin_compatibility?.accepted_vector_provider_ref !== null) {
+      errors.push("vector tangent-margin compatibility must not claim an accepted vector provider");
+    }
+    if (row.least_norm_retained_vector_provider?.accepted !== false) {
+      errors.push("least-norm retained vector provider must remain non-authorizing");
+    }
+    if (row.least_norm_retained_vector_provider?.accepted_vector_provider_ref !== null) {
+      errors.push("least-norm retained vector provider must not claim an accepted vector provider");
+    }
+    if (row.normalized_diagnostic_vector_witness?.accepted !== false) {
+      errors.push("normalized diagnostic vector witness must remain non-authorizing");
+    }
+    if (row.normalized_diagnostic_vector_witness?.evaluation?.accepted !== false) {
+      errors.push("normalized diagnostic vector witness evaluation must remain non-authorizing");
     }
   }
   for (const row of artifact?.internal_term_route_rows ?? []) {

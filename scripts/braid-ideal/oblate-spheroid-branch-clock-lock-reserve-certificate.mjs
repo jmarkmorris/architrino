@@ -3,11 +3,14 @@ import fs from "node:fs";
 import { fileURLToPath } from "node:url";
 
 export const SCHEMA = "oblate_spheroid_branch_clock_lock_reserve_certificate.v0";
-export const FIRST_MISSING_OBJECT = "same_record_retained_root_ledger_for_two_speed_deformation_sweep";
+export const FIRST_MISSING_OBJECT = "internal_retained_history_tangent_authority_for_preferred_branch_curve";
 export const FIRST_MISSING_FIELD =
-  "oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref";
+  "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].internal_tangent_authority_ref";
+export const RETAINED_ROOT_LEDGER_BLOCKER = "same_record_retained_root_ledger_for_two_speed_deformation_sweep";
 
 const DEFAULT_MIN_DYNAMIC_ROOT_MARGIN_RESERVE = 0.01;
+const DEFAULT_TANGENT_RESPONSE_HORIZON = 1;
+const DEFAULT_MARGIN_LIFT_RESPONSE_HORIZON = 1;
 const EPSILON = 1e-12;
 
 const AUTHORIZATION_FLAGS = Object.freeze([
@@ -20,6 +23,7 @@ const AUTHORIZATION_FLAGS = Object.freeze([
   "same_ledger_action_measure_row",
   "bounded_speed_live_ledger",
   "receiver_normal_branch_strength",
+  "internal_tangent_authority_derived",
 ]);
 
 export const NEGATIVE_CONTROL_REASONS = Object.freeze({
@@ -158,6 +162,146 @@ function rootMarginReserveStatus(row, minDynamicRootMarginReserve) {
   };
 }
 
+function tangentAuthorityReserveStatus(
+  row,
+  minDynamicRootMarginReserve,
+  tangentResponseHorizon,
+  marginLiftResponseHorizon
+) {
+  const dynamicRootMargin = row.dynamic_root_margin;
+  const branchClockLockRms = row.branch_clock_lock_term.rms_acceleration;
+  const branchClockLockMax = row.branch_clock_lock_term.max_acceleration;
+  const rawMarginAllowsMinimumReserve =
+    dynamicRootMargin != null && dynamicRootMargin >= minDynamicRootMarginReserve;
+  const rawMarginDeficitBeforeTangentAuthority =
+    dynamicRootMargin == null ? null : Math.max(0, minDynamicRootMarginReserve - dynamicRootMargin);
+  const requiredDynamicRootMarginForFullAuthority =
+    branchClockLockRms == null ? null : minDynamicRootMarginReserve + tangentResponseHorizon * branchClockLockRms;
+  const minimumMarginLiftForFullAuthority =
+    dynamicRootMargin == null || requiredDynamicRootMarginForFullAuthority == null
+      ? null
+      : Math.max(0, requiredDynamicRootMarginForFullAuthority - dynamicRootMargin);
+  const minimumMarginLiftAccelerationProxy =
+    minimumMarginLiftForFullAuthority == null || marginLiftResponseHorizon <= EPSILON
+      ? null
+      : minimumMarginLiftForFullAuthority / marginLiftResponseHorizon;
+  const maximumTangentAuthorityFractionWithoutMarginLift =
+    dynamicRootMargin != null &&
+      branchClockLockRms != null &&
+      branchClockLockRms > EPSILON &&
+      tangentResponseHorizon > EPSILON
+      ? (dynamicRootMargin - minDynamicRootMarginReserve) / (tangentResponseHorizon * branchClockLockRms)
+      : null;
+  const minimumAuthorityCompressionWithoutMarginLift =
+    maximumTangentAuthorityFractionWithoutMarginLift == null
+      ? null
+      : Math.max(0, 1 - Math.max(0, Math.min(1, maximumTangentAuthorityFractionWithoutMarginLift)));
+  const responseHorizonUpperBoundForMinReserve =
+    rawMarginAllowsMinimumReserve && branchClockLockRms != null && branchClockLockRms > EPSILON
+      ? (dynamicRootMargin - minDynamicRootMarginReserve) / branchClockLockRms
+      : null;
+  const rmsVelocityBudget = branchClockLockRms == null ? null : tangentResponseHorizon * branchClockLockRms;
+  const maxVelocityBudget = branchClockLockMax == null ? null : tangentResponseHorizon * branchClockLockMax;
+  const rmsReserve = dynamicRootMargin == null || rmsVelocityBudget == null
+    ? null
+    : dynamicRootMargin - rmsVelocityBudget;
+  const maxReserve = dynamicRootMargin == null || maxVelocityBudget == null
+    ? null
+    : dynamicRootMargin - maxVelocityBudget;
+  const positiveRmsReserve =
+    row.dynamic_beta_max != null &&
+    row.dynamic_beta_max < 1 &&
+    rmsReserve != null &&
+    rmsReserve >= minDynamicRootMarginReserve;
+  const positiveMaxReserve =
+    row.dynamic_beta_max != null &&
+    row.dynamic_beta_max < 1 &&
+    maxReserve != null &&
+    maxReserve >= minDynamicRootMarginReserve;
+  return {
+    minimum_dynamic_root_margin_reserve: minDynamicRootMarginReserve,
+    tangent_response_horizon: tangentResponseHorizon,
+    dynamic_root_margin: dynamicRootMargin,
+    branch_clock_lock_rms_acceleration: branchClockLockRms,
+    branch_clock_lock_max_acceleration: branchClockLockMax,
+    raw_dynamic_margin_allows_minimum_reserve: rawMarginAllowsMinimumReserve,
+    raw_margin_deficit_before_tangent_authority: rawMarginDeficitBeforeTangentAuthority,
+    required_dynamic_root_margin_for_full_tangent_authority: requiredDynamicRootMarginForFullAuthority,
+    minimum_margin_lift_for_full_tangent_authority: minimumMarginLiftForFullAuthority,
+    margin_lift_response_horizon: marginLiftResponseHorizon,
+    minimum_margin_lift_acceleration_proxy: minimumMarginLiftAccelerationProxy,
+    maximum_tangent_authority_fraction_without_margin_lift: maximumTangentAuthorityFractionWithoutMarginLift,
+    minimum_tangent_authority_compression_without_margin_lift: minimumAuthorityCompressionWithoutMarginLift,
+    tangent_response_horizon_upper_bound_for_minimum_reserve: responseHorizonUpperBoundForMinReserve,
+    rms_velocity_budget_proxy: rmsVelocityBudget,
+    max_velocity_budget_proxy: maxVelocityBudget,
+    dynamic_root_margin_after_rms_tangent_authority: rmsReserve,
+    dynamic_root_margin_after_max_tangent_authority: maxReserve,
+    rms_tangent_reserve_deficit:
+      rmsReserve == null ? null : Math.max(0, minDynamicRootMarginReserve - rmsReserve),
+    positive_rms_tangent_authority_reserve: positiveRmsReserve,
+    positive_max_tangent_authority_reserve: positiveMaxReserve,
+    status: positiveRmsReserve
+      ? "positive_rms_tangent_authority_reserve"
+      : "insufficient_rms_tangent_authority_reserve",
+    dimension_note:
+      "diagnostic_velocity_budget_proxy_requires_declared_tangent_response_horizon_not_accepted_physics",
+    mechanism_requirement_equation:
+      "dynamic_root_margin + margin_lift - tangent_response_horizon*authority_fraction*branch_clock_lock_rms_acceleration >= minimum_dynamic_root_margin_reserve",
+  };
+}
+
+function marginLiftMechanismRequirement(row, tangentReserveStatus) {
+  return {
+    causal_margin_definition:
+      "mu(t)=min(c_f-|v_a|, D_s, D_t) over active particles and retained causal roots",
+    active_margin_gradient_equation:
+      "g_mu = normalized gradient of the active minimum causal-margin factor with respect to receiver/source velocity",
+    margin_gradient_cases: [
+      {
+        active_margin: "field_speed_margin",
+        margin_factor: "c_f-|v_a|",
+        velocity_gradient: "-v_a/|v_a|",
+        lift_condition: "<a_internal_margin,a, -v_a/|v_a|> >= required_margin_lift/margin_lift_response_horizon",
+      },
+      {
+        active_margin: "receiver_normal_margin",
+        margin_factor: "D_t=c_f-v_a.r_hat_ab",
+        velocity_gradient: "-r_hat_ab on receiver a",
+        lift_condition: "<a_internal_margin,a, -r_hat_ab> >= required_margin_lift/margin_lift_response_horizon",
+      },
+      {
+        active_margin: "source_normal_margin",
+        margin_factor: "D_s=c_f-v_b.r_hat_ab",
+        velocity_gradient: "-r_hat_ab on source b",
+        lift_condition: "<a_internal_margin,b, -r_hat_ab> >= required_margin_lift/margin_lift_response_horizon",
+      },
+    ],
+    first_order_margin_lift_equation:
+      "delta_mu ~= margin_lift_response_horizon * <a_internal_margin, g_mu>",
+    combined_internal_acceleration_equation:
+      "a_internal = P_T(a_ansatz-a_wake-a_support) + a_internal_margin + a_internal_null",
+    required_margin_lift: tangentReserveStatus.minimum_margin_lift_for_full_tangent_authority,
+    minimum_margin_lift_acceleration_proxy: tangentReserveStatus.minimum_margin_lift_acceleration_proxy,
+    margin_lift_response_horizon: tangentReserveStatus.margin_lift_response_horizon,
+    root_margin_reserve_after_lift_and_tangent:
+      tangentReserveStatus.dynamic_root_margin_after_rms_tangent_authority == null ||
+        tangentReserveStatus.minimum_margin_lift_for_full_tangent_authority == null
+        ? null
+        : tangentReserveStatus.dynamic_root_margin_after_rms_tangent_authority +
+          tangentReserveStatus.minimum_margin_lift_for_full_tangent_authority,
+    candidate_provider_classes: [
+      "retained_root_normal_gradient_response",
+      "wake_ledger_phase_pressure_response",
+      "angular_momentum_exchange_response",
+      "shielding_induced_source_normal_response",
+      "noether_sea_tangent_pressure_response",
+    ],
+    accepted_provider_ref: null,
+    accepted: false,
+  };
+}
+
 function tangentCorrectionRatio(row) {
   const branchRms = row.branch_clock_lock_term.rms_acceleration;
   const supportRms = row.support_term.rms_acceleration;
@@ -190,10 +334,22 @@ function branchClockLockStatus(row) {
   return "branch_clock_lock_active";
 }
 
-function makeCertificateRow(rowPrefix, row, minDynamicRootMarginReserve) {
+function makeCertificateRow(
+  rowPrefix,
+  row,
+  minDynamicRootMarginReserve,
+  tangentResponseHorizon,
+  marginLiftResponseHorizon
+) {
   const boundedDynamicReturn = hasBoundedDynamicReturn(row);
   const branchLockStatus = branchClockLockStatus(row);
   const reserveStatus = rootMarginReserveStatus(row, minDynamicRootMarginReserve);
+  const tangentReserveStatus = tangentAuthorityReserveStatus(
+    row,
+    minDynamicRootMarginReserve,
+    tangentResponseHorizon,
+    marginLiftResponseHorizon
+  );
   const supportOnly =
     row.support_term.active === true &&
     row.branch_clock_lock_term.active !== true &&
@@ -201,7 +357,8 @@ function makeCertificateRow(rowPrefix, row, minDynamicRootMarginReserve) {
   const tangentReserveCandidate =
     boundedDynamicReturn &&
     branchLockStatus === "branch_clock_lock_active" &&
-    reserveStatus.positive_dynamic_root_margin_reserve;
+    reserveStatus.positive_dynamic_root_margin_reserve &&
+    tangentReserveStatus.positive_rms_tangent_authority_reserve;
 
   return {
     row_id: `${rowPrefix}:candidate:u_${row.u?.toFixed(6) ?? "missing"}:v_orb_${row.v_orb?.toFixed(6) ?? "missing"}`,
@@ -242,19 +399,32 @@ function makeCertificateRow(rowPrefix, row, minDynamicRootMarginReserve) {
       interpretation: "branch_clock_lock_to_support_rms_acceleration_ratio",
     },
     root_margin_reserve_status: reserveStatus,
+    tangent_authority_reserve_status: tangentReserveStatus,
+    margin_lift_mechanism_requirement: marginLiftMechanismRequirement(row, tangentReserveStatus),
     preferred_branch_curve_selection_status: preferredBranchCurveStatus(row),
+    internal_tangent_authority_equation: {
+      tangent_projection_operator: "P_T(w)=w-(w.n)n",
+      equation:
+        "P_T a_internal = P_T(a_ansatz - a_wake - a_support)",
+      reserve_condition:
+        "min_t D_s,D_t,c_f-|v| - tangent_response_horizon*||P_T a_internal||_rms >= minimum_dynamic_root_margin_reserve",
+      replaces_assigned_term: "branch_clock_lock_term",
+      accepted: false,
+    },
     internal_term_proof_obligation: {
       required_artifact: "retained_history_tangent_projection_approximating_branch_clock_lock_diagnostic",
       statement:
-        "Derive a same-record retained-history tangent projection that approximates the branch-clock lock diagnostic while preserving positive root-budget margin and same-record action closure.",
+        "Derive a same-record retained-history tangent projection P_T a_internal = P_T(a_ansatz - a_wake - a_support), plus any required causal-margin-gradient component, that replaces the branch-clock lock diagnostic while preserving post-tangent-authority root-margin reserve and same-record action closure.",
       required_rows: [
         "same_record_retained_root_ledger",
         "same_record_action_closure_row",
         "retained_history_tangent_projection_row",
-        "positive_root_budget_margin_reserve_row",
+        "retained_history_causal_margin_gradient_row",
+        "positive_post_tangent_authority_root_margin_reserve_row",
       ],
       accepted: false,
     },
+    internal_tangent_authority_ref: null,
     retained_root_ledger_ref: row.retained_root_ledger_ref,
     accepted: false,
     hard_math_candidate: tangentReserveCandidate,
@@ -262,15 +432,12 @@ function makeCertificateRow(rowPrefix, row, minDynamicRootMarginReserve) {
 }
 
 function firstMissing(candidateRows, certificateRows) {
-  if (candidateRows.length > 0) {
-    return {
-      artifact_status: "priority_only_branch_clock_lock_reserve_certificate_present_retained_evidence_blocked",
-      hard_math_status: "branch_clock_lock_tangent_reserve_certificate_present",
-      first_missing_object: FIRST_MISSING_OBJECT,
-      first_missing_field: FIRST_MISSING_FIELD,
-      reason: "retained_root_ledger_missing",
-    };
-  }
+  const preferredRows = certificateRows.filter(
+    (row) => row.preferred_branch_curve_selection_status === "selected_preferred_branch_curve_row"
+  );
+  const preferredRowsWithTangentReserve = preferredRows.filter(
+    (row) => row.tangent_authority_reserve_status.positive_rms_tangent_authority_reserve
+  );
   const boundedRows = certificateRows.filter((row) => row.dynamic_return_status.bounded_dynamic_return);
   if (boundedRows.length === 0) {
     return {
@@ -293,13 +460,32 @@ function firstMissing(candidateRows, certificateRows) {
       reason: "branch_clock_lock_term_missing",
     };
   }
+  if (preferredRows.length > 0 && preferredRowsWithTangentReserve.length < preferredRows.length) {
+    return {
+      artifact_status: "fail_closed_missing_full_preferred_curve_tangent_margin_reserve",
+      hard_math_status: "preferred_curve_tangent_margin_reserve_missing",
+      first_missing_object: "positive_post_tangent_authority_root_margin_reserve_for_full_preferred_curve",
+      first_missing_field:
+        "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].tangent_authority_reserve_status",
+      reason: "preferred_curve_tangent_margin_reserve_missing",
+    };
+  }
+  if (candidateRows.length > 0) {
+    return {
+      artifact_status: "priority_only_internal_tangent_authority_reserve_certificate_present_retained_evidence_blocked",
+      hard_math_status: "internal_tangent_authority_reserve_certificate_present",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field: FIRST_MISSING_FIELD,
+      reason: "internal_tangent_authority_missing",
+    };
+  }
   return {
-    artifact_status: "fail_closed_missing_dynamic_root_margin_reserve",
-    hard_math_status: "dynamic_root_margin_reserve_missing",
-    first_missing_object: "positive_dynamic_root_margin_reserve_for_branch_clock_lock_reserve_certificate",
+    artifact_status: "fail_closed_missing_tangent_authority_root_margin_reserve",
+    hard_math_status: "tangent_authority_root_margin_reserve_missing",
+    first_missing_object: "positive_post_tangent_authority_root_margin_reserve_for_branch_clock_lock_reserve_certificate",
     first_missing_field:
-      "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].root_margin_reserve_status",
-    reason: "dynamic_root_margin_reserve_missing",
+      "oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].tangent_authority_reserve_status",
+    reason: "tangent_authority_root_margin_reserve_missing",
   };
 }
 
@@ -332,6 +518,12 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
   const minDynamicRootMarginReserve = Number.isFinite(Number(input.minDynamicRootMarginReserve))
     ? Number(input.minDynamicRootMarginReserve)
     : DEFAULT_MIN_DYNAMIC_ROOT_MARGIN_RESERVE;
+  const tangentResponseHorizon = Number.isFinite(Number(input.tangentResponseHorizon))
+    ? Number(input.tangentResponseHorizon)
+    : DEFAULT_TANGENT_RESPONSE_HORIZON;
+  const marginLiftResponseHorizon = Number.isFinite(Number(input.marginLiftResponseHorizon))
+    ? Number(input.marginLiftResponseHorizon)
+    : DEFAULT_MARGIN_LIFT_RESPONSE_HORIZON;
   const metrics = rows
     .map((row) => rowMetric(row, preferredRowIds))
     .filter((row) => row.u != null && row.v_orb != null);
@@ -339,6 +531,8 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
     schema: SCHEMA,
     source: makeSourceSummary(input),
     minDynamicRootMarginReserve,
+    tangentResponseHorizon,
+    marginLiftResponseHorizon,
     rows: metrics.map((row) => ({
       row_id: row.row_id,
       u: row.u,
@@ -351,15 +545,30 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
       dynamic_root_margin: row.dynamic_root_margin,
       support_rms_acceleration: row.support_term.rms_acceleration,
       branch_clock_lock_rms_acceleration: row.branch_clock_lock_term.rms_acceleration,
+      branch_clock_lock_max_acceleration: row.branch_clock_lock_term.max_acceleration,
       branch_curve_candidate: row.branch_curve_candidate,
       preferred_branch_curve_selected: row.preferred_branch_curve_selected,
     })),
   };
   const artifactHash = stableHash(artifactKey);
   const rowPrefix = `oblate_spheroid_branch_clock_lock_reserve_certificate:${artifactHash.slice(0, 16)}`;
-  const certificateRows = metrics.map((row) => makeCertificateRow(rowPrefix, row, minDynamicRootMarginReserve));
+  const certificateRows = metrics.map((row) =>
+    makeCertificateRow(
+      rowPrefix,
+      row,
+      minDynamicRootMarginReserve,
+      tangentResponseHorizon,
+      marginLiftResponseHorizon
+    )
+  );
   const candidateRows = certificateRows.filter((row) => row.hard_math_candidate);
   const missing = firstMissing(candidateRows, certificateRows);
+  const preferredRows = certificateRows.filter(
+    (row) => row.preferred_branch_curve_selection_status === "selected_preferred_branch_curve_row"
+  );
+  const preferredRowsWithTangentReserve = preferredRows.filter(
+    (row) => row.tangent_authority_reserve_status.positive_rms_tangent_authority_reserve
+  );
 
   return {
     schema: SCHEMA,
@@ -369,6 +578,8 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
     source_two_speed_deformation_sweep: makeSourceSummary(input),
     parameters: {
       minimum_dynamic_root_margin_reserve: minDynamicRootMarginReserve,
+      tangent_response_horizon: tangentResponseHorizon,
+      margin_lift_response_horizon: marginLiftResponseHorizon,
       row_count: metrics.length,
       preferred_branch_curve_row_id_count: preferredRowIds.size,
     },
@@ -390,10 +601,35 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
       positive_dynamic_root_margin_reserve_row_count: certificateRows.filter(
         (row) => row.root_margin_reserve_status.positive_dynamic_root_margin_reserve
       ).length,
+      positive_tangent_authority_reserve_row_count: certificateRows.filter(
+        (row) => row.tangent_authority_reserve_status.positive_rms_tangent_authority_reserve
+      ).length,
+      rows_requiring_margin_lift_count: certificateRows.filter(
+        (row) => (row.margin_lift_mechanism_requirement.required_margin_lift ?? 0) > 0
+      ).length,
+      max_required_margin_lift: certificateRows.length > 0
+        ? Math.max(
+          ...certificateRows.map((row) => row.margin_lift_mechanism_requirement.required_margin_lift ?? 0)
+        )
+        : null,
+      max_minimum_margin_lift_acceleration_proxy: certificateRows.length > 0
+        ? Math.max(
+          ...certificateRows.map(
+            (row) => row.margin_lift_mechanism_requirement.minimum_margin_lift_acceleration_proxy ?? 0
+          )
+        )
+        : null,
+      preferred_branch_curve_row_count: preferredRows.length,
+      preferred_branch_curve_positive_tangent_reserve_row_count: preferredRowsWithTangentReserve.length,
+      full_preferred_curve_tangent_reserve_pass:
+        preferredRows.length > 0 && preferredRowsWithTangentReserve.length === preferredRows.length,
       hard_math_candidate_count: candidateRows.length,
       first_candidate_row_id: candidateRows[0]?.row_id ?? null,
-      retained_evidence_first_missing_object: FIRST_MISSING_OBJECT,
-      retained_evidence_first_missing_field: FIRST_MISSING_FIELD,
+      internal_tangent_authority_first_missing_object: FIRST_MISSING_OBJECT,
+      internal_tangent_authority_first_missing_field: FIRST_MISSING_FIELD,
+      retained_evidence_first_missing_object: RETAINED_ROOT_LEDGER_BLOCKER,
+      retained_evidence_first_missing_field:
+        "oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref",
     },
     artifact_status: missing.artifact_status,
     hard_math_status: missing.hard_math_status,
@@ -401,8 +637,9 @@ export function buildOblateSpheroidBranchClockLockReserveCertificate(input = {})
     first_missing_object: missing.first_missing_object,
     first_missing_field: missing.first_missing_field,
     retained_evidence_blocker: {
-      first_missing_object: FIRST_MISSING_OBJECT,
-      first_missing_field: FIRST_MISSING_FIELD,
+      first_missing_object: RETAINED_ROOT_LEDGER_BLOCKER,
+      first_missing_field:
+        "oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref",
     },
     evidence_evaluation: {
       accepted: false,
@@ -442,6 +679,12 @@ export function validateOblateSpheroidBranchClockLockReserveCertificate(artifact
     if (row.root_margin_reserve_status?.positive_dynamic_root_margin_reserve !== true) {
       errors.push("candidate rows must have positive dynamic root-margin reserve");
     }
+    if (row.tangent_authority_reserve_status?.positive_rms_tangent_authority_reserve !== true) {
+      errors.push("candidate rows must have positive post-tangent-authority root-margin reserve");
+    }
+    if (row.internal_tangent_authority_ref !== null) {
+      errors.push("candidate rows must not claim an internal tangent-authority reference");
+    }
     if (row.accepted !== false || row.internal_term_proof_obligation?.accepted !== false) {
       errors.push("candidate rows must remain non-authorizing");
     }
@@ -467,7 +710,24 @@ export function validateOblateSpheroidBranchClockLockReserveCertificate(artifact
 
 function runCli() {
   const inputPath = process.argv.find((arg) => arg.startsWith("--input="))?.slice("--input=".length);
-  const input = inputPath ? { sourceArtifact: JSON.parse(fs.readFileSync(inputPath, "utf8")) } : {};
+  const minDynamicRootMarginReserveArg = process.argv
+    .find((arg) => arg.startsWith("--min-dynamic-root-margin-reserve="))
+    ?.slice("--min-dynamic-root-margin-reserve=".length);
+  const tangentResponseHorizonArg = process.argv
+    .find((arg) => arg.startsWith("--tangent-response-horizon="))
+    ?.slice("--tangent-response-horizon=".length);
+  const marginLiftResponseHorizonArg = process.argv
+    .find((arg) => arg.startsWith("--margin-lift-response-horizon="))
+    ?.slice("--margin-lift-response-horizon=".length);
+  const outPath = process.argv.find((arg) => arg.startsWith("--out="))?.slice("--out=".length);
+  const input = {
+    ...(inputPath ? { sourceArtifact: JSON.parse(fs.readFileSync(inputPath, "utf8")) } : {}),
+    ...(minDynamicRootMarginReserveArg != null
+      ? { minDynamicRootMarginReserve: minDynamicRootMarginReserveArg }
+      : {}),
+    ...(tangentResponseHorizonArg != null ? { tangentResponseHorizon: tangentResponseHorizonArg } : {}),
+    ...(marginLiftResponseHorizonArg != null ? { marginLiftResponseHorizon: marginLiftResponseHorizonArg } : {}),
+  };
   const artifact = buildOblateSpheroidBranchClockLockReserveCertificate(input);
   const errors = validateOblateSpheroidBranchClockLockReserveCertificate(artifact);
   if (errors.length > 0) {
@@ -476,7 +736,12 @@ function runCli() {
     return;
   }
   const pretty = process.argv.includes("--pretty");
-  console.log(JSON.stringify(artifact, null, pretty ? 2 : 0));
+  const output = JSON.stringify(artifact, null, pretty ? 2 : 0);
+  if (outPath) {
+    fs.writeFileSync(outPath, `${output}\n`);
+    return;
+  }
+  console.log(output);
 }
 
 if (process.argv[1] === fileURLToPath(import.meta.url)) {

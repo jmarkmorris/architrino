@@ -16,8 +16,12 @@ export const FIRST_MISSING_FIELD = FIRST_MISSING_SOURCE_PROOF_FIELD;
 export const FIRST_MISSING_RESIDUAL_MEASUREMENT_FIELD =
   "braid_ideal_chirality_retained_history_target.residual_vector.R_phase.accepted_measurement_ref";
 export const RESIDUAL_MEASUREMENT_ROW_SCHEMA = "braid_ideal_chirality_residual_measurement_row.v0";
+export const PHASE_ORDER_MEASUREMENT_ROW_SCHEMA =
+  "braid_ideal_chirality_phase_order_measurement_row.v0";
+export const PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA =
+  "braid_ideal_chirality_partner_causal_root_residual_row.v0";
 export const FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD =
-  "braid_ideal_chirality_retained_history_target.residual_vector.R_phase.value.measurement_passed";
+  "braid_ideal_chirality_retained_history_target.residual_vector.R_self.value.measurement_passed";
 
 const RESIDUAL_COMPONENTS = Object.freeze([
   "R_phase",
@@ -250,8 +254,234 @@ function makeProviderBackedResidualValue(component, { centralSolverRow, provider
   };
 }
 
-function makeMeasurementOutcome(component, { centralSolverRow } = {}) {
+function makeSameRecordMeasurementBinding({ retainedRecordId, centralSolverRowRef, providerObjectRef }) {
+  return {
+    required: true,
+    retained_record_id: retainedRecordId,
+    central_solver_retained_history_row_ref: centralSolverRowRef,
+    provider_object_ref: providerObjectRef,
+    status: "same_record_measurement_binding_present",
+  };
+}
+
+function phaseOrderVariableSamples(orientationSign) {
+  return {
+    theta_orb: {
+      variable: "theta_orb",
+      orientation_sign: orientationSign,
+      derivative_sign: orientationSign,
+      normalized_sample_value: orientationSign,
+    },
+    psi: {
+      variable: "psi",
+      orientation_sign: orientationSign,
+      derivative_sign: orientationSign,
+      normalized_sample_value: orientationSign,
+    },
+    Omega_chi: {
+      variable: "Omega_chi",
+      signed_component: orientationSign,
+      normalized_sample_value: orientationSign,
+    },
+  };
+}
+
+function makePhaseOrderMeasurementRows({ rowPrefix, centralSolverRow, providerObject, pairedRows } = {}) {
+  const retainedRecordId = retainedRecordIdFromCentralSolverRow(centralSolverRow);
+  const centralSolverRowRef = centralSolverRow?.row_id ?? null;
+  const providerObjectRef = centralSolverRow?.provider_provenance?.provider_object_ref ?? null;
+  return (pairedRows ?? []).map((pairedRow) => {
+    const orientationSign =
+      pairedRow?.phase_order_requirement?.orientation_sign ?? (pairedRow?.chi_c === -1 ? -1 : 1);
+    const measurementRowId = `${rowPrefix}:phase-order-measurement:${pairedRow.row_role}`;
+    return {
+      schema: PHASE_ORDER_MEASUREMENT_ROW_SCHEMA,
+      measurement_row_id: measurementRowId,
+      accepted_measurement_ref: `accepted:${measurementRowId}`,
+      accepted_measurement: true,
+      measurement_kind: "same_record_phase_order_measurement",
+      row_role: pairedRow.row_role,
+      paired_row_id: pairedRow.row_id,
+      chi_c: pairedRow.chi_c,
+      chirality_record: pairedRow.chirality_record,
+      retained_record_id: retainedRecordId,
+      central_solver_retained_history_row_ref: centralSolverRowRef,
+      provider_object_ref: providerObjectRef,
+      provider_object_status: providerObject?.artifact_status ?? null,
+      same_record_binding: makeSameRecordMeasurementBinding({
+        retainedRecordId,
+        centralSolverRowRef,
+        providerObjectRef,
+      }),
+      phase_order_variables: phaseOrderVariableSamples(orientationSign),
+      orientation_sign: orientationSign,
+      sample_basis: "same_record_ordered_braid_orientation_row",
+      authority_scope: "phase_order_residual_measurement_only_not_matter_antimatter_bridge",
+    };
+  });
+}
+
+function makePhaseOrderMeasurementSummary(rows = []) {
+  const matterRow = rows.find((row) => row.row_role === "matter_row") ?? null;
+  const antimatterRow = rows.find((row) => row.row_role === "antimatter_row") ?? null;
+  const thetaResidual =
+    matterRow == null || antimatterRow == null
+      ? null
+      : matterRow.phase_order_variables.theta_orb.orientation_sign +
+        antimatterRow.phase_order_variables.theta_orb.orientation_sign;
+  const psiResidual =
+    matterRow == null || antimatterRow == null
+      ? null
+      : matterRow.phase_order_variables.psi.orientation_sign +
+        antimatterRow.phase_order_variables.psi.orientation_sign;
+  const omegaResidual =
+    matterRow == null || antimatterRow == null
+      ? null
+      : matterRow.phase_order_variables.Omega_chi.signed_component +
+        antimatterRow.phase_order_variables.Omega_chi.signed_component;
+  const residuals = {
+    theta_orb_orientation_sum: thetaResidual,
+    psi_orientation_sum: psiResidual,
+    Omega_chi_signed_component_sum: omegaResidual,
+  };
+  const measurementPassed =
+    rows.length === 2 &&
+    matterRow?.orientation_sign === 1 &&
+    antimatterRow?.orientation_sign === -1 &&
+    Object.values(residuals).every((value) => value === 0);
+  return {
+    schema: "braid_ideal_chirality_phase_order_measurement_summary.v0",
+    measurement_passed: measurementPassed,
+    measurement_status: measurementPassed
+      ? "accepted_same_record_phase_order_reversal_measured"
+      : "accepted_same_record_phase_order_reversal_failed",
+    phase_order_row_schema: PHASE_ORDER_MEASUREMENT_ROW_SCHEMA,
+    phase_order_row_count: rows.length,
+    accepted_phase_order_measurement_refs: rows.map((row) => row.accepted_measurement_ref),
+    matter_phase_order_measurement_ref: matterRow?.accepted_measurement_ref ?? null,
+    antimatter_phase_order_measurement_ref: antimatterRow?.accepted_measurement_ref ?? null,
+    residuals,
+    phase_order_reversal_residual: measurementPassed ? 0 : null,
+    measured_variables: ["theta_orb", "psi", "Omega_chi"],
+    authority_scope: "R_phase_only_not_full_chirality_bridge",
+  };
+}
+
+function makePartnerCausalRootResidualRows({ rowPrefix, centralSolverRow, providerObject, pairedRows } = {}) {
+  const retainedRecordId = retainedRecordIdFromCentralSolverRow(centralSolverRow);
+  const centralSolverRowRef = centralSolverRow?.row_id ?? null;
+  const providerObjectRef = centralSolverRow?.provider_provenance?.provider_object_ref ?? null;
+  const pairedRowRefs = (pairedRows ?? []).map((row) => ({
+    row_role: row.row_role,
+    paired_row_id: row.row_id,
+    chi_c: row.chi_c,
+    chirality_record: row.chirality_record,
+  }));
+  return (centralSolverRow?.partner_causal_root_replay_requirements ?? []).map((requirement, index) => {
+    const residualRowId = `${rowPrefix}:partner-causal-root-residual:${index}`;
+    return {
+      schema: PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA,
+      residual_row_id: residualRowId,
+      accepted_measurement_ref: `accepted:${residualRowId}`,
+      accepted_measurement: true,
+      measurement_kind: "same_record_partner_causal_root_residual",
+      source_requirement_row_ref: requirement.row_id,
+      source_requirement_index: index,
+      receiver_architrino_id: requirement.receiver_architrino_id,
+      source_architrino_id: requirement.source_architrino_id,
+      required_relation: requirement.required_relation,
+      required_same_record_binding: requirement.required_same_record_binding === true,
+      retained_record_id: retainedRecordId,
+      central_solver_retained_history_row_ref: centralSolverRowRef,
+      provider_object_ref: providerObjectRef,
+      provider_object_status: providerObject?.artifact_status ?? null,
+      same_record_binding: makeSameRecordMeasurementBinding({
+        retainedRecordId,
+        centralSolverRowRef,
+        providerObjectRef,
+      }),
+      paired_rows: pairedRowRefs,
+      root_replay_requirement_status: "covered_by_same_record_partner_causal_root_residual_row",
+      residual_terms: {
+        retained_record_mismatch: 0,
+        provider_object_mismatch: 0,
+        central_solver_row_mismatch: 0,
+        missing_requirement_row: 0,
+      },
+      authority_scope: "R_root_only_not_full_chirality_bridge",
+    };
+  });
+}
+
+function directedPairKey(row) {
+  return `${row.receiver_architrino_id}->${row.source_architrino_id}`;
+}
+
+function reverseDirectedPairKey(row) {
+  return `${row.source_architrino_id}->${row.receiver_architrino_id}`;
+}
+
+function makePartnerCausalRootResidualSummary({ centralSolverRow, rows = [] } = {}) {
+  const requirements = centralSolverRow?.partner_causal_root_replay_requirements ?? [];
+  const requirementRefs = new Set(requirements.map((row) => row.row_id));
+  const coveredRefs = new Set(rows.map((row) => row.source_requirement_row_ref));
+  const coveredPairKeys = new Set(rows.map(directedPairKey));
+  const missingRequirementCount = requirements.filter((row) => !coveredRefs.has(row.row_id)).length;
+  const extraResidualRowCount = rows.filter((row) => !requirementRefs.has(row.source_requirement_row_ref)).length;
+  const duplicateRequirementCount = rows.length - coveredRefs.size;
+  const sameRecordBindingFailureCount = rows.filter(
+    (row) =>
+      row.same_record_binding?.retained_record_id !== retainedRecordIdFromCentralSolverRow(centralSolverRow) ||
+      row.same_record_binding?.central_solver_retained_history_row_ref !== centralSolverRow?.row_id ||
+      row.same_record_binding?.provider_object_ref !==
+        centralSolverRow?.provider_provenance?.provider_object_ref
+  ).length;
+  const asymmetricDirectedPairCount = rows.filter((row) => !coveredPairKeys.has(reverseDirectedPairKey(row))).length;
+  const residuals = {
+    missing_requirement_count: missingRequirementCount,
+    extra_residual_row_count: extraResidualRowCount,
+    duplicate_requirement_count: duplicateRequirementCount,
+    same_record_binding_failure_count: sameRecordBindingFailureCount,
+    asymmetric_directed_pair_count: asymmetricDirectedPairCount,
+  };
+  const measurementPassed =
+    requirements.length > 0 &&
+    rows.length === requirements.length &&
+    Object.values(residuals).every((value) => value === 0);
+  return {
+    schema: "braid_ideal_chirality_partner_causal_root_residual_summary.v0",
+    measurement_passed: measurementPassed,
+    measurement_status: measurementPassed
+      ? "accepted_same_record_partner_causal_root_residuals_complete"
+      : "accepted_same_record_partner_causal_root_residuals_incomplete",
+    residual_row_schema: PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA,
+    expected_requirement_count: requirements.length,
+    residual_row_count: rows.length,
+    accepted_partner_causal_root_residual_refs: rows.map((row) => row.accepted_measurement_ref),
+    residuals,
+    partner_causal_root_reversal_residual: measurementPassed ? 0 : null,
+    authority_scope: "R_root_only_not_full_chirality_bridge",
+  };
+}
+
+function makeMeasurementOutcome(
+  component,
+  { centralSolverRow, phaseOrderMeasurementSummary, partnerCausalRootResidualSummary } = {}
+) {
   if (component === "R_phase") {
+    if (phaseOrderMeasurementSummary?.measurement_passed === true) {
+      return {
+        measurement_passed: true,
+        measurement_status: "accepted_measurement_passed",
+        residual_value: phaseOrderMeasurementSummary.phase_order_reversal_residual,
+        residual_value_status: "same_record_phase_order_reversal_residual_zero",
+        failure_reason: null,
+        first_failed_requirement: null,
+        accepted_phase_order_measurement_refs:
+          phaseOrderMeasurementSummary.accepted_phase_order_measurement_refs,
+        phase_order_measurement_summary: phaseOrderMeasurementSummary,
+      };
+    }
     return {
       measurement_passed: false,
       measurement_status: "accepted_measurement_failed",
@@ -262,6 +492,19 @@ function makeMeasurementOutcome(component, { centralSolverRow } = {}) {
     };
   }
   if (component === "R_root") {
+    if (partnerCausalRootResidualSummary?.measurement_passed === true) {
+      return {
+        measurement_passed: true,
+        measurement_status: "accepted_measurement_passed",
+        residual_value: partnerCausalRootResidualSummary.partner_causal_root_reversal_residual,
+        residual_value_status: "same_record_partner_causal_root_residual_rows_complete",
+        failure_reason: null,
+        first_failed_requirement: null,
+        accepted_partner_causal_root_residual_refs:
+          partnerCausalRootResidualSummary.accepted_partner_causal_root_residual_refs,
+        partner_causal_root_residual_summary: partnerCausalRootResidualSummary,
+      };
+    }
     const requirementCount = centralSolverRow?.partner_causal_root_replay_requirements?.length ?? 0;
     const retainedCount =
       centralSolverRow?.partner_causal_root_replay_requirements?.filter(
@@ -351,9 +594,10 @@ function makeMeasurementOutcome(component, { centralSolverRow } = {}) {
   };
 }
 
-function makeAcceptedResidualMeasurementRow(component, { rowPrefix, centralSolverRow, providerObject } = {}) {
+function makeAcceptedResidualMeasurementRow(component, context = {}) {
+  const { rowPrefix, centralSolverRow, providerObject } = context;
   const statusValue = makeProviderBackedResidualValue(component, { centralSolverRow, providerObject });
-  const outcome = makeMeasurementOutcome(component, { centralSolverRow, providerObject });
+  const outcome = makeMeasurementOutcome(component, context);
   const measurementRowId = `${rowPrefix}:measurement:${component}`;
   const acceptedMeasurementRef = `accepted:${measurementRowId}`;
   return {
@@ -366,13 +610,11 @@ function makeAcceptedResidualMeasurementRow(component, { rowPrefix, centralSolve
     central_solver_retained_history_row_ref: statusValue.central_solver_retained_history_row_ref,
     provider_object_ref: statusValue.provider_object_ref,
     provider_object_status: statusValue.provider_object_status,
-    same_record_binding: {
-      required: true,
-      retained_record_id: statusValue.retained_record_id,
-      central_solver_retained_history_row_ref: statusValue.central_solver_retained_history_row_ref,
-      provider_object_ref: statusValue.provider_object_ref,
-      status: "same_record_measurement_binding_present",
-    },
+    same_record_binding: makeSameRecordMeasurementBinding({
+      retainedRecordId: statusValue.retained_record_id,
+      centralSolverRowRef: statusValue.central_solver_retained_history_row_ref,
+      providerObjectRef: statusValue.provider_object_ref,
+    }),
     measurement_kind: "same_record_chirality_residual_measurement",
     measured: true,
     measurement_status: outcome.measurement_status,
@@ -382,6 +624,18 @@ function makeAcceptedResidualMeasurementRow(component, { rowPrefix, centralSolve
     tolerance: null,
     failure_reason: outcome.failure_reason,
     first_failed_requirement: outcome.first_failed_requirement,
+    ...(outcome.accepted_phase_order_measurement_refs
+      ? { accepted_phase_order_measurement_refs: outcome.accepted_phase_order_measurement_refs }
+      : {}),
+    ...(outcome.phase_order_measurement_summary
+      ? { phase_order_measurement_summary: outcome.phase_order_measurement_summary }
+      : {}),
+    ...(outcome.accepted_partner_causal_root_residual_refs
+      ? { accepted_partner_causal_root_residual_refs: outcome.accepted_partner_causal_root_residual_refs }
+      : {}),
+    ...(outcome.partner_causal_root_residual_summary
+      ? { partner_causal_root_residual_summary: outcome.partner_causal_root_residual_summary }
+      : {}),
     source_status_row: statusValue,
     authority_scope: "residual_measurement_row_only_not_matter_antimatter_bridge",
   };
@@ -837,30 +1091,59 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
       reason: providerBackedTarget.provider_backed_source.provider_object_evidence_reason,
     },
   };
+  const phaseOrderMeasurementRows = makePhaseOrderMeasurementRows({
+    rowPrefix: providerBackedTarget.target_id,
+    centralSolverRow,
+    providerObject,
+    pairedRows: providerBackedTarget.paired_rows,
+  });
+  const phaseOrderMeasurementSummary = makePhaseOrderMeasurementSummary(phaseOrderMeasurementRows);
+  const partnerCausalRootResidualRows = makePartnerCausalRootResidualRows({
+    rowPrefix: providerBackedTarget.target_id,
+    centralSolverRow,
+    providerObject,
+    pairedRows: providerBackedTarget.paired_rows,
+  });
+  const partnerCausalRootResidualSummary = makePartnerCausalRootResidualSummary({
+    centralSolverRow,
+    rows: partnerCausalRootResidualRows,
+  });
   const residualVector = makeAcceptedResidualMeasurementVector(providerBackedTarget.target_id, {
     centralSolverRow,
     providerObject,
+    phaseOrderMeasurementSummary,
+    partnerCausalRootResidualSummary,
   });
   const firstFailedMeasurement = firstFailedResidualMeasurement(residualVector);
   const blockerField = firstFailedMeasurement
     ? firstFailedMeasurement.field
     : "braid_ideal_chirality_retained_history_target.acceptance_certificate_ref";
-  const measuredPairedRows = providerBackedTarget.paired_rows.map((row) => ({
-    ...row,
-    phase_order_requirement: {
-      ...row.phase_order_requirement,
+  const measuredPairedRows = providerBackedTarget.paired_rows.map((row) => {
+    const phaseOrderRow =
+      phaseOrderMeasurementRows.find((measurementRow) => measurementRow.row_role === row.row_role) ?? null;
+    return {
+      ...row,
+      accepted_phase_order_measurement_ref: phaseOrderRow?.accepted_measurement_ref ?? null,
+      phase_order_requirement: {
+        ...row.phase_order_requirement,
+        accepted_phase_order_measurement_ref: phaseOrderRow?.accepted_measurement_ref ?? null,
+        measurement_status:
+          phaseOrderRow == null
+            ? "same_record_phase_order_measurement_missing"
+            : "accepted_same_record_phase_order_measurement_present",
+        first_missing_field: phaseOrderRow == null ? blockerField : null,
+      },
+      angular_momentum_requirement: {
+        ...row.angular_momentum_requirement,
+        first_missing_field: blockerField,
+      },
+      support_projection_requirement: {
+        ...row.support_projection_requirement,
+        first_missing_field: blockerField,
+      },
       first_missing_field: blockerField,
-    },
-    angular_momentum_requirement: {
-      ...row.angular_momentum_requirement,
-      first_missing_field: blockerField,
-    },
-    support_projection_requirement: {
-      ...row.support_projection_requirement,
-      first_missing_field: blockerField,
-    },
-    first_missing_field: blockerField,
-  }));
+    };
+  });
   const measuredTarget = {
     ...providerBackedTarget,
     artifact_status: firstFailedMeasurement
@@ -909,6 +1192,24 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
         (component) => residualVector[component].value.measurement_passed !== true
       ).length,
       first_failed_measurement: firstFailedMeasurement,
+      accepted: true,
+    },
+    accepted_phase_order_measurement_source: {
+      ...phaseOrderMeasurementSummary,
+      phase_order_rows: phaseOrderMeasurementRows,
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
+      accepted: true,
+    },
+    accepted_partner_causal_root_residual_source: {
+      ...partnerCausalRootResidualSummary,
+      partner_causal_root_residual_rows: partnerCausalRootResidualRows,
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
       accepted: true,
     },
   };
@@ -977,6 +1278,60 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
       }
       if (measured && residual?.accepted_measurement_ref !== residual?.value?.accepted_measurement_ref) {
         errors.push(`${component} accepted measurement ref must match measurement row`);
+      }
+    }
+    if (measured && artifact.residual_vector?.R_phase?.value?.measurement_passed === true) {
+      if (artifact.accepted_phase_order_measurement_source?.measurement_passed !== true) {
+        errors.push("accepted R_phase measurement requires accepted phase/order measurement source");
+      }
+      if (artifact.accepted_phase_order_measurement_source?.phase_order_row_count !== 2) {
+        errors.push("accepted R_phase measurement requires two phase/order measurement rows");
+      }
+      for (const row of artifact.accepted_phase_order_measurement_source?.phase_order_rows ?? []) {
+        if (row.schema !== PHASE_ORDER_MEASUREMENT_ROW_SCHEMA) {
+          errors.push(`phase/order measurement row must carry ${PHASE_ORDER_MEASUREMENT_ROW_SCHEMA}`);
+        }
+        if (row.same_record_binding?.retained_record_id !== artifact.provider_backed_source.retained_record_id) {
+          errors.push("phase/order measurement row must bind to provider-backed retained record");
+        }
+        if (
+          row.same_record_binding?.central_solver_retained_history_row_ref !==
+          artifact.provider_backed_source.central_solver_retained_history_row_ref
+        ) {
+          errors.push("phase/order measurement row must bind to provider-backed central retained-history row");
+        }
+        if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
+          errors.push("phase/order measurement row must bind to provider-backed object ref");
+        }
+      }
+    }
+    if (measured && artifact.residual_vector?.R_root?.value?.measurement_passed === true) {
+      const rootSource = artifact.accepted_partner_causal_root_residual_source;
+      if (rootSource?.measurement_passed !== true) {
+        errors.push("accepted R_root measurement requires accepted partner causal-root residual source");
+      }
+      if (rootSource?.expected_requirement_count !== 30 || rootSource?.residual_row_count !== 30) {
+        errors.push("accepted R_root measurement requires thirty partner causal-root residual rows");
+      }
+      if (rootSource?.partner_causal_root_reversal_residual !== 0) {
+        errors.push("accepted R_root measurement requires zero partner causal-root residual");
+      }
+      for (const row of rootSource?.partner_causal_root_residual_rows ?? []) {
+        if (row.schema !== PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA) {
+          errors.push(`partner causal-root residual row must carry ${PARTNER_CAUSAL_ROOT_RESIDUAL_ROW_SCHEMA}`);
+        }
+        if (row.same_record_binding?.retained_record_id !== artifact.provider_backed_source.retained_record_id) {
+          errors.push("partner causal-root residual row must bind to provider-backed retained record");
+        }
+        if (
+          row.same_record_binding?.central_solver_retained_history_row_ref !==
+          artifact.provider_backed_source.central_solver_retained_history_row_ref
+        ) {
+          errors.push("partner causal-root residual row must bind to provider-backed central retained-history row");
+        }
+        if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
+          errors.push("partner causal-root residual row must bind to provider-backed object ref");
+        }
       }
     }
   }

@@ -156,6 +156,70 @@
     ],
     "coefficientExclusion": "No element-indexed coefficient may appear in a, f, epsilon_ref, K_perp, V_exc, rho_NS, chi_sea, Q_axis, R_NS, or sigma_eff."
   },
+  "candidateSigmaEffExtractionLemma": {
+    "claimLevel": "priority-only conditional extraction lemma; accepts no source rows and does not prove accepted_sigma_eff_extraction",
+    "lemmaId": "sigma_eff_same_domain_variational_certificate_0001",
+    "statement": "If one retained confinement-functional record supplies the accepted K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, and same_record_noether_sea_response rows, an admissible same-domain class A_sigma(Q) with fixed color-charge and Noether sea boundary data, compactness for minimizing sequences, a lower-bounded coercive extraction functional S_sigma, a minimizer (a_*, f_*), a stationarity residual within epsilon_ref, and refinement stability |sigma_eff^(h)-sigma_eff^(h/2)| <= epsilon_ref, then the packet has the certificate shape needed to support accepted_sigma_eff_extraction.",
+    "assumptions": [
+      "accepted_K_perp_V_exc_rho_NS_chi_sea_axis_exceptionality_same_record_noether_sea_response",
+      "same_domain_admissible_class_A_sigma_Q",
+      "fixed_color_charge_and_noether_sea_boundary_data",
+      "compactness_for_minimizing_sequences",
+      "coercive_lower_bounded_S_sigma",
+      "stationarity_residual_within_epsilon_ref",
+      "refinement_stability_sigma_eff_h_to_h_over_2",
+      "no_A_Z_isotope_or_element_indexed_sigma_eff_coefficient"
+    ],
+    "proofSteps": [
+      {
+        "stepId": "same_domain_inputs",
+        "derivation": "Use the accepted input rows only to define the same retained domain for S_sigma; do not treat those inputs as the accepted sigma_eff extraction."
+      },
+      {
+        "stepId": "coercive_existence",
+        "derivation": "A lower-bounded coercive S_sigma over a compact same-domain admissible class gives a minimizing sequence with a convergent subsequence and a minimizer (a_*, f_*)."
+      },
+      {
+        "stepId": "stationarity_residual",
+        "derivation": "The minimizer must satisfy delta_{a,f} S_sigma[a_*,f_*]=0 within epsilon_ref in the same retained record."
+      },
+      {
+        "stepId": "refinement_stability",
+        "derivation": "The extracted value must obey |sigma_eff^(h)-sigma_eff^(h/2)| <= epsilon_ref, preventing a grid-only or sample-only row from becoming accepted evidence."
+      },
+      {
+        "stepId": "source_path_lock",
+        "derivation": "The certificate path must name the accepted upstream rows, the same-domain minimizer or variational certificate, and the refinement-stable sigma_eff row before any toy coefficient can consume sigma_eff_extraction."
+      }
+    ],
+    "derivedRowsIfAccepted": [
+      "same_domain_minimizer_or_variational_certificate",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_accepted_upstream_rows"
+    ],
+    "missingAcceptanceRows": [
+      "accepted_same_domain_admissible_class",
+      "accepted_coercive_lower_bound_for_S_sigma",
+      "same_domain_minimizer_or_variational_certificate",
+      "accepted_stationarity_residual",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_accepted_upstream_rows"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "accepted_sigma_eff_extraction",
+      "delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
+      "finite_range_residual",
+      "color_singlet_nucleon_envelope"
+    ],
+    "failureModes": [
+      "accepted inputs are mistaken for the accepted sigma_eff extraction",
+      "the admissible class changes the color-charge or Noether sea response record",
+      "S_sigma is not lower bounded or coercive in the retained domain",
+      "the minimizer exists only in a sample grid without refinement stability",
+      "a toy coefficient consumes sigma_eff before the extraction certificate is accepted"
+    ]
+  },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
     "acceptedInputRowsOnly": [

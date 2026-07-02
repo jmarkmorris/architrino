@@ -887,6 +887,9 @@ These are observer-level recovery targets, not substrate ontology.
 - exterior compact-source labels $(M,\mathbf J,Q_{\mathrm{eff}})$;
 - horizon radius $r_H$, area $A_H$, surface gravity $\kappa_H$, and entropy-area comparison rows;
 - native horizon-interface condition $F_H=0$;
+- terminal-alignment rows for the braid symmetry-breaking point at the horizon-interface candidate;
+- light-ring / null-orbit rows, kept distinct from $r_H$ unless the same carrier derives a spin/branch coincidence condition;
+- planar-photon recovery rows when photon-path or light-ring evidence is used;
 - finite interior continuation $\mathcal{R}_H(\Omega,W)<\infty$;
 - horizon-interface label ensemble $\mathcal{B}_H(M,\mathbf J,Q_{\mathrm{eff}})$;
 - compact-region event ledger $\mathcal{L}_{E\mathbf p\mathbf J}^{(\Omega)}$;
@@ -898,7 +901,7 @@ The packet explicitly separates black-hole-proper equations from accretion-disk,
 
 Current score: unscored; not integrated into the main score table.
 
-The first blocker is `missing_accepted_black_hole_horizon_interface_carrier`: one source-backed carrier must bind mass, spin, radius, surface area, $F_H$, finite interior continuation, horizon labels, event ledger, and no-retune rows before any score review or reader-facing promotion.
+The first blocker is `missing_accepted_black_hole_horizon_interface_carrier`: one source-backed carrier must bind mass, spin, radius, surface area, $F_H$, terminal alignment, light-ring/null-orbit separation or derived coincidence, planar-photon recovery when used, finite interior continuation, horizon labels, event ledger, and no-retune rows before any score review or reader-facing promotion.
 
 No checker exists yet. The next useful artifact is a score-neutral identity shell only after the carrier contract in the detailed packet is stable.
 

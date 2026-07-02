@@ -132,6 +132,11 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "accepted_branch_interface_rows",
     "finite_residual_corridor_overlap",
   ],
+  Delta_E_corr_NN_tail_limit: [
+    "lim_R_to_infty_T_NN_R_eq_0",
+    "O_NN_finite",
+    "exists_R0_C_lambda_exp_decay_tail",
+  ],
   finite_range_residual: [
     "Delta_E_corr_NN_tail_limit",
     "bounded_residual_overlap",
@@ -143,7 +148,7 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "no_free_color_asymptotic_state",
   ],
   same_record_no_open_color_audit: [
-    "accepted_delta_E_corr_NN",
+    "Delta_E_corr_NN_tail_limit",
     "finite_range_residual",
     "color_singlet_closure",
     "same_event_ledger",
@@ -214,10 +219,12 @@ const SOURCE_ACQUISITION_ROUTES = Object.freeze({
   },
   finite_range_residual: {
     requiredAcceptedRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
     ],
     feedsRowsAfterAcceptance: [
@@ -227,6 +234,8 @@ const SOURCE_ACQUISITION_ROUTES = Object.freeze({
       "no_free_color_asymptotic_state",
     ],
     notRequiredBeforeAcceptance: [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
       "no_open_color_far_field",
       "same_record_no_open_color_audit",
       "no_free_color_asymptotic_state",
@@ -245,21 +254,41 @@ const SOURCE_ACQUISITION_ROUTES = Object.freeze({
   },
   same_record_no_open_color_audit: {
     requiredAcceptedRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
       "same_event_ledger",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+    feedsRowsAfterAcceptance: [
+      "no_open_color_far_field",
       "accepted_branch_interface_rows",
     ],
-    feedsRowsAfterAcceptance: ["no_open_color_far_field"],
+    notRequiredBeforeAcceptance: [
+      "accepted_branch_interface_rows",
+      "no_open_color_far_field",
+    ],
   },
   no_open_color_far_field: {
     requiredAcceptedRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+    feedsRowsAfterAcceptance: [
+      "same_record_branch_interface",
       "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+    ],
+    notRequiredBeforeAcceptance: [
+      "same_record_branch_interface",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
     ],
   },
 });
@@ -371,17 +400,21 @@ const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
   },
   finite_range_residual: {
     requiredAcceptedSourceRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
     ],
     requiredSameRecordRows: [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
       "finite_range_residual",
     ],
@@ -404,19 +437,20 @@ const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
   },
   no_open_color_far_field: {
     requiredAcceptedSourceRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
     ],
     requiredSameRecordRows: [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
-      "accepted_branch_interface_rows",
-      "same_record_branch_interface",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
     ],
     requiredClosureRows: [
@@ -783,7 +817,10 @@ function evaluateSourceAcquisition(rows, sourceAcquisitionTargets) {
 
 function evaluateSourceAcquisitionTargets(sourceAcquisitionTargets) {
   const expectedSourceRows = [
-    ...new Set(Object.values(REQUIRED_SOURCE_ROWS).flat()),
+    ...new Set([
+      ...Object.values(REQUIRED_SOURCE_ROWS).flat(),
+      ...Object.keys(sourceAcquisitionTargets ?? {}),
+    ]),
   ];
   return Object.fromEntries(
     expectedSourceRows.map((sourceRowId) => {

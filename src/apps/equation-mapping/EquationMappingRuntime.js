@@ -27,7 +27,7 @@ import {
 import { resolveStandaloneAppHomeHref } from "../navigator/StandaloneAppHomeRuntime.js";
 
 const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
-const SIZE_CALIBRATION_VERSION = 2;
+const SIZE_CALIBRATION_VERSION = 3;
 const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
 const SVG_NS = "http://www.w3.org/2000/svg";
 

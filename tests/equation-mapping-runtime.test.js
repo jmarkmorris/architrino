@@ -23,6 +23,7 @@ import {
 import {
   createEquationMappingHomeHref,
   createPointerLineGeometry,
+  EquationMappingRuntime,
 } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -70,6 +71,28 @@ test("equation mapping search includes subject, formula text, anchors, and overl
   assert.equal(filterEquationMapDocuments(documents, "receiver-normal").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "redshift factor").length >= 1, true);
   assert.equal(filterEquationMapDocuments(documents, "not-present").length, 0);
+});
+
+test("equation mapping keeps same-side seed callouts ordered with their target terms", () => {
+  createSeedEquationMapDocuments().forEach((document) => {
+    const anchorOrder = new Map();
+    document.formulaParts.forEach((part, index) => {
+      if (part.anchorId && !anchorOrder.has(part.anchorId)) {
+        anchorOrder.set(part.anchorId, index);
+      }
+    });
+    ["above", "below"].forEach((placement) => {
+      const targetOrderByBoxPosition = document.overlays
+        .filter((overlay) => overlay.sectionLinePlacement === placement)
+        .sort((left, right) => left.position.x - right.position.x)
+        .map((overlay) => anchorOrder.get(overlay.targetAnchorId));
+      assert.deepEqual(
+        targetOrderByBoxPosition,
+        [...targetOrderByBoxPosition].sort((left, right) => left - right),
+        `${document.id} ${placement} callouts should not cross target order`
+      );
+    });
+  });
 });
 
 test("equation mapping pointer geometry attaches comments to section line edges", () => {
@@ -179,7 +202,7 @@ test("equation mapping home button targets the Applications scene without replac
 test("equation mapping resets stale saved sizing into the new medium defaults", () => {
   const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
   assert.equal(runtime.includes('SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7"'), true);
-  assert.equal(runtime.includes("const SIZE_CALIBRATION_VERSION = 2;"), true);
+  assert.equal(runtime.includes("const SIZE_CALIBRATION_VERSION = 3;"), true);
   assert.equal(runtime.includes("savedSettings.sizeCalibrationVersion === SIZE_CALIBRATION_VERSION"), true);
   assert.equal(runtime.includes("savedSizeSettingsAreCurrent ? savedSettings.equationScale : DEFAULT_EQUATION_SCALE"), true);
   assert.equal(
@@ -198,6 +221,27 @@ test("equation mapping merges built-in seed maps with saved draft maps", () => {
 
 test("equation mapping defaults to medium equation scale", () => {
   assert.equal(DEFAULT_EQUATION_SCALE, "medium");
+});
+
+test("equation mapping ignores large sizing saved under the previous calibration", () => {
+  const staleSettings = JSON.stringify({
+    sizeCalibrationVersion: 2,
+    equationScale: "large",
+    commentFontSize: "large",
+  });
+  const runtime = new EquationMappingRuntime({
+    document: {},
+    window: {
+      localStorage: {
+        getItem(key) {
+          return key === "architrino.equationMapping.settings.v7" ? staleSettings : null;
+        },
+      },
+    },
+  });
+
+  assert.equal(runtime.equationScale, "medium");
+  assert.equal(runtime.commentFontSize, "medium");
 });
 
 test("equation mapping calibrates medium visual sizes from requested adjacent levels", () => {

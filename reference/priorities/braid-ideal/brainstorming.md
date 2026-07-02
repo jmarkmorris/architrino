@@ -1446,6 +1446,465 @@ $$
 
 then ask whether retained roots can generate $\mathbf a_{\mathrm{target},T}$ without consuming the entire causal margin.
 
+### Internal Tangent-Authority Reserve Equation - 2026-07-02
+
+Claim level. Priority-only analytical target plus fail-closed reserve certificate. The runner [oblate-spheroid-branch-clock-lock-reserve-certificate.mjs](../../../scripts/braid-ideal/oblate-spheroid-branch-clock-lock-reserve-certificate.mjs) now converts the assigned branch-clock-lock acceleration into the equation a natural internal term would have to satisfy. It still does not authorize retained evidence; it records an explicit missing internal reference at `oblate_spheroid_branch_clock_lock_reserve_certificate.rows[*].internal_tangent_authority_ref`.
+
+For each architrino $a$, let $\mathbf y_a$ be the center-frame oblate coordinate, let $\hat{\mathbf n}_a$ be the local support normal, and define the tangent projector
+
+$$
+\mathbf P_{T,a}\mathbf w
+=
+\mathbf w-(\mathbf w\cdot\hat{\mathbf n}_a)\hat{\mathbf n}_a.
+$$
+
+The retained branch equation has the form
+
+$$
+\mathbf a_a^{\mathrm{ans}}
+=
+\mathbf a_a^{\mathrm{wake}}
+{}+\mathbf a_a^{\mathrm{support}}
+{}+\mathbf a_a^{\mathrm{internal}}.
+$$
+
+Projecting tangent to the support gives the internal tangent-authority equation:
+
+$$
+\boxed{
+\mathbf P_{T,a}\mathbf a_a^{\mathrm{internal}}
+=
+\mathbf P_{T,a}
+\left(
+\mathbf a_a^{\mathrm{ans}}
+-\mathbf a_a^{\mathrm{wake}}
+-\mathbf a_a^{\mathrm{support}}
+\right)
+}
+$$
+
+The assigned branch-clock-lock diagnostic is therefore only a measured proxy for this missing internal tangent projection:
+
+$$
+\mathbf a_{a,T}^{\mathrm{clock}}
+\approx
+\mathbf P_{T,a}\mathbf a_a^{\mathrm{internal}}.
+$$
+
+To preserve causal-root margin, define the retained margin
+
+$$
+\mu(t)
+=
+\min\left[
+\min_a\{c_f-\|\dot{\mathbf x}_a(t)\|\},
+\min_{a,b,\tau\in\mathcal C_{ab}(t)}
+\{D_{s,ab}(t,\tau),D_{t,ab}(t,\tau)\}
+\right],
+$$
+
+where $D_s$ and $D_t$ are the source-normal and receiver-normal factors. An internal replacement must satisfy a post-tangent-authority reserve inequality over a declared tangent-response horizon $\Delta_T$:
+
+$$
+\rho_T
+=
+\inf_t
+\left[
+\mu(t)
+-\Delta_T\max_a
+\|\mathbf P_{T,a}\mathbf a_a^{\mathrm{internal}}(t)\|
+\right]
+\ge \epsilon_\mu>0.
+$$
+
+The current certificate uses the row-level diagnostic proxy
+
+$$
+\rho_{T,\mathrm{rms}}^{\mathrm{row}}
+=
+m_{\mathrm{dyn}}
+-\Delta_T A_{T,\mathrm{rms}}^{\mathrm{clock}},
+\qquad
+\rho_{T,\mathrm{rms}}^{\mathrm{row}}
+\ge
+0.01,
+$$
+
+with $\Delta_T=1$ for the first check. This is not dimensionally closed physics unless $\Delta_T$ is derived from the retained branch clock; it is a fail-closed screening inequality for whether the assigned tangent correction can plausibly be replaced without spending the causal margin.
+
+Applied to the low-authority preferred-curve artifact, the reserve certificate reports:
+
+| Quantity | Value |
+| --- | ---: |
+| rows | `78` |
+| bounded dynamic-return rows | `67` |
+| active branch-clock-lock rows | `72` |
+| rows with raw dynamic margin $\ge0.01$ | `64` |
+| rows with post-tangent reserve $\ge0.01$ | `55` |
+| selected preferred-curve rows | `13` |
+| selected preferred rows with post-tangent reserve $\ge0.01$ | `9` |
+| full preferred-curve tangent reserve pass | `false` |
+
+The selected preferred curve fails exactly where the branch becomes most interesting:
+
+| selected row | dynamic root margin | clock-lock rms acceleration | $\rho_{T,\mathrm{rms}}^{\mathrm{row}}$ | raw margin allows `0.01` reserve | max $\Delta_T$ for `0.01` reserve |
+| --- | ---: | ---: | ---: | --- | ---: |
+| $(0.8,0.2)$ | `0.0030874623389054445` | `0.058648613347239885` | `-0.05556115100833444` | no | null |
+| $(0.82,0.175)$ | `0.0028479982962151817` | `0.05211813485791998` | `-0.0492701365617048` | no | null |
+| $(0.84,0.15)$ | `0.001542454157570483` | `0.04737213177153553` | `-0.045829677613965045` | no | null |
+| $(0.86,0.1)$ | `0.02054868343441618` | `0.041713777503450046` | `-0.021165094069033864` | yes | `0.25288247830213234` |
+
+The prior rows through $(0.75,0.175)$ pass this diagnostic reserve. For example, $(0.75,0.175)$ has dynamic root margin `0.07974048180577409`, clock-lock rms acceleration `0.05038111161951546`, and post-tangent reserve `0.02935937018625863`. That makes the current picture sharper: the preferred curve is not globally impossible under this proxy, but the near-edge low-residual segment cannot be claimed as an internally replaceable branch. Rows $(0.8,0.2)$ through $(0.84,0.15)$ have too little raw dynamic margin even before tangent authority is charged against the budget. Row $(0.86,0.1)$ has enough raw margin, but only if the effective tangent-response horizon is no larger than `0.25288247830213234` in the current normalized branch-clock units. The retained mechanism must therefore lower the tangent authority demand, raise the causal margin, or derive a shorter effective $\Delta_T$ from the branch clock.
+
+Equivalently, each row must satisfy
+
+$$
+m_{\mathrm{dyn}}
+{}+\delta\mu
+-\Delta_T\lambda A_{T,\mathrm{rms}}^{\mathrm{clock}}
+\ge
+0.01,
+$$
+
+where $\delta\mu$ is the margin lift supplied by the internal mechanism and $\lambda$ is the fraction of the assigned tangent authority still needed after the internal mechanism is derived.
+
+The first-order margin-lift direction depends on which factor realizes $\mu(t)$. If the active margin is the field-speed margin
+
+$$
+\mu_v=c_f-\|\dot{\mathbf x}_a\|,
+$$
+
+then
+
+$$
+\delta\mu_v
+\approx
+\Delta_M\,
+\mathbf a_{a}^{\mathrm{margin}}
+\cdot
+\left(-\frac{\dot{\mathbf x}_a}{\|\dot{\mathbf x}_a\|}\right).
+$$
+
+If the active margin is the receiver-normal factor
+
+$$
+D_{t,ab}=c_f-\dot{\mathbf x}_a\cdot\hat{\mathbf r}_{ab},
+$$
+
+then the first-order velocity contribution is
+
+$$
+\delta D_{t,ab}
+\approx
+\Delta_M\,
+\mathbf a_a^{\mathrm{margin}}
+\cdot(-\hat{\mathbf r}_{ab}).
+$$
+
+If the active margin is the source-normal factor
+
+$$
+D_{s,ab}=c_f-\dot{\mathbf x}_b\cdot\hat{\mathbf r}_{ab},
+$$
+
+then
+
+$$
+\delta D_{s,ab}
+\approx
+\Delta_M\,
+\mathbf a_b^{\mathrm{margin}}
+\cdot(-\hat{\mathbf r}_{ab}).
+$$
+
+The required margin component is therefore
+
+$$
+\mathbf a^{\mathrm{internal}}
+=
+\mathbf P_T(\mathbf a^{\mathrm{ans}}-\mathbf a^{\mathrm{wake}}-\mathbf a^{\mathrm{support}})
+{}+\mathbf a^{\mathrm{margin}}
+{}+\mathbf a^{\mathrm{null}},
+$$
+
+where $\mathbf a^{\mathrm{null}}$ lies in any same-record null direction that preserves tangent closure and the active margin to first order. With $\Delta_T=1$ and $\lambda=1$, the failed selected rows require:
+
+| selected row | required margin for full tangent authority | minimum margin lift at $\lambda=1$ | maximum $\lambda$ without margin lift | minimum compression without margin lift |
+| --- | ---: | ---: | ---: | ---: |
+| $(0.8,0.2)$ | `0.06864861334723989` | `0.06556115100833444` | `-0.11786361631719419` | `1` |
+| $(0.82,0.175)$ | `0.062118134857919984` | `0.0592701365617048` | `-0.13722673927764292` | `1` |
+| $(0.84,0.15)$ | `0.05737213177153553` | `0.05582967761396505` | `-0.1785342041016486` | `1` |
+| $(0.86,0.1)$ | `0.05171377750345005` | `0.031165094069033866` | `0.25288247830213234` | `0.7471175216978676` |
+
+Negative maximum $\lambda$ means the row does not have enough raw causal margin to keep a `0.01` reserve even if tangent authority were compressed away entirely. Those rows require a real margin-lift mechanism, not merely a faster tangent response. The $(0.86,0.1)$ row is different: it can pass without margin lift only if the retained mechanism reduces the needed tangent authority by about `74.7%` or proves an effective response horizon no larger than about `25.3%` of the current normalized period.
+
+Across the full low-authority artifact, `17` rows require nonzero margin lift under this proxy, and the maximum required lift is `0.14560190911283044`. On the selected preferred curve, the required margin-lift values are exactly the four rows listed above.
+
+Interpretation. The internal tangent-authority equation is now explicit. The next hard proof step is to derive $\mathbf P_T\mathbf a^{\mathrm{internal}}$ from retained roots, wake-ledger memory, shielding, angular momentum, or Noether sea response, and then prove the reserve inequality $\rho_T>0$ on the same row set. Without that proof, the branch-clock-lock curve remains a useful target and not a natural braid.
+
+### Preferred Two-Speed Route Matrix - 2026-07-02
+
+Claim level. Priority-only analytical target plus fail-closed route matrix. The preferred-configuration intuition should now be stated as a curve-selection problem, not as a single guessed speed pair. For a declared group speed $u$, the diagnostic curve is
+
+$$
+\Gamma_{\mathrm{diag}}
+=
+\left\{
+(u,v_{\mathrm{orb}})
+:
+v_{\mathrm{orb}}
+\in
+\operatorname*{arg\,min}_{v}
+\mathcal J(u,v),
+\quad
+\mathcal S_{\mathrm{return}}=\text{bounded diagnostic return}
+\right\},
+$$
+
+where $\mathcal J$ is the current branch-curve objective. A natural preferred branch would have to pass the stronger retained condition
+
+$$
+(u,v_{\mathrm{orb}})\in\Gamma_\ast
+\quad\Longrightarrow\quad
+\mathbf P_T\mathbf a_{\mathrm{internal}}
+=
+\mathbf P_T(\mathbf a_{\mathrm{ansatz}}-\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{support}}),
+\qquad
+\rho_T\ge\epsilon_\mu.
+$$
+
+Near the causal edge this is not enough by itself, because the same internal mechanism must also lift the active causal margin:
+
+$$
+\Delta_M
+\langle
+\mathbf a_{\mathrm{internal,margin}},
+\mathbf g_\mu
+\rangle
+\ge
+\delta\mu_{\mathrm{req}},
+$$
+
+with $\mathbf g_\mu$ chosen from the active field-speed, receiver-normal, or source-normal margin gradient. This gives the disciplined form of the intuition: a real preferred configuration is a same-record solution of the tangent equation, the margin-lift inequality, action closure, and return closure.
+
+The route-matrix certificate [oblate-spheroid-internal-tangent-authority-certificate.mjs](../../../scripts/braid-ideal/oblate-spheroid-internal-tangent-authority-certificate.mjs) consumes the branch-clock-lock target and reserve certificate. On the low-authority preferred-curve artifacts it reports:
+
+| Quantity | Value |
+| --- | ---: |
+| measured preferred-curve tangent-need rows | `13` |
+| positive raw root-margin reserve rows | `10` |
+| positive post-tangent-authority reserve rows | `9` |
+| rows requiring margin lift | `4` |
+| maximum required margin lift on the selected curve | `0.06556115100833444` |
+| top-ranked route | `retained_history_tangent_projection` |
+| first retained-history blocker | `held_release_seed_path_rows[*].retained_record_id` |
+
+The same certificate now emits the scalar feasibility equation
+
+$$
+\delta\mu(\lambda_T)
+=
+\max\left(
+0,
+\epsilon_\mu+\Delta_T\lambda_T A_T-m_{\mathrm{dyn}}
+\right),
+$$
+
+where $A_T$ is the measured branch-clock-lock rms tangent authority, $\lambda_T$ is the fraction of that tangent burden the internal mechanism must carry, and $m_{\mathrm{dyn}}$ is the dynamic causal-root margin. Full replacement of the assigned branch-clock lock means $\lambda_T=1$ plus an accepted same-record vector provider. Without margin lift, the allowed tangent fraction is
+
+$$
+0
+\le
+\lambda_T
+\le
+\frac{m_{\mathrm{dyn}}-\epsilon_\mu}{\Delta_T A_T}.
+$$
+
+On the selected preferred curve, this scalar test gives `9` rows where full measured tangent replacement passes without margin lift, `4` rows where full replacement requires margin lift, and `3` rows where the raw margin is already below $\epsilon_\mu$ before tangent authority is charged. The near-edge rows are therefore separated into two classes:
+
+| selected row | required $\delta\mu(1)$ | max $\lambda_T$ without margin lift | raw margin passes at $\lambda_T=0$ |
+| --- | ---: | ---: | --- |
+| $(0.8,0.2)$ | `0.06556115100833444` | `-0.11786361631719419` | no |
+| $(0.82,0.175)$ | `0.0592701365617048` | `-0.13722673927764292` | no |
+| $(0.84,0.15)$ | `0.05582967761396505` | `-0.1785342041016486` | no |
+| $(0.86,0.1)$ | `0.031165094069033866` | `0.25288247830213234` | yes |
+
+This is a scalar rms proxy, not a vector provider proof. It is useful because it states the exact replacement burden: the first three near-edge rows need a margin provider even if the tangent burden were compressed away; the $(0.86,0.1)$ row has enough raw margin, but only about one quarter of the measured tangent authority can be applied without margin lift. A retained provider must still supply the vector equation, not just the scalar inequality.
+
+The vector compatibility condition is sharper. Let
+
+$$
+\mathbf T
+=
+\mathbf P_T
+\left(
+\mathbf a_{\mathrm{ansatz}}
+-\mathbf a_{\mathrm{wake}}
+-\mathbf a_{\mathrm{support}}
+\right)
+$$
+
+be the required tangent target on the retained row, and let $\mathbf G_\mu$ be the velocity-gradient vector of the active causal-margin factor across the receiver/source slots. Any internal replacement has the form
+
+$$
+\mathbf a_{\mathrm{internal}}
+=
+\mathbf T+\mathbf n,
+\qquad
+\mathbf P_T\mathbf n=0,
+$$
+
+where $\mathbf n$ lies in the tangent-null space. If $\mathbf P_N=I-\mathbf P_T$ is the tangent-null projector, the margin-lift requirement is
+
+$$
+\langle\mathbf T,\mathbf G_\mu\rangle
++
+\langle\mathbf n,\mathbf P_N\mathbf G_\mu\rangle
+\ge
+\frac{\delta\mu_{\mathrm{req}}}{\Delta_M}.
+$$
+
+Thus the minimum tangent-null correction, when $\|\mathbf P_N\mathbf G_\mu\|>0$, is
+
+$$
+\mathbf n_\ast
+=
+\max\left(
+0,
+\frac{\delta\mu_{\mathrm{req}}}{\Delta_M}
+-\langle\mathbf T,\mathbf G_\mu\rangle
+\right)
+\frac{\mathbf P_N\mathbf G_\mu}
+{\|\mathbf P_N\mathbf G_\mu\|^2}.
+$$
+
+If $\|\mathbf P_N\mathbf G_\mu\|=0$, the tangent solution itself must already satisfy
+
+$$
+\langle\mathbf T,\mathbf G_\mu\rangle
+\ge
+\frac{\delta\mu_{\mathrm{req}}}{\Delta_M};
+$$
+
+otherwise that row is vector-incompatible for the declared active margin channel without changing the tangent target, changing the active margin channel, or adding a different same-record provider. This is the first actual vector solvability condition for replacing the assigned branch-clock lock. The current artifact records `0` accepted vector providers and `13` vector-provider-missing rows, so the theorem target is now precise but still unsatisfied.
+
+The vector condition also gives the least-norm provider equation. When the tangent target $\mathbf T$, active margin gradient $\mathbf G_\mu$, tangent-null projector $\mathbf P_N$, and margin requirement are known on the same retained record, the minimum tangent-null replacement is
+
+$$
+\boxed{
+\mathbf a_{\mathrm{provider}}^\ast
+=
+\mathbf T+\mathbf n_\ast
+}
+$$
+
+with $\mathbf n_\ast$ as above. It satisfies the tangent replacement condition
+
+$$
+\mathbf P_T\mathbf a_{\mathrm{provider}}^\ast=\mathbf T,
+$$
+
+and must satisfy the post-provider root-margin condition
+
+$$
+m_{\mathrm{dyn}}
+-\Delta_T\|\mathbf P_T\mathbf a_{\mathrm{provider}}^\ast\|
++\Delta_M\langle\mathbf a_{\mathrm{provider}}^\ast,\mathbf G_\mu\rangle
+\ge
+\epsilon_\mu.
+$$
+
+Equivalently, the provider solves a constrained minimum-norm problem:
+
+$$
+\operatorname*{minimize}_{\mathbf n}\|\mathbf n\|,
+\qquad
+\mathbf P_T\mathbf n=0,
+\qquad
+m_{\mathrm{dyn}}
+-\Delta_T\|\mathbf T\|
++\Delta_M\langle\mathbf T+\mathbf n,\mathbf G_\mu\rangle
+\ge
+\epsilon_\mu.
+$$
+
+This is the cleanest current form of the preferred-configuration intuition. The solver has found a diagnostic translation/orbital-velocity curve; the analysis now says exactly what internal vector provider would have to exist along that curve. The current certificate emits the equation but keeps it non-authorizing: there are still `0` accepted least-norm vector providers and `13` provider-equation rows missing same-record vectors. The required rows are the retained tangent-target vector row, active causal-margin gradient vector row, tangent-null projection row, least-norm provider acceleration vector row, post-provider root-margin row, same-record retained root ledger, and same-record action-closure row.
+
+The certificate now also has a diagnostic witness evaluator for a future retained vector row. Given same-record vectors
+
+$$
+\mathbf T,\quad
+\mathbf G_\mu,\quad
+\mathbf P_T,\quad
+\mathbf P_N,\quad
+\mathbf a_{\mathrm{provider}},
+$$
+
+and row scalars $m_{\mathrm{dyn}}$, $\Delta_T$, $\Delta_M$, and $\epsilon_\mu$, the evaluator checks
+
+$$
+\|\mathbf P_T\mathbf a_{\mathrm{provider}}-\mathbf T\|
+\le
+\epsilon_{\mathrm{vec}},
+$$
+
+$$
+\|\mathbf a_{\mathrm{provider}}-(\mathbf T+\mathbf n_\ast)\|
+\le
+\epsilon_{\mathrm{vec}},
+$$
+
+and
+
+$$
+m_{\mathrm{dyn}}
+-\Delta_T\|\mathbf P_T\mathbf a_{\mathrm{provider}}\|
++\Delta_M\langle\mathbf a_{\mathrm{provider}},\mathbf G_\mu\rangle
+\ge
+\epsilon_\mu.
+$$
+
+This is not yet accepted evidence. It is the precise pass/fail surface for the next retained solver output: a mathematical witness can pass these equations and still remain non-authorizing unless the same record also carries an accepted retained-root ledger, action-closure row, provider acceleration vector row, and post-provider root-margin row.
+
+The current artifact also constructs a normalized diagnostic witness from the scalar row burden:
+
+$$
+\mathbf T=[A_T,0],
+\qquad
+\mathbf G_\mu=[0,1],
+\qquad
+\mathbf P_T=
+\begin{bmatrix}
+1&0\\
+0&0
+\end{bmatrix},
+\qquad
+\mathbf P_N=
+\begin{bmatrix}
+0&0\\
+0&1
+\end{bmatrix},
+$$
+
+and
+
+$$
+\mathbf a_{\mathrm{provider}}
+=
+\left[
+A_T,\,
+\frac{\delta\mu_{\mathrm{req}}}{\Delta_M}
+\right],
+\qquad
+\delta\mu_{\mathrm{req}}
+=
+\max(0,\epsilon_\mu+\Delta_TA_T-m_{\mathrm{dyn}}).
+$$
+
+This is a local two-axis algebraic model: the first axis is the measured tangent-authority direction, and the second axis is a unit tangent-null direction that lifts the active margin. It answers a narrower question than the retained solver must answer. It shows that the least-norm equation is internally consistent whenever the row has scalar inputs and a nonzero margin-lift response horizon; it does not show that the Noether braid actually supplies that tangent-null direction. In the focused test row, $A_T=0.1$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$, so the normalized witness uses $\delta\mu_{\mathrm{req}}=0.085$ and $\mathbf a_{\mathrm{provider}}=[0.1,0.085]$. The evaluator passes the tangent and margin equations while keeping `accepted=false`.
+
+The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
+
 Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.
 
 Frequency has at least three meanings:

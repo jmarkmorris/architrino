@@ -165,11 +165,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.deepEqual(
     branchNoOpenColorBlocker.sourceAcquisitionRoute.requiredAcceptedRowsBeforeUse,
     [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
     ],
   );
   assert.deepEqual(branchNoOpenColorBlocker.sourceAcquisitionRoute.feedsRowsAfterAcceptance, [
@@ -177,6 +178,22 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "pn_orientation_count",
     "pp_orientation_count",
   ]);
+  assert.deepEqual(branchNoOpenColorBlocker.sourceAcquisitionRoute.notRequiredBeforeAcceptance, [
+    "accepted_branch_interface_rows",
+    "nucleon_branch_interface_ledgers",
+    "pn_orientation_count",
+    "pp_orientation_count",
+  ]);
+  assert.deepEqual(
+    branchNoOpenColorBlocker.acceptedSourceRowProofTargets.no_open_color_far_field
+      .requiredSufficientConditionRows,
+    [
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite",
+    ],
+  );
   assert.deepEqual(
     branchNoOpenColorBlocker.acceptedSourceRowProofTargets
       .nucleon_branch_interface_ledgers.requiredSameRecordRows,
@@ -336,6 +353,8 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.deepEqual(
     confinementFiniteRangeBlocker.sourceAcquisitionRoute.notRequiredBeforeAcceptance,
     [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
       "no_open_color_far_field",
       "same_record_no_open_color_audit",
       "no_free_color_asymptotic_state",
@@ -910,11 +929,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       .branch_interface.rowEvidence.nucleon_branch_interface_ledgers
       .sourceAcquisitionRoute.requiredAcceptedRowsBeforeUse,
     [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
-      "accepted_branch_interface_rows",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
     ],
   );
   assert.deepEqual(
@@ -922,6 +942,17 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       .branch_interface.rowEvidence.nucleon_branch_interface_ledgers
       .sourceAcquisitionRoute.feedsRowsAfterAcceptance,
     [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+    ],
+  );
+  assert.deepEqual(
+    report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily
+      .branch_interface.rowEvidence.nucleon_branch_interface_ledgers
+      .sourceAcquisitionRoute.notRequiredBeforeAcceptance,
+    [
+      "accepted_branch_interface_rows",
       "nucleon_branch_interface_ledgers",
       "pn_orientation_count",
       "pp_orientation_count",
@@ -1456,6 +1487,8 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
       .requiredRowsByFamily.confinement_functional.rowEvidence
       .finite_range_residual.sourceAcquisitionRoute.notRequiredBeforeAcceptance,
     [
+      "accepted_delta_E_corr_NN",
+      "accepted_branch_interface_rows",
       "no_open_color_far_field",
       "same_record_no_open_color_audit",
       "no_free_color_asymptotic_state",

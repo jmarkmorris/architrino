@@ -5,10 +5,10 @@
   "sourceKind": "same_record_no_open_color_audit",
   "currentStatus": "blocked_missing_same_record_no_open_color_audit",
   "sourceSupportSought": [
-    "accepted_delta_E_corr_NN",
     "finite_range_residual",
     "color_singlet_closure",
-    "same_event_ledger"
+    "same_event_ledger",
+    "Delta_E_corr_NN_tail_limit"
   ],
   "nearestCandidateInputs": {
     "noOpenColorFarFieldBlocker": {
@@ -107,9 +107,9 @@
       ]
     },
     "residualAudit": {
-      "requiredBehavior": "The accepted Delta E_corr_NN residual and finite-range residual tail must jointly show that the large-separation residual leaves no open-color far field.",
+      "requiredBehavior": "The Delta E_corr_NN tail limit and finite-range residual tail must jointly show that the large-separation residual leaves no open-color far field.",
       "mustConsumeRows": [
-        "accepted_delta_E_corr_NN",
+        "Delta_E_corr_NN_tail_limit",
         "finite_range_residual",
         "large_r_zero_limit"
       ]
@@ -148,11 +148,21 @@
     ],
     "coefficientExclusion": "No A-indexed, Z-indexed, isotope-indexed, or element-indexed coefficient may appear in the audit tuple, the open-color projection, K_open, or the large-R tail bound.",
     "requiredAcceptedRowsBeforeUse": [
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
       "same_event_ledger",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "no_open_color_far_field",
       "accepted_branch_interface_rows"
+    ],
+    "notRequiredBeforeAcceptance": [
+      "accepted_branch_interface_rows",
+      "no_open_color_far_field"
     ]
   },
   "localEvidenceBoundary": {
@@ -160,7 +170,7 @@
     "notAcceptedByThisPacket": [
       "same_record_no_open_color_audit",
       "no_open_color_far_field",
-      "accepted_delta_E_corr_NN",
+      "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
       "same_event_ledger",
@@ -177,9 +187,9 @@
     "scoreDecision": "no_score_increase"
   },
   "nextProofStep": {
-    "target": "Prove same_record_no_open_color_audit in the same event record that carries the accepted Delta E_corr_NN residual, finite-range residual tail, color-singlet closure, and p+n / p+p branch-interface extraction.",
+    "target": "Prove same_record_no_open_color_audit in the same event record that carries the Delta_E_corr_NN tail-limit row, finite-range residual tail, color-singlet closure, and p+n / p+p branch-interface extraction.",
     "minimalInputNeeded": [
-      "accepted Delta E_corr_NN row",
+      "accepted Delta_E_corr_NN tail-limit row",
       "accepted finite_range_residual row",
       "accepted color_singlet_closure row",
       "accepted same event ledger shared with branch-interface extraction",
@@ -189,7 +199,7 @@
       "the no-open-color audit uses a different event ledger than the branch-interface extraction",
       "finite residual tail remains target-only",
       "color-singlet closure remains target-only",
-      "the audit accepts no-open-color behavior without accepted Delta E_corr_NN evidence",
+      "the audit accepts no-open-color behavior without an accepted Delta_E_corr_NN tail-limit row",
       "the graph saturation rule can promote while no-open-color remains priority-only"
     ]
   },

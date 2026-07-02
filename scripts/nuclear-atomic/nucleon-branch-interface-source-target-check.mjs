@@ -73,15 +73,69 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
 const SOURCE_ACQUISITION_ROUTES = Object.freeze({
   no_open_color_far_field: {
     requiredAcceptedRowsBeforeUse: [
-      "accepted_delta_E_corr_NN",
       "finite_range_residual",
       "color_singlet_closure",
       "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+    feedsRowsAfterAcceptance: [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+    ],
+    notRequiredBeforeAcceptance: [
       "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
     ],
   },
 });
 const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
+  no_open_color_far_field: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+    requiredSameRecordRows: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+    requiredClosureRows: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+    ],
+    requiredLimitStatements: [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "lim_R_to_infty_T_NN_R_eq_0",
+    ],
+    requiredSufficientConditionRows: [
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "K_open_finite",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "candidate_extracted",
+      "sample_level_finite_tail",
+      "target_only_no_open_color",
+    ],
+  },
   nucleon_branch_interface_ledgers: {
     requiredAcceptedSourceRowsBeforeUse: [
       "accepted_proton_branch_interface_ledger",
@@ -466,6 +520,8 @@ function evaluateAcceptedSourceRowProofTarget(
     requiredClosureRows: target?.requiredClosureRows ?? [],
     requiredLimitStatements: target?.requiredLimitStatements ?? [],
     requiredInequalities: target?.requiredInequalities ?? [],
+    requiredSufficientConditionRows:
+      target?.requiredSufficientConditionRows ?? [],
     forbiddenPromotionSources: target?.forbiddenPromotionSources ?? [],
     currentPriorityPacket: present ? target.currentPriorityPacket ?? null : null,
     directToyConsumers: directToyConsumersForBranchRows(toyBindingRows, [rowId]),
@@ -667,6 +723,7 @@ function sourceAcquisitionBlocker(
   const blockedBranchRows = Object.values(sourceAcquisitionCheck.rowChecks)
     .filter((check) => check.missingAcceptedSourceRows.includes(sourceRowId))
     .map((check) => check.rowId);
+  const proofTargetRows = [...new Set([sourceRowId, ...blockedBranchRows])];
   return {
     sourceRowId,
     targetId: targetCheck.targetId ?? null,
@@ -679,7 +736,7 @@ function sourceAcquisitionBlocker(
     missingRequiredComponents: targetCheck.missingRequiredComponents ?? [],
     blockedBranchRows,
     acceptedSourceRowProofTargets: Object.fromEntries(
-      blockedBranchRows
+      proofTargetRows
         .map((rowId) => [
           rowId,
           acceptedSourceRowProofTargets?.targets?.[rowId] ?? null,
@@ -708,7 +765,7 @@ function sourceAcquisitionRouteForSourceRow(sourceRowId, targetCheck, blockedBra
       "priority-only source-acquisition route; not accepted source evidence and not promotion evidence",
     requiredRowsBeforeUse: targetCheck.requiredLedgerComponents ?? [],
     requiredAcceptedRowsBeforeUse: route.requiredAcceptedRowsBeforeUse ?? [],
-    feedsRowsAfterAcceptance: blockedBranchRows,
+    feedsRowsAfterAcceptance: route.feedsRowsAfterAcceptance ?? blockedBranchRows,
     notRequiredBeforeAcceptance: route.notRequiredBeforeAcceptance ?? [],
   };
 }
