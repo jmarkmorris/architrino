@@ -5,6 +5,9 @@ import {
   buildCentralSolverRetainedHistoryRow,
 } from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
 import {
+  buildPreferredCurveInternalTangentAuthorityEquation,
+} from "../scripts/braid-ideal/preferred-curve-internal-tangent-authority-equation.mjs";
+import {
   ACCEPTANCE_CERTIFICATE_FIELD,
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
@@ -37,8 +40,7 @@ function tangentNullProjector() {
   ];
 }
 
-function makeMinimumGainWitnessRow({ retainedRecordId, rowSuffix = "bridge" }) {
-  const sourceRowId = `two-speed-row:${rowSuffix}`;
+function makeMinimumGainWitnessRow({ retainedRecordId, rowSuffix = "bridge", sourceRowId = `two-speed-row:${rowSuffix}` }) {
   const particleSlotOrder = ["P:0", "E:0", "P:1", "E:1", "P:2", "E:2"];
   return {
     row_id: `minimum-gain-witness:${rowSuffix}`,
@@ -93,8 +95,7 @@ function makeMinimumGainWitnessRow({ retainedRecordId, rowSuffix = "bridge" }) {
   };
 }
 
-function makeRetainedSolverVectorWitnessRow({ retainedRecordId, rowSuffix = "bridge" }) {
-  const sourceRowId = `two-speed-row:${rowSuffix}`;
+function makeRetainedSolverVectorWitnessRow({ retainedRecordId, rowSuffix = "bridge", sourceRowId = `two-speed-row:${rowSuffix}` }) {
   const particleSlotOrder = ["P:0", "E:0", "P:1", "E:1", "P:2", "E:2"];
   return {
     row_id: `retained-vector-witness:${rowSuffix}`,
@@ -156,6 +157,68 @@ function makeRetainedSolverVectorWitnessRow({ retainedRecordId, rowSuffix = "bri
   };
 }
 
+function makePreferredCurveCandidateRow({ rowSuffix = "bridge", sourceRowId = `two-speed-row:${rowSuffix}` } = {}) {
+  return {
+    row_id: `near-edge-candidate:${rowSuffix}`,
+    schema: "oblate_spheroid_near_edge_basin_candidate_row.v0",
+    source_row_id: sourceRowId,
+    u: 0.82,
+    v_orb: 0.175,
+    chi: 0.5723635208501674,
+    local_values: {
+      residual_value: 0.6882728954707807,
+      objective_value: 0.45,
+      beta_max: 0.965,
+      root_budget_margin: 0.035,
+    },
+    dynamic_return_status: {
+      dynamic_probe_present: true,
+      bounded_return_observed: true,
+      dynamic_bounded_return: true,
+      dynamic_beta_max: 0.985,
+      dynamic_root_margin: 0.025,
+      position_return_rms: 0.002,
+      velocity_return_rms: 0.003,
+      radius_mean_deviation: 0.001,
+    },
+    branch_curve_status: {
+      branch_curve_candidate: true,
+      preferred_branch_curve_selected: true,
+      branch_curve_objective: 0.45,
+      support_rms_acceleration: 0.04,
+      branch_clock_lock_rms_acceleration: 0.1,
+    },
+    finite_difference: {
+      dE_du: {
+        status: "central_difference",
+        value: -0.3,
+      },
+      dE_dv_orb: {
+        status: "central_difference",
+        value: -0.44,
+      },
+      dObjective_du: {
+        status: "central_difference",
+        value: -0.25,
+      },
+      dObjective_dv_orb: {
+        status: "central_difference",
+        value: 0.5,
+      },
+      finite_difference_complete: true,
+    },
+    hard_math_candidate: true,
+    accepted: false,
+  };
+}
+
+function makePreferredCurveEquationArtifact({ minimumGainRow, rowSuffix = "bridge", sourceRowId = `two-speed-row:${rowSuffix}` }) {
+  return buildPreferredCurveInternalTangentAuthorityEquation({
+    nearEdgeCandidateRow: makePreferredCurveCandidateRow({ rowSuffix, sourceRowId }),
+    minimumNormRetainedHistoryGainWitnessRow: minimumGainRow,
+  });
+}
+
 test("internal tangent-authority vector rows bridge fails closed without retained record id", () => {
   const artifact = buildCentralSolverInternalTangentAuthorityVectorRows();
 
@@ -191,7 +254,7 @@ test("internal tangent-authority vector rows bridge names missing minimum-gain r
   assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
 });
 
-test("internal tangent-authority vector rows bridge can pass mathematically while staying non-authorizing", () => {
+test("internal tangent-authority vector rows bridge requires preferred-curve equation after vector rows pass", () => {
   const retainedRecordId = "retained-record:internal-tangent:pass";
   const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
     retainedRecordId,
@@ -206,11 +269,45 @@ test("internal tangent-authority vector rows bridge can pass mathematically whil
     retainedSolverVectorWitnessRows: [vectorRow],
   });
 
+  assert.equal(artifact.artifact_status, "minimum_gain_and_vector_pass_preferred_curve_equation_missing");
+  assert.equal(artifact.source_status, "source_acquisition_blocked");
+  assert.equal(artifact.first_missing_object, FIRST_MISSING_OBJECT);
+  assert.equal(
+    artifact.first_missing_field,
+    "central_solver_internal_tangent_authority_vector_rows.preferred_curve_internal_tangent_authority_equation_artifacts"
+  );
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_vector_bridge_passed, true);
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, false);
+  assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
+});
+
+test("internal tangent-authority vector rows bridge can pass the preferred-curve equation while staying non-authorizing", () => {
+  const retainedRecordId = "retained-record:internal-tangent:pass";
+  const sourceRowId = "two-speed-row:pass";
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef: "candidate:provider-object:pass",
+    providerArtifactHash: "provider-hash-pass",
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({ retainedRecordId, rowSuffix: "pass", sourceRowId });
+  const vectorRow = makeRetainedSolverVectorWitnessRow({ retainedRecordId, rowSuffix: "pass", sourceRowId });
+  const preferredCurveEquationArtifact = makePreferredCurveEquationArtifact({
+    minimumGainRow,
+    rowSuffix: "pass",
+    sourceRowId,
+  });
+  const artifact = buildCentralSolverInternalTangentAuthorityVectorRows({
+    retainedHistoryRow,
+    minimumNormRetainedHistoryGainWitnessRows: [minimumGainRow],
+    retainedSolverVectorWitnessRows: [vectorRow],
+    preferredCurveInternalTangentAuthorityEquationArtifacts: [preferredCurveEquationArtifact],
+  });
+
   assert.equal(
     artifact.artifact_status,
-    "same_record_internal_tangent_authority_vector_rows_mathematical_pass_acceptance_blocked"
+    "same_record_preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked"
   );
-  assert.equal(artifact.source_status, "candidate_same_record_vector_rows_unaccepted");
+  assert.equal(artifact.source_status, "candidate_same_record_preferred_curve_equation_unaccepted");
   assert.equal(
     artifact.first_missing_object,
     "central_solver_internal_tangent_authority_vector_rows_acceptance_certificate"
@@ -222,6 +319,10 @@ test("internal tangent-authority vector rows bridge can pass mathematically whil
   assert.equal(artifact.summary.retained_solver_vector_witness_row_count, 1);
   assert.equal(artifact.summary.retained_solver_vector_witness_mathematical_pass_count, 1);
   assert.equal(artifact.summary.retained_solver_vector_witness_request_binding_pass_count, 1);
+  assert.equal(artifact.summary.preferred_curve_equation_artifact_count, 1);
+  assert.equal(artifact.summary.preferred_curve_equation_mathematical_pass_count, 1);
+  assert.equal(artifact.summary.preferred_curve_equation_request_binding_pass_count, 1);
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_vector_bridge_passed, true);
   assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, true);
   assert.equal(
     artifact.minimum_norm_retained_history_gain_witness_evaluations[0].request_retained_record_binding_passed,
@@ -229,6 +330,16 @@ test("internal tangent-authority vector rows bridge can pass mathematically whil
   );
   assert.equal(
     artifact.retained_solver_vector_witness_evaluations[0].request_retained_record_binding_passed,
+    true
+  );
+  assert.equal(
+    artifact.preferred_curve_internal_tangent_authority_equation_evaluations[0]
+      .request_retained_record_binding_passed,
+    true
+  );
+  assert.equal(
+    artifact.preferred_curve_internal_tangent_authority_equation_evaluations[0]
+      .mathematical_preferred_curve_equation_passed,
     true
   );
   assert.equal(artifact.accepted, false);

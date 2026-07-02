@@ -91,11 +91,19 @@ test("central solver retained-history row carries all same-record request famili
   );
   assert.equal(
     row.internal_tangent_authority_vector_request.equations.tangent_target,
-    "T = P_T(a_ansatz - a_wake - a_support)"
+    "T(q) = P_T(a_ansatz(q) - a_wake(q) - a_support(q)), q=(u,v_orb)"
   );
   assert.equal(
     row.internal_tangent_authority_vector_request.equations.minimum_gain,
-    "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)"
+    "K_x^*(q)=-T(q) e_x^T/(||e_x||^2+||e_v||^2), K_v^*(q)=-T(q) e_v^T/(||e_x||^2+||e_v||^2)"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.equations.preferred_curve_slope,
+    "v_*'(u)=-J_u/J_v"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.preferred_curve_binding.required_equation_schema,
+    "preferred_curve_internal_tangent_authority_equation.v0"
   );
   assert.deepEqual(
     row.internal_tangent_authority_vector_request.required_same_record_rows.map((request) => request.row),
@@ -121,8 +129,16 @@ test("central solver retained-history row carries all same-record request famili
     "minimum_norm_retained_history_gain_witness_evaluation.v0"
   );
   assert.equal(
+    row.internal_tangent_authority_vector_request.evaluator_binding.preferred_curve_equation_schema,
+    "preferred_curve_internal_tangent_authority_equation.v0"
+  );
+  assert.equal(
     row.internal_tangent_authority_vector_request.evaluator_binding.same_record_witness_row_schema,
     "same_record_minimum_norm_retained_history_gain_witness_row.v0"
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.preferred_curve_internal_tangent_authority_equation_ref,
+    null
   );
   assert.equal(row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref, null);
   assert.equal(row.internal_tangent_authority_vector_request.accepted_internal_tangent_authority_ref, null);

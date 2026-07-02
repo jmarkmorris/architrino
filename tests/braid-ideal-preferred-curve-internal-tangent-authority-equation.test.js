@@ -6,6 +6,7 @@ import {
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  REPLACEMENT_CRITERION_FIRST_MISSING_OBJECT,
   SCHEMA,
   buildPreferredCurveInternalTangentAuthorityEquation,
   evaluatePreferredCurveInternalTangentAuthorityEquationEvidence,
@@ -155,6 +156,24 @@ function makeMinimumGainWitnessRow({
   };
 }
 
+function makeAcceptedReplacementEvidence() {
+  return {
+    accepted_same_record_central_solver_evidence: true,
+    central_retained_history_acceptance_certificate_ref: "accepted:central-retained-history",
+    preferred_curve_internal_tangent_authority_acceptance_certificate_ref:
+      "accepted:preferred-curve-internal-tangent-authority",
+    same_record_retained_path_error_row_ref: "accepted:path-error-row",
+    retained_solver_tangent_target_vector_row_ref: "accepted:tangent-target-row",
+    active_causal_margin_gradient_vector_row_ref: "accepted:active-margin-gradient-row",
+    post_provider_root_margin_row_ref: "accepted:post-provider-root-margin-row",
+    same_record_retained_root_ledger_ref: "accepted:retained-root-ledger",
+    same_record_action_closure_row_ref: "accepted:action-closure-row",
+    same_record_wake_history_ref: "accepted:wake-history",
+    same_record_path_history_ref: "accepted:path-history",
+    same_record_provider_provenance_ref: "accepted:provider-provenance",
+  };
+}
+
 test("preferred-curve internal tangent-authority equation fails closed without a curve row", () => {
   const artifact = buildPreferredCurveInternalTangentAuthorityEquation();
 
@@ -167,6 +186,33 @@ test("preferred-curve internal tangent-authority equation fails closed without a
     "oblate_spheroid_near_edge_basin_certificate.near_edge_candidate_rows"
   );
   assert.equal(artifact.summary.preferred_curve_differential_passed, false);
+  assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, false);
+  assert.equal(artifact.accepted, false);
+  assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
+});
+
+test("preferred-curve equation selects the preferred row from a near-edge certificate", () => {
+  const unselectedCandidateRow = makePreferredCurveCandidateRow({
+    rowSuffix: "certificate-unselected",
+    sourceRowId: "two-speed-row:certificate-unselected",
+  });
+  unselectedCandidateRow.branch_curve_status.preferred_branch_curve_selected = false;
+  const selectedCandidateRow = makePreferredCurveCandidateRow({
+    rowSuffix: "certificate-selected",
+    sourceRowId: "two-speed-row:certificate-selected",
+  });
+  const artifact = buildPreferredCurveInternalTangentAuthorityEquation({
+    nearEdgeCertificate: {
+      near_edge_candidate_rows: [unselectedCandidateRow, selectedCandidateRow],
+    },
+  });
+
+  assert.equal(artifact.source_preferred_curve_row.row_id, selectedCandidateRow.row_id);
+  assert.equal(artifact.curve_differential.preferred_curve_differential_passed, true);
+  assert.equal(artifact.artifact_status, "fail_closed_missing_minimum_norm_retained_history_gain_witness_row");
+  assert.equal(artifact.first_missing_object, FIRST_MISSING_OBJECT);
+  assert.equal(artifact.first_missing_field, FIRST_MISSING_FIELD);
+  assert.equal(artifact.summary.minimum_gain_mathematical_passed, false);
   assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, false);
   assert.equal(artifact.accepted, false);
   assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
@@ -209,6 +255,17 @@ test("preferred-curve equation derives the curve tangent and passes mathematical
   assert.equal(artifact.bindings.dynamic_root_margin_binding_passed, true);
   assert.equal(artifact.summary.minimum_gain_mathematical_passed, true);
   assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, true);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_criterion_passed, false);
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.first_missing_object,
+    REPLACEMENT_CRITERION_FIRST_MISSING_OBJECT
+  );
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.missing_fields.includes(
+      "preferred_curve_internal_tangent_authority_equation.same_record_accepted_evidence.accepted_same_record_central_solver_evidence"
+    ),
+    true
+  );
   assert.equal(artifact.diagnostics.tangent_target_norm, 0.1);
   assert.equal(artifact.diagnostics.tangent_target_to_branch_clock_rms_ratio, 1);
   assert.equal(artifact.accepted, false);
@@ -219,6 +276,40 @@ test("preferred-curve equation derives the curve tangent and passes mathematical
     reason: "producer_does_not_authorize_preferred_curve_internal_tangent_authority_evidence",
     first_missing_field: ACCEPTANCE_CERTIFICATE_FIELD,
   });
+  assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
+});
+
+test("preferred-curve equation states the conditional replacement criterion with accepted refs", () => {
+  const sourceRowId = "two-speed-row:conditional-replacement";
+  const nearEdgeCandidateRow = makePreferredCurveCandidateRow({
+    sourceRowId,
+    rowSuffix: "conditional-replacement",
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({
+    sourceRowId,
+    rowSuffix: "conditional-replacement",
+  });
+  const artifact = buildPreferredCurveInternalTangentAuthorityEquation({
+    nearEdgeCandidateRow,
+    minimumNormRetainedHistoryGainWitnessRow: minimumGainRow,
+    sameRecordAcceptedEvidence: makeAcceptedReplacementEvidence(),
+  });
+
+  assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, true);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_criterion_passed, true);
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.status,
+    "replacement_criterion_conditionally_satisfied_by_declared_accepted_same_record_evidence"
+  );
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.can_remove_assigned_branch_clock_lock,
+    "conditional_on_external_accepted_authority"
+  );
+  assert.equal(artifact.branch_clock_lock_replacement_criterion.candidate_artifact_authorizes_removal, false);
+  assert.equal(artifact.branch_clock_lock_replacement_criterion.accepted, false);
+  assert.equal(artifact.accepted, false);
+  assert.equal(artifact.accepted_internal_tangent_authority_ref, null);
+  assert.equal(artifact.authorization.accepted_internal_tangent_authority, false);
   assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
 });
 

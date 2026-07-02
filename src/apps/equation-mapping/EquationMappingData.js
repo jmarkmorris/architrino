@@ -253,7 +253,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "native-root",
         "Native root",
         "acceleration",
-        "Score 5 row: later maps must still consume active roots, wake ledgers, event ledgers, or Noether sea moments.",
+        "This left side is the per-hit acceleration response; downstream maps must still consume active roots and event ledgers.",
         "\\mathbf a_{o'\\leftarrow o}",
         { x: 7, y: 8, width: 25, line: "above" }
       ),
@@ -269,7 +269,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "receiver-normal",
         "History factor",
         "branchStrength",
-        "This is where source-normal and receiver-normal history enter the per-hit law.",
+        "This factor carries source-normal and receiver-normal history into the per-hit law.",
         "W^{\\mathrm{rec}}=\\left|D_t/D_s\\right|",
         { x: 7, y: 68, width: 25, line: "below" }
       ),
@@ -323,7 +323,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "branch-blocker",
         "Shared branch row",
         "gammaFactor",
-        "Score 4 means the map is strong, but the retained branch ledger still has to bind clock and ruler rows together.",
+        "The gamma factor is only useful if one retained branch row binds clock, ruler, and envelope behavior together.",
         "\\gamma_\\star\\rightarrow S_{\\mathrm{eq}}",
         { x: 8, y: 82, width: 25, line: "below" }
       ),
@@ -356,7 +356,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "envelope-readout",
         "Envelope readout",
         "shapeRatio",
-        "This diagram asks whether moving Noether braid geometry exposes the Lorentz shape ratio directly.",
+        "The shape ratio asks whether moving Noether braid geometry exposes the Lorentz contraction channel directly.",
         "\\xi=R_{\\parallel}/R_{\\perp}",
         { x: 7, y: 8, width: 25, line: "above" }
       ),
@@ -404,7 +404,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "energy-readout",
         "Energy readout",
         "energy",
-        "Energy is an exposed readout of branch history and Noether sea response, not a free label.",
+        "Energy is the exposed conserved readout of branch history, internal storage, and Noether sea response.",
         "E^2",
         { x: 7, y: 8, width: 24, line: "above" }
       ),
@@ -412,7 +412,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "motion-response",
         "Motion response",
         "momentum",
-        "The momentum side must share the same branch and medium-response tensor as the mass side.",
+        "The motion term must use the same branch ledger and effective speed channel as the rest side.",
         "p^2c_{\\mathrm{eff}}^2",
         { x: 67, y: 22, width: 25, line: "above" }
       ),
@@ -428,7 +428,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "speed-role",
         "Speed role",
         "effectiveSpeed",
-        "The speed symbol must keep its declared role; changing it per observable is hidden retuning.",
+        "This speed is a declared effective channel; changing it per observable would be hidden retuning.",
         "c_{\\mathrm{eff}}",
         { x: 7, y: 82, width: 24, line: "below" }
       ),
@@ -461,7 +461,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "finite-window-total",
         "Finite-window total",
         "energyConservation",
-        "The conserved total has to include the delay-history channel and boundary flux, not only local mechanics.",
+        "The conserved total has to include local mechanics, delay history, wake storage, and boundary flux.",
         "dE_{\\mathrm{tot}}/dt=0",
         { x: 7, y: 8, width: 26, line: "above" }
       ),
@@ -477,7 +477,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "wake-side",
         "Wake side",
         "wakeMomentum",
-        "The wake term makes the conservation law native to a causal-delay system.",
+        "The wake term is momentum stored or carried by delayed causal response, not ordinary mechanical momentum.",
         "\\mathbf P_{\\mathrm{wake}}",
         { x: 67, y: 82, width: 25, line: "below" }
       ),
@@ -510,7 +510,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "density-row",
         "Density row",
         "densityChange",
-        "Use the physical Noether braid density row, not a generic fluid density.",
+        "Use the physical Noether sea density row; this is not a generic fluid-density placeholder.",
         "\\rho_{\\mathrm{NS}}(\\mathbf x,t)",
         { x: 7, y: 8, width: 25, line: "above" }
       ),
@@ -526,7 +526,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "source-residual",
         "Source and residual",
         "sourceTerm",
-        "Source and residual rows make missing carrier evidence visible instead of hiding it in a continuum fit.",
+        "The source row must load declared events; the residual row shows unresolved moment closure instead of hiding it.",
         "S_{\\rho}+r_{\\rho}",
         { x: 7, y: 68, width: 26, line: "below" }
       ),
@@ -567,7 +567,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "clock-channel",
         "Clock channel",
         "lapse",
-        "The lapse term must come from the same Noether sea response as ruler and signal rows.",
+        "The lapse term is the clock/cadence channel of the same Noether sea response used by ruler and signal rows.",
         "N",
         { x: 35, y: 7, width: 33, line: "above" }
       ),
@@ -583,7 +583,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "drift-channel",
         "Drift channel",
         "drift",
-        "The drift term reads local Noether sea flow into null paths, clocks, and weak-field observables.",
+        "The drift term inserts local Noether sea flow into the displacement product for paths, clocks, and weak fields.",
         "u^i_{\\mathrm{sea}}",
         { x: 67, y: 82, width: 25, line: "below" }
       ),
@@ -623,7 +623,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "potential-response",
         "Potential response",
         "potentialTerm",
-        "The potential term is a weak-field projection from the shared response record.",
+        "The potential term is the weak-field cadence projection from the shared response record, not a private fit.",
         "\\Phi_N/c_0^2",
         { x: 8, y: 68, width: 25, line: "below" }
       ),
@@ -663,7 +663,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "lensing-readout",
         "Lensing readout",
         "deflection",
-        "This row tests whether the effective metric gives the observed null-path deflection.",
+        "The deflection readout tests the null-path projection of the effective metric.",
         "\\Delta\\theta",
         { x: 7, y: 8, width: 25, line: "above" }
       ),
@@ -679,7 +679,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "path-geometry",
         "Path geometry",
         "impact",
-        "The impact and signal path terms make scalar-only maps fail if spatial compliance is missing.",
+        "The impact term keeps path geometry explicit; scalar-delay-only maps fail when spatial compliance is absent.",
         "b c_0^2",
         { x: 7, y: 68, width: 26, line: "below" }
       ),
@@ -713,7 +713,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "factor-budget",
         "Frequency budget",
         "redshift",
-        "The equation splits redshift into endpoint cadence, source, motion, and path-history factors.",
+        "The left side is the observed frequency ratio; the right side must account for endpoint, source, motion, and path history.",
         "1+z_X",
         { x: 7, y: 8, width: 26, line: "above" }
       ),
@@ -729,7 +729,7 @@ const scoreFiveAndFourEquationMapDocuments = [
         "path-history",
         "Path history",
         "pathTransfer",
-        "The path term is where propagation through the Noether sea enters before comparison to cosmology.",
+        "The path term carries propagation history through the Noether sea before any cosmology comparison.",
         "\\mathcal P_{E\\to R}",
         { x: 7, y: 68, width: 26, line: "below" }
       ),

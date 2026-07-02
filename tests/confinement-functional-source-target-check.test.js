@@ -94,6 +94,12 @@ const DELTA_E_CORR_TAIL_CORRIDOR_WEIGHT_EVIDENCE_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const DELTA_E_CORR_UNIFORM_TAIL_BOUND_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const COLOR_SINGLET_CLOSURE_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
@@ -1030,6 +1036,21 @@ test("current confinement target passes structure but blocks accepted source row
       .sourceTargetPath,
     "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.uniform_large_r_bound_C_lambda_R0
+      .accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.uniform_large_r_bound_C_lambda_R0
+      .requiredLedgerComponents,
+    ["tail_envelope_bound", "R0", "C", "lambda", "coefficient_exclusion_audit"],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.uniform_large_r_bound_C_lambda_R0
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json",
+  );
   const deltaTailCorridorWeightEvidence = JSON.parse(
     fs.readFileSync(DELTA_E_CORR_TAIL_CORRIDOR_WEIGHT_EVIDENCE_PATH, "utf8"),
   );
@@ -1054,6 +1075,32 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     deltaTailCorridorWeightEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
       "uniform_large_r_bound_C_lambda_R0",
+    ),
+    true,
+  );
+  const deltaUniformTailBoundEvidence = JSON.parse(
+    fs.readFileSync(DELTA_E_CORR_UNIFORM_TAIL_BOUND_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    deltaUniformTailBoundEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["uniform_large_r_bound_C_lambda_R0"],
+  );
+  assert.equal(deltaUniformTailBoundEvidence.tailEnvelopeBound.R0, 1);
+  assert.equal(deltaUniformTailBoundEvidence.tailEnvelopeBound.C, 1);
+  assert.equal(deltaUniformTailBoundEvidence.tailEnvelopeBound.lambda, 1);
+  assert.equal(
+    deltaUniformTailBoundEvidence.tailEnvelopeBound.usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    deltaUniformTailBoundEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
+    true,
+  );
+  assert.equal(
+    deltaUniformTailBoundEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "lim_R_to_infty_T_NN_R_eq_0",
     ),
     true,
   );
@@ -1124,6 +1171,7 @@ test("current confinement target passes structure but blocks accepted source row
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
       "corridor_weight_growth_eta_lt_lambda",
+      "uniform_large_r_bound_C_lambda_R0",
       "coefficient_exclusion_audit",
     ],
   );
@@ -1135,7 +1183,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
       .stillMissingBeforeAcceptance.includes("uniform_large_r_bound_C_lambda_R0"),
-    true,
+    false,
   );
   assert.equal(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
@@ -1193,7 +1241,7 @@ test("current confinement target passes structure but blocks accepted source row
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(
       "uniform_large_r_bound_C_lambda_R0",
     ),
-    true,
+    false,
   );
   assert.equal(
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(

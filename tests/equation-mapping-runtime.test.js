@@ -142,13 +142,13 @@ test("equation mapping pointer geometry attaches comments to section line edges"
     x1: 240,
     y1: 255,
     x2: 400,
-    y2: 230,
+    y2: 224,
   });
   assert.deepEqual(createPointerLineGeometry(stageRect, targetRect, rightComment, "below"), {
     x1: 580,
     y1: 310,
     x2: 400,
-    y2: 280,
+    y2: 277,
   });
 });
 

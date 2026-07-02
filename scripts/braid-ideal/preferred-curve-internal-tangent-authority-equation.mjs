@@ -12,6 +12,10 @@ export const SCHEMA = "preferred_curve_internal_tangent_authority_equation.v0";
 export const FIRST_MISSING_OBJECT = "same_record_preferred_curve_internal_tangent_authority_equation";
 export const FIRST_MISSING_FIELD =
   "preferred_curve_internal_tangent_authority_equation.minimum_norm_retained_history_gain_witness_row";
+export const REPLACEMENT_CRITERION_FIRST_MISSING_OBJECT =
+  "same_record_accepted_central_solver_evidence_for_branch_clock_lock_replacement";
+export const REPLACEMENT_CRITERION_FIRST_MISSING_FIELD =
+  "preferred_curve_internal_tangent_authority_equation.same_record_accepted_evidence";
 export const ACCEPTANCE_CERTIFICATE_FIELD =
   "preferred_curve_internal_tangent_authority_equation.acceptance_certificate_ref";
 
@@ -31,6 +35,20 @@ export const NEGATIVE_CONTROL_REASONS = Object.freeze({
 
 const EPSILON = 1e-12;
 const DEFAULT_BINDING_TOLERANCE = 1e-9;
+
+const ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS = Object.freeze([
+  "central_retained_history_acceptance_certificate_ref",
+  "preferred_curve_internal_tangent_authority_acceptance_certificate_ref",
+  "same_record_retained_path_error_row_ref",
+  "retained_solver_tangent_target_vector_row_ref",
+  "active_causal_margin_gradient_vector_row_ref",
+  "post_provider_root_margin_row_ref",
+  "same_record_retained_root_ledger_ref",
+  "same_record_action_closure_row_ref",
+  "same_record_wake_history_ref",
+  "same_record_path_history_ref",
+  "same_record_provider_provenance_ref",
+]);
 
 const AUTHORIZATION_FLAGS = Object.freeze([
   "accepted_same_record_evidence",
@@ -133,6 +151,14 @@ function addMissing(missingFields, condition, field) {
   if (condition) {
     missingFields.push(field);
   }
+}
+
+function stringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function pickSameRecordAcceptedEvidence(input = {}) {
+  return input.sameRecordAcceptedEvidence ?? input.same_record_accepted_evidence ?? {};
 }
 
 function buildCurveDifferential(row) {
@@ -296,6 +322,64 @@ function dynamicRootMarginBinding(curveDifferential = {}, minimumGainEvaluation 
   );
 }
 
+function evaluateBranchClockLockReplacementCriterion({
+  mathematicalEquationPassed,
+  sameRecordAcceptedEvidence,
+}) {
+  const evidence = sameRecordAcceptedEvidence ?? {};
+  const missingFields = [];
+  if (!mathematicalEquationPassed) {
+    missingFields.push("preferred_curve_internal_tangent_authority_equation.mathematical_equation_passed");
+  }
+  const acceptedSameRecordEvidence =
+    evidence.accepted_same_record_central_solver_evidence === true ||
+    evidence.accepted_same_record_evidence === true;
+  if (!acceptedSameRecordEvidence) {
+    missingFields.push(
+      "preferred_curve_internal_tangent_authority_equation.same_record_accepted_evidence.accepted_same_record_central_solver_evidence"
+    );
+  }
+  for (const field of ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS) {
+    if (stringRef(evidence[field]) == null) {
+      missingFields.push(`preferred_curve_internal_tangent_authority_equation.same_record_accepted_evidence.${field}`);
+    }
+  }
+  const replacementCriterionPassed = missingFields.length === 0;
+  return {
+    schema: "preferred_curve_branch_clock_lock_replacement_criterion.v0",
+    replacement_criterion_passed: replacementCriterionPassed,
+    candidate_artifact_authorizes_removal: false,
+    can_remove_assigned_branch_clock_lock:
+      replacementCriterionPassed ? "conditional_on_external_accepted_authority" : false,
+    status: replacementCriterionPassed
+      ? "replacement_criterion_conditionally_satisfied_by_declared_accepted_same_record_evidence"
+      : "replacement_criterion_missing_mathematical_pass_or_accepted_same_record_evidence",
+    theorem_statement:
+      "If the preferred-curve internal tangent-authority equation passes on one source row and the listed same-record central-solver evidence refs are accepted, the assigned branch-clock lock is algebraically replaceable by the internal retained-history response plus tangent-null margin lift while preserving the positive causal-root margin.",
+    required_equations: [
+      "J_u + J_v v_*'(u)=0",
+      "T(q)=P_T(a_ansatz(q)-a_wake(q)-a_support(q))",
+      "K_x^*(q)=-T(q)e_x^T/(||e_x||^2+||e_v||^2)",
+      "K_v^*(q)=-T(q)e_v^T/(||e_x||^2+||e_v||^2)",
+      "a_internal^*(q)=a_RH^*(q)+n_*(q)",
+      "m_dyn-Delta_T||P_Ta_internal^*(q)||+Delta_M<a_internal^*(q),G_mu(q)> >= epsilon_mu",
+    ],
+    required_accepted_evidence_fields: [...ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS],
+    supplied_accepted_evidence_refs: Object.fromEntries(
+      ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS.map((field) => [field, stringRef(evidence[field])])
+    ),
+    accepted_same_record_central_solver_evidence: acceptedSameRecordEvidence,
+    missing_fields: missingFields,
+    first_missing_object: replacementCriterionPassed
+      ? "external_acceptance_authority_for_internal_tangent_authority_replacement"
+      : REPLACEMENT_CRITERION_FIRST_MISSING_OBJECT,
+    first_missing_field: replacementCriterionPassed
+      ? "preferred_curve_internal_tangent_authority_equation.external_promotion_authority_ref"
+      : (missingFields[0] ?? REPLACEMENT_CRITERION_FIRST_MISSING_FIELD),
+    accepted: false,
+  };
+}
+
 function firstMissing({
   curveDifferential,
   minimumGainWitnessRow,
@@ -387,6 +471,7 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
   const bindingTolerance = finiteNumber(input.bindingTolerance ?? input.binding_tolerance) ?? DEFAULT_BINDING_TOLERANCE;
   const nearEdgeCandidateRow = pickNearEdgeCandidateRow(input);
   const minimumGainWitnessRow = pickMinimumGainWitnessRow(input);
+  const sameRecordAcceptedEvidence = pickSameRecordAcceptedEvidence(input);
   const curveDifferential = buildCurveDifferential(nearEdgeCandidateRow);
   const minimumGainEvaluation = minimumGainWitnessRow
     ? evaluateMinimumNormRetainedHistoryGainWitnessRow(minimumGainWitnessRow)
@@ -420,6 +505,10 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     sameSourcePassed &&
     dynamicRootMarginPassed &&
     minimumGainEvaluation.mathematical_gain_conditions_passed === true;
+  const branchClockLockReplacementCriterion = evaluateBranchClockLockReplacementCriterion({
+    mathematicalEquationPassed,
+    sameRecordAcceptedEvidence,
+  });
   const artifactHash = stableHash({
     schema: SCHEMA,
     curve_source_row_id: curveDifferential.source_row_id ?? null,
@@ -430,6 +519,7 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     minimum_gain_row_id: minimumGainWitnessRow?.row_id ?? null,
     minimum_gain_source_row_id: minimumGainEvaluation.source_row_id ?? null,
     mathematical_equation_passed: mathematicalEquationPassed,
+    replacement_criterion_passed: branchClockLockReplacementCriterion.replacement_criterion_passed,
   });
 
   return {
@@ -464,6 +554,8 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     },
     minimum_norm_retained_history_gain_witness_row: minimumGainWitnessRow,
     minimum_norm_retained_history_gain_evaluation: minimumGainEvaluation,
+    same_record_accepted_evidence: sameRecordAcceptedEvidence,
+    branch_clock_lock_replacement_criterion: branchClockLockReplacementCriterion,
     bindings: {
       binding_tolerance: bindingTolerance,
       same_source_row_id_binding_passed: sameSourcePassed,
@@ -490,6 +582,8 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
         minimumGainEvaluation.mathematical_gain_conditions_passed === true,
       mathematical_preferred_curve_internal_tangent_authority_equation_passed:
         mathematicalEquationPassed,
+      branch_clock_lock_replacement_criterion_passed:
+        branchClockLockReplacementCriterion.replacement_criterion_passed,
       accepted_internal_tangent_authority_count: 0,
     },
     artifact_status: missing.artifact_status,
@@ -502,7 +596,7 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
       first_missing_field: missing.first_missing_field,
     },
     acceptance_boundary:
-      "curve-parameterized equation is a mathematical pass marker only; replacing the assigned branch-clock lock still requires accepted central retained-history evidence, retained-root ledger, action closure, wake history, path history, provider provenance, and an acceptance certificate",
+      "curve-parameterized equation is a mathematical pass marker only; replacing the assigned branch-clock lock still requires accepted central retained-history evidence, retained-root ledger, action closure, wake history, path history, provider provenance, and external promotion authority",
     accepted_internal_tangent_authority_ref: null,
     accepted: false,
     authorization: makeAuthorization(),
@@ -543,6 +637,16 @@ export function validatePreferredCurveInternalTangentAuthorityEquation(artifact)
   }
   if (artifact?.minimum_norm_retained_history_gain_evaluation?.accepted !== false) {
     errors.push("minimum gain evaluation must remain non-authorizing");
+  }
+  if (artifact?.branch_clock_lock_replacement_criterion?.accepted !== false) {
+    errors.push("branch-clock-lock replacement criterion must remain non-authorizing");
+  }
+  if (
+    artifact?.summary?.branch_clock_lock_replacement_criterion_passed === true &&
+    artifact?.branch_clock_lock_replacement_criterion?.can_remove_assigned_branch_clock_lock !==
+      "conditional_on_external_accepted_authority"
+  ) {
+    errors.push("replacement criterion pass must remain conditional on external accepted authority");
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (artifact?.authorization?.[flag] !== false) {

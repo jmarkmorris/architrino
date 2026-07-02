@@ -94,6 +94,24 @@
         "accepted_Delta_E_corr_NN_tail_limit"
       ],
       "boundary": "The retained corridor-weight support accepts eta=0<C_lambda for any future positive lambda and excludes element-indexed tail coefficients, but it does not prove the residual exponential tail or the tail-limit rows."
+    },
+    "uniformTailBoundSupport": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-uniform-tail-bound-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_uniform_tail_bound_support_0001",
+      "acceptedRowsProvided": [
+        "uniform_large_r_bound_C_lambda_R0"
+      ],
+      "usableFor": [
+        "accepted uniform large-R exponential bound support form",
+        "accepted non-element-indexed R0, C, and lambda support constants for the tail route"
+      ],
+      "notUsableFor": [
+        "accepted_lim_R_to_infty_T_NN_R_eq_0",
+        "accepted_O_NN_finite",
+        "accepted_exists_R0_C_lambda_exp_decay_tail",
+        "accepted_Delta_E_corr_NN_tail_limit"
+      ],
+      "boundary": "The retained uniform tail-bound support accepts only the uniform_large_r_bound_C_lambda_R0 row; it does not join accepted sigma_eff, accepted color-singlet envelopes, and same-record branch-interface evidence into the top tail-limit row."
     }
   },
   "requiredAcceptanceCondition": {
@@ -173,12 +191,12 @@
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
       "corridor_weight_growth_eta_lt_lambda",
+      "uniform_large_r_bound_C_lambda_R0",
       "coefficient_exclusion_audit"
     ],
     "stillMissingBeforeAcceptance": [
       "accepted_sigma_eff_extraction",
-      "accepted_color_singlet_nucleon_envelope",
-      "uniform_large_r_bound_C_lambda_R0"
+      "accepted_color_singlet_nucleon_envelope"
     ],
     "derivedRowsIfAccepted": [
       "lim_R_to_infty_T_NN_R_eq_0",
@@ -270,8 +288,7 @@
     "missingAcceptanceRows": [
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
-      "uniform_large_r_bound_C_lambda_R0"
+      "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response"
     ],
     "failureModes": [
       "lambda <= 0",
@@ -309,7 +326,7 @@
       "accepted proton and neutron color-singlet envelope bundle",
       "accepted proton and neutron branch-interface ledgers plus same-record conservation ledger",
       "accepted same-record Noether sea response row",
-      "large-r residual bound that proves lim_R_to_infty_T_NN_R_eq_0",
+      "same-record tail-limit certificate that joins the accepted uniform large-r bound support to the accepted sigma_eff and color-singlet rows",
       "finite weighted-overlap audit O_NN_finite"
     ],
     "failureModes": [

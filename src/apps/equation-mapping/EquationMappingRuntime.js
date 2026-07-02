@@ -35,6 +35,10 @@ const EQUATION_AUTO_FIT_MIN_FONT_SIZE = Object.freeze({
   medium: 13,
   large: 15,
 });
+const SECTION_LINE_OFFSET_PX = Object.freeze({
+  above: -6,
+  below: 3,
+});
 
 function createElement(documentLike, tag, className = "", textContent) {
   const element = documentLike.createElement(tag);
@@ -96,10 +100,16 @@ export function calculateEquationAutoFit({
   };
 }
 
-export function createPointerLineGeometry(stageRect, targetRect, commentRect, placement = DEFAULT_SECTION_LINE_PLACEMENT) {
+export function createPointerLineGeometry(
+  stageRect,
+  targetRect,
+  commentRect,
+  placement = DEFAULT_SECTION_LINE_PLACEMENT,
+  sectionLineOffsetPx = SECTION_LINE_OFFSET_PX[placement] ?? 0
+) {
   const targetCenter = getRectCenter(targetRect);
   const commentCenter = getRectCenter(commentRect);
-  const targetY = placement === "above" ? targetRect.top : targetRect.bottom;
+  const targetY = placement === "above" ? targetRect.top + sectionLineOffsetPx : targetRect.bottom - sectionLineOffsetPx;
   const targetX = clamp(targetCenter.x, targetRect.left, targetRect.right);
   const sourceX = commentCenter.x <= targetX ? commentRect.right : commentRect.left;
   const sourceY = clamp(targetCenter.y, commentRect.top, commentRect.bottom);

@@ -171,6 +171,13 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "eta",
     "eta_lt_lambda_witness",
   ],
+  uniform_large_r_bound_C_lambda_R0: [
+    "tail_envelope_bound",
+    "R0",
+    "C",
+    "lambda",
+    "coefficient_exclusion_audit",
+  ],
   coefficient_exclusion_audit: [
     "no_A_indexed_tail_coefficient",
     "no_Z_indexed_tail_coefficient",
