@@ -167,3 +167,8 @@ V1 is not complete until screenshots prove:
 - the four background colors render with sufficient contrast;
 - equations inside comments render through KaTeX;
 - and no text overlaps incoherently.
+
+Current v1 proof artifacts:
+
+- [equation-mapping-desktop-1280x720.png](browser-qa/equation-mapping-desktop-1280x720.png)
+- [equation-mapping-mobile-390x844.png](browser-qa/equation-mapping-mobile-390x844.png)

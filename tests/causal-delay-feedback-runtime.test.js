@@ -1485,16 +1485,16 @@ test("causal delay feedback animation speed setting scales the replay clock", ()
 
   runtime.tick(1000);
 
-  assert.equal(runtime.fieldSpeedScale, 1.4);
+  assert.equal(runtime.fieldSpeedScale, 0.98);
   assert.equal(cfSpeedInput.value, "1");
   assert.equal(cfSpeedValue.textContent, "1x");
-  assertNear(runtime.elapsedSeconds, 0.0224);
-  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 1.4);
+  assertNear(runtime.elapsedSeconds, 0.01568);
+  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 0.98);
   assert.equal(scheduledFrames.length, 1);
 
   runtime.setFieldSpeedControlScale(1.25);
 
-  assert.equal(runtime.fieldSpeedScale, 1.75);
+  assert.equal(runtime.fieldSpeedScale, 1.225);
   assert.equal(cfSpeedInput.value, "1.25");
   assert.equal(cfSpeedValue.textContent, "1.25x");
 });
@@ -1510,7 +1510,7 @@ test("causal delay feedback animation tempo and architrino speed settings keep l
   runtime.setFieldSpeedControlScale(0.25);
   runtime.setArchitrinoSpeedIndex(9);
 
-  assert.equal(runtime.fieldSpeedScale, 0.35);
+  assert.equal(runtime.fieldSpeedScale, 0.245);
   assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
   assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
   assert.deepEqual(

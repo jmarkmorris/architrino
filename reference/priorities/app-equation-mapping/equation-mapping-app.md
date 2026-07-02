@@ -18,11 +18,11 @@
 
 ## Current
 
-This folder owns the priority packet for a new equation-mapping app that helps the operator work through mappings between $\mathbb{A}\mathbb{A}\mathbb{A}$ equations and existing physics equations.
+This folder owns the priority packet for the equation-mapping app that helps the operator work through mappings between $\mathbb{A}\mathbb{A}\mathbb{A}$ equations and existing physics equations.
 
 The app is intended to feel like a simple static equation annotation surface: one centered equation layer, explanatory overlay comments, and thin pointer lines that point to exact terms or sections of the formula.
 
-The first implementation is not an animation authoring system. It should support static text layers before any timing, transition, or scripted-animation feature is considered.
+The first implementation is now a static shell at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
 ## Objective
 
@@ -54,14 +54,20 @@ The first useful version should let the operator:
 - Source data target: a small app-owned equation-map document format, with seeded examples drawn from active equation-mapping priority rows only after those rows are explicitly selected for app review.
 - UI form: a full-viewport equation canvas with a collapsible left subject index, a compact top-right control group, and a small settings panel.
 
+## Implemented Baseline
+
+- Route: [equation-mapping.html](../../../equation-mapping.html).
+- Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
+- Seed document: `poisson-weak-field-source-map`.
+- Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
+- UI: centered equation layer, collapsible subject index, top-right home/search/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
+- Browser QA proofs: [desktop 1280x720](browser-qa/equation-mapping-desktop-1280x720.png) and [mobile 390x844](browser-qa/equation-mapping-mobile-390x844.png).
+
 ## Task Queue
 
-1. `static_layer_model` - Define the v1 static equation-map document format: equation TeX, subject area, term/section anchors, overlay comments, pointer-line side, and background setting. Status: `active`. Depends on: none.
-2. `first_page_shell` - Build the standalone route with a centered equation layer, top-right home button, search menu, collapsible subject index, and four-color background settings. Status: `next`. Depends on: `static_layer_model`.
-3. `formula_section_pointing` - Implement measured formula-section targeting so a comment can draw a thin pointer line to a horizontal line above or below the selected section of the formula. Status: `pending`. Depends on: `first_page_shell`.
-4. `comment_math_rendering` - Render comment rectangles with Helvetica Neue prose and KaTeX math inside the same compact box. Status: `pending`. Depends on: `first_page_shell`.
-5. `seed_review_equations` - Seed a small equation index by subject area from selected equation-mapping rows without implying proof acceptance. Status: `pending`. Depends on: `comment_math_rendering`.
-6. `browser_qa` - Capture desktop and mobile screenshots proving the equation remains centered, the subject index collapses, the pointer lines stay attached, and text does not overlap. Status: `pending`. Depends on: `seed_review_equations`.
+1. `equation_map_editor` - Add an operator-facing way to create and edit anchors, overlay comments, and pointer targets without editing JavaScript seed data. Status: `pending`. Depends on: v1 static shell.
+2. `seed_review_equations_expansion` - Add a small set of selected equation-mapping review documents by subject area without implying proof acceptance. Status: `pending`. Depends on: `equation_map_editor` or an accepted seed-data update.
+3. `review_packet_export` - Export a static equation-map packet for review, including document JSON and a screenshot. Status: `pending`. Depends on: `equation_map_editor`.
 
 ## Detailed Priority Files
 

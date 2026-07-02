@@ -1,4 +1,4 @@
-# Videos Brainstorming
+# Media Videos Brainstorming
 
 This file preserves ideas and insights that are working toward promotion to an existing or new document or app.
 

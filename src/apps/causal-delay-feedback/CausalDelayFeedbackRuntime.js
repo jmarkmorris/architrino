@@ -41,7 +41,7 @@ const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
 const FIELD_SPEED_CONTROL_MIN = 0.25;
 const FIELD_SPEED_CONTROL_MAX = 1.75;
 const DEFAULT_FIELD_SPEED_CONTROL_SCALE = 1;
-const FIELD_SPEED_BASE_MULTIPLIER = 1.4;
+const FIELD_SPEED_BASE_MULTIPLIER = 0.98;
 const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN * FIELD_SPEED_BASE_MULTIPLIER;
 const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX * FIELD_SPEED_BASE_MULTIPLIER;
 const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE * FIELD_SPEED_BASE_MULTIPLIER;
@@ -1610,7 +1610,8 @@ class CausalDelayFeedbackRuntime {
 
   updateFieldSpeedControl() {
     if (this.dom?.cfSpeedInput) {
-      this.dom.cfSpeedInput.value = String(this.getFieldSpeedControlScale(this.fieldSpeedScale));
+      const roundedControlScale = Math.round(this.getFieldSpeedControlScale(this.fieldSpeedScale) * 100) / 100;
+      this.dom.cfSpeedInput.value = String(roundedControlScale);
     }
     if (this.dom?.cfSpeedValue) {
       this.dom.cfSpeedValue.textContent = this.formatFieldSpeedScale(this.fieldSpeedScale);

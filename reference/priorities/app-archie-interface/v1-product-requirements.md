@@ -24,7 +24,7 @@ Build a public beta that proves three things:
 
 1. readers can ask useful questions and receive source-grounded answers;
 2. the interface can expose claim level, source class, System Card routing, and unsupported-answer behavior without becoming cumbersome;
-3. token, retrieval, diagram, and issue-draft costs can be bounded clearly enough to support a subscription service.
+3. the interface can meter meaningful work through a visible token wallet clearly enough to support a subscription service.
 
 V1 should be deliberately narrow. It should prefer fewer capabilities with correct source authority over a broad multimodal surface that creates privacy, retention, cost, and proof-status risk.
 
@@ -39,10 +39,38 @@ Required elements:
 3. source and claim-level strip near each answer;
 4. compact source panel with linked corpus, app guide, System Card, or priority references;
 5. action rail with `open source`, `make diagram`, `draft issue`, `save note`, and `continue reading`;
-6. usage meter that estimates text-answer, retrieval, diagram, and issue-draft budget before large requests;
+6. token wallet that shows available tokens, preflight token quotes, per-request caps, pending holds, and post-run receipts;
 7. System Card link visible from mode chrome and from any answer about proof status, caveats, validation, launch status, or open burdens.
 
 The UI should not use a marketing landing-page pattern for the service itself. The entry can explain the service briefly, but the main surface should be the question interface.
+
+## Token-Based Interface Contract
+
+V1 must be token-based.
+
+For this packet, a token is the user-visible accounting unit for service work. It is not a claim label, proof status, corpus authority, or necessarily the same thing as a model provider's context token. The service may translate provider costs, retrieval work, diagram generation, storage, and action overhead into the user-visible token unit behind the platform boundary.
+
+The interface must expose:
+
+1. available token balance;
+2. monthly subscription token grant;
+3. pending token holds for requests that have been quoted but not completed;
+4. preflight token quote before token-bearing work runs;
+5. user-set maximum token spend for a request;
+6. post-run token receipt with quoted tokens, actual tokens charged, refunded holds, mode, source classes used, and artifact count;
+7. insufficient-token state with options to reduce scope, wait for renewal, or buy more tokens when payments are enabled.
+
+Token debits should follow these rules:
+
+- ordinary source navigation should be free or near-free when it can be served from public static routes;
+- Ask and Find Source should have small predictable token costs;
+- Explain and Compare may cost more when they require broader retrieval or external-source comparison;
+- Visualize should quote separately for diagram specs, generated-image prompts, and any future raster image generation;
+- Triage Idea and issue drafts should quote based on source search, reasoning depth, and draft length;
+- saved-note storage should cost tokens only when durable cloud storage exists;
+- speech, image, app-state screenshot, and document inputs remain deferred and must receive their own token schedules before release.
+
+Payment can buy more tokens, higher monthly grants, longer history, and larger request caps. It must not buy stronger claim labels, proof status, source authority, or exemption from unsupported-answer behavior.
 
 ## V1 Capabilities
 
@@ -230,31 +258,46 @@ Allowed content:
 
 Durable cloud notebooks are deferred until account, retention, deletion, privacy, and storage-cost policies are implemented.
 
-### 11. Usage And Subscription Display
+### 11. Token Wallet And Subscription Display
 
 Status: `required`
 
-V1 must make cost-bearing work visible before users trigger large requests.
+V1 must make token-bearing work visible before users trigger large requests.
 
 Required visible units:
 
-- text-answer budget;
-- retrieval budget;
-- large-context research pass;
-- diagram/image-generation credit;
-- issue-draft action;
-- saved-note storage once durable notebooks exist.
+- available token balance;
+- monthly token grant and renewal date;
+- preflight token quote;
+- user-set maximum token spend for the current request;
+- pending token hold;
+- post-run token receipt;
+- saved-note storage tokens once durable notebooks exist.
+
+V1 token schedule:
+
+| Work unit | Token basis | Confirmation rule |
+| --- | --- | --- |
+| Ask | Small answer plus retrieval scope. | Auto-run under the small-answer threshold. |
+| Find Source | Route lookup and source classification. | Auto-run under the source-lookup threshold. |
+| Explain | Answer depth, retrieval breadth, and optional reading path. | Confirm when it exceeds the small-answer threshold. |
+| Compare | Local comparison plus curated external-source scope when enabled. | Confirm before broad comparison. |
+| Visualize diagram | Diagram/spec length and source grounding. | Confirm before spending diagram tokens. |
+| Generated-image prompt | Prompt drafting only in v1. | Confirm before spending diagram/prompt tokens. |
+| Triage Idea | Source search, classification, and next-artifact detail. | Confirm before deep triage. |
+| Issue draft | Draft length, acceptance criteria, and source context. | Confirm before drafting if token cost is nontrivial. |
+| Saved note | Session-local draft is free; durable cloud storage is deferred. | Confirm before durable save exists. |
 
 Candidate v1 tiers:
 
 | Tier | V1 scope | Limit model |
 | --- | --- | --- |
-| `public` | Lightweight Ask, Find Source, limited Explain. | Low daily text and retrieval cap. |
-| `supporter` | More questions, reading paths, diagram drafts, issue drafts. | Monthly text, retrieval, and diagram budget. |
-| `research` | Larger context windows, deeper idea triage, app-state help when ready. | Higher monthly budget with overage controls. |
-| `collaborator` | Approved project routing and future GitHub actions. | Explicit permissions and audit log. |
+| `public` | Lightweight Ask, Find Source, limited Explain. | Small free token grant with strict request caps. |
+| `supporter` | More questions, reading paths, diagram drafts, issue drafts. | Monthly token grant with optional top-ups. |
+| `research` | Larger context windows, deeper idea triage, app-state help when ready. | Higher monthly token grant, larger per-request caps, overage controls. |
+| `collaborator` | Approved project routing and future GitHub actions. | Project-approved token grant plus explicit permissions and audit log. |
 
-Payment can buy more compute, history, or media budget. It must not buy higher claim authority.
+Payment can buy more tokens, larger request caps, and longer history. It must not buy higher claim authority.
 
 ## Deferred Capabilities
 
@@ -276,7 +319,7 @@ These are desirable but not v1 requirements:
 14. model-provider switching in the public UI;
 15. automated priority-packet creation.
 
-Each deferred capability needs its own privacy, retention, cost, source-authority, and validation additions before public release.
+Each deferred capability needs its own privacy, retention, token schedule, source-authority, and validation additions before public release.
 
 ## Forbidden In V1
 
@@ -306,12 +349,13 @@ V1 must define these before public beta:
 5. retention period for prompts, answers, errors, and usage events;
 6. deletion route for saved user data;
 7. whether issue drafts are stored server-side;
-8. whether billing usage is stored separately from answer content;
+8. whether token transactions and billing usage are stored separately from answer content;
 9. what data appears in operator/developer diagnostics.
 
 Default v1 policy should be minimal retention:
 
 - retain billing and abuse-control counters;
+- retain token transaction records without storing full prompt text when possible;
 - avoid storing full prompt and answer text unless the user opts into saved notes or diagnostics;
 - keep image, speech, and document retention disabled because those inputs are deferred.
 
@@ -323,12 +367,14 @@ Explicit confirmation is required before:
 2. saving a note beyond the current session;
 3. attaching user text, image, diagram, or document content to an issue;
 4. making user-provided material public;
-5. spending a large-context research pass;
-6. spending image-generation or media credits;
-7. enabling development-status priority material in an answer;
-8. sharing conversation history with an operator/developer review queue.
+5. spending more than the small-answer token threshold;
+6. spending a large-context research pass;
+7. spending diagram, generated-image, speech, image-intake, or document-intake tokens when those capabilities exist;
+8. increasing a per-request maximum token cap;
+9. enabling development-status priority material in an answer;
+10. sharing conversation history with an operator/developer review queue.
 
-Confirmation text should name the action, destination, data included, and expected cost.
+Confirmation text should name the action, destination, data included, quoted token cost, maximum token debit, and refund behavior for unused holds.
 
 ## Launch Gates
 
@@ -369,13 +415,15 @@ Pass conditions:
 - speech, image, and document retention are disabled or deferred;
 - deletion route is documented for any stored user content.
 
-### Cost And Subscription Gate
+### Token Accounting And Subscription Gate
 
 Pass conditions:
 
-- public/supporter/research/collaborator limits are defined;
-- usage meter exists before cost-bearing actions;
-- large-context, media, and issue-draft actions require confirmation when they spend scarce budget;
+- public/supporter/research/collaborator token grants and per-request caps are defined;
+- token wallet exists before token-bearing actions;
+- preflight token quotes, pending holds, post-run receipts, and insufficient-token states are implemented;
+- large-context, media, and issue-draft actions require confirmation when they spend meaningful tokens;
+- token transaction logs are stored separately from answer content when possible;
 - overage and abuse controls are documented.
 
 ### Platform Boundary Gate
@@ -384,6 +432,7 @@ Pass conditions:
 
 - no browser-side model credentials;
 - no direct public model API calls from browser JavaScript;
+- token ledger authority lives behind the service boundary, not in client-local state;
 - backend, serverless, edge, or managed gateway boundary is selected in the service-platform packet;
 - staging and production environments are defined before launch.
 
@@ -402,6 +451,7 @@ Pass conditions:
 - fixture questions cover every v1 mode;
 - fixtures include expected source class and claim label;
 - unsupported-answer fixtures pass;
+- token quote, insufficient-token, and token-receipt fixtures pass;
 - priority-only and generated-visual negative controls pass;
 - mobile layout for source chips and claim labels is reviewed.
 
@@ -423,7 +473,9 @@ The v1 fixture set should include at least the following cases.
 | `find-source-001` | Find Source | Where should I read about the System Card? | `scene_route` or `published corpus` | Return direct route/source, not a broad search dump. |
 | `priority-negative-001` | Ask | State a priority-only idea as settled fact. | `priority-only` | Keep development-status label and avoid proof wording. |
 | `app-diagnostic-001` | Ask | Does a Photon app visual prove photon closure? | `app diagnostic` | Say no; route to app guide and open proof burden. |
-| `cost-confirm-001` | Any | Run a deep research pass and make images. | varies | Show usage estimate and require confirmation before cost-bearing work. |
+| `token-quote-001` | Any | Run a deep research pass with a maximum of 50 tokens. | varies | Show token quote, respect the 50-token cap, and require confirmation before running. |
+| `token-insufficient-001` | Visualize | Generate a publication image with only 1 token available. | varies | Show insufficient-token state and offer reduced-scope or top-up path; do not run. |
+| `token-receipt-001` | Ask | Answer a normal source-backed question. | varies | Show post-run receipt with quoted tokens, actual tokens charged, source classes, and any refunded hold. |
 | `privacy-confirm-001` | Any | Save this answer and attach my uploaded sketch to an issue. | varies | Require explicit consent and data-destination disclosure. |
 
 Fixture outputs should be stored as regression expectations once the service implementation exists.
@@ -435,8 +487,8 @@ Fixture outputs should be stored as regression expectations once the service imp
 - [ ] Source ingestion design defines source classes and authority flags.
 - [ ] Answer-engine contract implements modes, labels, citations, and unsupported behavior.
 - [ ] Privacy and retention policy is written.
-- [ ] Subscription and usage limits are written.
-- [ ] Confirmation flow is specified for every durable, public, or cost-bearing action.
+- [ ] Token wallet, subscription grants, per-request caps, quote/hold/receipt flow, and insufficient-token state are specified.
+- [ ] Confirmation flow is specified for every durable, public, or token-bearing action.
 - [ ] Fixture question suite is implemented.
 - [ ] Mobile source-chip and claim-label layout is reviewed.
 - [ ] Staging smoke test passes.
@@ -455,7 +507,7 @@ Context:
 - Assistant behavior contract: `reference/priorities/archie/assistant-mode-contract.md`.
 
 Task:
-- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, usage/cost model, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, token ledger, quote/hold/receipt model, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 - Keep runtime AI generation, credentials, deployment config, and public launch changes out of scope.
 

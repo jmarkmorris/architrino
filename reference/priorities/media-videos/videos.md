@@ -1,4 +1,4 @@
-# Videos
+# Media Videos
 
 ## Workstream Metadata
 
@@ -11,7 +11,7 @@
 
 ## Purpose
 
-The videos workstream owns AI-assisted media production for Architrino apps, theory explanation, tutorials, and public platform delivery.
+The media-videos workstream owns AI-assisted media production for Architrino apps, theory explanation, tutorials, and public platform delivery.
 
 Its job is to turn reviewed scripts and visual plans into generated or assembled media such as characters, voices, narration, app walkthroughs, charts, formulas, images, animations, and videos.
 

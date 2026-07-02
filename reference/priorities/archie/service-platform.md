@@ -13,7 +13,7 @@
 
 This priority captures the long-term Archie service: a properly deployed public question interface for architrino.com where readers can ask Archie typed, spoken, and image-grounded questions and receive source-grounded $\mathbb{A}\mathbb{A}\mathbb{A}$-native answers.
 
-This is not a static/local-source UI prototype. The current GitHub Pages site can continue to host the Archie sphere, System Card, corpus navigation, apps, comics, and public project links. The full Archie question service requires a separate deployed platform with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, cost controls, monitoring, and rollback behavior.
+This is not a static/local-source UI prototype. The current GitHub Pages site can continue to host the Archie sphere, System Card, corpus navigation, apps, comics, and public project links. The full Archie question service requires a separate deployed platform with backend or serverless runtime support, secret management, source routing, privacy policy, logging policy, rate limits, token accounting, cost controls, monitoring, and rollback behavior.
 
 ## Product Direction
 
@@ -43,11 +43,12 @@ The service platform must define:
 6. corpus ingestion pipeline from versioned repository content;
 7. retrieval/index service for authored corpus, generated reading copies, app guides, and curated prior-physics sources;
 8. source-authority flags for public, operator/developer, priority-only, and excluded material;
-9. rate limits, abuse controls, and cost ceilings;
-10. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, and cost per answer;
-11. staging and production environments;
-12. release, rollback, and incident-response procedure;
-13. privacy, retention, deletion, and user-consent policy for prompts, speech, images, and answer histories.
+9. token ledger for user-visible token balances, subscription grants, preflight quotes, pending holds, post-run receipts, and refunds;
+10. rate limits, abuse controls, and cost ceilings;
+11. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, tokens quoted, tokens spent, and cost per answer;
+12. staging and production environments;
+13. release, rollback, and incident-response procedure;
+14. privacy, retention, deletion, and user-consent policy for prompts, speech, images, answer histories, and token transaction records.
 
 ## Source Authority
 
@@ -63,7 +64,7 @@ The System Card must remain visible from the service. The platform should expose
 2. open proof burdens and known tensions;
 3. source-authority policy;
 4. enabled input modes;
-5. privacy, logging, cost, and retention status;
+5. privacy, logging, token cost, and retention status;
 6. model/provider status when public answers depend on a model;
 7. launch gates and incident/change history.
 
@@ -73,7 +74,7 @@ The System Card must remain visible from the service. The platform should expose
 2. `platform_architecture_packet` - Choose the deployment shape: GitHub Pages entry plus backend, separate hosted app, serverless/edge service, or managed AI gateway. Status: `long-term`.
 3. `source_ingestion_design` - Define versioned corpus ingestion, retrieval indexes, source classes, public/operator visibility, and citation payloads. Status: `long-term`.
 4. `answer_engine_contract` - Define mode routing, retrieval prompts, claim labels, System Card routing, unsupported-answer behavior, and regression fixtures. Status: `long-term`.
-5. `privacy_security_cost_policy` - Define prompt/image/speech handling, retention, logs, consent, rate limits, abuse controls, and budget controls. Status: `long-term`.
+5. `privacy_security_token_cost_policy` - Define prompt/image/speech handling, retention, logs, consent, rate limits, abuse controls, token accounting, and budget controls. Status: `long-term`.
 6. `deployment_and_ops_plan` - Define staging, production, environment variables, CI/CD, monitoring, rollback, incident response, and domain routing. Status: `long-term`.
 7. `public_beta_gate` - Run fixture questions, source-link QA, System Card checks, privacy review, cost review, and deployment smoke tests before any public beta. Status: `long-term`.
 
@@ -92,13 +93,13 @@ Use the Archie priority packet as the source of truth.
 Context:
 - The current architrino.com site is deployed through GitHub Pages.
 - The operator does not want a static/local-source Archie UI prototype.
-- The desired Archie question interface is a long-term service with backend or serverless deployment, privacy policy, cost controls, source authority, System Card disclosure, and production operations.
+- The desired Archie question interface is a long-term service with backend or serverless deployment, privacy policy, token accounting, cost controls, source authority, System Card disclosure, and production operations.
 - The service should wait behind core theory closure unless platform work directly unblocks public readiness.
 
 Task:
 - Produce a deployment architecture packet for the full Archie service.
 - Compare deployment options: GitHub Pages entry plus backend, separate hosted webapp, serverless/edge service, and managed AI gateway.
-- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/cost policy, observability, staging/production split, and rollback plan.
+- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/token-accounting policy, observability, staging/production split, and rollback plan.
 - Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:

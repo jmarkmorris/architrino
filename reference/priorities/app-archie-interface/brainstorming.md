@@ -15,7 +15,7 @@ Recommended v1 layout:
 - a source panel that shows which corpus, app guide, System Card, or priority class the answer used;
 - a claim-level chip on each answer: `published corpus`, `priority-only`, `comparison`, `speculation`, or `unsupported`;
 - an action rail for `open source`, `make diagram`, `draft issue`, `save note`, and `continue reading`;
-- a usage meter that shows when a request is likely to spend meaningful tokens, speech minutes, image-generation credits, or retrieval budget.
+- a token wallet that shows available tokens, preflight quotes, per-request caps, pending holds, and post-run receipts.
 
 The interface should feel like a working lab guide: quiet, direct, and source-aware. It can be warm and playful in voice mode, but it should stay disciplined about proof status.
 
@@ -163,25 +163,28 @@ Filing policy:
 
 A subscription service is reasonable because multimodal AI, retrieval, speech, image generation, and GitHub actions all create real operating costs.
 
+The interface should be token-based. A user should see one token wallet rather than separate hidden limits for model calls, retrieval, diagrams, images, speech, issue drafts, and saved notes. Backend accounting can translate real provider costs into the product token unit, but the user-facing experience should stay unified.
+
 Possible tiers:
 
 | Tier | Purpose | Cost controls |
 | --- | --- | --- |
-| Public | Lightweight corpus Q&A and navigation. | Low request cap, text-first, no saved media. |
-| Supporter | More questions, saved reading paths, limited voice, limited images. | Monthly token and media budgets. |
-| Research | Deeper idea triage, issue drafts, app-state help, larger context windows. | Higher budget, clear overage controls. |
-| Collaborator | Project-approved users who can route drafts into GitHub or priority packets. | Explicit action permissions and audit logs. |
+| Public | Lightweight corpus Q&A and navigation. | Small free token grant, strict request caps, text-first, no saved media. |
+| Supporter | More questions, saved reading paths, limited voice, limited images when enabled. | Monthly token grant with optional top-ups. |
+| Research | Deeper idea triage, issue drafts, app-state help, larger context windows. | Higher monthly token grant, larger per-request caps, clear overage controls. |
+| Collaborator | Project-approved users who can route drafts into GitHub or priority packets. | Project-approved token grant plus explicit action permissions and audit logs. |
 
 The service should show usage in ordinary terms:
 
-- text answer budget;
-- voice minutes;
-- image generations;
-- large-context research passes;
-- saved notebook storage;
-- GitHub action permissions.
+- available token balance;
+- quoted tokens before work runs;
+- maximum token cap for the request;
+- pending token hold while a request is running;
+- actual tokens charged after completion;
+- refunded tokens when a held request spends less than quoted;
+- token history for billing and abuse review.
 
-Payment should not buy higher claim authority. A paid answer can use more compute, but it still must obey the same source and proof-status rules.
+Payment should not buy higher claim authority. A paid answer can spend more tokens, but it still must obey the same source and proof-status rules.
 
 ## Saved Research Notebook
 
@@ -237,14 +240,14 @@ The claim label should be visible before the answer body when the question touch
 
 Product modules:
 
-1. `conversation_surface` - Composer, message stream, mode chips, action rail, source panel, usage meter.
+1. `conversation_surface` - Composer, message stream, mode chips, action rail, source panel, token wallet.
 2. `media_intake` - Speech transcription, image analysis, screenshot/app-state parsing, document intake.
 3. `mode_router` - Ask, Explain, Compare, Visualize, Triage Idea, Find Source.
 4. `retrieval_context` - Corpus, app guide, System Card, priority, and curated external source retrieval with authority flags.
 5. `answer_engine` - Prompt assembly, source labels, unsupported-answer behavior, citation payloads.
 6. `artifact_generator` - Diagrams, generated images, issue drafts, reading paths, saved notes.
 7. `action_broker` - Confirmation-gated GitHub issue filing, sharing, notebook saving, and account actions.
-8. `billing_and_limits` - Subscription tier, rate limits, token budgets, speech/image usage, abuse controls.
+8. `billing_and_limits` - Subscription tier, token grants, quote/hold/receipt accounting, rate limits, speech/image token schedules, abuse controls.
 9. `privacy_and_audit` - Consent, retention, deletion, logs, incident review, and user-data boundaries.
 
 The existing service-platform packet should own deployment choices for these modules.
@@ -260,7 +263,7 @@ A constrained first public beta could support:
 - System Card routing;
 - limited Visualize mode for diagrams only;
 - issue-draft generation without automatic filing;
-- public/supporter usage budgets;
+- public/supporter token grants and per-request caps;
 - no uploaded documents;
 - no durable image retention unless explicitly saved;
 - no autonomous GitHub actions.
@@ -288,11 +291,11 @@ Context:
 - The product requirements are `reference/priorities/app-archie-interface/v1-product-requirements.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
 - The assistant behavior contract is `reference/priorities/archie/assistant-mode-contract.md`.
-- The interface should support source-grounded corpus guidance, text-first v1 modes, diagram drafts, idea triage, subscription-aware cost controls, and confirmation-gated issue drafts.
+- The interface should support source-grounded corpus guidance, text-first v1 modes, diagram drafts, idea triage, token-based cost controls, and confirmation-gated issue drafts.
 
 Task:
 - Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, usage/cost model, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, token ledger, quote/hold/receipt model, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:

@@ -326,6 +326,68 @@ Legacy high-field note. A longer `face-opposite` group-zero diagnostic was previ
 
 The corresponding legacy self-hit probe still had no delayed self-hit roots. This makes the group-zero blocker sharper: repeatedly extending the Euclidean-void toy is less useful than adding a solver-owned retained-history row, a same-source self-hit row source, or a separately labeled Noether sea support-term diagnostic.
 
+### Matter/Antimatter Chirality Bridge - 2026-07-01
+
+Claim level. Priority-only lemma target. This is not a matter/antimatter discovery claim, not a particle-sector promotion, and not a retained branch certificate. It records a possible bridge between the `face-opposite` invariant channel and the existing matter/antimatter braid-chirality rule in [Color Charge SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md#braid-orientation-matter-vs-antimatter), [Quantum Number Mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md#the-assembly-architecture), and the anti-braid mirror bookkeeping in [Quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md#anti-braid-mirror-bookkeeping-conjectural-reverse-engineered-candidate).
+
+Candidate support statement. The group-zero diagnostics suggest that the `face-opposite` six-site support is the only balanced octahedral decoration class currently seen to preserve the center-zero, common-sphere, common-speed, antipodal-pair channel:
+
+$$
+\mathcal S_{\mathrm{fo}}
+=
+\left\{
+P:\{+x,+y,+z\},
+\quad
+E:\{-x,-y,-z\}
+\right\}.
+$$
+
+The charge-conjugate mirror of this support swaps all polarities while preserving the same opposite-face geometry:
+
+$$
+\overline{\mathcal S}_{\mathrm{fo}}
+=
+\left\{
+E:\{+x,+y,+z\},
+\quad
+P:\{-x,-y,-z\}
+\right\}.
+$$
+
+Because both rows retain one Positrino and one Electrino on every axis, the mirror keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and complete charge conjugation. This is the local support-level reason that a matter branch and its antimatter branch should be mirror candidates, not different octahedral decoration classes.
+
+Candidate chirality statement. The existing fermion mapping does not identify matter/antimatter with the raw choice of which face carries Positrinos. It identifies matter/antimatter with pro/anti braid orientation, recorded as ordered braid chirality. Therefore the disciplined target is a chiral lift of the same support class:
+
+$$
+\mathcal B_{\mathrm{matter}}
+\sim
+\left(\mathcal S_{\mathrm{fo}},\chi_c=+1\right),
+\qquad
+\mathcal B_{\mathrm{antimatter}}
+\sim
+\left(\overline{\mathcal S}_{\mathrm{fo}},\chi_c=-1\right),
+$$
+
+where $\chi_c$ abbreviates the pro/anti ordered-braid chirality record only after a retained branch supplies the required phase, winding, causal-root, wake, action, and stability rows. The sign convention is schematic; the proof burden is to recover the HML/HLM orientation distinction from the same retained branch record that carries the six-site support.
+
+Explicit exclusion. The `axial-paired` control is not the antimatter identification for the `face-opposite` seed:
+
+$$
+\mathcal S_{\mathrm{ap}}
+=
+\left\{
+P:\{+x,-x,+y\},
+\quad
+E:\{-y,+z,-z\}
+\right\}.
+$$
+
+It changes the opposite-pair pattern by introducing one $P/P$ axis and one $E/E$ axis. That is a partial redistribution of the balanced inventory, not complete charge conjugation of the `face-opposite` branch. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Until a central-solver retained-history row proves otherwise, `axial-paired` should remain a negative control for support loss, not an antimatter branch.
+
+First proof route. Prove the `face-opposite` invariant-manifold lemma first. Then add the ordered chirality variable $\chi_c$ only after the retained branch supplies phase order, winding counts, causal-root ledgers, wake rows, action rows, and stability rows. The proof must show that complete charge conjugation plus pro/anti orientation reversal preserves the mass-facing and support-facing ledgers while reversing the exposed charge-like projection, consistent with the charge-conjugate mass-equality constraint in [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#charge-conjugate-mass-equality).
+
+Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the chirality record cannot be tied to the same branch identity as the support geometry, or if an accepted `axial-paired` retained branch later appears with a complete pro/anti mirror ledger and equal support quality. Until then, the safe claim is only that `face-opposite` is the first admissible support candidate for the matter/antimatter chirality rule, while `axial-paired` is an excluded antimatter interpretation in the present evidence record.
+
 ### Diagonal Group-Velocity Baseline - 2026-07-01
 
 Claim level. Priority-only translating toy baseline. This run is not a retained branch certificate and does not authorize a moving retained branch certificate.
