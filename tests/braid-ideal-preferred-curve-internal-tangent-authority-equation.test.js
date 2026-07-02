@@ -41,6 +41,7 @@ function makePreferredCurveCandidateRow({
   dObjectiveDu = -0.25,
   dObjectiveDvOrb = 0.5,
   dynamicRootMargin = 0.025,
+  branchClockLockRmsAcceleration = 0.1,
 } = {}) {
   return {
     row_id: `near-edge-candidate:${rowSuffix}`,
@@ -70,7 +71,7 @@ function makePreferredCurveCandidateRow({
       preferred_branch_curve_selected: true,
       branch_curve_objective: 0.45,
       support_rms_acceleration: 0.04,
-      branch_clock_lock_rms_acceleration: 0.1,
+      branch_clock_lock_rms_acceleration: branchClockLockRmsAcceleration,
     },
     finite_difference: {
       dE_du: {
@@ -255,6 +256,7 @@ test("preferred-curve equation derives the curve tangent and passes mathematical
   assert.equal(artifact.bindings.dynamic_root_margin_binding_passed, true);
   assert.equal(artifact.summary.minimum_gain_mathematical_passed, true);
   assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, true);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_residual_passed, true);
   assert.equal(artifact.summary.branch_clock_lock_replacement_criterion_passed, false);
   assert.equal(
     artifact.branch_clock_lock_replacement_criterion.first_missing_object,
@@ -268,6 +270,8 @@ test("preferred-curve equation derives the curve tangent and passes mathematical
   );
   assert.equal(artifact.diagnostics.tangent_target_norm, 0.1);
   assert.equal(artifact.diagnostics.tangent_target_to_branch_clock_rms_ratio, 1);
+  assert.equal(artifact.branch_clock_lock_replacement_residual.replacement_residual_passed, true);
+  assert.equal(artifact.branch_clock_lock_replacement_residual.absolute_residual, 0);
   assert.equal(artifact.accepted, false);
   assert.equal(artifact.accepted_internal_tangent_authority_ref, null);
   assert.equal(artifact.authorization.accepted_internal_tangent_authority, false);
@@ -296,6 +300,7 @@ test("preferred-curve equation states the conditional replacement criterion with
   });
 
   assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, true);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_residual_passed, true);
   assert.equal(artifact.summary.branch_clock_lock_replacement_criterion_passed, true);
   assert.equal(
     artifact.branch_clock_lock_replacement_criterion.status,
@@ -310,6 +315,45 @@ test("preferred-curve equation states the conditional replacement criterion with
   assert.equal(artifact.accepted, false);
   assert.equal(artifact.accepted_internal_tangent_authority_ref, null);
   assert.equal(artifact.authorization.accepted_internal_tangent_authority, false);
+  assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
+});
+
+test("preferred-curve replacement criterion requires tangent target to match assigned clock-lock scale", () => {
+  const sourceRowId = "two-speed-row:replacement-residual-fail";
+  const nearEdgeCandidateRow = makePreferredCurveCandidateRow({
+    sourceRowId,
+    rowSuffix: "replacement-residual-fail",
+    branchClockLockRmsAcceleration: 0.12,
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({
+    sourceRowId,
+    rowSuffix: "replacement-residual-fail",
+  });
+  const artifact = buildPreferredCurveInternalTangentAuthorityEquation({
+    nearEdgeCandidateRow,
+    minimumNormRetainedHistoryGainWitnessRow: minimumGainRow,
+    sameRecordAcceptedEvidence: makeAcceptedReplacementEvidence(),
+  });
+
+  assert.equal(artifact.summary.mathematical_preferred_curve_internal_tangent_authority_equation_passed, true);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_residual_passed, false);
+  assert.equal(artifact.summary.branch_clock_lock_replacement_criterion_passed, false);
+  assert.equal(artifact.branch_clock_lock_replacement_residual.tangent_target_norm, 0.1);
+  assert.equal(artifact.branch_clock_lock_replacement_residual.branch_clock_lock_rms_acceleration, 0.12);
+  assert.equal(
+    Math.abs(artifact.branch_clock_lock_replacement_residual.absolute_residual - 0.02) < 1e-12,
+    true
+  );
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.missing_fields.includes(
+      "preferred_curve_internal_tangent_authority_equation.branch_clock_lock_replacement_residual.replacement_residual_passed"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.branch_clock_lock_replacement_criterion.can_remove_assigned_branch_clock_lock,
+    false
+  );
   assert.deepEqual(validatePreferredCurveInternalTangentAuthorityEquation(artifact), []);
 });
 

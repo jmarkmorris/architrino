@@ -35,6 +35,7 @@ export const NEGATIVE_CONTROL_REASONS = Object.freeze({
 
 const EPSILON = 1e-12;
 const DEFAULT_BINDING_TOLERANCE = 1e-9;
+const DEFAULT_BRANCH_CLOCK_LOCK_REPLACEMENT_TOLERANCE = 1e-9;
 
 const ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS = Object.freeze([
   "central_retained_history_acceptance_certificate_ref",
@@ -322,14 +323,74 @@ function dynamicRootMarginBinding(curveDifferential = {}, minimumGainEvaluation 
   );
 }
 
+function evaluateBranchClockLockReplacementResidual({
+  tangentTargetNorm,
+  branchClockRms,
+  replacementTolerance,
+}) {
+  const missingFields = [];
+  if (tangentTargetNorm == null) {
+    missingFields.push(
+      "preferred_curve_internal_tangent_authority_equation.minimum_norm_retained_history_gain_evaluation.tangent_target_vector"
+    );
+  }
+  if (branchClockRms == null) {
+    missingFields.push(
+      "preferred_curve_internal_tangent_authority_equation.curve_differential.branch_clock_lock_rms_acceleration"
+    );
+  }
+  if (replacementTolerance == null || replacementTolerance < 0) {
+    missingFields.push(
+      "preferred_curve_internal_tangent_authority_equation.branch_clock_lock_replacement_residual.tolerance"
+    );
+  }
+
+  const absoluteResidual =
+    tangentTargetNorm == null || branchClockRms == null
+      ? null
+      : Math.abs(tangentTargetNorm - branchClockRms);
+  const relativeResidual =
+    absoluteResidual == null || branchClockRms == null
+      ? null
+      : absoluteResidual / Math.max(Math.abs(branchClockRms), EPSILON);
+  const residualPassed =
+    missingFields.length === 0 && absoluteResidual <= replacementTolerance;
+
+  return {
+    schema: "preferred_curve_branch_clock_lock_replacement_residual.v0",
+    replacement_residual_passed: residualPassed,
+    equation: "abs(||T(q)||-A_clock_rms(q)) <= epsilon_lock",
+    tangent_target_norm: tangentTargetNorm,
+    branch_clock_lock_rms_acceleration: branchClockRms,
+    absolute_residual: absoluteResidual,
+    relative_residual: relativeResidual,
+    replacement_tolerance: replacementTolerance,
+    status: residualPassed
+      ? "tangent_target_matches_assigned_branch_clock_lock_scale"
+      : "tangent_target_does_not_match_assigned_branch_clock_lock_scale",
+    missing_fields: missingFields,
+    first_missing_field: missingFields[0] ?? null,
+    dimension_note:
+      "branch-clock rms is a time-sampled diagnostic scale while T(q) is the same-record retained tangent target; this row is a replacement residual, not accepted physical proof",
+    candidate_artifact_authorizes_removal: false,
+    accepted: false,
+  };
+}
+
 function evaluateBranchClockLockReplacementCriterion({
   mathematicalEquationPassed,
+  branchClockLockReplacementResidual,
   sameRecordAcceptedEvidence,
 }) {
   const evidence = sameRecordAcceptedEvidence ?? {};
   const missingFields = [];
   if (!mathematicalEquationPassed) {
     missingFields.push("preferred_curve_internal_tangent_authority_equation.mathematical_equation_passed");
+  }
+  if (branchClockLockReplacementResidual?.replacement_residual_passed !== true) {
+    missingFields.push(
+      "preferred_curve_internal_tangent_authority_equation.branch_clock_lock_replacement_residual.replacement_residual_passed"
+    );
   }
   const acceptedSameRecordEvidence =
     evidence.accepted_same_record_central_solver_evidence === true ||
@@ -359,6 +420,7 @@ function evaluateBranchClockLockReplacementCriterion({
     required_equations: [
       "J_u + J_v v_*'(u)=0",
       "T(q)=P_T(a_ansatz(q)-a_wake(q)-a_support(q))",
+      "abs(||T(q)||-A_clock_rms(q)) <= epsilon_lock",
       "K_x^*(q)=-T(q)e_x^T/(||e_x||^2+||e_v||^2)",
       "K_v^*(q)=-T(q)e_v^T/(||e_x||^2+||e_v||^2)",
       "a_internal^*(q)=a_RH^*(q)+n_*(q)",
@@ -368,6 +430,7 @@ function evaluateBranchClockLockReplacementCriterion({
     supplied_accepted_evidence_refs: Object.fromEntries(
       ACCEPTED_REPLACEMENT_EVIDENCE_FIELDS.map((field) => [field, stringRef(evidence[field])])
     ),
+    branch_clock_lock_replacement_residual: branchClockLockReplacementResidual,
     accepted_same_record_central_solver_evidence: acceptedSameRecordEvidence,
     missing_fields: missingFields,
     first_missing_object: replacementCriterionPassed
@@ -469,6 +532,11 @@ export function evaluatePreferredCurveInternalTangentAuthorityEquationEvidence(c
 
 export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) {
   const bindingTolerance = finiteNumber(input.bindingTolerance ?? input.binding_tolerance) ?? DEFAULT_BINDING_TOLERANCE;
+  const branchClockLockReplacementTolerance =
+    finiteNumber(
+      input.branchClockLockReplacementTolerance ??
+        input.branch_clock_lock_replacement_tolerance
+    ) ?? DEFAULT_BRANCH_CLOCK_LOCK_REPLACEMENT_TOLERANCE;
   const nearEdgeCandidateRow = pickNearEdgeCandidateRow(input);
   const minimumGainWitnessRow = pickMinimumGainWitnessRow(input);
   const sameRecordAcceptedEvidence = pickSameRecordAcceptedEvidence(input);
@@ -500,6 +568,11 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     tangentTargetNorm == null || branchClockRms == null || Math.abs(branchClockRms) <= EPSILON
       ? null
       : tangentTargetNorm / branchClockRms;
+  const branchClockLockReplacementResidual = evaluateBranchClockLockReplacementResidual({
+    tangentTargetNorm,
+    branchClockRms,
+    replacementTolerance: branchClockLockReplacementTolerance,
+  });
   const mathematicalEquationPassed =
     curveDifferential.preferred_curve_differential_passed === true &&
     sameSourcePassed &&
@@ -507,6 +580,7 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     minimumGainEvaluation.mathematical_gain_conditions_passed === true;
   const branchClockLockReplacementCriterion = evaluateBranchClockLockReplacementCriterion({
     mathematicalEquationPassed,
+    branchClockLockReplacementResidual,
     sameRecordAcceptedEvidence,
   });
   const artifactHash = stableHash({
@@ -518,6 +592,8 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     retained_record_id: minimumGainEvaluation.retained_record_id ?? null,
     minimum_gain_row_id: minimumGainWitnessRow?.row_id ?? null,
     minimum_gain_source_row_id: minimumGainEvaluation.source_row_id ?? null,
+    branch_clock_lock_replacement_residual_passed:
+      branchClockLockReplacementResidual.replacement_residual_passed,
     mathematical_equation_passed: mathematicalEquationPassed,
     replacement_criterion_passed: branchClockLockReplacementCriterion.replacement_criterion_passed,
   });
@@ -555,9 +631,11 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
     minimum_norm_retained_history_gain_witness_row: minimumGainWitnessRow,
     minimum_norm_retained_history_gain_evaluation: minimumGainEvaluation,
     same_record_accepted_evidence: sameRecordAcceptedEvidence,
+    branch_clock_lock_replacement_residual: branchClockLockReplacementResidual,
     branch_clock_lock_replacement_criterion: branchClockLockReplacementCriterion,
     bindings: {
       binding_tolerance: bindingTolerance,
+      branch_clock_lock_replacement_tolerance: branchClockLockReplacementTolerance,
       same_source_row_id_binding_passed: sameSourcePassed,
       dynamic_root_margin_binding_passed: dynamicRootMarginPassed,
       curve_source_row_id: curveDifferential.source_row_id ?? null,
@@ -582,6 +660,8 @@ export function buildPreferredCurveInternalTangentAuthorityEquation(input = {}) 
         minimumGainEvaluation.mathematical_gain_conditions_passed === true,
       mathematical_preferred_curve_internal_tangent_authority_equation_passed:
         mathematicalEquationPassed,
+      branch_clock_lock_replacement_residual_passed:
+        branchClockLockReplacementResidual.replacement_residual_passed,
       branch_clock_lock_replacement_criterion_passed:
         branchClockLockReplacementCriterion.replacement_criterion_passed,
       accepted_internal_tangent_authority_count: 0,
@@ -640,6 +720,21 @@ export function validatePreferredCurveInternalTangentAuthorityEquation(artifact)
   }
   if (artifact?.branch_clock_lock_replacement_criterion?.accepted !== false) {
     errors.push("branch-clock-lock replacement criterion must remain non-authorizing");
+  }
+  if (artifact?.branch_clock_lock_replacement_residual?.accepted !== false) {
+    errors.push("branch-clock-lock replacement residual must remain non-authorizing");
+  }
+  if (
+    artifact?.summary?.branch_clock_lock_replacement_residual_passed === true &&
+    artifact?.branch_clock_lock_replacement_residual?.replacement_residual_passed !== true
+  ) {
+    errors.push("replacement residual summary must match residual row");
+  }
+  if (
+    artifact?.summary?.branch_clock_lock_replacement_criterion_passed === true &&
+    artifact?.summary?.branch_clock_lock_replacement_residual_passed !== true
+  ) {
+    errors.push("replacement criterion pass requires replacement residual pass");
   }
   if (
     artifact?.summary?.branch_clock_lock_replacement_criterion_passed === true &&

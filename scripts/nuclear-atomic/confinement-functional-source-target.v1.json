@@ -99,6 +99,36 @@
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
       "sourceTargetPath": "scripts/nuclear-atomic/same-record-noether-sea-response-confinement-retained-evidence.v1.json"
     },
+    "proton_color_singlet_closure": {
+      "id": "proton_color_singlet_closure_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local proton color-singlet closure support row for the accepted_proton_color_singlet_envelope route without A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "Pi_singlet_X_ref",
+        "Pi_open_X_ref",
+        "W_locked_pX_ref",
+        "E_color_pX_bound",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
+    "finite_envelope_boundary": {
+      "id": "finite_envelope_boundary_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted finite retained proton/neutron envelope boundary support row used by the proton and neutron color-singlet envelope routes",
+      "requiredLedgerComponents": [
+        "R_p",
+        "R_n",
+        "refinement_window",
+        "same_sigma_eff_domain",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
     "accepted_proton_color_singlet_envelope": {
       "id": "accepted_proton_color_singlet_envelope_source_target_0001",
       "status": "target_required",

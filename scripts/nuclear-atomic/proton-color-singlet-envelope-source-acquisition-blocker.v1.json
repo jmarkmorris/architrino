@@ -50,6 +50,25 @@
         "accepted_proton_color_singlet_envelope"
       ],
       "boundary": "The QCD priority packet still treats closed color-singlet nucleon envelopes as a derivation target."
+    },
+    "protonEnvelopeSupport": {
+      "candidatePath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+      "candidateRowId": "proton_color_singlet_envelope_support_0001",
+      "acceptedRowsProvided": [
+        "proton_color_singlet_closure",
+        "finite_envelope_boundary"
+      ],
+      "usableFor": [
+        "accepted local proton color-singlet closure support",
+        "accepted finite proton/neutron envelope boundary support"
+      ],
+      "notUsableFor": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "accepted_no_free_color_asymptotic_state",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained proton envelope support accepts only proton_color_singlet_closure and finite_envelope_boundary; it does not accept no_free_color_asymptotic_state, the top proton envelope row, color-singlet closure, or no-open-color."
     }
   },
   "requiredAcceptanceCondition": {
@@ -115,11 +134,11 @@
     ],
     "acceptedInputsAlreadyAvailable": [
       "accepted_proton_branch_interface_ledger",
-      "same_record_noether_sea_response"
+      "same_record_noether_sea_response",
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary"
     ],
     "stillMissingBeforeAcceptance": [
-      "proton_color_singlet_closure",
-      "finite_envelope_boundary",
       "no_free_color_asymptotic_state",
       "same_sigma_eff_domain",
       "same_record_branch_interface"
@@ -196,9 +215,6 @@
     "missingAcceptanceRows": [
       "same_sigma_eff_domain",
       "same_record_branch_interface",
-      "bounded_E_color_pX_le_Delta_color_pX",
-      "finite_R_p",
-      "refinement_stable_proton_envelope_window",
       "no_free_color_asymptotic_state"
     ],
     "feedsRowsAfterAcceptance": [

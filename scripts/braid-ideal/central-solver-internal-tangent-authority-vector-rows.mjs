@@ -101,11 +101,14 @@ function evaluatePreferredCurveEquationArtifact(artifact = {}, retainedRecordId)
   const requestBindingPassed =
     retainedRecordId != null &&
     artifactRetainedRecordId === retainedRecordId;
-  const mathematicalPreferredCurveEquationPassed =
+  const coreMathematicalPreferredCurveEquationPassed =
     artifact.schema === PREFERRED_CURVE_INTERNAL_TANGENT_AUTHORITY_EQUATION_SCHEMA &&
     artifact.summary?.mathematical_preferred_curve_internal_tangent_authority_equation_passed === true &&
     artifact.summary?.same_source_row_id_binding_passed === true &&
     artifact.summary?.dynamic_root_margin_binding_passed === true;
+  const branchClockLockReplacementResidualPassed =
+    artifact.summary?.branch_clock_lock_replacement_residual_passed === true &&
+    artifact.branch_clock_lock_replacement_residual?.replacement_residual_passed === true;
 
   return {
     schema: PREFERRED_CURVE_INTERNAL_TANGENT_AUTHORITY_EQUATION_SCHEMA,
@@ -119,14 +122,25 @@ function evaluatePreferredCurveEquationArtifact(artifact = {}, retainedRecordId)
     same_source_row_id_binding_passed: artifact.summary?.same_source_row_id_binding_passed === true,
     dynamic_root_margin_binding_passed: artifact.summary?.dynamic_root_margin_binding_passed === true,
     minimum_gain_mathematical_passed: artifact.summary?.minimum_gain_mathematical_passed === true,
+    core_mathematical_preferred_curve_equation_passed:
+      coreMathematicalPreferredCurveEquationPassed && requestBindingPassed,
+    branch_clock_lock_replacement_residual_passed: branchClockLockReplacementResidualPassed,
+    branch_clock_lock_replacement_residual:
+      artifact.branch_clock_lock_replacement_residual ?? null,
     mathematical_preferred_curve_equation_passed:
-      mathematicalPreferredCurveEquationPassed && requestBindingPassed,
+      coreMathematicalPreferredCurveEquationPassed &&
+      branchClockLockReplacementResidualPassed &&
+      requestBindingPassed,
     accepted: false,
-    reason: mathematicalPreferredCurveEquationPassed && requestBindingPassed
-      ? "preferred_curve_equation_passes_mathematically_but_acceptance_blocked"
+    reason: coreMathematicalPreferredCurveEquationPassed && requestBindingPassed && !branchClockLockReplacementResidualPassed
+      ? "preferred_curve_branch_clock_lock_replacement_residual_failed"
+      : coreMathematicalPreferredCurveEquationPassed && branchClockLockReplacementResidualPassed && requestBindingPassed
+        ? "preferred_curve_equation_passes_mathematically_but_acceptance_blocked"
       : "preferred_curve_equation_missing_failed_or_not_bound_to_request",
-    first_missing_field: mathematicalPreferredCurveEquationPassed && requestBindingPassed
-      ? ACCEPTANCE_CERTIFICATE_FIELD
+    first_missing_field: coreMathematicalPreferredCurveEquationPassed && requestBindingPassed && !branchClockLockReplacementResidualPassed
+      ? "central_solver_internal_tangent_authority_vector_rows.preferred_curve_internal_tangent_authority_equation_artifacts[*].branch_clock_lock_replacement_residual.replacement_residual_passed"
+      : coreMathematicalPreferredCurveEquationPassed && branchClockLockReplacementResidualPassed && requestBindingPassed
+        ? ACCEPTANCE_CERTIFICATE_FIELD
       : PREFERRED_CURVE_EQUATION_FIRST_MISSING_FIELD,
   };
 }
@@ -218,6 +232,21 @@ function firstMissing({ retainedRecordId, request, minimumGainEvaluations, vecto
       evaluation.mathematical_preferred_curve_equation_passed === true &&
       evaluation.request_retained_record_binding_passed === true
   );
+  const preferredCurveMathPassWithoutResidual = preferredCurveEvaluations.some(
+    (evaluation) =>
+      evaluation.core_mathematical_preferred_curve_equation_passed === true &&
+      evaluation.branch_clock_lock_replacement_residual_passed !== true
+  );
+  if (preferredCurveMathPassWithoutResidual) {
+    return {
+      artifact_status: "fail_closed_preferred_curve_branch_clock_lock_replacement_residual_failed",
+      source_status: "source_acquisition_blocked",
+      first_missing_object: FIRST_MISSING_OBJECT,
+      first_missing_field:
+        "central_solver_internal_tangent_authority_vector_rows.preferred_curve_internal_tangent_authority_equation_artifacts[*].branch_clock_lock_replacement_residual.replacement_residual_passed",
+      reason: "preferred_curve_branch_clock_lock_replacement_residual_failed",
+    };
+  }
   if (!preferredCurvePass) {
     return {
       artifact_status: "fail_closed_preferred_curve_internal_tangent_authority_equation_failed",
@@ -325,6 +354,7 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     preferredCurveEvaluations.some(
       (evaluation) =>
         evaluation.mathematical_preferred_curve_equation_passed === true &&
+        evaluation.branch_clock_lock_replacement_residual_passed === true &&
         evaluation.request_retained_record_binding_passed === true
     );
 
@@ -370,6 +400,10 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
         (evaluation) => evaluation.request_retained_record_binding_passed === true
       ),
       preferred_curve_equation_artifact_count: preferredCurveEvaluations.length,
+      preferred_curve_equation_core_mathematical_pass_count: countPassed(
+        preferredCurveEvaluations,
+        (evaluation) => evaluation.core_mathematical_preferred_curve_equation_passed === true
+      ),
       preferred_curve_equation_mathematical_pass_count: countPassed(
         preferredCurveEvaluations,
         (evaluation) => evaluation.mathematical_preferred_curve_equation_passed === true
@@ -377,6 +411,10 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
       preferred_curve_equation_request_binding_pass_count: countPassed(
         preferredCurveEvaluations,
         (evaluation) => evaluation.request_retained_record_binding_passed === true
+      ),
+      preferred_curve_branch_clock_lock_replacement_residual_pass_count: countPassed(
+        preferredCurveEvaluations,
+        (evaluation) => evaluation.branch_clock_lock_replacement_residual_passed === true
       ),
       mathematical_internal_tangent_authority_vector_bridge_passed: mathematicalVectorBridgePassed,
       mathematical_internal_tangent_authority_bridge_passed: mathematicalPreferredCurveBridgePassed,
@@ -454,6 +492,12 @@ export function validateCentralSolverInternalTangentAuthorityVectorRows(artifact
     if (evaluation.accepted !== false) {
       errors.push("preferred-curve equation evaluations must remain non-authorizing");
     }
+  }
+  if (
+    artifact?.summary?.mathematical_internal_tangent_authority_bridge_passed === true &&
+    artifact?.summary?.preferred_curve_branch_clock_lock_replacement_residual_pass_count < 1
+  ) {
+    errors.push("mathematical bridge pass requires a preferred-curve replacement residual pass");
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (artifact?.authorization?.[flag] !== false) {

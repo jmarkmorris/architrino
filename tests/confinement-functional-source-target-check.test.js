@@ -28,6 +28,12 @@ const PROTON_COLOR_SINGLET_BLOCKER_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const PROTON_COLOR_SINGLET_SUPPORT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const NEUTRON_COLOR_SINGLET_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json",
@@ -450,6 +456,70 @@ test("current confinement target passes structure but blocks accepted source row
       .sourceTargetPath,
     "scripts/nuclear-atomic/proton-color-singlet-envelope-source-acquisition-blocker.v1.json",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.proton_color_singlet_closure
+      .accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.proton_color_singlet_closure
+      .requiredLedgerComponents,
+    [
+      "Pi_singlet_X_ref",
+      "Pi_open_X_ref",
+      "W_locked_pX_ref",
+      "E_color_pX_bound",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.proton_color_singlet_closure
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.finite_envelope_boundary.accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.finite_envelope_boundary
+      .requiredLedgerComponents,
+    [
+      "R_p",
+      "R_n",
+      "refinement_window",
+      "same_sigma_eff_domain",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.finite_envelope_boundary
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json",
+  );
+  const protonSupportEvidence = JSON.parse(
+    fs.readFileSync(PROTON_COLOR_SINGLET_SUPPORT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    protonSupportEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["proton_color_singlet_closure", "finite_envelope_boundary"],
+  );
+  assert.equal(protonSupportEvidence.protonColorSingletClosure.E_color_pX, 0);
+  assert.equal(protonSupportEvidence.protonColorSingletClosure.Delta_color_pX, 0);
+  assert.equal(protonSupportEvidence.finiteEnvelopeBoundary.R_p, 1);
+  assert.equal(protonSupportEvidence.finiteEnvelopeBoundary.R_n, 1);
+  assert.equal(
+    protonSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_proton_color_singlet_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    protonSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_free_color_asymptotic_state",
+    ),
+    true,
+  );
   const protonBlocker = JSON.parse(
     fs.readFileSync(PROTON_COLOR_SINGLET_BLOCKER_PATH, "utf8"),
   );
@@ -483,6 +553,31 @@ test("current confinement target passes structure but blocks accepted source row
   );
   assert.deepEqual(
     protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
+      .acceptedInputsAlreadyAvailable,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "same_record_noether_sea_response",
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
+    ],
+  );
+  assert.equal(
+    protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("proton_color_singlet_closure"),
+    false,
+  );
+  assert.equal(
+    protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("finite_envelope_boundary"),
+    false,
+  );
+  assert.equal(
+    protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("no_free_color_asymptotic_state"),
+    true,
+  );
+  assert.deepEqual(
+    protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
       .derivedRowsIfAccepted,
     ["proton_color_singlet_closure", "finite_envelope_boundary"],
   );
@@ -509,6 +604,16 @@ test("current confinement target passes structure but blocks accepted source row
     protonBlocker.candidateProtonColorSingletEnvelopeLemma
       .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
     true,
+  );
+  assert.equal(
+    protonBlocker.candidateProtonColorSingletEnvelopeLemma
+      .missingAcceptanceRows.includes("bounded_E_color_pX_le_Delta_color_pX"),
+    false,
+  );
+  assert.equal(
+    protonBlocker.candidateProtonColorSingletEnvelopeLemma
+      .missingAcceptanceRows.includes("finite_R_p"),
+    false,
   );
   assert.equal(
     protonBlocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(

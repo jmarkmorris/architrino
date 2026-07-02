@@ -173,6 +173,8 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
         "v_*'(u)=-J_u/J_v",
       tangent_target:
         "T(q) = P_T(a_ansatz(q) - a_wake(q) - a_support(q)), q=(u,v_orb)",
+      branch_clock_lock_replacement_residual:
+        "abs(||T(q)|| - A_clock_rms(q)) <= epsilon_lock",
       least_norm_provider:
         "a_provider^* = T + n_*",
       retained_history_response:
@@ -188,6 +190,7 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
       required: true,
       preferred_curve_finite_difference_row_ref: null,
       preferred_curve_internal_tangent_authority_equation_ref: null,
+      branch_clock_lock_replacement_residual_ref: null,
       branch_clock_lock_target_row_ref: null,
       branch_clock_lock_reserve_row_ref: null,
       same_record_binding_required: true,

@@ -94,6 +94,10 @@ test("central solver retained-history row carries all same-record request famili
     "T(q) = P_T(a_ansatz(q) - a_wake(q) - a_support(q)), q=(u,v_orb)"
   );
   assert.equal(
+    row.internal_tangent_authority_vector_request.equations.branch_clock_lock_replacement_residual,
+    "abs(||T(q)|| - A_clock_rms(q)) <= epsilon_lock"
+  );
+  assert.equal(
     row.internal_tangent_authority_vector_request.equations.minimum_gain,
     "K_x^*(q)=-T(q) e_x^T/(||e_x||^2+||e_v||^2), K_v^*(q)=-T(q) e_v^T/(||e_x||^2+||e_v||^2)"
   );
@@ -138,6 +142,10 @@ test("central solver retained-history row carries all same-record request famili
   );
   assert.equal(
     row.internal_tangent_authority_vector_request.preferred_curve_internal_tangent_authority_equation_ref,
+    null
+  );
+  assert.equal(
+    row.internal_tangent_authority_vector_request.preferred_curve_binding.branch_clock_lock_replacement_residual_ref,
     null
   );
   assert.equal(row.internal_tangent_authority_vector_request.minimum_norm_retained_history_gain_witness_row_ref, null);

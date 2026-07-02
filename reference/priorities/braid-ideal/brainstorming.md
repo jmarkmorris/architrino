@@ -2097,6 +2097,32 @@ With a preferred-curve equation artifact on the same retained record, the centra
 
 The preferred-curve equation artifact now also emits `preferred_curve_branch_clock_lock_replacement_criterion.v0`. This is the conditional removal theorem for the assigned branch-clock lock: if the preferred-curve equation passes on one source row and the same retained record carries accepted refs for the central retained-history certificate, preferred-curve internal tangent-authority certificate, retained path-error row, tangent-target row, active causal-margin gradient row, post-provider root-margin row, retained-root ledger, action-closure row, wake-history row, path-history row, and provider provenance, then the assigned branch-clock lock is algebraically replaceable by $\mathbf a_{\mathrm{RH}}^\ast(q)+\mathbf n_\ast(q)$ while preserving the positive causal-root margin. The criterion deliberately keeps `candidate_artifact_authorizes_removal=false`; it can say the mathematical and evidence preconditions are present, but it cannot promote itself to accepted internal tangent authority.
 
+The criterion now has one more executable precondition: a branch-clock-lock replacement residual. The same-source tangent target must match the measured assigned clock-lock acceleration scale,
+
+$$
+\left|
+\|\mathbf T(q)\|
+-A_{\mathrm{clock,rms}}(q)
+\right|
+\le
+\epsilon_{\mathrm{lock}}.
+$$
+
+This residual is deliberately narrow. It does not prove the Noether braid produces $\mathbf T(q)$; it only prevents a false replacement theorem where the retained-history target solves the tangent equation at one scale while the diagnostic branch-clock lock supplied a different acceleration scale. The executable row `preferred_curve_branch_clock_lock_replacement_residual.v0` reports the tangent-target norm, the assigned branch-clock-lock rms acceleration, the absolute residual, the relative residual, and `replacement_residual_passed`. Even if all accepted same-record evidence refs are supplied, the conditional removal theorem fails unless this residual passes. In the focused fixture, $\|\mathbf T\|=0.1$ and $A_{\mathrm{clock,rms}}=0.1$, so the residual passes. A negative-control row with $A_{\mathrm{clock,rms}}=0.12$ keeps the preferred-curve equation mathematically passed but blocks `branch_clock_lock_replacement_criterion_passed`. This keeps the preferred translation/orbital-velocity curve honest: the curve is interesting only if the internal response can replace the same tangent burden the assigned branch clock actually carried.
+
+The central retained-history bridge now carries the same precondition. The request `central_solver_internal_tangent_authority_vector_request.v0` includes
+
+$$
+\left|
+\|\mathbf T(q)\|
+-A_{\mathrm{clock,rms}}(q)
+\right|
+\le
+\epsilon_{\mathrm{lock}},
+$$
+
+and [central-solver-internal-tangent-authority-vector-rows.mjs](../../../scripts/braid-ideal/central-solver-internal-tangent-authority-vector-rows.mjs) refuses to report a full bridge pass unless the preferred-curve artifact also has `branch_clock_lock_replacement_residual_passed=true`. This separates three cases that were previously too close: vector rows can pass the retained-history minimum-gain equation, preferred-curve stationarity can pass, and the branch-clock replacement residual can still fail. The negative-control bridge row uses the same retained record and the same vector provider but changes $A_{\mathrm{clock,rms}}$ from `0.1` to `0.12`; it reports `fail_closed_preferred_curve_branch_clock_lock_replacement_residual_failed`. The remaining accepted-evidence blocker is therefore sharper: the central retained solver must emit same-record vector rows whose tangent target matches the actual assigned clock-lock burden and whose provider preserves the causal-root margin.
+
 The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
 
 Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.

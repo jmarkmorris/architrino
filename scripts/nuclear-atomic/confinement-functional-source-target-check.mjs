@@ -80,6 +80,20 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "stress_strain_row",
     "same_event_ledger",
   ],
+  proton_color_singlet_closure: [
+    "Pi_singlet_X_ref",
+    "Pi_open_X_ref",
+    "W_locked_pX_ref",
+    "E_color_pX_bound",
+    "coefficient_exclusion_audit",
+  ],
+  finite_envelope_boundary: [
+    "R_p",
+    "R_n",
+    "refinement_window",
+    "same_sigma_eff_domain",
+    "coefficient_exclusion_audit",
+  ],
   accepted_proton_color_singlet_envelope: [
     "proton_color_singlet_closure",
     "finite_envelope_boundary",
