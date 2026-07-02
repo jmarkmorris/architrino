@@ -937,9 +937,79 @@ $$
 
 more important than the simplified relation $u^2+v_{\mathrm{orb}}^2\approx\beta_\ast^2$.
 
-The negative result is equally important. This run has no accepted reduced residual norm, no accepted action closure, no retained root ledger, and no bounded return. The current status is therefore `kinematic_prefilter_only_no_bounded_return`, not `preferred_configuration_found`.
+The negative result is equally important. This initial kinematic-only run has no accepted reduced residual norm, no accepted action closure, no retained root ledger, and no bounded return. Its status is therefore `kinematic_prefilter_only_no_bounded_return`, not `preferred_configuration_found`.
 
 Next solver target. Promote this prefilter into a retained-history residual sweep in which $\chi$ is fitted rather than assigned, causal roots and source-normal denominator floors are computed on the same record, action drift is measured from the retained action ledger, and return status is measured by the stability or return-margin row rather than by phase closure alone.
+
+### Sampled Two-Speed Residual Runs - 2026-07-02
+
+Claim level. Priority-only sampled wake-residual diagnostic. The runner [oblate-spheroid-two-speed-sweep.mjs](../../../scripts/braid-ideal/oblate-spheroid-two-speed-sweep.mjs) now evaluates a sampled causal-root residual for the assigned oblate ansatz while keeping the artifact fail-closed. This is still not the native central solver, not an accepted retained-history row, and not a preferred-configuration certificate.
+
+For each sampled receiver/source pair the diagnostic solves
+
+$$
+\|\mathbf x_a(t)-\mathbf x_b(t-\tau)\|=\tau
+$$
+
+with $c_f=1$, forms a softened wake acceleration using the sampled source-normal and receiver-normal branch factor, and reports
+
+$$
+\mathcal E_{\mathrm{norm}}
+=
+\frac{\operatorname{rms}(\mathbf a_{\mathrm{wake}}-\mathbf a_{\mathrm{ansatz}})}
+{\operatorname{rms}(\mathbf a_{\mathrm{ansatz}})+\operatorname{rms}(\mathbf a_{\mathrm{wake}})}.
+$$
+
+The diagnostic uses default coupling `1/36`, softening `0.05`, and reports the root-budget margin
+
+$$
+\mathcal M_{\mathrm{root}}
+=
+\min(D_s,D_t,1-\beta_{\max}).
+$$
+
+The first sampled dense run used $u\in\{0,0.1,\ldots,0.6\}$, $v_{\mathrm{orb}}\in\{0.1,0.2,\ldots,0.8\}$, `sample-count=4`, `root-samples=160`, and `root-periods=2`. It produced `56` rows, `46` positive root-budget rows, `0` bounded-return rows, and minimum sampled normalized residual `0.667005989038545`. The absolute residual minimum in that run was outside the positive root-budget window: $(u,v_{\mathrm{orb}})=(0.6,0.7)$ had $\mathcal E_{\mathrm{norm}}\approx0.667006$, but $\beta_{\max}\approx1.229832$ and root margin $\approx-0.229832$.
+
+The objective-ranked candidate rows from that dense run were:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | $\beta_{\max}$ | root margin | action-drift proxy |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| `0` | `0.8` | `0.968653` | `0.8` | `0.2` | `0.375043` |
+| `0.1` | `0.8` | `0.968121` | `0.881015` | `0.118985` | `0.375043` |
+| `0.2` | `0.7` | `0.960573` | `0.866504` | `0.133496` | `0.453163` |
+| `0.3` | `0.6` | `0.947164` | `0.856693` | `0.143307` | `0.468718` |
+| `0.4` | `0.3` | `0.851035` | `0.662784` | `0.337216` | `0.234359` |
+| `0.5` | `0.2` | `0.773688` | `0.66913` | `0.33087` | `0.156239` |
+| `0.6` | `0.2` | `0.749907` | `0.767647` | `0.232353` | `0.156239` |
+
+An extended run past $c_f=1$ used $u\in\{0,0.2,\ldots,1.2\}$ and $v_{\mathrm{orb}}\in\{0.1,0.3,\ldots,1.1\}$. It produced `42` rows, `15` positive root-budget rows, `0` bounded-return rows, and minimum sampled normalized residual `0.6555073906881866`. Again, the absolute residual minimum was outside the positive root-budget window: $(u,v_{\mathrm{orb}})=(0.6,0.7)$ had $\mathcal E_{\mathrm{norm}}\approx0.655507$, $\beta_{\max}\approx1.229832$, and root margin $\approx-0.229832$. The best positive-margin row in that coarse extended scan was near the causal edge at $(u,v_{\mathrm{orb}})=(0.8,0.1)$ with $\mathcal E_{\mathrm{norm}}\approx0.807713$, $\beta_{\max}\approx0.881015$, and root margin $\approx0.118985$.
+
+A boundary refinement used $u\in\{0.6,0.7,0.8,0.85,0.9,0.95\}$ and $v_{\mathrm{orb}}\in\{0.05,0.1,\ldots,0.35\}$. It produced `42` rows, `23` positive root-budget rows, `0` bounded-return rows, and a visible near-edge basin. The best positive-margin residual row was $(u,v_{\mathrm{orb}})=(0.8,0.2)$ with $\mathcal E_{\mathrm{norm}}\approx0.692043$, $\beta_{\max}\approx0.965596$, and root margin $\approx0.034404$.
+
+The tighter fine-grid run around that basin used $u\in\{0.76,0.78,0.8,0.82,0.84,0.86\}$, $v_{\mathrm{orb}}\in\{0.14,0.16,0.18,0.2,0.22,0.24\}$, `sample-count=6`, `root-samples=240`, and `root-periods=2`. It produced `36` rows, `26` positive root-budget rows, `0` bounded-return rows, and minimum sampled normalized residual `0.6737485966833493`. That absolute minimum still crossed the causal speed budget: $(u,v_{\mathrm{orb}})=(0.86,0.22)$ had $\beta_{\max}\approx1.042322$ and root margin $\approx-0.042322$.
+
+Within the positive root-budget rows of the fine run, two rows are worth preserving:
+
+| Role | $u$ | $v_{\mathrm{orb}}$ | $\chi$ | $\mathcal E_{\mathrm{norm}}$ | $\beta_{\max}$ | root margin | action-drift proxy |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| objective-best | `0.78` | `0.2` | `0.62578` | `0.698929` | `0.945762` | `0.054238` | `0.156239` |
+| residual-best positive-margin | `0.84` | `0.18` | `0.542586` | `0.680081` | `0.988178` | `0.011822` | `0.459385` |
+
+Both rows had full directed partner-root coverage in the sampled diagnostic, but zero same-source root coverage. That is a major blocker. The sampled result is a partner-wake consistency probe, not a same-source retained-root ledger. The objective-best row had rms residual `0.06554737816808505`, rms ansatz acceleration `0.04898979485566356`, rms wake acceleration `0.04479285878433328`, total sampled roots `180`, minimum source normal `0.15847503638284421`, minimum receiver normal `0.10807972658405784`, and maximum branch weight `2.1614807215740615`. The residual-best positive-margin row had rms residual `0.05910507816580145`, rms ansatz acceleration `0.0396817338330875`, rms wake acceleration `0.047227166412131844`, total sampled roots `180`, minimum source normal `0.064443270765144`, minimum receiver normal `0.05151281788994355`, and maximum branch weight `3.4114055912009227`.
+
+Interpretation. The preferred-configuration intuition does play out as an interesting idea, but not yet as a breakthrough stable braid. The sampled residual is not flat across $(u,v_{\mathrm{orb}})$; it creates a basin that moves toward high translation, lower orbital speed, and small positive root margin. The best raw residuals want to cross or approach $\beta_{\max}=1$, while the best admissible positive-margin rows sit just inside the causal edge. That suggests a concrete analytic target:
+
+$$
+\partial_u\mathcal E_{\mathrm{norm}}\approx0,
+\qquad
+\partial_{v_{\mathrm{orb}}}\mathcal E_{\mathrm{norm}}\approx0,
+\qquad
+\mathcal M_{\mathrm{root}}>0,
+\qquad
+\beta_{\max}\lesssim1.
+$$
+
+The current runs do not reproduce GR time, do not prove Lorentz contraction, and do not find a bounded-return branch. They do sharpen the next question: is the near-edge basin an artifact of the assigned $\chi(u)=\sqrt{1-u^2}$ ansatz and toy wake normalization, or does a native retained-history solve with fitted $\chi$, same-source roots, action rows, and stability rows select a real interior branch?
 
 Frequency has at least three meanings:
 
