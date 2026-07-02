@@ -120,10 +120,11 @@ test("equation mapping places EQ-07 upper-row callouts above and drift callout b
     document.overlays.map((overlay) => [overlay.id, overlay.sectionLinePlacement])
   );
 
-  assert.equal(document.formulaTeX.includes("\\gamma_{ij}\\cdot("), true);
+  assert.equal(document.formulaTeX.includes("\\gamma_{ij}("), true);
+  assert.equal(document.formulaTeX.includes("\\gamma_{ij}\\cdot("), false);
   assert.equal(
-    document.formulaParts.some((part) => part.id === "spatialProduct" && part.tex === "\\cdot"),
-    true
+    document.formulaParts.some((part) => part.id === "spatialProduct" || part.tex === "\\cdot"),
+    false
   );
   assert.equal(placementByOverlayId.get("observer-level"), "above");
   assert.equal(placementByOverlayId.get("clock-channel"), "above");
@@ -175,9 +176,18 @@ test("equation mapping auto-fit shrinks long equations before wrapping", () => {
       availableWidth: 900,
       naturalWidth: 2400,
       baseFontSize: 60,
-      minFontSize: 26,
+      minFontSize: 13,
     }),
-    { fontSize: 26, shouldWrap: true, mode: "wrapped" }
+    { fontSize: 22.5, shouldWrap: false, mode: "scaled" }
+  );
+  assert.deepEqual(
+    calculateEquationAutoFit({
+      availableWidth: 900,
+      naturalWidth: 6000,
+      baseFontSize: 60,
+      minFontSize: 13,
+    }),
+    { fontSize: 13, shouldWrap: true, mode: "wrapped" }
   );
 });
 
@@ -211,11 +221,19 @@ test("equation mapping runtime applies fitted font size before enabling wrap", (
   assert.equal(equationStyle.flexWrap, "nowrap");
 
   runtime.equationElement.scrollWidth = 2400;
+  const veryScaled = runtime.applyEquationAutoFit();
+
+  assert.equal(veryScaled.mode, "scaled");
+  assert.equal(runtime.equationElement.dataset.fitMode, "scaled");
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "22.50px");
+  assert.equal(equationStyle.flexWrap, "nowrap");
+
+  runtime.equationElement.scrollWidth = 6000;
   const wrapped = runtime.applyEquationAutoFit();
 
   assert.equal(wrapped.mode, "wrapped");
   assert.equal(runtime.equationElement.dataset.fitMode, "wrapped");
-  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "26.00px");
+  assert.equal(equationStyle.getPropertyValue("--equation-fit-font-size"), "13.00px");
   assert.equal(equationStyle.flexWrap, "wrap");
 });
 
@@ -365,6 +383,18 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
   assert.match(
     html,
     /\.equation-mapping-shell\[data-equation-scale="large"\] \.equation-mapping-equation \{[\s\S]*?font-size: var\(--equation-fit-font-size, clamp\(36px, 5\.6vw, 76px\)\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-formula-part,[\s\S]*?\.equation-mapping-formula-text \{[\s\S]*?flex: 0 0 auto;[\s\S]*?white-space: nowrap;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="above"\]::before \{[\s\S]*?top: -6px;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-formula-part\.is-targeted\[data-section-line="below"\]::after \{[\s\S]*?bottom: 3px;/u
   );
   assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
   assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);

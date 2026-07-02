@@ -75,6 +75,25 @@
         "accepted_no_open_color_far_field"
       ],
       "boundary": "The retained branch-interface ledgers provide same-record inputs but do not prove the residual tail limit."
+    },
+    "tailCorridorWeightSupport": {
+      "candidatePath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
+      "candidateRowId": "Delta_E_corr_NN_tail_corridor_weight_support_0001",
+      "acceptedRowsProvided": [
+        "corridor_weight_growth_eta_lt_lambda",
+        "coefficient_exclusion_audit"
+      ],
+      "usableFor": [
+        "accepted corridor-weight growth support for O_NN_finite",
+        "accepted coefficient-exclusion audit for the tail constants and corridor weight"
+      ],
+      "notUsableFor": [
+        "accepted_uniform_large_r_bound_C_lambda_R0",
+        "accepted_lim_R_to_infty_T_NN_R_eq_0",
+        "accepted_O_NN_finite",
+        "accepted_Delta_E_corr_NN_tail_limit"
+      ],
+      "boundary": "The retained corridor-weight support accepts eta=0<C_lambda for any future positive lambda and excludes element-indexed tail coefficients, but it does not prove the residual exponential tail or the tail-limit rows."
     }
   },
   "requiredAcceptanceCondition": {
@@ -152,14 +171,14 @@
       "accepted_proton_branch_interface_ledger",
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
-      "same_record_noether_sea_response"
+      "same_record_noether_sea_response",
+      "corridor_weight_growth_eta_lt_lambda",
+      "coefficient_exclusion_audit"
     ],
     "stillMissingBeforeAcceptance": [
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
-      "uniform_large_r_bound_C_lambda_R0",
-      "corridor_weight_growth_eta_lt_lambda",
-      "coefficient_exclusion_audit"
+      "uniform_large_r_bound_C_lambda_R0"
     ],
     "derivedRowsIfAccepted": [
       "lim_R_to_infty_T_NN_R_eq_0",
@@ -252,8 +271,7 @@
       "accepted_sigma_eff_extraction",
       "accepted_color_singlet_nucleon_envelope",
       "same_record_sigma_eff_color_singlet_branch_interface_noether_sea_response",
-      "uniform_large_r_bound_C_lambda_R0",
-      "corridor_weight_growth_eta_lt_lambda"
+      "uniform_large_r_bound_C_lambda_R0"
     ],
     "failureModes": [
       "lambda <= 0",

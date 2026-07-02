@@ -1,14 +1,15 @@
 {
   "schema": "aaa-equation-map-eq20-pressure-effective-lambda-input/v1",
-  "claimLevel": "provider-backed EQ-20 pressure/effective-Lambda slice; accepted theta_sea_rho_NS density carrier consumed, pressure/tension/relaxation rows remain score-neutral candidates",
+  "claimLevel": "provider-backed EQ-20 pressure/effective-Lambda slice; accepted theta_sea_rho_NS density carrier and retained delta_P_eff pressure projection consumed, with inherited theta_cos handoff still blocked",
   "residualId": "R_EQ20_provider_backed_pressure_effective_lambda_slice_0001",
   "providerBackedSlice": {
     "providerPath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
     "surfaceSlicePath": "scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json",
+    "deltaPEffReportPath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
     "windowId": "theta-sea-density-compression-provider-0001",
     "ell": "ell_theta_sea_rho_ns_provider_0001",
     "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
-    "deltaPEffStatus": "candidate_pressure_projection_not_accepted",
+    "deltaPEffStatus": "accepted_retained_pressure_projection_report",
     "inheritedThetaCosBlocker": "missing_accepted_theta_cos"
   },
   "constants": {
@@ -57,70 +58,70 @@
         "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
       },
       "pressure_law_row": {
-        "id": "P_law_sea_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "sea_pressure_row": {
-        "id": "p_sea_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "sea_tension_row": {
-        "id": "T_sea_ab_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "relaxation_memory_row": {
-        "id": "tau_rel_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "effective_density_row": {
-        "id": "rho_DE_eff_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "effective_pressure_row": {
-        "id": "p_DE_eff_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "effective_coupling_row": {
-        "id": "G_eff_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "effective_lambda_row": {
-        "id": "Lambda_eff_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "frw_handoff": {
-        "id": "frw_handoff_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "source_provenance": {
-        "id": "P_lambda_provider_backed_pressure_candidate_0001",
-        "status": "attempt",
-        "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json"
-      },
-      "no_hidden_retune_witness": {
-        "id": "S_retune_provider_backed_pressure_slice_0001",
+        "id": "P-law-sea-delta-P-eff-report-0001",
         "status": "accepted",
         "carrierId": "theta-sea-density-compression-provider-0001",
-        "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "sea_pressure_row": {
+        "id": "p-sea-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "sea_tension_row": {
+        "id": "T-sea-ab-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "relaxation_memory_row": {
+        "id": "tau-rel-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "effective_density_row": {
+        "id": "rho-DE-eff-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "effective_pressure_row": {
+        "id": "p-DE-eff-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "effective_coupling_row": {
+        "id": "G-eff-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "effective_lambda_row": {
+        "id": "Lambda-eff-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "frw_handoff": {
+        "id": "frw-handoff-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "source_provenance": {
+        "id": "P-lambda-delta-P-eff-provenance-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "id": "S-retune-delta-P-eff-report-0001",
+        "status": "accepted",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json"
       }
     },
     "outerBinaryStrain": {
@@ -163,10 +164,10 @@
       "Lambda_eff": 17.59291886010284
     },
     "frwHandoff": {
-      "id": "frw_handoff_provider_backed_pressure_candidate_0001",
-      "status": "attempt",
-      "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
-      "thetaCosId": "theta_cos_provider_backed_pressure_candidate_0001",
+      "id": "frw-handoff-delta-P-eff-report-0001",
+      "status": "accepted",
+      "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
+      "thetaCosId": "theta_cos_delta_P_eff_pressure_projection_report_0001",
       "inheritedBlocker": "missing_accepted_theta_cos",
       "P_eff_residual": 0,
       "G_eff_residual": 0,
@@ -179,25 +180,49 @@
           "id": "theta_sea_rho_NS_provider_0001",
           "kind": "accepted_density_provider",
           "contribution": 1,
-          "provenanceId": "P_lambda_provider_backed_pressure_candidate_0001"
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         },
         {
-          "id": "outer_binary_strain_provider_backed_candidate_0001",
+          "id": "outer_binary_strain_delta_P_eff_report_0001",
           "kind": "outer_binary_strain",
           "contribution": 0.008,
-          "provenanceId": "P_lambda_provider_backed_pressure_candidate_0001"
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         },
         {
-          "id": "release_channel_availability_provider_backed_candidate_0001",
+          "id": "release_channel_availability_delta_P_eff_report_0001",
           "kind": "release_channel_availability",
           "contribution": 0.04,
-          "provenanceId": "P_lambda_provider_backed_pressure_candidate_0001"
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         },
         {
-          "id": "pressure_projection_provider_backed_candidate_0001",
+          "id": "sea_tension_projection_delta_P_eff_report_0001",
+          "kind": "sea_tension_projection",
+          "contribution": 2.1,
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
+        },
+        {
+          "id": "pressure_projection_delta_P_eff_report_0001",
           "kind": "pressure_projection",
           "contribution": -0.7,
-          "provenanceId": "P_lambda_provider_backed_pressure_candidate_0001"
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
+        },
+        {
+          "id": "effective_lambda_projection_delta_P_eff_report_0001",
+          "kind": "effective_lambda_projection",
+          "contribution": 17.59291886010284,
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
+        },
+        {
+          "id": "no_hidden_retune_delta_P_eff_report_0001",
+          "kind": "no_hidden_retune",
+          "contribution": 0,
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
+        },
+        {
+          "id": "theta_cos_delta_P_eff_pressure_projection_report_0001",
+          "kind": "inherited_theta_cos_handoff",
+          "contribution": 0,
+          "provenanceId": "P-lambda-delta-P-eff-provenance-report-0001"
         }
       ]
     },
@@ -214,10 +239,10 @@
         }
       },
       {
-        "id": "theta_cos_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "theta_cos_shared_key_delta_P_eff_report_0001",
         "key": "theta_cos_id",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "frw": 1,
           "pressure": 1
@@ -245,20 +270,20 @@
         }
       },
       {
-        "id": "chi_sea_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "chi_sea_shared_key_delta_P_eff_report_0001",
         "key": "chi_sea",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "clock": 1,
           "pressure": 1
         }
       },
       {
-        "id": "Gamma_N_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "Gamma_N_shared_key_delta_P_eff_report_0001",
         "key": "Gamma_N",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "cadence": 1,
           "pressure": 1
@@ -275,20 +300,20 @@
         }
       },
       {
-        "id": "M_sea_ab_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "M_sea_ab_shared_key_delta_P_eff_report_0001",
         "key": "M_sea_ab",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "metric": 1,
           "pressure": 1
         }
       },
       {
-        "id": "G_eff_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "G_eff_shared_key_delta_P_eff_report_0001",
         "key": "G_eff",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "local": 1,
           "frw": 1,
@@ -297,10 +322,10 @@
         }
       },
       {
-        "id": "rho_DE_eff_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "rho_DE_eff_shared_key_delta_P_eff_report_0001",
         "key": "rho_DE_eff",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "eos": 0.7,
           "lambda": 0.7,
@@ -308,10 +333,10 @@
         }
       },
       {
-        "id": "p_sea_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "p_sea_shared_key_delta_P_eff_report_0001",
         "key": "p_sea",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "constitutive": -0.7,
           "projection": -0.7,
@@ -319,10 +344,10 @@
         }
       },
       {
-        "id": "p_DE_eff_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "p_DE_eff_shared_key_delta_P_eff_report_0001",
         "key": "p_DE_eff",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "pressure": -0.7,
           "eos": -0.7,
@@ -330,30 +355,30 @@
         }
       },
       {
-        "id": "w_eff_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "w_eff_shared_key_delta_P_eff_report_0001",
         "key": "w_eff",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "eos": -1,
           "benchmark": -1
         }
       },
       {
-        "id": "Lambda_eff_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "Lambda_eff_shared_key_delta_P_eff_report_0001",
         "key": "Lambda_eff",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "lambda": 17.59291886010284,
           "frw": 17.59291886010284
         }
       },
       {
-        "id": "tau_rel_shared_key_provider_backed_pressure_candidate_0001",
+        "id": "tau_rel_shared_key_delta_P_eff_report_0001",
         "key": "tau_rel",
-        "status": "attempt",
-        "sourcePath": "scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json",
         "projectionValues": {
           "relaxation": 1,
           "pressure": 1

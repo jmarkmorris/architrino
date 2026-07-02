@@ -167,22 +167,31 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
     vector_space:
       "global retained acceleration vector over the declared architrino slot order for one preferred-curve row and one retained time slice",
     equations: {
+      preferred_curve_stationarity:
+        "J_u + J_v v_*'(u)=0",
+      preferred_curve_slope:
+        "v_*'(u)=-J_u/J_v",
       tangent_target:
-        "T = P_T(a_ansatz - a_wake - a_support)",
+        "T(q) = P_T(a_ansatz(q) - a_wake(q) - a_support(q)), q=(u,v_orb)",
       least_norm_provider:
         "a_provider^* = T + n_*",
       retained_history_response:
-        "a_RH = -P_T(K_x e_x + K_v e_v)",
+        "a_RH^*(q) = -P_T(K_x^*(q) e_x + K_v^*(q) e_v)",
       minimum_gain:
-        "K_x^*=-T e_x^T/(||e_x||^2+||e_v||^2), K_v^*=-T e_v^T/(||e_x||^2+||e_v||^2)",
+        "K_x^*(q)=-T(q) e_x^T/(||e_x||^2+||e_v||^2), K_v^*(q)=-T(q) e_v^T/(||e_x||^2+||e_v||^2)",
+      preferred_curve_internal_provider:
+        "a_internal^*(q)=a_RH^*(q)+n_*(q)",
       post_provider_margin:
-        "m_dyn - Delta_T ||P_T a_provider|| + Delta_M <a_provider,G_mu> >= epsilon_mu",
+        "m_dyn - Delta_T ||P_T a_internal^*(q)|| + Delta_M <a_internal^*(q),G_mu(q)> >= epsilon_mu",
     },
     preferred_curve_binding: {
       required: true,
+      preferred_curve_finite_difference_row_ref: null,
+      preferred_curve_internal_tangent_authority_equation_ref: null,
       branch_clock_lock_target_row_ref: null,
       branch_clock_lock_reserve_row_ref: null,
       same_record_binding_required: true,
+      required_equation_schema: "preferred_curve_internal_tangent_authority_equation.v0",
       first_missing_field: INTERNAL_TANGENT_AUTHORITY_FIRST_MISSING_FIELD,
     },
     required_same_record_rows: [
@@ -276,11 +285,13 @@ function makeInternalTangentAuthorityVectorRequest(rowPrefix) {
       },
     ],
     evaluator_binding: {
+      preferred_curve_equation_schema: "preferred_curve_internal_tangent_authority_equation.v0",
       minimum_gain_evaluator_schema: "minimum_norm_retained_history_gain_witness_evaluation.v0",
       same_record_witness_row_schema: "same_record_minimum_norm_retained_history_gain_witness_row.v0",
       retained_solver_vector_witness_row_schema: "retained_solver_internal_tangent_authority_vector_witness_row.v0",
       mathematical_pass_is_non_authorizing: true,
     },
+    preferred_curve_internal_tangent_authority_equation_ref: null,
     retained_solver_vector_witness_row_ref: null,
     minimum_norm_retained_history_gain_witness_row_ref: null,
     accepted_internal_tangent_authority_ref: null,
@@ -515,6 +526,17 @@ export function validateCentralSolverRetainedHistoryRow(row) {
   }
   if (row?.internal_tangent_authority_vector_request?.required_same_record_rows?.length !== 5) {
     errors.push("internal tangent-authority vector request must name five same-record row families");
+  }
+  if (
+    row?.internal_tangent_authority_vector_request?.preferred_curve_binding?.required_equation_schema !==
+    "preferred_curve_internal_tangent_authority_equation.v0"
+  ) {
+    errors.push("internal tangent-authority vector request must require the preferred-curve equation schema");
+  }
+  if (
+    row?.internal_tangent_authority_vector_request?.preferred_curve_internal_tangent_authority_equation_ref !== null
+  ) {
+    errors.push("internal tangent-authority vector request must not claim a preferred-curve equation ref");
   }
   if (row?.internal_tangent_authority_vector_request?.accepted !== false) {
     errors.push("internal tangent-authority vector request must remain non-authorizing");

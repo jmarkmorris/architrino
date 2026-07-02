@@ -102,6 +102,25 @@
       ],
       "boundary": "The accepted Noether sea response consumes one same-event provider ledger, but it does not by itself bind the branch-interface ledger, residual tail, color-singlet closure, and open-color projection into the no-open audit event."
     },
+    "openColorProjectionSurfaceSupport": {
+      "candidatePath": "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
+      "candidateRowId": "open_color_projection_surface_support_0001",
+      "acceptedRowsProvided": [
+        "bounded_open_color_projection_operator_norm",
+        "finite_open_color_surface_measure"
+      ],
+      "usableFor": [
+        "bounded Pi_open operator norm input to the finite-K_open route",
+        "finite open-color audit surface measure input to the finite-K_open route"
+      ],
+      "notUsableFor": [
+        "accepted_same_event_ledger",
+        "accepted_K_open_finite",
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained projection-support evidence accepts only the projection norm and surface-measure support rows; residual tail, color-singlet closure, same-event ledger, K_open, and no-open-color remain unaccepted."
+    },
     "confinementFunctionalNoOpenColorTarget": {
       "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/no_open_color_far_field",
       "usableFor": [
@@ -173,14 +192,14 @@
       "accepted_proton_branch_interface_ledger",
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
-      "same_record_noether_sea_response"
+      "same_record_noether_sea_response",
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure"
     ],
     "stillMissingBeforeAcceptance": [
       "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
-      "bounded_open_color_projection_operator_norm",
-      "finite_open_color_surface_measure",
       "K_open_finite"
     ],
     "antiSpliceChecks": [
@@ -421,8 +440,6 @@
       "Delta_E_corr_NN_tail_limit",
       "finite_range_residual",
       "color_singlet_closure",
-      "bounded_open_color_projection_operator_norm",
-      "finite_open_color_surface_measure",
       "single_retained_event_id"
     ],
     "feedsRowsAfterAcceptance": [

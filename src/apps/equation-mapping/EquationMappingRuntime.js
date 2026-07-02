@@ -31,9 +31,9 @@ const SIZE_CALIBRATION_VERSION = 3;
 const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
 const SVG_NS = "http://www.w3.org/2000/svg";
 const EQUATION_AUTO_FIT_MIN_FONT_SIZE = Object.freeze({
-  small: 22,
-  medium: 26,
-  large: 30,
+  small: 11,
+  medium: 13,
+  large: 15,
 });
 
 function createElement(documentLike, tag, className = "", textContent) {

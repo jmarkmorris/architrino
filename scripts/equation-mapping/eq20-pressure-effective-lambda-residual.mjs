@@ -2,6 +2,10 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import {
+  EQ20_DELTA_P_EFF_REPORT_ROWS,
+  pressureProjectionEvidenceStatusForPath,
+} from "./eq20-delta-p-eff-pressure-projection-evidence.mjs";
 import { providerEvidenceStatusForPath } from "../spacetime/noether-sea-density-compression-provider-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
@@ -10,6 +14,7 @@ const INPUT_SCHEMA = "aaa-equation-map-eq20-pressure-effective-lambda-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-eq20-pressure-effective-lambda-check/v1";
 const ACCEPTED_STATUSES = new Set(["accepted", "passed", "populated"]);
 const SCORE_DECISION = "no_score_increase";
+const PRESSURE_PROJECTION_REPORT_ROW_SET = new Set(EQ20_DELTA_P_EFF_REPORT_ROWS);
 
 const REQUIRED_ROWS = [
   "theta_sea_rho_NS",
@@ -277,6 +282,7 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
           accepted: rowChecks[rowId].accepted,
           reason: rowChecks[rowId].reason,
           providerEvidence: rowChecks[rowId].providerEvidence ?? null,
+          pressureProjectionEvidence: rowChecks[rowId].pressureProjectionEvidence ?? null,
           rowId: rows[rowId]?.rowId ?? rows[rowId]?.id ?? null,
           carrierId: rows[rowId]?.carrierId ?? null,
           sourcePath: rows[rowId]?.sourcePath ?? rows[rowId]?.source ?? null,
@@ -913,6 +919,29 @@ function evaluateAcceptedRow(row, rowId = null) {
       };
     }
     return { accepted: true, reason: "accepted", providerEvidence };
+  }
+  if (PRESSURE_PROJECTION_REPORT_ROW_SET.has(rowId)) {
+    const pressureProjectionEvidence = pressureProjectionEvidenceStatusForPath(sourcePath, {
+      repoRoot: REPO_ROOT,
+    });
+    if (!pressureProjectionEvidence.accepted) {
+      return {
+        accepted: false,
+        reason: `eq20_delta_P_eff_pressure_projection_${pressureProjectionEvidence.reason}`,
+        pressureProjectionEvidence,
+      };
+    }
+    if (
+      concreteString(pressureProjectionEvidence.commonCarrierId) &&
+      row.carrierId !== pressureProjectionEvidence.commonCarrierId
+    ) {
+      return {
+        accepted: false,
+        reason: "eq20_delta_P_eff_pressure_projection_row_carrier_mismatch",
+        pressureProjectionEvidence,
+      };
+    }
+    return { accepted: true, reason: "accepted", pressureProjectionEvidence };
   }
   return { accepted: true, reason: "accepted" };
 }

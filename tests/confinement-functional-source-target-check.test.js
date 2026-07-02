@@ -88,6 +88,12 @@ const DELTA_E_CORR_TAIL_LIMIT_BLOCKER_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const DELTA_E_CORR_TAIL_CORRIDOR_WEIGHT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const COLOR_SINGLET_CLOSURE_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
@@ -97,6 +103,12 @@ const COLOR_SINGLET_CLOSURE_BLOCKER_PATH = fileURLToPath(
 const SAME_RECORD_NO_OPEN_COLOR_AUDIT_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json",
+    import.meta.url,
+  ),
+);
+const OPEN_COLOR_PROJECTION_SURFACE_SUPPORT_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
     import.meta.url,
   ),
 );
@@ -998,6 +1010,53 @@ test("current confinement target passes structure but blocks accepted source row
       .sourceTargetPath,
     "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.corridor_weight_growth_eta_lt_lambda
+      .accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.corridor_weight_growth_eta_lt_lambda
+      .requiredLedgerComponents,
+    ["corridor_weight_bound", "C_w", "eta", "eta_lt_lambda_witness"],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.coefficient_exclusion_audit
+      .accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.coefficient_exclusion_audit
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/delta-E-corr-NN-tail-corridor-weight-retained-evidence.v1.json",
+  );
+  const deltaTailCorridorWeightEvidence = JSON.parse(
+    fs.readFileSync(DELTA_E_CORR_TAIL_CORRIDOR_WEIGHT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    deltaTailCorridorWeightEvidence.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    ["corridor_weight_growth_eta_lt_lambda", "coefficient_exclusion_audit"],
+  );
+  assert.equal(deltaTailCorridorWeightEvidence.corridorWeightGrowth.C_w, 1);
+  assert.equal(deltaTailCorridorWeightEvidence.corridorWeightGrowth.eta, 0);
+  assert.equal(
+    deltaTailCorridorWeightEvidence.coefficientExclusionAudit
+      .usesFeNiTunedCoefficient,
+    false,
+  );
+  assert.equal(
+    deltaTailCorridorWeightEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "Delta_E_corr_NN_tail_limit",
+    ),
+    true,
+  );
+  assert.equal(
+    deltaTailCorridorWeightEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "uniform_large_r_bound_C_lambda_R0",
+    ),
+    true,
+  );
   const deltaECorrTailLimitBlocker = JSON.parse(
     fs.readFileSync(DELTA_E_CORR_TAIL_LIMIT_BLOCKER_PATH, "utf8"),
   );
@@ -1064,12 +1123,31 @@ test("current confinement target passes structure but blocks accepted source row
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
+      "corridor_weight_growth_eta_lt_lambda",
+      "coefficient_exclusion_audit",
     ],
   );
   assert.equal(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
       .stillMissingBeforeAcceptance.includes("accepted_sigma_eff_extraction"),
     true,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("uniform_large_r_bound_C_lambda_R0"),
+    true,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes(
+        "corridor_weight_growth_eta_lt_lambda",
+      ),
+    false,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("coefficient_exclusion_audit"),
+    false,
   );
   assert.deepEqual(
     deltaECorrTailLimitBlocker.uniformExponentialTailCertificateRequestPacket
@@ -1116,6 +1194,12 @@ test("current confinement target passes structure but blocks accepted source row
       "uniform_large_r_bound_C_lambda_R0",
     ),
     true,
+  );
+  assert.equal(
+    deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(
+      "corridor_weight_growth_eta_lt_lambda",
+    ),
+    false,
   );
   assert.equal(
     deltaECorrTailLimitBlocker.candidateTailLimitLemma.missingAcceptanceRows.includes(
@@ -1362,6 +1446,68 @@ test("current confinement target passes structure but blocks accepted source row
       .sourceTargetPath,
     "scripts/nuclear-atomic/same-record-no-open-color-audit-source-acquisition-blocker.v1.json",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .bounded_open_color_projection_operator_norm.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .bounded_open_color_projection_operator_norm.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks
+      .bounded_open_color_projection_operator_norm.requiredLedgerComponents,
+    [
+      "Pi_open_operator",
+      "projection_domain",
+      "operator_norm_bound",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .finite_open_color_surface_measure.accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks
+      .finite_open_color_surface_measure.sourceTargetPath,
+    "scripts/nuclear-atomic/open-color-projection-surface-support-retained-evidence.v1.json",
+  );
+  const openColorProjectionSurfaceSupport = JSON.parse(
+    fs.readFileSync(OPEN_COLOR_PROJECTION_SURFACE_SUPPORT_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    openColorProjectionSurfaceSupport.acceptedBoundary
+      .acceptedSourceRowsByThisEvidence,
+    [
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure",
+    ],
+  );
+  assert.equal(
+    openColorProjectionSurfaceSupport.boundedOpenColorProjectionOperatorNorm
+      .kappa_open,
+    1,
+  );
+  assert.equal(
+    openColorProjectionSurfaceSupport.finiteOpenColorSurfaceMeasure.Omega_open,
+    1,
+  );
+  assert.equal(
+    openColorProjectionSurfaceSupport.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "K_open_finite",
+    ),
+    true,
+  );
+  assert.equal(
+    openColorProjectionSurfaceSupport.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
   const sameRecordAuditBlockerEntry =
     report.sourceAcquisitionBlockerMap.blockers.find(
       (blockerEntry) =>
@@ -1521,7 +1667,21 @@ test("current confinement target passes structure but blocks accepted source row
       "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "same_record_noether_sea_response",
+      "bounded_open_color_projection_operator_norm",
+      "finite_open_color_surface_measure",
     ],
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.sameEventLedgerRequestPacket
+      .stillMissingBeforeAcceptance.includes(
+        "bounded_open_color_projection_operator_norm",
+      ),
+    false,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.sameEventLedgerRequestPacket
+      .stillMissingBeforeAcceptance.includes("finite_open_color_surface_measure"),
+    false,
   );
   assert.equal(
     sameRecordNoOpenColorAuditBlocker.sameEventLedgerRequestPacket
@@ -1585,6 +1745,11 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     sameRecordNoOpenColorAuditBlocker.candidateSameEventLedgerLockLemma
       .missingAcceptanceRows.includes("finite_open_color_surface_measure"),
+    false,
+  );
+  assert.equal(
+    sameRecordNoOpenColorAuditBlocker.candidateSameEventLedgerLockLemma
+      .missingAcceptanceRows.includes("single_retained_event_id"),
     true,
   );
   assert.equal(

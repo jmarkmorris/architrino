@@ -2004,6 +2004,93 @@ The bridge is now executable as a separate fail-closed artifact. The script [cen
 
 In the executable bridge fixture, the same retained record carries $\mathbf e_x=[-0.02,0,0,0,0,0]$, $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, $\mathbf P_T$, $\mathbf P_N$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$. The bridge recovers the minimum-gain response, checks the retained-vector provider, and reports `same_record_internal_tangent_authority_vector_rows_mathematical_pass_acceptance_blocked`. That is a useful success marker under the existing proof route: the algebraic replacement can now be evaluated at the central-row boundary. It is not accepted internal tangent authority, because the bridge still lacks the central retained-history acceptance certificate, retained-root ledger, action closure, wake history, path history, and provider provenance required to replace the assigned branch-clock lock.
 
+The preferred-curve equation is now explicit and executable. The script [preferred-curve-internal-tangent-authority-equation.mjs](../../../scripts/braid-ideal/preferred-curve-internal-tangent-authority-equation.mjs) consumes a preferred near-edge finite-difference row plus a same-source minimum-gain retained-history witness row. It first derives the local preferred-curve tangent from the branch-objective stationarity condition. If $q=(u,v_{\mathrm{orb}})$ and $J(q)$ is the diagnostic branch objective, then the sampled preferred curve $v_\ast(u)$ obeys
+
+$$
+J_u+J_v v_\ast'(u)=0,
+\qquad
+v_\ast'(u)=-\frac{J_u}{J_v},
+$$
+
+when $J_v\ne0$. This is not a physical law; it is the local differential form of the diagnostic preferred-curve selection. It lets the tangent-authority equation be written as a function of the sampled translation/orbital-velocity row rather than as a free row-level assertion.
+
+At each such row the candidate internal authority equation is:
+
+$$
+\mathbf T(q)
+=
+\mathbf P_T\bigl(
+\mathbf a_{\mathrm{ansatz}}(q)
+-\mathbf a_{\mathrm{wake}}(q)
+-\mathbf a_{\mathrm{support}}(q)
+\bigr),
+$$
+
+$$
+\mathbf K_x^\ast(q)
+=
+-\frac{\mathbf T(q)\mathbf e_x^\top}
+{\|\mathbf e_x\|^2+\|\mathbf e_v\|^2},
+\qquad
+\mathbf K_v^\ast(q)
+=
+-\frac{\mathbf T(q)\mathbf e_v^\top}
+{\|\mathbf e_x\|^2+\|\mathbf e_v\|^2},
+$$
+
+$$
+\mathbf a_{\mathrm{RH}}^\ast(q)
+=
+-\mathbf P_T\bigl(
+\mathbf K_x^\ast(q)\mathbf e_x
++\mathbf K_v^\ast(q)\mathbf e_v
+\bigr).
+$$
+
+The margin-preserving component is the least tangent-null lift
+
+$$
+\mathbf n_\ast(q)=\lambda_+(q)\mathbf P_N\mathbf G_\mu(q),
+$$
+
+with
+
+$$
+\lambda_+(q)
+=
+\max\left(
+0,\,
+\frac{
+\epsilon_\mu
++\Delta_T\|\mathbf T(q)\|
+-m_{\mathrm{dyn}}
+-\Delta_M\langle\mathbf T(q),\mathbf G_\mu(q)\rangle}
+{\Delta_M\|\mathbf P_N\mathbf G_\mu(q)\|^2}
+\right),
+$$
+
+so the candidate replacement is
+
+$$
+\mathbf a_{\mathrm{internal}}^\ast(q)
+=
+\mathbf a_{\mathrm{RH}}^\ast(q)+\mathbf n_\ast(q),
+$$
+
+and the required positive causal-root margin is
+
+$$
+m_{\mathrm{dyn}}
+-\Delta_T\|\mathbf P_T\mathbf a_{\mathrm{internal}}^\ast(q)\|
++\Delta_M\langle\mathbf a_{\mathrm{internal}}^\ast(q),\mathbf G_\mu(q)\rangle
+\ge
+\epsilon_\mu.
+$$
+
+The executable artifact binds the near-edge curve row and the minimum-gain row by the same `source_row_id`, and it requires the positive dynamic root margin used by the curve row to match the dynamic root margin used by the minimum-gain row. In the focused fixture, the local branch objective has $J_u=-0.25$ and $J_v=0.5$, so $v_\ast'(u)=0.5$ and the directional objective derivative along $(1,0.5)$ is zero to numerical precision. The same source row carries $\mathbf e_x=[-0.02,0,0,0,0,0]$, $\mathbf e_v=0$, $\mathbf T=[0.1,0,0,0,0,0]$, $\mathbf G_\mu=[0,1,0,0,0,0]$, $m_{\mathrm{dyn}}=0.025$, $\Delta_T=1$, $\Delta_M=1$, and $\epsilon_\mu=0.01$. The artifact reports `preferred_curve_internal_tangent_authority_equation_mathematical_pass_acceptance_blocked`.
+
+This is the strongest current analytical form of the active target. It does not prove that the Noether braid supplies the response. It proves the candidate equation is now stated at the preferred-curve level: a row on the sampled $(u,v_{\mathrm{orb}})$ curve can ask for a same-source retained-history minimum-gain response, the response can replace the assigned tangent branch-clock lock algebraically, and the tangent-null component can preserve the positive causal-root margin. The remaining proof burden is still accepted central retained-solver evidence: retained path-history errors, retained-root ledger, wake history, action closure, provider provenance, and an acceptance certificate on the same retained record.
+
 The route rows are deliberately non-authorizing. They say that the preferred translation/orbital-velocity idea does play out as an interesting diagnostic curve, but the curve cannot become a stable Noether braid claim until one route supplies both the tangent authority and the causal-margin lift on a retained record. The ranked candidate routes are retained-history tangent projection, same-ledger action-measure tangent response, wake-ledger tangent response, angular-momentum plus shielding response, and Noether sea response.
 
 Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.

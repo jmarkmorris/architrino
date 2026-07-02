@@ -500,7 +500,9 @@
       .equation-mapping-formula-text {
         position: relative;
         display: inline-block;
+        flex: 0 0 auto;
         padding: 10px 2px;
+        white-space: nowrap;
       }
 
       .equation-mapping-formula-text {
@@ -518,7 +520,7 @@
       }
 
       .equation-mapping-formula-part.is-targeted[data-section-line="above"]::before {
-        top: 3px;
+        top: -6px;
       }
 
       .equation-mapping-formula-part.is-targeted[data-section-line="below"]::after {

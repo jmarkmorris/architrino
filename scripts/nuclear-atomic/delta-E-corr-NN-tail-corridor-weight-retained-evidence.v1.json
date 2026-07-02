@@ -1,0 +1,94 @@
+{
+  "schema": "aaa-nuclear-atomic-delta-E-corr-NN-tail-corridor-weight-evidence/v1",
+  "claimLevel": "durable non-fixture corridor_weight_growth_eta_lt_lambda and coefficient_exclusion_audit source-acquisition rows for the Delta_E_corr_NN tail-limit route; corridor-weight and coefficient-exclusion rows only; not accepted uniform large-r residual bound, Delta_E_corr_NN_tail_limit, finite_range_residual, no_open_color_far_field, or nuclear-binding promotion evidence",
+  "sourceRole": "durable_non_priority_retained_evidence",
+  "sourceKind": "Delta_E_corr_NN_tail_corridor_weight_support",
+  "sourceSupport": [
+    "Delta_E_corr_NN_tail_limit",
+    "corridor_weight_growth_eta_lt_lambda",
+    "coefficient_exclusion_audit",
+    "corridor_weight_bound",
+    "eta_lt_lambda_witness"
+  ],
+  "evidenceSupports": [
+    "corridor_weight_growth_eta_lt_lambda",
+    "coefficient_exclusion_audit"
+  ],
+  "sourceIdentity": {
+    "tailCorridorWeightSupportId": "Delta_E_corr_NN_tail_corridor_weight_support_0001",
+    "corridorWeightSourceTargetId": "corridor_weight_growth_eta_lt_lambda_source_target_0001",
+    "coefficientExclusionSourceTargetId": "coefficient_exclusion_audit_source_target_0001",
+    "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json",
+    "tailLimitBlockerPath": "scripts/nuclear-atomic/delta-E-corr-NN-tail-limit-source-acquisition-blocker.v1.json",
+    "priorityContextPath": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate"
+  },
+  "corridorWeightGrowth": {
+    "rowId": "corridor_weight_growth_eta_lt_lambda_0001",
+    "sourceRowId": "corridor_weight_growth_eta_lt_lambda",
+    "corridorWeightRef": "w_corr_tail_support_0001",
+    "weightDefinition": "w_corr(r)=1 on the normalized retained tail-audit corridor window.",
+    "C_w": 1,
+    "eta": 0,
+    "etaLtLambdaWitness": "For any future accepted tail-decay row with lambda>0, eta=0 gives 0<=eta<lambda.",
+    "requiredFutureRows": [
+      "uniform_large_r_bound_C_lambda_R0",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope"
+    ]
+  },
+  "coefficientExclusionAudit": {
+    "rowId": "coefficient_exclusion_audit_0001",
+    "sourceRowId": "coefficient_exclusion_audit",
+    "auditedQuantities": [
+      "R0",
+      "C",
+      "lambda",
+      "C_w",
+      "eta",
+      "T_NN",
+      "O_NN",
+      "w_corr"
+    ],
+    "usesAIndexedCoefficient": false,
+    "usesZIndexedCoefficient": false,
+    "usesIsotopeIndexedCoefficient": false,
+    "usesElementIndexedCoefficient": false,
+    "usesFeNiTunedCoefficient": false,
+    "statement": "The retained corridor-weight and coefficient-exclusion rows contain no A-, Z-, isotope-, element-, or Fe/Ni-indexed coefficient; any future uniform tail bound must preserve this exclusion before the tail-limit row can be accepted."
+  },
+  "acceptedBoundary": {
+    "acceptedSourceRowsByThisEvidence": [
+      "corridor_weight_growth_eta_lt_lambda",
+      "coefficient_exclusion_audit"
+    ],
+    "notAcceptedByThisEvidence": [
+      "uniform_large_r_bound_C_lambda_R0",
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "finite_range_residual",
+      "same_event_ledger",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_delta_E_corr_NN",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "failClosedNotes": [
+    "This evidence file is not priority prose, a raw URL, or fixture-only data.",
+    "The accepted rows only bound the corridor weight growth and exclude element-tuned tail coefficients.",
+    "The row does not accept lim_R_to_infty_T_NN_R_eq_0, O_NN_finite, exists_R0_C_lambda_exp_decay_tail, or Delta_E_corr_NN_tail_limit because the uniform large-r residual bound and accepted sigma_eff/color-singlet rows are still missing.",
+    "The row does not accept finite_range_residual, same_record_no_open_color_audit, no_open_color_far_field, branch-interface promotion rows, or Fe/Ni nuclear-binding promotion."
+  ]
+}

@@ -539,7 +539,7 @@ const scoreFiveAndFourEquationMapDocuments = [
     backgroundId: DEFAULT_BACKGROUND_ID,
     claimLevel: "candidate-commentary",
     formulaTeX:
-      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}\\cdot(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
+      "ds_{\\mathrm{eff}}^2=-N^2c_0^2dt^2+\\gamma_{ij}(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)",
     anchors: [
       anchor("lineElement", "effective line element", "observer-level effective metric"),
       anchor("lapse", "lapse", "clock channel lapse"),
@@ -552,7 +552,6 @@ const scoreFiveAndFourEquationMapDocuments = [
       mathPart("lapse", "-N^2c_0^2dt^2", "lapse"),
       textPart("plus", " + "),
       mathPart("spatialCompliance", "\\gamma_{ij}", "spatialCompliance"),
-      mathPart("spatialProduct", "\\cdot", ""),
       mathPart("drift", "(dx^i-u^i_{\\mathrm{sea}}dt)(dx^j-u^j_{\\mathrm{sea}}dt)", "drift"),
     ],
     overlays: [

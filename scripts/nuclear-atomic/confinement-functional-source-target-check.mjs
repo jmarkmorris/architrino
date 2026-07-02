@@ -153,6 +153,30 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "color_singlet_closure",
     "same_event_ledger",
   ],
+  bounded_open_color_projection_operator_norm: [
+    "Pi_open_operator",
+    "projection_domain",
+    "operator_norm_bound",
+    "coefficient_exclusion_audit",
+  ],
+  finite_open_color_surface_measure: [
+    "open_color_surface_measure",
+    "finite_measure_witness",
+    "projection_domain",
+    "coefficient_exclusion_audit",
+  ],
+  corridor_weight_growth_eta_lt_lambda: [
+    "corridor_weight_bound",
+    "C_w",
+    "eta",
+    "eta_lt_lambda_witness",
+  ],
+  coefficient_exclusion_audit: [
+    "no_A_indexed_tail_coefficient",
+    "no_Z_indexed_tail_coefficient",
+    "no_isotope_or_element_indexed_tail_coefficient",
+    "no_Fe_Ni_tuned_tail_coefficient",
+  ],
 });
 const SOURCE_ACQUISITION_ROUTES = Object.freeze({
   accepted_proton_color_singlet_envelope: {
