@@ -133,3 +133,38 @@ test("axial-paired control loses the same-level symmetry window", () => {
   assert.ok(wiggle.windowResiduals.radiusStdMax > 1);
   assert.ok(wiggle.windowResiduals.pairOppositionMax > 1);
 });
+
+test("face-opposite group-velocity baseline separates center drift from same-level loss", () => {
+  const result = runToy([
+    "--field-speed",
+    "1",
+    "--coupling",
+    "0.0277777777777778",
+    "--duration",
+    "18",
+    "--dt",
+    "0.024",
+    "--group-velocity",
+    "0.0166666666666667,0.0166666666666667,0.0166666666666667",
+  ]);
+  const wiggle = result.trajectoryDiagnostics;
+
+  assert.deepEqual(result.configuration.groupVelocity, [
+    0.0166666666666667,
+    0.0166666666666667,
+    0.0166666666666667,
+  ]);
+  assert.equal(result.configuration.fieldSpeed, 1);
+  assert.equal(result.closureDiagnostics.status, "same_level_support_lost_in_translating_toy_window");
+  assert.equal(result.closureDiagnostics.checks.centerResidualPass, true);
+  assert.equal(wiggle.checks.centerWindowPass, true);
+  assert.equal(wiggle.checks.rootCoveragePass, true);
+  assert.equal(wiggle.checks.fieldSpeedPass, true);
+  assert.equal(wiggle.status, "same_level_window_lost");
+  assert.equal(result.closureDiagnostics.firstClosureBlocker, "common_sphere_antipodal_symmetry_not_preserved");
+  assert.ok(result.finalMetrics.centerDriftResidual > 0);
+  assert.ok(result.finalMetrics.radiusStd > 0);
+  assert.ok(result.finalMetrics.pairOppositionMax > 0);
+  assert.equal(result.closureDiagnostics.retainedBranchClaim, false);
+  assert.equal(result.closureDiagnostics.scoreMovement, "no_score_increase");
+});

@@ -87,27 +87,7 @@ where $\mathcal{B}_{\mathrm{std}}^{\mathcal{E}}$ is the selected observer-level 
 | Black-hole formation by collapse | Chandrasekhar support loss, electron capture, photodisintegration, neutrino transport, TOV failure, trapped-surface comparison, compact-region ledger closure, and horizon-interface activation. | [EQ-07A compact-star support](../equation-mapping/eq-07a-compact-star-support-collapse-scale-residual.md), [EQ-23A explosive source window](../equation-mapping/eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md), and [singularity-resolution](../../../content/markdown/aaa/spacetime/singularity-resolution.md). | Collapse must not switch carriers at the horizon handoff: support failure, reaction inventory, compact-region ledger, metric compliance, and $F_H=0$ must be projections of one retained source history or explicitly split with a failure reason. |
 | CMB energy distribution by scale | Blackbody energy density, spectral-distortion controls, anisotropy and polarization spectra, damping scale, lensing handoff, BBN/recombination provenance, and any proposed horizon/release contribution to photon loading. | [EQ-25 CMB thermalization](../equation-mapping/eq-25-theta-therm-cmb-source-field-map.md), [EQ-17 transfer](../equation-mapping/eq-17-theta-transfer-source-field-map.md), [EQ-18/19 theta-cos](../equation-mapping/eq-18-19-theta-cos-source-field-map.md), and [CMB](../../../content/markdown/aaa/cosmology/CMB.md). | `missing_accepted_theta_therm` and related `theta_transfer` / `theta_cos` blockers; energy-by-scale clues are admissible only if the same source-to-decoupling path preserves spectrum, anisotropy, polarization, damping, lensing, BBN handoff, and no-hidden-retune witnesses. |
 
-## Equation-ID Variable Coverage Matrix
-
-`x` marks a variable family that is central to the current equation packet or routing row; a blank cell means absent or only incidental in this priority capture.
-
-| Equation ID | High-energy focus | Surface area / entropy | Mass | Radius / scale | $c$ / $c_f$ family | Spin / angular momentum | Horizon / interface | Event ledger | Noether sea / braid carrier | Count |
-| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | ---: |
-| EQ-07C | Black-hole proper: horizon-interface / Noether braid map | x | x | x | x | x | x | x | x | 8 |
-| EQ-07B | Accretion, release, jets, winds, horizon-area bookkeeping | x | x | x |  | x | x | x | x | 7 |
-| EQ-07A | Neutron-star support, compactness, collapse threshold |  | x | x | x |  | x | x | x | 6 |
-| EQ-11A | Binary compact-object merger / gravitational-wave source |  | x |  | x | x |  | x | x | 5 |
-| EQ-22B | Recombination / acoustic-scale CMB mapping |  |  | x | x |  |  | x | x | 4 |
-| EQ-23A | Explosive source / shock and remnant event ledger |  |  | x |  |  |  | x | x | 3 |
-| EQ-25 | CMB energy distribution by scale and damping |  |  | x |  |  |  | x | x | 3 |
-| EQ-18/19 | Lambda-CDM background / theta-cos bridge |  |  | x |  |  |  | x | x | 3 |
-| EQ-17 | Transfer/redshift path-history support |  |  | x |  |  |  |  | x | 2 |
-
-Highest-coverage rows:
-
-1. EQ-07C is the densest row at 8/8 because black-hole-proper mapping already carries horizon area/entropy, mass, radius, $c$, spin/angular momentum, horizon-interface fields, event-ledger fields, and a Noether sea / braid carrier obligation.
-2. EQ-07B follows at 7/8 because the accretion/release packet carries area/entropy, mass, radius, spin/angular momentum, horizon-interface, event-ledger, and Noether-carrier fields, while the $c$ / $c_f$ family is not currently a primary row variable.
-3. EQ-07A follows at 6/8 because neutron-star support and collapse already carry mass, radius, $c$ / $c_f$-family limits, horizon-interface handoff pressure, event-ledger fields, and Noether-carrier obligations.
+Readable architecture and equation notes for this survey live in [brainstorming.md](brainstorming.md#equation-id-variable-coverage-matrix). This control file keeps the active queue, routing, blockers, and promotion state.
 
 ## Routing Map
 

@@ -20,6 +20,8 @@ The current preferred style for live priority docs is:
 
 - keep priorities concise and code-verified;
 - use `Current` plus `Objective` rather than long migration diaries;
+- keep readable architecture notes, equation explanations, comparison matrices, and conceptual maps in the sibling `brainstorming.md` file by default;
+- let the priority/tracking document reference `brainstorming.md` items instead of embedding explanation-first material in the active queue, routing, ranking, blocker, or promotion sections;
 - rerank based on real code state, not stale historical intent;
 - if a task is done, remove it and renumber the list.
 - keep history only when it supports active triage, auditability, or a current proof/certificate decision; otherwise rely on GitHub and git history.

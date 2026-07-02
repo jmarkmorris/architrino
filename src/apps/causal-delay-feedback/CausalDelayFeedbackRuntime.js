@@ -38,9 +38,13 @@ const NOW_SLIDER_MAX = 1000;
 const DEFAULT_ASSEMBLY_THRESHOLD = 0.00075;
 const MIN_RETAINED_DEPTH_LIMIT = 2;
 const RETAINED_DEPTH_LIMIT_OPTIONS = Object.freeze([2, 4, 8, 16, 32, 64]);
-const FIELD_SPEED_MIN = 0.25;
-const FIELD_SPEED_MAX = 2.5;
-const DEFAULT_FIELD_SPEED_SCALE = 1;
+const FIELD_SPEED_CONTROL_MIN = 0.25;
+const FIELD_SPEED_CONTROL_MAX = 1.75;
+const DEFAULT_FIELD_SPEED_CONTROL_SCALE = 1;
+const FIELD_SPEED_BASE_MULTIPLIER = 1.4;
+const FIELD_SPEED_MIN = FIELD_SPEED_CONTROL_MIN * FIELD_SPEED_BASE_MULTIPLIER;
+const FIELD_SPEED_MAX = FIELD_SPEED_CONTROL_MAX * FIELD_SPEED_BASE_MULTIPLIER;
+const DEFAULT_FIELD_SPEED_SCALE = DEFAULT_FIELD_SPEED_CONTROL_SCALE * FIELD_SPEED_BASE_MULTIPLIER;
 const ARCHITRINO_KINDS = Object.freeze(["positrino", "electrino"]);
 const ARCHITRINO_SPEED_FRACTIONS = Object.freeze([0.1, 0.3, 0.5, 0.7, 0.9, 0.99, 0.999, 0.9999, 0.99999, 0.999999]);
 const DEFAULT_ARCHITRINO_SPEED_INDEX = 3;
@@ -75,8 +79,10 @@ const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 64;
 const DEFAULT_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 10;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_ITERATION_COUNT = 256;
 const ADAPTIVE_PATH_CONSTRAINT_BOUNDARY_RELAXATION_TOLERANCE = 1;
-const WEAK_CONTRIBUTION_CUE_OFF = "off";
-const WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY = "threshold_only";
+const WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER = 8;
+const WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE = 0.36;
+const WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE = 0.56;
+const WEAK_CONTRIBUTION_CUE_MAX_DESATURATION = 0.28;
 const WAKE_VISUAL_SWITCHES = Object.freeze({
   arcWakesEnabled: "arcWakesEnabled",
   fullCircularWakesEnabled: "fullCircularWakesEnabled",
@@ -205,7 +211,6 @@ class CausalDelayFeedbackRuntime {
       options.reducedMotionEnabled ?? this.prefersReducedMotion(),
     );
     this.backgroundDepthFieldEnabled = this.normalizeBooleanSetting(options.backgroundDepthFieldEnabled);
-    this.weakContributionCueMode = this.normalizeWeakContributionCueMode(options.weakContributionCueMode);
     this.isPlaying = !this.reducedMotionEnabled;
     this.fieldSpeedScale = this.normalizeFieldSpeedScale(options.fieldSpeedScale ?? DEFAULT_FIELD_SPEED_SCALE);
     this.architrinoSpeedIndex = this.normalizeArchitrinoSpeedIndex(
@@ -296,7 +301,6 @@ class CausalDelayFeedbackRuntime {
       cfSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-cf-speed-value"),
       architrinoSpeedInput: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed"),
       architrinoSpeedValue: queryRequiredElement(this.document, "#causal-delay-feedback-architrino-speed-value"),
-      weakContributionCueInput: queryRequiredElement(this.document, "#causal-delay-feedback-weak-cue"),
       replayStatus: queryRequiredElement(this.document, "#causal-delay-feedback-replay-status"),
       readout: queryRequiredElement(this.document, "#causal-delay-feedback-readout"),
     };
@@ -408,7 +412,7 @@ class CausalDelayFeedbackRuntime {
       this.setReplayNowSliderValue(this.dom.nowInput.value);
     });
     this.dom.cfSpeedInput.addEventListener("input", () => {
-      this.setFieldSpeedScale(this.dom.cfSpeedInput.value);
+      this.setFieldSpeedControlScale(this.dom.cfSpeedInput.value);
     });
     this.dom.architrinoSpeedInput.addEventListener("input", () => {
       this.setArchitrinoSpeedIndex(this.dom.architrinoSpeedInput.value);
@@ -422,9 +426,6 @@ class CausalDelayFeedbackRuntime {
         return;
       }
       void this.stepArchitrinoSpeedIndex(Number(button.dataset.architrinoSpeedStep));
-    });
-    this.dom.weakContributionCueInput.addEventListener("change", () => {
-      this.setWeakContributionCueMode(this.dom.weakContributionCueInput.value);
     });
     this.dom.canvas.addEventListener("pointermove", (event) => {
       this.handleCanvasPointerMove(event);
@@ -594,7 +595,6 @@ class CausalDelayFeedbackRuntime {
       retainedDepthLimit: this.retainedDepthLimit,
       fieldSpeedScale: this.fieldSpeedScale,
       architrinoSpeedFraction: this.getArchitrinoSpeedFraction(),
-      traversalMode: this.traversalMode,
     };
     this.applyPathConstraintBoundaryDefaults(requestOptions);
     this.replayRequestOptions = requestOptions;
@@ -1459,6 +1459,10 @@ class CausalDelayFeedbackRuntime {
     this.updateFieldSpeedControl();
   }
 
+  setFieldSpeedControlScale(controlScale) {
+    this.setFieldSpeedScale(this.getFieldSpeedScaleForControlScale(controlScale));
+  }
+
   setArchitrinoSpeedIndex(speedIndex, { submit = false } = {}) {
     const nextIndex = this.normalizeArchitrinoSpeedIndex(speedIndex);
     const didIndexChange = nextIndex !== this.architrinoSpeedIndex;
@@ -1545,42 +1549,6 @@ class CausalDelayFeedbackRuntime {
     }
   }
 
-  setWeakContributionCueMode(mode) {
-    const nextMode = this.normalizeWeakContributionCueMode(mode);
-    if (nextMode === this.weakContributionCueMode) {
-      this.updateDisplaySettingControls();
-      return;
-    }
-    this.weakContributionCueMode = nextMode;
-    this.updateDisplaySettingControls();
-    if (this.context) {
-      this.render();
-    }
-    if (this.dom?.readout) {
-      this.updateReadout();
-    }
-    if (this.dom?.settingsPanel) {
-      this.hideSettings();
-    }
-  }
-
-  setTraversalMode(mode) {
-    const nextMode = this.normalizeTraversalMode(mode);
-    if (nextMode === this.traversalMode) {
-      this.updateDisplaySettingControls();
-      return;
-    }
-    this.traversalMode = nextMode;
-    this.syncReplayRequestOptionsFromDataset();
-    this.updateDisplaySettingControls();
-    if (this.context) {
-      this.render();
-    }
-    if (this.dom?.readout) {
-      this.updateReadout();
-    }
-  }
-
   applyDatasetCanvasColor(dataset) {
     const colorId = dataset?.canvasColorId ?? dataset?.preset?.canvasColorId;
     if (!colorId) {
@@ -1627,15 +1595,12 @@ class CausalDelayFeedbackRuntime {
   }
 
   updateDisplaySettingControls() {
-    if (this.dom?.traversalModeInput) {
-      this.dom.traversalModeInput.value = this.traversalMode;
-    }
-    if (this.dom?.weakContributionCueInput) {
-      this.dom.weakContributionCueInput.value = this.weakContributionCueMode;
-    }
     if (this.dom?.visualSwitches) {
       Array.from(this.dom.visualSwitches.children).forEach((button) => {
         const switchId = button.dataset.visualSwitch;
+        if (!switchId) {
+          return;
+        }
         const isActive = this.wakeVisualSettings[switchId] === true;
         button.classList.toggle("is-active", isActive);
         button.setAttribute("aria-pressed", isActive ? "true" : "false");
@@ -1645,7 +1610,7 @@ class CausalDelayFeedbackRuntime {
 
   updateFieldSpeedControl() {
     if (this.dom?.cfSpeedInput) {
-      this.dom.cfSpeedInput.value = String(this.fieldSpeedScale);
+      this.dom.cfSpeedInput.value = String(this.getFieldSpeedControlScale(this.fieldSpeedScale));
     }
     if (this.dom?.cfSpeedValue) {
       this.dom.cfSpeedValue.textContent = this.formatFieldSpeedScale(this.fieldSpeedScale);
@@ -1696,6 +1661,24 @@ class CausalDelayFeedbackRuntime {
     return clamp(candidate, FIELD_SPEED_MIN, FIELD_SPEED_MAX);
   }
 
+  normalizeFieldSpeedControlScale(controlScale) {
+    const numericScale = Number(controlScale);
+    const candidate = Number.isFinite(numericScale) ? numericScale : DEFAULT_FIELD_SPEED_CONTROL_SCALE;
+    return clamp(candidate, FIELD_SPEED_CONTROL_MIN, FIELD_SPEED_CONTROL_MAX);
+  }
+
+  getFieldSpeedScaleForControlScale(controlScale) {
+    return this.normalizeFieldSpeedControlScale(controlScale) * FIELD_SPEED_BASE_MULTIPLIER;
+  }
+
+  getFieldSpeedControlScale(speedScale = this.fieldSpeedScale) {
+    return clamp(
+      this.normalizeFieldSpeedScale(speedScale) / FIELD_SPEED_BASE_MULTIPLIER,
+      FIELD_SPEED_CONTROL_MIN,
+      FIELD_SPEED_CONTROL_MAX,
+    );
+  }
+
   normalizeArchitrinoSpeedIndex(speedIndex) {
     const numericIndex = Number(speedIndex);
     const candidate = Number.isFinite(numericIndex) ? Math.round(numericIndex) : DEFAULT_ARCHITRINO_SPEED_INDEX;
@@ -1704,18 +1687,6 @@ class CausalDelayFeedbackRuntime {
 
   normalizeBooleanSetting(value) {
     return value === true || value === "true" || value === "1" || value === 1;
-  }
-
-  normalizeWeakContributionCueMode(mode) {
-    return mode === WEAK_CONTRIBUTION_CUE_OFF
-      ? WEAK_CONTRIBUTION_CUE_OFF
-      : WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
-  }
-
-  normalizeTraversalMode(mode) {
-    return mode === TRAVERSAL_MODE_VARIABLE_SPEED
-      ? TRAVERSAL_MODE_VARIABLE_SPEED
-      : TRAVERSAL_MODE_FIXED_SPEED;
   }
 
   prefersReducedMotion() {
@@ -1734,7 +1705,7 @@ class CausalDelayFeedbackRuntime {
   }
 
   formatFieldSpeedScale(speedScale) {
-    const rounded = Math.round(this.normalizeFieldSpeedScale(speedScale) * 100) / 100;
+    const rounded = Math.round(this.getFieldSpeedControlScale(speedScale) * 100) / 100;
     return `${String(rounded).replace(/\.0+$/, "")}x`;
   }
 
@@ -2311,7 +2282,7 @@ class CausalDelayFeedbackRuntime {
     return {
       ...basePreset,
       finalSpan: 7,
-      startSpan: 1.25,
+      startSpan: 7,
       dotRadius,
       alphaScale,
       falloffPower: 1,
@@ -2462,9 +2433,7 @@ class CausalDelayFeedbackRuntime {
         continue;
       }
       const bandRadius = radius * progress;
-      const wakeSpan = fullCircle
-        ? 360
-        : wakePreset.startSpan + (wakePreset.finalSpan - wakePreset.startSpan) * progress;
+      const wakeSpan = fullCircle ? 360 : wakePreset.finalSpan;
       const emitterBias = 1 - progress;
       const alpha =
         ((84 + 124 * emitterBias) / 255) *
@@ -3666,9 +3635,6 @@ class CausalDelayFeedbackRuntime {
   }
 
   getTraversalPathPoint(kind, t) {
-    if (this.traversalMode === TRAVERSAL_MODE_VARIABLE_SPEED) {
-      return this.getReplayPathPoint(kind, t);
-    }
     return this.getFixedSpeedReplayPathPoint(kind, t);
   }
 
@@ -4863,24 +4829,16 @@ class CausalDelayFeedbackRuntime {
   getWakeVisualWeight(link) {
     const status = this.getWakeStatus(link);
     const thresholdState = this.getWakeThresholdState(link);
-    const contributionScale = clamp(this.getWakeContributionMagnitude(link) / this.getAssemblyThreshold(), 0, 1);
-    const usesWeakThresholdCue = this.weakContributionCueMode === WEAK_CONTRIBUTION_CUE_THRESHOLD_ONLY;
+    const contribution = this.getWakeContributionMagnitude(link);
+    const threshold = this.getAssemblyThreshold();
+    const contributionScale = clamp(contribution / threshold, 0, 1);
+    const visualThreshold = threshold * WEAK_CONTRIBUTION_CUE_VISUAL_THRESHOLD_MULTIPLIER;
+    const weakCueScale = clamp(contribution / visualThreshold, 0, 1);
     const thresholdAlphaScale =
-      !usesWeakThresholdCue
-        ? 1
-        : thresholdState === "below_threshold"
-          ? 0.62
-          : thresholdState === "near_threshold"
-            ? 0.82
-            : 1;
+      WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE + (1 - WEAK_CONTRIBUTION_CUE_MIN_ALPHA_SCALE) * weakCueScale;
     const thresholdRadiusScale =
-      !usesWeakThresholdCue
-        ? 1
-        : thresholdState === "below_threshold"
-          ? 0.78
-          : thresholdState === "near_threshold"
-            ? 0.9
-            : 1;
+      WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE + (1 - WEAK_CONTRIBUTION_CUE_MIN_RADIUS_SCALE) * weakCueScale;
+    const thresholdDesaturation = WEAK_CONTRIBUTION_CUE_MAX_DESATURATION * (1 - weakCueScale);
     if (status.status === "active") {
       return {
         status: status.status,
@@ -4888,7 +4846,7 @@ class CausalDelayFeedbackRuntime {
         contributionScale,
         alphaScale: thresholdAlphaScale,
         radiusScale: thresholdRadiusScale,
-        desaturation: usesWeakThresholdCue && thresholdState === "below_threshold" ? 0.18 : 0,
+        desaturation: thresholdDesaturation,
       };
     }
     const inactiveVisualTier = INACTIVE_WAKE_VISUAL_TIERS[status.status] ?? INACTIVE_WAKE_VISUAL_TIERS.rejected;

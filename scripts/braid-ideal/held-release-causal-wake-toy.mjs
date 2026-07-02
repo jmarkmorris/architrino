@@ -75,6 +75,7 @@ function parseArgs(rawArgs) {
     sampleEvery: 10,
     outputDir: null,
     preset: "face-opposite",
+    groupVelocity: [0, 0, 0],
     causalWeight: true,
     includeSelfHits: false,
     selfHitMinDelay: null,
@@ -121,6 +122,9 @@ function parseArgs(rawArgs) {
         throw new TypeError(`--preset must be one of: ${Object.keys(INITIAL_PARTICLE_PRESETS).join(", ")}`);
       }
       index += 1;
+    } else if (arg === "--group-velocity") {
+      parsed.groupVelocity = vector3(requireNext(rawArgs, index, arg), "group-velocity");
+      index += 1;
     } else if (arg === "--max-acceleration") {
       parsed.maxAcceleration = positiveFiniteNumber(requireNext(rawArgs, index, arg), "max-acceleration");
       index += 1;
@@ -144,10 +148,11 @@ function parseArgs(rawArgs) {
 function runHeldRelease(options) {
   const preset = INITIAL_PARTICLE_PRESETS[options.preset];
   const initialParticles = preset.particles;
+  const groupVelocity = cloneVector(options.groupVelocity);
   const particles = initialParticles.map((particle) => ({
     ...particle,
     position: cloneVector(particle.position),
-    velocity: [0, 0, 0],
+    velocity: cloneVector(groupVelocity),
   }));
   const state = {
     time: 0,
@@ -156,8 +161,10 @@ function runHeldRelease(options) {
   };
   const history = [
     snapshotState(state, -options.holdTime, {
-      positions: initialParticles.map((particle) => cloneVector(particle.position)),
-      velocities: initialParticles.map(() => [0, 0, 0]),
+      positions: initialParticles.map((particle) =>
+        add(cloneVector(particle.position), scale(groupVelocity, -options.holdTime))
+      ),
+      velocities: initialParticles.map(() => cloneVector(groupVelocity)),
     }),
     snapshotState(state),
   ];
@@ -241,13 +248,16 @@ function runHeldRelease(options) {
         presetLabel: preset.label,
         decorationClass: preset.decorationClass,
         particles: initialParticles,
-        velocity: [0, 0, 0],
+        velocity: cleanVector(groupVelocity),
+        centerFrameVelocity: [0, 0, 0],
         heldStationaryFor: options.holdTime,
         releaseTime: 0,
       },
       duration: options.duration,
       dt: options.dt,
       fieldSpeed: options.fieldSpeed,
+      groupVelocity: cleanVector(groupVelocity),
+      groupSpeed: cleanNumber(norm(groupVelocity)),
       coupling: options.coupling,
       softening: options.softening,
       jacobianFloor: options.jacobianFloor,
@@ -259,7 +269,9 @@ function runHeldRelease(options) {
     modelNotes: [
       "Each directed pair contributes through all detected causal roots in the retained history window.",
       "The force law uses q_i q_j r / (|r|^2 + softening^2)^(3/2), multiplied by the optional causal branch weight.",
-      "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
+      norm(groupVelocity) > 0
+        ? "The held prehistory is stationary in the moving center frame, with a declared group velocity through the Noether sea frame."
+        : "The held prehistory is stationary from -holdTime to 0, so every initial partner wake has already crossed the seed.",
       options.includeSelfHits
         ? "Same-source causal roots are included as a priority-only toy probe and filtered to delayed roots only."
         : "Same-source self-hits are disabled in the default toy run.",
@@ -486,8 +498,12 @@ function sampleHistory(particleIndex, time, history) {
 
 function computeMetrics(state, history, options) {
   const center = meanVector(state.particles.map((particle) => particle.position));
+  const declaredCenter = scale(options.groupVelocity, state.time);
+  const centerVelocity = meanVector(state.particles.map((particle) => particle.velocity));
   const radii = state.particles.map((particle) => norm(subtract(particle.position, center)));
   const speeds = state.particles.map((particle) => norm(particle.velocity));
+  const relativeVelocities = state.particles.map((particle) => subtract(particle.velocity, centerVelocity));
+  const relativeSpeeds = relativeVelocities.map((velocity) => norm(velocity));
   const sameDistances = [];
   const oppositeDistances = [];
   for (let i = 0; i < state.particles.length; i += 1) {
@@ -508,20 +524,27 @@ function computeMetrics(state, history, options) {
     return norm(add(subtract(positiveSiteParticle.position, center), subtract(negativeSiteParticle.position, center)));
   });
   const radialVelocityMean = mean(
-    state.particles.map((particle) => {
+    state.particles.map((particle, index) => {
       const offset = subtract(particle.position, center);
       const radius = norm(offset);
-      return radius > 0 ? dot(offset, particle.velocity) / radius : 0;
+      return radius > 0 ? dot(offset, relativeVelocities[index]) / radius : 0;
     })
   );
   return {
     time: cleanNumber(state.time),
     center: cleanVector(center),
+    declaredCenter: cleanVector(declaredCenter),
+    centerDriftResidual: cleanNumber(norm(subtract(center, declaredCenter))),
+    centerVelocity: cleanVector(centerVelocity),
+    groupSpeed: cleanNumber(norm(centerVelocity)),
     radiusMean: cleanNumber(mean(radii)),
     radiusStd: cleanNumber(stddev(radii)),
     speedMean: cleanNumber(mean(speeds)),
     speedStd: cleanNumber(stddev(speeds)),
     speedMax: cleanNumber(Math.max(...speeds)),
+    relativeSpeedMean: cleanNumber(mean(relativeSpeeds)),
+    relativeSpeedStd: cleanNumber(stddev(relativeSpeeds)),
+    relativeSpeedMax: cleanNumber(Math.max(...relativeSpeeds)),
     minSameDistance: cleanNumber(Math.min(...sameDistances)),
     minOppositeDistance: cleanNumber(Math.min(...oppositeDistances)),
     pairOppositionMean: cleanNumber(mean(pairedOppositionErrors)),
@@ -587,12 +610,20 @@ function createClosureDiagnostics({
 }) {
   const symmetryResiduals = {
     centerNorm: cleanNumber(norm(finalMetrics.center)),
+    centerDriftResidual: finalMetrics.centerDriftResidual,
     radiusStd: finalMetrics.radiusStd,
-    speedStd: finalMetrics.speedStd,
+    speedStd: finalMetrics.relativeSpeedStd,
+    absoluteSpeedStd: finalMetrics.speedStd,
     pairOppositionMax: finalMetrics.pairOppositionMax,
+    centerVelocity: finalMetrics.centerVelocity,
+    groupSpeed: finalMetrics.groupSpeed,
   };
+  const groupVelocityActive = norm(options.groupVelocity) > 0;
+  const centerResidualPass = groupVelocityActive
+    ? Number.isFinite(symmetryResiduals.centerDriftResidual)
+    : symmetryResiduals.centerNorm <= TOY_CLOSURE_THRESHOLDS.centerNorm;
   const symmetryResidualPass =
-    symmetryResiduals.centerNorm <= TOY_CLOSURE_THRESHOLDS.centerNorm &&
+    centerResidualPass &&
     symmetryResiduals.radiusStd <= TOY_CLOSURE_THRESHOLDS.radiusStd &&
     symmetryResiduals.speedStd <= TOY_CLOSURE_THRESHOLDS.speedStd &&
     symmetryResiduals.pairOppositionMax <= TOY_CLOSURE_THRESHOLDS.pairOppositionMax;
@@ -621,7 +652,9 @@ function createClosureDiagnostics({
   ]);
   const sameLevelToyStatus = symmetryResidualPass
     ? "symmetry_channel_preserved_but_retained_branch_unauthorized"
-    : "same_level_support_lost_in_toy_control";
+    : options.preset === "axial-paired"
+      ? "same_level_support_lost_in_toy_control"
+      : "same_level_support_lost_in_translating_toy_window";
 
   return {
     schema: "braid-ideal-held-release-toy-closure-diagnostic.v1",
@@ -636,6 +669,7 @@ function createClosureDiagnostics({
     symmetryResiduals,
     checks: {
       symmetryResidualPass,
+      centerResidualPass,
       rootCoveragePass,
       fieldSpeedPass,
       selfHitProbePass,
@@ -685,7 +719,9 @@ function createTrajectoryAccumulator() {
       maxRadiusMean: null,
       maxRadiusStd: null,
       maxCenterNorm: null,
+      maxCenterDriftResidual: null,
       maxSpeedStd: null,
+      maxRelativeSpeedStd: null,
       maxPairOppositionMax: null,
       maxFieldSpeedRatio: null,
       minSameDistance: null,
@@ -708,7 +744,9 @@ function recordTrajectorySample(accumulator, metrics, state) {
     ...metrics,
     centerNorm: norm(metrics.center),
   }, "centerNorm", "max", state);
+  updateExtremum(accumulator.extrema, "maxCenterDriftResidual", metrics, "centerDriftResidual", "max", state);
   updateExtremum(accumulator.extrema, "maxSpeedStd", metrics, "speedStd", "max", state);
+  updateExtremum(accumulator.extrema, "maxRelativeSpeedStd", metrics, "relativeSpeedStd", "max", state);
   updateExtremum(accumulator.extrema, "maxPairOppositionMax", metrics, "pairOppositionMax", "max", state);
   updateExtremum(accumulator.extrema, "maxFieldSpeedRatio", metrics, "fieldSpeedRatioMax", "max", state);
   updateExtremum(accumulator.extrema, "minSameDistance", metrics, "minSameDistance", "min", state);
@@ -763,12 +801,18 @@ function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAcc
   const extrema = cleanExtrema(trajectoryAccumulator.extrema);
   const windowResiduals = {
     centerNormMax: extrema.maxCenterNorm.value,
+    centerDriftResidualMax: extrema.maxCenterDriftResidual.value,
     radiusStdMax: extrema.maxRadiusStd.value,
-    speedStdMax: extrema.maxSpeedStd.value,
+    speedStdMax: extrema.maxRelativeSpeedStd.value,
+    absoluteSpeedStdMax: extrema.maxSpeedStd.value,
     pairOppositionMax: extrema.maxPairOppositionMax.value,
   };
+  const groupVelocityActive = norm(options.groupVelocity) > 0;
+  const centerWindowPass = groupVelocityActive
+    ? Number.isFinite(windowResiduals.centerDriftResidualMax)
+    : windowResiduals.centerNormMax <= TOY_CLOSURE_THRESHOLDS.centerNorm;
   const symmetryWindowPass =
-    windowResiduals.centerNormMax <= TOY_CLOSURE_THRESHOLDS.centerNorm &&
+    centerWindowPass &&
     windowResiduals.radiusStdMax <= TOY_CLOSURE_THRESHOLDS.radiusStd &&
     windowResiduals.speedStdMax <= TOY_CLOSURE_THRESHOLDS.speedStd &&
     windowResiduals.pairOppositionMax <= TOY_CLOSURE_THRESHOLDS.pairOppositionMax;
@@ -829,6 +873,7 @@ function createTrajectoryDiagnostics({ options, events, rootStats, trajectoryAcc
     firstExpansionToCompressionTurnAfterFirstExpansion,
     checks: {
       symmetryWindowPass,
+      centerWindowPass,
       rootCoveragePass,
       fieldSpeedPass,
       selfHitProbePass,
@@ -1119,7 +1164,11 @@ function createMetricsCsv(frames) {
     "radiusMean",
     "radiusStd",
     "speedMean",
+    "relativeSpeedMean",
     "speedMax",
+    "relativeSpeedMax",
+    "groupSpeed",
+    "centerDriftResidual",
     "minSameDistance",
     "minOppositeDistance",
     "pairOppositionMean",
@@ -1281,6 +1330,14 @@ function nonnegativeFiniteNumber(value, name) {
   return number;
 }
 
+function vector3(value, name) {
+  const parts = value.split(",").map((part) => finiteNumber(part.trim(), name));
+  if (parts.length !== 3) {
+    throw new TypeError(`${name} must be three comma-separated finite numbers`);
+  }
+  return parts;
+}
+
 function positiveInteger(value, name) {
   const number = positiveFiniteNumber(value, name);
   return Math.max(1, Math.round(number));
@@ -1304,6 +1361,7 @@ Options:
   --close-radius <number>      close-pass event threshold, default 0.15
   --sample-every <integer>     output sample stride, default 10
   --preset <name>              initial decoration, one of face-opposite, axial-paired
+  --group-velocity <x,y,z>     center drift through the Noether sea frame, default 0,0,0
   --max-acceleration <number>  optional acceleration cap
   --include-self-hits          include delayed same-source roots as a priority-only toy probe
   --self-hit-min-delay <num>   minimum delayed self-hit root delay, default dt

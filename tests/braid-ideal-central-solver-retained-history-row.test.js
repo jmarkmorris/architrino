@@ -1,0 +1,121 @@
+import assert from "node:assert/strict";
+import test from "node:test";
+
+import {
+  FIRST_MISSING_SOURCE_PROOF_FIELD,
+  NEGATIVE_CONTROL_REASONS,
+  buildCentralSolverRetainedHistoryRow,
+  evaluateRetainedHistoryEvidenceCandidate,
+  validateCentralSolverRetainedHistoryRow,
+} from "../scripts/braid-ideal/central-solver-retained-history-row.mjs";
+
+test("central solver retained-history row is deterministic and sharpens the first blocker", () => {
+  const first = buildCentralSolverRetainedHistoryRow();
+  const second = buildCentralSolverRetainedHistoryRow();
+
+  assert.deepEqual(first, second);
+  assert.equal(first.schema, "central_solver_retained_history_row.v0");
+  assert.equal(first.artifact_status, "fail_closed_missing_provider_provenance");
+  assert.equal(first.source_status, "source_acquisition_blocked");
+  assert.equal(first.first_missing_object, "central_solver_retained_history_provider_object");
+  assert.equal(first.first_missing_field, FIRST_MISSING_SOURCE_PROOF_FIELD);
+  assert.equal(
+    first.consumer_blocker_replacement.previous_first_missing_field,
+    "central_solver_retained_history_row"
+  );
+  assert.equal(
+    first.consumer_blocker_replacement.sharpened_first_missing_field,
+    FIRST_MISSING_SOURCE_PROOF_FIELD
+  );
+  assert.equal(first.seed.point_count, 6);
+  assert.equal(first.artifact_hash.length, 64);
+  assert.equal(first.row_id.startsWith("central_solver_retained_history_row:"), true);
+
+  assert.deepEqual(validateCentralSolverRetainedHistoryRow(first), []);
+});
+
+test("central solver retained-history row carries all same-record request families", () => {
+  const row = buildCentralSolverRetainedHistoryRow();
+
+  assert.equal(row.path_history_stream_requirements.length, 6);
+  assert.equal(row.same_source_self_hit_requirements.length, 6);
+  assert.equal(row.partner_causal_root_replay_requirements.length, 30);
+
+  assert.equal(
+    row.path_history_stream_requirements.every(
+      (request) =>
+        request.required_layout === "path_segment.v1" &&
+        request.required_same_record_binding === true &&
+        request.required_dynamic_replay === true &&
+        request.path_history_stream_id === null &&
+        request.first_missing_field === FIRST_MISSING_SOURCE_PROOF_FIELD
+    ),
+    true
+  );
+  assert.equal(
+    row.same_source_self_hit_requirements.every(
+      (request) =>
+        request.receiver_architrino_id === request.source_architrino_id &&
+        request.required_relation === "strictly-delayed-same-source-root" &&
+        request.accepted_same_source_self_hit_row_ref === null &&
+        request.first_missing_field === FIRST_MISSING_SOURCE_PROOF_FIELD
+    ),
+    true
+  );
+  assert.equal(
+    row.partner_causal_root_replay_requirements.every(
+      (request) =>
+        request.receiver_architrino_id !== request.source_architrino_id &&
+        request.required_relation === "directed-partner-causal-root-replay" &&
+        request.retained_causal_root_row_ref === null &&
+        request.causal_root_replay_ref === null
+    ),
+    true
+  );
+  assert.deepEqual(row.dynamics.group_velocity.value, [1 / 60, 1 / 60, 1 / 60]);
+  assert.equal(row.wake_ledger_hook_requirement.accepted_rows.length, 0);
+  assert.equal(row.action_ledger_hook_requirement.accepted_rows.length, 0);
+  assert.equal(row.branch_row_identity_requirement.branch_row_identity_ref, null);
+  assert.equal(row.oblate_spheroid_residual_row_requirement.residual_rows.length, 0);
+  assert.equal(row.retained_source_binding_requirement.retained_source_binding_ref, null);
+  assert.equal(row.provider_provenance.provider_object_ref, null);
+});
+
+test("central solver retained-history row remains unauthorized for downstream claims", () => {
+  const row = buildCentralSolverRetainedHistoryRow();
+
+  assert.equal(row.authorization.accepted_same_record_evidence, false);
+  assert.equal(row.authorization.central_solver_retained_history_row, false);
+  assert.equal(row.authorization.retained_branch_claim, false);
+  assert.equal(row.authorization.accepted_transition_source, false);
+  assert.equal(row.authorization.moving_retained_branch_certificate, false);
+  assert.equal(row.authorization.same_ledger_action_measure_row, false);
+  assert.equal(row.authorization.bounded_speed_live_ledger, false);
+  assert.equal(row.authorization.receiver_normal_branch_strength, false);
+  assert.equal(row.authorization.score_movement, "no_score_increase");
+});
+
+test("central solver retained-history evidence guard rejects non-evidence classes", () => {
+  const rejectedClasses = Object.keys(NEGATIVE_CONTROL_REASONS);
+  assert.equal(rejectedClasses.length, 15);
+
+  for (const evidenceClass of rejectedClasses) {
+    const result = evaluateRetainedHistoryEvidenceCandidate({ evidence_class: evidenceClass });
+    assert.deepEqual(result, {
+      accepted: false,
+      reason: NEGATIVE_CONTROL_REASONS[evidenceClass],
+      first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+    });
+  }
+
+  assert.deepEqual(evaluateRetainedHistoryEvidenceCandidate({ schema: "t3-retained-causal-root-replay.v1" }), {
+    accepted: false,
+    reason: "schema_not_central_solver_retained_history_row_v0",
+    first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+  });
+  assert.deepEqual(evaluateRetainedHistoryEvidenceCandidate(buildCentralSolverRetainedHistoryRow()), {
+    accepted: false,
+    reason: "provider_provenance_missing",
+    first_missing_field: FIRST_MISSING_SOURCE_PROOF_FIELD,
+  });
+});

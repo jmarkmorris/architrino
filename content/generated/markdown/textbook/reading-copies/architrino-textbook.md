@@ -10202,6 +10202,53 @@ Every entropy statement in $\mathbb{A}\mathbb{A}\mathbb{A}$ should declare five 
 
 This checklist is not extra ontology. It is the minimum context needed for an entropy claim to say something definite. Without these ingredients, a phrase such as "the entropy increased," "the system is maximally entropic," or "information was lost" has not yet specified which alternatives were unresolved, which record retained them, or which comparison class made the claim meaningful.
 
+#### Temperature As A Same-Record Ensemble Variable
+
+Temperature inherits the same discipline. It is not a primitive substrate property of an architrino, a single Noether braid, or the Euclidean void. It is an effective ensemble variable admitted only when a declared coarse-graining retains enough accessible energy exchange, state counting, and local stability for a thermodynamic or kinetic readout to be meaningful.
+
+A minimal temperature-availability record should declare the ensemble, retained window, measure, energy ledger, fixed inventory, fixed volume or access variable, retained Noether sea state, equilibrium or thermalization residual, and observer handoff. Schematically,
+
+$$
+\mathcal A_T(W)
+=
+\left(
+\mathcal Q,
+W,
+\mu,
+E_{\mathcal Q,W},
+\mathcal N,
+\mathcal V,
+\theta_{\text{sea}},
+\mathcal R_{\mathrm{eq}},
+\mathcal O_{\mathrm{obs}}
+\right)
+$$
+
+where $\mathcal R_{\mathrm{eq}}$ records whether local thermodynamic equilibrium, detailed balance, or another thermalization condition has been derived, and $\mathcal O_{\mathrm{obs}}$ records how the temperature is measured, redshifted, or reconstructed. If $S_{\mathcal Q,W}$ is physical entropy and the derivative is stable inside the declared record, the temperature channel is
+
+$$
+\frac{1}{T_{\mathcal Q,W}}
+=
+\left(
+\frac{\partial S_{\mathcal Q,W}}
+{\partial E_{\mathcal Q,W}}
+\right)_{\mathcal N,\mathcal V}
+$$
+
+A kinetic temperature is a special limit of the same rule, not a separate ontology. It is available only when the accessible velocity or mode distribution has thermalized under the local interaction rules. For example, a Maxwell-Boltzmann comparison may be used only after the retained packet shows
+
+$$
+f_{\mathcal Q}(\mathbf{v};\theta_{\text{sea}})
+\approx
+f_{\mathrm{MB}}(\mathbf{v};T_{\mathrm{kin}})
+$$
+
+inside a declared tolerance. Without that ensemble measure or entropy-energy derivative, a high cadence, high internal energy, strong medium response, or local excitation is not yet a temperature.
+
+At human scales, the temperature of matter is therefore a bulk property of Standard Model assemblies and their accessible modes. Atoms, molecules, solids, and plasmas redistribute energy through translational motion, molecular rotation and vibration, electron-envelope excitation, lattice or phonon occupation, photon exchange, recoil, and local Noether sea response. The scalar temperature summarizes the accessible distribution after coarse-graining; it does not measure all shielded internal assembly energy, and it is not a hidden sink for event-ledger imbalance. If a channel becomes heat, the event record must still route the energy into named electron-envelope, bonding or lattice, Noether sea, recoil, remnant, boundary, or radiation rows.
+
+For Noether sea cadence transport, the same-record condition means temperature may bias the rates of accepted branch-ledger transitions but may not be treated as a direct single-braid heat property. The theorem target is stated in [Noether Sea](../../../../markdown/aaa/spacetime/noether-sea.md#temperature-conditioned-branch-transition-target).
+
 #### Work Availability And Energy Spread
 
 Traditional thermodynamics often introduces entropy as a measure of energy spread. In this chapter that is the work-availability face of record coarse-graining. A hot reservoir, chemical store, coherent photon-channel stream, or gravitational potential gradient is low entropy only relative to a work channel and comparison record that can use the concentration. After the same energy is distributed among many thermal, boundary, or wake-history microrecords, the total energy ledger may still close, but the retained record supports less extractable work.
@@ -41612,6 +41659,37 @@ $$
 
 where $r_\sigma$ is the local rate density of accepted $\sigma$ transactions per braid and $\Delta\nu_N^{(q,\sigma)}$ is the cadence component extracted from $\mathcal{R}_{\mathrm{cyc}}^{(q,\sigma)}$. Deep space can therefore look smooth without making the underlying transactions continuous. Moving from deep space toward a solar-system environment should not be modeled as a scalar temperature increase alone; it is a bias in the local population toward higher cadence, stronger strain, stronger alignment, and larger gradients. Near a proton or other matter assembly, the neighboring Noether braids see a sharper boundary condition and retune more discretely around the assembly.
 
+##### Temperature-Conditioned Branch Transition Target
+
+A temperature channel can enter this transport law only through the same retained ensemble record used to define [temperature](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable). It is not a property of one Noether braid, and it does not change $h$. The braid-level event remains an accepted branch-ledger transition with $\Delta A_{\mathrm{cyc}}=\pm h$; temperature can only bias the rates at which those admissible transitions are accepted inside a declared coarse-graining cell.
+
+When the retained record licenses a temperature variable $T_{\mathcal Q,W}$, the temperature-conditioned part of the cadence current has the candidate form
+
+$$
+J_\nu^{(T)}(\nu,\mathbf{x},t)
+=
+\sum_{\sigma=\pm1}
+f_N(\nu,\mathbf{x},t)\,
+r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})\,
+\Delta\nu_N^{(q,\sigma)}
++
+O\!\left((\Delta\nu_N)^2\partial_\nu f_N\right)
+$$
+
+where $r_\sigma(\nu,\mathbf{x},t;T_{\mathcal Q,W})$ is the accepted rate for the $\sigma$ branch transition under the same temperature-availability record. The detailed-balance residual for a neighboring $+h/-h$ pair is
+
+$$
+\mathcal R_{\mathrm{db}}^{(T)}(\nu,\mathbf{x},t)
+=
+f_N(\nu,\mathbf{x},t)\,
+r_+(\nu,\mathbf{x},t;T_{\mathcal Q,W})
+-
+f_N(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t)\,
+r_-(\nu+\Delta\nu_N^{(q,+)},\mathbf{x},t;T_{\mathcal Q,W})
+$$
+
+If $\mathcal R_{\mathrm{db}}^{(T)}=0$ after coarse-graining, individual $+h$ and $-h$ ledger transitions may still occur, but the temperature channel produces no net cadence-space drift. If the residual is nonzero, the signed imbalance contributes to $J_\nu^{(T)}$ and therefore biases cadence-scale retuning. In the fixed-speed shell-binary approximation above, positive cadence drift trends toward smaller representative scale, while negative cadence drift trends toward larger representative scale. The full theorem target is to derive the rates $r_\sigma$, the retuning increments $\Delta\nu_N^{(q,\sigma)}$, and the layer partition of the same action transaction from a closed nested shell braid branch record rather than treating temperature as an external force.
+
 The same smoothing record supplies the ambient-branch acceptance used at assembly boundaries. For a neutral-braid quantity $f_k(t)$ in a coarse window $\Omega_\ell$, define
 
 $$
@@ -48589,6 +48667,8 @@ Here $\partial\Omega$ denotes the boundary data supplied by the surrounding Noet
 
 The finite-boundary-data version of this requirement is inherited from [singularity-resolution.md](../../../../markdown/aaa/spacetime/singularity-resolution.md#finite-boundary-data-regularity). For every compact strong-field comparison region $\Omega$, the native variables $\rho_{\text{NS}}(\mathbf{x},t)$, $\Sigma_{\text{medium}}(\mathbf{x},t)$, and $\mathbf{u}_{\text{medium}}(\mathbf{x},t)$ must remain finite while the horizon-interface condition is imposed. This is the local substitute for treating a classical metric singularity as an endpoint: the weak-field variables may fail, but the Noether sea ledger and maximum-curvature closure must not become arbitrary.
 
+Recent regular-horizon cosmological-embedding work is useful at this comparison level. Its value is not that an FLRW-embedded Schwarzschild variant becomes the native model. The useful pressure is structural: a compact object must be describable inside an evolving large-scale background without producing a new curvature pathology at the horizon interface. In the local ontology, that translates into finite Noether sea boundary data, finite native variables, and a non-arbitrary maximum-curvature continuation through the same interface record used for exterior mass, redshift, and release-channel comparisons.
+
 ##### Interior Dynamics and Recycling
 
 Inside the black-hole regime, the dominant language is recycling rather than annihilation. Matter and radiation driven inward do not disappear from ontology. They are processed through inner self-hit layers, middle-layer interface locking, and outer-layer reconfiguration. The resulting interior is best treated as a statistical medium of maximal-curvature assemblies rather than as a smooth classical fluid or a single deterministic orbit family.
@@ -48920,6 +49000,8 @@ This matters because a population-level dark-energy contribution cannot be infer
 - the formation history of compact strong-field sites;
 - the inflow history of matter and radiation into those sites;
 - the release history of outward channels that load the surrounding Noether sea.
+
+The DESI-era cosmological-coupling packet sharpens the first row by tying the effective source history to the cosmic star-formation rate density rather than to an arbitrary homogeneous term. In the external cosmologically coupled black-hole comparison, stellar collapse mediates matter conversion into an effective dark-energy contribution, and the same fit is tested against expansion history, BBN baryon abundance, local-distance-ladder tension, and summed-neutrino-mass constraints. The local use of that packet is a recovery target: if strong-field recycling contributes to $\rho_{\mathrm{DE,eff}}(z)$, then one retained formation, inflow, release, and Noether sea transport record must explain the timing of the source term and its compatibility with those independent rows. It is not imported as vacuum-energy ontology or as proof that black holes are the whole dark-energy mechanism.
 
 High-redshift quasars add a compact source-accounting stress test. The observational product is not a black-hole mass in isolation: it joins a redshifted spectrum, absorption by the reionization-era intergalactic medium, broad emission-line velocities near the central engine, luminosity modeling, and survey selection into one inferred early supermassive black hole record. A quasar seen when the universe is only a few percent of its current age but whose spectrum implies a compact object near $10^9M_\odot$ is therefore not merely a large-mass anecdote. It asks whether the same redshift, clock-rate comparison, formation, inflow, and release histories can produce the observed source without switching comparison records.
 
@@ -68965,32 +69047,41 @@ $$
 
 **Architrino Interpretation:**
 
-Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in $\mathbb{A}\mathbb{A}\mathbb{A}$?
+Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. In $\mathbb{A}\mathbb{A}\mathbb{A}$, temperature is not the internal energy of one Noether braid or the total energy stored in the Noether sea. It is an effective ensemble variable admitted when a declared coarse-graining supplies an accessible energy ledger, a measure over retained states, a fixed inventory or access variable, and a local equilibrium or thermalization condition. The general rule is the same-record entropy relation developed in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
-**Hypothesis:**
-Temperature is the **mean kinetic energy per degree of freedom** in the Noether sea bath:
+**Thermalized-ensemble limit:**
+In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a neutral Noether braid assembly in the Noether sea:
-- 6 degrees of freedom (3 translational + 3 rotational)
-- Mean energy: $\langle E \rangle = 3 k_B T$
+For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
+
+$$
+\langle E_{\mathrm{acc}} \rangle = 3 k_B T
+$$
+
+This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
 
 **What we must derive:**
 $$
-k_B = f(\text{neutral Noether braid assembly mass, } c_f, \text{ thermal equilibrium distribution})
+k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \theta_{\text{sea}})
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a neutral Noether braid assembly (from nested shell braid dynamics)
-2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether sea)
-3. Relate the width of the velocity distribution to $k_B T$
+1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
+2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
+3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
+4. Relate the distribution width to $k_B T$ while keeping shielded stored energy outside the accessible temperature channel.
 
 **Derivation target:**
 $$
-k_B \propto m_{\text{NS}} \cdot c_f^2 / (\text{typical thermal velocity})^2
+\langle \|\mathbf v\|^2\rangle
+=
+\frac{3k_B T}{m_{\mathrm{eff}}}
 $$
+
+where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.
 
 ---
 

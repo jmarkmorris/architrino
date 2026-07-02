@@ -21,6 +21,7 @@ import {
   REPRESENTATIVE_MOCK_SOLVER_REPLAY,
   TEMPORARY_MOCK_ADAPTER,
   createMockCausalDelayReplayDataset,
+  getAngleDegrees,
 } from "../src/apps/causal-delay-feedback/CausalDelayFeedbackReplayAdapter.js";
 import {
   createCausalDelayFeedbackInitialReplayRequestOptions,
@@ -812,9 +813,7 @@ test("causal delay feedback background depth field remains an internal render op
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  runtime.dom = {
-    weakContributionCueInput: new FakeElement(),
-  };
+  runtime.dom = {};
   let renderCount = 0;
   runtime.context = {};
   runtime.render = () => {
@@ -845,37 +844,33 @@ test("causal delay feedback background depth field remains an internal render op
   assert.equal(fieldRenderCount, 1);
 });
 
-test("causal delay feedback weak contribution cue can disable threshold-only wake fading", () => {
-  const weakContributionCueInput = new FakeElement();
-  const settingsButton = new FakeElement();
-  const settingsPanel = new FakeElement();
+test("causal delay feedback weak contribution cue always fades below-threshold wakes", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
   });
-  settingsPanel.hidden = false;
-  runtime.dom = {
-    weakContributionCueInput,
-    settingsButton,
-    settingsPanel,
-  };
   runtime.dataset.assemblyThreshold = 1;
   const link = runtime.dataset.wakeLinks[0];
-  const thresholdCueWeight = runtime.getWakeVisualWeight(link);
+  const visualWeight = runtime.getWakeVisualWeight(link);
 
-  runtime.setWeakContributionCueMode("off");
-  const uncuedWeight = runtime.getWakeVisualWeight(link);
-
-  assert.equal(weakContributionCueInput.value, "off");
   assert.equal(runtime.getWakeThresholdState(link), "below_threshold");
-  assert(thresholdCueWeight.alphaScale < uncuedWeight.alphaScale);
-  assert(thresholdCueWeight.radiusScale < uncuedWeight.radiusScale);
-  assert(thresholdCueWeight.desaturation > uncuedWeight.desaturation);
-  assert.equal(uncuedWeight.alphaScale, 1);
-  assert.equal(uncuedWeight.radiusScale, 1);
-  assert.equal(uncuedWeight.desaturation, 0);
-  assert.equal(settingsPanel.hidden, true);
-  assert.equal(settingsButton.attributes["aria-expanded"], "false");
+  assert(visualWeight.alphaScale < 1);
+  assert(visualWeight.radiusScale < 1);
+  assert(visualWeight.desaturation > 0);
+});
+
+test("causal delay feedback weak contribution cue affects live above-threshold wakes", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const link = runtime.getVisibleWakeSeries(0.25)[0];
+  const visualWeight = runtime.getWakeVisualWeight(link);
+
+  assert.equal(runtime.getWakeThresholdState(link), "above_threshold");
+  assert(visualWeight.alphaScale < 1);
+  assert(visualWeight.radiusScale < 1);
+  assert(visualWeight.desaturation > 0);
 });
 
 test("causal delay feedback aggregate summary excludes rejected solver links", () => {
@@ -970,12 +965,12 @@ test("causal delay feedback wake visual switches derive combinable rendering set
 
   assert.equal(normalPreset.falloffPower, 1);
   assert.equal(normalPreset.finalSpan, 7);
-  assert.equal(normalPreset.startSpan, 1.25);
+  assert.equal(normalPreset.startSpan, 7);
   assert.equal(normalPreset.dotRadius, 1.35);
   assert.equal(normalPreset.alphaScale, 0.86);
   assert.equal(combinedPreset.falloffPower, 1);
   assert.equal(combinedPreset.finalSpan, 7);
-  assert.equal(combinedPreset.startSpan, 1.25);
+  assert.equal(combinedPreset.startSpan, 7);
   assert.equal(combinedPreset.dotRadius, 1.35);
   assert.equal(combinedPreset.alphaScale, 0.86);
   assert.equal(runtime.getWakeVisualModeLabel(), "full circles + emission lines");
@@ -1242,7 +1237,15 @@ test("causal delay feedback settings sliders use themed range styling", () => {
   assert.equal(html.includes("appearance: none;"), true);
   assert.equal(html.includes("background: #4ae5ff;"), false);
   assert.equal(html.includes("background: #f6f7ff;"), true);
-  assert.equal(html.includes("c<sub>f</sub>"), true);
+  assert.equal(html.includes("Animation speed"), true);
+  assert.equal(html.includes('aria-label="Animation speed"'), true);
+  assert.equal(html.includes('id="causal-delay-feedback-cf-speed"'), true);
+  assert.equal(html.includes('min="0.25"'), true);
+  assert.equal(html.includes('max="1.75"'), true);
+  assert.equal(html.includes('value="1"'), true);
+  assert.equal(html.includes('class="causal-range-midpoint"'), true);
+  assert.equal(html.includes('aria-hidden="true">1</span>'), true);
+  assert.equal(html.includes('<span class="causal-math-label">c<sub>f</sub></span> speed'), false);
 });
 
 test("causal delay feedback settings place architrino speed after canvas", () => {
@@ -1250,15 +1253,15 @@ test("causal delay feedback settings place architrino speed after canvas", () =>
   const canvasIndex = html.indexOf('id="causal-delay-feedback-color-swatches"');
   const architrinoSpeedIndex = html.indexOf('id="causal-delay-feedback-architrino-speed"');
   const cfSpeedIndex = html.indexOf('id="causal-delay-feedback-cf-speed"');
-  const traversalIndex = html.indexOf('id="causal-delay-feedback-traversal-mode"');
+  const resetPresetIndex = html.indexOf('id="causal-delay-feedback-reset-preset"');
 
   assert(canvasIndex > 0);
   assert(architrinoSpeedIndex > canvasIndex);
   assert(cfSpeedIndex > architrinoSpeedIndex);
-  assert(traversalIndex > cfSpeedIndex);
+  assert(resetPresetIndex > cfSpeedIndex);
 });
 
-test("causal delay feedback settings popover includes reset preset without adding a toolbar control", () => {
+test("causal delay feedback settings popover omits promoted and deprecated controls", () => {
   const html = readCausalDelayFeedbackHtml();
 
   assert.equal(html.includes('id="causal-delay-feedback-reset-preset"'), true);
@@ -1272,16 +1275,19 @@ test("causal delay feedback settings popover includes reset preset without addin
   assert.equal(html.includes("Depth field"), false);
   assert.equal(html.includes('id="causal-delay-feedback-virtual-observer"'), false);
   assert.equal(html.includes("Virtual observer"), false);
-  assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), true);
-  assert.equal(html.includes('value="threshold_only"'), true);
-  assert.equal(html.includes('value="off"'), true);
-  assert.equal(html.includes('id="causal-delay-feedback-traversal-mode"'), true);
-  assert.equal(html.includes('value="fixed_speed" selected'), true);
-  assert.equal(html.includes("Fixed speed"), true);
-  assert.equal(html.includes('value="variable_speed"'), true);
-  assert.equal(html.includes("Variable speed"), true);
+  assert.equal(html.includes('id="causal-delay-feedback-weak-cue"'), false);
+  assert.equal(html.includes('id="causal-delay-feedback-weak-cue-button"'), false);
+  assert.equal(html.includes("data-weak-cue-toggle"), false);
+  assert.equal(html.includes(">Weak cue</button>"), false);
+  assert.equal(html.includes('value="threshold_only"'), false);
+  assert.equal(html.includes('value="off"'), false);
+  assert.equal(html.includes('id="causal-delay-feedback-traversal-mode"'), false);
+  assert.equal(html.includes('value="fixed_speed" selected'), false);
+  assert.equal(html.includes("Fixed speed"), false);
+  assert.equal(html.includes('value="variable_speed"'), false);
+  assert.equal(html.includes("Variable speed"), false);
   assert.equal(html.includes(".causal-toggle-row"), false);
-  assert.equal(html.includes(".causal-setting-select"), true);
+  assert.equal(html.includes(".causal-setting-select"), false);
   assert.equal(html.includes("Hide path history"), false);
   assert.equal(html.includes("Show path history"), false);
   assert.equal(html.includes("Paths on/off"), false);
@@ -1458,8 +1464,10 @@ test("causal delay feedback settings omit retained point controls", () => {
   assert.equal(html.includes("causal-depth-button"), false);
 });
 
-test("causal delay feedback c_f speed setting scales the replay clock", () => {
+test("causal delay feedback animation speed setting scales the replay clock", () => {
   const scheduledFrames = [];
+  const cfSpeedInput = new FakeElement();
+  const cfSpeedValue = new FakeElement();
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: {
@@ -1470,19 +1478,28 @@ test("causal delay feedback c_f speed setting scales the replay clock", () => {
       },
     },
   });
+  runtime.dom = { cfSpeedInput, cfSpeedValue };
   runtime.render = () => {};
-  runtime.setFieldSpeedScale(2);
+  runtime.updateFieldSpeedControl();
   runtime.lastFrameTime = 984;
 
   runtime.tick(1000);
 
-  assert.equal(runtime.fieldSpeedScale, 2);
-  assertNear(runtime.elapsedSeconds, 0.032);
-  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 2);
+  assert.equal(runtime.fieldSpeedScale, 1.4);
+  assert.equal(cfSpeedInput.value, "1");
+  assert.equal(cfSpeedValue.textContent, "1x");
+  assertNear(runtime.elapsedSeconds, 0.0224);
+  assert.equal(runtime.replayRequestOptions.fieldSpeedScale, 1.4);
   assert.equal(scheduledFrames.length, 1);
+
+  runtime.setFieldSpeedControlScale(1.25);
+
+  assert.equal(runtime.fieldSpeedScale, 1.75);
+  assert.equal(cfSpeedInput.value, "1.25");
+  assert.equal(cfSpeedValue.textContent, "1.25x");
 });
 
-test("causal delay feedback c_f tempo and architrino speed settings keep live wake arcs visible", () => {
+test("causal delay feedback animation tempo and architrino speed settings keep live wake arcs visible", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -1490,10 +1507,10 @@ test("causal delay feedback c_f tempo and architrino speed settings keep live wa
   const replayTime = 0.5;
   const baseSignalSpeed = runtime.getLiveWakeSignalSpeed();
 
-  runtime.setFieldSpeedScale(0.25);
+  runtime.setFieldSpeedControlScale(0.25);
   runtime.setArchitrinoSpeedIndex(9);
 
-  assert.equal(runtime.fieldSpeedScale, 0.25);
+  assert.equal(runtime.fieldSpeedScale, 0.35);
   assert.equal(runtime.getArchitrinoSpeedFraction(), 0.999999);
   assert.equal(runtime.getLiveWakeSignalSpeed(), baseSignalSpeed);
   assert.deepEqual(
@@ -1502,7 +1519,7 @@ test("causal delay feedback c_f tempo and architrino speed settings keep live wa
   );
 });
 
-test("causal delay feedback fixed-speed traversal is the default display sampler", () => {
+test("causal delay feedback display sampler uses fixed path speed", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -1517,38 +1534,14 @@ test("causal delay feedback fixed-speed traversal is the default display sampler
   const solverTimePoint = runtime.getReplayPathPoint("positrino", 0.5);
   const fixedDisplayPoint = runtime.getTraversalPathPoint("positrino", 0.5);
 
-  assert.equal(runtime.traversalMode, "fixed_speed");
-  assert.equal(runtime.replayRequestOptions.traversalMode, "fixed_speed");
+  assert.equal("traversalMode" in runtime, false);
+  assert.equal("traversalMode" in runtime.replayRequestOptions, false);
   assert.equal(solverTimePoint.x, 100);
   assert.equal(fixedDisplayPoint.x, 150);
   assert.equal(fixedDisplayPoint.t, 0.5);
 });
 
-test("causal delay feedback variable-speed traversal keeps solver-time sampling available", () => {
-  const traversalModeInput = new FakeElement();
-  const runtime = createCausalDelayFeedbackRuntime({
-    document: new FakeDocument(),
-    window: fakeWindow,
-  });
-  runtime.dom = { traversalModeInput };
-  runtime.dataset.paths.positrino = [
-    { t: 0, x: 0, y: 0 },
-    { t: 0.5, x: 100, y: 0 },
-    { t: 1, x: 300, y: 0 },
-  ];
-  runtime.dataset.history.positrino = [];
-
-  runtime.setTraversalMode("variable_speed");
-  const variableDisplayPoint = runtime.getTraversalPathPoint("positrino", 0.5);
-
-  assert.equal(runtime.traversalMode, "variable_speed");
-  assert.equal(runtime.replayRequestOptions.traversalMode, "variable_speed");
-  assert.equal(traversalModeInput.value, "variable_speed");
-  assert.equal(variableDisplayPoint.x, 100);
-  assert.equal(variableDisplayPoint.t, 0.5);
-});
-
-test("causal delay feedback live markers use fixed-speed traversal by default", () => {
+test("causal delay feedback live markers use fixed path speed", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
     window: fakeWindow,
@@ -2735,6 +2728,36 @@ test("causal delay feedback partial wake arc series disappears after reception u
   assert(drawnArcCount > 0);
 });
 
+test("causal delay feedback partial wake arc fronts keep radial sector boundaries", () => {
+  const runtime = createCausalDelayFeedbackRuntime({
+    document: new FakeDocument(),
+    window: fakeWindow,
+  });
+  const link = runtime.dataset.wakeLinks[0];
+  const sourcePoint = runtime.dataset.history[link.sourceKind].find((point) => point.depth === link.sourceDepth);
+  const receiverPoint = runtime.dataset.history[link.receiverKind].find((point) => point.depth === link.receiverDepth);
+  const replayTime = sourcePoint.t + (receiverPoint.t - sourcePoint.t) * 0.75;
+  const arcs = [];
+  runtime.drawDottedArc = (_ctx, center, radius, startDeg, endDeg) => {
+    arcs.push({ center, radius, startDeg, endDeg });
+  };
+
+  runtime.drawWakeProgression({}, link, replayTime);
+
+  const timing = runtime.getWakeTiming(link, replayTime);
+  const theta = getAngleDegrees(timing.source, timing.receiver);
+  const firstArc = arcs[0];
+  assert(arcs.length > 1);
+  assertNear(firstArc.startDeg, theta - 3.5);
+  assertNear(firstArc.endDeg, theta + 3.5);
+  arcs.forEach((arc) => {
+    assert.deepEqual(arc.center, firstArc.center);
+    assertNear(arc.startDeg, firstArc.startDeg);
+    assertNear(arc.endDeg, firstArc.endDeg);
+    assertNear(arc.endDeg - arc.startDeg, 7);
+  });
+});
+
 test("causal delay feedback full circular wakes keep expanding after retained receptions", () => {
   const runtime = createCausalDelayFeedbackRuntime({
     document: new FakeDocument(),
@@ -2865,7 +2888,7 @@ test("causal delay feedback wake switches can combine full circles with emission
   assert(dottedArcs.length > 0);
   assert.equal(lineCountBeforeForeground, 0);
   assert(lines.length > 0);
-  assert(lines.every((line) => line.color.a > 0.4));
+  assert(lines.every((line) => line.color.a > 0.3));
   assert(lines.every((line) => line.width > 1.4));
   dottedArcs.forEach((arc) => {
     assert.equal(arc.startDeg, 0);

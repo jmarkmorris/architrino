@@ -96,6 +96,37 @@ $$
 
 This sets a strong dynamical condition on outer-binary relaxation.
 
+### Quasi-Equilibrium and Release Channels
+
+The phrase "stretched beyond equilibrium" should be read as a local Noether sea state claim, not as a claim that the Euclidean void is stretched. For a representative Noether braid, let $R_{\mathrm{outer}}(t)$ be the outer-binary radius and let $R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]$ be the radius selected by the surrounding Noether sea state record. A useful first strain variable is
+
+$$
+\epsilon_O
+=
+\frac{
+R_{\mathrm{outer}}-R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}{
+R_{\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}
+$$
+
+This strain is not enough by itself to define pressure. The outer-binary sector must also say whether stored energy has an available release channel. If neighbouring Noether braids share the same diffused or slowly relaxing state, the local energy current can be nearly zero even when $\epsilon_O$ is nonzero. The medium is then in a quasi-equilibrium: not necessarily at the lowest available branch energy, but at a no-current balance point because no neighbouring state or boundary channel is able to accept the energy on the relevant timescale.
+
+The dark-energy pressure target is therefore a two-part constitutive statement. First, the retained Noether sea record must define stored strain energy in the outer-binary sector. Second, it must define the release or transfer rate that turns that stored energy into medium relaxation:
+
+$$
+\dot u_{O,\mathrm{rel}}
+=
+-\mathcal R_O\!\left(
+\epsilon_O,
+\theta_{\mathrm{sea}},
+\mathcal A_{\downarrow}
+\right)
++\mathcal S_O
+$$
+
+Here $\mathcal A_{\downarrow}$ denotes the availability of lower-energy or accepting channels, and $\mathcal S_O$ denotes incoming source or neighbour loading. When $\mathcal A_{\downarrow}$ is small, stored outer-binary stress can persist and read out as slowly varying negative pressure. When an accepting channel opens, the same ledger can release energy into neighbouring Noether sea states or outward transport. A cascading relaxation claim is admissible only if the event ledger shows where that energy goes and the same $\theta_{\mathrm{sea}}$ still passes the redshift, CMB, lensing, growth, and calibration gates.
+
 ### Medium Relaxation and the Expansion History
 
 The evolution of $\rho_{\mathrm{DE,eff}}(t)$ is governed by the collective relaxation of the Noether sea state. Schematically:

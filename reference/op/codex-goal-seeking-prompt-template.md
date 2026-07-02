@@ -130,6 +130,7 @@ When substantial progress is made:
 - record rationale,
 - record unresolved questions,
 - record next actions.
+- make a durable capture decision for any substantive theory advancement: promote corpus-solid material into `content/markdown/aaa`, stage valuable but provisional material in the owning `reference/priorities` workstream or sibling `brainstorming.md`, or state why no durable capture was made.
 
 Think of summaries as checkpoints.
 
@@ -183,7 +184,8 @@ Upon completion provide:
 2. What was completed
 3. What remains
 4. Key decisions
-5. Suggested follow-up work
+5. Durable capture decision for substantive insights
+6. Suggested follow-up work
 
 ---
 

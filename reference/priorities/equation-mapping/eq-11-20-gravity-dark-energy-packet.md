@@ -245,6 +245,175 @@ Here $w_{\mathrm{bench}}$ is a declared observer-level benchmark for the window 
 
 The acceleration comparison is admissible only after $R_p^{20}$, $R_w^{20}$, and the Friedmann/continuity residuals from the effective-metric/cosmology packet use the same $\Theta_{11\text{-}20}$ projection family.
 
+## Outer-Binary Equilibrium And Relaxation Wireframe
+
+This section captures a candidate mechanism-level wireframe. It is priority-only and does not promote a completed dark-energy derivation. The useful insight is that an outer binary can be away from its local lower-energy branch without immediately releasing energy if the surrounding Noether sea offers no accepting channel. In that case the relevant state is a collective no-current balance, not an isolated single-braid minimum.
+
+For a representative Noether braid $b$ in a coarse-graining window $W$, write the outer-binary row as
+
+$$
+O_b(t)
+=
+\left(
+R_{O,b},
+\nu_{O,b},
+\phi_{O,b},
+E_{O,b},
+\mathcal H_{O,b}
+\right),
+$$
+
+where $R_{O,b}$ is the outer-binary radius, $\nu_{O,b}$ its cadence, $\phi_{O,b}$ its phase, $E_{O,b}$ its retained energy, and $\mathcal H_{O,b}$ its retained path-history row. The surrounding Noether sea state selects a local reference branch
+
+$$
+R_{O,\mathrm{eq},b}
+=
+R_{O,\mathrm{eq}}
+\left[
+\theta_{\mathrm{sea}}^{(\ell,W)};
+\mathcal H_{\partial W}
+\right]
+$$
+
+only after the density, delay, cadence, boundary, source-loading, and retained-history rows are declared. The scalar outer-binary strain candidate is
+
+$$
+\epsilon_{O,b}
+=
+\frac{
+R_{O,b}-R_{O,\mathrm{eq},b}
+}{
+R_{O,\mathrm{eq},b}
+}.
+$$
+
+A first stored-energy row is
+
+$$
+u_{O,\mathrm{str}}^{(W)}
+=
+\rho_{\text{NS}}^{(W)}
+\left\langle
+\frac{1}{2}
+K_O[\theta_{\mathrm{sea}}]
+R_{O,\mathrm{eq}}^2
+\epsilon_O^2
+\right\rangle_W,
+$$
+
+where $K_O[\theta_{\mathrm{sea}}]$ is the branch-derived outer-binary stiffness and $\langle\cdot\rangle_W$ averages over the retained Noether braid population in the window. This row is not yet pressure. It is the candidate energy inventory from which pressure, tension, or relaxation may be projected.
+
+The missing equilibrium distinction is the release-channel row. Let $\mathcal A_{\downarrow,b}$ measure whether lower-energy or accepting channels are available to braid $b$ through neighbours, boundary transport, compact-source recycling, or other declared Noether sea routes. Let $\mu_{O,b}$ be the packet-local energy-cadence potential extracted from $E_{O,b}$ and the retained cadence distribution. Then a useful relaxation-current template is
+
+$$
+J_{E,O}^{ab}
+=
+\Gamma_{ab}
+\mathcal A_{\downarrow}^{ab}
+\left[
+\mu_{O,a}-\mu_{O,b}
+\right],
+$$
+
+with sign convention chosen so positive $J_{E,O}^{ab}$ transports outer-binary energy from $a$ to $b$. The quasi-equilibrium condition is therefore not $\epsilon_O=0$. It is the no-current condition
+
+$$
+\sum_{b\sim a}J_{E,O}^{ab}
++J_{E,O}^{a\partial W}
+\approx 0,
+$$
+
+with possible nonzero $\epsilon_{O,a}$. This is the controlled mathematical form of a floating balance point: the outer-binary sector can retain strain energy because neighbouring states are similarly diffused or because the boundary and lower-energy channels are effectively closed.
+
+The local relaxation equation can be written as
+
+$$
+\dot u_{O,\mathrm{str}}^{(W)}
+=
+-\nabla\cdot J_{E,O}^{(W)}
+-\mathcal R_{O,\downarrow}
+\left(
+\epsilon_O,
+\theta_{\mathrm{sea}},
+\mathcal A_{\downarrow}
+\right)
++\mathcal S_{O,\mathrm{load}},
+$$
+
+where $\mathcal R_{O,\downarrow}$ is the retained lower-channel release row and $\mathcal S_{O,\mathrm{load}}$ is incoming source, neighbour, or recycling loading. If $\mathcal A_{\downarrow}$ rises sharply in one region, the same equation can seed a relaxation cascade. A cascade is promotable only if the packet supplies the event ledger for the released energy and shows that CMB, redshift, weak-gravity, lensing, growth, and BBN consumers still use the same $\theta_{\mathrm{sea}}$ record.
+
+The scalar pressure readout should be derived from the retained stress or tension tensor, not assigned by analogy. In isotropic comparison windows the candidate sign convention is
+
+$$
+p_{\mathrm{sea}}^{(W)}
+=
+-\frac{1}{3}
+h_{ab}\mathcal T_{\mathrm{sea}}^{ab,(W)}
++p_{\mathrm{kin}}^{(W)}
++p_{\mathrm{src}}^{(W)},
+$$
+
+where $\mathcal T_{\mathrm{sea}}^{ab}$ is the tensile stress row, $p_{\mathrm{kin}}$ records kinetic or cadence-distribution pressure, and $p_{\mathrm{src}}$ records declared source or boundary loading. The effective dark-energy row is then allowed only as a projection,
+
+$$
+p_{\mathrm{DE,eff}}
+=
+\Pi_{\mathrm{DE}}p_{\mathrm{sea}},
+\qquad
+w_{\mathrm{eff}}
+=
+\frac{
+p_{\mathrm{DE,eff}}
+}{
+\rho_{\mathrm{DE,eff}}c_0^2
+}.
+$$
+
+The effective-GR bridge is the standard acceleration comparison,
+
+$$
+\frac{\ddot a_{\mathrm{eff}}}{a_{\mathrm{eff}}}
+=
+-\frac{4\pi G_{\mathrm{eff}}}{3}
+\left(
+\rho_{\mathrm{eff}}
++\frac{3p_{\mathrm{eff}}}{c_0^2}
+\right),
+$$
+
+but in this packet $a_{\mathrm{eff}}$ is only an observer-level scale variable. The native work is to derive $p_{\mathrm{sea}}$, $\rho_{\mathrm{DE,eff}}$, and $G_{\mathrm{eff}}$ from one Noether sea record. Acceleration follows in the effective comparison only if the projected pressure is negative enough:
+
+$$
+\rho_{\mathrm{eff}}
++\frac{3p_{\mathrm{eff}}}{c_0^2}
+<0.
+$$
+
+### Stepwise Closure Ladder
+
+1. Declare $\Theta_{\mathrm{sea}}^{(\ell,W)}$ with $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, cadence distribution, boundary rows, and retained source/provenance rows.
+2. Extract $R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]$ and $\epsilon_O$ for the retained outer-binary population.
+3. Derive $u_{O,\mathrm{str}}$ from an accepted branch stiffness $K_O$ rather than fitting it as a dark-energy density.
+4. Declare $\mathcal A_{\downarrow}$ and the energy-current row $J_{E,O}$ so that no-current quasi-equilibrium and open-channel relaxation are distinguishable.
+5. Project the retained tensile stress into $p_{\mathrm{sea}}$ with a fixed sign convention and separate kinetic/source pressure rows.
+6. Compute $p_{\mathrm{DE,eff}}$, $\rho_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and $\Lambda_{\mathrm{eff}}$ through one projection family $\Pi_{\mathrm{DE}}$.
+7. Reuse the same $\theta_{\mathrm{sea}}$ record for weak gravity, effective Friedmann bookkeeping, growth, CMB, BBN, lensing, and low-acceleration rows.
+8. Fail the packet if the pressure sign, release rate, or effective coupling is changed independently between observer families.
+
+### Candidate Lemma
+
+For one retained Noether sea window $W$, if the outer-binary strain row $\epsilon_O$, stiffness row $K_O$, release-channel row $\mathcal A_{\downarrow}$, energy-current row $J_{E,O}$, and tensile-stress row $\mathcal T_{\mathrm{sea}}^{ab}$ are all populated from the same $\Theta_{\mathrm{sea}}^{(\ell,W)}$, then a nonzero stored outer-binary strain can produce an effective negative-pressure readout only when the isotropic projection of $\mathcal T_{\mathrm{sea}}^{ab}$ dominates kinetic and source pressure rows. The same packet must also show that opening a lower-energy channel changes $\mathcal R_{O,\downarrow}$ or $J_{E,O}$ rather than silently changing $\rho_{\mathrm{DE,eff}}$ by fit.
+
+### Failure Modes Specific To This Wireframe
+
+| Failure mode | Meaning |
+| --- | --- |
+| `outer_binary_strain_without_branch` | $\epsilon_O$ is named without an accepted $R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]$ branch. |
+| `pressure_from_energy_inventory_only` | $u_{O,\mathrm{str}}$ is treated as pressure before a stress/tension projection exists. |
+| `closed_channel_named_equilibrium` | A no-current state is called equilibrium without reporting whether lower-energy channels are unavailable or merely unmodeled. |
+| `cascade_without_event_ledger` | A release cascade is claimed without energy, momentum, source, boundary, and Noether sea transfer rows. |
+| `effective_gr_import` | The Friedmann acceleration equation is used as if it were substrate dynamics rather than an observer-level comparison consuming $p_{\mathrm{sea}}$. |
+
 ## Required Noether Braid And Assembly Variables
 
 | Variable / row | Required content | Consumed by |

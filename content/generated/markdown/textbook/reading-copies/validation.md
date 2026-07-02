@@ -263,32 +263,41 @@ $$
 
 **Architrino Interpretation:**
 
-Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. But what **is** temperature in $\mathbb{A}\mathbb{A}\mathbb{A}$?
+Boltzmann's constant $k_B$ is the conversion factor between **energy** and **temperature**. In $\mathbb{A}\mathbb{A}\mathbb{A}$, temperature is not the internal energy of one Noether braid or the total energy stored in the Noether sea. It is an effective ensemble variable admitted when a declared coarse-graining supplies an accessible energy ledger, a measure over retained states, a fixed inventory or access variable, and a local equilibrium or thermalization condition. The general rule is the same-record entropy relation developed in [Entropy](../../../../markdown/aaa/dynamics/entropy.md#temperature-as-a-same-record-ensemble-variable).
 
-**Hypothesis:**
-Temperature is the **mean kinetic energy per degree of freedom** in the Noether sea bath:
+**Thermalized-ensemble limit:**
+In a thermalized Noether sea or material ensemble whose accessible degrees of freedom are quadratic, the standard equipartition comparison should be recovered:
 $$
 \langle E_{\text{kinetic}} \rangle = \frac{1}{2} k_B T
 $$
 
-For a neutral Noether braid assembly in the Noether sea:
-- 6 degrees of freedom (3 translational + 3 rotational)
-- Mean energy: $\langle E \rangle = 3 k_B T$
+For a neutral Noether braid assembly in the Noether sea, a six-channel comparison is available only after the three translational and three rotational channels have been shown to be accessible thermalized modes of the retained ensemble. In that special limit,
+
+$$
+\langle E_{\mathrm{acc}} \rangle = 3 k_B T
+$$
+
+This is a recovery target, not the general definition of temperature. If the energy is shielded, stored as configuration energy, or confined to a non-equilibrium branch, it does not enter the scalar temperature until the declared ensemble measure exposes it.
 
 **What we must derive:**
 $$
-k_B = f(\text{neutral Noether braid assembly mass, } c_f, \text{ thermal equilibrium distribution})
+k_B = f(\text{thermalized ensemble measure, accessible mode energy, } c_f, \theta_{\text{sea}})
 $$
 
 **Pathway:**
-1. Calculate the **effective mass** of a neutral Noether braid assembly (from nested shell braid dynamics)
-2. Assume **thermal equilibrium** (Maxwell-Boltzmann distribution in the Noether sea)
-3. Relate the width of the velocity distribution to $k_B T$
+1. Derive the effective assembly mass or accessible mode-energy scale from nested shell braid dynamics.
+2. Declare the thermalized ensemble window, retained measure, and Noether sea state.
+3. Show that the accessible velocity or mode distribution recovers the Maxwell-Boltzmann or equipartition limit inside that window.
+4. Relate the distribution width to $k_B T$ while keeping shielded stored energy outside the accessible temperature channel.
 
 **Derivation target:**
 $$
-k_B \propto m_{\text{NS}} \cdot c_f^2 / (\text{typical thermal velocity})^2
+\langle \|\mathbf v\|^2\rangle
+=
+\frac{3k_B T}{m_{\mathrm{eff}}}
 $$
+
+where $m_{\mathrm{eff}}$ is an observer-level effective assembly mass or mode inertia supplied by the same retained record, not a primitive architrino mass.
 
 ---
 

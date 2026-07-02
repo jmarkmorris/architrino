@@ -286,6 +286,68 @@ Interpretation. The clean high-field wiggle is not merely missing a visible retu
 
 Fail-closed consequence. The reduced-radius diagnostic keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. It narrows the next producer boundary for `self_hit_held_release_solver_row`; it does not authorize branch evidence.
 
+### Group-Zero Sphere Baseline - 2026-07-01
+
+Claim level. Priority-only solver-toy baseline. This run uses the current causal-wake held-release runner, not a production central-solver retained-history certificate. It models both balanced octahedral decoration classes on the unit sphere with static dynamic center
+
+$$
+C(t)=0,
+\qquad
+\mathbf V_g=\dot C=0,
+$$
+
+zero initial internal velocity, held prehistory `holdTime=4`, causal weighting enabled, no same-source self-hit probe, and softening `0.05`.
+
+The first pass used normalized field speed $c_f=1$:
+
+| Preset | Closure status | Symmetry / sphere residual | Field-speed status | First radial turn | Final trend |
+| --- | --- | --- | --- | --- | --- |
+| `face-opposite` | `symmetry_channel_preserved_but_retained_branch_unauthorized` | max radius std `9.06493303673679e-16`; max center norm `5.61245527390049e-16` | crosses at `t=0.73`; max speed ratio `2.26995489863071` | radius minimum `0.821378076947656` at `t=1.08` | final radius `3.80753752640038`, outward radial velocity `1.8107072906048` |
+| `axial-paired` | `same_level_support_lost_in_toy_control` | max radius std `2.57431123617553`; max center norm `3.01980662879304e-14` | crosses at `t=0.828`; max speed ratio `11.1258083700618`; `212` missing roots | radius minimum `0.765579073605879` at `t=1.134` | final radius `5.01540957833199`, radius std `2.57431123617553`, outward radial velocity `2.42138525542922` |
+
+Normalization correction. A previous sub-field control was reported by changing $c_f$ to `6`. That should be treated as a legacy diagnostic only. The canonical convention is to keep
+
+$$
+c_f=1
+$$
+
+and change the dimensionless coupling, time step, and run window instead. Under the rescaling $s=c_f t$, the old diagnostic with $c_f=6$, $\kappa=1$, `duration=3`, and `dt=0.002` is equivalent to $c_f=1$, $\kappa=1/36$, `duration=18`, and `dt=0.012`, with the same initial sphere and group velocity zero.
+
+The canonical sub-field control is therefore:
+
+| Preset | Closure status | Symmetry / sphere residual | Field-speed status | First radial turn | Final trend |
+| --- | --- | --- | --- | --- | --- |
+| `face-opposite` | `symmetry_channel_preserved_but_retained_branch_unauthorized` | max radius std `7.58426711504582e-16`; max center norm `2.3453792142255e-16` | no crossing; max speed ratio `0.198457115556254` | radius minimum `0.908722875419364` at `t=6.576` | final radius `1.8402369807427`, outward radial velocity `0.117507767570422`; blocker `post_turn_inward_radial_acceleration_absent` |
+| `axial-paired` | `same_level_support_lost_in_toy_control` | max radius std `2.21351825574007`; max center norm `2.368475785867e-15` | no crossing; max speed ratio `0.977185900324049` | radius minimum `0.694301806449306` at `t=9.06` | final radius `5.36308131368005`, radius std `2.21351825574007`, outward radial velocity `0.617524661732088` |
+
+Interpretation. At group velocity zero, the distinction between the two sphere colorings is not a field-speed artifact. The `face-opposite` configuration preserves center-zero, common-sphere, common-speed, and antipodal-pair support to roundoff at both the strong-coupling and weak-coupling $c_f=1$ runs. It still does not close as a retained branch because the reduced radius expands after the first compression. The `axial-paired` configuration loses common-sphere support in both cases. That makes `face-opposite` the correct first target for the analytic invariant-manifold proof and for any later Noether sea pressure or self-hit stabilization test.
+
+Legacy high-field note. A longer `face-opposite` group-zero diagnostic was previously run with $c_f=6$. Do not cite it as a changed-universal-constant result. If this long-window case matters, rerun it in canonical units as $c_f=1$ with the coupling, time step, and duration rescaled. The only retained lesson from the legacy run is qualitative: extending the Euclidean-void toy did not reveal a return turn, so the next useful object remains a retained-history/self-hit or Noether sea support row rather than more time in the same partner-wake toy.
+
+The corresponding legacy self-hit probe still had no delayed self-hit roots. This makes the group-zero blocker sharper: repeatedly extending the Euclidean-void toy is less useful than adding a solver-owned retained-history row, a same-source self-hit row source, or a separately labeled Noether sea support-term diagnostic.
+
+### Diagonal Group-Velocity Baseline - 2026-07-01
+
+Claim level. Priority-only translating toy baseline. This run is not a retained branch certificate and does not authorize a moving retained branch certificate.
+
+The runner now accepts `--group-velocity <x,y,z>`. The held prehistory is stationary in the moving center frame, field-speed and source-normal checks remain in the Noether sea frame, and same-level radial velocity is measured relative to the dynamic center.
+
+A first small diagonal drift used
+
+$$
+\mathbf V_g=(1/60,1/60,1/60),
+\qquad
+|\mathbf V_g|=0.0288675134594813,
+$$
+
+with $c_f=1$, coupling `1/36`, `duration=18`, `dt=0.024`, and the `face-opposite` preset. Root coverage and field-speed checks pass, and the translating-center residual is reported separately rather than used as an origin-zero failure. The run still loses the same-level sphere support:
+
+| Status | Center check | Max radius std | Max center-frame speed std | Max antipodal-pair residual | Final radius | First blocker |
+| --- | --- | ---: | ---: | ---: | ---: | --- |
+| `same_level_support_lost_in_translating_toy_window` | pass; center drift residual `0.189794630312626` | `0.0252007463148382` | `0.00415887827340788` | `0.0817314527765413` | `1.83979867545719` | `common_sphere_antipodal_symmetry_not_preserved` |
+
+Interpretation. The group-zero spherical invariant does not automatically survive even a small diagonal drift in this toy. That makes the translating branch question an oblate-spheroid or retained-history residual problem, not a spherical face/opposite-face promotion. The next mathematical object should be either a translating oblate-spheroid residual row or the central-solver retained-history seed with same-record causal-root replay and same-source self-hit rows.
+
 ## Oblate Spheroid Reduced Equations
 
 Claim level. Analytical candidate packet. This section does not claim a stable branch. It defines a reduced equation family for three antipodal pairs on a translating oblate spheroid and identifies the residuals a solver or proof must close.
@@ -306,7 +368,7 @@ $$
 0\le u < \infty,
 $$
 
-including $u<c_f$, $u\approx c_f$, and $u>c_f$. No Lorentz-like deformation law is assumed at this stage.
+including $u<c_f$, $u\approx c_f$, and $u>c_f$. For canonical reporting set $c_f=1$ and vary dimensionless group velocity $u/c_f$, coupling, radius scale, and time window rather than changing the universal constant. No Lorentz-like deformation law is assumed at this stage.
 
 Let $Q(t)\in SO(3)$ be a body-frame orientation. Its pole is
 
