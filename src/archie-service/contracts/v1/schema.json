@@ -16,7 +16,8 @@
     { "$ref": "#/$defs/actionPreflightEnvelope" },
     { "$ref": "#/$defs/serviceStatus" },
     { "$ref": "#/$defs/serviceTerms" },
-    { "$ref": "#/$defs/deploymentSmokePlan" }
+    { "$ref": "#/$defs/deploymentSmokePlan" },
+    { "$ref": "#/$defs/rollbackSmokePlan" }
   ],
   "$defs": {
     "mode": {
@@ -1098,6 +1099,68 @@
             }
           }
         }
+      }
+    },
+    "rollbackEndpointCompatibility": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["endpointId", "requestFixture", "responseFixture", "responseSchema"],
+      "properties": {
+        "endpointId": { "$ref": "#/$defs/endpointId" },
+        "requestFixture": { "type": ["string", "null"] },
+        "responseFixture": { "type": "string", "minLength": 1 },
+        "responseSchema": {
+          "type": "string",
+          "enum": [
+            "archie-answer-artifact-manifest/v1",
+            "archie-service-terms/v1",
+            "archie-service-status/v1"
+          ]
+        }
+      }
+    },
+    "rollbackSmokePlan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "planId",
+        "serviceVersionId",
+        "environment",
+        "sourceSnapshotId",
+        "expectedRollbackParent",
+        "providerRegistryId",
+        "requiredCapabilityIds",
+        "termsVersionSetId",
+        "endpointCompatibility",
+        "requiresNoRuntimeProviders",
+        "requiresNoPayments",
+        "requiresNoDurableStorage",
+        "requiresNoPublicRoutes"
+      ],
+      "properties": {
+        "schema": { "const": "archie-rollback-smoke-plan/v1" },
+        "planId": { "type": "string", "minLength": 1 },
+        "serviceVersionId": { "type": "string", "minLength": 1 },
+        "environment": { "type": "string", "enum": ["staging", "production"] },
+        "sourceSnapshotId": { "type": "string", "minLength": 1 },
+        "expectedRollbackParent": { "type": ["string", "null"] },
+        "providerRegistryId": { "type": "string", "minLength": 1 },
+        "requiredCapabilityIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "endpointCompatibility": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/rollbackEndpointCompatibility" }
+        },
+        "requiresNoRuntimeProviders": { "const": true },
+        "requiresNoPayments": { "const": true },
+        "requiresNoDurableStorage": { "const": true },
+        "requiresNoPublicRoutes": { "const": true }
       }
     }
   }

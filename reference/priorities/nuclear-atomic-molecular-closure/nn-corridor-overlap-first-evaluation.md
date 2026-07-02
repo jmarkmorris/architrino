@@ -220,6 +220,15 @@ $$
 
 Here $\mathcal L_{\mathrm{BI}}^{p}$ is the accepted proton branch-interface ledger, $\mathcal L_{\mathrm{BI}}^{n}$ is the accepted neutron branch-interface ledger, $\mathcal L_{E\mathbf p\mathbf J}^{pn,pp}$ is the same-record conservation ledger carrying both $p+n$ and $p+p$ rows, and $\mathcal C_{\mathrm{no\ open\ color}}$ is the no-open-color far-field closure shared with the confinement-functional target.
 
+The required source-acquisition target shape is:
+
+| Source-acquisition target | Required ledger components |
+| --- | --- |
+| `accepted_proton_branch_interface_ledger` | `retained_orientation_rows`, `closed_corridor_sharing_count`, `branch_exposure_row`, `same_record_energy_momentum_angular_momentum_ledger`, `no_open_color_far_field` |
+| `accepted_neutron_branch_interface_ledger` | `retained_orientation_rows`, `closed_corridor_sharing_count`, `branch_exposure_row`, `same_record_energy_momentum_angular_momentum_ledger`, `no_open_color_far_field` |
+| `same_record_energy_momentum_angular_momentum_ledger` | `pn_orientation_count`, `pp_orientation_count`, `energy_conservation_row`, `momentum_conservation_row`, `angular_momentum_conservation_row`, `coulomb_separation_row` |
+| `no_open_color_far_field` | `finite_range_residual`, `color_singlet_closure`, `same_record_no_open_color_audit` |
+
 The executable branch target now materializes these as `sourceAcquisitionTargets` in [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json). The current source-acquisition check deliberately fails:
 
 $$
@@ -231,6 +240,8 @@ $$
 $$
 
 This is the correct status. The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra only.
+
+The checker also treats the component shape above as part of source acquisition. A source-acquisition target that is marked accepted but lacks one required component fails as `source_acquisition_target_shape_mismatch`; a target with the right component shape but without accepted durable non-fixture evidence still fails as `source_acquisition_target_not_accepted`.
 
 ## Remaining Native Replacement
 

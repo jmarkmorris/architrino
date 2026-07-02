@@ -71,3 +71,23 @@ test("Archie service secret boundary rejects browser-visible secrets", () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   assert.match(result.stdout, /Archie secret-boundary check passed/);
 });
+
+test("Archie staging smoke stays local and fixture-backed", () => {
+  const result = spawnSync("node", ["scripts/archie-service/run-staging-smoke.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie staging-smoke check passed/);
+});
+
+test("Archie rollback smoke preserves fixture compatibility", () => {
+  const result = spawnSync("node", ["scripts/archie-service/check-rollback.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie rollback check passed/);
+});

@@ -68,6 +68,22 @@ test("current branch-interface target passes algebra but blocks accepted source 
       .currentEvidenceStatus,
     "not_acquired",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .componentShapePass,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .requiredLedgerComponents,
+    [
+      "retained_orientation_rows",
+      "closed_corridor_sharing_count",
+      "branch_exposure_row",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  );
   assert.deepEqual(report.summary.missingRows, [
     "nucleon_branch_interface_ledgers",
     "pn_orientation_count",
@@ -100,6 +116,42 @@ test("accepted branch-interface rows pass when the same algebra is retained", ()
   assert.equal(report.summary.algebraicPass, true);
   assert.equal(report.summary.sourceEvidencePass, true);
   assert.equal(report.summary.sourceAcquisitionPass, true);
+});
+
+test("accepted branch-interface rows fail closed when a source-acquisition target loses its required component shape", () => {
+  const target = acceptedTarget();
+  target.sourceAcquisitionTargets.accepted_proton_branch_interface_ledger.requiredLedgerComponents =
+    target.sourceAcquisitionTargets.accepted_proton_branch_interface_ledger
+      .requiredLedgerComponents.filter(
+        (component) => component !== "closed_corridor_sharing_count",
+      );
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_source_acquisition_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .componentShapePass,
+    false,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .missingRequiredComponents,
+    ["closed_corridor_sharing_count"],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.failures.some(
+      (failure) =>
+        failure.sourceRowId === "accepted_proton_branch_interface_ledger" &&
+        failure.reason === "source_acquisition_target_shape_mismatch",
+    ),
+    true,
+  );
 });
 
 test("accepted branch-interface rows fail closed when source rows are named but target-only", () => {
