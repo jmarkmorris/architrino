@@ -24418,6 +24418,734 @@
         "Promoted from the children's book production page-render set for The Tiny Transceivers.",
         "Kept with the source art because the completed first-draft books are public-facing template assets."
       ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-youtube-channel-banner-2560x1440",
+      "title": "Noether Braid Crossing Wake YouTube Channel Banner 2560x1440",
+      "description": "Noether Braid crossing-wake YouTube channel banner brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-youtube-channel-banner-2560x1440.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 2560,
+        "height": 1440
+      },
+      "fileSizeBytes": 4527080,
+      "sha256": "208af85105f5d6b259063e44812922cd936118f5cd3fec724bbf2adad9ec950e",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-discord-server-banner-960x540",
+      "title": "Noether Braid Crossing Wake Discord Server Banner 960x540",
+      "description": "Noether Braid crossing-wake Discord server banner brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-discord-server-banner-960x540.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 960,
+        "height": 540
+      },
+      "fileSizeBytes": 810329,
+      "sha256": "0eb9d8e8ecdcc6a7d1944935f10b39b091dc94411e2e87be39638d655dabba83",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-linkedin-profile-cover-1584x396",
+      "title": "Noether Braid Crossing Wake LinkedIn Profile Cover 1584x396",
+      "description": "Noether Braid crossing-wake LinkedIn profile cover brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-linkedin-profile-cover-1584x396.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1584,
+        "height": 396
+      },
+      "fileSizeBytes": 1026825,
+      "sha256": "5af57cc74c38a0948f6527db51af2c0f5189e885ab411d049e3e43316f6e7ee0",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-linkedin-company-cover-1128x191",
+      "title": "Noether Braid Crossing Wake LinkedIn Company Cover 1128x191",
+      "description": "Noether Braid crossing-wake LinkedIn company cover brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-linkedin-company-cover-1128x191.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1128,
+        "height": 191
+      },
+      "fileSizeBytes": 362133,
+      "sha256": "459ac5a287d4caea5a2994a1e992076a2fc33e49a36c22e883fb0091df983e98",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-reddit-community-banner-small-1920x128",
+      "title": "Noether Braid Crossing Wake Reddit Community Banner Small 1920x128",
+      "description": "Noether Braid crossing-wake Reddit community banner small brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-small-1920x128.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1920,
+        "height": 128
+      },
+      "fileSizeBytes": 382427,
+      "sha256": "d43a7d334f3a643ca8e189921759a73f26c53c69462d4c55c6bd67c0dec21317",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-reddit-community-banner-medium-1920x256",
+      "title": "Noether Braid Crossing Wake Reddit Community Banner Medium 1920x256",
+      "description": "Noether Braid crossing-wake Reddit community banner medium brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-medium-1920x256.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1920,
+        "height": 256
+      },
+      "fileSizeBytes": 761456,
+      "sha256": "96cc6ba936d25d55cbd48f84b418b6a30e9ac4b65158c96a0fe3990b602a26c7",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-reddit-community-banner-large-1920x384",
+      "title": "Noether Braid Crossing Wake Reddit Community Banner Large 1920x384",
+      "description": "Noether Braid crossing-wake Reddit community banner large brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-reddit-community-banner-large-1920x384.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1920,
+        "height": 384
+      },
+      "fileSizeBytes": 1149228,
+      "sha256": "a6f179bbcf59b1fc432e782e0ca253db514120535923887e5f6cd0c380cad64f",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-x-profile-header-1500x500",
+      "title": "Noether Braid Crossing Wake X Profile Header 1500x500",
+      "description": "Noether Braid crossing-wake X profile header brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-x-profile-header-1500x500.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1500,
+        "height": 500
+      },
+      "fileSizeBytes": 1228006,
+      "sha256": "a7a0110d4696e00ccead6f6160e565fe233b1ce71fbbf7f6307df333730904b0",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-bluesky-profile-banner-1500x500",
+      "title": "Noether Braid Crossing Wake Bluesky Profile Banner 1500x500",
+      "description": "Noether Braid crossing-wake Bluesky profile banner brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-bluesky-profile-banner-1500x500.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1500,
+        "height": 500
+      },
+      "fileSizeBytes": 1228006,
+      "sha256": "a7a0110d4696e00ccead6f6160e565fe233b1ce71fbbf7f6307df333730904b0",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-mastodon-profile-header-1500x500",
+      "title": "Noether Braid Crossing Wake Mastodon Profile Header 1500x500",
+      "description": "Noether Braid crossing-wake Mastodon profile header brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-mastodon-profile-header-1500x500.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1500,
+        "height": 500
+      },
+      "fileSizeBytes": 1228006,
+      "sha256": "a7a0110d4696e00ccead6f6160e565fe233b1ce71fbbf7f6307df333730904b0",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-facebook-page-cover-1640x924",
+      "title": "Noether Braid Crossing Wake Facebook Page Cover 1640x924",
+      "description": "Noether Braid crossing-wake Facebook page cover brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-facebook-page-cover-1640x924.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1640,
+        "height": 924
+      },
+      "fileSizeBytes": 2241602,
+      "sha256": "c7264fe93da3652f3ef28b700450c6fa153953ea44362a25407434b638789ccb",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-twitch-profile-banner-1200x480",
+      "title": "Noether Braid Crossing Wake Twitch Profile Banner 1200x480",
+      "description": "Noether Braid crossing-wake Twitch profile banner brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-twitch-profile-banner-1200x480.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 480
+      },
+      "fileSizeBytes": 953092,
+      "sha256": "1f223f88043407bd07db5841b61a4e21f8f244710990f0744749614a5a4469be",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-open-graph-preview-1200x630",
+      "title": "Noether Braid Crossing Wake Open Graph Preview 1200x630",
+      "description": "Noether Braid crossing-wake Open Graph preview brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-open-graph-preview-1200x630.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1200,
+        "height": 630
+      },
+      "fileSizeBytes": 1193071,
+      "sha256": "a31412da7df5e5a94b6cd0ab3a83c9c5ff1c2966475c91c533dfe8a979c03e44",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
+    },
+    {
+      "id": "noether-braid-crossing-wake-github-social-preview-1280x640",
+      "title": "Noether Braid Crossing Wake GitHub Social Preview 1280x640",
+      "description": "Noether Braid crossing-wake GitHub social preview brand export.",
+      "path": "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-github-social-preview-1280x640.png",
+      "mediaType": "image/png",
+      "dimensions": {
+        "width": 1280,
+        "height": 640
+      },
+      "fileSizeBytes": 1303715,
+      "sha256": "47c69ef344c2219acad4a613eeb676a714fc16f9c7c73506c23c9ea97981be39",
+      "dateCreated": "2026-07-02",
+      "dateImported": "2026-07-02",
+      "status": "approved",
+      "category": "brand",
+      "source": {
+        "name": "Architrino project",
+        "pageUrl": "https://www.architrino.com",
+        "fileUrl": null,
+        "generator": "scripts/art/build-noether-braid-crossing-wake-banner-assets.py",
+        "accessedDate": "2026-07-02"
+      },
+      "creators": [
+        {
+          "name": "Architrino project",
+          "role": "brand image author"
+        }
+      ],
+      "license": {
+        "rightsStatus": "project-owned",
+        "label": "Project license",
+        "rationale": "Created for project-owned Noether Braid brand use from the approved Crossing Wake Sheets generated banner master and local export tooling.",
+        "requiresAttribution": false
+      },
+      "creditLine": "Created by the Architrino project, 2026.",
+      "usage": {
+        "intendedUses": [
+          "brand sharing",
+          "social platform asset"
+        ],
+        "usedBy": [
+          "content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/README.md",
+          "reference/design/banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json"
+        ]
+      },
+      "selectionNotes": [
+        "Promoted from the selected Crossing Wake Sheets path/wake candidate on 2026-07-02.",
+        "Generated into the deployed Noether Braid crossing-wake banner family from the selected 2560 x 1440 working master."
+      ]
     }
   ]
 }

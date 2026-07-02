@@ -24,3 +24,11 @@ This package documents platform-named social branding exports. Avatar and icon f
 - Discord server banner: `../../../../content/assets/images/brand/banners/noether-braid-sea/noether-braid-discord-server-banner-960x540.png`
 
 The shallow LinkedIn and Reddit crop variants were retired because they create a dark middle stripe rather than preserving the darker-corner vignette.
+
+## Crossing Wake Banner Assets
+
+- Working master: `../../banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-sheets-master-2560x1440.png`
+- Deployed family: `../../../../content/assets/images/brand/banners/noether-braid-crossing-wake-sheets/`
+- Platform manifest: `../../banners/working/noether-braid-crossing-wake-sheets/noether-braid-crossing-wake-platform-manifest.json`
+
+Use the Crossing Wake family for the current social banner pass. It keeps the Noether Braid mark as the separate profile logo and uses red, purple, and blue path/wake fields as the banner artwork.

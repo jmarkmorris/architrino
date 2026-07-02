@@ -8,6 +8,11 @@
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
+- Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
@@ -38,7 +43,7 @@ The user may see a natural-language answer, a spoken answer, an image, a diagram
 10. what user-confirmed actions are available;
 11. what issue-mining metadata should survive if the user files feedback.
 
-The manifest must never upgrade proof status. Source authority lives in the source and claim fields, not in media polish, voice quality, token spend, or presentation style.
+The manifest must never upgrade proof status. Source authority lives in the source and claim fields, and those fields must follow [answer-engine-source-contract.md](answer-engine-source-contract.md). Media polish, voice quality, token spend, issue urgency, or presentation style cannot strengthen them.
 
 ## Architecture Drivers
 
@@ -133,6 +138,8 @@ When audio is generated, `display_text` and `verbatim_segments` are the speech s
 
 `artifacts` is a list of answer-attached outputs.
 
+Visual artifacts must follow [visual-artifact-contract.md](visual-artifact-contract.md). The manifest records the artifact payload; the visual artifact layer owns purpose labels, source-basis captions, alt text, retention state, human-review state, rights checks, and proof-status guardrails.
+
 Allowed v1 artifact types:
 
 | Type | Required fields |
@@ -141,8 +148,14 @@ Allowed v1 artifact types:
 | `audio` | `artifact_id`, `quality_level`, `audio_uri`, `duration_ms`, `speech_sync_id`, `retention_state`, `source_context`, `claim_context`. |
 | `image` | `artifact_id`, `purpose_label`, `image_uri`, `caption`, `alt_text`, `retention_state`, `source_context`, `claim_context`. |
 | `diagram` | `artifact_id`, `diagram_kind`, `diagram_source`, `caption`, `alt_text`, `source_context`, `claim_context`. |
+| `generated_image_prompt` | `artifact_id`, prompt text, `purpose_label`, draft status, `caption`, `alt_text`, `source_context`, `claim_context`. |
+| `app_mockup` | `artifact_id`, mockup source or image URI, `purpose_label`, `caption`, `alt_text`, `retention_state`, `source_context`, `claim_context`. |
+| `publication_asset_draft` | `artifact_id`, draft URI or prompt, `purpose_label`, `caption`, `alt_text`, `human_review_required`, `retention_state`, `source_context`, `claim_context`. |
 | `narration_script` | `artifact_id`, `script_text`, `captions`, `source_context`, `claim_context`. |
+| `comparison_script` | `artifact_id`, `script_text`, local claim, external comparison, recovery target, open burden, captions, `source_context`, `claim_context`. |
 | `animation_storyboard` | `artifact_id`, `scene_beats`, `captions`, `source_context`, `claim_context`. |
+| `caption_track` | `artifact_id`, caption payload, segment ids, `source_context`, `claim_context`. |
+| `transcript` | `artifact_id`, transcript text, segment ids, `source_context`, `claim_context`. |
 | `issue_draft` | `artifact_id`, `title`, `body`, `labels`, `public_visibility_warning`, `issue_mining_context`. |
 | `saved_note_draft` | `artifact_id`, `note_text`, `retention_state`, `delete_available`. |
 
@@ -151,6 +164,8 @@ Every artifact must carry or inherit source context and claim context. Mixed-med
 ## Speech Synchronization
 
 `speech_sync` is required for generated audio.
+
+The field must follow [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md). The manifest records the synchronized speech payload; the speech/presentation layer owns high-quality-only generation, text-only fallback, timed displayed text, captions/transcripts, voice-identity guardrails, accessibility behavior, and presentation artifact boundaries.
 
 Required fields:
 
@@ -172,6 +187,8 @@ The service may not return an audio artifact without synchronized displayed verb
 
 `token_receipt` keeps the user from needing to think about tokens on every action while still making costs auditable.
 
+The field must follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md). The manifest records the receipt; the token ledger owns estimates, holds, charges, refunds, cap status, auto-fund state, and no-private-prompt receipt behavior.
+
 Required fields:
 
 | Field | Purpose |
@@ -183,17 +200,21 @@ Required fields:
 | `actual_tokens_charged` | Final charged amount. |
 | `refunded_hold_tokens` | Hold returned to the user. |
 | `mode` | Mode that consumed tokens. |
-| `work_units` | Breakdown such as retrieval, answer generation, diagram, high-quality speech, image, issue draft. |
+| `work_units` | Breakdown such as source navigation, retrieval, answer generation, diagram, high-quality speech, image, issue draft. |
 | `source_classes_used` | Source classes involved in the charged work. |
 | `artifact_count` | Number and type of artifacts produced. |
 | `cap_status` | Whether the request stayed inside monthly limit, per-request cap, and auto-fund cap. |
 | `auto_fund_event` | Whether auto-fund was triggered. |
+| `privacy_summary` | Safe statement of retained, ephemeral, redacted, or public material. |
+| `private_prompt_expanded` | Must be `false` for receipt views. |
 
 Token spend must not change claim labels, source authority, unsupported-answer behavior, or media-standard enforcement.
 
 ## Issue Mining Context
 
 `issue_mining_context` makes user-confirmed GitHub issues and feedback useful later.
+
+The field must follow [issue-mining-signal-contract.md](issue-mining-signal-contract.md). The manifest records the safe metadata available at issue-draft or feedback time; the issue-mining loop owns clustering, signal scoring, noise classification, owner lanes, fix queues, report shape, and privacy-safe evidence handling.
 
 Required when issue drafting, issue submission, app feedback, idea triage, or source-confusion feedback is present:
 
@@ -217,6 +238,8 @@ The issue-mining loop should be able to cluster duplicates, identify recurring s
 
 `privacy_state` records what is stored, what is ephemeral, and what needs consent.
 
+The field must follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md). The manifest records retention and consent state; the privacy/audit boundary owns redaction, deletion routes, durable-save consent, public issue warnings, and no-private-prompt diagnostics.
+
 Required fields:
 
 | Field | Purpose |
@@ -228,6 +251,9 @@ Required fields:
 | `issue_visibility_warning` | Required before public GitHub issue handoff. |
 | `durable_save_consent` | Whether the user opted into saved notes or account history. |
 | `delete_available` | Whether the user can delete stored material. |
+| `public_material_included` | Whether user material appears in public issue text or shared artifacts. |
+| `private_prompt_expanded_in_receipt` | Must be `false`. |
+| `diagnostic_redaction` | Whether diagnostics are safe for operator/developer review. |
 
 V1 should default to minimal retention: billing and abuse-control counters may persist, generated speech audio is ephemeral, durable saved notes are opt-in, and user media retention is disabled unless a later policy enables it.
 
@@ -298,16 +324,21 @@ The eventual API response should be stricter than this sketch, but the contract 
     "source_classes_used": ["published_corpus"],
     "artifact_count": 1,
     "cap_status": "inside_limits",
-    "auto_fund_event": false
+    "auto_fund_event": false,
+    "privacy_summary": "No private prompt text expanded in receipt.",
+    "private_prompt_expanded": false
   },
   "privacy_state": {
     "prompt_retention": "minimal",
     "answer_retention": "ephemeral_unless_saved",
     "media_retention": "ephemeral",
-    "uploaded_material_state": "none",
+    "uploaded_material_state": "disabled",
     "issue_visibility_warning": null,
     "durable_save_consent": false,
-    "delete_available": false
+    "delete_available": false,
+    "public_material_included": false,
+    "private_prompt_expanded_in_receipt": false,
+    "diagnostic_redaction": "safe_summary_only"
   },
   "available_actions": [],
   "issue_mining_context": null,
@@ -335,7 +366,7 @@ The future service implementation should add manifest-level fixtures for:
 Closure goal:
 Turn the Answer Artifact Manifest into typed service contracts, response schemas, validator order, endpoint contracts, and validation fixtures that keep answers, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata aligned.
 
-Use this packet and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
+Use this packet, [manifest-service-contracts.md](manifest-service-contracts.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Encode the typed schema for the manifest.

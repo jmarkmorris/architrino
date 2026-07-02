@@ -1,0 +1,224 @@
+# Issue Mining Signal Contract
+
+## Workstream Metadata
+
+- Kind: `priority-contract`
+- Status: `draft`
+- Claim level: `priority-only`
+- Parent priority: [Archie Interface App](app-archie-interface.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
+- Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
+- Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Service platform owner: [Archie Service Platform](../archie/service-platform.md)
+
+## Purpose
+
+This packet defines the issue-mining signal contract for the future Archie question service.
+
+The interface can draft and hand off GitHub issues, but that is only useful if the project can mine the resulting stream for recurring signal, separate signal from noise, and route fixes to owners. This contract defines the input metadata, clustering rules, signal report shape, noise dispositions, owner lanes, and privacy boundaries for that loop.
+
+It is not GitHub automation code. It is the policy and data-contract target for future issue report generation, triage dashboards, owner-routed fix queues, and regression fixtures.
+
+## Core Invariant
+
+Issue mining should use public issue metadata and safe manifest metadata, not private prompt text.
+
+The mining loop can cite representative public issues, aggregate safe fields, and route fix queues. It cannot reconstruct private prompts, treat issue volume as proof, promote priority-only claims, or turn unsupported user proposals into established $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
+
+## Mining Inputs
+
+The mining pipeline should consume these safe inputs:
+
+| Input | Purpose |
+| --- | --- |
+| `issue_url` | Public issue link or submitted issue id. |
+| `issue_title` | Public title for clustering and representative examples. |
+| `issue_body_public` | Public issue body after user confirmation. |
+| `labels` | GitHub labels or body metadata. |
+| `origin_mode` | Archie mode that produced the draft or feedback. |
+| `origin_surface` | Page, app, scene, document, sphere, or route where the issue started. |
+| `source_routes` | Source routes attached to the answer or issue draft. |
+| `claim_label` | Claim label visible when the issue was drafted. |
+| `user_category` | User-selected bug, idea, source confusion, app issue, proof burden, accessibility issue, or other category. |
+| `duplicate_keys` | Route, app id, source id, error class, topic id, concept id, or fixture id. |
+| `privacy_inclusion` | Included, excluded, redacted, or consented material state. |
+| `token_receipt_id` | Optional safe receipt id for cost/support review. |
+| `smallest_next_artifact` | Definition, equation, simulation target, source packet, app mockup, validation fixture, or issue. |
+
+Private prompt text, uploaded user media, account history, private conversation excerpts, and unsubmitted drafts are excluded unless a separate consent and retention policy explicitly allows their use.
+
+## Cluster Model
+
+An issue cluster is a group of issues that appear to describe the same underlying problem, confusion point, request, or proof burden.
+
+Required cluster fields:
+
+| Field | Requirement |
+| --- | --- |
+| `cluster_id` | Stable id for the recurring issue group. |
+| `cluster_title` | Short human-readable title. |
+| `cluster_type` | `bug`, `source_gap`, `reader_confusion`, `unsupported_answer_gap`, `app_usability`, `proof_burden`, `accessibility`, `new_proposal`, `operations`, or `noise`. |
+| `frequency` | Count of matching issues in the report window. |
+| `first_seen` | First public issue date in the cluster. |
+| `last_seen` | Most recent public issue date in the cluster. |
+| `affected_surfaces` | Routes, apps, scenes, documents, or modes affected. |
+| `source_routes` | Source routes implicated by the cluster. |
+| `claim_labels` | Claim labels observed across matching issues. |
+| `representative_issues` | Small public issue-link sample. |
+| `duplicate_keys` | Keys that caused or supported grouping. |
+| `privacy_state` | Confirmation that private prompt text was not used. |
+
+Clusters may be manually corrected. Corrections should record the reason so future mining does not keep repeating the same mistaken grouping.
+
+## Signal Scoring
+
+Signal score should combine frequency, severity, reproducibility, source impact, and owner clarity.
+
+Required fields:
+
+| Field | Values |
+| --- | --- |
+| `severity` | `critical`, `high`, `medium`, `low`, `info` |
+| `frequency_band` | `single`, `repeated`, `common`, `surging` |
+| `confidence` | `high`, `medium`, `low` |
+| `user_impact` | `blocks_task`, `causes_confusion`, `slows_task`, `minor_polish`, `not_actionable` |
+| `source_impact` | `source_authority`, `published_corpus`, `priority_material`, `app_guide`, `service_platform`, `none` |
+| `fix_readiness` | `ready`, `needs_reproduction`, `needs_public_reproduction`, `needs_source_decision`, `needs_design`, `needs_proof_work`, `defer`, `close_as_noise` |
+
+High frequency alone is not proof of importance. A single severe privacy, billing, source-authority, or public-action issue can outrank many vague comments.
+
+## Noise Classes
+
+Noise should be tracked explicitly so it does not dominate fix queues.
+
+Allowed noise classes:
+
+1. `spam`;
+2. `duplicate_without_new_signal`;
+3. `vague_feedback`;
+4. `unsupported_theory_assertion`;
+5. `non_actionable_reaction`;
+6. `out_of_scope_request`;
+7. `private_material_without_consent`;
+8. `abuse_or_harassment`;
+9. `already_fixed`;
+10. `wrong_surface`.
+
+Noise classification should not delete evidence silently. Representative public links can be kept, but private prompt text and unconsented user material remain excluded.
+
+## Owner Lanes
+
+Every actionable cluster should route to one primary owner lane.
+
+| Owner lane | Use when |
+| --- | --- |
+| `app_runtime` | UI, controls, rendering, app state, browser behavior, or runtime bug. |
+| `corpus_documentation` | Published corpus wording, missing explanation, glossary drift, reading path, or source-route clarity. |
+| `source_authority_policy` | Claim label, priority visibility, System Card routing, unsupported-answer behavior, or source-class confusion. |
+| `service_platform` | Backend, credentials, privacy, token ledger, observability, deployment, or rate limits. |
+| `media_policy` | Generated audio, image, diagram, storyboard, caption, alt text, or corporate media standard behavior. |
+| `issue_ops` | GitHub handoff, labels, duplicate clustering, report generation, or triage process. |
+| `proof_corpus_priority` | Definition, equation, simulation target, proof burden, or source-mining packet. |
+| `accessibility` | Captions, transcripts, keyboard behavior, screen-reader flow, contrast, motion, or audio accessibility. |
+| `operations` | Abuse controls, incidents, monitoring, account support, billing support, or release procedure. |
+
+If ownership is ambiguous, the cluster should route to `issue_ops` with a required owner-decision action rather than being left unowned.
+
+## Signal Report Shape
+
+The mining loop should produce a periodic signal report.
+
+Required report fields:
+
+| Field | Requirement |
+| --- | --- |
+| `report_id` | Stable report id. |
+| `report_window` | Date range covered. |
+| `generated_at` | Report generation timestamp. |
+| `source_issue_query` | Public GitHub query or issue set used. |
+| `clusters` | Ordered cluster summaries. |
+| `noise_summary` | Count by noise class and representative public examples. |
+| `top_fix_queues` | Owner-routed actionable queues. |
+| `regression_fixture_candidates` | Issues that should become fixtures. |
+| `source_index_candidates` | Missing or stale source routes to repair. |
+| `documentation_candidates` | Corpus or app-guide updates suggested by issue signal. |
+| `proof_priority_candidates` | Proof or corpus priority work suggested by recurring signal. |
+| `privacy_statement` | Confirmation of excluded private prompt/user media handling. |
+
+The report should lead with actionable clusters, not raw issue counts. Each actionable cluster should include a recommended next action and owner lane.
+
+## Fix Queue Record
+
+Each owner-routed fix queue entry should be small enough to act on.
+
+Required fields:
+
+| Field | Requirement |
+| --- | --- |
+| `queue_id` | Stable id for the fix queue item. |
+| `owner_lane` | One primary owner lane. |
+| `cluster_ids` | Linked issue clusters. |
+| `recommended_action` | Fix, document, add fixture, source-index repair, proof-priority packet, defer, or close. |
+| `smallest_next_artifact` | Concrete next artifact to create or edit. |
+| `acceptance_evidence` | How completion should be proven. |
+| `representative_issues` | Public issue links. |
+| `severity` | Severity inherited or adjusted from cluster scoring. |
+| `privacy_safe` | Whether the record excludes private prompt/user media. |
+
+Fix queues should avoid vague actions such as "look into this." They should name the smallest next artifact that can resolve or advance the cluster.
+
+## Privacy And Consent
+
+Issue mining must follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md).
+
+Rules:
+
+1. public issue text may be mined because the user confirmed GitHub handoff;
+2. private prompt text is excluded by default;
+3. unsubmitted issue drafts are excluded unless account policy and user consent allow retention;
+4. uploaded media, screenshots, private notes, and personal details require explicit inclusion consent;
+5. receipts may be linked by safe receipt id but must not expand prompt text;
+6. diagnostics should remain redacted and operator/developer-safe.
+
+If a cluster cannot be understood without private prompt text, the report should mark it `needs_public_reproduction` rather than exposing private data.
+
+## Regression Fixtures
+
+The future implementation should include issue-mining fixtures for:
+
+| Fixture | Required proof |
+| --- | --- |
+| `mining-duplicate-route-001` | Issues with the same route/topic duplicate keys cluster together. |
+| `mining-recurring-confusion-001` | Repeated reader confusion produces a corpus documentation queue item. |
+| `mining-unsupported-gap-001` | Unsupported-answer gaps route to source-authority policy or proof/corpus priority work. |
+| `mining-app-usability-001` | App usability reports route to app runtime with representative issues. |
+| `mining-noise-spam-001` | Spam or vague feedback is classified as noise and excluded from fix queues. |
+| `mining-private-exclusion-001` | Private prompt text is not included in clusters, reports, or fix queues. |
+| `mining-owner-ambiguous-001` | Ambiguous ownership routes to issue ops with owner-decision action. |
+| `mining-fixture-candidate-001` | Reproducible issue generates a regression fixture candidate. |
+| `mining-source-index-001` | Missing source route reports generate a source-index repair candidate. |
+| `mining-report-shape-001` | Periodic report includes clusters, noise summary, owner queues, recommended actions, and privacy statement. |
+
+## Implementation Handoff
+
+Closure goal:
+Turn the Issue Mining Signal Contract into report schemas, clustering rules, owner-routed fix queues, privacy-safe evidence handling, and regression fixtures for the Archie service.
+
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+
+Task:
+- Encode issue-mining input metadata and cluster schema.
+- Define signal scoring, noise classes, owner lanes, and fix queue records.
+- Define periodic signal report shape.
+- Add privacy checks that prevent private prompt text, unsubmitted drafts, and unconsented media from entering reports.
+- Add fixtures for duplicate clustering, recurring confusion, unsupported gaps, app usability, noise classification, private exclusion, ambiguous ownership, fixture candidates, source-index candidates, and report shape.
+
+Constraints:
+- Use public issue links and safe manifest metadata as evidence.
+- Do not mine private prompt text by default.
+- Do not treat issue volume as proof or launch readiness.
+- Do not promote user proposals into corpus claims.
+- Do not add GitHub automation, credentials, deployment config, or public launch behavior unless explicitly requested.

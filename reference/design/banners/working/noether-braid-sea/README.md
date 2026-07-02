@@ -28,8 +28,6 @@ Retired deployed crops:
 
 - LinkedIn company cover, LinkedIn profile background, and Reddit small/medium/large community banners were removed because those crops got dark in the middle instead of preserving the darker-corner tint.
 
-## Better Candidate Directions
+## Successor Candidate Direction
 
-1. Focal ribbon over quiet sea: keep the small Noether Braid field as a background, but add one large softened Noether Braid ribbon mark near the safe center and fade the surrounding pattern.
-2. Horizon field: keep the purple sea, reduce the braid density, and create a darker top/bottom falloff so platform chrome and profile avatars do not fight the artwork.
-3. Logo-and-QR campaign banner: use the deployed logo-plus-QR asset as a controlled focal group over a quieter Noether Braid field for campaign, flyer, and support-page sharing.
+Use the active path/wake candidate direction in `../noether-braid-path-wake-candidates/` for the next social banner pass. The Noether Braid mark should remain the social profile logo, so banner backgrounds should support that avatar instead of repeating or enlarging the mark inside the banner.

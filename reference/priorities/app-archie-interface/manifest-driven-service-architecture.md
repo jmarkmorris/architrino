@@ -8,6 +8,10 @@
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -25,8 +29,8 @@ The service should process a user request as a manifest-building pipeline:
 
 1. `request_gateway` receives the user request, account/session state, spending limits, and enabled modes.
 2. `mode_router` chooses the mode and creates the initial manifest with `manifest_id`, `schema_version`, `created_at`, `mode`, and `request_summary`.
-3. `retrieval_context` resolves corpus, scene, app guide, generated reading copy, priority, and curated external comparison routes, then writes `source_context`.
-4. `answer_engine` writes `claim_context`, `answer_body`, unsupported-answer routing, reading paths, and follow-up prompts.
+3. `retrieval_context` resolves corpus, scene, app guide, generated reading copy, priority, and curated external prior-physics routes, then writes `source_context`.
+4. `answer_engine` follows [answer-engine-source-contract.md](answer-engine-source-contract.md), then writes `claim_context`, `answer_body`, unsupported-answer routing, reading paths, and follow-up prompts.
 5. `artifact_orchestrator` decides which optional artifacts are requested or useful, then delegates to media-specific services.
 6. `speech_service` may add high-quality audio and `speech_sync`, or record text-only fallback when high-quality speech is unavailable.
 7. `visual_artifact_service` may add image or diagram artifacts with purpose labels, captions, alt text, source context, and claim context.
@@ -76,7 +80,7 @@ Validation should fail closed. If a requested artifact cannot satisfy its valida
 
 ## Speech Sync Architecture
 
-The speech path should be built around `answer_body.verbatim_segments`:
+The speech path should be built around `answer_body.verbatim_segments` and follow [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md):
 
 1. The answer engine creates stable segment ids for the displayed answer text.
 2. The speech service receives only the approved verbatim segments and source/claim context.
@@ -85,11 +89,11 @@ The speech path should be built around `answer_body.verbatim_segments`:
 5. The manifest validator rejects audio without timed displayed text.
 6. The conversation surface renders audio playback and text highlighting from `speech_sync`.
 
-Voice selection, speed controls, character personas, real-person imitation, and authority-implying voice identity are outside V1.
+Voice selection, speed controls, character personas, real-person imitation, and authority-implying voice identity are outside V1. Narration scripts, comparison scripts, and animation storyboards are presentation artifacts that inherit source and claim context; they cannot replace the answer engine's source or claim decision.
 
 ## Token Receipt Architecture
 
-The token ledger should treat the manifest as the unit of accounting:
+The token ledger should treat the manifest as the unit of accounting and follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md):
 
 1. `request_gateway` and `artifact_orchestrator` estimate likely work units.
 2. The UI interrupts only when the request exceeds configured limits, triggers auto-fund, or changes privacy/retention behavior.
@@ -98,11 +102,21 @@ The token ledger should treat the manifest as the unit of accounting:
 5. `token_ledger` finalizes actual charge and refund.
 6. The manifest carries the post-run receipt.
 
-The user should be able to inspect a receipt without reading internal logs or thinking about provider-specific billing units.
+The user should be able to inspect a receipt without reading internal logs, thinking about provider-specific billing units, or exposing private prompt text.
+
+## Privacy Retention Architecture
+
+The privacy/audit boundary should follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md):
+
+1. run privacy preflight before work that retains, publishes, attaches, or shares user material;
+2. default generated audio and generated media to ephemeral unless a later saved-artifact policy applies;
+3. require confirmation before durable save, public issue submission, user-material inclusion, credentialed action, or retention-policy change;
+4. write `privacy_state` after artifact validation and before final charge;
+5. keep receipts, issue-mining metadata, and diagnostics free of private prompt expansion.
 
 ## Issue Mining Architecture
 
-The issue path should produce useful public feedback without leaking private data:
+The issue path should produce useful public feedback without leaking private data and should follow [issue-mining-signal-contract.md](issue-mining-signal-contract.md):
 
 1. `Triage Idea` or app feedback creates an `issue_draft` artifact.
 2. `issue_draft_service` writes public title/body/labels and a public-visibility warning.
@@ -111,7 +125,7 @@ The issue path should produce useful public feedback without leaking private dat
 5. If the user submits, the issue URL or submitted issue id may be retained only according to the privacy policy.
 6. The mining pipeline clusters issues from public metadata and representative links instead of private prompt text.
 
-Signal mining should route recurring issues to app runtime, corpus documentation, source-authority policy, service platform, or proof/corpus priority work.
+Signal mining should route recurring issues to app runtime, corpus documentation, source-authority policy, service platform, media policy, issue operations, accessibility, operations, or proof/corpus priority work.
 
 ## API Surface Sketch
 
@@ -142,7 +156,7 @@ Endpoint names are illustrative. The required invariant is that each endpoint re
 Closure goal:
 Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and contract-fixture implementation for the Archie question service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), and [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) as the source of truth.
 
 Task:
 - Define service components, input/output types, validator responsibilities, and fail-closed behavior.

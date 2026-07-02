@@ -5,3 +5,4 @@ This directory stores deployed brand banner PNGs. Working masters, review sheets
 ## Families
 
 - `noether-braid-sea/` contains platform-sized exports from the first Noether Braid sea banner master.
+- `noether-braid-crossing-wake-sheets/` contains platform-sized exports from the selected Crossing Wake Sheets path/wake banner master.

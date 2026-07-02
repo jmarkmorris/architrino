@@ -12,7 +12,9 @@ Keep deployed files reproducible from a working master. When a banner family cha
 ## Current Families
 
 - `working/noether-braid-sea/` owns the first Noether Braid sea banner family, derived from the original `2048 x 1152` tiny-braid sea image.
-- `working/noether-braid-profile-candidates/` owns generated social banner candidates designed to sit behind the Noether Braid profile logo.
+- `working/noether-braid-crossing-wake-sheets/` owns the selected Crossing Wake Sheets path/wake banner family.
+- `working/noether-braid-path-wake-candidates/` owns the active generated social banner candidates: red, purple, and blue path/wake fields designed to sit behind the Noether Braid profile logo.
+- `working/noether-braid-profile-candidates/` owns a rejected generated social banner candidate snapshot.
 
 ## Regeneration
 

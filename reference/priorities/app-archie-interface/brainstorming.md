@@ -330,14 +330,14 @@ Product modules:
 2. `media_intake` - Speech transcription, image analysis, screenshot/app-state parsing, document intake.
 3. `mode_router` - Ask, Explain, Compare, Visualize, Triage Idea, Find Source.
 4. `retrieval_context` - Corpus, app guide, System Card, priority, and curated external source retrieval with authority flags.
-5. `answer_engine` - Prompt assembly, source labels, unsupported-answer behavior, citation payloads.
+5. `answer_engine` - Source selection, claim-label assignment, unsupported-answer behavior, TeX-preserving answer body, idea-triage classification, and citation payloads.
 6. `answer_artifact_manifest` - Shared response envelope for source context, claim labels, answer text, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata.
 7. `speech_and_presentation_layer` - High-quality service-native speech output, synchronized text display, narration scripts, animation storyboards, captions, and source-authority guardrails.
 8. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
 9. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, and account actions.
-10. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls.
-11. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, and owner-routed fix queues.
-12. `privacy_and_audit` - Consent, retention, deletion, logs, incident review, and user-data boundaries.
+10. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls, and no-private-prompt receipts.
+11. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, owner-routed fix queues, fixture candidates, source-index candidates, and privacy-safe evidence handling.
+12. `privacy_and_audit` - Consent, retention, deletion, public-inclusion warnings, redacted diagnostics, logs, incident review, and user-data boundaries.
 
 The existing service-platform packet should own deployment choices for these modules.
 
@@ -387,6 +387,10 @@ Context:
 - The Answer Artifact Manifest is `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
 - The manifest-driven service architecture is `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
 - The manifest service contracts are `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
+- The answer engine source contract is `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
+- The token ledger and privacy contract is `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
+- The issue mining signal contract is `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
+- The service-native speech and presentation contract is `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`.
 - The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
 - The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
@@ -395,7 +399,7 @@ Context:
 
 Task:
 - Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion pipeline, answer-engine boundary, generated-media corporate-standard enforcement, service-native speech and presentation layer, animation-storyboard boundary, token ledger, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion pipeline, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, animation-storyboard boundary, token ledger and privacy-retention contract, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining signal report loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:

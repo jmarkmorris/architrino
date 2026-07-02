@@ -8,6 +8,10 @@
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -28,9 +32,9 @@ The future typed schema should start with these closed or controlled vocabularie
 | `Mode` | `Ask`, `Explain`, `Compare`, `Visualize`, `Triage Idea`, `Find Source` |
 | `SourceClass` | `published_corpus`, `generated_reading_copy`, `scene_route`, `app_guide`, `priority_material`, `external_prior_physics` |
 | `ClaimLabel` | `published corpus`, `derivation target`, `priority-only`, `app diagnostic`, `external comparison`, `AAA-native stance`, `unsupported` |
-| `ArtifactType` | `text`, `audio`, `image`, `diagram`, `narration_script`, `animation_storyboard`, `issue_draft`, `saved_note_draft` |
+| `ArtifactType` | `text`, `audio`, `image`, `diagram`, `narration_script`, `comparison_script`, `animation_storyboard`, `caption_track`, `transcript`, `issue_draft`, `saved_note_draft` |
 | `ActionType` | `open_source`, `make_diagram`, `listen`, `submit_issue`, `save_note`, `continue_reading`, `confirm_action` |
-| `WorkUnit` | `retrieval`, `answer_generation`, `comparison`, `diagram`, `image`, `high_quality_speech`, `narration_script`, `animation_storyboard`, `issue_draft`, `saved_note`, `action_handoff` |
+| `WorkUnit` | `source_navigation`, `retrieval`, `answer_generation`, `comparison`, `diagram`, `image`, `high_quality_speech`, `caption_transcript`, `narration_script`, `comparison_script`, `animation_storyboard`, `issue_draft`, `saved_note`, `action_handoff` |
 | `CapStatus` | `inside_limits`, `estimate_required`, `cap_exceeded`, `auto_fund_pending`, `insufficient_tokens`, `privacy_confirmation_required` |
 | `RetentionState` | `ephemeral`, `ephemeral_unless_saved`, `minimal`, `session_local`, `durable_opt_in`, `disabled`, `redacted` |
 | `ConfirmationReason` | `public_visibility`, `durable_save`, `token_cap`, `auto_fund`, `privacy`, `retention`, `credentialed_action`, `user_media_inclusion` |
@@ -75,13 +79,13 @@ Each service boundary reads a narrow input, writes a narrow output, and leaves t
 | `request_gateway` | User prompt, selected mode, account/session state, token caps, enabled capabilities. | Normalized request envelope with request id, safe request summary, capability flags, and spending limits. | privacy state, account/cap sanity, request-size cap. |
 | `mode_router` | Normalized request envelope. | Manifest shell with `manifest_id`, `schema_version`, `created_at`, `mode`, `request_summary`, initial actions. | allowed mode, unavailable capability fallback. |
 | `retrieval_context` | Manifest shell, request summary, source policy, corpus/app indexes. | `source_context` with source classes, primary/supporting routes, excluded classes, freshness, System Card route. | source authority, source freshness, priority visibility. |
-| `answer_engine` | Manifest shell plus `source_context`. | `claim_context`, `answer_body`, unsupported route, reading path, follow-up prompt. | claim context, unsupported answer, TeX preservation. |
+| `answer_engine` | Manifest shell plus `source_context`. | `claim_context`, `answer_body`, unsupported route, reading path, follow-up prompt. | answer-engine source contract, claim context, unsupported answer, TeX preservation. |
 | `artifact_orchestrator` | Manifest, requested artifact actions, token estimate, media policy. | Artifact work plan. | media standard precheck, token cap precheck, privacy precheck. |
 | `speech_service` | Manifest with `answer_body.verbatim_segments`, token allowance, speech provider status. | `audio` artifact plus `speech_sync`, or text-only fallback state. | speech sync, high-quality-only, retention, token receipt. |
 | `visual_artifact_service` | Manifest, visual request, media policy, token allowance. | `image` or `diagram` artifact. | media standard, purpose label, source/claim inheritance, alt text/caption. |
 | `issue_draft_service` | Manifest, user category, feedback/idea text, privacy inclusion state. | `issue_draft` artifact and `issue_mining_context`. | issue mining, public visibility, privacy inclusion. |
-| `token_ledger` | Work plan, provider costs, user caps, completed work units. | `token_receipt`. | receipt consistency, cap status, auto-fund state. |
-| `privacy_and_audit` | Manifest, consent state, retention policy, generated artifacts. | `privacy_state`, safe diagnostics. | retention, deletion route, private data redaction. |
+| `token_ledger` | Work plan, provider costs, user caps, completed work units. | `token_receipt`. | token ledger and privacy contract, receipt consistency, cap status, auto-fund state. |
+| `privacy_and_audit` | Manifest, consent state, retention policy, generated artifacts. | `privacy_state`, safe diagnostics. | token ledger and privacy contract, retention, deletion route, private data redaction. |
 | `action_broker` | Manifest, action request, confirmation state. | Updated `available_actions` and optional action result. | action confirmation, credentialed-action boundary. |
 | `manifest_validator` | Complete candidate manifest. | Validated manifest or fail-closed manifest-shaped response. | all validators in defined order. |
 | `conversation_surface` | Validated manifest. | Rendered UI only. | no new authority fields, no unmanifested actions. |
@@ -220,7 +224,7 @@ Fail-closed responses should be regression-tested for unsupported answers, unava
 
 ## Speech Sync Contract
 
-The speech contract is stricter than ordinary artifact generation:
+The speech contract is stricter than ordinary artifact generation and must follow [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md):
 
 1. `answer_body.verbatim_segments` is the only speech source in V1.
 2. `speech_sync.quality_policy` must be `high_quality_only`.
@@ -234,7 +238,7 @@ If any item fails, the endpoint should return text-only fallback.
 
 ## Token Receipt Contract
 
-The token receipt should be updated by service components but owned by `token_ledger`.
+The token receipt should be updated by service components but owned by `token_ledger` and governed by [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md).
 
 Rules:
 
@@ -245,9 +249,22 @@ Rules:
 5. failed artifacts are not charged unless a policy explicitly charges for attempted provider work;
 6. token spend cannot alter claim labels, source context, or unsupported-answer behavior.
 
+## Privacy Retention Contract
+
+Privacy state should be populated by `privacy_and_audit` and governed by [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md).
+
+Rules:
+
+1. privacy preflight runs before work that retains, publishes, attaches, or shares user material;
+2. generated audio is ephemeral by default in the MVP;
+3. durable saved notes require consent, retention policy, deletion route, and storage-cost policy;
+4. issue drafts exclude private material unless explicit inclusion consent exists;
+5. receipts, issue-mining metadata, and diagnostics must not expand private prompt text;
+6. missing retention policy returns a fail-closed manifest or text-only fallback.
+
 ## Issue Mining Contract
 
-Issue mining metadata should be produced at issue-draft time, not reconstructed later.
+Issue mining metadata should be produced at issue-draft time, not reconstructed later, and downstream reports should follow [issue-mining-signal-contract.md](issue-mining-signal-contract.md).
 
 Required minimum:
 
@@ -262,7 +279,7 @@ Required minimum:
 9. recommended owner;
 10. smallest next artifact.
 
-The issue-mining pipeline should be able to cluster recurring signal from this public metadata even when private prompt text is unavailable.
+The issue-mining pipeline should be able to cluster recurring signal from this public metadata even when private prompt text is unavailable. It should emit clusters, signal scores, noise classes, owner-routed fix queues, fixture candidates, source-index candidates, and a privacy statement.
 
 ## Contract Fixtures
 
@@ -274,8 +291,11 @@ The future implementation should include fixtures for:
 | `contract-answer-unsupported-001` | Unsupported answer returns fail-closed manifest with nearest route or burden. |
 | `contract-listen-high-quality-001` | Listen action adds high-quality audio, `speech_sync`, timed segments, and token receipt work unit. |
 | `contract-listen-fallback-001` | High-quality speech unavailable returns text-only fallback and no low-quality audio artifact. |
+| `contract-presentation-storyboard-001` | Storyboard includes scene beats, captions, source basis, claim label, and no proof overclaim. |
+| `contract-presentation-hidden-summary-001` | Audio cannot secretly speak a summary instead of displayed verbatim text. |
 | `contract-visualize-001` | Visualize action adds purpose-labeled image or diagram with caption, alt text, source context, and claim context. |
 | `contract-issue-draft-001` | Issue draft includes public warning, confirmation requirement, and issue-mining context. |
+| `contract-issue-mining-report-001` | Mining report emits clusters, signal scores, noise classes, owner queues, representative public issues, and privacy statement. |
 | `contract-confirm-issue-001` | Submit issue action requires confirmation and exposes GitHub public-visibility warning. |
 | `contract-token-cap-001` | Cap exceedance returns insufficient-token or estimate-required manifest without running expensive work. |
 | `contract-privacy-refusal-001` | Private user material is excluded unless explicit consent exists. |
@@ -286,7 +306,7 @@ The future implementation should include fixtures for:
 Closure goal:
 Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), and [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) as the source of truth.
 
 Task:
 - Encode the shared type vocabulary.

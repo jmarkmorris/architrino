@@ -15,7 +15,7 @@ Rejection note: this direction used chalkboard/equation language and did not fol
 
 The `*.png` files without the `2560x1440` suffix are the direct built-in image-generation outputs copied into this package before local resizing.
 
-## Current Ranking
+## Rejected Ranking Snapshot
 
 1. Hybrid chalkboard plus Noether Sea: strongest balance of serious physics, visual energy, and avatar support.
 2. Quiet Noether Sea: cleanest and safest behind the profile logo; less intellectually distinctive than the hybrid.

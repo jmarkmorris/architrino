@@ -11,6 +11,10 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](../app-archie-interface/manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](../app-archie-interface/manifest-service-contracts.md)
+- Answer engine source contract: [answer-engine-source-contract.md](../app-archie-interface/answer-engine-source-contract.md)
+- Token ledger and privacy contract: [token-ledger-privacy-contract.md](../app-archie-interface/token-ledger-privacy-contract.md)
+- Issue mining signal contract: [issue-mining-signal-contract.md](../app-archie-interface/issue-mining-signal-contract.md)
+- Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](../app-archie-interface/service-native-speech-presentation-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](../app-archie-interface/corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](../app-archie-interface/corporate-media-acceptance-fixtures.md)
 
@@ -54,20 +58,21 @@ The service platform must define:
 9. Answer Artifact Manifest schema for source context, claim context, answer body, generated artifacts, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata;
 10. manifest-driven service architecture for request gateway, mode router, retrieval context, answer engine, artifact orchestration, speech service, token ledger, issue draft service, privacy/audit, action broker, validators, and conversation surface;
 11. manifest service contracts for typed service-boundary inputs/outputs, validator order, endpoint contracts, fail-closed manifest shape, speech sync, token receipts, issue mining, and contract fixtures;
-12. token ledger for user-visible token balances, subscription grants, spending limits, auto-fund settings, pending holds, post-run receipts, and refunds;
-13. service-native speech and presentation layer for spoken answers, narration scripts, and animated-explainer storyboards that preserve source authority;
-14. generated-image response layer for controlled visual artifacts that preserve source authority;
-15. corporate media standard enforcement for generated text, audio, images, diagrams, animation storyboards, captions, transcripts, alt text, issue drafts, and future media;
-16. speech, image-generation, avatar, animation, and generated-video policy before any service-native spoken, generated-image, or animated output ships;
-17. GitHub issue handoff through prefilled issue URLs or a later authenticated action broker, with visible GitHub-login and public-visibility warnings;
-18. issue-mining pipeline for duplicate clustering, recurring signal extraction, noise classification, owner routing, and fix queues;
-19. rate limits, abuse controls, and cost ceilings;
-20. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, manifest validation failures, token estimates, tokens spent, presentation/artifact requests, issue handoffs, issue-mining signals, and cost per answer;
-21. staging and production environments;
-22. release, rollback, and incident-response procedure;
-23. privacy, retention, deletion, and user-consent policy for prompts, speech, images, answer histories, narration scripts, animation storyboards, submitted issue links, issue-mining metadata, and token transaction records.
+12. answer-engine source contract for source selection, claim-label assignment, unsupported-answer behavior, answer body fields, and idea-triage classification;
+13. token ledger and privacy contract for user-visible token balances, subscription grants, spending limits, auto-fund settings, pending holds, post-run receipts, refunds, privacy state, retention defaults, deletion routes, and confirmation gates;
+14. service-native speech and presentation contract for high-quality speech, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token behavior, and retention behavior;
+15. generated-image response layer for controlled visual artifacts that preserve source authority;
+16. corporate media standard enforcement for generated text, audio, images, diagrams, animation storyboards, captions, transcripts, alt text, issue drafts, and future media;
+17. speech, image-generation, avatar, animation, and generated-video policy before any service-native spoken, generated-image, or animated output ships;
+18. GitHub issue handoff through prefilled issue URLs or a later authenticated action broker, with visible GitHub-login and public-visibility warnings;
+19. issue-mining signal contract for duplicate clustering, recurring signal extraction, noise classification, owner lanes, periodic reports, privacy-safe evidence, and fix queues;
+20. rate limits, abuse controls, and cost ceilings;
+21. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, manifest validation failures, token estimates, tokens spent, presentation/artifact requests, issue handoffs, issue-mining signals, and cost per answer;
+22. staging and production environments;
+23. release, rollback, and incident-response procedure;
+24. privacy, retention, deletion, and user-consent policy for prompts, speech, images, answer histories, narration scripts, animation storyboards, submitted issue links, issue-mining metadata, and token transaction records.
 
-The Answer Artifact Manifest is the platform mechanism for normalizing response shape. It gives the answer engine, media generators, speech layer, token ledger, action rail, issue handoff, issue-mining loop, privacy policy, and observability one shared response envelope instead of separate ad hoc payloads. The manifest-driven service architecture maps that envelope to concrete service components, validators, and endpoint responsibilities. The manifest service contracts turn those components into typed boundary, validator, endpoint, and fail-closed response obligations.
+The Answer Artifact Manifest is the platform mechanism for normalizing response shape. It gives the answer engine, media generators, speech layer, token ledger, action rail, issue handoff, issue-mining loop, privacy policy, and observability one shared response envelope instead of separate ad hoc payloads. The manifest-driven service architecture maps that envelope to concrete service components, validators, and endpoint responsibilities. The manifest service contracts turn those components into typed boundary, validator, endpoint, and fail-closed response obligations. The answer-engine source contract governs the upstream source-selection and claim-label decision before media, token, privacy, or action layers add anything to the answer. The token ledger and privacy contract governs cost estimates, holds, charges, refunds, auto-fund, ephemeral media, durable saves, deletion routes, public issue warnings, and no-private-prompt receipts. The issue-mining signal contract governs duplicate clustering, signal scoring, noise classes, owner lanes, periodic reports, fix queues, and privacy-safe evidence. The service-native speech and presentation contract governs high-quality audio, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token behavior, and retention behavior.
 
 The token ledger is not only a billing convenience. It is the platform mechanism for normalizing heterogeneous service work: static source routing, corpus retrieval, curated external comparison, long-context reasoning, diagram or image work, service-native speech generation, narration scripting, animation storyboarding, issue preparation, speech input, image intake, document intake, and future saved notebooks can all draw different backend resources while still presenting one understandable user-facing unit.
 
@@ -101,13 +106,14 @@ The System Card must remain visible from the service. The platform should expose
 4. `answer_artifact_manifest_contract` - Turn the Answer Artifact Manifest into typed response schema, validation fixtures, UI rendering obligations, and API failure behavior. Status: `long-term`.
 5. `manifest_driven_service_architecture` - Turn the manifest-driven service architecture map into service components, endpoint contracts, validator order, and fail-closed behavior. Status: `long-term`.
 6. `manifest_service_contracts` - Encode typed service-boundary inputs/outputs, validator order, endpoint contracts, fail-closed manifest shape, and contract fixtures. Status: `long-term`.
-7. `answer_engine_contract` - Define mode routing, retrieval prompts, claim labels, System Card routing, unsupported-answer behavior, manifest population, and regression fixtures. Status: `long-term`.
+7. `answer_engine_source_contract` - Define source selection, mode routing, retrieval prompts, claim labels, System Card routing, unsupported-answer behavior, manifest population, idea-triage classification, and regression fixtures. Status: `long-term`.
 8. `corporate_media_standard_enforcement` - Define and enforce generated-media policy fixtures for text, audio, images, diagrams, animation storyboards, captions, transcripts, alt text, issue drafts, and future media. Status: `long-term`. Source fixture contract: [corporate-media-acceptance-fixtures.md](../app-archie-interface/corporate-media-acceptance-fixtures.md).
-9. `privacy_security_token_cost_policy` - Define prompt/image/speech handling, retention, logs, consent, rate limits, abuse controls, token accounting, and budget controls. Status: `long-term`.
-10. `service_native_speech_and_presentation_policy` - Define native speech requirements, narration style rules, speech-input/avatar/video deferrals, storyboard format, accessibility captions/transcripts, token schedule, and source-authority guardrails. Status: `long-term`.
-11. `github_issue_feedback_loop` - Define prefilled GitHub issue handoff, public-visibility warning, issue metadata, issue-mining reports, signal/noise classification, and owner-routed fix queues. Status: `long-term`.
-12. `deployment_and_ops_plan` - Define staging, production, environment variables, CI/CD, monitoring, rollback, incident response, and domain routing. Status: `long-term`.
-13. `public_beta_gate` - Run fixture questions, manifest validation, service-contract validation, source-link QA, System Card checks, generated-media corporate-standard checks, native-speech/storyboard checks, GitHub issue handoff checks, issue-mining checks, privacy review, cost review, and deployment smoke tests before any public beta. Status: `long-term`.
+9. `token_ledger_privacy_contract` - Define wallet state, prompt/image/speech handling, retention, deletion routes, logs, consent, rate limits, abuse controls, token accounting, budget controls, receipts, auto-fund, and redaction behavior. Status: `long-term`.
+10. `service_native_speech_presentation_contract` - Define native speech requirements, narration style rules, speech-input/avatar/video deferrals, storyboard format, accessibility captions/transcripts, token schedule, retention behavior, voice identity, and source-authority guardrails. Status: `long-term`.
+11. `github_issue_feedback_loop` - Define prefilled GitHub issue handoff, public-visibility warning, issue metadata, issue-mining reports, signal/noise classification, privacy-safe evidence, and owner-routed fix queues. Status: `long-term`.
+12. `issue_mining_signal_contract` - Define issue-mining inputs, clustering, signal scoring, noise classes, owner lanes, report shape, fix queue records, and regression fixtures. Status: `long-term`.
+13. `deployment_and_ops_plan` - Define staging, production, environment variables, CI/CD, monitoring, rollback, incident response, and domain routing. Status: `long-term`.
+14. `public_beta_gate` - Run fixture questions, answer-engine source-contract validation, manifest validation, service-contract validation, token/privacy validation, issue-mining signal validation, speech/presentation validation, source-link QA, System Card checks, generated-media corporate-standard checks, native-speech/storyboard checks, GitHub issue handoff checks, issue-mining checks, privacy review, cost review, and deployment smoke tests before any public beta. Status: `long-term`.
 
 ## Near-Term Rule
 
@@ -128,17 +134,21 @@ Context:
 - Every response should use the Answer Artifact Manifest as the shared contract for source context, claim context, answer body, artifacts, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata.
 - Use the manifest-driven service architecture map for service components, validators, endpoint responsibilities, and fail-closed behavior.
 - Use the manifest service contracts for typed service-boundary inputs/outputs, validator ordering, endpoint request/response shapes, and contract fixtures.
+- Use the answer-engine source contract for source selection, claim-label assignment, unsupported-answer behavior, answer body fields, TeX preservation, and idea-triage classification.
+- Use the token ledger and privacy contract for wallet state, spending limits, auto-fund, holds, receipts, retention defaults, deletion routes, public issue warnings, redacted diagnostics, and no-private-prompt receipt behavior.
+- Use the issue-mining signal contract for duplicate clustering, signal scoring, noise classes, owner lanes, periodic reports, fix queues, fixture candidates, source-index candidates, and privacy-safe evidence.
+- Use the service-native speech and presentation contract for high-quality speech, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token behavior, retention behavior, and text-only fallback.
 - Generated text, audio, images, diagrams, animation storyboards, captions, transcripts, alt text, issue drafts, and future media must satisfy the Generated Media Corporate Standard and its acceptance fixtures.
 - The service should wait behind core theory closure unless platform work directly unblocks public readiness.
 
 Task:
 - Produce a deployment architecture packet for the full Archie service.
 - Compare deployment options: GitHub Pages entry plus backend, separate hosted webapp, serverless/edge service, and managed AI gateway.
-- Define the source-ingestion pipeline, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, answer-engine boundary, model/provider abstraction, service-native speech and presentation layer, generated-media corporate-standard enforcement, animation-storyboard boundary, privacy/security/token-accounting policy, GitHub issue handoff, issue-mining loop, observability, staging/production split, and rollback plan.
+- Define the source-ingestion pipeline, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, answer-engine source and claim-label boundary, model/provider abstraction, service-native speech and presentation contract, generated-media corporate-standard enforcement, animation-storyboard boundary, token-ledger and privacy-retention policy, GitHub issue handoff, issue-mining signal report loop, observability, staging/production split, and rollback plan.
 - Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:
-- Inspect `reference/priorities/archie/archie.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/service-platform.md`, `reference/priorities/app-archie-interface/answer-artifact-manifest.md`, `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`, `reference/priorities/app-archie-interface/manifest-service-contracts.md`, `reference/priorities/app-archie-interface/corporate-media-standards.md`, `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, and runtime entry points.
+- Inspect `reference/priorities/archie/archie.md`, `reference/priorities/archie/assistant-mode-contract.md`, `reference/priorities/archie/service-platform.md`, `reference/priorities/app-archie-interface/answer-artifact-manifest.md`, `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`, `reference/priorities/app-archie-interface/manifest-service-contracts.md`, `reference/priorities/app-archie-interface/answer-engine-source-contract.md`, `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`, `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`, `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`, `reference/priorities/app-archie-interface/corporate-media-standards.md`, `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`, `content/markdown/aaa/archie/system-card.md`, `README.md`, deployment files, and runtime entry points.
 - Do not build runtime code unless explicitly requested.
 - Do not add browser-side model API calls, private credentials, or public prompt logging.
 

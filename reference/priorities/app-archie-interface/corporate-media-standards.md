@@ -7,6 +7,7 @@
 - Claim level: `priority-only`
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -47,13 +48,13 @@ Generated media must satisfy all of the following:
 
 Text is the default medium and must still obey the full standard. It may be concise, explanatory, technical, or conversational, but it must preserve source labels and unsupported-answer behavior.
 
-Audio may be generated for answers, sphere-initiated markdown portions, full-document sphere listening, and future narration modes. The MVP allows high-quality generated speech only, keeps generated audio ephemeral, and pairs speech with synchronized displayed verbatim text. If high-quality speech is unavailable, the compliant fallback is text-only display rather than medium-quality or low-quality audio.
+Audio may be generated for answers, sphere-initiated markdown portions, full-document sphere listening, and future narration modes. Audio and presentation artifacts must follow [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md). The MVP allows high-quality generated speech only, keeps generated audio ephemeral, and pairs speech with synchronized displayed verbatim text. If high-quality speech is unavailable, the compliant fallback is text-only display rather than medium-quality or low-quality audio.
 
 Images may be generated as concept diagrams, visual analogies, app mockups, candidate mechanism sketches, or publication asset drafts after human review. Generated images must carry purpose labels, source-basis captions, and claim boundaries.
 
 Diagrams are preferred when structural accuracy matters. Illustrative images are acceptable when intuition or outreach is the goal.
 
-Animation storyboards and future video are allowed only when their policy, token behavior, retention behavior, accessibility text, and source-authority guardrails are defined.
+Animation storyboards and future video are allowed only when their policy, token behavior, retention behavior, accessibility text, and source-authority guardrails are defined. Storyboards may be returned as presentation artifacts; finished generated video remains deferred until a separate video policy exists.
 
 ## Failure Behavior
 

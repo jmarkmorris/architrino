@@ -9,6 +9,14 @@ import {
   filterEquationMapDocuments,
   normalizeEquationMapDocument,
 } from "../src/apps/equation-mapping/EquationMappingData.js";
+import {
+  createEquationAnchor,
+  createEquationOverlay,
+  getFormulaPartTeXForAnchor,
+  getOverlayContentDraft,
+  updateEquationAnchor,
+  updateEquationOverlay,
+} from "../src/apps/equation-mapping/EquationMappingEditor.js";
 import { createPointerLineGeometry } from "../src/apps/equation-mapping/EquationMappingRuntime.js";
 
 function readRepoFile(relativePath) {
@@ -89,4 +97,72 @@ test("equation mapping exposes the four standard background colors", () => {
     CANVAS_COLORS.map((entry) => entry.label),
     ["Purple", "Light", "Warm", "Dark"]
   );
+});
+
+test("equation mapping editor creates a formula section anchor without mutating seed data", () => {
+  const [document] = createSeedEquationMapDocuments();
+  const nextDocument = normalizeEquationMapDocument(
+    createEquationAnchor(document, {
+      label: "retained carrier",
+      tex: "\\Theta_W",
+      searchText: "accepted carrier target",
+    })
+  );
+
+  assert.equal(document.anchors.some((anchor) => anchor.id === "retained-carrier"), false);
+  assert.equal(nextDocument.anchors.some((anchor) => anchor.id === "retained-carrier"), true);
+  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "retained-carrier"), "\\Theta_W");
+  assert.equal(nextDocument.formulaTeX.includes("\\Theta_W"), true);
+});
+
+test("equation mapping editor updates anchor labels and formula TeX", () => {
+  const [document] = createSeedEquationMapDocuments();
+  const nextDocument = normalizeEquationMapDocument(
+    updateEquationAnchor(document, "source", {
+      label: "native source row",
+      tex: "\\rho_W",
+      searchText: "weak field source row",
+    })
+  );
+  const sourceAnchor = nextDocument.anchors.find((anchor) => anchor.id === "source");
+
+  assert.equal(sourceAnchor.label, "native source row");
+  assert.equal(sourceAnchor.searchText, "weak field source row");
+  assert.equal(getFormulaPartTeXForAnchor(nextDocument, "source"), "\\rho_W");
+  assert.equal(nextDocument.formulaTeX.includes("\\rho_W"), true);
+});
+
+test("equation mapping editor creates and retargets overlay comments", () => {
+  const [document] = createSeedEquationMapDocuments();
+  const withOverlay = normalizeEquationMapDocument(
+    createEquationOverlay(document, {
+      title: "Coupling note",
+      targetAnchorId: "coupling",
+      text: "Compare the coupling term before accepting a map.",
+      mathTex: "4\\pi G",
+      sectionLinePlacement: "above",
+    })
+  );
+  const createdOverlay = withOverlay.overlays.find((overlay) => overlay.id === "coupling-note");
+
+  assert.equal(createdOverlay.targetAnchorId, "coupling");
+  assert.equal(createdOverlay.sectionLinePlacement, "above");
+  assert.equal(getOverlayContentDraft(createdOverlay).mathTex, "4\\pi G");
+
+  const retargeted = normalizeEquationMapDocument(
+    updateEquationOverlay(withOverlay, createdOverlay.id, {
+      targetAnchorId: "potential",
+      sectionLinePlacement: "below",
+      text: "Retarget the pointer to the potential side.",
+      mathTex: "\\Phi",
+      position: { x: 30, y: 44, width: 28 },
+    })
+  );
+  const overlay = retargeted.overlays.find((entry) => entry.id === createdOverlay.id);
+
+  assert.equal(overlay.targetAnchorId, "potential");
+  assert.equal(overlay.sectionLinePlacement, "below");
+  assert.deepEqual(overlay.position, { x: 30, y: 44, width: 28 });
+  assert.equal(getOverlayContentDraft(overlay).text, "Retarget the pointer to the potential side.");
+  assert.equal(getOverlayContentDraft(overlay).mathTex, "\\Phi");
 });
