@@ -3,7 +3,7 @@
   "claimLevel": "fail-closed source-acquisition blocker packet for accepted_neutron_color_singlet_envelope; records the exact closure target and nearest candidate evidence; not accepted neutron color-singlet envelope evidence, not no-free-color evidence, and not nuclear-binding promotion evidence",
   "sourceRole": "source_acquisition_blocker_packet",
   "sourceKind": "accepted_neutron_color_singlet_envelope",
-  "currentStatus": "blocked_missing_no_free_color_audit",
+  "currentStatus": "blocked_missing_same_record_branch_interface",
   "sourceSupportSought": [
     "neutron_color_singlet_closure",
     "finite_envelope_boundary",
@@ -67,6 +67,24 @@
         "accepted_no_open_color_far_field"
       ],
       "boundary": "The retained neutron envelope support accepts only neutron_color_singlet_closure; it does not accept finite_envelope_boundary, no_free_color_asymptotic_state, the top neutron envelope row, color-singlet closure, or no-open-color."
+    },
+    "noFreeColorAsymptoticStateEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json",
+      "candidateRowId": "no_free_color_asymptotic_state_0001",
+      "acceptedRowsProvided": [
+        "no_free_color_asymptotic_state"
+      ],
+      "usableFor": [
+        "accepted no-free-color asymptotic-state input",
+        "no-free-color audit dependency for the neutron envelope certificate"
+      ],
+      "notUsableFor": [
+        "accepted_neutron_color_singlet_envelope",
+        "accepted_proton_color_singlet_envelope",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained no-free-color evidence accepts only no_free_color_asymptotic_state. The top neutron envelope remains blocked until same-record branch-interface and envelope certificate evidence are joined in the same retained domain."
     }
   },
   "requiredAcceptanceCondition": {
@@ -135,10 +153,10 @@
       "same_record_noether_sea_response",
       "neutron_color_singlet_closure",
       "finite_envelope_boundary",
-      "same_sigma_eff_domain"
+      "same_sigma_eff_domain",
+      "no_free_color_asymptotic_state"
     ],
     "stillMissingBeforeAcceptance": [
-      "no_free_color_asymptotic_state",
       "same_record_branch_interface"
     ],
     "derivedRowsIfAccepted": [
@@ -164,7 +182,7 @@
       "the neutron projection refs use a different retained event id than the branch-interface ledger",
       "the open-color exposure ratio remains above Delta_color_nX",
       "the finite envelope boundary R_n diverges or changes under refinement",
-      "no_free_color_asymptotic_state is target-only or uses a different confinement-functional domain",
+      "no_free_color_asymptotic_state uses a different confinement-functional domain than the neutron envelope certificate",
       "Delta_color_nX, epsilon_nX, R_n, or the projection normalization is tuned by A, Z, isotope, element, or Fe/Ni behavior"
     ]
   },
@@ -202,15 +220,14 @@
       },
       {
         "stepId": "downstream_envelope_feed",
-        "derivation": "Feed neutron_color_singlet_closure only into accepted_neutron_color_singlet_envelope and downstream color-singlet/no-open-color rows after the accepted no-free-color audit exists."
+        "derivation": "Feed neutron_color_singlet_closure only into accepted_neutron_color_singlet_envelope and downstream color-singlet/no-open-color rows when the accepted no-free-color audit and same-record branch-interface certificate are joined in the same domain."
       }
     ],
     "derivedRowsIfAccepted": [
       "neutron_color_singlet_closure"
     ],
     "missingAcceptanceRows": [
-      "same_record_branch_interface",
-      "no_free_color_asymptotic_state"
+      "same_record_branch_interface"
     ],
     "feedsRowsAfterAcceptance": [
       "accepted_neutron_color_singlet_envelope",
@@ -227,13 +244,18 @@
     "failureModes": [
       "the neutron projection ratio is supplied from a different retained event record",
       "the finite envelope boundary is not refinement-stable",
-      "no_free_color_asymptotic_state remains target-only",
+      "same_record_branch_interface remains target-only",
       "the envelope constants are tuned by A, Z, isotope, element, or Fe/Ni behavior",
-      "accepted_neutron_color_singlet_envelope is treated as accepted before the no-free-color audit exists"
+      "accepted_neutron_color_singlet_envelope is treated as accepted before the same-record branch-interface certificate exists"
     ]
   },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
+    "acceptedRowsAvailableFromEvidence": [
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "no_free_color_asymptotic_state"
+    ],
     "notAcceptedByThisPacket": [
       "accepted_neutron_color_singlet_envelope",
       "neutron_color_singlet_closure",
@@ -251,23 +273,24 @@
     "scoreDecision": "no_score_increase"
   },
   "nextProofStep": {
-    "target": "Complete the neutron color-singlet envelope by joining the accepted neutron closure support row to the same-domain finite boundary, same-record branch interface, and accepted no-free-color asymptotic-state audit.",
+    "target": "Complete the top accepted_neutron_color_singlet_envelope certificate by joining the accepted neutron closure support row, finite boundary, no-free-color asymptotic-state row, and same-record branch interface in one retained confinement-functional domain.",
     "minimalInputNeeded": [
-      "accepted no-free-color asymptotic-state audit",
+      "accepted no-free-color asymptotic-state audit already available",
       "same sigma_eff domain",
       "same-record branch interface",
-      "finite envelope boundary R_n in the same retained window"
+      "finite envelope boundary R_n in the same retained window already available",
+      "retained neutron envelope certificate tying those rows to one event id"
     ],
     "failureModes": [
       "open-color projection ratio remains above tolerance",
       "finite envelope boundary changes under refinement",
       "the proof requires a different color-corridor or Noether sea response domain than sigma_eff",
-      "the no-free-color audit remains target-only"
+      "the same_record_branch_interface row remains target-only"
     ]
   },
   "failClosedNotes": [
     "This packet is not accepted source evidence.",
     "This packet exists to prevent the nearby neutron branch-interface ledger or nucleon-structure closure target from being mistaken for accepted neutron color-singlet envelope evidence.",
-    "Fe/Ni promotion remains blocked until the proton and neutron color-singlet envelopes, no-free-color asymptotic state, same-record branch interface, top confinement rows, and branch-interface rows are accepted from durable non-fixture evidence."
+    "Fe/Ni promotion remains blocked until the proton and neutron color-singlet envelopes, same-record branch interface, top confinement rows, and branch-interface rows are accepted from durable non-fixture evidence."
   ]
 }

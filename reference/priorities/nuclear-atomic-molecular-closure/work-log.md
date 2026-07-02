@@ -6,6 +6,15 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 — No-free-color asymptotic-state row accepted
+
+- Continued the branch-interface / no-open-color source-acquisition objective from the accepted `local_color_singlet_closure_support`, `asymptotic_field_audit`, and `finite_range_residual` rows.
+- Wired the already tracked [no-free-color-asymptotic-state-retained-evidence.v1.json](../../../scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json) into the active source-acquisition path as durable non-fixture evidence accepting only `no_free_color_asymptotic_state`.
+- Updated [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json), [no-free-color-asymptotic-state-source-acquisition-blocker.v1.json](../../../scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json), the proton and neutron envelope blockers, and the Fe/Ni source-binding report path so accepted no-free-color is visible as an input while the top envelope, color-singlet closure, same-record branch-interface, same-record no-open audit, no-open-color, and promotion rows remain unaccepted.
+- Current blocker: confinement source acquisition still first-misses `accepted_proton_color_singlet_envelope`, now behind the same-record branch-interface / envelope-certificate join rather than behind missing no-free-color evidence; branch-interface source acquisition still first-misses `no_open_color_far_field`.
+- Verification: `node --test tests/confinement-functional-source-target-check.test.js tests/iron-group-binding-cusp-toy-sweep.test.js`, `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict` passed.
+- Next action: derive or acquire the same-record proton/neutron color-singlet envelope certificate path, starting with `accepted_proton_color_singlet_envelope` and `same_record_branch_interface`, without treating accepted no-free-color as top envelope, color-singlet closure, no-open-color, or Fe/Ni promotion evidence.
+
 ### 2026-07-02 — Finite-range residual row accepted
 
 - Continued the branch-interface / no-open-color source-acquisition objective from the accepted `Delta_E_corr_NN_tail_limit`, `bounded_residual_overlap`, and `large_r_zero_limit` rows.

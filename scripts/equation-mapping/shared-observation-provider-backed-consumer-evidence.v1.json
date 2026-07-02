@@ -1,0 +1,260 @@
+{
+  "schema": "aaa-equation-map-shared-observation-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted shared-observation consumer evidence carrying the shared EQ-11/EQ-20 record into BBN, CMB, growth, and RAR rows; score-neutral",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json",
+  "authorization": {
+    "acceptedSharedObservation": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "sharedConstitutive": {
+    "path": "scripts/equation-mapping/eq11-20-shared-constitutive-residual.v1.json"
+  },
+  "thetaW": {
+    "path": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+  },
+  "outputProjection": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json"
+  },
+  "thetaCos": {
+    "path": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+  },
+  "window": {
+    "thetaObsId": "theta_obs_provider_backed_no_retune_0001",
+    "providerWindowId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "rows": {
+    "theta_obs": {
+      "status": "accepted",
+      "rowId": "theta-obs-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_src": {
+      "status": "accepted",
+      "rowId": "theta-src-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_read": {
+      "status": "accepted",
+      "rowId": "theta-read-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_therm_prov": {
+      "status": "accepted",
+      "rowId": "theta-therm-prov-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "theta_gal": {
+      "status": "accepted",
+      "rowId": "theta-gal-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "event_ledger": {
+      "status": "accepted",
+      "rowId": "event-ledger-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "frw_handoff": {
+      "status": "accepted",
+      "rowId": "frw-handoff-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "thermal_provenance_ledger": {
+      "status": "accepted",
+      "rowId": "thermal-provenance-ledger-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    },
+    "no_hidden_retune_witness": {
+      "status": "accepted",
+      "rowId": "no-hidden-retune-observation-provider-backed-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "projections": {
+    "BBN": {
+      "status": "accepted",
+      "rowId": "projection-BBN-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0.02
+    },
+    "CMB": {
+      "status": "accepted",
+      "rowId": "projection-CMB-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0.03
+    },
+    "growth": {
+      "status": "accepted",
+      "rowId": "projection-growth-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0.04
+    },
+    "RAR": {
+      "status": "accepted",
+      "rowId": "projection-RAR-provider-backed-no-retune-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0.05
+    }
+  },
+  "sharedKeys": [
+    {
+      "key": "rho_NS",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "n",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "chi_sea",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1.002,
+        "CMB": 1.002,
+        "growth": 1.002,
+        "RAR": 1.002
+      }
+    },
+    {
+      "key": "Gamma_N",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1.0000010100010202,
+        "CMB": 1.0000010100010202,
+        "growth": 1.0000010100010202,
+        "RAR": 1.0000010100010202
+      }
+    },
+    {
+      "key": "u_sea",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 0,
+        "CMB": 0,
+        "growth": 0,
+        "RAR": 0
+      }
+    },
+    {
+      "key": "M_sea_ab",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    },
+    {
+      "key": "rho_bar",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 0.05,
+        "CMB": 0.05,
+        "growth": 0.05,
+        "RAR": 0.05
+      }
+    },
+    {
+      "key": "rho_A",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 0.25,
+        "CMB": 0.25,
+        "growth": 0.25,
+        "RAR": 0.25
+      }
+    },
+    {
+      "key": "eta",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 6.1e-10,
+        "CMB": 6.1e-10,
+        "growth": 6.1e-10,
+        "RAR": 6.1e-10
+      }
+    },
+    {
+      "key": "N_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 3.046,
+        "CMB": 3.046,
+        "growth": 3.046,
+        "RAR": 3.046
+      }
+    },
+    {
+      "key": "Y_p",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 0.245,
+        "CMB": 0.245,
+        "growth": 0.245,
+        "RAR": 0.245
+      }
+    },
+    {
+      "key": "H_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 3.424706202494149,
+        "CMB": 3.424706202494149,
+        "growth": 3.424706202494149,
+        "RAR": 3.424706202494149
+      }
+    },
+    {
+      "key": "a_eff",
+      "status": "accepted",
+      "projectionValues": {
+        "BBN": 1,
+        "CMB": 1,
+        "growth": 1,
+        "RAR": 1
+      }
+    }
+  ],
+  "numericResiduals": {
+    "growth": 0.04,
+    "CMB": 0.03,
+    "BBN": 0.02,
+    "RAR_BTFR": 0.05,
+    "FRW_to_obs": 0,
+    "handoff": 0,
+    "therm_prov": 0,
+    "S_retune": 0
+  }
+}

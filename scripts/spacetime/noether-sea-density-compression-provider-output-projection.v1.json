@@ -1,0 +1,81 @@
+{
+  "schema": "aaa-noether-sea-density-compression-output-projection-evidence/v1",
+  "evidenceStatus": "accepted",
+  "claimLevel": "accepted downstream output projection from the theta_sea_rho_NS provider-backed surface slice into weak-gravity and low-acceleration rows; score-neutral",
+  "scoreDecision": "no_score_increase",
+  "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json",
+  "authorization": {
+    "acceptedOutputProjection": true,
+    "downstreamConsumerAuthorization": true,
+    "scoreDecision": "no_score_increase"
+  },
+  "provider": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+    "surfaceSlicePath": "scripts/spacetime/noether-sea-density-compression-provider-surface-slice.v1.json"
+  },
+  "sharedConstitutive": {
+    "path": "scripts/equation-mapping/eq11-20-shared-constitutive-residual.v1.json"
+  },
+  "window": {
+    "windowId": "theta-sea-density-compression-provider-0001",
+    "ell": "ell_theta_sea_rho_ns_provider_0001",
+    "commonCarrierId": "theta-sea-density-compression-provider-0001",
+    "thetaWId": "theta_W_static_weak_provider_backed_0001",
+    "theta1120Id": "theta_11_20_weak_gravity_provider_backed_0001",
+    "thetaCosId": "theta_cos_FRW_handoff_0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001"
+  },
+  "rows": {
+    "delta_N": {
+      "status": "accepted",
+      "rowId": "delta-N-provider-output-projection-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourceKind": "weak_gravity_metric_projection",
+      "value": -0.000001
+    },
+    "delta_gamma_ij": {
+      "status": "accepted",
+      "rowId": "delta-gamma-ij-provider-output-projection-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourceKind": "weak_gravity_spatial_compliance_projection",
+      "value": {
+        "radial": 0.000002,
+        "tangential": 0.000002
+      }
+    },
+    "delta_G_eff": {
+      "status": "accepted",
+      "rowId": "delta-G-eff-provider-output-projection-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourceKind": "weak_gravity_effective_coupling_projection",
+      "value": 0
+    },
+    "delta_a_star": {
+      "status": "accepted",
+      "rowId": "delta-a-star-provider-output-projection-0001",
+      "carrierId": "theta-sea-density-compression-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sourceKind": "EQ32_low_acceleration_projection",
+      "value": 0.0012
+    }
+  },
+  "surfaceVector": {
+    "delta_N": -0.000001,
+    "delta_gamma_ij": {
+      "radial": 0.000002,
+      "tangential": 0.000002
+    },
+    "delta_G_eff": 0,
+    "delta_a_star": 0.0012
+  },
+  "noHiddenRetune": {
+    "status": "accepted",
+    "rowId": "output-projection-no-hidden-retune-0001",
+    "carrierId": "theta-sea-density-compression-provider-0001",
+    "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "residual": 0
+  }
+}

@@ -6,6 +6,8 @@
 - Parent: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
 - Source runner: [effective-metric-weak-field-residual.mjs](../../../scripts/equation-mapping/effective-metric-weak-field-residual.mjs)
 - Source fixture: [effective-metric-weak-field-attempt.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-attempt.v1.json)
+- Accepted evidence: [effective-metric-theta-w-evidence.v1.json](../../../scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json)
+- Accepted input: [effective-metric-weak-field-theta-w-accepted.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-theta-w-accepted.v1.json)
 - Coordination-source control: [effective-metric-weak-field-coordination-source-negative-control.v1.json](../../../scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json)
 - Row served: `EQ-10`, with upstream support from `EQ-07` through `EQ-09`
 - Claim level: candidate source-field map and attack card
@@ -13,7 +15,7 @@
 
 ## Boundary
 
-This map does not populate accepted retained evidence. It narrows `EQ-10` to the same source-backed `theta_W` weak-field record required by `EQ-07` through `EQ-09`, then names the local `EQ-10` consumers: `null_eikonal_row` and `geodesic_action_row`. Proper-time action and geodesic behavior remain observer-level variational projections; they are not substrate ontology.
+This map now has an accepted score-neutral `theta_W` evidence object and accepted checker input for the weak-field row family required by `EQ-07` through `EQ-10`. It also names the local `EQ-10` consumers: `null_eikonal_row` and `geodesic_action_row`. Proper-time action and geodesic behavior remain observer-level variational projections; they are not substrate ontology.
 
 No score changes.
 
@@ -22,14 +24,14 @@ No score changes.
 | Coordinate | Current answer |
 | --- | --- |
 | Row | `EQ-10` |
-| Current score and closure driver | Score `3`; proper-time/geodesic benchmarks are present, but action-to-acceleration and null/eikonal rows need one branch-derived weak-field record. |
+| Current score and closure driver | Score `3`; proper-time/geodesic benchmarks now have an accepted score-neutral `theta_W` row family, but score review still depends on same-record growth, CMB, and broader low-acceleration consumers. |
 | Primary AAA carrier | `theta_W`: one weak-field effective-metric record carrying lapse, drift, spatial compliance, signal delay, cadence, weak-clock, redshift, Shapiro, lensing, acceleration, PPN, null/eikonal, and geodesic-action rows. |
-| Smallest accepted evidence object | One accepted source-backed `theta_W` record with accepted row bindings for all required weak-field rows, common carrier id, shared keys, source provenance, and no-hidden-retune witness. |
-| Exact first blocker | `missing_accepted_theta_W`. |
-| Existing scripts/fixtures/packets found | The weak-field checker and attempt fixture listed above; [Equation Closure Pass 2026-06-23 AJ](equation-closure-pass-2026-06-23-aj.md); the parent effective-metric/cosmology packet. |
+| Smallest accepted evidence object | [effective-metric-theta-w-evidence.v1.json](../../../scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json), with accepted row bindings for all required weak-field rows, common carrier id, shared keys, source provenance, and no-hidden-retune witness. |
+| Exact first blocker | Accepted route: `nextBlocker=null`; attempt and coordination-source routes still block at `missing_accepted_theta_W`. |
+| Existing scripts/fixtures/packets found | The weak-field checker, attempt fixture, accepted evidence/input, coordination-source control, [Equation Closure Pass 2026-06-23 AJ](equation-closure-pass-2026-06-23-aj.md), and the parent effective-metric/cosmology packet. |
 | Candidate breakthrough angle | Use `EQ-10` as the variational consistency consumer: once `EQ-07` through `EQ-09` supply a single metric projection, `EQ-10` should ask whether the same record also makes the null/eikonal and action-to-acceleration residuals vanish, rather than introducing a separate geodesic fit. |
 | Fail-closed negative control | `scalar_delay_half_lensing`: a scalar-delay-only fixture can match Shapiro or acceleration while missing the spatial-compliance half of light bending, so it must fail before `EQ-10` geodesic action can be reviewed. |
-| Smaller next action | Populate or reject one source-backed `theta_W` weak-field source report with the required rows below; then run the existing checker in normal and `--require-populated` modes. |
+| Smaller next action | Carry the accepted `theta_W` report into growth, CMB, and broader low-acceleration no-retune consumers while keeping attempt, coordination-source, and generic durable sources rejected. |
 
 ## Accepted-Object Contract
 
@@ -73,7 +75,7 @@ Required rows on one `commonCarrierId`:
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| Weak-field carrier identity | `theta_W` retained weak-field record, not a geodesic-only or PPN-only fit | `theta_W` | Same `commonCarrierId`, retained window, source path, Noether sea cell, constitutive response, and metric projection across `EQ-07` through `EQ-10` | Coordination-source guard; `hidden_metric_retune` | Durable source-backed `theta_W` row with explicit support for `EQ-07` through `EQ-10` and accepted row bindings. |
+| Weak-field carrier identity | `theta_W` retained weak-field record, not a geodesic-only or PPN-only fit | `theta_W` | Same `commonCarrierId`, retained window, source path, Noether sea cell, constitutive response, and metric projection across `EQ-07` through `EQ-10` | Coordination-source guard; `hidden_metric_retune` | [effective-metric-theta-w-evidence.v1.json](../../../scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json), with explicit support for `EQ-07` through `EQ-10` and accepted row bindings. |
 | Noether sea constitutive response | Shared response vector/tensor producing lapse, drift, spatial compliance, signal delay, cadence, and PPN coefficients | `noether_sea_cell`, `constitutive_response`, `metric_projection` | Same Noether sea cell, response coefficients, metric projection, and carrier id as all weak-field observables | `hidden_metric_retune`; `clock_signal_split` | Accepted response/metric rows that feed clock, signal, spatial, acceleration, PPN, null/eikonal, and geodesic rows without per-observable changes. |
 | Redshift, Shapiro, lensing, and acceleration benchmarks | Observer-level weak-field observable readouts from the same metric projection | `lapse_row`, `drift_row`, `spatial_compliance_row`, `signal_delay_row`, `redshift_row`, `shapiro_row`, `lensing_row`, `acceleration_row` | Same weak-clock row, endpoint cadence, spatial compliance, signal delay, and carrier id | `scalar_delay_half_lensing`; `clock_signal_split` | Accepted weak-field observable rows proving scalar delay does not replace spatial compliance. |
 | PPN and preferred-frame comparison terms | PPN decision row as a bounded projection of the same weak-field response | `ppn_decision_row` | Same $\gamma_{\mathrm{PPN}}$, preferred-frame vector, response row, and metric projection as Shapiro/lensing/acceleration rows | `preferred_frame_leak`; `hidden_metric_retune` | Accepted PPN row whose coefficients are read from the same `theta_W` source report. |
@@ -96,12 +98,12 @@ The coordination-source control flips the weak-field rows to accepted-looking st
 
 ## Next Action
 
-Create one durable source-backed `theta_W` report and run:
+Run the accepted route, the attempt route, and the coordination-source guard:
 
 ```sh
 node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --summary --pretty
-node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --require-populated --summary --pretty
+node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --input scripts/equation-mapping/effective-metric-weak-field-theta-w-accepted.v1.json --require-populated --summary --pretty
 node scripts/equation-mapping/effective-metric-weak-field-residual.mjs --input scripts/equation-mapping/effective-metric-weak-field-coordination-source-negative-control.v1.json --summary --pretty
 ```
 
-Until that row exists, the correct result remains `missing_accepted_theta_W`.
+The accepted route must remain populated. The attempt and coordination-source routes must continue to return `missing_accepted_theta_W`; generic durable sources must not satisfy the `theta_W` evidence contract.

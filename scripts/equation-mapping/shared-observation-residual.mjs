@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { sharedObservationEvidenceStatusForPath } from "./shared-observation-evidence.mjs";
 
 const INPUT_SCHEMA = "aaa-equation-map-shared-observation-residual-input/v1";
 const OUTPUT_SCHEMA = "aaa-equation-map-shared-observation-residual-check/v1";
@@ -677,9 +678,20 @@ function evaluateAcceptedRow(row) {
   if (!concreteString(row.rowId ?? row.id ?? row.key)) {
     return { accepted: false, reason: "row_identity_not_concrete" };
   }
+  const sourcePath = row.sourcePath ?? row.source ?? null;
   const sourceReason = firstSourceEvidenceReason(row.sourcePath, row.source);
   if (sourceReason !== "accepted") {
     return { accepted: false, reason: sourceReason };
+  }
+  const evidence = sharedObservationEvidenceStatusForPath(sourcePath, {
+    repoRoot: process.cwd(),
+  });
+  if (!evidence.accepted) {
+    return {
+      accepted: false,
+      reason: `shared_observation_${evidence.reason}`,
+      evidence,
+    };
   }
   return { accepted: true, reason: "accepted" };
 }

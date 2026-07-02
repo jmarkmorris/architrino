@@ -1,6 +1,6 @@
 {
   "schema": "aaa-nuclear-atomic-confinement-functional-source-target/v1",
-  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, same_sigma_eff_domain, local open-color projection limit support, asymptotic_field_audit support, local color-singlet closure support, local color-singlet nucleon-envelope support, same-record branch-interface/confinement-functional support, sigma_eff_extraction, Delta_E_corr_NN_tail_limit, and finite_range_residual source-acquisition rows accepted; remaining top-level rows stay target-only and not accepted nuclear-binding recovery",
+  "claimLevel": "durable confinement-functional source target for the Fe/Ni cusp toy sweep; K_perp, V_exc, rho_NS, chi_sea, axis_exceptionality_charge, same_record_noether_sea_response, same_sigma_eff_domain, local open-color projection limit support, asymptotic_field_audit support, local color-singlet closure support, local color-singlet nucleon-envelope support, same-record branch-interface/confinement-functional support, sigma_eff_extraction, Delta_E_corr_NN_tail_limit, finite_range_residual, and no_free_color_asymptotic_state source-acquisition rows accepted; remaining top-level rows stay target-only and not accepted nuclear-binding recovery",
   "status": "target_required",
   "sourceIdentity": {
     "sourceObjectId": "confinement_functional_source_target_0001",
@@ -276,7 +276,7 @@
     "accepted_proton_color_singlet_envelope": {
       "id": "accepted_proton_color_singlet_envelope_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "currentEvidenceStatus": "blocked_missing_same_record_branch_interface",
       "requiredScope": "accepted proton color-singlet envelope with finite boundary and no-free-color audit",
       "requiredLedgerComponents": [
         "proton_color_singlet_closure",
@@ -289,7 +289,7 @@
     "accepted_neutron_color_singlet_envelope": {
       "id": "accepted_neutron_color_singlet_envelope_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_no_free_color_audit",
+      "currentEvidenceStatus": "blocked_missing_same_record_branch_interface",
       "requiredScope": "accepted neutron color-singlet envelope with finite boundary and no-free-color audit",
       "requiredLedgerComponents": [
         "neutron_color_singlet_closure",
@@ -301,8 +301,8 @@
     },
     "no_free_color_asymptotic_state": {
       "id": "no_free_color_asymptotic_state_source_target_0001",
-      "status": "target_required",
-      "currentEvidenceStatus": "blocked_missing_no_free_color_asymptotic_state_evidence",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
       "requiredScope": "accepted no-free-color asymptotic-state row for color-singlet nucleon envelopes",
       "requiredLedgerComponents": [
         "local_color_singlet_closure_support",
@@ -310,7 +310,7 @@
         "finite_range_residual"
       ],
       "currentPriorityPacket": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
-      "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json"
+      "sourceTargetPath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json"
     },
     "same_record_branch_interface": {
       "id": "same_record_branch_interface_source_target_0001",

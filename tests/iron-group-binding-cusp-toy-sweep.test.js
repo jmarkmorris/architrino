@@ -466,7 +466,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_proton_color_singlet_envelope.currentEvidenceStatus,
-    "blocked_missing_no_free_color_audit",
+    "blocked_missing_same_record_branch_interface",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -481,7 +481,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_neutron_color_singlet_envelope.currentEvidenceStatus,
-    "blocked_missing_no_free_color_audit",
+    "blocked_missing_same_record_branch_interface",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
@@ -491,17 +491,17 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .no_free_color_asymptotic_state.accepted,
-    false,
+    true,
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .no_free_color_asymptotic_state.currentEvidenceStatus,
-    "blocked_missing_no_free_color_asymptotic_state_evidence",
+    "accepted_non_fixture_source",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .no_free_color_asymptotic_state.sourceTargetPath,
-    "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json",
   );
   assert.equal(
     confinementCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks

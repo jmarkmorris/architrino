@@ -1,0 +1,322 @@
+{
+  "schema": "aaa-equation-map-effective-metric-weak-field-input/v1",
+  "claimLevel": "accepted theta_W weak-field effective-metric input consuming the shared EQ-11/EQ-20 constitutive record and provider-backed output projection; score-neutral",
+  "residualId": "R_07-10_static_weak_theta_W_provider_backed_0001",
+  "commonCarrierId": "theta_W_static_weak_provider_backed_0001",
+  "tolerances": {
+    "carrier": 1e-12,
+    "staticResponse": 1e-12,
+    "weakClock": 1e-12,
+    "observable": 1e-12,
+    "ppn": 1,
+    "sharedKey": 1e-12,
+    "sourceProvenance": 1e-12,
+    "retune": 1e-12
+  },
+  "packet": {
+    "id": "theta_W_static_weak_provider_backed_0001",
+    "rows": {
+      "theta_W": {
+        "status": "accepted",
+        "rowId": "theta-W-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "noether_sea_cell": {
+        "status": "accepted",
+        "rowId": "theta-W-noether-sea-cell-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "constitutive_response": {
+        "status": "accepted",
+        "rowId": "theta-W-constitutive-response-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "metric_projection": {
+        "status": "accepted",
+        "rowId": "theta-W-metric-projection-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "lapse_row": {
+        "status": "accepted",
+        "rowId": "theta-W-lapse-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "drift_row": {
+        "status": "accepted",
+        "rowId": "theta-W-drift-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "spatial_compliance_row": {
+        "status": "accepted",
+        "rowId": "theta-W-spatial-compliance-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "signal_delay_row": {
+        "status": "accepted",
+        "rowId": "theta-W-signal-delay-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "cadence_row": {
+        "status": "accepted",
+        "rowId": "theta-W-cadence-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "weak_clock_row": {
+        "status": "accepted",
+        "rowId": "theta-W-weak-clock-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "redshift_row": {
+        "status": "accepted",
+        "rowId": "theta-W-redshift-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "shapiro_row": {
+        "status": "accepted",
+        "rowId": "theta-W-shapiro-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "lensing_row": {
+        "status": "accepted",
+        "rowId": "theta-W-lensing-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "acceleration_row": {
+        "status": "accepted",
+        "rowId": "theta-W-acceleration-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "ppn_decision_row": {
+        "status": "accepted",
+        "rowId": "theta-W-ppn-decision-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "null_eikonal_row": {
+        "status": "accepted",
+        "rowId": "theta-W-null-eikonal-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "geodesic_action_row": {
+        "status": "accepted",
+        "rowId": "theta-W-geodesic-action-row-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "source_provenance": {
+        "status": "accepted",
+        "rowId": "theta-W-source-provenance-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "accepted",
+        "rowId": "theta-W-no-hidden-retune-provider-backed-0001",
+        "carrierId": "theta_W_static_weak_provider_backed_0001",
+        "sourcePath": "scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "theta_metric_id",
+        "values": [
+          "theta_W_static_weak_provider_backed_0001",
+          "theta_W_static_weak_provider_backed_0001",
+          "theta_W_static_weak_provider_backed_0001"
+        ]
+      },
+      {
+        "key": "provider_window_id",
+        "values": [
+          "theta-sea-density-compression-provider-0001",
+          "theta-sea-density-compression-provider-0001",
+          "theta-sea-density-compression-provider-0001"
+        ]
+      },
+      {
+        "key": "theta_11_20_id",
+        "values": [
+          "theta_11_20_weak_gravity_provider_backed_0001",
+          "theta_11_20_weak_gravity_provider_backed_0001",
+          "theta_11_20_weak_gravity_provider_backed_0001"
+        ]
+      },
+      {
+        "key": "theta_cos_id",
+        "values": [
+          "theta_cos_FRW_handoff_0001",
+          "theta_cos_FRW_handoff_0001",
+          "theta_cos_FRW_handoff_0001"
+        ]
+      },
+      {
+        "key": "chi_sea",
+        "values": [
+          1.002,
+          1.002,
+          1.002
+        ]
+      },
+      {
+        "key": "Gamma_N",
+        "values": [
+          1.0000010100010202,
+          1.0000010100010202,
+          1.0000010100010202
+        ]
+      },
+      {
+        "key": "gamma_PPN",
+        "values": [
+          1,
+          1,
+          1
+        ]
+      }
+    ],
+    "weakField": {
+      "gamma_eff": 1,
+      "staticResponse": {
+        "a_n": 0,
+        "a_chi": 2,
+        "a_lambda": 0,
+        "a_R": 0
+      },
+      "cadenceRow": {
+        "b_n": 0,
+        "b_chi": 0.5,
+        "b_lambda": 0,
+        "b_R": 0
+      },
+      "clockRateRow": {
+        "omega_n": 0,
+        "omega_chi": -0.5,
+        "omega_lambda": 0,
+        "omega_R": 0
+      },
+      "weakClock": {
+        "phi_over_c2": -0.000001,
+        "w2_over_c2": 0.00000002,
+        "d_tau_over_dt": 0.99999899
+      },
+      "observables": {
+        "shapiro": {
+          "gamma_PPN": 1,
+          "factor": 4
+        },
+        "lensing": {
+          "gamma_PPN": 1,
+          "factor": 4
+        },
+        "acceleration": {
+          "observed": -0.000001,
+          "minus_grad_phi": -0.000001
+        },
+        "null_eikonal": {
+          "residual": 0
+        },
+        "geodesic_action": {
+          "residual": 0
+        }
+      },
+      "ppn": {
+        "gamma_PPN": 1,
+        "beta_PPN": 1,
+        "alpha1": 0,
+        "alpha2": 0,
+        "alpha3": 0,
+        "bounds": {
+          "gamma_PPN_minus_1": 0.000023,
+          "beta_PPN_minus_1": 0.00008,
+          "alpha1": 0.00004,
+          "alpha2": 0.000000002,
+          "alpha3": 4e-20
+        }
+      },
+      "sourceProvenance": {
+        "residual": 0
+      },
+      "noHiddenRetune": {
+        "maxResidual": 0
+      }
+    },
+    "negativeControls": [
+      {
+        "id": "scalar_delay_half_lensing",
+        "expectedFailedCheck": "ppn",
+        "overrides": {
+          "observables": {
+            "shapiro": {
+              "gamma_PPN": 0,
+              "factor": 2
+            },
+            "lensing": {
+              "gamma_PPN": 0,
+              "factor": 2
+            }
+          },
+          "ppn": {
+            "gamma_PPN": 0
+          }
+        }
+      },
+      {
+        "id": "clock_signal_split",
+        "expectedFailedCheck": "staticResponse.sharedDelay",
+        "overrides": {
+          "staticResponse": {
+            "a_n": 0,
+            "a_chi": 1.6,
+            "a_lambda": 0,
+            "a_R": 0
+          },
+          "cadenceRow": {
+            "b_n": 0,
+            "b_chi": 0.625,
+            "b_lambda": 0,
+            "b_R": 0
+          },
+          "clockRateRow": {
+            "omega_n": 0,
+            "omega_chi": -0.625,
+            "omega_lambda": 0,
+            "omega_R": 0
+          }
+        }
+      },
+      {
+        "id": "preferred_frame_leak",
+        "expectedFailedCheck": "ppn",
+        "overrides": {
+          "ppn": {
+            "alpha1": 0.0001
+          }
+        }
+      },
+      {
+        "id": "hidden_metric_retune",
+        "expectedFailedCheck": "noHiddenRetune",
+        "overrides": {
+          "noHiddenRetune": {
+            "maxResidual": 0.000001
+          }
+        }
+      }
+    ]
+  }
+}

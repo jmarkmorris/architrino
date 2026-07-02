@@ -3,6 +3,10 @@
 import fs from "node:fs";
 import path from "node:path";
 import { providerEvidenceStatusForPath } from "./noether-sea-density-compression-provider-evidence.mjs";
+import {
+  outputProjectionEvidenceStatusForPath,
+  OUTPUT_PROJECTION_ROWS,
+} from "./noether-sea-density-compression-output-projection-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -139,10 +143,12 @@ function evaluateSlice(input) {
     ...missingStressOrMetricRows(rowStatuses),
   ];
   const undeclaredMissingOutputs = undeclaredNullOutputs(surfaceVector, input);
+  const outputProjectionEvidence = evaluateOutputProjectionEvidence(input, surfaceVector);
   const missingRowsAll = [
     ...missingThetaRows,
     ...missingRequiredRows,
     ...undeclaredMissingOutputs,
+    ...outputProjectionEvidence.missingAcceptedInputs,
   ];
   const sameThetaSeaRecord = missingThetaRows.length === 0;
   const speedPresent = isAcceptedRetainedRow(rowStatuses.speed_row);
@@ -179,7 +185,8 @@ function evaluateSlice(input) {
     : missingRowsAll.length === 0 &&
         sameRecordGatePass &&
         speedStressMetricGatePass &&
-        acousticElasticAgreementGatePass
+        acousticElasticAgreementGatePass &&
+        outputProjectionEvidence.accepted
       ? "populated"
       : "blocked_missing_rows";
   const firstBlocker = nextBlockerForSlice({
@@ -191,6 +198,7 @@ function evaluateSlice(input) {
     retunePassed,
     speedStressMetricGatePass,
     acousticElasticAgreement,
+    outputProjectionEvidence,
   });
   const firstBlockerDetails = nextBlockerDetailsForSlice({
     nextBlocker: firstBlocker,
@@ -201,6 +209,7 @@ function evaluateSlice(input) {
     retuneResidual,
     acousticElasticAgreement,
     surfaceVector,
+    outputProjectionEvidence,
   });
   const consumerReadiness = evaluateConsumerReadiness({
     status,
@@ -256,6 +265,8 @@ function evaluateSlice(input) {
       numericAgreementStatus: acousticElasticAgreement.numericStatus,
       acousticElasticAgreementResidual:
         acousticElasticAgreement.absoluteResidual,
+      outputProjectionEvidenceStatus: outputProjectionEvidence.status,
+      projectedDownstreamOutputs: outputProjectionEvidence.projectedOutputs,
     },
     row: {
       windowId: input.window?.windowId ?? null,
@@ -291,10 +302,12 @@ function evaluateSlice(input) {
         same_theta_sea_record: sameRecordGatePass ? "pass" : "fail",
         speed_plus_stress_or_metric: speedStressMetricGatePass ? "pass" : "fail",
         acoustic_elastic_agreement: acousticElasticAgreement.status,
+        output_projection_evidence: outputProjectionEvidence.status,
         missing_outputs_declared:
           undeclaredMissingOutputs.length === 0 ? "pass" : "fail",
       },
       acousticElasticAgreement,
+      outputProjectionEvidence,
       consumerReadiness,
     },
   };
@@ -309,6 +322,7 @@ function nextBlockerDetailsForSlice({
   retuneResidual,
   acousticElasticAgreement,
   surfaceVector,
+  outputProjectionEvidence,
 }) {
   if (!nextBlocker) {
     return null;
@@ -317,6 +331,16 @@ function nextBlockerDetailsForSlice({
   if (nextBlocker.startsWith(thetaPrefix)) {
     const row = nextBlocker.slice(thetaPrefix.length);
     return retainedRowDetail(`theta_sea_${row}`, thetaSeaRows[row]);
+  }
+  if (nextBlocker === "missing_accepted_output_projection_evidence") {
+    return {
+      id: "outputProjectionEvidence",
+      status: outputProjectionEvidence.status,
+      projectedOutputs: outputProjectionEvidence.projectedOutputs,
+      missingAcceptedInputs: outputProjectionEvidence.missingAcceptedInputs,
+      reason: outputProjectionEvidence.reason,
+      sourcePath: outputProjectionEvidence.sourcePath,
+    };
   }
   const rowPrefix = "missing_accepted_";
   if (nextBlocker.startsWith(rowPrefix)) {
@@ -404,6 +428,16 @@ function nextBlockerDetailsForSlice({
       refinementError: acousticElasticAgreement.refinementError,
     };
   }
+  if (nextBlocker === "missing_accepted_output_projection_evidence") {
+    return {
+      id: "outputProjectionEvidence",
+      status: outputProjectionEvidence.status,
+      projectedOutputs: outputProjectionEvidence.projectedOutputs,
+      missingAcceptedInputs: outputProjectionEvidence.missingAcceptedInputs,
+      reason: outputProjectionEvidence.reason,
+      sourcePath: outputProjectionEvidence.sourcePath,
+    };
+  }
   return {
     id: nextBlocker,
     reason: nextBlocker,
@@ -452,6 +486,7 @@ function summarizeOutput(output) {
     gates: output.row.gates,
     consumerReadiness: output.row.consumerReadiness,
     acousticElasticAgreement: output.row.acousticElasticAgreement,
+    outputProjectionEvidence: output.row.outputProjectionEvidence,
   };
 }
 
@@ -556,6 +591,49 @@ function hasProjectedOutput(value) {
   return false;
 }
 
+function evaluateOutputProjectionEvidence(input, surfaceVector) {
+  const projectedOutputs = OUTPUT_PROJECTION_ROWS.filter((key) =>
+    hasProjectedOutput(surfaceVector[key]),
+  );
+  if (projectedOutputs.length === 0) {
+    return {
+      status: "not_required",
+      accepted: true,
+      projectedOutputs,
+      missingAcceptedInputs: [],
+      sourcePath: null,
+      reason: "no_downstream_outputs_projected",
+    };
+  }
+  const sourcePath =
+    input.outputProjection?.path ??
+    input.outputProjection?.sourcePath ??
+    input.rows?.metric_embedding_row?.sourcePath ??
+    input.rows?.metric_embedding_row?.source ??
+    null;
+  const evidence = outputProjectionEvidenceStatusForPath(sourcePath, {
+    repoRoot: REPO_ROOT,
+  });
+  const missingAcceptedInputs = [];
+  if (!evidence.accepted) {
+    missingAcceptedInputs.push(`outputProjection.${evidence.reason}`);
+  }
+  for (const key of projectedOutputs) {
+    if (!evidence.outputRows?.includes(key)) {
+      missingAcceptedInputs.push(`outputProjection.${key}`);
+    }
+  }
+  return {
+    status: missingAcceptedInputs.length === 0 ? "accepted" : "missing",
+    accepted: missingAcceptedInputs.length === 0,
+    projectedOutputs,
+    missingAcceptedInputs,
+    sourcePath,
+    reason: evidence.reason,
+    evidence,
+  };
+}
+
 function missingRetainedRows(required, rows) {
   return required.filter((row) => !isAcceptedRetainedRow(rows[row]));
 }
@@ -575,6 +653,7 @@ function nextBlockerForSlice({
   retunePassed,
   speedStressMetricGatePass,
   acousticElasticAgreement,
+  outputProjectionEvidence,
 }) {
   if (status === "populated") {
     return null;
@@ -602,6 +681,9 @@ function nextBlockerForSlice({
   }
   if (acousticElasticAgreement.accepted !== true) {
     return "missing_accepted_acoustic_elastic_agreement";
+  }
+  if (outputProjectionEvidence.accepted !== true) {
+    return "missing_accepted_output_projection_evidence";
   }
   if (undeclaredMissingOutputs.length > 0) {
     return `undeclared_missing_output_${undeclaredMissingOutputs[0]}`;
@@ -911,7 +993,10 @@ function sourceReferenceExists(value) {
 }
 
 function sourceEvidenceReferenceExists(value) {
-  return providerEvidenceStatusForPath(value, { repoRoot: REPO_ROOT }).accepted;
+  return (
+    providerEvidenceStatusForPath(value, { repoRoot: REPO_ROOT }).accepted ||
+    outputProjectionEvidenceStatusForPath(value, { repoRoot: REPO_ROOT }).accepted
+  );
 }
 
 function isNonDurableSourcePath(filePath) {

@@ -121,7 +121,7 @@
     "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
     "expectedFirstMissingObject": "missing_accepted_color_singlet_nucleon_envelope",
     "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
-    "expectedNoFreeColorTargetStatus": "blocked_missing_no_free_color_asymptotic_state_evidence",
+    "expectedNoFreeColorTargetStatus": "accepted_non_fixture_source",
     "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
     "scoreDecision": "no_score_increase"
   },

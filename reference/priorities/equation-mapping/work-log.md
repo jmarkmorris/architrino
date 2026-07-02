@@ -40,6 +40,14 @@ The shared residual is now `scripts/equation-mapping/eq11-20-shared-constitutive
 
 No score changes follow from this slice. The remaining downstream boundary is to carry the same record into `theta_W`, the `EQ-24` weak-gravity output rows `delta_N`, `delta_gamma_ij`, and `delta_G_eff`, the `EQ-32` `delta_a_star` consumer, and growth/CMB/low-acceleration no-retune consumers.
 
+### 2026-07-02 Theta-W And Downstream Output Projection
+
+The downstream output-projection evidence object is now `scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json`, with projected surface slice `scripts/spacetime/noether-sea-density-compression-provider-surface-slice-output-projection.v1.json`. The surface-slice checker now requires accepted output-projection evidence before downstream outputs can be consumed, while the original provider-backed density slice remains populated with `outputProjectionEvidenceStatus=not_required`. The output-projection slice reports `status=populated`, `nextBlocker=null`, accepted `delta_N`, `delta_gamma_ij`, `delta_G_eff`, and `delta_a_star` rows, `consumerReadiness.EQ11_weak_gravity.readiness=ready_for_consumer_review`, and `consumerReadiness.EQ32_low_acceleration.readiness=ready_for_consumer_review`; `delta_P_eff` remains the separate accepted pressure-report route rather than an output row in this slice.
+
+The accepted `theta_W` evidence object is now `scripts/equation-mapping/effective-metric-theta-w-evidence.v1.json`, with executable input `scripts/equation-mapping/effective-metric-weak-field-theta-w-accepted.v1.json`. The effective-metric checker now requires accepted `theta_W` evidence for accepted-looking weak-field rows, rejects generic durable sources, and reports `status=populated`, `nextBlocker=null`, and `scoreDecision=no_score_increase` for the accepted input. The attempt fixture still blocks at `missing_accepted_theta_W`.
+
+The focused test run `node --test tests/effective-metric-weak-field-residual.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-density-compression-provider-intake.test.js tests/eq11-weak-gravity-constitutive-residual.test.js tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/effective-frw-handoff-residual.test.js` passed 31 tests. No accepted upstream density provider, pressure report, or `theta_cos` handoff object changed, and no equation score changes follow from these rows.
+
 ### 2026-07-02 EQ-02-04 Supersession Note
 
 Migrated from `eq-02-04-lorentz-energy-packet.md` to keep the equation packet focused on the mathematical object while preserving the status-level supersession boundary.

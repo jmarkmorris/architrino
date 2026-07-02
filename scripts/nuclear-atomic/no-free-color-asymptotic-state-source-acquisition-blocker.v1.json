@@ -1,9 +1,9 @@
 {
   "schema": "aaa-nuclear-atomic-no-free-color-asymptotic-state-source-acquisition-blocker/v1",
-  "claimLevel": "fail-closed source-acquisition blocker packet for no_free_color_asymptotic_state; records the exact closure target and nearest candidate evidence; not accepted no-free-color evidence, not accepted color-singlet closure evidence, and not nuclear-binding promotion evidence",
+  "claimLevel": "resolved source-acquisition blocker packet for no_free_color_asymptotic_state; retained evidence now accepts the no-free-color row, while this packet remains a blocker narrative and not color-singlet closure, no-open-color, or nuclear-binding promotion evidence",
   "sourceRole": "source_acquisition_blocker_packet",
   "sourceKind": "no_free_color_asymptotic_state",
-  "currentStatus": "blocked_missing_no_free_color_asymptotic_state_evidence",
+  "currentStatus": "resolved_by_same_domain_no_free_color_asymptotic_state_retained_evidence",
   "sourceSupportSought": [
     "local_color_singlet_closure_support",
     "asymptotic_field_audit",
@@ -155,7 +155,26 @@
         "accepted_color_singlet_closure",
         "accepted_no_open_color_far_field"
       ],
-      "boundary": "The retained finite-range residual evidence accepts only finite_range_residual. The top no_free_color_asymptotic_state row still needs its own retained evidence joining finite residual with local color-singlet support and asymptotic_field_audit in the same support domain."
+      "boundary": "The retained finite-range residual evidence accepts only finite_range_residual. The separate no-free-color evidence now consumes it with local color-singlet support and asymptotic_field_audit to accept no_free_color_asymptotic_state, but finite residual still does not accept envelope, color-singlet closure, no-open-color, or promotion rows."
+    },
+    "noFreeColorAsymptoticStateEvidence": {
+      "candidatePath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json",
+      "candidateRowId": "no_free_color_asymptotic_state_0001",
+      "acceptedRowsProvided": [
+        "no_free_color_asymptotic_state"
+      ],
+      "usableFor": [
+        "accepted no-free-color asymptotic-state row",
+        "same-domain input to accepted proton and neutron color-singlet envelope evidence"
+      ],
+      "notUsableFor": [
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_color_singlet_closure",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The retained no-free-color evidence accepts only no_free_color_asymptotic_state by joining accepted local color-singlet support, asymptotic_field_audit, and finite_range_residual in the same support domain. It does not accept top envelope, color-singlet closure, same-record branch-interface, no-open-color, or promotion rows."
     },
     "qcdBenchmarkConstraint": {
       "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
@@ -334,7 +353,8 @@
     "acceptedRowsAvailableFromEvidence": [
       "local_color_singlet_closure_support",
       "asymptotic_field_audit",
-      "finite_range_residual"
+      "finite_range_residual",
+      "no_free_color_asymptotic_state"
     ],
     "notAcceptedByThisPacket": [
       "asymptotic_field_audit",
@@ -355,27 +375,27 @@
     "scoreDecision": "no_score_increase"
   },
   "nextProofStep": {
-    "target": "Prove no_free_color_asymptotic_state in the same confinement-functional domain as the accepted local_color_singlet_closure_support, asymptotic_field_audit, and finite_range_residual rows.",
+    "target": "Use the accepted no_free_color_asymptotic_state row as an input to the accepted proton and neutron color-singlet envelope certificates without promoting color_singlet_closure, same_record_branch_interface, or no_open_color_far_field.",
     "minimalInputNeeded": [
-      "accepted local_color_singlet_closure_support row already available",
-      "same retained domain as asymptotic_field_audit",
-      "accepted asymptotic_field_audit support row already available",
-      "accepted finite_range_residual row already available",
-      "same-domain no_free_color_asymptotic_state retained evidence"
+      "accepted no_free_color_asymptotic_state row already available",
+      "accepted proton_color_singlet_closure and finite_envelope_boundary rows already available",
+      "accepted neutron_color_singlet_closure row already available",
+      "same_record_branch_interface evidence for the top proton/neutron envelope certificates",
+      "same-domain envelope evidence that does not reuse Fe/Ni toy coefficients as proof"
     ],
     "failureModes": [
-      "open-color projection does not vanish outside the finite envelope boundary",
-      "the audit uses a different confinement-functional domain than sigma_eff",
-      "the finite residual tail remains target-only",
-      "color-singlet closure remains priority prose or blocker text rather than accepted source evidence",
+      "the top proton or neutron envelope certificate remains target-only",
+      "the same_record_branch_interface row remains blocker-only",
+      "color-singlet closure is promoted from local support instead of accepted envelope evidence",
       "the proof requires retuning the Fe/Ni toy coefficients"
     ]
   },
   "failClosedNotes": [
     "This packet is not accepted source evidence.",
     "This packet exists to prevent color-singlet closure prose or proton/neutron envelope blockers from being mistaken for accepted no_free_color_asymptotic_state evidence.",
+    "The separate no-free-color evidence accepts only no_free_color_asymptotic_state; this packet still prevents that row from being treated as accepted proton/neutron envelope evidence, top color_singlet_closure, same-record branch-interface, finite residual corridor overlap, same-record no-open audit, or no_open_color_far_field.",
     "The separate asymptotic-field audit evidence accepts only asymptotic_field_audit; this packet still prevents that support row from being treated as no_free_color_asymptotic_state, finite_range_residual, or no_open_color_far_field.",
-    "The separate local color-singlet support evidence accepts only local_color_singlet_closure_support; this packet still prevents that support row from being treated as top color_singlet_closure, no_free_color_asymptotic_state, finite_range_residual, or no_open_color_far_field.",
-    "Fe/Ni promotion remains blocked until no_free_color_asymptotic_state, color-singlet closure, finite residual, no-open-color far-field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+    "The separate local color-singlet support evidence accepts only local_color_singlet_closure_support; this packet still prevents that support row from being treated as top color_singlet_closure, accepted envelope evidence, finite_range_residual, or no_open_color_far_field.",
+    "Fe/Ni promotion remains blocked until color-singlet closure, accepted proton/neutron envelope rows, no-open-color far-field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
   ]
 }

@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { thetaWEffectiveMetricEvidenceStatusForPath } from "./effective-metric-theta-w-evidence.mjs";
 
 const SCRIPT_DIR = path.dirname(new URL(import.meta.url).pathname);
 const REPO_ROOT = path.resolve(SCRIPT_DIR, "../..");
@@ -457,7 +458,28 @@ function evaluateAcceptedRow(row) {
   if (!source.accepted) {
     return { accepted: false, reason: source.reason };
   }
-  return { accepted: true, reason: "accepted" };
+  const thetaWEvidence = thetaWEffectiveMetricEvidenceStatusForPath(sourcePath, {
+    repoRoot: REPO_ROOT,
+  });
+  if (!thetaWEvidence.accepted) {
+    return {
+      accepted: false,
+      reason: `theta_W_effective_metric_${thetaWEvidence.reason}`,
+      thetaWEvidence,
+    };
+  }
+  if (
+    thetaWEvidence.thetaWId &&
+    row?.carrierId &&
+    thetaWEvidence.thetaWId !== row.carrierId
+  ) {
+    return {
+      accepted: false,
+      reason: "theta_W_effective_metric_row_carrier_mismatch",
+      thetaWEvidence,
+    };
+  }
+  return { accepted: true, reason: "accepted", thetaWEvidence };
 }
 
 function evaluateSourcePath(sourcePath) {

@@ -52,6 +52,12 @@ const NO_FREE_COLOR_BLOCKER_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const NO_FREE_COLOR_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const SAME_RECORD_BRANCH_INTERFACE_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json",
@@ -855,7 +861,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
       .currentEvidenceStatus,
-    "blocked_missing_no_free_color_audit",
+    "blocked_missing_same_record_branch_interface",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_color_singlet_envelope
@@ -930,7 +936,7 @@ test("current confinement target passes structure but blocks accepted source row
     fs.readFileSync(PROTON_COLOR_SINGLET_BLOCKER_PATH, "utf8"),
   );
   assert.equal(protonBlocker.sourceKind, "accepted_proton_color_singlet_envelope");
-  assert.equal(protonBlocker.currentStatus, "blocked_missing_no_free_color_audit");
+  assert.equal(protonBlocker.currentStatus, "blocked_missing_same_record_branch_interface");
   assert.deepEqual(
     protonBlocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket,
     [],
@@ -966,6 +972,7 @@ test("current confinement target passes structure but blocks accepted source row
       "proton_color_singlet_closure",
       "finite_envelope_boundary",
       "same_sigma_eff_domain",
+      "no_free_color_asymptotic_state",
     ],
   );
   assert.equal(
@@ -981,7 +988,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
       .stillMissingBeforeAcceptance.includes("no_free_color_asymptotic_state"),
-    true,
+    false,
   );
   assert.deepEqual(
     protonBlocker.protonColorSingletEnvelopeCertificateRequestPacket
@@ -1010,7 +1017,12 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     protonBlocker.candidateProtonColorSingletEnvelopeLemma
       .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
-    true,
+    false,
+  );
+  assert.deepEqual(
+    protonBlocker.nearestCandidateInputs.noFreeColorAsymptoticStateEvidence
+      .acceptedRowsProvided,
+    ["no_free_color_asymptotic_state"],
   );
   assert.equal(
     protonBlocker.candidateProtonColorSingletEnvelopeLemma
@@ -1042,7 +1054,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_neutron_color_singlet_envelope
       .currentEvidenceStatus,
-    "blocked_missing_no_free_color_audit",
+    "blocked_missing_same_record_branch_interface",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_neutron_color_singlet_envelope
@@ -1101,7 +1113,7 @@ test("current confinement target passes structure but blocks accepted source row
     fs.readFileSync(NEUTRON_COLOR_SINGLET_BLOCKER_PATH, "utf8"),
   );
   assert.equal(neutronBlocker.sourceKind, "accepted_neutron_color_singlet_envelope");
-  assert.equal(neutronBlocker.currentStatus, "blocked_missing_no_free_color_audit");
+  assert.equal(neutronBlocker.currentStatus, "blocked_missing_same_record_branch_interface");
   assert.deepEqual(
     neutronBlocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket,
     [],
@@ -1121,6 +1133,7 @@ test("current confinement target passes structure but blocks accepted source row
       "neutron_color_singlet_closure",
       "finite_envelope_boundary",
       "same_sigma_eff_domain",
+      "no_free_color_asymptotic_state",
     ],
   );
   assert.equal(
@@ -1131,7 +1144,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
       .stillMissingBeforeAcceptance.includes("no_free_color_asymptotic_state"),
-    true,
+    false,
   );
   assert.deepEqual(
     neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
@@ -1155,7 +1168,12 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     neutronBlocker.candidateNeutronColorSingletEnvelopeLemma
       .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
-    true,
+    false,
+  );
+  assert.deepEqual(
+    neutronBlocker.nearestCandidateInputs.noFreeColorAsymptoticStateEvidence
+      .acceptedRowsProvided,
+    ["no_free_color_asymptotic_state"],
   );
   assert.equal(
     neutronBlocker.candidateNeutronColorSingletEnvelopeLemma
@@ -1166,12 +1184,12 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
       .accepted,
-    false,
+    true,
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
       .currentEvidenceStatus,
-    "blocked_missing_no_free_color_asymptotic_state_evidence",
+    "accepted_non_fixture_source",
   );
   assert.deepEqual(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
@@ -1185,7 +1203,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.no_free_color_asymptotic_state
       .sourceTargetPath,
-    "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json",
+    "scripts/nuclear-atomic/no-free-color-asymptotic-state-retained-evidence.v1.json",
   );
   const noFreeColorBlocker = JSON.parse(
     fs.readFileSync(NO_FREE_COLOR_BLOCKER_PATH, "utf8"),
@@ -1193,7 +1211,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(noFreeColorBlocker.sourceKind, "no_free_color_asymptotic_state");
   assert.equal(
     noFreeColorBlocker.currentStatus,
-    "blocked_missing_no_free_color_asymptotic_state_evidence",
+    "resolved_by_same_domain_no_free_color_asymptotic_state_retained_evidence",
   );
   assert.deepEqual(
     noFreeColorBlocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket,
@@ -1298,11 +1316,48 @@ test("current confinement target passes structure but blocks accepted source row
     ["finite_range_residual"],
   );
   assert.deepEqual(
+    noFreeColorBlocker.nearestCandidateInputs.noFreeColorAsymptoticStateEvidence
+      .acceptedRowsProvided,
+    ["no_free_color_asymptotic_state"],
+  );
+  const noFreeColorEvidence = JSON.parse(
+    fs.readFileSync(NO_FREE_COLOR_EVIDENCE_PATH, "utf8"),
+  );
+  assert.equal(noFreeColorEvidence.sourceKind, "no_free_color_asymptotic_state");
+  assert.deepEqual(
+    noFreeColorEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["no_free_color_asymptotic_state"],
+  );
+  assert.equal(
+    noFreeColorEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_proton_color_singlet_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    noFreeColorEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "color_singlet_closure",
+    ),
+    true,
+  );
+  assert.equal(
+    noFreeColorEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    noFreeColorEvidence.noFreeColorAsymptoticState.asymptoticClosureDerivation
+      .no_free_color_asymptotic_state,
+    true,
+  );
+  assert.deepEqual(
     noFreeColorBlocker.localEvidenceBoundary.acceptedRowsAvailableFromEvidence,
     [
       "local_color_singlet_closure_support",
       "asymptotic_field_audit",
       "finite_range_residual",
+      "no_free_color_asymptotic_state",
     ],
   );
   assert.equal(
