@@ -132,10 +132,10 @@ Use `Noether braid` as the canonical reader-facing term for the neutral six-arch
 
 | When you mean... | Prefer | Avoid by default | Example |
 | --- | --- | --- | --- |
-| the broad six-architrino neutral assembly class | `Noether braid` | `Noether braid` in reader-facing prose | "The Noether braid supplies the neutral scaffold." |
-| the base six-body case before shell or binary reductions | `neutral braid` | `neutral braid` | "A neutral braid may have no certified binary partition." |
-| a one-band radial-support case | `shell braid` | `shell braid` | "The shell braid carries a controlled radial support band." |
-| the three-band nested exact-binary candidate | `nested shell braid` | `nested shell braid` | "The nested shell braid is the main current fermion scaffold." |
+| the broad six-architrino neutral assembly class | `Noether braid` | `Noether core`, `Noether cluster`, or treating the scaffold as the whole particle | "The Noether braid supplies the neutral scaffold." |
+| the base six-body case before shell or binary reductions | `neutral braid` | `shell braid` or `nested shell braid` before support-band evidence is declared | "A neutral braid may have no certified binary partition." |
+| a one-band radial-support case | `shell braid` | `nested shell braid` when only one support band is in scope | "The shell braid carries a controlled radial support band." |
+| the three-band nested exact-binary candidate | `nested shell braid` | `exact tri-binary`, `three exact binaries`, or `nested binary` unless that extra proof assumption is active | "The nested shell braid is the main current fermion scaffold." |
 | a mathematically protected braid, link, or framing class | `protected braid class`, `linking class`, `framing class`, or the specific invariant | treating every Noether braid as already topologically protected | "A protected braid class is certified only after the assembly topological charge row closes." |
 
 The word `braid` is chosen because the object is a collection of persistent worldline strands whose delayed histories remain coupled. It should not be overread. A Noether braid is not automatically a braid-group invariant, a knot invariant, or a proof of fermionic exchange behavior. Those are additional theorem targets. When a sentence needs that stronger claim, name the actual invariant, such as a linking number, framed self-linking parity, flat phase-bundle holonomy, or the full assembly topological charge.

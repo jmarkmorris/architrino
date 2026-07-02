@@ -1,6 +1,6 @@
 # Repo Process
 
-TODO: automate this with Codex skills once I find them. If you want the strongest protection, the next step is automation.
+Automation is desirable only when it mirrors the checked procedure below and the current `.githooks` gate set.
 
 This document defines the standard repo process for ending a work session, publishing a pull request, cleaning up the previous branch in the branch series, and preparing the next branch.
 
@@ -30,20 +30,7 @@ This keeps the branch series ordered, memorable, and easy to reason about during
 
 ## Branch Series Rollover Order
 
-Use these branch-name series in order. Finish one series before advancing to the next.
-The series counts and registry-file status are summarized in
-[branch-series-registry.md](branch-series-registry.md).
-
-1. Periodic table elements. Use canonical element names in atomic-number order: `codex/hydrogen` through `codex/oganesson`.
-2. Planets in our solar system. Use the eight IAU planets in order from the Sun: `codex/mercury`, `codex/venus`, `codex/earth`, `codex/mars`, `codex/jupiter`, `codex/saturn`, `codex/uranus`, `codex/neptune`. Dwarf planets are excluded unless the operator/developer explicitly adds them.
-3. Moons in our solar system. Before cutting the first moon branch, add or update a committed moon registry so the exact sequence is frozen for branch use. The committed registry is [moon-branch-registry.md](moon-branch-registry.md). Use commonly known natural moons of the eight IAU planets, capped at 10 moons per planet; Mercury and Venus contribute none unless future project policy explicitly changes. Default ordering should be parent body from the Sun outward, then a curated common-recognition order for that planet's moons. Use lowercase hyphenated names.
-4. Minerals and gemstones. Before cutting the first mineral or gemstone branch, add or update a committed registry of exactly 48 curated mineral or gemstone names. Prefer common, memorable, broadly recognized names over exhaustive mineralogical coverage. Use lowercase hyphenated names and avoid commercial or trademark-only names unless explicitly approved.
-5. NASA space missions and probes. Before cutting the first NASA mission or probe branch, add or update a committed registry of exactly 64 curated NASA mission or probe names. Include publicly recognizable NASA spacecraft, probes, rover missions, lander missions, observatories, sample-return missions, and program missions. Prefer official NASA mission names over spacecraft serials. Exclude non-NASA missions, internal-only project codes, instruments without a public mission identity, launch vehicles by themselves, and duplicate variants of the same mission name. Default ordering should be launch date, then canonical mission or probe name in lowercase hyphenated form, for example `apollo-11`, `mars-pathfinder`, and `lunar-reconnaissance-orbiter`.
-6. Dog or cat breeds. Before cutting the first breed branch, add or update a committed registry of exactly 44 breed names: 36 commonly known dog breeds followed by 8 commonly known cat breeds. Use lowercase hyphenated names. Prefer recognizable breed names over exhaustive registry coverage.
-7. U.S. state names. Before cutting the first U.S. state branch, add or update a committed registry of exactly 50 state names. Default ordering should be state admission order unless the operator/developer chooses alphabetical order before the registry is frozen. Use lowercase hyphenated branch tokens with no blanks, for example `north-dakota`, `west-virginia`, and `rhode-island`.
-8. U.S. state capital city names. Before cutting the first U.S. state capital branch, add or update a committed registry of exactly 50 state capital city names. Default ordering should follow the same state order chosen for the U.S. state-name registry. Use lowercase hyphenated branch tokens with no blanks, for example `salt-lake-city`, `baton-rouge`, and `oklahoma-city`.
-9. U.S. president surnames. Before cutting the first U.S. president surname branch, add or update a committed registry of exactly 40 unique surname tokens from the U.S. presidential sequence current at the time this policy was updated. Default ordering should be first presidential service order, and repeated surnames should appear only once at first occurrence. Use lowercase hyphenated branch tokens with no blanks, for example `van-buren`.
-10. Worldwide islands. Before cutting the first island branch, add or update a committed registry of exactly 64 curated worldwide island names. Prefer widely recognized island names with broad geographic distribution, and avoid archipelago names unless the archipelago name is also the common island-name target chosen for the branch registry. Use lowercase hyphenated branch tokens with no blanks, for example `great-britain`, `new-guinea`, and `sri-lanka`.
+The canonical series index, counts, registry status, and concrete registry files live in [branch-series-registry.md](branch-series-registry.md). Use that file and the active series registry to select the next token. Do not duplicate the full series list here; update the registry when policy changes.
 
 ## Principles
 
@@ -86,6 +73,10 @@ These are mandatory before commit and before PR publication.
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 node scripts/build-textbook-md-pdf.mjs --check
+node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
+node scripts/check-animator-runtime-wiring.mjs
+node scripts/check-content-integrity.mjs
 node scripts/smoke-option3.mjs
 ```
 
@@ -119,6 +110,10 @@ node scripts/build-textbook-md-pdf.mjs --write
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 node scripts/build-textbook-md-pdf.mjs --check
+node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
+node scripts/check-animator-runtime-wiring.mjs
+node scripts/check-content-integrity.mjs
 node scripts/smoke-option3.mjs
 ```
 
@@ -337,7 +332,7 @@ This check should happen even if you believe you are "just updating the PR," bec
 
 - Open the PR in ready mode once the branch is coherent enough for real review.
 - The minimum bar for a ready PR is:
-  - the full local validation set that mirrors current repo CI passed, including `node scripts/smoke-option3.mjs`;
+  - the full local validation set that mirrors current hooks and repo CI passed, including `node scripts/smoke-option3.mjs`;
   - the branch tip intended for review is committed and pushed;
   - the worktree is clean;
   - the branch is mergeable into the current base branch;
@@ -576,6 +571,11 @@ git status -sb
 node scripts/validate-content.mjs --check --strict
 node scripts/build-scene-graph.mjs --check --strict
 node scripts/build-textbook-md-pdf.mjs --check
+node scripts/check-receiver-normal-clean-slate.mjs
+node scripts/angular-momentum/check-frequency-triplet-notation-drift.mjs
+node scripts/check-animator-runtime-wiring.mjs
+node scripts/check-content-integrity.mjs
+node scripts/smoke-option3.mjs
 git add <paths...>
 git commit -m "Finish current unit of work"
 git push origin codex/hydrogen

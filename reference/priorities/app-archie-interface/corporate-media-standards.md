@@ -40,14 +40,14 @@ Generated media must satisfy all of the following:
 8. Scientific integrity: no fake citations, fake measurements, fake app diagnostics, fake validation, fake proof witnesses, or images presented as evidence.
 9. Regulated-risk caution: medical, legal, financial, safety, or other regulated-risk topics should stay educational, source-grounded, and non-prescriptive unless an approved policy exists.
 10. Abuse-resistant: no content that enables cyber abuse, weapons construction, physical harm, fraud, impersonation, or operational misuse.
-11. Accessible by default: generated audio should have verbatim text or transcript; generated images should have captions or alt text when practical; generated video or animation should have captions when supported.
+11. Accessible by default: generated audio should be synchronized with displayed verbatim text and include transcript/caption support; generated images should have captions or alt text when practical; generated video or animation should have captions when supported.
 12. Reversible to text: the answer's technical substance should remain recoverable as a plain source-grounded text answer.
 
 ## Media-Specific Notes
 
 Text is the default medium and must still obey the full standard. It may be concise, explanatory, technical, or conversational, but it must preserve source labels and unsupported-answer behavior.
 
-Audio may be generated for answers, sphere-initiated markdown portions, full-document sphere listening, and future narration modes. The MVP keeps generated audio ephemeral and paired with verbatim text.
+Audio may be generated for answers, sphere-initiated markdown portions, full-document sphere listening, and future narration modes. The MVP allows high-quality generated speech only, keeps generated audio ephemeral, and pairs speech with synchronized displayed verbatim text. If high-quality speech is unavailable, the compliant fallback is text-only display rather than medium-quality or low-quality audio.
 
 Images may be generated as concept diagrams, visual analogies, app mockups, candidate mechanism sketches, or publication asset drafts after human review. Generated images must carry purpose labels, source-basis captions, and claim boundaries.
 

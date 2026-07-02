@@ -17,7 +17,7 @@ Recommended v1 layout:
 - an action rail for `open source`, `make diagram`, `listen`, `submit issue`, `save note`, and `continue reading`;
 - a token wallet that shows available tokens, spending limits, auto-fund status, per-request caps, pending holds, and post-run receipts.
 
-The interface should feel like a working lab guide: quiet, direct, and source-aware. It should offer a pleasant service-native narration voice for papers and explanations while staying disciplined about proof status.
+The interface should feel like a working lab guide: quiet, direct, and source-aware. It should offer high-quality service-native narration for papers and explanations while staying disciplined about proof status.
 
 ## Multimodal Input
 
@@ -46,7 +46,7 @@ The intake pipeline should classify each input before answer generation:
 Useful output modes:
 
 1. Cited text answer.
-2. Generated audio answer with verbatim text for accessibility and paper listening.
+2. High-quality generated audio answer synchronized with displayed verbatim text for accessibility and paper listening.
 3. Narration or explanation script.
 4. Animated concept storyboard.
 5. Diagram or generated image response.
@@ -92,7 +92,7 @@ No generated image should be allowed to carry more proof authority than the sour
 
 The user should not need to choose a character persona. Presentation voice is the assistant's responsibility: the service should decide when a slower explanation, a technical review stance, a visual narration, or a compact direct answer best serves the user and the source material.
 
-The practical need is pleasant, accessible reading of papers and explanations. The product should start with service-native speech output instead of depending on browser read-aloud. Browser/system narration can remain a compatibility fallback, but it should not define the quality bar.
+The practical need is pleasant, accessible reading of papers and explanations. The product should start with high-quality service-native speech output instead of depending on browser read-aloud. Browser/system narration can remain a compatibility fallback, but it should not define the quality bar. The product should not offer medium-quality or low-quality speech tiers; if high-quality speech is unavailable, the compliant fallback is text-only display.
 
 V1 speech content scope:
 
@@ -100,11 +100,11 @@ V1 speech content scope:
 2. the markdown portion associated with a sphere when listening is initiated from that sphere;
 3. the full markdown document when listening is initiated from a full-document sphere.
 
-The initial output shape should be audio plus verbatim text. Later accessibility expansion can add more modes, but the MVP should not rewrite source text into summaries or alternate narration unless the user explicitly asks for a separate explanation.
+The initial output shape should be synchronized audio plus displayed verbatim text. Speech should play while the same text is visible, with captions/transcripts available. Later accessibility expansion can add more modes, but the MVP should not rewrite source text into summaries or alternate narration unless the user explicitly asks for a separate explanation.
 
 Good uses:
 
-1. a native spoken paper mode with a pleasant voice, clean pacing, verbatim text, captions, and source labels;
+1. a native spoken paper mode with high-quality audio, synchronized displayed verbatim text, captions, and source labels;
 2. a beginner-friendly explanation stance that speaks slowly and uses analogies;
 3. a technical reviewer stance that asks what source or proof burden supports a claim;
 4. an app-helper stance that walks through controls and diagnostics;
@@ -118,10 +118,12 @@ Guardrails:
 - presentation voice must not impersonate real people or imply endorsement;
 - styled output should always be recoverable as a plain source-grounded answer;
 - spoken paper mode should expose verbatim text and keep any optional explanatory rewrite separate;
+- service-native speech should be high-quality only, with text-only fallback when that bar cannot be met;
+- service-native speech should play in synchronization with displayed verbatim text;
 - generated audio should be ephemeral by default, with no saved audio retention in the MVP;
 - voice selection should not create a character persona, imply external authority, or use real-person imitation;
 - animated concept explainers should include captions, source basis, and claim-level labels;
-- spoken and animated outputs need spending-limit behavior, privacy/retention rules, accessibility controls, and user controls before release.
+- spoken and animated outputs need spending-limit behavior, privacy/retention rules, accessibility support, and basic playback controls before release.
 
 V1 can support service-native spoken narration for selected answers and paper excerpts, plus narration scripts and animation storyboards. Animated avatars, generated video, persistent presentation-style memory, and user-custom character personas should remain deferred until the service-platform packet defines speech/media handling.
 
@@ -249,7 +251,7 @@ Possible tiers:
 | Tier | Purpose | Cost controls |
 | --- | --- | --- |
 | Public | Lightweight corpus Q&A and navigation. | Small free token grant, strict request caps, text-first, no saved media. |
-| Supporter | More questions, saved reading paths, limited voice, limited images when enabled. | Monthly token grant with optional top-ups. |
+| Supporter | More questions, saved reading paths, limited high-quality audio, limited images when enabled. | Monthly token grant with optional top-ups. |
 | Research | Deeper idea triage, issue preparation, app-state help, larger context windows. | Higher monthly token grant, larger per-request caps, clear overage controls. |
 | Collaborator | Project-approved users who can route drafts into GitHub or priority packets. | Project-approved token grant plus explicit action permissions and audit logs. |
 
@@ -329,12 +331,13 @@ Product modules:
 3. `mode_router` - Ask, Explain, Compare, Visualize, Triage Idea, Find Source.
 4. `retrieval_context` - Corpus, app guide, System Card, priority, and curated external source retrieval with authority flags.
 5. `answer_engine` - Prompt assembly, source labels, unsupported-answer behavior, citation payloads.
-6. `speech_and_presentation_layer` - Service-native speech output, tone/pacing selection, narration scripts, animation storyboards, captions, and source-authority guardrails.
-7. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
-8. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, and account actions.
-9. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls.
-10. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, and owner-routed fix queues.
-11. `privacy_and_audit` - Consent, retention, deletion, logs, incident review, and user-data boundaries.
+6. `answer_artifact_manifest` - Shared response envelope for source context, claim labels, answer text, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata.
+7. `speech_and_presentation_layer` - High-quality service-native speech output, synchronized text display, narration scripts, animation storyboards, captions, and source-authority guardrails.
+8. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
+9. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, and account actions.
+10. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls.
+11. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, and owner-routed fix queues.
+12. `privacy_and_audit` - Consent, retention, deletion, logs, incident review, and user-data boundaries.
 
 The existing service-platform packet should own deployment choices for these modules.
 
@@ -367,7 +370,7 @@ This v1 would test whether users actually ask useful questions and whether the s
 2. What is the minimum corpus maturity needed before public Q&A creates more clarity than confusion?
 3. Which answer modes should be free, and which should require subscription?
 4. Should issue submission be available to all signed-in users, or only to approved collaborators?
-5. Which speech provider and voice-quality bar should the first native narration pass use, and how should the voice avoid implying a character identity?
+5. Which speech provider can satisfy the high-quality-only bar for the first native narration pass, and how should the selected voice avoid implying a character identity?
 6. Should generated images be stored by default, transient by default, or always user-selected?
 7. What exact System Card fields must appear next to any answer about closure status?
 8. Which apps should expose app-state snapshots to Archie first?
@@ -381,6 +384,9 @@ Turn the Archie Interface V1 product requirements into an implementation-ready s
 Context:
 - The interface bucket is `reference/priorities/app-archie-interface/`.
 - The product requirements are `reference/priorities/app-archie-interface/v1-product-requirements.md`.
+- The Answer Artifact Manifest is `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
+- The manifest-driven service architecture is `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
+- The manifest service contracts are `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
 - The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
 - The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
 - The backend/platform owner remains `reference/priorities/archie/service-platform.md`.
@@ -389,7 +395,7 @@ Context:
 
 Task:
 - Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, source-ingestion pipeline, answer-engine boundary, generated-media corporate-standard enforcement, service-native speech and presentation layer, animation-storyboard boundary, token ledger, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion pipeline, answer-engine boundary, generated-media corporate-standard enforcement, service-native speech and presentation layer, animation-storyboard boundary, token ledger, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:

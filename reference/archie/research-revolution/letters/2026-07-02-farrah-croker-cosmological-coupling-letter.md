@@ -1,6 +1,6 @@
 # Draft Letter: Cosmological Coupling And Physical Implementation
 
-Status: draft, not sent.
+Status: sent on 2026-07-01, operator-reported; repository copy retained for record.
 
 Primary arXiv page for contact lookup: [arXiv:2302.07878, "Observational evidence for cosmological coupling of black holes and its implications for an astrophysical source of dark energy"](https://arxiv.org/abs/2302.07878)
 

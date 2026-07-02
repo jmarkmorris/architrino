@@ -1,6 +1,6 @@
 # Draft Letter: DESI DR2, Source History, And Neutrino-Mass Inference
 
-Status: draft, not sent.
+Status: sent on 2026-07-01, operator-reported; repository copy retained for record.
 
 Primary arXiv page for contact lookup: [arXiv:2504.20338, "Positive neutrino masses with DESI DR2 via matter conversion to dark energy"](https://arxiv.org/abs/2504.20338)
 

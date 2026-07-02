@@ -1,6 +1,6 @@
 # Draft Letter: Regular Horizons And Cosmological Embedding
 
-Status: draft, not sent.
+Status: sent on 2026-07-01, operator-reported; repository copy retained for record.
 
 Primary arXiv page for contact lookup: [arXiv:2601.03296, "Cosmologically Coupled Black Holes with Regular Horizons"](https://arxiv.org/abs/2601.03296)
 

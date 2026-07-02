@@ -8,6 +8,7 @@ import { buildOblateSpheroidFixedFrequencyReturnMarginRow } from "./oblate-spher
 export const SCHEMA = "oblate_spheroid_two_speed_deformation_sweep.v0";
 export const FIRST_MISSING_OBJECT = "same_record_retained_root_ledger_for_two_speed_deformation_sweep";
 export const FIRST_MISSING_FIELD = "oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref";
+export const SAME_SOURCE_CAUSAL_ROOT_EXCLUSION_SCHEMA = "same_source_causal_root_exclusion_lemma.v0";
 
 const DEFAULT_U_VALUES = Object.freeze([0, 0.1, 0.2, 0.3, 0.4, 0.5]);
 const DEFAULT_V_ORB_VALUES = Object.freeze([0.1, 0.2, 0.3, 0.4, 0.5, 0.6]);
@@ -31,6 +32,11 @@ const DEFAULT_RETURN_PROBE_POSITION_TOLERANCE = 0.1;
 const DEFAULT_RETURN_PROBE_VELOCITY_TOLERANCE = 0.1;
 const DEFAULT_RETURN_PROBE_RADIUS_TOLERANCE = 0.1;
 const DEFAULT_RETURN_PROBE_CANDIDATE_LIMIT = 8;
+const DEFAULT_RETURN_PROBE_SELECTION_MODE = "prefilter";
+const DEFAULT_RETURN_PROBE_SUPPORT_STIFFNESS = 0;
+const DEFAULT_RETURN_PROBE_SUPPORT_DAMPING = 0;
+const DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_STIFFNESS = 0;
+const DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_DAMPING = 0;
 const EPSILON = 1e-12;
 const ACTION_DRIFT_PREFILTER_WEIGHT = 0.1;
 const BETA_MAX_PREFILTER_WEIGHT = 0.5;
@@ -404,6 +410,46 @@ function evaluateSampledResidual(params) {
   };
 }
 
+function buildSameSourceCausalRootExclusionLemma(sampledResidual, betaMax, rootBudgetMargin) {
+  const sameSourceSearchExecuted = (sampledResidual?.directed_self_pairs ?? 0) > 0;
+  const directedSelfPairs = sampledResidual?.directed_self_pairs ?? 0;
+  const directedSelfPairsWithRoots = sampledResidual?.directed_self_pairs_with_roots ?? 0;
+  const betaIntervalUpperBound = sampledResidual?.max_field_speed ?? betaMax;
+  const strictSubFieldSpeed = Number.isFinite(betaIntervalUpperBound) && betaIntervalUpperBound < DEFAULT_FIELD_SPEED;
+  const positiveRootBudgetMargin = rootBudgetMargin > 0;
+  const noPositiveDelaySameSourceRoots = sameSourceSearchExecuted && directedSelfPairsWithRoots === 0;
+  const selfRootNonexistenceBoundPass =
+    sameSourceSearchExecuted &&
+    strictSubFieldSpeed &&
+    positiveRootBudgetMargin &&
+    noPositiveDelaySameSourceRoots;
+
+  return {
+    schema: SAME_SOURCE_CAUSAL_ROOT_EXCLUSION_SCHEMA,
+    authority_class: "priority_only_sampled_lemma_not_retained_root_ledger_evidence",
+    proof_scope: "strict_sub_field_speed_positive_delay_same_source_pairs",
+    same_source_search_executed: sameSourceSearchExecuted,
+    directed_self_pairs: directedSelfPairs,
+    directed_self_pairs_with_roots: directedSelfPairsWithRoots,
+    directed_same_source_root_coverage: sampledResidual?.directed_self_root_coverage ?? null,
+    beta_interval_upper_bound: finiteOrNull(betaIntervalUpperBound),
+    strict_sub_field_speed_interval: strictSubFieldSpeed,
+    root_budget_margin: rootBudgetMargin,
+    positive_root_budget_margin: positiveRootBudgetMargin,
+    causal_root_function: "C_aa(t,tau)=||x_a(t)-x_a(t-tau)||-c_f*tau",
+    nonexistence_inequality:
+      "||x_a(t)-x_a(t-tau)|| <= beta_interval_upper_bound*c_f*tau < c_f*tau for tau>0",
+    self_root_nonexistence_bound_pass: selfRootNonexistenceBoundPass,
+    accepted_same_record_evidence: false,
+    retained_root_ledger_ref: null,
+    first_missing_object: FIRST_MISSING_OBJECT,
+    first_missing_field: FIRST_MISSING_FIELD,
+    status: selfRootNonexistenceBoundPass
+      ? "sampled_same_source_roots_excluded_for_strict_sub_field_speed_row"
+      : "sampled_same_source_root_exclusion_not_proven_for_row",
+  };
+}
+
 function snapshotParticleState(time, particles) {
   return {
     time,
@@ -595,6 +641,115 @@ function evaluateDynamicWakeAccelerations(state, history, params, options) {
   return { accelerations, stats };
 }
 
+function oblateSurfacePhi(centerFramePosition, params) {
+  const [x, y, z] = centerFramePosition;
+  return (x * x + y * y) / (params.RPerp * params.RPerp) +
+    (z * z) / (params.RParallel * params.RParallel) -
+    1;
+}
+
+function oblateSurfaceNormal(centerFramePosition, params) {
+  const [x, y, z] = centerFramePosition;
+  const normal = [
+    (2 * x) / (params.RPerp * params.RPerp),
+    (2 * y) / (params.RPerp * params.RPerp),
+    (2 * z) / (params.RParallel * params.RParallel),
+  ];
+  const length = norm(normal);
+  return length <= EPSILON ? [0, 0, 0] : scaleVector(normal, 1 / length);
+}
+
+function applyReturnProbeSupportAccelerations(accelerations, state, params, options) {
+  const stats = {
+    active: options.returnProbeSupportMode === "oblate_surface",
+    accelerationSquaredSum: 0,
+    accelerationSampleCount: 0,
+    maxAcceleration: 0,
+    maxAbsPhi: 0,
+  };
+  if (!stats.active) {
+    return stats;
+  }
+
+  const center = scaleVector(params.groupVelocity, state.time);
+  for (let index = 0; index < state.particles.length; index += 1) {
+    const particle = state.particles[index];
+    const centerFramePosition = subtractVectors(particle.position, center);
+    const centerFrameVelocity = subtractVectors(particle.velocity, params.groupVelocity);
+    const phi = oblateSurfacePhi(centerFramePosition, params);
+    const normal = oblateSurfaceNormal(centerFramePosition, params);
+    const normalVelocity = dot(centerFrameVelocity, normal);
+    const supportAcceleration = scaleVector(
+      normal,
+      -options.returnProbeSupportStiffness * phi - options.returnProbeSupportDamping * normalVelocity
+    );
+    const accelerationNorm = norm(supportAcceleration);
+    accelerations[index] = addVectors(accelerations[index], supportAcceleration);
+    stats.accelerationSquaredSum += accelerationNorm * accelerationNorm;
+    stats.accelerationSampleCount += 1;
+    stats.maxAcceleration = Math.max(stats.maxAcceleration, accelerationNorm);
+    stats.maxAbsPhi = Math.max(stats.maxAbsPhi, Math.abs(phi));
+  }
+  return stats;
+}
+
+function tangentProject(vector, normal) {
+  return subtractVectors(vector, scaleVector(normal, dot(vector, normal)));
+}
+
+function applyReturnProbeBranchClockLockAccelerations(accelerations, state, params, options) {
+  const stats = {
+    active: options.returnProbeBranchClockLockMode === "ansatz_tangent",
+    accelerationSquaredSum: 0,
+    accelerationSampleCount: 0,
+    maxAcceleration: 0,
+    tangentPositionErrorSquaredSum: 0,
+    tangentVelocityErrorSquaredSum: 0,
+    maxTangentPositionError: 0,
+    maxTangentVelocityError: 0,
+  };
+  if (!stats.active) {
+    return stats;
+  }
+
+  const center = scaleVector(params.groupVelocity, state.time);
+  const targetRowsById = new Map(makeParticleStates(params, state.time).map((particle) => [particle.id, particle]));
+  for (let index = 0; index < state.particles.length; index += 1) {
+    const particle = state.particles[index];
+    const target = targetRowsById.get(particle.id);
+    if (!target) {
+      continue;
+    }
+    const centerFramePosition = subtractVectors(particle.position, center);
+    const centerFrameVelocity = subtractVectors(particle.velocity, params.groupVelocity);
+    const normal = oblateSurfaceNormal(centerFramePosition, params);
+    const tangentPositionError = tangentProject(
+      subtractVectors(centerFramePosition, target.centerFramePosition),
+      normal
+    );
+    const tangentVelocityError = tangentProject(
+      subtractVectors(centerFrameVelocity, target.centerFrameVelocity),
+      normal
+    );
+    const branchClockLockAcceleration = addVectors(
+      scaleVector(tangentPositionError, -options.returnProbeBranchClockLockStiffness),
+      scaleVector(tangentVelocityError, -options.returnProbeBranchClockLockDamping)
+    );
+    const accelerationNorm = norm(branchClockLockAcceleration);
+    const tangentPositionErrorNorm = norm(tangentPositionError);
+    const tangentVelocityErrorNorm = norm(tangentVelocityError);
+    accelerations[index] = addVectors(accelerations[index], branchClockLockAcceleration);
+    stats.accelerationSquaredSum += accelerationNorm * accelerationNorm;
+    stats.accelerationSampleCount += 1;
+    stats.maxAcceleration = Math.max(stats.maxAcceleration, accelerationNorm);
+    stats.tangentPositionErrorSquaredSum += tangentPositionErrorNorm * tangentPositionErrorNorm;
+    stats.tangentVelocityErrorSquaredSum += tangentVelocityErrorNorm * tangentVelocityErrorNorm;
+    stats.maxTangentPositionError = Math.max(stats.maxTangentPositionError, tangentPositionErrorNorm);
+    stats.maxTangentVelocityError = Math.max(stats.maxTangentVelocityError, tangentVelocityErrorNorm);
+  }
+  return stats;
+}
+
 function centerFrameMetrics(state, params, initialCenterFrameRows) {
   const center = scaleVector(params.groupVelocity, state.time);
   const radii = [];
@@ -686,9 +841,22 @@ function evaluateDynamicReturnProbe(params, options) {
   let directedSelfPairsWithRoots = 0;
   let missingPartnerRoots = 0;
   let missingSelfRoots = 0;
+  let supportAccelerationSquaredSum = 0;
+  let supportAccelerationSampleCount = 0;
+  let maxSupportAcceleration = 0;
+  let maxSupportPhiAbs = 0;
+  let branchClockLockAccelerationSquaredSum = 0;
+  let branchClockLockAccelerationSampleCount = 0;
+  let maxBranchClockLockAcceleration = 0;
+  let branchClockLockTangentPositionErrorSquaredSum = 0;
+  let branchClockLockTangentVelocityErrorSquaredSum = 0;
+  let maxBranchClockLockTangentPositionError = 0;
+  let maxBranchClockLockTangentVelocityError = 0;
 
   for (let step = 0; step < stepCount; step += 1) {
     const { accelerations, stats } = evaluateDynamicWakeAccelerations(state, history, params, options);
+    const supportStats = applyReturnProbeSupportAccelerations(accelerations, state, params, options);
+    const branchClockLockStats = applyReturnProbeBranchClockLockAccelerations(accelerations, state, params, options);
     minSourceNormal = Math.min(minSourceNormal, stats.minSourceNormal);
     minReceiverNormal = Math.min(minReceiverNormal, stats.minReceiverNormal);
     maxBranchWeight = Math.max(maxBranchWeight, stats.maxBranchWeight);
@@ -699,6 +867,23 @@ function evaluateDynamicReturnProbe(params, options) {
     directedSelfPairsWithRoots += stats.directedSelfPairsWithRoots;
     missingPartnerRoots += stats.missingPartnerRoots;
     missingSelfRoots += stats.missingSelfRoots;
+    supportAccelerationSquaredSum += supportStats.accelerationSquaredSum;
+    supportAccelerationSampleCount += supportStats.accelerationSampleCount;
+    maxSupportAcceleration = Math.max(maxSupportAcceleration, supportStats.maxAcceleration);
+    maxSupportPhiAbs = Math.max(maxSupportPhiAbs, supportStats.maxAbsPhi);
+    branchClockLockAccelerationSquaredSum += branchClockLockStats.accelerationSquaredSum;
+    branchClockLockAccelerationSampleCount += branchClockLockStats.accelerationSampleCount;
+    maxBranchClockLockAcceleration = Math.max(maxBranchClockLockAcceleration, branchClockLockStats.maxAcceleration);
+    branchClockLockTangentPositionErrorSquaredSum += branchClockLockStats.tangentPositionErrorSquaredSum;
+    branchClockLockTangentVelocityErrorSquaredSum += branchClockLockStats.tangentVelocityErrorSquaredSum;
+    maxBranchClockLockTangentPositionError = Math.max(
+      maxBranchClockLockTangentPositionError,
+      branchClockLockStats.maxTangentPositionError
+    );
+    maxBranchClockLockTangentVelocityError = Math.max(
+      maxBranchClockLockTangentVelocityError,
+      branchClockLockStats.maxTangentVelocityError
+    );
 
     for (let index = 0; index < state.particles.length; index += 1) {
       const particle = state.particles[index];
@@ -757,6 +942,35 @@ function evaluateDynamicReturnProbe(params, options) {
     min_source_normal: finiteOrNull(minSourceNormal),
     min_receiver_normal: finiteOrNull(minReceiverNormal),
     max_branch_weight: maxBranchWeight,
+    support_term: {
+      mode: options.returnProbeSupportMode,
+      stiffness: options.returnProbeSupportStiffness,
+      damping: options.returnProbeSupportDamping,
+      active: options.returnProbeSupportMode === "oblate_surface",
+      rms_acceleration: Math.sqrt(supportAccelerationSquaredSum / Math.max(1, supportAccelerationSampleCount)),
+      max_acceleration: maxSupportAcceleration,
+      max_abs_phi: maxSupportPhiAbs,
+      authority_class: "priority_only_support_term_not_retained_history_evidence",
+    },
+    branch_clock_lock_term: {
+      mode: options.returnProbeBranchClockLockMode,
+      stiffness: options.returnProbeBranchClockLockStiffness,
+      damping: options.returnProbeBranchClockLockDamping,
+      active: options.returnProbeBranchClockLockMode === "ansatz_tangent",
+      rms_acceleration: Math.sqrt(
+        branchClockLockAccelerationSquaredSum / Math.max(1, branchClockLockAccelerationSampleCount)
+      ),
+      max_acceleration: maxBranchClockLockAcceleration,
+      rms_tangent_position_error: Math.sqrt(
+        branchClockLockTangentPositionErrorSquaredSum / Math.max(1, branchClockLockAccelerationSampleCount)
+      ),
+      rms_tangent_velocity_error: Math.sqrt(
+        branchClockLockTangentVelocityErrorSquaredSum / Math.max(1, branchClockLockAccelerationSampleCount)
+      ),
+      max_tangent_position_error: maxBranchClockLockTangentPositionError,
+      max_tangent_velocity_error: maxBranchClockLockTangentVelocityError,
+      authority_class: "priority_only_branch_clock_lock_not_retained_history_evidence",
+    },
     total_roots: totalRoots,
     directed_partner_root_coverage: directedPartnerPairsWithRoots / Math.max(1, directedPartnerPairs),
     directed_self_root_coverage: directedSelfPairsWithRoots / Math.max(1, directedSelfPairs),
@@ -812,6 +1026,11 @@ function buildSweepRow(rowPrefix, options, u, vOrb) {
     });
   const betaMax = (sampledResidual?.max_field_speed ?? max(fieldSpeeds)) / DEFAULT_FIELD_SPEED;
   const rootBudgetMargin = sampledResidual?.root_budget_margin ?? DEFAULT_FIELD_SPEED - max(fieldSpeeds);
+  const sameSourceCausalRootExclusionLemma = buildSameSourceCausalRootExclusionLemma(
+    sampledResidual,
+    betaMax,
+    rootBudgetMargin
+  );
   const speedBudgetQuadrature = Math.sqrt(u * u + vOrb * vOrb);
   const expectedVOrbAtBetaStar = Math.sqrt(Math.max(0, options.betaStar * options.betaStar - u * u));
   const speedBudgetCurveResidual = Math.abs(vOrb - expectedVOrbAtBetaStar);
@@ -875,6 +1094,7 @@ function buildSweepRow(rowPrefix, options, u, vOrb) {
       source_oblate_row_id: oblateArtifact.row_id,
       source_fixed_frequency_row_id: fixedFrequencyArtifact.row_id,
       sampled_wake_residual_diagnostic: sampledResidual,
+      same_source_causal_root_exclusion_lemma: sameSourceCausalRootExclusionLemma,
       first_missing_field: sampledResidual?.residual_pass === true ? FIRST_MISSING_FIELD : null,
     },
     root_ledger_status: fixedFrequencyArtifact.root_ledger_status,
@@ -898,6 +1118,16 @@ function chooseCandidateRows(rows, uValues) {
     .map((group) => [...group].sort((left, right) => left.candidate_objective - right.candidate_objective)[0]);
 }
 
+function chooseReturnProbeRows(rows, candidateRows, options) {
+  if (options.returnProbeSelectionMode === "all") {
+    return rows;
+  }
+  if (options.returnProbeSelectionMode === "positive_root") {
+    return rows.filter((row) => row.speed_budget.positive_root_budget_margin);
+  }
+  return candidateRows.slice(0, options.returnProbeCandidateLimit);
+}
+
 function makeDynamicParamsForRow(options, row) {
   const orbitalRadius = options.RPerp * Math.sqrt(1 - options.zeta * options.zeta);
   const omega = orbitalRadius <= EPSILON ? 0 : row.v_orb / orbitalRadius;
@@ -915,15 +1145,48 @@ function makeDynamicParamsForRow(options, row) {
   };
 }
 
-function attachDynamicReturnProbes(candidateRows, options) {
+function branchCurveObjective(row) {
+  const probe = row.return_status.dynamic_return_probe;
+  if (!probe?.bounded_return_observed) {
+    return null;
+  }
+  const normalizedResidual = row.residual_status.normalized_residual ?? 1;
+  const actionDrift = row.action_proxy.action_drift_to_nearest_h ?? 1;
+  const rootMargin = Math.max(0, probe.root_budget_margin ?? row.speed_budget.root_budget_margin ?? 0);
+  const positionReturn = probe.final_metrics.position_return_rms / Math.max(EPSILON, probe.tolerances.position_return_rms);
+  const velocityReturn = probe.final_metrics.velocity_return_rms / Math.max(EPSILON, probe.tolerances.velocity_return_rms);
+  const radiusReturn = probe.max_radius_mean_deviation / Math.max(EPSILON, probe.tolerances.radius_mean_deviation);
+  const supportAuthority = probe.support_term?.active ? probe.support_term.rms_acceleration : 0;
+  const clockAuthority = probe.branch_clock_lock_term?.active ? probe.branch_clock_lock_term.rms_acceleration : 0;
+  return (
+    normalizedResidual * normalizedResidual +
+    ACTION_DRIFT_PREFILTER_WEIGHT * actionDrift * actionDrift +
+    0.1 * positionReturn * positionReturn +
+    0.1 * velocityReturn * velocityReturn +
+    0.1 * radiusReturn * radiusReturn +
+    0.25 * supportAuthority * supportAuthority +
+    0.25 * clockAuthority * clockAuthority -
+    0.1 * rootMargin
+  );
+}
+
+function annotateBranchCurveObjective(row) {
+  const objective = branchCurveObjective(row);
+  row.return_status.branch_curve_objective = objective;
+  row.return_status.branch_curve_candidate =
+    objective != null && row.return_status.dynamic_return_probe?.bounded_return_observed === true;
+}
+
+function attachDynamicReturnProbes(returnProbeRows, options) {
   if (!options.returnProbe) {
     return;
   }
-  for (const row of candidateRows.slice(0, options.returnProbeCandidateLimit)) {
+  for (const row of returnProbeRows) {
     const params = makeDynamicParamsForRow(options, row);
     if (params.period == null) {
       row.return_status.dynamic_return_probe = null;
       row.return_status.status = "dynamic_return_probe_skipped_zero_frequency";
+      annotateBranchCurveObjective(row);
       continue;
     }
     const probe = evaluateDynamicReturnProbe(params, options);
@@ -934,14 +1197,53 @@ function attachDynamicReturnProbes(candidateRows, options) {
       ? "priority_dynamic_probe_bounded_return_candidate_requires_retained_solver"
       : "priority_dynamic_probe_no_bounded_return";
     row.return_status.first_missing_field = probe.bounded_return_observed ? FIRST_MISSING_FIELD : null;
+    annotateBranchCurveObjective(row);
   }
 }
 
-function makeSummary(rows, candidateRows) {
+function makePreferredBranchCurveRows(rows, uValues) {
+  return uValues
+    .map((u) => rows.filter((row) => row.u === u && row.return_status.branch_curve_candidate === true))
+    .filter((group) => group.length > 0)
+    .map((group) => [...group].sort(
+      (left, right) => left.return_status.branch_curve_objective - right.return_status.branch_curve_objective
+    )[0])
+    .map((row) => {
+      const probe = row.return_status.dynamic_return_probe;
+      return {
+        row_id: row.row_id,
+        authority_class: "priority_only_preferred_branch_curve_not_retained_history_evidence",
+        u: row.u,
+        v_orb: row.v_orb,
+        chi: row.chi,
+        volume_ratio_candidate: row.volume_ratio_candidate,
+        normalized_residual: row.residual_status.normalized_residual,
+        action_drift_to_nearest_h: row.action_proxy.action_drift_to_nearest_h,
+        sampled_beta_max: row.speed_budget.beta_max,
+        sampled_root_margin: row.speed_budget.root_budget_margin,
+        dynamic_beta_max: probe.max_field_speed,
+        dynamic_root_margin: probe.root_budget_margin,
+        position_return_rms: probe.final_metrics.position_return_rms,
+        velocity_return_rms: probe.final_metrics.velocity_return_rms,
+        radius_mean_deviation: probe.max_radius_mean_deviation,
+        support_rms_acceleration: probe.support_term?.rms_acceleration ?? null,
+        branch_clock_lock_rms_acceleration: probe.branch_clock_lock_term?.rms_acceleration ?? null,
+        branch_curve_objective: row.return_status.branch_curve_objective,
+      };
+    });
+}
+
+function makeSummary(rows, candidateRows, preferredBranchCurveRows) {
   const positiveRootRows = rows.filter((row) => row.speed_budget.positive_root_budget_margin);
   const boundedRows = rows.filter((row) => row.return_status.bounded_return_observed);
   const residualRows = rows.filter((row) => row.residual_status.normalized_residual != null);
   const dynamicReturnRows = rows.filter((row) => row.return_status.dynamic_return_probe != null);
+  const supportReturnRows = dynamicReturnRows.filter(
+    (row) => row.return_status.dynamic_return_probe.support_term?.active === true
+  );
+  const branchClockLockReturnRows = dynamicReturnRows.filter(
+    (row) => row.return_status.dynamic_return_probe.branch_clock_lock_term?.active === true
+  );
   return {
     row_count: rows.length,
     positive_root_budget_row_count: positiveRootRows.length,
@@ -957,13 +1259,30 @@ function makeSummary(rows, candidateRows) {
     min_dynamic_return_radius_mean_deviation: dynamicReturnRows.length > 0
       ? Math.min(...dynamicReturnRows.map((row) => row.return_status.dynamic_return_probe.max_radius_mean_deviation))
       : null,
+    support_return_probe_row_count: supportReturnRows.length,
+    min_support_return_rms_acceleration: supportReturnRows.length > 0
+      ? Math.min(...supportReturnRows.map((row) => row.return_status.dynamic_return_probe.support_term.rms_acceleration))
+      : null,
+    branch_clock_lock_return_probe_row_count: branchClockLockReturnRows.length,
+    min_branch_clock_lock_return_rms_acceleration: branchClockLockReturnRows.length > 0
+      ? Math.min(
+        ...branchClockLockReturnRows.map(
+          (row) => row.return_status.dynamic_return_probe.branch_clock_lock_term.rms_acceleration
+        )
+      )
+      : null,
     candidate_prefilter_row_count: candidateRows.length,
+    preferred_branch_curve_row_count: preferredBranchCurveRows.length,
+    preferred_branch_curve_u_coverage_ratio: preferredBranchCurveRows.length / Math.max(1, new Set(rows.map((row) => row.u)).size),
+    min_preferred_branch_curve_objective: preferredBranchCurveRows.length > 0
+      ? Math.min(...preferredBranchCurveRows.map((row) => row.branch_curve_objective))
+      : null,
     min_candidate_objective: rows.length > 0 ? Math.min(...rows.map((row) => row.candidate_objective)) : null,
     max_beta: rows.length > 0 ? Math.max(...rows.map((row) => row.speed_budget.beta_max)) : null,
     min_root_budget_margin: rows.length > 0 ? Math.min(...rows.map((row) => row.speed_budget.root_budget_margin)) : null,
     preferred_configuration_status:
       boundedRows.length > 0
-        ? "bounded_return_rows_present_requires_retained_evidence_review"
+        ? "priority_bounded_return_curve_present_requires_retained_evidence_review"
         : candidateRows.length > 0
           ? "sampled_residual_prefilter_only_no_accepted_bounded_return"
           : "no_positive_root_budget_candidate_rows",
@@ -998,6 +1317,44 @@ export function evaluateOblateSpheroidTwoSpeedSweepEvidence(candidate = {}) {
 export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
   const uValues = uniqueSortedNumbers(options.uValues, DEFAULT_U_VALUES);
   const vOrbValues = uniqueSortedNumbers(options.vOrbValues, DEFAULT_V_ORB_VALUES);
+  const returnProbeSupportStiffness = Math.max(
+    0,
+    normalizeNumber(options.returnProbeSupportStiffness, DEFAULT_RETURN_PROBE_SUPPORT_STIFFNESS)
+  );
+  const returnProbeSupportDamping = Math.max(
+    0,
+    normalizeNumber(options.returnProbeSupportDamping, DEFAULT_RETURN_PROBE_SUPPORT_DAMPING)
+  );
+  const returnProbeSupportMode = options.returnProbeSupportMode === "none"
+    ? "none"
+    : options.returnProbeSupportMode === "oblate_surface" ||
+        returnProbeSupportStiffness > 0 ||
+        returnProbeSupportDamping > 0
+      ? "oblate_surface"
+      : "none";
+  const returnProbeBranchClockLockStiffness = Math.max(
+    0,
+    normalizeNumber(
+      options.returnProbeBranchClockLockStiffness,
+      DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_STIFFNESS
+    )
+  );
+  const returnProbeBranchClockLockDamping = Math.max(
+    0,
+    normalizeNumber(options.returnProbeBranchClockLockDamping, DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_DAMPING)
+  );
+  const returnProbeBranchClockLockMode = options.returnProbeBranchClockLockMode === "none"
+    ? "none"
+    : options.returnProbeBranchClockLockMode === "ansatz_tangent" ||
+        returnProbeBranchClockLockStiffness > 0 ||
+        returnProbeBranchClockLockDamping > 0
+      ? "ansatz_tangent"
+      : "none";
+  const returnProbeSelectionMode = options.returnProbeSelectionMode === "all"
+    ? "all"
+    : options.returnProbeSelectionMode === "positive_root" || options.returnProbeSelectionMode === "positive-root"
+      ? "positive_root"
+      : DEFAULT_RETURN_PROBE_SELECTION_MODE;
   const normalizedOptions = {
     uValues,
     vOrbValues,
@@ -1048,8 +1405,15 @@ export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
       1,
       Math.round(normalizePositiveNumber(options.returnProbeCandidateLimit, DEFAULT_RETURN_PROBE_CANDIDATE_LIMIT))
     ),
+    returnProbeSelectionMode,
     returnProbeIncludeSelfHits: options.returnProbeIncludeSelfHits !== false,
     returnProbeSelfHitMinDelay: normalizePositiveNumber(options.returnProbeSelfHitMinDelay, 1e-6),
+    returnProbeSupportMode,
+    returnProbeSupportStiffness,
+    returnProbeSupportDamping,
+    returnProbeBranchClockLockMode,
+    returnProbeBranchClockLockStiffness,
+    returnProbeBranchClockLockDamping,
     chiMode: options.chiMode === "fixed" ? "fixed" : "lorentz_target",
     fixedChi: Math.max(1e-6, Math.min(1, normalizePositiveNumber(options.chi, 1))),
   };
@@ -1078,8 +1442,15 @@ export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
     returnProbeVelocityTolerance: normalizedOptions.returnProbeVelocityTolerance,
     returnProbeRadiusTolerance: normalizedOptions.returnProbeRadiusTolerance,
     returnProbeCandidateLimit: normalizedOptions.returnProbeCandidateLimit,
+    returnProbeSelectionMode: normalizedOptions.returnProbeSelectionMode,
     returnProbeIncludeSelfHits: normalizedOptions.returnProbeIncludeSelfHits,
     returnProbeSelfHitMinDelay: normalizedOptions.returnProbeSelfHitMinDelay,
+    returnProbeSupportMode: normalizedOptions.returnProbeSupportMode,
+    returnProbeSupportStiffness: normalizedOptions.returnProbeSupportStiffness,
+    returnProbeSupportDamping: normalizedOptions.returnProbeSupportDamping,
+    returnProbeBranchClockLockMode: normalizedOptions.returnProbeBranchClockLockMode,
+    returnProbeBranchClockLockStiffness: normalizedOptions.returnProbeBranchClockLockStiffness,
+    returnProbeBranchClockLockDamping: normalizedOptions.returnProbeBranchClockLockDamping,
     chiMode: normalizedOptions.chiMode,
     fixedChi: normalizedOptions.fixedChi,
     fieldSpeed: DEFAULT_FIELD_SPEED,
@@ -1088,7 +1459,9 @@ export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
   const rowPrefix = `oblate_spheroid_two_speed_deformation_sweep:${artifactHash.slice(0, 16)}`;
   const rows = uValues.flatMap((u) => vOrbValues.map((vOrb) => buildSweepRow(rowPrefix, normalizedOptions, u, vOrb)));
   const candidateRows = chooseCandidateRows(rows, uValues);
-  attachDynamicReturnProbes(candidateRows, normalizedOptions);
+  const returnProbeRows = chooseReturnProbeRows(rows, candidateRows, normalizedOptions);
+  attachDynamicReturnProbes(returnProbeRows, normalizedOptions);
+  const preferredBranchCurveRows = makePreferredBranchCurveRows(rows, uValues);
   return {
     schema: SCHEMA,
     row_id: rowPrefix,
@@ -1120,10 +1493,23 @@ export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
       return_probe_velocity_tolerance: normalizedOptions.returnProbeVelocityTolerance,
       return_probe_radius_tolerance: normalizedOptions.returnProbeRadiusTolerance,
       return_probe_candidate_limit: normalizedOptions.returnProbeCandidateLimit,
+      return_probe_selection_mode: normalizedOptions.returnProbeSelectionMode,
       return_probe_include_self_hits: normalizedOptions.returnProbeIncludeSelfHits,
       return_probe_self_hit_min_delay: normalizedOptions.returnProbeSelfHitMinDelay,
+      return_probe_support_mode: normalizedOptions.returnProbeSupportMode,
+      return_probe_support_stiffness: normalizedOptions.returnProbeSupportStiffness,
+      return_probe_support_damping: normalizedOptions.returnProbeSupportDamping,
+      return_probe_branch_clock_lock_mode: normalizedOptions.returnProbeBranchClockLockMode,
+      return_probe_branch_clock_lock_stiffness: normalizedOptions.returnProbeBranchClockLockStiffness,
+      return_probe_branch_clock_lock_damping: normalizedOptions.returnProbeBranchClockLockDamping,
       chi_mode: normalizedOptions.chiMode,
       fixed_chi: normalizedOptions.fixedChi,
+    },
+    return_probe_selection: {
+      mode: normalizedOptions.returnProbeSelectionMode,
+      row_count: normalizedOptions.returnProbe ? returnProbeRows.length : 0,
+      row_ids: normalizedOptions.returnProbe ? returnProbeRows.map((row) => row.row_id) : [],
+      candidate_limit_applied: normalizedOptions.returnProbeSelectionMode === "prefilter",
     },
     candidate_selection: {
       preferred_configuration_conditions: [
@@ -1145,7 +1531,8 @@ export function buildOblateSpheroidTwoSpeedSweep(options = {}) {
     },
     rows,
     candidate_prefilter_rows: candidateRows,
-    summary: makeSummary(rows, candidateRows),
+    preferred_branch_curve_rows: preferredBranchCurveRows,
+    summary: makeSummary(rows, candidateRows, preferredBranchCurveRows),
     artifact_status: "fail_closed_missing_retained_root_ledger",
     source_status: "source_acquisition_blocked",
     first_missing_object: FIRST_MISSING_OBJECT,
@@ -1181,6 +1568,18 @@ export function validateOblateSpheroidTwoSpeedSweep(artifact) {
   }
   if (artifact?.summary?.residual_evaluated_row_count !== artifact?.rows?.length) {
     errors.push("sampled residual must be evaluated for every sweep row");
+  }
+  for (const row of artifact?.rows ?? []) {
+    const lemma = row?.residual_status?.same_source_causal_root_exclusion_lemma;
+    if (lemma?.schema !== SAME_SOURCE_CAUSAL_ROOT_EXCLUSION_SCHEMA) {
+      errors.push("same-source causal-root exclusion lemma must be attached to every row");
+    }
+    if (lemma?.accepted_same_record_evidence !== false || lemma?.retained_root_ledger_ref !== null) {
+      errors.push("same-source causal-root exclusion lemma must remain non-authorizing");
+    }
+    if (lemma?.first_missing_field !== FIRST_MISSING_FIELD) {
+      errors.push("same-source causal-root exclusion lemma must preserve retained root-ledger blocker");
+    }
   }
   for (const flag of AUTHORIZATION_FLAGS) {
     if (artifact?.authorization?.[flag] !== false) {
@@ -1276,12 +1675,40 @@ function parseCliArgs(argv) {
         arg.slice("--return-probe-candidate-limit=".length),
         DEFAULT_RETURN_PROBE_CANDIDATE_LIMIT
       );
+    } else if (arg.startsWith("--return-probe-selection-mode=")) {
+      options.returnProbeSelectionMode = arg.slice("--return-probe-selection-mode=".length);
+    } else if (arg.startsWith("--return-probe-selection=")) {
+      options.returnProbeSelectionMode = arg.slice("--return-probe-selection=".length);
     } else if (arg === "--no-return-probe-self-hits") {
       options.returnProbeIncludeSelfHits = false;
     } else if (arg.startsWith("--return-probe-self-hit-min-delay=")) {
       options.returnProbeSelfHitMinDelay = normalizePositiveNumber(
         arg.slice("--return-probe-self-hit-min-delay=".length),
         1e-6
+      );
+    } else if (arg.startsWith("--return-probe-support-mode=")) {
+      options.returnProbeSupportMode = arg.slice("--return-probe-support-mode=".length);
+    } else if (arg.startsWith("--return-probe-support-stiffness=")) {
+      options.returnProbeSupportStiffness = normalizeNumber(
+        arg.slice("--return-probe-support-stiffness=".length),
+        DEFAULT_RETURN_PROBE_SUPPORT_STIFFNESS
+      );
+    } else if (arg.startsWith("--return-probe-support-damping=")) {
+      options.returnProbeSupportDamping = normalizeNumber(
+        arg.slice("--return-probe-support-damping=".length),
+        DEFAULT_RETURN_PROBE_SUPPORT_DAMPING
+      );
+    } else if (arg.startsWith("--return-probe-branch-clock-lock-mode=")) {
+      options.returnProbeBranchClockLockMode = arg.slice("--return-probe-branch-clock-lock-mode=".length);
+    } else if (arg.startsWith("--return-probe-branch-clock-lock-stiffness=")) {
+      options.returnProbeBranchClockLockStiffness = normalizeNumber(
+        arg.slice("--return-probe-branch-clock-lock-stiffness=".length),
+        DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_STIFFNESS
+      );
+    } else if (arg.startsWith("--return-probe-branch-clock-lock-damping=")) {
+      options.returnProbeBranchClockLockDamping = normalizeNumber(
+        arg.slice("--return-probe-branch-clock-lock-damping=".length),
+        DEFAULT_RETURN_PROBE_BRANCH_CLOCK_LOCK_DAMPING
       );
     } else if (arg.startsWith("--chi-mode=")) {
       options.chiMode = arg.slice("--chi-mode=".length);

@@ -12,6 +12,7 @@ Keep deployed files reproducible from a working master. When a banner family cha
 ## Current Families
 
 - `working/noether-braid-sea/` owns the first Noether Braid sea banner family, derived from the original `2048 x 1152` tiny-braid sea image.
+- `working/noether-braid-profile-candidates/` owns generated social banner candidates designed to sit behind the Noether Braid profile logo.
 
 ## Regeneration
 

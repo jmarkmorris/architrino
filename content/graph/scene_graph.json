@@ -9,11 +9,11 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 580,
-      "edges": 1340,
-      "scenes": 377,
+      "nodes": 582,
+      "edges": 1342,
+      "scenes": 378,
       "markdownIndexes": 0,
-      "markdownDocs": 190,
+      "markdownDocs": 191,
       "runtimeEdges": 476,
       "periodicGridRoutes": 119,
       "elementLegendTargets": 3
@@ -2411,6 +2411,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -2564,6 +2570,12 @@
       "id": "content/markdown/aaa/archie/ideal-braid-guide.md",
       "name": "Ideal Braid Guide",
       "path": "content/markdown/aaa/archie/ideal-braid-guide.md",
+      "nodeType": "markdown_doc"
+    },
+    {
+      "id": "content/markdown/aaa/archie/legal-terms.md",
+      "name": "Legal Terms",
+      "path": "content/markdown/aaa/archie/legal-terms.md",
       "nodeType": "markdown_doc"
     },
     {
@@ -3838,6 +3850,15 @@
       "name": "Ideal Noether Braid: Lorentz Geometry App",
       "path": "content/scenes/archie/ideal_braid.json",
       "searchTarget": "content/scenes/archie/ideal_braid.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/legal_terms.json",
+      "nodeType": "scene",
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json",
+      "searchTarget": "content/scenes/archie/legal_terms.json",
       "implicit": false
     },
     {
@@ -7180,6 +7201,15 @@
       "implicit": false
     },
     {
+      "nodeId": "markdown_doc:content/markdown/aaa/archie/legal-terms.md",
+      "nodeType": "markdown_doc",
+      "id": "content/markdown/aaa/archie/legal-terms.md",
+      "name": "Legal Terms",
+      "path": "content/markdown/aaa/archie/legal-terms.md",
+      "searchTarget": "content/markdown/aaa/archie/legal-terms.md",
+      "implicit": false
+    },
+    {
       "nodeId": "markdown_doc:content/markdown/aaa/archie/licenses-attributions.md",
       "nodeType": "markdown_doc",
       "id": "content/markdown/aaa/archie/licenses-attributions.md",
@@ -9091,6 +9121,13 @@
     },
     {
       "from": "scene:content/scenes/archie/project.json",
+      "to": "scene:content/scenes/archie/legal_terms.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/project.json",
+      "field": "scene.children[5]"
+    },
+    {
+      "from": "scene:content/scenes/archie/project.json",
       "to": "scene:content/scenes/archie/licenses_attributions.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
@@ -9108,7 +9145,7 @@
       "to": "scene:content/scenes/archie/software_architecture_and_maintenance.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[6]"
+      "field": "scene.children[7]"
     },
     {
       "from": "scene:content/scenes/archie/project.json",
@@ -9122,7 +9159,7 @@
       "to": "scene:content/scenes/archie/website_stats.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/project.json",
-      "field": "scene.children[5]"
+      "field": "scene.children[6]"
     },
     {
       "from": "scene:content/scenes/archie/system_card.json",
@@ -13560,6 +13597,13 @@
       "to": "markdown_doc:content/markdown/aaa/archie/ideal-braid-guide.md",
       "edgeType": "markdown_doc",
       "source": "content/scenes/archie/ideal_braid.json",
+      "field": "scene.source.path"
+    },
+    {
+      "from": "scene:content/scenes/archie/legal_terms.json",
+      "to": "markdown_doc:content/markdown/aaa/archie/legal-terms.md",
+      "edgeType": "markdown_doc",
+      "source": "content/scenes/archie/legal_terms.json",
       "field": "scene.source.path"
     },
     {

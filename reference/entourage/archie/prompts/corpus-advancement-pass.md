@@ -21,7 +21,7 @@ This file is the shared protocol authority for AAA corpus advancement. It owns t
 
 The installed `aaa-corpus-advancement` skill is only a router. It should trigger this protocol, choose the relevant mode, perform the required start, and preserve non-negotiable reminders without duplicating this file's detailed handoff, Priority Action Menu, math-first, or source-mining text.
 
-The [source-mining best-practice guide](../../../priorities/source-mining/source-mining-best-practice.md) is the source-intake specialization. It owns acquisition workflows, source-family templates, traceability expectations, mining history routing, creative reframing, and external technique anchors. When source mining is in scope, apply this shared protocol first, then apply the source-family specialization from that guide.
+The [source-mining best-practice guide](../../../op/source-mining-best-practice.md) is the source-intake specialization. It owns acquisition workflows, source-family templates, traceability expectations, mining history routing, creative reframing, and external technique anchors. When source mining is in scope, apply this shared protocol first, then apply the source-family specialization from that guide.
 
 If the documents overlap, use this order: workspace policy in `AGENTS.md`, then this corpus advancement protocol for shared advancement behavior, then the source-mining guide for source acquisition and source-family details, then the installed skill as trigger and routing glue.
 
@@ -44,7 +44,7 @@ When a source document, paper, lecture note, accepted observation list, or prior
 
 The pass is complete only when the valuable material has been exhaustively triaged and the safe portion has advanced the AAA textbook corpus. Do not stop after one or two high-leverage edits if additional source signals can safely strengthen core geometry, dynamics, closure mathematics, branch certification, Lorentz/effective-metric recovery, photon closure, mass-map work, or executable validation targets.
 
-For acquisition details, source-family prompt addenda, traceability, mining-history updates, and external technique anchors, use [source-mining-best-practice.md](../../../priorities/source-mining/source-mining-best-practice.md). This protocol governs shared triage and advancement behavior; the source-mining guide governs how each source family is collected, inspected, and mapped.
+For acquisition details, source-family prompt addenda, traceability, mining-history updates, and external technique anchors, use [source-mining-best-practice.md](../../../op/source-mining-best-practice.md). This protocol governs shared triage and advancement behavior; the source-mining guide governs how each source family is collected, inspected, and mapped.
 
 High-priority autonomous method: when no more specific lane is supplied, inspect `reference/priorities/aaa-work-threads/priorities.md` and the relevant files under `reference/priorities/` early in the pass. Treat those files as an operator-maintained issue ledger, not as authored AAA content. Use them to identify concrete corpus-advancement opportunities, proof routes, missing derivations, validation ledgers, and safe edit batches. Do not link from authored `content/markdown/aaa` files to priority files; if priority material belongs in the AAA corpus, restate or promote the needed substance inside the relevant AAA document.
 
@@ -309,9 +309,13 @@ After editing, run:
 - `git diff --check`
 - `node scripts/validate-content.mjs --check --strict`
 - `node scripts/build-scene-graph.mjs --check --strict`
+- `node scripts/build-textbook-md-pdf.mjs --check` when textbook-facing corpus markdown or generated reading-copy inputs changed.
+
+For branch, commit, push, or PR publication, run the full required check set in [codex-pr-branch.md](../../../op/codex-pr-branch.md).
 
 If scene graph drift appears, run:
 - `node scripts/build-scene-graph.mjs --write --strict`
+- `node scripts/build-textbook-md-pdf.mjs --write` when reading-copy drift is also reported.
 then rerun the checks.
 
 Final response:

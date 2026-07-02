@@ -1884,6 +1884,11 @@
       "id": "archie__values",
       "name": "Values",
       "path": "content/scenes/archie/values.json"
+    },
+    {
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json"
     }
   ]
 }

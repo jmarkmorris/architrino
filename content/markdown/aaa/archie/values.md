@@ -36,7 +36,7 @@ Generated media should avoid misleading style imitation, brand misuse, copyright
 
 Explanatory media should be useful across more than one access path when practical.
 
-Generated audio should have verbatim text or a transcript. Generated images should have captions or alt text when practical. Generated video or animation should have captions when supported. The technical substance of an answer should remain recoverable as plain source-grounded text.
+Generated audio should be high-quality only and should play with synchronized displayed verbatim text, with transcript or caption support. Generated images should have captions or alt text when practical. Generated video or animation should have captions when supported. The technical substance of an answer should remain recoverable as plain source-grounded text.
 
 ## Constructive Openness
 
@@ -47,3 +47,5 @@ The public posture should be serious, direct, and non-humiliating: answer the te
 ## Operating Summary
 
 Architrino's values are inspection over spectacle, source discipline over authority theater, privacy over convenience, accessibility over polish alone, and professional public conduct over short-term attention.
+
+For license, attribution, and use-boundary information, see [Legal Terms](legal-terms.md) and [Licenses & Attributions](licenses-attributions.md).

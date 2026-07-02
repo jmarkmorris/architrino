@@ -49,6 +49,9 @@ const EXPECTED_SHARED_KEYS = [
 const DEFAULT_TOLERANCES = {
   carrier: 1e-12,
   pressure: 1e-9,
+  outerBinaryStrain: 1e-9,
+  releaseChannel: 1e-9,
+  pressureProjection: 1e-9,
   equationOfState: 1e-9,
   lambda: 1e-9,
   frwHandoff: 1e-9,
@@ -147,6 +150,18 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
   const carrierBinding = evaluateCarrierBinding(rows, packet.commonCarrierId);
   const sharedKeys = evaluateSharedKeys(packet.sharedKeys ?? [], tolerances);
   const pressure = evaluatePressure(packet.pressureLaw ?? packet.pressure ?? {}, tolerances);
+  const outerBinaryStrain = evaluateOuterBinaryStrain(
+    packet.outerBinaryStrain ?? packet.outerBinary ?? {},
+    tolerances,
+  );
+  const releaseChannelAvailability = evaluateReleaseChannelAvailability(
+    packet.releaseChannelAvailability ?? packet.releaseChannel ?? {},
+    tolerances,
+  );
+  const pressureProjection = evaluatePressureProjection(
+    packet.pressureProjection ?? {},
+    tolerances,
+  );
   const equationOfState = evaluateEquationOfState(
     packet.equationOfState ?? packet.eos ?? {},
     constants,
@@ -171,6 +186,9 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
     carrierBinding,
     sharedKeys,
     pressure,
+    outerBinaryStrain,
+    releaseChannelAvailability,
+    pressureProjection,
     equationOfState,
     lambdaProjection,
     frwHandoff,
@@ -208,6 +226,9 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
         carrierBinding,
         sharedKeys,
         pressure,
+        outerBinaryStrain,
+        releaseChannelAvailability,
+        pressureProjection,
         equationOfState,
         lambdaProjection,
         frwHandoff,
@@ -220,6 +241,18 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
       pressureLawComputed: pressure.computed,
       pressureResidual: pressure.residual,
       pressureResidualPass: pressure.passed,
+      outerBinaryStrainComputed: outerBinaryStrain.computed,
+      outerBinaryStrainResidual: outerBinaryStrain.strainResidual,
+      outerBinaryStoredEnergyResidual: outerBinaryStrain.storedEnergyResidual,
+      outerBinaryStrainPass: outerBinaryStrain.passed,
+      releaseChannelComputed: releaseChannelAvailability.computed,
+      releaseChannelCurrentResidual: releaseChannelAvailability.currentResidual,
+      releaseChannelBalanceResidual: releaseChannelAvailability.noCurrentResidual,
+      releaseChannelPass: releaseChannelAvailability.passed,
+      pressureProjectionComputed: pressureProjection.computed,
+      pressureProjectionSeaResidual: pressureProjection.seaPressureResidual,
+      pressureProjectionEffectiveResidual: pressureProjection.effectivePressureResidual,
+      pressureProjectionPass: pressureProjection.passed,
       equationOfStateComputed: equationOfState.computed,
       wEff: equationOfState.w_eff,
       wBench: equationOfState.wBench,
@@ -251,6 +284,9 @@ function evaluateEq20PressureEffectiveLambda(input, inputPath) {
     carrierBinding,
     sharedKeys,
     pressure,
+    outerBinaryStrain,
+    releaseChannelAvailability,
+    pressureProjection,
     equationOfState,
     lambdaProjection,
     frwHandoff,
@@ -275,6 +311,9 @@ function summarizeOutput(output) {
       mismatches: output.sharedKeys.mismatches,
     },
     pressure: output.pressure,
+    outerBinaryStrain: output.outerBinaryStrain,
+    releaseChannelAvailability: output.releaseChannelAvailability,
+    pressureProjection: output.pressureProjection,
     equationOfState: output.equationOfState,
     lambdaProjection: output.lambdaProjection,
     frwHandoff: output.frwHandoff,
@@ -296,6 +335,18 @@ function parseTolerances(raw) {
     pressure: positiveNumber(
       raw.pressure ?? DEFAULT_TOLERANCES.pressure,
       "tolerances.pressure",
+    ),
+    outerBinaryStrain: positiveNumber(
+      raw.outerBinaryStrain ?? DEFAULT_TOLERANCES.outerBinaryStrain,
+      "tolerances.outerBinaryStrain",
+    ),
+    releaseChannel: positiveNumber(
+      raw.releaseChannel ?? DEFAULT_TOLERANCES.releaseChannel,
+      "tolerances.releaseChannel",
+    ),
+    pressureProjection: positiveNumber(
+      raw.pressureProjection ?? DEFAULT_TOLERANCES.pressureProjection,
+      "tolerances.pressureProjection",
     ),
     equationOfState: positiveNumber(
       raw.equationOfState ?? DEFAULT_TOLERANCES.equationOfState,
@@ -418,6 +469,139 @@ function evaluatePressure(raw, tolerances) {
     residual,
     tolerance: tolerances.pressure,
     passed: residual !== null && residual <= tolerances.pressure,
+  };
+}
+
+function evaluateOuterBinaryStrain(raw, tolerances) {
+  const R_outer = positiveNumberOrNull(raw.R_outer ?? raw.rOuter ?? raw.outerRadius);
+  const R_eq = positiveNumberOrNull(raw.R_eq ?? raw.rEq ?? raw.equilibriumRadius);
+  const epsilon_O = finiteNumberOrNull(raw.epsilon_O ?? raw.epsilonO ?? raw.strain);
+  const computedEpsilon =
+    R_outer !== null && R_eq !== null ? (R_outer - R_eq) / R_eq : null;
+  const strainResidual =
+    computedEpsilon !== null && epsilon_O !== null
+      ? Math.abs(epsilon_O - computedEpsilon)
+      : finiteNumberOrNull(raw.strainResidual ?? raw.epsilonResidual);
+  const rho_NS = positiveNumberOrNull(raw.rho_NS ?? raw.rhoNs);
+  const K_O = positiveNumberOrNull(raw.K_O ?? raw.kO ?? raw.stiffness);
+  const u_O_str = finiteNumberOrNull(
+    raw.u_O_str ?? raw.uStrain ?? raw.storedEnergyDensity,
+  );
+  const computedStoredEnergy =
+    rho_NS !== null && K_O !== null && R_eq !== null && epsilon_O !== null
+      ? rho_NS * 0.5 * K_O * R_eq ** 2 * epsilon_O ** 2
+      : null;
+  const storedEnergyResidual =
+    computedStoredEnergy !== null && u_O_str !== null
+      ? Math.abs(u_O_str - computedStoredEnergy)
+      : finiteNumberOrNull(raw.storedEnergyResidual ?? raw.uStrainResidual);
+  const residuals = [strainResidual, storedEnergyResidual].filter(
+    (value) => value !== null,
+  );
+  const maxResidual = residuals.length > 0 ? Math.max(...residuals) : null;
+  return {
+    computed: strainResidual !== null && storedEnergyResidual !== null,
+    R_outer,
+    R_eq,
+    epsilon_O,
+    computedEpsilon,
+    strainResidual,
+    rho_NS,
+    K_O,
+    u_O_str,
+    computedStoredEnergy,
+    storedEnergyResidual,
+    residual: maxResidual,
+    tolerance: tolerances.outerBinaryStrain,
+    passed: maxResidual !== null && maxResidual <= tolerances.outerBinaryStrain,
+  };
+}
+
+function evaluateReleaseChannelAvailability(raw, tolerances) {
+  const A_down = nonnegativeNumberOrNull(
+    raw.A_down ?? raw.aDown ?? raw.availability,
+  );
+  const Gamma = nonnegativeNumberOrNull(
+    raw.Gamma ?? raw.gamma ?? raw.transferRate,
+  );
+  const mu_source = finiteNumberOrNull(raw.mu_source ?? raw.muSource);
+  const mu_acceptor = finiteNumberOrNull(
+    raw.mu_acceptor ?? raw.muAcceptor ?? raw.mu_sink ?? raw.muSink,
+  );
+  const J_E_O = finiteNumberOrNull(raw.J_E_O ?? raw.jEnergy ?? raw.energyCurrent);
+  const computedEnergyCurrent =
+    A_down !== null && Gamma !== null && mu_source !== null && mu_acceptor !== null
+      ? Gamma * A_down * (mu_source - mu_acceptor)
+      : null;
+  const currentResidual =
+    computedEnergyCurrent !== null && J_E_O !== null
+      ? Math.abs(J_E_O - computedEnergyCurrent)
+      : finiteNumberOrNull(raw.currentResidual ?? raw.energyCurrentResidual);
+  const noCurrentResidual = finiteNumberOrNull(
+    raw.noCurrentResidual ?? raw.balanceResidual ?? raw.equilibriumResidual,
+  );
+  const residuals = [currentResidual, noCurrentResidual].filter(
+    (value) => value !== null,
+  );
+  const maxResidual = residuals.length > 0 ? Math.max(...residuals) : null;
+  return {
+    computed: currentResidual !== null,
+    A_down,
+    Gamma,
+    mu_source,
+    mu_acceptor,
+    J_E_O,
+    computedEnergyCurrent,
+    currentResidual,
+    noCurrentResidual,
+    residual: maxResidual,
+    tolerance: tolerances.releaseChannel,
+    passed: currentResidual !== null && maxResidual <= tolerances.releaseChannel,
+  };
+}
+
+function evaluatePressureProjection(raw, tolerances) {
+  const hTraceTension = finiteNumberOrNull(
+    raw.hTraceTension ?? raw.h_ab_T_ab ?? raw.tensionTrace,
+  );
+  const p_kin = finiteNumberOrNull(raw.p_kin ?? raw.pKin ?? 0);
+  const p_src = finiteNumberOrNull(raw.p_src ?? raw.pSrc ?? 0);
+  const p_sea = finiteNumberOrNull(raw.p_sea ?? raw.pSea);
+  const Pi_DE = finiteNumberOrNull(raw.Pi_DE ?? raw.piDE ?? raw.projectionFactor ?? 1);
+  const p_DE_eff = finiteNumberOrNull(raw.p_DE_eff ?? raw.pEff ?? raw.P_eff);
+  const computedSeaPressure =
+    hTraceTension !== null && p_kin !== null && p_src !== null
+      ? -hTraceTension / 3 + p_kin + p_src
+      : null;
+  const seaPressureResidual =
+    computedSeaPressure !== null && p_sea !== null
+      ? Math.abs(p_sea - computedSeaPressure)
+      : finiteNumberOrNull(raw.seaPressureResidual);
+  const computedEffectivePressure =
+    Pi_DE !== null && p_sea !== null ? Pi_DE * p_sea : null;
+  const effectivePressureResidual =
+    computedEffectivePressure !== null && p_DE_eff !== null
+      ? Math.abs(p_DE_eff - computedEffectivePressure)
+      : finiteNumberOrNull(raw.effectivePressureResidual);
+  const residuals = [seaPressureResidual, effectivePressureResidual].filter(
+    (value) => value !== null,
+  );
+  const maxResidual = residuals.length > 0 ? Math.max(...residuals) : null;
+  return {
+    computed: seaPressureResidual !== null && effectivePressureResidual !== null,
+    hTraceTension,
+    p_kin,
+    p_src,
+    p_sea,
+    Pi_DE,
+    p_DE_eff,
+    computedSeaPressure,
+    seaPressureResidual,
+    computedEffectivePressure,
+    effectivePressureResidual,
+    residual: maxResidual,
+    tolerance: tolerances.pressureProjection,
+    passed: maxResidual !== null && maxResidual <= tolerances.pressureProjection,
   };
 }
 
@@ -546,6 +730,9 @@ function decideStatus({
   carrierBinding,
   sharedKeys,
   pressure,
+  outerBinaryStrain,
+  releaseChannelAvailability,
+  pressureProjection,
   equationOfState,
   lambdaProjection,
   frwHandoff,
@@ -563,6 +750,24 @@ function decideStatus({
   }
   if (!carrierBinding.passed) {
     return "blocked_constitutive_carrier_split";
+  }
+  if (!outerBinaryStrain.computed) {
+    return "blocked_missing_outer_binary_strain";
+  }
+  if (!outerBinaryStrain.passed) {
+    return "blocked_outer_binary_strain_residual_above_tolerance";
+  }
+  if (!releaseChannelAvailability.computed) {
+    return "blocked_missing_release_channel_availability";
+  }
+  if (!releaseChannelAvailability.passed) {
+    return "blocked_release_channel_residual_above_tolerance";
+  }
+  if (!pressureProjection.computed) {
+    return "blocked_missing_pressure_projection";
+  }
+  if (!pressureProjection.passed) {
+    return "blocked_pressure_projection_residual_above_tolerance";
   }
   if (!pressure.computed) {
     return "blocked_missing_pressure_law";
@@ -603,6 +808,9 @@ function firstBlocker({
   carrierBinding,
   sharedKeys,
   pressure,
+  outerBinaryStrain,
+  releaseChannelAvailability,
+  pressureProjection,
   equationOfState,
   lambdaProjection,
   frwHandoff,
@@ -623,6 +831,24 @@ function firstBlocker({
   }
   if (!carrierBinding.passed) {
     return "constitutive_carrier_split";
+  }
+  if (!outerBinaryStrain.computed) {
+    return "missing_outer_binary_strain";
+  }
+  if (!outerBinaryStrain.passed) {
+    return "outer_binary_strain_residual_above_tolerance";
+  }
+  if (!releaseChannelAvailability.computed) {
+    return "missing_release_channel_availability";
+  }
+  if (!releaseChannelAvailability.passed) {
+    return "release_channel_residual_above_tolerance";
+  }
+  if (!pressureProjection.computed) {
+    return "missing_pressure_projection";
+  }
+  if (!pressureProjection.passed) {
+    return "pressure_projection_residual_above_tolerance";
   }
   if (!pressure.computed) {
     return "missing_pressure_law";
@@ -693,6 +919,11 @@ function positiveNumber(value, label) {
 function positiveNumberOrNull(value) {
   const number = Number(value);
   return Number.isFinite(number) && number > 0 ? number : null;
+}
+
+function nonnegativeNumberOrNull(value) {
+  const number = Number(value);
+  return Number.isFinite(number) && number >= 0 ? number : null;
 }
 
 function finiteNumberOrNull(value) {

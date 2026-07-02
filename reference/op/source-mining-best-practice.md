@@ -2,16 +2,16 @@
 
 ## Purpose
 
-This is the current best-practice guide for source mining. It is priority-only process material, not reader-facing corpus prose.
+This is the current operator-process guide for source mining. It is not a priority queue and not reader-facing corpus prose.
 
 The goal is high-quality extraction of insights, linkages, mappings, and theory advancements from source material. The process should sharpen the active $\mathbb{A}\mathbb{A}\mathbb{A}$ theory stack without importing another framework as doctrine, inventing new terminology, or adding more gates, certificates, residual inventories, live-ledger checklists, or similar hurdle infrastructure to the corpus.
 
 ## Authority Map
 
-- The [corpus advancement pass](../../entourage/archie/prompts/corpus-advancement-pass.md) is the shared protocol authority for advancement behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
+- The [corpus advancement pass](../entourage/archie/prompts/corpus-advancement-pass.md) is the shared protocol authority for advancement behavior: mode selection, edit authority, promotion triage, mathematics-first discipline, closure-goal prompt structure, follow-up prompt format, and handoff fields.
 - This guide is the source-intake specialization. It owns source-family acquisition, traceability, source maps, source-specific prompt addenda, mining-history routing, creative reframing, and external technique anchors.
 - The installed `aaa-corpus-advancement` skill is a thin router. It should point source-mining work here after loading the shared corpus advancement protocol.
-- Source-mining history remains in [source-mining-history.md](source-mining-history.md). This guide describes process; the history file records completed sources.
+- Source-mining history remains in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). This guide describes process; the history file records completed sources.
 
 If instructions overlap, apply workspace policy first, then the shared corpus advancement protocol, then this source-intake guide.
 
@@ -51,7 +51,7 @@ This guide is a source-intake and source-processing practice. It is not another 
 
 ## Mining History
 
-The completed target list lives in [source-mining-history.md](source-mining-history.md). When a source-mining pass mines a new source or source family, add it to that history file with the source identity, link or path when available, and date mined.
+The completed target list lives in [source-mining-history.md](../priorities/source-mining/source-mining-history.md). When a source-mining pass mines a new source or source family, add it to that history file with the source identity, link or path when available, and date mined.
 
 ## Common Source-Mining Prompt Skeleton
 
@@ -71,7 +71,7 @@ Source-family addendum:
 
 Required method:
 1. Read `reference/entourage/archie/prompts/corpus-advancement-pass.md`.
-2. Read `reference/priorities/source-mining/source-mining-best-practice.md`.
+2. Read `reference/op/source-mining-best-practice.md`.
 3. Identify the source type or mixed source types.
 4. Apply the relevant source-family acquisition steps and traceability rules.
 5. Treat this as edit-batch authority unless report-only was explicitly requested.
@@ -276,7 +276,7 @@ For long-running blog archives, preserve the normalized post registry in `refere
 
 Use topic-sweep mode when the operator asks what the legacy archive says about a particular concept, mechanism, historical phrase, or source lead. Search the durable post registry, local extraction artifacts, WordPress public API records, downloaded HTML, and current corpus before recommending edits. The output should be a topic map: matched posts or artifacts, dates, repaired URLs, strongest source signals, contradictions or later corrections, likely current-canon destinations, and which posts warrant ordinary per-source mining. A topic sweep may identify a cluster worth mining, but do not record an incorporation event unless its source signals were individually triaged and any accepted edits plus source-mining-history rows are complete.
 
-Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes the durable post registry, regenerates the markdown library table and URL queue from that registry, writes full cleansed text and JSONL idea cards under `${TMPDIR:-/tmp}/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not update source-mining history and do not promote any claim into `content/markdown/aaa`.
+Use archive-level mining mode when the operator needs a full legacy-archive map before selecting individual posts or topic sweeps. The current implementation is [build-legacy-architrino-archive.py](../../scripts/source-mining/build-legacy-architrino-archive.py). It retrieves public WordPress records, writes the durable post registry, regenerates the markdown library table and URL queue from that registry, writes full cleansed text and JSONL idea cards under `${TMPDIR:-/tmp}/architrino-archive-mining`, writes compact reports starting with [legacy-architrino-archive-mining-report.md](../priorities/source-mining/archive-analysis/legacy-architrino-archive-mining-report.md), applies deterministic topic routing and duplicate grouping, flags legacy terminology and high-risk language, and performs coarse corpus-overlap checks. Treat those reports as triage maps only: they do not update source-mining history and do not promote any claim into `content/markdown/aaa`.
 
 Prompt addendum:
 
@@ -449,7 +449,7 @@ Acquisition steps:
 4. Mark abandoned language and historical process as non-corpus unless it can be rewritten as current doctrine with a clear claim level.
 5. Route product or outlook material through priority-only planning unless it directly improves a current definition, equation, proof route, or reader-facing bridge.
 
-For legacy WordPress batches, use [legacy-architrino-wordpress-posts.jsonl](legacy-architrino-wordpress-posts.jsonl) as the durable Architrino post registry, [legacy-architrino-wordpress-library-posts.md](legacy-architrino-wordpress-library-posts.md) as the generated human-readable inventory, and [legacy-architrino-wordpress-mining-queue.txt](legacy-architrino-wordpress-mining-queue.txt) as the generated all-post URL view. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the registry is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; source-mining history records mining and incorporation events. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, treat it as a disposable working copy and resync durable inventory changes through the registry generator.
+For legacy WordPress batches, use [legacy-architrino-wordpress-posts.jsonl](../priorities/source-mining/legacy-architrino-wordpress-posts.jsonl) as the durable Architrino post registry, [legacy-architrino-wordpress-library-posts.md](../priorities/source-mining/legacy-architrino-wordpress-library-posts.md) as the generated human-readable inventory, and [legacy-architrino-wordpress-mining-queue.txt](../priorities/source-mining/legacy-architrino-wordpress-mining-queue.txt) as the generated all-post URL view. The current authoritative discovery surfaces are the [Architrino home archive](https://architrino.wordpress.com/), [Posts History](https://architrino.wordpress.com/library/), year archive pages such as [2026](https://architrino.wordpress.com/2026/), and the public WordPress API. Crawl the archive links or API before assuming the registry is complete. Treat the WordPress site as an official historical archive while the subscription remains active, currently expected through approximately June 2029. As of June 28, 2026, WordPress tags are not used for source-mining completion; source-mining history records mining and incorporation events. If a session uses `${TMPDIR:-/tmp}/architrino-unmined-links.txt` or another scratch queue, treat it as a disposable working copy and resync durable inventory changes through the registry generator.
 
 Deferred legacy material classes:
 
@@ -491,4 +491,4 @@ Use external technique references as process checks, not as corpus doctrine:
 
 ## Promotion Decision
 
-This best-practice file is priority-only. It should guide source-mining passes under `reference/priorities/source-mining/`, but it should not be promoted into `content/markdown/aaa` unless the operator/developer explicitly asks for a reader-facing methodology chapter.
+This best-practice file is operator process material. It should guide source-mining passes while source inventories, history rows, and queues remain under `reference/priorities/source-mining/`. It should not be promoted into `content/markdown/aaa` unless the operator/developer explicitly asks for a reader-facing methodology chapter.

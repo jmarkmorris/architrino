@@ -997,6 +997,14 @@ Within the positive root-budget rows of the fine run, two rows are worth preserv
 
 Both rows had full directed partner-root coverage in the sampled diagnostic, but zero same-source root coverage. That is a major blocker. The sampled result is a partner-wake consistency probe, not a same-source retained-root ledger. The objective-best row had rms residual `0.06554737816808505`, rms ansatz acceleration `0.04898979485566356`, rms wake acceleration `0.04479285878433328`, total sampled roots `180`, minimum source normal `0.15847503638284421`, minimum receiver normal `0.10807972658405784`, and maximum branch weight `2.1614807215740615`. The residual-best positive-margin row had rms residual `0.05910507816580145`, rms ansatz acceleration `0.0396817338330875`, rms wake acceleration `0.047227166412131844`, total sampled roots `180`, minimum source normal `0.064443270765144`, minimum receiver normal `0.05151281788994355`, and maximum branch weight `3.4114055912009227`.
 
+The executable sweep now records this same-source status as a non-authorizing `same_source_causal_root_exclusion_lemma.v0` row. For a strict sub-field-speed sampled interval, the causal-root function
+
+$$
+C_{aa}(t,\tau)=\|\mathbf x_a(t)-\mathbf x_a(t-\tau)\|-c_f\tau
+$$
+
+stays negative for every positive delay when the sampled speed bound obeys $\beta_{\max}<1$, so the absence of same-source roots is a proof-side obstruction rather than accepted retained-root evidence. The lemma keeps `accepted_same_record_evidence=false`, `retained_root_ledger_ref=null`, and the first missing field `oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref`.
+
 Interpretation. The preferred-configuration intuition does play out as an interesting idea, but not yet as a breakthrough stable braid. The sampled residual is not flat across $(u,v_{\mathrm{orb}})$; it creates a basin that moves toward high translation, lower orbital speed, and small positive root margin. The best raw residuals want to cross or approach $\beta_{\max}=1$, while the best admissible positive-margin rows sit just inside the causal edge. That suggests a concrete analytic target:
 
 $$
@@ -1010,6 +1018,382 @@ $$
 $$
 
 The current runs do not reproduce GR time, do not prove Lorentz contraction, and do not find a bounded-return branch. They do sharpen the next question: is the near-edge basin an artifact of the assigned $\chi(u)=\sqrt{1-u^2}$ ansatz and toy wake normalization, or does a native retained-history solve with fitted $\chi$, same-source roots, action rows, and stability rows select a real interior branch?
+
+### Dynamic Two-Speed Return-Probe Runs - 2026-07-02
+
+Claim level. Priority-only dynamic probe, not central-solver retained-history evidence. The two-speed sweep now has an explicit `--return-probe` mode. It takes the objective-ranked candidate rows, initializes the six architrinos on the assigned oblate ansatz, supplies periodic ansatz prehistory, advances the particles with the sampled wake law for a declared number of branch periods, and records whether the row returns to the same center-frame support. The probe is useful because it tests the missing condition
+
+$$
+\mathcal S_{\mathrm{return}}
+=
+\text{bounded return or stable support radius}
+$$
+
+directly enough to reject weak candidates, while still keeping `retainedBranchClaim=false`, `preferred_configuration_claim=false`, and `scoreMovement=no_score_increase`.
+
+The return-probe row reports:
+
+$$
+\Delta x_{\mathrm{return}}
+=
+\operatorname{rms}_a\|\mathbf y_a(T)-\mathbf y_a(0)\|,
+\qquad
+\Delta v_{\mathrm{return}}
+=
+\operatorname{rms}_a\|\dot{\mathbf y}_a(T)-\dot{\mathbf y}_a(0)\|,
+$$
+
+maximum support-radius drift, maximum field-frame speed, root-budget margin, partner-root coverage, same-source root coverage, and the first failed return condition. A bounded-return candidate must remain sub-$c_f$, keep positive root margin, keep partner-root coverage, preserve support radius, and return in position and velocity within the declared tolerances.
+
+The near-edge residual basin was rerun with one dynamic return-probe period:
+
+- $u\in\{0.76,0.78,0.8,0.82,0.84,0.86\}$;
+- $v_{\mathrm{orb}}\in\{0.14,0.16,0.18,0.2,0.22,0.24\}$;
+- `sample-count=6`, `root-samples=240`, `root-periods=2`;
+- `return-probe-periods=1`, `return-probe-steps-per-period=120`, `return-probe-root-samples=80`, `return-probe-history-periods=2`.
+
+The result was a clear rejection of bounded return in the near-edge basin: `36` rows, `26` positive sampled root-budget rows, `6` dynamic return-probe rows, and `0` bounded-return rows. The return-probed candidate rows were:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | sampled $\beta_{\max}$ | sampled root margin | action drift | dynamic $\beta_{\max}$ | dynamic root margin | first return blocker |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `0.76` | `0.2` | `0.705436` | `0.925936` | `0.074064` | `0.156239` | `1.171238` | `-0.171238` | `field_speed_sub_cf` |
+| `0.78` | `0.2` | `0.698929` | `0.945762` | `0.054238` | `0.156239` | `1.256463` | `-0.256463` | `field_speed_sub_cf` |
+| `0.8` | `0.16` | `0.7025` | `0.931397` | `0.068603` | `0.075009` | `1.230147` | `-0.230147` | `field_speed_sub_cf` |
+| `0.82` | `0.16` | `0.697417` | `0.951288` | `0.048712` | `0.075009` | `1.492334` | `-0.492334` | `field_speed_sub_cf` |
+| `0.84` | `0.16` | `0.69226` | `0.971183` | `0.028817` | `0.075009` | `1.993763` | `-0.993763` | `field_speed_sub_cf` |
+| `0.86` | `0.16` | `0.687132` | `0.991082` | `0.008918` | `0.075009` | `2.173695` | `-1.173695` | `field_speed_sub_cf` |
+
+The low-action-drift rows are therefore not bounded-return rows in this priority probe. They sit so close to the causal edge that dynamic evolution crosses $c_f=1$ before a one-period return can be claimed.
+
+A lower-speed family was then checked to see whether stronger root margin trades away too much residual quality:
+
+- $u\in\{0,0.1,\ldots,0.6\}$;
+- $v_{\mathrm{orb}}\in\{0.05,0.1,\ldots,0.4\}$;
+- $\beta_\ast=0.5$;
+- same one-period return-probe settings as above.
+
+That run produced `56` rows, all `56` with positive sampled root-budget margin, `7` dynamic return-probe rows, and `0` bounded-return rows. Unlike the near-edge basin, the lower-speed rows generally stayed sub-$c_f$ dynamically and kept partner-root coverage; their first blocker was instead support-radius preservation. The best-position-return row still had $\Delta x_{\mathrm{return}}\approx5.217465$ and maximum radius-mean drift $\approx3.903187$, so it is an expanding or scattering toy path, not a stable support.
+
+The lower-speed probed candidates were:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | dynamic $\beta_{\max}$ | dynamic root margin | $\Delta x_{\mathrm{return}}$ | radius drift | first return blocker |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | --- |
+| `0` | `0.2` | `0.83965` | `0.229971` | `0.770029` | `5.217465` | `3.903187` | `radius_support_within_tolerance` |
+| `0.1` | `0.2` | `0.836524` | `0.332985` | `0.667015` | `5.226737` | `3.91045` | `radius_support_within_tolerance` |
+| `0.2` | `0.2` | `0.827452` | `0.438568` | `0.561432` | `5.250694` | `3.929357` | `radius_support_within_tolerance` |
+| `0.3` | `0.2` | `0.813251` | `0.545773` | `0.454227` | `5.280219` | `3.95305` | `radius_support_within_tolerance` |
+| `0.4` | `0.2` | `0.794994` | `0.654616` | `0.345384` | `5.303467` | `3.972645` | `radius_support_within_tolerance` |
+| `0.5` | `0.15` | `0.770758` | `0.784484` | `0.215516` | `6.57536` | `5.083182` | `radius_support_within_tolerance` |
+| `0.6` | `0.15` | `0.752385` | `0.916034` | `0.083966` | `7.48383` | `5.580542` | `radius_support_within_tolerance` |
+
+A quick coupling sweep over `1/72`, `1/36`, `1/24`, `1/18`, `1/12`, `1/9`, `1/6`, and `1/4` on representative rows $(u,v_{\mathrm{orb}})\in\{(0,0.2),(0.4,0.2),(0.78,0.2)\}$ did not rescue bounded return. No tested coupling produced a bounded or stable-support row. The best one-period position-return error stayed large, and increasing coupling generally increased the support-radius drift and eventually forced field-speed crossings.
+
+Interpretation. The two-speed sweep now has a sharper negative result. The preferred-configuration intuition still appears as a residual basin, but the bare sampled wake law does not turn that basin into a bounded return:
+
+1. Near the residual/action edge, the first dynamic blocker is field-speed crossing.
+2. Away from the edge, the first dynamic blocker is support-radius expansion.
+3. Coupling retuning alone does not remove either blocker in the tested rows.
+
+The next mathematical target is therefore not another coarse two-speed scan. It is the missing stabilizing term in the reduced return equation:
+
+$$
+F_{\mathrm{return}}
+=
+F_{\mathrm{sampled\,wake}}
++F_{\mathrm{self\,hit}}
++F_{\mathrm{wake\,ledger}}
++F_{\mathrm{shielding}}
++F_{\mathrm{angular\,momentum}}
++F_{\mathrm{Noether\,sea}},
+$$
+
+with a proof or retained-history row showing which term supplies the inward second turn, stable support radius, or bounded limit cycle without violating $c_f=1$.
+
+### Support-Term Two-Speed Return-Probe Runs - 2026-07-02
+
+Claim level. Priority-only support-term diagnostic. The return probe now has an optional oblate-surface support term, disabled by default. When enabled, it adds only a normal response to the assigned spheroid:
+
+$$
+\Phi(\mathbf y)
+=
+\frac{x^2+y^2}{R_\perp^2}
++
+\frac{z^2}{R_\parallel^2}
+-1,
+\qquad
+\mathbf a_{\mathrm{support}}
+=
+-k\,\Phi\,\hat{\mathbf n}
+-\gamma\,(\dot{\mathbf y}\cdot\hat{\mathbf n})\hat{\mathbf n}.
+$$
+
+This is the simplest way to test the operator intuition that nearby Noether sea pressure might constrain the support scale. It is not a proof of Noether sea dynamics, not a retained solver row, and not an accepted stabilizing mechanism. The output records support stiffness, damping, rms support acceleration, maximum support acceleration, and maximum $|\Phi|$ so the added term remains visible.
+
+A coarse support sweep tested two families:
+
+1. lower-speed rows with $u\in\{0,0.2,0.4,0.6\}$, $v_{\mathrm{orb}}\in\{0.15,0.2,0.25\}$, and $\beta_\ast=0.5$;
+2. near-edge rows with $u\in\{0.76,0.8,0.84\}$, $v_{\mathrm{orb}}\in\{0.16,0.18,0.2,0.22\}$, and $\beta_\ast=0.8$.
+
+The support grid used
+
+$$
+k\in\{0,0.1,0.3,1,3,10\},
+\qquad
+\gamma\in\{0,0.2,0.6,1.5,4\}.
+$$
+
+Result. The lower-speed family gained stable-support-radius rows but still no bounded-return rows. The near-edge residual basin still failed by field-speed crossing even when support reduced the radial drift. In the coarse run, the lower-speed family first produced stable-support rows near $k=0.1,\gamma=4$ and more robustly near $k\in\{1,3\}$ with moderate damping. The near-edge family produced `0` stable-support rows and `0` bounded-return rows across the tested support grid.
+
+A finer lower-speed support grid tested
+
+$$
+u\in\{0,0.1,0.2,0.3,0.4\},
+\qquad
+v_{\mathrm{orb}}\in\{0.1,0.15,0.2,0.25,0.3\},
+$$
+
+with
+
+$$
+k\in\{0.15,0.25,0.35,0.5,0.75,1.0\},
+\qquad
+\gamma\in\{0,0.2,0.5,0.8,1.2,1.8\}.
+$$
+
+That produced `900` single-row return probes, `201` stable-support rows, and `0` bounded-return rows. The best one-period position-return row was:
+
+| $u$ | $v_{\mathrm{orb}}$ | $k$ | $\gamma$ | $\mathcal E_{\mathrm{norm}}$ | action drift | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ | radius drift | dynamic $\beta_{\max}$ | dynamic root margin |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0` | `0.25` | `1` | `1.8` | `0.8643` | `0.3047` | `0.3132` | `0.2952` | `0.0474` | `0.3693` | `0.6307` |
+
+A higher-resolution rerun of that row with `sample-count=6`, `root-samples=240`, `return-probe-steps-per-period=240`, and `return-probe-root-samples=96` remained a one-period stable-support candidate:
+
+| $u$ | $v_{\mathrm{orb}}$ | $k$ | $\gamma$ | $\mathcal E_{\mathrm{norm}}$ | action drift | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ | radius drift | dynamic $\beta_{\max}$ | dynamic root margin | support rms acceleration |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0` | `0.25` | `1` | `1.8` | `0.8642771196090612` | `0.3047010190288182` | `0.3201914058198091` | `0.2947674157868315` | `0.05339957385603156` | `0.3679369345390572` | `0.6320630654609428` | `0.08757523466063143` |
+
+However, the same row over four return-probe periods lost the stable-support classification: radius drift rose to `0.1529027925130737`, position-return error rose to `1.41952115725692`, velocity-return error rose to `0.7020918412457122`, and the first blocker became `radius_support_within_tolerance`. It remained sub-$c_f$ with dynamic $\beta_{\max}\approx0.6761684466891403$ and positive dynamic root margin $\approx0.32383155331085967$, but it did not become a bounded or recurrent branch.
+
+Interpretation. The support term confirms part of the intuition and rejects another part. A normal pressure-like response can hold the support scale for low-speed rows over one period while preserving $c_f=1$ and positive root margin. It does not by itself produce a preferred bounded branch with low residual, low action drift, phase return, and long-window stability. The missing ingredient is now sharper: the stabilizer must couple support preservation to tangential phase return or branch-clock locking, not merely press particles back onto the oblate surface.
+
+### Branch-Clock-Lock Two-Speed Return-Probe Runs - 2026-07-02
+
+Claim level. Priority-only branch-clock-lock diagnostic. The return probe now also has an optional tangent-plane branch-clock locking term, disabled by default. It compares each dynamic particle with the assigned oblate ansatz at the current branch clock and applies only the tangent component of a proportional-derivative correction:
+
+$$
+\mathbf P_T(\mathbf w)
+=
+\mathbf w-(\mathbf w\cdot\hat{\mathbf n})\hat{\mathbf n},
+\qquad
+\mathbf a_{\mathrm{clock}}
+=
+-k_\parallel\,\mathbf P_T(\mathbf y-\mathbf y_{\mathrm{ansatz}})
+-\gamma_\parallel\,\mathbf P_T(\dot{\mathbf y}-\dot{\mathbf y}_{\mathrm{ansatz}}).
+$$
+
+The normal support term controls distance from the assigned oblate surface; the branch-clock term controls phase and center-frame velocity along that surface. This is not a natural retained-history force law and not accepted evidence. It is a diagnostic for how much tangential stabilizing authority would be needed if the missing Noether sea, wake-ledger, shielding, angular-momentum, or self-hit term acts like a branch-clock lock.
+
+With the prior best normal support setting $k=1,\gamma=1.8$, the row-local grid at $(u,v_{\mathrm{orb}})=(0,0.25)$ swept
+
+$$
+k_\parallel,\gamma_\parallel\in\{0,0.025,0.05,0.1,0.2,0.4,0.8,1.6,3.2\}.
+$$
+
+That produced `81` one-period probes, `81` stable-support rows, and `23` bounded-return rows. The lowest branch-clock-lock rms acceleration among bounded rows was:
+
+| $u$ | $v_{\mathrm{orb}}$ | $k_\parallel$ | $\gamma_\parallel$ | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ | radius drift | dynamic $\beta_{\max}$ | dynamic root margin | support rms acceleration | clock-lock rms acceleration |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0` | `0.25` | `0.8` | `1.6` | `0.08307653021283552` | `0.02641583242874801` | `0.02527193623759083` | `0.2677445081743365` | `0.7322554918256635` | `0.0606282113978359` | `0.07000750121683043` |
+
+The strongest return in that row-local grid used $k_\parallel=3.2,\gamma_\parallel=3.2$ and reduced position-return error to `0.031359567450939374`, velocity-return error to `0.013397914773851131`, and radius drift to `0.024348002849919004`, with clock-lock rms acceleration `0.07240352094346496`. The key point is that large stiffness was not needed to make the one-period branch return once normal support was present; a visible but modest tangent correction was enough.
+
+The fixed-lock map then tested two branch-clock-lock settings across $u\in\{0,0.1,\ldots,0.6\}$ and $v_{\mathrm{orb}}\in\{0.1,0.15,0.2,0.25,0.3\}$:
+
+1. low-authority lock $k_\parallel=0.8,\gamma_\parallel=1.6$;
+2. sharper-return lock $k_\parallel=3.2,\gamma_\parallel=0.2$.
+
+That produced `70` probes, `70` stable-support rows, and `63` bounded-return rows. Under the simple ranking used for this diagnostic, the best bounded rows moved toward higher group translation rather than staying at rest. The best low-authority row in that map was:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | action drift | dynamic $\beta_{\max}$ | dynamic root margin | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ | support rms acceleration | clock-lock rms acceleration |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0.6` | `0.2` | `0.7499073602252181` | `0.15623918477694865` | `0.7854359186086829` | `0.2145640813913171` | `0.06260790860112865` | `0.01560910017867012` | `0.03240019516747013` | `0.05642684863196318` |
+
+A near-edge fixed-lock map over $u\in\{0.6,0.65,0.7,0.75,0.8\}$ and $v_{\mathrm{orb}}\in\{0.1,0.125,0.15,0.175,0.2,0.225\}$ produced `60` probes, `57` bounded-return rows, and `3` field-speed failures. The best low-authority row by the same diagnostic objective was:
+
+| $u$ | $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | action drift | sampled $\beta_{\max}$ | sampled root margin | dynamic $\beta_{\max}$ | dynamic root margin | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0.8` | `0.2` | `0.6920425007335225` | `0.15623918477694865` | `0.9655962111930331` | `0.03440378880696693` | `0.9969101632777856` | `0.003089836722214412` | `0.06362027464528434` | `0.017637012951293322` |
+
+A higher-resolution rerun of the edge and safer-edge candidates used `sample-count=6`, `root-samples=240`, `return-probe-steps-per-period=240`, `return-probe-root-samples=96`, and one- and four-period probes. All tested rows remained bounded under the driven diagnostic, including the near-edge row:
+
+| case | periods | $u$ | $v_{\mathrm{orb}}$ | dynamic $\beta_{\max}$ | dynamic root margin | $\Delta x_{\mathrm{return}}$ | $\Delta v_{\mathrm{return}}$ | radius drift | support rms acceleration | clock-lock rms acceleration |
+| --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| edge low-authority | `1` | `0.8` | `0.2` | `0.9961122218285763` | `0.003887778171423717` | `0.06673769274774673` | `0.017290166008756526` | `0.028143939511905414` | `0.030895195109855386` | `0.058552382545334986` |
+| edge low-authority | `4` | `0.8` | `0.2` | `0.9961122218285763` | `0.003887778171423717` | `0.06673769000562832` | `0.0172901665279674` | `0.028143939511905414` | `0.03093626846786921` | `0.05876007355454672` |
+| safer edge low-authority | `4` | `0.8` | `0.175` | `0.9741018551039909` | `0.025898144896009057` | `0.060012454678713203` | `0.01396815236909616` | `0.02153266070169102` | `0.02740948462657377` | `0.051470841257771356` |
+| safer edge sharper-return | `4` | `0.8` | `0.175` | `0.977664512837598` | `0.022335487162401968` | `0.02014103193229263` | `0.005044857248558181` | `0.01125399960527873` | `0.028581123242075276` | `0.05124309842346271` |
+
+The cutoff check above the edge used the low-authority lock. It found bounded rows at $(0.82,0.15)$, $(0.82,0.175)$, and $(0.84,0.15)$, but the last two had dynamic root margins only `0.0028539730209474756` and `0.0015486648358725708`. Rows $(0.82,0.2)$, $(0.84,0.175)$, and $(0.86,0.15)$ failed by field-speed crossing; rows $(0.84,0.2)$, $(0.86,0.175)$, and $(0.86,0.2)$ already lacked positive sampled root-budget margin.
+
+The executable sweep now has an artifact-level positive-root probe mode and emits `preferred_branch_curve_rows`. In this mode, every row with positive sampled root-budget margin receives the dynamic return probe; then each $u$ selects the bounded row with the lowest priority branch-curve objective. The objective remains diagnostic, not physical: it combines normalized residual, action drift, return errors, support/clock-lock authority, and dynamic root margin so the selected row is visible and reproducible.
+
+The artifact-level low-authority branch-clock-lock map used
+
+$$
+u\in\{0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.82,0.84\},
+$$
+
+$$
+v_{\mathrm{orb}}\in\{0.1,0.125,0.15,0.175,0.2,0.225\},
+\qquad
+k=1,\quad
+\gamma=1.8,\quad
+k_\parallel=0.8,\quad
+\gamma_\parallel=1.6.
+$$
+
+It produced `72` rows, `69` positive-root dynamically probed rows, `66` bounded-return rows, and `12` preferred branch-curve rows, one for every tested $u$. The emitted preferred curve was:
+
+| $u$ | selected $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | action drift | dynamic $\beta_{\max}$ | dynamic root margin | branch-curve objective |
+| ---: | ---: | ---: | ---: | ---: | ---: | ---: |
+| `0` | `0.125` | `0.8344968589499601` | `0.1523505095144091` | `0.12880995660294206` | `0.871190043397058` | `0.6311390561328596` |
+| `0.1` | `0.125` | `0.8320824070375306` | `0.1523505095144091` | `0.21871590220076512` | `0.7812840977992349` | `0.6361759065547234` |
+| `0.2` | `0.125` | `0.8252492554232285` | `0.1523505095144091` | `0.31507382396236133` | `0.6849261760376386` | `0.634689194894389` |
+| `0.3` | `0.125` | `0.8150559528034337` | `0.1523505095144091` | `0.4136488944034203` | `0.5863511055965798` | `0.6281410581491012` |
+| `0.4` | `0.15` | `0.7880373794858184` | `0.38282061141728985` | `0.5367821283314941` | `0.4632178716685059` | `0.6152086912545838` |
+| `0.5` | `0.15` | `0.7707581904625366` | `0.38282061141728985` | `0.6372839906584417` | `0.36271600934155834` | `0.5987251852498099` |
+| `0.6` | `0.175` | `0.7452501004411348` | `0.38670928667982896` | `0.7618933955457424` | `0.23810660445425758` | `0.5812932294429756` |
+| `0.7` | `0.175` | `0.7213562136835595` | `0.38670928667982896` | `0.8666240675156577` | `0.13337593248434232` | `0.5577490847442128` |
+| `0.75` | `0.175` | `0.7082598503851606` | `0.38670928667982896` | `0.920255799451208` | `0.07974420054879205` | `0.5456325157671135` |
+| `0.8` | `0.2` | `0.6920425007335225` | `0.15623918477694865` | `0.9969101632777856` | `0.003089836722214412` | `0.5321670950472137` |
+| `0.82` | `0.175` | `0.688149794180312` | `0.38670928667982896` | `0.9971460269790525` | `0.0028539730209474756` | `0.5294044161305449` |
+| `0.84` | `0.15` | `0.7025225416825435` | `0.38282061141728985` | `0.9984513351641274` | `0.0015486648358725708` | `0.544100727967449` |
+
+The support-only comparison used the same $u$ and $v_{\mathrm{orb}}$ grid, same positive-root probe selection, same normal support $k=1,\gamma=1.8$, and no branch-clock lock. It produced `69` dynamic probes and `0` preferred branch-curve rows. The best support-only position return was still `0.532245558696609`, and the blocker split was `12` position-return failures, `57` field-speed failures, and `3` non-probed negative sampled-root rows. This confirms that the emitted preferred curve is a branch-clock-lock diagnostic, not a support-only stable braid.
+
+### Near-Edge Basin Certificate - 2026-07-02
+
+Claim level. Priority-only hard-math certificate, not retained evidence. The runner [oblate-spheroid-near-edge-basin-certificate.mjs](../../../scripts/braid-ideal/oblate-spheroid-near-edge-basin-certificate.mjs) takes a two-speed sweep artifact and emits finite-difference rows around positive-margin near-edge candidates. It now requires bounded dynamic return before a near-edge row can become a `hard_math_candidate`; support-only near-edge rows therefore fail closed before they can masquerade as preferred-branch evidence.
+
+The certificate records, for each candidate row:
+
+$$
+\partial_u\mathcal E,
+\qquad
+\partial_{v_{\mathrm{orb}}}\mathcal E,
+\qquad
+\partial_u\mathcal O,
+\qquad
+\partial_{v_{\mathrm{orb}}}\mathcal O,
+$$
+
+where $\mathcal E$ is the sampled normalized residual and $\mathcal O$ is the sweep objective. It also records sampled $\beta_{\max}$, sampled root margin, dynamic $\beta_{\max}$, dynamic root margin, bounded-return status, preferred-curve selection status, and the retained evidence blocker.
+
+On the low-authority branch-clock-lock artifact with $u$ extended through `0.86`, the source sweep produced `78` rows, `72` positive-root dynamically probed rows, `67` bounded-return rows, and `13` preferred branch-curve rows. The emitted preferred curve still selected the near-edge sequence through `u=0.84`, then selected a safer but worse-objective row at `u=0.86`:
+
+| $u$ | selected $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | dynamic $\beta_{\max}$ | dynamic root margin | branch-curve objective |
+| ---: | ---: | ---: | ---: | ---: | ---: |
+| `0.8` | `0.2` | `0.6920425007335225` | `0.9969101632777856` | `0.003089836722214412` | `0.5321670950472137` |
+| `0.82` | `0.175` | `0.688149794180312` | `0.9971460269790525` | `0.0028539730209474756` | `0.5294044161305449` |
+| `0.84` | `0.15` | `0.7025225416825435` | `0.9984513351641274` | `0.0015486648358725708` | `0.544100727967449` |
+| `0.86` | `0.1` | `0.7985096902994574` | `0.979443893644864` | `0.02055610635513605` | `0.6687531537863698` |
+
+The certificate over that widened artifact produced `16` positive-margin near-edge rows, `11` near-edge bounded-return rows, `44` complete finite-difference rows, and `8` hard-math candidates. Three of the hard-math candidates are selected preferred-curve rows:
+
+| selected row | $\mathcal E_{\mathrm{norm}}$ | sampled root margin | dynamic root margin | $\partial_u\mathcal E$ | $\partial_{v_{\mathrm{orb}}}\mathcal E$ | edge status |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| $(0.8,0.2)$ | `0.6920425007335225` | `0.03440378880696693` | `0.003089836722214412` | `-0.33250763690455726` | `0.13040210324868567` | `interior_improvement_available` |
+| $(0.82,0.175)$ | `0.688149794180312` | `0.03595914836107106` | `0.0028539730209474756` | `-0.30031520751466534` | `-0.4356951922969408` | `interior_improvement_available` |
+| $(0.84,0.15)$ | `0.7025225416825435` | `0.03727151599327183` | `0.0015486648358725708` | `-0.21915650977247494` | `-1.1975005306881228` | `interior_improvement_available` |
+
+The support-only control over the same original branch-curve grid produced `13` sampled positive-margin near-edge rows, but `0` near-edge bounded-return rows and `0` hard-math candidates. Its status is `fail_closed_missing_bounded_dynamic_return`, with first missing field `oblate_spheroid_near_edge_basin_certificate.rows[*].dynamic_return_status`.
+
+Interpretation. The certificate says the driven preferred curve is not an accidental single row; it is a finite-difference near-edge basin under the branch-clock-lock diagnostic. The residual keeps improving as $u$ increases and the selected rows press against the $c_f=1$ boundary, while dynamic root margin collapses to a few thousandths. That is mathematically interesting but physically dangerous: the next proof target is not to celebrate the edge row, but to derive an internal term that supplies the same tangent correction with a positive root-margin reserve large enough to survive refinement.
+
+### Branch-Clock-Lock Target Extraction - 2026-07-02
+
+Claim level. Priority-only missing-mechanism target. The runner [oblate-spheroid-branch-clock-lock-target.mjs](../../../scripts/braid-ideal/oblate-spheroid-branch-clock-lock-target.mjs) consumes a two-speed sweep artifact and extracts the acceleration scale that the assigned branch-clock-lock term supplied along each preferred branch-curve row. It does not authorize a stable braid, a preferred-configuration claim, or score movement. It records the missing internal mechanism explicitly as `internal_retained_history_tangent_authority_for_preferred_branch_curve`.
+
+The widened low-authority branch-clock-lock artifact used $c_f=1$, $k=1$, $\gamma=1.8$, $k_\parallel=0.8$, $\gamma_\parallel=1.6$,
+
+$$
+u\in\{0,0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.75,0.8,0.82,0.84,0.86\},
+$$
+
+and
+
+$$
+v_{\mathrm{orb}}\in\{0.1,0.125,0.15,0.175,0.2,0.225\}.
+$$
+
+It produced `78` rows, `72` positive-root dynamic probes, `67` bounded-return rows, and `13` preferred branch-curve rows. The support-only control on the same grid produced `78` rows, `72` dynamic probes, `0` bounded-return rows, and `0` preferred branch-curve rows. The preferred curve is therefore a tangent-lock diagnostic, not a support-only natural branch.
+
+The extracted preferred curve is:
+
+| $u$ | selected $v_{\mathrm{orb}}$ | $\mathcal E_{\mathrm{norm}}$ | dynamic root margin | clock-lock rms acceleration | target status |
+| ---: | ---: | ---: | ---: | ---: | --- |
+| `0` | `0.125` | `0.8344968589499883` | `0.8711900433971433` | `0.038167415146537466` | `positive_margin_tangent_authority_measured` |
+| `0.1` | `0.125` | `0.832082406980077` | `0.7812840978005431` | `0.03820733043569829` | `positive_margin_tangent_authority_measured` |
+| `0.2` | `0.125` | `0.8252492527571377` | `0.6849261760373526` | `0.038323467819798694` | `positive_margin_tangent_authority_measured` |
+| `0.3` | `0.125` | `0.815055937106585` | `0.5863512410328116` | `0.03850463136184044` | `positive_margin_tangent_authority_measured` |
+| `0.4` | `0.15` | `0.7880372800387961` | `0.46321787166724127` | `0.04340351979320102` | `positive_margin_tangent_authority_measured` |
+| `0.5` | `0.15` | `0.7707583108706657` | `0.3627150965288316` | `0.043622769740622534` | `positive_margin_tangent_authority_measured` |
+| `0.6` | `0.175` | `0.7452553492250933` | `0.238104282397274` | `0.04958506677479213` | `positive_margin_tangent_authority_measured` |
+| `0.7` | `0.175` | `0.7213946977542944` | `0.13337235877536857` | `0.049951518106057156` | `positive_margin_tangent_authority_measured` |
+| `0.75` | `0.175` | `0.7083519077315049` | `0.07974048180577409` | `0.05038111161951546` | `positive_margin_tangent_authority_measured` |
+| `0.8` | `0.2` | `0.6920962069948111` | `0.0030874623389054445` | `0.058648613347239885` | `missing_tangent_authority_exceeds_dynamic_root_margin` |
+| `0.82` | `0.175` | `0.6882728954707807` | `0.0028479982962151817` | `0.05211813485791998` | `missing_tangent_authority_exceeds_dynamic_root_margin` |
+| `0.84` | `0.15` | `0.7026262759501669` | `0.001542454157570483` | `0.04737213177153553` | `missing_tangent_authority_exceeds_dynamic_root_margin` |
+| `0.86` | `0.1` | `0.7984693440533435` | `0.02054868343441618` | `0.041713777503450046` | `missing_tangent_authority_exceeds_dynamic_root_margin` |
+
+The branch target summary is sharp:
+
+| Quantity | Value |
+| --- | ---: |
+| target rows | `13` |
+| rows with assigned branch-clock lock | `13` |
+| rows with dynamic root margin $\le 0.01$ | `3` |
+| rows where clock-lock rms acceleration exceeds dynamic root margin | `4` |
+| minimum branch-curve objective row | $(u,v_{\mathrm{orb}})=(0.82,0.175)$ |
+| minimum normalized residual row | $(u,v_{\mathrm{orb}})=(0.82,0.175)$ |
+| minimum dynamic root-margin row | $(u,v_{\mathrm{orb}})=(0.84,0.15)$ |
+| maximum clock-to-dynamic-margin diagnostic row | $(u,v_{\mathrm{orb}})=(0.84,0.15)$ |
+
+The near-edge finite-difference certificate over the same artifact still reports `16` positive-margin near-edge rows, `11` near-edge bounded-return rows, `44` complete finite-difference rows, and `8` hard-math candidates. Three selected preferred-curve rows remain hard-math candidates:
+
+| selected row | $\mathcal E_{\mathrm{norm}}$ | sampled root margin | dynamic root margin | $\partial_u\mathcal E$ | $\partial_{v_{\mathrm{orb}}}\mathcal E$ | edge status |
+| --- | ---: | ---: | ---: | ---: | ---: | --- |
+| $(0.8,0.2)$ | `0.6920962069948111` | `0.03440378880696693` | `0.0030874623389054445` | `-0.33698496450074034` | `0.12219472255867721` | `interior_improvement_available` |
+| $(0.82,0.175)$ | `0.6882728954707807` | `0.03595914836107095` | `0.0028479982962151817` | `-0.303755803070469` | `-0.44124901120520904` | `interior_improvement_available` |
+| $(0.84,0.15)$ | `0.7026262759501669` | `0.03727151599327183` | `0.001542454157570483` | `-0.2192445665640306` | `-1.1979506827515454` | `interior_improvement_available` |
+
+Interpretation. The preferred-configuration intuition now looks mathematically interesting, but the branch is not yet natural. The preferred path is not a single $(u,v_{\mathrm{orb}})$ point; it is a sampled curve that steps from low orbital speed at low translation, through $v_{\mathrm{orb}}\approx0.175$ to `0.2` near $u\approx0.8$, and then retreats to lower $v_{\mathrm{orb}}$ as the field-speed edge becomes too tight. The apparent best diagnostic point is near $(u,v_{\mathrm{orb}})=(0.82,0.175)$, where both residual and branch objective are lowest. That point is also dangerous: the assigned tangent correction is about `18.3` times the dynamic root margin by the diagnostic ratio. At $(0.84,0.15)$ the ratio is about `30.7`.
+
+This suggests a concrete analytical target. A real Noether braid mechanism would need to replace the assigned tangent branch-clock lock with an internal retained-history, wake-ledger, angular-momentum, shielding, or Noether sea response term whose tangent projection has roughly the measured scale while preserving a positive root-margin reserve. The next derivation should therefore solve for
+
+$$
+\mathbf P_T\mathbf a_{\mathrm{internal}}
+{}+\mathbf P_T\mathbf a_{\mathrm{wake}}
+{}+\mathbf P_T\mathbf a_{\mathrm{support}}
+-\mathbf P_T\mathbf a_{\mathrm{ansatz}}
+=0,
+$$
+
+or equivalently isolate the missing target
+
+$$
+\mathbf a_{\mathrm{target},T}
+=-
+\mathbf P_T\left(
+\mathbf a_{\mathrm{wake}}
+{}+\mathbf a_{\mathrm{support}}
+-\mathbf a_{\mathrm{ansatz}}
+\right),
+$$
+
+then ask whether retained roots can generate $\mathbf a_{\mathrm{target},T}$ without consuming the entire causal margin.
+
+Overall interpretation. The preferred-configuration intuition now has a sharper conditional form. With no tangential branch-clock term, the probe fails by support expansion or field-speed crossing. With normal support plus a tangent branch-clock lock, a bounded diagnostic branch appears and tends to move toward the causal edge: higher $u$, $v_{\mathrm{orb}}\approx0.175$ to `0.2`, lower residual, small action drift near the `0.2` orbital-speed rows, and rapidly shrinking root margin. The branch is not a breakthrough stable braid because the lock is externally assigned from the ansatz. The mathematical target is now precise: derive an internal retained-history term whose tangent projection approximates $\mathbf a_{\mathrm{clock}}$ while preserving $c_f=1$, positive causal-root margin, and same-record action closure.
 
 Frequency has at least three meanings:
 

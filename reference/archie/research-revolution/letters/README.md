@@ -1,6 +1,8 @@
 # Research Correspondence Drafts
 
-These are draft outreach letters, not sent correspondence. They are stored here because they are research-revolution interface material: academic, external-facing attempts to translate current $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective into reviewable questions for adjacent research teams.
+These are outreach letter drafts and send records. They are stored here because they are research-revolution interface material: academic, external-facing attempts to translate current $\mathbb{A}\mathbb{A}\mathbb{A}$ perspective into reviewable questions for adjacent research teams.
+
+The send history is intentionally lightweight. Keep only date, target draft, status, and short notes in [outreach-log.md](outreach-log.md); avoid storing recipient email addresses here.
 
 | Draft | Primary arXiv page | Intended use |
 | --- | --- | --- |

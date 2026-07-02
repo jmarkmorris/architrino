@@ -10,6 +10,10 @@
 - Assistant contract: [assistant-mode-contract.md](../archie/assistant-mode-contract.md)
 - Brainstorming: [brainstorming.md](brainstorming.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
+- Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
+- Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
+- Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 
@@ -19,7 +23,7 @@ This bucket owns product and interface planning for a user-facing Archie questio
 
 The existing [Archie Service Platform](../archie/service-platform.md) remains the owner for deployment architecture, backend or serverless runtime, model/provider abstraction, source ingestion, privacy, logging, rate limits, token ledger, presentation/media handling, GitHub issue handoff, issue-mining operations, cost controls, observability, and rollback. This bucket focuses on the user experience: conversation modes, multimodal input and output, subscription shape, service-native speech output, guided corpus explanation, idea triage, GitHub issue submission, generated explanatory media, and the [Generated Media Corporate Standard](corporate-media-standards.md).
 
-The v1 product boundary is captured in [v1-product-requirements.md](v1-product-requirements.md). No runtime AI answer generation is implemented here. This is priority-only planning for a future service.
+The v1 product boundary is captured in [v1-product-requirements.md](v1-product-requirements.md). The shared answer response shape is captured in [answer-artifact-manifest.md](answer-artifact-manifest.md). The first service-boundary map is captured in [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md). The typed service, validator, and endpoint contract target is captured in [manifest-service-contracts.md](manifest-service-contracts.md). The upstream source-selection and claim-label rules are captured in [answer-engine-source-contract.md](answer-engine-source-contract.md). No runtime AI answer generation is implemented here. This is priority-only planning for a future service.
 
 ## Objective
 
@@ -32,15 +36,17 @@ The interface should feel like a working research guide, not an oracle. It shoul
 Archie should provide:
 
 1. multimodal input: text first, then speech, image, screenshot, diagram, and document intake when privacy and retention rules are ready;
-2. multimodal output: cited text, service-native spoken replies with verbatim text, narration scripts, animation storyboards, diagrams, generated images, future generated video, guided reading paths, app links, submitted issue links, issue drafts, and saved session notes;
+2. multimodal output: cited text, high-quality service-native spoken replies synchronized with displayed verbatim text, narration scripts, animation storyboards, diagrams, generated images, future generated video, guided reading paths, app links, submitted issue links, issue drafts, and saved session notes;
 3. corpus guidance: source-grounded explanations of published $\mathbb{A}\mathbb{A}\mathbb{A}$ material with claim labels;
-4. presentation voice: agent-selected tone, pacing, narration, or storyboard framing that makes papers and concepts easier to read or hear without changing source authority;
+4. presentation voice: agent-selected tone, narration, or storyboard framing that makes papers and concepts easier to read or hear without changing source authority;
 5. idea triage: structured feedback on user proposals, including whether they are already covered, plausible, unsupported, or worth turning into a GitHub issue;
 6. GitHub action support: user-confirmed issue submission through GitHub, with no embedded credentials or autonomous filing;
 7. visual explanation support: generate images or diagrams when they clarify a question, with source and claim boundaries attached;
 8. token-based cost control: make paid or scarce work respect user spending limits, optional auto-fund settings, per-request caps, and post-run receipts without forcing constant token prompts.
 
 Question responses may therefore produce text, generated audio, generated images, diagrams, animation storyboards, and any future generated media as answer artifacts when the user requests them or when the selected mode makes them useful. Those artifacts must satisfy the [Generated Media Corporate Standard](corporate-media-standards.md) and remain subordinate to the same source links, claim labels, and System Card routing as the text answer.
+
+Every response should be represented by the [Answer Artifact Manifest](answer-artifact-manifest.md) before it is rendered. The manifest is the shared contract for source context, claim labels, displayed text, generated media, synchronized speech, token receipts, privacy state, available actions, and issue-mining metadata.
 
 ## Boundaries
 
@@ -57,20 +63,28 @@ Question responses may therefore produce text, generated audio, generated images
 
 1. `corpus_guide` - Ask a question and get a cited explanation with source links, claim level, and next reading path. Status: `candidate`.
 2. `multimodal_question_box` - Accept text, voice, screenshots, images, diagrams, and later documents through one intake surface. Status: `candidate`.
-3. `service_native_speech_and_presentation` - Offer first-party spoken narration, narration scripts, and animation storyboards while preserving source chips, claim labels, and System Card routing. Status: `candidate`.
-4. `visual_explainer` - Produce diagrams or generated image responses for concepts that benefit from visual grounding. Status: `candidate`.
-5. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
-6. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
-7. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
-8. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
-9. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
+3. `answer_artifact_manifest` - Keep source context, claim labels, answer body, generated media, speech sync, token receipt, privacy state, available actions, and issue-mining metadata in one response envelope. Status: `candidate`.
+4. `manifest_driven_service_architecture` - Map the manifest to service components, validators, endpoints, speech sync, token receipts, privacy state, and issue-mining flow. Status: `candidate`.
+5. `manifest_service_contracts` - Define typed service-boundary inputs/outputs, validator ordering, endpoint contracts, fail-closed manifest shape, and contract fixtures. Status: `candidate`.
+6. `answer_engine_source_contract` - Define source selection, claim-label assignment, unsupported-answer behavior, answer body fields, and idea-triage classification before media or token work. Status: `candidate`.
+7. `service_native_speech_and_presentation` - Offer first-party spoken narration, narration scripts, and animation storyboards while preserving source chips, claim labels, and System Card routing. Status: `candidate`.
+8. `visual_explainer` - Produce diagrams or generated image responses for concepts that benefit from visual grounding. Status: `candidate`.
+9. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
+10. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
+11. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
+12. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
+13. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
 
 ## Next Work
 
-1. Use [v1-product-requirements.md](v1-product-requirements.md) to drive the next service-platform architecture packet.
-2. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
-3. Convert the fixture-question list into executable regression expectations after the service implementation exists.
-4. Define the issue-mining report format that distinguishes recurring signal from noise and routes fixes to owners.
-5. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
-6. Define the service-native speech MVP: answer audio, sphere-initiated markdown portion audio, full-document sphere audio, verbatim text, ephemeral audio handling, spending-limit behavior, and voice-identity guardrails.
-7. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.
+1. Use [answer-engine-source-contract.md](answer-engine-source-contract.md) to drive source-selection, claim-label, unsupported-answer, answer-body, and idea-triage fixtures.
+2. Use [manifest-service-contracts.md](manifest-service-contracts.md) to drive typed service-boundary, validator, endpoint, and fixture implementation.
+3. Use [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md) as the service-boundary map for the next implementation-ready architecture packet.
+4. Use [answer-artifact-manifest.md](answer-artifact-manifest.md) as the response-envelope contract for that architecture packet.
+5. Use [v1-product-requirements.md](v1-product-requirements.md) to drive the product boundary around that manifest.
+6. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
+7. Convert the fixture-question list into executable regression expectations after the service implementation exists.
+8. Define the issue-mining report format that distinguishes recurring signal from noise and routes fixes to owners.
+9. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
+10. Define the service-native speech MVP: high-quality-only answer audio, sphere-initiated markdown portion audio, full-document sphere audio, synchronized displayed verbatim text, text-only fallback, ephemeral audio handling, spending-limit behavior, and voice-identity guardrails.
+11. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.

@@ -492,11 +492,11 @@ It should be zero only when the weak-gravity and dark-energy projections use the
 
 ## First Mathematical Object To Add Next
 
-The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) blocks first at `missing_accepted_theta_sea_rho_NS` while the pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics pass. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`, so this is an executable residual shape, not a dark-energy derivation.
+The `EQ-20` pressure/$\Lambda_{\mathrm{eff}}$ slice is now executable in [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). Its first `theta_sea_rho_NS` outer-binary source-attempt fixture is [eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json](../../../scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json). It blocks first at `missing_accepted_theta_sea_rho_NS` while the outer-binary strain, release-channel availability, pressure-projection, pressure-law, equation-of-state, $\Lambda_{\mathrm{eff}}$, source-provenance, shared-key, FRW-handoff, and no-hidden-retune numeric diagnostics pass. The inherited FRW handoff blocker remains `missing_accepted_theta_cos`, so this is an executable residual shape, not a dark-energy derivation.
 
 ```bash
 node scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs \
-  --input scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json \
+  --input scripts/equation-mapping/eq20-theta-sea-rho-ns-outer-binary-pressure-source-attempt.v1.json \
   --summary --pretty
 ```
 

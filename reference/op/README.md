@@ -14,7 +14,8 @@ For ordinary Codex thread startup, use this file as the index. Read only the spe
 - Multiple parallel Codex threads: start from [codex-goal-seeking-prompt-template.md](codex-goal-seeking-prompt-template.md), then use [codex-multiprompt.md](codex-multiprompt.md) for worker boundaries and integration.
 - GitHub issue resolution: [issue-resolution.md](issue-resolution.md), then [codex-pr-branch.md](codex-pr-branch.md) if the work needs a branch, commit, push, or PR.
 - Branch, commit, push, and PR mechanics: [codex-pr-branch.md](codex-pr-branch.md).
-- Source mining: [source-mining-best-practice.md](../priorities/source-mining/source-mining-best-practice.md).
+- Source mining: [source-mining-best-practice.md](source-mining-best-practice.md).
+- Theory orientation for core geometry and corpus sessions: [theory-orientation.md](theory-orientation.md).
 
 Files named `entourage-*` in this directory belong to a separate workflow. Do not treat them as Codex thread-start guidance unless the operator/developer explicitly requests that workflow.
 

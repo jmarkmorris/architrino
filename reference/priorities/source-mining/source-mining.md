@@ -40,7 +40,7 @@ Do not start broad particle-physics mining merely because a source family is lar
 
 ## Process Guide
 
-Use [source-mining-best-practice](source-mining-best-practice.md) for source-type workflows, report shape, theory-mapping discipline, corpus deferral rules, and source-family intake rules.
+Use [source-mining-best-practice](../../op/source-mining-best-practice.md) for source-type workflows, report shape, theory-mapping discipline, corpus deferral rules, and source-family intake rules.
 
 Use topic-sweep mode when the operator needs to reconstruct what the legacy archive says about one concept across many posts before choosing individual sources to mine. A topic sweep is source discovery and synthesis; it should not add source-mining-history rows unless the normal source-mining triage and accepted edit or explicit no-edit disposition are also completed for those posts.
 
@@ -95,7 +95,7 @@ The completed target list lives in [source-mining-history](source-mining-history
 
 ## Candidate Source-Mining Backlog
 
-This backlog names high-value source families. Workflow details live in [source-mining-best-practice](source-mining-best-practice.md).
+This backlog names high-value source families. Workflow details live in [source-mining-best-practice](../../op/source-mining-best-practice.md).
 
 ### Video And Seminar Archives
 
