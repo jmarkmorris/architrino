@@ -44,11 +44,21 @@ The service platform must define:
 7. retrieval/index service for authored corpus, generated reading copies, app guides, and curated prior-physics sources;
 8. source-authority flags for public, operator/developer, priority-only, and excluded material;
 9. token ledger for user-visible token balances, subscription grants, preflight quotes, pending holds, post-run receipts, and refunds;
-10. rate limits, abuse controls, and cost ceilings;
-11. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, tokens quoted, tokens spent, and cost per answer;
-12. staging and production environments;
-13. release, rollback, and incident-response procedure;
-14. privacy, retention, deletion, and user-consent policy for prompts, speech, images, answer histories, and token transaction records.
+10. read-aloud and presentation layer for speech-friendly answer text, narration scripts, and animated-explainer storyboards that preserve source authority;
+11. speech, avatar, animation, and generated-video policy before any service-native spoken or animated output ships;
+12. GitHub issue handoff through prefilled issue URLs or a later authenticated action broker, with visible GitHub-login and public-visibility warnings;
+13. issue-mining pipeline for duplicate clustering, recurring signal extraction, noise classification, owner routing, and fix queues;
+14. rate limits, abuse controls, and cost ceilings;
+15. observability: logs, metrics, latency, error classes, source misses, unsupported-answer rate, tokens quoted, tokens spent, presentation/artifact requests, issue handoffs, issue-mining signals, and cost per answer;
+16. staging and production environments;
+17. release, rollback, and incident-response procedure;
+18. privacy, retention, deletion, and user-consent policy for prompts, speech, images, answer histories, narration scripts, animation storyboards, submitted issue links, issue-mining metadata, and token transaction records.
+
+The token ledger is not only a billing convenience. It is the platform mechanism for normalizing heterogeneous service work: static source routing, corpus retrieval, curated external comparison, long-context reasoning, diagram or image work, read-aloud formatting, narration scripting, animation storyboarding, issue preparation, speech, image intake, document intake, and future saved notebooks can all draw different backend resources while still presenting one understandable user-facing unit.
+
+The issue handoff and issue-mining pipeline should follow the same public-safety boundary as the iOS/iPadOS reader feedback path: users control GitHub submission, GitHub login is visible, public issue visibility is explicit, and no public client embeds GitHub credentials. The service must still preserve enough structured issue metadata to mine recurring signal and route fixes instead of letting user feedback become an unprocessed comment pile.
+
+Read-aloud output and animated explainers are presentation layers, not source authorities. The platform must keep narration style, speech, avatar animation, and generated video subordinate to the same source chips, claim labels, and System Card routes as the plain answer. Browser/system narration surfaces such as Microsoft Edge Read Aloud should be supported first through clean reading views, semantic headings, captions, and math-aware companion text. Service-native speech or animated output also needs token quotes, retention policy, accessibility captions, user controls, and no real-person impersonation.
 
 ## Source Authority
 
@@ -75,8 +85,10 @@ The System Card must remain visible from the service. The platform should expose
 3. `source_ingestion_design` - Define versioned corpus ingestion, retrieval indexes, source classes, public/operator visibility, and citation payloads. Status: `long-term`.
 4. `answer_engine_contract` - Define mode routing, retrieval prompts, claim labels, System Card routing, unsupported-answer behavior, and regression fixtures. Status: `long-term`.
 5. `privacy_security_token_cost_policy` - Define prompt/image/speech handling, retention, logs, consent, rate limits, abuse controls, token accounting, and budget controls. Status: `long-term`.
-6. `deployment_and_ops_plan` - Define staging, production, environment variables, CI/CD, monitoring, rollback, incident response, and domain routing. Status: `long-term`.
-7. `public_beta_gate` - Run fixture questions, source-link QA, System Card checks, privacy review, cost review, and deployment smoke tests before any public beta. Status: `long-term`.
+6. `read_aloud_and_presentation_policy` - Define browser read-aloud requirements, narration style rules, speech/avatar/video deferrals, storyboard format, accessibility captions, token schedule, and source-authority guardrails. Status: `long-term`.
+7. `github_issue_feedback_loop` - Define prefilled GitHub issue handoff, public-visibility warning, issue metadata, issue-mining reports, signal/noise classification, and owner-routed fix queues. Status: `long-term`.
+8. `deployment_and_ops_plan` - Define staging, production, environment variables, CI/CD, monitoring, rollback, incident response, and domain routing. Status: `long-term`.
+9. `public_beta_gate` - Run fixture questions, source-link QA, System Card checks, read-aloud/storyboard checks, GitHub issue handoff checks, issue-mining checks, privacy review, cost review, and deployment smoke tests before any public beta. Status: `long-term`.
 
 ## Near-Term Rule
 
@@ -99,7 +111,7 @@ Context:
 Task:
 - Produce a deployment architecture packet for the full Archie service.
 - Compare deployment options: GitHub Pages entry plus backend, separate hosted webapp, serverless/edge service, and managed AI gateway.
-- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, privacy/security/token-accounting policy, observability, staging/production split, and rollback plan.
+- Define the source-ingestion pipeline, answer-engine boundary, model/provider abstraction, read-aloud and presentation layer, animation-storyboard boundary, privacy/security/token-accounting policy, GitHub issue handoff, issue-mining loop, observability, staging/production split, and rollback plan.
 - Identify the minimum theory-closure and corpus-readiness gates before public beta.
 
 Scope:
