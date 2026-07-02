@@ -337,7 +337,7 @@ The source-binding manifest is [iron-group-binding-cusp-source-binding-candidate
 
 | Source family | Toy rows it controls | Current status | First blocker |
 | --- | --- | --- | --- |
-| `branch_interface` | Pair corridor rewards, pair mismatch costs, bounded degree, local corridor saturation, and $p+n$ / $p+p$ channel selection. | Blocked; [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json) is durable and parseable, but its rows remain target/candidate rows rather than accepted source evidence. | `missing_accepted_nucleon_branch_interface_ledgers` |
+| `branch_interface` | Pair corridor rewards, pair mismatch costs, bounded degree, local corridor saturation, and $p+n$ / $p+p$ channel selection. | Blocked; [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json) is durable and parseable, but its rows remain target/candidate rows rather than accepted source evidence. The source-acquisition report now materializes the upstream target rows and names `accepted_proton_branch_interface_ledger` as the first missing upstream accepted row. | `missing_accepted_nucleon_branch_interface_ledgers` |
 | `confinement_functional` | Corridor scale, surface loss, large-$A$ packing, shell/readout envelope, and finite saturation. | Blocked; [confinement-functional-source-target.v1.json](../../../scripts/nuclear-atomic/confinement-functional-source-target.v1.json) is durable and parseable, but its rows remain target rows rather than accepted source evidence. | `missing_accepted_sigma_eff_extraction` |
 | `weak_channel` | Beta-stable band, asymmetry pressure, weak reaction provenance, and weak/noether coupling consistency. | Blocked; retained muon ledger and weak projection are present, but downstream weak rows remain attempt-level. | `missing_accepted_weak_quotient` |
 | `noether_sea_response` | Local $\theta_{\mathrm{sea}}$, $\rho_{\text{NS}}$, density-compression response, and bounded sea-polarization row. | Accepted by the retained-window density-compression provider; [noether-sea-response-source-target-check.mjs](../../../scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs) verifies durable source evidence, retained-window agreement, and Fe/Ni toy row consumption. | none |
@@ -354,7 +354,7 @@ The branch-interface source target has its own algebraic success-marker check:
 node scripts/nuclear-atomic/nucleon-branch-interface-source-target-check.mjs --summary --pretty
 ```
 
-That check currently reports `algebraicPass: true` for the $p+n$/$p+p$ orientation extraction but keeps `--require-accepted` blocked until `nucleon_branch_interface_ledgers`, `pn_orientation_count`, `pp_orientation_count`, and `same_record_energy_momentum_angular_momentum_ledger` become accepted source rows.
+That check currently reports `algebraicPass: true` for the $p+n$/$p+p$ orientation extraction and `sourceAcquisitionPass: false` with `sourceAcquisitionFirstMissingObject: missing_accepted_proton_branch_interface_ledger`. It keeps `--require-accepted` blocked until `nucleon_branch_interface_ledgers`, `pn_orientation_count`, `pp_orientation_count`, and `same_record_energy_momentum_angular_momentum_ledger` become accepted source rows and their upstream `sourceAcquisitionTargets` for proton/neutron branch-interface, same-record conservation, Coulomb separation, and no-open-color rows carry accepted durable non-fixture evidence.
 
 The confinement-functional source target also has a structural success-marker check:
 
@@ -381,6 +381,8 @@ node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summa
 That check currently reports `accepted_noether_sea_response_rows`: the provider path is durable source evidence, the required $\rho_{\text{NS}}$, $\theta_{\mathrm{sea}}$, stress-strain, speed, causality, and correlation rows are accepted, acoustic-elastic agreement stays within the refinement tolerance, and the Fe/Ni `alphaSea`, `seaImbalancePenalty`, and `noether_sea_polarization_reward` rows consume accepted Noether sea response rows.
 
 The report emits row-level traceability in `sourceBinding.coefficientBindings` and `sourceBinding.graphRuleRowBindings`. A toy coefficient or graph rule is promotion-ready only when every required source row listed under its bound source families is accepted; family-level acceptance is not enough.
+
+The Fe/Ni source-binding report now uses the branch-interface, confinement-functional, weak-channel, and Noether sea response source-target checkers as the family acceptance authorities. A family is not accepted merely because row labels are present: the relevant checker must report its accepted status, preserve its algebraic or structural checks, and keep source evidence durable and non-fixture.
 
 This command is expected to fail until all required source families are accepted from durable non-priority source evidence. The toy-control pass therefore remains separate from promotion readiness: `--require-pass` may pass while `--require-promotion-ready` fails.
 

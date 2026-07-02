@@ -60,10 +60,18 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "confinement_functional",
     "weak_channel",
   ]);
-  assert.equal(report.sourceBinding.familyResults.branch_interface.sourceStatus, "required_rows_missing");
+  assert.equal(
+    report.sourceBinding.familyResults.branch_interface.sourceStatus,
+    "missing_accepted_branch_interface_rows",
+  );
   assert.equal(
     report.sourceBinding.familyResults.branch_interface.nearestCandidateId,
     "nucleon_branch_interface_source_target_current",
+  );
+  assert.equal(
+    report.sourceBinding.familyResults.branch_interface
+      .sourceAcquisitionFirstMissingObject,
+    "missing_accepted_proton_branch_interface_ledger",
   );
   assert.deepEqual(report.sourceBinding.familyResults.branch_interface.missingOrRejectedFields, [
     "rows.nucleon_branch_interface_ledgers.accepted",
@@ -79,10 +87,35 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "missing_accepted_branch_interface_rows",
   );
   assert.equal(branchCandidate.sourceTargetCheck.summary.algebraicPass, true);
+  assert.equal(branchCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    branchCandidate.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_proton_branch_interface_ledger",
+  );
+  assert.deepEqual(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.rowChecks
+      .pn_orientation_count.missingAcceptedSourceRows,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_branch_interface_ledger.accepted,
+    false,
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_branch_interface_ledger.currentEvidenceStatus,
+    "not_acquired",
+  );
   assert.equal(branchCandidate.sourceTargetCheck.differential.passed, true);
   assert.equal(
     report.sourceBinding.familyResults.confinement_functional.sourceStatus,
-    "required_rows_missing",
+    "missing_accepted_confinement_functional_rows",
   );
   assert.equal(
     report.sourceBinding.familyResults.confinement_functional.nearestCandidateId,
@@ -102,11 +135,16 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     "missing_accepted_confinement_functional_rows",
   );
   assert.equal(confinementCandidate.sourceTargetCheck.summary.structuralPass, true);
+  assert.equal(confinementCandidate.sourceTargetCheck.summary.sourceEvidencePass, true);
   assert.equal(
     confinementCandidate.sourceTargetCheck.summary.firstMissingObject,
     "missing_accepted_sigma_eff_extraction",
   );
   assert.equal(report.sourceBinding.familyResults.weak_channel.firstMissingObject, "missing_accepted_weak_quotient");
+  assert.equal(
+    report.sourceBinding.familyResults.weak_channel.sourceStatus,
+    "missing_accepted_weak_channel_rows",
+  );
   const weakCandidate = report.sourceBinding.candidateResults.find(
     (candidate) => candidate.family === "weak_channel",
   );
@@ -150,6 +188,11 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.branch_interface.requiredRows,
     ["nucleon_branch_interface_ledgers"],
   );
+  assert.equal(
+    report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.branch_interface
+      .sourceAcquisitionFirstMissingObject,
+    "missing_accepted_proton_branch_interface_ledger",
+  );
   assert.deepEqual(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.confinement_functional.missingRows,
     ["delta_E_corr_NN"],
@@ -172,6 +215,11 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check.firstMissingObject,
     "missing_accepted_delta_E_corr_NN",
+  );
+  assert.equal(
+    report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
+      .requiredRowsByFamily.branch_interface.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_proton_branch_interface_ledger",
   );
 });
 

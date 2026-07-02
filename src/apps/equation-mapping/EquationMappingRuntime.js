@@ -14,7 +14,6 @@ import {
   normalizeEquationMapDocument,
   normalizeEquationMapDocuments,
   normalizeEquationScale,
-  normalizeSectionLinePlacement,
 } from "./EquationMappingData.js";
 import {
   createEditableEquationMapDocument,
@@ -26,7 +25,8 @@ import {
   updateEquationOverlay,
 } from "./EquationMappingEditor.js";
 
-const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v4";
+const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7";
+const SIZE_CALIBRATION_VERSION = 2;
 const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
 const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -108,7 +108,7 @@ function createIconSvg(name) {
     case "search":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="6.5" fill="none" stroke="currentColor" stroke-width="2"/><line x1="15.5" y1="15.5" x2="21" y2="21" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "settings":
-      return '<svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M12 3v3M12 18v3M4.2 7.5l2.6 1.5M17.2 15l2.6 1.5M19.8 7.5 17.2 9M6.8 15l-2.6 1.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
+      return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.2 2h-.4a2 2 0 0 0-2 2v.2a2 2 0 0 1-1 1.7l-.4.2a2 2 0 0 1-2 0l-.2-.1a2 2 0 0 0-2.7.7l-.2.4A2 2 0 0 0 4 9.8l.2.1a2 2 0 0 1 1 1.7v.6a2 2 0 0 1-1 1.7l-.2.1a2 2 0 0 0-.7 2.7l.2.4a2 2 0 0 0 2.7.7l.2-.1a2 2 0 0 1 2 0l.4.2a2 2 0 0 1 1 1.7v.4a2 2 0 0 0 2 2h.4a2 2 0 0 0 2-2v-.2a2 2 0 0 1 1-1.7l.4-.2a2 2 0 0 1 2 0l.2.1a2 2 0 0 0 2.7-.7l.2-.4a2 2 0 0 0-.7-2.7l-.2-.1a2 2 0 0 1-1-1.7v-.6a2 2 0 0 1 1-1.7l.2-.1a2 2 0 0 0 .7-2.7l-.2-.4a2 2 0 0 0-2.7-.7l-.2.1a2 2 0 0 1-2 0l-.4-.2a2 2 0 0 1-1-1.7V4a2 2 0 0 0-2-2Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><circle cx="12" cy="12" r="3" fill="none" stroke="currentColor" stroke-width="2"/></svg>';
     case "edit":
       return '<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4.5L19 9.5 14.5 5 4 15.5V20Z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="m13.5 6 4.5 4.5" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>';
     case "collapse":
@@ -164,12 +164,14 @@ export class EquationMappingRuntime {
     this.backgroundId = normalizeBackgroundId(
       options.backgroundId ?? savedSettings.backgroundId ?? this.activeDocument.backgroundId ?? DEFAULT_BACKGROUND_ID
     );
-    this.sectionLinePlacement = normalizeSectionLinePlacement(
-      options.sectionLinePlacement ?? savedSettings.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
+    const savedSizeSettingsAreCurrent = savedSettings.sizeCalibrationVersion === SIZE_CALIBRATION_VERSION;
+    this.equationScale = normalizeEquationScale(
+      options.equationScale ??
+        (savedSizeSettingsAreCurrent ? savedSettings.equationScale : DEFAULT_EQUATION_SCALE)
     );
-    this.equationScale = normalizeEquationScale(options.equationScale ?? savedSettings.equationScale);
     this.commentFontSize = normalizeCommentFontSize(
-      options.commentFontSize ?? savedSettings.commentFontSize ?? DEFAULT_COMMENT_FONT_SIZE
+      options.commentFontSize ??
+        (savedSizeSettingsAreCurrent ? savedSettings.commentFontSize : DEFAULT_COMMENT_FONT_SIZE)
     );
     this.indexCollapsed = Boolean(options.indexCollapsed ?? savedSettings.indexCollapsed ?? false);
     this.searchOpen = false;
@@ -216,9 +218,9 @@ export class EquationMappingRuntime {
       activeOverlayId: this.activeOverlayId,
       activeAnchorId: this.activeAnchorId,
       backgroundId: this.backgroundId,
-      sectionLinePlacement: this.sectionLinePlacement,
       equationScale: this.equationScale,
       commentFontSize: this.commentFontSize,
+      sizeCalibrationVersion: SIZE_CALIBRATION_VERSION,
       indexCollapsed: this.indexCollapsed,
     });
   }
@@ -546,7 +548,7 @@ export class EquationMappingRuntime {
         activeOverlay?.targetAnchorId ?? "",
         this.activeDocument.anchors.map((anchor) => ({ value: anchor.id, label: anchor.label }))
       ),
-      this.renderEditorSelect("Line", "overlay-line", activeOverlay?.sectionLinePlacement ?? this.sectionLinePlacement, [
+      this.renderEditorSelect("Line", "overlay-line", activeOverlay?.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT, [
         { value: "above", label: "above" },
         { value: "below", label: "below" },
       ]),
@@ -633,11 +635,6 @@ export class EquationMappingRuntime {
     colorRow.append(swatches);
     panel.append(
       colorRow,
-      this.renderSegmentedSetting("Section line", ["above", "below"], this.sectionLinePlacement, (value) => {
-        this.sectionLinePlacement = normalizeSectionLinePlacement(value);
-        this.persistSettings();
-        this.render();
-      }),
       this.renderSegmentedSetting("Equation", ["small", "medium", "large"], this.equationScale, (value) => {
         this.equationScale = normalizeEquationScale(value);
         this.persistSettings();
@@ -695,7 +692,7 @@ export class EquationMappingRuntime {
     const targetPlacementByAnchor = new Map(
       document.overlays.map((overlay) => [
         overlay.targetAnchorId,
-        overlay.sectionLinePlacement ?? this.sectionLinePlacement,
+        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT,
       ])
     );
     document.formulaParts.forEach((part) => {
@@ -788,7 +785,7 @@ export class EquationMappingRuntime {
         stageRect,
         anchorElement.getBoundingClientRect(),
         commentElement.getBoundingClientRect(),
-        overlay.sectionLinePlacement ?? this.sectionLinePlacement
+        overlay.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
       );
       const line = createSvgElement(this.document, "line");
       line.classList.add("equation-mapping-pointer-line");

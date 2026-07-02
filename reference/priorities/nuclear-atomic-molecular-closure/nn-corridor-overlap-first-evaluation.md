@@ -203,6 +203,35 @@ All entries are in MeV except $r$.
 | Channel provenance | $W_c$ and $M_c$ are extracted from $\mathcal B_{ij}^{\mathrm{int},0}$ through $\sigma_{\mathrm{orient},c}$ and $P_c$. | Native first row; still provisional until accepted proton and neutron branch-interface ledgers certify the counted orientation rows. |
 | Scale provenance | $A_{\mathrm{corr}}$, radii, and widths remain reduced-row parameters. | Source lead only until extracted from the same $\sigma_{\mathrm{eff}}$ functional. |
 
+## Branch-Interface Source-Acquisition Bundle
+
+The accepted branch-interface bundle for this reduced row is
+
+$$
+\mathcal S_{\mathrm{BI}}^{NN}
+=
+\left(
+\mathcal L_{\mathrm{BI}}^{p},
+\mathcal L_{\mathrm{BI}}^{n},
+\mathcal L_{E\mathbf p\mathbf J}^{pn,pp},
+\mathcal C_{\mathrm{no\ open\ color}}
+\right).
+$$
+
+Here $\mathcal L_{\mathrm{BI}}^{p}$ is the accepted proton branch-interface ledger, $\mathcal L_{\mathrm{BI}}^{n}$ is the accepted neutron branch-interface ledger, $\mathcal L_{E\mathbf p\mathbf J}^{pn,pp}$ is the same-record conservation ledger carrying both $p+n$ and $p+p$ rows, and $\mathcal C_{\mathrm{no\ open\ color}}$ is the no-open-color far-field closure shared with the confinement-functional target.
+
+The executable branch target now materializes these as `sourceAcquisitionTargets` in [nucleon-branch-interface-source-target.v1.json](../../../scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json). The current source-acquisition check deliberately fails:
+
+$$
+\mathrm{sourceAcquisitionPass}=\mathrm{false},
+\qquad
+\mathrm{firstMissing}
+=
+\texttt{missing\_accepted\_proton\_branch\_interface\_ledger}.
+$$
+
+This is the correct status. The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra only.
+
 ## Remaining Native Replacement
 
 The channel weights have a first native branch-interface extraction. The next accepted artifact must replace the remaining reduced scale and range parameters with values from the same confinement functional:

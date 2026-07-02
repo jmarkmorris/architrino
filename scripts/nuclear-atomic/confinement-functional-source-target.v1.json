@@ -14,6 +14,7 @@
     "requiredAcceptedCommand": "node scripts/nuclear-atomic/confinement-functional-source-target-check.mjs --summary --require-accepted",
     "currentStatus": "missing_accepted_confinement_functional_rows",
     "currentStructuralPass": true,
+    "requiredEvidenceStatus": "accepted_non_fixture_source",
     "firstMissingObject": "missing_accepted_sigma_eff_extraction"
   },
   "rows": {

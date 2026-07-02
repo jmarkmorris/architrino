@@ -385,7 +385,7 @@ The trace-free part of this test is limited by what the branch actually probes. 
 The pressure specialization has the same discipline. For a branch-preserving pressure perturbation,
 
 $$
-\delta_Pm_{\mathrm{tr}}(A)
+\delta_{\!P}m_{\mathrm{tr}}(A)
 =
 \alpha_{\mathrm{m}}
 \frac{1}{c_{\text{eff},0}^{2}}

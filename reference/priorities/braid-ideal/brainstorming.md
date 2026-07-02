@@ -11,21 +11,21 @@ Working label. `ideal_braid` is a working label only. It is deliberately specula
 The seed thought experiment uses an empty Euclidean void with six architrinos, three Positrinos and three Electrinos. Put the Positrinos at the positive coordinate sites
 
 $$
-P_x=(1,0,0),
+\epsilon_{+,x}=(1,0,0),
 \qquad
-P_y=(0,1,0),
+\epsilon_{+,y}=(0,1,0),
 \qquad
-P_z=(0,0,1),
+\epsilon_{+,z}=(0,0,1),
 $$
 
 and the Electrinos at the negative coordinate sites
 
 $$
-E_x=(-1,0,0),
+\epsilon_{-,x}=(-1,0,0),
 \qquad
-E_y=(0,-1,0),
+\epsilon_{-,y}=(0,-1,0),
 \qquad
-E_z=(0,0,-1).
+\epsilon_{-,z}=(0,0,-1).
 $$
 
 The initial velocities are zero. The system has been held long enough that causal wakes are already past the opposite partners, so the start is not a no-history release. The active wake field already contains source history from all six architrinos.
@@ -44,8 +44,8 @@ The distinguishing invariant is the number of same-polarity opposite axial pairs
 
 | Class | Representative | Opposite-pair pattern | Notes |
 | --- | --- | --- | --- |
-| `face-opposite` | $P:\{+x,+y,+z\}$, $E:\{-x,-y,-z\}$ | Every axis is split $P/E$ | Positrinos occupy one triangular face; Electrinos occupy the opposite face. This is the original held-release seed. |
-| `axial-paired` | $P:\{+x,-x,+y\}$, $E:\{-y,+z,-z\}$ | One $P/P$ axis, one $E/E$ axis, one split $P/E$ axis | This is the only other balanced class up to rotation. |
+| `face-opposite` | $\epsilon_+:\{+x,+y,+z\}$, $\epsilon_-:\{-x,-y,-z\}$ | Every opposite axial pair contains one Positrino and one Electrino. | Positrinos occupy one triangular face; Electrinos occupy the opposite face. This is the original held-release seed. |
+| `axial-paired` | $\epsilon_+:\{+x,-x,+y\}$, $\epsilon_-:\{-y,+z,-z\}$ | One opposite pair has two Positrinos, one has two Electrinos, and one has one of each. | This is the only other balanced class up to rotation. |
 
 This is a finite-geometry fact, not a deep topology claim: it is the classification of balanced two-colorings of octahedron vertices under the octahedral rotation group. The `face-opposite` class is the one that carries the strongest tetrahedral face/opposite-face symmetry. The `axial-paired` class is a necessary control because it has the same inventory and sites but not the same symmetry group.
 
@@ -74,7 +74,7 @@ The early motion should therefore be read as:
 
 With perfect symmetry, the reduced state may stay in a symmetric channel: two expanding, mutually attracting triangles move toward a high-acceleration close pass. With small perturbations, the close pass may select a branch: temporary pair-lock, scattering, a three-binary cluster, or a breather-like attempt.
 
-The important limitation is that this is not yet a stable Noether braid. It has the right primitive inventory, $3P+3E$, but not a certified nested hierarchy, same-level branch, shielding map, angular-momentum accommodation, returned-history closure, or stability basin.
+The important limitation is that this is not yet a stable Noether braid. It has the right primitive inventory, $3\epsilon_+ + 3\epsilon_-$, but not a certified nested hierarchy, same-level branch, shielding map, angular-momentum accommodation, returned-history closure, or stability basin.
 
 ## Held-Release Toy Run - 2026-07-01
 
@@ -82,7 +82,7 @@ Claim level. Priority-only exploratory run. The runner [held-release-causal-wake
 
 The default run used:
 
-- seed: $P_x,P_y,P_z,E_x,E_y,E_z$ as above;
+- seed: $\epsilon_{+,x},\epsilon_{+,y},\epsilon_{+,z},\epsilon_{-,x},\epsilon_{-,y},\epsilon_{-,z}$ as above;
 - initial velocity: zero;
 - held prehistory: `holdTime=4`, long enough for every initial partner wake to cross the seed when $c_f=1$;
 - release duration: `3`;
@@ -178,9 +178,9 @@ Proof route. Prove the Euclidean-void invariant first, then test which additiona
 The runner also tested the other balanced octahedral decoration class with the `axial-paired` preset:
 
 $$
-P:\{+x,-x,+y\},
+\epsilon_+:\{+x,-x,+y\},
 \qquad
-E:\{-y,+z,-z\}.
+\epsilon_-:\{-y,+z,-z\}.
 $$
 
 This uses the same held prehistory, zero initial velocity, softening, and partner-wake force law as the original run. The only intended change is the rotation-class representative.
@@ -505,9 +505,9 @@ $$
 \mathcal S_{\mathrm{fo}}
 =
 \left\{
-P:\{+x,+y,+z\},
+\epsilon_+:\{+x,+y,+z\},
 \quad
-E:\{-x,-y,-z\}
+\epsilon_-:\{-x,-y,-z\}
 \right\}.
 $$
 
@@ -517,20 +517,20 @@ $$
 \mathcal S_{\mathrm{fo}}^{\mathrm{pol}}
 =
 \left\{
-E:\{+x,+y,+z\},
+\epsilon_-:\{+x,+y,+z\},
 \quad
-P:\{-x,-y,-z\}
+\epsilon_+:\{-x,-y,-z\}
 \right\}.
 $$
 
-Primitive-polarity convention. Positrino/Electrino polarity is charge and interaction bookkeeping; it is not the matter/antimatter distinction. A `P/E swap` in this packet means only a polarity-inverted support display or a charged-sector ledger operation. It must not be read as the matter/antimatter operation by itself, and it must not be read as erasing an Electrino identity and installing a Positrino identity, or the reverse, at the same site. Architrino identity is provenance-bearing: it includes the retained path history, causal-root rows, wake-history rows, action rows, momentum/angular-momentum rows, and stability rows that still belong to that branch.
+Primitive-polarity convention. Positrino/Electrino polarity is charge and interaction bookkeeping; it is not the matter/antimatter distinction. A polarity-inverted support display in this packet means only that the visible Positrino/Electrino labels have been inverted for a support-control or charged-sector ledger operation. It must not be read as the matter/antimatter operation by itself, and it must not be read as erasing an Electrino identity and installing a Positrino identity, or the reverse, at the same site. Architrino identity is provenance-bearing: it includes the retained path history, causal-root rows, wake-history rows, action rows, momentum/angular-momentum rows, and stability rows that still belong to that branch.
 
 $$
 q_i\mapsto -q_i
 \quad\text{only as the polarity-ledger part of a declared charged-sector conjugation.}
 $$
 
-The local notation can therefore display a support-level polarity mirror, but a physical matter/antimatter mirror requires a retained solver row that carries the pro/anti braid orientation and identity-bearing history through the conjugation. Charged branches may also require the sector-visible polarity ledger to map to the opposite charge row, but the P/E inventory is not the matter/antimatter axis. A partial rearrangement may be a different balanced inventory, but it is not the anti-branch of the starting branch by itself. Likewise, a label-only replacement without the wake-history provenance is not a branch identity statement.
+The local notation can therefore display a support-level polarity mirror, but a physical matter/antimatter mirror requires a retained solver row that carries the pro/anti braid orientation and identity-bearing history through the conjugation. Charged branches may also require the sector-visible polarity ledger to map to the opposite charge row, but the displayed Positrino/Electrino inventory is not the matter/antimatter axis. A partial rearrangement may be a different balanced inventory, but it is not the anti-branch of the starting branch by itself. Likewise, a label-only replacement without the wake-history provenance is not a branch identity statement.
 
 Because both displayed support rows retain one Positrino and one Electrino on every axis, the polarity-inverted support keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and polarity-ledger inversion. This is only a local support-control fact. The matter/antimatter identity claim belongs to ordered braid chirality plus retained path-history and wake-history record, not to a site-label table by itself.
 
@@ -546,7 +546,7 @@ $$
 \left(\mathcal S',\chi_c=-1,\overline{\mathcal H}\right),
 $$
 
-where $\chi_c$ abbreviates the pro/anti ordered-braid chirality record and $\mathcal H$ abbreviates the retained history record only after a retained branch supplies the required phase, winding, causal-root, wake, action, and stability rows. The support section $\mathcal S'$ is not fixed by P/E naming. It may be the same support, a polarity-inverted charged-sector ledger, an `axial-paired` section, or another projection only if the retained solver supplies the same-record history. The sign convention is schematic; the proof burden is to recover the HML/HLM orientation distinction from the same retained branch record that carries the six-site support.
+where $\chi_c$ abbreviates the pro/anti ordered-braid chirality record and $\mathcal H$ abbreviates the retained history record only after a retained branch supplies the required phase, winding, causal-root, wake, action, and stability rows. The support section $\mathcal S'$ is not fixed by Positrino/Electrino naming. It may be the same support, a polarity-inverted charged-sector ledger, an `axial-paired` section, or another projection only if the retained solver supplies the same-record history. The sign convention is schematic; the proof burden is to recover the HML/HLM orientation distinction from the same retained branch record that carries the six-site support.
 
 Support-level exclusion. The `axial-paired` control is not the simple support-level polarity mirror of the static `face-opposite` seed:
 
@@ -554,13 +554,13 @@ $$
 \mathcal S_{\mathrm{ap}}
 =
 \left\{
-P:\{+x,-x,+y\},
+\epsilon_+:\{+x,-x,+y\},
 \quad
-E:\{-y,+z,-z\}
+\epsilon_-:\{-y,+z,-z\}
 \right\}.
 $$
 
-It changes the opposite-pair pattern by introducing one $P/P$ axis and one $E/E$ axis. That is a partial redistribution of the balanced inventory, not polarity inversion of the static `face-opposite` support table. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Therefore `axial-paired` is excluded only as a label-table or support-table polarity mirror of the `face-opposite` seed.
+It changes the opposite-pair pattern by introducing one opposite pair with two Positrinos and one opposite pair with two Electrinos. That is a partial redistribution of the balanced inventory, not polarity inversion of the static `face-opposite` support table. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Therefore `axial-paired` is excluded only as a label-table or support-table polarity mirror of the `face-opposite` seed.
 
 Braid-level open question. This does not exclude `axial-paired` as an antimatter-related retained braid candidate. The untested question is whether the matter/antimatter operation reverses the ordered orbit of the planar binary and then lifts through oblate and spherical support sections in a way that can display the `axial-paired` class without losing the identity-bearing history. In a planar binary projection, the candidate orientation reversal is schematically
 
@@ -686,9 +686,9 @@ $$
 Then the three Positrinos and three Electrinos are
 
 $$
-\mathbf x_{P,k}(t)=C(t)+Q(t)\mathbf s_k(t),
+\mathbf x_{+,k}(t)=C(t)+Q(t)\mathbf s_k(t),
 \qquad
-\mathbf x_{E,k}(t)=C(t)-Q(t)\mathbf s_k(t).
+\mathbf x_{-,k}(t)=C(t)-Q(t)\mathbf s_k(t).
 $$
 
 This automatically preserves a center-zero internal configuration and antipodal pairs in the center frame. It also places all six architrinos on the same instantaneous oblate spheroid. The original face-opposite spherical seed is the special case $R_\perp=R_\parallel$, $\zeta=1/\sqrt3$, and a body-frame rotation that maps the three phase offsets to the coordinate-axis face.
@@ -700,7 +700,7 @@ This ansatz is deliberately not restricted to circular orbits. Non-circular moti
 The receiver velocity is
 
 $$
-\dot{\mathbf x}_{P,k}
+\dot{\mathbf x}_{+,k}
 =
 \mathbf V_g
 +
@@ -712,7 +712,7 @@ $$
 and
 
 $$
-\dot{\mathbf x}_{E,k}
+\dot{\mathbf x}_{-,k}
 =
 \mathbf V_g
 -
@@ -1470,7 +1470,7 @@ over a period $T$, with $m_\psi,m_p\in\mathbb Z$. If architrino labels are quoti
 
 ### Causal-Root Equations With Group Velocity
 
-For any receiver $a\in\{P,k\}$ or $\{E,k\}$ and source $b\in\{P,\ell\}$ or $\{E,\ell\}$, the causal emission times $t_0=t-\tau$ are selected by
+For any receiver $a\in\{+,k\}$ or $\{-,k\}$ and source $b\in\{+,\ell\}$ or $\{-,\ell\}$, the causal emission times $t_0=t-\tau$ are selected by
 
 $$
 \left\|
@@ -1486,7 +1486,7 @@ c_f\tau,
 \tau>0,
 $$
 
-where $\mathbf y_{P,k}=\mathbf s_k$ and $\mathbf y_{E,k}=-\mathbf s_k$. For constant group velocity this becomes
+where $\mathbf y_{+,k}=\mathbf s_k$ and $\mathbf y_{-,k}=-\mathbf s_k$. For constant group velocity this becomes
 
 $$
 \left\|
@@ -1588,26 +1588,26 @@ and require the reduced projections to vanish:
 $$
 \mathcal R_{\psi,k}
 =
-\mathbf E_{P,k}\cdot Q\partial_\psi\mathbf s_k
+\mathbf E_{+,k}\cdot Q\partial_\psi\mathbf s_k
 =0,
 $$
 
 $$
 \mathcal R_{\zeta,k}
 =
-\mathbf E_{P,k}\cdot Q\partial_\zeta\mathbf s_k
+\mathbf E_{+,k}\cdot Q\partial_\zeta\mathbf s_k
 =0,
 $$
 
 $$
 \mathcal R_{\perp,k}
 =
-\mathbf E_{P,k}\cdot Q\partial_{R_\perp}\mathbf s_k
+\mathbf E_{+,k}\cdot Q\partial_{R_\perp}\mathbf s_k
 =0,
 \qquad
 \mathcal R_{\parallel,k}
 =
-\mathbf E_{P,k}\cdot Q\partial_{R_\parallel}\mathbf s_k
+\mathbf E_{+,k}\cdot Q\partial_{R_\parallel}\mathbf s_k
 =0.
 $$
 

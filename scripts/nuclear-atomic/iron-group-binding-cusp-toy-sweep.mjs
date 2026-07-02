@@ -774,6 +774,12 @@ function evaluateSourceBindingCandidate(candidate, index) {
     firstMissingObject: status.accepted
       ? null
       : status.firstMissingObject ?? base.firstMissingObject,
+    ...(status.sourceAcquisitionFirstMissingObject
+      ? {
+          sourceAcquisitionFirstMissingObject:
+            status.sourceAcquisitionFirstMissingObject,
+        }
+      : {}),
     missingOrRejectedFields: status.missingOrRejectedFields,
     sourceSchema: raw.schema ?? null,
     rowStatuses: status.rowStatuses,
@@ -782,13 +788,72 @@ function evaluateSourceBindingCandidate(candidate, index) {
 }
 
 function evaluateSourceCandidateRows(family, raw, candidate, resolvedPath) {
+  if (family === "branch_interface") {
+    return evaluateBranchInterfaceSource(raw, candidate, resolvedPath);
+  }
+  if (family === "confinement_functional") {
+    return evaluateConfinementFunctionalSource(raw, candidate, resolvedPath);
+  }
   if (family === "weak_channel") {
-    return evaluateWeakChannelSource(raw, candidate);
+    return evaluateWeakChannelSource(raw, candidate, resolvedPath);
   }
   if (family === "noether_sea_response") {
     return evaluateNoetherSeaResponseSource(raw, candidate, resolvedPath);
   }
   return evaluateGenericAcceptedSource(raw, candidate);
+}
+
+function evaluateBranchInterfaceSource(raw, candidate, resolvedPath) {
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(raw, {
+    inputPath: resolvedPath,
+  });
+  const accepted = report.summary.status === "accepted_branch_interface_source_rows";
+  return {
+    accepted,
+    reason: accepted ? "accepted" : report.summary.status,
+    firstMissingObject:
+      report.summary.firstMissingObject ??
+      candidate.firstMissingObject ??
+      "missing_accepted_branch_interface",
+    sourceAcquisitionFirstMissingObject:
+      report.summary.sourceAcquisitionFirstMissingObject ?? null,
+    missingOrRejectedFields: [
+      ...(report.input.schemaOk ? [] : ["source_schema"]),
+      ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
+      ...report.summary.algebraicFailures,
+      ...(report.summary.sourceEvidencePass ? [] : ["accepted_source_evidence"]),
+    ],
+    rowStatuses: sourceRowStatusesFromSourceTargetCheck(
+      report,
+      candidate.requiredRows ?? [],
+    ),
+  };
+}
+
+function evaluateConfinementFunctionalSource(raw, candidate, resolvedPath) {
+  const report = buildConfinementFunctionalSourceTargetCheck(raw, {
+    inputPath: resolvedPath,
+  });
+  const accepted =
+    report.summary.status === "accepted_confinement_functional_source_rows";
+  return {
+    accepted,
+    reason: accepted ? "accepted" : report.summary.status,
+    firstMissingObject:
+      report.summary.firstMissingObject ??
+      candidate.firstMissingObject ??
+      "missing_accepted_confinement_functional",
+    missingOrRejectedFields: [
+      ...(report.input.schemaOk ? [] : ["source_schema"]),
+      ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
+      ...report.summary.structuralFailures,
+      ...(report.summary.sourceEvidencePass ? [] : ["accepted_source_evidence"]),
+    ],
+    rowStatuses: sourceRowStatusesFromSourceTargetCheck(
+      report,
+      candidate.requiredRows ?? [],
+    ),
+  };
 }
 
 function evaluateNoetherSeaResponseSource(raw, candidate, resolvedPath) {
@@ -809,34 +874,34 @@ function evaluateNoetherSeaResponseSource(raw, candidate, resolvedPath) {
     ],
     providerStatus: report.input.providerStatus,
     agreementResidual: report.responseAgreementCheck.residual,
-    rowStatuses: sourceRowStatusesFromNoetherCheck(
+    rowStatuses: sourceRowStatusesFromSourceTargetCheck(
       report,
       candidate.requiredRows ?? [],
     ),
   };
 }
 
-function evaluateWeakChannelSource(raw, candidate) {
-  const requiredRows = candidate.requiredRows ?? [];
-  const missing = [];
-  if (raw.schema !== "aaa-equation-map-weak-gauge-exposure-domain-input/v1") {
-    missing.push("source_schema");
-  }
-  const rows = raw.rows ?? {};
-  for (const row of requiredRows) {
-    if (!acceptedSourceRow(rows[row])) {
-      missing.push(`rows.${row}.accepted`);
-    }
-  }
-  const firstMissingRow = requiredRows.find((row) => !acceptedSourceRow(rows[row]));
+function evaluateWeakChannelSource(raw, candidate, resolvedPath) {
+  const report = buildWeakChannelSourceTargetCheck(raw, {
+    inputPath: resolvedPath,
+  });
+  const accepted = report.summary.status === "accepted_weak_channel_source_rows";
   return {
-    accepted: missing.length === 0,
-    reason: missing.length === 0 ? "accepted" : "weak_channel_rows_missing",
-    firstMissingObject: firstMissingRow
-      ? `missing_accepted_${firstMissingRow}`
-      : candidate.firstMissingObject,
-    missingOrRejectedFields: missing,
-    rowStatuses: sourceRowStatuses(rows, requiredRows),
+    accepted,
+    reason: accepted ? "accepted" : report.summary.status,
+    firstMissingObject:
+      report.summary.firstMissingObject ??
+      candidate.firstMissingObject ??
+      "missing_accepted_weak_channel",
+    missingOrRejectedFields: [
+      ...(report.input.schemaOk ? [] : ["source_schema"]),
+      ...report.summary.missingRows.map((row) => `rows.${row}.accepted`),
+      ...report.summary.structuralFailures,
+    ],
+    rowStatuses: sourceRowStatusesFromSourceTargetCheck(
+      report,
+      candidate.requiredRows ?? [],
+    ),
   };
 }
 
@@ -851,11 +916,13 @@ function evaluateGenericAcceptedSource(raw, candidate) {
     missing.push("source_schema");
   }
   for (const row of requiredRows) {
-    if (!acceptedSourceRow(rows[row])) {
-      missing.push(`rows.${row}.accepted`);
+    if (!acceptedGenericSourceRow(rows[row])) {
+      missing.push(missingGenericSourceRowField(rows[row], row));
     }
   }
-  const firstMissingRow = requiredRows.find((row) => !acceptedSourceRow(rows[row]));
+  const firstMissingRow = requiredRows.find(
+    (row) => !acceptedGenericSourceRow(rows[row]),
+  );
   return {
     accepted: missing.length === 0,
     reason: missing.length === 0 ? "accepted" : "required_rows_missing",
@@ -863,7 +930,7 @@ function evaluateGenericAcceptedSource(raw, candidate) {
       ? `missing_accepted_${firstMissingRow}`
       : candidate.firstMissingObject,
     missingOrRejectedFields: missing,
-    rowStatuses: sourceRowStatuses(rows, requiredRows),
+    rowStatuses: sourceRowStatuses(rows, requiredRows, acceptedGenericSourceRow),
   };
 }
 
@@ -884,6 +951,8 @@ function summarizeSourceFamily(family, candidateResults) {
       accepted !== undefined
         ? null
         : nearest?.firstMissingObject ?? `missing_accepted_${family}`,
+    sourceAcquisitionFirstMissingObject:
+      accepted !== undefined ? null : nearest?.sourceAcquisitionFirstMissingObject ?? null,
     missingOrRejectedFields: nearest?.missingOrRejectedFields ?? [],
   };
 }
@@ -924,6 +993,8 @@ function compactBranchInterfaceSourceTargetCheck(report) {
   return {
     schema: report.schema,
     summary: report.summary,
+    sourceEvidenceCheck: report.sourceEvidenceCheck,
+    sourceAcquisitionCheck: report.sourceAcquisitionCheck,
     differential: report.differential,
   };
 }
@@ -1026,15 +1097,21 @@ function sourceRowBindingForFamily(family, requiredRows, candidateResults) {
   const accepted = candidates.find((candidate) => candidate.accepted);
   const nearest = accepted ?? candidates[0] ?? null;
   const missingRows = requiredRows.filter((row) => !sourceRowAccepted(nearest, row));
+  const familyAccepted = nearest?.accepted === true;
   return {
     family,
     candidateId: nearest?.id ?? null,
     sourceStatus: nearest?.sourceStatus ?? "candidate_missing",
     requiredRows,
-    accepted: nearest !== null && missingRows.length === 0,
+    accepted: familyAccepted && missingRows.length === 0,
     missingRows,
-    firstMissingObject:
-      missingRows.length === 0 ? null : `missing_accepted_${missingRows[0]}`,
+    firstMissingObject: missingRows.length > 0
+      ? `missing_accepted_${missingRows[0]}`
+      : familyAccepted
+        ? null
+        : nearest?.firstMissingObject ?? `missing_accepted_${family}`,
+    sourceAcquisitionFirstMissingObject:
+      familyAccepted ? null : nearest?.sourceAcquisitionFirstMissingObject ?? null,
   };
 }
 
@@ -1058,14 +1135,18 @@ function sourceRowAccepted(candidate, row) {
   return candidate?.rowStatuses?.[row]?.accepted === true;
 }
 
-function sourceRowStatuses(rows, requiredRows) {
+function sourceRowStatuses(
+  rows,
+  requiredRows,
+  acceptedPredicate = acceptedSourceRow,
+) {
   return Object.fromEntries(
     requiredRows.map((row) => {
       const value = rows?.[row];
       return [
         row,
         {
-          accepted: acceptedSourceRow(value),
+          accepted: acceptedPredicate(value),
           status:
             value && typeof value === "object" && !Array.isArray(value)
               ? value.status ?? null
@@ -1093,7 +1174,7 @@ function sourceRowStatusesFromAcceptedFlag(requiredRows, accepted) {
   );
 }
 
-function sourceRowStatusesFromNoetherCheck(report, requiredRows) {
+function sourceRowStatusesFromSourceTargetCheck(report, requiredRows) {
   return Object.fromEntries(
     requiredRows.map((row) => {
       const check = report.rowChecks?.[row];
@@ -1116,6 +1197,23 @@ function acceptedSourceRow(row) {
     !Array.isArray(row) &&
     ACCEPTED_STATUSES.has(row.status)
   );
+}
+
+function acceptedGenericSourceRow(row) {
+  return (
+    acceptedSourceRow(row) &&
+    row.currentEvidenceStatus === "accepted_non_fixture_source"
+  );
+}
+
+function missingGenericSourceRowField(row, rowId) {
+  if (
+    acceptedSourceRow(row) &&
+    row.currentEvidenceStatus !== "accepted_non_fixture_source"
+  ) {
+    return `rows.${rowId}.currentEvidenceStatus`;
+  }
+  return `rows.${rowId}.accepted`;
 }
 
 function concreteString(value) {

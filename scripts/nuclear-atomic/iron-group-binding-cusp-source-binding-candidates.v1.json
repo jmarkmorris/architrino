@@ -56,6 +56,14 @@
       "role": "accepted retained-window theta_sea_rho_NS provider object for local Noether sea density and response rows",
       "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
       "acceptedObjectSchema": "aaa-noether-sea-density-compression-provider/v1",
+      "acceptanceCheck": {
+        "script": "scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs",
+        "summaryCommand": "node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summary --pretty",
+        "requiredAcceptedCommand": "node scripts/nuclear-atomic/noether-sea-response-source-target-check.mjs --summary --require-accepted",
+        "currentStatus": "accepted_noether_sea_response_rows",
+        "currentStructuralPass": true,
+        "firstMissingObject": null
+      },
       "requiredRows": [
         "rho_NS",
         "n",

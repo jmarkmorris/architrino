@@ -10,7 +10,7 @@ Definition (geometric, working): A neutrino is a near-planar pro/anti Noether br
 
 - Core structure and shielding:
   - The pro-braid and anti-braid contributions cancel charge-like exposure, with $q_{\text{net}} = 0$.
-  - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3P,3E$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
+  - The assembly does not carry a stable charged-fermion-style six-site axial layer. Balanced $3\epsilon_+,3\epsilon_-$ language is weak-coupling bookkeeping for how the neutral channel is read during interaction, not a bound constituent inventory.
   - Near-planarity hides most of the internal ledger from exterior coupling. The remaining signal is a tiny phase and energy residue from the internal binaries.
 
 - Near-photon boundary:

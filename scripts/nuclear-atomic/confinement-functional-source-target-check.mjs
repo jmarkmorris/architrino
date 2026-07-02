@@ -16,6 +16,7 @@ const REQUIRED_ROWS = Object.freeze([
   "delta_E_corr_NN",
   "no_open_color_far_field",
 ]);
+const ACCEPTED_EVIDENCE_STATUSES = new Set(["accepted_non_fixture_source"]);
 const DEFAULT_INPUT =
   "scripts/nuclear-atomic/confinement-functional-source-target.v1.json";
 
@@ -124,6 +125,7 @@ export function buildConfinementFunctionalSourceTargetCheck(
       buildRowCheck(rowId, rows[rowId]),
     ]),
   );
+  const sourceEvidenceCheck = evaluateSourceEvidence(rowChecks);
   const dependencyChecks = Object.fromEntries(
     REQUIRED_ROWS.map((rowId) => [
       rowId,
@@ -157,7 +159,12 @@ export function buildConfinementFunctionalSourceTargetCheck(
     (rowId) => rowChecks[rowId].accepted !== true,
   );
   const schemaOk = input?.schema === INPUT_SCHEMA;
-  const status = decideStatus({ schemaOk, structuralFailures, missingRows });
+  const status = decideStatus({
+    schemaOk,
+    structuralFailures,
+    sourceEvidenceCheck,
+    missingRows,
+  });
   const firstMissingRow = missingRows[0] ?? null;
 
   return {
@@ -184,16 +191,18 @@ export function buildConfinementFunctionalSourceTargetCheck(
       equationPass: Object.values(equationChecks).every(
         (check) => check.passed === true,
       ),
+      sourceEvidencePass: sourceEvidenceCheck.passed,
       toyBindingRowsPass: toyBindingCheck.passed,
       scoreDecision: "no_score_increase",
     },
     requiredRows: [...REQUIRED_ROWS],
     rowChecks,
+    sourceEvidenceCheck,
     dependencyChecks,
     equationChecks,
     toyBindingCheck,
     acceptanceRule:
-      "The confinement-functional target is promotion-ready only when every required row is accepted and the sigma_eff, color-singlet envelope, Delta E_corr_NN, no-open-color, and toy-binding dependency checks still pass.",
+      "The confinement-functional target is promotion-ready only when every required row is accepted from durable non-fixture source evidence and the sigma_eff, color-singlet envelope, Delta E_corr_NN, no-open-color, and toy-binding dependency checks still pass.",
   };
 }
 
@@ -251,6 +260,7 @@ function writeReport(report, args) {
         input: report.input,
         summary: report.summary,
         rowChecks: report.rowChecks,
+        sourceEvidenceCheck: report.sourceEvidenceCheck,
         equationChecks: report.equationChecks,
         toyBindingCheck: report.toyBindingCheck,
       }
@@ -264,12 +274,33 @@ function writeReport(report, args) {
 }
 
 function buildRowCheck(rowId, row) {
+  const status = normalizeStatus(row);
+  const currentEvidenceStatus = row?.currentEvidenceStatus ?? null;
+  const acceptedStatus = ACCEPTED_STATUSES.has(status);
+  const evidenceAccepted = ACCEPTED_EVIDENCE_STATUSES.has(currentEvidenceStatus);
   return {
     rowId,
     sourceRowId: row?.id ?? row?.rowId ?? null,
-    status: normalizeStatus(row),
-    accepted: acceptedSourceRow(row),
-    currentEvidenceStatus: row?.currentEvidenceStatus ?? null,
+    status,
+    acceptedStatus,
+    evidenceAccepted,
+    accepted: acceptedStatus && evidenceAccepted,
+    currentEvidenceStatus,
+  };
+}
+
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.values(rowChecks)
+    .filter((check) => check.acceptedStatus === true && check.evidenceAccepted !== true)
+    .map((check) => ({
+      rowId: check.rowId,
+      currentEvidenceStatus: check.currentEvidenceStatus,
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    }));
+  return {
+    requiredEvidenceStatus: "accepted_non_fixture_source",
+    failures,
+    passed: failures.length === 0,
   };
 }
 
@@ -357,26 +388,20 @@ function evaluateToyBindingGroup(groupName, observedGroup) {
   return failures;
 }
 
-function decideStatus({ schemaOk, structuralFailures, missingRows }) {
+function decideStatus({ schemaOk, structuralFailures, sourceEvidenceCheck, missingRows }) {
   if (!schemaOk) {
     return "schema_mismatch";
   }
   if (structuralFailures.length > 0) {
     return "confinement_functional_structure_mismatch";
   }
+  if (sourceEvidenceCheck.passed !== true) {
+    return "confinement_functional_source_evidence_mismatch";
+  }
   if (missingRows.length > 0) {
     return "missing_accepted_confinement_functional_rows";
   }
   return "accepted_confinement_functional_source_rows";
-}
-
-function acceptedSourceRow(row) {
-  return (
-    row &&
-    typeof row === "object" &&
-    !Array.isArray(row) &&
-    ACCEPTED_STATUSES.has(row.status)
-  );
 }
 
 function normalizeStatus(row) {

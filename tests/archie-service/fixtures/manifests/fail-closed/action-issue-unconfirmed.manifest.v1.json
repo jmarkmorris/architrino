@@ -1,0 +1,102 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_fail_closed_action_issue_unconfirmed_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Triage Idea",
+  "requestSummary": {
+    "requestId": "request_action_issue_unconfirmed_negative_001",
+    "safeSummaryId": "safe_summary_action_issue_unconfirmed_negative_001",
+    "contextRoute": null
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": [],
+    "sourceChips": [],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": [],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "unsupported",
+    "unsupportedReasonClass": "github_handoff_confirmation_missing",
+    "priorityVisibility": "hidden"
+  },
+  "answerBody": {
+    "displayedText": "The issue handoff is prepared only as a preview until the user confirms GitHub visibility, destination, and included material.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_action_issue_unconfirmed_001",
+        "text": "The issue handoff is prepared only as a preview until the user confirms GitHub visibility, destination, and included material."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": [],
+    "credentialBoundary": "not_required",
+    "noBrowserKeys": true
+  },
+  "artifacts": [
+    {
+      "artifactId": "artifact_issue_preview_001",
+      "artifactType": "issue_draft",
+      "purposeLabel": "confirmation-gated issue preview",
+      "sourceInheritance": "inherits_manifest_source_context",
+      "claimInheritance": "inherits_manifest_claim_context",
+      "retentionState": "ephemeral"
+    }
+  ],
+  "speechSync": {
+    "status": "not_requested",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_action_issue_unconfirmed_negative_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 3,
+    "heldTokens": 3,
+    "chargedTokens": 1,
+    "refundedTokens": 2,
+    "workUnits": ["issue_draft"],
+    "sourceClassesUsed": [],
+    "artifactCount": 1,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "ephemeral",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [
+    {
+      "actionType": "submit_issue",
+      "preflightStatus": "confirmation_required",
+      "confirmationRequired": true,
+      "confirmationReasons": ["public_visibility", "external_handoff"],
+      "destinationClass": "github_prefilled_url"
+    }
+  ],
+  "issueMiningContext": {
+    "enabled": true,
+    "originSurface": "Triage Idea",
+    "duplicateKeys": ["action-issue-unconfirmed-negative-001"],
+    "ownerLane": "issue_ops",
+    "smallestNextArtifact": "action_confirmation_fixture",
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": [
+      "action-issue-unconfirmed-negative-001",
+      "action_confirmation_validator",
+      "manifest_validation_completed"
+    ],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

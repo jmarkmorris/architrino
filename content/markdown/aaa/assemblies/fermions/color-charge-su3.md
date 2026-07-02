@@ -127,7 +127,7 @@ This makes the color statement sharper:
 
 - The neutrino has no stable quark-like axial layer on which one H, M, or L axis can become exceptional.
 - Its pro/anti pairing cancels charge-like exposure and leaves no color triplet degree of freedom.
-- The balanced $3P,3E$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
+- The balanced $3\epsilon_+,3\epsilon_-$ notation used in weak bookkeeping is an interaction projection, not a constituent color pattern.
 
 Older neutral-axis patterns such as
 $$
@@ -151,47 +151,47 @@ Quarks are color‑charged because **one axis is in a different axial class than
 
 Let each axis pattern be coarse‑classified as:
 
-- **P−**: pure electrino $(-\!/-)$  
-- **P+**: pure positrino $(+\!/+)$  
-- **Pm**: mixed $(-\!/+)$ (net neutral, dipolar)
+- **negative-polarity dyad**: two Electrinos, $(\epsilon_-,\epsilon_-)$
+- **positive-polarity dyad**: two Positrinos, $(\epsilon_+,\epsilon_+)$
+- **mixed dyad**: one Positrino and one Electrino, $(\epsilon_-,\epsilon_+)$ or $(\epsilon_+,\epsilon_-)$, net neutral and dipolar
 
 The key structural rule for **admissible, stable quark‑like Noether braids** is:
 
-> Exactly **two axes share the same axial class**, and the third is **different in kind** (P− vs P+ vs Pm).  
+> Exactly **two axes share the same axial class**, and the third is **different in kind** (negative-polarity dyad vs positive-polarity dyad vs mixed dyad).
 
-We **forbid** stable states with all three axes in different classes (e.g. H: P+, M: P−, L: Pm). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
+We **forbid** stable states with all three axes in different classes (for example H positive-polarity dyad, M negative-polarity dyad, L mixed dyad). Those “three-different” configurations have no clear background/exceptional split; in our picture they are dynamically unstable in the Noether sea and quickly relax or disintegrate.
 
 Therefore:
 
-- **Colorless**: H,M,L all same class (e.g., all P− or all Pm).  
+- **Colorless**: H,M,L all same class, for example all negative-polarity dyads or all mixed dyads.
 - **Colored quark**: H,M,L pattern is one of:
-  - $P_{\text{bkg}}, P_{\text{bkg}}, P_{\text{exc}}$  
-  where $P_{\text{exc}} \ne P_{\text{bkg}}$.
+  - two background dyads and one exceptional dyad
+  where the exceptional dyad class differs from the background dyad class.
 
 Color degree of freedom is then:  
-**which axis carries $P_{\text{exc}}$?**
+**which axis carries the exceptional dyad?**
 
 
 
-### Up‑type quarks (5p, 1e)
+### Up‑type quarks ($5\epsilon_+,1\epsilon_-$)
 
 Up‑type (u,c,t) Gen‑I quarks have:
 
-- 5 positrinos, 1 electrino among 6 polar sites.
+- 5 Positrinos and 1 Electrino among 6 polar sites.
 
 At axis‑class level:
 
-- **Two axes**: P+ ($+/+)$  
-- **One axis**: Pm (contains the single electrino; local pattern e.g. $-/+$)
+- **Two axes**: positive-polarity dyads, $(\epsilon_+,\epsilon_+)$
+- **One axis**: mixed dyad containing the single Electrino, for example $(\epsilon_-,\epsilon_+)$
 
 Thus:
 
-- Background class: P+  
-- Exceptional class: Pm
+- Background class: positive-polarity dyad
+- Exceptional class: mixed dyad
 
 Define color basis:
 
-- $|u_H\rangle$: H axis is Pm (exceptional), M and L = P+.  
+- $|u_H\rangle$: H axis is mixed (exceptional), while M and L are positive-polarity dyads.
 - $|u_M\rangle$: M exceptional.  
 - $|u_L\rangle$: L exceptional.
 
@@ -204,37 +204,37 @@ Anti-up quarks use an anti-nested shell braid with 5 electrinos, 1 positrino (an
 
 
 
-### Down‑type quarks (4e, 2p)
+### Down‑type quarks ($4\epsilon_-,2\epsilon_+$)
 
 Down‑type (d,s,b) Gen‑I quarks have:
 
-- 4 electrinos, 2 positrinos among 6 slots.
+- 4 Electrinos and 2 Positrinos among 6 slots.
 
-All admissible axis‑class patterns consistent with 4e,2p and the “two‑same + one‑different” rule group naturally into two **families**.
+All admissible axis‑class patterns consistent with $4\epsilon_-,2\epsilon_+$ and the “two‑same + one‑different” rule group naturally into two **families**.
 
-#### Family I — “one P+ axis, two P− axes”
+#### Family I - one positive-polarity dyad, two negative-polarity dyads
 
 Written as (H,M,L):
 
-- (A) $(P-, P-, P+)$ → $(-\!/-,-/- ,+\!/+)$  
-- (B) $(P-, P+, P-)$  
-- (C) $(P+, P-, P-)$
+- (A) negative, negative, positive
+- (B) negative, positive, negative
+- (C) positive, negative, negative
 
 Here:
 
-- Background: P− on two axes.  
-- Exceptional: P+ on one axis.
+- Background: negative-polarity dyads on two axes.
+- Exceptional: positive-polarity dyad on one axis.
 
-#### Family II — “one P− axis, two Pm axes”
+#### Family II - one negative-polarity dyad, two mixed dyads
 
-- (D) $(Pm, Pm, P-)$ → $(-\!/+,-/+,-/-)$  
-- (E) $(Pm, P-, Pm)$  
-- (F) $(P-, Pm, Pm)$
+- (D) mixed, mixed, negative
+- (E) mixed, negative, mixed
+- (F) negative, mixed, mixed
 
 Here:
 
-- Background: Pm on two axes.  
-- Exceptional: P− on one axis.
+- Background: mixed dyads on two axes.
+- Exceptional: negative-polarity dyad on one axis.
 
 In both families, the same structural pattern appears:
 
@@ -242,7 +242,7 @@ In both families, the same structural pattern appears:
 
 Thus for down‑type $d$ we again define:
 
-- $|d_H\rangle$: H axis is exceptional (either P+ among P−, or P− among Pm).  
+- $|d_H\rangle$: H axis is exceptional, either a positive-polarity dyad among negative-polarity dyads or a negative-polarity dyad among mixed dyads.
 - $|d_M\rangle$: M exceptional.  
 - $|d_L\rangle$: L exceptional.
 
@@ -315,9 +315,9 @@ so $\pi_{\bar F}\to 0$ as $T_{\mathrm{eff}}\to 0$. Hence exactly one down-family
 **Concrete screening corollary (Family II preference test).**  
 If the reduced minimum can be decomposed as
 $$
-E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{Pm}^{(F)}
+E_F^\star = E_{\text{core},F}+E_{\text{self-hit},F}+E_{\text{strain},F}-s\,N_{\mathrm{mix}}^{(F)}
 $$
-with $N_{Pm}^{(I)}=0$, $N_{Pm}^{(II)}=2$, then Family II is selected whenever
+with $N_{\mathrm{mix}}^{(I)}=0$, $N_{\mathrm{mix}}^{(II)}=2$, then Family II is selected whenever
 $$
 2s>
 \big(E_{\text{core},II}-E_{\text{core},I}\big)
@@ -550,8 +550,8 @@ Primary topology spine: [dynamics/causal-action-functional.md](../../dynamics/ca
 - A **nested shell braid** is the current three-axis $(H,M,L)$, six-site axial candidate for carrying conserved charge labels via internal symmetries; delayed-dynamics minimality remains a theorem target.
 - **Colorless** charged leptons have identical axial patterns on all three axes, while neutrinos are colorless near-photon pro/anti neutral pairs; neither route supplies quark-like axis exceptionality.
 - **Quarks** have “two‑same + one‑different” axis‑class patterns:
-  - Up‑type: two P+ axes, one Pm axis.  
-  - Down‑type: either (two P−, one P+) or (two Pm, one P−) families.
+  - Up‑type: two positive-polarity dyads, one mixed dyad.
+  - Down‑type: either two negative-polarity dyads with one positive-polarity dyad, or two mixed dyads with one negative-polarity dyad.
 - Color = which axis (H,M,L) is exceptional. This yields a natural triplet color space $\mathbb{C}^3$ on which SU(3) acts via charge‑preserving, det‑1 reconfigurations of axis exceptionality and phase.
 - **Baryon color singlets** = closed 9‑axis braids; **flux tubes** = open braids in the Noether sea with linear energy cost per unit length → confinement.
 - Down‑quark pattern families, H/M/L regime differences, and braid orientation are downstream interfaces for neutrino oscillation modeling, proton-neutron mass and moment differences, residual nuclear forces, and QCD phase-transition or early-universe thermodynamics. Those applications must inherit the same color-exceptionality and confinement ledger rather than introducing separate color rules.

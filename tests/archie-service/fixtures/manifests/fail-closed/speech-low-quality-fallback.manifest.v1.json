@@ -1,0 +1,95 @@
+{
+  "schema": "archie-answer-artifact-manifest/v1",
+  "manifestId": "manifest_fail_closed_speech_low_quality_001",
+  "createdAt": "2026-07-02T00:00:00Z",
+  "mode": "Explain",
+  "requestSummary": {
+    "requestId": "request_speech_low_quality_negative_001",
+    "safeSummaryId": "safe_summary_speech_low_quality_negative_001",
+    "contextRoute": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope"
+  },
+  "sourceContext": {
+    "snapshotId": "source_snapshot_fixture_001",
+    "sourceClasses": ["published_corpus"],
+    "sourceChips": [
+      {
+        "route": "content/markdown/aaa/foundations/ontology.md#purpose-and-scope",
+        "label": "Ontology",
+        "sourceClass": "published_corpus",
+        "authorityStatus": "primary",
+        "visibility": "public",
+        "sectionId": "purpose-and-scope",
+        "freshnessState": "fresh"
+      }
+    ],
+    "missingSourceRoutes": [],
+    "excludedSourceClasses": [],
+    "systemCardRoute": "content/markdown/aaa/archie/system-card.md"
+  },
+  "claimContext": {
+    "claimLabel": "published corpus",
+    "unsupportedReasonClass": null,
+    "priorityVisibility": "not_applicable"
+  },
+  "answerBody": {
+    "displayedText": "High-quality speech is unavailable, so the compliant fallback is displayed text only.",
+    "verbatimSegments": [
+      {
+        "segmentId": "seg_speech_low_quality_001",
+        "text": "High-quality speech is unavailable, so the compliant fallback is displayed text only."
+      }
+    ],
+    "readingPath": []
+  },
+  "providerExecutionContext": {
+    "capabilityIds": ["capability.speech_output.high_quality.fixture"],
+    "credentialBoundary": "blocked",
+    "noBrowserKeys": true
+  },
+  "artifacts": [],
+  "speechSync": {
+    "status": "text_only_fallback",
+    "audioArtifactId": null,
+    "segments": []
+  },
+  "tokenReceipt": {
+    "receiptId": "receipt_speech_low_quality_negative_001",
+    "capStatus": "inside_limits",
+    "estimatedTokens": 8,
+    "heldTokens": 8,
+    "chargedTokens": 0,
+    "refundedTokens": 8,
+    "workUnits": ["source_navigation"],
+    "sourceClassesUsed": ["published_corpus"],
+    "artifactCount": 0,
+    "autoFundApplied": false,
+    "privatePromptIncluded": false
+  },
+  "privacyState": {
+    "promptRetention": "ephemeral",
+    "answerRetention": "ephemeral",
+    "mediaRetention": "disabled",
+    "durableSaveEnabled": false,
+    "deletionRouteAvailable": false,
+    "publicMaterialIncluded": false
+  },
+  "availableActions": [],
+  "issueMiningContext": {
+    "enabled": true,
+    "originSurface": "Explain",
+    "duplicateKeys": ["speech-low-quality-fallback-negative-001"],
+    "ownerLane": "media_policy",
+    "smallestNextArtifact": "speech_text_only_fallback_fixture",
+    "publicIssueUrl": null,
+    "privatePromptIncluded": false
+  },
+  "observabilityContext": {
+    "safeEventClasses": [
+      "speech-low-quality-fallback-negative-001",
+      "speech_sync_validator",
+      "manifest_validation_completed"
+    ],
+    "redactionState": "safe_ids_only",
+    "publicStatusSafe": true
+  }
+}

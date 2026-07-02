@@ -16,9 +16,60 @@ const REQUIRED_ROWS = Object.freeze([
   "pp_orientation_count",
   "same_record_energy_momentum_angular_momentum_ledger",
 ]);
+const ACCEPTED_EVIDENCE_STATUSES = new Set(["accepted_non_fixture_source"]);
 const DEFAULT_INPUT =
   "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json";
 const TOLERANCE = 1e-12;
+
+const REQUIRED_ACCEPTED_SOURCE_ROWS = Object.freeze({
+  nucleon_branch_interface_ledgers: [
+    "accepted_proton_branch_interface_ledger",
+    "accepted_neutron_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ],
+  pn_orientation_count: [
+    "accepted_proton_branch_interface_ledger",
+    "accepted_neutron_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ],
+  pp_orientation_count: [
+    "accepted_proton_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ],
+  same_record_energy_momentum_angular_momentum_ledger: [],
+});
+const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
+  accepted_proton_branch_interface_ledger: [
+    "retained_orientation_rows",
+    "closed_corridor_sharing_count",
+    "branch_exposure_row",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ],
+  accepted_neutron_branch_interface_ledger: [
+    "retained_orientation_rows",
+    "closed_corridor_sharing_count",
+    "branch_exposure_row",
+    "same_record_energy_momentum_angular_momentum_ledger",
+    "no_open_color_far_field",
+  ],
+  same_record_energy_momentum_angular_momentum_ledger: [
+    "pn_orientation_count",
+    "pp_orientation_count",
+    "energy_conservation_row",
+    "momentum_conservation_row",
+    "angular_momentum_conservation_row",
+    "coulomb_separation_row",
+  ],
+  no_open_color_far_field: [
+    "finite_range_residual",
+    "color_singlet_closure",
+    "same_record_no_open_color_audit",
+  ],
+});
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = parseArgs(process.argv.slice(2));
@@ -57,6 +108,11 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
     }),
   };
   const differential = evaluateChannelDifferential(channelChecks);
+  const sourceEvidenceCheck = evaluateSourceEvidence(rowChecks);
+  const sourceAcquisitionCheck = evaluateSourceAcquisition(
+    rows,
+    input?.sourceAcquisitionTargets ?? {},
+  );
   const missingRows = REQUIRED_ROWS.filter(
     (rowId) => rowChecks[rowId].accepted !== true,
   );
@@ -67,7 +123,13 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
     ...(differential.passed ? [] : ["pn_pp_channel_differential"]),
   ];
   const schemaOk = input?.schema === INPUT_SCHEMA;
-  const status = decideStatus({ schemaOk, missingRows, algebraicFailures });
+  const status = decideStatus({
+    schemaOk,
+    missingRows,
+    algebraicFailures,
+    sourceEvidenceCheck,
+    sourceAcquisitionCheck,
+  });
   const firstMissingRow = missingRows[0] ?? null;
 
   return {
@@ -89,14 +151,22 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
       algebraicPass: algebraicFailures.length === 0,
       algebraicFailures,
       pnPpDifferentialPass: differential.passed,
+      sourceEvidencePass: sourceEvidenceCheck.passed,
+      sourceAcquisitionPass: sourceAcquisitionCheck.passed,
+      sourceAcquisitionFirstMissingObject:
+        sourceAcquisitionCheck.firstMissingAcceptedSourceRow
+          ? `missing_${sourceAcquisitionCheck.firstMissingAcceptedSourceRow}`
+          : null,
       scoreDecision: "no_score_increase",
     },
     requiredRows: [...REQUIRED_ROWS],
     rowChecks,
+    sourceEvidenceCheck,
+    sourceAcquisitionCheck,
     channelChecks,
     differential,
     acceptanceRule:
-      "The branch-interface target is promotion-ready only when every required row is accepted and the p+n/p+p orientation extraction still passes the same-record algebraic checks.",
+      "The branch-interface target is promotion-ready only when every required row is accepted from durable non-fixture source evidence, each row's upstream accepted source rows are satisfied, each source-acquisition target preserves its required ledger-component shape, and the p+n/p+p orientation extraction still passes the same-record algebraic checks.",
   };
 }
 
@@ -154,6 +224,8 @@ function writeReport(report, args) {
         input: report.input,
         summary: report.summary,
         rowChecks: report.rowChecks,
+        sourceEvidenceCheck: report.sourceEvidenceCheck,
+        sourceAcquisitionCheck: report.sourceAcquisitionCheck,
         differential: report.differential,
       }
     : report;
@@ -166,12 +238,201 @@ function writeReport(report, args) {
 }
 
 function buildRowCheck(rowId, row) {
+  const status = normalizeStatus(row);
+  const currentEvidenceStatus = row?.currentEvidenceStatus ?? null;
+  const acceptedStatus = ACCEPTED_STATUSES.has(status);
+  const evidenceAccepted = ACCEPTED_EVIDENCE_STATUSES.has(currentEvidenceStatus);
   return {
     rowId,
     sourceRowId: row?.id ?? row?.rowId ?? null,
-    status: normalizeStatus(row),
-    accepted: acceptedSourceRow(row),
-    currentEvidenceStatus: row?.currentEvidenceStatus ?? null,
+    status,
+    acceptedStatus,
+    evidenceAccepted,
+    accepted: acceptedStatus && evidenceAccepted,
+    currentEvidenceStatus,
+  };
+}
+
+function evaluateSourceEvidence(rowChecks) {
+  const failures = Object.values(rowChecks)
+    .filter((check) => check.acceptedStatus === true && check.evidenceAccepted !== true)
+    .map((check) => ({
+      rowId: check.rowId,
+      currentEvidenceStatus: check.currentEvidenceStatus,
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    }));
+  return {
+    requiredEvidenceStatus: "accepted_non_fixture_source",
+    failures,
+    passed: failures.length === 0,
+  };
+}
+
+function evaluateSourceAcquisition(rows, sourceAcquisitionTargets) {
+  const targetChecks = evaluateSourceAcquisitionTargets(sourceAcquisitionTargets);
+  const rowChecks = Object.fromEntries(
+    REQUIRED_ROWS.map((rowId) => [
+      rowId,
+      evaluateSourceAcquisitionRow(rowId, rows[rowId], targetChecks),
+    ]),
+  );
+  const failures = [
+    ...Object.values(rowChecks).flatMap((check) => {
+      const rowFailures = [];
+      if (
+        check.missingDeclaredRequiredRows.length > 0 ||
+        check.extraDeclaredRequiredRows.length > 0
+      ) {
+        rowFailures.push({
+          rowId: check.rowId,
+          reason: "required_accepted_source_rows_declaration_mismatch",
+          missingDeclaredRequiredRows: check.missingDeclaredRequiredRows,
+          extraDeclaredRequiredRows: check.extraDeclaredRequiredRows,
+        });
+      }
+      if (check.missingAcceptedSourceRows.length > 0) {
+        rowFailures.push({
+          rowId: check.rowId,
+          reason: "missing_accepted_source_rows",
+          missingAcceptedSourceRows: check.missingAcceptedSourceRows,
+        });
+      }
+      return rowFailures;
+    }),
+    ...Object.values(targetChecks)
+      .filter((check) => check.accepted !== true)
+      .map((check) => ({
+        sourceRowId: check.sourceRowId,
+        reason: sourceAcquisitionTargetFailureReason(check),
+        status: check.status,
+        currentEvidenceStatus: check.currentEvidenceStatus,
+        missingRequiredComponents: check.missingRequiredComponents,
+        extraRequiredComponents: check.extraRequiredComponents,
+      })),
+  ];
+  return {
+    requiredDeclarationField: "requiredAcceptedSourceRows",
+    acceptedRowsField: "acceptedSourceRows",
+    sourceAcquisitionTargetsField: "sourceAcquisitionTargets",
+    targetChecks,
+    rowChecks,
+    failures,
+    firstMissingAcceptedSourceRow:
+      Object.values(rowChecks)
+        .flatMap((check) => check.missingAcceptedSourceRows)
+        .find(Boolean) ?? null,
+    passed: failures.length === 0,
+  };
+}
+
+function evaluateSourceAcquisitionTargets(sourceAcquisitionTargets) {
+  const expectedSourceRows = [
+    ...new Set(Object.values(REQUIRED_ACCEPTED_SOURCE_ROWS).flat()),
+  ];
+  return Object.fromEntries(
+    expectedSourceRows.map((sourceRowId) => {
+      const target = sourceAcquisitionTargets[sourceRowId];
+      const present =
+        target && typeof target === "object" && !Array.isArray(target);
+      const status = present ? normalizeStatus(target) : "missing";
+      const currentEvidenceStatus = present
+        ? target.currentEvidenceStatus ?? null
+        : null;
+      const acceptedStatus = ACCEPTED_STATUSES.has(status);
+      const evidenceAccepted =
+        ACCEPTED_EVIDENCE_STATUSES.has(currentEvidenceStatus);
+      const expectedRequiredComponents =
+        REQUIRED_SOURCE_TARGET_COMPONENTS[sourceRowId] ?? [];
+      const requiredLedgerComponents = Array.isArray(
+        target?.requiredLedgerComponents,
+      )
+        ? target.requiredLedgerComponents
+        : [];
+      const missingRequiredComponents = expectedRequiredComponents.filter(
+        (component) => !requiredLedgerComponents.includes(component),
+      );
+      const extraRequiredComponents = requiredLedgerComponents.filter(
+        (component) => !expectedRequiredComponents.includes(component),
+      );
+      const componentShapePass =
+        missingRequiredComponents.length === 0 &&
+        extraRequiredComponents.length === 0;
+      return [
+        sourceRowId,
+        {
+          sourceRowId,
+          targetId: present ? target.id ?? target.rowId ?? null : null,
+          present,
+          status,
+          currentEvidenceStatus,
+          acceptedStatus,
+          evidenceAccepted,
+          expectedRequiredComponents,
+          requiredLedgerComponents,
+          missingRequiredComponents,
+          extraRequiredComponents,
+          componentShapePass,
+          accepted: acceptedStatus && evidenceAccepted && componentShapePass,
+          sourceTargetPath: present ? target.sourceTargetPath ?? null : null,
+          requiredScope: present ? target.requiredScope ?? null : null,
+        },
+      ];
+    }),
+  );
+}
+
+function sourceAcquisitionTargetFailureReason(check) {
+  if (check.present !== true) {
+    return "source_acquisition_target_missing";
+  }
+  if (check.componentShapePass !== true) {
+    return "source_acquisition_target_shape_mismatch";
+  }
+  return "source_acquisition_target_not_accepted";
+}
+
+function evaluateSourceAcquisitionRow(rowId, row, targetChecks) {
+  const expectedRequiredRows = REQUIRED_ACCEPTED_SOURCE_ROWS[rowId] ?? [];
+  const declaredRequiredRows = Array.isArray(row?.requiredAcceptedSourceRows)
+    ? row.requiredAcceptedSourceRows
+    : [];
+  const acceptedSourceRows = Array.isArray(row?.acceptedSourceRows)
+    ? row.acceptedSourceRows
+    : Array.isArray(row?.satisfiedAcceptedSourceRows)
+      ? row.satisfiedAcceptedSourceRows
+      : [];
+  const acceptedTargetRows = new Set(
+    Object.values(targetChecks)
+      .filter((check) => check.accepted === true)
+      .map((check) => check.sourceRowId),
+  );
+  const missingDeclaredRequiredRows = expectedRequiredRows.filter(
+    (sourceRow) => !declaredRequiredRows.includes(sourceRow),
+  );
+  const extraDeclaredRequiredRows = declaredRequiredRows.filter(
+    (sourceRow) => !expectedRequiredRows.includes(sourceRow),
+  );
+  const missingAcceptedSourceRows = declaredRequiredRows.filter(
+    (sourceRow) =>
+      !acceptedSourceRows.includes(sourceRow) ||
+      !acceptedTargetRows.has(sourceRow),
+  );
+  const unacceptedSourceTargets = declaredRequiredRows.filter(
+    (sourceRow) => !acceptedTargetRows.has(sourceRow),
+  );
+  return {
+    rowId,
+    expectedRequiredRows,
+    declaredRequiredRows,
+    acceptedSourceRows,
+    missingDeclaredRequiredRows,
+    extraDeclaredRequiredRows,
+    missingAcceptedSourceRows,
+    unacceptedSourceTargets,
+    passed:
+      missingDeclaredRequiredRows.length === 0 &&
+      extraDeclaredRequiredRows.length === 0 &&
+      missingAcceptedSourceRows.length === 0,
   };
 }
 
@@ -222,7 +483,9 @@ function evaluateOrientationRow(row, { expectedChannel }) {
     expectedChannel,
     sourceRowId: row.id ?? row.rowId ?? null,
     status: normalizeStatus(row),
-    accepted: acceptedSourceRow(row),
+    accepted:
+      ACCEPTED_STATUSES.has(normalizeStatus(row)) &&
+      ACCEPTED_EVIDENCE_STATUSES.has(row.currentEvidenceStatus),
     values: {
       N_share: nShare,
       N_ret: nRet,
@@ -273,26 +536,29 @@ function evaluateChannelDifferential(channelChecks) {
   };
 }
 
-function decideStatus({ schemaOk, missingRows, algebraicFailures }) {
+function decideStatus({
+  schemaOk,
+  missingRows,
+  algebraicFailures,
+  sourceEvidenceCheck,
+  sourceAcquisitionCheck,
+}) {
   if (!schemaOk) {
     return "schema_mismatch";
   }
   if (algebraicFailures.length > 0) {
     return "branch_interface_algebra_mismatch";
   }
+  if (sourceEvidenceCheck.passed !== true) {
+    return "branch_interface_source_evidence_mismatch";
+  }
   if (missingRows.length > 0) {
     return "missing_accepted_branch_interface_rows";
   }
+  if (sourceAcquisitionCheck.passed !== true) {
+    return "branch_interface_source_acquisition_incomplete";
+  }
   return "accepted_branch_interface_source_rows";
-}
-
-function acceptedSourceRow(row) {
-  return (
-    row &&
-    typeof row === "object" &&
-    !Array.isArray(row) &&
-    ACCEPTED_STATUSES.has(row.status)
-  );
 }
 
 function normalizeStatus(row) {

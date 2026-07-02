@@ -113,7 +113,6 @@ Requirements:
 V1 settings:
 
 - background color: Purple, Light, Warm, Dark;
-- section-line placement: above or below formula section;
 - comment font size: small, medium, large;
 - equation scale: small, medium, large;
 - index collapsed state.

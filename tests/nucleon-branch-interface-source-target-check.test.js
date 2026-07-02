@@ -32,6 +32,11 @@ function acceptedTarget() {
   for (const row of Object.values(target.rows)) {
     row.status = "accepted";
     row.currentEvidenceStatus = "accepted_non_fixture_source";
+    row.acceptedSourceRows = row.requiredAcceptedSourceRows ?? [];
+  }
+  for (const sourceTarget of Object.values(target.sourceAcquisitionTargets ?? {})) {
+    sourceTarget.status = "accepted";
+    sourceTarget.currentEvidenceStatus = "accepted_non_fixture_source";
   }
   return target;
 }
@@ -46,7 +51,23 @@ test("current branch-interface target passes algebra but blocks accepted source 
   assert.equal(report.summary.status, "missing_accepted_branch_interface_rows");
   assert.equal(report.summary.algebraicPass, true);
   assert.equal(report.summary.pnPpDifferentialPass, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(report.summary.firstMissingObject, "missing_accepted_nucleon_branch_interface_ledgers");
+  assert.equal(
+    report.summary.sourceAcquisitionFirstMissingObject,
+    "missing_accepted_proton_branch_interface_ledger",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .accepted,
+    false,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .currentEvidenceStatus,
+    "not_acquired",
+  );
   assert.deepEqual(report.summary.missingRows, [
     "nucleon_branch_interface_ledgers",
     "pn_orientation_count",
@@ -55,6 +76,16 @@ test("current branch-interface target passes algebra but blocks accepted source 
   ]);
   assert.equal(report.channelChecks.pn_orientation_count.values.W_c, 1);
   assert.equal(report.channelChecks.pp_orientation_count.values.W_c, 0.25);
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.rowChecks.nucleon_branch_interface_ledgers
+      .missingAcceptedSourceRows,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  );
   assert.equal(report.differential.passed, true);
 });
 
@@ -67,6 +98,117 @@ test("accepted branch-interface rows pass when the same algebra is retained", ()
   assert.equal(report.summary.allRequiredRowsAccepted, true);
   assert.deepEqual(report.summary.missingRows, []);
   assert.equal(report.summary.algebraicPass, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, true);
+});
+
+test("accepted branch-interface rows fail closed when source rows are named but target-only", () => {
+  const target = readTarget();
+  for (const row of Object.values(target.rows)) {
+    row.status = "accepted";
+    row.currentEvidenceStatus = "accepted_non_fixture_source";
+    row.acceptedSourceRows = row.requiredAcceptedSourceRows ?? [];
+  }
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_source_acquisition_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.rowChecks.pn_orientation_count
+      .unacceptedSourceTargets,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.failures.some(
+      (failure) =>
+        failure.sourceRowId === "accepted_proton_branch_interface_ledger" &&
+        failure.reason === "source_acquisition_target_not_accepted",
+    ),
+    true,
+  );
+});
+
+test("accepted branch-interface rows fail closed without upstream source acquisition", () => {
+  const target = readTarget();
+  for (const row of Object.values(target.rows)) {
+    row.status = "accepted";
+    row.currentEvidenceStatus = "accepted_non_fixture_source";
+  }
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_source_acquisition_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.sourceAcquisitionPass, false);
+  assert.equal(
+    report.sourceAcquisitionCheck.firstMissingAcceptedSourceRow,
+    "accepted_proton_branch_interface_ledger",
+  );
+  assert.deepEqual(report.sourceAcquisitionCheck.failures[0], {
+    rowId: "nucleon_branch_interface_ledgers",
+    reason: "missing_accepted_source_rows",
+    missingAcceptedSourceRows: [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  });
+});
+
+test("branch-interface checker fails closed on accepted-looking priority-only rows", () => {
+  const target = readTarget();
+  for (const row of Object.values(target.rows)) {
+    row.status = "accepted";
+  }
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_source_evidence_mismatch");
+  assert.equal(report.summary.sourceEvidencePass, false);
+  assert.deepEqual(report.sourceEvidenceCheck.failures, [
+    {
+      rowId: "nucleon_branch_interface_ledgers",
+      currentEvidenceStatus: "priority_packet_only",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "pn_orientation_count",
+      currentEvidenceStatus: null,
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "pp_orientation_count",
+      currentEvidenceStatus: null,
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "same_record_energy_momentum_angular_momentum_ledger",
+      currentEvidenceStatus: "declared in priority packet, not accepted source row",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+  ]);
+  assert.deepEqual(report.summary.missingRows, [
+    "nucleon_branch_interface_ledgers",
+    "pn_orientation_count",
+    "pp_orientation_count",
+    "same_record_energy_momentum_angular_momentum_ledger",
+  ]);
 });
 
 test("branch-interface checker fails closed on corrupted orientation algebra", () => {

@@ -105,9 +105,14 @@ test("equation mapping exposes the four standard background colors", () => {
 test("equation mapping uses one foreground ink color per background family", () => {
   const html = readRepoFile("equation-mapping.html");
   assert.match(html, /--equation-ink: #4b0082;/u);
+  assert.match(html, /--line-ink: #4b0082;/u);
   assert.match(
     html,
     /\.equation-mapping-shell\[data-background="architrinoPurple"\] \{[\s\S]*?--equation-ink: #ffffff;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-background="architrinoPurple"\] \{[\s\S]*?--line-ink: #ffffff;/u
   );
   assert.match(
     html,
@@ -115,16 +120,83 @@ test("equation mapping uses one foreground ink color per background family", () 
   );
   assert.match(
     html,
+    /\.equation-mapping-shell\[data-background="warm"\] \{[\s\S]*?--line-ink: #4b0082;/u
+  );
+  assert.match(
+    html,
     /\.equation-mapping-shell\[data-background="dark"\] \{[\s\S]*?--equation-ink: #ffffff;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-background="dark"\] \{[\s\S]*?--line-ink: #ffffff;/u
   );
   assert.equal(
     html.includes(".equation-mapping-formula-part.is-editor-selected-anchor {\n        color: var(--accent);"),
     false
   );
+  assert.match(html, /border: 1px solid var\(--line-ink\);/u);
+  assert.match(html, /stroke: var\(--line-ink\);/u);
+});
+
+test("equation mapping settings control uses a gear icon", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(runtime.includes('case "settings":'), true);
+  assert.equal(runtime.includes("M12.2 2h-.4"), true);
+  assert.equal(runtime.includes("M12 3v3M12 18v3"), false);
+});
+
+test("equation mapping settings omit the global section-line control", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const requirements = readRepoFile("reference/priorities/app-equation-mapping/requirements-and-design.md");
+  assert.equal(runtime.includes('this.renderSegmentedSetting("Section line"'), false);
+  assert.equal(runtime.includes("this.sectionLinePlacement ="), false);
+  assert.equal(runtime.includes("sectionLinePlacement: this.sectionLinePlacement"), false);
+  assert.equal(runtime.includes("normalizeSectionLinePlacement"), false);
+  assert.equal(runtime.includes('this.renderEditorSelect("Line"'), true);
+  assert.equal(requirements.includes("section-line placement: above or below formula section"), false);
+});
+
+test("equation mapping resets stale saved sizing into the new medium defaults", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(runtime.includes('SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v7"'), true);
+  assert.equal(runtime.includes("const SIZE_CALIBRATION_VERSION = 2;"), true);
+  assert.equal(runtime.includes("savedSettings.sizeCalibrationVersion === SIZE_CALIBRATION_VERSION"), true);
+  assert.equal(runtime.includes("savedSizeSettingsAreCurrent ? savedSettings.equationScale : DEFAULT_EQUATION_SCALE"), true);
+  assert.equal(
+    runtime.includes("savedSizeSettingsAreCurrent ? savedSettings.commentFontSize : DEFAULT_COMMENT_FONT_SIZE"),
+    true
+  );
+  assert.equal(runtime.includes("sizeCalibrationVersion: SIZE_CALIBRATION_VERSION"), true);
 });
 
 test("equation mapping defaults to medium equation scale", () => {
   assert.equal(DEFAULT_EQUATION_SCALE, "medium");
+});
+
+test("equation mapping calibrates medium visual sizes from requested adjacent levels", () => {
+  const html = readRepoFile("equation-mapping.html");
+  assert.match(
+    html,
+    /\.equation-mapping-equation \{[\s\S]*?font-size: clamp\(30px, 4\.6vw, 62px\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-equation-scale="small"\] \.equation-mapping-equation \{[\s\S]*?font-size: clamp\(24px, 3\.7vw, 52px\);/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-equation-scale="large"\] \.equation-mapping-equation \{[\s\S]*?font-size: clamp\(36px, 5\.6vw, 76px\);/u
+  );
+  assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
+  assert.match(html, /\.equation-mapping-comment-body \{[\s\S]*?font-size: 21px;/u);
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-comment-font-size="small"\] \.equation-mapping-comment-header strong,[\s\S]*?font-size: 18px;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-comment-font-size="large"\] \.equation-mapping-comment-header strong,[\s\S]*?font-size: 24px;/u
+  );
 });
 
 test("equation mapping defaults to medium comment font size", () => {

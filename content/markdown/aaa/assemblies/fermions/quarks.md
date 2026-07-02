@@ -43,18 +43,18 @@ for Generations I, II, and III respectively. Here $N_{\text{core}}$ counts coher
 
 ### Axis notation
 
-To describe color and axial geometry compactly, use the three core axes $(H,M,L)$ and the following axis classes:
+To describe color and axial geometry compactly, use the three core axes $(H,M,L)$ and the following polarity-dyad classes:
 
-- $P^+ = (+,+)$: an axis whose two polar sites are both positrino.
-- $P^- = (-,-)$: an axis whose two polar sites are both electrino.
-- $P^{m} = (+,-)$ or $(-,+)$: a mixed axis with one positrino and one electrino.
+- $(\epsilon_+,\epsilon_+)$: an axis whose two polar sites are both positive-polarity.
+- $(\epsilon_-,\epsilon_-)$: an axis whose two polar sites are both negative-polarity.
+- $(\epsilon_+,\epsilon_-)$ or $(\epsilon_-,\epsilon_+)$: a mixed axis with one positive-polarity site and one negative-polarity site.
 
 In the fully shielded implementation picture, each axis contains:
 
 - one neutral source binary, with one orbiting positrino and one orbiting electrino,
 - plus one polar dyad attached to that binary axis.
 
-The axis class labels $P^+$, $P^-$, and $P^{m}$ refer only to those one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
+The polarity-dyad labels refer only to that one polar dyad. They do not mean that the underlying source binary stops being neutral. In higher-generation branches, a depleted shielding tier may no longer act as a coherent source binary, but the polar dyad and its H/M/L branch label remain the gauge-facing color record until the quark branch dissociates.
 
 Colorless fermions keep the three axes equivalent. Quarks do not. A quark becomes color-charged when exactly one axis is exceptional relative to the other two.
 
@@ -64,7 +64,7 @@ Colorless fermions keep the three axes equivalent. Quarks do not. A quark become
 
 All up-type quarks share the same six-site axial count:
 $$
-5P + 1E
+5\epsilon_+ + 1\epsilon_-
 $$
 That gives net charge
 $$
@@ -73,19 +73,19 @@ $$
 
 At axis level, the canonical up-type structure is:
 
-- two axes of type $P^+$,
-- one exceptional axis of type $P^{m}$.
+- two positive-polarity dyads,
+- one exceptional mixed-polarity dyad.
 
 In ordered-axis notation, the three color states are the three permutations of
 $$
-(P^{m},P^+,P^+)
+\big((\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_+),(\epsilon_+,\epsilon_+)\big)
 $$
 
 ### Down-type template
 
 All down-type quarks share the same six-site axial count:
 $$
-2P + 4E
+2\epsilon_+ + 4\epsilon_-
 $$
 That gives net charge
 $$
@@ -95,14 +95,14 @@ $$
 The down-type sector admits two allowed axis-pattern families:
 
 1. Family I:
-   one axis of type $P^+$ and two axes of type $P^-$, i.e. permutations of
+   one positive-polarity dyad and two negative-polarity dyads, i.e. permutations of
    $$
-   (P^+,P^-,P^-)
+   \big((\epsilon_+,\epsilon_+),(\epsilon_-,\epsilon_-),(\epsilon_-,\epsilon_-)\big)
    $$
 2. Family II:
-   one axis of type $P^-$ and two axes of type $P^{m}$, i.e. permutations of
+   one negative-polarity dyad and two mixed-polarity dyads, i.e. permutations of
    $$
-   (P^-,P^{m},P^{m})
+   \big((\epsilon_-,\epsilon_-),(\epsilon_+,\epsilon_-),(\epsilon_+,\epsilon_-)\big)
    $$
 
 Both families satisfy the same structural rule: two axes are in one class and one axis is exceptional. That common axis-exceptionality is what carries color. They are therefore candidate sectors, not two independent low-energy species. For any realized down-type branch, a single selected family $F_\star\in\{I,II\}$ supplies the full red/green/blue color triplet over the declared stability window; the unselected family must be unstable, high-energy transient, or excluded by the hadron boundary conditions. The catalog does not assign $d$, $s$, and $b$ to separate families as a settled rule.
@@ -128,8 +128,8 @@ This gives the standard singlet assignments:
 
 | State family | Axial inventory | Electric charge $Q$ | Right-handed assignment |
 | --- | --- | ---: | ---: |
-| $u^R,c^R,t^R$ | $5P,1E$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
-| $d^R,s^R,b^R$ | $2P,4E$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
+| $u^R,c^R,t^R$ | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | $T_3=0,\ Y=+4/3$ |
+| $d^R,s^R,b^R$ | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | $T_3=0,\ Y=-2/3$ |
 
 The same count logic is what makes the right-handed quark sector look naturally like an SU(2) singlet arc in the six-site axial space: once the weak-coupling triad is no longer exposed, the only remaining electroweak datum is the net axial charge. In that sense, the right-handed quark state is not defined by a new axial pattern, but by the same pattern viewed in a geometrically shielded coupling posture.
 
@@ -143,8 +143,8 @@ The corresponding left-handed image suggests a useful implementation candidate f
 
 In this bookkeeping:
 
-- the left-handed up-type states keep the $5P,1E$ axial count,
-- the left-handed down-type states keep the $2P,4E$ axial count,
+- the left-handed up-type states keep the $5\epsilon_+,1\epsilon_-$ axial count,
+- the left-handed down-type states keep the $2\epsilon_+,4\epsilon_-$ axial count,
 - the up-type branch carries
   $$
   T_3 = +\frac{1}{2}, \qquad Y = +\frac{1}{3}
@@ -158,15 +158,15 @@ This gives the standard doublet bookkeeping:
 
 | State family | Axial count | Electric charge $Q$ | Left-handed assignment |
 | --- | --- | ---: | ---: |
-| $u^L,c^L,t^L$ | $5P,1E$ | $+2/3$ | $T_3=+1/2,\ Y=+1/3$ |
-| $d^L,s^L,b^L$ | $2P,4E$ | $-1/3$ | $T_3=-1/2,\ Y=+1/3$ |
+| $u^L,c^L,t^L$ | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | $T_3=+1/2,\ Y=+1/3$ |
+| $d^L,s^L,b^L$ | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | $T_3=-1/2,\ Y=+1/3$ |
 
 The value of this conjecture is that it places the quark doublet in the same six-site counting language as the lepton doublet:
 
-- $6E$ for charged leptons,
-- $3P,3E$ for neutrinos,
-- $2P,4E$ for down-type quarks,
-- $5P,1E$ for up-type quarks.
+- $6\epsilon_-$ for charged leptons,
+- $3\epsilon_+,3\epsilon_-$ for neutrinos,
+- $2\epsilon_+,4\epsilon_-$ for down-type quarks,
+- $5\epsilon_+,1\epsilon_-$ for up-type quarks.
 
 That makes the quark sector look less like a separate lookup table and more like a continuous family of exposed coupling postures on the same axial-inventory wheel. At present this should be treated as a unifying implementation candidate, not a closed proof of weak-sector geometry.
 
@@ -178,11 +178,11 @@ Start by mapping the quark axial inventories to their charged-sector conjugate r
 
 - anti-up family $(\bar u,\bar c,\bar t)$:
   $$
-  1P,5E,\qquad Q=-\frac{2}{3}
+  1\epsilon_+,5\epsilon_-,\qquad Q=-\frac{2}{3}
   $$
 - anti-down family $(\bar d,\bar s,\bar b)$:
   $$
-  4P,2E,\qquad Q=+\frac{1}{3}
+  4\epsilon_+,2\epsilon_-,\qquad Q=+\frac{1}{3}
   $$
 
 The conjectural rule then reads:
@@ -199,8 +199,8 @@ In this reverse-engineered candidate:
 
 | State family | Axial count | Electric charge $Q$ | Right-handed anti-braid assignment |
 | --- | --- | ---: | ---: |
-| $\bar u^R,\bar c^R,\bar t^R$ | $1P,5E$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
-| $\bar d^R,\bar s^R,\bar b^R$ | $4P,2E$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
+| $\bar u^R,\bar c^R,\bar t^R$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=-1/2,\ Y=-1/3$ |
+| $\bar d^R,\bar s^R,\bar b^R$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=+1/2,\ Y=-1/3$ |
 
 These are exactly the charge-conjugate mirrors of the pro-braid left-handed quark doublet:
 $$
@@ -214,8 +214,8 @@ For the left-handed anti-braid branch, the same mirror logic gives:
 
 | State family | Axial count | Electric charge $Q$ | Left-handed anti-braid assignment |
 | --- | --- | ---: | ---: |
-| $\bar u^L,\bar c^L,\bar t^L$ | $1P,5E$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
-| $\bar d^L,\bar s^L,\bar b^L$ | $4P,2E$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
+| $\bar u^L,\bar c^L,\bar t^L$ | $1\epsilon_+,5\epsilon_-$ | $-2/3$ | $T_3=0,\ Y=-4/3$ |
+| $\bar d^L,\bar s^L,\bar b^L$ | $4\epsilon_+,2\epsilon_-$ | $+1/3$ | $T_3=0,\ Y=+2/3$ |
 
 These are the charge-conjugate mirrors of the pro-braid right-handed singlets:
 $$
@@ -266,22 +266,22 @@ This should still be treated cautiously. The image supports a candidate mapping 
 
 | Flavor | Type | Generation | Core architecture | Core architrinos | Axial pattern | Net charge | Total architrinos | Axis template |
 | --- | --- | --- | --- | ---: | --- | ---: | ---: | --- |
-| $u$ | up-type | I | pro nested shell braid | 6 | $5P,1E$ | $+2/3$ | 12 | permutations of $(P^{m},P^+,P^+)$ |
-| $d$ | down-type | I | pro nested shell braid | 6 | $2P,4E$ | $-1/3$ | 12 | selected family $F_\star$: permutations of $(P^+,P^-,P^-)$ if $F_\star=I$, or $(P^-,P^{m},P^{m})$ if $F_\star=II$ |
-| $c$ | up-type | II | pro bi-binary | 4 | $5P,1E$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
-| $s$ | down-type | II | pro bi-binary | 4 | $2P,4E$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
-| $t$ | up-type | III | pro uni-binary | 2 | $5P,1E$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
-| $b$ | down-type | III | pro uni-binary | 2 | $2P,4E$ | $-1/3$ | 8 | same selected-family rule on a Generation-III core |
+| $u$ | up-type | I | pro nested shell braid | 6 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 12 | one mixed dyad, two positive-polarity dyads |
+| $d$ | down-type | I | pro nested shell braid | 6 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 12 | selected family $F_\star$: one positive-polarity dyad with two negative-polarity dyads if $F_\star=I$, or one negative-polarity dyad with two mixed dyads if $F_\star=II$ |
+| $c$ | up-type | II | pro bi-binary | 4 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 10 | same up-type color template on a Generation-II core |
+| $s$ | down-type | II | pro bi-binary | 4 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 10 | same selected-family rule on a Generation-II core |
+| $t$ | up-type | III | pro uni-binary | 2 | $5\epsilon_+,1\epsilon_-$ | $+2/3$ | 8 | same up-type color template on a Generation-III core |
+| $b$ | down-type | III | pro uni-binary | 2 | $2\epsilon_+,4\epsilon_-$ | $-1/3$ | 8 | same selected-family rule on a Generation-III core |
 
 ### Flavor-by-flavor notes
 
 #### Up quark
 
-The up quark is the ground-state up-type quark. It uses the full pro nested shell braid core and the $5P,1E$ axial layer. Its defining axis geometry is one mixed axis against two positrino-rich axes.
+The up quark is the ground-state up-type quark. It uses the full pro nested shell braid core and the $5\epsilon_+,1\epsilon_-$ axial layer. Its defining axis geometry is one mixed axis against two positive-polarity-rich axes.
 
 #### Down quark
 
-The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid core, but with the $2P,4E$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
+The down quark is the ground-state down-type quark. It also uses the full pro nested shell braid core, but with the $2\epsilon_+,4\epsilon_-$ axial layer. Its color structure comes from a single exceptional axis within the selected Family-I or Family-II sector, not from both families appearing as independent down-like species.
 
 #### Charm quark
 
@@ -289,15 +289,15 @@ The charm quark keeps the up-type axial pattern but sheds the outer shielding bi
 
 #### Strange quark
 
-The strange quark is the Generation-II down-type partner of charm. It keeps the $2P,4E$ axial pattern but lives on a bi-binary core rather than a nested shell braid core, with the same selected-family branch rule applied after the shielding tier is fixed.
+The strange quark is the Generation-II down-type partner of charm. It keeps the $2\epsilon_+,4\epsilon_-$ axial pattern but lives on a bi-binary core rather than a nested shell braid core, with the same selected-family branch rule applied after the shielding tier is fixed.
 
 #### Top quark
 
-The top quark is the most exposed up-type branch in the present catalog. It carries the same $5P,1E$ axial inventory as the lighter up-type quarks but only a uni-binary core. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
+The top quark is the most exposed up-type branch in the present catalog. It carries the same $5\epsilon_+,1\epsilon_-$ axial inventory as the lighter up-type quarks but only a uni-binary core. Its total count is therefore only 8 architrinos. This is the most exposed quark branch and, correspondingly, the least stable.
 
 #### Bottom quark
 
-The bottom quark is the Generation-III down-type branch. It carries the down-type $2P,4E$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
+The bottom quark is the Generation-III down-type branch. It carries the down-type $2\epsilon_+,4\epsilon_-$ axial pattern on a uni-binary core. Like the top quark, it is highly exposed compared with Generation-I quarks, though the down-type selected-family sector remains a separate branch-selection target.
 
 ## Color assignments
 
@@ -326,9 +326,9 @@ The exact angular labels are conventional. What matters geometrically is that th
 
 | Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
 | --- | --- | --- |
-| Red | $(P^{m},P^+,P^+)$ | H-axis exceptional |
-| Green | $(P^+,P^{m},P^+)$ | M-axis exceptional |
-| Blue | $(P^+,P^+,P^{m})$ | L-axis exceptional |
+| Red | mixed dyad, positive-polarity dyad, positive-polarity dyad | H-axis exceptional |
+| Green | positive-polarity dyad, mixed dyad, positive-polarity dyad | M-axis exceptional |
+| Blue | positive-polarity dyad, positive-polarity dyad, mixed dyad | L-axis exceptional |
 
 This table applies directly to $u$, and by generation lifting also to $c$ and $t$.
 
@@ -337,13 +337,13 @@ This table applies directly to $u$, and by generation lifting also to $c$ and $t
 The most concrete current implementation candidate is:
 
 - every axis keeps its neutral source binary,
-- two axes carry polar-dyad decorations $(+,+)$,
-- one axis carries the mixed polar dyad $(+,-)$ or $(-,+)$,
+- two axes carry polar-dyad decorations $(\epsilon_+,\epsilon_+)$,
+- one axis carries the mixed polar dyad $(\epsilon_+,\epsilon_-)$ or $(\epsilon_-,\epsilon_+)$,
 - and the color label is set by which axis carries that mixed polar dyad.
 
 So for an up quark:
 
-- **Red** means the H-axis is the mixed axis and the other two axes are $(+,+)$,
+- **Red** means the H-axis is the mixed axis and the other two axes are $(\epsilon_+,\epsilon_+)$,
 - **Green** means the M-axis is the mixed axis,
 - **Blue** means the L-axis is the mixed axis.
 
@@ -351,7 +351,7 @@ This matches the intuitive “minority carrier” language already used elsewher
 
 The two orderings
 $$
-(+,-)\quad\text{and}\quad(-,+)
+(\epsilon_+,\epsilon_-)\quad\text{and}\quad(\epsilon_-,\epsilon_+)
 $$
 on the exceptional axis should be treated as two micro-configurations within the same color sector unless a later derivation shows that one of them carries an additional observable phase, helicity bias, or stability difference. At present they are best regarded as implementation-level variants of the same color assignment.
 
@@ -363,17 +363,17 @@ Family I:
 
 | Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
 | --- | --- | --- |
-| Red | $(P^+,P^-,P^-)$ | H-axis exceptional |
-| Green | $(P^-,P^+,P^-)$ | M-axis exceptional |
-| Blue | $(P^-,P^-,P^+)$ | L-axis exceptional |
+| Red | positive-polarity dyad, negative-polarity dyad, negative-polarity dyad | H-axis exceptional |
+| Green | negative-polarity dyad, positive-polarity dyad, negative-polarity dyad | M-axis exceptional |
+| Blue | negative-polarity dyad, negative-polarity dyad, positive-polarity dyad | L-axis exceptional |
 
 Family II:
 
 | Color | Ordered axis pattern $(H,M,L)$ | Interpretation |
 | --- | --- | --- |
-| Red | $(P^-,P^{m},P^{m})$ | H-axis exceptional |
-| Green | $(P^{m},P^-,P^{m})$ | M-axis exceptional |
-| Blue | $(P^{m},P^{m},P^-)$ | L-axis exceptional |
+| Red | negative-polarity dyad, mixed dyad, mixed dyad | H-axis exceptional |
+| Green | mixed dyad, negative-polarity dyad, mixed dyad | M-axis exceptional |
+| Blue | mixed dyad, mixed dyad, negative-polarity dyad | L-axis exceptional |
 
 These are candidate-sector tables. For any realized $d$, $s$, or $b$ branch, one selected family $F_\star$ supplies the three color states; the other family is not counted as an additional long-lived down-type particle. A branch that leaves both tables comparably stable in the same low-energy window over-predicts down-type species and fails the selection target.
 
@@ -444,7 +444,7 @@ The eight gluon modes are then the eight traceless generators of this action. In
 
 The catalog uses the following working rules:
 
-- **Up-type quarks couple to gluons through the exceptional mixed axis** against the two $P^+$ axes.
+- **Up-type quarks couple to gluons through the exceptional mixed axis** against the two positive-polarity dyad axes.
 - **Down-type quarks couple to gluons through the exceptional axis** against the two background axes of the chosen family.
 - **Local gluon complex:** the exchanged object should be understood as the coupled vortex corridor together with the source-binary vortex generators that sustain it, not as a detached tube with no source-side structure.
 - **Captive-potential transfer:** gluon exchange may swap or relabel captive axial potentials between coupled vortex channels so long as the quark remains in the same flavor class and keeps the same total axial inventory.
@@ -459,8 +459,8 @@ The catalog uses the following working rules:
 
 The following parts of the quark catalog are fixed strongly enough to be treated as canonical:
 
-- up-type axial count $5P,1E$,
-- down-type axial count $2P,4E$,
+- up-type axial count $5\epsilon_+,1\epsilon_-$,
+- down-type axial count $2\epsilon_+,4\epsilon_-$,
 - generation as Noether braid shielding level,
 - architrino counts $12$, $10$, and $8$ for Generations I, II, and III,
 - color as axis exceptionality in the three-state $(H,M,L)$ basis,

@@ -28,6 +28,26 @@ The answer engine source contract decides what can be claimed from the retrieved
 
 It is not runtime indexing code. It is the policy and schema target for future ingestion jobs, retrieval indexes, source route validators, source-chip rendering tests, answer fixtures, token receipts, visual artifacts, speech artifacts, issue drafts, and issue-mining reports.
 
+## Current Schema-Only Dry Run
+
+The service scaffold now includes a source-index dry-run contract in [schema.json](../../../src/archie-service/contracts/v1/schema.json), a fixture at [source-index-dry-run.v1.json](../../../tests/archie-service/fixtures/source-index/source-index-dry-run.v1.json), and a negative validator plan at [negative-validator-suite.v1.json](../../../tests/archie-service/fixtures/validators/negative-validator-suite.v1.json).
+
+The dry run proves the first manifest-facing route cases without enabling runtime answer generation:
+
+| Route case | Required behavior |
+| --- | --- |
+| markdown section | Resolve an authored corpus section into a `published_corpus` source chip. |
+| sphere portion | Resolve a scene/sphere entry through its canonical authored corpus parent. |
+| full-document sphere | Resolve full-document listening through the generated reading-copy route and canonical authored parent. |
+| app guide | Resolve app-help material as `app_guide` with diagnostic authority only. |
+| System Card | Resolve proof-status, launch-status, caveat, and unsupported-answer routing through the System Card route. |
+| priority packet | Exclude priority material from ordinary public answers unless development-status visibility is enabled. |
+| missing route | Return a missing-source context instead of substituting model memory. |
+
+Each dry-run case declares the requested route, route surface, expected disposition, source chip, manifest `sourceContext` fragment, and the invariants `feedsManifestSourceContext`, `noModelMemorySubstitution`, and `privatePromptIncluded: false`.
+
+This is still schema-only. The next implementation step is a check-mode source-index builder that can produce these route cases from current repo artifacts and fail closed when any route lacks authority, freshness, visibility, System Card routing, secret-boundary safety, private-prompt redaction, current terms, action confirmation, or source-authority discipline.
+
 ## Core Invariant
 
 Retrieval can find and rank sources. It cannot promote authority.
@@ -191,16 +211,20 @@ The future implementation should include retrieval fixtures for:
 | `retrieval-source-chip-001` | Source chips include class, route, authority status, claim-label floor, and freshness summary when needed. |
 | `retrieval-observability-source-miss-001` | Source misses emit safe route/source-index classes without private prompt text or model-memory substitution. |
 | `retrieval-private-material-negative-001` | Private user material is not ingested as source without explicit policy. |
+| `retrieval-dry-run-route-cases-001` | Source-index dry-run fixture covers markdown section, sphere portion, full-document sphere, app guide, System Card, priority exclusion, and missing route cases as manifest-ready `sourceContext` fragments. |
+| `retrieval-negative-validator-suite-001` | Negative validator suite blocks browser-key exposure, private-prompt leakage, low-quality speech fallback, unconfirmed GitHub handoff, stale terms, and source-authority inflation before route output can drive answer artifacts. |
 
 ## Implementation Handoff
 
 Closure goal:
-Turn the Source Ingestion And Retrieval Context Contract into ingestion records, source indexes, source-chip payloads, freshness validators, missing-route fixtures, and `source_context` population tests for the Archie service.
+Turn the Source Ingestion And Retrieval Context Contract into a check-mode source-index builder, source-record normalization rules, source-chip payloads, freshness validators, missing-route fixtures, and `source_context` population tests for the Archie service.
 
 Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [answer-engine-source-contract.md](answer-engine-source-contract.md) as the source of truth.
 
 Task:
 - Define source record schemas for authored corpus, generated reading copies, scene routes, app guides, Archie references, priority material, and curated external comparison sources.
+- Use the schema-only dry-run fixture as the first expected-output contract for markdown section, sphere portion, full-document sphere, app guide, System Card, priority exclusion, and missing-route behavior.
+- Use the negative validator suite to keep source output from enabling browser secrets, private prompt leakage, low-quality speech fallback, unconfirmed GitHub side effects, stale terms, or source-authority inflation.
 - Encode source freshness, canonical-parent, visibility, source-chip, and missing-route validation.
 - Encode source-miss, stale-index, excluded-source, retrieval-diagnostic, and source-index candidate observability classes.
 - Populate manifest `source_context` before answer generation, speech, visuals, token receipts, issue drafts, saved notes, or issue mining.

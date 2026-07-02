@@ -47,6 +47,7 @@ test("current confinement target passes structure but blocks accepted source row
   assert.equal(report.summary.structuralPass, true);
   assert.equal(report.summary.dependencyPass, true);
   assert.equal(report.summary.equationPass, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
   assert.equal(report.summary.toyBindingRowsPass, true);
   assert.equal(report.summary.firstMissingObject, "missing_accepted_sigma_eff_extraction");
   assert.deepEqual(report.summary.missingRows, [
@@ -67,6 +68,49 @@ test("accepted confinement rows pass when the same dependency structure is retai
   assert.equal(report.summary.allRequiredRowsAccepted, true);
   assert.deepEqual(report.summary.missingRows, []);
   assert.equal(report.summary.structuralPass, true);
+  assert.equal(report.summary.sourceEvidencePass, true);
+});
+
+test("confinement checker fails closed on accepted-looking priority-only rows", () => {
+  const target = readTarget();
+  for (const row of Object.values(target.rows)) {
+    row.status = "accepted";
+  }
+
+  const report = buildConfinementFunctionalSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "confinement_functional_source_evidence_mismatch");
+  assert.equal(report.summary.sourceEvidencePass, false);
+  assert.deepEqual(report.sourceEvidenceCheck.failures, [
+    {
+      rowId: "sigma_eff_extraction",
+      currentEvidenceStatus: "priority_packet_only",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "color_singlet_nucleon_envelope",
+      currentEvidenceStatus: "priority_packet_only",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "delta_E_corr_NN",
+      currentEvidenceStatus: "priority_packet_only",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+    {
+      rowId: "no_open_color_far_field",
+      currentEvidenceStatus: "priority_packet_only",
+      reason: "accepted_status_without_accepted_non_fixture_source",
+    },
+  ]);
+  assert.deepEqual(report.summary.missingRows, [
+    "sigma_eff_extraction",
+    "color_singlet_nucleon_envelope",
+    "delta_E_corr_NN",
+    "no_open_color_far_field",
+  ]);
 });
 
 test("confinement checker fails closed on corrupted Delta E equation structure", () => {

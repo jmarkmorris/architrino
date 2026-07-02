@@ -43,6 +43,7 @@
         --control-top: max(18px, env(safe-area-inset-top));
         --control-right: max(18px, env(safe-area-inset-right));
         --equation-ink: #4b0082;
+        --line-ink: #4b0082;
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -61,6 +62,7 @@
 
       .equation-mapping-shell[data-background="architrinoPurple"] {
         --equation-ink: #ffffff;
+        --line-ink: #ffffff;
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.22);
@@ -73,6 +75,7 @@
 
       .equation-mapping-shell[data-background="warm"] {
         --equation-ink: #4b0082;
+        --line-ink: #4b0082;
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(75, 0, 130, 0.18);
@@ -85,6 +88,7 @@
 
       .equation-mapping-shell[data-background="dark"] {
         --equation-ink: #ffffff;
+        --line-ink: #ffffff;
         --text: var(--equation-ink);
         --muted: var(--equation-ink);
         --rule: rgba(255, 255, 255, 0.2);
@@ -491,17 +495,17 @@
         justify-content: center;
         max-width: 100%;
         color: var(--text);
-        font-size: clamp(36px, 5.6vw, 76px);
+        font-size: clamp(30px, 4.6vw, 62px);
         line-height: 1.25;
         text-align: center;
       }
 
       .equation-mapping-shell[data-equation-scale="small"] .equation-mapping-equation {
-        font-size: clamp(30px, 4.6vw, 62px);
+        font-size: clamp(24px, 3.7vw, 52px);
       }
 
       .equation-mapping-shell[data-equation-scale="large"] .equation-mapping-equation {
-        font-size: clamp(42px, 6.5vw, 88px);
+        font-size: clamp(36px, 5.6vw, 76px);
       }
 
       .equation-mapping-formula-part,
@@ -521,7 +525,7 @@
         left: 3px;
         right: 3px;
         height: 1px;
-        background: var(--equation-ink);
+        background: var(--line-ink);
         content: "";
       }
 
@@ -551,7 +555,7 @@
         width: min(calc(var(--overlay-width) * 1%), 330px);
         min-width: 220px;
         padding: 10px;
-        border: 1px solid #ffffff;
+        border: 1px solid var(--line-ink);
         border-radius: 8px;
         background: var(--panel);
         color: var(--text);
@@ -560,7 +564,7 @@
       }
 
       .equation-mapping-comment.is-active {
-        border-color: #ffffff;
+        border-color: var(--line-ink);
       }
 
       .equation-mapping-comment-header {
@@ -572,19 +576,19 @@
       }
 
       .equation-mapping-comment-header strong {
-        font-size: 12px;
+        font-size: 21px;
       }
 
       .equation-mapping-comment-header span {
         color: var(--muted);
-        font-size: 10px;
+        font-size: 17px;
       }
 
       .equation-mapping-comment-body {
         display: grid;
         gap: 6px;
         color: var(--text);
-        font-size: 12px;
+        font-size: 21px;
         line-height: 1.35;
       }
 
@@ -594,20 +598,20 @@
 
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header strong,
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-body {
-        font-size: 11px;
+        font-size: 18px;
       }
 
       .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header span {
-        font-size: 9px;
+        font-size: 15px;
       }
 
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
-        font-size: 14px;
+        font-size: 24px;
       }
 
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header span {
-        font-size: 11px;
+        font-size: 18px;
       }
 
       .equation-mapping-comment-math {
@@ -625,13 +629,13 @@
       }
 
       .equation-mapping-pointer-line {
-        stroke: #ffffff;
+        stroke: var(--line-ink);
         stroke-width: 1;
         vector-effect: non-scaling-stroke;
       }
 
       .equation-mapping-pointer-line.is-active {
-        stroke: #ffffff;
+        stroke: var(--line-ink);
       }
 
       .equation-mapping-math-fallback {
