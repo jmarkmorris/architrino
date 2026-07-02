@@ -19,6 +19,8 @@ export function createSceneGraphRuntime(deps) {
   const HEAVY_PARTICLE_SCALE_END_NUCLEONS = 250;
   const HEAVY_PARTICLE_SCALE_MAX = 1.75;
   const RING_RADIUS_TIE_EPS = 1e-6;
+  const STANDARD_SINGLE_RING_MAX_COUNT = 12;
+  const ADAPTIVE_RING_MAX_COUNT = 14;
 
   function getHeavyElementParticleScale(nucleonCount) {
     if (!Number.isFinite(nucleonCount) || nucleonCount <= HEAVY_PARTICLE_SCALE_START_NUCLEONS) {
@@ -179,6 +181,38 @@ export function createSceneGraphRuntime(deps) {
     );
   }
 
+  function resolveGridColumns(count, requestedColumns = null) {
+    if (Number.isInteger(requestedColumns) && requestedColumns > 0) {
+      return Math.min(count || 1, requestedColumns);
+    }
+    return Math.max(1, Math.ceil(Math.sqrt(Math.max(1, count) * 1.2)));
+  }
+
+  function computeExplicitGridPositions(nodes, options = {}) {
+    const count = Array.isArray(nodes) ? nodes.length : 0;
+    if (!count) {
+      return null;
+    }
+    if (count === 1) {
+      return [[0, 0, 0]];
+    }
+    const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
+    const columns = resolveGridColumns(count, options.columns);
+    const rows = Math.ceil(count / columns);
+    const gridSpacing = Math.max(requiredChord, maxNodeRadius * 2.6);
+    const startX = -((columns - 1) * gridSpacing) / 2;
+    const startY = ((rows - 1) * gridSpacing) / 2;
+    return nodes.map((_node, index) => {
+      const row = Math.floor(index / columns);
+      const col = index % columns;
+      return [
+        Number((startX + col * gridSpacing).toFixed(2)),
+        Number((startY - row * gridSpacing).toFixed(2)),
+        0,
+      ];
+    });
+  }
+
   function computeExplicitRingsPositions(nodes, options = {}) {
     const count = Array.isArray(nodes) ? nodes.length : 0;
     if (!count) {
@@ -191,7 +225,14 @@ export function createSceneGraphRuntime(deps) {
       typeof options === "string" ? null : options,
       typeof options === "string" ? { centerOn: options } : {}
     );
-    if (ringLayoutOptions.centerMode === "none") {
+    const usesStandardSingleRing =
+      count <= STANDARD_SINGLE_RING_MAX_COUNT && ringLayoutOptions.centerMode !== "node";
+    const usesGrid =
+      count > ADAPTIVE_RING_MAX_COUNT && ringLayoutOptions.centerMode !== "node";
+    if (usesGrid) {
+      return computeExplicitGridPositions(nodes, options);
+    }
+    if (ringLayoutOptions.centerMode === "none" || usesStandardSingleRing) {
       return computeExplicitRingPositions(nodes, ringLayoutOptions);
     }
     const { maxNodeRadius, requiredChord } = getLayoutPackingMetrics(nodes);
@@ -684,17 +725,33 @@ export function createSceneGraphRuntime(deps) {
         : null;
     const useExplicitRingsLayout =
       config.layout === "static" && explicitLayoutType === "rings";
-    const useStructuredLayout = useExplicitRingsLayout;
-    const ringNodes = useStructuredLayout
+    const useExplicitGridLayout =
+      config.layout === "static" && explicitLayoutType === "grid";
+    const useStructuredLayout = useExplicitRingsLayout || useExplicitGridLayout;
+    const structuredNodes = useStructuredLayout
       ? config.nodes.filter((node) => node?.category !== "legend")
       : [];
     const explicitRingLayoutOptions = useExplicitRingsLayout
       ? normalizeRingLayoutOptions(config.layoutConfig, { centerOn: config.centerOn })
       : null;
-    const explicitRingsPositions = useExplicitRingsLayout
-      ? computeExplicitRingsPositions(ringNodes, explicitRingLayoutOptions)
-      : null;
-    let ringIndex = 0;
+    const shouldUseGridForExplicitRings =
+      useExplicitRingsLayout &&
+      structuredNodes.length > ADAPTIVE_RING_MAX_COUNT &&
+      explicitRingLayoutOptions?.centerMode !== "node";
+    const shouldAutopositionExplicitGrid =
+      useExplicitGridLayout &&
+      structuredNodes.every(
+        (node) => !Array.isArray(node?.position) || node.position.length < 2
+      );
+    const explicitStructuredPositions = shouldUseGridForExplicitRings
+      ? computeExplicitGridPositions(structuredNodes, { columns: config.layoutColumns })
+      : useExplicitRingsLayout
+        ? computeExplicitRingsPositions(structuredNodes, explicitRingLayoutOptions)
+        : shouldAutopositionExplicitGrid
+          ? computeExplicitGridPositions(structuredNodes, { columns: config.layoutColumns })
+          : null;
+    const resolvedLayoutType = shouldUseGridForExplicitRings ? "grid" : config.layoutType ?? null;
+    let structuredIndex = 0;
 
     const spacing = config.spacing ?? 7;
     const centerOffset = (config.nodes.length - 1) / 2;
@@ -714,12 +771,12 @@ export function createSceneGraphRuntime(deps) {
         nodeData.radius = sharedSceneSphereRadius;
       }
       const usesFixedPosition = nodeData.fixedPosition === true;
-      if (explicitRingsPositions && !usesFixedPosition) {
-        const pos = explicitRingsPositions[ringIndex];
+      if (explicitStructuredPositions && !usesFixedPosition) {
+        const pos = explicitStructuredPositions[structuredIndex];
         if (pos) {
           nodeData.position = [pos[0], pos[1], pos[2] ?? 0];
         }
-        ringIndex += 1;
+        structuredIndex += 1;
       }
       const node = deps.createNode(nodeData);
       const hasPosition =
@@ -917,7 +974,7 @@ export function createSceneGraphRuntime(deps) {
       shellGuides,
       primaryBinaryNode,
       layout: config.layout,
-      layoutType: config.layoutType ?? null,
+      layoutType: resolvedLayoutType,
       layoutConfig: config.layoutConfig ?? null,
       ringLayout: explicitRingLayoutOptions,
       links: [],

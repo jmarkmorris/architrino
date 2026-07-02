@@ -1,9 +1,9 @@
 export const EQUATION_MAP_SCHEMA = "equation-map-document.v1";
 export const DEFAULT_EQUATION_MAP_DOCUMENT_ID = "poisson-weak-field-source-map";
-export const DEFAULT_BACKGROUND_ID = "light";
+export const DEFAULT_BACKGROUND_ID = "architrinoPurple";
 export const DEFAULT_SECTION_LINE_PLACEMENT = "below";
 export const DEFAULT_EQUATION_SCALE = "medium";
-export const DEFAULT_COMMENT_DENSITY = "compact";
+export const DEFAULT_COMMENT_FONT_SIZE = "medium";
 
 export const CANVAS_COLORS = Object.freeze([
   { id: "architrinoPurple", label: "Purple", color: "#4b0082" },
@@ -28,7 +28,7 @@ export const CLAIM_LEVELS = Object.freeze([
 ]);
 
 const EQUATION_SCALE_VALUES = new Set(["small", "medium", "large"]);
-const COMMENT_DENSITY_VALUES = new Set(["compact", "roomy"]);
+const COMMENT_FONT_SIZE_VALUES = new Set(["small", "medium", "large"]);
 const SECTION_LINE_PLACEMENTS = new Set(["above", "below"]);
 
 function normalizeText(value, fallback = "") {
@@ -72,8 +72,8 @@ export function normalizeEquationScale(value, fallback = DEFAULT_EQUATION_SCALE)
   return EQUATION_SCALE_VALUES.has(value) ? value : fallback;
 }
 
-export function normalizeCommentDensity(value, fallback = DEFAULT_COMMENT_DENSITY) {
-  return COMMENT_DENSITY_VALUES.has(value) ? value : fallback;
+export function normalizeCommentFontSize(value, fallback = DEFAULT_COMMENT_FONT_SIZE) {
+  return COMMENT_FONT_SIZE_VALUES.has(value) ? value : fallback;
 }
 
 function normalizeClaimLevel(value) {

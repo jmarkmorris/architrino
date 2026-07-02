@@ -9,9 +9,9 @@
       "elementLegendSource": "content/graph/runtime_routes.json"
     },
     "counts": {
-      "nodes": 582,
-      "edges": 1342,
-      "scenes": 378,
+      "nodes": 583,
+      "edges": 1343,
+      "scenes": 379,
       "markdownIndexes": 0,
       "markdownDocs": 191,
       "runtimeEdges": 476,
@@ -2417,6 +2417,12 @@
       "nodeType": "scene"
     },
     {
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json",
+      "nodeType": "scene"
+    },
+    {
       "id": "content/generated/markdown/textbook/toc.md",
       "name": "Textbook TOC",
       "path": "content/generated/markdown/textbook/toc.md",
@@ -3814,6 +3820,15 @@
       "name": "Documentation",
       "path": "content/scenes/archie/documentation.json",
       "searchTarget": "content/scenes/archie/documentation.json",
+      "implicit": false
+    },
+    {
+      "nodeId": "scene:content/scenes/archie/equation_mapping.json",
+      "nodeType": "scene",
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json",
+      "searchTarget": "content/scenes/archie/equation_mapping.json",
       "implicit": false
     },
     {
@@ -8809,7 +8824,7 @@
       "to": "scene:content/scenes/archie/animator.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[9]"
+      "field": "scene.children[10]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8823,7 +8838,7 @@
       "to": "scene:content/scenes/archie/borg.json",
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
-      "field": "scene.children[10]"
+      "field": "scene.children[11]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",
@@ -8831,6 +8846,13 @@
       "edgeType": "subscene",
       "source": "content/scenes/archie/applications.json",
       "field": "scene.children[8]"
+    },
+    {
+      "from": "scene:content/scenes/archie/applications.json",
+      "to": "scene:content/scenes/archie/equation_mapping.json",
+      "edgeType": "subscene",
+      "source": "content/scenes/archie/applications.json",
+      "field": "scene.children[9]"
     },
     {
       "from": "scene:content/scenes/archie/applications.json",

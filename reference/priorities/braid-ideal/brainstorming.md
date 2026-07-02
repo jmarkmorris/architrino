@@ -286,6 +286,36 @@ Interpretation. The clean high-field wiggle is not merely missing a visible retu
 
 Fail-closed consequence. The reduced-radius diagnostic keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, and `scoreMovement=no_score_increase`. It narrows the next producer boundary for `self_hit_held_release_solver_row`; it does not authorize branch evidence.
 
+### Wiggle Return-Response Target - 2026-07-02
+
+The producer [wiggle-return-response-target.mjs](../../../scripts/braid-ideal/wiggle-return-response-target.mjs) now turns the reduced-radius wiggle diagnostic into a reusable return-response target. It consumes the priority-only toy result, extracts the post-first-pass radial acceleration rows, and emits schema `braid_ideal_wiggle_return_response_target.v0`.
+
+For the clean high-field face/opposite-face run, the target records that the first compression-to-expansion turn exists, the same-level symmetry window remains intact, field-speed and causal-root checks pass, and every post-turn row still accelerates outward. The target therefore computes the minimum inward response needed to make at least one post-first-pass row satisfy
+
+$$
+\ddot R_{\mathrm{toy}}(t)+a_R^{\mathrm{response}}(t)<0.
+$$
+
+With the current validation-speed diagnostic, the weakest outward post-turn row has
+
+$$
+\ddot R_{\mathrm{toy}}\approx0.0934863484737535,
+$$
+
+so the return-response target requires an inward radial response at least slightly larger than that diagnostic floor before a return-turn or bounded basin can be tested.
+
+The target ranks five non-authorizing response routes:
+
+1. `central_solver_retained_history_return_response`;
+2. `same_record_wake_ledger_return_response`;
+3. `same_ledger_action_measure_return_response`;
+4. `noether_sea_pressure_tension_return_response`;
+5. `angular_momentum_shielding_return_response`.
+
+The Noether sea route is now explicit rather than implicit. It first blocks at `theta_sea_rho_NS` and requires a retained pressure-row, pressure/tension/relaxation rows, and same-record provider provenance before it can count as evidence. The central retained-history route remains top ranked because it is the common source object needed to bind path history, same-source self-hit rows, causal-root replay, retained wake rows, action rows, and provider provenance on one retained record.
+
+Fail-closed consequence. The target keeps `retainedBranchClaim=false`, `acceptedSameLevelBranchClaim=false`, `accepted_wiggle_return_response=false`, `noether_sea_response=false`, and `scoreMovement=no_score_increase`. Its first retained-evidence blocker is `central_solver_retained_history_provider_object`, with first missing field `central_solver_retained_history_row.provider_provenance.provider_object_ref`; the parent two-speed retained-root blocker remains `oblate_spheroid_two_speed_deformation_sweep.rows[*].root_ledger_status.retained_root_ledger_ref`.
+
 ### Group-Zero Sphere Baseline - 2026-07-01
 
 Claim level. Priority-only solver-toy baseline. This run uses the current causal-wake held-release runner, not a production central-solver retained-history certificate. It models both balanced octahedral decoration classes on the unit sphere with static dynamic center
@@ -481,7 +511,7 @@ E:\{-x,-y,-z\}
 \right\}.
 $$
 
-The charge-conjugate mirror of this support swaps all polarities while preserving the same opposite-face geometry:
+At the support-display level, the charge-conjugate mirror of this support reverses all polarity signs while preserving the same opposite-face geometry:
 
 $$
 \overline{\mathcal S}_{\mathrm{fo}}
@@ -493,7 +523,16 @@ P:\{-x,-y,-z\}
 \right\}.
 $$
 
-Because both rows retain one Positrino and one Electrino on every axis, the mirror keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and complete charge conjugation. This is the local support-level reason that a matter branch and its antimatter branch should be mirror candidates, not different octahedral decoration classes.
+Polarity-swap convention. In this packet, a `P/E swap` is only shorthand for complete charge conjugation of an already declared branch record. It must not be read as erasing an Electrino identity and installing a Positrino identity, or the reverse, at the same site. Architrino identity is provenance-bearing: it includes the retained path history, causal-root rows, wake-history rows, action rows, momentum/angular-momentum rows, and stability rows that still belong to that branch.
+
+$$
+q_i\mapsto -q_i
+\quad\text{only together with the conjugate same-record history rows for every participating architrino }i.
+$$
+
+The local notation can therefore display a support-level mirror, but a physical matter/antimatter mirror requires a retained solver row that carries the identity-bearing history through the conjugation. A partial rearrangement may be a different balanced inventory, but it is not the charge-conjugate mirror of the starting branch. Likewise, a label-only replacement without the wake-history provenance is not a branch identity statement.
+
+Because both displayed support rows retain one Positrino and one Electrino on every axis, the mirror keeps the same opposite-pair pattern and should inherit the same common-sphere residual tests under any force law that is equivariant under coordinate permutations and complete branch-record conjugation. This is only the local support-level reason that a matter branch and its antimatter branch should be mirror candidates. The identity claim still belongs to the retained path-history and wake-history record, not to a site-label table by itself.
 
 Candidate chirality statement. The existing fermion mapping does not identify matter/antimatter with the raw choice of which face carries Positrinos. It identifies matter/antimatter with pro/anti braid orientation, recorded as ordered braid chirality. Therefore the disciplined target is a chiral lift of the same support class:
 
@@ -523,9 +562,9 @@ $$
 
 It changes the opposite-pair pattern by introducing one $P/P$ axis and one $E/E$ axis. That is a partial redistribution of the balanced inventory, not complete charge conjugation of the `face-opposite` branch. The current toy evidence also shows `same_level_support_lost_in_toy_control` for this class. Until a central-solver retained-history row proves otherwise, `axial-paired` should remain a negative control for support loss, not an antimatter branch.
 
-First proof route. Prove the `face-opposite` invariant-manifold lemma first. Then add the ordered chirality variable $\chi_c$ only after the retained branch supplies phase order, winding counts, causal-root ledgers, wake rows, action rows, and stability rows. The proof must show that complete charge conjugation plus pro/anti orientation reversal preserves the mass-facing and support-facing ledgers while reversing the exposed charge-like projection, consistent with the charge-conjugate mass-equality constraint in [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#charge-conjugate-mass-equality).
+First proof route. Prove the `face-opposite` invariant-manifold lemma first. Then add the ordered chirality variable $\chi_c$ only after the retained branch supplies phase order, winding counts, causal-root ledgers, wake rows, action rows, and stability rows. The proof must show that complete charge conjugation plus pro/anti orientation reversal preserves the identity-bearing retained history, mass-facing ledger, and support-facing ledger while reversing the exposed charge-like projection, consistent with the charge-conjugate mass-equality constraint in [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md#charge-conjugate-mass-equality).
 
-Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the chirality record cannot be tied to the same branch identity as the support geometry, or if an accepted `axial-paired` retained branch later appears with a complete pro/anti mirror ledger and equal support quality. Until then, the safe claim is only that `face-opposite` is the first admissible support candidate for the matter/antimatter chirality rule, while `axial-paired` is an excluded antimatter interpretation in the present evidence record.
+Failure modes. This bridge fails if the retained solver shows that the `face-opposite` support does not survive with the required root and action ledgers, if the attempted P/E conjugation cannot preserve the identity-bearing wake-history record, if the chirality record cannot be tied to the same branch identity as the support geometry, or if an accepted `axial-paired` retained branch later appears with a complete pro/anti mirror ledger and equal support quality. Until then, the safe claim is only that `face-opposite` is the first admissible support candidate for the matter/antimatter chirality rule, while `axial-paired` is an excluded antimatter interpretation in the present evidence record.
 
 ### Diagonal Group-Velocity Baseline - 2026-07-01
 

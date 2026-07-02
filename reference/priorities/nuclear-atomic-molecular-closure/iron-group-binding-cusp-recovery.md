@@ -308,11 +308,17 @@ $$
 \right).
 $$
 
-This marker is priority-only. It would justify a later toy script, source-backed comparison table, or corpus promotion, but it is not itself a proof of nuclear binding recovery.
+This marker is priority-only. The first toy script now exercises it as an executable row-shape diagnostic, but the marker is not itself a proof of nuclear binding recovery.
 
-## Next Executable Step
+## First Executable Toy Sweep
 
-The next executable step is a toy graph sweep that emits one JSON report with:
+The first executable toy sweep is [iron-group-binding-cusp-toy-sweep.mjs](../../../scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs). Run it with:
+
+```bash
+node scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs --pretty
+```
+
+The sweep emits one JSON report with:
 
 - selected coefficient set and status for each coefficient;
 - graph-generation rule;
@@ -321,4 +327,8 @@ The next executable step is a toy graph sweep that emits one JSON report with:
 - the first fail-closed row;
 - comparison rows for deuteron, diproton, saturation, and a representative heavy split.
 
-The toy should be treated as a row-shape diagnostic. It may demonstrate that the reduced row bundle has the right qualitative degrees of freedom; it cannot promote nuclear-binding recovery until its coefficients and graph rules are tied back to accepted branch-interface, confinement, weak-channel, and Noether sea response records.
+The paired focused test is [iron-group-binding-cusp-toy-sweep.test.js](../../../tests/iron-group-binding-cusp-toy-sweep.test.js). The default coefficient set is a shared global toy set; the script deliberately fails closed for deuteron loss, diproton overbinding, missing saturation, wrong cusp region, hidden coefficient scope, ledger loss, and shielded-energy leakage.
+
+First run marker. The default summary run reports a toy peak at $(A,Z)=(62,28)$, `firstFailure: null`, a finite high-$A$ tail drop, a representative heavy-split binding gain, and `no_score_increase`.
+
+The toy should be treated as a row-shape diagnostic. It demonstrates that the reduced row bundle has the right qualitative degrees of freedom in one controlled toy envelope; it cannot promote nuclear-binding recovery until its coefficients and graph rules are tied back to accepted branch-interface, confinement, weak-channel, and Noether sea response records.

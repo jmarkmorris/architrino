@@ -9,9 +9,12 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
@@ -88,6 +91,12 @@ The visual artifact may include an image URI, diagram source, prompt text, or st
 ## Source And Claim Rules
 
 Visual artifacts inherit source and claim context from the answer.
+
+The inherited `source_context` must come from [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). The visual artifact service may weaken or annotate source status in captions, but it must not create a separate source authority model.
+
+If a visual artifact is saved, retention, export, deletion, sharing, storage cost, and `not_project_evidence` behavior must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
+
+Generated visual artifacts must also respect generated-media terms, privacy notices, token terms, saved-notebook terms, and legal-review state under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
 
 Rules:
 
@@ -181,7 +190,7 @@ The future implementation should include visual fixtures for:
 Closure goal:
 Turn the Visual Artifact Contract into visual artifact schemas, media validators, purpose-label rendering, caption/alt-text checks, token/privacy checks, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode diagram, generated image, generated-image prompt, app mockup, candidate sketch, and publication draft artifact schemas.

@@ -1,7 +1,7 @@
 import {
   CANVAS_COLORS,
   DEFAULT_BACKGROUND_ID,
-  DEFAULT_COMMENT_DENSITY,
+  DEFAULT_COMMENT_FONT_SIZE,
   DEFAULT_EQUATION_MAP_DOCUMENT_ID,
   DEFAULT_EQUATION_SCALE,
   DEFAULT_SECTION_LINE_PLACEMENT,
@@ -10,7 +10,7 @@ import {
   getCanvasColorById,
   groupEquationMapDocumentsBySubject,
   normalizeBackgroundId,
-  normalizeCommentDensity,
+  normalizeCommentFontSize,
   normalizeEquationMapDocument,
   normalizeEquationMapDocuments,
   normalizeEquationScale,
@@ -26,7 +26,7 @@ import {
   updateEquationOverlay,
 } from "./EquationMappingEditor.js";
 
-const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v1";
+const SETTINGS_STORAGE_KEY = "architrino.equationMapping.settings.v4";
 const DOCUMENTS_STORAGE_KEY = "architrino.equationMapping.documents.v1";
 const SVG_NS = "http://www.w3.org/2000/svg";
 
@@ -168,7 +168,9 @@ export class EquationMappingRuntime {
       options.sectionLinePlacement ?? savedSettings.sectionLinePlacement ?? DEFAULT_SECTION_LINE_PLACEMENT
     );
     this.equationScale = normalizeEquationScale(options.equationScale ?? savedSettings.equationScale);
-    this.commentDensity = normalizeCommentDensity(options.commentDensity ?? savedSettings.commentDensity);
+    this.commentFontSize = normalizeCommentFontSize(
+      options.commentFontSize ?? savedSettings.commentFontSize ?? DEFAULT_COMMENT_FONT_SIZE
+    );
     this.indexCollapsed = Boolean(options.indexCollapsed ?? savedSettings.indexCollapsed ?? false);
     this.searchOpen = false;
     this.settingsOpen = false;
@@ -216,7 +218,7 @@ export class EquationMappingRuntime {
       backgroundId: this.backgroundId,
       sectionLinePlacement: this.sectionLinePlacement,
       equationScale: this.equationScale,
-      commentDensity: this.commentDensity,
+      commentFontSize: this.commentFontSize,
       indexCollapsed: this.indexCollapsed,
     });
   }
@@ -353,7 +355,7 @@ export class EquationMappingRuntime {
     shell.dataset.background = this.backgroundId;
     shell.dataset.indexCollapsed = this.indexCollapsed ? "true" : "false";
     shell.dataset.equationScale = this.equationScale;
-    shell.dataset.commentDensity = this.commentDensity;
+    shell.dataset.commentFontSize = this.commentFontSize;
     shell.style.setProperty("--equation-mapping-background", getCanvasColorById(this.backgroundId).color);
     shell.append(this.renderSubjectIndex(), this.renderCanvas());
     return shell;
@@ -641,8 +643,8 @@ export class EquationMappingRuntime {
         this.persistSettings();
         this.render();
       }),
-      this.renderSegmentedSetting("Comments", ["compact", "roomy"], this.commentDensity, (value) => {
-        this.commentDensity = normalizeCommentDensity(value);
+      this.renderSegmentedSetting("Comment size", ["small", "medium", "large"], this.commentFontSize, (value) => {
+        this.commentFontSize = normalizeCommentFontSize(value);
         this.persistSettings();
         this.render();
       })

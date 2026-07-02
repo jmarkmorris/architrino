@@ -13,9 +13,14 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
@@ -27,7 +32,7 @@ This bucket owns product and interface planning for a user-facing Archie questio
 
 The existing [Archie Service Platform](../archie/service-platform.md) remains the owner for deployment architecture, backend or serverless runtime, model/provider abstraction, source ingestion, privacy, logging, rate limits, token ledger, presentation/media handling, GitHub issue handoff, issue-mining operations, cost controls, observability, and rollback. This bucket focuses on the user experience: conversation modes, multimodal input and output, subscription shape, service-native speech output, guided corpus explanation, idea triage, GitHub issue submission, generated explanatory media, and the [Generated Media Corporate Standard](corporate-media-standards.md).
 
-The v1 product boundary is captured in [v1-product-requirements.md](v1-product-requirements.md). The shared answer response shape is captured in [answer-artifact-manifest.md](answer-artifact-manifest.md). The first service-boundary map is captured in [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md). The typed service, validator, and endpoint contract target is captured in [manifest-service-contracts.md](manifest-service-contracts.md). The upstream source-selection and claim-label rules are captured in [answer-engine-source-contract.md](answer-engine-source-contract.md). Token accounting, spending limits, receipts, privacy state, and retention rules are captured in [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md). Issue-mining report, clustering, noise, owner-lane, and fix-queue rules are captured in [issue-mining-signal-contract.md](issue-mining-signal-contract.md). Service-native speech, synchronized verbatim text, captions/transcripts, narration scripts, and storyboards are captured in [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md). Visual diagrams, generated images, purpose labels, captions, alt text, retention, and proof-status guardrails are captured in [visual-artifact-contract.md](visual-artifact-contract.md). No runtime AI answer generation is implemented here. This is priority-only planning for a future service.
+The v1 product boundary is captured in [v1-product-requirements.md](v1-product-requirements.md). The shared answer response shape is captured in [answer-artifact-manifest.md](answer-artifact-manifest.md). The first service-boundary map is captured in [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md). The typed service, validator, and endpoint contract target is captured in [manifest-service-contracts.md](manifest-service-contracts.md). Source ingestion, route identity, freshness, source chips, and `source_context` population are captured in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). The upstream source-selection and claim-label rules are captured in [answer-engine-source-contract.md](answer-engine-source-contract.md). Model/provider capabilities, quality gates, fallback behavior, credential boundaries, cost classes, privacy/terms checks, and no-browser-key behavior are captured in [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md). Token accounting, spending limits, receipts, privacy state, and retention rules are captured in [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md). Issue-mining report, clustering, noise, owner-lane, and fix-queue rules are captured in [issue-mining-signal-contract.md](issue-mining-signal-contract.md). Confirmation-gated public, durable, paid, retained, and credentialed actions are captured in [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). Saved-note drafts, durable notebook entries, account history, deletion, export, sharing, storage-cost rules, and private-note evidence boundaries are captured in [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). Service terms, token/subscription disclosures, account acceptance, public issue notices, generated-media terms, support routes, abuse controls, and legal-review launch gates are captured in [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). Service-native speech, synchronized verbatim text, captions/transcripts, narration scripts, and storyboards are captured in [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md). Visual diagrams, generated images, purpose labels, captions, alt text, retention, and proof-status guardrails are captured in [visual-artifact-contract.md](visual-artifact-contract.md). No runtime AI answer generation is implemented here. This is priority-only planning for a future service.
 
 ## Objective
 
@@ -55,11 +60,13 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 ## Boundaries
 
 - Do not put model API keys, private credentials, or direct public model calls in browser JavaScript.
+- Do not expose provider-specific billing units, raw provider payloads, model secrets, or provider output as source evidence.
 - Do not present priority-only notes as established corpus claims.
 - Do not generate any media that fails the [Generated Media Corporate Standard](corporate-media-standards.md).
 - Do not let generated images imply proof status; label them as explanatory or speculative media.
 - Do not let presentation voice, narration, animation, or character framing imply source authority, proof status, or external endorsement.
 - Do not file GitHub issues, send mail, create durable user records, retain uploaded media, or charge usage without explicit user consent.
+- Do not offer paid, durable, retained, public, generated-media, or credentialed service actions unless the required service terms, privacy notice, token terms, and action notices are current.
 - Do not make the interface depend on model memory as source evidence.
 - Do not route around the System Card when an answer touches closure status, caveats, validation, or open proof burdens.
 
@@ -70,29 +77,39 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 3. `answer_artifact_manifest` - Keep source context, claim labels, answer body, generated media, speech sync, token receipt, privacy state, available actions, and issue-mining metadata in one response envelope. Status: `candidate`.
 4. `manifest_driven_service_architecture` - Map the manifest to service components, validators, endpoints, speech sync, token receipts, privacy state, and issue-mining flow. Status: `candidate`.
 5. `manifest_service_contracts` - Define typed service-boundary inputs/outputs, validator ordering, endpoint contracts, fail-closed manifest shape, and contract fixtures. Status: `candidate`.
-6. `answer_engine_source_contract` - Define source selection, claim-label assignment, unsupported-answer behavior, answer body fields, and idea-triage classification before media or token work. Status: `candidate`.
-7. `token_ledger_privacy_contract` - Define account grants, spending limits, auto-fund, holds, receipts, privacy state, retention defaults, deletion routes, and confirmation gates. Status: `candidate`.
-8. `issue_mining_signal_contract` - Define mining inputs, cluster shape, signal scoring, noise classes, owner lanes, periodic reports, fix queues, and privacy-safe evidence. Status: `candidate`.
-9. `service_native_speech_and_presentation_contract` - Define high-quality speech, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token, and retention rules. Status: `candidate`.
-10. `visual_artifact_contract` - Define diagrams, generated images, generated-image prompts, app mockups, candidate sketches, purpose labels, captions, alt text, retention, and proof-status guardrails. Status: `candidate`.
-11. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
-12. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
-13. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
-14. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
-15. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
+6. `source_ingestion_retrieval_context_contract` - Define source records, route identity, freshness, source chips, source visibility, missing-route behavior, and manifest `source_context` population. Status: `candidate`.
+7. `answer_engine_source_contract` - Define source selection, claim-label assignment, unsupported-answer behavior, answer body fields, and idea-triage classification before media or token work. Status: `candidate`.
+8. `model_provider_capability_registry_contract` - Define provider-backed capabilities, quality gates, fallback behavior, credential boundaries, cost classes, provider privacy/terms checks, health state, observability, and no-browser-key enforcement. Status: `candidate`.
+9. `token_ledger_privacy_contract` - Define account grants, spending limits, auto-fund, holds, receipts, privacy state, retention defaults, deletion routes, and confirmation gates. Status: `candidate`.
+10. `issue_mining_signal_contract` - Define mining inputs, cluster shape, signal scoring, noise classes, owner lanes, periodic reports, fix queues, and privacy-safe evidence. Status: `candidate`.
+11. `action_broker_confirmation_contract` - Define confirmation-gated GitHub handoff, saved-note, auto-fund, user-material inclusion, sharing, credentialed action, action-result, and side-effect guards. Status: `candidate`.
+12. `saved_notebook_account_history_contract` - Define session drafts, durable notebook entries, account history, deletion, export, sharing, storage cost, issue-link retention, and private-note evidence boundaries. Status: `candidate`.
+13. `service_terms_account_policy_contract` - Define hosted-service terms, token/subscription disclosures, account acceptance, privacy notices, public issue notices, generated-media terms, support routes, abuse controls, and legal-review launch gates. Status: `candidate`.
+14. `service_native_speech_and_presentation_contract` - Define high-quality speech, synchronized displayed verbatim text, captions/transcripts, narration scripts, storyboards, accessibility, voice identity, token, and retention rules. Status: `candidate`.
+15. `visual_artifact_contract` - Define diagrams, generated images, generated-image prompts, app mockups, candidate sketches, purpose labels, captions, alt text, retention, and proof-status guardrails. Status: `candidate`.
+16. `idea_triage` - Help users sharpen new ideas, compare them against the corpus, and decide whether a GitHub issue is warranted. Status: `candidate`.
+17. `github_issue_submission` - Convert accepted user ideas or feedback into structured, user-confirmed GitHub issues with source context, claim level, reproduction fields, proof burden fields, and visible public/GitHub-login warnings. Status: `candidate`.
+18. `issue_signal_mining` - Mine submitted GitHub issues for duplicates, recurring signal, noise classes, affected surfaces, owner routing, and fix queues. Status: `candidate`.
+19. `token_wallet_and_subscription` - Define account tiers, token grants, spending limits, auto-fund settings, per-request caps, pending holds, receipts, rate limits, paid media generation, presentation/media generation, and abuse controls. Status: `candidate`.
+20. `saved_research_notebook` - Let opted-in users save conversations, citations, generated media, narration scripts, animation storyboards, submitted issue links, and issue drafts. Status: `candidate`.
 
 ## Next Work
 
-1. Use [answer-engine-source-contract.md](answer-engine-source-contract.md) to drive source-selection, claim-label, unsupported-answer, answer-body, and idea-triage fixtures.
-2. Use [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md) to drive wallet, cap, hold, charge, refund, retention-state, deletion-route, receipt, and privacy fixtures.
-3. Use [issue-mining-signal-contract.md](issue-mining-signal-contract.md) to drive duplicate clustering, recurring-signal reports, noise classes, owner lanes, fix queues, and privacy-safe evidence fixtures.
-4. Use [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) to drive speech-sync, high-quality-only audio, text-only fallback, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and privacy fixtures.
-5. Use [visual-artifact-contract.md](visual-artifact-contract.md) to drive diagram, generated-image, purpose-label, caption, alt-text, retention, accessibility, rights, and proof-status fixtures.
-6. Use [manifest-service-contracts.md](manifest-service-contracts.md) to drive typed service-boundary, validator, endpoint, and fixture implementation.
-7. Use [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md) as the service-boundary map for the next implementation-ready architecture packet.
-8. Use [answer-artifact-manifest.md](answer-artifact-manifest.md) as the response-envelope contract for that architecture packet.
-9. Use [v1-product-requirements.md](v1-product-requirements.md) to drive the product boundary around that manifest.
-10. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
-11. Convert the fixture-question list into executable regression expectations after the service implementation exists.
-12. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
-13. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.
+1. Use [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md) to drive source-record, source-index, source-chip, freshness, missing-route, and `source_context` fixtures.
+2. Use [answer-engine-source-contract.md](answer-engine-source-contract.md) to drive source-selection, claim-label, unsupported-answer, answer-body, and idea-triage fixtures.
+3. Use [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md) to drive answer-text, high-quality-speech, speech-fallback, generated-image, browser-key, cost-map, privacy, terms, provider-health, source-authority, and observability fixtures.
+4. Use [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md) to drive wallet, cap, hold, charge, refund, retention-state, deletion-route, receipt, and privacy fixtures.
+5. Use [issue-mining-signal-contract.md](issue-mining-signal-contract.md) to drive duplicate clustering, recurring-signal reports, noise classes, owner lanes, fix queues, and privacy-safe evidence fixtures.
+6. Use [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md) to drive confirmation, action-result, GitHub handoff, auto-fund, saved-note, user-material inclusion, credential, and side-effect fixtures.
+7. Use [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md) to drive saved-note draft, durable-save refusal, deletion, export, share, private-note evidence, generated-media retention, issue-link retention, token-storage, and no-private-prompt fixtures.
+8. Use [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) to drive service-term, token-subscription, privacy-notice, generated-media-term, GitHub-handoff-notice, notebook-term, support-route, abuse-policy, reacceptance, and legal-review fixtures.
+9. Use [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) to drive speech-sync, high-quality-only audio, text-only fallback, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and privacy fixtures.
+10. Use [visual-artifact-contract.md](visual-artifact-contract.md) to drive diagram, generated-image, purpose-label, caption, alt-text, retention, accessibility, rights, and proof-status fixtures.
+11. Use [manifest-service-contracts.md](manifest-service-contracts.md) to drive typed service-boundary, validator, endpoint, and fixture implementation.
+12. Use [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md) as the service-boundary map for the next implementation-ready architecture packet.
+13. Use [answer-artifact-manifest.md](answer-artifact-manifest.md) as the response-envelope contract for that architecture packet.
+14. Use [v1-product-requirements.md](v1-product-requirements.md) to drive the product boundary around that manifest.
+15. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
+16. Convert the fixture-question list into executable regression expectations after the service implementation exists.
+17. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
+18. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.

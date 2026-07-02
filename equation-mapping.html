@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <meta name="theme-color" content="#fdfdfd" />
+    <meta name="theme-color" content="#4b0082" />
     <title>Equation Mapping</title>
     <link
       rel="stylesheet"
@@ -21,8 +21,8 @@
         width: 100%;
         height: 100%;
         overflow: hidden;
-        background: #fdfdfd;
-        color: #121417;
+        background: #4b0082;
+        color: #ffffff;
         font-family: "Helvetica Neue", Arial, sans-serif;
       }
 
@@ -42,14 +42,15 @@
         --index-width: 276px;
         --control-top: max(18px, env(safe-area-inset-top));
         --control-right: max(18px, env(safe-area-inset-right));
-        --text: #14171c;
-        --muted: rgba(20, 23, 28, 0.62);
-        --rule: rgba(20, 23, 28, 0.18);
-        --strong-rule: rgba(20, 23, 28, 0.38);
+        --equation-ink: #4b0082;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(75, 0, 130, 0.18);
+        --strong-rule: rgba(75, 0, 130, 0.42);
         --panel: rgba(255, 255, 255, 0.88);
         --panel-strong: rgba(255, 255, 255, 0.96);
-        --accent: #146c74;
-        --accent-soft: rgba(20, 108, 116, 0.14);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(75, 0, 130, 0.12);
         display: grid;
         grid-template-columns: var(--index-width) minmax(0, 1fr);
         width: 100%;
@@ -59,36 +60,39 @@
       }
 
       .equation-mapping-shell[data-background="architrinoPurple"] {
-        --text: #fbf8ff;
-        --muted: rgba(251, 248, 255, 0.68);
-        --rule: rgba(251, 248, 255, 0.2);
-        --strong-rule: rgba(251, 248, 255, 0.42);
+        --equation-ink: #ffffff;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(255, 255, 255, 0.22);
+        --strong-rule: rgba(255, 255, 255, 0.46);
         --panel: rgba(22, 10, 32, 0.76);
-        --panel-strong: rgba(22, 10, 32, 0.9);
-        --accent: #8be5dc;
-        --accent-soft: rgba(139, 229, 220, 0.16);
+        --panel-strong: rgb(22, 10, 32);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(255, 255, 255, 0.14);
       }
 
       .equation-mapping-shell[data-background="warm"] {
-        --text: #221b12;
-        --muted: rgba(34, 27, 18, 0.62);
-        --rule: rgba(34, 27, 18, 0.18);
-        --strong-rule: rgba(34, 27, 18, 0.4);
+        --equation-ink: #4b0082;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(75, 0, 130, 0.18);
+        --strong-rule: rgba(75, 0, 130, 0.42);
         --panel: rgba(255, 250, 239, 0.88);
         --panel-strong: rgba(255, 250, 239, 0.97);
-        --accent: #7a4d18;
-        --accent-soft: rgba(122, 77, 24, 0.14);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(75, 0, 130, 0.12);
       }
 
       .equation-mapping-shell[data-background="dark"] {
-        --text: #f7fafc;
-        --muted: rgba(247, 250, 252, 0.66);
-        --rule: rgba(247, 250, 252, 0.18);
-        --strong-rule: rgba(247, 250, 252, 0.42);
+        --equation-ink: #ffffff;
+        --text: var(--equation-ink);
+        --muted: var(--equation-ink);
+        --rule: rgba(255, 255, 255, 0.2);
+        --strong-rule: rgba(255, 255, 255, 0.46);
         --panel: rgba(15, 23, 42, 0.78);
-        --panel-strong: rgba(15, 23, 42, 0.94);
-        --accent: #7dd3fc;
-        --accent-soft: rgba(125, 211, 252, 0.16);
+        --panel-strong: rgb(15, 23, 42);
+        --accent: var(--equation-ink);
+        --accent-soft: rgba(255, 255, 255, 0.14);
       }
 
       .equation-mapping-shell[data-index-collapsed="true"] {
@@ -220,7 +224,7 @@
       .equation-mapping-icon-button:focus-visible,
       .equation-mapping-icon-button.is-active {
         border-color: var(--strong-rule);
-        color: var(--accent);
+        color: var(--text);
         outline: none;
       }
 
@@ -345,7 +349,7 @@
       .equation-mapping-editor-action:hover,
       .equation-mapping-editor-action:focus-visible {
         border-color: var(--strong-rule);
-        color: var(--accent);
+        color: var(--text);
         outline: none;
       }
 
@@ -517,7 +521,7 @@
         left: 3px;
         right: 3px;
         height: 1px;
-        background: var(--accent);
+        background: var(--equation-ink);
         content: "";
       }
 
@@ -530,7 +534,7 @@
       }
 
       .equation-mapping-formula-part.is-editor-selected-anchor {
-        color: var(--accent);
+        color: var(--equation-ink);
       }
 
       .equation-mapping-overlay-layer {
@@ -547,7 +551,7 @@
         width: min(calc(var(--overlay-width) * 1%), 330px);
         min-width: 220px;
         padding: 10px;
-        border: 1px solid var(--rule);
+        border: 1px solid #ffffff;
         border-radius: 8px;
         background: var(--panel);
         color: var(--text);
@@ -555,12 +559,8 @@
         cursor: pointer;
       }
 
-      .equation-mapping-shell[data-comment-density="roomy"] .equation-mapping-comment {
-        padding: 13px;
-      }
-
       .equation-mapping-comment.is-active {
-        border-color: var(--accent);
+        border-color: #ffffff;
       }
 
       .equation-mapping-comment-header {
@@ -592,6 +592,24 @@
         margin: 0;
       }
 
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-body {
+        font-size: 11px;
+      }
+
+      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header span {
+        font-size: 9px;
+      }
+
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
+        font-size: 14px;
+      }
+
+      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header span {
+        font-size: 11px;
+      }
+
       .equation-mapping-comment-math {
         color: var(--text);
       }
@@ -607,13 +625,13 @@
       }
 
       .equation-mapping-pointer-line {
-        stroke: var(--strong-rule);
+        stroke: #ffffff;
         stroke-width: 1;
         vector-effect: non-scaling-stroke;
       }
 
       .equation-mapping-pointer-line.is-active {
-        stroke: var(--accent);
+        stroke: #ffffff;
       }
 
       .equation-mapping-math-fallback {

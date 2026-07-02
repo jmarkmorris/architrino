@@ -9,8 +9,13 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -18,9 +23,9 @@
 
 This packet defines the token ledger and privacy-retention contract for the future Archie question service.
 
-The Answer Artifact Manifest already carries `token_receipt` and `privacy_state`. This contract defines how those fields are produced, when the user must be interrupted, what can be charged, what must remain ephemeral, and how receipts, saved artifacts, generated media, and issue handoffs avoid leaking private prompt text.
+The Answer Artifact Manifest already carries `token_receipt` and `privacy_state`. This contract defines how those fields are produced, when the user must be interrupted, what can be charged, what must remain ephemeral, and how receipts, saved artifacts, generated media, notebook/account-history entries, and issue handoffs avoid leaking private prompt text.
 
-It is not runtime payment code. It is the policy and data-contract target for future wallet state, subscription grants, spending-limit enforcement, token holds, receipts, privacy notices, retention state, deletion routes, and regression fixtures.
+It is not runtime payment code. It is the policy and data-contract target for future wallet state, subscription grants, spending-limit enforcement, token holds, receipts, privacy notices, retention state, deletion routes, service terms, and regression fixtures.
 
 ## Core Invariant
 
@@ -35,15 +40,16 @@ Every token-bearing or privacy-relevant request should follow this order:
 1. normalize the request and account/session state;
 2. classify the requested work units;
 3. run privacy preflight for uploaded material, public issue text, durable saves, speech, images, and logs;
-4. estimate token cost when the request exceeds configured limits, triggers auto-fund, or uses unusual work;
-5. require confirmation for auto-fund, cap exceedance, durable retention, public visibility, user-material inclusion, or credentialed actions;
-6. place a pending hold only for approved token-bearing work;
-7. run answer generation and artifact work inside the approved cap;
-8. validate source authority, media standard, speech sync, issue-mining metadata, and privacy state;
-9. charge only validated completed work or explicitly policy-covered attempted provider work;
-10. refund unused holds;
-11. write `token_receipt` and `privacy_state` into the manifest;
-12. expose a receipt that does not expand private prompt text.
+4. verify required service terms, token/subscription terms, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, and re-acceptance state;
+5. estimate token cost when the request exceeds configured limits, triggers auto-fund, or uses unusual work;
+6. require confirmation for auto-fund, cap exceedance, durable retention, public visibility, user-material inclusion, or credentialed actions;
+7. place a pending hold only for approved token-bearing work;
+8. run answer generation and artifact work inside the approved cap;
+9. validate source authority, media standard, speech sync, issue-mining metadata, terms state, and privacy state;
+10. charge only validated completed work or explicitly policy-covered attempted provider work;
+11. refund unused holds;
+12. write `token_receipt`, `terms_acceptance_state`, and `privacy_state` into the manifest;
+13. expose a receipt that does not expand private prompt text.
 
 If a later validator refuses an artifact, the ledger should either omit the charge or charge only an explicitly disclosed attempted-provider unit. The MVP default should be no charge for omitted low-quality speech, refused unsafe media, unconfirmed issue submission, or unavailable high-quality speech.
 
@@ -60,11 +66,15 @@ The token ledger receives narrow accounting inputs.
 | `per_request_cap` | User-set or account-default maximum debit for one request. |
 | `auto_fund_policy` | Whether auto-fund is enabled and its cap. |
 | `work_plan` | Estimated work units from request gateway and artifact orchestrator. |
-| `provider_cost_projection` | Internal cost projection mapped into user-visible tokens. |
+| `provider_cost_projection` | Internal cost projection mapped through [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md) into user-visible tokens. |
+| `provider_execution_context` | Safe capability ids, cost classes, health state, fallback state, and provider privacy/terms state. |
 | `privacy_preflight` | Whether the work changes retention, publication, or user-material handling. |
+| `terms_acceptance_state` | Whether required service terms, token/subscription terms, privacy notices, media terms, notebook terms, or GitHub notices are current for requested work. |
 | `completed_work_units` | Validated work units after source, media, speech, and privacy checks. |
 
-The ledger should not receive raw private prompt text unless a support or abuse policy explicitly requires it. Receipts should use `request_summary`, source classes, work units, artifact counts, and safe ids.
+The ledger should not receive raw private prompt text unless a support or abuse policy explicitly requires it. Receipts should use `request_summary`, source classes, provider capability ids, work units, artifact counts, and safe ids.
+
+Source classes and source routes in receipts should come from the validated `source_context` produced under [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), not from token-ledger reconstruction.
 
 ## Work Unit Policy
 
@@ -92,6 +102,10 @@ V1 work units should start with this accounting policy.
 
 Payment can buy more tokens, higher caps, and more retained history. It cannot buy stronger claims, proof status, unsafe media, hidden public actions, or exemption from unsupported-answer behavior.
 
+Saved-note drafts, durable notebook entries, account history, export, deletion, sharing, and submitted issue-link retention must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). The token ledger prices storage and export work; it does not decide whether private notes are evidence.
+
+Token subscriptions, paid top-ups, auto-fund, refunds, cancellation, failed payments, support routes, abuse controls, terms acceptance, and terms-version receipt references must follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). The token ledger cannot run paid work when required token/subscription terms are missing, stale, or require re-acceptance.
+
 ## Spending Controls
 
 The user should configure guardrails rather than approve every debit.
@@ -115,8 +129,9 @@ The service should interrupt only when:
 3. auto-fund would trigger;
 4. balance is insufficient;
 5. work changes retention, deletion, public visibility, or user-material inclusion;
-6. work uses an unusually expensive or deferred capability;
-7. policy requires confirmation for abuse, safety, or credentialed action.
+6. required service terms, token/subscription terms, privacy notices, generated-media terms, GitHub handoff notices, or notebook terms are missing or stale;
+7. work uses an unusually expensive or deferred capability;
+8. policy requires confirmation for abuse, safety, or credentialed action.
 
 ## Token Receipt Shape
 
@@ -139,6 +154,8 @@ Required fields:
 | `artifact_count` | Number and type summary of generated artifacts. |
 | `privacy_summary` | Safe statement of retained, ephemeral, redacted, or public material. |
 | `private_prompt_expanded` | Must be `false` for receipt views. |
+| `terms_version_refs` | Safe terms-version ids governing paid, retained, public, generated-media, notebook, or GitHub handoff behavior. |
+| `provider_capability_refs` | Safe product capability ids and cost classes used for provider-backed work. |
 
 Receipts should be useful for support and user trust without becoming a shadow prompt log.
 
@@ -163,6 +180,8 @@ V1 should default to minimal retention.
 
 Any durable user content needs a deletion route before public beta.
 
+Durable notebook and account-history features also need export behavior and `not_project_evidence` state before launch.
+
 ## Privacy State Shape
 
 `privacy_state` should tell the user and validators what happened to data.
@@ -178,6 +197,8 @@ Required fields:
 | `issue_visibility_warning` | Public issue warning when issue draft or handoff exists. |
 | `durable_save_consent` | Whether user opted into durable storage. |
 | `delete_available` | Whether stored material can be deleted. |
+| `export_available` | Whether saved user material can be exported. |
+| `account_history_state` | Whether account history is disabled, session-local, or durable opt-in. |
 | `public_material_included` | Whether user material appears in public issue text or shared artifacts. |
 | `private_prompt_expanded_in_receipt` | Must be `false`. |
 | `diagnostic_redaction` | Whether diagnostics are safe for operator/developer review. |
@@ -185,6 +206,8 @@ Required fields:
 If the service cannot state retention behavior, the request should fail closed or return a text-only response with no durable action.
 
 ## Confirmation Matrix
+
+Confirmation behavior should follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). The token ledger owns estimates, holds, charges, refunds, and receipt state; the action broker owns confirmation text, destination, credential boundary, and side-effect gating.
 
 The action broker should require confirmation for:
 
@@ -199,6 +222,8 @@ The action broker should require confirmation for:
 | privacy policy change | What retention/publication behavior changed. |
 
 Confirmation should happen before the service spends meaningful extra tokens, retains material, opens GitHub, stores a note, triggers auto-fund, or includes private user material in public text.
+
+Terms acceptance should be checked before confirmation can authorize paid, durable, retained, public, generated-media, or credentialed work.
 
 ## Issue Handoff Privacy
 
@@ -235,12 +260,14 @@ The token/privacy contract should fail closed when:
 1. estimated work exceeds cap and the user has not approved;
 2. auto-fund would trigger and the user has not approved;
 3. balance is insufficient;
-4. retention policy is missing for a requested durable save;
-5. deletion route is missing for stored user content;
-6. public issue text would include private material without consent;
-7. high-quality speech is unavailable;
-8. media validation fails after a hold is placed;
-9. receipt would need to expose private prompt text to be understandable.
+4. provider capability has no token cost mapping;
+5. retention policy is missing for a requested durable save;
+6. deletion route is missing for stored user content;
+7. public issue text would include private material without consent;
+8. high-quality speech is unavailable;
+9. media validation fails after a hold is placed;
+10. required terms are missing, stale, or require re-acceptance;
+11. receipt would need to expose private prompt text to be understandable.
 
 Fail-closed responses should return a manifest-shaped refusal or fallback with `actual_tokens_charged` set to zero unless a narrow attempted-provider charge policy was shown before work.
 
@@ -255,9 +282,13 @@ The future implementation should include token/privacy fixtures for:
 | `ledger-cap-exceeded-001` | Expensive work stops before execution and offers reduced scope or confirmation. |
 | `ledger-auto-fund-001` | Auto-fund requires explicit cap-aware confirmation before work runs. |
 | `ledger-refund-001` | Hold exceeds actual charge and refunded hold is visible. |
+| `ledger-terms-missing-negative-001` | Paid token work is blocked when token/subscription terms are missing or stale. |
+| `ledger-terms-receipt-001` | Receipt includes safe terms-version refs without private prompt expansion. |
+| `ledger-provider-cost-map-negative-001` | Provider-backed work is blocked when product token cost mapping is missing. |
 | `ledger-speech-fallback-001` | High-quality speech unavailable produces text-only fallback and no speech charge. |
 | `privacy-ephemeral-audio-001` | Generated audio artifact is ephemeral and paired with speech sync. |
-| `privacy-durable-save-001` | Saved note requires retention, deletion route, consent, and storage-cost policy. |
+| `privacy-durable-save-001` | Saved note requires retention, deletion route, export route, consent, and storage-cost policy. |
+| `privacy-notebook-evidence-negative-001` | Private saved note/account history cannot be treated as source evidence. |
 | `privacy-issue-public-001` | Issue draft shows public GitHub warning and included material before handoff. |
 | `privacy-private-material-001` | Private user material is excluded from issue text without explicit consent. |
 | `receipt-no-private-prompt-001` | Receipt view does not expand private prompt text. |
@@ -268,14 +299,17 @@ The future implementation should include token/privacy fixtures for:
 Closure goal:
 Turn the Token Ledger And Privacy Contract into wallet state, receipt schema, retention-state validators, confirmation gates, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode wallet, cap, hold, charge, refund, and auto-fund state.
 - Encode `token_receipt` and `privacy_state` schemas.
-- Define confirmation gates for auto-fund, cap exceedance, durable save, public issue submission, user-material inclusion, and credentialed actions.
+- Encode provider capability refs and cost classes without exposing provider-specific billing internals.
+- Encode safe terms-version refs in receipts without private prompt expansion.
+- Define confirmation gates for auto-fund, cap exceedance, durable save, notebook/account-history opt-in, public issue submission, user-material inclusion, and credentialed actions.
+- Add terms gates for paid work, auto-fund, refunds, cancellation, failed payment, support route, and re-acceptance requirements.
 - Add validators that prevent private prompt text from leaking into receipts, issue-mining metadata, or diagnostics.
-- Add fixtures for normal answers, cap exceedance, auto-fund, refunds, speech fallback, ephemeral audio, durable save, public issue warnings, private-material exclusion, and redacted diagnostics.
+- Add fixtures for normal answers, cap exceedance, auto-fund, refunds, terms gating, provider cost-map refusal, speech fallback, ephemeral audio, durable save, notebook/account-history evidence refusal, public issue warnings, private-material exclusion, and redacted diagnostics.
 
 Constraints:
 - Do not charge for omitted low-quality speech fallback.

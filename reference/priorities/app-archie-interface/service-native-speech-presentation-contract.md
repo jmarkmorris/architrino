@@ -9,9 +9,12 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
@@ -30,6 +33,12 @@ It is not a speech-provider choice and not runtime audio generation code. It is 
 Speech and presentation are rendering layers, not source authorities.
 
 The service may make an answer easier to hear, scan, narrate, or storyboard, but it cannot change source routes, claim labels, proof status, unsupported-answer behavior, or System Card routing. If presentation needs a summary, analogy, simplification, or alternate explanation, that must be a separate manifest artifact with its own source and claim context.
+
+Speech and presentation artifacts inherit `source_context` produced under [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md). The speech layer must not reconstruct source authority from audio-provider output, narration style, voice quality, or animation framing.
+
+If narration scripts, comparison scripts, storyboards, transcripts, or future audio artifacts are saved, retention, export, deletion, and not-project-evidence behavior must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
+
+Generated speech, transcripts, captions, scripts, and storyboards must also respect generated-media terms, privacy notices, token terms, saved-notebook terms, and legal-review state under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
 
 ## Supported V1 Presentation Surfaces
 
@@ -222,7 +231,7 @@ The future implementation should include speech/presentation fixtures for:
 Closure goal:
 Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, token/privacy checks, and regression fixtures.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode `speech_sync` and audio artifact schemas.

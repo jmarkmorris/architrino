@@ -10,6 +10,8 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -17,7 +19,7 @@
 
 This packet defines the answer-engine and source-authority contract for the future Archie question service.
 
-The Answer Artifact Manifest defines where source context, claim context, and answer text live. The manifest service contracts define how service boundaries return validated manifests. This packet defines the upstream decision rule for choosing source classes, assigning claim labels, building answer text, and failing closed when the request exceeds source support.
+The Answer Artifact Manifest defines where source context, claim context, and answer text live. The manifest service contracts define how service boundaries return validated manifests. The source ingestion and retrieval context contract defines how source records, routes, freshness, source chips, and exclusions become `source_context`. This packet defines the answer-engine decision rule for choosing from that validated context, assigning claim labels, building answer text, and failing closed when the request exceeds source support.
 
 It is not runtime code. It is the contract a future implementation should encode in retrieval prompts, source-ranking logic, answer-engine tests, unsupported-answer fixtures, and source-chip rendering tests.
 
@@ -29,7 +31,7 @@ The strongest supported claim label must be determined before generated media, s
 
 ## Answer Engine Inputs
 
-The answer engine receives a manifest shell plus a retrieval context.
+The answer engine receives a manifest shell plus the validated retrieval context defined in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md).
 
 Required inputs:
 
@@ -39,7 +41,7 @@ Required inputs:
 | `request_summary` | Non-sensitive summary from the request gateway. |
 | `context_route` | Optional page, scene, sphere, document, app, or source route. |
 | `source_policy` | Enabled source classes and public/operator visibility rules. |
-| `retrieval_candidates` | Candidate source routes with source class, freshness, rank, and section hints. |
+| `retrieval_candidates` | Candidate source records with source class, authority status, freshness, rank, section hints, and source-chip payloads. |
 | `system_card_route` | Required route for proof status, caveats, launch status, validation, and unsupported answers. |
 | `priority_visibility` | Whether priority-only material may be shown and how it must be labeled. |
 | `external_prior_physics_policy` | Whether curated external prior-physics sources are available for this mode. |
@@ -119,11 +121,11 @@ Required unsupported output:
 5. offer a safe next route, search target, issue draft, or smaller question when useful;
 6. avoid invented citations, proof-status upgrades, apology loops, and confident synthesis from memory.
 
-Unsupported behavior should be used for proof overclaims, missing source routes, disabled priority material, unavailable external comparison sources, unavailable high-quality speech, unsafe generated media, hidden public actions, and token/privacy refusals.
+Unsupported behavior should be used for proof overclaims, missing source routes, disabled priority material, unavailable external comparison sources, unavailable high-quality speech, unsafe generated media, hidden public actions, missing service terms, and token/privacy refusals.
 
 ## Source Context Output
 
-The retrieval context and answer engine together must populate `source_context`.
+The retrieval context boundary populates `source_context`; the answer engine may add claim-facing reasons but must not reconstruct source authority from scratch.
 
 Required output:
 
@@ -133,8 +135,11 @@ Required output:
 | `primary_source_routes` | Ordered routes shown as source chips or reading links. |
 | `supporting_source_routes` | Secondary routes used for context or comparison. |
 | `excluded_source_classes` | Disabled, unavailable, unsafe, or out-of-scope classes. |
+| `source_policy` | Visibility and source-class policy used for this request. |
 | `source_freshness` | Repository commit, index snapshot, generated-copy version, or retrieval timestamp. |
 | `system_card_route` | Required for proof status, caveat, launch status, validation, and unsupported answers. |
+| `missing_source_routes` | Requested routes or source classes that could not be resolved. |
+| `source_chip_payloads` | UI-ready source chips with source class, route, authority status, and claim-label floor. |
 
 If no source route is available, the response should say that directly. A missing route is not permission to use model memory as authority.
 
@@ -176,9 +181,10 @@ The future implementation should include answer-engine fixtures for:
 Closure goal:
 Turn the Answer Engine Source Contract into retrieval rules, claim-label assignment tests, unsupported-answer fixtures, and manifest population checks.
 
-Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
+Use this packet, [assistant-mode-contract.md](../archie/assistant-mode-contract.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-artifact-manifest.md](answer-artifact-manifest.md), and [manifest-service-contracts.md](manifest-service-contracts.md) as the source of truth.
 
 Task:
+- Consume validated source records, source chips, missing routes, and source freshness from the retrieval context.
 - Encode source-class allow/deny policy per mode.
 - Define deterministic claim-label assignment.
 - Populate `source_context`, `claim_context`, and `answer_body`.

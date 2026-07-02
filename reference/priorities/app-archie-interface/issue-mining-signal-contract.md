@@ -9,8 +9,12 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -30,7 +34,7 @@ The mining loop can cite representative public issues, aggregate safe fields, an
 
 ## Mining Inputs
 
-The mining pipeline should consume these safe inputs:
+The mining pipeline should consume these safe inputs. Source routes, source-index candidates, and missing-route signals should come from the validated `source_context` defined in [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md).
 
 | Input | Purpose |
 | --- | --- |
@@ -49,6 +53,12 @@ The mining pipeline should consume these safe inputs:
 | `smallest_next_artifact` | Definition, equation, simulation target, source packet, app mockup, validation fixture, or issue. |
 
 Private prompt text, uploaded user media, account history, private conversation excerpts, and unsubmitted drafts are excluded unless a separate consent and retention policy explicitly allows their use.
+
+Issue submission and public handoff confirmation should follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). Issue mining should treat unconfirmed drafts as excluded unless account policy and consent explicitly allow retention.
+
+Saved notebook and account history behavior should follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md). Private saved notes, account history, and session-local drafts are not issue-mining evidence by default.
+
+GitHub handoff notices, public-feedback-use terms, issue-mining disclosure, and support routes should follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). If the GitHub handoff notice or issue-mining disclosure is missing or stale, public issue handoff and issue-mining metadata retention should fail closed.
 
 ## Cluster Model
 
@@ -182,6 +192,7 @@ Rules:
 4. uploaded media, screenshots, private notes, and personal details require explicit inclusion consent;
 5. receipts may be linked by safe receipt id but must not expand prompt text;
 6. diagnostics should remain redacted and operator/developer-safe.
+7. GitHub handoff notices and issue-mining disclosures must be current before public issue metadata is retained for mining.
 
 If a cluster cannot be understood without private prompt text, the report should mark it `needs_public_reproduction` rather than exposing private data.
 
@@ -197,6 +208,7 @@ The future implementation should include issue-mining fixtures for:
 | `mining-app-usability-001` | App usability reports route to app runtime with representative issues. |
 | `mining-noise-spam-001` | Spam or vague feedback is classified as noise and excluded from fix queues. |
 | `mining-private-exclusion-001` | Private prompt text is not included in clusters, reports, or fix queues. |
+| `mining-terms-negative-001` | Public issue handoff and mining metadata retention are blocked when required GitHub handoff notice or issue-mining disclosure is missing. |
 | `mining-owner-ambiguous-001` | Ambiguous ownership routes to issue ops with owner-decision action. |
 | `mining-fixture-candidate-001` | Reproducible issue generates a regression fixture candidate. |
 | `mining-source-index-001` | Missing source route reports generate a source-index repair candidate. |
@@ -207,14 +219,15 @@ The future implementation should include issue-mining fixtures for:
 Closure goal:
 Turn the Issue Mining Signal Contract into report schemas, clustering rules, owner-routed fix queues, privacy-safe evidence handling, and regression fixtures for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode issue-mining input metadata and cluster schema.
 - Define signal scoring, noise classes, owner lanes, and fix queue records.
 - Define periodic signal report shape.
 - Add privacy checks that prevent private prompt text, unsubmitted drafts, and unconsented media from entering reports.
-- Add fixtures for duplicate clustering, recurring confusion, unsupported gaps, app usability, noise classification, private exclusion, ambiguous ownership, fixture candidates, source-index candidates, and report shape.
+- Add GitHub handoff notice, issue-mining disclosure, public-feedback-use terms, and missing-terms refusal behavior.
+- Add fixtures for duplicate clustering, recurring confusion, unsupported gaps, app usability, noise classification, private exclusion, missing terms, ambiguous ownership, fixture candidates, source-index candidates, and report shape.
 
 Constraints:
 - Use public issue links and safe manifest metadata as evidence.

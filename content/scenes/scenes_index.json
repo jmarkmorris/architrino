@@ -1889,6 +1889,11 @@
       "id": "archie__legal_terms",
       "name": "Legal Terms",
       "path": "content/scenes/archie/legal_terms.json"
+    },
+    {
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json"
     }
   ]
 }

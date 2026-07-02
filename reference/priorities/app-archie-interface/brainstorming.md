@@ -246,6 +246,8 @@ A subscription service is reasonable because multimodal AI, retrieval, speech, i
 
 The interface should be token-based. Archie questions can require very different resources: static source lookup, corpus retrieval, curated external comparison, longer reasoning, diagram drafting, service-native speech generation, narration scripting, animation storyboarding, issue preparation, GitHub issue handoff, image analysis, document intake, or saved-note storage. A user should see one token wallet rather than separate hidden limits for model calls, retrieval, diagrams, narration, images, speech, issues, and saved notes. Backend accounting can translate real provider costs into the product token unit, but the user-facing experience should stay unified.
 
+Token subscriptions, auto-fund, refunds, cancellation, failed payments, account acceptance, privacy notices, public issue notices, generated-media terms, saved notebook terms, support routes, abuse controls, and terms-change behavior should follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md). Service terms make the paid account surface understandable; they must not make a paid answer stronger than its source basis.
+
 Possible tiers:
 
 | Tier | Purpose | Cost controls |
@@ -275,6 +277,8 @@ Payment should not buy higher claim authority. A paid answer can spend more toke
 
 Optional saved notebooks could make the service much more useful.
 
+Saved-note drafts, durable notebooks, account history, deletion, export, sharing, submitted issue-link retention, and generated-artifact retention should follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
+
 Notebook items:
 
 - user questions;
@@ -294,6 +298,7 @@ Rules:
 - uploaded media retention is explicit;
 - public sharing is a separate action;
 - private user notes do not become corpus evidence.
+- account history is deferred until the user can see, delete, export, and limit what is stored.
 
 ## Visual Artifact Ideas
 
@@ -310,6 +315,8 @@ Visual generation should prefer diagrams when accuracy matters, and generated il
 ## Source Authority And Claim Labels
 
 Every answer should carry a source-status shape:
+
+Source ingestion, retrieval freshness, source chips, missing-route behavior, priority visibility, and external-source deferral should follow [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md).
 
 | Label | Meaning | UI behavior |
 | --- | --- | --- |
@@ -329,15 +336,17 @@ Product modules:
 1. `conversation_surface` - Composer, message stream, mode chips, action rail, source panel, token wallet.
 2. `media_intake` - Speech transcription, image analysis, screenshot/app-state parsing, document intake.
 3. `mode_router` - Ask, Explain, Compare, Visualize, Triage Idea, Find Source.
-4. `retrieval_context` - Corpus, app guide, System Card, priority, and curated external source retrieval with authority flags.
+4. `retrieval_context` - Corpus, generated reading copy, scene route, app guide, Archie reference, System Card, priority, and curated external source retrieval with source records, freshness, source chips, missing-route behavior, and authority flags.
 5. `answer_engine` - Source selection, claim-label assignment, unsupported-answer behavior, TeX-preserving answer body, idea-triage classification, and citation payloads.
 6. `answer_artifact_manifest` - Shared response envelope for source context, claim labels, answer text, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata.
 7. `speech_and_presentation_layer` - High-quality service-native speech output, synchronized text display, narration scripts, animation storyboards, captions, and source-authority guardrails.
 8. `artifact_generator` - Diagrams, generated images, narration scripts, issue bodies, reading paths, saved notes.
-9. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, and account actions.
+9. `action_broker` - Confirmation-gated GitHub issue handoff, sharing, notebook saving, auto-fund, user-material inclusion, credentialed actions, and account actions; follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md).
 10. `billing_and_limits` - Subscription tier, token grants, spending limits, auto-fund settings, hold/receipt accounting, rate limits, speech/image/presentation token schedules, abuse controls, and no-private-prompt receipts.
-11. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, owner-routed fix queues, fixture candidates, source-index candidates, and privacy-safe evidence handling.
-12. `privacy_and_audit` - Consent, retention, deletion, public-inclusion warnings, redacted diagnostics, logs, incident review, and user-data boundaries.
+11. `notebook_and_history` - Session-local saved-note drafts, durable notebook entries when enabled, account history, submitted issue-link retention, export, deletion, sharing, storage-cost behavior, and not-project-evidence boundaries.
+12. `terms_and_account_policy` - Service terms, token/subscription notices, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, support routes, abuse policy, terms re-acceptance, and legal-review launch gates.
+13. `issue_signal_mining` - Duplicate clustering, signal/noise classification, recurring theme reports, owner-routed fix queues, fixture candidates, source-index candidates, and privacy-safe evidence handling.
+14. `privacy_and_audit` - Consent, retention, deletion, public-inclusion warnings, redacted diagnostics, logs, incident review, and user-data boundaries.
 
 The existing service-platform packet should own deployment choices for these modules.
 
@@ -387,9 +396,13 @@ Context:
 - The Answer Artifact Manifest is `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
 - The manifest-driven service architecture is `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
 - The manifest service contracts are `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
+- The source ingestion and retrieval context contract is `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
 - The answer engine source contract is `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
 - The token ledger and privacy contract is `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
 - The issue mining signal contract is `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
+- The action broker confirmation contract is `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
+- The saved notebook and account history contract is `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
+- The service terms and account policy contract is `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
 - The service-native speech and presentation contract is `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`.
 - The corporate media standard is `reference/priorities/app-archie-interface/corporate-media-standards.md`.
 - The corporate media acceptance fixtures are `reference/priorities/app-archie-interface/corporate-media-acceptance-fixtures.md`.
@@ -399,7 +412,7 @@ Context:
 
 Task:
 - Read the v1 product requirements and the Archie service-platform/assistant-contract files.
-- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion pipeline, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, animation-storyboard boundary, token ledger and privacy-retention contract, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining signal report loop, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, animation-storyboard boundary, token ledger and privacy-retention contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, GitHub issue handoff, issue-mining signal report loop, privacy/retention policy, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 
 Constraints:

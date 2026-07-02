@@ -1,0 +1,141 @@
+{
+  "schema": "aaa-noether-sea-density-compression-provider/v1",
+  "claimLevel": "accepted retained-window theta_sea_rho_NS provider object for density-compression checker consumption",
+  "providerStatus": "accepted",
+  "authorization": {
+    "acceptedProvider": true,
+    "downstreamConsumerAuthorization": true
+  },
+  "window": {
+    "windowId": "theta-sea-density-compression-provider-0001",
+    "ell": "ell_theta_sea_rho_ns_provider_0001",
+    "retainedInventoryId": "noether-sea-retained-inventory-provider-0001",
+    "smoothingKernelId": "W_ell_theta_sea_rho_ns_provider_0001",
+    "eventLedgerId": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "refinementFamilyId": "density-compression-refinement-family-provider-0001",
+    "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))"
+  },
+  "thetaSeaRows": {
+    "rho_NS": {
+      "status": "accepted",
+      "rowId": "rho-NS-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "retainedInventoryId": "noether-sea-retained-inventory-provider-0001",
+      "smoothingKernelId": "W_ell_theta_sea_rho_ns_provider_0001",
+      "refinementFamilyId": "density-compression-refinement-family-provider-0001",
+      "projectionFormula": "rho_NS(x,t)=sum_k m_N,k W_ell(x-X_k(t))",
+      "rho_NS": 1
+    },
+    "n": {
+      "status": "accepted",
+      "rowId": "n-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "n": 1
+    },
+    "u_sea": {
+      "status": "accepted",
+      "rowId": "u-sea-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "u_sea": [
+        0,
+        0,
+        0
+      ]
+    },
+    "e_sea": {
+      "status": "accepted",
+      "rowId": "e-sea-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "e_sea": 0.008
+    },
+    "theta_sea": {
+      "status": "accepted",
+      "rowId": "theta-sea-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "thetaSeaId": "theta-sea-density-compression-provider-0001"
+    },
+    "f_N": {
+      "status": "accepted",
+      "rowId": "f-N-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "f_N": 1
+    },
+    "event_ledger_ref": {
+      "status": "accepted",
+      "eventId": "event-ledger-theta-sea-rho-ns-provider-0001"
+    }
+  },
+  "responseRows": {
+    "channel_declaration_row": {
+      "status": "accepted",
+      "rowId": "channel-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "channelId": "X_density_compression_acoustic_provider_0001",
+      "channelType": "acoustic"
+    },
+    "speed_row": {
+      "status": "accepted",
+      "rowId": "speed-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_c_X_squared",
+      "c_X_disp_squared": 2.5
+    },
+    "stress_strain_row": {
+      "status": "accepted",
+      "rowId": "stress-strain-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "output": "delta_C_ij_kl",
+      "C1111_X": 2.49
+    },
+    "causality_row": {
+      "status": "accepted",
+      "rowId": "causality-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "residual": 0
+    },
+    "correlation_row": {
+      "status": "accepted",
+      "rowId": "correlation-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "sameWindow": true
+    },
+    "metric_embedding_row": {
+      "status": "declared_missing_output",
+      "rowId": "metric-embedding-row-provider-0001",
+      "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+      "missingOutput": "delta_gamma_ij"
+    }
+  },
+  "acousticElasticAgreement": {
+    "status": "accepted",
+    "rowId": "acoustic-elastic-agreement-provider-0001",
+    "windowId": "theta-sea-density-compression-provider-0001",
+    "ell": "ell_theta_sea_rho_ns_provider_0001",
+    "channelId": "X_density_compression_acoustic_provider_0001",
+    "responseKernelId": "chi-AB-density-compression-provider-0001",
+    "speedRowId": "speed-row-provider-0001",
+    "stressStrainRowId": "stress-strain-row-provider-0001",
+    "rhoRowId": "rho-NS-provider-0001",
+    "retuneWitnessId": "retune-witness-provider-0001",
+    "c_X_disp_squared": 2.5,
+    "C1111_X": 2.49,
+    "rho_NS": 1,
+    "epsilon_ref": 0.02,
+    "refinementFamilyId": "density-compression-refinement-family-provider-0001"
+  },
+  "retuneWitness": {
+    "status": "accepted",
+    "witnessId": "retune-witness-provider-0001",
+    "rowId": "retune-witness-provider-0001",
+    "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+    "residual": 0,
+    "changedRows": []
+  },
+  "surfaceVector": {
+    "delta_c_X_squared": 2.5,
+    "delta_C_ij_kl": {
+      "bulk": 1
+    }
+  },
+  "scoreDecision": "no_score_increase"
+}

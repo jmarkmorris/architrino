@@ -68,6 +68,25 @@ test("work-in-progress public app scenes resolve to standalone app paths", () =>
   );
 });
 
+test("Applications scene exposes Equation Mapping as a standalone app scene", () => {
+  const applicationsScene = JSON.parse(readRepoFile("content/scenes/archie/applications.json"));
+  const equationMappingScene = JSON.parse(readRepoFile("content/scenes/archie/equation_mapping.json"));
+
+  assert.equal(equationMappingScene.scene.id, "equation-mapping");
+  assert.equal(equationMappingScene.scene.title, "Equation Mapping");
+  assert.equal(
+    applicationsScene.scene.children.some(
+      (child) =>
+        child.nodeId === "equation_mapping" && child.scenePath === "content/scenes/archie/equation_mapping.json"
+    ),
+    true
+  );
+  assert.equal(
+    applicationsScene.objects.some((object) => object.id === "equation_mapping" && object.labelTitle === "Equation Mapping"),
+    true
+  );
+});
+
 test("pdgedit scene no longer resolves to a standalone app path from the main webapp", () => {
   assert.equal(getStandaloneAppPathForScene("pdgedit"), null);
 });

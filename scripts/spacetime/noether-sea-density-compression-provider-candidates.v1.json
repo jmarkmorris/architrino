@@ -3,6 +3,11 @@
   "claimLevel": "current theta_sea_rho_NS provider search manifest; score-neutral and not accepted retained evidence",
   "candidates": [
     {
+      "id": "theta_sea_rho_ns_density_compression_provider",
+      "role": "accepted retained-window theta_sea_rho_NS provider object",
+      "sourcePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json"
+    },
+    {
       "id": "rho_ns_source_attempt",
       "role": "retained-window source-attempt field shape",
       "sourcePath": "scripts/spacetime/noether-sea-density-compression-rho-ns-source-attempt.v1.json"

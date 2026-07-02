@@ -10,6 +10,8 @@ Status. Candidate recovery target. This section is a first worked target for the
 
 Packet. The reduced recovery packet is [Iron Group Binding Cusp Recovery](iron-group-binding-cusp-recovery.md).
 
+Executable diagnostic. The first priority-only toy graph sweep is [iron-group-binding-cusp-toy-sweep.mjs](../../../scripts/nuclear-atomic/iron-group-binding-cusp-toy-sweep.mjs).
+
 Question. Can a native $\mathbb{A}\mathbb{A}\mathbb{A}$ nuclear assembly model reproduce the iron-group binding-energy cusp: fusion from lighter nuclei and fission from heavier nuclei both move nuclear inventories toward the same total mass-energy trough near the Fe/Ni region?
 
 Candidate recovery object:

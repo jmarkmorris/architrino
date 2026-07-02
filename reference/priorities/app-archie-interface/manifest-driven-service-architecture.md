@@ -8,9 +8,14 @@
 - Parent priority: [Archie Interface App](app-archie-interface.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
+- Model/provider capability registry contract: [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
@@ -28,19 +33,22 @@ This is not a deployment decision and not runtime code. It is the architecture t
 
 The service should process a user request as a manifest-building pipeline:
 
-1. `request_gateway` receives the user request, account/session state, spending limits, and enabled modes.
+1. `request_gateway` receives the user request, account/session state, spending limits, terms state, provider capability state, and enabled modes.
 2. `mode_router` chooses the mode and creates the initial manifest with `manifest_id`, `schema_version`, `created_at`, `mode`, and `request_summary`.
-3. `retrieval_context` resolves corpus, scene, app guide, generated reading copy, priority, and curated external prior-physics routes, then writes `source_context`.
-4. `answer_engine` follows [answer-engine-source-contract.md](answer-engine-source-contract.md), then writes `claim_context`, `answer_body`, unsupported-answer routing, reading paths, and follow-up prompts.
-5. `artifact_orchestrator` decides which optional artifacts are requested or useful, then delegates to media-specific services.
-6. `speech_service` may add high-quality audio and `speech_sync`, or record text-only fallback when high-quality speech is unavailable.
-7. `visual_artifact_service` may add image or diagram artifacts with purpose labels, captions, alt text, source context, and claim context.
-8. `issue_draft_service` may add issue drafts and `issue_mining_context` after idea triage or feedback requests.
-9. `token_ledger` finalizes `token_receipt`, including estimate, hold, actual charge, refund, source classes, work units, and cap status.
-10. `privacy_and_audit` finalizes `privacy_state` and operator/developer-safe diagnostics.
-11. `action_broker` finalizes `available_actions` and confirmation requirements.
-12. `manifest_validator` rejects or downgrades any response that violates source authority, generated-media policy, speech-sync requirements, token rules, privacy state, or action-confirmation rules.
-13. `conversation_surface` renders the validated manifest.
+3. `provider_registry` follows [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), resolves enabled product capabilities, quality gates, fallback behavior, cost classes, credential boundaries, and health state, then writes `provider_execution_context`.
+4. `retrieval_context` follows [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), resolves corpus, scene, app guide, generated reading copy, Archie reference, priority, and curated external prior-physics routes, then writes `source_context`.
+5. `answer_engine` follows [answer-engine-source-contract.md](answer-engine-source-contract.md), then writes `claim_context`, `answer_body`, unsupported-answer routing, reading paths, and follow-up prompts.
+6. `artifact_orchestrator` decides which optional artifacts are requested or useful, then delegates to media-specific services.
+7. `speech_service` may add high-quality audio and `speech_sync`, or record text-only fallback when high-quality speech is unavailable.
+8. `visual_artifact_service` may add image or diagram artifacts with purpose labels, captions, alt text, source context, and claim context.
+9. `issue_draft_service` may add issue drafts and `issue_mining_context` after idea triage or feedback requests.
+10. `notebook_service` may add saved-note drafts, durable-save unavailable state, account-history state, deletion/export state, and not-project-evidence labels under [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
+11. `terms_policy` writes `terms_acceptance_state`, feature blockers, re-acceptance requirements, and legal-review state under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+12. `token_ledger` finalizes `token_receipt`, including estimate, hold, actual charge, refund, source classes, work units, and cap status.
+13. `privacy_and_audit` finalizes `privacy_state` and operator/developer-safe diagnostics.
+14. `action_broker` follows [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), finalizes `available_actions`, confirmation requirements, side-effect preflights, and action results.
+15. `manifest_validator` rejects or downgrades any response that violates source authority, provider capability policy, generated-media policy, speech-sync requirements, token rules, privacy state, notebook/history rules, terms-policy rules, or action-confirmation rules.
+16. `conversation_surface` renders the validated manifest.
 
 No component should emit user-visible answer content outside the manifest.
 
@@ -50,15 +58,18 @@ No component should emit user-visible answer content outside the manifest.
 | --- | --- | --- | --- |
 | `request_gateway` | user request, session/account limits, enabled modes | request envelope for `mode_router` | generate answer text or artifacts |
 | `mode_router` | request envelope | `mode`, `request_summary`, initial `available_actions` | assign proof status |
-| `retrieval_context` | mode, request summary, source policy | `source_context` | treat model memory as a source |
+| `provider_registry` | requested mode/artifacts, account/session capability state, provider health, terms/privacy policy | `provider_execution_context`, capability availability, fallback state, cost class, credential boundary | expose provider secrets or treat provider output as source evidence |
+| `retrieval_context` | mode, request summary, source policy, source indexes | `source_context` with source records, source chips, freshness, missing routes, and exclusions | treat model memory as a source or promote route authority |
 | `answer_engine` | `source_context`, mode, request summary | `claim_context`, `answer_body` | generate media or charge tokens directly |
 | `artifact_orchestrator` | manifest, requested actions, token limits | artifact work plan | bypass corporate media standard |
 | `speech_service` | `answer_body.verbatim_segments`, claim/source context, token limits | `audio` artifact, `speech_sync`, text-only fallback state | return low-quality audio or unsynchronized audio |
 | `visual_artifact_service` | answer body, source/claim context, media standard | image/diagram/mockup/prompt artifacts | imply proof status through visuals |
 | `issue_draft_service` | answer body, source/claim context, user category | `issue_draft`, `issue_mining_context` | open GitHub without confirmation |
+| `notebook_service` | manifest, save request, consent state, retention policy | `saved_note_draft`, notebook state, account-history state, delete/export state | treat saved notes or account history as source evidence |
+| `terms_policy` | manifest, account/session terms state, requested features, legal-review state | `terms_acceptance_state`, feature blockers, re-acceptance requirements | let terms acceptance alter claim labels or proof status |
 | `token_ledger` | work plan, provider costs, user caps | `token_receipt` | alter source or claim labels |
 | `privacy_and_audit` | manifest, retention policy, consent state | `privacy_state`, safe diagnostics | retain private prompt or media beyond policy |
-| `action_broker` | manifest, available capabilities, confirmation rules | final `available_actions` | perform durable, public, paid, or credentialed action without confirmation |
+| `action_broker` | manifest, available capabilities, confirmation rules, consent state, token state | final `available_actions`, confirmation text, action result state | perform durable, public, paid, retained, or credentialed action without confirmation |
 | `manifest_validator` | complete manifest | pass/fail result and downgrade/refusal reasons | silently repair proof status without recording the reason |
 | `conversation_surface` | validated manifest | rendered UI | invent fields outside the manifest |
 
@@ -69,15 +80,44 @@ The service architecture should include explicit validators before rendering:
 | Validator | Required checks |
 | --- | --- |
 | `source_authority_validator` | Source classes are allowed; priority material is visibly priority-only; model memory is not source evidence. |
+| `provider_capability_validator` | Requested provider-backed capabilities have registry entries, quality gates, fallback behavior, cost mapping, credential boundary, privacy/terms state, and health state. |
 | `claim_context_validator` | Claim label matches source support; unsupported answers route to nearest source or burden. |
 | `media_standard_validator` | Every generated artifact satisfies the Generated Media Corporate Standard. |
 | `speech_sync_validator` | Audio is high-quality only, synchronized with displayed verbatim text, and ephemeral by default. |
 | `token_receipt_validator` | Estimate/hold/charge/refund/cap/auto-fund fields are present and internally consistent. |
 | `privacy_state_validator` | Retention, consent, delete state, and public issue visibility are explicit. |
+| `terms_policy_validator` | Required service terms, token terms, privacy notices, generated-media terms, GitHub handoff notices, notebook terms, re-acceptance state, and legal-review state are current for requested features. |
 | `action_confirmation_validator` | Durable, public, paid, retained, or credentialed actions require confirmation. |
 | `issue_mining_validator` | Issue drafts and feedback include enough metadata for duplicate clustering, signal/noise classification, and owner routing. |
+| `notebook_history_validator` | Saved notes, account history, deletion/export state, sharing state, storage cost, and not-project-evidence labels are explicit. |
 
 Validation should fail closed. If a requested artifact cannot satisfy its validator, the manifest should omit or downgrade that artifact and record a compliant alternative.
+
+## Provider Capability Architecture
+
+The provider path should follow [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md):
+
+1. `request_gateway` receives only product-level requested capabilities from the UI.
+2. `provider_registry` resolves capability entries, enabled state, health state, quality gate, fallback behavior, credential boundary, token cost class, privacy/terms state, and observability fields.
+3. `provider_registry` writes safe `provider_execution_context` to the manifest.
+4. answer, speech, visual, moderation, embedding, transcription, and future input services call only approved provider gateways.
+5. `token_ledger` consumes product work units and cost classes rather than provider-specific billing units.
+6. `manifest_validator` blocks capabilities with missing registry entries, missing cost maps, missing privacy/provider data-use terms, missing fallback behavior, failed quality gates, or browser-side credential exposure.
+
+Provider failures should return declared fallback behavior: text-only speech fallback, reduced-scope answers, unavailable actions, diagram specs instead of generated images, or manifest-shaped refusals. They should not expose provider secrets, charge hidden work, retain hidden data, or promote provider output into source evidence.
+
+## Source Context Architecture
+
+The retrieval path should be built around [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md):
+
+1. ingestion jobs produce source records for authored corpus, generated reading copies, scene routes, app guides, Archie references, priority material, and curated external comparison sources;
+2. generated reading copies and scene routes record canonical parents when they mirror authored corpus;
+3. `retrieval_context` applies the request mode, source policy, visibility rules, and snapshot freshness before returning route candidates;
+4. source chips include class, route, section, authority status, claim-label floor, and freshness summary when needed;
+5. missing, stale, disabled, or policy-excluded routes are recorded in `excluded_source_classes`, `missing_source_routes`, and redacted retrieval diagnostics;
+6. the answer engine receives this validated `source_context` and may assign claim labels, but it does not reconstruct source authority from scratch.
+
+Retrieval failure should be rendered as useful product behavior: nearest route, System Card route, source-index candidate, issue-draft metadata, or unsupported response.
 
 ## Speech Sync Architecture
 
@@ -105,6 +145,19 @@ The token ledger should treat the manifest as the unit of accounting and follow 
 
 The user should be able to inspect a receipt without reading internal logs, thinking about provider-specific billing units, or exposing private prompt text.
 
+## Service Terms Architecture
+
+The terms path should follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md):
+
+1. `request_gateway` reads safe account/session terms acceptance state.
+2. `terms_policy` maps requested features to required service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, notebook terms, support routes, abuse-policy state, and legal-review state.
+3. `terms_policy` writes `terms_acceptance_state` with version ids, acceptance scope, feature blockers, re-acceptance requirements, and legal-review state.
+4. `token_ledger` uses terms state before paid work, auto-fund, refunds, cancellation, or receipt finalization.
+5. `action_broker` uses terms state before public, durable, retained, generated-media, or credentialed actions.
+6. `manifest_validator` blocks or downgrades features when required terms are missing, stale, or below required legal-review state.
+
+Terms failures should return reduced-scope answer behavior, unavailable actions, confirmation-required states, or text-only fallback. They should not silently charge, retain, publish, open GitHub, share content, or generate media.
+
 ## Privacy Retention Architecture
 
 The privacy/audit boundary should follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md):
@@ -128,6 +181,32 @@ The issue path should produce useful public feedback without leaking private dat
 
 Signal mining should route recurring issues to app runtime, corpus documentation, source-authority policy, service platform, media policy, issue operations, accessibility, operations, or proof/corpus priority work.
 
+## Action Broker Architecture
+
+The action path should follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md):
+
+1. service components may propose actions, but they do not execute side effects directly;
+2. `action_broker` runs source, privacy, retention, token, public-visibility, and credential preflight;
+3. confirmation text names the destination, public visibility, token effect, privacy effect, and credential boundary;
+4. public, durable, paid, retained, or credentialed actions run only after confirmation;
+5. GitHub issue handoff starts with prefilled URLs in V1 and no public-client credentials;
+6. action results return to the manifest as updated `available_actions`, token receipt, privacy state, issue context, or artifact state.
+
+Unconfirmed or unsafe actions should leave the manifest renderable, with a clear unavailable or fail-closed action state and no hidden side effect.
+
+## Saved Notebook Architecture
+
+The saved notebook path should follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md):
+
+1. session-local saved-note drafts may be attached to the manifest without durable storage;
+2. durable notebook entries, account history, submitted issue-link retention, export, deletion, and sharing require explicit policy before launch;
+3. `notebook_service` records retention, delete, export, share, token-storage, and evidence-status fields;
+4. action broker confirmation is required before durable save, share, user-material inclusion, or account-history opt-in;
+5. token ledger records storage cost only after notebook validation;
+6. private saved notes, account history, generated media, and unsubmitted issue drafts never become source evidence or issue-mining evidence by default.
+
+Notebook failures should return draft-only, unavailable, or confirmation-required action states with no hidden durable retention.
+
 ## API Surface Sketch
 
 The later implementation can map this architecture to endpoints such as:
@@ -138,8 +217,12 @@ The later implementation can map this architecture to endpoints such as:
 | `POST /answers/{manifest_id}/actions/listen` | Add high-quality speech or text-only fallback to an existing manifest. |
 | `POST /answers/{manifest_id}/actions/visualize` | Add diagram or image artifacts when allowed. |
 | `POST /answers/{manifest_id}/actions/issue-draft` | Add issue draft and issue-mining metadata. |
+| `POST /answers/{manifest_id}/actions/save-note` | Add session-local saved-note draft or return durable-save unavailable/confirmation state. |
 | `POST /answers/{manifest_id}/actions/confirm` | Execute a confirmed public, durable, paid, or credentialed action. |
 | `GET /answers/{manifest_id}/receipt` | Return token receipt and privacy state without private prompt expansion. |
+| `GET /provider-capabilities` | Return product-level enabled capabilities, health/fallback status, cost classes, and public-safe quality gates. |
+| `GET /service-terms` | Return public terms, privacy notice, token/subscription terms, media terms, GitHub handoff notice, notebook terms, support route, and version ids. |
+| `POST /account/terms/accept` | Record accepted terms versions for a safe account/session scope. |
 
 Endpoint names are illustrative. The required invariant is that each endpoint returns a validated manifest or a fail-closed error state.
 
@@ -159,19 +242,27 @@ The visual path should follow [visual-artifact-contract.md](visual-artifact-cont
 1. Should manifest validation run as a shared library, a backend service, or both?
 2. Should media artifact generation update an existing manifest incrementally or rebuild a fresh manifest from the original request and source context?
 3. Which fields are safe to expose in browser state, and which should remain server-side only?
-4. How should manifests reference repository commits, generated reading-copy snapshots, scene routes, and app guides?
-5. What is the retention period for manifests that only contain text, billing counters, and no saved note?
-6. How should issue-mining metadata survive if the user opens but does not submit a GitHub issue?
+4. Which source-index build process should produce source records for repository commits, generated reading-copy snapshots, scene routes, app guides, and curated external comparison bundles?
+5. Which provider capability health states should be user-visible, and which remain operator/developer diagnostics?
+6. What is the retention period for manifests that only contain text, billing counters, and no saved note?
+7. What export format and deletion semantics should durable notebook/account-history items use?
+8. Which service-term changes require re-acceptance before existing paid, durable, public, retained, generated-media, or credentialed features can continue?
+9. How should issue-mining metadata survive if the user opens but does not submit a GitHub issue?
 
 ## Implementation Handoff
 
 Closure goal:
 Turn the manifest-driven service architecture into concrete typed service-boundary, validator, endpoint, and contract-fixture implementation for the Archie question service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Define service components, input/output types, validator responsibilities, and fail-closed behavior.
+- Define model/provider capability registry, provider gateway, quality gate, fallback, credential boundary, cost mapping, privacy/terms, health-state, and observability boundaries before provider-backed features launch.
+- Define source ingestion, source-index, source-chip, freshness, missing-route, and `source_context` boundaries before answer generation.
+- Define action broker preflight, confirmation, side-effect, and action-result boundaries before public, durable, paid, retained, or credentialed actions.
+- Define saved-note draft, durable notebook, account-history, delete, export, share, storage-cost, and not-project-evidence boundaries before persistent user memory launches.
+- Define service terms, account-policy, terms-version, re-acceptance, feature-blocker, support-route, and legal-review boundaries before paid, durable, public, retained, generated-media, or credentialed features launch.
 - Map every V1 answer mode and artifact type to manifest fields.
 - Define endpoint contracts that always return a validated manifest or a refusal/error manifest.
 - Keep deployment provider choice, credentials, runtime AI calls, and public launch out of scope unless explicitly requested.

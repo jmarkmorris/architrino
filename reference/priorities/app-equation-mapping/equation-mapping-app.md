@@ -14,7 +14,7 @@
 - Value: `TBD`
 - Cost: `TBD`
 - ROI: `TBD`
-- Status: `seeded`
+- Status: `v1-editor`
 
 ## Current
 
@@ -22,7 +22,7 @@ This folder owns the priority packet for the equation-mapping app that helps the
 
 The app is intended to feel like a simple static equation annotation surface: one centered equation layer, explanatory overlay comments, and thin pointer lines that point to exact terms or sections of the formula.
 
-The first implementation is now a static shell at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
+The first implementation is now a static shell with a local draft editor at [equation-mapping.html](../../../equation-mapping.html). It supports static text layers before any timing, transition, or scripted-animation feature is considered.
 
 ## Objective
 
@@ -60,14 +60,14 @@ The first useful version should let the operator:
 - Runtime: [EquationMappingData.js](../../../src/apps/equation-mapping/EquationMappingData.js), [EquationMappingRuntime.js](../../../src/apps/equation-mapping/EquationMappingRuntime.js), and [main.js](../../../src/apps/equation-mapping/main.js).
 - Seed document: `poisson-weak-field-source-map`.
 - Static layer model: equation TeX parts, named anchors, overlay comments, pointer-line side, section-line placement, subject area, claim level, and background setting.
-- UI: centered equation layer, collapsible subject index, top-right home/search/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
-- Browser QA proofs: [desktop 1280x720](browser-qa/equation-mapping-desktop-1280x720.png) and [mobile 390x844](browser-qa/equation-mapping-mobile-390x844.png).
+- UI: centered equation layer, collapsible subject index, top-right home/search/edit/settings controls, four background colors, KaTeX rendering, and pointer lines attached to measured formula sections.
+- Editor: local draft editing for formula-section labels/formula text/search text, overlay comment title/status/text/equation, pointer target, section-line placement, and comment placement.
+- Browser QA proofs: [desktop 1280x720](browser-qa/equation-mapping-desktop-1280x720.png), [mobile 390x844](browser-qa/equation-mapping-mobile-390x844.png), and [editor desktop 1280x720](browser-qa/equation-mapping-editor-desktop-1280x720.png).
 
 ## Task Queue
 
-1. `equation_map_editor` - Add an operator-facing way to create and edit anchors, overlay comments, and pointer targets without editing JavaScript seed data. Status: `pending`. Depends on: v1 static shell.
-2. `seed_review_equations_expansion` - Add a small set of selected equation-mapping review documents by subject area without implying proof acceptance. Status: `pending`. Depends on: `equation_map_editor` or an accepted seed-data update.
-3. `review_packet_export` - Export a static equation-map packet for review, including document JSON and a screenshot. Status: `pending`. Depends on: `equation_map_editor`.
+1. `seed_review_equations_expansion` - Add a small set of selected equation-mapping review documents by subject area without implying proof acceptance. Status: `pending`. Depends on: an accepted seed-data update or local editor-created review drafts selected for promotion.
+2. `review_packet_export` - Export a static equation-map packet for review, including document JSON and a screenshot. Status: `pending`. Depends on: local editor draft state.
 
 ## Detailed Priority Files
 

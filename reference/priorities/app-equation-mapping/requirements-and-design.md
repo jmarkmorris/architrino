@@ -81,7 +81,7 @@ Design rules:
 - Use a small number of accent colors, mainly for selected anchors and active search matches.
 - Avoid large cards, nested cards, glow fields, bokeh, and decorative background texture.
 - Keep all comments short enough to read without covering the equation.
-- Prefer a light or warm reading background for dense equations, while retaining Purple and Dark as standard app settings.
+- Use Purple as the default background, while retaining Light, Warm, and Dark as standard app settings.
 
 ## Comment Rectangles
 
@@ -114,7 +114,7 @@ V1 settings:
 
 - background color: Purple, Light, Warm, Dark;
 - section-line placement: above or below formula section;
-- comment density: compact or roomy;
+- comment font size: small, medium, large;
 - equation scale: small, medium, large;
 - index collapsed state.
 
@@ -151,6 +151,7 @@ No visual state in this app should imply equation-mapping score movement unless 
 - Put runtime logic under `src/apps/equation-mapping/`.
 - Do not add new behavior to root `app.js`.
 - Keep rendering, document normalization, subject-index state, search, settings, and pointer measurement in separate focused modules when implementation begins.
+- Keep editor behavior focused on app-owned equation-map document state: formula sections, comments, pointer targets, line placement, and local draft persistence.
 - Use the shared app-home convention, with home navigation returning to `index.html`.
 - Reuse the known four-background setting from existing app code where practical.
 - Do not introduce a production solver path or equation-proof checker for this app.
@@ -172,3 +173,4 @@ Current v1 proof artifacts:
 
 - [equation-mapping-desktop-1280x720.png](browser-qa/equation-mapping-desktop-1280x720.png)
 - [equation-mapping-mobile-390x844.png](browser-qa/equation-mapping-mobile-390x844.png)
+- [equation-mapping-editor-desktop-1280x720.png](browser-qa/equation-mapping-editor-desktop-1280x720.png)

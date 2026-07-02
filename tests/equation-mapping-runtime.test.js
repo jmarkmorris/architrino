@@ -4,9 +4,12 @@ import { readFileSync } from "node:fs";
 
 import {
   CANVAS_COLORS,
+  DEFAULT_COMMENT_FONT_SIZE,
   DEFAULT_EQUATION_MAP_DOCUMENT_ID,
+  DEFAULT_EQUATION_SCALE,
   createSeedEquationMapDocuments,
   filterEquationMapDocuments,
+  normalizeCommentFontSize,
   normalizeEquationMapDocument,
 } from "../src/apps/equation-mapping/EquationMappingData.js";
 import {
@@ -29,7 +32,7 @@ test("equation mapping seed document carries static layer anchors and comments",
   const [document] = documents;
   assert.equal(document.id, DEFAULT_EQUATION_MAP_DOCUMENT_ID);
   assert.equal(document.schema, "equation-map-document.v1");
-  assert.equal(document.backgroundId, "light");
+  assert.equal(document.backgroundId, "architrinoPurple");
   assert.deepEqual(
     document.anchors.map((anchor) => anchor.id),
     ["laplacian", "potential", "coupling", "source"]
@@ -97,6 +100,37 @@ test("equation mapping exposes the four standard background colors", () => {
     CANVAS_COLORS.map((entry) => entry.label),
     ["Purple", "Light", "Warm", "Dark"]
   );
+});
+
+test("equation mapping uses one foreground ink color per background family", () => {
+  const html = readRepoFile("equation-mapping.html");
+  assert.match(html, /--equation-ink: #4b0082;/u);
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-background="architrinoPurple"\] \{[\s\S]*?--equation-ink: #ffffff;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-background="warm"\] \{[\s\S]*?--equation-ink: #4b0082;/u
+  );
+  assert.match(
+    html,
+    /\.equation-mapping-shell\[data-background="dark"\] \{[\s\S]*?--equation-ink: #ffffff;/u
+  );
+  assert.equal(
+    html.includes(".equation-mapping-formula-part.is-editor-selected-anchor {\n        color: var(--accent);"),
+    false
+  );
+});
+
+test("equation mapping defaults to medium equation scale", () => {
+  assert.equal(DEFAULT_EQUATION_SCALE, "medium");
+});
+
+test("equation mapping defaults to medium comment font size", () => {
+  assert.equal(DEFAULT_COMMENT_FONT_SIZE, "medium");
+  assert.equal(normalizeCommentFontSize("large"), "large");
+  assert.equal(normalizeCommentFontSize("compact"), "medium");
 });
 
 test("equation mapping editor creates a formula section anchor without mutating seed data", () => {

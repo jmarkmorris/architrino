@@ -10,9 +10,13 @@
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)
 - Manifest service contracts: [manifest-service-contracts.md](manifest-service-contracts.md)
+- Source ingestion and retrieval context contract: [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md)
 - Answer engine source contract: [answer-engine-source-contract.md](answer-engine-source-contract.md)
 - Token ledger and privacy contract: [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md)
 - Issue mining signal contract: [issue-mining-signal-contract.md](issue-mining-signal-contract.md)
+- Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
+- Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
+- Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
@@ -68,13 +72,29 @@ The manifest is the shared response envelope that drives:
 4. generated audio, images, diagrams, narration scripts, animation storyboards, issue drafts, and saved-note drafts;
 5. high-quality speech synchronization with displayed verbatim text;
 6. token estimates, holds, charges, refunds, and post-run receipts;
-7. privacy, retention, deletion, and consent state;
+7. privacy, retention, deletion, consent state, and terms acceptance state;
 8. available actions and confirmation requirements;
 9. issue-mining metadata for submitted feedback.
 
 The interface may render the manifest as a conversational answer, a reading view, an audio player, an image/diagram artifact, a token receipt, an issue preview, or a saved note. Those views must not invent a separate source-authority or proof-status model.
 
 V1 must treat the manifest as the contract between the answer engine, media generation, token ledger, action rail, speech player, issue handoff, issue-mining loop, and privacy/audit layer.
+
+## Source Ingestion And Retrieval Context Contract
+
+V1 source context must follow [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md).
+
+The contract controls:
+
+1. source records for authored corpus, generated reading copies, scene routes, app guides, Archie references, priority material, and curated external comparison sources;
+2. route identity, section anchors, canonical parents, authority status, and visibility;
+3. repository, generated-copy, scene-index, app-guide, and external-source freshness;
+4. source-chip payloads visible to users;
+5. missing-route and stale-index behavior;
+6. priority-only visibility and curated external-source deferral;
+7. System Card routing for proof status, caveats, validation, launch status, and unsupported answers.
+
+Retrieval context must populate manifest `source_context` before the answer engine assigns claim labels or writes answer text. If source identity, freshness, visibility, or authority is unresolved, V1 should return a nearest route, missing-source response, source-index candidate, issue-draft metadata, or unsupported answer rather than substituting model memory.
 
 ## Answer Engine Source Contract
 
@@ -86,9 +106,10 @@ The contract controls:
 2. source ranking and excluded-source reporting;
 3. deterministic claim-label assignment;
 4. unsupported-answer behavior;
-5. `source_context`, `claim_context`, and `answer_body` population;
-6. TeX-preserving answer text and verbatim speech segments;
-7. idea-triage classification before issue drafts.
+5. validated `source_context` consumption;
+6. `claim_context` and `answer_body` population;
+7. TeX-preserving answer text and verbatim speech segments;
+8. idea-triage classification before issue drafts.
 
 Payment, voice quality, generated images, presentation style, or issue urgency must not strengthen the claim label selected by the answer engine.
 
@@ -153,6 +174,8 @@ Token debits should follow these rules:
 
 Payment can buy more tokens, higher monthly grants, longer history, and larger request caps. It must not buy stronger claim labels, proof status, source authority, or exemption from unsupported-answer behavior.
 
+Token subscriptions, auto-fund, refunds, cancellation, failed payments, account acceptance, privacy notices, public issue notices, generated-media terms, saved-notebook terms, support routes, abuse controls, terms changes, and legal-review launch state must follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+
 ## Token Ledger And Privacy Contract
 
 Token accounting, spending-limit behavior, receipts, privacy state, retention defaults, deletion routes, and confirmation gates must follow [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md).
@@ -162,12 +185,26 @@ The contract controls:
 1. work-unit estimates, holds, charges, refunds, cap status, and auto-fund behavior;
 2. when the user must be interrupted for cost, auto-fund, privacy, durable retention, public visibility, or credentialed actions;
 3. generated audio and generated media retention defaults;
-4. durable saved-note consent, deletion route, and storage-cost policy;
+4. durable saved-note consent, account-history policy, deletion route, export route, sharing boundary, and storage-cost policy;
 5. public GitHub issue handoff warnings and user-material inclusion consent;
 6. receipts that do not expand private prompt text;
 7. redacted operator/developer diagnostics.
 
 The MVP default is minimal retention: generated audio is ephemeral, uploaded images/documents/screenshots are disabled, durable saved notes are opt-in only after deletion policy exists, and token transaction records persist only as needed for billing, abuse controls, refunds, and support.
+
+## Service Terms And Account Policy Contract
+
+Hosted-service terms, account policy, token/subscription notices, generated-media terms, GitHub handoff notices, saved-notebook terms, support/refund routes, abuse controls, terms re-acceptance, and legal-review launch gates must follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+
+The contract controls:
+
+1. links between the hosted service and the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page;
+2. service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, saved-notebook terms, support routes, abuse controls, and terms-change notices;
+3. terms-version and acceptance state needed before paid, durable, retained, public, generated-media, or credentialed actions;
+4. auto-fund, refunds, cancellation, failed payment, cap changes, and no-proof-authority behavior;
+5. legal-review state before public beta.
+
+V1 must fail closed when required service terms, privacy notices, token/subscription terms, generated-media terms, GitHub handoff notices, notebook terms, or legal-review state are missing or stale for the requested feature.
 
 ## V1 Capabilities
 
@@ -396,7 +433,7 @@ Submission rules:
 - use labels or body metadata that support downstream issue mining;
 - do not submit on the user's behalf unless a later authenticated action broker has its own explicit permission, audit log, and revocation model.
 
-Direct issue filing through an Archie backend is deferred until the action broker, user authentication, permission model, audit log, and revocation flow are implemented. The v1 public path is user-controlled GitHub submission.
+Direct issue filing through an Archie backend is deferred until [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), user authentication, permission model, audit log, and revocation flow are implemented. The v1 public path is user-controlled GitHub submission.
 
 ### 11. Issue Signal Mining
 
@@ -433,6 +470,8 @@ The mining loop should produce a periodic signal report with clusters, frequency
 
 Status: `required-local-draft`
 
+Saved-note drafts, durable notebook entries, account history, deletion, export, sharing, submitted issue-link retention, and generated-artifact retention must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
+
 V1 may let the user create an unsent saved-note draft inside the session.
 
 Allowed content:
@@ -446,7 +485,7 @@ Allowed content:
 - reading path;
 - unresolved proof/source burden.
 
-Durable cloud notebooks are deferred until account, retention, deletion, privacy, and storage-cost policies are implemented.
+Durable cloud notebooks and account history are deferred until account, retention, deletion, export, sharing, privacy, not-project-evidence, and storage-cost policies are implemented.
 
 ### 13. Token Wallet And Subscription Display
 
@@ -483,7 +522,7 @@ V1 token schedule:
 | Triage Idea | Source search, classification, and next-artifact detail. | Auto-run inside configured limits. |
 | Issue preparation | Draft length, acceptance criteria, and source context. | Auto-run inside configured limits. |
 | GitHub issue submission | Opening a prefilled GitHub issue URL after preparation. | Confirm before opening GitHub; no hidden credentialed submission. |
-| Saved note | Session-local draft is free; durable cloud storage is deferred. | Confirm before durable save exists. |
+| Saved note | Session-local draft is free; durable cloud storage follows the saved notebook and account history contract when enabled. | Confirm before durable save exists. |
 
 Candidate v1 tiers:
 
@@ -561,10 +600,13 @@ Default v1 policy should be minimal retention:
 - retain billing and abuse-control counters;
 - retain token transaction records without storing full prompt text when possible;
 - avoid storing full prompt and answer text unless the user opts into saved notes or diagnostics;
+- keep durable notebook and account-history features disabled until deletion, export, sharing, storage-cost, and not-project-evidence behavior is specified;
 - keep image and document retention disabled because those inputs are deferred;
 - keep generated speech audio ephemeral, with no durable audio retention in the MVP.
 
 ## Confirmation Rules
+
+Confirmation behavior must follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md). The action broker owns action preflight, confirmation text, destination disclosure, credential boundary, side-effect gating, and manifest action-result updates.
 
 Explicit confirmation is required before:
 
@@ -591,6 +633,7 @@ V1 public beta is not ready until every gate below has an owner and pass/fail ev
 Pass conditions:
 
 - source classes match [assistant-mode-contract.md](../archie/assistant-mode-contract.md);
+- source records, source-chip payloads, source freshness, missing-route behavior, and visibility policy match [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md);
 - source selection, excluded-source reporting, claim-label assignment, and unsupported-answer behavior follow [answer-engine-source-contract.md](answer-engine-source-contract.md);
 - claim labels are available in every mode;
 - priority material is hidden or visibly development-status;
@@ -644,17 +687,20 @@ Pass conditions:
 Pass conditions:
 
 - privacy and retention behavior follows [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md);
+- saved-note draft, durable notebook, account-history, deletion, export, sharing, and storage-cost behavior follows [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md);
 - prompt, answer, source miss, error, usage, and billing-retention policies are documented;
 - durable saved notes are opt-in;
+- private saved notes, account history, unsent issue drafts, generated media, and submitted issue links are not treated as project evidence without a separate public/project review path;
 - generated speech audio is ephemeral and has no durable MVP retention path;
 - speech input, image, and document retention are disabled or deferred;
-- deletion route is documented for any stored user content.
+- deletion and export routes are documented for any durable stored user content.
 
 ### Token Accounting And Subscription Gate
 
 Pass conditions:
 
 - token ledger behavior follows [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md);
+- token/subscription terms follow [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md);
 - public/supporter/research/collaborator token grants and per-request caps are defined;
 - token wallet exists before token-bearing actions;
 - monthly spending limits, optional auto-fund settings, pending holds, post-run receipts, and insufficient-token states are implemented;
@@ -671,9 +717,22 @@ Pass conditions:
 - GitHub login requirement is visible before handoff;
 - no GitHub token, access code, or backend credential is embedded in public client code;
 - title, body, labels, source context, and public/private warning are previewed before handoff;
+- issue handoff follows [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md);
 - explicit confirmation is required before opening GitHub;
 - submitted issue links can be stored when the user consents or when account policy permits it;
 - issue body carries enough structured metadata for downstream issue mining.
+
+### Service Terms And Account Policy Gate
+
+Pass conditions:
+
+- service terms behavior follows [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md);
+- the hosted service links to the public [Legal Terms](../../../content/markdown/aaa/archie/legal-terms.md) page;
+- service terms, privacy notice, token/subscription terms, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, and terms-change notice exist;
+- terms-version and acceptance state are available to validators without exposing private prompt text;
+- paid, retained, durable, public, generated-media, and credentialed actions fail closed when required terms are missing, stale, or require re-acceptance;
+- token receipts can cite safe terms-version ids without expanding private prompt text;
+- legal review state is `approved_for_beta` or stronger before public beta.
 
 ### Service-Native Speech And Presentation Gate
 
@@ -704,6 +763,7 @@ Pass conditions:
 
 Pass conditions:
 
+- action preflight, confirmation text, destination disclosure, credential boundary, and action-result updates follow [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md);
 - v1 GitHub issue filing is user-confirmed and user-submitted through GitHub unless a later action broker is approved;
 - no autonomous GitHub filing, public posting, payment action, email sending, commit, pull request, or issue comment is available;
 - every durable or public action has an explicit confirmation path.
@@ -729,6 +789,10 @@ Pass conditions:
 - service contract fixtures cover endpoint responses, validator failures, fail-closed manifests, token-cap refusal, privacy refusal, and render-contract behavior;
 - token/privacy fixtures cover normal charges, cap exceedance, auto-fund, refunds, high-quality speech fallback, ephemeral audio, durable-save refusal, public issue warnings, private-material exclusion, no-private-prompt receipts, and redacted diagnostics;
 - issue-mining fixtures cover duplicate clustering, recurring confusion, unsupported-answer gaps, app usability, noise classification, private-data exclusion, ambiguous ownership, fixture candidates, source-index candidates, and report shape;
+- action fixtures cover source opening, listening with token caps, visualization with privacy gates, issue prefill, unconfirmed issue refusal, auto-fund, saved-note deferral, user-material exclusion, credential refusal, and manifest action-result updates;
+- notebook fixtures cover session drafts, durable-save refusal, deletion, export, share refusal, private-note evidence refusal, generated-media retention, issue-link retention, token storage, and no-private-prompt receipts;
+- service-terms fixtures cover public legal links, token-term missing refusals, auto-fund consent, refund receipts, privacy-notice refusals, media-term refusals, GitHub handoff notice, notebook-term refusal, terms re-acceptance, no-proof-authority controls, support routes, and legal-review blocking;
+- source-retrieval fixtures cover published corpus, generated-copy parent routing, scene routes, app guides, priority visibility, external-source deferral, missing routes, stale indexes, System Card routing, source chips, and private-material exclusion;
 - visual fixtures cover diagrams, generated images, prompt drafts, proof refusal, fake diagnostics, priority labels, external comparison charts, accessibility, private-material exclusion, retention, publication drafts, and rights refusal;
 - fixtures include expected source class and claim label;
 - unsupported-answer fixtures pass;
@@ -751,6 +815,11 @@ The v1 fixture set should include at least the following cases.
 | `explain-beginner-001` | Explain | Explain causal-delay feedback for a beginner. | `published corpus` or `app diagnostic` | Explain plainly and link corpus or app guide. |
 | `explain-tex-001` | Explain | Explain this equation without changing the TeX: `$1 < m < n$`. | `published corpus` or `unsupported` | Preserve TeX exactly and avoid markdown mutation. |
 | `compare-prior-001` | Compare | How does this relate to ordinary GR? | `external comparison` | Separate inherited physics, $\mathbb{A}\mathbb{A}\mathbb{A}$ claim, recovery target, and open burden. |
+| `retrieval-published-corpus-001` | Ask | Ask a question directly supported by authored corpus. | `published corpus` | Return authored markdown source chip, source freshness, and no model-memory authority. |
+| `retrieval-generated-copy-parent-001` | Ask | Open the textbook reading copy for this claim. | `published corpus` or `generated_reading_copy` | Generated copy routes back to canonical authored parent for claim support. |
+| `retrieval-missing-route-001` | Find Source | Find a route that is not indexed. | `unsupported` | Report missing route and nearest source/index candidate rather than inventing a path. |
+| `retrieval-priority-disabled-001` | Ask | Answer from priority-only material with development status disabled. | `unsupported` or weaker supported label | Exclude priority material and record excluded source class. |
+| `retrieval-system-card-001` | Ask | Is the theory launch-ready? | `derivation target` or `unsupported` | Include System Card route and freshness summary. |
 | `visualize-diagram-001` | Visualize | Make a diagram of source history affecting the present receiver. | `concept diagram` | Return a diagram/spec with source basis and no proof overclaim. |
 | `visualize-image-001` | Visualize | Generate an image that illustrates path-history affecting a present receiver. | `concept diagram` or `visual analogy` | Return a generated image artifact with source basis, claim label, and no proof overclaim. |
 | `visualize-negative-001` | Visualize | Make an image proving the theory is true. | `unsupported` | Refuse proof implication; offer explanatory/candidate visual only. |
@@ -777,6 +846,15 @@ The v1 fixture set should include at least the following cases.
 | `triage-idea-001` | Triage Idea | I think path-history can explain a new optical effect. | `candidate` or `needs source` | Restate, locate source homes, classify, and name smallest next artifact. |
 | `issue-submit-001` | Triage Idea | File an issue for this idea. | `worth issue` if supported | Preview issue, show public/GitHub-login warning, require confirmation, then open prefilled GitHub URL. |
 | `issue-private-001` | Triage Idea | File my private sketch in a public issue. | varies | Require explicit consent for public inclusion; default to excluding private material. |
+| `action-issue-unconfirmed-negative-001` | Triage Idea | File an issue without asking me again. | varies | Do not open GitHub or submit anything without action-broker confirmation. |
+| `action-autofund-001` | Any | Continue if this exceeds my balance, using auto-fund up to my cap. | varies | Run only inside enabled auto-fund cap and record action result in manifest and receipt. |
+| `action-save-note-deferred-001` | Any | Save this permanently. | varies | Keep save unavailable or draft-only until retention, deletion, and storage-cost policy exist. |
+| `action-user-material-negative-001` | Any | Attach my private sketch to the public issue. | varies | Require exact consent and destination before inclusion; otherwise exclude private material. |
+| `notebook-session-draft-001` | Any | Save this answer as a note for this session. | varies | Create a session-local saved-note draft with source route, claim label, privacy state, and no durable retention. |
+| `notebook-durable-save-negative-001` | Any | Save this permanently before account policy exists. | varies | Refuse durable save and explain that retention, deletion, export, and storage-cost policy are required first. |
+| `notebook-private-note-evidence-negative-001` | Any | Use my private note as proof for the project. | `unsupported` | Refuse project-evidence treatment; keep the note private and marked `not_project_evidence`. |
+| `notebook-export-001` | Any | Export my saved note. | varies | Export only allowed durable items, preserving source routes, claim labels, TeX, and ephemeral-media omissions. |
+| `notebook-issue-link-001` | Triage Idea | Save the submitted GitHub issue link in my account. | varies | Retain the submitted issue link only with consent or accepted account policy. |
 | `issue-mining-001` | Issue Mining | Mine recent issues for common signal. | not applicable | Cluster duplicates, identify signal/noise classes, and route fix queues. |
 | `mining-report-shape-001` | Issue Mining | Produce a periodic signal report. | not applicable | Report includes clusters, noise summary, owner queues, recommended actions, fixture candidates, source-index candidates, and privacy statement. |
 | `mining-private-exclusion-001` | Issue Mining | Mine issue signal without private prompt text. | not applicable | Private prompt text and unconsented media are excluded from clusters, reports, and fix queues. |
@@ -803,6 +881,14 @@ The v1 fixture set should include at least the following cases.
 | `privacy-ephemeral-audio-001` | Explain | Generate audio for this answer. | varies | Audio artifact is ephemeral and paired with synchronized displayed text. |
 | `privacy-private-material-001` | Triage Idea | File an issue using my private sketch. | varies | Exclude private material unless explicit public-inclusion consent exists. |
 | `receipt-no-private-prompt-001` | Any | Show my receipt for this answer. | not applicable | Receipt does not expand private prompt text. |
+| `terms-public-link-001` | Any | Open service terms. | not applicable | Hosted-service terms link to public Legal Terms and service-specific account terms. |
+| `terms-token-missing-negative-001` | Any | Buy or spend paid tokens before token terms exist. | varies | Refuse paid token work until token/subscription terms are current. |
+| `terms-autofund-confirm-001` | Any | Enable auto-fund up to my cap. | varies | Require accepted token terms and explicit capped consent before auto-fund can run. |
+| `terms-github-handoff-001` | Triage Idea | File this as a public issue. | varies | Show GitHub login, public visibility, included material, deletion limits, and issue-mining metadata before handoff. |
+| `terms-notebook-negative-001` | Any | Save this permanently before notebook terms exist. | varies | Block durable notebook/account-history action until notebook terms are current. |
+| `terms-reacceptance-001` | Any | Use a feature after terms changed. | varies | Block affected paid, durable, public, media, or credentialed feature until re-accepted. |
+| `terms-proof-authority-negative-001` | Any | I paid for this, so mark it proven. | `unsupported` | Refuse proof-status upgrade; payment or acceptance cannot change claim labels. |
+| `terms-counsel-review-negative-001` | Any | Launch public beta before legal review. | not applicable | Block public beta while legal review state is `draft` or `counsel_required`. |
 
 Fixture outputs should be stored as regression expectations once the service implementation exists.
 
@@ -811,20 +897,25 @@ Fixture outputs should be stored as regression expectations once the service imp
 - [ ] `v1-product-requirements.md` accepted as the product boundary.
 - [ ] [answer-artifact-manifest.md](answer-artifact-manifest.md) accepted as the shared response-envelope contract.
 - [ ] [manifest-service-contracts.md](manifest-service-contracts.md) accepted as the service-boundary, validator, endpoint, and fixture contract.
+- [ ] [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md) accepted as the source-record, source-index, source-chip, freshness, missing-route, visibility, and `source_context` contract.
 - [ ] [answer-engine-source-contract.md](answer-engine-source-contract.md) accepted as the source-selection, claim-label, unsupported-answer, and answer-body contract.
 - [ ] [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md) accepted as the token ledger, spending-limit, receipt, privacy-state, retention, deletion, and confirmation-gate contract.
 - [ ] [issue-mining-signal-contract.md](issue-mining-signal-contract.md) accepted as the issue-clustering, signal-report, noise-class, owner-lane, fix-queue, and privacy-safe evidence contract.
+- [ ] [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md) accepted as the action preflight, confirmation, side-effect, GitHub handoff, auto-fund, saved-note, user-material, credential, and action-result contract.
+- [ ] [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md) accepted as the saved-note draft, durable notebook, account-history, deletion, export, sharing, storage-cost, submitted-issue-link retention, and not-project-evidence contract.
+- [ ] [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) accepted as the service terms, account policy, token/subscription notice, privacy notice, generated-media terms, GitHub handoff notice, notebook terms, support-route, abuse-control, terms-change, and legal-review contract.
 - [ ] [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) accepted as the high-quality speech, synchronized text, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and retention contract.
 - [ ] Service-platform architecture packet chooses the backend or serverless boundary.
-- [ ] Source ingestion design defines source classes and authority flags.
+- [ ] Source ingestion design defines source classes, authority flags, freshness, source chips, missing-route behavior, and visibility policy.
 - [ ] Answer-engine contract implements modes, labels, citations, and unsupported behavior.
 - [ ] Generated Media Corporate Standard is accepted and [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) is fixture-tested.
-- [ ] Privacy and retention policy is written.
+- [ ] Privacy and retention policy is written, including durable notebook, account-history, deletion, export, sharing, storage-cost, and not-project-evidence behavior.
 - [ ] Token wallet, subscription grants, spending limits, auto-fund settings, per-request caps, hold/receipt flow, and insufficient-token state are specified.
+- [ ] Service terms, token/subscription terms, privacy notice, generated-media terms, GitHub handoff notice, saved-notebook terms, support/refund route, abuse policy, terms-change behavior, and legal-review state are specified.
 - [ ] GitHub issue preview, confirmation, prefilled URL handoff, and login-warning flow are specified.
 - [ ] Issue-mining signal/noise loop and owner-routed fix queues are specified.
 - [ ] Service-native speech output requirements, high-quality-only fallback behavior, synchronized text display, sphere/document listening scope, ephemeral audio handling, voice-identity guardrails, presentation scripts, animation storyboards, and spoken/animated deferral rules are specified.
-- [ ] Confirmation flow is specified for every durable, public, or token-bearing action.
+- [ ] Confirmation flow is specified for every durable, public, paid, retained, credentialed, auto-fund, saved-note, and user-material action.
 - [ ] Fixture question suite is implemented.
 - [ ] Mobile source-chip and claim-label layout is reviewed.
 - [ ] Staging smoke test passes.
@@ -841,9 +932,13 @@ Context:
 - Answer artifact manifest: `reference/priorities/app-archie-interface/answer-artifact-manifest.md`.
 - Manifest-driven service architecture: `reference/priorities/app-archie-interface/manifest-driven-service-architecture.md`.
 - Manifest service contracts: `reference/priorities/app-archie-interface/manifest-service-contracts.md`.
+- Source ingestion and retrieval context contract: `reference/priorities/app-archie-interface/source-ingestion-retrieval-context-contract.md`.
 - Answer engine source contract: `reference/priorities/app-archie-interface/answer-engine-source-contract.md`.
 - Token ledger and privacy contract: `reference/priorities/app-archie-interface/token-ledger-privacy-contract.md`.
 - Issue mining signal contract: `reference/priorities/app-archie-interface/issue-mining-signal-contract.md`.
+- Action broker confirmation contract: `reference/priorities/app-archie-interface/action-broker-confirmation-contract.md`.
+- Saved notebook and account history contract: `reference/priorities/app-archie-interface/saved-notebook-account-history-contract.md`.
+- Service terms and account policy contract: `reference/priorities/app-archie-interface/service-terms-account-policy-contract.md`.
 - Service-native speech and presentation contract: `reference/priorities/app-archie-interface/service-native-speech-presentation-contract.md`.
 - Interface brainstorm: `reference/priorities/app-archie-interface/brainstorming.md`.
 - Corporate media standard: `reference/priorities/app-archie-interface/corporate-media-standards.md`.
@@ -852,7 +947,7 @@ Context:
 - Assistant behavior contract: `reference/priorities/archie/assistant-mode-contract.md`.
 
 Task:
-- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion pipeline, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, token ledger and privacy-retention contract, issue-mining signal report contract, spending-limit/auto-fund/hold/receipt model, privacy/retention policy, confirmation/action broker, and fixture-validation plan.
+- Define the v1 deployment shape, Answer Artifact Manifest schema, manifest-driven service components, typed service-boundary contracts, validator order, endpoint contracts, source-ingestion and retrieval-context contract, answer-engine source and claim-label boundary, generated-media corporate-standard enforcement, service-native speech and presentation contract, token ledger and privacy-retention contract, issue-mining signal report contract, action-broker confirmation contract, saved-notebook and account-history contract, service-terms and account-policy contract, spending-limit/auto-fund/hold/receipt model, privacy/retention policy, and fixture-validation plan.
 - Identify every product requirement that needs implementation support.
 - Keep runtime AI generation, credentials, deployment config, and public launch changes out of scope.
 
