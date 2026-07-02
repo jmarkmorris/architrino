@@ -6,4 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 Same-Pass Action-Measure Update
+
+Migrated from `braid-retained-branch-closure.md` task item 20 so the tracker retains the compact failure state while preserving the detailed same-pass attempt narrative.
+
+    Same-pass update: `same_ledger_action_measure_row_with_branch_scope_attempt` now attempts the named smallest next object, constructs no `action_measure_row`, keeps `same_ledger_branch_scope_source_missing` as the actual first failure, records the branch-scope search basis and per-candidate `action_measure_field_statuses`, and keeps `period_rows` as the first conditional subfield after branch-scope with no accepted source. The attempt now also carries `fail_closed_action_measure_row_target`: the normal-candidate ledger supplies only `bounded_speed_ledger_id`, `force_checksum_id`, `consumer_checksum_id`, and `source_normal_reconstruction_candidate_id`, while `branch_scope`, `period_rows`, `action_functional`, and `root_support_event_rows` remain missing same-ledger bindings. Its `field_statuses_on_normal_candidate_ledger` rows make the supplied identity fields and the four missing same-ledger action-measure fields mechanically separable.

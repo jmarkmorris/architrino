@@ -6,4 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 Photon Guide Promotion Note
+
+Migrated from `photon-app.md` so the app tracker keeps current implementation and queue material separate from promotion history.
+
+Promotion note: the named preset descriptions, Virtual Observer branch-sum equations, and analyzer-fit formulas have been promoted into the reader-facing Photon Guide. The remaining app-specific control ranges, verification checklist, and open work queue stay priority-only.

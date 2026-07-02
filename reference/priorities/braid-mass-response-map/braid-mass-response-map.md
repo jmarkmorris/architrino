@@ -18,19 +18,13 @@
 
    Shared H39 provider boundary: [branch-provider evidence report](../app-solver/branch-provider-evidence-report.md) maps the H39 aggregate-$P$ construction attempt to rank 4 as target-only evidence, not a retained pressure-row branch intake. The readout verifies the five-cell source-contract boundary replay and records a source-provenance refinement: the signed-radius subinterval primitive, projected source-term producer-image fields, and lambda terminal witness branch intervals are present, but source-map provider-object branch intervals remain unavailable. The report still returns `same_domain_branch_provider_missing`; the two open H39 blockers are `source_term_provider_directed_source_certification_open` and `source_term_provider_term_width_realization_open`. It does not populate the same-row branch certificate, active-root or live-ledger identity, branch-local projection/normalization identity, pre-aggregate branch rows, projection map, pushforward operator, or normalization identity, so pressure coefficients remain non-authorized.
 
-   Receiver-normal audit update: the same H39/theta3minus provider path also
-   fails the first-derivative mass-response dependency. It does not emit
-   same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, or
-   reconstructed $D_vW^{\mathrm{rec}}$ rows for the retained causal-root
-   record consumed by exposure, pressure, wake-history, or response tensors.
-   Its disposition for mass-response use is therefore `defer with blocker`,
-   not `promote now`.
+   Historical receiver-normal audit update is preserved in [work-log.md](work-log.md#2026-07-02-receiver-normal-audit-update). Compact current state: the H39/theta3minus provider path still does not emit same-record first-derivative mass-response rows, so mass-response use remains deferred with blocker.
 
 5. `mass_hierarchy_check` — Test the first mass map against hierarchy ratios, the priority-only charged-lepton Koide residual, and hadron constraints after branch-derived exposed-source numerators are fixed. Status: `pending`; [charged-lepton-koide-residual.md](charged-lepton-koide-residual.md) now defines the equal isotropic / trace-free square-root exposure benchmark without using observed masses as inputs. Depends on: `exposure_quotient_theorem`.
 
-Post-promotion cleanup note: `medium_transport_thresholds` was promoted into [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md) and [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md) in the May 2026 promotion batch. Quantitative extraction of $\mathcal{R}_{\text{tr}}$ remains a dependency of the attractor-family and medium-response work above.
+Historical post-promotion cleanup note is preserved in [work-log.md](work-log.md#2026-07-02-post-promotion-cleanup-note).
 
-May 20, 2026 coordination note: the mass-map priority bucket now has four stricter downstream handoffs plus one $A_0$ successor pointer. The $A_0$ branch packet owns $\mathcal{R}_{\text{corr}}$, sampled residual forcing, the periodic carrier-correction scanner verdict, the rerun-input correction packet, the waveform replay, the corrected one-period negative result, the quotient-class, root-key-resolved, and `I` phase-bin refined-basis no-go ledgers, the compact-fixture decision witness, the branch-chart revision contract, and the pre-rerun checker rejection; the scalar exposure packet owns hidden-label invariance for $\zeta(A_0)E_{\text{internal}}(A_0)$; the medium-response packet owns trace / trace-free tensor projections for $\mathcal{M}_{\text{sea}}^{ab}$; and the pressure / transport packets own branch-derived pressure slopes plus reversible/loss-channel transport rows. These are still priority-side theorem and simulation targets, not reader-facing mass predictions.
+Historical May 20, 2026 coordination note is preserved in [work-log.md](work-log.md#2026-07-02-may-20-2026-coordination-note).
 
 ## Scope
 

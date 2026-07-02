@@ -6,4 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 EQ-02-04 Supersession Note
+
+Migrated from `eq-02-04-lorentz-energy-packet.md` to keep the equation packet focused on the mathematical object while preserving the status-level supersession boundary.
+
+Current supersession note: the residual vector below remains useful grammar, but it is no longer the next acceptance object by itself. The current solver-facing boundary is source-backed retained support plus the Cartan witness split $W_{\mathrm{supp}}/W_{\mathrm{hol}}$. A common residual vector becomes score-review eligible only after the rows are extracted on the same source-backed support and the holonomy witness rules out row-by-row retuning.

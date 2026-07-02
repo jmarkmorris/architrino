@@ -220,7 +220,7 @@ Envelope handling rules:
 - Reject or halt with `simulation_envelope_exceeded` when the run cannot meet the requested claim level inside the supported envelope.
 - Treat envelope expansion as normal solver evolution: add better indices, better partitioning, better precision paths, better storage, or better algorithms over time, then widen the admitted envelope with benchmarks and validation fixtures.
 
-Current implementation note: admission responses include `decision: "simplify"` for otherwise supported runs that exceed the interactive entity envelope and declare `simplificationPolicy: "explicit-reduced-model"`. Explicit batch or validation requests use `decision: "batch"`. Unsupported requests keep `decision: "reject"` with resource or `simulation_envelope_exceeded` diagnostics.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 The simulation envelope should be part of the run manifest. It should be visible to apps before a run starts, included in diagnostics during execution, and preserved in exported datasets so later readers know what was simulated, what was reduced, and what the solver did not claim.
 
@@ -285,7 +285,7 @@ The detailed precision and dynamic-range policy now lives in [precision.md](prec
 
 The governing decision remains: use an automatic precision-path selector with upward-only escalation. Every run and stream manifest must record the selected precision path, numeric chart, numeric type, scale normalization, tolerance policy, timestep policy, root policy, error budget, and claim level. If no available precision path can satisfy the declared claim level, the solver halts with a precision diagnostic instead of producing an ambiguous result.
 
-Current implementation note: the developed solver assets have been reviewed against [precision.md](precision.md). The app bridge contract now names the required `direction_log_magnitude` chart family in addition to local-frame, nondimensional-ratio, log-magnitude, signed-log-magnitude, and interval charts. Run manifests now include `solver-run-precision-metadata.v1` with requested and selected precision path, numeric type, numeric chart, unit convention, scale normalization, global and stage error budgets, claim level, and value authority. Stream descriptors and run-manifest stream entries now require `solver-path-history-stream-metadata.v1` with numeric type, numeric chart, stream value authority, app-buffer authority, claim level, scale normalization, provenance, and diagnostics. Precision summaries now include structured escalation records with prior path, new path, trigger, affected stage, and claim-level status. Detailed root-ledger rows now include residual scale, absolute residual, normalized residual, selected root tolerance, and first-failure code as app-facing precision forensics without changing the fixed `root_ledger_detail.v1` binary row size.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 ## Application Bridge Requirement
 
@@ -819,7 +819,7 @@ Deferral does not mean ignoring GPU data and work layout. The first solver shoul
 
 The same design should avoid painting the data model into a single-machine corner. Work should be divisible into transport packets with explicit input ranges, source and receiver blocks, time slabs, spatial blocks, precision path, buffer offsets, expected output layouts, checksum, and merge key. A packet should be usable inside one browser worker, one native task pool, one service process, or a future distributed/GPU backend without changing the app-facing schema.
 
-Current implementation note: path-history work-packet planning now returns deterministic source and receiver chunk-selection summaries plus a plan checksum over the selected chunks, pair counts, truncation state, and packet header checksums. Each packet still carries its own canonical header checksum and deterministic merge key; the plan checksum gives dispatchers one compact identity for replay, cross-worker transfer, service execution, and later GPU-style packet queues.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 Learning harness note: GPU acceleration remains deferred for production solver work, but a separate [GPU feasibility harness](gpu-feasibility-harness.md) may be used to learn WebGPU/Metal-style compute, measure regular parallel kernels, and collect exploratory CPU/GPU parity data without changing the central solver contract.
 
@@ -871,7 +871,7 @@ The completed survey and first-prototype benchmark evidence live in [spatiotempo
 
 The index design should not assume that either time or space alone is the right primary key. The solver should support spatial blocks, time blocks, and combined spacetime blocks, then benchmark which layout best rejects impossible candidates before narrow root solving. For example, a time-slab-first index may be best when histories are long and dense, while a spatial-block-first or bounding-volume index may be best when the local geometry is sparse. A combined spacetime-cell index may be best for emission-shell queries where both source emission time and receiver location bounds matter.
 
-Current implementation note: the native runtime benchmark reports strategy labels and named metrics for emission-shell broad-phase, the solver-owned `query_emission_shell_broad_phase_indexed_v0` interval-time-slab/spatial-hash/emission-shell-annulus path, and combined spacetime-cell index workloads. The indexed v0 path is also exposed through `architrino_solver_query_emission_shell_broad_phase_indexed_v0_f64` and the app bridge opt-in `indexOptions.strategy = "emission_shell_broad_phase_v0"`, which reports `native_c_abi_indexed_v0` and index-summary metadata. The v0 fixture compares indexed candidates against brute-force path-history chunk replay and currently reports zero missed oracle candidates, broad-phase recall `1.0`, candidate count reduction `0.995365`, and indexed pair-test reduction `0.932126` on the local 16/64/256/1024/2048 path-count sweep. It validates 20 deterministic work packets with `emission_shell_candidate.v1` outputs, 24,625 work-packet candidates, zero packet missing candidates, zero packet extra candidates, and zero merge-order mismatches. The benchmark also reports deterministic single-worker versus bounded-worker causal-root batch measurements with worker counts, elapsed times, speedup ratio, and checksum delta. The benchmark runner writes `solver-benchmark-report.v1` JSON under `.tmp/solver-build/benchmark/` by default, records runtime/platform/CPU/memory/`EM_CACHE` context, validates that the parsed report matches the console case count, and now invokes `scripts/check-solver-benchmark-thresholds.mjs` to enforce the `emission-shell-broad-phase-v0` non-wall-clock acceptance gate. The gate covers stress breadth through 2048 paths and 256 time slabs, zero oracle loss across 5,312,768 brute-force replay pairs and 24,625 indexed candidates, candidate and pair-test reduction, chunk replay volume, and deterministic packet equality. The indexed strategy remains opt-in until default-policy evidence covers the requested simulation envelopes.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 Potential future optimization: [spatiotemporal-query-algorithm-survey](spatiotemporal-query-algorithm-survey.md) records `emission_shell_broad_phase_v0_default_promotion_v1` as implemented by `scripts/check-emission-shell-default-promotion-v1.mjs`. The app-facing fixture passed the native stress gate, packet execution through `queryEmissionShellCandidatePacketsF64`, packet/direct equality against `native_c_abi_indexed_v0`, ordered packet result refs, and the p95 performance budgets for both declared envelopes: `interactive_preview_small_v0` at 19.650 ms against a 100 ms budget, and `background_validation_large_v0` at 623.063 ms against a 5 s budget. Keep this filed as a later app-bridge default-selector optimization only; the current runtime should remain opt-in through `indexOptions.strategy = "emission_shell_broad_phase_v0"` until that selector is explicitly scoped, implemented, and rechecked.
 
@@ -925,7 +925,7 @@ Each path-history stream should support:
 - optional event streams for causal roots, delayed hits, halts, and diagnostic threshold crossings;
 - clear separation between dense sample data and metadata manifests.
 
-Current implementation note: `applyPathHistoryStorageLifecycleF64` persists lifecycle metadata and, when the lifecycle plan queues deep-index work, builds a compact `solver-path-history-deep-index.v1` artifact backed by `spacetime_index.v1` rows from the selected path-history chunks. The artifact records source stream, built chunk ids, row count, overflow count, byte length, checksum, and index options. It is acceleration metadata for broad-phase and offline query work; it does not replace authoritative path replay.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 Required indices:
 
@@ -1065,13 +1065,13 @@ Compiled object files are intermediate build artifacts. They should not be packa
 
 Every packaged solver build should include a small manifest with solver version, API version, binary schema version, build target, compiler/toolchain versions, enabled precision paths, threading support, storage support, and checksums for packaged artifacts.
 
-Current implementation note: the app-runtime package manifest records artifact checksums, API versions, schema versions, toolchain versions, build-host runtime capability probes, enabled precision paths, output layouts, binary layout catalog rows, threading support, storage support, numeric types, numeric chart descriptors, status taxonomy summary, and the no-intermediate-artifact policy. Run validation artifacts also hash schema-version, status-taxonomy, and binary-layout surfaces for replay and migration review.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
-Current implementation note: the WebAssembly browser loader is emitted as `architrino_solver_wasm_smoke.mjs` with Emscripten `MODULARIZE` and `EXPORT_ES6`, so module workers and app-side modules can import the packaged solver factory directly. Node smoke scripts import the same ES-module loader instead of using a separate CommonJS-only path.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
-Current implementation note: `SolverAppBridgeClientResolver.mjs` is now the shared app-side resolver for Photon, Ideal Braid, and Animator. It lets app helpers use a provided solver client, an app-provided client factory, a provided worker, an app-provided worker factory, a constructible worker URL, or a packaged WebAssembly module factory through one path; it initializes clients it creates, passes requested capability context to app factories and worker factories, and disposes internally-owned clients after the run.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
-Current implementation note: the contract fixture check now verifies that the app-worker method enum in the JSON schema, the runtime `SOLVER_APP_WORKER_METHODS` list, and the TypeScript `SolverClient` method surface stay in sync. The same check validates fixtures for all 97 top-level app-bridge request, response, and worker-message schema variants against their specific JSON Schema `$defs` and against the top-level `solver-app-bridge/v1` schema entrypoint. It also validates nested manifest, stream, buffer, status, index, storage-lifecycle, work-packet, assembly-graph, geometry, and precision fixture content through those schemas. The schema and runtime bridge must match in order; the TypeScript client must match the same set of methods.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 ## Geometry Centralization Target
 
@@ -1095,9 +1095,9 @@ Chosen boundary:
 - apps own UI controls, camera choice, color, trail styling, visual filtering, labels, panels, and renderer-specific layout;
 - app adapters may request lighter projected geometry for display, but projection buffers must be labeled as app-facing projections when they are not authoritative solver data.
 
-Current implementation note: `scripts/check-solver-geometry-inventory.mjs` writes `solver-geometry-centralization-inventory.v1` under `.tmp/solver-geometry-inventory/`. It verifies the current app-facing bridge and central-solver surfaces for Photon causal roots, Photon circular-source roots/hits/ledger, Ideal Braid flight time and batched potential samples, Ideal Braid circular self-hit spans, Animator motion datasets, Animator receiver path descriptor packages, Animator delayed-hit stream descriptor rows, and Animator field-shell event stream packages.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
-Current inventory note: [geometry-centralization-inventory](geometry-centralization-inventory.md) is the closed inventory for Photon, Ideal Braid, and Animator app-side geometry. Animator delayed-hit receiver descriptor construction now routes through [AnimatorReceiverPathDescriptors.mjs](../../../src/solver/app/AnimatorReceiverPathDescriptors.mjs), delayed-hit shell/path intersections route through stream-backed descriptor requests and solver-owned delayed-hit rows in [AnimatorDelayedHitRows.mjs](../../../src/solver/app/AnimatorDelayedHitRows.mjs), and field-shell emitter source-history sampling plus emission cadence now route through solver-owned stream-package rows, bridge-catalogued `field_shell_events.v1` chunks, stream-index sidecars, and native-file manifests in [AnimatorFieldShellEventStream.mjs](../../../src/solver/app/AnimatorFieldShellEventStream.mjs). The remaining Animator boundary is any future native C++ `field_shell_events.v1` producer plus renderer-only display geometry rather than receiver-track sample arrays, app-local receiver descriptors, local cadence rows, app-local emitter sampling, or durable JS-side stream storage. Photon delayed-emission contribution and observer-field reconstruction, plus Ideal Braid source-history construction and fallback span profiles, remain app-local cleanup surfaces. Those removals require solver-owned rows or adapter descriptors first; renderer-only display geometry remains app-owned.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 ## Solver Contract And Validation Policy
 
@@ -1125,7 +1125,7 @@ The first central core should expose source histories, branch-resolved causal ro
 
 Baseline harnesses are comparison tools, not trusted oracles. Each harness must run without network access, inside a controlled working directory, with fixed seeds, resource caps, artifact-only output, and no writes back into app source paths. A baseline comparison can approve migration only when analytic fixtures, invariant checks, and tolerance rules also support the result.
 
-Current implementation note: `scripts/check-solver-migration-parity.mjs` consumes the baseline sandbox manifest, verifies artifact hashes and the baseline-classification vocabulary, enforces the migration order Animator, Photon, then Ideal Braid, and writes `solver-migration-parity-report.v1` under `.tmp/solver-migration-parity/`. The report includes aggregate app/case readiness counts plus explicit missing and blocking case lists. The required app-owned bridge cases prove that Animator, Photon, and Ideal Braid app helpers can create, initialize, use, and dispose the shared solver bridge client against the packaged WebAssembly module without caller-owned solver clients. The Ideal Braid runtime owns the shared bridge lifecycle for the app, batches surface delayed-potential samples through `sharedGeometry`, and requests circular self-hit spans through solver rows. Animator authoring payloads can opt into the central solver bridge through canonical `solverEngine` or `solverBridge.enabled` metadata.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 ### Initial Validation Fixtures
 
@@ -1214,9 +1214,9 @@ Implementation order:
 12. Implement the minimal causal-root and delayed-hit core behind the shared app bridge.
 13. Run migration parity in order: Animator, Photon, then Ideal Braid.
 
-Current implementation note: `scripts/check-solver-contract-fixtures.mjs` now validates fixtures for all 97 top-level solver app-bridge request, response, and worker-message schema variants against their specific JSON Schema `$defs` and against the top-level `solver-app-bridge/v1` schema entrypoint. This supplements the existing semantic assertions for method parity, binary layouts, stream indices, precision metadata, lifecycle metadata, work-packet metadata, assembly graph metadata, and migration fixture expectations. The checker also validates nested `solver-path-history-stream-contract-artifacts.v1` evidence for `path_stream_round_trip`, `stream_replay_invariants`, `history_age_out_and_deep_index`, `interrupted_stream_recovery`, `high_speed_readback_budget`, and `fast_spill_budget`. The native Release benchmark now reports dedicated path-history cases for fast spill, high-speed indexed readback, deep-index build, and recovery detection, so the stream contract has baseline runtime evidence separate from the broader stream/store I/O benchmark.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
-Current runtime-validation note: [cpp-clang-runtime-validation](cpp-clang-runtime-validation.md) closes `cpp_clang_runtime_validation` as a build, smoke, bridge, parity, benchmark-sanity, and v0 broad-phase threshold capture. The live C++20/Clang path passes `node scripts/build-solver-smoke.mjs all`, the app bridge check, baseline sandbox, migration parity, and `node scripts/benchmark-solver.mjs --skip-preflight`; remaining wall-clock performance-budget, stricter numeric-engine, WebAssembly/browser-worker, and production-default questions stay future scoped work rather than active queue blockers.
+Historical implementation/status note migrated to [work-log.md](work-log.md#2026-07-02-solver-current-note-migration).
 
 ## Migration Plan
 

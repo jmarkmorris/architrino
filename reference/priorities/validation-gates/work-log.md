@@ -6,4 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 Post-Promotion Cleanup Note
+
+Migrated from `validation-gates.md` so the tracker keeps current gate ownership separate from promotion-history cleanup notes.
+
+Post-promotion cleanup note: `closure_intersection_ledger`, `no_go_applicability_map`, and `failure_condition_routing` were promoted into the AAA validation chapters in the May 2026 promotion batch.

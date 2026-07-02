@@ -13,7 +13,7 @@
 
 1. `worked_shared_closure_record` — Apply the promoted acceptance-set, no-go, and failure-routing scaffold to the first sector case that claims promotion, producing either a nonempty extension fiber or an incompatibility witness. Status: `next`. Depends on: none.
 
-Post-promotion cleanup note: `closure_intersection_ledger`, `no_go_applicability_map`, and `failure_condition_routing` were promoted into the AAA validation chapters in the May 2026 promotion batch.
+Historical post-promotion cleanup note is preserved in [work-log.md](work-log.md#2026-07-02-post-promotion-cleanup-note).
 
 ## Scope
 
