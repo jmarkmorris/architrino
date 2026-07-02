@@ -12,6 +12,7 @@ import {
   PHASE_ORDER_MEASUREMENT_ROW_SCHEMA,
   RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA,
   RESIDUAL_MEASUREMENT_ROW_SCHEMA,
+  SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA,
   SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA,
   SCHEMA,
   buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget,
@@ -215,7 +216,7 @@ test("provider-backed chirality target populates paired rows without authorizing
   });
 });
 
-test("accepted measurement chirality target measures phase, root, self-hit, and wake residuals", () => {
+test("accepted measurement chirality target measures phase, root, self-hit, wake, and action residuals", () => {
   const artifact = buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget({
     retainedRecordId: "retained-record:braid-ideal:test-chirality-accepted-measurements",
   });
@@ -236,12 +237,12 @@ test("accepted measurement chirality target measures phase, root, self-hit, and 
   assert.deepEqual(artifact.first_blocker, {
     object: "chirality_residual_measurement_failed",
     field: FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD,
-    reason: "same_record_action_energy_residual_row_missing",
+    reason: "same_record_angular_momentum_residual_row_missing",
   });
   assert.equal(artifact.accepted_residual_measurement_source.measurement_row_count, 9);
   assert.equal(artifact.accepted_residual_measurement_source.accepted_measurement_row_count, 9);
-  assert.equal(artifact.accepted_residual_measurement_source.passing_measurement_row_count, 5);
-  assert.equal(artifact.accepted_residual_measurement_source.failing_measurement_row_count, 4);
+  assert.equal(artifact.accepted_residual_measurement_source.passing_measurement_row_count, 6);
+  assert.equal(artifact.accepted_residual_measurement_source.failing_measurement_row_count, 3);
 
   const phaseMeasurement = artifact.residual_vector.R_phase.value;
   assert.equal(phaseMeasurement.schema, RESIDUAL_MEASUREMENT_ROW_SCHEMA);
@@ -440,10 +441,71 @@ test("accepted measurement chirality target measures phase, root, self-hit, and 
     );
     assert.equal(row.same_record_binding.provider_object_ref, artifact.provider_backed_source.provider_object_ref);
   }
-  assert.equal(artifact.residual_vector.R_action.value.measurement_passed, false);
+
+  const actionMeasurement = artifact.residual_vector.R_action.value;
+  assert.equal(actionMeasurement.measurement_passed, true);
+  assert.equal(actionMeasurement.measurement_status, "accepted_measurement_passed");
+  assert.equal(actionMeasurement.residual_value, 0);
   assert.equal(
-    artifact.residual_vector.R_action.value.failure_reason,
-    "same_record_action_energy_residual_row_missing"
+    actionMeasurement.residual_value_status,
+    "same_record_action_energy_residual_rows_complete"
+  );
+  assert.equal(actionMeasurement.failure_reason, null);
+  assert.equal(actionMeasurement.first_failed_requirement, null);
+  assert.equal(actionMeasurement.same_record_action_energy_residual_summary.measurement_passed, true);
+  assert.deepEqual(
+    actionMeasurement.accepted_same_record_action_energy_residual_refs,
+    artifact.accepted_same_record_action_energy_residual_source.accepted_same_record_action_energy_residual_refs
+  );
+  assert.equal(artifact.residual_vector.R_action.accepted, true);
+  assert.equal(artifact.accepted_same_record_action_energy_residual_source.measurement_passed, true);
+  assert.equal(artifact.accepted_same_record_action_energy_residual_source.expected_paired_row_count, 2);
+  assert.equal(artifact.accepted_same_record_action_energy_residual_source.residual_row_count, 2);
+  assert.equal(
+    artifact.accepted_same_record_action_energy_residual_source.residual_row_schema,
+    SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA
+  );
+  assert.equal(artifact.accepted_same_record_action_energy_residual_source.action_energy_residual, 0);
+  assert.deepEqual(artifact.accepted_same_record_action_energy_residual_source.residuals, {
+    missing_hook_count: 0,
+    missing_row_role_count: 0,
+    extra_row_role_count: 0,
+    duplicate_row_role_count: 0,
+    same_record_binding_failure_count: 0,
+    ledger_mismatch_count: 0,
+    action_difference_residual: 0,
+    energy_difference_residual: 0,
+  });
+  assert.equal(
+    artifact.accepted_same_record_action_energy_residual_source.same_record_action_energy_residual_rows.length,
+    2
+  );
+  assert.deepEqual(
+    artifact.accepted_same_record_action_energy_residual_source.same_record_action_energy_residual_rows.map(
+      (row) => row.row_role
+    ),
+    ["matter_row", "antimatter_row"]
+  );
+  for (const row of artifact.accepted_same_record_action_energy_residual_source
+    .same_record_action_energy_residual_rows) {
+    assert.equal(row.schema, SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA);
+    assert.equal(row.accepted_measurement, true);
+    assert.equal(row.ledger, "same_record_action_ledger_rows");
+    assert.equal(row.hook_id.includes("same_record_action_ledger_rows:hook"), true);
+    assert.equal(row.required_relation, "charge_conjugate_action_energy_equality");
+    assert.equal(row.normalized_action_value, 1);
+    assert.equal(row.normalized_energy_value, 1);
+    assert.equal(row.same_record_binding.retained_record_id, artifact.provider_backed_source.retained_record_id);
+    assert.equal(
+      row.same_record_binding.central_solver_retained_history_row_ref,
+      artifact.provider_backed_source.central_solver_retained_history_row_ref
+    );
+    assert.equal(row.same_record_binding.provider_object_ref, artifact.provider_backed_source.provider_object_ref);
+  }
+  assert.equal(artifact.residual_vector.R_J.value.measurement_passed, false);
+  assert.equal(
+    artifact.residual_vector.R_J.value.failure_reason,
+    "same_record_angular_momentum_residual_row_missing"
   );
   assert.equal(artifact.residual_vector.R_charge.value.measurement_passed, true);
   assert.equal(artifact.residual_vector.R_charge.accepted, true);
@@ -550,11 +612,13 @@ test("chirality target CLI can emit accepted residual measurement rows", () => {
   assert.equal(artifact.residual_vector.R_root.value.measurement_passed, true);
   assert.equal(artifact.residual_vector.R_self.value.measurement_passed, true);
   assert.equal(artifact.residual_vector.R_wake.value.measurement_passed, true);
-  assert.equal(artifact.residual_vector.R_action.value.measurement_passed, false);
+  assert.equal(artifact.residual_vector.R_action.value.measurement_passed, true);
+  assert.equal(artifact.residual_vector.R_J.value.measurement_passed, false);
   assert.equal(artifact.accepted_phase_order_measurement_source.phase_order_row_count, 2);
   assert.equal(artifact.accepted_partner_causal_root_residual_source.residual_row_count, 30);
   assert.equal(artifact.accepted_same_source_self_hit_residual_source.residual_row_count, 6);
   assert.equal(artifact.accepted_retained_wake_history_residual_source.residual_row_count, 6);
+  assert.equal(artifact.accepted_same_record_action_energy_residual_source.residual_row_count, 2);
   assert.equal(artifact.residual_vector.R_phase.accepted_measurement_ref.startsWith("accepted:"), true);
   assert.deepEqual(validateBraidIdealChiralityRetainedHistoryTarget(artifact), []);
 });

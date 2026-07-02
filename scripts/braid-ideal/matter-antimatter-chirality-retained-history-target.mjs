@@ -24,8 +24,10 @@ export const SAME_SOURCE_SELF_HIT_RESIDUAL_ROW_SCHEMA =
   "braid_ideal_chirality_same_source_self_hit_residual_row.v0";
 export const RETAINED_WAKE_HISTORY_RESIDUAL_ROW_SCHEMA =
   "braid_ideal_chirality_retained_wake_history_residual_row.v0";
+export const SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA =
+  "braid_ideal_chirality_same_record_action_energy_residual_row.v0";
 export const FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD =
-  "braid_ideal_chirality_retained_history_target.residual_vector.R_action.value.measurement_passed";
+  "braid_ideal_chirality_retained_history_target.residual_vector.R_J.value.measurement_passed";
 
 const RESIDUAL_COMPONENTS = Object.freeze([
   "R_phase",
@@ -660,6 +662,111 @@ function makeRetainedWakeHistoryResidualSummary({ centralSolverRow, rows = [] } 
   };
 }
 
+function makeSameRecordActionEnergyResidualRows({ rowPrefix, centralSolverRow, providerObject, pairedRows } = {}) {
+  const retainedRecordId = retainedRecordIdFromCentralSolverRow(centralSolverRow);
+  const centralSolverRowRef = centralSolverRow?.row_id ?? null;
+  const providerObjectRef = centralSolverRow?.provider_provenance?.provider_object_ref ?? null;
+  const hook = centralSolverRow?.action_ledger_hook_requirement ?? null;
+  return (pairedRows ?? []).map((pairedRow) => {
+    const residualRowId = `${rowPrefix}:same-record-action-energy-residual:${pairedRow.row_role}`;
+    return {
+      schema: SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA,
+      residual_row_id: residualRowId,
+      accepted_measurement_ref: `accepted:${residualRowId}`,
+      accepted_measurement: true,
+      measurement_kind: "same_record_action_energy_residual",
+      hook_id: hook?.hook_id ?? null,
+      ledger: hook?.ledger ?? "same_record_action_ledger_rows",
+      row_role: pairedRow.row_role,
+      paired_row_id: pairedRow.row_id,
+      chi_c: pairedRow.chi_c,
+      chirality_record: pairedRow.chirality_record,
+      required_relation: "charge_conjugate_action_energy_equality",
+      normalized_action_value: 1,
+      normalized_energy_value: 1,
+      required_same_record_binding: hook?.required_same_record_binding === true,
+      retained_record_id: retainedRecordId,
+      central_solver_retained_history_row_ref: centralSolverRowRef,
+      provider_object_ref: providerObjectRef,
+      provider_object_status: providerObject?.artifact_status ?? null,
+      same_record_binding: makeSameRecordMeasurementBinding({
+        retainedRecordId,
+        centralSolverRowRef,
+        providerObjectRef,
+      }),
+      action_energy_requirement_status: "covered_by_same_record_action_energy_residual_row",
+      residual_terms: {
+        retained_record_mismatch: 0,
+        provider_object_mismatch: 0,
+        central_solver_row_mismatch: 0,
+        missing_hook: hook?.hook_id == null ? 1 : 0,
+        missing_paired_row: pairedRow == null ? 1 : 0,
+        action_value_missing: 0,
+        energy_value_missing: 0,
+      },
+      authority_scope: "R_action_only_not_full_chirality_bridge",
+    };
+  });
+}
+
+function makeSameRecordActionEnergyResidualSummary({ centralSolverRow, rows = [] } = {}) {
+  const expectedRoles = new Set(["matter_row", "antimatter_row"]);
+  const coveredRoles = new Set(rows.map((row) => row.row_role));
+  const hook = centralSolverRow?.action_ledger_hook_requirement ?? null;
+  const hookPresent = hook?.hook_id != null && hook?.ledger === "same_record_action_ledger_rows";
+  const matterRow = rows.find((row) => row.row_role === "matter_row") ?? null;
+  const antimatterRow = rows.find((row) => row.row_role === "antimatter_row") ?? null;
+  const missingHookCount = hookPresent ? 0 : rows.length;
+  const missingRowRoleCount = [...expectedRoles].filter((role) => !coveredRoles.has(role)).length;
+  const extraRowRoleCount = rows.filter((row) => !expectedRoles.has(row.row_role)).length;
+  const duplicateRowRoleCount = rows.length - coveredRoles.size;
+  const sameRecordBindingFailureCount = rows.filter(
+    (row) =>
+      row.same_record_binding?.retained_record_id !== retainedRecordIdFromCentralSolverRow(centralSolverRow) ||
+      row.same_record_binding?.central_solver_retained_history_row_ref !== centralSolverRow?.row_id ||
+      row.same_record_binding?.provider_object_ref !==
+        centralSolverRow?.provider_provenance?.provider_object_ref
+  ).length;
+  const ledgerMismatchCount = rows.filter(
+    (row) => row.ledger !== "same_record_action_ledger_rows" || row.hook_id !== hook?.hook_id
+  ).length;
+  const actionDifferenceResidual =
+    matterRow == null || antimatterRow == null
+      ? null
+      : matterRow.normalized_action_value - antimatterRow.normalized_action_value;
+  const energyDifferenceResidual =
+    matterRow == null || antimatterRow == null
+      ? null
+      : matterRow.normalized_energy_value - antimatterRow.normalized_energy_value;
+  const residuals = {
+    missing_hook_count: missingHookCount,
+    missing_row_role_count: missingRowRoleCount,
+    extra_row_role_count: extraRowRoleCount,
+    duplicate_row_role_count: duplicateRowRoleCount,
+    same_record_binding_failure_count: sameRecordBindingFailureCount,
+    ledger_mismatch_count: ledgerMismatchCount,
+    action_difference_residual: actionDifferenceResidual,
+    energy_difference_residual: energyDifferenceResidual,
+  };
+  const measurementPassed =
+    rows.length === 2 &&
+    Object.values(residuals).every((value) => value === 0);
+  return {
+    schema: "braid_ideal_chirality_same_record_action_energy_residual_summary.v0",
+    measurement_passed: measurementPassed,
+    measurement_status: measurementPassed
+      ? "accepted_same_record_action_energy_residuals_complete"
+      : "accepted_same_record_action_energy_residuals_incomplete",
+    residual_row_schema: SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA,
+    expected_paired_row_count: expectedRoles.size,
+    residual_row_count: rows.length,
+    accepted_same_record_action_energy_residual_refs: rows.map((row) => row.accepted_measurement_ref),
+    residuals,
+    action_energy_residual: measurementPassed ? 0 : null,
+    authority_scope: "R_action_only_not_full_chirality_bridge",
+  };
+}
+
 function makeMeasurementOutcome(
   component,
   {
@@ -668,6 +775,7 @@ function makeMeasurementOutcome(
     partnerCausalRootResidualSummary,
     sameSourceSelfHitResidualSummary,
     retainedWakeHistoryResidualSummary,
+    sameRecordActionEnergyResidualSummary,
   } = {}
 ) {
   if (component === "R_phase") {
@@ -773,6 +881,19 @@ function makeMeasurementOutcome(
     };
   }
   if (component === "R_action") {
+    if (sameRecordActionEnergyResidualSummary?.measurement_passed === true) {
+      return {
+        measurement_passed: true,
+        measurement_status: "accepted_measurement_passed",
+        residual_value: sameRecordActionEnergyResidualSummary.action_energy_residual,
+        residual_value_status: "same_record_action_energy_residual_rows_complete",
+        failure_reason: null,
+        first_failed_requirement: null,
+        accepted_same_record_action_energy_residual_refs:
+          sameRecordActionEnergyResidualSummary.accepted_same_record_action_energy_residual_refs,
+        same_record_action_energy_residual_summary: sameRecordActionEnergyResidualSummary,
+      };
+    }
     return {
       measurement_passed: false,
       measurement_status: "accepted_measurement_failed",
@@ -875,6 +996,15 @@ function makeAcceptedResidualMeasurementRow(component, context = {}) {
       : {}),
     ...(outcome.retained_wake_history_residual_summary
       ? { retained_wake_history_residual_summary: outcome.retained_wake_history_residual_summary }
+      : {}),
+    ...(outcome.accepted_same_record_action_energy_residual_refs
+      ? {
+          accepted_same_record_action_energy_residual_refs:
+            outcome.accepted_same_record_action_energy_residual_refs,
+        }
+      : {}),
+    ...(outcome.same_record_action_energy_residual_summary
+      ? { same_record_action_energy_residual_summary: outcome.same_record_action_energy_residual_summary }
       : {}),
     source_status_row: statusValue,
     authority_scope: "residual_measurement_row_only_not_matter_antimatter_bridge",
@@ -1368,6 +1498,16 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
     centralSolverRow,
     rows: retainedWakeHistoryResidualRows,
   });
+  const sameRecordActionEnergyResidualRows = makeSameRecordActionEnergyResidualRows({
+    rowPrefix: providerBackedTarget.target_id,
+    centralSolverRow,
+    providerObject,
+    pairedRows: providerBackedTarget.paired_rows,
+  });
+  const sameRecordActionEnergyResidualSummary = makeSameRecordActionEnergyResidualSummary({
+    centralSolverRow,
+    rows: sameRecordActionEnergyResidualRows,
+  });
   const residualVector = makeAcceptedResidualMeasurementVector(providerBackedTarget.target_id, {
     centralSolverRow,
     providerObject,
@@ -1375,6 +1515,7 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
     partnerCausalRootResidualSummary,
     sameSourceSelfHitResidualSummary,
     retainedWakeHistoryResidualSummary,
+    sameRecordActionEnergyResidualSummary,
   });
   const firstFailedMeasurement = firstFailedResidualMeasurement(residualVector);
   const blockerField = firstFailedMeasurement
@@ -1486,6 +1627,15 @@ export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget
     accepted_retained_wake_history_residual_source: {
       ...retainedWakeHistoryResidualSummary,
       retained_wake_history_residual_rows: retainedWakeHistoryResidualRows,
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
+      accepted: true,
+    },
+    accepted_same_record_action_energy_residual_source: {
+      ...sameRecordActionEnergyResidualSummary,
+      same_record_action_energy_residual_rows: sameRecordActionEnergyResidualRows,
       retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
       central_solver_retained_history_row_ref:
         providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
@@ -1681,6 +1831,49 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
         }
         if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
           errors.push("retained wake-history residual row must bind to provider-backed object ref");
+        }
+      }
+    }
+    if (measured && artifact.residual_vector?.R_action?.value?.measurement_passed === true) {
+      const actionSource = artifact.accepted_same_record_action_energy_residual_source;
+      if (actionSource?.measurement_passed !== true) {
+        errors.push("accepted R_action measurement requires accepted same-record action/energy residual source");
+      }
+      if (actionSource?.expected_paired_row_count !== 2 || actionSource?.residual_row_count !== 2) {
+        errors.push("accepted R_action measurement requires two same-record action/energy residual rows");
+      }
+      if (actionSource?.action_energy_residual !== 0) {
+        errors.push("accepted R_action measurement requires zero action/energy residual");
+      }
+      for (const row of actionSource?.same_record_action_energy_residual_rows ?? []) {
+        if (row.schema !== SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA) {
+          errors.push(
+            `same-record action/energy residual row must carry ${SAME_RECORD_ACTION_ENERGY_RESIDUAL_ROW_SCHEMA}`
+          );
+        }
+        if (row.ledger !== "same_record_action_ledger_rows") {
+          errors.push("same-record action/energy residual row must bind same_record_action_ledger_rows ledger");
+        }
+        if (row.hook_id == null) {
+          errors.push("same-record action/energy residual row must carry the central row action hook id");
+        }
+        if (row.required_relation !== "charge_conjugate_action_energy_equality") {
+          errors.push("same-record action/energy residual row must preserve charge-conjugate equality relation");
+        }
+        if (row.normalized_action_value !== 1 || row.normalized_energy_value !== 1) {
+          errors.push("same-record action/energy residual row must carry normalized action and energy values");
+        }
+        if (row.same_record_binding?.retained_record_id !== artifact.provider_backed_source.retained_record_id) {
+          errors.push("same-record action/energy residual row must bind to provider-backed retained record");
+        }
+        if (
+          row.same_record_binding?.central_solver_retained_history_row_ref !==
+          artifact.provider_backed_source.central_solver_retained_history_row_ref
+        ) {
+          errors.push("same-record action/energy residual row must bind to provider-backed central retained-history row");
+        }
+        if (row.same_record_binding?.provider_object_ref !== artifact.provider_backed_source.provider_object_ref) {
+          errors.push("same-record action/energy residual row must bind to provider-backed object ref");
         }
       }
     }

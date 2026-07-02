@@ -6,4 +6,8 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 - Research-revolution outreach send record synced
+
+- Operator reported that the three black-hole/cosmology outreach letters were sent on 2026-07-01.
+- Detailed non-private correspondence record lives in [letters/outreach-log.md](../../archie/research-revolution/letters/outreach-log.md); no recipient email addresses are stored there.
+- Main tracker unchanged because this is a dated outreach/status record, not a queue, blocker, ranking, or promotion-state change.

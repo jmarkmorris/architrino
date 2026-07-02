@@ -16,6 +16,7 @@
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -32,6 +33,21 @@ It is not GitHub automation code. It is the policy and data-contract target for 
 Issue mining should use public issue metadata and safe manifest metadata, not private prompt text.
 
 The mining loop can cite representative public issues, aggregate safe fields, and route fix queues. It cannot reconstruct private prompts, treat issue volume as proof, promote priority-only claims, or turn unsupported user proposals into established $\mathbb{A}\mathbb{A}\mathbb{A}$ claims.
+
+## User-Facing Issue Language
+
+Issue previews, handoff notices, and mining disclosures must follow [ai-communication-standards.md](ai-communication-standards.md).
+
+The user-facing copy should say:
+
+1. review the issue preview before anything is posted publicly;
+2. GitHub issue text is public after submission;
+3. included material, source routes, claim label, and proposed labels are visible before handoff;
+4. private prompt text, private media, private notes, and account history are excluded unless a separate explicit consent path applies;
+5. public issue metadata may be used later to find repeated issues, route fixes, and distinguish signal from noise;
+6. issue volume does not prove a scientific claim or change source authority.
+
+Terms such as `issue_mining_context`, duplicate keys, owner lane, fixture candidate, observability ref, fixture, or validator should remain in schemas, reports, diagnostics, and operator/developer-facing triage. They should not be required for a user to understand what will be public or how feedback may be used.
 
 ## Mining Inputs
 
@@ -225,12 +241,12 @@ The future implementation should include issue-mining fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Connect issue-mining clusters, noise summaries, fix queues, and action-broker result classes into observability/public-status sandbox fixtures while preserving private-prompt exclusion and no hidden writes.
+Connect issue-mining clusters, noise summaries, fix queues, and action-broker result classes into observability/public-status metadata while preserving private-prompt exclusion and no hidden writes.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Add observability fixtures that consume issue-mining cluster ids, queue ids, noise summaries, safe issue links, and action-broker result classes.
+- Define observability metadata that consumes issue-mining cluster ids, queue ids, noise summaries, safe issue links, and action-broker result classes.
 - Verify public-status and incident metadata exclude private prompt text, raw logs, raw provider payloads, account history, private saved notes, hidden GitHub writes, and source-authority effects.
 - Keep GitHub writes, GitHub credentials, durable storage, private prompt text, raw logs, raw provider payloads, account history, private saved notes, deployment config, and public launch behavior disabled.
 

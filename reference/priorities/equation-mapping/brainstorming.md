@@ -74,3 +74,33 @@ For cosmology, the inventory identified:
 | Planck blackbody mode occupancy | Finite-window thermal photon records must recover the Planck spectrum from mode counting, zero photon chemical potential, thermalization depth, and shared $h$, $T_\theta$, and $c_\gamma$ rows. |
 | BBN rate and freezeout equations | Shared effective $H(t)$, thermal source record, photon and baryon loading, $N_{\text{eff}}$, and Noether sea state. |
 | BAO and distance ladder equations | Effective ruler and clock projections through the Noether sea, not literal void expansion. |
+
+### Noether Sea Pressure Sign Logic And Floating Balance Point
+
+Migrated from paused `EQ-20` discussion on 2026-07-02 as provisional idea material. The detailed candidate equations live in [EQ-11/20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md#outer-binary-equilibrium-and-relaxation-wireframe); this note preserves the conceptual route without treating it as reader-facing canon or score movement.
+
+- Sign discipline: tension is the native substrate stress/tension row; negative pressure is the observer-level cosmology parameter obtained only after an effective projection.
+- The approved prose replacement for earlier reservoir wording is `slowly varying outer-binary tension sector`. It means a same-window retained outer-binary energy inventory plus closed or slow release-channel rows and stress/tension response rows. It is not a new substance.
+- A computable stretched-state route starts with each retained Noether braid's outer-binary row $(R_{O,b},\nu_{O,b},\phi_{O,b},E_{O,b},\mathcal H_{O,b})$, a same-window reference branch $R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]$, and a scalar strain candidate
+
+$$
+\epsilon_{O,b}
+=
+\frac{
+R_{O,b}-R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}{
+R_{O,\mathrm{eq}}[\theta_{\mathrm{sea}}]
+}.
+$$
+
+- The earlier "floating balance point" phrase is a shorthand for no-current quasi-equilibrium, not thermodynamic proof closure. In the packet language, nonzero stored strain can persist when the outer-binary energy-current row and release row balance,
+
+$$
+\sum_b J_{E,O}^{ab}
+-
+\mathcal R_{O,\downarrow,a}
+=0,
+$$
+
+while lower-energy channels remain unavailable, slow, or matched by neighbouring states.
+- The first proof or simulation step is to populate $\epsilon_O$, $K_O$, $\mathcal A_{\downarrow}$, $J_{E,O}$, $\mathcal T_{\mathrm{sea}}^{ab}$, $p_{\mathrm{sea}}$, $p_{\mathrm{DE,eff}}$, $w_{\mathrm{eff}}$, and $\Lambda_{\mathrm{eff}}$ from one retained $\Theta_{\mathrm{sea}}^{(\ell,W)}$ and then fail the route if the pressure sign, release rate, or effective coupling retunes between supernova, BAO, CMB, and growth consumers.

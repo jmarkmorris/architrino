@@ -2,6 +2,7 @@
 
 import fs from "node:fs";
 import path from "node:path";
+import { effectiveFrwHandoffEvidenceStatusForPath } from "./effective-frw-handoff-evidence.mjs";
 import {
   EQ20_DELTA_P_EFF_REPORT_ROWS,
   pressureProjectionEvidenceStatusForPath,
@@ -683,13 +684,32 @@ function evaluateFrwHandoff(raw, tolerances) {
   const maxResidual = residuals.length > 0 ? Math.max(...residuals.map(Math.abs)) : null;
   const inheritedBlocker = raw.inheritedBlocker ?? raw.nextBlocker ?? null;
   const rowCheck = evaluateAcceptedRow(raw);
-  const accepted = rowCheck.accepted && !concreteString(inheritedBlocker);
+  const handoffEvidence = effectiveFrwHandoffEvidenceStatusForPath(
+    raw.sourcePath ?? raw.source,
+    {
+      repoRoot: REPO_ROOT,
+    },
+  );
+  const thetaCosId = raw.thetaCosId ?? null;
+  const thetaCosIdMatches =
+    !concreteString(thetaCosId) ||
+    !concreteString(handoffEvidence.thetaCosId) ||
+    thetaCosId === handoffEvidence.thetaCosId;
+  const accepted =
+    rowCheck.accepted &&
+    handoffEvidence.accepted &&
+    thetaCosIdMatches &&
+    !concreteString(inheritedBlocker);
   return {
     status: normalizeStatus(raw),
     accepted,
-    reason: accepted ? "accepted" : "frw_handoff_not_accepted_or_inherited_blocker_present",
+    reason: accepted
+      ? "accepted"
+      : "frw_handoff_not_accepted_or_inherited_blocker_present",
     rowReason: rowCheck.reason,
-    thetaCosId: raw.thetaCosId ?? null,
+    handoffEvidence,
+    thetaCosId,
+    thetaCosIdMatches,
     inheritedBlocker,
     residual: maxResidual,
     tolerance: tolerances.frwHandoff,

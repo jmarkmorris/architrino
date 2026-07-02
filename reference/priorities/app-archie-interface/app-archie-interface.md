@@ -106,26 +106,8 @@ Every response should be represented by the [Answer Artifact Manifest](answer-ar
 
 ## Next Work
 
-1. Use [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md) to drive source-record, source-index, source-chip, freshness, missing-route, and `source_context` fixtures.
-2. Use [answer-engine-source-contract.md](answer-engine-source-contract.md) to drive source-selection, claim-label, unsupported-answer, answer-body, and idea-triage fixtures.
-3. Use [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md) to drive answer-text, high-quality-speech, speech-fallback, generated-image, browser-key, cost-map, privacy, terms, provider-health, source-authority, and observability fixtures.
-4. Use [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md) to drive wallet, cap, hold, charge, refund, retention-state, deletion-route, receipt, and privacy fixtures.
-5. Use [issue-mining-signal-contract.md](issue-mining-signal-contract.md) to drive duplicate clustering, recurring-signal reports, noise classes, owner lanes, fix queues, and privacy-safe evidence fixtures.
-6. Use [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md) to drive privacy-safe event, metric, public-status, support-summary, incident, change-history, and redaction fixtures.
-7. Use [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md) to drive confirmation, action-result, GitHub handoff, auto-fund, saved-note, user-material inclusion, credential, and side-effect fixtures.
-8. Use [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md) to drive saved-note draft, durable-save refusal, deletion, export, share, private-note evidence, generated-media retention, issue-link retention, token-storage, and no-private-prompt fixtures.
-9. Use [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) to drive service-term, token-subscription, privacy-notice, generated-media-term, GitHub-handoff-notice, notebook-term, support-route, abuse-policy, reacceptance, and legal-review fixtures.
-10. Use [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md) to drive speech-sync, high-quality-only audio, text-only fallback, captions/transcripts, narration-script, storyboard, accessibility, voice-identity, token, and privacy fixtures.
-11. Use [visual-artifact-contract.md](visual-artifact-contract.md) to drive diagram, generated-image, purpose-label, caption, alt-text, retention, accessibility, rights, and proof-status fixtures.
-12. Use [manifest-service-contracts.md](manifest-service-contracts.md) to drive typed service-boundary, validator, endpoint, and fixture implementation.
-13. Use [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md) as the service-boundary map for the next implementation-ready architecture packet.
-14. Use [answer-artifact-manifest.md](answer-artifact-manifest.md) as the response-envelope contract for that architecture packet.
-15. Use [v1-product-requirements.md](v1-product-requirements.md) to drive the product boundary around that manifest.
-16. Align implementation support with [Archie Service Platform](../archie/service-platform.md) so interface promises match deployment, privacy, token-ledger, and cost boundaries.
-17. Convert the fixture-question list into executable regression expectations after the service implementation exists.
-18. Use [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md) as the concrete fixture contract for generated text, audio, images, diagrams, animation, and future video.
-19. Use [ai-communication-standards.md](ai-communication-standards.md) to research emerging AI disclosure, generated-media labeling, provenance, accessibility, user-control, and service-status standards before turning those concepts into Archie copy or service metadata.
-20. Decide which deferred multimodal capabilities should enter the first post-v1 expansion.
-21. Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md) to keep the public site, browser client, service API, background jobs, provider gateways, token ledger, action broker, issue-mining pipeline, and observability boundary explicit.
-22. Use [service-deployment-architecture.md](../archie/service-deployment-architecture.md) to drive service scaffolding, environment classes, source-index build ownership, CI/CD gates, rollback fixtures, and public beta smoke tests.
-23. Use [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) before adding service code, providers, payments, durable storage, deployment config, or public routes.
+1. Keep the Answer Artifact Manifest as the response envelope for source context, claim labels, answer body, generated media, speech sync, token receipt, privacy state, available actions, and issue-mining metadata.
+2. Use the [ai-communication-standards.md](ai-communication-standards.md) gate for any future service-boundary, speech, token, issue-mining, generated-media, privacy, service-status, action-confirmation, or saved-note work.
+3. Defer service-native speech, generated-media, service-terms, observability, token-ledger, action-broker, and issue-mining fixture expansion until the standards gate and service implementation target both need executable regression coverage.
+4. Keep runtime providers, payments, durable storage, public launch behavior, browser-side model calls, hidden GitHub writes, and generated-media calls out of scope unless explicitly selected.
+5. Decide which deferred multimodal capabilities should enter the first post-v1 expansion only after the manifest communication gate is stable.

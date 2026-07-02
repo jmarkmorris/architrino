@@ -25,6 +25,10 @@ export const PREFERRED_CURVE_EQUATION_FIRST_MISSING_FIELD =
   "central_solver_internal_tangent_authority_vector_rows.preferred_curve_internal_tangent_authority_equation_artifacts";
 export const ACCEPTANCE_CERTIFICATE_FIELD =
   "central_solver_internal_tangent_authority_vector_rows.acceptance_certificate_ref";
+export const ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_OBJECT =
+  "same_record_accepted_central_solver_evidence_for_internal_tangent_authority_bridge";
+export const ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_FIELD =
+  "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence";
 
 export const NEGATIVE_CONTROL_REASONS = Object.freeze({
   fixture: "fixture_not_accepted_internal_tangent_authority_vector_rows_evidence",
@@ -50,6 +54,31 @@ const AUTHORIZATION_FLAGS = Object.freeze([
   "bounded_speed_live_ledger",
 ]);
 
+const ACCEPTED_BRIDGE_EVIDENCE_FIELDS = Object.freeze([
+  "central_retained_history_acceptance_certificate_ref",
+  "central_internal_tangent_authority_vector_rows_acceptance_certificate_ref",
+  "preferred_curve_internal_tangent_authority_acceptance_certificate_ref",
+  "same_record_retained_path_error_row_ref",
+  "minimum_norm_retained_history_gain_witness_row_ref",
+  "retained_solver_vector_witness_row_ref",
+  "retained_solver_tangent_target_vector_row_ref",
+  "active_causal_margin_gradient_vector_row_ref",
+  "same_record_provider_acceleration_vector_row_ref",
+  "post_provider_root_margin_row_ref",
+  "branch_clock_lock_replacement_residual_row_ref",
+  "same_record_retained_root_ledger_ref",
+  "same_record_retained_root_ledger_detail_rows_ref",
+  "same_record_action_closure_row_ref",
+  "same_record_wake_history_ref",
+  "same_record_path_history_ref",
+  "same_record_provider_provenance_ref",
+]);
+
+const ACCEPTED_BRIDGE_BINDING_FIELDS = Object.freeze([
+  "retained_record_id",
+  "source_row_id",
+]);
+
 function stableHash(value) {
   return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
 }
@@ -67,6 +96,14 @@ function makeAuthorization() {
 
 function retainedRecordIdFromRow(row = {}) {
   return row.retained_record_request?.retained_record_id ?? null;
+}
+
+function stringRef(value) {
+  return typeof value === "string" && value.length > 0 ? value : null;
+}
+
+function pickSameRecordAcceptedEvidence(input = {}) {
+  return input.sameRecordAcceptedEvidence ?? input.same_record_accepted_evidence ?? {};
 }
 
 function requestFromRow(row = {}) {
@@ -147,6 +184,144 @@ function evaluatePreferredCurveEquationArtifact(artifact = {}, retainedRecordId)
 
 function countPassed(evaluations, predicate) {
   return evaluations.filter(predicate).length;
+}
+
+function uniqueStrings(values) {
+  return [...new Set(values.filter((value) => typeof value === "string" && value.length > 0))];
+}
+
+function intersectStrings(first, second) {
+  const secondSet = new Set(second);
+  return first.filter((value) => secondSet.has(value));
+}
+
+function summarizeSameRecordBridgeBinding({
+  retainedRecordId,
+  minimumGainEvaluations,
+  vectorEvaluations,
+  preferredCurveEvaluations,
+}) {
+  const passingMinimumGainRows = minimumGainEvaluations.filter(
+    (evaluation) =>
+      evaluation.mathematical_gain_conditions_passed === true &&
+      evaluation.request_retained_record_binding_passed === true
+  );
+  const passingVectorRows = vectorEvaluations.filter(
+    (evaluation) =>
+      evaluation.mathematical_witness_conditions_passed === true &&
+      evaluation.request_retained_record_binding_passed === true
+  );
+  const passingPreferredCurveRows = preferredCurveEvaluations.filter(
+    (evaluation) =>
+      evaluation.mathematical_preferred_curve_equation_passed === true &&
+      evaluation.request_retained_record_binding_passed === true
+  );
+  const minimumGainSourceRowIds = uniqueStrings(passingMinimumGainRows.map((evaluation) => evaluation.source_row_id));
+  const vectorSourceRowIds = uniqueStrings(passingVectorRows.map((evaluation) => evaluation.source_row_id));
+  const preferredCurveSourceRowIds = uniqueStrings(passingPreferredCurveRows.map((evaluation) => evaluation.source_row_id));
+  const candidateSourceRowIds = intersectStrings(
+    intersectStrings(minimumGainSourceRowIds, vectorSourceRowIds),
+    preferredCurveSourceRowIds
+  );
+
+  return {
+    request_retained_record_id: retainedRecordId,
+    retained_record_id_binding_available: retainedRecordId != null,
+    minimum_gain_source_row_ids: minimumGainSourceRowIds,
+    retained_solver_vector_source_row_ids: vectorSourceRowIds,
+    preferred_curve_source_row_ids: preferredCurveSourceRowIds,
+    candidate_source_row_ids: candidateSourceRowIds,
+    source_row_id_binding_available: candidateSourceRowIds.length > 0,
+  };
+}
+
+function evaluateAcceptedBridgeEvidenceCriterion({
+  mathematicalBridgePassed,
+  sameRecordAcceptedEvidence,
+  sameRecordBridgeBinding,
+}) {
+  const evidence = sameRecordAcceptedEvidence ?? {};
+  const bridgeBinding = sameRecordBridgeBinding ?? {};
+  const missingFields = [];
+  if (!mathematicalBridgePassed) {
+    missingFields.push(
+      "central_solver_internal_tangent_authority_vector_rows.mathematical_internal_tangent_authority_bridge_passed"
+    );
+  }
+  const acceptedSameRecordEvidence =
+    evidence.accepted_same_record_central_solver_evidence === true ||
+    evidence.accepted_same_record_evidence === true;
+  if (!acceptedSameRecordEvidence) {
+    missingFields.push(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.accepted_same_record_central_solver_evidence"
+    );
+  }
+  const suppliedRetainedRecordId = stringRef(evidence.retained_record_id ?? evidence.same_record_retained_record_id);
+  const suppliedSourceRowId = stringRef(evidence.source_row_id ?? evidence.same_record_source_row_id);
+  const expectedRetainedRecordId = stringRef(bridgeBinding.request_retained_record_id);
+  const candidateSourceRowIds = Array.isArray(bridgeBinding.candidate_source_row_ids)
+    ? bridgeBinding.candidate_source_row_ids
+    : [];
+  const retainedRecordIdBindingPassed =
+    expectedRetainedRecordId != null && suppliedRetainedRecordId === expectedRetainedRecordId;
+  const sourceRowIdBindingPassed =
+    suppliedSourceRowId != null && candidateSourceRowIds.includes(suppliedSourceRowId);
+  if (!retainedRecordIdBindingPassed) {
+    missingFields.push(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.retained_record_id"
+    );
+  }
+  if (!sourceRowIdBindingPassed) {
+    missingFields.push(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.source_row_id"
+    );
+  }
+  for (const field of ACCEPTED_BRIDGE_EVIDENCE_FIELDS) {
+    if (stringRef(evidence[field]) == null) {
+      missingFields.push(`central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.${field}`);
+    }
+  }
+  const criterionPassed = missingFields.length === 0;
+  return {
+    schema: "central_solver_internal_tangent_authority_accepted_bridge_criterion.v0",
+    accepted_bridge_criterion_passed: criterionPassed,
+    candidate_artifact_authorizes_removal: false,
+    can_replace_assigned_branch_clock_lock:
+      criterionPassed ? "conditional_on_external_accepted_authority" : false,
+    status: criterionPassed
+      ? "accepted_bridge_criterion_conditionally_satisfied_by_declared_same_record_evidence"
+      : "accepted_bridge_criterion_missing_math_or_same_record_accepted_evidence",
+    theorem_statement:
+      "If the central bridge passes mathematically and the listed same-record central retained-solver evidence refs are accepted, the assigned branch-clock lock is replaceable by the retained-history internal tangent authority while preserving the positive causal-root margin.",
+    required_accepted_evidence_fields: [...ACCEPTED_BRIDGE_EVIDENCE_FIELDS],
+    required_same_record_binding_fields: [...ACCEPTED_BRIDGE_BINDING_FIELDS],
+    same_record_ref_binding: {
+      same_record_ref_binding_passed: retainedRecordIdBindingPassed && sourceRowIdBindingPassed,
+      retained_record_id: {
+        expected: expectedRetainedRecordId,
+        supplied: suppliedRetainedRecordId,
+        binding_passed: retainedRecordIdBindingPassed,
+      },
+      source_row_id: {
+        candidate_source_row_ids: candidateSourceRowIds,
+        supplied: suppliedSourceRowId,
+        binding_passed: sourceRowIdBindingPassed,
+      },
+      mathematical_bridge_binding: bridgeBinding,
+    },
+    supplied_accepted_evidence_refs: Object.fromEntries(
+      ACCEPTED_BRIDGE_EVIDENCE_FIELDS.map((field) => [field, stringRef(evidence[field])])
+    ),
+    accepted_same_record_central_solver_evidence: acceptedSameRecordEvidence,
+    missing_fields: missingFields,
+    first_missing_object: criterionPassed
+      ? "external_acceptance_authority_for_central_internal_tangent_authority_bridge"
+      : ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_OBJECT,
+    first_missing_field: criterionPassed
+      ? "central_solver_internal_tangent_authority_vector_rows.external_promotion_authority_ref"
+      : (missingFields[0] ?? ACCEPTED_BRIDGE_EVIDENCE_FIRST_MISSING_FIELD),
+    accepted: false,
+  };
 }
 
 function firstMissing({ retainedRecordId, request, minimumGainEvaluations, vectorEvaluations, preferredCurveEvaluations }) {
@@ -292,6 +467,7 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
   const retainedHistoryRow = input.retainedHistoryRow ?? buildCentralSolverRetainedHistoryRow();
   const retainedRecordId = retainedRecordIdFromRow(retainedHistoryRow);
   const request = requestFromRow(retainedHistoryRow);
+  const sameRecordAcceptedEvidence = pickSameRecordAcceptedEvidence(input);
   const minimumGainRows = [
     ...normalizeRows(input.minimumNormRetainedHistoryGainWitnessRows),
     ...normalizeRows(input.minimum_norm_retained_history_gain_witness_rows),
@@ -357,6 +533,17 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
         evaluation.branch_clock_lock_replacement_residual_passed === true &&
         evaluation.request_retained_record_binding_passed === true
     );
+  const sameRecordBridgeBinding = summarizeSameRecordBridgeBinding({
+    retainedRecordId,
+    minimumGainEvaluations,
+    vectorEvaluations,
+    preferredCurveEvaluations,
+  });
+  const acceptedBridgeCriterion = evaluateAcceptedBridgeEvidenceCriterion({
+    mathematicalBridgePassed: mathematicalPreferredCurveBridgePassed,
+    sameRecordAcceptedEvidence,
+    sameRecordBridgeBinding,
+  });
 
   return {
     schema: SCHEMA,
@@ -375,9 +562,11 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
     minimum_norm_retained_history_gain_witness_rows: minimumGainRows,
     retained_solver_vector_witness_rows: vectorRows,
     preferred_curve_internal_tangent_authority_equation_artifacts: preferredCurveEquationArtifacts,
+    same_record_accepted_evidence: sameRecordAcceptedEvidence,
     minimum_norm_retained_history_gain_witness_evaluations: minimumGainEvaluations,
     retained_solver_vector_witness_evaluations: vectorEvaluations,
     preferred_curve_internal_tangent_authority_equation_evaluations: preferredCurveEvaluations,
+    accepted_internal_tangent_authority_bridge_criterion: acceptedBridgeCriterion,
     summary: {
       retained_record_id: retainedRecordId,
       request_present: request?.schema === INTERNAL_TANGENT_AUTHORITY_VECTOR_REQUEST_SCHEMA,
@@ -418,6 +607,10 @@ export function buildCentralSolverInternalTangentAuthorityVectorRows(input = {})
       ),
       mathematical_internal_tangent_authority_vector_bridge_passed: mathematicalVectorBridgePassed,
       mathematical_internal_tangent_authority_bridge_passed: mathematicalPreferredCurveBridgePassed,
+      accepted_internal_tangent_authority_bridge_criterion_passed:
+        acceptedBridgeCriterion.accepted_bridge_criterion_passed,
+      same_record_accepted_evidence_binding_passed:
+        acceptedBridgeCriterion.same_record_ref_binding.same_record_ref_binding_passed,
       accepted_internal_tangent_authority_count: 0,
     },
     artifact_status: missing.artifact_status,
@@ -492,6 +685,23 @@ export function validateCentralSolverInternalTangentAuthorityVectorRows(artifact
     if (evaluation.accepted !== false) {
       errors.push("preferred-curve equation evaluations must remain non-authorizing");
     }
+  }
+  if (artifact?.accepted_internal_tangent_authority_bridge_criterion?.accepted !== false) {
+    errors.push("accepted bridge criterion must remain non-authorizing");
+  }
+  if (
+    artifact?.summary?.accepted_internal_tangent_authority_bridge_criterion_passed === true &&
+    artifact?.accepted_internal_tangent_authority_bridge_criterion?.can_replace_assigned_branch_clock_lock !==
+      "conditional_on_external_accepted_authority"
+  ) {
+    errors.push("accepted bridge criterion pass must remain conditional on external accepted authority");
+  }
+  if (
+    artifact?.summary?.accepted_internal_tangent_authority_bridge_criterion_passed === true &&
+    artifact?.accepted_internal_tangent_authority_bridge_criterion?.same_record_ref_binding
+      ?.same_record_ref_binding_passed !== true
+  ) {
+    errors.push("accepted bridge criterion pass requires retained-record and source-row binding");
   }
   if (
     artifact?.summary?.mathematical_internal_tangent_authority_bridge_passed === true &&

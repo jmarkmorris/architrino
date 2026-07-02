@@ -6,4 +6,10 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 - Partition Resume Audit
+
+- Resumed the paused Borg app work after reading the current priority partition policy in [../README.md](../README.md), then the live tracker, brainstorming file, and this work log before writing.
+- Confirmed the active priority directory is `reference/priorities/app-borg/`; the old `reference/priorities/borg-app/` path is absent in the current branch state.
+- Confirmed current focused sibling artifacts already hold the release/runtime decisions: [borg-release-budget-manifest.v1](borg-release-budget-manifest.v1.json) records measured browser runtime budget ceilings, and [borg-live-run-retention-policy.v1](borg-live-run-retention-policy.v1.json) records forever-mode display retention with compacted display-only path history.
+- No loose conceptual notes were migrated into [brainstorming](brainstorming.md) during this audit. The live tracker remains compact because the current queue and next action are already stated there.
+- Current tracker next build burden remains `build-native-wake-history-and-boundary-residual-fixture`: extend the native central solver contract and bridge for retained wake/interaction rows, row-conservation counts, boundary-to-central residual rows, and acceleration-contribution diagnostics without app-local physics.

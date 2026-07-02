@@ -19,6 +19,7 @@
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Service-native speech and presentation contract: [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md)
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 - Service deployment option decision: [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md)
@@ -32,6 +33,8 @@ This packet turns the [Answer Artifact Manifest](answer-artifact-manifest.md) an
 It is not runtime code. It defines the contracts a future implementation should encode in TypeScript, JSON Schema, API validators, integration tests, and UI rendering tests.
 
 The core invariant is simple: every service endpoint returns either a validated Answer Artifact Manifest or a fail-closed manifest-shaped refusal/error response. No endpoint should return a separate ad hoc answer shape.
+
+A second invariant governs rendering: every endpoint response that reaches a user must be explainable in normal language before internal terms appear. The rendering contract follows [ai-communication-standards.md](ai-communication-standards.md) and keeps implementation terms inside schemas, diagnostics, support, legal review, or developer-facing packets.
 
 The deployment boundary for these contracts follows [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md): public static entry and browser rendering are separate from the service API, provider gateways, token authority, source retrieval, action broker, issue-mining pipeline, observability, and privacy/audit state.
 
@@ -99,6 +102,25 @@ The future typed schema should start with these closed or controlled vocabularie
 | `ValidatorDisposition` | `pass`, `fail_closed`, `allow_with_changes`, `refuse_artifact`, `text_only_fallback` |
 
 Any new value should be added to this packet before it becomes public product behavior.
+
+## User-Facing Rendering Contract
+
+Service contracts may expose structured fields to implementation code, but the browser client must render the following plain-language states from the manifest:
+
+| Rendered state | Required behavior |
+| --- | --- |
+| AI identity | State that the user is asking an AI assistant. |
+| Source basis | Show source chips, freshness when needed, and claim label before proof-sensitive answers. |
+| Displayed answer | Render `answer_body.display_text` and make `verbatim_segments` available for copy, export, and speech sync. |
+| Spoken answer | Say high-quality speech is available with displayed text, or explain text-only fallback. |
+| Generated media | Label generated or edited artifacts as AI-generated or AI-drafted, with purpose, caption, alt text, source basis, and claim level. |
+| Token receipt | Show spending-limit state, estimate, hold, charge, refund, and cap state without private prompt expansion. |
+| Privacy | State whether material is private, retained, deleted, public, saved, redacted, or ephemeral. |
+| Public issue handoff | Show issue preview, included material, public visibility, destination, and confirmation requirement before handoff. |
+| Service status | Show available, degraded, unavailable, or safe fallback state without raw logs or provider secrets. |
+| Accessibility | Render captions, transcripts, alt text, status messages, or text fallback where needed. |
+
+Implementation terms such as `provider_execution_context`, `speech_sync`, `token_receipt`, `issue_mining_context`, `observability_context`, `terms_acceptance_state`, `fixture`, `validator`, `C2PA`, `AI RMF`, or `ISO/IEC 42001` can remain in types, schemas, logs, and diagnostics. They should not be required for a user to understand the result.
 
 ## Base Result Shape
 
@@ -170,7 +192,7 @@ Validators should run in this order because later validators depend on earlier a
 12. `action_confirmation_validator` checks durable, public, paid, retained, and credentialed action confirmation requirements.
 13. `notebook_history_validator` checks saved-note draft, durable-save availability, account-history state, deletion route, export route, share state, storage cost, and not-project-evidence labels.
 14. `issue_mining_validator` checks public issue metadata, duplicate keys, source routes, privacy inclusion, owner routing, and smallest next artifact.
-15. `render_contract_validator` checks that the UI can render the manifest without inventing source authority, claim status, provider state, billing state, action state, terms state, observability state, or notebook evidence state.
+15. `render_contract_validator` checks that the UI can render the manifest without inventing source authority, claim status, provider state, billing state, action state, terms state, observability state, notebook evidence state, or user-facing implementation jargon.
 
 If a validator fails, the response should either remove the invalid artifact, return text-only fallback, require confirmation, or return a manifest-shaped refusal. The system should not patch source authority or proof status invisibly.
 
@@ -477,7 +499,7 @@ The future implementation should include fixtures for:
 Closure goal:
 Turn Manifest Service Contracts into concrete TypeScript interfaces, JSON Schema validators, and endpoint tests for the Archie service.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md), [ai-communication-standards.md](ai-communication-standards.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Use [service-deployment-option-decision.md](../archie/service-deployment-option-decision.md), [service-deployment-architecture.md](../archie/service-deployment-architecture.md), and [service-scaffolding-and-fixtures.md](../archie/service-scaffolding-and-fixtures.md) for the deployment responsibility split before assigning endpoint ownership and schema fixture locations.
 
@@ -492,7 +514,7 @@ Task:
 - Define request and response types for each service boundary.
 - Implement validator ordering and fail-closed result types.
 - Define endpoint request/response schemas.
-- Create fixtures for retrieval context, text answers, unsupported answers, provider context, high-quality speech, speech fallback, visuals, issue drafts, observability/public-status/incidents, notebooks, terms state, confirmations, action results, token caps, privacy refusals, and rendering.
+- Map executable coverage to accepted service targets only after the standards gate and implementation target require it; keep fixture names and validator vocabulary implementation-only.
 
 Constraints:
 - Preserve source authority and claim labels across every artifact.

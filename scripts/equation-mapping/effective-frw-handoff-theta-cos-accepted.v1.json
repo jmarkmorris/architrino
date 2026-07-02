@@ -1,0 +1,298 @@
+{
+  "schema": "aaa-equation-map-effective-frw-handoff-input/v1",
+  "claimLevel": "accepted theta_cos effective-FRW/cosmology handoff input consuming the provider-backed EQ-20 delta_P_eff pressure report; score-neutral",
+  "residualId": "R_effective_FRW_EQ18_EQ19_theta_cos_accepted_handoff_0001",
+  "constants": {
+    "c0": 1,
+    "pi": 3.141592653589793
+  },
+  "tolerances": {
+    "carrier": 1e-12,
+    "hubble": 1e-12,
+    "friedmann": 1e-12,
+    "continuity": 1e-12,
+    "sharedKey": 1e-12,
+    "sourceProvenance": 1e-12,
+    "fixedVoid": 1e-12,
+    "retune": 1e-12
+  },
+  "handoff": {
+    "id": "Theta_cos_FRW_handoff_accepted_0001",
+    "commonCarrierId": "theta_cos_FRW_handoff_0001",
+    "rows": {
+      "theta_cos": {
+        "id": "theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "cosmology_carrier": {
+        "id": "C_07-10_17-19_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "noether_sea_window": {
+        "id": "W_NS_cos_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "assembly_provenance_record": {
+        "id": "S_eff_prov_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "metric_projection": {
+        "id": "Pi_metric_cos_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "redshift_transfer_handoff": {
+        "id": "Z_handoff_cos_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "pi_frw": {
+        "id": "Pi_FRW_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "theta_read": {
+        "id": "Theta_read_FRW_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "scale_factor_row": {
+        "id": "a_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "hubble_row": {
+        "id": "H_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "effective_density_row": {
+        "id": "rho_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "effective_pressure_row": {
+        "id": "P_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "effective_coupling_row": {
+        "id": "G_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "effective_lambda_row": {
+        "id": "Lambda_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "curvature_row": {
+        "id": "k_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "source_term_row": {
+        "id": "S_eff_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "friedmann_residual": {
+        "id": "R_H_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "continuity_residual": {
+        "id": "R_rho_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "source_provenance": {
+        "id": "S_eff_source_provenance_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "id": "S_retune_FRW_theta_cos_FRW_handoff_0001",
+        "status": "accepted",
+        "carrierId": "theta_cos_FRW_handoff_0001",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json"
+      }
+    },
+    "frwProjection": {
+      "aBefore": 1,
+      "aAfter": 4.424706202494149,
+      "aEff": 1,
+      "deltaTau": 1,
+      "H_eff": 3.424706202494149,
+      "k": 0,
+      "tauClockId": "tau_c_theta_cos_FRW_handoff_0001",
+      "fixedVoidMetricId": "void_metric_theta_cos_FRW_handoff_0001"
+    },
+    "friedmann": {
+      "H_eff": 3.424706202494149,
+      "G_eff": 1,
+      "rho_eff": 0.7,
+      "a_eff": 1,
+      "k": 0,
+      "Lambda_eff": 17.59291886010284
+    },
+    "continuity": {
+      "rhoDot": 0,
+      "H_eff": 3.424706202494149,
+      "rho_eff": 0.7,
+      "P_eff": -0.7,
+      "S_eff": 0
+    },
+    "sourceProvenance": {
+      "residual": 0,
+      "rows": [
+        {
+          "id": "theta_cos_homogeneous_window_0001",
+          "kind": "theta_cos_homogeneous_window",
+          "contribution": 1,
+          "provenanceId": "S_eff_source_provenance_theta_cos_FRW_handoff_0001"
+        },
+        {
+          "id": "delta_P_eff_pressure_projection_theta_cos_0001",
+          "kind": "delta_P_eff_pressure_projection",
+          "contribution": -0.7,
+          "provenanceId": "S_eff_source_provenance_theta_cos_FRW_handoff_0001"
+        }
+      ]
+    },
+    "fixedVoid": {
+      "euclideanVoidExpansion": false,
+      "voidScaleDrift": 0
+    },
+    "sharedKeys": [
+      {
+        "id": "theta_cos_id_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "theta_cos_id",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "metric": 1,
+          "redshift": 1,
+          "frw": 1,
+          "friedmann": 1,
+          "continuity": 1,
+          "readout": 1
+        }
+      },
+      {
+        "id": "a_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "a_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "frw": 1,
+          "friedmann": 1,
+          "readout": 1
+        }
+      },
+      {
+        "id": "H_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "H_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "frw": 3.424706202494149,
+          "friedmann": 3.424706202494149,
+          "continuity": 3.424706202494149,
+          "readout": 3.424706202494149
+        }
+      },
+      {
+        "id": "rho_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "rho_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "friedmann": 0.7,
+          "continuity": 0.7,
+          "readout": 0.7
+        }
+      },
+      {
+        "id": "P_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "P_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "pressure": -0.7,
+          "continuity": -0.7,
+          "readout": -0.7
+        }
+      },
+      {
+        "id": "G_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "G_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "friedmann": 1,
+          "pressure": 1,
+          "readout": 1
+        }
+      },
+      {
+        "id": "Lambda_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "Lambda_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "friedmann": 17.59291886010284,
+          "pressure": 17.59291886010284,
+          "readout": 17.59291886010284
+        }
+      },
+      {
+        "id": "k_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "k",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "frw": 0,
+          "friedmann": 0,
+          "readout": 0
+        }
+      },
+      {
+        "id": "S_eff_shared_key_theta_cos_FRW_handoff_0001",
+        "key": "S_eff",
+        "status": "accepted",
+        "sourcePath": "scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json",
+        "projectionValues": {
+          "continuity": 0,
+          "readout": 0
+        }
+      }
+    ],
+    "noHiddenRetune": {
+      "residual": 0
+    }
+  }
+}

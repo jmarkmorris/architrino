@@ -6,4 +6,11 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
-No migrated log entries yet.
+### 2026-07-02 - Paused videos character planning resumed under media-videos split
+
+- Branch state checked on `codex/galatea`; the worktree was clean before this closure pass.
+- `reference/priorities/README.md` confirmed the current split: tracker compact, `brainstorming.md` for ideas, `work-log.md` for dated status and handoffs, and focused sibling files for structured artifacts.
+- The legacy `reference/priorities/videos/` path is absent on this branch. The current owner is `reference/priorities/media-videos/`.
+- Paused character and video decisions are captured in focused files: `character-development.md`, `first-prototype-priorities.md`, and `videos-requirements.md`.
+- No loose brainstorming was migrated in this pass; the current character-role map is treated as part of the structured character bible.
+- Current live blocker remains first prototype selection: choose the pilot topic, script outline, visual style lock, voice/toolchain trial, asset storage contract, and QC gate before generation work.

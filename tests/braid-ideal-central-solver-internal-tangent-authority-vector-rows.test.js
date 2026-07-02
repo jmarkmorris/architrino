@@ -232,6 +232,36 @@ function makePreferredCurveEquationArtifact({
   });
 }
 
+function makeAcceptedBridgeEvidence({
+  retainedRecordId = "retained-record:internal-tangent:accepted-criterion",
+  sourceRowId = "two-speed-row:accepted-criterion",
+} = {}) {
+  return {
+    accepted_same_record_central_solver_evidence: true,
+    retained_record_id: retainedRecordId,
+    source_row_id: sourceRowId,
+    central_retained_history_acceptance_certificate_ref: "accepted:central-retained-history",
+    central_internal_tangent_authority_vector_rows_acceptance_certificate_ref:
+      "accepted:central-internal-tangent-authority-vector-rows",
+    preferred_curve_internal_tangent_authority_acceptance_certificate_ref:
+      "accepted:preferred-curve-internal-tangent-authority",
+    same_record_retained_path_error_row_ref: "accepted:path-error-row",
+    minimum_norm_retained_history_gain_witness_row_ref: "accepted:minimum-gain-row",
+    retained_solver_vector_witness_row_ref: "accepted:retained-vector-witness-row",
+    retained_solver_tangent_target_vector_row_ref: "accepted:tangent-target-row",
+    active_causal_margin_gradient_vector_row_ref: "accepted:active-margin-gradient-row",
+    same_record_provider_acceleration_vector_row_ref: "accepted:provider-acceleration-vector-row",
+    post_provider_root_margin_row_ref: "accepted:post-provider-root-margin-row",
+    branch_clock_lock_replacement_residual_row_ref: "accepted:branch-clock-lock-replacement-residual-row",
+    same_record_retained_root_ledger_ref: "accepted:retained-root-ledger",
+    same_record_retained_root_ledger_detail_rows_ref: "accepted:retained-root-ledger-detail-rows",
+    same_record_action_closure_row_ref: "accepted:action-closure-row",
+    same_record_wake_history_ref: "accepted:wake-history",
+    same_record_path_history_ref: "accepted:path-history",
+    same_record_provider_provenance_ref: "accepted:provider-provenance",
+  };
+}
+
 test("internal tangent-authority vector rows bridge fails closed without retained record id", () => {
   const artifact = buildCentralSolverInternalTangentAuthorityVectorRows();
 
@@ -339,6 +369,13 @@ test("internal tangent-authority vector rows bridge can pass the preferred-curve
   assert.equal(artifact.summary.preferred_curve_branch_clock_lock_replacement_residual_pass_count, 1);
   assert.equal(artifact.summary.mathematical_internal_tangent_authority_vector_bridge_passed, true);
   assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, true);
+  assert.equal(artifact.summary.accepted_internal_tangent_authority_bridge_criterion_passed, false);
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.missing_fields.includes(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.accepted_same_record_central_solver_evidence"
+    ),
+    true
+  );
   assert.equal(
     artifact.minimum_norm_retained_history_gain_witness_evaluations[0].request_retained_record_binding_passed,
     true
@@ -376,6 +413,224 @@ test("internal tangent-authority vector rows bridge can pass the preferred-curve
     reason: "producer_does_not_authorize_internal_tangent_authority_vector_rows_evidence",
     first_missing_field: ACCEPTANCE_CERTIFICATE_FIELD,
   });
+  assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
+});
+
+test("internal tangent-authority bridge states conditional accepted-evidence criterion with refs", () => {
+  const retainedRecordId = "retained-record:internal-tangent:accepted-criterion";
+  const sourceRowId = "two-speed-row:accepted-criterion";
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef: "candidate:provider-object:accepted-criterion",
+    providerArtifactHash: "provider-hash-accepted-criterion",
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-criterion",
+    sourceRowId,
+  });
+  const vectorRow = makeRetainedSolverVectorWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-criterion",
+    sourceRowId,
+  });
+  const preferredCurveEquationArtifact = makePreferredCurveEquationArtifact({
+    minimumGainRow,
+    rowSuffix: "accepted-criterion",
+    sourceRowId,
+  });
+  const artifact = buildCentralSolverInternalTangentAuthorityVectorRows({
+    retainedHistoryRow,
+    minimumNormRetainedHistoryGainWitnessRows: [minimumGainRow],
+    retainedSolverVectorWitnessRows: [vectorRow],
+    preferredCurveInternalTangentAuthorityEquationArtifacts: [preferredCurveEquationArtifact],
+    sameRecordAcceptedEvidence: makeAcceptedBridgeEvidence({ retainedRecordId, sourceRowId }),
+  });
+
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, true);
+  assert.equal(artifact.summary.accepted_internal_tangent_authority_bridge_criterion_passed, true);
+  assert.equal(artifact.summary.same_record_accepted_evidence_binding_passed, true);
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.status,
+    "accepted_bridge_criterion_conditionally_satisfied_by_declared_same_record_evidence"
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.can_replace_assigned_branch_clock_lock,
+    "conditional_on_external_accepted_authority"
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.required_accepted_evidence_fields.includes(
+      "same_record_retained_root_ledger_detail_rows_ref"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.candidate_artifact_authorizes_removal,
+    false
+  );
+  assert.deepEqual(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.required_same_record_binding_fields,
+    ["retained_record_id", "source_row_id"]
+  );
+  assert.deepEqual(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.retained_record_id,
+    {
+      expected: retainedRecordId,
+      supplied: retainedRecordId,
+      binding_passed: true,
+    }
+  );
+  assert.deepEqual(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.source_row_id,
+    {
+      candidate_source_row_ids: [sourceRowId],
+      supplied: sourceRowId,
+      binding_passed: true,
+    }
+  );
+  assert.equal(artifact.accepted_internal_tangent_authority_bridge_criterion.accepted, false);
+  assert.equal(artifact.accepted, false);
+  assert.equal(artifact.accepted_internal_tangent_authority_ref, null);
+  assert.equal(artifact.authorization.accepted_internal_tangent_authority, false);
+  assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
+});
+
+test("internal tangent-authority bridge rejects accepted refs not bound to the retained record", () => {
+  const retainedRecordId = "retained-record:internal-tangent:accepted-retained-binding";
+  const sourceRowId = "two-speed-row:accepted-retained-binding";
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef: "candidate:provider-object:accepted-retained-binding",
+    providerArtifactHash: "provider-hash-accepted-retained-binding",
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-retained-binding",
+    sourceRowId,
+  });
+  const vectorRow = makeRetainedSolverVectorWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-retained-binding",
+    sourceRowId,
+  });
+  const preferredCurveEquationArtifact = makePreferredCurveEquationArtifact({
+    minimumGainRow,
+    rowSuffix: "accepted-retained-binding",
+    sourceRowId,
+  });
+  const artifact = buildCentralSolverInternalTangentAuthorityVectorRows({
+    retainedHistoryRow,
+    minimumNormRetainedHistoryGainWitnessRows: [minimumGainRow],
+    retainedSolverVectorWitnessRows: [vectorRow],
+    preferredCurveInternalTangentAuthorityEquationArtifacts: [preferredCurveEquationArtifact],
+    sameRecordAcceptedEvidence: makeAcceptedBridgeEvidence({
+      retainedRecordId: "retained-record:internal-tangent:other",
+      sourceRowId,
+    }),
+  });
+
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, true);
+  assert.equal(artifact.summary.accepted_internal_tangent_authority_bridge_criterion_passed, false);
+  assert.equal(artifact.summary.same_record_accepted_evidence_binding_passed, false);
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.retained_record_id
+      .expected,
+    retainedRecordId
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.retained_record_id
+      .supplied,
+    "retained-record:internal-tangent:other"
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.retained_record_id
+      .binding_passed,
+    false
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.source_row_id
+      .binding_passed,
+    true
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.missing_fields.includes(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.retained_record_id"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.can_replace_assigned_branch_clock_lock,
+    false
+  );
+  assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
+});
+
+test("internal tangent-authority bridge rejects accepted refs not bound to the passing source row", () => {
+  const retainedRecordId = "retained-record:internal-tangent:accepted-source-binding";
+  const sourceRowId = "two-speed-row:accepted-source-binding";
+  const retainedHistoryRow = buildCentralSolverRetainedHistoryRow({
+    retainedRecordId,
+    providerObjectRef: "candidate:provider-object:accepted-source-binding",
+    providerArtifactHash: "provider-hash-accepted-source-binding",
+  });
+  const minimumGainRow = makeMinimumGainWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-source-binding",
+    sourceRowId,
+  });
+  const vectorRow = makeRetainedSolverVectorWitnessRow({
+    retainedRecordId,
+    rowSuffix: "accepted-source-binding",
+    sourceRowId,
+  });
+  const preferredCurveEquationArtifact = makePreferredCurveEquationArtifact({
+    minimumGainRow,
+    rowSuffix: "accepted-source-binding",
+    sourceRowId,
+  });
+  const artifact = buildCentralSolverInternalTangentAuthorityVectorRows({
+    retainedHistoryRow,
+    minimumNormRetainedHistoryGainWitnessRows: [minimumGainRow],
+    retainedSolverVectorWitnessRows: [vectorRow],
+    preferredCurveInternalTangentAuthorityEquationArtifacts: [preferredCurveEquationArtifact],
+    sameRecordAcceptedEvidence: makeAcceptedBridgeEvidence({
+      retainedRecordId,
+      sourceRowId: "two-speed-row:accepted-source-binding:other",
+    }),
+  });
+
+  assert.equal(artifact.summary.mathematical_internal_tangent_authority_bridge_passed, true);
+  assert.equal(artifact.summary.accepted_internal_tangent_authority_bridge_criterion_passed, false);
+  assert.equal(artifact.summary.same_record_accepted_evidence_binding_passed, false);
+  assert.deepEqual(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.source_row_id
+      .candidate_source_row_ids,
+    [sourceRowId]
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.source_row_id.supplied,
+    "two-speed-row:accepted-source-binding:other"
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.source_row_id
+      .binding_passed,
+    false
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.same_record_ref_binding.retained_record_id
+      .binding_passed,
+    true
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.missing_fields.includes(
+      "central_solver_internal_tangent_authority_vector_rows.same_record_accepted_evidence.source_row_id"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.accepted_internal_tangent_authority_bridge_criterion.can_replace_assigned_branch_clock_lock,
+    false
+  );
   assert.deepEqual(validateCentralSolverInternalTangentAuthorityVectorRows(artifact), []);
 });
 

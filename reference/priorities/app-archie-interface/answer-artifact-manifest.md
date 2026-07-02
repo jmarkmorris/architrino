@@ -21,6 +21,7 @@
 - Visual artifact contract: [visual-artifact-contract.md](visual-artifact-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
 ## Purpose
@@ -98,6 +99,29 @@ If a component needs data that does not fit the manifest, the schema should be u
 | `issue_mining_context` | conditional | Required when issue draft, issue handoff, bug report, idea triage, or user feedback is present. |
 | `observability_context` | optional | Safe event, status, incident, support, and redaction refs governed by the observability contract. |
 | `diagnostics` | optional | Operator/developer-safe diagnostic summary without private prompt leakage and without source-authority effect. |
+
+## User-Facing Rendering Obligations
+
+The manifest is allowed to carry implementation fields, but every rendered answer must follow [ai-communication-standards.md](ai-communication-standards.md) before exposing service vocabulary.
+
+The conversation surface should render plain behavior first:
+
+| Manifest area | Required user-facing statement | Internal fields that may support it |
+| --- | --- | --- |
+| AI identity | The user is asking an AI assistant. | `mode`, `provider_execution_context`, service status. |
+| Source basis | The answer is based on visible sources and a visible claim level. | `source_context`, `claim_context`, `source_freshness`. |
+| Displayed answer | The shown text is the answer being rendered. | `answer_body.display_text`, `verbatim_segments`. |
+| Spoken answer | High-quality speech is available with the same text shown on screen, or the response falls back to text. | `speech_sync`, `audio` artifact, fallback state. |
+| Generated media | Generated or edited media is labelled as AI-generated or AI-drafted, with purpose, caption, alt text, source basis, and claim level. | `artifacts`, purpose labels, provenance support, retention state. |
+| Token cost | The user's spending limit applies and the receipt shows estimate, hold, charge, refund, and cap state. | `token_receipt`, work units, cap status. |
+| Privacy | The user can see what is private, retained, deleted, public, or saved. | `privacy_state`, consent state, deletion/export state. |
+| Public issue handoff | The user reviews the issue preview before anything is posted publicly. | `available_actions`, `issue_mining_context`, action preflight. |
+| Service status | A feature is available, degraded, unavailable, or using a safe fallback. | `provider_execution_context`, `observability_context`, diagnostics redaction. |
+| Accessibility | Captions, transcripts, alt text, status messages, or text fallback are available where needed. | caption/transcript artifacts, alt text, status refs, accessibility fields. |
+
+Implementation terms such as `provider_registry`, `observability_context`, `terms_acceptance_state`, `fixture`, `validator`, `C2PA`, `AI RMF`, or `ISO/IEC 42001` may appear in schemas, developer diagnostics, legal review, and service-platform packets. They should not be required for a reader to understand what the answer did.
+
+Media provenance must remain separate from source authority. A record of origin can help explain where an artifact came from, but it does not prove the underlying scientific claim. Token spend, speech quality, generated-media polish, provider health, issue volume, metrics, or public-status history also cannot alter `claim_context`.
 
 ## Source Context
 
@@ -503,9 +527,9 @@ The future service implementation should add manifest-level fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Answer Artifact Manifest into typed service contracts, response schemas, validator order, endpoint contracts, and validation fixtures that keep answers, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata aligned.
+Turn the Answer Artifact Manifest into typed service contracts, response schemas, validator order, endpoint contracts, and rendering obligations that keep answers, generated media, speech synchronization, token receipts, privacy state, available actions, and issue-mining metadata aligned.
 
-Use this packet, [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
+Use this packet, [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [answer-engine-source-contract.md](answer-engine-source-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), and [visual-artifact-contract.md](visual-artifact-contract.md) as the source of truth.
 
 Task:
 - Encode the typed schema for the manifest.
@@ -516,7 +540,7 @@ Task:
 - Define observability context, public status refs, incident refs, support-summary refs, diagnostics redaction, and no-source-authority-effect obligations.
 - Define saved-note draft, notebook/account-history, delete, export, share, issue-link retention, and not-project-evidence rendering obligations.
 - Define terms-version, acceptance-state, reacceptance, feature-blocker, and legal-review rendering obligations for paid, durable, retained, public, generated-media, and credentialed actions.
-- Define API validation fixtures for each manifest and service-contract fixture.
+- Map executable validation coverage only after the accepted service implementation target requires it; keep fixture and validator vocabulary implementation-only.
 - Keep runtime AI generation, credentials, deployment config, and public launch changes out of scope unless explicitly requested.
 
 Constraints:

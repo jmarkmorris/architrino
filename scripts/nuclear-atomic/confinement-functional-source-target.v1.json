@@ -114,6 +114,21 @@
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
       "sourceTargetPath": "scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json"
     },
+    "neutron_color_singlet_closure": {
+      "id": "neutron_color_singlet_closure_source_target_0001",
+      "status": "accepted",
+      "currentEvidenceStatus": "accepted_non_fixture_source",
+      "requiredScope": "accepted local neutron color-singlet closure support row for the accepted_neutron_color_singlet_envelope route without A-, Z-, isotope-, element-, or Fe/Ni-indexed tuning",
+      "requiredLedgerComponents": [
+        "Pi_singlet_X_ref",
+        "Pi_open_X_ref",
+        "W_locked_nX_ref",
+        "E_color_nX_bound",
+        "coefficient_exclusion_audit"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#source-binding-promotion-gate",
+      "sourceTargetPath": "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json"
+    },
     "finite_envelope_boundary": {
       "id": "finite_envelope_boundary_source_target_0001",
       "status": "accepted",

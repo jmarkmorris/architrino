@@ -18,6 +18,7 @@
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
 - Generated media acceptance fixtures: [corporate-media-acceptance-fixtures.md](corporate-media-acceptance-fixtures.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -42,6 +43,20 @@ Speech provider capabilities must follow [model-provider-capability-registry-con
 If narration scripts, comparison scripts, storyboards, transcripts, or future audio artifacts are saved, retention, export, deletion, and not-project-evidence behavior must follow [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md).
 
 Generated speech, transcripts, captions, scripts, and storyboards must also respect generated-media terms, privacy notices, token terms, saved-notebook terms, and legal-review state under [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md).
+
+## User-Facing Speech Language
+
+Speech rendering must follow [ai-communication-standards.md](ai-communication-standards.md).
+
+The user-facing copy should say:
+
+1. high-quality speech is available with the same text shown on screen;
+2. speech is unavailable and the answer is shown as text when the high-quality, synchronization, caption/transcript, privacy, or token bar is not met;
+3. generated speech is an AI-generated presentation artifact, not a new source or proof;
+4. captions, transcripts, displayed verbatim text, and text fallback are available for accessibility;
+5. generated audio is ephemeral by default unless a later saved-artifact policy says otherwise.
+
+Terms such as `speech_sync`, provider health, quality gate, token work unit, fixture, or validator should remain in schemas and diagnostics. They should not be required for a listener to understand what happened.
 
 ## Supported V1 Presentation Surfaces
 
@@ -233,9 +248,9 @@ The future implementation should include speech/presentation fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, token/privacy checks, and regression fixtures.
+Turn the Service-Native Speech And Presentation Contract into speech-sync schemas, provider-agnostic speech service boundaries, presentation artifact schemas, accessibility checks, voice-identity guardrails, and token/privacy checks that render plainly to users.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
 - Encode `speech_sync` and audio artifact schemas.
@@ -243,7 +258,7 @@ Task:
 - Define answer audio, sphere-portion audio, and full-document audio boundaries.
 - Define narration script, comparison script, caption/transcript, and storyboard artifact schemas.
 - Add high-quality-only, synchronized-text, accessibility, voice-identity, token, and privacy validators.
-- Add fixtures for high-quality answer speech, text-only fallback, unsynchronized audio refusal, hidden-summary refusal, sphere-portion audio, full-document audio, real-person voice refusal, authority-framing refusal, narration scripts, comparison scripts, storyboards, video deferral, accessibility, and token/privacy behavior.
+- Map executable coverage only after the accepted service implementation target requires it; keep fixture and validator vocabulary implementation-only.
 
 Constraints:
 - Do not offer medium-quality or low-quality speech tiers.

@@ -703,8 +703,52 @@ test("measured tangent need remains finite and tied to target and reserve rows",
     measured.retained_history_tangent_response_equation_target.tangent_replacement_condition,
     "||a_RH - P_T(a_ansatz - a_wake - a_support)|| <= epsilon_vec"
   );
+  assert.equal(
+    measured.retained_history_tangent_response_equation_target.causal_root_residual_equation,
+    "Phi_ab(t,tau;q)=||x_a(t;q)-x_b(t-tau;q)||^2-c_f^2 tau^2=0"
+  );
+  assert.equal(
+    measured.retained_history_tangent_response_equation_target.root_sensitivity_equation,
+    "d tau_ab/d q_i = - partial_{q_i} Phi_ab / partial_tau Phi_ab when |partial_tau Phi_ab| >= epsilon_tau"
+  );
+  assert.equal(
+    measured.retained_history_tangent_response_equation_target.root_ledger_differential_source.schema,
+    "retained_root_ledger_differential_source_target.v0"
+  );
+  assert.deepEqual(
+    measured.retained_history_tangent_response_equation_target.root_ledger_differential_source
+      .required_root_detail_fields,
+    [
+      "ledgerKey",
+      "sourceKey",
+      "receiverKey",
+      "rootKey",
+      "emissionTime",
+      "hitTime",
+      "delay",
+      "residual",
+      "jacobian",
+      "branchWeight",
+      "sourceNormalDenominator",
+      "receiverNormalFactor",
+      "entryKind",
+      "rootKind",
+      "statusCode",
+      "stateFlags",
+    ]
+  );
+  assert.equal(
+    measured.retained_history_tangent_response_equation_target.root_ledger_differential_source
+      .accepted_root_ledger_differential_ref,
+    null
+  );
+  assert.equal(
+    measured.retained_history_tangent_response_equation_target.root_ledger_differential_source.accepted,
+    false
+  );
   assert.deepEqual(measured.retained_history_tangent_response_equation_target.required_same_record_rows, [
     "same_record_retained_path_error_row",
+    "same_record_retained_root_ledger_detail_rows",
     "same_record_retained_history_response_matrix_row",
     "retained_solver_tangent_target_vector_row",
     "active_causal_margin_gradient_vector_row",

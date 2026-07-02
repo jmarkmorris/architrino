@@ -17,6 +17,7 @@
 - Action broker confirmation contract: [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md)
 - Saved notebook and account history contract: [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md)
 - Service terms and account policy contract: [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md)
+- AI communication standards: [ai-communication-standards.md](ai-communication-standards.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Service platform owner: [Archie Service Platform](../archie/service-platform.md)
 
@@ -33,6 +34,21 @@ It is not runtime payment code. It is the policy and data-contract target for fu
 The service should make resource use auditable without making users think about tokens on every ordinary action.
 
 The token ledger may meter heterogeneous backend work, but it cannot change source authority, claim labels, unsupported-answer behavior, privacy state, media-standard enforcement, or action-confirmation requirements. Privacy decisions must be known before work that would retain, publish, attach, or share user material. Final token charges must happen after validation, not before artifact and privacy checks.
+
+## User-Facing Receipt And Privacy Language
+
+Token and privacy rendering must follow [ai-communication-standards.md](ai-communication-standards.md).
+
+The user-facing copy should say:
+
+1. the user's spending limit applies;
+2. the receipt shows estimate, hold, charge, refund, cap state, and whether auto-fund would run;
+3. normal work runs inside configured limits without constant token prompts;
+4. the interface interrupts before cap exceedance, auto-fund, durable retention, public issue text, user-material inclusion, or credentialed action;
+5. the receipt does not expose private prompt text;
+6. privacy state says what is private, retained, deleted, public, saved, redacted, or ephemeral.
+
+Terms such as `token_receipt`, work unit, provider cost class, cap status, fixture, or validator should remain in schemas, diagnostics, support, and implementation packets. They should not be required for the user to understand cost or privacy behavior.
 
 ## Contract Sequence
 
@@ -302,13 +318,13 @@ The future implementation should include token/privacy fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Connect token receipt ids, privacy summaries, and confirmation states into observability/public-status sandbox fixtures without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
+Connect token receipt ids, privacy summaries, and confirmation states into observability/public-status metadata without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
 
-Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
+Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [ai-communication-standards.md](ai-communication-standards.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Add observability fixtures that reference token receipt ids, privacy summaries, confirmation reasons, public visibility classes, destination classes, and external handoff result classes without copying private prompt text.
-- Add public-status and incident checks for paid-work blocks, durable save exclusion, user-material exclusion, cancelled handoff, and prefilled GitHub URL external-pending behavior.
+- Define observability metadata that references token receipt ids, privacy summaries, confirmation reasons, public visibility classes, destination classes, and external handoff result classes without copying private prompt text.
+- Define public-status and incident checks for paid-work blocks, durable save exclusion, user-material exclusion, cancelled handoff, and prefilled GitHub URL external-pending behavior.
 - Preserve receipt privacy: observability metadata may use receipt ids and safe work-unit classes, but not provider payloads, provider billing internals, private prompt text, account history, or private saved notes.
 - Keep hidden GitHub writes, durable notebooks, account history, payment integrations, provider calls, deployment config, public routes, and production secrets disabled.
 

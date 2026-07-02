@@ -106,6 +106,8 @@ The first proton-envelope source request is now explicit as `proton_projection_b
 
 The proton-envelope route now has accepted retained support for those two narrow rows in [proton-color-singlet-envelope-support-retained-evidence.v1.json](../../../scripts/nuclear-atomic/proton-color-singlet-envelope-support-retained-evidence.v1.json). It accepts `proton_color_singlet_closure` through a normalized local projection ratio $E_{\mathrm{color},pX}=0\le\Delta_{\mathrm{color},pX}=0$ and accepts `finite_envelope_boundary` through finite normalized support radii $R_p=1$ and $R_n=1$. This does not accept `accepted_proton_color_singlet_envelope`, `accepted_neutron_color_singlet_envelope`, `no_free_color_asymptotic_state`, `color_singlet_closure`, `same_record_branch_interface`, `finite_range_residual`, or `no_open_color_far_field`; the first confinement acquisition blocker remains the top proton envelope row because the no-free-color audit and same-record/domain joins are still missing.
 
+The neutron-envelope route now has matching accepted retained support for the narrow `neutron_color_singlet_closure` row in [neutron-color-singlet-envelope-support-retained-evidence.v1.json](../../../scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json). It accepts only the normalized local neutron projection ratio $E_{\mathrm{color},nX}=0\le\Delta_{\mathrm{color},nX}=0$ as `neutron_color_singlet_closure`; the already accepted `finite_envelope_boundary` remains supplied by the proton-envelope support packet. This does not accept `accepted_neutron_color_singlet_envelope`, `accepted_proton_color_singlet_envelope`, `no_free_color_asymptotic_state`, `color_singlet_closure`, `same_record_branch_interface`, `finite_range_residual`, `same_record_no_open_color_audit`, or `no_open_color_far_field`. The no-open-color path still waits on the top proton/neutron envelope rows, the no-free-color audit, finite residual, color-singlet closure, and same-record no-open audit.
+
 The no-free-color asymptotic-state blocker now carries the first `asymptotic_field_audit` request packet and conditional lemma, `finite_envelope_open_projection_limits_imply_asymptotic_field_audit_0001`. The requested row must keep accepted proton and neutron color-singlet envelopes, finite $R_p$ and $R_n$, `finite_range_residual`, same $\sigma_{\mathrm{eff}}$ domain, same-record Noether sea response, same-record branch interface, and the two open-color projection limits $\lim_{R\to\infty}\sup_X E_{\mathrm{color},pX}(R)=0$ and $\lim_{R\to\infty}\sup_X E_{\mathrm{color},nX}(R)=0$ in one retained record. This is priority-only capture: it would feed `no_free_color_asymptotic_state`, the proton/neutron envelope rows, color-singlet closure, and no-open-color after acceptance, but it does not accept `asymptotic_field_audit` or any downstream row.
 
 The accepted-$\sigma_{\mathrm{eff}}$ blocker now carries the priority-only extraction scaffold $\sigma_{\mathrm{eff}}(Q;\rho_{\text{NS}},\chi_{\text{sea}})=\inf_{a,f}\mathcal S_{\sigma}[a,f;Q,\rho_{\text{NS}},\chi_{\text{sea}}]$, with $\mathcal S_{\sigma}$ built from the accepted $K_{\perp}$ and $V_{\mathrm{exc}}$ rows in the same $\rho_{\text{NS}}$, $\chi_{\text{sea}}$, axis-exceptionality, and Noether sea response record. The first analytic route is now captured as a conditional same-domain variational certificate: a lower-bounded coercive $\mathcal S_{\sigma}$ over a compact admissible class, a minimizer $(a_*,f_*)$, stationarity residual within $\epsilon_{\mathrm{ref}}$, and $\left|\sigma_{\mathrm{eff}}^{(h)}-\sigma_{\mathrm{eff}}^{(h/2)}\right|\le\epsilon_{\mathrm{ref}}$ would supply the exact minimizer, refinement-stability, and source-path rows needed for `accepted_sigma_eff_extraction`. This remains priority-only and accepts no source rows. It locks `alphaSea`, `pnCorridorPairReward`, and `ppCorridorPairReward` behind a refinement-stable extraction certificate instead of letting them consume accepted inputs or the target equation alone.
@@ -256,6 +258,34 @@ $$
 
 The object remains incomplete until $\mathcal{Y}_{\mathrm{emit}}$ separates alpha, beta/lepton, gamma/photon, neutrino, and non-radiative channels with source provenance.
 
+### Radioactive Waste Metastability Capsule
+
+Radioactive waste should be treated first as a material whose isotope inventory contains metastable nuclear assembly branches, not as a bulk-temperature state or ordinary molecular vibration. The instability question belongs to the nuclear branch: a parent isotope sits in a locally retained basin while one or more lower-energy daughter/product routes remain open with nonzero rate. Heat, lattice vibration, recoil, and medium excitation are downstream output or environmental channels unless a worked example shows they perturb the nuclear route itself.
+
+The useful draft corpus distinction is: radioactive waste is radioactive because its isotope inventory has nonzero escape rates from metastable nuclear branch basins; heat and vibration are usually consequences or side channels, not the root cause. The $h$ ledger enters through action/cycle bookkeeping, photon-frequency rows, and branch-transition accounting, but the cause is not a scalar pile of extra $h$ units. The cause is an allowed route from the current nuclear assembly ledger to a cheaper daughter/product ledger.
+
+A candidate radioisotope route object is
+
+$$
+\Theta_{\mathrm{rw}}
+=
+\left(
+\mathcal{I}_{\mathrm{iso}},
+\mathcal{B}_{\mathrm{meta}},
+\mathcal{C}_{\mathrm{route}},
+\lambda_{\mathrm{route}},
+\mathcal{Y}_{\mathrm{emit}},
+\mathcal{R}_{\mathrm{recoil}},
+\mathcal{H}_{\mathrm{heat}},
+\mathcal{L}_{E\mathbf{p}\mathbf{J}},
+\Delta\theta_{\mathrm{sea}}
+\right).
+$$
+
+Here $\mathcal{I}_{\mathrm{iso}}$ is the isotope inventory, $\mathcal{B}_{\mathrm{meta}}$ is the retained metastable nuclear branch record, $\mathcal{C}_{\mathrm{route}}$ names the alpha, beta/lepton, neutron, gamma/photon, neutrino, or non-radiative route family, and $\lambda_{\mathrm{route}}$ is the observer-level rate or half-life target derived from the retained route. Promotion requires one worked parent/daughter/product event ledger that names emitted products, recoil, heat, photon rows when present, Noether sea update, path-history provenance, and the shielded-energy boundary without hidden loss.
+
+Focused packet: [radioisotope-worked-example-pu-238.md](radioisotope-worked-example-pu-238.md) now carries the first Pu-238 alpha heat ledger. This capsule remains the conceptual bridge; the packet is the current home for the parent/daughter/product row, observed half-life target, recoil estimate, gamma/converted-electron rows, Noether sea update, path-history provenance, and shielded-energy boundary.
+
 ## Atomic Orbitals And Periodic Structure
 
 Candidate focus:
@@ -340,7 +370,7 @@ This is only a candidate frame. It becomes useful when one enzyme, DNA/RNA motif
 
 1. `iron_group_binding_cusp_recovery` — Turn the candidate analytic route above into a first reduced recovery packet for the Fe/Ni binding cusp, keeping the model shared across deuteron, saturation, beta-stability, fusion, and fission checks.
 2. `no_open_color_finite_tail_route` — Close the next branch-interface source-acquisition target by deriving $\lim_{R\to\infty}\mathcal N_{\mathrm{open}}(R)=0$ from `finite_range_residual`, `color_singlet_closure`, and `same_record_no_open_color_audit` before retuning Fe/Ni coefficients.
-3. `nuclear_radiation_worked_example` — Build the Pu-238 alpha-decay to heat-channel provenance object from the existing nuclear-binding packet, keeping gamma/photon rows separate from alpha and heat rows.
+3. `nuclear_radiation_worked_example` — Extend the Pu-238 alpha-decay packet into a source-bound native branch record, keeping gamma/photon rows separate from alpha and heat rows.
 4. `electron_orbital_triage` — Convert the deferred electron-orbitals note into a claim-leveled atomic-structure packet, preserving standard notation while isolating the localized-assembly interpretation.
 5. `first_molecular_bond_target` — Choose one simple molecule and define the first bond/event ledger without importing ordinary chemistry labels as source fields.
 6. `enzyme_active_site_bridge` — Choose one enzyme mechanism and restate it as molecular geometry, action-path selection, energy routing, and record-state stability.

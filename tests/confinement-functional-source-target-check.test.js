@@ -40,6 +40,12 @@ const NEUTRON_COLOR_SINGLET_BLOCKER_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const NEUTRON_COLOR_SINGLET_SUPPORT_EVIDENCE_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+    import.meta.url,
+  ),
+);
 const NO_FREE_COLOR_BLOCKER_PATH = fileURLToPath(
   new URL(
     "../scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json",
@@ -637,6 +643,54 @@ test("current confinement target passes structure but blocks accepted source row
       .sourceTargetPath,
     "scripts/nuclear-atomic/neutron-color-singlet-envelope-source-acquisition-blocker.v1.json",
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.neutron_color_singlet_closure
+      .accepted,
+    true,
+  );
+  assert.deepEqual(
+    report.sourceAcquisitionCheck.targetChecks.neutron_color_singlet_closure
+      .requiredLedgerComponents,
+    [
+      "Pi_singlet_X_ref",
+      "Pi_open_X_ref",
+      "W_locked_nX_ref",
+      "E_color_nX_bound",
+      "coefficient_exclusion_audit",
+    ],
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.neutron_color_singlet_closure
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/neutron-color-singlet-envelope-support-retained-evidence.v1.json",
+  );
+  const neutronSupportEvidence = JSON.parse(
+    fs.readFileSync(NEUTRON_COLOR_SINGLET_SUPPORT_EVIDENCE_PATH, "utf8"),
+  );
+  assert.deepEqual(
+    neutronSupportEvidence.acceptedBoundary.acceptedSourceRowsByThisEvidence,
+    ["neutron_color_singlet_closure"],
+  );
+  assert.equal(
+    neutronSupportEvidence.neutronColorSingletClosure.E_color_nX,
+    0,
+  );
+  assert.equal(
+    neutronSupportEvidence.neutronColorSingletClosure.Delta_color_nX,
+    0,
+  );
+  assert.equal(
+    neutronSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "accepted_neutron_color_singlet_envelope",
+    ),
+    true,
+  );
+  assert.equal(
+    neutronSupportEvidence.acceptedBoundary.notAcceptedByThisEvidence.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
   const neutronBlocker = JSON.parse(
     fs.readFileSync(NEUTRON_COLOR_SINGLET_BLOCKER_PATH, "utf8"),
   );
@@ -650,6 +704,50 @@ test("current confinement target passes structure but blocks accepted source row
     neutronBlocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(
       "accepted_neutron_color_singlet_envelope",
     ),
+    true,
+  );
+  assert.deepEqual(
+    neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
+      .acceptedInputsAlreadyAvailable,
+    [
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_noether_sea_response",
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+    ],
+  );
+  assert.equal(
+    neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("neutron_color_singlet_closure"),
+    false,
+  );
+  assert.equal(
+    neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
+      .stillMissingBeforeAcceptance.includes("no_free_color_asymptotic_state"),
+    true,
+  );
+  assert.deepEqual(
+    neutronBlocker.neutronColorSingletEnvelopeCertificateRequestPacket
+      .derivedRowsIfAccepted,
+    ["neutron_color_singlet_closure"],
+  );
+  assert.equal(
+    neutronBlocker.candidateNeutronColorSingletEnvelopeLemma.lemmaId,
+    "neutron_projection_boundary_no_free_color_implies_envelope_support_0001",
+  );
+  assert.deepEqual(
+    neutronBlocker.candidateNeutronColorSingletEnvelopeLemma.derivedRowsIfAccepted,
+    ["neutron_color_singlet_closure"],
+  );
+  assert.equal(
+    neutronBlocker.candidateNeutronColorSingletEnvelopeLemma.proofSteps.some(
+      (step) => step.stepId === "bounded_open_color_exposure",
+    ),
+    true,
+  );
+  assert.equal(
+    neutronBlocker.candidateNeutronColorSingletEnvelopeLemma
+      .missingAcceptanceRows.includes("no_free_color_asymptotic_state"),
     true,
   );
   assert.equal(neutronBlocker.localEvidenceBoundary.scoreDecision, "no_score_increase");

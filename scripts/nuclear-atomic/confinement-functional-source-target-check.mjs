@@ -87,6 +87,13 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "E_color_pX_bound",
     "coefficient_exclusion_audit",
   ],
+  neutron_color_singlet_closure: [
+    "Pi_singlet_X_ref",
+    "Pi_open_X_ref",
+    "W_locked_nX_ref",
+    "E_color_nX_bound",
+    "coefficient_exclusion_audit",
+  ],
   finite_envelope_boundary: [
     "R_p",
     "R_n",
