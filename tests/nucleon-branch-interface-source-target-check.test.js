@@ -56,20 +56,45 @@ test("current branch-interface target passes algebra but blocks accepted source 
   assert.equal(report.summary.firstMissingObject, "missing_accepted_nucleon_branch_interface_ledgers");
   assert.equal(
     report.summary.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_proton_branch_interface_ledger",
+    "missing_same_record_energy_momentum_angular_momentum_ledger",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
       .accepted,
-    false,
+    true,
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
       .currentEvidenceStatus,
-    "not_acquired",
+    "accepted_non_fixture_source",
   );
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_proton_branch_interface_ledger
+      .componentShapePass,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_neutron_branch_interface_ledger
+      .accepted,
+    true,
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_neutron_branch_interface_ledger
+      .currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_neutron_branch_interface_ledger
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.accepted_neutron_branch_interface_ledger
       .componentShapePass,
     true,
   );
@@ -96,8 +121,6 @@ test("current branch-interface target passes algebra but blocks accepted source 
     report.sourceAcquisitionCheck.rowChecks.nucleon_branch_interface_ledgers
       .missingAcceptedSourceRows,
     [
-      "accepted_proton_branch_interface_ledger",
-      "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "no_open_color_far_field",
     ],
@@ -174,8 +197,6 @@ test("accepted branch-interface rows fail closed when source rows are named but 
     report.sourceAcquisitionCheck.rowChecks.pn_orientation_count
       .unacceptedSourceTargets,
     [
-      "accepted_proton_branch_interface_ledger",
-      "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "no_open_color_far_field",
     ],
@@ -183,7 +204,7 @@ test("accepted branch-interface rows fail closed when source rows are named but 
   assert.equal(
     report.sourceAcquisitionCheck.failures.some(
       (failure) =>
-        failure.sourceRowId === "accepted_proton_branch_interface_ledger" &&
+        failure.sourceRowId === "same_record_energy_momentum_angular_momentum_ledger" &&
         failure.reason === "source_acquisition_target_not_accepted",
     ),
     true,
@@ -207,14 +228,12 @@ test("accepted branch-interface rows fail closed without upstream source acquisi
   assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(
     report.sourceAcquisitionCheck.firstMissingAcceptedSourceRow,
-    "accepted_proton_branch_interface_ledger",
+    "same_record_energy_momentum_angular_momentum_ledger",
   );
   assert.deepEqual(report.sourceAcquisitionCheck.failures[0], {
     rowId: "nucleon_branch_interface_ledgers",
     reason: "missing_accepted_source_rows",
     missingAcceptedSourceRows: [
-      "accepted_proton_branch_interface_ledger",
-      "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "no_open_color_far_field",
     ],

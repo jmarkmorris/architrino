@@ -212,8 +212,9 @@ Options:
   --help                Show this help.
 
 This checker keeps the Fe/Ni toy branch-interface source target fail-closed:
-it can verify the p+n/p+p orientation extraction algebra without treating
-target-only rows as accepted source evidence.`);
+it can verify the p+n/p+p orientation extraction algebra and the accepted
+proton/neutron source-acquisition rows without treating top-level target-only rows as
+accepted source evidence.`);
 }
 
 function writeReport(report, args) {

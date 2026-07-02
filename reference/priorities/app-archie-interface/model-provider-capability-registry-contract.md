@@ -206,14 +206,14 @@ The future implementation should include provider-registry fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Route provider capability refs and token-ledger receipt ids into issue-mining signal fixtures without exposing provider payloads, provider billing internals, private prompt text, or source-authority effects.
+Preserve provider capability, gateway, token-ledger, issue-mining, and action-broker boundaries while adding observability/public-status sandbox fixtures with redacted provider and action classes.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [corporate-media-standards.md](corporate-media-standards.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Add issue-mining fixtures that may reference safe provider capability ids, cost classes, token receipt ids, and work-unit classes.
-- Block provider payloads, provider-specific billing internals, private prompt text, and source-authority effects from issue-mining metadata.
-- Preserve provider-sandbox, provider-gateway, and token-ledger sandbox checks as prerequisites for issue-mining signal generation.
+- Add observability fixtures that may reference safe provider capability ids, cost classes, fallback classes, token receipt ids, issue-mining queue ids, and action result classes.
+- Block provider payloads, provider-specific billing internals, private prompt text, account history, credentials, and source-authority effects from public status and incident metadata.
+- Preserve provider-sandbox, provider-gateway, token-ledger sandbox, issue-mining sandbox, and action-broker sandbox checks as prerequisites for observability handoff.
 
 Constraints:
 - Do not select a real provider, add runtime model calls, add credentials, change deployment config, or launch public provider-backed features unless explicitly requested.

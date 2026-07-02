@@ -71,7 +71,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.familyResults.branch_interface
       .sourceAcquisitionFirstMissingObject,
-    "missing_accepted_proton_branch_interface_ledger",
+    "missing_same_record_energy_momentum_angular_momentum_ledger",
   );
   assert.deepEqual(report.sourceBinding.familyResults.branch_interface.missingOrRejectedFields, [
     "rows.nucleon_branch_interface_ledgers.accepted",
@@ -90,14 +90,12 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(branchCandidate.sourceTargetCheck.summary.sourceAcquisitionPass, false);
   assert.equal(
     branchCandidate.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_proton_branch_interface_ledger",
+    "missing_same_record_energy_momentum_angular_momentum_ledger",
   );
   assert.deepEqual(
     branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.rowChecks
       .pn_orientation_count.missingAcceptedSourceRows,
     [
-      "accepted_proton_branch_interface_ledger",
-      "accepted_neutron_branch_interface_ledger",
       "same_record_energy_momentum_angular_momentum_ledger",
       "no_open_color_far_field",
     ],
@@ -105,12 +103,32 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_proton_branch_interface_ledger.accepted,
-    false,
+    true,
   );
   assert.equal(
     branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
       .accepted_proton_branch_interface_ledger.currentEvidenceStatus,
-    "not_acquired",
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_proton_branch_interface_ledger.sourceTargetPath,
+    "scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json",
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_neutron_branch_interface_ledger.accepted,
+    true,
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_neutron_branch_interface_ledger.currentEvidenceStatus,
+    "accepted_non_fixture_source",
+  );
+  assert.equal(
+    branchCandidate.sourceTargetCheck.sourceAcquisitionCheck.targetChecks
+      .accepted_neutron_branch_interface_ledger.sourceTargetPath,
+    "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
   );
   assert.equal(branchCandidate.sourceTargetCheck.differential.passed, true);
   assert.equal(
@@ -264,7 +282,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.branch_interface
       .sourceAcquisitionFirstMissingObject,
-    "missing_accepted_proton_branch_interface_ledger",
+    "missing_same_record_energy_momentum_angular_momentum_ledger",
   );
   assert.deepEqual(
     report.sourceBinding.coefficientBindings.alphaCorr.requiredRowsByFamily.confinement_functional.missingRows,
@@ -317,7 +335,7 @@ test("default toy sweep emits a priority-only Fe/Ni-window cusp report", () => {
   assert.equal(
     report.sourceBinding.graphRuleRowBindings.finite_tail_saturation_check
       .requiredRowsByFamily.branch_interface.sourceAcquisitionFirstMissingObject,
-    "missing_accepted_proton_branch_interface_ledger",
+    "missing_same_record_energy_momentum_angular_momentum_ledger",
   );
 });
 

@@ -121,3 +121,23 @@ test("Archie token-ledger sandbox keeps provider work payment-free", () => {
   assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
   assert.match(result.stdout, /Archie token-ledger sandbox check passed/);
 });
+
+test("Archie issue-mining sandbox keeps signals private and no-write", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-issue-mining-sandbox.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie issue-mining sandbox check passed/);
+});
+
+test("Archie action-broker sandbox keeps GitHub handoff confirmation-gated", () => {
+  const result = spawnSync("node", ["scripts/archie-service/validate-action-broker-sandbox.mjs", "--check"], {
+    cwd: new URL("..", import.meta.url),
+    encoding: "utf8",
+  });
+
+  assert.equal(result.status, 0, `${result.stdout}\n${result.stderr}`);
+  assert.match(result.stdout, /Archie action-broker sandbox check passed/);
+});

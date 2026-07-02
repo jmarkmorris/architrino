@@ -100,7 +100,7 @@
       }
 
       .equation-mapping-shell[data-index-collapsed="true"] {
-        --index-width: 54px;
+        --index-width: 72px;
       }
 
       .equation-mapping-index {
@@ -117,13 +117,13 @@
         align-items: center;
         justify-content: space-between;
         gap: 8px;
-        min-height: 54px;
-        padding: 10px;
+        min-height: 66px;
+        padding: 12px 16px;
         border-bottom: 1px solid var(--rule);
       }
 
       .equation-mapping-index-header strong {
-        font-size: 13px;
+        font-size: 22px;
         line-height: 1;
       }
 
@@ -138,26 +138,25 @@
 
       .equation-mapping-index-groups {
         display: grid;
-        gap: 12px;
-        max-height: calc(100vh - 54px);
+        gap: 18px;
+        max-height: calc(100vh - 66px);
         overflow: auto;
-        padding: 12px;
+        padding: 18px;
       }
 
       .equation-mapping-index-group h2 {
-        margin: 0 0 7px;
+        margin: 0 0 10px;
         color: var(--muted);
-        font-size: 11px;
+        font-size: 20px;
         font-weight: 760;
-        line-height: 1;
+        line-height: 1.1;
       }
 
       .equation-mapping-index-item {
         display: grid;
-        gap: 3px;
         width: 100%;
-        min-height: 46px;
-        padding: 8px;
+        min-height: 64px;
+        padding: 14px;
         border: 1px solid transparent;
         border-radius: 6px;
         background: transparent;
@@ -167,15 +166,9 @@
       }
 
       .equation-mapping-index-item span {
-        font-size: 12px;
+        font-size: 21px;
         font-weight: 720;
-        line-height: 1.2;
-      }
-
-      .equation-mapping-index-item small {
-        color: var(--muted);
-        font-size: 10px;
-        line-height: 1.2;
+        line-height: 1.18;
       }
 
       .equation-mapping-index-item.is-active,
@@ -466,26 +459,19 @@
         flex-wrap: wrap;
         align-items: center;
         justify-content: center;
-        gap: 5px 8px;
+        gap: 7px 10px;
         padding: 0 8px;
         color: var(--muted);
-        font-size: 11px;
-        line-height: 1.15;
+        font-size: 18px;
+        line-height: 1.18;
         text-align: center;
       }
 
       .equation-mapping-equation-title strong {
         color: var(--text);
-        font-size: 13px;
+        font-size: 22px;
         min-width: 0;
         overflow-wrap: anywhere;
-      }
-
-      .equation-mapping-equation-title span {
-        flex: 0 0 auto;
-        padding: 3px 6px;
-        border: 1px solid var(--rule);
-        border-radius: 999px;
       }
 
       .equation-mapping-equation {
@@ -579,11 +565,6 @@
         font-size: 21px;
       }
 
-      .equation-mapping-comment-header span {
-        color: var(--muted);
-        font-size: 17px;
-      }
-
       .equation-mapping-comment-body {
         display: grid;
         gap: 6px;
@@ -601,17 +582,9 @@
         font-size: 18px;
       }
 
-      .equation-mapping-shell[data-comment-font-size="small"] .equation-mapping-comment-header span {
-        font-size: 15px;
-      }
-
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header strong,
       .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-body {
         font-size: 24px;
-      }
-
-      .equation-mapping-shell[data-comment-font-size="large"] .equation-mapping-comment-header span {
-        font-size: 18px;
       }
 
       .equation-mapping-comment-math {
@@ -664,7 +637,7 @@
         }
 
         .equation-mapping-shell[data-index-collapsed="true"] .equation-mapping-index {
-          width: 54px;
+          width: 72px;
         }
 
         .equation-mapping-canvas,

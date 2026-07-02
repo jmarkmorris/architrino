@@ -247,7 +247,7 @@ export function getEquationSearchText(document = {}) {
     document.formulaTeX,
     document.claimLevel,
     ...(document.anchors ?? []).map((anchor) => `${anchor.label} ${anchor.searchText}`),
-    ...(document.overlays ?? []).map((overlay) => `${overlay.title} ${overlay.status} ${overlay.searchText}`),
+    ...(document.overlays ?? []).map((overlay) => `${overlay.title} ${overlay.searchText}`),
   ]
     .join(" ")
     .toLowerCase();

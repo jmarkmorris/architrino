@@ -332,7 +332,6 @@ export class EquationMappingRuntime {
     }
     const nextDocument = updateEquationOverlay(this.activeDocument, activeOverlay.id, {
       title: sectionElement.querySelector('[name="overlay-title"]')?.value,
-      status: sectionElement.querySelector('[name="overlay-status"]')?.value,
       targetAnchorId: sectionElement.querySelector('[name="overlay-target"]')?.value,
       sectionLinePlacement: sectionElement.querySelector('[name="overlay-line"]')?.value,
       text: sectionElement.querySelector('[name="overlay-text"]')?.value,
@@ -392,10 +391,7 @@ export class EquationMappingRuntime {
         const button = createElement(this.document, "button", "equation-mapping-index-item");
         button.type = "button";
         button.classList.toggle("is-active", entry.id === this.activeDocument.id);
-        button.append(
-          createElement(this.document, "span", "", entry.title),
-          createElement(this.document, "small", "", entry.claimLevel.replaceAll("-", " "))
-        );
+        button.append(createElement(this.document, "span", "", entry.title));
         button.addEventListener("click", () => this.setActiveDocument(entry.id));
         group.append(button);
       });
@@ -546,7 +542,6 @@ export class EquationMappingRuntime {
     const fields = createElement(this.document, "div", "equation-mapping-editor-grid");
     fields.append(
       this.renderEditorInput("Title", "overlay-title", activeOverlay?.title ?? ""),
-      this.renderEditorInput("Status", "overlay-status", activeOverlay?.status ?? ""),
       this.renderEditorSelect(
         "Target",
         "overlay-target",
@@ -686,10 +681,7 @@ export class EquationMappingRuntime {
     const document = this.activeDocument;
     const equationShell = createElement(this.document, "div", "equation-mapping-equation-shell");
     const title = createElement(this.document, "div", "equation-mapping-equation-title");
-    title.append(
-      createElement(this.document, "strong", "", document.title),
-      createElement(this.document, "span", "", document.claimLevel.replaceAll("-", " "))
-    );
+    title.append(createElement(this.document, "strong", "", document.title));
     const equation = createElement(this.document, "div", "equation-mapping-equation");
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
@@ -742,9 +734,6 @@ export class EquationMappingRuntime {
       comment.style.setProperty("--overlay-width", String(overlay.position.width));
       const header = createElement(this.document, "header", "equation-mapping-comment-header");
       header.append(createElement(this.document, "strong", "", overlay.title));
-      if (overlay.status) {
-        header.append(createElement(this.document, "span", "", overlay.status));
-      }
       const body = createElement(this.document, "div", "equation-mapping-comment-body");
       overlay.content.forEach((block) => {
         if (block.type === "math") {

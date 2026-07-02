@@ -185,6 +185,8 @@ Fail-closed action behavior should return the manifest with updated `available_a
 
 ## Regression Fixtures
 
+The current schema-only service scaffold includes [issue-preflight.v1.json](../../../tests/archie-service/fixtures/actions/issue-preflight.v1.json), [action-broker-sandbox.v1.json](../../../tests/archie-service/fixtures/actions/action-broker-sandbox.v1.json), and [validate-action-broker-sandbox.mjs](../../../scripts/archie-service/validate-action-broker-sandbox.mjs). These fixtures cover confirmation-required `submit_issue` preflight, confirmed prefilled GitHub URL handoff, unconfirmed no-run behavior, cancelled no-run behavior, stale-terms fail-closed behavior, credentialed-write fail-closed behavior, safe issue-mining draft metadata inheritance, safe token receipt id linkage, no hidden GitHub writes, no browser/server GitHub credentials, no payment side effects, no durable storage, no private prompt expansion, and no source-authority effects.
+
 The future implementation should include action fixtures for:
 
 | Fixture | Required proof |
@@ -205,17 +207,14 @@ The future implementation should include action fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Action Broker Confirmation Contract into action schemas, confirmation dialogs, endpoint validators, side-effect guards, and action fixtures for the Archie service.
+Connect action-broker result classes and confirmation events into observability/public-status sandbox fixtures without exposing private prompt text, provider payloads, account history, credentials, or source-authority effects.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [issue-mining-signal-contract.md](issue-mining-signal-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Encode `available_actions`, confirmation reasons, preflight states, destination fields, and action results.
-- Encode terms-effect, accepted-version, re-acceptance, feature-blocker, and legal-review checks for paid, durable, public, retained, generated-media, and credentialed actions.
-- Define endpoint behavior for confirmed public, durable, paid, retained, and credentialed actions.
-- Define privacy-safe action preflight, confirmation, failure, result, and incident observability classes.
-- Add fixtures for source opening, listening with token caps, visualization with privacy gates, issue prefill, unconfirmed issue refusal, auto-fund, terms refusal, saved-note deferral, user-material exclusion, credential refusal, and manifest action-result updates.
-- Keep action execution subordinate to source context, claim labels, token ledger, privacy state, media policy, and issue-mining metadata.
+- Add observability fixtures that consume action preflight states, confirmation reasons, destination classes, token receipt ids, issue-mining queue ids, and action result classes.
+- Define redacted public-status and incident fields for confirmed external-pending handoff, unconfirmed no-run, cancelled no-run, terms-blocked fail-closed, and credentialed-write fail-closed cases.
+- Preserve the existing action-broker sandbox as the prerequisite for any future action execution.
 
 Constraints:
 - Do not file GitHub issues, charge tokens, trigger auto-fund, save notes, retain media, share artifacts, or include private user material without explicit confirmation.

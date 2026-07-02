@@ -236,10 +236,10 @@ $$
 \qquad
 \mathrm{firstMissing}
 =
-\texttt{missing\_accepted\_proton\_branch\_interface\_ledger}.
+\texttt{missing\_same\_record\_energy\_momentum\_angular\_momentum\_ledger}.
 $$
 
-This is the correct status. The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra only.
+This is the correct status after both branch-side ledgers landed as [proton-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/proton-branch-interface-ledger-retained-evidence.v1.json) and [neutron-branch-interface-ledger-retained-evidence.v1.json](../../../scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json). The $p+n$ and $p+p$ orientation rows cannot become accepted merely by listing upstream row names. Each row must list the relevant accepted source rows under `acceptedSourceRows`, and each named source-acquisition target must itself carry accepted durable non-fixture evidence. Until then, the branch-interface target remains a success marker for the reduced orientation algebra and proton/neutron source acquisition only.
 
 The checker also treats the component shape above as part of source acquisition. A source-acquisition target that is marked accepted but lacks one required component fails as `source_acquisition_target_shape_mismatch`; a target with the right component shape but without accepted durable non-fixture evidence still fails as `source_acquisition_target_not_accepted`.
 

@@ -203,6 +203,8 @@ If a cluster cannot be understood without private prompt text, the report should
 
 ## Regression Fixtures
 
+The current schema-only service scaffold includes [issue-mining-sandbox.v1.json](../../../tests/archie-service/fixtures/issue-mining/issue-mining-sandbox.v1.json) and [validate-issue-mining-sandbox.mjs](../../../scripts/archie-service/validate-issue-mining-sandbox.mjs). These fixtures cover manifest-derived issue signals, unsubmitted draft exclusion, unsupported source gaps, private-material exclusion, stale-terms blocks, ambiguous owner routing, source-authority fixture candidates, safe receipt id linkage, action-preflight inheritance, report clusters, noise summaries, owner fix queues, no hidden GitHub writes, and no private prompt expansion.
+
 The future implementation should include issue-mining fixtures for:
 
 | Fixture | Required proof |
@@ -223,18 +225,14 @@ The future implementation should include issue-mining fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Turn the Issue Mining Signal Contract into report schemas, clustering rules, owner-routed fix queues, privacy-safe evidence handling, and regression fixtures for the Archie service.
+Connect issue-mining clusters, noise summaries, fix queues, and action-broker result classes into observability/public-status sandbox fixtures while preserving private-prompt exclusion and no hidden writes.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [source-ingestion-retrieval-context-contract.md](source-ingestion-retrieval-context-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Encode issue-mining input metadata and cluster schema.
-- Define signal scoring, noise classes, owner lanes, and fix queue records.
-- Define periodic signal report shape.
-- Define safe observability refs that can support clustering without private prompt text or raw logs.
-- Add privacy checks that prevent private prompt text, unsubmitted drafts, and unconsented media from entering reports.
-- Add GitHub handoff notice, issue-mining disclosure, public-feedback-use terms, and missing-terms refusal behavior.
-- Add fixtures for duplicate clustering, recurring confusion, unsupported gaps, app usability, noise classification, private exclusion, missing terms, ambiguous ownership, fixture candidates, source-index candidates, and report shape.
+- Add observability fixtures that consume issue-mining cluster ids, queue ids, noise summaries, safe issue links, and action-broker result classes.
+- Verify public-status and incident metadata exclude private prompt text, raw logs, raw provider payloads, account history, private saved notes, hidden GitHub writes, and source-authority effects.
+- Keep GitHub writes, GitHub credentials, durable storage, private prompt text, raw logs, raw provider payloads, account history, private saved notes, deployment config, and public launch behavior disabled.
 
 Constraints:
 - Use public issue links and safe manifest metadata as evidence.

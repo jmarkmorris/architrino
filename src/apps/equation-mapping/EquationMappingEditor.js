@@ -175,7 +175,7 @@ export function createEquationOverlay(document = {}, draft = {}) {
   next.overlays.push({
     id,
     title: normalizePlainText(draft.title, "New comment"),
-    status: normalizePlainText(draft.status, "candidate"),
+    status: normalizePlainText(draft.status, ""),
     targetAnchorId,
     sectionLinePlacement: normalizePlacement(draft.sectionLinePlacement, "below"),
     position: {

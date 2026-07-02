@@ -302,14 +302,14 @@ The future implementation should include token/privacy fixtures for:
 ## Implementation Handoff
 
 Closure goal:
-Connect token receipt ids, privacy summaries, and confirmation states into issue-mining signal fixtures without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
+Connect token receipt ids, privacy summaries, and confirmation states into observability/public-status sandbox fixtures without exposing private prompt text, creating durable account history, or filing GitHub issues through hidden credentials.
 
 Use this packet, [answer-artifact-manifest.md](answer-artifact-manifest.md), [manifest-service-contracts.md](manifest-service-contracts.md), [model-provider-capability-registry-contract.md](model-provider-capability-registry-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), [action-broker-confirmation-contract.md](action-broker-confirmation-contract.md), [saved-notebook-account-history-contract.md](saved-notebook-account-history-contract.md), [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md), and [v1-product-requirements.md](v1-product-requirements.md) as the source of truth.
 
 Task:
-- Add issue-mining fixtures that reference token receipt ids, source classes, claim labels, owner lanes, duplicate keys, and smallest next artifacts without copying private prompt text.
-- Add confirmation-state checks for public issue text, durable save exclusion, user-material exclusion, and external GitHub handoff.
-- Preserve receipt privacy: issue-mining metadata may use receipt ids and safe work-unit classes, but not provider payloads, provider billing internals, or private prompt text.
+- Add observability fixtures that reference token receipt ids, privacy summaries, confirmation reasons, public visibility classes, destination classes, and external handoff result classes without copying private prompt text.
+- Add public-status and incident checks for paid-work blocks, durable save exclusion, user-material exclusion, cancelled handoff, and prefilled GitHub URL external-pending behavior.
+- Preserve receipt privacy: observability metadata may use receipt ids and safe work-unit classes, but not provider payloads, provider billing internals, private prompt text, account history, or private saved notes.
 - Keep hidden GitHub writes, durable notebooks, account history, payment integrations, provider calls, deployment config, public routes, and production secrets disabled.
 
 Constraints:

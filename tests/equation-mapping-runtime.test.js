@@ -205,6 +205,14 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
     html,
     /\.equation-mapping-shell\[data-equation-scale="large"\] \.equation-mapping-equation \{[\s\S]*?font-size: clamp\(36px, 5\.6vw, 76px\);/u
   );
+  assert.match(html, /\.equation-mapping-equation-title \{[\s\S]*?font-size: 18px;/u);
+  assert.match(html, /\.equation-mapping-equation-title strong \{[\s\S]*?font-size: 22px;/u);
+  assert.match(html, /\.equation-mapping-index-header strong \{[\s\S]*?font-size: 22px;/u);
+  assert.match(html, /\.equation-mapping-index-group h2 \{[\s\S]*?font-size: 20px;/u);
+  assert.match(html, /\.equation-mapping-index-item span \{[\s\S]*?font-size: 21px;/u);
+  assert.equal(html.includes(".equation-mapping-equation-title span"), false);
+  assert.equal(html.includes(".equation-mapping-index-item small"), false);
+  assert.equal(html.includes(".equation-mapping-comment-header span"), false);
   assert.match(html, /\.equation-mapping-comment-header strong \{[\s\S]*?font-size: 21px;/u);
   assert.match(html, /\.equation-mapping-comment-body \{[\s\S]*?font-size: 21px;/u);
   assert.match(
@@ -215,6 +223,23 @@ test("equation mapping calibrates medium visual sizes from requested adjacent le
     html,
     /\.equation-mapping-shell\[data-comment-font-size="large"\] \.equation-mapping-comment-header strong,[\s\S]*?font-size: 24px;/u
   );
+});
+
+test("equation mapping keeps claim level out of visible document labels", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  assert.equal(runtime.includes("entry.claimLevel.replaceAll"), false);
+  assert.equal(runtime.includes("document.claimLevel.replaceAll"), false);
+});
+
+test("equation mapping keeps overlay status out of visible comment labels", () => {
+  const runtime = readRepoFile("src/apps/equation-mapping/EquationMappingRuntime.js");
+  const data = readRepoFile("src/apps/equation-mapping/EquationMappingData.js");
+  const editor = readRepoFile("src/apps/equation-mapping/EquationMappingEditor.js");
+  assert.equal(runtime.includes("overlay.status"), false);
+  assert.equal(runtime.includes('name="overlay-status"'), false);
+  assert.equal(runtime.includes('"Status", "overlay-status"'), false);
+  assert.equal(data.includes("overlay.title} ${overlay.status}"), false);
+  assert.equal(editor.includes('normalizePlainText(draft.status, "candidate")'), false);
 });
 
 test("equation mapping defaults to medium comment font size", () => {

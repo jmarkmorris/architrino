@@ -15,6 +15,9 @@
     { "$ref": "#/$defs/providerSandboxContracts" },
     { "$ref": "#/$defs/providerGatewayContracts" },
     { "$ref": "#/$defs/tokenLedgerSandboxContracts" },
+    { "$ref": "#/$defs/issueMiningSandboxContracts" },
+    { "$ref": "#/$defs/actionBrokerSandboxContracts" },
+    { "$ref": "#/$defs/observabilitySandboxContracts" },
     { "$ref": "#/$defs/tokenReceiptEnvelope" },
     { "$ref": "#/$defs/actionPreflightEnvelope" },
     { "$ref": "#/$defs/serviceStatus" },
@@ -720,6 +723,594 @@
           "type": "array",
           "minItems": 1,
           "items": { "$ref": "#/$defs/tokenLedgerSandboxCase" }
+        }
+      }
+    },
+    "issueMiningOwnerLane": {
+      "type": "string",
+      "enum": [
+        "app_runtime",
+        "corpus_documentation",
+        "source_authority",
+        "source_authority_policy",
+        "service_platform",
+        "media_policy",
+        "issue_ops",
+        "proof_corpus_priority",
+        "accessibility",
+        "operations"
+      ]
+    },
+    "issueMiningDisposition": {
+      "type": "string",
+      "enum": [
+        "clustered",
+        "draft_excluded_until_confirmation",
+        "excluded_private",
+        "blocked_until_terms",
+        "owner_decision_required",
+        "fixture_candidate"
+      ]
+    },
+    "issueMiningPublicUrlState": {
+      "type": "string",
+      "enum": ["not_submitted", "public_link_fixture", "blocked_until_terms"]
+    },
+    "issueMiningClusterType": {
+      "type": "string",
+      "enum": [
+        "bug",
+        "source_gap",
+        "reader_confusion",
+        "unsupported_answer_gap",
+        "app_usability",
+        "proof_burden",
+        "accessibility",
+        "new_proposal",
+        "operations",
+        "noise"
+      ]
+    },
+    "issueMiningNoiseClass": {
+      "type": "string",
+      "enum": [
+        "spam",
+        "duplicate_without_new_signal",
+        "vague_feedback",
+        "unsupported_theory_assertion",
+        "non_actionable_reaction",
+        "out_of_scope_request",
+        "private_material_without_consent",
+        "abuse_or_harassment",
+        "already_fixed",
+        "wrong_surface"
+      ]
+    },
+    "issueMiningDraftMetadata": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "title",
+        "publicBodySummaryId",
+        "labels",
+        "previewVisible",
+        "publicVisibilityWarningShown",
+        "sourceClaimInheritance",
+        "privatePromptIncluded",
+        "userMaterialIncluded"
+      ],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "publicBodySummaryId": { "type": "string", "minLength": 1 },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "previewVisible": { "const": true },
+        "publicVisibilityWarningShown": { "const": true },
+        "sourceClaimInheritance": { "const": true },
+        "privatePromptIncluded": { "const": false },
+        "userMaterialIncluded": { "const": false }
+      }
+    },
+    "issueMiningSignalCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "manifestFixture",
+        "actionPreflightFixture",
+        "issueUrl",
+        "publicIssueUrlState",
+        "originMode",
+        "originSurface",
+        "sourceRoutes",
+        "sourceClasses",
+        "claimLabel",
+        "tokenReceiptId",
+        "duplicateKeys",
+        "ownerLane",
+        "smallestNextArtifact",
+        "expectedDisposition",
+        "clusterId",
+        "draftIssueMetadata",
+        "githubWriteAllowed",
+        "browserGithubTokenAllowed",
+        "serverGithubWriteAllowed",
+        "durableStorageEnabled",
+        "providerPayloadIncluded",
+        "privatePromptIncluded",
+        "sourceAuthorityEffect"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "manifestFixture": { "type": "string", "minLength": 1 },
+        "actionPreflightFixture": { "type": ["string", "null"] },
+        "issueUrl": { "type": ["string", "null"] },
+        "publicIssueUrlState": { "$ref": "#/$defs/issueMiningPublicUrlState" },
+        "originMode": { "$ref": "#/$defs/mode" },
+        "originSurface": { "type": "string", "minLength": 1 },
+        "sourceRoutes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sourceClasses": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/sourceClass" }
+        },
+        "claimLabel": { "$ref": "#/$defs/claimLabel" },
+        "tokenReceiptId": { "type": "string", "minLength": 1 },
+        "duplicateKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "ownerLane": { "$ref": "#/$defs/issueMiningOwnerLane" },
+        "smallestNextArtifact": { "type": "string", "minLength": 1 },
+        "expectedDisposition": { "$ref": "#/$defs/issueMiningDisposition" },
+        "clusterId": { "type": ["string", "null"] },
+        "draftIssueMetadata": { "$ref": "#/$defs/issueMiningDraftMetadata" },
+        "githubWriteAllowed": { "const": false },
+        "browserGithubTokenAllowed": { "const": false },
+        "serverGithubWriteAllowed": { "const": false },
+        "durableStorageEnabled": { "const": false },
+        "providerPayloadIncluded": { "const": false },
+        "privatePromptIncluded": { "const": false },
+        "sourceAuthorityEffect": { "const": "none" }
+      }
+    },
+    "issueMiningCluster": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "clusterId",
+        "clusterType",
+        "ownerLane",
+        "frequency",
+        "caseIds",
+        "duplicateKeys",
+        "sourceRoutes",
+        "claimLabels",
+        "privacyState",
+        "sourceAuthorityEffect"
+      ],
+      "properties": {
+        "clusterId": { "type": "string", "minLength": 1 },
+        "clusterType": { "$ref": "#/$defs/issueMiningClusterType" },
+        "ownerLane": { "$ref": "#/$defs/issueMiningOwnerLane" },
+        "frequency": { "type": "integer", "minimum": 1 },
+        "caseIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "duplicateKeys": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sourceRoutes": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "claimLabels": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/claimLabel" }
+        },
+        "privacyState": { "const": "private_prompt_excluded" },
+        "sourceAuthorityEffect": { "const": "none" }
+      }
+    },
+    "issueMiningNoiseSummary": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["noiseClass", "caseIds", "privatePromptIncluded"],
+      "properties": {
+        "noiseClass": { "$ref": "#/$defs/issueMiningNoiseClass" },
+        "caseIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "privatePromptIncluded": { "const": false }
+      }
+    },
+    "issueMiningFixQueue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "queueId",
+        "ownerLane",
+        "clusterIds",
+        "recommendedAction",
+        "smallestNextArtifact",
+        "acceptanceEvidence",
+        "privacySafe"
+      ],
+      "properties": {
+        "queueId": { "type": "string", "minLength": 1 },
+        "ownerLane": { "$ref": "#/$defs/issueMiningOwnerLane" },
+        "clusterIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "recommendedAction": {
+          "type": "string",
+          "enum": ["fix", "document", "add_fixture", "source_index_repair", "owner_decision", "defer", "close_as_noise"]
+        },
+        "smallestNextArtifact": { "type": "string", "minLength": 1 },
+        "acceptanceEvidence": { "type": "string", "minLength": 1 },
+        "privacySafe": { "const": true }
+      }
+    },
+    "issueMiningReport": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "reportId",
+        "reportWindowStart",
+        "reportWindowEnd",
+        "clusters",
+        "noiseSummary",
+        "fixQueues",
+        "privacyStatement",
+        "githubWritesAllowed",
+        "durableStorageEnabled",
+        "privatePromptIncluded"
+      ],
+      "properties": {
+        "reportId": { "type": "string", "minLength": 1 },
+        "reportWindowStart": { "type": "string", "minLength": 1 },
+        "reportWindowEnd": { "type": "string", "minLength": 1 },
+        "clusters": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/issueMiningCluster" }
+        },
+        "noiseSummary": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/issueMiningNoiseSummary" }
+        },
+        "fixQueues": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/issueMiningFixQueue" }
+        },
+        "privacyStatement": { "const": "no_private_prompt_or_user_media" },
+        "githubWritesAllowed": { "const": false },
+        "durableStorageEnabled": { "const": false },
+        "privatePromptIncluded": { "const": false }
+      }
+    },
+    "issueMiningSandboxContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "tokenLedgerContractId",
+        "termsVersionSetId",
+        "signalCases",
+        "report"
+      ],
+      "properties": {
+        "schema": { "const": "archie-issue-mining-sandbox-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "tokenLedgerContractId": { "type": "string", "minLength": 1 },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "signalCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/issueMiningSignalCase" }
+        },
+        "report": { "$ref": "#/$defs/issueMiningReport" }
+      }
+    },
+    "actionBrokerConfirmationState": {
+      "type": "string",
+      "enum": ["required_not_confirmed", "confirmed", "cancelled", "blocked"]
+    },
+    "actionBrokerResultStatus": {
+      "type": "string",
+      "enum": ["not_run", "external_pending", "cancelled", "failed_closed"]
+    },
+    "actionBrokerExecutionMode": {
+      "type": "string",
+      "enum": ["prefilled_url", "server_write"]
+    },
+    "actionBrokerTermsState": {
+      "type": "string",
+      "enum": ["fixture_terms_current", "blocked_until_terms"]
+    },
+    "actionBrokerPrefilledIssue": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["title", "publicBodySummaryId", "labels", "sourceClaimInheritance", "privatePromptIncluded", "userMaterialIncluded"],
+      "properties": {
+        "title": { "type": "string", "minLength": 1 },
+        "publicBodySummaryId": { "type": "string", "minLength": 1 },
+        "labels": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "sourceClaimInheritance": { "const": true },
+        "privatePromptIncluded": { "const": false },
+        "userMaterialIncluded": { "const": false }
+      }
+    },
+    "actionBrokerCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "manifestFixture",
+        "issueMiningCaseId",
+        "actionPreflightFixture",
+        "actionType",
+        "requestedExecutionMode",
+        "confirmationState",
+        "expectedPreflightStatus",
+        "expectedResultStatus",
+        "destinationClass",
+        "confirmationReasons",
+        "tokenReceiptId",
+        "termsState",
+        "prefilledIssue",
+        "prefilledUrl",
+        "prefilledUrlGenerated",
+        "publicVisibilityWarningShown",
+        "externalHandoffDisclosureShown",
+        "resultUpdatesManifest",
+        "githubWriteAllowed",
+        "browserGithubTokenAllowed",
+        "serverGithubWriteAllowed",
+        "paymentsEnabled",
+        "paymentAttempted",
+        "durableStorageEnabled",
+        "providerPayloadIncluded",
+        "privatePromptIncluded",
+        "sourceAuthorityEffect"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "manifestFixture": { "type": "string", "minLength": 1 },
+        "issueMiningCaseId": { "type": "string", "minLength": 1 },
+        "actionPreflightFixture": { "type": ["string", "null"] },
+        "actionType": { "$ref": "#/$defs/actionType" },
+        "requestedExecutionMode": { "$ref": "#/$defs/actionBrokerExecutionMode" },
+        "confirmationState": { "$ref": "#/$defs/actionBrokerConfirmationState" },
+        "expectedPreflightStatus": { "$ref": "#/$defs/actionPreflightStatus" },
+        "expectedResultStatus": { "$ref": "#/$defs/actionBrokerResultStatus" },
+        "destinationClass": { "type": "string", "minLength": 1 },
+        "confirmationReasons": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/confirmationReason" }
+        },
+        "tokenReceiptId": { "type": "string", "minLength": 1 },
+        "termsState": { "$ref": "#/$defs/actionBrokerTermsState" },
+        "prefilledIssue": { "$ref": "#/$defs/actionBrokerPrefilledIssue" },
+        "prefilledUrl": { "type": ["string", "null"] },
+        "prefilledUrlGenerated": { "type": "boolean" },
+        "publicVisibilityWarningShown": { "const": true },
+        "externalHandoffDisclosureShown": { "const": true },
+        "resultUpdatesManifest": { "type": "boolean" },
+        "githubWriteAllowed": { "const": false },
+        "browserGithubTokenAllowed": { "const": false },
+        "serverGithubWriteAllowed": { "const": false },
+        "paymentsEnabled": { "const": false },
+        "paymentAttempted": { "const": false },
+        "durableStorageEnabled": { "const": false },
+        "providerPayloadIncluded": { "const": false },
+        "privatePromptIncluded": { "const": false },
+        "sourceAuthorityEffect": { "const": "none" }
+      }
+    },
+    "actionBrokerSandboxContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "issueMiningContractId",
+        "termsVersionSetId",
+        "actionCases"
+      ],
+      "properties": {
+        "schema": { "const": "archie-action-broker-sandbox-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "issueMiningContractId": { "type": "string", "minLength": 1 },
+        "termsVersionSetId": { "type": "string", "minLength": 1 },
+        "actionCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/actionBrokerCase" }
+        }
+      }
+    },
+    "observabilityEventSource": {
+      "type": "string",
+      "enum": ["manifest", "provider_registry", "provider_gateway", "token_ledger", "issue_mining", "action_broker"]
+    },
+    "observabilityRedactionState": {
+      "type": "string",
+      "enum": ["redacted", "safe_ids_only", "blocked"]
+    },
+    "observabilityPublicStatusEffect": {
+      "type": "string",
+      "enum": ["none", "operational", "degraded", "partial_outage", "maintenance", "incident_active", "blocked"]
+    },
+    "observabilityIncidentSeverity": {
+      "type": "string",
+      "enum": ["critical", "high", "medium", "low", "info"]
+    },
+    "observabilityIncidentStatus": {
+      "type": "string",
+      "enum": ["open", "mitigated", "resolved", "postmortem_required"]
+    },
+    "observabilityPrivacyImpact": {
+      "type": "string",
+      "enum": ["none", "redacted", "private_content_blocked", "needs_public_reproduction"]
+    },
+    "observabilityBillingImpact": {
+      "type": "string",
+      "enum": ["none", "receipt_only", "charge_blocked", "refund_pending"]
+    },
+    "observabilitySignalCase": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "caseId",
+        "sourceKind",
+        "sourceFixture",
+        "sourceCaseId",
+        "safeEventClasses",
+        "safeReferenceIds",
+        "redactionState",
+        "publicStatusSafe",
+        "incidentId",
+        "publicStatusEffect",
+        "privatePromptIncluded",
+        "providerPayloadIncluded",
+        "accountHistoryIncluded",
+        "credentialIncluded",
+        "rawLogIncluded",
+        "sourceAuthorityEffect"
+      ],
+      "properties": {
+        "caseId": { "type": "string", "minLength": 1 },
+        "sourceKind": { "$ref": "#/$defs/observabilityEventSource" },
+        "sourceFixture": { "type": "string", "minLength": 1 },
+        "sourceCaseId": { "type": ["string", "null"] },
+        "safeEventClasses": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "safeReferenceIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "redactionState": { "$ref": "#/$defs/observabilityRedactionState" },
+        "publicStatusSafe": { "type": "boolean" },
+        "incidentId": { "type": ["string", "null"] },
+        "publicStatusEffect": { "$ref": "#/$defs/observabilityPublicStatusEffect" },
+        "privatePromptIncluded": { "const": false },
+        "providerPayloadIncluded": { "const": false },
+        "accountHistoryIncluded": { "const": false },
+        "credentialIncluded": { "const": false },
+        "rawLogIncluded": { "const": false },
+        "sourceAuthorityEffect": { "const": "none" }
+      }
+    },
+    "observabilityIncidentRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "incidentId",
+        "severity",
+        "status",
+        "safeSummaryId",
+        "eventCaseIds",
+        "affectedSurfaces",
+        "affectedCapabilityIds",
+        "publicStatusRequired",
+        "publicStatusSafe",
+        "privacyImpact",
+        "billingImpact",
+        "sourceAuthorityEffect",
+        "privatePromptIncluded",
+        "providerPayloadIncluded",
+        "accountHistoryIncluded",
+        "credentialIncluded",
+        "rawLogIncluded"
+      ],
+      "properties": {
+        "incidentId": { "type": "string", "minLength": 1 },
+        "severity": { "$ref": "#/$defs/observabilityIncidentSeverity" },
+        "status": { "$ref": "#/$defs/observabilityIncidentStatus" },
+        "safeSummaryId": { "type": "string", "minLength": 1 },
+        "eventCaseIds": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "affectedSurfaces": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "affectedCapabilityIds": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 }
+        },
+        "publicStatusRequired": { "type": "boolean" },
+        "publicStatusSafe": { "type": "boolean" },
+        "privacyImpact": { "$ref": "#/$defs/observabilityPrivacyImpact" },
+        "billingImpact": { "$ref": "#/$defs/observabilityBillingImpact" },
+        "sourceAuthorityEffect": { "const": "none" },
+        "privatePromptIncluded": { "const": false },
+        "providerPayloadIncluded": { "const": false },
+        "accountHistoryIncluded": { "const": false },
+        "credentialIncluded": { "const": false },
+        "rawLogIncluded": { "const": false }
+      }
+    },
+    "observabilitySandboxContracts": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "schema",
+        "contractId",
+        "providerRegistryId",
+        "providerGatewayContractId",
+        "tokenLedgerContractId",
+        "issueMiningContractId",
+        "actionBrokerContractId",
+        "serviceStatusFixture",
+        "signalCases",
+        "incidentRecords"
+      ],
+      "properties": {
+        "schema": { "const": "archie-observability-sandbox-contracts/v1" },
+        "contractId": { "type": "string", "minLength": 1 },
+        "providerRegistryId": { "type": "string", "minLength": 1 },
+        "providerGatewayContractId": { "type": "string", "minLength": 1 },
+        "tokenLedgerContractId": { "type": "string", "minLength": 1 },
+        "issueMiningContractId": { "type": "string", "minLength": 1 },
+        "actionBrokerContractId": { "type": "string", "minLength": 1 },
+        "serviceStatusFixture": { "type": "string", "minLength": 1 },
+        "signalCases": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilitySignalCase" }
+        },
+        "incidentRecords": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/$defs/observabilityIncidentRecord" }
         }
       }
     },
