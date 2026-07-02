@@ -70,6 +70,52 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "same_record_no_open_color_audit",
   ],
 });
+const SOURCE_ACQUISITION_ROUTES = Object.freeze({
+  no_open_color_far_field: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_branch_interface_rows",
+    ],
+  },
+});
+const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
+  nucleon_branch_interface_ledgers: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+    requiredSameRecordRows: [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+    requiredClosureRows: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+    ],
+    requiredLimitStatements: [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "lim_R_to_infty_T_NN_R_eq_0",
+    ],
+    requiredInequalities: ["W_pn > W_pp", "M_pn < M_pp"],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "candidate_extracted",
+      "target_only_no_open_color",
+    ],
+  },
+});
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
   const args = parseArgs(process.argv.slice(2));
@@ -113,6 +159,15 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
     rows,
     input?.sourceAcquisitionTargets ?? {},
   );
+  const acceptedSourceRowProofTargets = evaluateAcceptedSourceRowProofTargets(
+    input?.acceptedSourceRowProofTargets ?? {},
+    input?.toyBindingRows ?? {},
+  );
+  const sourceAcquisitionBlockerMap = buildSourceAcquisitionBlockerMap({
+    sourceAcquisitionCheck,
+    toyBindingRows: input?.toyBindingRows ?? {},
+    acceptedSourceRowProofTargets,
+  });
   const missingRows = REQUIRED_ROWS.filter(
     (rowId) => rowChecks[rowId].accepted !== true,
   );
@@ -129,6 +184,7 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
     algebraicFailures,
     sourceEvidenceCheck,
     sourceAcquisitionCheck,
+    acceptedSourceRowProofTargets,
   });
   const firstMissingRow = missingRows[0] ?? null;
 
@@ -152,6 +208,10 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
       algebraicFailures,
       pnPpDifferentialPass: differential.passed,
       sourceEvidencePass: sourceEvidenceCheck.passed,
+      acceptedSourceRowProofTargetPass:
+        acceptedSourceRowProofTargets.summary.passed,
+      acceptedSourceRowProofTargetFailures:
+        acceptedSourceRowProofTargets.summary.failures,
       sourceAcquisitionPass: sourceAcquisitionCheck.passed,
       sourceAcquisitionFirstMissingObject:
         sourceAcquisitionCheck.firstMissingAcceptedSourceRow
@@ -162,7 +222,9 @@ export function buildNucleonBranchInterfaceSourceTargetCheck(
     requiredRows: [...REQUIRED_ROWS],
     rowChecks,
     sourceEvidenceCheck,
+    acceptedSourceRowProofTargets,
     sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap,
     channelChecks,
     differential,
     acceptanceRule:
@@ -226,7 +288,9 @@ function writeReport(report, args) {
         summary: report.summary,
         rowChecks: report.rowChecks,
         sourceEvidenceCheck: report.sourceEvidenceCheck,
+        acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
         sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+        sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
         differential: report.differential,
       }
     : report;
@@ -324,6 +388,128 @@ function evaluateSourceAcquisition(rows, sourceAcquisitionTargets) {
         .find(Boolean) ?? null,
     passed: failures.length === 0,
   };
+}
+
+function evaluateAcceptedSourceRowProofTargets(proofTargets, toyBindingRows) {
+  const targets = Object.fromEntries(
+    Object.entries(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS).map(
+      ([rowId, expected]) => [
+        rowId,
+        evaluateAcceptedSourceRowProofTarget(
+          rowId,
+          proofTargets[rowId],
+          expected,
+          toyBindingRows,
+        ),
+      ],
+    ),
+  );
+  const failures = Object.values(targets).flatMap((target) =>
+    target.passed
+      ? []
+      : [
+          {
+            rowId: target.rowId,
+            reason: acceptedSourceRowProofTargetFailureReason(target),
+            missingFields: target.missingFields,
+            mismatchedFields: target.mismatchedFields,
+          },
+        ],
+  );
+  return {
+    summary: {
+      requiredField: "acceptedSourceRowProofTargets",
+      requiredRows: Object.keys(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS),
+      passed: failures.length === 0,
+      failures,
+    },
+    targets,
+  };
+}
+
+function evaluateAcceptedSourceRowProofTarget(
+  rowId,
+  target,
+  expected,
+  toyBindingRows,
+) {
+  const present = target && typeof target === "object" && !Array.isArray(target);
+  const status = present ? normalizeStatus(target) : "missing";
+  const claimLevel = present ? target.claimLevel ?? null : null;
+  const expectedArrayFields = Object.keys(expected);
+  const missingFields = [
+    ...requiredStringFields(target, ["id", "claimLevel", "currentEvidenceStatus"]),
+    ...requiredArrayFields(target, expectedArrayFields),
+  ];
+  const mismatchedFields = [];
+  if (status !== "target_required") {
+    mismatchedFields.push("status");
+  }
+  if (typeof claimLevel !== "string" || !claimLevel.includes("not accepted source evidence")) {
+    mismatchedFields.push("claimLevel");
+  }
+  for (const [field, expectedRows] of Object.entries(expected)) {
+    if (!sameStringSet(target?.[field], expectedRows)) {
+      mismatchedFields.push(field);
+    }
+  }
+  return {
+    rowId,
+    targetId: present ? target.id ?? null : null,
+    present,
+    status,
+    currentEvidenceStatus: present ? target.currentEvidenceStatus ?? null : null,
+    claimLevel,
+    requiredAcceptedSourceRowsBeforeUse:
+      target?.requiredAcceptedSourceRowsBeforeUse ?? [],
+    requiredSameRecordRows: target?.requiredSameRecordRows ?? [],
+    requiredClosureRows: target?.requiredClosureRows ?? [],
+    requiredLimitStatements: target?.requiredLimitStatements ?? [],
+    requiredInequalities: target?.requiredInequalities ?? [],
+    forbiddenPromotionSources: target?.forbiddenPromotionSources ?? [],
+    currentPriorityPacket: present ? target.currentPriorityPacket ?? null : null,
+    directToyConsumers: directToyConsumersForBranchRows(toyBindingRows, [rowId]),
+    missingFields,
+    mismatchedFields,
+    passed:
+      present &&
+      missingFields.length === 0 &&
+      mismatchedFields.length === 0,
+  };
+}
+
+function requiredStringFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => typeof target[field] !== "string" || target[field] === "");
+}
+
+function requiredArrayFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => !Array.isArray(target[field]));
+}
+
+function acceptedSourceRowProofTargetFailureReason(target) {
+  if (target.present !== true) {
+    return "accepted_source_row_proof_target_missing";
+  }
+  if (target.missingFields.length > 0) {
+    return "accepted_source_row_proof_target_field_missing";
+  }
+  return "accepted_source_row_proof_target_shape_mismatch";
+}
+
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right)) {
+    return false;
+  }
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value) => right.includes(value));
 }
 
 function evaluateSourceAcquisitionTargets(sourceAcquisitionTargets) {
@@ -437,6 +623,117 @@ function evaluateSourceAcquisitionRow(rowId, row, targetChecks) {
   };
 }
 
+function buildSourceAcquisitionBlockerMap({
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  acceptedSourceRowProofTargets,
+}) {
+  const missingSourceRows = [
+    ...new Set(
+      Object.values(sourceAcquisitionCheck.rowChecks)
+        .flatMap((check) => check.missingAcceptedSourceRows),
+    ),
+  ];
+  const blockers = missingSourceRows.map((sourceRowId) =>
+    sourceAcquisitionBlocker(
+      sourceAcquisitionCheck,
+      toyBindingRows,
+      sourceRowId,
+      acceptedSourceRowProofTargets,
+    ),
+  );
+  const firstBlocker = blockers[0] ?? null;
+  return {
+    status:
+      blockers.length === 0
+        ? "all_required_source_rows_acquired"
+        : "blocked_missing_accepted_source_rows",
+    claimLevel:
+      "source-acquisition blocker map; not accepted source evidence and not promotion evidence",
+    firstMissingAcceptedSourceRow: firstBlocker?.sourceRowId ?? null,
+    firstMissingObject: firstBlocker ? `missing_${firstBlocker.sourceRowId}` : null,
+    blockedSourceRowCount: blockers.length,
+    blockers,
+  };
+}
+
+function sourceAcquisitionBlocker(
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  sourceRowId,
+  acceptedSourceRowProofTargets,
+) {
+  const targetCheck = sourceAcquisitionCheck.targetChecks[sourceRowId] ?? {};
+  const blockedBranchRows = Object.values(sourceAcquisitionCheck.rowChecks)
+    .filter((check) => check.missingAcceptedSourceRows.includes(sourceRowId))
+    .map((check) => check.rowId);
+  return {
+    sourceRowId,
+    targetId: targetCheck.targetId ?? null,
+    status: targetCheck.status ?? null,
+    currentEvidenceStatus: targetCheck.currentEvidenceStatus ?? null,
+    accepted: targetCheck.accepted === true,
+    sourceTargetPath: targetCheck.sourceTargetPath ?? null,
+    requiredScope: targetCheck.requiredScope ?? null,
+    requiredLedgerComponents: targetCheck.requiredLedgerComponents ?? [],
+    missingRequiredComponents: targetCheck.missingRequiredComponents ?? [],
+    blockedBranchRows,
+    acceptedSourceRowProofTargets: Object.fromEntries(
+      blockedBranchRows
+        .map((rowId) => [
+          rowId,
+          acceptedSourceRowProofTargets?.targets?.[rowId] ?? null,
+        ])
+        .filter(([, target]) => target),
+    ),
+    sourceAcquisitionRoute: sourceAcquisitionRouteForSourceRow(
+      sourceRowId,
+      targetCheck,
+      blockedBranchRows,
+    ),
+    directToyConsumers: directToyConsumersForBranchRows(
+      toyBindingRows,
+      blockedBranchRows,
+    ),
+    nextProofTarget:
+      targetCheck.requiredScope ??
+      `accepted ${sourceRowId} source row in the same branch-interface record`,
+  };
+}
+
+function sourceAcquisitionRouteForSourceRow(sourceRowId, targetCheck, blockedBranchRows) {
+  const route = SOURCE_ACQUISITION_ROUTES[sourceRowId] ?? {};
+  return {
+    claimLevel:
+      "priority-only source-acquisition route; not accepted source evidence and not promotion evidence",
+    requiredRowsBeforeUse: targetCheck.requiredLedgerComponents ?? [],
+    requiredAcceptedRowsBeforeUse: route.requiredAcceptedRowsBeforeUse ?? [],
+    feedsRowsAfterAcceptance: blockedBranchRows,
+    notRequiredBeforeAcceptance: route.notRequiredBeforeAcceptance ?? [],
+  };
+}
+
+function directToyConsumersForBranchRows(toyBindingRows, branchRows) {
+  return {
+    coefficients: toyConsumersForBranchRows(
+      toyBindingRows.coefficients ?? {},
+      branchRows,
+    ),
+    graphRules: toyConsumersForBranchRows(
+      toyBindingRows.graphRules ?? {},
+      branchRows,
+    ),
+  };
+}
+
+function toyConsumersForBranchRows(bindings, branchRows) {
+  return Object.entries(bindings)
+    .filter(([, rows]) =>
+      Array.isArray(rows) && rows.some((row) => branchRows.includes(row)),
+    )
+    .map(([consumer]) => consumer);
+}
+
 function evaluateOrientationRow(row, { expectedChannel }) {
   const failures = [];
   if (!row || typeof row !== "object" || Array.isArray(row)) {
@@ -543,6 +840,7 @@ function decideStatus({
   algebraicFailures,
   sourceEvidenceCheck,
   sourceAcquisitionCheck,
+  acceptedSourceRowProofTargets,
 }) {
   if (!schemaOk) {
     return "schema_mismatch";
@@ -552,6 +850,9 @@ function decideStatus({
   }
   if (sourceEvidenceCheck.passed !== true) {
     return "branch_interface_source_evidence_mismatch";
+  }
+  if (acceptedSourceRowProofTargets.summary.passed !== true) {
+    return "branch_interface_proof_target_incomplete";
   }
   if (missingRows.length > 0) {
     return "missing_accepted_branch_interface_rows";

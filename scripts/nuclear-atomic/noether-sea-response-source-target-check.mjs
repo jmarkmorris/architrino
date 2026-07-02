@@ -346,6 +346,7 @@ function evaluateResponseAgreement(input) {
 function evaluateToyBindingRows(rowChecks) {
   const failures = [];
   const unconsumedRequiredRows = [];
+  const rowConsumption = buildToyBindingRowConsumption(rowChecks);
   for (const [scope, rowsByObject] of Object.entries(REQUIRED_TOY_BINDING_ROWS)) {
     for (const [objectId, requiredRows] of Object.entries(rowsByObject)) {
       for (const rowId of requiredRows) {
@@ -362,10 +363,73 @@ function evaluateToyBindingRows(rowChecks) {
   }
   return {
     requiredRows: REQUIRED_TOY_BINDING_ROWS,
+    rowConsumption,
     passed: failures.length === 0 && unconsumedRequiredRows.length === 0,
     failures,
     unconsumedRequiredRows,
   };
+}
+
+function buildToyBindingRowConsumption(rowChecks) {
+  const requiredRows = [
+    ...new Set(
+      Object.values(REQUIRED_TOY_BINDING_ROWS)
+        .flatMap((rowsByObject) => Object.values(rowsByObject).flat()),
+    ),
+  ];
+  const rows = Object.fromEntries(
+    requiredRows.map((rowId) => {
+      const rowCheck = rowChecks[rowId] ?? {};
+      return [
+        rowId,
+        {
+          rowId,
+          group: rowCheck.group ?? ROW_GROUPS[rowId] ?? null,
+          sourceRowId: rowCheck.sourceRowId ?? null,
+          status: rowCheck.status ?? null,
+          accepted: rowCheck.accepted === true,
+          eventLedgerRef: rowCheck.eventLedgerRef ?? null,
+          directToyConsumers: directToyConsumersForRow(rowId),
+        },
+      ];
+    }),
+  );
+  const acceptedRows = Object.values(rows)
+    .filter((row) => row.accepted === true)
+    .map((row) => row.rowId);
+  const missingRows = Object.values(rows)
+    .filter((row) => row.accepted !== true)
+    .map((row) => row.rowId);
+  return {
+    status:
+      missingRows.length === 0
+        ? "all_toy_bound_noether_sea_rows_accepted"
+        : "blocked_missing_toy_bound_noether_sea_rows",
+    claimLevel:
+      "toy-binding accepted-row success marker; not independent promotion evidence",
+    requiredRowCount: requiredRows.length,
+    acceptedRowCount: acceptedRows.length,
+    acceptedRows,
+    missingRows,
+    firstMissingRow: missingRows[0] ?? null,
+    rows,
+  };
+}
+
+function directToyConsumersForRow(rowId) {
+  return {
+    coefficients: toyConsumersForRow(
+      REQUIRED_TOY_BINDING_ROWS.coefficients,
+      rowId,
+    ),
+    graphRules: toyConsumersForRow(REQUIRED_TOY_BINDING_ROWS.graphRules, rowId),
+  };
+}
+
+function toyConsumersForRow(bindings, rowId) {
+  return Object.entries(bindings)
+    .filter(([, rows]) => Array.isArray(rows) && rows.includes(rowId))
+    .map(([consumer]) => consumer);
 }
 
 function decideStatus({ schemaOk, missingRows, structuralFailures }) {

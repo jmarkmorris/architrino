@@ -1,0 +1,210 @@
+{
+  "schema": "aaa-nuclear-atomic-finite-range-residual-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for finite_range_residual; records the exact tail-limit closure target and nearest candidate evidence; not accepted finite-range residual evidence, not accepted Delta E_corr_NN evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "finite_range_residual",
+  "currentStatus": "blocked_missing_delta_E_corr_tail_audit",
+  "sourceSupportSought": [
+    "Delta_E_corr_NN_tail_limit",
+    "bounded_residual_overlap",
+    "large_r_zero_limit"
+  ],
+  "nearestCandidateInputs": {
+    "confinementFunctionalDeltaTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/delta_E_corr_NN",
+      "usableFor": [
+        "Delta E_corr_NN equation shape",
+        "same confinement-functional dependency chain",
+        "target row consumed by finite-tail toy controls"
+      ],
+      "notUsableFor": [
+        "accepted_delta_E_corr_NN",
+        "accepted_finite_range_residual",
+        "accepted_large_r_zero_limit"
+      ],
+      "boundary": "The Delta E_corr_NN row supplies the residual equation target but remains priority-packet-only and target-required."
+    },
+    "finiteResidualCorridorOverlapBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/finite-residual-corridor-overlap-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "finite corridor-overlap target shape",
+        "shared residual-overlap proof burden",
+        "same no-open-color dependency chain"
+      ],
+      "notUsableFor": [
+        "accepted_finite_range_residual",
+        "accepted_finite_residual_corridor_overlap",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The finite-overlap blocker depends on the finite residual tail but explicitly accepts no finite-range residual evidence."
+    },
+    "noOpenColorFarFieldBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "large-separation no-open-color target",
+        "same-record no-open-color audit shape"
+      ],
+      "notUsableFor": [
+        "accepted_no_open_color_far_field",
+        "accepted_finite_range_residual",
+        "accepted_same_record_no_open_color_audit"
+      ],
+      "boundary": "The no-open-color blocker requires a finite residual tail but is not that tail proof."
+    },
+    "noFreeColorAsymptoticStateBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/no-free-color-asymptotic-state-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "asymptotic no-free-color audit target",
+        "same-domain color-singlet closure burden"
+      ],
+      "notUsableFor": [
+        "accepted_no_free_color_asymptotic_state",
+        "accepted_finite_range_residual",
+        "accepted_large_r_zero_limit"
+      ],
+      "boundary": "The no-free-color blocker names the finite residual tail as required evidence but explicitly accepts no source rows."
+    },
+    "nnCorridorOverlapSample": {
+      "candidatePath": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#branch-interface-source-acquisition-bundle",
+      "usableFor": [
+        "sample-level p+n and p+p finite-tail pressure",
+        "orientation and mismatch table shape",
+        "bounded-overlap diagnostic"
+      ],
+      "notUsableFor": [
+        "accepted_finite_range_residual",
+        "accepted_delta_E_corr_NN_tail_limit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The priority sample can motivate the finite-tail audit, but it is not durable accepted evidence that the residual tends to zero at large separation."
+    },
+    "qcdBenchmarkConstraint": {
+      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#first-native-sigma_eff-extraction-row",
+      "usableFor": [
+        "static confinement and residual-potential recovery pressure",
+        "same sigma_eff domain requirement"
+      ],
+      "notUsableFor": [
+        "accepted_finite_range_residual",
+        "accepted_delta_E_corr_NN_tail_limit"
+      ],
+      "boundary": "The QCD priority packet keeps the finite residual and residual nuclear-potential ladder as derivation targets until the same-domain confinement proof is accepted."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "finite_range_residual_source_target_0001",
+    "deltaECorrTailLimit": {
+      "requiredBehavior": "The accepted Delta E_corr_NN residual must have a same-domain tail limit that tends to zero at large separation.",
+      "mustBindTo": [
+        "accepted_delta_E_corr_NN",
+        "Delta_E_corr_NN_tail_limit",
+        "large_r_zero_limit"
+      ]
+    },
+    "boundedResidualOverlap": {
+      "requiredBehavior": "The residual overlap contribution must be bounded in the same corridor window consumed by the Fe/Ni finite-tail controls.",
+      "mustShareDomainWith": [
+        "accepted_sigma_eff_extraction",
+        "accepted_color_singlet_nucleon_envelope",
+        "accepted_branch_interface_rows"
+      ]
+    },
+    "largeRZeroLimit": {
+      "requiredBehavior": "The same residual row must support the no-open-color and no-free-color asymptotic audits without leaving an element-tuned long-range tail.",
+      "mustFeedRows": [
+        "finite_residual_corridor_overlap",
+        "no_open_color_far_field",
+        "same_record_no_open_color_audit",
+        "no_free_color_asymptotic_state"
+      ],
+      "notRequiredBeforeFiniteRangeAcceptance": [
+        "no_open_color_far_field",
+        "same_record_no_open_color_audit",
+        "no_free_color_asymptotic_state"
+      ]
+    }
+  },
+  "candidateFiniteTailScaffold": {
+    "claimLevel": "priority-only finite-tail proof scaffold; accepts no source rows and does not prove finite_range_residual",
+    "tailEnvelope": "\\mathcal T_{NN}(R)=\\sup_{r\\ge R}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r;\\Gamma_{N_1},\\Gamma_{N_2},\\sigma_{\\mathrm{eff}},\\rho_{\\text{NS}},\\chi_{\\text{sea}})\\right|",
+    "finiteRangeClosure": "\\lim_{R\\to\\infty}\\mathcal T_{NN}(R)=0",
+    "boundedOverlapCriterion": "\\mathcal O_{NN}=\\int_{R_0}^{\\infty}\\left|\\Delta E_{\\mathrm{corr}}^{NN}(r)\\right|\\,w_{\\mathrm{corr}}(r)\\,dr<\\infty",
+    "sufficientDecayCondition": "\\exists R_0,C,\\lambda>0:\\;|\\Delta E_{\\mathrm{corr}}^{NN}(r)|\\le C e^{-\\lambda(r-R_0)}\\;\\text{for}\\;r\\ge R_0",
+    "sameRecordConstraint": "\\operatorname{record}(\\Delta E_{\\mathrm{corr}}^{NN})=\\operatorname{record}(\\sigma_{\\mathrm{eff}})=\\operatorname{record}(\\Gamma_{N_1})=\\operatorname{record}(\\Gamma_{N_2})=\\operatorname{record}(B_{pn})=\\operatorname{record}(B_{pp})",
+    "requiredAcceptedRowsBeforeUse": [
+      "accepted_delta_E_corr_NN",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "same_record_noether_sea_response"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "finite_residual_corridor_overlap",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state"
+    ],
+    "notRequiredBeforeFiniteRangeAcceptance": [
+      "no_open_color_far_field",
+      "same_record_no_open_color_audit",
+      "no_free_color_asymptotic_state"
+    ],
+    "graphRuleLocks": [
+      "finite_tail_saturation_check",
+      "bounded_degree_surface_depleted_corridor_estimator"
+    ],
+    "coefficientLocks": [
+      "alphaPack",
+      "dSat",
+      "maxDegree",
+      "packSoftA"
+    ],
+    "coefficientExclusion": "No element-indexed coefficient may appear in R_0, C, lambda, T_NN, O_NN, or w_corr."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "finite_range_residual",
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+      "accepted_delta_E_corr_NN",
+      "delta_E_corr_NN",
+      "finite_residual_corridor_overlap",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state",
+      "finite_tail_saturation_check",
+      "accepted_branch_interface_rows",
+      "accepted_color_singlet_nucleon_envelope",
+      "sigma_eff_extraction"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedFiniteTailGraphRuleFirstMissingObject": "missing_accepted_delta_E_corr_NN",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Derive the finite_range_residual row as the large-separation tail limit of Delta E_corr_NN in the same sigma_eff, color-singlet envelope, branch-interface, and Noether sea response domain consumed by the Fe/Ni finite-tail controls.",
+    "minimalInputNeeded": [
+      "accepted Delta E_corr_NN row",
+      "accepted sigma_eff extraction row",
+      "accepted proton and neutron color-singlet envelope bundle",
+      "accepted branch-interface rows",
+      "accepted same-record Noether sea response row",
+      "same-domain large-r zero-limit audit that later feeds no-open-color and no-free-color checks"
+    ],
+    "failureModes": [
+      "Delta E_corr_NN does not tend to zero at large separation",
+      "the bounded residual overlap depends on element-specific Fe/Ni tuning",
+      "the finite-tail proof uses a different branch-interface or sigma_eff record than the toy consumes",
+      "the finite-tail proof assumes no-open-color instead of deriving the tail bound first",
+      "the graph saturation rule can pass without an accepted finite residual tail"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the Delta E_corr_NN target equation, finite-overlap blocker, no-open-color blocker, no-free-color blocker, or sample-level overlap row from being mistaken for accepted finite_range_residual evidence.",
+    "Fe/Ni promotion remains blocked until finite_range_residual, finite_residual_corridor_overlap, accepted_delta_E_corr_NN, no_open_color_far_field, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}

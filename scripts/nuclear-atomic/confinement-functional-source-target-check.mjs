@@ -149,6 +149,294 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "same_event_ledger",
   ],
 });
+const SOURCE_ACQUISITION_ROUTES = Object.freeze({
+  accepted_proton_color_singlet_envelope: {
+    requiredAcceptedRowsBeforeUse: [
+      "proton_color_singlet_closure",
+      "finite_envelope_boundary",
+      "no_free_color_asymptotic_state",
+    ],
+  },
+  accepted_neutron_color_singlet_envelope: {
+    requiredAcceptedRowsBeforeUse: [
+      "neutron_color_singlet_closure",
+      "finite_envelope_boundary",
+      "no_free_color_asymptotic_state",
+    ],
+  },
+  no_free_color_asymptotic_state: {
+    requiredAcceptedRowsBeforeUse: [
+      "color_singlet_closure",
+      "asymptotic_field_audit",
+      "finite_range_residual",
+    ],
+  },
+  accepted_sigma_eff_extraction: {
+    requiredAcceptedRowsBeforeUse: [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+    ],
+  },
+  accepted_color_singlet_nucleon_envelope: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+    ],
+  },
+  accepted_branch_interface_rows: {
+    requiredAcceptedRowsBeforeUse: [
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "nucleon_branch_interface_ledgers",
+      "same_record_energy_momentum_angular_momentum_ledger",
+    ],
+  },
+  finite_residual_corridor_overlap: {
+    requiredAcceptedRowsBeforeUse: [
+      "Delta_E_corr_NN_finite_range",
+      "corridor_overlap_window",
+      "no_open_color_far_field",
+    ],
+  },
+  accepted_delta_E_corr_NN: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+    ],
+  },
+  finite_range_residual: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "same_record_noether_sea_response",
+    ],
+    feedsRowsAfterAcceptance: [
+      "finite_residual_corridor_overlap",
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "no_free_color_asymptotic_state",
+    ],
+    notRequiredBeforeAcceptance: [
+      "no_open_color_far_field",
+      "same_record_no_open_color_audit",
+      "no_free_color_asymptotic_state",
+    ],
+  },
+  color_singlet_closure: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_sigma_eff_domain",
+      "same_record_noether_sea_response",
+      "same_record_branch_interface",
+      "finite_range_residual",
+    ],
+  },
+  same_record_no_open_color_audit: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+      "accepted_branch_interface_rows",
+    ],
+    feedsRowsAfterAcceptance: ["no_open_color_far_field"],
+  },
+  no_open_color_far_field: {
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_branch_interface_rows",
+    ],
+  },
+});
+const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
+  sigma_eff_extraction: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+    ],
+    requiredSameRecordRows: [
+      "K_perp",
+      "V_exc",
+      "rho_NS",
+      "chi_sea",
+      "axis_exceptionality_charge",
+      "same_record_noether_sea_response",
+      "sigma_eff_extraction",
+    ],
+    requiredClosureRows: [
+      "same_domain_minimizer_certificate",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_inputs",
+    ],
+    requiredExtractionCertificateRows: [
+      "same_domain_minimizer_or_variational_certificate",
+      "refinement_stable_sigma_eff_row",
+      "source_path_tying_extraction_to_accepted_upstream_rows",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "accepted_inputs_only",
+      "target_equation_only",
+    ],
+  },
+  color_singlet_nucleon_envelope: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+    ],
+    requiredSameRecordRows: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+      "color_singlet_nucleon_envelope",
+      "same_sigma_eff_domain",
+    ],
+    requiredClosureRows: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+    ],
+    requiredEnvelopeBundleRows: [
+      "accepted_proton_color_singlet_envelope",
+      "accepted_neutron_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "separate_target_only_envelope_blockers",
+      "color_singlet_closure_blocker_only",
+    ],
+  },
+  delta_E_corr_NN: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+    ],
+    requiredSameRecordRows: [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
+    requiredClosureRows: [
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+    ],
+    requiredResidualDerivationRows: [
+      "same_domain_residual_derivation",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "finite_residual_corridor_overlap",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "target_equation_only",
+      "finite_overlap_blocker_only",
+    ],
+  },
+  finite_range_residual: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "same_record_noether_sea_response",
+    ],
+    requiredSameRecordRows: [
+      "accepted_delta_E_corr_NN",
+      "accepted_sigma_eff_extraction",
+      "accepted_color_singlet_nucleon_envelope",
+      "accepted_branch_interface_rows",
+      "same_record_noether_sea_response",
+      "finite_range_residual",
+    ],
+    requiredClosureRows: [
+      "Delta_E_corr_NN_tail_limit",
+      "bounded_residual_overlap",
+      "large_r_zero_limit",
+    ],
+    requiredTailLimitStatements: [
+      "lim_R_to_infty_T_NN_R_eq_0",
+      "O_NN_finite",
+      "exists_R0_C_lambda_exp_decay_tail",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "sample_level_finite_tail",
+      "target_equation_only",
+    ],
+  },
+  no_open_color_far_field: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_branch_interface_rows",
+    ],
+    requiredSameRecordRows: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_branch_interface_rows",
+      "same_record_branch_interface",
+      "same_record_noether_sea_response",
+    ],
+    requiredClosureRows: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+    ],
+    requiredLimitStatements: [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "lim_R_to_infty_T_NN_R_eq_0",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "sample_level_finite_tail",
+      "target_only_no_open_color",
+    ],
+  },
+});
 
 const EQUATION_TOKENS = Object.freeze({
   sigma_eff_extraction: [
@@ -175,11 +463,11 @@ const REQUIRED_TOY_BINDING_ROWS = Object.freeze({
     alphaSurf: ["color_singlet_nucleon_envelope", "delta_E_corr_NN"],
     alphaPair: ["color_singlet_nucleon_envelope", "delta_E_corr_NN"],
     alphaShell: ["color_singlet_nucleon_envelope", "delta_E_corr_NN"],
-    alphaPack: ["delta_E_corr_NN", "no_open_color_far_field"],
+    alphaPack: ["delta_E_corr_NN", "finite_range_residual", "no_open_color_far_field"],
     boundaryDegreeLoss: ["color_singlet_nucleon_envelope", "delta_E_corr_NN"],
-    dSat: ["delta_E_corr_NN", "no_open_color_far_field"],
-    maxDegree: ["delta_E_corr_NN", "no_open_color_far_field"],
-    packSoftA: ["delta_E_corr_NN", "no_open_color_far_field"],
+    dSat: ["delta_E_corr_NN", "finite_range_residual", "no_open_color_far_field"],
+    maxDegree: ["delta_E_corr_NN", "finite_range_residual", "no_open_color_far_field"],
+    packSoftA: ["delta_E_corr_NN", "finite_range_residual", "no_open_color_far_field"],
     pnCorridorPairReward: ["sigma_eff_extraction", "delta_E_corr_NN"],
     ppCorridorPairReward: ["sigma_eff_extraction", "delta_E_corr_NN"],
   },
@@ -190,6 +478,7 @@ const REQUIRED_TOY_BINDING_ROWS = Object.freeze({
     ],
     finite_tail_saturation_check: [
       "delta_E_corr_NN",
+      "finite_range_residual",
       "no_open_color_far_field",
     ],
   },
@@ -251,6 +540,15 @@ export function buildConfinementFunctionalSourceTargetCheck(
     rows,
     input?.sourceAcquisitionTargets ?? {},
   );
+  const acceptedSourceRowProofTargets = evaluateAcceptedSourceRowProofTargets(
+    input?.acceptedSourceRowProofTargets ?? {},
+    input?.toyBindingRows ?? {},
+  );
+  const sourceAcquisitionBlockerMap = buildSourceAcquisitionBlockerMap({
+    sourceAcquisitionCheck,
+    toyBindingRows: input?.toyBindingRows ?? {},
+    acceptedSourceRowProofTargets,
+  });
   const structuralFailures = [
     ...Object.entries(dependencyChecks)
       .filter(([, check]) => check.passed !== true)
@@ -268,6 +566,7 @@ export function buildConfinementFunctionalSourceTargetCheck(
     schemaOk,
     structuralFailures,
     sourceEvidenceCheck,
+    acceptedSourceRowProofTargets,
     sourceAcquisitionCheck,
     missingRows,
   });
@@ -298,6 +597,10 @@ export function buildConfinementFunctionalSourceTargetCheck(
         (check) => check.passed === true,
       ),
       sourceEvidencePass: sourceEvidenceCheck.passed,
+      acceptedSourceRowProofTargetPass:
+        acceptedSourceRowProofTargets.summary.passed,
+      acceptedSourceRowProofTargetFailures:
+        acceptedSourceRowProofTargets.summary.failures,
       sourceAcquisitionPass: sourceAcquisitionCheck.passed,
       sourceAcquisitionFirstMissingObject:
         sourceAcquisitionCheck.firstMissingSourceRow
@@ -309,7 +612,9 @@ export function buildConfinementFunctionalSourceTargetCheck(
     requiredRows: [...REQUIRED_ROWS],
     rowChecks,
     sourceEvidenceCheck,
+    acceptedSourceRowProofTargets,
     sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap,
     dependencyChecks,
     equationChecks,
     toyBindingCheck,
@@ -373,7 +678,9 @@ function writeReport(report, args) {
         summary: report.summary,
         rowChecks: report.rowChecks,
         sourceEvidenceCheck: report.sourceEvidenceCheck,
+        acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
         sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+        sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
         equationChecks: report.equationChecks,
         toyBindingCheck: report.toyBindingCheck,
       }
@@ -574,6 +881,133 @@ function evaluateSourceAcquisitionRow(rowId, row, targetChecks) {
   };
 }
 
+function evaluateAcceptedSourceRowProofTargets(proofTargets, toyBindingRows) {
+  const targets = Object.fromEntries(
+    Object.entries(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS).map(
+      ([rowId, expected]) => [
+        rowId,
+        evaluateAcceptedSourceRowProofTarget(
+          rowId,
+          proofTargets[rowId],
+          expected,
+          toyBindingRows,
+        ),
+      ],
+    ),
+  );
+  const failures = Object.values(targets).flatMap((target) =>
+    target.passed
+      ? []
+      : [
+          {
+            rowId: target.rowId,
+            reason: acceptedSourceRowProofTargetFailureReason(target),
+            missingFields: target.missingFields,
+            mismatchedFields: target.mismatchedFields,
+          },
+        ],
+  );
+  return {
+    summary: {
+      requiredField: "acceptedSourceRowProofTargets",
+      requiredRows: Object.keys(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS),
+      passed: failures.length === 0,
+      failures,
+    },
+    targets,
+  };
+}
+
+function evaluateAcceptedSourceRowProofTarget(
+  rowId,
+  target,
+  expected,
+  toyBindingRows,
+) {
+  const present = target && typeof target === "object" && !Array.isArray(target);
+  const status = present ? normalizeStatus(target) : "missing";
+  const claimLevel = present ? target.claimLevel ?? null : null;
+  const expectedArrayFields = Object.keys(expected);
+  const missingFields = [
+    ...requiredStringFields(target, ["id", "claimLevel", "currentEvidenceStatus"]),
+    ...requiredArrayFields(target, expectedArrayFields),
+  ];
+  const mismatchedFields = [];
+  if (status !== "target_required") {
+    mismatchedFields.push("status");
+  }
+  if (typeof claimLevel !== "string" || !claimLevel.includes("not accepted source evidence")) {
+    mismatchedFields.push("claimLevel");
+  }
+  for (const [field, expectedRows] of Object.entries(expected)) {
+    if (!sameStringSet(target?.[field], expectedRows)) {
+      mismatchedFields.push(field);
+    }
+  }
+  return {
+    rowId,
+    targetId: present ? target.id ?? null : null,
+    present,
+    status,
+    currentEvidenceStatus: present ? target.currentEvidenceStatus ?? null : null,
+    claimLevel,
+    requiredAcceptedSourceRowsBeforeUse:
+      target?.requiredAcceptedSourceRowsBeforeUse ?? [],
+    requiredSameRecordRows: target?.requiredSameRecordRows ?? [],
+    requiredClosureRows: target?.requiredClosureRows ?? [],
+    requiredExtractionCertificateRows:
+      target?.requiredExtractionCertificateRows ?? [],
+    requiredEnvelopeBundleRows: target?.requiredEnvelopeBundleRows ?? [],
+    requiredResidualDerivationRows:
+      target?.requiredResidualDerivationRows ?? [],
+    requiredLimitStatements: target?.requiredLimitStatements ?? [],
+    requiredTailLimitStatements: target?.requiredTailLimitStatements ?? [],
+    forbiddenPromotionSources: target?.forbiddenPromotionSources ?? [],
+    currentPriorityPacket: present ? target.currentPriorityPacket ?? null : null,
+    directToyConsumers: directToyConsumersForConfinementRows(toyBindingRows, [rowId]),
+    missingFields,
+    mismatchedFields,
+    passed:
+      present &&
+      missingFields.length === 0 &&
+      mismatchedFields.length === 0,
+  };
+}
+
+function requiredStringFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => typeof target[field] !== "string" || target[field] === "");
+}
+
+function requiredArrayFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => !Array.isArray(target[field]));
+}
+
+function acceptedSourceRowProofTargetFailureReason(target) {
+  if (target.present !== true) {
+    return "accepted_source_row_proof_target_missing";
+  }
+  if (target.missingFields.length > 0) {
+    return "accepted_source_row_proof_target_field_missing";
+  }
+  return "accepted_source_row_proof_target_shape_mismatch";
+}
+
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right)) {
+    return false;
+  }
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value) => right.includes(value));
+}
+
 function sourceAcquisitionTargetFailureReason(check) {
   if (check.present !== true) {
     return "source_acquisition_target_missing";
@@ -582,6 +1016,124 @@ function sourceAcquisitionTargetFailureReason(check) {
     return "source_acquisition_target_shape_mismatch";
   }
   return "source_acquisition_target_not_accepted";
+}
+
+function buildSourceAcquisitionBlockerMap({
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  acceptedSourceRowProofTargets,
+}) {
+  const missingSourceRows = [
+    ...new Set(
+      Object.values(sourceAcquisitionCheck.rowChecks)
+        .flatMap((check) => check.missingAcceptedSourceRows),
+    ),
+  ];
+  const blockers = missingSourceRows.map((sourceRowId) =>
+    sourceAcquisitionBlocker(
+      sourceAcquisitionCheck,
+      toyBindingRows,
+      sourceRowId,
+      acceptedSourceRowProofTargets,
+    ),
+  );
+  const firstBlocker = blockers[0] ?? null;
+  return {
+    status:
+      blockers.length === 0
+        ? "all_required_source_rows_acquired"
+        : "blocked_missing_accepted_source_rows",
+    claimLevel:
+      "source-acquisition blocker map; not accepted source evidence and not promotion evidence",
+    firstMissingAcceptedSourceRow: firstBlocker?.sourceRowId ?? null,
+    firstMissingObject: firstBlocker
+      ? `missing_accepted_${firstBlocker.sourceRowId}`
+      : null,
+    blockedSourceRowCount: blockers.length,
+    blockers,
+  };
+}
+
+function sourceAcquisitionBlocker(
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  sourceRowId,
+  acceptedSourceRowProofTargets,
+) {
+  const targetCheck = sourceAcquisitionCheck.targetChecks[sourceRowId] ?? {};
+  const blockedConfinementRows = Object.values(sourceAcquisitionCheck.rowChecks)
+    .filter((check) => check.missingAcceptedSourceRows.includes(sourceRowId))
+    .map((check) => check.rowId);
+  return {
+    sourceRowId,
+    targetId: targetCheck.targetId ?? null,
+    status: targetCheck.status ?? null,
+    currentEvidenceStatus: targetCheck.currentEvidenceStatus ?? null,
+    accepted: targetCheck.accepted === true,
+    sourceTargetPath: targetCheck.sourceTargetPath ?? null,
+    requiredScope: targetCheck.requiredScope ?? null,
+    requiredLedgerComponents: targetCheck.requiredLedgerComponents ?? [],
+    missingRequiredComponents: targetCheck.missingRequiredComponents ?? [],
+    blockedConfinementRows,
+    acceptedSourceRowProofTargets: Object.fromEntries(
+      blockedConfinementRows
+        .map((rowId) => [
+          rowId,
+          acceptedSourceRowProofTargets?.targets?.[rowId] ?? null,
+        ])
+        .filter(([, target]) => target),
+    ),
+    sourceAcquisitionRoute: sourceAcquisitionRouteForSourceRow(
+      sourceRowId,
+      targetCheck,
+      blockedConfinementRows,
+    ),
+    directToyConsumers: directToyConsumersForConfinementRows(
+      toyBindingRows,
+      [sourceRowId, ...blockedConfinementRows],
+    ),
+    nextProofTarget:
+      targetCheck.requiredScope ??
+      `accepted ${sourceRowId} source row in the same confinement-functional record`,
+  };
+}
+
+function sourceAcquisitionRouteForSourceRow(
+  sourceRowId,
+  targetCheck,
+  blockedConfinementRows,
+) {
+  const route = SOURCE_ACQUISITION_ROUTES[sourceRowId] ?? {};
+  return {
+    claimLevel:
+      "priority-only source-acquisition route; not accepted source evidence and not promotion evidence",
+    requiredRowsBeforeUse: targetCheck.requiredLedgerComponents ?? [],
+    requiredAcceptedRowsBeforeUse: route.requiredAcceptedRowsBeforeUse ?? [],
+    feedsRowsAfterAcceptance:
+      route.feedsRowsAfterAcceptance ?? blockedConfinementRows,
+    notRequiredBeforeAcceptance: route.notRequiredBeforeAcceptance ?? [],
+  };
+}
+
+function directToyConsumersForConfinementRows(toyBindingRows, rows) {
+  return {
+    coefficients: toyConsumersForConfinementRows(
+      toyBindingRows.coefficients ?? {},
+      rows,
+    ),
+    graphRules: toyConsumersForConfinementRows(
+      toyBindingRows.graphRules ?? {},
+      rows,
+    ),
+  };
+}
+
+function toyConsumersForConfinementRows(bindings, rows) {
+  return Object.entries(bindings)
+    .filter(([, boundRows]) =>
+      Array.isArray(boundRows) && boundRows.some((row) => rows.includes(row)),
+    )
+    .map(([consumer]) => consumer);
 }
 
 function evaluateSourceRowDependencies(rowId, row) {
@@ -672,6 +1224,7 @@ function decideStatus({
   schemaOk,
   structuralFailures,
   sourceEvidenceCheck,
+  acceptedSourceRowProofTargets,
   sourceAcquisitionCheck,
   missingRows,
 }) {
@@ -683,6 +1236,9 @@ function decideStatus({
   }
   if (sourceEvidenceCheck.passed !== true) {
     return "confinement_functional_source_evidence_mismatch";
+  }
+  if (acceptedSourceRowProofTargets.summary.passed !== true) {
+    return "confinement_functional_proof_target_incomplete";
   }
   if (missingRows.length > 0) {
     return "missing_accepted_confinement_functional_rows";

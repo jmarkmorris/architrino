@@ -452,9 +452,10 @@
 
       .equation-mapping-equation-title {
         position: absolute;
-        right: 0;
-        bottom: calc(100% + 14px);
-        left: 0;
+        top: max(22px, env(safe-area-inset-top));
+        right: clamp(116px, 16vw, 204px);
+        left: clamp(116px, 16vw, 204px);
+        z-index: 4;
         display: flex;
         flex-wrap: wrap;
         align-items: center;
@@ -465,6 +466,7 @@
         font-size: 18px;
         line-height: 1.18;
         text-align: center;
+        pointer-events: none;
       }
 
       .equation-mapping-equation-title strong {
@@ -618,12 +620,20 @@
       @media (max-width: 760px) {
         html,
         body {
+          height: auto;
+          min-height: 100%;
           overflow: auto;
+        }
+
+        #equation-mapping-app {
+          height: auto;
+          min-height: 100%;
         }
 
         .equation-mapping-shell {
           --index-width: 0px;
           display: block;
+          height: auto;
           min-height: 100%;
         }
 
@@ -642,7 +652,12 @@
 
         .equation-mapping-canvas,
         .equation-mapping-stage {
+          height: auto;
           min-height: 100vh;
+        }
+
+        .equation-mapping-canvas {
+          overflow: visible;
         }
 
         .equation-mapping-stage {

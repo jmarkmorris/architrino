@@ -1,0 +1,180 @@
+{
+  "schema": "aaa-nuclear-atomic-accepted-branch-interface-rows-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for accepted_branch_interface_rows in the Fe/Ni confinement and residual lanes; records nearest branch-interface evidence and missing top-level acceptance conditions; not accepted branch-interface evidence, not accepted Delta E_corr_NN evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "accepted_branch_interface_rows",
+  "currentStatus": "blocked_missing_accepted_branch_interface_rows",
+  "sourceSupportSought": [
+    "pn_orientation_count",
+    "pp_orientation_count",
+    "nucleon_branch_interface_ledgers",
+    "same_record_energy_momentum_angular_momentum_ledger"
+  ],
+  "nearestCandidateInputs": {
+    "branchInterfaceSourceTarget": {
+      "candidatePath": "scripts/nuclear-atomic/nucleon-branch-interface-source-target.v1.json",
+      "usableFor": [
+        "p+n and p+p orientation algebra",
+        "accepted proton and neutron branch-interface input ledgers",
+        "accepted same-record energy-momentum-angular-momentum ledger",
+        "toy coefficient and graph-rule row binding shape"
+      ],
+      "notUsableFor": [
+        "accepted_branch_interface_rows",
+        "accepted_nucleon_branch_interface_ledgers",
+        "accepted_pn_orientation_count",
+        "accepted_pp_orientation_count",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The current branch-interface source target passes the orientation algebra and accepts three upstream input ledgers, but its top rows remain target/candidate rows until no_open_color_far_field and the top branch-interface rows are accepted from durable non-fixture evidence."
+    },
+    "noOpenColorFarFieldBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "no-open-color far-field dependency shape",
+        "finite residual, color-singlet closure, and same-record audit proof burden"
+      ],
+      "notUsableFor": [
+        "accepted_no_open_color_far_field",
+        "accepted_branch_interface_rows"
+      ],
+      "boundary": "The no-open-color blocker names the missing far-field closure but explicitly accepts no source rows."
+    },
+    "sameRecordBranchInterfaceBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-branch-interface-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-record branch-interface bundle target",
+        "accepted branch ledgers, conservation ledger, and no-open-color dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_branch_interface",
+        "accepted_branch_interface_rows",
+        "accepted_delta_E_corr_NN"
+      ],
+      "boundary": "The same-record branch-interface blocker preserves the bundle shape but explicitly accepts no top-level branch-interface rows."
+    },
+    "confinementFunctionalTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/sourceAcquisitionTargets/accepted_branch_interface_rows",
+      "usableFor": [
+        "accepted_branch_interface_rows dependency shape consumed by Delta E_corr_NN",
+        "cross-lane branch-interface/confinement coupling"
+      ],
+      "notUsableFor": [
+        "accepted_branch_interface_rows",
+        "accepted_delta_E_corr_NN",
+        "accepted_confinement_functional_source_rows"
+      ],
+      "boundary": "The confinement-functional target consumes accepted branch-interface rows as an upstream source-acquisition target but does not itself accept those rows."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "accepted_branch_interface_rows_source_target_0001",
+    "topLevelBranchInterfaceRows": {
+      "requiredBehavior": "The accepted branch-interface row bundle must expose p+n orientation count, p+p orientation count, nucleon branch-interface ledgers, and same-record conservation in one durable non-fixture record before Delta E_corr_NN can consume it.",
+      "mustConsumeRows": [
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "nucleon_branch_interface_ledgers",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ]
+    },
+    "noOpenColorClosure": {
+      "requiredBehavior": "The accepted branch-interface rows must also carry the no-open-color far-field condition required by the proton, neutron, p+n, and p+p source rows.",
+      "mustConsumeRows": [
+        "no_open_color_far_field",
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ]
+    },
+    "sameRecordBoundary": {
+      "requiredBehavior": "The same record must connect p+n and p+p orientation extraction, Coulomb separation, conservation accounting, and no-open-color closure so branch-interface coefficients cannot be retuned independently of the residual lane.",
+      "mustShareWith": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "accepted_delta_E_corr_NN"
+      ]
+    }
+  },
+  "candidateBranchInterfaceRowBundleScaffold": {
+    "claimLevel": "priority-only accepted-branch-interface row-bundle scaffold; accepts no source rows and does not prove accepted_branch_interface_rows",
+    "bundleTuple": "\\mathcal B_{\\mathrm{br}}=(B_{pn},B_{pp},L_{E\\mathbf p\\mathbf J},\\mathcal C_{\\mathrm{no\\ open}},\\Gamma_p,\\Gamma_n)",
+    "orientationWeightRule": "W_c=\\frac{N_{\\mathrm{share},c}}{N_{\\mathrm{ret},c}}P_c,\\qquad M_c=1-W_c",
+    "channelDifferentialCriterion": "W_{pn}>W_{pp}\\;\\wedge\\;M_{pn}<M_{pp}",
+    "sameRecordConstraint": "\\operatorname{record}(B_{pn})=\\operatorname{record}(B_{pp})=\\operatorname{record}(L_{E\\mathbf p\\mathbf J})=\\operatorname{record}(\\mathcal C_{\\mathrm{no\\ open}})",
+    "requiredAcceptedRowsBeforeUse": [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field"
+    ],
+    "feedsRowsAfterAcceptance": [
+      "same_record_branch_interface",
+      "accepted_delta_E_corr_NN",
+      "bounded_degree_surface_depleted_corridor_estimator",
+      "finite_tail_saturation_check"
+    ],
+    "coefficientLocks": [
+      "alphaCorr",
+      "alphaCoul",
+      "alphaPair",
+      "alphaPack",
+      "dSat",
+      "maxDegree",
+      "pnCorridorPairReward",
+      "pnPairMismatchCost",
+      "ppCorridorPairReward",
+      "ppPairMismatchCost",
+      "ppCoulombCost"
+    ],
+    "graphRuleLocks": [
+      "bounded_degree_surface_depleted_corridor_estimator",
+      "finite_tail_saturation_check"
+    ],
+    "coefficientExclusion": "No A-indexed, Z-indexed, isotope-indexed, or element-indexed coefficient may appear in B_pn, B_pp, W_c, M_c, L_EpJ, or C_no_open.",
+    "failureMode": "If the Fe/Ni toy can promote while this bundle is target-only, or if the p+n and p+p rows come from different records, the scaffold fails as a source-binding route."
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "no_open_color_far_field",
+      "same_record_branch_interface",
+      "accepted_delta_E_corr_NN",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedBranchCheckerStatus": "missing_accepted_branch_interface_rows",
+    "expectedBranchFirstMissingObject": "missing_accepted_nucleon_branch_interface_ledgers",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "expectedConfinementCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedConfinementSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Promote the branch-interface rows only after the top p+n and p+p orientation rows, nucleon branch-interface ledgers, same-record conservation ledger, and no-open-color far-field row are accepted in the same retained record.",
+    "minimalInputNeeded": [
+      "accepted nucleon_branch_interface_ledgers row",
+      "accepted pn_orientation_count row",
+      "accepted pp_orientation_count row",
+      "accepted no_open_color_far_field row",
+      "same-record link to Delta E_corr_NN consumption"
+    ],
+    "failureModes": [
+      "accepted proton and neutron branch ledgers are mistaken for accepted top-level branch-interface rows",
+      "p+n and p+p orientation counts are accepted without no-open-color far-field closure",
+      "the Delta E_corr_NN residual consumes branch-interface rows from a different record",
+      "Fe/Ni coefficients are retuned while branch-interface rows remain target-only"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the durable branch-interface source target, accepted input ledgers, or same-record conservation ledger from being mistaken for accepted_branch_interface_rows.",
+    "Fe/Ni promotion remains blocked until branch-interface, confinement-functional, weak-channel, and Noether sea response consumption rows are all accepted from durable non-fixture evidence."
+  ]
+}

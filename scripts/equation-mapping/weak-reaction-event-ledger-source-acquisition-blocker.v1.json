@@ -1,0 +1,184 @@
+{
+  "schema": "aaa-equation-map-weak-reaction-event-ledger-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for reaction_event_ledger in the retained muon weak-exposure domain; records nearest weak evidence and missing event-ledger conservation conditions; not accepted reaction-event evidence, not accepted weak-channel evidence, and not equation-map score movement",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "reaction_event_ledger",
+  "currentStatus": "blocked_missing_reaction_event_ledger",
+  "sourceSupportSought": [
+    "weak_visible_branch_ledger",
+    "weak_projection",
+    "weak_quotient",
+    "weak_exposure_record",
+    "va_chirality_gate",
+    "energy_momentum_angular_momentum_accounting"
+  ],
+  "nearestCandidateInputs": {
+    "weakVisibleBranchLedgerEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-visible-branch-ledger-muon-decay-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "weak_visible_branch_ledger"
+      ],
+      "usableFor": [
+        "retained weak-visible domain",
+        "same branch record",
+        "visible muon event row context"
+      ],
+      "notUsableFor": [
+        "reaction_event_ledger",
+        "energy_momentum_angular_momentum_accounting",
+        "emitted_product_accounting"
+      ],
+      "boundary": "The retained visible branch ledger provides the event domain but does not accept the full reaction event ledger."
+    },
+    "weakProjectionEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-projection-muon-decay-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "weak_projection"
+      ],
+      "usableFor": [
+        "same-domain weak projection",
+        "projection relation consumed by the weak quotient"
+      ],
+      "notUsableFor": [
+        "reaction_event_ledger",
+        "recoil_accounting",
+        "Noether sea update"
+      ],
+      "boundary": "The projection row is a retained source row for weak exposure structure, not a conservation ledger for the reaction event."
+    },
+    "weakQuotientEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "weak_quotient"
+      ],
+      "usableFor": [
+        "same retained weak-visible domain",
+        "same branch record",
+        "quotient equivalence class"
+      ],
+      "notUsableFor": [
+        "reaction_event_ledger",
+        "emitted_product_ledger",
+        "energy_momentum_angular_momentum_accounting"
+      ],
+      "boundary": "The weak quotient fixes the domain and quotient row but explicitly does not accept reaction-event provenance."
+    },
+    "weakExposureEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-exposure-record-muon-decay-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "weak_exposure_record"
+      ],
+      "usableFor": [
+        "same-domain weak exposure boundary",
+        "charged-lepton spectrum and lifetime row context"
+      ],
+      "notUsableFor": [
+        "reaction_event_ledger",
+        "energy_momentum_angular_momentum_accounting",
+        "Noether sea update"
+      ],
+      "boundary": "The exposure row records the retained weak-exposure boundary; it does not prove the complete event ledger."
+    },
+    "vaChiralityGateBlocker": {
+      "candidatePath": "scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-domain V-A chirality target",
+        "charged-current left-channel and right-channel selection burden"
+      ],
+      "notUsableFor": [
+        "accepted_va_chirality_gate",
+        "reaction_event_ledger",
+        "accepted_weak_channel_source_rows"
+      ],
+      "boundary": "The V-A blocker is still the first weak-channel acquisition blocker and accepts no reaction-event rows."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "reaction_event_ledger_source_target_0001",
+    "sameDomainEventLedger": {
+      "requiredDomainId": "D_weak_visible_attempt_0001",
+      "requiredBranchRecordId": "A_weak_attempt_0001",
+      "mustConsumeRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate"
+      ],
+      "mustNotIntroduce": [
+        "replacement_weak_domain",
+        "replacement_branch_record",
+        "detached_decay_label"
+      ]
+    },
+    "conservationClosure": {
+      "requiredBehavior": "The accepted weak reaction event ledger must route energy, momentum, angular momentum, recoil, emitted-product rows, and heat or radiation channels when present without leakage.",
+      "mustBindTo": [
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting"
+      ]
+    },
+    "sameRecordEventBalance": {
+      "requiredBehavior": "The accepted event ledger must keep the incoming weak-domain rows, emitted products, recoil, heat or radiation when present, and weak-event Noether sea update in one balance equation.",
+      "balanceEquation": "L_{weak}^{in}+L_{sea}^{in}=L_{emitted}+L_{recoil}+L_{heat/radiation}+Delta L_{sea}^{weak}",
+      "mustBindTo": [
+        "incoming_weak_domain_rows",
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting",
+        "weak_event_noether_sea_update_route"
+      ]
+    },
+    "toyBindingBoundary": {
+      "requiredBehavior": "Fe/Ni alphaAsym, betaValleySlope, and beta_stable_band_center rows cannot promote until this ledger is accepted in the same weak domain consumed by the weak quotient and exposure rows.",
+      "blockedToyRows": [
+        "alphaAsym",
+        "betaValleySlope",
+        "beta_stable_band_center"
+      ]
+    }
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "reaction_event_ledger",
+      "noether_sea_response",
+      "va_chirality_gate",
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "accepted_weak_channel_source_rows"
+    ],
+    "expectedCheckerStatus": "missing_accepted_weak_channel_rows",
+    "expectedFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Build a durable same-domain weak reaction event ledger over D_weak_visible_attempt_0001 / A_weak_attempt_0001 that consumes the retained weak branch, projection, quotient, exposure, and V-A chirality gate rows while closing energy, momentum, angular momentum, emitted-product, and recoil accounting.",
+    "minimalInputNeeded": [
+      "accepted reaction_event_ledger row in the retained weak-exposure domain",
+      "energy, momentum, and angular-momentum conservation rows",
+      "emitted-product and recoil accounting rows",
+      "one same-record event-balance equation routing weak-domain, emitted-product, recoil, heat or radiation, and weak-event Noether sea update ledgers",
+      "same-record connection to the weak quotient, weak exposure record, and V-A chirality gate"
+    ],
+    "failureModes": [
+      "the event ledger uses a different weak domain or branch record",
+      "energy, momentum, or angular momentum is conserved only by label",
+      "emitted product or recoil rows are omitted",
+      "the Fe/Ni beta-stability toy rows are promoted before the event ledger is accepted"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent accepted weak quotient, projection, exposure, or visible-branch rows from being mistaken for accepted reaction_event_ledger evidence.",
+    "Fe/Ni beta-stability and asymmetry toy terms remain blocked until V-A, reaction-event, and weak Noether sea rows are accepted from durable non-fixture evidence in the same weak-exposure domain."
+  ]
+}

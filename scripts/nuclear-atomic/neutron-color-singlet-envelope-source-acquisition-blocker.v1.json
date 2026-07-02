@@ -1,0 +1,114 @@
+{
+  "schema": "aaa-nuclear-atomic-neutron-color-singlet-envelope-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for accepted_neutron_color_singlet_envelope; records the exact closure target and nearest candidate evidence; not accepted neutron color-singlet envelope evidence, not no-free-color evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "accepted_neutron_color_singlet_envelope",
+  "currentStatus": "blocked_missing_no_free_color_audit",
+  "sourceSupportSought": [
+    "neutron_color_singlet_closure",
+    "finite_envelope_boundary",
+    "no_free_color_asymptotic_state"
+  ],
+  "nearestCandidateInputs": {
+    "neutronBranchInterfaceLedger": {
+      "candidatePath": "scripts/nuclear-atomic/neutron-branch-interface-ledger-retained-evidence.v1.json",
+      "candidateRowId": "L_BI_n_0001",
+      "acceptedRowsProvided": [
+        "accepted_neutron_branch_interface_ledger"
+      ],
+      "usableFor": [
+        "retained_orientation_rows",
+        "closed_corridor_sharing_count",
+        "branch_exposure_row"
+      ],
+      "notUsableFor": [
+        "neutron_color_singlet_closure",
+        "finite_envelope_boundary",
+        "no_free_color_asymptotic_state"
+      ],
+      "boundary": "The neutron branch-interface ledger carries the no-open-color slot but explicitly does not accept no_open_color_far_field or accepted_neutron_color_singlet_envelope."
+    },
+    "nucleonStructureClosureTarget": {
+      "candidatePath": "content/markdown/aaa/nuclear-atomic/nucleon-structure.md#color-singlet-closure",
+      "usableFor": [
+        "nucleon_color_singlet_closure_shape",
+        "udd_color_sector_counting"
+      ],
+      "notUsableFor": [
+        "completed_neutron_confinement_proof",
+        "accepted_no_free_color_audit"
+      ],
+      "boundary": "The local prose states the color-singlet closure picture for protons and neutrons, but it is not an accepted neutron envelope source row with a finite boundary and no-free-color audit."
+    },
+    "qcdBenchmarkConstraint": {
+      "candidatePath": "reference/priorities/standard-model-closure/qcd-confinement-hadronization-recovery-targets.md#benchmark-constraints",
+      "usableFor": [
+        "hard_no_free_color_constraint",
+        "residual_strong_interaction_recovery_burden"
+      ],
+      "notUsableFor": [
+        "accepted_neutron_color_singlet_envelope"
+      ],
+      "boundary": "The QCD priority packet still treats closed color-singlet nucleon envelopes as a derivation target."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "accepted_neutron_color_singlet_envelope_source_target_0001",
+    "neutronEnvelopeClosureTarget": {
+      "colorExposureRatio": "E_color_nX = ||Pi_open,X W_locked_nX||_X / (||Pi_singlet,X W_locked_nX||_X + epsilon_nX) <= Delta_color_nX",
+      "singletBoundary": "Pi_singlet,X retains the neutron channel entries compatible with the color-singlet branch.",
+      "openColorBoundary": "Pi_open,X retains residual open-color exposure; accepted evidence must bound this residual below the no-free-color tolerance."
+    },
+    "finiteEnvelopeBoundary": {
+      "requiredShape": "The neutron color-singlet envelope must have a finite accepted boundary scale R_n and an accepted refinement window.",
+      "mustShareDomainWith": [
+        "same_sigma_eff_domain",
+        "same_record_noether_sea_response",
+        "same_record_branch_interface"
+      ]
+    },
+    "noFreeColorAudit": {
+      "requiredBehavior": "No residual open-color exposure can survive as an asymptotic neutron far field.",
+      "mustConnectTo": [
+        "no_free_color_asymptotic_state",
+        "no_open_color_far_field"
+      ]
+    }
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "accepted_neutron_color_singlet_envelope",
+      "accepted_proton_color_singlet_envelope",
+      "no_free_color_asymptotic_state",
+      "same_record_branch_interface",
+      "color_singlet_nucleon_envelope",
+      "sigma_eff_extraction",
+      "delta_E_corr_NN",
+      "no_open_color_far_field"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Derive the neutron color-singlet envelope from the same color-corridor energy functional used by sigma_eff and show bounded open-color exposure in the neutron retained window.",
+    "minimalInputNeeded": [
+      "accepted neutron color-singlet closure row",
+      "finite envelope boundary R_n in the same retained window",
+      "accepted no-free-color asymptotic-state audit"
+    ],
+    "failureModes": [
+      "open-color projection ratio remains above tolerance",
+      "finite envelope boundary changes under refinement",
+      "the proof requires a different color-corridor or Noether sea response domain than sigma_eff",
+      "the no-free-color audit remains target-only"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the nearby neutron branch-interface ledger or nucleon-structure closure target from being mistaken for accepted neutron color-singlet envelope evidence.",
+    "Fe/Ni promotion remains blocked until the proton and neutron color-singlet envelopes, no-free-color asymptotic state, same-record branch interface, top confinement rows, and branch-interface rows are accepted from durable non-fixture evidence."
+  ]
+}

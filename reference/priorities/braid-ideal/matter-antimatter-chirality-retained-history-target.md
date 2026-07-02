@@ -116,6 +116,14 @@ node scripts/braid-ideal/matter-antimatter-chirality-retained-history-target.mjs
 
 That mode fills the paired `matter_row` and `antimatter_row` slots with a shared candidate `central_solver_retained_history_row` reference and retained record id. It now also binds the held-release seed path rows, path-history stream manifest rows, durable stream manifest refs, central retained-history row, provider object, and chirality residual status rows to one candidate provider object ref. It advances the target beyond empty row placeholders and beyond the earlier missing-provider-provenance blocker. It still does not authorize a matter/antimatter claim, because the provider object remains blocked at its acceptance certificate and the chirality residuals remain unmeasured. The current first blocker is `accepted_chirality_residual_measurements`, with first missing field `braid_ideal_chirality_retained_history_target.residual_vector.R_phase.accepted_measurement_ref`.
 
+Accepted measurement-row status. The producer also supports an accepted measurement-row mode:
+
+```bash
+node scripts/braid-ideal/matter-antimatter-chirality-retained-history-target.mjs --accepted-measurements --pretty
+```
+
+That mode replaces the provider-backed residual status rows with accepted same-record chirality residual measurement rows using schema `braid_ideal_chirality_residual_measurement_row.v0`. The current packet emits nine accepted measurement rows, one for each component of $\mathcal R_\chi$. These are accepted measurements of the current provider-backed source state, not accepted chirality evidence. The first measured residual fails at `R_phase`, with first blocker `braid_ideal_chirality_retained_history_target.residual_vector.R_phase.value.measurement_passed`, because the same-record phase/order measurement row is still absent. The remaining failing rows record the absent retained causal-root, same-source self-hit, wake-history, action, angular-momentum, support-projection, and stability or return rows; `R_charge` passes only because no charged-sector projection is exposed.
+
 The first acceptable evidence producer must populate that schema with:
 
 - `matter_row`: retained-history row with $\chi_c=+1$.

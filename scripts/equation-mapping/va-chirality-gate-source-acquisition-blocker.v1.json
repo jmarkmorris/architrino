@@ -108,6 +108,47 @@
       "boundary": "Benchmark agreement is necessary pressure but cannot replace the same-domain retained chirality row."
     }
   },
+  "acceptedSourceRowProofTarget": {
+    "id": "va_chirality_gate_accepted_source_row_proof_target_0001",
+    "status": "target_required",
+    "currentEvidenceStatus": "proof_target_only",
+    "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+    "requiredAcceptedSourceRowsBeforeUse": [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_row",
+      "same_domain_rows"
+    ],
+    "requiredSameRecordRows": [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "va_chirality_row",
+      "same_domain_rows",
+      "same_branch_record"
+    ],
+    "requiredClosureRows": [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "muon_decay_michel_parameter_binding"
+    ],
+    "requiredChiralitySelectionRows": [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "va_chirality_row",
+      "muon_decay_michel_parameter_binding"
+    ],
+    "forbiddenPromotionSources": [
+      "priority_packet_only",
+      "target_required",
+      "retained_weak_exposure_only",
+      "standard_model_benchmark_table_only"
+    ]
+  },
   "localEvidenceBoundary": {
     "acceptedSourceRowsByThisPacket": [],
     "notAcceptedByThisPacket": [

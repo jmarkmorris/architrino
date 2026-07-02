@@ -113,7 +113,11 @@ const COEFFICIENT_SOURCE_ROW_REQUIREMENTS = Object.freeze({
     ],
   },
   alphaPack: {
-    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    confinement_functional: [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
     branch_interface: ["nucleon_branch_interface_ledgers"],
   },
   boundaryDegreeLoss: {
@@ -124,11 +128,19 @@ const COEFFICIENT_SOURCE_ROW_REQUIREMENTS = Object.freeze({
   },
   dSat: {
     branch_interface: ["nucleon_branch_interface_ledgers"],
-    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    confinement_functional: [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
   },
   maxDegree: {
     branch_interface: ["nucleon_branch_interface_ledgers"],
-    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    confinement_functional: [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
   },
   betaValleySlope: {
     weak_channel: ["weak_quotient", "weak_projection", "reaction_event_ledger"],
@@ -138,7 +150,11 @@ const COEFFICIENT_SOURCE_ROW_REQUIREMENTS = Object.freeze({
     weak_channel: ["weak_quotient", "noether_sea_response"],
   },
   packSoftA: {
-    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    confinement_functional: [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
   },
   pnCorridorPairReward: {
     branch_interface: ["pn_orientation_count"],
@@ -185,10 +201,28 @@ const GRAPH_RULE_SOURCE_ROW_REQUIREMENTS = Object.freeze({
     ],
   },
   finite_tail_saturation_check: {
-    confinement_functional: ["delta_E_corr_NN", "no_open_color_far_field"],
+    confinement_functional: [
+      "delta_E_corr_NN",
+      "finite_range_residual",
+      "no_open_color_far_field",
+    ],
     branch_interface: ["nucleon_branch_interface_ledgers"],
   },
 });
+
+const FAMILY_DISTINCTION_LOCKS = Object.freeze([
+  {
+    id: "weak_channel_noether_sea_response_not_retained_window_provider",
+    coefficient: "seaImbalancePenalty",
+    providerFamily: "noether_sea_response",
+    providerRows: ["rho_NS", "theta_sea"],
+    weakFamily: "weak_channel",
+    weakRows: ["weak_quotient", "noether_sea_response"],
+    blockedRow: "noether_sea_response",
+    rule:
+      "The accepted retained-window Noether sea response family cannot satisfy the same-event weak-channel noether_sea_response row consumed by seaImbalancePenalty.",
+  },
+]);
 
 const FAILURE_ORDER = Object.freeze([
   "deuteron_unbound",
@@ -198,6 +232,16 @@ const FAILURE_ORDER = Object.freeze([
   "hidden_fit",
   "ledger_loss",
   "shielded_energy_leak",
+]);
+
+const RELEASE_LEDGER_ROUTES = Object.freeze([
+  "daughter_binding_rows",
+  "emitted_products_when_present",
+  "recoil",
+  "heat",
+  "photon_rows_when_present",
+  "medium_exchange",
+  "Noether_sea_update",
 ]);
 
 const DEFAULT_SWEEP = Object.freeze({
@@ -325,7 +369,7 @@ if (process.argv[1] === SCRIPT_PATH) {
   }
   if (
     args.requirePromotionReady &&
-    report.sourceBinding?.summary?.allRequiredFamiliesAccepted !== true
+    report.sourceBinding?.summary?.allPromotionBindingsAccepted !== true
   ) {
     process.exitCode = 1;
   }
@@ -439,16 +483,19 @@ export function buildIronGroupBindingCuspToySweep(options = {}) {
     negativeControls,
     releaseAccounting: {
       survivingNucleonShieldedEnergyUsed: false,
+      ordinaryFissionFusionLedgerRoutes: [...RELEASE_LEDGER_ROUTES],
       ordinaryFissionFusionScope:
         "higher-level nuclear assembly energy, emitted products, recoil, heat, photon rows when present, medium exchange, and Noether sea update rows",
       shieldedEnergyPolicy:
         "the toy does not route ordinary fission or fusion through exposed shielded internal branch energy of surviving protons or neutrons",
+      promotionInvariant:
+        "no corpus promotion unless fission/fusion release accounting stays on nuclear assembly, emitted-product, recoil, heat, photon, medium-exchange, and Noether sea update rows with surviving-nucleon shielded energy excluded",
     },
     authorization: {
       acceptedNuclearBindingRecovery: false,
       acceptedIronGroupCuspRecovery: false,
       sourceBindingPreconditionsMet:
-        sourceBinding.summary.allRequiredFamiliesAccepted === true,
+        sourceBinding.summary.allPromotionBindingsAccepted === true,
       contentPromotionAuthorized: false,
       equationMappingScoreMovement: "no_score_increase",
     },
@@ -491,6 +538,7 @@ export function validationErrors(report) {
       errors.push("first_failure_mismatch");
     }
   }
+  appendReleaseAccountingErrors(errors, report);
   if (report?.sourceBinding?.schema !== SOURCE_BINDING_REPORT_SCHEMA) {
     errors.push("source_binding_report_missing");
   } else if (
@@ -504,8 +552,337 @@ export function validationErrors(report) {
     if (!report.sourceBinding?.coefficientBindings?.alphaCorr?.requiredRowsByFamily) {
       errors.push("source_binding_coefficient_row_bindings_missing");
     }
+    appendRowBindingCoverageErrors(errors, report);
+    appendRowEvidenceTraceErrors(errors, report);
+    appendSourceRowRequirementIndexErrors(errors, report);
+    appendFamilyDistinctionLockErrors(errors, report);
+    appendPartialSourceMarkerLockErrors(errors, report);
+    appendSourceAcquisitionRouteErrors(errors, report);
+    appendSourceBindingSummaryErrors(errors, report);
+    if (
+      report.authorization?.sourceBindingPreconditionsMet !==
+      report.sourceBinding.summary?.allPromotionBindingsAccepted
+    ) {
+      errors.push("source_binding_precondition_authorization_mismatch");
+    }
   }
   return errors;
+}
+
+function appendReleaseAccountingErrors(errors, report) {
+  const releaseAccounting = report?.releaseAccounting;
+  if (!releaseAccounting) {
+    errors.push("release_accounting_missing");
+    return;
+  }
+  if (releaseAccounting.survivingNucleonShieldedEnergyUsed !== false) {
+    errors.push("release_accounting_shielded_energy_leak");
+  }
+  appendRequiredLedgerRouteErrors(
+    errors,
+    "release_accounting",
+    releaseAccounting.ordinaryFissionFusionLedgerRoutes,
+  );
+  const heavySplit = report?.comparisonRows?.representativeHeavySplit;
+  appendRequiredLedgerRouteErrors(
+    errors,
+    "heavy_split",
+    heavySplit?.declaredLedgerRoutes,
+  );
+  if (
+    report?.negativeControls?.shielded_energy_leak
+      ?.survivingNucleonShieldedEnergyUsed !==
+    releaseAccounting.survivingNucleonShieldedEnergyUsed
+  ) {
+    errors.push("release_accounting_negative_control_mismatch");
+  }
+  if (
+    !sameStringSet(
+      report?.negativeControls?.ledger_loss?.declaredLedgerRoutes,
+      heavySplit?.declaredLedgerRoutes,
+    )
+  ) {
+    errors.push("release_accounting_ledger_control_mismatch");
+  }
+}
+
+function appendRequiredLedgerRouteErrors(errors, context, routes) {
+  if (!Array.isArray(routes)) {
+    errors.push(`${context}_ledger_routes_missing`);
+    return;
+  }
+  for (const route of RELEASE_LEDGER_ROUTES) {
+    if (!routes.includes(route)) {
+      errors.push(`${context}_ledger_route_missing_${route}`);
+    }
+  }
+}
+
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right)) {
+    return false;
+  }
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value) => right.includes(value));
+}
+
+function appendRowBindingCoverageErrors(errors, report) {
+  const coverage = report?.sourceBinding?.rowBindingCoverage;
+  if (!coverage) {
+    errors.push("source_binding_row_binding_coverage_missing");
+  } else {
+    for (const name of coverage.coefficients?.uncovered ?? []) {
+      errors.push(`coefficient_row_binding_coverage_uncovered_${name}`);
+    }
+    for (const ruleId of coverage.graphRules?.uncovered ?? []) {
+      errors.push(`graph_rule_row_binding_coverage_uncovered_${ruleId}`);
+    }
+  }
+
+  const coefficientRows = report?.coefficientSet?.rows ?? [];
+  const coefficientBindings = report?.sourceBinding?.coefficientBindings ?? {};
+  for (const row of coefficientRows) {
+    const binding = coefficientBindings[row.name];
+    if (!binding) {
+      errors.push(`coefficient_binding_missing_${row.name}`);
+      continue;
+    }
+    appendBindingCompletenessErrors(errors, "coefficient", row.name, binding);
+  }
+
+  const graphRuleBindings = report?.sourceBinding?.graphRuleBindings ?? {};
+  const graphRuleRowBindings = report?.sourceBinding?.graphRuleRowBindings ?? {};
+  for (const ruleId of Object.keys(graphRuleBindings)) {
+    const binding = graphRuleRowBindings[ruleId];
+    if (!binding) {
+      errors.push(`graph_rule_binding_missing_${ruleId}`);
+      continue;
+    }
+    appendBindingCompletenessErrors(errors, "graph_rule", ruleId, binding);
+  }
+}
+
+function appendFamilyDistinctionLockErrors(errors, report) {
+  const locks = report?.sourceBinding?.familyDistinctionLocks;
+  if (!Array.isArray(locks) || locks.length === 0) {
+    errors.push("source_binding_family_distinction_locks_missing");
+    return;
+  }
+  for (const expected of FAMILY_DISTINCTION_LOCKS) {
+    const lock = locks.find((row) => row.id === expected.id);
+    if (!lock) {
+      errors.push(`source_binding_family_distinction_lock_missing_${expected.id}`);
+      continue;
+    }
+    if (lock.separationPass !== true) {
+      errors.push(`source_binding_family_distinction_lock_failed_${expected.id}`);
+    }
+  }
+  const expectedPass = sourceBindingFamilyDistinctionLocksPass(locks);
+  if (report.sourceBinding.summary?.familyDistinctionLocksPass !== expectedPass) {
+    errors.push("source_binding_family_distinction_lock_summary_mismatch");
+  }
+}
+
+function appendSourceAcquisitionRouteErrors(errors, report) {
+  const candidates = report?.sourceBinding?.candidateResults ?? [];
+  for (const candidate of candidates) {
+    const blockers =
+      candidate.sourceTargetCheck?.sourceAcquisitionBlockerMap?.blockers ?? [];
+    for (const blocker of blockers) {
+      const token = `${candidate.family}_${blocker.sourceRowId}`;
+      const route = blocker.sourceAcquisitionRoute;
+      if (!route) {
+        errors.push(`source_acquisition_route_missing_${token}`);
+        continue;
+      }
+      if (
+        typeof route.claimLevel !== "string" ||
+        !Array.isArray(route.requiredRowsBeforeUse) ||
+        !Array.isArray(route.requiredAcceptedRowsBeforeUse) ||
+        !Array.isArray(route.feedsRowsAfterAcceptance) ||
+        !Array.isArray(route.notRequiredBeforeAcceptance)
+      ) {
+        errors.push(`source_acquisition_route_malformed_${token}`);
+      }
+    }
+  }
+}
+
+function appendPartialSourceMarkerLockErrors(errors, report) {
+  const expectedLocks = sourceBindingPartialSourceMarkerLocks({
+    coefficientBindings: report?.sourceBinding?.coefficientBindings ?? {},
+    graphRuleRowBindings: report?.sourceBinding?.graphRuleRowBindings ?? {},
+  });
+  const locks = report?.sourceBinding?.partialSourceMarkerLocks;
+  if (expectedLocks.length > 0 && (!Array.isArray(locks) || locks.length === 0)) {
+    errors.push("source_binding_partial_source_marker_locks_missing");
+    return;
+  }
+  for (const expected of expectedLocks) {
+    const lock = locks.find((row) => row.id === expected.id);
+    if (!lock) {
+      errors.push(`source_binding_partial_source_marker_lock_missing_${expected.id}`);
+      continue;
+    }
+    if (!sameStringSet(lock.requiredRows, expected.requiredRows)) {
+      errors.push(
+        `source_binding_partial_source_marker_lock_required_rows_mismatch_${expected.id}`,
+      );
+    }
+    if (!sameStringSet(lock.acceptedMarkerRows, expected.acceptedMarkerRows)) {
+      errors.push(
+        `source_binding_partial_source_marker_lock_accepted_marker_rows_mismatch_${expected.id}`,
+      );
+    }
+    if (!sameStringSet(lock.missingRows, expected.missingRows)) {
+      errors.push(
+        `source_binding_partial_source_marker_lock_missing_rows_mismatch_${expected.id}`,
+      );
+    }
+    if (lock.firstMissingObject !== expected.firstMissingObject) {
+      errors.push(
+        `source_binding_partial_source_marker_lock_first_missing_object_mismatch_${expected.id}`,
+      );
+    }
+    if (
+      lock.sourceAcquisitionFirstMissingObject !==
+      expected.sourceAcquisitionFirstMissingObject
+    ) {
+      errors.push(
+        `source_binding_partial_source_marker_lock_source_acquisition_first_missing_object_mismatch_${expected.id}`,
+      );
+    }
+    if (lock.lockPass !== true) {
+      errors.push(`source_binding_partial_source_marker_lock_failed_${expected.id}`);
+    }
+  }
+  const expectedPass = sourceBindingPartialSourceMarkerLocksPass(locks ?? []);
+  if (report.sourceBinding.summary?.partialSourceMarkerLocksPass !== expectedPass) {
+    errors.push("source_binding_partial_source_marker_lock_summary_mismatch");
+  }
+}
+
+function appendBindingCompletenessErrors(errors, kind, id, binding) {
+  const sourceFamilies = Array.isArray(binding.sourceFamilies)
+    ? binding.sourceFamilies
+    : [];
+  if (sourceFamilies.length === 0) {
+    errors.push(`${kind}_source_families_missing_${id}`);
+    return;
+  }
+  for (const family of sourceFamilies) {
+    const rowBinding = binding.requiredRowsByFamily?.[family];
+    const requiredRows = rowBinding?.requiredRows ?? [];
+    if (!Array.isArray(requiredRows) || requiredRows.length === 0) {
+      errors.push(`${kind}_source_rows_missing_${id}_${family}`);
+      continue;
+    }
+    appendBindingRowEvidenceErrors(errors, kind, id, family, rowBinding);
+  }
+}
+
+function appendBindingRowEvidenceErrors(errors, kind, id, family, rowBinding) {
+  const missingRows = Array.isArray(rowBinding.missingRows)
+    ? rowBinding.missingRows
+    : [];
+  for (const row of rowBinding.requiredRows ?? []) {
+    const evidence = rowBinding.rowEvidence?.[row] ?? null;
+    if (!evidence) {
+      errors.push(`${kind}_row_evidence_missing_${id}_${family}_${row}`);
+      continue;
+    }
+    const localAccepted = !missingRows.includes(row);
+    const promotionEligible =
+      rowBinding.accepted === true && localAccepted === true;
+    if (
+      evidence.row !== row ||
+      evidence.family !== family ||
+      typeof evidence.evidenceMode !== "string" ||
+      evidence.localAccepted !== localAccepted ||
+      evidence.promotionEligible !== promotionEligible
+    ) {
+      errors.push(`${kind}_row_evidence_mismatch_${id}_${family}_${row}`);
+    }
+    if (
+      evidence.evidenceMode === "accepted_source_row" &&
+      !acceptedEvidenceTracePass(evidence.acceptedEvidenceTrace)
+    ) {
+      errors.push(`${kind}_accepted_evidence_trace_missing_${id}_${family}_${row}`);
+    }
+    if (
+      localAccepted !== true &&
+      rowBinding.sourceAcquisitionFirstMissingObject &&
+      !sourceAcquisitionRouteEvidencePass(evidence.sourceAcquisitionRoute)
+    ) {
+      errors.push(`${kind}_source_acquisition_route_missing_${id}_${family}_${row}`);
+    }
+    if (
+      rowRequiresAcceptedSourceRowProofTarget(family, row) &&
+      !acceptedSourceRowProofTargetEvidencePass(
+        evidence.acceptedSourceRowProofTarget,
+        family,
+        row,
+      )
+    ) {
+      errors.push(`${kind}_accepted_source_row_proof_target_missing_${id}_${family}_${row}`);
+    }
+  }
+}
+
+function appendRowEvidenceTraceErrors(errors, report) {
+  const expectedPass = sourceBindingRowEvidenceTracePass({
+    coefficientBindings: report?.sourceBinding?.coefficientBindings ?? {},
+    graphRuleRowBindings: report?.sourceBinding?.graphRuleRowBindings ?? {},
+  });
+  if (report.sourceBinding.summary?.rowEvidenceTracePass !== expectedPass) {
+    errors.push("source_binding_row_evidence_trace_summary_mismatch");
+  }
+}
+
+function appendSourceRowRequirementIndexErrors(errors, report) {
+  const expectedIndex = sourceBindingSourceRowRequirementIndex({
+    coefficientBindings: report?.sourceBinding?.coefficientBindings ?? {},
+    graphRuleRowBindings: report?.sourceBinding?.graphRuleRowBindings ?? {},
+  });
+  const actualIndex = report?.sourceBinding?.sourceRowRequirementIndex;
+  if (!actualIndex) {
+    errors.push("source_binding_source_row_requirement_index_missing");
+    return;
+  }
+  const expectedPass = sourceBindingSourceRowRequirementIndexPass(actualIndex);
+  if (
+    report.sourceBinding.summary?.sourceRowRequirementIndexPass !== expectedPass
+  ) {
+    errors.push("source_binding_source_row_requirement_index_summary_mismatch");
+  }
+  if (!sameJsonValue(actualIndex.summary, expectedIndex.summary)) {
+    errors.push("source_binding_source_row_requirement_index_summary_drift");
+  }
+  const actualRows = new Map(
+    (actualIndex.rows ?? []).map((row) => [row.id, row]),
+  );
+  for (const expectedRow of expectedIndex.rows) {
+    const actualRow = actualRows.get(expectedRow.id);
+    const rowToken = sourceRowRequirementErrorToken(expectedRow.id);
+    if (!actualRow) {
+      errors.push(`source_binding_source_row_requirement_missing_${rowToken}`);
+      continue;
+    }
+    if (!sameJsonValue(actualRow, expectedRow)) {
+      errors.push(`source_binding_source_row_requirement_mismatch_${rowToken}`);
+    }
+  }
+}
+
+function sameJsonValue(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function sourceRowRequirementErrorToken(id) {
+  return String(id).replace(/[^A-Za-z0-9_]+/g, "_");
 }
 
 function parseArgs(argv) {
@@ -589,6 +966,7 @@ function writeOutput(report, args) {
         summary: report.summary,
         sourceBinding: report.sourceBinding,
         comparisonRows: report.comparisonRows,
+        releaseAccounting: report.releaseAccounting,
         authorization: report.authorization,
       }
     : report;
@@ -680,6 +1058,46 @@ export function buildSourceBindingReport(
     ? familyResults[firstMissingFamily].firstMissingObject
     : null;
   const allRequiredFamiliesAccepted = schemaOk && missingRequiredFamilies.length === 0;
+  const coefficientBindings = coefficientSourceFamilyBindings(
+    coefficientRows,
+    candidateResults,
+  );
+  const graphRuleRowBindings = graphRuleSourceRowBindings(candidateResults);
+  const familyDistinctionLocks =
+    sourceBindingFamilyDistinctionLocks(coefficientBindings);
+  const partialSourceMarkerLocks = sourceBindingPartialSourceMarkerLocks({
+    coefficientBindings,
+    graphRuleRowBindings,
+  });
+  const sourceRowRequirementIndex = sourceBindingSourceRowRequirementIndex({
+    coefficientBindings,
+    graphRuleRowBindings,
+  });
+  const rowBindingCoverage = sourceBindingCoverage(coefficientRows);
+  const allCoefficientBindingsAccepted =
+    sourceBindingEntriesAccepted(coefficientBindings);
+  const allGraphRuleBindingsAccepted =
+    sourceBindingEntriesAccepted(graphRuleRowBindings);
+  const rowEvidenceTracePass = sourceBindingRowEvidenceTracePass({
+    coefficientBindings,
+    graphRuleRowBindings,
+  });
+  const sourceRowRequirementIndexPass =
+    sourceBindingSourceRowRequirementIndexPass(sourceRowRequirementIndex);
+  const familyDistinctionLocksPass =
+    sourceBindingFamilyDistinctionLocksPass(familyDistinctionLocks);
+  const partialSourceMarkerLocksPass =
+    sourceBindingPartialSourceMarkerLocksPass(partialSourceMarkerLocks);
+  const rowBindingCoveragePass = sourceBindingCoveragePass(rowBindingCoverage);
+  const allPromotionBindingsAccepted =
+    allRequiredFamiliesAccepted &&
+    allCoefficientBindingsAccepted &&
+    allGraphRuleBindingsAccepted &&
+    rowEvidenceTracePass &&
+    sourceRowRequirementIndexPass &&
+    familyDistinctionLocksPass &&
+    partialSourceMarkerLocksPass &&
+    rowBindingCoveragePass;
 
   return {
     schema: SOURCE_BINDING_REPORT_SCHEMA,
@@ -691,14 +1109,24 @@ export function buildSourceBindingReport(
       claimLevel: manifest?.claimLevel ?? null,
     },
     summary: {
-      status: allRequiredFamiliesAccepted
-        ? "all_required_source_families_accepted"
-        : "blocked_missing_accepted_source_rows",
+      status: allPromotionBindingsAccepted
+        ? "all_required_promotion_bindings_accepted"
+        : allRequiredFamiliesAccepted
+          ? "blocked_missing_coefficient_graph_rule_or_distinction_locks"
+          : "blocked_missing_accepted_source_rows",
       requiredFamilyCount: REQUIRED_SOURCE_FAMILIES.length,
       acceptedRequiredFamilyCount: REQUIRED_SOURCE_FAMILIES.filter(
         (family) => familyResults[family].accepted === true,
       ).length,
       allRequiredFamiliesAccepted,
+      allCoefficientBindingsAccepted,
+      allGraphRuleBindingsAccepted,
+      rowEvidenceTracePass,
+      sourceRowRequirementIndexPass,
+      familyDistinctionLocksPass,
+      partialSourceMarkerLocksPass,
+      rowBindingCoveragePass,
+      allPromotionBindingsAccepted,
       missingRequiredFamilies,
       firstMissingFamily,
       firstMissingObject,
@@ -707,14 +1135,15 @@ export function buildSourceBindingReport(
     requiredFamilies: [...REQUIRED_SOURCE_FAMILIES],
     familyResults,
     candidateResults,
-    coefficientBindings: coefficientSourceFamilyBindings(
-      coefficientRows,
-      candidateResults,
-    ),
+    coefficientBindings,
     graphRuleBindings: GRAPH_RULE_SOURCE_FAMILIES,
-    graphRuleRowBindings: graphRuleSourceRowBindings(candidateResults),
+    graphRuleRowBindings,
+    familyDistinctionLocks,
+    partialSourceMarkerLocks,
+    sourceRowRequirementIndex,
+    rowBindingCoverage,
     promotionRule:
-      "Corpus promotion remains blocked until every required source family is accepted from durable non-priority source evidence and the toy controls still pass.",
+      "Corpus promotion remains blocked until every required source family, coefficient row binding, graph-rule row binding, and family-distinction lock is accepted or preserved from durable non-priority source evidence and the toy controls still pass.",
   };
 }
 
@@ -1000,7 +1429,9 @@ function compactBranchInterfaceSourceTargetCheck(report) {
     schema: report.schema,
     summary: report.summary,
     sourceEvidenceCheck: report.sourceEvidenceCheck,
+    acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
     sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
     differential: report.differential,
   };
 }
@@ -1010,7 +1441,9 @@ function compactConfinementFunctionalSourceTargetCheck(report) {
     schema: report.schema,
     summary: report.summary,
     sourceEvidenceCheck: report.sourceEvidenceCheck,
+    acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
     sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
     equationChecks: report.equationChecks,
     toyBindingCheck: report.toyBindingCheck,
   };
@@ -1022,7 +1455,9 @@ function compactWeakChannelSourceTargetCheck(report) {
     summary: report.summary,
     domainCheck: report.domainCheck,
     sourceEvidenceCheck: report.sourceEvidenceCheck,
+    acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
     sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
     toyBindingCheck: report.toyBindingCheck,
   };
 }
@@ -1062,6 +1497,448 @@ function graphRuleSourceRowBindings(candidateResults) {
         candidateResults,
       }),
     ]),
+  );
+}
+
+function sourceBindingFamilyDistinctionLocks(coefficientBindings) {
+  return FAMILY_DISTINCTION_LOCKS.map((lock) => {
+    const providerBinding =
+      coefficientBindings?.[lock.coefficient]?.requiredRowsByFamily?.[
+        lock.providerFamily
+      ] ?? null;
+    const weakBinding =
+      coefficientBindings?.[lock.coefficient]?.requiredRowsByFamily?.[
+        lock.weakFamily
+      ] ?? null;
+    const providerCandidateId = providerBinding?.candidateId ?? null;
+    const weakCandidateId = weakBinding?.candidateId ?? null;
+    const providerRowsPreserved = rowsIncludeAll(
+      providerBinding?.requiredRows,
+      lock.providerRows,
+    );
+    const weakRowsPreserved = rowsIncludeAll(
+      weakBinding?.requiredRows,
+      lock.weakRows,
+    );
+    const distinctCandidateIds =
+      concreteString(providerCandidateId) &&
+      concreteString(weakCandidateId) &&
+      providerCandidateId !== weakCandidateId;
+    const weakMissingRows = weakBinding?.missingRows ?? [];
+    const weakChannelRowAccepted =
+      Array.isArray(weakMissingRows) &&
+      !weakMissingRows.includes(lock.blockedRow);
+    const separationPass =
+      providerBinding !== null &&
+      weakBinding !== null &&
+      providerRowsPreserved &&
+      weakRowsPreserved &&
+      distinctCandidateIds;
+
+    return {
+      id: lock.id,
+      coefficient: lock.coefficient,
+      providerFamily: lock.providerFamily,
+      providerCandidateId,
+      providerRows: [...lock.providerRows],
+      providerAccepted: providerBinding?.accepted === true,
+      weakFamily: lock.weakFamily,
+      weakCandidateId,
+      weakRows: [...lock.weakRows],
+      weakChannelRow: lock.blockedRow,
+      weakChannelRowAccepted,
+      weakBindingAccepted: weakBinding?.accepted === true,
+      weakFirstMissingObject: weakBinding?.firstMissingObject ?? null,
+      weakSourceAcquisitionFirstMissingObject:
+        weakBinding?.sourceAcquisitionFirstMissingObject ?? null,
+      distinctCandidateIds,
+      providerRowsPreserved,
+      weakRowsPreserved,
+      separationPass,
+      rule: lock.rule,
+    };
+  });
+}
+
+function sourceBindingFamilyDistinctionLocksPass(locks) {
+  return (
+    Array.isArray(locks) &&
+    locks.length > 0 &&
+    locks.every((lock) => lock.separationPass === true)
+  );
+}
+
+function sourceBindingPartialSourceMarkerLocks({
+  coefficientBindings = {},
+  graphRuleRowBindings = {},
+} = {}) {
+  return [
+    ...partialSourceMarkerLocksForKind("coefficient", coefficientBindings),
+    ...partialSourceMarkerLocksForKind("graphRule", graphRuleRowBindings),
+  ];
+}
+
+function partialSourceMarkerLocksForKind(kind, entries) {
+  return Object.entries(entries).flatMap(([objectId, binding]) =>
+    Object.entries(binding.requiredRowsByFamily ?? {}).flatMap(
+      ([family, rowBinding]) => {
+        const missingRows = rowBinding.missingRows ?? [];
+        const acceptedMarkerRows = (rowBinding.requiredRows ?? []).filter(
+          (row) => {
+            const evidence = rowBinding.rowEvidence?.[row];
+            return (
+              evidence?.localAccepted === true &&
+              evidence?.promotionEligible !== true
+            );
+          },
+        );
+        if (
+          rowBinding.accepted === true ||
+          rowBinding.firstMissingObject === null ||
+          acceptedMarkerRows.length === 0
+        ) {
+          return [];
+        }
+        const lockPass =
+          rowBinding.accepted === false &&
+          acceptedMarkerRows.every((row) => {
+            const evidence = rowBinding.rowEvidence?.[row];
+            return (
+              evidence?.localAccepted === true &&
+              evidence?.promotionEligible === false
+            );
+          });
+        return [
+          {
+            id: `${kind}_${objectId}_${family}_partial_source_marker_not_promotion`,
+            kind,
+            objectId,
+            family,
+            requiredRows: [...(rowBinding.requiredRows ?? [])],
+            acceptedMarkerRows,
+            missingRows,
+            promotionEligibleRows: [
+              ...(rowBinding.promotionEligibleRows ?? []),
+            ],
+            sourceStatus: rowBinding.sourceStatus ?? null,
+            firstMissingObject: rowBinding.firstMissingObject,
+            sourceAcquisitionFirstMissingObject:
+              rowBinding.sourceAcquisitionFirstMissingObject ?? null,
+            accepted: false,
+            markerStatus:
+              missingRows.length > 0
+                ? "accepted_source_rows_present_but_binding_still_missing_required_rows"
+                : "accepted_upstream_rows_present_but_owning_family_not_accepted",
+            lockPass,
+          },
+        ];
+      },
+    ),
+  );
+}
+
+function sourceBindingPartialSourceMarkerLocksPass(locks) {
+  return (
+    Array.isArray(locks) &&
+    locks.every((lock) => lock.lockPass === true)
+  );
+}
+
+function sourceBindingSourceRowRequirementIndex({
+  coefficientBindings = {},
+  graphRuleRowBindings = {},
+} = {}) {
+  const rowsById = new Map();
+  appendSourceRowRequirementIndexEntries(
+    rowsById,
+    "coefficient",
+    coefficientBindings,
+  );
+  appendSourceRowRequirementIndexEntries(
+    rowsById,
+    "graphRule",
+    graphRuleRowBindings,
+  );
+  const rows = [...rowsById.values()];
+  const blockedRows = rows.filter((row) => row.promotionEligible !== true);
+  const promotionEligibleRows = rows.filter(
+    (row) => row.promotionEligible === true,
+  );
+  return {
+    summary: {
+      totalRows: rows.length,
+      promotionEligibleRowCount: promotionEligibleRows.length,
+      blockedRowCount: blockedRows.length,
+      firstBlockedFamily: blockedRows[0]?.family ?? null,
+      firstBlockedRow: blockedRows[0]?.row ?? null,
+      firstBlockedObject: blockedRows[0]?.firstMissingObject ?? null,
+    },
+    rows,
+  };
+}
+
+function appendSourceRowRequirementIndexEntries(rowsById, kind, entries) {
+  for (const [objectId, binding] of Object.entries(entries)) {
+    for (const [family, rowBinding] of Object.entries(
+      binding.requiredRowsByFamily ?? {},
+    )) {
+      for (const row of rowBinding.requiredRows ?? []) {
+        const id = `${family}.${row}`;
+        if (!rowsById.has(id)) {
+          rowsById.set(
+            id,
+            sourceRowRequirementIndexRow(id, family, row, rowBinding),
+          );
+        }
+        rowsById.get(id).requiredBy.push({
+          kind,
+          objectId,
+          bindingAccepted: rowBinding.accepted === true,
+        });
+      }
+    }
+  }
+}
+
+function sourceRowRequirementIndexRow(id, family, row, rowBinding) {
+  const evidence = rowBinding.rowEvidence?.[row] ?? null;
+  const localAccepted = evidence?.localAccepted === true;
+  const promotionEligible = evidence?.promotionEligible === true;
+  return {
+    id,
+    family,
+    row,
+    requiredBy: [],
+    evidenceMode: evidence?.evidenceMode ?? "missing_row_evidence",
+    localAccepted,
+    promotionEligible,
+    notPromotionEligibleReason: sourceRowNotPromotionEligibleReason(evidence),
+    sourceRowId: evidence?.sourceRowId ?? null,
+    targetId: evidence?.targetId ?? null,
+    status: evidence?.status ?? null,
+    currentEvidenceStatus: evidence?.currentEvidenceStatus ?? null,
+    ...(evidence?.acceptedEvidenceTrace
+      ? { acceptedEvidenceTrace: evidence.acceptedEvidenceTrace }
+      : {}),
+    ...(evidence?.acceptedSourceRowProofTarget
+      ? { acceptedSourceRowProofTarget: evidence.acceptedSourceRowProofTarget }
+      : {}),
+    firstMissingObject: localAccepted
+      ? rowBinding.firstMissingObject ?? null
+      : `missing_accepted_${row}`,
+    sourceAcquisitionFirstMissingObject:
+      rowBinding.sourceAcquisitionFirstMissingObject ?? null,
+    ...(evidence?.sourceAcquisitionRoute
+      ? { sourceAcquisitionRoute: evidence.sourceAcquisitionRoute }
+      : {}),
+  };
+}
+
+function sourceRowNotPromotionEligibleReason(evidence) {
+  if (!evidence) {
+    return "missing_row_evidence";
+  }
+  if (evidence.promotionEligible === true) {
+    return null;
+  }
+  if (evidence.evidenceMode === "source_acquisition_target") {
+    return "source_acquisition_target_not_promotion_evidence";
+  }
+  if (evidence.localAccepted === true) {
+    return "owning_family_not_accepted";
+  }
+  return "missing_accepted_source_row";
+}
+
+function sourceBindingSourceRowRequirementIndexPass(index) {
+  if (!index || !Array.isArray(index.rows) || !index.summary) {
+    return false;
+  }
+  const ids = index.rows.map((row) => row.id);
+  const uniqueIds = new Set(ids);
+  const promotionEligibleRowCount = index.rows.filter(
+    (row) => row.promotionEligible === true,
+  ).length;
+  const blockedRows = index.rows.filter(
+    (row) => row.promotionEligible !== true,
+  );
+  return (
+    ids.length > 0 &&
+    uniqueIds.size === ids.length &&
+    index.summary.totalRows === ids.length &&
+    index.summary.promotionEligibleRowCount === promotionEligibleRowCount &&
+    index.summary.blockedRowCount === blockedRows.length &&
+    index.summary.firstBlockedFamily === (blockedRows[0]?.family ?? null) &&
+    index.summary.firstBlockedRow === (blockedRows[0]?.row ?? null) &&
+    index.summary.firstBlockedObject ===
+      (blockedRows[0]?.firstMissingObject ?? null)
+  );
+}
+
+function appendSourceBindingSummaryErrors(errors, report) {
+  const binding = report?.sourceBinding;
+  const summary = binding?.summary;
+  if (!summary) {
+    errors.push("source_binding_summary_missing");
+    return;
+  }
+
+  const familyResults = binding.familyResults ?? {};
+  if (!sameStringSet(binding.requiredFamilies, REQUIRED_SOURCE_FAMILIES)) {
+    errors.push("source_binding_required_families_mismatch");
+  }
+
+  const acceptedRequiredFamilies = REQUIRED_SOURCE_FAMILIES.filter(
+    (family) => familyResults[family]?.accepted === true,
+  );
+  const missingRequiredFamilies = REQUIRED_SOURCE_FAMILIES.filter(
+    (family) => familyResults[family]?.accepted !== true,
+  );
+  const firstMissingFamily = SOURCE_BINDING_ORDER.find((family) =>
+    missingRequiredFamilies.includes(family),
+  ) ?? null;
+  const firstMissingObject = firstMissingFamily
+    ? familyResults[firstMissingFamily]?.firstMissingObject ?? null
+    : null;
+  const allRequiredFamiliesAccepted =
+    binding.input?.schemaOk === true && missingRequiredFamilies.length === 0;
+  const allCoefficientBindingsAccepted =
+    sourceBindingEntriesAccepted(binding.coefficientBindings ?? {});
+  const allGraphRuleBindingsAccepted =
+    sourceBindingEntriesAccepted(binding.graphRuleRowBindings ?? {});
+  const rowEvidenceTracePass = sourceBindingRowEvidenceTracePass({
+    coefficientBindings: binding.coefficientBindings ?? {},
+    graphRuleRowBindings: binding.graphRuleRowBindings ?? {},
+  });
+  const sourceRowRequirementIndexPass =
+    sourceBindingSourceRowRequirementIndexPass(binding.sourceRowRequirementIndex);
+  const familyDistinctionLocksPass =
+    sourceBindingFamilyDistinctionLocksPass(binding.familyDistinctionLocks);
+  const partialSourceMarkerLocksPass =
+    sourceBindingPartialSourceMarkerLocksPass(binding.partialSourceMarkerLocks);
+  const rowBindingCoveragePass =
+    sourceBindingCoveragePass(binding.rowBindingCoverage);
+  const allPromotionBindingsAccepted =
+    allRequiredFamiliesAccepted &&
+    allCoefficientBindingsAccepted &&
+    allGraphRuleBindingsAccepted &&
+    rowEvidenceTracePass &&
+    sourceRowRequirementIndexPass &&
+    familyDistinctionLocksPass &&
+    partialSourceMarkerLocksPass &&
+    rowBindingCoveragePass;
+  const status = allPromotionBindingsAccepted
+    ? "all_required_promotion_bindings_accepted"
+    : allRequiredFamiliesAccepted
+      ? "blocked_missing_coefficient_graph_rule_or_distinction_locks"
+      : "blocked_missing_accepted_source_rows";
+  const expectedScalars = {
+    status,
+    requiredFamilyCount: REQUIRED_SOURCE_FAMILIES.length,
+    acceptedRequiredFamilyCount: acceptedRequiredFamilies.length,
+    allRequiredFamiliesAccepted,
+    allCoefficientBindingsAccepted,
+    allGraphRuleBindingsAccepted,
+    rowEvidenceTracePass,
+    sourceRowRequirementIndexPass,
+    familyDistinctionLocksPass,
+    partialSourceMarkerLocksPass,
+    rowBindingCoveragePass,
+    allPromotionBindingsAccepted,
+    firstMissingFamily,
+    firstMissingObject,
+  };
+
+  for (const [field, expected] of Object.entries(expectedScalars)) {
+    if (summary[field] !== expected) {
+      errors.push(`source_binding_summary_${field}_mismatch`);
+    }
+  }
+  if (!sameStringSet(summary.missingRequiredFamilies, missingRequiredFamilies)) {
+    errors.push("source_binding_summary_missing_required_families_mismatch");
+  }
+}
+
+function rowsIncludeAll(rows, expectedRows) {
+  return (
+    Array.isArray(rows) &&
+    expectedRows.every((row) => rows.includes(row))
+  );
+}
+
+function sourceBindingCoverage(coefficientRows) {
+  return {
+    coefficients: sourceBindingCoverageSummary(
+      coefficientRows.map((row) =>
+        sourceBindingCoverageRow(
+          row.name,
+          COEFFICIENT_SOURCE_FAMILIES,
+          COEFFICIENT_SOURCE_ROW_REQUIREMENTS,
+        ),
+      ),
+    ),
+    graphRules: sourceBindingCoverageSummary(
+      Object.keys(GRAPH_RULE_SOURCE_FAMILIES).map((ruleId) =>
+        sourceBindingCoverageRow(
+          ruleId,
+          GRAPH_RULE_SOURCE_FAMILIES,
+          GRAPH_RULE_SOURCE_ROW_REQUIREMENTS,
+        ),
+      ),
+    ),
+  };
+}
+
+function sourceBindingCoverageRow(id, sourceFamilyMap, sourceRequirementMap) {
+  const sourceFamilies = sourceFamilyMap[id] ?? [];
+  const rowRequirements = sourceRequirementMap[id] ?? {};
+  const missingRequirementFamilies = sourceFamilies.filter(
+    (family) =>
+      !Array.isArray(rowRequirements[family]) ||
+      rowRequirements[family].length === 0,
+  );
+  const extraRequirementFamilies = Object.keys(rowRequirements).filter(
+    (family) => !sourceFamilies.includes(family),
+  );
+  return {
+    id,
+    sourceFamilies,
+    missingRequirementFamilies,
+    extraRequirementFamilies,
+    covered:
+      sourceFamilies.length > 0 &&
+      missingRequirementFamilies.length === 0 &&
+      extraRequirementFamilies.length === 0,
+  };
+}
+
+function sourceBindingCoverageSummary(rows) {
+  const uncoveredRows = rows.filter((row) => row.covered !== true);
+  return {
+    total: rows.length,
+    covered: rows.length - uncoveredRows.length,
+    uncovered: uncoveredRows.map((row) => row.id),
+    rows,
+  };
+}
+
+function sourceBindingCoveragePass(coverage) {
+  return (
+    coverage?.coefficients?.total > 0 &&
+    coverage?.graphRules?.total > 0 &&
+    coverage.coefficients.uncovered.length === 0 &&
+    coverage.graphRules.uncovered.length === 0
+  );
+}
+
+function sourceBindingEntriesAccepted(entries) {
+  const bindings = Object.values(entries);
+  return (
+    bindings.length > 0 &&
+    bindings.every(
+      (binding) =>
+        binding.rowBindingStatus === "all_required_rows_accepted",
+    )
   );
 }
 
@@ -1105,7 +1982,10 @@ function sourceRowBindingForFamily(family, requiredRows, candidateResults) {
   const candidates = candidateResults.filter((candidate) => candidate.family === family);
   const accepted = candidates.find((candidate) => candidate.accepted);
   const nearest = accepted ?? candidates[0] ?? null;
-  const missingRows = requiredRows.filter((row) => !sourceRowAccepted(nearest, row));
+  const rowEvidence = sourceRowEvidenceByRow(nearest, family, requiredRows);
+  const missingRows = requiredRows.filter(
+    (row) => rowEvidence[row]?.localAccepted !== true,
+  );
   const familyAccepted = nearest?.accepted === true;
   return {
     family,
@@ -1114,6 +1994,13 @@ function sourceRowBindingForFamily(family, requiredRows, candidateResults) {
     requiredRows,
     accepted: familyAccepted && missingRows.length === 0,
     missingRows,
+    localAcceptedRows: requiredRows.filter(
+      (row) => rowEvidence[row]?.localAccepted === true,
+    ),
+    promotionEligibleRows: requiredRows.filter(
+      (row) => rowEvidence[row]?.promotionEligible === true,
+    ),
+    rowEvidence,
     firstMissingObject: missingRows.length > 0
       ? `missing_accepted_${missingRows[0]}`
       : familyAccepted
@@ -1140,8 +2027,338 @@ function firstMissingRowObject(rowBindings) {
   );
 }
 
-function sourceRowAccepted(candidate, row) {
-  return candidate?.rowStatuses?.[row]?.accepted === true;
+function sourceRowEvidenceByRow(candidate, family, requiredRows) {
+  return Object.fromEntries(
+    requiredRows.map((row) => [row, sourceRowEvidence(candidate, family, row)]),
+  );
+}
+
+function sourceRowEvidence(candidate, family, row) {
+  const sourceRow = candidate?.rowStatuses?.[row] ?? null;
+  const acquisitionTarget =
+    candidate?.sourceTargetCheck?.sourceAcquisitionCheck?.targetChecks?.[row] ??
+    null;
+  const familyAccepted = candidate?.accepted === true;
+
+  if (sourceRow?.accepted === true) {
+    return {
+      row,
+      family,
+      candidateId: candidate?.id ?? null,
+      evidenceMode: "accepted_source_row",
+      localAccepted: true,
+      promotionEligible: familyAccepted,
+      sourceRowId: sourceRow.id ?? null,
+      status: sourceRow.status ?? null,
+      currentEvidenceStatus: sourceRow.currentEvidenceStatus ?? null,
+      acceptedEvidenceTrace: acceptedSourceRowEvidenceTrace(sourceRow),
+    };
+  }
+
+  if (acquisitionTarget?.accepted === true) {
+    return {
+      row,
+      family,
+      candidateId: candidate?.id ?? null,
+      evidenceMode: "source_acquisition_target",
+      localAccepted: true,
+      promotionEligible: false,
+      sourceRowId: acquisitionTarget.sourceRowId ?? null,
+      targetId: acquisitionTarget.targetId ?? null,
+      status: acquisitionTarget.status ?? null,
+      currentEvidenceStatus: acquisitionTarget.currentEvidenceStatus ?? null,
+      sourceTargetPath: acquisitionTarget.sourceTargetPath ?? null,
+      componentShapePass: acquisitionTarget.componentShapePass ?? null,
+    };
+  }
+
+  return {
+    row,
+    family,
+    candidateId: candidate?.id ?? null,
+    evidenceMode: sourceRow
+      ? "missing_or_unaccepted_source_row"
+      : acquisitionTarget
+        ? "failed_source_acquisition_target"
+        : "missing_source_row",
+    localAccepted: false,
+    promotionEligible: false,
+    sourceRowId: sourceRow?.id ?? acquisitionTarget?.sourceRowId ?? null,
+    targetId: acquisitionTarget?.targetId ?? null,
+    status: sourceRow?.status ?? acquisitionTarget?.status ?? null,
+    currentEvidenceStatus:
+      sourceRow?.currentEvidenceStatus ??
+      acquisitionTarget?.currentEvidenceStatus ??
+      null,
+    firstMissingAcceptedSourceRow:
+      sourceAcquisitionRouteSourceRowId(candidate, row, acquisitionTarget),
+    ...sourceAcquisitionRouteEvidenceFields(candidate, row, acquisitionTarget),
+    ...acceptedSourceRowProofTargetEvidenceFields(candidate, row),
+  };
+}
+
+function acceptedSourceRowProofTargetEvidenceFields(candidate, row) {
+  const target =
+    candidate?.sourceTargetCheck?.acceptedSourceRowProofTargets?.targets?.[row] ??
+    null;
+  if (!target?.passed) {
+    return {};
+  }
+  return {
+    acceptedSourceRowProofTarget: {
+      rowId: target.rowId,
+      targetId: target.targetId ?? null,
+      currentEvidenceStatus: target.currentEvidenceStatus ?? null,
+      claimLevel: target.claimLevel ?? null,
+      requiredAcceptedSourceRowsBeforeUse:
+        target.requiredAcceptedSourceRowsBeforeUse ?? [],
+      requiredSameRecordRows: target.requiredSameRecordRows ?? [],
+      requiredClosureRows: target.requiredClosureRows ?? [],
+      ...(Array.isArray(target.requiredExtractionCertificateRows)
+        ? { requiredExtractionCertificateRows: target.requiredExtractionCertificateRows }
+        : {}),
+      ...(Array.isArray(target.requiredEnvelopeBundleRows)
+        ? { requiredEnvelopeBundleRows: target.requiredEnvelopeBundleRows }
+        : {}),
+      ...(Array.isArray(target.requiredResidualDerivationRows)
+        ? { requiredResidualDerivationRows: target.requiredResidualDerivationRows }
+        : {}),
+      ...(Array.isArray(target.requiredInequalities)
+        ? { requiredInequalities: target.requiredInequalities }
+        : {}),
+      ...(Array.isArray(target.requiredLimitStatements)
+        ? { requiredLimitStatements: target.requiredLimitStatements }
+        : {}),
+      ...(Array.isArray(target.requiredTailLimitStatements)
+        ? { requiredTailLimitStatements: target.requiredTailLimitStatements }
+        : {}),
+      ...(Array.isArray(target.requiredConservationRows)
+        ? { requiredConservationRows: target.requiredConservationRows }
+        : {}),
+      ...(Array.isArray(target.requiredEventBalanceRows)
+        ? { requiredEventBalanceRows: target.requiredEventBalanceRows }
+        : {}),
+      ...(Array.isArray(target.requiredChiralitySelectionRows)
+        ? { requiredChiralitySelectionRows: target.requiredChiralitySelectionRows }
+        : {}),
+      ...(Array.isArray(target.requiredUpdateRows)
+        ? { requiredUpdateRows: target.requiredUpdateRows }
+        : {}),
+      ...(Array.isArray(target.mustRemainDistinctFrom)
+        ? { mustRemainDistinctFrom: target.mustRemainDistinctFrom }
+        : {}),
+      forbiddenPromotionSources: target.forbiddenPromotionSources ?? [],
+      directToyConsumers: target.directToyConsumers ?? {
+        coefficients: [],
+        graphRules: [],
+      },
+    },
+  };
+}
+
+function sourceAcquisitionRouteEvidenceFields(candidate, row, acquisitionTarget) {
+  const blocker = sourceAcquisitionRouteBlocker(candidate, row, acquisitionTarget);
+  if (!blocker?.sourceAcquisitionRoute) {
+    return {};
+  }
+  const route = blocker.sourceAcquisitionRoute;
+  return {
+    sourceAcquisitionRoute: {
+      sourceRowId: blocker.sourceRowId,
+      targetId: blocker.targetId ?? null,
+      currentEvidenceStatus: blocker.currentEvidenceStatus ?? null,
+      claimLevel: route.claimLevel ?? null,
+      requiredRowsBeforeUse: route.requiredRowsBeforeUse ?? [],
+      requiredAcceptedRowsBeforeUse: route.requiredAcceptedRowsBeforeUse ?? [],
+      feedsRowsAfterAcceptance: route.feedsRowsAfterAcceptance ?? [],
+      notRequiredBeforeAcceptance: route.notRequiredBeforeAcceptance ?? [],
+      ...(Array.isArray(route.mustRemainDistinctFrom)
+        ? { mustRemainDistinctFrom: route.mustRemainDistinctFrom }
+        : {}),
+    },
+  };
+}
+
+function sourceAcquisitionRouteBlocker(candidate, row, acquisitionTarget) {
+  const blockers =
+    candidate?.sourceTargetCheck?.sourceAcquisitionBlockerMap?.blockers ?? [];
+  const rowCheck =
+    candidate?.sourceTargetCheck?.sourceAcquisitionCheck?.rowChecks?.[row] ??
+    null;
+  const routeSourceRowIds = [
+    acquisitionTarget?.accepted === true ? null : acquisitionTarget?.sourceRowId,
+    row,
+    `accepted_${row}`,
+    rowCheck?.missingAcceptedSourceRows?.[0],
+    candidate?.sourceTargetCheck?.sourceAcquisitionBlockerMap
+      ?.firstMissingAcceptedSourceRow,
+  ].filter(Boolean);
+  return routeSourceRowIds
+    .map((sourceRowId) =>
+      blockers.find((blocker) => blocker.sourceRowId === sourceRowId),
+    )
+    .find(Boolean) ?? null;
+}
+
+function sourceAcquisitionRouteSourceRowId(candidate, row, acquisitionTarget) {
+  return (
+    sourceAcquisitionRouteBlocker(candidate, row, acquisitionTarget)?.sourceRowId ??
+    null
+  );
+}
+
+function sourceBindingRowEvidenceTracePass({
+  coefficientBindings = {},
+  graphRuleRowBindings = {},
+} = {}) {
+  const entries = [
+    ...Object.values(coefficientBindings),
+    ...Object.values(graphRuleRowBindings),
+  ];
+  return entries.length > 0 && entries.every(bindingRowEvidenceTracePass);
+}
+
+function bindingRowEvidenceTracePass(binding) {
+  return Object.values(binding.requiredRowsByFamily ?? {}).every(
+    (rowBinding) =>
+      Array.isArray(rowBinding.requiredRows) &&
+      Array.isArray(rowBinding.missingRows) &&
+      rowBinding.requiredRows.length > 0 &&
+      rowBinding.requiredRows.every((row) => {
+        const evidence = rowBinding.rowEvidence?.[row];
+        const localAccepted = !rowBinding.missingRows.includes(row);
+        const promotionEligible =
+          rowBinding.accepted === true && localAccepted === true;
+        return (
+          evidence?.row === row &&
+          evidence.family === rowBinding.family &&
+          typeof evidence.evidenceMode === "string" &&
+          evidence.localAccepted === localAccepted &&
+          evidence.promotionEligible === promotionEligible &&
+          acceptedRowEvidenceTracePass(evidence) &&
+          acceptedSourceRowProofTargetTracePass(evidence) &&
+          bindingRowEvidenceRoutePass(evidence, localAccepted, rowBinding)
+        );
+      }),
+  );
+}
+
+function acceptedSourceRowProofTargetTracePass(evidence) {
+  if (!rowRequiresAcceptedSourceRowProofTarget(evidence.family, evidence.row)) {
+    return true;
+  }
+  return acceptedSourceRowProofTargetEvidencePass(
+    evidence.acceptedSourceRowProofTarget,
+    evidence.family,
+    evidence.row,
+  );
+}
+
+function rowRequiresAcceptedSourceRowProofTarget(family, row) {
+  return (
+    (family === "branch_interface" && row === "nucleon_branch_interface_ledgers") ||
+    (family === "confinement_functional" &&
+      (row === "sigma_eff_extraction" ||
+        row === "color_singlet_nucleon_envelope" ||
+        row === "delta_E_corr_NN" ||
+        row === "finite_range_residual" ||
+        row === "no_open_color_far_field")) ||
+    (family === "weak_channel" &&
+      (row === "va_chirality_gate" ||
+        row === "reaction_event_ledger" ||
+        row === "noether_sea_response"))
+  );
+}
+
+function acceptedSourceRowProofTargetEvidencePass(target, family, row) {
+  const requiredSpecialtyFields =
+    requiredAcceptedSourceRowProofTargetSpecialtyFields(family, row);
+  return (
+    target &&
+    typeof target.rowId === "string" &&
+    typeof target.claimLevel === "string" &&
+    target.claimLevel.includes("not accepted source evidence") &&
+    Array.isArray(target.requiredAcceptedSourceRowsBeforeUse) &&
+    Array.isArray(target.requiredSameRecordRows) &&
+    Array.isArray(target.requiredClosureRows) &&
+    requiredSpecialtyFields.length > 0 &&
+    requiredSpecialtyFields.every((field) => Array.isArray(target[field])) &&
+    Array.isArray(target.forbiddenPromotionSources) &&
+    Array.isArray(target.directToyConsumers?.coefficients) &&
+    Array.isArray(target.directToyConsumers?.graphRules)
+  );
+}
+
+function requiredAcceptedSourceRowProofTargetSpecialtyFields(family, row) {
+  return (
+    {
+      "branch_interface.nucleon_branch_interface_ledgers": [
+        "requiredInequalities",
+        "requiredLimitStatements",
+      ],
+      "confinement_functional.sigma_eff_extraction": [
+        "requiredExtractionCertificateRows",
+      ],
+      "confinement_functional.color_singlet_nucleon_envelope": [
+        "requiredEnvelopeBundleRows",
+      ],
+      "confinement_functional.delta_E_corr_NN": [
+        "requiredResidualDerivationRows",
+      ],
+      "confinement_functional.finite_range_residual": [
+        "requiredTailLimitStatements",
+      ],
+      "confinement_functional.no_open_color_far_field": [
+        "requiredLimitStatements",
+      ],
+      "weak_channel.reaction_event_ledger": [
+        "requiredConservationRows",
+        "requiredEventBalanceRows",
+      ],
+      "weak_channel.va_chirality_gate": ["requiredChiralitySelectionRows"],
+      "weak_channel.noether_sea_response": [
+        "requiredUpdateRows",
+        "mustRemainDistinctFrom",
+      ],
+    }[`${family}.${row}`] ?? []
+  );
+}
+
+function acceptedRowEvidenceTracePass(evidence) {
+  if (evidence.evidenceMode !== "accepted_source_row") {
+    return true;
+  }
+  return acceptedEvidenceTracePass(evidence.acceptedEvidenceTrace);
+}
+
+function acceptedEvidenceTracePass(trace) {
+  return (
+    trace &&
+    typeof trace.claimLevel === "string" &&
+    typeof trace.sourceRowId === "string" &&
+    typeof trace.status === "string" &&
+    typeof trace.durableEvidenceStatus === "string" &&
+    trace.durableEvidenceStatus !== "accepted_status_only"
+  );
+}
+
+function bindingRowEvidenceRoutePass(evidence, localAccepted, rowBinding) {
+  if (localAccepted === true || !rowBinding.sourceAcquisitionFirstMissingObject) {
+    return true;
+  }
+  return sourceAcquisitionRouteEvidencePass(evidence.sourceAcquisitionRoute);
+}
+
+function sourceAcquisitionRouteEvidencePass(route) {
+  return (
+    route &&
+    typeof route.sourceRowId === "string" &&
+    typeof route.claimLevel === "string" &&
+    Array.isArray(route.requiredRowsBeforeUse) &&
+    Array.isArray(route.requiredAcceptedRowsBeforeUse) &&
+    Array.isArray(route.feedsRowsAfterAcceptance) &&
+    Array.isArray(route.notRequiredBeforeAcceptance)
+  );
 }
 
 function sourceRowStatuses(
@@ -1187,16 +2404,108 @@ function sourceRowStatusesFromSourceTargetCheck(report, requiredRows) {
   return Object.fromEntries(
     requiredRows.map((row) => {
       const check = report.rowChecks?.[row];
+      const acquisitionTarget =
+        report.sourceAcquisitionCheck?.targetChecks?.[row] ?? null;
       return [
         row,
-        {
+        compactObject({
           accepted: check?.accepted === true,
           status: check?.status ?? null,
           id: check?.sourceRowId ?? null,
-        },
+          currentEvidenceStatus: check?.currentEvidenceStatus ?? null,
+          acceptedStatus: check?.acceptedStatus,
+          evidenceAccepted: check?.evidenceAccepted,
+          reason: check?.reason,
+          sourcePath: check?.sourcePath,
+          sourceEvidence: compactSourceEvidence(check?.sourceEvidence),
+          reportSourceEvidence: compactSourceEvidence(report.sourceEvidenceCheck),
+          providerObjectCheck: compactProviderObjectCheck(
+            report.providerObjectCheck,
+          ),
+          domainId: check?.domainId,
+          branchRecordId: check?.branchRecordId,
+          group: check?.group,
+          eventLedgerRef: check?.eventLedgerRef,
+          sourceTargetPath: acquisitionTarget?.sourceTargetPath,
+          targetId: acquisitionTarget?.targetId,
+          requiredScope: acquisitionTarget?.requiredScope,
+          componentShapePass: acquisitionTarget?.componentShapePass,
+        }),
       ];
     }),
   );
+}
+
+function compactObject(value) {
+  return Object.fromEntries(
+    Object.entries(value).filter(([, entry]) => entry !== undefined),
+  );
+}
+
+function compactSourceEvidence(evidence) {
+  if (!evidence || typeof evidence !== "object" || Array.isArray(evidence)) {
+    return undefined;
+  }
+  return compactObject({
+    accepted: evidence.accepted,
+    passed: evidence.passed,
+    reason: evidence.reason,
+    resolvedPath: evidence.resolvedPath,
+    requiredEvidenceStatus: evidence.requiredEvidenceStatus,
+  });
+}
+
+function compactProviderObjectCheck(check) {
+  if (!check || typeof check !== "object" || Array.isArray(check)) {
+    return undefined;
+  }
+  return compactObject({
+    passed: check.passed,
+    reason: check.reason,
+    providerStatus: check.providerStatus,
+  });
+}
+
+function acceptedSourceRowEvidenceTrace(sourceRow) {
+  return compactObject({
+    claimLevel:
+      "accepted source-row trace; not promotion evidence unless the owning source family is accepted",
+    sourceRowId: sourceRow.id ?? null,
+    status: sourceRow.status ?? null,
+    durableEvidenceStatus: durableEvidenceStatusForSourceRow(sourceRow),
+    currentEvidenceStatus: sourceRow.currentEvidenceStatus ?? null,
+    sourcePath: sourceRow.sourcePath,
+    sourceTargetPath: sourceRow.sourceTargetPath,
+    targetId: sourceRow.targetId,
+    requiredScope: sourceRow.requiredScope,
+    componentShapePass: sourceRow.componentShapePass,
+    sourceEvidence: sourceRow.sourceEvidence,
+    reportSourceEvidence: sourceRow.reportSourceEvidence,
+    providerObjectCheck: sourceRow.providerObjectCheck,
+    domainId: sourceRow.domainId,
+    branchRecordId: sourceRow.branchRecordId,
+    group: sourceRow.group,
+    eventLedgerRef: sourceRow.eventLedgerRef,
+  });
+}
+
+function durableEvidenceStatusForSourceRow(sourceRow) {
+  if (sourceRow.currentEvidenceStatus === "accepted_non_fixture_source") {
+    return "accepted_non_fixture_source";
+  }
+  if (sourceRow.sourceEvidence?.accepted === true) {
+    return "accepted_source_evidence_check";
+  }
+  if (
+    sourceRow.reportSourceEvidence?.passed === true &&
+    sourceRow.providerObjectCheck?.passed === true
+  ) {
+    return "accepted_provider_source_object";
+  }
+  if (sourceRow.reportSourceEvidence?.passed === true) {
+    return "accepted_source_file";
+  }
+  return "accepted_status_only";
 }
 
 function acceptedSourceRow(row) {
@@ -1520,15 +2829,7 @@ function representativeHeavySplit(coefficients) {
         daughterPairCoulombStress / parentCoulombStress,
       ),
     },
-    declaredLedgerRoutes: [
-      "daughter binding rows",
-      "emitted products when present",
-      "recoil",
-      "heat",
-      "photon rows when present",
-      "medium exchange",
-      "Noether sea update",
-    ],
+    declaredLedgerRoutes: [...RELEASE_LEDGER_ROUTES],
     ledgerAuthorization: "routes_declared_not_reaction_ledger_proof",
   };
 }

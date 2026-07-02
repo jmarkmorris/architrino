@@ -691,15 +691,19 @@ export class EquationMappingRuntime {
     pointerSvg.classList.add("equation-mapping-pointer-layer");
     pointerSvg.setAttribute("aria-hidden", "true");
     this.pointerSvg = pointerSvg;
-    stage.append(pointerSvg, this.renderEquation(), this.renderOverlayLayer());
+    stage.append(pointerSvg, this.renderEquationTitle(), this.renderEquation(), this.renderOverlayLayer());
     return stage;
+  }
+
+  renderEquationTitle() {
+    const title = createElement(this.document, "div", "equation-mapping-equation-title");
+    title.append(createElement(this.document, "strong", "", this.activeDocument.title));
+    return title;
   }
 
   renderEquation() {
     const document = this.activeDocument;
     const equationShell = createElement(this.document, "div", "equation-mapping-equation-shell");
-    const title = createElement(this.document, "div", "equation-mapping-equation-title");
-    title.append(createElement(this.document, "strong", "", document.title));
     const equation = createElement(this.document, "div", "equation-mapping-equation");
     equation.setAttribute("role", "img");
     equation.setAttribute("aria-label", document.formulaTeX);
@@ -737,7 +741,7 @@ export class EquationMappingRuntime {
       }
       equation.append(partElement);
     });
-    equationShell.append(title, equation);
+    equationShell.append(equation);
     return equationShell;
   }
 

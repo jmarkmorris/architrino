@@ -48,6 +48,34 @@ test("current Noether sea provider accepts Fe/Ni toy response rows", () => {
   assert.equal(report.rowChecks.stress_strain_row.accepted, true);
   assert.equal(report.responseAgreementCheck.residual <= report.responseAgreementCheck.tolerance, true);
   assert.equal(report.toyBindingCheck.unconsumedRequiredRows.length, 0);
+  assert.equal(
+    report.toyBindingCheck.rowConsumption.status,
+    "all_toy_bound_noether_sea_rows_accepted",
+  );
+  assert.deepEqual(report.toyBindingCheck.rowConsumption.acceptedRows, [
+    "rho_NS",
+    "theta_sea",
+    "stress_strain_row",
+    "causality_row",
+  ]);
+  assert.deepEqual(
+    report.toyBindingCheck.rowConsumption.rows.rho_NS.directToyConsumers,
+    {
+      coefficients: ["alphaSea", "seaImbalancePenalty"],
+      graphRules: ["noether_sea_polarization_reward"],
+    },
+  );
+  assert.deepEqual(
+    report.toyBindingCheck.rowConsumption.rows.stress_strain_row.directToyConsumers,
+    {
+      coefficients: ["alphaSea"],
+      graphRules: ["noether_sea_polarization_reward"],
+    },
+  );
+  assert.equal(
+    report.toyBindingCheck.rowConsumption.rows.rho_NS.eventLedgerRef,
+    "event-ledger-theta-sea-rho-ns-provider-0001",
+  );
 });
 
 test("Noether sea checker fails closed when acoustic-elastic agreement drifts", () => {
@@ -96,6 +124,20 @@ test("Noether sea checker fails closed when a toy-bound row is not accepted", ()
       reason: "row_not_accepted",
     },
   ]);
+  assert.equal(
+    report.toyBindingCheck.rowConsumption.status,
+    "blocked_missing_toy_bound_noether_sea_rows",
+  );
+  assert.deepEqual(report.toyBindingCheck.rowConsumption.missingRows, [
+    "stress_strain_row",
+  ]);
+  assert.deepEqual(
+    report.toyBindingCheck.rowConsumption.rows.stress_strain_row.directToyConsumers,
+    {
+      coefficients: ["alphaSea"],
+      graphRules: ["noether_sea_polarization_reward"],
+    },
+  );
 });
 
 test("CLI require-accepted passes for the current Noether sea provider", () => {

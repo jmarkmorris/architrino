@@ -118,6 +118,7 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "weak_projection",
     "weak_quotient",
     "weak_exposure_record",
+    "va_chirality_gate",
     "energy_momentum_angular_momentum_accounting",
   ],
   noether_sea_response: [
@@ -126,6 +127,175 @@ const REQUIRED_SOURCE_TARGET_COMPONENTS = Object.freeze({
     "noether_sea_update_row",
     "same_domain_rows",
   ],
+});
+const SOURCE_ACQUISITION_ROUTES = Object.freeze({
+  va_chirality_gate: {
+    requiredAcceptedRowsBeforeUse: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_row",
+      "same_domain_rows",
+    ],
+    feedsRowsAfterAcceptance: [
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "reaction_event_ledger",
+    ],
+    notRequiredBeforeAcceptance: [
+      "ckm_overlap_readout",
+      "pmns_overlap_readout",
+      "weak_corridor_provenance",
+      "effective_gauge_covariance_witness",
+      "reaction_event_ledger",
+      "noether_sea_response",
+    ],
+  },
+  reaction_event_ledger: {
+    requiredAcceptedRowsBeforeUse: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "energy_momentum_angular_momentum_accounting",
+    ],
+    feedsRowsAfterAcceptance: ["noether_sea_response"],
+  },
+  noether_sea_response: {
+    requiredAcceptedRowsBeforeUse: [
+      "weak_quotient",
+      "reaction_event_ledger",
+      "noether_sea_update_row",
+      "same_domain_rows",
+    ],
+    mustRemainDistinctFrom: ["retained_window_noether_sea_response_provider"],
+  },
+});
+const REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS = Object.freeze({
+  va_chirality_gate: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_row",
+      "same_domain_rows",
+    ],
+    requiredSameRecordRows: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "va_chirality_row",
+      "same_domain_rows",
+      "same_branch_record",
+    ],
+    requiredClosureRows: [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "muon_decay_michel_parameter_binding",
+    ],
+    requiredChiralitySelectionRows: [
+      "charged_current_left_channel_selection",
+      "right_channel_charged_current_suppression",
+      "va_chirality_row",
+      "muon_decay_michel_parameter_binding",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "retained_weak_exposure_only",
+      "standard_model_benchmark_table_only",
+    ],
+  },
+  reaction_event_ledger: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "energy_momentum_angular_momentum_accounting",
+    ],
+    requiredSameRecordRows: [
+      "weak_visible_branch_ledger",
+      "weak_projection",
+      "weak_quotient",
+      "weak_exposure_record",
+      "va_chirality_gate",
+      "reaction_event_ledger",
+      "same_domain_rows",
+      "same_branch_record",
+    ],
+    requiredClosureRows: [
+      "energy_conservation_row",
+      "momentum_conservation_row",
+      "angular_momentum_conservation_row",
+      "emitted_product_ledger",
+      "recoil_accounting",
+    ],
+    requiredConservationRows: [
+      "energy_conservation_row",
+      "momentum_conservation_row",
+      "angular_momentum_conservation_row",
+      "emitted_product_ledger",
+      "recoil_accounting",
+    ],
+    requiredEventBalanceRows: [
+      "incoming_weak_domain_rows",
+      "energy_conservation_row",
+      "momentum_conservation_row",
+      "angular_momentum_conservation_row",
+      "emitted_product_ledger",
+      "recoil_accounting",
+      "weak_event_noether_sea_update_route",
+    ],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "attempt_level_weak_rows",
+      "retained_weak_exposure_only",
+    ],
+  },
+  noether_sea_response: {
+    requiredAcceptedSourceRowsBeforeUse: [
+      "weak_quotient",
+      "reaction_event_ledger",
+      "noether_sea_update_row",
+      "same_domain_rows",
+    ],
+    requiredSameRecordRows: [
+      "weak_quotient",
+      "reaction_event_ledger",
+      "noether_sea_response",
+      "noether_sea_update_row",
+      "same_domain_rows",
+      "same_branch_record",
+    ],
+    requiredClosureRows: [
+      "reaction_event_ledger",
+      "noether_sea_update_row",
+      "same_domain_rows",
+    ],
+    requiredUpdateRows: [
+      "weak_quotient",
+      "reaction_event_ledger",
+      "noether_sea_update_row",
+      "same_domain_rows",
+    ],
+    mustRemainDistinctFrom: ["retained_window_noether_sea_response_provider"],
+    forbiddenPromotionSources: [
+      "priority_packet_only",
+      "target_required",
+      "retained_window_noether_sea_response_provider",
+      "generic_Noether_sea_provider_as_event_update",
+    ],
+  },
 });
 
 if (process.argv[1] && path.resolve(process.argv[1]) === fileURLToPath(import.meta.url)) {
@@ -158,7 +328,17 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
   const sourceAcquisitionCheck = evaluateSourceAcquisition(
     input?.sourceAcquisitionTargets ?? {},
   );
-  const toyBindingCheck = evaluateToyBindingRows(input?.toyBindingRows ?? defaultToyBindingRows());
+  const toyBindingRows = input?.toyBindingRows ?? defaultToyBindingRows();
+  const toyBindingCheck = evaluateToyBindingRows(toyBindingRows);
+  const acceptedSourceRowProofTargets = evaluateAcceptedSourceRowProofTargets(
+    input?.acceptedSourceRowProofTargets ?? {},
+    toyBindingRows,
+  );
+  const sourceAcquisitionBlockerMap = buildSourceAcquisitionBlockerMap({
+    sourceAcquisitionCheck,
+    toyBindingRows,
+    acceptedSourceRowProofTargets,
+  });
   const structuralFailures = [
     ...(domainCheck.passed ? [] : ["same_domain_rows"]),
     ...(gaugeCheck.passed ? [] : ["gauge_branch_record_stability"]),
@@ -170,6 +350,7 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
   const status = decideStatus({
     schemaOk,
     structuralFailures,
+    acceptedSourceRowProofTargets,
     sourceAcquisitionCheck,
     missingRows,
   });
@@ -197,6 +378,10 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
       gaugePass: gaugeCheck.passed,
       residualPass: residualCheck.passed,
       sourceEvidencePass: sourceEvidenceCheck.passed,
+      acceptedSourceRowProofTargetPass:
+        acceptedSourceRowProofTargets.summary.passed,
+      acceptedSourceRowProofTargetFailures:
+        acceptedSourceRowProofTargets.summary.failures,
       sourceAcquisitionPass: sourceAcquisitionCheck.passed,
       sourceAcquisitionFirstMissingObject:
         sourceAcquisitionCheck.firstMissingSourceRow
@@ -212,7 +397,9 @@ export function buildWeakChannelSourceTargetCheck(input, { inputPath = DEFAULT_I
     gaugeCheck,
     residualCheck,
     sourceEvidenceCheck,
+    acceptedSourceRowProofTargets,
     sourceAcquisitionCheck,
+    sourceAcquisitionBlockerMap,
     toyBindingCheck,
     acceptanceRule:
       "The weak-channel target is promotion-ready only when every required weak row is accepted from durable source evidence, each required row's source-acquisition target preserves its component shape, and the same-domain, gauge-stability, weak-residual, source-evidence, and toy-binding checks still pass.",
@@ -277,7 +464,9 @@ function writeReport(report, args) {
         domainCheck: report.domainCheck,
         gaugeCheck: report.gaugeCheck,
         sourceEvidenceCheck: report.sourceEvidenceCheck,
+        acceptedSourceRowProofTargets: report.acceptedSourceRowProofTargets,
         sourceAcquisitionCheck: report.sourceAcquisitionCheck,
+        sourceAcquisitionBlockerMap: report.sourceAcquisitionBlockerMap,
         toyBindingCheck: report.toyBindingCheck,
       }
     : report;
@@ -474,6 +663,236 @@ function sourceAcquisitionTargetFailureReason(check) {
   return "source_acquisition_target_not_accepted";
 }
 
+function evaluateAcceptedSourceRowProofTargets(proofTargets, toyBindingRows) {
+  const targets = Object.fromEntries(
+    Object.entries(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS).map(
+      ([rowId, expected]) => [
+        rowId,
+        evaluateAcceptedSourceRowProofTarget(
+          rowId,
+          proofTargets[rowId],
+          expected,
+          toyBindingRows,
+        ),
+      ],
+    ),
+  );
+  const failures = Object.values(targets).flatMap((target) =>
+    target.passed
+      ? []
+      : [
+          {
+            rowId: target.rowId,
+            reason: acceptedSourceRowProofTargetFailureReason(target),
+            missingFields: target.missingFields,
+            mismatchedFields: target.mismatchedFields,
+          },
+        ],
+  );
+  return {
+    summary: {
+      requiredField: "acceptedSourceRowProofTargets",
+      requiredRows: Object.keys(REQUIRED_ACCEPTED_SOURCE_ROW_PROOF_TARGETS),
+      passed: failures.length === 0,
+      failures,
+    },
+    targets,
+  };
+}
+
+function evaluateAcceptedSourceRowProofTarget(
+  rowId,
+  target,
+  expected,
+  toyBindingRows,
+) {
+  const present = target && typeof target === "object" && !Array.isArray(target);
+  const status = present ? normalizeStatus(target) : "missing";
+  const claimLevel = present ? target.claimLevel ?? null : null;
+  const expectedArrayFields = Object.keys(expected);
+  const missingFields = [
+    ...requiredStringFields(target, ["id", "claimLevel", "currentEvidenceStatus"]),
+    ...requiredArrayFields(target, expectedArrayFields),
+  ];
+  const mismatchedFields = [];
+  if (status !== "target_required") {
+    mismatchedFields.push("status");
+  }
+  if (typeof claimLevel !== "string" || !claimLevel.includes("not accepted source evidence")) {
+    mismatchedFields.push("claimLevel");
+  }
+  for (const [field, expectedRows] of Object.entries(expected)) {
+    if (!sameStringSet(target?.[field], expectedRows)) {
+      mismatchedFields.push(field);
+    }
+  }
+  return {
+    rowId,
+    targetId: present ? target.id ?? null : null,
+    present,
+    status,
+    currentEvidenceStatus: present ? target.currentEvidenceStatus ?? null : null,
+    claimLevel,
+    requiredAcceptedSourceRowsBeforeUse:
+      target?.requiredAcceptedSourceRowsBeforeUse ?? [],
+    requiredSameRecordRows: target?.requiredSameRecordRows ?? [],
+    requiredClosureRows: target?.requiredClosureRows ?? [],
+    requiredConservationRows: target?.requiredConservationRows ?? [],
+    requiredEventBalanceRows: target?.requiredEventBalanceRows ?? [],
+    requiredChiralitySelectionRows: target?.requiredChiralitySelectionRows ?? [],
+    requiredUpdateRows: target?.requiredUpdateRows ?? [],
+    mustRemainDistinctFrom: target?.mustRemainDistinctFrom ?? [],
+    forbiddenPromotionSources: target?.forbiddenPromotionSources ?? [],
+    currentPriorityPacket: present ? target.currentPriorityPacket ?? null : null,
+    directToyConsumers: directToyConsumersForWeakRows(toyBindingRows, [rowId]),
+    missingFields,
+    mismatchedFields,
+    passed:
+      present &&
+      missingFields.length === 0 &&
+      mismatchedFields.length === 0,
+  };
+}
+
+function requiredStringFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => typeof target[field] !== "string" || target[field] === "");
+}
+
+function requiredArrayFields(target, fields) {
+  if (!target || typeof target !== "object" || Array.isArray(target)) {
+    return fields;
+  }
+  return fields.filter((field) => !Array.isArray(target[field]));
+}
+
+function acceptedSourceRowProofTargetFailureReason(target) {
+  if (target.present !== true) {
+    return "accepted_source_row_proof_target_missing";
+  }
+  if (target.missingFields.length > 0) {
+    return "accepted_source_row_proof_target_field_missing";
+  }
+  return "accepted_source_row_proof_target_shape_mismatch";
+}
+
+function sameStringSet(left, right) {
+  if (!Array.isArray(left) || !Array.isArray(right)) {
+    return false;
+  }
+  if (left.length !== right.length) {
+    return false;
+  }
+  return left.every((value) => right.includes(value));
+}
+
+function buildSourceAcquisitionBlockerMap({
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  acceptedSourceRowProofTargets,
+}) {
+  const missingSourceRows = Object.values(sourceAcquisitionCheck.targetChecks)
+    .filter((check) => check.accepted !== true)
+    .map((check) => check.sourceRowId);
+  const blockers = missingSourceRows.map((sourceRowId) =>
+    sourceAcquisitionBlocker(
+      sourceAcquisitionCheck,
+      toyBindingRows,
+      sourceRowId,
+      acceptedSourceRowProofTargets,
+    ),
+  );
+  const firstBlocker = blockers[0] ?? null;
+  return {
+    status:
+      blockers.length === 0
+        ? "all_required_source_rows_acquired"
+        : "blocked_missing_accepted_source_rows",
+    claimLevel:
+      "source-acquisition blocker map; not accepted source evidence and not promotion evidence",
+    firstMissingAcceptedSourceRow: firstBlocker?.sourceRowId ?? null,
+    firstMissingObject: firstBlocker
+      ? `missing_accepted_${firstBlocker.sourceRowId}`
+      : null,
+    blockedSourceRowCount: blockers.length,
+    blockers,
+  };
+}
+
+function sourceAcquisitionBlocker(
+  sourceAcquisitionCheck,
+  toyBindingRows,
+  sourceRowId,
+  acceptedSourceRowProofTargets,
+) {
+  const targetCheck = sourceAcquisitionCheck.targetChecks[sourceRowId] ?? {};
+  const blockedWeakRows = [sourceRowId];
+  return {
+    sourceRowId,
+    targetId: targetCheck.targetId ?? null,
+    status: targetCheck.status ?? null,
+    currentEvidenceStatus: targetCheck.currentEvidenceStatus ?? null,
+    accepted: targetCheck.accepted === true,
+    sourceTargetPath: targetCheck.sourceTargetPath ?? null,
+    requiredScope: targetCheck.requiredScope ?? null,
+    requiredLedgerComponents: targetCheck.requiredLedgerComponents ?? [],
+    missingRequiredComponents: targetCheck.missingRequiredComponents ?? [],
+    blockedWeakRows,
+    acceptedSourceRowProofTargets: Object.fromEntries(
+      blockedWeakRows
+        .map((rowId) => [
+          rowId,
+          acceptedSourceRowProofTargets?.targets?.[rowId] ?? null,
+        ])
+        .filter(([, target]) => target),
+    ),
+    sourceAcquisitionRoute: sourceAcquisitionRouteForSourceRow(
+      sourceRowId,
+      targetCheck,
+    ),
+    directToyConsumers: directToyConsumersForWeakRows(toyBindingRows, [sourceRowId]),
+    nextProofTarget:
+      targetCheck.requiredScope ??
+      `accepted ${sourceRowId} source row in the same weak-channel record`,
+  };
+}
+
+function sourceAcquisitionRouteForSourceRow(sourceRowId, targetCheck) {
+  const route = SOURCE_ACQUISITION_ROUTES[sourceRowId] ?? {};
+  return {
+    claimLevel:
+      "priority-only source-acquisition route; not accepted source evidence and not promotion evidence",
+    requiredRowsBeforeUse: targetCheck.requiredLedgerComponents ?? [],
+    requiredAcceptedRowsBeforeUse: route.requiredAcceptedRowsBeforeUse ?? [],
+    feedsRowsAfterAcceptance: route.feedsRowsAfterAcceptance ?? [sourceRowId],
+    notRequiredBeforeAcceptance: route.notRequiredBeforeAcceptance ?? [],
+    mustRemainDistinctFrom: route.mustRemainDistinctFrom ?? [],
+  };
+}
+
+function directToyConsumersForWeakRows(toyBindingRows, weakRows) {
+  return {
+    coefficients: toyConsumersForWeakRows(
+      toyBindingRows.coefficients ?? {},
+      weakRows,
+    ),
+    graphRules: toyConsumersForWeakRows(
+      toyBindingRows.graphRules ?? {},
+      weakRows,
+    ),
+  };
+}
+
+function toyConsumersForWeakRows(bindings, weakRows) {
+  return Object.entries(bindings)
+    .filter(([, rows]) =>
+      Array.isArray(rows) && rows.some((row) => weakRows.includes(row)),
+    )
+    .map(([consumer]) => consumer);
+}
+
 function evaluateToyBindingRows(raw) {
   const failures = [
     ...evaluateToyBindingGroup("coefficients", raw.coefficients ?? {}),
@@ -660,6 +1079,7 @@ function collectSourceSupportValues(value) {
 function decideStatus({
   schemaOk,
   structuralFailures,
+  acceptedSourceRowProofTargets,
   sourceAcquisitionCheck,
   missingRows,
 }) {
@@ -668,6 +1088,9 @@ function decideStatus({
   }
   if (structuralFailures.length > 0) {
     return "weak_channel_structure_mismatch";
+  }
+  if (acceptedSourceRowProofTargets.summary.passed !== true) {
+    return "weak_channel_proof_target_incomplete";
   }
   if (missingRows.length > 0) {
     return "missing_accepted_weak_channel_rows";

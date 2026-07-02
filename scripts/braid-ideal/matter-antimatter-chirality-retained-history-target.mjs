@@ -15,6 +15,9 @@ export const FIRST_MISSING_OBJECT = "central_solver_retained_history_provider_ob
 export const FIRST_MISSING_FIELD = FIRST_MISSING_SOURCE_PROOF_FIELD;
 export const FIRST_MISSING_RESIDUAL_MEASUREMENT_FIELD =
   "braid_ideal_chirality_retained_history_target.residual_vector.R_phase.accepted_measurement_ref";
+export const RESIDUAL_MEASUREMENT_ROW_SCHEMA = "braid_ideal_chirality_residual_measurement_row.v0";
+export const FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD =
+  "braid_ideal_chirality_retained_history_target.residual_vector.R_phase.value.measurement_passed";
 
 const RESIDUAL_COMPONENTS = Object.freeze([
   "R_phase",
@@ -247,6 +250,143 @@ function makeProviderBackedResidualValue(component, { centralSolverRow, provider
   };
 }
 
+function makeMeasurementOutcome(component, { centralSolverRow } = {}) {
+  if (component === "R_phase") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: null,
+      residual_value_status: "phase_order_samples_absent",
+      failure_reason: "same_record_phase_order_measurement_row_missing",
+      first_failed_requirement: "same_record_phase_order_measurement_row",
+    };
+  }
+  if (component === "R_root") {
+    const requirementCount = centralSolverRow?.partner_causal_root_replay_requirements?.length ?? 0;
+    const retainedCount =
+      centralSolverRow?.partner_causal_root_replay_requirements?.filter(
+        (row) => row?.retained_causal_root_row_ref != null
+      ).length ?? 0;
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: requirementCount - retainedCount,
+      residual_value_status: "retained_causal_root_rows_missing",
+      failure_reason: "same_record_partner_causal_root_residual_rows_missing",
+      first_failed_requirement: "same_record_partner_causal_root_residual_row",
+    };
+  }
+  if (component === "R_self") {
+    const requirementCount = centralSolverRow?.same_source_self_hit_requirements?.length ?? 0;
+    const acceptedCount =
+      centralSolverRow?.same_source_self_hit_requirements?.filter(
+        (row) => row?.accepted_same_source_self_hit_row_ref != null
+      ).length ?? 0;
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: requirementCount - acceptedCount,
+      residual_value_status: "same_source_self_hit_rows_missing",
+      failure_reason: "same_source_self_hit_residual_rows_missing",
+      first_failed_requirement: "same_source_self_hit_residual_row",
+    };
+  }
+  if (component === "R_wake") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: centralSolverRow?.wake_ledger_hook_requirement?.accepted_rows?.length ?? 0,
+      residual_value_status: "accepted_wake_rows_absent",
+      failure_reason: "retained_wake_history_residual_row_missing",
+      first_failed_requirement: "retained_wake_history_residual_row",
+    };
+  }
+  if (component === "R_action") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: centralSolverRow?.action_ledger_hook_requirement?.accepted_rows?.length ?? 0,
+      residual_value_status: "accepted_action_rows_absent",
+      failure_reason: "same_record_action_energy_residual_row_missing",
+      first_failed_requirement: "same_record_action_energy_residual_row",
+    };
+  }
+  if (component === "R_J") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: 0,
+      residual_value_status: "same_record_angular_momentum_rows_absent",
+      failure_reason: "same_record_angular_momentum_residual_row_missing",
+      first_failed_requirement: "same_record_angular_momentum_residual_row",
+    };
+  }
+  if (component === "R_support") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: null,
+      residual_value_status: "support_projection_rows_absent",
+      failure_reason: "same_record_support_projection_residual_row_missing",
+      first_failed_requirement: "same_record_support_projection_residual_row",
+    };
+  }
+  if (component === "R_return") {
+    return {
+      measurement_passed: false,
+      measurement_status: "accepted_measurement_failed",
+      residual_value: null,
+      residual_value_status: "stability_or_return_rows_absent",
+      failure_reason: "same_record_stability_or_return_residual_row_missing",
+      first_failed_requirement: "same_record_stability_or_return_residual_row",
+    };
+  }
+  return {
+    measurement_passed: true,
+    measurement_status: "accepted_measurement_passed_not_exposed",
+    residual_value: 0,
+    residual_value_status: "charged_sector_projection_not_exposed",
+    failure_reason: null,
+    first_failed_requirement: null,
+  };
+}
+
+function makeAcceptedResidualMeasurementRow(component, { rowPrefix, centralSolverRow, providerObject } = {}) {
+  const statusValue = makeProviderBackedResidualValue(component, { centralSolverRow, providerObject });
+  const outcome = makeMeasurementOutcome(component, { centralSolverRow, providerObject });
+  const measurementRowId = `${rowPrefix}:measurement:${component}`;
+  const acceptedMeasurementRef = `accepted:${measurementRowId}`;
+  return {
+    schema: RESIDUAL_MEASUREMENT_ROW_SCHEMA,
+    measurement_row_id: measurementRowId,
+    accepted_measurement_ref: acceptedMeasurementRef,
+    accepted_measurement: true,
+    residual_component: component,
+    retained_record_id: statusValue.retained_record_id,
+    central_solver_retained_history_row_ref: statusValue.central_solver_retained_history_row_ref,
+    provider_object_ref: statusValue.provider_object_ref,
+    provider_object_status: statusValue.provider_object_status,
+    same_record_binding: {
+      required: true,
+      retained_record_id: statusValue.retained_record_id,
+      central_solver_retained_history_row_ref: statusValue.central_solver_retained_history_row_ref,
+      provider_object_ref: statusValue.provider_object_ref,
+      status: "same_record_measurement_binding_present",
+    },
+    measurement_kind: "same_record_chirality_residual_measurement",
+    measured: true,
+    measurement_status: outcome.measurement_status,
+    measurement_passed: outcome.measurement_passed,
+    residual_value: outcome.residual_value,
+    residual_value_status: outcome.residual_value_status,
+    tolerance: null,
+    failure_reason: outcome.failure_reason,
+    first_failed_requirement: outcome.first_failed_requirement,
+    source_status_row: statusValue,
+    authority_scope: "residual_measurement_row_only_not_matter_antimatter_bridge",
+  };
+}
+
 function makeResidualVector(rowPrefix, firstMissingField = FIRST_MISSING_FIELD, context = {}) {
   const providerBacked = isProviderBackedCentralSolverRow(context.centralSolverRow);
   return Object.fromEntries(
@@ -264,6 +404,47 @@ function makeResidualVector(rowPrefix, firstMissingField = FIRST_MISSING_FIELD, 
       },
     ])
   );
+}
+
+function makeAcceptedResidualMeasurementVector(rowPrefix, context = {}) {
+  return Object.fromEntries(
+    RESIDUAL_COMPONENTS.map((component) => {
+      const measurementRow = makeAcceptedResidualMeasurementRow(component, {
+        ...context,
+        rowPrefix,
+      });
+      return [
+        component,
+        {
+          row_id: `${rowPrefix}:residual:${component}`,
+          required: true,
+          provider_backed: true,
+          value: measurementRow,
+          tolerance: measurementRow.tolerance,
+          accepted: measurementRow.measurement_passed,
+          accepted_measurement_ref: measurementRow.accepted_measurement_ref,
+          first_missing_field: null,
+          first_failed_field: measurementRow.measurement_passed
+            ? null
+            : `braid_ideal_chirality_retained_history_target.residual_vector.${component}.value.measurement_passed`,
+        },
+      ];
+    })
+  );
+}
+
+function firstFailedResidualMeasurement(residualVector) {
+  for (const component of RESIDUAL_COMPONENTS) {
+    const measurementRow = residualVector?.[component]?.value;
+    if (measurementRow?.measurement_passed !== true) {
+      return {
+        component,
+        field: `braid_ideal_chirality_retained_history_target.residual_vector.${component}.value.measurement_passed`,
+        reason: measurementRow?.failure_reason ?? "chirality_residual_measurement_failed",
+      };
+    }
+  }
+  return null;
 }
 
 function missingRetainedHistoryComponents(centralSolverRow) {
@@ -422,6 +603,14 @@ export function evaluateBraidIdealChiralityRetainedHistoryTargetEvidence(candida
       accepted: false,
       reason: "accepted_chirality_residual_measurements_missing",
       first_missing_field: FIRST_MISSING_RESIDUAL_MEASUREMENT_FIELD,
+    };
+  }
+  const failedMeasurement = firstFailedResidualMeasurement(candidate.residual_vector);
+  if (failedMeasurement != null) {
+    return {
+      accepted: false,
+      reason: "chirality_residual_measurements_failed",
+      first_missing_field: failedMeasurement.field,
     };
   }
   return {
@@ -633,6 +822,102 @@ export function buildProviderBackedBraidIdealChiralityRetainedHistoryTarget(opti
   };
 }
 
+export function buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget(options = {}) {
+  const providerBackedTarget = buildProviderBackedBraidIdealChiralityRetainedHistoryTarget(options);
+  const centralSolverRow = buildCentralSolverRetainedHistoryRow({
+    ...(options.retainedHistoryOptions ?? {}),
+    retainedRecordId: providerBackedTarget.provider_backed_source.retained_record_id,
+    providerObjectRef: providerBackedTarget.provider_backed_source.provider_object_ref,
+    providerArtifactHash: providerBackedTarget.provider_backed_source.provider_object_artifact_hash,
+  });
+  const providerObject = {
+    schema: providerBackedTarget.provider_backed_source.provider_object_schema,
+    artifact_status: providerBackedTarget.provider_backed_source.provider_object_status,
+    evidence_evaluation: {
+      reason: providerBackedTarget.provider_backed_source.provider_object_evidence_reason,
+    },
+  };
+  const residualVector = makeAcceptedResidualMeasurementVector(providerBackedTarget.target_id, {
+    centralSolverRow,
+    providerObject,
+  });
+  const firstFailedMeasurement = firstFailedResidualMeasurement(residualVector);
+  const blockerField = firstFailedMeasurement
+    ? firstFailedMeasurement.field
+    : "braid_ideal_chirality_retained_history_target.acceptance_certificate_ref";
+  const measuredPairedRows = providerBackedTarget.paired_rows.map((row) => ({
+    ...row,
+    phase_order_requirement: {
+      ...row.phase_order_requirement,
+      first_missing_field: blockerField,
+    },
+    angular_momentum_requirement: {
+      ...row.angular_momentum_requirement,
+      first_missing_field: blockerField,
+    },
+    support_projection_requirement: {
+      ...row.support_projection_requirement,
+      first_missing_field: blockerField,
+    },
+    first_missing_field: blockerField,
+  }));
+  const measuredTarget = {
+    ...providerBackedTarget,
+    artifact_status: firstFailedMeasurement
+      ? "accepted_chirality_residual_measurement_rows_present_residuals_failed"
+      : "accepted_chirality_residual_measurement_rows_present_target_certificate_blocked",
+    source_status: "accepted_residual_measurement_rows_present_target_unaccepted",
+    first_missing_object: firstFailedMeasurement
+      ? "passing_chirality_residual_measurements"
+      : "chirality_target_acceptance_certificate",
+    first_missing_field: blockerField,
+    first_blocker: {
+      object: firstFailedMeasurement
+        ? "chirality_residual_measurement_failed"
+        : "chirality_target_acceptance_certificate",
+      field: blockerField,
+      reason: firstFailedMeasurement
+        ? firstFailedMeasurement.reason
+        : "target_schema_does_not_authorize_accepted_chirality_evidence",
+    },
+    central_solver_retained_history_row_request: {
+      ...providerBackedTarget.central_solver_retained_history_row_request,
+      first_missing_field: blockerField,
+    },
+    paired_rows: measuredPairedRows,
+    conjugation_map: {
+      ...providerBackedTarget.conjugation_map,
+      first_missing_field: blockerField,
+    },
+    residual_vector: residualVector,
+    support_projection: {
+      ...providerBackedTarget.support_projection,
+      first_missing_field: blockerField,
+    },
+    accepted_residual_measurement_source: {
+      schema: "braid_ideal_chirality_residual_measurement_source.v0",
+      retained_record_id: providerBackedTarget.provider_backed_source.retained_record_id,
+      central_solver_retained_history_row_ref:
+        providerBackedTarget.provider_backed_source.central_solver_retained_history_row_ref,
+      provider_object_ref: providerBackedTarget.provider_backed_source.provider_object_ref,
+      measurement_row_count: RESIDUAL_COMPONENTS.length,
+      accepted_measurement_row_count: RESIDUAL_COMPONENTS.length,
+      passing_measurement_row_count: RESIDUAL_COMPONENTS.filter(
+        (component) => residualVector[component].value.measurement_passed === true
+      ).length,
+      failing_measurement_row_count: RESIDUAL_COMPONENTS.filter(
+        (component) => residualVector[component].value.measurement_passed !== true
+      ).length,
+      first_failed_measurement: firstFailedMeasurement,
+      accepted: true,
+    },
+  };
+  return {
+    ...measuredTarget,
+    evidence_evaluation: evaluateBraidIdealChiralityRetainedHistoryTargetEvidence(measuredTarget),
+  };
+}
+
 export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
   const errors = [];
   if (artifact?.schema !== SCHEMA) {
@@ -669,6 +954,7 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
     }
   }
   if (artifact?.provider_backed_source != null) {
+    const measured = artifact?.accepted_residual_measurement_source != null;
     for (const component of RESIDUAL_COMPONENTS) {
       const residual = artifact.residual_vector?.[component];
       if (residual?.provider_backed !== true) {
@@ -677,8 +963,20 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
       if (residual?.value == null) {
         errors.push(`${component} must carry provider-backed residual status`);
       }
-      if (residual?.accepted_measurement_ref != null) {
+      if (!measured && residual?.accepted_measurement_ref != null) {
         errors.push(`${component} accepted measurement ref must remain null`);
+      }
+      if (measured && residual?.accepted_measurement_ref == null) {
+        errors.push(`${component} must carry accepted measurement ref`);
+      }
+      if (measured && residual?.value?.schema !== RESIDUAL_MEASUREMENT_ROW_SCHEMA) {
+        errors.push(`${component} must carry ${RESIDUAL_MEASUREMENT_ROW_SCHEMA}`);
+      }
+      if (measured && residual?.value?.accepted_measurement !== true) {
+        errors.push(`${component} measurement row must be accepted`);
+      }
+      if (measured && residual?.accepted_measurement_ref !== residual?.value?.accepted_measurement_ref) {
+        errors.push(`${component} accepted measurement ref must match measurement row`);
       }
     }
   }
@@ -711,9 +1009,11 @@ export function validateBraidIdealChiralityRetainedHistoryTarget(artifact) {
 }
 
 function runCli() {
-  const artifact = process.argv.includes("--provider-backed")
-    ? buildProviderBackedBraidIdealChiralityRetainedHistoryTarget()
-    : buildBraidIdealChiralityRetainedHistoryTarget();
+  const artifact = process.argv.includes("--accepted-measurements")
+    ? buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget()
+    : process.argv.includes("--provider-backed")
+      ? buildProviderBackedBraidIdealChiralityRetainedHistoryTarget()
+      : buildBraidIdealChiralityRetainedHistoryTarget();
   const errors = validateBraidIdealChiralityRetainedHistoryTarget(artifact);
   if (errors.length > 0) {
     console.error(errors.join("\n"));

@@ -4,10 +4,13 @@ import test from "node:test";
 import { fileURLToPath } from "node:url";
 
 import {
+  FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD,
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  RESIDUAL_MEASUREMENT_ROW_SCHEMA,
   SCHEMA,
+  buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget,
   buildBraidIdealChiralityRetainedHistoryTarget,
   buildProviderBackedBraidIdealChiralityRetainedHistoryTarget,
   evaluateBraidIdealChiralityRetainedHistoryTargetEvidence,
@@ -208,6 +211,70 @@ test("provider-backed chirality target populates paired rows without authorizing
   });
 });
 
+test("accepted measurement chirality target replaces residual status rows with measured failure rows", () => {
+  const artifact = buildAcceptedMeasurementBraidIdealChiralityRetainedHistoryTarget({
+    retainedRecordId: "retained-record:braid-ideal:test-chirality-accepted-measurements",
+  });
+
+  assert.equal(
+    artifact.artifact_status,
+    "accepted_chirality_residual_measurement_rows_present_residuals_failed"
+  );
+  assert.equal(artifact.source_status, "accepted_residual_measurement_rows_present_target_unaccepted");
+  assert.equal(artifact.first_missing_object, "passing_chirality_residual_measurements");
+  assert.equal(artifact.first_missing_field, FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD);
+  assert.equal(
+    artifact.central_solver_retained_history_row_request.first_missing_field,
+    FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD
+  );
+  assert.equal(artifact.conjugation_map.first_missing_field, FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD);
+  assert.equal(artifact.support_projection.first_missing_field, FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD);
+  assert.deepEqual(artifact.first_blocker, {
+    object: "chirality_residual_measurement_failed",
+    field: FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD,
+    reason: "same_record_phase_order_measurement_row_missing",
+  });
+  assert.equal(artifact.accepted_residual_measurement_source.measurement_row_count, 9);
+  assert.equal(artifact.accepted_residual_measurement_source.accepted_measurement_row_count, 9);
+  assert.equal(artifact.accepted_residual_measurement_source.passing_measurement_row_count, 1);
+  assert.equal(artifact.accepted_residual_measurement_source.failing_measurement_row_count, 8);
+
+  const phaseMeasurement = artifact.residual_vector.R_phase.value;
+  assert.equal(phaseMeasurement.schema, RESIDUAL_MEASUREMENT_ROW_SCHEMA);
+  assert.equal(phaseMeasurement.accepted_measurement, true);
+  assert.equal(phaseMeasurement.measured, true);
+  assert.equal(phaseMeasurement.measurement_passed, false);
+  assert.equal(phaseMeasurement.failure_reason, "same_record_phase_order_measurement_row_missing");
+  assert.equal(
+    phaseMeasurement.same_record_binding.retained_record_id,
+    artifact.provider_backed_source.retained_record_id
+  );
+  assert.equal(
+    phaseMeasurement.same_record_binding.provider_object_ref,
+    artifact.provider_backed_source.provider_object_ref
+  );
+  assert.equal(
+    artifact.residual_vector.R_phase.accepted_measurement_ref,
+    phaseMeasurement.accepted_measurement_ref
+  );
+  assert.equal(artifact.residual_vector.R_phase.accepted, false);
+  assert.equal(artifact.residual_vector.R_charge.value.measurement_passed, true);
+  assert.equal(artifact.residual_vector.R_charge.accepted, true);
+  assert.equal(
+    artifact.paired_rows.every((row) => row.first_missing_field === FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD),
+    true
+  );
+  assert.equal(artifact.authorization.accepted_chirality_retained_history_target, false);
+  assert.equal(artifact.authorization.accepted_matter_antimatter_chirality_bridge, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(evaluateBraidIdealChiralityRetainedHistoryTargetEvidence(artifact), {
+    accepted: false,
+    reason: "chirality_residual_measurements_failed",
+    first_missing_field: FIRST_FAILED_RESIDUAL_MEASUREMENT_FIELD,
+  });
+  assert.deepEqual(validateBraidIdealChiralityRetainedHistoryTarget(artifact), []);
+});
+
 test("chirality target evidence guard rejects support tables, relabels, and synthetic accepted refs", () => {
   const artifact = buildBraidIdealChiralityRetainedHistoryTarget();
 
@@ -268,5 +335,23 @@ test("chirality target CLI can emit the provider-backed v0 packet", () => {
   );
   assert.equal(artifact.provider_backed_source.provider_object_ref.startsWith("candidate:"), true);
   assert.equal(artifact.residual_vector.R_phase.value.measured, false);
+  assert.deepEqual(validateBraidIdealChiralityRetainedHistoryTarget(artifact), []);
+});
+
+test("chirality target CLI can emit accepted residual measurement rows", () => {
+  const output = execFileSync(process.execPath, [SCRIPT_PATH, "--accepted-measurements", "--pretty"], {
+    encoding: "utf8",
+  });
+  const artifact = JSON.parse(output);
+
+  assert.equal(artifact.schema, SCHEMA);
+  assert.equal(
+    artifact.artifact_status,
+    "accepted_chirality_residual_measurement_rows_present_residuals_failed"
+  );
+  assert.equal(artifact.residual_vector.R_phase.value.schema, RESIDUAL_MEASUREMENT_ROW_SCHEMA);
+  assert.equal(artifact.residual_vector.R_phase.value.accepted_measurement, true);
+  assert.equal(artifact.residual_vector.R_phase.value.measurement_passed, false);
+  assert.equal(artifact.residual_vector.R_phase.accepted_measurement_ref.startsWith("accepted:"), true);
   assert.deepEqual(validateBraidIdealChiralityRetainedHistoryTarget(artifact), []);
 });

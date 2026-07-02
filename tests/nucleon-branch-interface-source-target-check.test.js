@@ -22,6 +22,12 @@ const TARGET_PATH = fileURLToPath(
     import.meta.url,
   ),
 );
+const NO_OPEN_COLOR_BLOCKER_PATH = fileURLToPath(
+  new URL(
+    "../scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
+    import.meta.url,
+  ),
+);
 
 function readTarget() {
   return JSON.parse(fs.readFileSync(TARGET_PATH, "utf8"));
@@ -52,6 +58,8 @@ test("current branch-interface target passes algebra but blocks accepted source 
   assert.equal(report.summary.algebraicPass, true);
   assert.equal(report.summary.pnPpDifferentialPass, true);
   assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.acceptedSourceRowProofTargetPass, true);
+  assert.deepEqual(report.summary.acceptedSourceRowProofTargetFailures, []);
   assert.equal(report.summary.sourceAcquisitionPass, false);
   assert.equal(report.summary.firstMissingObject, "missing_accepted_nucleon_branch_interface_ledgers");
   assert.equal(
@@ -78,6 +86,165 @@ test("current branch-interface target passes algebra but blocks accepted source 
       .componentShapePass,
     true,
   );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.no_open_color_far_field
+      .currentEvidenceStatus,
+    "blocked_missing_same_record_no_open_color_audit",
+  );
+  assert.equal(
+    report.sourceAcquisitionCheck.targetChecks.no_open_color_far_field
+      .sourceTargetPath,
+    "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
+  );
+  assert.equal(
+    report.sourceAcquisitionBlockerMap.status,
+    "blocked_missing_accepted_source_rows",
+  );
+  assert.equal(
+    report.sourceAcquisitionBlockerMap.firstMissingAcceptedSourceRow,
+    "no_open_color_far_field",
+  );
+  assert.equal(
+    report.sourceAcquisitionBlockerMap.firstMissingObject,
+    "missing_no_open_color_far_field",
+  );
+  assert.equal(report.sourceAcquisitionBlockerMap.blockedSourceRowCount, 1);
+  const noOpenColorBlocker = report.sourceAcquisitionBlockerMap.blockers[0];
+  assert.equal(noOpenColorBlocker.sourceRowId, "no_open_color_far_field");
+  assert.equal(noOpenColorBlocker.targetId, "no_open_color_far_field_target_0001");
+  assert.equal(noOpenColorBlocker.accepted, false);
+  assert.deepEqual(noOpenColorBlocker.requiredLedgerComponents, [
+    "finite_range_residual",
+    "color_singlet_closure",
+    "same_record_no_open_color_audit",
+  ]);
+  assert.deepEqual(noOpenColorBlocker.sourceAcquisitionRoute, {
+    claimLevel:
+      "priority-only source-acquisition route; not accepted source evidence and not promotion evidence",
+    requiredRowsBeforeUse: [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+    ],
+    requiredAcceptedRowsBeforeUse: [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+      "accepted_branch_interface_rows",
+    ],
+    feedsRowsAfterAcceptance: [
+      "nucleon_branch_interface_ledgers",
+      "pn_orientation_count",
+      "pp_orientation_count",
+    ],
+    notRequiredBeforeAcceptance: [],
+  });
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .nucleon_branch_interface_ledgers.requiredSameRecordRows,
+    [
+      "accepted_proton_branch_interface_ledger",
+      "accepted_neutron_branch_interface_ledger",
+      "pn_orientation_count",
+      "pp_orientation_count",
+      "same_record_energy_momentum_angular_momentum_ledger",
+      "no_open_color_far_field",
+    ],
+  );
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .nucleon_branch_interface_ledgers.requiredClosureRows,
+    [
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_record_no_open_color_audit",
+    ],
+  );
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .nucleon_branch_interface_ledgers.requiredLimitStatements,
+    [
+      "lim_R_to_infty_N_open_R_eq_0",
+      "N_open_R_le_K_open_T_NN_R_squared",
+      "lim_R_to_infty_T_NN_R_eq_0",
+    ],
+  );
+  assert.deepEqual(
+    noOpenColorBlocker.acceptedSourceRowProofTargets
+      .nucleon_branch_interface_ledgers.directToyConsumers,
+    {
+      coefficients: ["alphaCorr", "alphaPair", "alphaPack", "dSat", "maxDegree"],
+      graphRules: [
+        "bounded_degree_surface_depleted_corridor_estimator",
+        "finite_tail_saturation_check",
+      ],
+    },
+  );
+  assert.deepEqual(noOpenColorBlocker.blockedBranchRows, [
+    "nucleon_branch_interface_ledgers",
+    "pn_orientation_count",
+    "pp_orientation_count",
+  ]);
+  assert.deepEqual(noOpenColorBlocker.directToyConsumers, {
+    coefficients: [
+      "alphaCorr",
+      "alphaPair",
+      "alphaPack",
+      "dSat",
+      "maxDegree",
+      "pnCorridorPairReward",
+      "pnPairMismatchCost",
+      "ppCorridorPairReward",
+      "ppPairMismatchCost",
+    ],
+    graphRules: [
+      "bounded_degree_surface_depleted_corridor_estimator",
+      "finite_tail_saturation_check",
+    ],
+  });
+  assert.match(noOpenColorBlocker.claimLevel ?? report.sourceAcquisitionBlockerMap.claimLevel, /not accepted source evidence/);
+  const blocker = JSON.parse(fs.readFileSync(NO_OPEN_COLOR_BLOCKER_PATH, "utf8"));
+  assert.equal(blocker.sourceKind, "no_open_color_far_field");
+  assert.equal(blocker.currentStatus, "blocked_missing_same_record_no_open_color_audit");
+  assert.deepEqual(blocker.localEvidenceBoundary.acceptedSourceRowsByThisPacket, []);
+  assert.equal(
+    blocker.localEvidenceBoundary.notAcceptedByThisPacket.includes(
+      "no_open_color_far_field",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.largeRClosure,
+    "\\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0",
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.tailToFarFieldBound,
+    "\\mathcal N_{\\mathrm{open}}(R)\\le K_{\\mathrm{open}}\\,\\mathcal T_{NN}(R)^2",
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.largeRClosureRoute,
+    "\\lim_{R\\to\\infty}\\mathcal T_{NN}(R)=0\\;\\wedge\\;K_{\\mathrm{open}}<\\infty\\;\\Rightarrow\\;\\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0",
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.sameRecordWitness.includes(
+      "\\mathcal B_{\\mathrm{br}}",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.requiredAcceptedRowsBeforeUse.includes(
+      "finite_range_residual",
+    ),
+    true,
+  );
+  assert.equal(
+    blocker.candidateClosureScaffold.requiredAcceptedRowsBeforeUse.includes(
+      "accepted_branch_interface_rows",
+    ),
+    true,
+  );
+  assert.equal(blocker.localEvidenceBoundary.scoreDecision, "no_score_increase");
   assert.equal(
     report.sourceAcquisitionCheck.targetChecks.accepted_neutron_branch_interface_ledger
       .accepted,
@@ -149,7 +316,64 @@ test("accepted branch-interface rows pass when the same algebra is retained", ()
   assert.deepEqual(report.summary.missingRows, []);
   assert.equal(report.summary.algebraicPass, true);
   assert.equal(report.summary.sourceEvidencePass, true);
+  assert.equal(report.summary.acceptedSourceRowProofTargetPass, true);
   assert.equal(report.summary.sourceAcquisitionPass, true);
+  assert.equal(
+    report.sourceAcquisitionBlockerMap.status,
+    "all_required_source_rows_acquired",
+  );
+  assert.equal(report.sourceAcquisitionBlockerMap.blockedSourceRowCount, 0);
+  assert.deepEqual(report.sourceAcquisitionBlockerMap.blockers, []);
+});
+
+test("branch-interface rows fail closed when the accepted-row proof target loses closure rows", () => {
+  const target = acceptedTarget();
+  target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers.requiredClosureRows =
+    target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers
+      .requiredClosureRows.filter(
+        (row) => row !== "same_record_no_open_color_audit",
+      );
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_proof_target_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.acceptedSourceRowProofTargetPass, false);
+  assert.deepEqual(report.summary.acceptedSourceRowProofTargetFailures, [
+    {
+      rowId: "nucleon_branch_interface_ledgers",
+      reason: "accepted_source_row_proof_target_shape_mismatch",
+      missingFields: [],
+      mismatchedFields: ["requiredClosureRows"],
+    },
+  ]);
+});
+
+test("branch-interface rows fail closed when the accepted-row proof target loses no-open limit statements", () => {
+  const target = acceptedTarget();
+  target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers.requiredLimitStatements =
+    target.acceptedSourceRowProofTargets.nucleon_branch_interface_ledgers
+      .requiredLimitStatements.filter(
+        (statement) => statement !== "N_open_R_le_K_open_T_NN_R_squared",
+      );
+
+  const report = buildNucleonBranchInterfaceSourceTargetCheck(target, {
+    inputPath: TARGET_PATH,
+  });
+
+  assert.equal(report.summary.status, "branch_interface_proof_target_incomplete");
+  assert.equal(report.summary.allRequiredRowsAccepted, true);
+  assert.equal(report.summary.acceptedSourceRowProofTargetPass, false);
+  assert.deepEqual(report.summary.acceptedSourceRowProofTargetFailures, [
+    {
+      rowId: "nucleon_branch_interface_ledgers",
+      reason: "accepted_source_row_proof_target_shape_mismatch",
+      missingFields: [],
+      mismatchedFields: ["requiredLimitStatements"],
+    },
+  ]);
 });
 
 test("accepted branch-interface rows fail closed when a source-acquisition target loses its required component shape", () => {

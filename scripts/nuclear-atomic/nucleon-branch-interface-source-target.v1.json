@@ -69,7 +69,7 @@
     "no_open_color_far_field": {
       "id": "no_open_color_far_field_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "target_only",
+      "currentEvidenceStatus": "blocked_missing_same_record_no_open_color_audit",
       "requiredScope": "accepted no-open-color far-field row shared with the confinement-functional target so the branch-interface corridor residual does not leave an asymptotic color field",
       "requiredLedgerComponents": [
         "finite_range_residual",
@@ -77,7 +77,50 @@
         "same_record_no_open_color_audit"
       ],
       "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md",
-      "sourceTargetPath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/no_open_color_far_field"
+      "sourceTargetPath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json"
+    }
+  },
+  "acceptedSourceRowProofTargets": {
+    "nucleon_branch_interface_ledgers": {
+      "id": "nucleon_branch_interface_ledgers_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "requiredSameRecordRows": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "pn_orientation_count",
+        "pp_orientation_count",
+        "same_record_energy_momentum_angular_momentum_ledger",
+        "no_open_color_far_field"
+      ],
+      "requiredClosureRows": [
+        "finite_range_residual",
+        "color_singlet_closure",
+        "same_record_no_open_color_audit"
+      ],
+      "requiredLimitStatements": [
+        "lim_R_to_infty_N_open_R_eq_0",
+        "N_open_R_le_K_open_T_NN_R_squared",
+        "lim_R_to_infty_T_NN_R_eq_0"
+      ],
+      "requiredInequalities": [
+        "W_pn > W_pp",
+        "M_pn < M_pp"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "candidate_extracted",
+        "target_only_no_open_color"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/nn-corridor-overlap-first-evaluation.md#accepted-branch-interface-ledger-proof-target"
     }
   },
   "rows": {

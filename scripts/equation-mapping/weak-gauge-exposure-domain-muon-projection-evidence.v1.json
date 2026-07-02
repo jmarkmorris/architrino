@@ -148,21 +148,22 @@
     "reaction_event_ledger": {
       "id": "reaction_event_ledger_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "currentEvidenceStatus": "blocked_missing_reaction_event_ledger",
       "requiredScope": "accepted reaction event ledger for weak-channel energy, momentum, angular momentum, and emitted-product accounting",
       "requiredLedgerComponents": [
         "weak_visible_branch_ledger",
         "weak_projection",
         "weak_quotient",
         "weak_exposure_record",
+        "va_chirality_gate",
         "energy_momentum_angular_momentum_accounting"
       ],
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/equation-mapping/weak-reaction-event-ledger-source-acquisition-blocker.v1.json"
     },
     "noether_sea_response": {
       "id": "noether_sea_response_source_target_0001",
       "status": "target_required",
-      "currentEvidenceStatus": "not_acquired",
+      "currentEvidenceStatus": "blocked_missing_weak_noether_sea_response",
       "requiredScope": "accepted Noether sea update row in the retained weak event ledger",
       "requiredLedgerComponents": [
         "weak_quotient",
@@ -170,7 +171,147 @@
         "noether_sea_update_row",
         "same_domain_rows"
       ],
-      "sourceTargetPath": null
+      "sourceTargetPath": "scripts/equation-mapping/weak-noether-sea-response-source-acquisition-blocker.v1.json"
+    }
+  },
+  "acceptedSourceRowProofTargets": {
+    "va_chirality_gate": {
+      "id": "va_chirality_gate_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_row",
+        "same_domain_rows"
+      ],
+      "requiredSameRecordRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "va_chirality_row",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "charged_current_left_channel_selection",
+        "right_channel_charged_current_suppression",
+        "muon_decay_michel_parameter_binding"
+      ],
+      "requiredChiralitySelectionRows": [
+        "charged_current_left_channel_selection",
+        "right_channel_charged_current_suppression",
+        "va_chirality_row",
+        "muon_decay_michel_parameter_binding"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "retained_weak_exposure_only",
+        "standard_model_benchmark_table_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+    },
+    "reaction_event_ledger": {
+      "id": "reaction_event_ledger_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "energy_momentum_angular_momentum_accounting"
+      ],
+      "requiredSameRecordRows": [
+        "weak_visible_branch_ledger",
+        "weak_projection",
+        "weak_quotient",
+        "weak_exposure_record",
+        "va_chirality_gate",
+        "reaction_event_ledger",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting"
+      ],
+      "requiredConservationRows": [
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting"
+      ],
+      "requiredEventBalanceRows": [
+        "incoming_weak_domain_rows",
+        "energy_conservation_row",
+        "momentum_conservation_row",
+        "angular_momentum_conservation_row",
+        "emitted_product_ledger",
+        "recoil_accounting",
+        "weak_event_noether_sea_update_route"
+      ],
+      "eventBalanceEquation": "L_{weak}^{in}+L_{sea}^{in}=L_{emitted}+L_{recoil}+L_{heat/radiation}+Delta L_{sea}^{weak}",
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "attempt_level_weak_rows",
+        "retained_weak_exposure_only"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
+    },
+    "noether_sea_response": {
+      "id": "weak_noether_sea_response_accepted_source_row_proof_target_0001",
+      "status": "target_required",
+      "currentEvidenceStatus": "proof_target_only",
+      "claimLevel": "priority-only accepted-source-row proof target; not accepted source evidence and not promotion evidence",
+      "requiredAcceptedSourceRowsBeforeUse": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "requiredSameRecordRows": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_response",
+        "noether_sea_update_row",
+        "same_domain_rows",
+        "same_branch_record"
+      ],
+      "requiredClosureRows": [
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "requiredUpdateRows": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "mustRemainDistinctFrom": [
+        "retained_window_noether_sea_response_provider"
+      ],
+      "forbiddenPromotionSources": [
+        "priority_packet_only",
+        "target_required",
+        "retained_window_noether_sea_response_provider",
+        "generic_Noether_sea_provider_as_event_update"
+      ],
+      "currentPriorityPacket": "reference/priorities/nuclear-atomic-molecular-closure/iron-group-binding-cusp-recovery.md#weak-source-acquisition-marker"
     }
   },
   "tolerances": {

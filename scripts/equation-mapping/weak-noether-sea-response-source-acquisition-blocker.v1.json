@@ -1,0 +1,141 @@
+{
+  "schema": "aaa-equation-map-weak-noether-sea-response-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for the weak-channel noether_sea_response row in the retained muon weak-exposure domain; records nearest Noether sea and weak evidence and missing same-event update conditions; not accepted weak Noether sea update evidence, not accepted weak-channel evidence, and not equation-map score movement",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "noether_sea_response",
+  "currentStatus": "blocked_missing_weak_noether_sea_response",
+  "sourceSupportSought": [
+    "weak_quotient",
+    "reaction_event_ledger",
+    "noether_sea_update_row",
+    "same_domain_rows"
+  ],
+  "nearestCandidateInputs": {
+    "acceptedNoetherSeaResponseProvider": {
+      "candidatePath": "scripts/spacetime/noether-sea-density-compression-provider.v1.json",
+      "usableFor": [
+        "accepted retained-window density and response rows",
+        "rho_NS, theta_sea, stress-strain, speed, causality, and correlation rows",
+        "Noether sea response source family accepted by the Fe/Ni toy"
+      ],
+      "notUsableFor": [
+        "weak_channel_noether_sea_update",
+        "reaction_event_ledger",
+        "accepted_weak_channel_source_rows"
+      ],
+      "boundary": "The retained-window provider accepts the Noether sea response family for the Fe/Ni toy, but it does not supply the same-event weak update row without an accepted weak reaction event ledger."
+    },
+    "weakQuotientEvidence": {
+      "candidatePath": "scripts/equation-mapping/weak-quotient-muon-decay-retained-evidence.v1.json",
+      "acceptedRowsProvided": [
+        "weak_quotient"
+      ],
+      "usableFor": [
+        "same retained weak-visible domain",
+        "same branch record",
+        "weak quotient consumed by sea-imbalance toy rows"
+      ],
+      "notUsableFor": [
+        "weak_channel_noether_sea_response",
+        "reaction_event_ledger",
+        "noether_sea_update_row"
+      ],
+      "boundary": "The weak quotient is accepted, but the weak Noether sea response still needs a same-event update ledger."
+    },
+    "reactionEventLedgerBlocker": {
+      "candidatePath": "scripts/equation-mapping/weak-reaction-event-ledger-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-domain reaction event ledger target",
+        "energy, momentum, angular momentum, emitted-product, and recoil accounting burden"
+      ],
+      "notUsableFor": [
+        "accepted_reaction_event_ledger",
+        "weak_channel_noether_sea_response",
+        "accepted_weak_channel_source_rows"
+      ],
+      "boundary": "The reaction-event blocker records the event-ledger proof burden but explicitly accepts no source rows."
+    },
+    "vaChiralityGateBlocker": {
+      "candidatePath": "scripts/equation-mapping/va-chirality-gate-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-domain V-A chirality target",
+        "left-channel and right-channel selection burden"
+      ],
+      "notUsableFor": [
+        "accepted_va_chirality_gate",
+        "weak_channel_noether_sea_response"
+      ],
+      "boundary": "The V-A blocker remains upstream of full weak-channel acceptance and accepts no weak Noether sea update rows."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "noether_sea_response_source_target_0001",
+    "sameEventSeaUpdate": {
+      "requiredDomainId": "D_weak_visible_attempt_0001",
+      "requiredBranchRecordId": "A_weak_attempt_0001",
+      "mustConsumeRows": [
+        "weak_quotient",
+        "reaction_event_ledger",
+        "noether_sea_update_row",
+        "same_domain_rows"
+      ],
+      "mustNotIntroduce": [
+        "generic_Noether_sea_provider_as_event_update",
+        "replacement_weak_domain",
+        "detached_medium_response_label"
+      ]
+    },
+    "toyBindingBoundary": {
+      "requiredBehavior": "Fe/Ni seaImbalancePenalty cannot promote from weak-channel evidence until the same weak event ledger supplies a Noether sea update row.",
+      "blockedToyRows": [
+        "seaImbalancePenalty"
+      ]
+    },
+    "familyBoundary": {
+      "requiredBehavior": "Accepted global Noether sea response rows can remain accepted for the Noether sea response source family while the weak-channel noether_sea_response row remains blocked until the weak event update is accepted.",
+      "mustKeepDistinct": [
+        "noether_sea_response_source_family",
+        "weak_channel_noether_sea_update_row"
+      ]
+    }
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "noether_sea_response",
+      "reaction_event_ledger",
+      "weak_channel_noether_sea_update",
+      "accepted_weak_channel_source_rows"
+    ],
+    "acceptedElsewhereButNotHere": [
+      "rho_NS",
+      "theta_sea",
+      "stress_strain_row",
+      "Noether sea response source family"
+    ],
+    "expectedCheckerStatus": "missing_accepted_weak_channel_rows",
+    "expectedFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "expectedSourceAcquisitionFirstMissingObject": "missing_accepted_va_chirality_gate",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Attach a same-event Noether sea update row to the accepted weak quotient only after the weak reaction event ledger exists in the same retained domain and branch record.",
+    "minimalInputNeeded": [
+      "accepted reaction_event_ledger row",
+      "accepted noether_sea_update_row for the weak event",
+      "same-domain link to weak_quotient",
+      "distinction from the already accepted retained-window Noether sea response provider"
+    ],
+    "failureModes": [
+      "generic Noether sea response provider rows are mistaken for a weak event update",
+      "the Noether sea update uses a different weak domain",
+      "the update is accepted before the reaction event ledger exists",
+      "seaImbalancePenalty promotes while the weak-channel sea row remains attempt-level"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to keep the accepted Noether sea response source family distinct from the weak-channel noether_sea_response row consumed by seaImbalancePenalty.",
+    "Fe/Ni weak-channel promotion remains blocked until V-A, reaction-event, and weak Noether sea rows are accepted from durable non-fixture evidence in the same weak-exposure domain."
+  ]
+}

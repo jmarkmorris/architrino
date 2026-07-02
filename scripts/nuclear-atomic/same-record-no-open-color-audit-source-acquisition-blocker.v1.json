@@ -1,0 +1,201 @@
+{
+  "schema": "aaa-nuclear-atomic-same-record-no-open-color-audit-source-acquisition-blocker/v1",
+  "claimLevel": "fail-closed source-acquisition blocker packet for same_record_no_open_color_audit; records the exact same-event no-open-color audit target and nearest candidate evidence; not accepted no-open-color audit evidence, not accepted no-open-color far-field evidence, and not nuclear-binding promotion evidence",
+  "sourceRole": "source_acquisition_blocker_packet",
+  "sourceKind": "same_record_no_open_color_audit",
+  "currentStatus": "blocked_missing_same_record_no_open_color_audit",
+  "sourceSupportSought": [
+    "accepted_delta_E_corr_NN",
+    "finite_range_residual",
+    "color_singlet_closure",
+    "same_event_ledger"
+  ],
+  "nearestCandidateInputs": {
+    "noOpenColorFarFieldBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/no-open-color-far-field-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "no-open-color far-field target shape",
+        "same-record audit acceptance condition",
+        "branch-interface and confinement-functional linkage"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field",
+        "accepted_finite_range_residual"
+      ],
+      "boundary": "The no-open-color blocker names the same-record audit requirement but explicitly accepts no source rows."
+    },
+    "acceptedDeltaECorrBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/accepted-delta-E-corr-NN-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "same-domain Delta E_corr_NN derivation target",
+        "toy coefficient and graph-rule row binding shape"
+      ],
+      "notUsableFor": [
+        "accepted_delta_E_corr_NN",
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The accepted-Delta blocker preserves the residual derivation burden but is not an accepted residual row."
+    },
+    "finiteRangeResidualBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/finite-range-residual-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "large-separation residual tail target",
+        "bounded residual overlap target",
+        "finite-tail graph-rule binding shape"
+      ],
+      "notUsableFor": [
+        "accepted_finite_range_residual",
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The finite-range residual blocker records the tail-limit target but explicitly accepts no source rows."
+    },
+    "colorSingletClosureBlocker": {
+      "candidatePath": "scripts/nuclear-atomic/color-singlet-closure-source-acquisition-blocker.v1.json",
+      "usableFor": [
+        "color-singlet closure acceptance condition",
+        "proton, neutron, and no-free-color dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_color_singlet_closure",
+        "accepted_same_record_no_open_color_audit",
+        "accepted_color_singlet_nucleon_envelope"
+      ],
+      "boundary": "The color-singlet closure blocker names the shared closure proof burden but explicitly accepts no source rows."
+    },
+    "sameRecordBranchLedger": {
+      "candidatePath": "scripts/nuclear-atomic/same-record-energy-momentum-angular-momentum-ledger-retained-evidence.v1.json",
+      "candidateRowId": "L_EpJ_pn_pp_0001",
+      "acceptedRowsProvided": [
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ],
+      "usableFor": [
+        "same p+n and p+p event ledger",
+        "energy, momentum, and angular-momentum bookkeeping",
+        "Coulomb separation row"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field",
+        "accepted_finite_range_residual"
+      ],
+      "boundary": "The same-record branch ledger gives conserved-event bookkeeping but does not audit that the residual leaves no open-color far field."
+    },
+    "confinementFunctionalNoOpenColorTarget": {
+      "candidatePath": "scripts/nuclear-atomic/confinement-functional-source-target.v1.json#/rows/no_open_color_far_field",
+      "usableFor": [
+        "required no-open-color behavior",
+        "current source-acquisition dependency list"
+      ],
+      "notUsableFor": [
+        "accepted_same_record_no_open_color_audit",
+        "accepted_no_open_color_far_field"
+      ],
+      "boundary": "The no-open-color row states the behavior target but remains priority-packet-only."
+    }
+  },
+  "requiredAcceptanceCondition": {
+    "rowId": "same_record_no_open_color_audit_source_target_0001",
+    "sameEventLedger": {
+      "requiredBehavior": "The no-open-color audit must use the same event ledger as the accepted p+n and p+p branch-interface extraction.",
+      "mustShareWith": [
+        "accepted_proton_branch_interface_ledger",
+        "accepted_neutron_branch_interface_ledger",
+        "same_record_energy_momentum_angular_momentum_ledger"
+      ]
+    },
+    "residualAudit": {
+      "requiredBehavior": "The accepted Delta E_corr_NN residual and finite-range residual tail must jointly show that the large-separation residual leaves no open-color far field.",
+      "mustConsumeRows": [
+        "accepted_delta_E_corr_NN",
+        "finite_range_residual",
+        "large_r_zero_limit"
+      ]
+    },
+    "colorSingletAudit": {
+      "requiredBehavior": "The audited objects must be accepted color-singlet proton and neutron envelopes before the no-open-color conclusion can be accepted.",
+      "mustConsumeRows": [
+        "color_singlet_closure",
+        "accepted_proton_color_singlet_envelope",
+        "accepted_neutron_color_singlet_envelope"
+      ]
+    }
+  },
+  "sameRecordAuditScaffold": {
+    "claimLevel": "priority-only same-record audit scaffold; accepts no source rows and does not prove same_record_no_open_color_audit",
+    "auditTuple": "\\mathcal A_{\\mathrm{no\\ open}}=(L_{E\\mathbf p\\mathbf J},B_{pn},B_{pp},\\Gamma_{N_1},\\Gamma_{N_2},\\Delta E_{\\mathrm{corr}}^{NN},\\mathcal N_{\\mathrm{open}})",
+    "recordEquality": "\\operatorname{record}(L_{E\\mathbf p\\mathbf J})=\\operatorname{record}(B_{pn})=\\operatorname{record}(B_{pp})=\\operatorname{record}(\\Delta E_{\\mathrm{corr}}^{NN})=\\operatorname{record}(\\mathcal N_{\\mathrm{open}})",
+    "acceptanceImplication": "finite_range_residual \\wedge color_singlet_closure \\wedge \\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0 \\Rightarrow no_open_color_far_field",
+    "tailToFarFieldBound": "\\mathcal N_{\\mathrm{open}}(R)\\le K_{\\mathrm{open}}\\,\\mathcal T_{NN}(R)^2",
+    "largeRClosureRoute": "\\lim_{R\\to\\infty}\\mathcal T_{NN}(R)=0\\;\\wedge\\;K_{\\mathrm{open}}<\\infty\\;\\Rightarrow\\;\\lim_{R\\to\\infty}\\mathcal N_{\\mathrm{open}}(R)=0",
+    "sameRecordWitness": "\\mathcal W_{\\mathrm{audit}}=(\\mathcal A_{\\mathrm{no\\ open}},\\mathcal T_{NN},K_{\\mathrm{open}},\\mathcal B_{\\mathrm{br}})",
+    "conservationRowsRequired": [
+      "energy_conservation_row",
+      "momentum_conservation_row",
+      "angular_momentum_conservation_row"
+    ],
+    "graphRuleLocks": [
+      "finite_tail_saturation_check",
+      "bounded_degree_surface_depleted_corridor_estimator"
+    ],
+    "coefficientLocks": [
+      "alphaPack",
+      "dSat",
+      "maxDegree",
+      "packSoftA"
+    ],
+    "coefficientExclusion": "No A-indexed, Z-indexed, isotope-indexed, or element-indexed coefficient may appear in the audit tuple, the open-color projection, K_open, or the large-R tail bound.",
+    "requiredAcceptedRowsBeforeUse": [
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+      "accepted_branch_interface_rows"
+    ]
+  },
+  "localEvidenceBoundary": {
+    "acceptedSourceRowsByThisPacket": [],
+    "notAcceptedByThisPacket": [
+      "same_record_no_open_color_audit",
+      "no_open_color_far_field",
+      "accepted_delta_E_corr_NN",
+      "finite_range_residual",
+      "color_singlet_closure",
+      "same_event_ledger",
+      "accepted_branch_interface_rows",
+      "nucleon_branch_interface_ledgers",
+      "finite_tail_saturation_check",
+      "accepted_confinement_functional_source_rows",
+      "accepted_nuclear_binding_recovery"
+    ],
+    "expectedCheckerStatus": "missing_accepted_confinement_functional_rows",
+    "expectedFirstMissingObject": "missing_accepted_sigma_eff_extraction",
+    "expectedCombinedSourceAcquisitionFirstMissingObject": "missing_accepted_accepted_proton_color_singlet_envelope",
+    "expectedBranchSourceAcquisitionFirstMissingObject": "missing_no_open_color_far_field",
+    "scoreDecision": "no_score_increase"
+  },
+  "nextProofStep": {
+    "target": "Prove same_record_no_open_color_audit in the same event record that carries the accepted Delta E_corr_NN residual, finite-range residual tail, color-singlet closure, and p+n / p+p branch-interface extraction.",
+    "minimalInputNeeded": [
+      "accepted Delta E_corr_NN row",
+      "accepted finite_range_residual row",
+      "accepted color_singlet_closure row",
+      "accepted same event ledger shared with branch-interface extraction",
+      "same-record proof that no open-color far field remains"
+    ],
+    "failureModes": [
+      "the no-open-color audit uses a different event ledger than the branch-interface extraction",
+      "finite residual tail remains target-only",
+      "color-singlet closure remains target-only",
+      "the audit accepts no-open-color behavior without accepted Delta E_corr_NN evidence",
+      "the graph saturation rule can promote while no-open-color remains priority-only"
+    ]
+  },
+  "failClosedNotes": [
+    "This packet is not accepted source evidence.",
+    "This packet exists to prevent the no-open-color target equation, same-record conservation ledger, finite-range blocker, accepted-Delta blocker, or row-shape toy pass from being mistaken for accepted same_record_no_open_color_audit evidence.",
+    "Fe/Ni promotion remains blocked until same_record_no_open_color_audit, no_open_color_far_field, accepted_delta_E_corr_NN, finite_range_residual, color_singlet_closure, top confinement rows, branch-interface rows, weak-channel rows, and Noether sea response consumption are all accepted from durable non-fixture evidence."
+  ]
+}
