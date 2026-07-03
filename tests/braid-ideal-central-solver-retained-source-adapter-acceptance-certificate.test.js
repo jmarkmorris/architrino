@@ -2,6 +2,7 @@ import test from "node:test";
 import assert from "node:assert/strict";
 
 import {
+  EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
   FIRST_MISSING_FIELD,
   NEGATIVE_CONTROL_REASONS,
   SCHEMA,
@@ -36,6 +37,8 @@ function makeAcceptedEvidence({ retainedRecordId = RETAINED_RECORD_ID, sourceRow
 
 function makeExternalVerification({ certificateArtifact }) {
   return {
+    external_accepted_authority_package_ref:
+      "external-authority-package:central-retained-source-adapter-review:adapter-acceptance-certificate",
     external_accepted_authority_ref: "external-authority:central-retained-source-adapter-review",
     external_accepted_authority_verification_ref:
       "external-verification:central-retained-source-adapter-review:adapter-acceptance-certificate",
@@ -44,6 +47,19 @@ function makeExternalVerification({ certificateArtifact }) {
       certificateArtifact.central_solver_retained_source_adapter.consumed_artifact_hash,
     retained_record_id: certificateArtifact.retained_record_id,
     source_row_id: certificateArtifact.source_row_id,
+    external_accepted_authority_package: {
+      schema: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+      accepted_external_authority: true,
+      non_repo_external_authority: true,
+      external_accepted_authority_ref: "external-authority:central-retained-source-adapter-review",
+      external_accepted_authority_verification_ref:
+        "external-verification:central-retained-source-adapter-review:adapter-acceptance-certificate",
+      verified_adapter_acceptance_certificate_ref: certificateArtifact.adapter_acceptance_certificate_ref,
+      verified_adapter_artifact_hash:
+        certificateArtifact.central_solver_retained_source_adapter.consumed_artifact_hash,
+      retained_record_id: certificateArtifact.retained_record_id,
+      source_row_id: certificateArtifact.source_row_id,
+    },
   };
 }
 
@@ -134,6 +150,10 @@ test("central retained-source adapter acceptance certificate records declared ex
   assert.equal(artifact.same_record_accepted_evidence_criterion.criterion_passed, true);
   assert.equal(artifact.external_authority_verification.external_verification_conditionally_satisfied, true);
   assert.equal(
+    artifact.external_authority_verification.external_accepted_authority_package?.schema,
+    EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA
+  );
+  assert.equal(
     artifact.external_authority_verification.status,
     "adapter_acceptance_certificate_conditionally_verified_by_declared_external_authority"
   );
@@ -148,6 +168,37 @@ test("central retained-source adapter acceptance certificate records declared ex
   });
   assert.equal(artifact.accepted_retained_source_adapter_ref, null);
   assert.equal(artifact.authorization.accepted_same_record_evidence, false);
+  assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
+});
+
+test("central retained-source adapter acceptance certificate rejects string-only external verification", () => {
+  const certificateArtifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: makeAcceptedEvidence(),
+  });
+  const {
+    external_accepted_authority_package: _package,
+    ...stringOnlyVerification
+  } = makeExternalVerification({ certificateArtifact });
+  const artifact = buildCentralSolverRetainedSourceAdapterAcceptanceCertificate({
+    retainedRecordId: RETAINED_RECORD_ID,
+    sourceRowId: SOURCE_ROW_ID,
+    sameRecordAcceptedEvidence: makeAcceptedEvidence(),
+    externalAcceptedAuthorityVerification: stringOnlyVerification,
+  });
+
+  assert.equal(artifact.external_authority_verification.external_verification_conditionally_satisfied, false);
+  assert.equal(
+    artifact.external_authority_verification.missing_fields.includes(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.external_accepted_authority_package"
+    ),
+    true
+  );
+  assert.equal(
+    artifact.first_missing_field,
+    "central_solver_retained_source_adapter.external_accepted_authority_verification.external_accepted_authority_package"
+  );
   assert.deepEqual(validateCentralSolverRetainedSourceAdapterAcceptanceCertificate(artifact), []);
 });
 

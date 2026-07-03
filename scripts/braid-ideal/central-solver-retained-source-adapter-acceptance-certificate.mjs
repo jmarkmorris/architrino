@@ -8,6 +8,8 @@ import {
 } from "./central-solver-retained-history-provider-source-carrier.mjs";
 
 export const SCHEMA = "central_solver_retained_source_adapter_acceptance_certificate.v0";
+export const EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA =
+  "central_solver_retained_source_adapter_external_accepted_authority_package.v0";
 export const FIRST_MISSING_OBJECT = "central_solver_retained_source_adapter_acceptance_certificate";
 export const FIRST_MISSING_FIELD = "central_solver_retained_source_adapter.acceptance_certificate_ref";
 
@@ -30,6 +32,7 @@ const REQUIRED_ACCEPTED_EVIDENCE_FIELDS = Object.freeze([
 ]);
 
 const REQUIRED_EXTERNAL_VERIFICATION_FIELDS = Object.freeze([
+  "external_accepted_authority_package_ref",
   "external_accepted_authority_ref",
   "external_accepted_authority_verification_ref",
   "verified_adapter_acceptance_certificate_ref",
@@ -199,19 +202,90 @@ function makeSameRecordAcceptedEvidenceCriterion({ carrier, evidence = {} }) {
   };
 }
 
+function authorityPackageMissingFields({ authorityPackage, candidateCertificateRef, adapter, retainedRecordId, sourceRowId }) {
+  const missingFields = [];
+  if (authorityPackage?.schema !== EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.schema"
+    );
+  }
+  if (authorityPackage?.accepted_external_authority !== true) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.accepted_external_authority"
+    );
+  }
+  if (authorityPackage?.non_repo_external_authority !== true) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.non_repo_external_authority"
+    );
+  }
+  if (stringRef(authorityPackage?.external_accepted_authority_ref) == null) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.external_accepted_authority_ref"
+    );
+  }
+  if (stringRef(authorityPackage?.external_accepted_authority_verification_ref) == null) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.external_accepted_authority_verification_ref"
+    );
+  }
+  if (stringRef(authorityPackage?.verified_adapter_acceptance_certificate_ref) !== candidateCertificateRef) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.verified_adapter_acceptance_certificate_ref"
+    );
+  }
+  if (adapter?.artifact_hash != null && stringRef(authorityPackage?.verified_adapter_artifact_hash) !== adapter.artifact_hash) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.verified_adapter_artifact_hash"
+    );
+  }
+  if (retainedRecordId != null && stringRef(authorityPackage?.retained_record_id) !== retainedRecordId) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.retained_record_id"
+    );
+  }
+  if (sourceRowId != null && stringRef(authorityPackage?.source_row_id) !== sourceRowId) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.authority_package.source_row_id"
+    );
+  }
+  return missingFields;
+}
+
 function makeExternalAuthorityVerification({ carrier, certificateCriterion, verification = {} }) {
   const adapter = carrier?.central_solver_retained_source_adapter ?? null;
   const retainedRecordId = stringRef(carrier?.same_record_binding?.retained_record_id);
   const sourceRowId = stringRef(carrier?.same_record_binding?.source_row_id);
   const candidateCertificateRef = certificateCriterion.adapter_acceptance_certificate_ref;
+  const authorityPackage = verification.external_accepted_authority_package ?? null;
   const missingFields = [];
   if (certificateCriterion.criterion_passed !== true) {
     missingFields.push(FIRST_MISSING_FIELD);
   }
-  for (const field of REQUIRED_EXTERNAL_VERIFICATION_FIELDS) {
-    if (stringRef(verification[field]) == null) {
-      missingFields.push(`central_solver_retained_source_adapter.external_accepted_authority_verification.${field}`);
+  const verificationFieldPresent = REQUIRED_EXTERNAL_VERIFICATION_FIELDS.some((field) => stringRef(verification[field]) != null);
+  if (!verificationFieldPresent) {
+    missingFields.push(EXTERNAL_VERIFICATION_FIELD);
+  } else {
+    for (const field of REQUIRED_EXTERNAL_VERIFICATION_FIELDS) {
+      if (stringRef(verification[field]) == null) {
+        missingFields.push(`central_solver_retained_source_adapter.external_accepted_authority_verification.${field}`);
+      }
     }
+  }
+  if (authorityPackage == null) {
+    missingFields.push(
+      "central_solver_retained_source_adapter.external_accepted_authority_verification.external_accepted_authority_package"
+    );
+  } else {
+    missingFields.push(
+      ...authorityPackageMissingFields({
+        authorityPackage,
+        candidateCertificateRef,
+        adapter,
+        retainedRecordId,
+        sourceRowId,
+      })
+    );
   }
   if (
     candidateCertificateRef != null &&
@@ -248,6 +322,9 @@ function makeExternalAuthorityVerification({ carrier, certificateCriterion, veri
     supplied_external_verification_refs: Object.fromEntries(
       REQUIRED_EXTERNAL_VERIFICATION_FIELDS.map((field) => [field, stringRef(verification[field])])
     ),
+    external_accepted_authority_package_schema: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+    external_accepted_authority_package_ref: stringRef(verification.external_accepted_authority_package_ref),
+    external_accepted_authority_package: authorityPackage,
     verified_adapter_acceptance_certificate_ref: stringRef(verification.verified_adapter_acceptance_certificate_ref),
     expected_adapter_acceptance_certificate_ref: candidateCertificateRef,
     missing_fields: [...new Set(missingFields)],

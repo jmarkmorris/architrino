@@ -48,6 +48,14 @@ The accepted `theta_W` evidence object is now `scripts/equation-mapping/effectiv
 
 The focused test run `node --test tests/effective-metric-weak-field-residual.test.js tests/noether-sea-density-compression-output-projection.test.js tests/noether-sea-density-compression-provider-intake.test.js tests/eq11-weak-gravity-constitutive-residual.test.js tests/eq11-20-shared-constitutive-residual.test.js tests/eq20-pressure-effective-lambda-residual.test.js tests/effective-frw-handoff-residual.test.js` passed 31 tests. No accepted upstream density provider, pressure report, or `theta_cos` handoff object changed, and no equation score changes follow from these rows.
 
+### 2026-07-02 Shared-Observation No-Retune Consumer
+
+The shared-observation evidence object is now `scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json`, with executable input `scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json`. The shared-observation checker now requires accepted shared-observation evidence before accepted-looking `theta_obs`, source/readout/thermal/galaxy, projection-family, or shared-key rows can populate; generic durable JSON no longer satisfies the row ladder.
+
+The accepted input consumes the populated shared `EQ-11`/`EQ-20` residual, accepted `theta_W` evidence, accepted output-projection evidence, and accepted `theta_cos` handoff. It reports `status=populated`, `nextBlocker=null`, no missing projection families, no missing shared keys, `sourceEvidenceFailureCount=0`, `projectionFamiliesAccepted=true`, `hiddenRetuneNumericPass=true`, and `residualTotal=0.14` within the declared score-neutral residual tolerance. This carries the same record into `BBN`, `CMB`, `growth`, and `RAR` consumers without changing the accepted upstream provider, pressure report, `theta_cos`, `theta_11_20`, `theta_W`, or output-projection records.
+
+The focused test run `node --test tests/shared-observation-residual.test.js` passed 5 tests. No equation score changes follow from this consumer. The next boundary is deeper predictive transfer and source physics: `EQ-22B` recombination/acoustic carrier, `EQ-25` `theta_therm`, Planck blackbody/photon carrier inheritance, and score-review-grade observational residuals.
+
 ### 2026-07-02 EQ-02-04 Supersession Note
 
 Migrated from `eq-02-04-lorentz-energy-packet.md` to keep the equation packet focused on the mathematical object while preserving the status-level supersession boundary.

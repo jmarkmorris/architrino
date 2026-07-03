@@ -6,6 +6,14 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ## Log Entries
 
+### 2026-07-02 - Retained-Source Adapter Acceptance-Certificate Target Added
+
+Implemented the next fail-closed certificate boundary for the retained-source adapter. [central-solver-retained-source-adapter-acceptance-certificate.mjs](../../../scripts/braid-ideal/central-solver-retained-source-adapter-acceptance-certificate.mjs) emits `central_solver_retained_source_adapter_acceptance_certificate.v0`, consumes the bound provider/source carrier, checks that same-record accepted evidence is declared for the retained record and source row, and rejects cross-record evidence before emitting a candidate adapter acceptance-certificate ref.
+
+Executable status: without same-record accepted evidence it remains `adapter_acceptance_certificate_source_acquisition_blocked`; with the required same-record evidence refs it emits a candidate `central_solver_retained_source_adapter_acceptance_certificate` ref and stops at `central_solver_retained_source_adapter.external_accepted_authority_verification_ref`. External verification now requires an explicit `central_solver_retained_source_adapter_external_accepted_authority_package.v0` object; string-only external-authority refs are rejected. With a declared matching external-authority package it records conditional verification but still stops at `central_solver_retained_source_adapter.accepted_retained_source_adapter_ref`. The repo artifact does not authorize accepted adapter evidence, retained branch output, chirality authorization, Noether sea stabilization, branch-chart/moving certificate, return/stability claim, or score movement.
+
+Decision: the adapter acceptance-certificate source object is now executable as a conditional target, but the active closure goal is not complete. The next exact missing object is a non-repo external accepted authority that can promote the candidate certificate to an accepted retained-source adapter ref for the same retained record and source row.
+
 ### 2026-07-02 - Retained-History Provider/Source Carrier Added
 
 Implemented the source-side carrier requested by the provider acquisition ladder. [central-solver-retained-history-provider-source-carrier.mjs](../../../scripts/braid-ideal/central-solver-retained-history-provider-source-carrier.mjs) emits `central_solver_retained_history_provider_source_carrier.v0`, composing the existing retained-source adapter with explicit native/app provenance for `SolverAppBridge.createPathHistoryStreamF64` / `PathHistoryRowF64` path-history streams and `SolverAppBridge.buildRootLedgerDetailF64WithModule` / `RootLedgerDetailRowF64` root-ledger detail rows. The CLI can emit the bound candidate with `--retained-record-id=... --source-row-id=...`, while the default CLI path remains fail-closed at the missing retained record id.

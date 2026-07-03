@@ -771,7 +771,7 @@ with redshift, Shapiro delay, lensing, acceleration, 1PN, and preferred-frame ro
 
 ### Agent Target
 
-Carry the accepted `theta_W` record into growth, CMB, and broader low-acceleration no-retune consumers. Keep the attempt and coordination-source routes blocked so priority prose, attempt fixtures, and generic durable JSON cannot satisfy accepted `theta_W` evidence. Until the same weak-field carrier survives those downstream consumers, the effective-metric residual remains score-neutral.
+Use the accepted `theta_W` record as the upstream weak-field carrier for predictive growth, CMB, and low-acceleration child consumers. Keep the attempt and coordination-source routes blocked so priority prose, attempt fixtures, and generic durable JSON cannot satisfy accepted `theta_W` evidence. The shared-observation route now consumes the same weak-field carrier score-neutrally; the next burden is deriving predictive transfer or response rows without replacing that accepted record.
 
 ## EQ-07A: Compact-Star Support And Collapse Scale Residual
 
@@ -965,7 +965,7 @@ with no separate tuning between Newtonian acceleration, lensing, clock, and cosm
 
 ### Agent Target
 
-Do not attempt full GR closure first. Carry the accepted `theta_11_20`, `theta_W`, and output-projection rows into growth, CMB, and broader low-acceleration no-retune consumers without changing the accepted density, pressure, `theta_cos`, or weak-gravity records. Until those consumers pass on the same record, the Poisson-limit handoff remains score-neutral.
+Do not attempt full GR closure first. Use the accepted `theta_11_20`, `theta_W`, and output-projection rows as the shared carrier for predictive growth, CMB, and low-acceleration child consumers without changing the accepted density, pressure, `theta_cos`, or weak-gravity records. The shared-observation route now consumes that carrier score-neutrally; the Poisson-limit handoff remains score-neutral until predictive downstream rows survive on the same record.
 
 ## EQ-11A: Gravitational-Wave Source Recovery
 
@@ -1901,7 +1901,7 @@ Current `6/23 b` score: `3`.
 
 The mechanism is staged as a shared constitutive target, not merely a loose analogy. A fitted $\Lambda$ is still not a derivation.
 
-The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) now consumes the accepted `theta_sea_rho_NS` density provider, the retained [eq20-delta-p-eff-pressure-projection-report.v1.json](../../../scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json), and the accepted `theta_cos` handoff in [effective-frw-theta-cos-handoff.v1.json](../../../scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json). It reports `status=populated`, `nextBlocker=null`, no missing pressure rows or shared keys, and accepted pressure-law, sea-pressure, sea-tension, relaxation, effective-density, effective-pressure, effective-coupling, effective-$\Lambda$, source-provenance, FRW-handoff, and no-hidden-retune rows from the same provider window and cosmology handoff. The shared [eq11-20-shared-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-20-shared-constitutive-residual.mjs) also reports `status=populated` against the accepted `theta_11_20` weak-gravity evidence. The same record now also populates `theta_W`, `delta_a_star`, `delta_N`, `delta_gamma_ij`, and `delta_G_eff` through accepted score-neutral output-projection rows. The route remains score-neutral because growth, CMB, and broader low-acceleration consumers have not yet survived the same record.
+The score-neutral executable route is now [eq20-pressure-effective-lambda-residual.mjs](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-residual.mjs). The attempt fixture [eq20-pressure-effective-lambda-attempt.v1.json](../../../scripts/equation-mapping/eq20-pressure-effective-lambda-attempt.v1.json) reports `blocked_missing_rows`, `scoreDecision: no_score_increase`, first blocker `missing_accepted_theta_sea_rho_NS`, and inherited FRW blocker `missing_accepted_theta_cos`. The provider-backed slice [eq20-provider-backed-pressure-effective-lambda-slice.v1.json](../../../scripts/equation-mapping/eq20-provider-backed-pressure-effective-lambda-slice.v1.json) now consumes the accepted `theta_sea_rho_NS` density provider, the retained [eq20-delta-p-eff-pressure-projection-report.v1.json](../../../scripts/equation-mapping/eq20-delta-p-eff-pressure-projection-report.v1.json), and the accepted `theta_cos` handoff in [effective-frw-theta-cos-handoff.v1.json](../../../scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json). It reports `status=populated`, `nextBlocker=null`, no missing pressure rows or shared keys, and accepted pressure-law, sea-pressure, sea-tension, relaxation, effective-density, effective-pressure, effective-coupling, effective-$\Lambda$, source-provenance, FRW-handoff, and no-hidden-retune rows from the same provider window and cosmology handoff. The shared [eq11-20-shared-constitutive-residual.mjs](../../../scripts/equation-mapping/eq11-20-shared-constitutive-residual.mjs) also reports `status=populated` against the accepted `theta_11_20` weak-gravity evidence. The same record now also populates `theta_W`, `delta_a_star`, `delta_N`, `delta_gamma_ij`, and `delta_G_eff` through accepted score-neutral output-projection rows, and the shared-observation consumer carries the record into BBN, CMB, growth, and RAR without hidden retune. The route remains score-neutral because predictive transfer, thermalization, recombination/acoustic, and score-review-grade observational residuals remain open.
 
 ### Closure Burden
 
@@ -1925,7 +1925,7 @@ Then show how it projects into $w_{\mathrm{eff}}$ and $\Lambda_{\mathrm{eff}}$ w
 
 ### Agent Target
 
-Carry the populated shared `EQ-11`/`EQ-20`, `theta_W`, and output-projection rows into growth, CMB, and broader low-acceleration consumers. Until the same $G_{\mathrm{eff}}$, pressure, relaxation, and effective-$\Lambda$ rows remain no-retune through those consumers, the dark-energy row remains score-neutral.
+Use the populated shared `EQ-11`/`EQ-20`, `theta_W`, and output-projection rows as the carrier for predictive growth, CMB, and low-acceleration child consumers. The accepted shared-observation route already consumes the same $G_{\mathrm{eff}}$, pressure, relaxation, and effective-$\Lambda$ context score-neutrally; the dark-energy row remains score-neutral until predictive downstream rows close without retuning.
 
 ## EQ-21: Structure Growth And Matter Power
 
@@ -1985,11 +1985,11 @@ without switching Noether sea state between linear and nonlinear packets.
 
 The row should be evaluated as a projection of $\mathcal R_{\mathrm{obs}}(\Theta_{\mathrm{obs}})$ from the shared-observation packet: growth uses the same readout and Noether sea response rows that later feed CMB lensing, BBN handoff, and low-acceleration galaxy comparisons.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-21` score change follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only. The shared source-window packet [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) now carries a Direct Geometry Layer for `Theta_src`, including standard comparison terms, AAA geometric readouts, required rows, same-record bindings, fail-closed controls, and the smallest accepted evidence object.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) still reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`. The accepted input [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json) consumes [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json), which cites the populated shared `EQ-11`/`EQ-20` residual, accepted `theta_W` evidence, accepted output-projection evidence, and accepted `theta_cos` handoff. It reports `status=populated`, `nextBlocker=null`, no missing projection families, no missing shared keys, and `hiddenRetuneNumericPass=true` across `BBN`, `CMB`, `growth`, and `RAR` consumers. This remains score-neutral and does not derive a predictive growth transfer function by itself.
 
 ### Agent Target
 
-Pick one growth observable, preferably $P(k,z)$ or $f\sigma_8$, and define the exact Noether sea variables needed to compute it.
+Turn the populated growth consumer into a predictive transfer calculation for one observable, preferably $P(k,z)$ or $f\sigma_8$, using the same accepted shared keys and no private growth retune.
 
 ## EQ-22: CMB Transfer, Blackbody, And Acoustic Equations
 
@@ -2027,7 +2027,7 @@ Current `6/23 b` score: `3`.
 
 The current material now has a shared observation-record scaffold, but the equation-level transfer pipeline remains a priority target.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-22` score change follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only. The shared source-window packet [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) now carries a Direct Geometry Layer for `Theta_src`, including standard comparison terms, AAA geometric readouts, required rows, same-record bindings, fail-closed controls, and the smallest accepted evidence object.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) still reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`. The accepted input [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json) reports `status=populated`, `nextBlocker=null`, accepted `CMB` projection-family rows, and shared `eta`, `N_eff`, `Y_p`, `H_eff`, and `a_eff` keys with BBN, growth, and RAR. This is a score-neutral CMB consumer handoff; the detailed transfer, blackbody, recombination/acoustic, and thermodynamic carrier rows remain separate closure targets.
 
 ### Closure Burden
 
@@ -2051,7 +2051,7 @@ A CMB branch fails if it fits microwave temperature while assigning helium abund
 
 ### Agent Target
 
-Convert one CMB subproblem, such as blackbody preservation or acoustic-peak seeding, into a concrete transfer equation with source, path, thermalization, and frame terms.
+Use the populated CMB consumer as the parent handoff for one concrete CMB transfer subproblem, such as blackbody preservation or acoustic-peak seeding, then bind it to source, path, thermalization, and frame terms without changing the accepted shared-observation record.
 
 ## EQ-22A: Planck Blackbody Law, Mode Counting, And Photon Occupancy
 
@@ -2301,7 +2301,7 @@ Current `6/23 b` score: `3`.
 
 The constraint rows and shared source-window dependencies are explicit, but the native source-window mechanism is not predictive enough yet.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-23` score change follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only. The shared source-window packet [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) now carries a Direct Geometry Layer for `Theta_src`, including standard comparison terms, AAA geometric readouts, required rows, same-record bindings, fail-closed controls, and the smallest accepted evidence object.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) still reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`. The accepted input [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json) reports `status=populated`, `nextBlocker=null`, accepted `BBN` projection-family rows, and shared `eta`, `N_eff`, `Y_p`, `H_eff`, and `a_eff` keys with CMB, growth, and RAR. This remains score-neutral and does not yet replace the need for a predictive BBN source-window mechanism.
 
 ### Closure Burden
 
@@ -2317,7 +2317,7 @@ One branch must recover:
 
 ### Agent Target
 
-Replace the `Theta_src` source-attempt scaffold with one durable non-priority `theta_src` source-window row, then populate the first BBN child row on the same thermal/provenance, photon-loading, neutrino, matter-asymmetry, Noether sea, event-ledger, and no-hidden-retune record. Until that accepted row exists, the shared-observation and BBN residuals remain score-neutral at `missing_accepted_theta_obs` / `missing_accepted_theta_src`.
+Use the populated BBN consumer as the parent handoff for a predictive BBN source-window mechanism, then populate the first BBN child row on the same thermal/provenance, photon-loading, neutrino, matter-asymmetry, Noether sea, event-ledger, and no-hidden-retune record.
 
 Suffix note: `EQ-23A` remains unscored and priority-only. Its Direct Geometry Layer and identity checker block first at `missing_accepted_explosive_source_window_carrier`; after a real retained parent carrier lands, the first child route is `shock_jump_blast_row` on the same `carrierId`, `sourceWindowId`, `supportId`, and `eventLedgerId`.
 
@@ -3156,7 +3156,7 @@ Current `6/23 b` score: `3`.
 
 The equation is a strong observational benchmark, and the current $\mathbb{A}\mathbb{A}\mathbb{A}$ map is now a shared constitutive-response target. It should not be imported as a new gravity ontology or as permission to bypass the effective-metric and cosmology rows.
 
-Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The current attempt fixture is score-neutral and reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`; no `EQ-32` score change follows from the structural run. The full-input source-attempt fixture [shared-observation-theta-src-source-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-theta-src-source-attempt.v1.json) gives `theta_src` a concrete source-window shape while keeping all rows `attempt`; `--focus-row theta_src` reports `missing_accepted_theta_src` as diagnostic detail only. The sharper physical `EQ-32` route now has accepted score-neutral `delta_a_star` output-projection evidence in [noether-sea-density-compression-provider-output-projection.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json), consumed by [noether-sea-density-compression-provider-surface-slice-output-projection.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-surface-slice-output-projection.v1.json); the density-compression runner reports `consumerReadiness.EQ32_low_acceleration.readiness=ready_for_consumer_review`. The older source-attempt probe [noether-sea-density-compression-eq32-delta-a-star-source-attempt.v1.json](../../../scripts/spacetime/noether-sea-density-compression-eq32-delta-a-star-source-attempt.v1.json) remains blocked at `missing_accepted_theta_sea_rho_NS`. The shared source-window packet [EQ-21/EQ-22/EQ-23 Theta-Src Source-Field Map](eq-21-22-23-theta-src-source-field-map.md) still owns the broader observation/growth/RAR consumer boundary.
+Executable status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now evaluates the shared `EQ-21`/`EQ-22`/`EQ-23`/`EQ-32` residual family. The attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) still reports `blocked_missing_rows`, with first blocker `missing_accepted_theta_obs`. The sharper physical `EQ-32` route has accepted score-neutral `delta_a_star` output-projection evidence in [noether-sea-density-compression-provider-output-projection.v1.json](../../../scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json). The accepted shared-observation input [shared-observation-provider-backed-consumer-accepted.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-accepted.v1.json) now consumes that output projection through [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json) and reports `status=populated`, `nextBlocker=null`, accepted `RAR` projection rows, and no shared-key hidden-retune mismatch with BBN, CMB, or growth. This remains score-neutral and does not yet derive the galaxy-response law itself.
 
 ### Closure Burden
 
@@ -3170,7 +3170,7 @@ The row must show:
 
 ### Agent Target
 
-Connect the accepted `delta_a_star` output projection to the shared observation and galaxy-response consumers, then test whether the same Noether sea constitutive record supports RAR/BTFR dynamics, lensing, CMB, BBN, growth, and local-gravity constraints without a private low-acceleration retune.
+Turn the populated `RAR` consumer into a predictive galaxy-response law for RAR/BTFR dynamics, lensing, high-acceleration recovery, and local-gravity constraints without changing the accepted shared-observation record.
 
 ## Ranked Closure Priorities
 
