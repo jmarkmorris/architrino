@@ -8,6 +8,7 @@ Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb
 - Anchor dynamics in `dynamics/master-equation.md`, `noether-braid/nested-shell-braid-dynamics.md`, and the parameter classes in `validation/parameter-ledger.md`.
 - Anchor observer-level timing and metric behavior in `spacetime/proper-time-and-time-dilation.md`, `spacetime/emergent-metric.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/ppn-parameters.md`.
 - Treat `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the current proof-burden ledger for the moving-core deformation map, transverse causal budget lemma, structural-integrity common-limit closure, photon speed row, and preferred-frame residual export.
+- Treat `reference/priorities/braid-ideal/` and `content/markdown/aaa/archie/ideal-braid-guide.md` as current ideal-braid context: the ideal braid is a same-level subset of the broader braid concept and a Lorentz-geometry candidate, with `face-opposite` as the current stability candidate, `axial-paired` unstable as simple support, and any sea-of-other-ideal-braids stabilization still a Noether sea response target.
 - Validate preferred-frame suppression and GR-limit claims against `validation/validation-protocols.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 
 ## Core Responsibilities
@@ -16,6 +17,7 @@ Derive and police the effective relativity layer of $\mathbb{A}\mathbb{A}\mathbb
 - Formalize how local observer kinematics approximate Lorentz symmetry despite absolute time $t$ and fixed Euclidean space.
 - Provide explicit conditions for when Minkowski-like behavior is valid and when corrections appear.
 - Demand that moving-assembly deformation, clock-rate reduction, ruler contraction, two-way signal closure, and preferred-frame leakage come from the same retained branch ledger where possible.
+- Use ideal-braid oblate spheroidal geometry only as a target for this ledger: the visible envelope must not be treated as a Lorentz proof until return-cycle, clock, support, and speed rows close on one branch.
 
 2. Clock-map derivation
 - Build and test the mapping between substrate time and operational clock time:
@@ -42,6 +44,7 @@ $$
 5. Regime boundary diagnostics
 - Provide sharp criteria for transitions among $v<c_f$, $v=c_f$, and self-hit-influenced regimes.
 - Mark domains where effective Lorentz symmetry degrades and where strong-field/event-horizon alignment effects dominate.
+- For ideal-braid candidates, mark whether the route is a `face-opposite` same-level return candidate, an `axial-paired` unstable support projection, or a Noether sea stabilized branch requiring local population and boundary-wake rows.
 
 6. Interface constraints for other roles
 - Supply effective metric work with consistency conditions linking ADM/Cartan fields to observer-frame timing behavior.
@@ -55,6 +58,7 @@ $$
 - **Relativity Regime Map**: explicit boundaries between Lorentz-like and correction-dominated domains.
 - **Speed-Convention Guardrail**: declared use of $c_f$, $c_{\text{eff}}$, $c_\gamma$, and $c_0$ in every frame-mapping argument.
 - **Structural-Integrity Checklist**: constraints that dynamics, effective metric, photon, and simulation work must satisfy for frame-consistent results.
+- **Ideal-Braid Lorentz Residual Note**: support class, oblate envelope, clock-rate, speed convention, preferred-frame leakage, and Noether sea stabilization rows for the same retained branch.
 
 ## Failure Conditions
 
@@ -62,3 +66,4 @@ $$
 - Null-test observables cannot be suppressed within allowed parameter ranges.
 - SR/weak-field timing limits cannot be recovered in the documented approximation regime.
 - Different modules use inconsistent frame conventions or incompatible $t \leftrightarrow \tau$ mappings.
+- Ideal-braid app geometry or toy support rows are used as evidence for Lorentz closure before retained-history and Noether sea response rows close.

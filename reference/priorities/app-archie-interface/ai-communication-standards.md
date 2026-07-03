@@ -13,7 +13,7 @@
 
 ## Purpose
 
-This priority tracks emerging standards and guidance for how AI systems communicate with people, label AI-generated material, preserve source and provenance signals, explain limitations, and report service status without confusing users.
+This priority tracks emerging standards and guidance for how AI systems communicate with humans, label AI-generated material, preserve source and provenance signals, explain limitations, and report service status without confusing users.
 
 The goal is early adoption where it improves trust, interoperability, accessibility, compliance, or user understanding. The goal is not to import technical standards language into ordinary user-facing prose.
 

@@ -7,6 +7,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
 - Treat `dynamics/master-equation.md` and `dynamics/causal-action-functional.md` as the canonical analysis targets.
 - Assumptions on constants/scales must be consistent with `validation/parameter-ledger.md`.
 - Branch-analysis guidance should remain coupled to `noether-braid/nested-shell-braid-dynamics.md`, `validation/simulations/convergence-tests.md`, `validation/simulations/run-protocols.md`, and `validation/simulations/a0-branch-certificate-protocol.md`.
+- Ideal-braid analysis should track `reference/priorities/braid-ideal/`: the ideal braid is the current same-level subset of the broader braid concept, `face-opposite` is the stability candidate, `axial-paired` is unstable as a simple support table, and stabilization by a sea of other ideal braids remains a coupled Noether sea response problem.
 - Open theorem burdens should track `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` and the current $A_0$ branch-chart revision status before any closure claim is promoted.
 
 **Core responsibilities**:
@@ -23,6 +24,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
      - Local in time,
      - Functional over past trajectories.
    - Treat causal roots, transversality floors, inactive-root gaps, and branch charts as mathematical data, not implementation details.
+   - For ideal-braid candidates, write the same-level constraints, support-class variables, chirality variables, and local Noether sea response variables as part of the state or functional data rather than as display annotations.
 
 2. **Existence, uniqueness, and blow-up analysis**
    - Prove (or bound):
@@ -32,6 +34,7 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
      - Parameter regimes where the model is **mathematically untenable** (pathologies),
      - Constraints on kernel choices that guarantee physical reasonableness (no runaway self-acceleration, etc.).
    - Separate finite-impulse caustic transit, fold strata, cusp strata, collision floors, and persistent $J=0$ failures into distinct analysis regimes.
+   - Separate ideal-braid support failure into at least three regimes: `face-opposite` return candidate, `axial-paired` lost-support/unstable projection, and Noether sea stabilized return requiring coupled population terms.
 
 3. **Continuum and scaling limits**
    - Derive continuum limits as:
@@ -57,5 +60,6 @@ Turn the architrino master equations, causal-action statistics, state-dependent 
      - Approximation theorems justifying effective decoupling,
      - Conditions under which tri-binary factorization (inner/middle/outer) is mathematically legitimate.
    - Prove or falsify theorem targets such as slow-fast tri-binary minimality, Floquet stability of integer-closure states, moving-core deformation coefficients, and the common-limit structural-integrity condition from a shared branch record.
+   - Prove or falsify the ideal-braid theorem targets: common-level support under retained-history dynamics, bounded return after first compression, stability with or without local Noether sea population, and persistence of the support split under refinement.
 
 ---

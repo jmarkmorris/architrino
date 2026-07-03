@@ -7,6 +7,7 @@ Turn Noether sea state variables, retained nested shell braid exports, and obser
 - Geometry construction should align with `spacetime/emergent-metric.md`, `spacetime/general-relativity.md`, `spacetime/proper-time-and-time-dilation.md`, `spacetime/noether-sea.md`, and `spacetime/ppn-parameters.md`.
 - Micro-to-metric mappings must consume branch-certified records from `dynamics/master-equation.md`, `noether-braid/nested-shell-braid-dynamics.md`, and `validation/parameter-ledger.md`.
 - Effective metric closure must stay synchronized with `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`, especially the effective metric and Cartan connection row.
+- Ideal-braid geometry should be read through `reference/priorities/braid-ideal/` and `content/markdown/aaa/archie/ideal-braid-guide.md`: the oblate spheroidal envelope is a concrete Lorentz-geometry target for a same-level braid subset, not a completed metric derivation; `face-opposite` is the current stability candidate, `axial-paired` is unstable as simple support, and a stabilizing sea of other ideal braids must enter through Noether sea constitutive data.
 - GR-limit and deviation statements should be benchmarked against `validation/validation-protocols.md` and `validation/constraint-ledger.md`.
 
 **Core responsibilities**:
@@ -25,6 +26,7 @@ Turn Noether sea state variables, retained nested shell braid exports, and obser
    - Use **moving frames** to express local orthonormal frames in terms of:
      - Local tri-binary orientation (neutral axes),
      - Local anisotropies (oblate vs spherical exclusion surfaces under gravitation).
+   - For ideal-braid candidates, treat $R_\perp$, $R_\parallel$, $\xi$, drift speed, same-level action readout, and support class as branch exports that must be consumed by the metric map only after retained-history rows exist.
 
 2. **Connection and geodesics**
    - Derive an **effective connection** from the ADM/Cartan map. In the GR-matching regime this is the Levi-Civita connection of $g_{\mu\nu}^{\text{eff}}$; torsion, nonmetricity, birefringence, dispersion, and preferred-frame leakage are deviation observables.
@@ -56,5 +58,6 @@ Turn Noether sea state variables, retained nested shell braid exports, and obser
      - **Conservation laws** (effective energy-momentum), Bianchi identities, and symmetry requirements are met by the emergent geometry.
    - Specify what **Cartan data** (frames + connection) simulations must reconstruct to compare against GR benchmarks.
    - Reject any metric recovery that separately tunes clock, ruler, signal, and lensing channels instead of projecting one retained Noether sea and observer record.
+   - Reject an ideal-braid metric export if its Noether sea stabilization term is a fitted pressure rather than a same-record response of the local Noether sea state, nearby ideal-braid or Noether braid population, boundary wake history, and action/exchange ledger.
 
 ---

@@ -7,6 +7,7 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
 - Statistical models should be built on `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and the path-history/self-hit structure used there.
 - Ensemble and coarse-graining assumptions must remain consistent with `foundations/ontology.md` and `cosmology/cosmology-ontology.md` (absolute-state vs observer-level projection).
 - Branch statistics must respect retained-record fields from `noether-braid/nested-shell-braid-dynamics.md`: active causal-root ledger, finite memory depth, branch-Jacobian floor, inactive-root gap, Floquet gap, and event ledger.
+- Ideal-braid statistics should treat `reference/priorities/braid-ideal/` as priority-only evidence: the ideal braid is the same-level subset of the general braid concept; `face-opposite` is the current stability candidate, `axial-paired` is unstable as a simple support table, and any stabilizing sea of other ideal braids must appear as a declared Noether sea population ensemble.
 - Validation metrics should follow `validation/simulations/convergence-tests.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/no-go-theorems.md`.
 
 **Core responsibilities**:
@@ -17,6 +18,7 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
      - finite-memory path-history states,
      - causal-root ledgers,
      - branch charts and return maps,
+     - ideal-braid same-level support states and surrounding Noether sea population states,
      - trajectory ensembles of architrino worldlines.
    - Formalize **ensembles**:
      - Microcanonical-like (fixed invariants),
@@ -31,11 +33,13 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
      - basin weights for deterministic multistability,
      - Born-rule-like outcome statistics when a measurement interaction reaches a record-forming basin,
      - equilibrium and transport distributions of Noether sea assemblies.
+   - For ideal-braid work, distinguish a basin that returns to `face-opposite` support from one that passes transiently through `axial-paired` and then loses common-sphere or antipodal-pair support.
 
 3. **Metastable branching and outcome weights**
    - Provide a rigorous account of **probabilities at self-hit bifurcation thresholds** and separator events:
      - Define basin measures before coarse-graining them into observer probabilities.
      - Track how wake phase, finite memory depth, and unresolved Noether sea state affect branch selection.
+     - Track whether a local sea of other ideal braids changes escape into bounded return, breather behavior, or stable-radius settling.
      - State conditions under which weights can converge to $|\psi|^2$-like or squared-overlap statistics.
    - Help distinguish:
      - **Deterministic chaos** (sensitivity to initial conditions) from
@@ -60,5 +64,6 @@ Provide the **statistical foundation** for deterministic, path-history microdyna
      - Genuine emergent probabilistic laws from
      - Finite-size or numerical artifacts.
    - Require convergence under time-step, memory-window, root-ledger, and mollifier refinement before a probability law is treated as branch evidence.
+   - Require ideal-braid stability probabilities to report support-class residuals, return rows, Noether sea population variables, and negative controls separating true stability from a finite-window toy artifact.
 
 ---

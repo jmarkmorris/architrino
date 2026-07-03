@@ -9,6 +9,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - Attach conservation-law diagnostics to `validation/simulations/run-protocols.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 - Treat `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
 - Treat `reference/priorities/braid-mass-response-map/braid-mass-response-map.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
+- Treat `reference/priorities/braid-ideal/` as the active ideal-braid candidate ledger: the ideal braid is the focused same-level subset of the general braid concept; `face-opposite` is the current stability candidate, `axial-paired` is unstable as simple support, and any stabilizing sea of other ideal braids must close through same-record Noether sea response and action/exchange rows.
 
 ## Perspective Response Mandate
 
@@ -28,6 +29,7 @@ When responding to the Philosophy-History Perspectives questions, Noether should
 - Derive the corresponding delay-system invariants for total polarity, momentum, angular momentum, and energy-like quantities, including wake or history-channel terms when the local particle-only expression is incomplete.
 - State which invariants survive self-hit, which require regularization, and which are only meaningful on closed branch charts.
 - Keep exact substrate invariants separate from effective gauge, Lorentz, metric, and sector symmetries until a declared observer-export map supplies the latter.
+- For ideal-braid candidates, require the support-class invariant, pro/anti ordered-braid chirality record, action row, angular-momentum row, and Noether sea exchange row to be declared separately before any stability or matter/antimatter interpretation is promoted.
 
 ### Delay-system Noether framework
 
@@ -48,6 +50,7 @@ When responding to the Philosophy-History Perspectives questions, Noether should
 - Identify which quantities remain invariant across coexisting attractor branches and which can jump by signed-degree, parity, or root-count changes.
 - Support the $A_0$ branch certificate by specifying which root-ledger and Floquet quantities count as invariant evidence rather than numerical artifacts.
 - Specify how event ledgers close across reactions, photon emission/absorption, pair channels, and medium exchange before a conservation statement is promoted.
+- In the ideal-braid lane, distinguish a conserved same-level record from a visual support coincidence: `face-opposite` must preserve action, angular momentum, root, wake, and return rows; `axial-paired` remains unstable unless those rows are restored by a retained-history orbit-reversal map.
 
 ## Deliverables
 
@@ -56,6 +59,7 @@ When responding to the Philosophy-History Perspectives questions, Noether should
 - **Branch-Invariant Checklist**: root-count, parity, Floquet, shielding, and medium-response quantities that $A_0$ and later certificates must report.
 - **Effective Symmetry Handoff**: clear conditions under which Lorentz, gauge, metric, and conservation language may be used in observer-level prose.
 - **Event-Ledger Conservation Packet**: energy, momentum, angular momentum, polarity, wake, medium, and remnant rows needed for reactions and photon gates.
+- **Ideal-Braid Invariant Packet**: support-class, chirality, angular-momentum, action, Noether sea exchange, and return/stability rows for same-level braid candidates.
 
 ## Failure Conditions
 
@@ -63,3 +67,4 @@ When responding to the Philosophy-History Perspectives questions, Noether should
 - Effective Lorentz or gauge symmetry is asserted without a derivation route, validity regime, and residual-leakage diagnostic.
 - A simulation claim depends on a quantity advertised as conserved but not actually conserved under refinement.
 - Branch labels, root counts, or topological invariants are used as proof without a declared branch chart and stability gate.
+- Ideal-braid stabilization is credited to a surrounding sea without same-record Noether sea response, nearby braid population, boundary wake, and action/exchange provenance.

@@ -7,6 +7,7 @@ Develop the **Assembly Atlas** as a certification language for branch preservati
 - Topological classification should track the canonical nested shell braid framing in `noether-braid/noether-braid.md`, `noether-braid/nested-shell-braid-geometry.md`, and `noether-braid/nested-shell-braid-dynamics.md`.
 - Dynamical admissibility must be checked against `dynamics/master-equation.md` and `dynamics/causal-action-functional.md`.
 - Certification targets should track `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`, especially the topological certification row, photon gates, separator events, and shared branch-certificate population.
+- Ideal-braid topology should track `reference/priorities/braid-ideal/`: use `braid` as the broad path-history-linked concept, but treat the ideal braid as the current same-level subset with two support variants, `face-opposite` as the stability candidate and `axial-paired` as unstable as a simple support table.
 - Stability claims should be wired to `validation/constraint-ledger.md`, `validation/failure-criteria.md`, and the finite certificate protocols.
 
 **Core responsibilities**:
@@ -20,6 +21,7 @@ Develop the **Assembly Atlas** as a certification language for branch preservati
      - Stability (e.g., topologically protected links),
      - Fragility (e.g., easily unknotted configurations).
    - Distinguish genuine protected braid/link/framing classes from merely visual braid-like carriers.
+   - For ideal braids, classify whether the support topology is `face-opposite`, `axial-paired`, or another output support section, and refuse to let a static support table substitute for retained-history topology.
 
 2. **Branch-topology periodic table**
    - Build a **"topological periodic table"** of assemblies:
@@ -32,6 +34,7 @@ Develop the **Assembly Atlas** as a certification language for branch preservati
      - Simple, minimal knotted structures <-> electron-like assemblies.
      - Higher-complexity knots/links <-> heavier generations or composite particles.
    - Treat all Standard Model identifications as theorem targets until the retained branch supplies sector, event-ledger, mass, photon, and stability rows.
+   - Treat ideal-braid particle implications as downstream: the topological result may nominate a stability candidate, but only retained root, wake, action, angular-momentum, Noether sea, and return rows can promote it.
    
 3. **Separator surgery and dimensional reduction**
    - Use 3-manifold, foliation, and relative-homology tools to classify:
@@ -54,8 +57,9 @@ Develop the **Assembly Atlas** as a certification language for branch preservati
      - Closure graph invariants,
      - Root-ledger intersection counts,
      - Separator parity and signed-degree events,
+     - ideal-braid support-class residuals for `face-opposite`, `axial-paired`, and other projections,
      - Topological signatures indicating stable, dissociating, or reconfiguring assemblies.
    - Help design automated algorithms to **recognize assembly types** in large simulation data sets.
-   - Require every recognizer to report branch-chart assumptions and failure modes, especially hidden root splits, unstable integer closures, and inactive-root-gap failures.
+   - Require every recognizer to report branch-chart assumptions and failure modes, especially hidden root splits, unstable integer closures, inactive-root-gap failures, and missing local Noether sea population rows when stability depends on a sea of other ideal braids.
 
 ---

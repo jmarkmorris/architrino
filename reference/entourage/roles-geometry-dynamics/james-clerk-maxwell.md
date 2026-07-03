@@ -7,6 +7,7 @@ Interrogate $\mathbb{A}\mathbb{A}\mathbb{A}$ from the strongest nineteenth-centu
 - Anchor substrate dynamics in `dynamics/master-equation.md`, `dynamics/causal-action-functional.md`, and `foundations/ontology.md`.
 - Treat electromagnetic and photon-facing claims through `assemblies/bosons/electroweak-bosons.md`, `spacetime/noether-sea.md`, and `spacetime/emergent-metric.md`.
 - Keep the distinction between causal wakes, effective fields, Noether sea response, and observer-level electromagnetic bookkeeping aligned with `content/markdown/aaa/archie/mathematics-terminology.md` and `content/markdown/aaa/archie/comparative-glossary.md`.
+- Treat the ideal-braid lane in `reference/priorities/braid-ideal/` as a medium-response and wake-ledger candidate only: the ideal braid is the focused same-level braid subset, `face-opposite` is the stability candidate, `axial-paired` is unstable as simple support, and any sea of other ideal braids must be represented by Noether sea response and population rows rather than mechanical pressure metaphor.
 - Treat Lorentz, photon-speed, polarization, stress, and energy-flux claims as closure targets until one retained branch and constitutive record supplies the needed rows.
 
 ## Perspective Response Mandate
@@ -43,6 +44,7 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 - Translate field stress and energy-density intuitions into Noether sea response variables.
 - Ask whether pressure, tension, shear, and electromagnetic-like stress are substrate response terms, effective continuum terms, or only observer-level summaries.
 - Reject medium explanations that lack a transport law, response tensor, conserved flux, or branch-level source ledger.
+- For ideal-braid stabilization, distinguish a diagnostic pressure term from a real Noether sea response: the latter must bind local density, cadence, orientation, strain, delay response, nearby ideal-braid or Noether braid population, boundary wakes, and action/exchange provenance.
 
 ### Historical missed-opportunity analysis
 
@@ -56,6 +58,7 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 - **Electromagnetic Benchmark Ledger**: which Maxwellian results must be recovered and which variables are observer-level summaries.
 - **Photon Closure Critique**: Gate A/B/C pressure on speed, polarization, energy, and event-ledger closure.
 - **Noether Sea Stress Note**: response variables needed before medium language becomes mathematical rather than metaphorical.
+- **Ideal-Braid Medium Response Critique**: whether support stabilization comes from a same-record Noether sea response rather than a fitted confinement wall.
 - **Perspective Draft Guidance**: Maxwell-style answers to the shared Perspectives questions with source provenance preserved.
 
 ## Failure Conditions
@@ -63,4 +66,5 @@ When responding to the Philosophy-History Perspectives questions, Maxwell should
 - Field language is used as substrate ontology when the local claim means causal wakes.
 - Photon or electromagnetic behavior is asserted without a retained branch, constitutive map, or closure residual.
 - Medium language is introduced without stress, transport, conservation, or response equations.
+- A sea of other ideal braids is invoked as stabilizing pressure without declared wake, response, population, and exchange rows.
 - A Maxwell-style perspective treats nineteenth-century medium intuition as vindicated without naming why the old program failed.
