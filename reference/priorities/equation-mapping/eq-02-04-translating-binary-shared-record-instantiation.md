@@ -461,7 +461,7 @@ For each sampled drift $u_k$, the run must output:
 
 ## Current Solver Proxy Intake
 
-The live tri-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload is fail-closed and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
+The live three-binary runner may be referenced here only as current solver-proxy evidence. Its solver report carries a nested `cases[].branchChartProjection.equationBearing` payload. That payload is fail-closed and does not yet populate $R_T^{\mathrm{bin}}$, $R_{\xi}^{\mathrm{bin}}$, $R_{\mathrm{tw}}^{\mathrm{bin}}$, $R_E^{\mathrm{bin}}$, $R_p^{\mathrm{bin},a}$, $R_{\mathrm{shell}}^{\mathrm{bin}}$, $R_{M_0}^{\mathrm{bin}}$, or $R_{\mathcal M}^{\mathrm{bin},ab}$ from one retained translating branch chart.
 
 The next score-neutral executable object is the retained-row extraction
 
@@ -501,7 +501,7 @@ node scripts/equation-mapping/check-emit-02-04-contract.mjs --input <tri-binary-
 
 The checker consumes `cases[].branchChartProjection.equationBearing`, maps it onto $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}(u_k)$, and reports missing retained projection rows instead of converting current-proxy rows into Lorentz, energy-momentum, or mass-shell evidence. Against the 2026-06-23 equal-frequency smoke report, the summary is `blocked_not_evaluable`: 0 evaluable cases, 7 blocked cases, `retainedBranchClaim=false`, and `scoreDecision=no_score_increase`.
 
-The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
+The checker keeps two row-name classes separate: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current three-binary solver-report rows. The aggregate missing rows identify the first concrete reducer burden. The common carrier is blocked by absent `retained_branch_chart`, `root_starvation_row`, `row_set_identity`, `tail_wake_pullback`, `vector_partition_retained`, `energy_routing`, and `retained_noether_sea_cell` rows. The reduced `root_chart_reduced` row remains proxy-only. The clock, envelope, two-way signal, energy, momentum, mass-shell, rest-mass, medium-response, and same-record witness projections are likewise blocked until the same retained branch chart supplies their declared rows. This is the intended fail-closed result: the common carrier has a checkable interface, but the current solver report has not earned score-change review.
 
 ## Executable Same-Branch Identity Check
 
@@ -594,7 +594,7 @@ $$
 \Theta_{02\text{-}04}^{\mathrm{bin}}(u_k).
 $$
 
-The checker still reports `missing_accepted_raw_labeled_rows_preserved_on_retained_history` as the first row-level blocker, but that row should not be chased in isolation. It becomes meaningful only when evaluated on the certified invariant cell. In plain terms, the first accepted retained branch object is not a low Lorentz residual and not a display of a tri-binary candidate. It is a positive-width, source-backed invariant support on which raw generator labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, plane-orientation rows, response-center/group-velocity rows, and the local Noether sea row are all bound before any `I:M:O` role assignment or quotient policy is imposed.
+The checker still reports `missing_accepted_raw_labeled_rows_preserved_on_retained_history` as the first row-level blocker, but that row should not be chased in isolation. It becomes meaningful only when evaluated on the certified invariant cell. In plain terms, the first accepted retained branch object is not a low Lorentz residual and not a display of a Noether braid three-binary candidate. It is a positive-width, source-backed invariant support on which raw generator labels, path-history rows, causal-root rows, wake rows, energy/action rows, momentum/angular-momentum rows, phase rows, plane-orientation rows, response-center/group-velocity rows, and the local Noether sea row are all bound before any `I:M:O` role assignment or quotient policy is imposed.
 
 Once that object exists, the retained-record evaluator may test the drift row with $\beta_f=u_k/c_f$ and $\gamma_f=(1-\beta_f^2)^{-1/2}$. Only then may the numeric rows for clock, envelope, two-way leakage, energy, momentum, rest mass, mass shell, and medium response be treated as branch evidence.
 
@@ -755,7 +755,7 @@ W_{\mathrm{hol}}
 \right),
 $$
 
-where $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency tri-binary phase bundle on $T^3/S^1\simeq T^2$. Free phase offsets are a tuning channel; phase offsets transported by the connection are admissible retained-row data.
+where $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency three-binary phase bundle on $T^3/S^1\simeq T^2$. Free phase offsets are a tuning channel; phase offsets transported by the connection are admissible retained-row data.
 
 The current executable retained-record evaluator now includes a first score-neutral gamma-free coframe diagnostic. In the attempt fixture at $\beta_f=0.6$, the declared coframe row reports
 

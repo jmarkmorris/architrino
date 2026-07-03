@@ -11,7 +11,7 @@ For sector visibility, this packet consumes the shared [exposure-quotient theore
 | Target | Promotion role |
 | --- | --- |
 | [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) | First-pass mass predictions for `u,d,c,s,t,b` and any geometry needed to define mass-basis states. |
-| [quantum-number-mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Remaining quantum-number dictionary pieces from tri-binary geometry. |
+| [quantum-number-mapping](../../../content/markdown/aaa/assemblies/fermions/quantum-number-mapping.md) | Remaining quantum-number dictionary pieces from Noether braid three-binary geometry. |
 | [color-charge-su3](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md) | Confinement energetics and color-singlet bound-state checks. |
 | [weak-mixing-ckm](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md) | CKM / PMNS overlap-integral derivations, CP phase tests, and weak `V-A` chirality. |
 | [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md) | Weak corridor provenance and the status of $W^\pm$ as charge-routing bundles versus carriers of pro/anti Noether braid provenance. |
@@ -27,7 +27,7 @@ The reader-facing color chapter should summarize the accepted algebra and confin
 ## Remaining Leverage
 
 - Extend [quarks](../../../content/markdown/aaa/assemblies/fermions/quarks.md) from catalog closure to first-pass mass predictions for `u,d,c,s,t,b`.
-- Finish the remaining quantum-number dictionary pieces from the tri-binary geometry.
+- Finish the remaining quantum-number dictionary pieces from the Noether braid three-binary geometry.
 - Move from mixing-angle checks against Standard Model pulls to explicit overlap-integral derivations for CKM and PMNS data.
 
 ## Main Directions
@@ -99,7 +99,7 @@ $$
 $$
 where $\Sigma_{\mathrm{asm}}$ is the allowed symbol inventory, $\mathcal{P}_{\mathrm{asm}}$ is the production or construction rule set, $\pi_{\mathrm{branch}}$ maps a finite expression into a retained branch record, $\pi_{\mathrm{SM}}$ maps the retained branch into observer-level Standard Model labels, and $\mathcal{R}_{\mathrm{round}}$ measures whether the same branch can be recovered without changing the substrate ledger. This target preserves the parsing value of the archive while rejecting literal "regular expression" or old notation language as fundamental ontology.
 
-Third, tri-binary Standard Model comparison should quotient by the symmetries that the old tables mixed together. A provisional quotient record is
+Third, three-binary Standard Model comparison should quotient by the symmetries that the old tables mixed together. A provisional quotient record is
 $$
 \mathcal{Q}_{\mathrm{tri}}
 =

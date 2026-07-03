@@ -14,7 +14,7 @@
 
 ## Scope
 
-This is a sibling brainstorming file for [strong-field-closure](strong-field-closure.md). It exists to keep strong-field and tri-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
+This is a sibling brainstorming file for [strong-field-closure](strong-field-closure.md). It exists to keep strong-field and three-binary ideas alive while the quantitative closures tighten, without letting them outrank the derivation spine.
 
 This file should not grow into a proof queue. Any hypothesis that becomes actionable should be promoted into [strong-field-closure](strong-field-closure.md), [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md), or another active workstream.
 
@@ -28,7 +28,7 @@ This file should not grow into a proof queue. Any hypothesis that becomes action
 
 ## Hypotheses To Preserve
 
-- The tri-binary may open up inside the black hole, with quadrupole resonance if a core pops early or late.
+- The three-binary may open up inside the black hole, with quadrupole resonance if a core pops early or late.
 - The event horizon may have rough radial depth rather than being a clean sphere.
 - There may be a brief neck to planar motion before returning to 3D motion.
 - The `4:2:1` model idea should be preserved even if it turns out to be wrong.
@@ -56,7 +56,7 @@ The expanded dark-sector photon-like mode brainstorm, candidate assembly registr
 - Maybe the reference scale is $f_{\mathrm{MCB}}$, with $f_{\max}$, $f_{\max}/2$, $f_{\max}/4$, then subtracting `1`, `2`, `4` from there for each click.
 - Maybe the MCB should be treated as zero potential energy and maximum kinetic energy until freeze-out.
 - Maybe nature wants $v = c_f$ and the Planck-scale juncture to define zero.
-- Maybe the internal radius can enter self-hit first as the tri-binary rides the rail.
+- Maybe the internal radius can enter self-hit first as the three-binary rides the rail.
 - One gravity / MOND-style intuition may still be loosely tied to the inner binary crossing $c_f$, though that currently looks doubtful.
 
 ## Related Priorities

@@ -7,7 +7,6 @@ Shape the **qualitative dynamical skeleton** of the architrino system, especiall
 - Phase-space and attractor work should be derived from `dynamics/master-equation.md`.
 - Bifurcation and regime-transition claims should stay synchronized with `noether-braid/nested-shell-braid-dynamics.md`, `dynamics/binary-dynamics.md`, and `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md`.
 - The first finite branch-search handoff is the $A_0$ certificate lane in `reference/priorities/braid-mass-response-map/`; use it as a warning against promoting fitted or unstable coordinates.
-- Ideal-braid dynamics should track `reference/priorities/braid-ideal/`: the ideal braid is the current same-level subset of the broader braid concept, `face-opposite` is the stability candidate, `axial-paired` is unstable as a simple support table, and a stabilizing sea of other ideal braids remains a Noether sea population and return-map question.
 - Numerical diagnostics should map to `validation/simulations/convergence-tests.md` and `validation/simulations/run-protocols.md`.
 
 ## Perspective Response Mandate
@@ -18,7 +17,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
 - Ask why those ingredients did not glue into a retained causal-wake ledger: no architrino ontology, no branch-chart machinery, no self-hit analysis, no basin-measure probability, and no Noether sea constitutive map.
 - Treat successful formalisms as coordinate systems that may or may not have compatible transition functions into a deeper causal-return object.
 - Press for computable observables: branch-chart gluing, Poincare return maps, separatrix structure, basin measures, Floquet multipliers, and signed-degree changes.
-- Preserve source provenance in public perspective prose: any Poincare-style text is an AI-imagined commentary, not a historical quotation or claim about Poincare's actual views.
 
 **Core responsibilities**:
 
@@ -27,7 +25,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
      - Few-body: positions/velocities of a small number of architrinos or effective "binary centers."
      - Finite-memory delay states for self-hit and partner-hit dynamics.
      - Reduced models for nested shell braids and Noether braid assemblies.
-     - Same-level ideal-braid states with support class, branch center, common-radius/speed/action tolerances, and local Noether sea population variables.
    - Identify and classify:
      - **Fixed points**, **limit cycles**, **quasi-periodic tori**, and **strange attractors** corresponding to:
        - Isolated binaries
@@ -35,7 +32,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
        - Unstable or metastable assemblies
    - Map **basins of attraction** and **separatrices**: which initial conditions flow into which assembly type.
    - Keep basin labels tied to branch records, not to observer particle names alone.
-   - For ideal-braid work, separate `face-opposite` return basins from `axial-paired` escape or lost-support basins before discussing particle identity or chirality.
 
 2. **Binary and tri-binary stability analysis**
    - Treat binary and tri-binary orbits as **perturbed N-body problems** with delay/self-hit in the absolute frame.
@@ -44,7 +40,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
      - Conditions for precession, nutation, and transition between velocity regimes ($v<c_f$, $v=c_f$, $v>c_f$).
      - Identify **resonances** (frequency commensurabilities) that correspond to particularly stable or unstable assemblies.
    - Formulate the slow-fast tri-binary minimality theorem as a dynamical-systems target: three roles must persist under simultaneous kinematic stress and Noether sea gradient stress before three-layer universality can be claimed.
-   - Formulate the ideal-braid same-level branch as a separate dynamical target: six architrinos may share comparable branch energy, relative speed magnitude, and support radius without assuming circularity or nested shell hierarchy.
 
 3. **Self-hit dynamics & bifurcations**
    - Formulate self-hit as the appearance of **history-dependent forces** in the equations of motion (non-Markovian memory).
@@ -55,7 +50,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
        - New limit cycles (candidate particle-like attractors),
        - Chaotic dynamics (effective stochasticity without fundamental randomness),
        - Blow-up/unphysical regimes (theory failure modes).
-     - Noether sea stabilized ideal-braid regimes, where a local sea of other ideal braids or Noether braid assemblies converts post-turn escape into bounded return, breather behavior, or stable-radius settling.
    - Provide a **bifurcation atlas** indexed by:
      - architrino density,
      - coupling strength $\kappa$,
@@ -68,6 +62,6 @@ When responding to the Philosophy-History Perspectives questions, Poincare shoul
    - Design **Poincare section diagnostics** and invariant-set detectors for simulations:
      - How to numerically detect when a simulated assembly has locked into a limit cycle vs. wandering chaotically.
    - Recommend **minimal reduced models** (e.g., 3-6 effective degrees of freedom) to test conjectures before simulating full architrino ensembles.
-   - Require branch-certificate outputs to report causal-root residuals, root-transport residuals, inactive-root gaps, Floquet multipliers, support-class residuals, Noether sea population terms, and held-out residual behavior before interpreting a trajectory as an accepted branch.
+   - Require branch-certificate outputs to report causal-root residuals, root-transport residuals, inactive-root gaps, Floquet multipliers, and held-out residual behavior before interpreting a trajectory as an accepted branch.
 
 ---

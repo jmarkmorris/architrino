@@ -27,7 +27,7 @@ $$
 
 only when the retained branch chart binds the same raw labels, inventory, role map, path history, causal roots, wake tails, energy/action, momentum/angular momentum, phase rows, plane-orientation rows, response-center/group-velocity rows, Noether sea record, and binary-to-binary phase identity.
 
-The executable artifact is [check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs). It consumes either `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit` from the tri-binary solver report or a direct retained-domain packet for $S_{\mathrm{eq}}$, and separates current proxy row-set alignment from retained acceptance.
+The executable artifact is [check-same-branch-chart-identity.mjs](../../../scripts/equation-mapping/check-same-branch-chart-identity.mjs). It consumes either `frequencyTripletSearch.equalFrequencyEnergyRadiusAudit` from the three-binary solver report or a direct retained-domain packet for $S_{\mathrm{eq}}$, and separates current proxy row-set alignment from retained acceptance.
 
 ## Executable Result
 

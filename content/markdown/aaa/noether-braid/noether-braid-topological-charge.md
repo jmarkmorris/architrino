@@ -1,6 +1,6 @@
 # Noether Braid Topological Charge
 
-This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked nested shell braid. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate tri-binary branch charts is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
+This chapter gives a first-class home to the candidate topological label of a Noether braid assembly. The label combines the causal-root ledger of the delayed dynamics with the phase-return degree data of a resonance-locked nested shell braid. Its purpose is to state what can be computed from a retained branch chart, what is invariant inside a nondegenerate branch domain, and what remains a theorem target before the label can serve as a topological periodic table of assemblies. The general search domain that emits candidate Noether braid three-binary branch charts is developed in [Noether Braid Configuration Space](noether-braid-configuration-space.md).
 
 The compact notation is
 $$
@@ -12,7 +12,7 @@ M_p,\,
 c_1
 \right)
 $$
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the established phase-entry slot of the retained resonance lock. In this chapter that slot means return-map degree data unless a later two-torus curvature chart is explicitly supplied. For a tri-binary lock this last entry is usually a pair
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1$ denotes the established phase-entry slot of the retained resonance lock. In this chapter that slot means return-map degree data unless a later two-torus curvature chart is explicitly supplied. For a Noether braid three-binary lock this last entry is usually a pair
 $$
 c_1=(m,n)\in\mathbb{Z}^2
 $$
@@ -110,7 +110,7 @@ $$
 $$
 Fold-pair births and deaths appear as null-homologous bigons with local contributions $+1-1=0$. Summing oriented intersections in the self and partner sectors gives $D_s$ and $D_p$; summing their absolute values gives $N_s$ and $M_p$. This is the bridge to [Causal Action Functional](../dynamics/causal-action-functional.md#geometrictopological-framework): the same causal-locus components that carry action-counting weight also supply the signed root degrees used by the assembly topological charge.
 
-The third entry comes from the phase-return chart of a resonance-locked tri-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
+The third entry comes from the phase-return chart of a resonance-locked three-binary. Let $\theta^O,\theta^M,\theta^I$ be the outer, middle, and inner phase coordinates on the retained return chart. Exact integer closure over one outer period $T_O$ means
 $$
 \theta_O(t+T_O)=\theta_O(t)+2\pi,
 $$
@@ -155,7 +155,7 @@ The degree pair is admissible only when
 $$
 |D_{\mathrm{plane}}|\ge \delta_{\mathrm{plane}}>0.
 $$
-When this floor fails, the three phases no longer supply an independent tri-binary return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
+When this floor fails, the three phases no longer supply an independent Noether braid three-binary return chart, so $c_1$ must be suspended rather than compared across the degeneracy.
 
 ## Candidate Definition
 
@@ -166,7 +166,7 @@ For a finite-$\eta$ branch chart $\mathfrak B$, the assembly topological charge 
 3. Positive transversality floors away from declared finite caustic transits.
 4. Finite memory depth and positive inactive-root gaps.
 5. A finite local-to-global gluing result for the branch chart, or an explicit finite multistability family.
-6. For a tri-binary, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
+6. For a three-binary, integer phase closure, flat relative-phase connection, and a plane-independence floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$.
 7. A return-map stability certificate, such as a Floquet or Conley-style branch certificate, after quotienting only true symmetry directions.
 8. If the middle layer is treated as a caustic-grazing carrier, regulator-stable middle-caustic rows showing that the reported root degrees and phase-return entry do not depend on the finite-$\eta$ convention in the promoted limit.
 
@@ -182,7 +182,7 @@ c_1[\theta^O,\theta^M,\theta^I]
 \in
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2.
 $$
-For a non-tri-binary branch, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-return chart exists.
+For a non-Noether braid three-binary branch, the partial assembly topological charge $(N_s,M_p)$ may be recorded, but $c_1$ is not assigned until a phase-return chart exists.
 
 A useful refinement is a branch-preserving chirality label
 $$
@@ -248,7 +248,7 @@ together with its stability margins, energy/wake ledger, and gluing status.
 The intended use is constrained:
 
 - $(N_s,M_p)$ records the binding-channel census: self-hit channels, partner-hit channels, and their signed degrees.
-- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted tri-binary branch.
+- $c_1=(m,n)$ records the resonance-lock return-map degree pair of a promoted Noether braid three-binary branch.
 - $\chi_{\mathrm{fr}}$ records handedness only after a framed handed marker is certified.
 - Physical particle identity, generation structure, spin-statistics, exclusion, and Standard Model quantum numbers are downstream mappings, not consequences of the notation alone.
 
@@ -266,7 +266,7 @@ A branch solver should extract the assembly topological charge in this order:
 5. Compute $N_s$, $M_p$, $D_s$, and $D_p$.
 6. Compute the lifted-strip fiber-intersection degrees that realize $D_s$ and $D_p$ whenever the causal-locus chart is available.
 7. Track fold, caustic, cusp, or inactive-gap transition metadata.
-8. For tri-binary branches, compute phase degree/holonomy $(m,n)$ from the returned phase chart, verify the floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$, and show that $(m,n)$ comes from the return map rather than from frequency ratios alone.
+8. For Noether braid three-binary branches, compute phase degree/holonomy $(m,n)$ from the returned phase chart, verify the floor $|D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0$, and show that $(m,n)$ comes from the return map rather than from frequency ratios alone.
 9. If a middle caustic-grazing carrier is used, test that the signed degrees and phase-return entry are stable under the declared $\eta$ refinement.
 10. Test gluing and finite continuation cardinality for the local charts.
 11. Test the return-map stability gap off true symmetry directions.

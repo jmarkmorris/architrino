@@ -87,7 +87,7 @@ Extracted requirements:
 Direct contract additions from the extraction:
 
 - Add root-ledger completeness to the central schema: active roots, inactive gaps, tail interface, separator or transition rows, root labels, source/receiver ids, root kind, delay, residual, Jacobian, sign stratum, and first-failure status.
-- Add assembly topological charge reporting for branch searches that claim binary or tri-binary assembly-sector evidence: $N_s$, $M_p$, signed root-complex side data, phase-bundle $c_1=(m,n)$ when a tri-binary phase chart exists, gluing status, and stability-gap status, following [Assembly Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md).
+- Add assembly topological charge reporting for branch searches that claim binary or three-binary assembly-sector evidence: $N_s$, $M_p$, signed root-complex side data, phase-bundle $c_1=(m,n)$ when a Noether braid three-binary phase chart exists, gluing status, and stability-gap status, following [Assembly Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md).
 - Add phase-at-hit and cycle metadata for Photon and photon-closure consumers: source phase, receiver phase when modeled, layer, role, charge sign, root kind, cycle index, and phase-spread summaries.
 - Add branch-transition and jump metadata so disappearing, appearing, folded, or assimilated roots are not treated as ordinary Newton drift.
 - Add explicit failure-code taxonomy for insufficient history depth, insufficient scale separation, inadequate time resolution, unresolved roots, small Jacobian, transversality-floor failure, stream pressure, unsupported browser capability, and validation replay mismatch.

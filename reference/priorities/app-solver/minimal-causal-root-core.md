@@ -91,7 +91,7 @@ Remaining work belongs to app migration and production breadth:
   routing metadata;
 - extend branch-search outputs from root-ledger rows to canonical assembly
   topological charge reports $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$
-  when a binary or tri-binary retained-branch promotion claim consumes them;
+  when a binary or three-binary retained-branch promotion claim consumes them;
 - add more analytic/invariant fixtures under the completed validation plan;
 - keep H39 provider-object proof schemas outside this core until explicitly
   reopened.

@@ -1,6 +1,6 @@
 # Equal-Frequency Energy-Radius Candidate
 
-Status. Priority-only investigation under `tri_binary_partition_rule` and `worked_three_layer_noether_transition`. This is not a theorem row, not a canonized tri-binary law, and not reader-facing corpus prose. Its purpose is to preserve and discipline the candidate that three retained binaries may share one frequency while occupying different energy, effective-lever-arm, speed, and phase-offset branches inside the general velocity-deforming tri-binary Noether braid.
+Status. Priority-only investigation under `tri_binary_partition_rule` and `worked_three_layer_noether_transition`. This is not a theorem row, not a canonized three-binary law, and not reader-facing corpus prose. Its purpose is to preserve and discipline the candidate that three retained binaries may share one frequency while occupying different energy, effective-lever-arm, speed, and phase-offset branches inside the general velocity-deforming Noether braid three-binary branch state.
 
 Claim level. Derivation-closure target. The candidate statement is:
 
@@ -71,9 +71,9 @@ $$
 
 in the simple monotone speed-row model after the retained branch supplies the $I:M:O$ role map. This inequality is not a pre-search ordering of the three binaries. It is not automatically the global nested-shell coordinate or the radius of a common sphere. If the retained shell geometry uses a different radial ordering, the proof must exhibit the corresponding effective-lever-arm map rather than assuming the simple ordering. The middle-tagged binary remains on the $c_f$ edge by lever arm and energy placement, not by having a different frequency.
 
-## General Tri-Binary Noether Braid Geometry
+## General Noether Braid Three-Binary Geometry
 
-The baseline object is the retained all-layer tri-binary Noether braid branch state. It is not a fixed sphere by itself, not a flattened chart by itself, and not three independent orbits chosen before the branch is solved. The low-drift state is a spherical or near-spherical branch with retained angular-momentum / principal-direction rows; as the branch carries drift velocity, the same object deforms through an oblate spheroidal envelope toward a flattened limit. In the Lorentz/return-cycle bridge notation, a branch state has the form
+The baseline object is the retained all-layer Noether braid three-binary branch state. It is not a fixed sphere by itself, not a flattened chart by itself, and not three independent orbits chosen before the branch is solved. The low-drift state is a spherical or near-spherical branch with retained angular-momentum / principal-direction rows; as the branch carries drift velocity, the same object deforms through an oblate spheroidal envelope toward a flattened limit. In the Lorentz/return-cycle bridge notation, a branch state has the form
 
 $$
 B_{3B}(q,v)
@@ -91,8 +91,8 @@ E_{\mathrm{branch}};\,
 \right)_q,
 $$
 
-where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathbf{N}_a$ denotes a plane-sector normal or angular-momentum bivector when that sector chart is certified, $\rho_a$ is the retained effective-lever-arm projection emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the tri-binary Noether braid. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
-where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathcal B_a$ is the retained oriented plane bivector; its Hodge-dual normal is a chart diagnostic, not the certificate carrier. The effective lever arm $\rho_a$ is emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the tri-binary Noether braid. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
+where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathbf{N}_a$ denotes a plane-sector normal or angular-momentum bivector when that sector chart is certified, $\rho_a$ is the retained effective-lever-arm projection emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the Noether braid three-binary branch. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
+where $a\in\{1,2,3\}$ names the generic binaries before any $I:M:O$ role map is attached. Here $\mathcal B_a$ is the retained oriented plane bivector; its Hodge-dual normal is a chart diagnostic, not the certificate carrier. The effective lever arm $\rho_a$ is emitted by the branch state, and the coupling rows are whatever external assembly, field, or retained event interacts with the Noether braid three-binary branch. The branch-total momentum and angular-momentum ledgers include retained wake contribution. A return-map pass is not enough for promotion if the reported principal-direction rows fail to decompose $\mathbf{J}_{\mathrm{branch}}$ or if the moving-envelope axis is inconsistent with $\mathbf{P}_{\mathrm{branch}}$. The retained replay must solve a velocity-deformation map
 
 $$
 \mathcal D_v(B_{3B}):
@@ -111,7 +111,7 @@ and emit $\rho_\ell(v)$ only as a projection of that branch state. The velocity-
 
 The current executable row is therefore a flattened-limit projection view of this general case, not the model itself. It is one member of a deformation projection-chart family that also contains low-drift spherical-envelope retained-row and moving oblate-incidence rows. The current view can populate causal roots, self-hit spans, phase rows, and speed-row projections. It proves only that the algebraic speed relation can be populated with a common $\omega_f$ and different effective lever-arm projections.
 
-For a retained replay, the proof must choose how $\rho_\ell$ is produced by the tri-binary Noether braid branch:
+For a retained replay, the proof must choose how $\rho_\ell$ is produced by the Noether braid three-binary branch:
 
 1. Low-drift spherical or near-spherical support, with small-circle or latitude lever arms:
 
@@ -149,7 +149,7 @@ $$
 
 where the retained energy/radius law supplies different effective lever arms. This is closest to the reduced solver projection only if $\rho_\ell$ is treated as a branch projection, not as the nested shell radius itself. The sampled equal-frequency speed rows force $\rho_I>\rho_M>\rho_O$ only inside the displayed role map, so a direct nested-shell-radius reading with $\rho_I<\rho_M<\rho_O$ is incompatible unless the retained replay derives a projection, incidence, envelope-deformation, or retained branch map that separates lever arm from shell radius.
 
-The working target is therefore not a completed flattened-radius, fixed-sphere, or single-chart geometry claim. It is: equal-frequency binaries may have different retained effective lever-arm projections inside the velocity-deforming tri-binary Noether braid, and those projections may produce different speed relations while the same branch continues from spherical or near-spherical support through oblate support toward the flattened limit.
+The working target is therefore not a completed flattened-radius, fixed-sphere, or single-chart geometry claim. It is: equal-frequency binaries may have different retained effective lever-arm projections inside the velocity-deforming Noether braid three-binary branch state, and those projections may produce different speed relations while the same branch continues from spherical or near-spherical support through oblate support toward the flattened limit.
 
 ## Why This Is A Distinct Hypothesis
 
@@ -230,7 +230,7 @@ $$
 \omega_\ast=\omega_f.
 $$
 
-That is the main attraction: the angular-momentum unit can remain one conserved action increment, while energy differences are carried by the common transaction frequency, tri-binary Noether braid lever arms, phase offsets, wake routing, envelope deformation, and branch energy placement. The candidate therefore may reduce the need to explain a distinct weighted transaction frequency before the angular-momentum unit is accepted.
+That is the main attraction: the angular-momentum unit can remain one conserved action increment, while energy differences are carried by the common transaction frequency, Noether braid three-binary lever arms, phase offsets, wake routing, envelope deformation, and branch energy placement. The candidate therefore may reduce the need to explain a distinct weighted transaction frequency before the angular-momentum unit is accepted.
 
 This is not yet an acceptance claim. The proof burden is to show that the same retained event can carry one angular-momentum unit through the common-frequency branch without hiding missing angular momentum in the wake, recoil, transport, or endpoint-provider rows.
 
@@ -238,7 +238,7 @@ This is not yet an acceptance claim. The proof burden is to show that the same r
 
 The action-period review sharpens why this packet matters for the $h$ and $\hbar$ rows. A scalar Hopf orbit can have a stable frequency while its phase-area action remains continuously rescalable by amplitude. That means the scalar constant-delay orbit is a useful falsifier, but not a sufficient source of an action unit.
 
-The equal-frequency tri-binary branch supplies the missing rigidity candidate. A stable locked branch should behave as a relative equilibrium: the retained configuration repeats under one common phase advance, while the discrete phase/winding data are held fixed by the branch. The positive action-unit target is therefore not "any closed orbit has an area." It is:
+The equal-frequency Noether braid three-binary branch supplies the missing rigidity candidate. A stable locked branch should behave as a relative equilibrium: the retained configuration repeats under one common phase advance, while the discrete phase/winding data are held fixed by the branch. The positive action-unit target is therefore not "any closed orbit has an area." It is:
 
 $$
 (f_1,f_2,f_3)=(f,f,f),
@@ -286,9 +286,9 @@ $$
 \Delta_{ij}=\frac{\Delta\lambda_{ij}L}{4E}.
 $$
 
-This is valuable because the observed object is not merely a set of different fermions with different energies. A produced neutral lepton behaves as one coherent weak-channel state whose later readout depends on relative propagation phase. That is close to the equal-frequency tri-binary question: can one retained neutral branch carry three tightly coupled internal binary rows whose exterior exposure mostly cancels, while residual phase, energy-radius, wake, or coupling rows remain observable through the weak channel?
+This is valuable because the observed object is not merely a set of different fermions with different energies. A produced neutral lepton behaves as one coherent weak-channel state whose later readout depends on relative propagation phase. That is close to the equal-frequency three-binary question: can one retained neutral branch carry three tightly coupled internal binary rows whose exterior exposure mostly cancels, while residual phase, energy-radius, wake, or coupling rows remain observable through the weak channel?
 
-The safe comparison target is not that the three binaries literally are the three PMNS propagation eigenstates. The safer mathematical route is to derive a neutral-lepton tri-binary phase operator from the same retained equal-frequency row set:
+The safe comparison target is not that the three binaries literally are the three PMNS propagation eigenstates. The safer mathematical route is to derive a neutral-lepton three-binary phase operator from the same retained equal-frequency row set:
 
 $$
 H_{3B}^{(\nu)}
@@ -324,7 +324,7 @@ W_a^{(\nu)}e^{i\phi_a}
 \right|.
 $$
 
-The triadic $120^\circ$ phase profile gives exact phase-only cyclic cancellation in the current proxy, but neutrino comparison requires more than that identity. A retained neutral-lepton row must show that the same $S_{\mathrm{eq}}$ event or positive-width domain simultaneously supplies weak exterior suppression, nonzero PMNS-like phase gaps, energy and angular-momentum ledger closure, and the same weak-basis / propagation-basis distinction used in [weak-mixing-ckm.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The comparison fails if exact cancellation also forces $\delta H_{3B}=0$, if the PMNS matrix requires flavor-specific fitted terms unrelated to the tri-binary row set, or if weak detection cannot be recovered from the small residual exposure.
+The triadic $120^\circ$ phase profile gives exact phase-only cyclic cancellation in the current proxy, but neutrino comparison requires more than that identity. A retained neutral-lepton row must show that the same $S_{\mathrm{eq}}$ event or positive-width domain simultaneously supplies weak exterior suppression, nonzero PMNS-like phase gaps, energy and angular-momentum ledger closure, and the same weak-basis / propagation-basis distinction used in [weak-mixing-ckm.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md). The comparison fails if exact cancellation also forces $\delta H_{3B}=0$, if the PMNS matrix requires flavor-specific fitted terms unrelated to the Noether braid three-binary row set, or if weak detection cannot be recovered from the small residual exposure.
 
 ## Sampled Solver Row Population
 
@@ -376,7 +376,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-is the planar $\mathbb{Z}_3$ cyclic cancellation used as an ancillary symmetry check in the dyadic-lock chapter. It is useful, but it is not by itself evidence for a near-orthogonal tri-binary sector. For the equal-frequency Noether-braid candidate, triadic $120^\circ$ therefore remains a high-priority phase target, but the retained replay must also report retained oriented bivectors $\mathcal B_a$, phases $\phi_a$, effective lever arms $\rho_a$, the bivector Gram matrix $\ell_{ab}=\mathcal B_a\cdot\mathcal B_b$, normalized Gram rank/conditioning, phase-bundle holonomy $\Theta$, braid-closure linking number $\mathrm{Lk}(\overline{\mathfrak b}_{3B})$, and a sector discriminator that decides whether the row is coplanar cyclic, near-orthogonal tri-binary, or another retained branch sector.
+is the planar $\mathbb{Z}_3$ cyclic cancellation used as an ancillary symmetry check in the dyadic-lock chapter. It is useful, but it is not by itself evidence for a near-orthogonal three-binary sector. For the equal-frequency Noether-braid candidate, triadic $120^\circ$ therefore remains a high-priority phase target, but the retained replay must also report retained oriented bivectors $\mathcal B_a$, phases $\phi_a$, effective lever arms $\rho_a$, the bivector Gram matrix $\ell_{ab}=\mathcal B_a\cdot\mathcal B_b$, normalized Gram rank/conditioning, phase-bundle holonomy $\Theta$, braid-closure linking number $\mathrm{Lk}(\overline{\mathfrak b}_{3B})$, and a sector discriminator that decides whether the row is coplanar cyclic, near-orthogonal three-binary, or another retained branch sector.
 
 The v73 equal-frequency audit now emits `aaa-equal-frequency-phase-deformation-balance-audit.v3` to make this distinction executable. Across the seven priority triadic rows, the phase-only balance passes in seven of seven rows, but lever-arm weighted balance, common-$\omega$ speed weighted balance, unit-inertia action weighted balance, and target $2:1:1$ root/action weighted balance all pass in zero of seven rows. The two sampled lever-speed detuned controls pass lever-arm and common-$\omega$ speed weighted balance in seven of seven rows while failing phase-only and action-weighted balance; the sampled middle/outer opposition control passes the unit-inertia and target $2:1:1$ action balances in seven of seven rows while failing phase-only and lever-speed balance. For the $f=2$ priority triadic representative row, the normalized residuals are:
 
@@ -919,7 +919,7 @@ and the sector map is
 $$
 (\{\mathcal B_a\},\Theta,\operatorname{rank}\ell,\mathrm{Lk})
 \longmapsto
-\{\text{coplanar cyclic},\text{near-orthogonal tri-binary},\text{other retained sector}\}.
+\{\text{coplanar cyclic},\text{near-orthogonal three-binary},\text{other retained sector}\}.
 $$
 
 Coplanar cyclic rows are rank-one or nearly rank-one in the bivector Gram matrix $\ell_{ab}$; near-orthogonal rows are full-rank. The braid-closure linking number $\mathrm{Lk}$ carries the discrete sector label after the continuous sector geometry is fixed.
@@ -940,30 +940,30 @@ $$
 \rho_I<\rho_M<\rho_O
 $$
 
-fails. Therefore the current equal-frequency reduced row is not a proof that the inner shell has a larger physical shell radius. It says that the speed rows require a larger effective lever arm for the inner branch unless the retained tri-binary Noether braid replay supplies another projection, envelope-deformation map, incidence map, or branch-radius map.
+fails. Therefore the current equal-frequency reduced row is not a proof that the inner shell has a larger physical shell radius. It says that the speed rows require a larger effective lever arm for the inner branch unless the retained Noether braid three-binary replay supplies another projection, envelope-deformation map, incidence map, or branch-radius map.
 
 ## Solver And Search Requirements
 
 The solver now has a sampled equal-frequency mode, but it should not rank $(f_1,f_2,f_3)=(f,f,f)$ by the old self-root parity proxy alone. Required next search changes:
 
-1. Replace the fixed speed rows with retained tri-binary Noether braid branch-state effective lever arms, low-drift spherical-envelope retained-row coordinates, envelope-deformation maps, explicit shell-radius maps, coupling projection rows, or an explicit energy-radius candidate law.
+1. Replace the fixed speed rows with retained Noether braid three-binary branch-state effective lever arms, low-drift spherical-envelope retained-row coordinates, envelope-deformation maps, explicit shell-radius maps, coupling projection rows, or an explicit energy-radius candidate law.
 2. Preserve the raw unordered labeled rows and all $S_3$-equivalent repeats; compute quotient-sector grouping only as an analysis view.
 3. Lift the current phase-profile catalog beyond reduced initial conditions: triadic $120^\circ$ still outranks the aligned, quadrature, opposed-middle, middle/outer-opposed, and lever-speed detuned controls by equal-spacing residual; the sampled `lever-speed-detuned-positive` and `lever-speed-detuned-negative` controls close the current 5:4:3 lever/speed weighted phase vector but do not close phase-only or action-weighted balance. The v57 chart response shows profile-dependent phase-delta means; the phase-lattice audit separates the two exact unit-clock triadic rows from the exact $2:1:1$ weighted-action opposition row; the phase-radius/action closure split audit separates unit-clock triadic closure, lever/speed triangle detuning, unit-inertia action opposition, and target-action opposition; and the wake/coupling transfer phase-origin audit keeps phase-only orientation, fixed-receiver phase-delta proximity, the exact quadratic action-gap proxy, the phase/wake kernel ansatz, the phase-current kernel law scan, the phase-current retained-kernel derivation target, the phase-current source bridge target, the same-event transfer ledger proxy, and the phase-current source-readiness residual separate. The six $S_3$ role maps, deformation-regime support audit, field-speed hinge selector, selection-functional audit, slice energy/action independence audit, wake/coupling transfer target audit, wake/coupling transfer law scan, wake/coupling transfer phase-origin audit, phase/wake kernel ansatz audit, phase-current kernel law scan, phase-current retained-kernel derivation target, phase-current source bridge target, same-event transfer ledger proxy audit, phase-current source-readiness residual, binary-to-binary phase/history lift target, phase-channel classification audit, phase-carrier transfer-alignment audit, retained phase-history carrier-readiness audit, retained phase-history carrier event/domain row model, retained phase-history carrier event/domain acceptance-attempt audit, retained phase-history carrier event-ID population-attempt audit, retained phase-history carrier event-ID provenance audit, retained phase-history carrier point-event/domain rule-attempt audit, retained phase-history carrier event/domain binding-attempt audit, retained source-event label string acceptance audit, retained source-event label tokenization audit, retained source-event label syntax rule audit, retained source-event label acceptance audit, same-event transfer lift dependency audit, reduced circular-path kinetic action proxy, phase-deformation balance audit, phase-lattice audit, phase-radius/action closure split audit, return-period audit, plane-sector audit, retained row-set scaffold, retained event/domain lift target, retained event/domain selector, first retained packet template, retained frequency/phase packet, and retained acceptance residual blueprint are current proxy or bridge evidence, but retained event/domain identity, retained event-ID provenance, retained source/receiver event IDs, retained source-event label literal, retained source-event label syntax-rule components, retained source-event label components, retained full point-event rule or positive-width retained domain, retained phase row-set identity, retained phase-channel rows, retained middle-to-outer source/receiver carrier rows, retained carrier event/domain rows, retained carrier-transfer alignment rows, retained kernel source rows, signed-root-complex retained orientation, retained finite-impulse class membership, retained phase/radius/action weight rows, plane-sector classification, geometric phase, wake-return delay, retained binary-to-binary phase/history rows, and retained same-event transfer lift are not solved.
-4. Resolve whether the retained tri-binary Noether braid branch uses latitude/small-circle lever arms, oblate-envelope incidence, branch-selected effective radii, planar-alignment support, or a separate speed projection.
+4. Resolve whether the retained Noether braid three-binary branch uses latitude/small-circle lever arms, oblate-envelope incidence, branch-selected effective radii, planar-alignment support, or a separate speed projection.
 5. Report whether the four-substep transaction-frequency certificate collapses to $\omega_{\text{tx}}=\omega_f$ without target-derived acceptance.
 6. Report whether the retained branch frequency is certified by a return period or locked harmonic; do not infer frequency from $s_a/\rho_a$ on a noncircular or deformed branch unless effective speed and lever-arm rows have been independently defined.
 7. Report whether a field-speed hinge is captured by some $\rho_a\omega_f\approx c_f$ while the other two rows fall on opposite sides of $c_f$; do not assume the hinge row is known before the branch supplies it.
 8. Add retained root-multiplicity or branch-incidence support for any doubled-burden role without assuming $n_I-n_M=2$.
 9. Keep `retainedBranchClaim=false` until global retained row-set identity, phase, torque, wake, partition, action scale, energy routing, and stability rows close on the same retained row set.
 
-The diagnostic `index-ratio` policy is not a valid rejection test for this candidate. That policy maps speed ratios to frequency-index ratios. The equal-frequency hypothesis says the speed ratios come from retained tri-binary Noether braid lever arms, envelope deformation, and branch energy placement.
+The diagnostic `index-ratio` policy is not a valid rejection test for this candidate. That policy maps speed ratios to frequency-index ratios. The equal-frequency hypothesis says the speed ratios come from retained Noether braid three-binary lever arms, envelope deformation, and branch energy placement.
 
 ## Failure Conditions
 
 Reject or demote the candidate if any of these fail under the retained branch rules:
 
 1. The energy-radius law cannot produce the required effective lever arms and speed ordering at common $\omega_f$.
-2. The retained tri-binary Noether braid replay forces $\rho_\ell$ to equal nested shell radius while also requiring $\rho_I<\rho_M<\rho_O$; that would contradict the equal-frequency speed-row ordering unless another speed projection is derived.
+2. The retained Noether braid three-binary replay forces $\rho_\ell$ to equal nested shell radius while also requiring $\rho_I<\rho_M<\rho_O$; that would contradict the equal-frequency speed-row ordering unless another speed projection is derived.
 3. Phase offsets cannot populate the hinge pair-map, row-set identity, or branch-incidence pattern.
 4. Root multiplicity, wake routing, or action partition cannot replace the current $n_I-n_M=2$ proxy for the doubled inner burden.
 5. The one-unit angular-momentum ledger requires undeclared wake, recoil, endpoint-provider, or root-energy slack.

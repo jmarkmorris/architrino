@@ -1,10 +1,10 @@
 # Equation-Map Bearing On Braid Configuration Search
 
-Status. Priority-only integration note under retained-branch configuration search, consuming `tri_binary_partition_rule`, [finite-branch-candidate-set-packet.md](../braid-angular-momentum-spin/finite-branch-candidate-set-packet.md), [branch-selection-law-packet.md](../braid-angular-momentum-spin/branch-selection-law-packet.md), and [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md). This file captures how the equation-mapping work should discipline the search of stable tri-binary Noether braid configuration space. It is solver-facing priority material, not reader-facing corpus prose.
+Status. Priority-only integration note under retained-branch configuration search, consuming `tri_binary_partition_rule`, [finite-branch-candidate-set-packet.md](../braid-angular-momentum-spin/finite-branch-candidate-set-packet.md), [branch-selection-law-packet.md](../braid-angular-momentum-spin/branch-selection-law-packet.md), and [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md). This file captures how the equation-mapping work should discipline the search of stable Noether braid three-binary configuration space. It is solver-facing priority material, not reader-facing corpus prose.
 
 Claim level. Solver-architecture and derivation-closure target. The equation-map rows should not be treated as a collection of later analogies. If they mature to score 4 or 5, they become direct residual channels for retained braid candidates.
 
-Promotion decision. Defer with blocker. Promote only after one retained tri-binary candidate emits the equation-bearing residual vector from the same branch state, including root identity, geometry/energy, phase operator, event ledger, stability, and at least one precision or observation row. Until then, this packet is the priority routing map for how those equation rows should shape the configuration search.
+Promotion decision. Defer with blocker. Promote only after one retained Noether braid three-binary candidate emits the equation-bearing residual vector from the same branch state, including root identity, geometry/energy, phase operator, event ledger, stability, and at least one precision or observation row. Until then, this packet is the priority routing map for how those equation rows should shape the configuration search.
 
 ## Active Priority Home
 
@@ -19,7 +19,7 @@ The angular-momentum and branch-selection packets remain required dependency car
 - [minimal-candidate-set-instance.md](../braid-angular-momentum-spin/minimal-candidate-set-instance.md) for the currently populated minimal instance.
 - [equal-frequency-energy-radius-candidate.md](../braid-angular-momentum-spin/equal-frequency-energy-radius-candidate.md) for the high-priority $(I,M,O)=(f,f,f)$ common-clock family.
 
-The related equation-map material lives in [../equation-mapping/equation.md](../equation-mapping/equation.md) and its packet files, but the stable braid search itself belongs here because it selects retained tri-binary branch states.
+The related equation-map material lives in [../equation-mapping/equation.md](../equation-mapping/equation.md) and its packet files, but the stable braid search itself belongs here because it selects retained Noether braid three-binary branch states.
 
 ## Core Assessment
 
@@ -29,7 +29,7 @@ $$
 \text{do not rank frequency triples alone.}
 $$
 
-A frequency triple is only the entry label for a candidate family. The solver must evaluate whether a single retained tri-binary Noether braid branch supplies the root ledger, phase operator, energy/radius placement, event ledger, wake/recoil routing, total angular-momentum ledger, stability, and observation-facing residuals.
+A frequency triple is only the entry label for a candidate family. The solver must evaluate whether a single retained Noether braid three-binary branch supplies the root ledger, phase operator, energy/radius placement, event ledger, wake/recoil routing, total angular-momentum ledger, stability, and observation-facing residuals.
 
 This is especially important for the equal-frequency family:
 
@@ -67,7 +67,7 @@ The unordered binary generator should still be able to emit generic triples befo
 
 ## Equation-Bearing Residual Vector
 
-For each retained candidate $\mathfrak a$ generated from a tri-binary branch state $B_{3B}(q,v)$, extend the branch-selection residual with an equation-bearing search vector:
+For each retained candidate $\mathfrak a$ generated from a Noether braid three-binary branch state $B_{3B}(q,v)$, extend the branch-selection residual with an equation-bearing search vector:
 
 $$
 \mathcal R_{\mathrm{cfg}}(\mathfrak a)
@@ -109,7 +109,7 @@ B_{3B}(q,v)
 \mathcal R_{\mathrm{cfg}}.
 $$
 
-The frequency family is an input coordinate, not the architecture. The branch state must carry the general tri-binary Noether braid geometry:
+The frequency family is an input coordinate, not the architecture. The branch state must carry the general Noether braid three-binary geometry:
 
 $$
 \text{spherical or near-spherical support}
@@ -136,7 +136,7 @@ Thus the solver must output energy/radius placement and phase-operator rows befo
 
 ## Solver-Facing Merge Target
 
-The executable tri-binary runner now attaches an `equationBearing` payload to each candidate's branch-chart projection. The payload is fail-closed and remains `retainedBranchClaim: false`; it is a residual-routing hook, not a branch certificate. Minimal fields:
+The executable three-binary runner now attaches an `equationBearing` payload to each candidate's branch-chart projection. The payload is fail-closed and remains `retainedBranchClaim: false`; it is a residual-routing hook, not a branch certificate. Minimal fields:
 
 - `candidateFamily`: one of `offset_f_plus_2_f_f_minus_1`, `offset_f_plus_1_f_f_minus_1`, `equal_frequency_f_f_f`, `dyadic_4f_2f_f`, or `integer_nf_mf_f`.
 - `rawBinaryFrequencyRow`: the generic $1:2:3$ row before role assignment.

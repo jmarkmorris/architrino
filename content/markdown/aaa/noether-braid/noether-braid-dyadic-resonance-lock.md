@@ -8,9 +8,9 @@ The level distinctions matter throughout. Ontologically, the inner, middle, and 
 
 This chapter keeps the field speed $c_f$ explicit rather than setting it to one. We work with branch labels $k\in\{I,M,O\}$. Here $r_k$ is the characteristic layer radius and $v_k=\|\mathbf{v}_k\|$ is the scalar tangential speed of one member of layer $k$ around that layer's center.
 
-## General Tri-Binary Branch State
+## General Noether Braid Three-Binary Branch State
 
-Before a dyadic, equal-frequency, or other special configuration is selected, a tri-binary branch is a three-layer retained state. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the dyadic specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
+Before a dyadic, equal-frequency, or other special configuration is selected, a Noether braid three-binary branch is a three-layer retained state. The general search program is defined in [Noether Braid Configuration Space](noether-braid-configuration-space.md); this section records the variables needed locally for the dyadic specialization. Use generic layer labels $a\in\{1,2,3\}$ before assigning the canonical `I:M:O` roles. These labels are not sorted by $f_a$, $r_a$, $E_a$, $s_a$, or any other parameter; permutation-related rows remain valid search evidence until an explicit quotient-sector analysis is declared. The minimal branch variables are
 $$
 \mathcal{T}_{3B}
 =
@@ -48,7 +48,7 @@ f_1=f_2=f_3
 $$
 still permits different $r_a$, $s_a$, and $E_a$, because the radii or retained lever arms can differ. Different phase offsets and different active root ledgers can then carry the branch distinction even when the frequency row is common.
 
-For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later dyadic lock discussion studies one restricted family inside this broader tri-binary branch state; it is not the default assumption for all stable tri-binary configurations.
+For nested shell braid prose, specialize the generic labels to canonical `I:M:O` order only after the retained branch supplies the role assignment. The later dyadic lock discussion studies one restricted family inside this broader Noether braid three-binary branch state; it is not the default assumption for all stable three-binary configurations.
 
 ## Status and Assumptions
 
@@ -211,7 +211,7 @@ For a promoted finite-$\eta$ chart this is a conditioning floor,
 $$
 |D_{\mathrm{plane}}|\ge\delta_{\mathrm{plane}}>0.
 $$
-It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal tri-binary phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
+It is the phase-bundle analogue of the basis-conditioning and aperture floors in the frame-construction and detection chapters: $D_{\mathrm{plane}}\to0$ means the three plane normals no longer define a stable oriented frame. The codimension-one wall $D_{\mathrm{plane}}=0$ is also where the near-orthogonal Noether braid three-binary phase chart degenerates toward a coplanar cyclic sector, so crossing it is a sector-wall event rather than a harmless coordinate limit.
 
 ### Assumption 4 (Bundle-Flatness and Cancellation Selection Principle)
 
@@ -562,7 +562,7 @@ $$
 \phi_{IO}(t)-\phi_{IO}^\ast
 \right)
 $$
-has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the tri-binary version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
+has zero Floquet exponent on the retained return map. If $\Theta$ has a positive exponent, the same direction is a lock-breaking instability, not a quotient direction. This is the three-binary version of the embedded-binary warning in [Binary Dynamics](../dynamics/binary-dynamics.md): a reduced subsystem's apparent neutral direction cannot be removed unless it is neutral for the full retained branch chart.
 
 If the minimizer turns out to be the outer-normalized lock $1{:}2{:}4$, equivalently $(m,n)=(2,4)$, then the dyadic hierarchy would be a derived selection result rather than a starting assumption.
 
@@ -625,7 +625,7 @@ $$
 1+e^{i2\pi/3}+e^{i4\pi/3}=0
 $$
 
-This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal tri-binary bundle studied in this chapter. In compact form:
+This is an in-plane cancellation for three equal phases separated by $120^\circ$. It is therefore naturally associated with coplanar, boson-like stealth arrangements rather than with the near-orthogonal three-binary bundle studied in this chapter. In compact form:
 
 $$
 \mathbb{Z}_3\ \text{stealth}
@@ -641,7 +641,7 @@ $$
 \text{near-orthogonal }T^3\text{ sector}
 $$
 
-The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the dyadic tri-binary lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
+The two mechanisms can both reduce exposed causal-wake leakage, but they do it through different topology. Planar cyclic symmetry cancels inside one plane; the dyadic Noether braid three-binary lock distributes the phase-bundle covering across three independent orbital planes. The $\mathbb{Z}_3$ identity should therefore not be used as evidence for or against the frequency-selection assumptions above.
 The separating wall is the plane-degeneracy condition
 $$
 D_{\mathrm{plane}}=0.

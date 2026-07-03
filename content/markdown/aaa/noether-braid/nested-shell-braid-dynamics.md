@@ -172,7 +172,7 @@ the middle and outer binaries can share the same threshold speed while retaining
 
 At the braid symmetry-breaking point, the outer binary stops functioning as an ordinary sub-field-speed shielding envelope and becomes part of the interface row. The middle binary remains the hinge. The inner binary does not need to "reach" the hinge because it is already beyond it: it supplies the self-hit, maximal-curvature, history-supported row. This is why the threshold is the natural local precursor to horizon-interface language rather than a mere three-frequency coincidence.
 
-## Planar Tri-Binary Reduced Chart
+## Planar Tri-Binary Noether Braid Reduced Chart
 
 The **planar tri-binary Noether braid reduced chart** is the simplest controlled chart for studying the braid symmetry-breaking point. It projects the three binary ledgers into a common plane or near-plane and records, for each binary $a\in\{1,2,3\}$ before role assignment,
 

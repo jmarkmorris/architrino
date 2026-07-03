@@ -220,7 +220,7 @@ This predicate is the shared event-ledger contract. Radiation, transport excitat
 
 ## Branch-Certificate Coupling Rule
 
-When a sector event belongs to a retained tri-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell braid causal closure](braid-nested-shell-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
+When a sector event belongs to a retained Noether braid three-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell braid causal closure](braid-nested-shell-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
 
 Equivalently, for every promoted event there must be an embedding
 $$

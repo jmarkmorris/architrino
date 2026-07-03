@@ -331,7 +331,7 @@ $$
 =0,
 $$
 
-where $\mathcal{T}_{\mathrm{ext}}^{(q)}$ records tri-binary, wake, or medium terms not present in the bare same-sheet two-body kernel, and
+where $\mathcal{T}_{\mathrm{ext}}^{(q)}$ records three-binary, wake, or medium terms not present in the bare same-sheet two-body kernel, and
 
 $$
 \mathcal{T}_O(\beta;\Lambda_O)
@@ -347,7 +347,7 @@ w_\rho
 {\sin^2(\alpha_{s,\rho}/2)\,|J_{s,\rho}|}.
 $$
 
-This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared tri-binary / Noether sea return term that closes the angular-momentum ledger.
+This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared three-binary / Noether sea return term that closes the angular-momentum ledger.
 
 ### Sub-Field-Speed Outer Estimate
 

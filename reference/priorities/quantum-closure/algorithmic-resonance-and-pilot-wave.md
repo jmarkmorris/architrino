@@ -41,9 +41,9 @@ The reader-facing bridge pages should state the ontology, comparison boundary, a
 
 The pilot-wave bridge keeps four active proof tasks:
 
-1. Derive the effective wave equation by coarse-graining the Master Equation over the Noether sea at scales large compared to the tri-binary radius but small compared to atomic dimensions. The target is a regime in which a Schrödinger-form envelope appears, with leading corrections explicitly bounded.
+1. Derive the effective wave equation by coarse-graining the Master Equation over the Noether sea at scales large compared to the three-binary radius but small compared to atomic dimensions. The target is a regime in which a Schrödinger-form envelope appears, with leading corrections explicitly bounded.
 2. Simulate ensembles of identically prepared assemblies under the Master Equation with controlled unresolved Noether sea boundary histories; extract outcome distributions and compare them against $|\psi|^2$ only after the basin partition and measure source are declared.
-3. Compute phase-locking conditions for a single tri-binary assembly in a Coulomb-like confining potential, as a hydrogen-analog energy-spectrum stress test.
+3. Compute phase-locking conditions for a single three-binary assembly in a Coulomb-like confining potential, as a hydrogen-analog energy-spectrum stress test.
 4. Characterize non-Markovian guidance corrections from self-hit memory and identify regimes where causal-wake guidance can diverge from standard de Broglie-Bohm summaries.
 5. Add a Lissajous-scar benchmark for mode-lock and near-degeneracy: when a reduced assembly oscillator has commensurate frequency rows and a weak perturbation, determine whether the same return map that supplies basin weights also predicts persistent density enhancement along the corresponding classical periodic-orbit family.
 

@@ -79,8 +79,8 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 - Inputs: nested binary assemblies, self-hit engine, middle fulcrum, outer shield.
 - Mechanism: three mutually supporting binary layers distribute high-multiplicity internal closure, buffer phase stress, and regulate external coupling.
-- Output: the tri-binary Noether braid becomes the proposed stable matter unit.
-- Proof burden: prove the slow-fast tri-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
+- Output: the Noether braid three-binary becomes the proposed stable matter unit.
+- Proof burden: prove the slow-fast Noether braid three-binary minimality theorem. Show that under simultaneous kinematic stress $\beta>0$ and Noether sea gradient stress $G>0$, the stable slow manifold of an $n$-layer nested assembly persists for $n\ge 3$ and loses normal hyperbolicity for $n\le 2$ on a codimension-one set in $(\beta,G)$. Equivalently, derive the corresponding $n$-layer closure law with explicit role-counting in the slow-fast decomposition; universality is a consequence only if the same three-role law covers the admitted matter branches.
 - Priority route: `mass-map`, `master-equation-closure`.
 - Current disposition: `priority`.
 
@@ -104,7 +104,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   \approx
   \frac{E_{\text{internal}}}{c_{\text{eff}}^2}\mathbf{V}_{\text{cm}}.
   $$
-- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed tri-binary cycle, including the medium response tensor that reduces to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether sea cell, with $h^{ab}$ the inverse Euclidean spatial metric, not by radiation-box analogy alone.
+- Proof burden: compute the first-order momentum skew from the full delayed root sum around a closed three-binary cycle, including the medium response tensor that reduces to $h^{ab}/c_{\text{eff}}^2$ in a homogeneous isotropic Noether sea cell, with $h^{ab}$ the inverse Euclidean spatial metric, not by radiation-box analogy alone.
 - Priority route: `master-equation-closure`, `mass-map`.
 - Current disposition: `priority`.
 
@@ -139,7 +139,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 8b. Moving Noether-Core Deformation Map (Provisional)
 
-- Inputs: rest tri-binary layer planes $\Pi_i^{(0)}$, rest layer paths $C_i^{(0)}$, inter-layer paths $C_{ij}^{(0)}$, branch label $q$, local medium drift $\mathbf{u}_{\text{sea}}$, and effective drift $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$.
+- Inputs: rest three-binary layer planes $\Pi_i^{(0)}$, rest layer paths $C_i^{(0)}$, inter-layer paths $C_{ij}^{(0)}$, branch label $q$, local medium drift $\mathbf{u}_{\text{sea}}$, and effective drift $\mathbf{w}=\mathbf{V}_{\text{cm}}-\mathbf{u}_{\text{sea}}$.
 - Mechanism: construct a branch-indexed deformation map
   $$
   \mathcal{D}_{\beta,q}^{\mathrm{mov}}
@@ -231,8 +231,8 @@ The deployment gate is passed only when every non-closed item in this map has a 
 - Inputs: candidate accepted state $\mathcal{S}_{\mathbf{k}}$ from Node 9, closed-cycle period $T_{\mathbf{k}}$, and linearized delay-differential operator around the periodic orbit.
 - Mechanism: monodromy operator $\mathcal{M}_{\mathbf{k}}$ on the tangent bundle of delay state space; spectral radius off the symmetry directions controls basin robustness.
 - Output: spectral gap $\Delta_{\mathbf{k}} = 1 - \max_{i\notin G}\|\mu_i(\mathbf{k})\|$ as the quantitative basin-robustness functional; accepted states are those with $\Delta_{\mathbf{k}}>0$.
-- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative tri-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds. A breather monodromy failure is the minimal warning case: a closed integer ledger with $\Delta_{\mathrm{mon}}\le0$ remains a diagnostic orbit, not a stable basin, and the same distinction must be enforced for tri-binary quantum-step and mass-map claims.
-- $A_0$ handoff: the first reduced mass-map branch certificate supplies the concrete test case: finite root ledger, branch label $\Lambda$, residual vector $\mathcal{R}_{A_0}$, and quotient stability gap $\Delta_{\mathbf{k}}$ for a neutral rest-branch tri-binary.
+- Proof burden: establish discreteness of the Floquet spectrum off the unit circle for state-dependent self-hit delays; compute leading multipliers for representative three-binary cycles; verify that the spectral gap closes precisely at the transverse-budget separator $\beta\to 1$ and at gradient-driven structural failure thresholds. A breather monodromy failure is the minimal warning case: a closed integer ledger with $\Delta_{\mathrm{mon}}\le0$ remains a diagnostic orbit, not a stable basin, and the same distinction must be enforced for three-binary quantum-step and mass-map claims.
+- $A_0$ handoff: the first reduced mass-map branch certificate supplies the concrete test case: finite root ledger, branch label $\Lambda$, residual vector $\mathcal{R}_{A_0}$, and quotient stability gap $\Delta_{\mathbf{k}}$ for a neutral rest-branch three-binary.
 - Priority route: `master-equation-closure`, `quantum-closure`, `simulations`.
 - Current disposition: `priority`.
 
@@ -268,7 +268,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ### 11b. Effective Metric And Cartan Connection
 
-- Inputs: Noether sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and tri-binary orientation fields.
+- Inputs: Noether sea density, compliance, stress, drift $u^i_{\text{sea}}$, local clock response $N$, spatial frame fields $e^a{}_i$, spatial compliance metric $\gamma_{ij}=\delta_{ab}e^a{}_i e^b{}_j$, and three-binary orientation fields.
 - Mechanism: reconstruct the observer-level bookkeeping metric
   $$
   ds_{\rm eff}^2
@@ -281,7 +281,7 @@ The deployment gate is passed only when every non-closed item in this map has a 
   $$
   and derive the Levi-Civita connection in the GR-matching regime, with torsion and nonmetricity tracked as deviation observables.
 - Output: explicit observer-level fields for lapse, medium drift, spatial compliance, frame orientation, geodesics, redshift, lensing, Shapiro delay, horizon null surfaces, and PPN matching.
-- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether sea state variables and tri-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
+- Proof burden: derive $N$, $u^i_{\text{sea}}$, $e^a{}_i$, and $\gamma_{ij}$ from Noether sea state variables and three-binary response; recover $N=1+\Phi_N/c_0^2+O(c_0^{-4})$, $\gamma_{ij}=(1-2\Phi_N/c_0^2)h_{ij}+O(c_0^{-4})$, $u^i_{\text{sea}}=O(c_0^{-3})$, and PPN coefficients within current bounds while suppressing preferred-frame, torsion, nonmetricity, birefringence, and dispersion residuals.
 - Priority route: `master-equation-closure`, `strong-field-closure`, `standard-model-closure`.
 - Current disposition: `priority`.
 
@@ -355,14 +355,14 @@ The deployment gate is passed only when every non-closed item in this map has a 
 
 ## Critical Path
 
-1. Floquet stability functional for tri-binary integer-closure states, with basin-robustness gap $\Delta_{\mathbf{k}}$.
+1. Floquet stability functional for three-binary integer-closure states, with basin-robustness gap $\Delta_{\mathbf{k}}$.
 2. Grazing-bifurcation classification of the separator, with square-root scaling and period-adding diagnostics.
 3. Photon gate A, kinematics and optics, with proportional-collapse selection theorem.
 4. Photon gate B, polarization and spin.
 5. Photon gate C, vertices and transitions.
 6. Moving Noether braid deformation map with the $d_2=s_2=-1/2$ first coefficient test.
 7. Transverse causal budget lemma with Floquet-gap closure at $\beta\to 1$.
-8. Slow-fast tri-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
+8. Slow-fast Noether braid three-binary minimality theorem, with universality only after admitted matter branches share the three-role law.
 9. Momentum skew with Noether sea dressing tensor.
 10. Effective metric and Cartan connection reconstruction.
 11. Equivalence and weak-field GR matching.
@@ -376,9 +376,9 @@ The deployment gate is passed only when every non-closed item in this map has a 
 | Photon gate B, polarization and spin | keep as roadmap and create task | `quantum-closure`, `standard-model-closure` |
 | Photon gate C, vertices and transitions | keep as roadmap and create task | `standard-model-closure`, `planar-bridge-closure` |
 | Floquet stability functional | create task | `master-equation-closure`, `quantum-closure`, `simulations` |
-| $A_0$ reduced branch certificate | route as the first finite tri-binary test case for Floquet and closure-graph diagnostics | `mass-map`, `simulations`, `master-equation-closure` |
+| $A_0$ reduced branch certificate | route as the first finite three-binary test case for Floquet and closure-graph diagnostics | `mass-map`, `simulations`, `master-equation-closure` |
 | Grazing-bifurcation separator classification | create task | `breather-proof`, `simulations` |
-| Slow-fast tri-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
+| Slow-fast Noether braid three-binary minimality theorem | create task | `mass-map`, `master-equation-closure` |
 | Effective metric and Cartan connection | create task | `master-equation-closure`, `strong-field-closure` |
 | Moving Noether braid deformation map | create task | `master-equation-closure`, `simulations` |
 | Transverse causal budget lemma | extract or create task | `master-equation-closure` |

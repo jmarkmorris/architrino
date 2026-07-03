@@ -131,11 +131,11 @@ set.
 
 | Task | Detailed source | Primary promotion target | Promotion gate |
 | --- | --- | --- | --- |
-| `certified_eigen_braid` | This file, [Tri-Binary Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [assembly topological charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [tri-binary-configuration-space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [assembly-topological-charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
+| `certified_eigen_braid` | This file, [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [assembly topological charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [binary-dynamics](../../../content/markdown/aaa/dynamics/binary-dynamics.md), and the active proof-program packets | [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md), [assembly-topological-charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [quantum-summary](../../../content/markdown/aaa/quantum/quantum-summary.md) | One replayable retained branch packet reports the same causal-root ledger, signed-degree refinement, Noether wake-history charges, finite-memory window, group-velocity/response-center row, assembly topological charge, and positive non-symmetry stability margin under refinement. |
 | `receiver_normal_branch_strength_certificate` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [receiver-normal-master-equation-restart-ledger](receiver-normal-master-equation-restart-ledger.md), [receiver-normal-wake-action-factor](receiver-normal-wake-action-factor.md), and [branch-provider-evidence-report](../app-solver/branch-provider-evidence-report.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and the active proof-program packet that emits the first domain branch-family row | The accepted analytic row-shape certificate, the linear moving-receiver branch-family fixture, and the priority-only first-derivative artifact target are populated. Promotion for A1, VP-1, breather, circular, eigen-braid, H39/theta3minus, or assembly closure still requires that packet's retained branch family to report same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, $D_vD_s$, $D_vD_t$, reconstructed $D_vW^{\mathrm{rec}}$, projection, aggregation, scalar statistic, artifact hash, regulator state, and fail-closed negative controls. H39 provider-object rows must first satisfy `h39-receiver-normal-retained-record-preimage-row/v0`. |
 | `circular_asymptotics` | This file | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) | Higher-winding circular rows restart from same-record $D_s$, $D_t$, and $W^{\mathrm{rec}}$ intervals before any self-force or tangential no-go is promoted. |
 | `spiral_branch_chart_test` | [receiver-normal-branch-strength-certificate](receiver-normal-branch-strength-certificate.md), [spiral-vp1-drive-verdict-proof](spiral-vp1-drive-verdict-proof.md), [spiral-vp1-tangential-interval-proof](spiral-vp1-tangential-interval-proof.md), [spiral-vp1-radial-branch-interval-proof](spiral-vp1-radial-branch-interval-proof.md), [spiral-a1-drive-interval-target](spiral-a1-drive-interval-target.md), [spiral-a1-gamma-force-ratio-decision](spiral-a1-gamma-force-ratio-decision.md), [spiral-a1-kinematic-gamma-closure](spiral-a1-kinematic-gamma-closure.md), and [spiral-a1-tangential-compatibility-no-go](spiral-a1-tangential-compatibility-no-go.md) | [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) and [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md) | One admissible variable-pitch candidate must report retained root topology plus same-record $D_s$, $D_t$, $W^{\mathrm{rec}}$, radial, tangential, aggregation, and negative-control rows before any drive verdict is promoted. |
-| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving tri-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
+| `lorentz_gr_bridge` | [lorentz-gr-bridge-handoff](lorentz-gr-bridge-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md) | Moving three-binary contraction and clock retuning are extracted first; only after that independent moving-assembly packet closes may coarse-grained medium response be used for weak-field GR and PPN targets. |
 | `lorentz_test_residual_handoff` | [lorentz-test-residual-handoff](lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [emergent-metric](../../../content/markdown/aaa/spacetime/emergent-metric.md), and [lorentz-invariance-test-suite](../cross-theory-mapping/lorentz-invariance-test-suite.md) | RMS, PPN, and SME-style residual rows are exported only after the Lorentz/GR bridge supplies one shared branch, clock, ruler, signal, and medium-response artifact. |
 
 ## Completed Kernel Handoff
@@ -167,7 +167,7 @@ outward constants, radial closure, or tangential transport be redriven.
 - First certified eigen-braid packet for a six-body Noether braid branch, preferably a collinear breather or non-circular signed-sheet branch rather than the bare circular MCB.
 - Numerical branch-chart evaluation of the normalized delayed-interior characteristic-tail kernel and its Noether wake-history boundary terms under the stated pullback contract.
 - Bare-void branch response tensor for isolated assemblies, computed from branch-chart momentum susceptibility before Noether sea dressing.
-- Full 3D translating tri-binary NFDE / DDE control for emergent $\gamma$-scaling.
+- Full 3D translating three-binary NFDE / DDE control for emergent $\gamma$-scaling.
 - Transfer-operator and invariant-measure control for Born-rule emergence.
 - Exact 6-body core stability and shielding extraction for the first-principles mass program.
 - Binary perturbation-response classification: on a retained binary chart, decide whether a finite perturbation is absorbed as same-branch phase response, same-regime radius/cadence retuning, or a branch transition.
@@ -499,7 +499,7 @@ Failure modes. The packet fails if $\dot{\beta}_n=0$ at the fold, if the regulat
 - The circular ansatz hard-codes constant radius, constant speed, constant curvature, rigid branch geometry, and sign-definite tangential contributions.
 - A true spiral introduces radial velocity, varying curvature, intersections between later tighter turns and earlier wider-turn wakes, changing Jacobian amplification, and the possibility of a turning point before singular continuation.
 - The live question remains: does the symmetric delayed spiral admit a self-consistent limit cycle or radial turning point that the circular ansatz misses?
-- The next concrete spiral target is the branch-chart certification test: enumerate admissible partner and self roots for one variable-pitch candidate, certify positive Jacobian floors and finite memory depth, test the radial turn inequality, and decide whether the weighted tangential sum can become negative without extra medium, tri-binary, or multi-body structure.
+- The next concrete spiral target is the branch-chart certification test: enumerate admissible partner and self roots for one variable-pitch candidate, certify positive Jacobian floors and finite memory depth, test the radial turn inequality, and decide whether the weighted tangential sum can become negative without extra medium, three-binary, or multi-body structure.
 
 ## Branch-Chart Closure Object
 
@@ -856,7 +856,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 ## Lorentz And GR Bridge Program
 
 - Treat the Lorentz / GR bridge as a two-stage theorem program:
-  1. prove that moving tri-binaries in the Noether sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning;
+  1. prove that moving Noether braid three-binary branches in the Noether sea realize $R_\parallel = R_\perp / \gamma$ and $T(v) = T_0 \gamma$ as a stable delayed-dynamics attractor rather than by tuning;
   2. coarse-grain the same causal medium into a constitutive response that yields $g_{\mu\nu}^{\mathrm{eff}}$, weak-field PPN closure, and suppressed preferred-frame leakage.
 - Keep the two stages independent in proof order. The moving-assembly extraction uses the delayed root equations, branch admissibility, hierarchy averaging, and clock/ruler observables; weak-field PPN supplies downstream tests of the dressed medium response, not a prerequisite for extracting the homogeneous moving-assembly laws.
 - Close $d\tau/dt = F(v,\rho,\Phi)$ and the substrate-to-metric functional.
@@ -871,7 +871,7 @@ Keep the maximum-curvature-wall question tied to both tracks. The Jacobian-null 
 
 ## Moving-Assembly Extraction Packet
 
-The first Lorentz bridge object is a homogeneous moving-tri-binary theorem target, not a PPN calculation. Fix a drift band
+The first Lorentz bridge object is a homogeneous moving-three-binary theorem target, not a PPN calculation. Fix a drift band
 $$
 \mathcal{D}_{\beta}=\{\,0\le\beta_f\le\beta_{\max}<1\,\},
 \qquad
@@ -1205,7 +1205,7 @@ Interface falsifier. If a downstream basin weight, shielding coefficient, or res
 3. Controlled kinetic or coarse-grained equation from the master law.
 4. Lorentz-suppression emergence for moving assemblies in the full dynamics, ideally independent of axial-layer details.
 5. Effective magnetic and Lorentz-force emergence from assemblies.
-6. Full attractor landscape for binaries and tri-binaries.
+6. Full attractor landscape for binaries and Noether braid three-binary branches.
 7. Quantum closure from the master equation.
 
 ## Related Priorities

@@ -905,7 +905,7 @@ c_1[\theta^O,\theta^M,\theta^I]
 \mathbb{Z}_{\ge0}\times\mathbb{Z}_{\ge0}\times\mathbb{Z}^2
 $$
 
-where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked tri-binary chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
+where $N_s$ counts active self-hit roots, $M_p$ counts active partner-hit roots, and $c_1[\theta^O,\theta^M,\theta^I]$ is the phase-bundle winding of the resonance-locked Noether braid three-binary chart. This class is deformation-stable only inside the nondegenerate branch domain: a causal-root fold, reconnection, or loss of phase-bundle closure changes the sector.
 
 The corresponding mass-gap target is therefore native and computable. The gap is the minimum action cost to change $[\mathfrak B]$ by an admissible branch transition, such as a $\Delta N_s=\pm2$ root birth or death under the same Jacobian floor and boundary convention. In a caustic-grazing transition this cost should be estimated from the finite impulse and wake-history increment across the fold. If that minimum vanishes under refinement, the action chart has no protected assembly gap; if it remains positive, the gap is a property of the branch ledger and delayed action, not an imported continuum-defect assumption.
 

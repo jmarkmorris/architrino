@@ -101,4 +101,4 @@ Replace the attempt-level supplied fields with solver-generated evidence:
 - compute $h_E$, $h_\Phi$, $h_p$, and $h_J$ from one orbit rather than a fixture;
 - run a real $g$- or $\mu$-continuation showing that $h_\vartheta$ is locally constant while $E$ and $\nu$ move.
 
-The breakthrough question is whether this action period is merely a scalable orbit area in a toy delay system, or whether the tri-binary Noether-braid geometry supplies a topological or symmetry-protected period that can survive as the physical $h$ unit.
+The breakthrough question is whether this action period is merely a scalable orbit area in a toy delay system, or whether the Noether braid three-binary geometry supplies a topological or symmetry-protected period that can survive as the physical $h$ unit.

@@ -10,7 +10,7 @@
 
 ## Purpose
 
-This packet sharpens the neutrino oscillation row as a common-clock residual phase-operator target. The immediate goal is not to claim that the equal-frequency tri-binary candidate already explains PMNS data. The goal is to state the smallest mathematical object that would let the equation map test that claim without mistaking hidden common frequency for three observed absolute clocks.
+This packet sharpens the neutrino oscillation row as a common-clock residual phase-operator target. The immediate goal is not to claim that the equal-frequency Noether braid three-binary candidate already explains PMNS data. The goal is to state the smallest mathematical object that would let the equation map test that claim without mistaking hidden common frequency for three observed absolute clocks.
 
 The target belongs inside the equation-map architecture because it reuses three patterns that also appear outside neutrinos:
 

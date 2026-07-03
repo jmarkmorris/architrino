@@ -26,7 +26,7 @@ The repository now carries extracted blog material for further mining, and the p
 Relevant files:
 
 - [Master Equation](../dynamics/master-equation.md)
-- [Tri-Binary Configuration Space](../noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates)
+- [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates)
 
 This entry records a major oversight in the definition of the Master Equation of Motion. The important distinction is that the exact EOM is the microscopic dynamical law, while much of the higher architecture is a recovery program above that law. The architecture asks whether delayed path-history dynamics can select retained branches, whether those retained branches can become eigen-braid candidates, and whether effective geometry, mass response, quantum records, and observer-level physics can be recovered from those branch records. A correction to the EOM can therefore be serious without invalidating the whole conceptual ladder.
 
@@ -34,14 +34,14 @@ At the conceptual level, $\mathbb{A}\mathbb{A}\mathbb{A}$ adapts easily because 
 
 The correction should be treated as an opportunity as much as a repair. A better EOM may expose solution families that the earlier definition suppressed or distorted, especially in the search for stable retained branches, eigen-braid candidates, self-hit regimes, and Noether braid-scale assemblies. The right response is therefore not defensive preservation of superseded formulas. It is to let the corrected law discipline the candidate geometry and then audit every downstream claim whose proof depended on the superseded exact EOM.
 
-The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, tri-binary selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
+The standing burden is precise. Conceptual resilience does not license automatic theorem transfer. Any statement that used the previous EOM formula to claim branch stability, caustic control, action closure, conservation, binary support, three-binary selection, or effective geometry must be rechecked against the corrected law. The durable lesson is that the architecture survives by remaining level-separated: ontology, microscopic dynamics, retained-branch certification, and effective observer geometry are related, but they are not the same assertion.
 
-## 2026-06-22: Noether Braid and General Tri-Binary Search Space
+## 2026-06-22: Noether Braid and General Three-Binary Search Space
 
 Relevant files:
 
 - [Noether Braid](../noether-braid/noether-braid.md)
-- [Tri-Binary Configuration Space](../noether-braid/noether-braid-configuration-space.md)
+- [Noether Braid Configuration Space](../noether-braid/noether-braid-configuration-space.md)
 - [Dyadic Resonance Lock](../noether-braid/noether-braid-dyadic-resonance-lock.md)
 - [Assembly Topological Charge](../noether-braid/noether-braid-topological-charge.md)
 
@@ -49,7 +49,7 @@ The terminology shifted from `swarm` to `braid` because the older word suggested
 
 The term also helps keep topology visible. A braid can be deformed without losing its identity until a fold, reconnection, branch loss, or other declared surgery event changes the retained record. That is the right mental model for assembly topological charge: the integers and signs attached to a branch should be stable under branch-preserving deformation, and should change only when the delayed dynamics force a discrete transition. In that sense, `Noether braid` is both more precise and less misleading than the previous label. It names a retained dynamical organization rather than a population metaphor.
 
-The same day also clarified that tri-binary notation must begin in the general, unordered configuration space. The raw search labels are $B_1:B_2:B_3$, not an assumed `I:M:O` hierarchy. For each retained binary row $a\in\{1,2,3\}$, the minimal state record is
+The same day also clarified that three-binary notation must begin in the general, unordered configuration space. The raw search labels are $B_1:B_2:B_3$, not an assumed `I:M:O` hierarchy. For each retained binary row $a\in\{1,2,3\}$, the minimal state record is
 $$
 \mathcal{T}_{3B}
 =
@@ -101,9 +101,9 @@ r_1:r_2:r_3
 $$
 when the same angular-frequency convention is used. Thus an equal-frequency branch can naturally contain one or more super-field-speed carrier rows if a retained lever arm is large enough, while the primitive causal wake speed remains $c_f$. That is not a signal-speed violation. It is a branch-geometry statement: the source trajectory can enter regimes with additional self-hit or partner-hit roots, Jacobian sign changes, folds, and caustic behavior.
 
-This insight changes how the current candidates should be read. Dyadic locks, middle-hinge offsets, and equal-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the tri-binary architecture. The equal-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
+This insight changes how the current candidates should be read. Dyadic locks, middle-hinge offsets, and equal-frequency rows are subfamilies of $\widetilde{\mathcal C}_{3B}$, not definitions of the Noether braid three-binary architecture. The equal-frequency row is especially valuable because it separates a common clock or return-frequency condition from the energy, radius, velocity, phase, and ledger data that may actually distinguish the three binaries. If such a branch exists, the energy differentials and speed regimes would be consequences of branch energy placement and retained lever-arm geometry, not of an imposed frequency hierarchy.
 
-The milestone is therefore both terminological and mathematical. `Noether braid` gives the six-body retained branch a name that matches the topology the proof program needs, while the generalized tri-binary configuration space prevents the notation from prejudging the solution. The next honest work is systematic search: scan broad $B_1:B_2:B_3$ configurations, preserve $S_3$ repeats, identify stable retained branches in a sea of like assemblies, compare their energy differentials, and then test where accessory architrinos can attach.
+The milestone is therefore both terminological and mathematical. `Noether braid` gives the six-body retained branch a name that matches the topology the proof program needs, while the generalized Noether braid configuration space prevents the notation from prejudging the solution. The next honest work is systematic search: scan broad $B_1:B_2:B_3$ configurations, preserve $S_3$ repeats, identify stable retained branches in a sea of like assemblies, compare their energy differentials, and then test where accessory architrinos can attach.
 
 ## 2026-06-21: Causal Delay Feedback Visualization App
 
@@ -138,7 +138,7 @@ This milestone matters because it changes app computation from local demonstrati
 
 The benchmark side also became more disciplined. The widened emission-shell v0 stress envelope preserved oracle equality under larger replay pressure and introduced a threshold check that is not merely wall-clock timing. The result is developer-test readiness, not default replacement. In notebook terms, the accomplishment is the discipline: centralize the geometry solver, measure the bridge under stress, and keep opt-in strategies opt-in until breadth and parity evidence justify promotion.
 
-## 2026-06-20: Tri-Binary Middle-Hinge Candidate Narrowing
+## 2026-06-20: Noether Braid Three-Binary Middle-Hinge Candidate Narrowing
 
 Relevant files:
 
@@ -146,11 +146,11 @@ Relevant files:
 - [Energy](../dynamics/energy.md)
 - [Nested Shell Braid Dynamics](../noether-braid/nested-shell-braid-dynamics.md)
 
-The angular-momentum and spin proof route gained a sharper reduced candidate target around the tri-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, dyadic, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
+The angular-momentum and spin proof route gained a sharper reduced candidate target around the three-binary middle-hinge family. The work used canonical `(I,M,O)` frequency-triplet notation to compare the $(f+2,f,f-1)$ middle-hinge family against symmetric, dyadic, and finite integer-lock controls. The point was not to accept a retained branch; it was to narrow the proof burden by making the candidate and its competitors machine-readable.
 
 The strongest evidence came from the combination of row lineage, self-hit parity, phase-lock coverage, point-event witnesses, route-local transport and recoil balance, and competitor auditing. The middle-hinge family remains on the candidate path because it keeps the strongest self-root parity proxy and phase-lock coverage among the tested families. At the same time, the retained branch claim remains false: common positive-width retained time-domain coverage, zero-slack retained transport, accepted wake energy, action scale, energy routing, and full point-event rules are still missing.
 
-This milestone matters because it replaced a broad question about whether a tri-binary rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
+This milestone matters because it replaced a broad question about whether a three-binary rotational-action pattern could carry angular-momentum and spin structure with a narrower branch-certificate problem. The live question is whether the route-authorized point-event and wake payloads can be lifted into one retained row set with accepted transport, partition, torque, phase, stability, and energy-routing rows. That is a much better mathematical target.
 
 ## 2026-06-20 Closure Scorecard Update
 

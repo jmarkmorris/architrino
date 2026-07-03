@@ -11,11 +11,11 @@
 
 ## Purpose
 
-The Assembly Configuration Explorer is the app-side surface for inspecting tri-binary Noether braid configuration-space packets. It is not a replacement for the solver. Its job is to load solver or script outputs, preserve the unquotiented layer records, compute comparison diagnostics, and help identify stable sectors, symmetric duplicates, energy-differential patterns, super-field-speed rows, and accessory-architrino capture targets.
+The Assembly Configuration Explorer is the app-side surface for inspecting Noether braid three-binary configuration-space packets. It is not a replacement for the solver. Its job is to load solver or script outputs, preserve the unquotiented layer records, compute comparison diagnostics, and help identify stable sectors, symmetric duplicates, energy-differential patterns, super-field-speed rows, and accessory-architrino capture targets.
 
 ## Search Semantics
 
-The explorer must preserve the general tri-binary search domain from [Tri-Binary Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md):
+The explorer must preserve the general Noether braid three-binary search domain from [Noether Braid Configuration Space](../../../content/markdown/aaa/noether-braid/noether-braid-configuration-space.md):
 
 $$
 \widetilde{\mathcal C}_{3B}

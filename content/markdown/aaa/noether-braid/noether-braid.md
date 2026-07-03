@@ -2,7 +2,7 @@
 
 The **Noether braid** is the reader-facing class of neutral six-architrino assembly scaffolds used in the Noether sea and particle-architecture program. A Noether braid is not assumed at the outset to be a set of exact binaries. The base object is a closed, polarity-neutral, bounded-speed six-body branch in which three positive-polarity architrinos (positrinos) and three negative-polarity architrinos (electrinos) maintain a persistent causal-return ledger.
 
-This chapter uses three braid types:
+For the broader cross-axis classifier, see [Noether Braid Taxonomy](noether-braid-taxonomy.md). This chapter uses three braid types:
 
 | Term | Definition | Additional structure |
 | --- | --- | --- |

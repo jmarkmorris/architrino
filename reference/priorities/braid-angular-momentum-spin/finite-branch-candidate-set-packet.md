@@ -381,7 +381,7 @@ The payload $\mathcal P_{\mathrm{num}}$ must be large enough to evaluate the res
 ### Layer-Normal Cone Bound
 
 The retune payload should also expose a scale-aware layer-normal readout. The
-legacy tri-binary source signal behind this addition is that the inner binary
+legacy three-binary source signal behind this addition is that the inner binary
 may carry a much larger rotational-action magnitude than the middle or outer
 layers, so a small orientation retune of the inner layer can dominate the vector
 angular-momentum balance even when its scalar action increment is modest.

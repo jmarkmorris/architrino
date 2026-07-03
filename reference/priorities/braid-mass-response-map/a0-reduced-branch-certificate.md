@@ -99,7 +99,7 @@ The current $A_0$ work is at the “stable causal-root ledger” level. It is no
 
 ## Purpose
 
-This packet turns the $A_0$ reference-attractor posture into a concrete reduced proof and simulation target. It does not replace the full six-worldline $A_0$ output schema in [braid-mass-response-map.md](braid-mass-response-map.md). Its job is narrower: define the first finite branch-search certificate that can decide whether a coupled multi-scale tri-binary lock is worth promoting into shielding extraction, energy-ledger work, and mass-map comparison.
+This packet turns the $A_0$ reference-attractor posture into a concrete reduced proof and simulation target. It does not replace the full six-worldline $A_0$ output schema in [braid-mass-response-map.md](braid-mass-response-map.md). Its job is narrower: define the first finite branch-search certificate that can decide whether a coupled multi-scale Noether braid three-binary lock is worth promoting into shielding extraction, energy-ledger work, and mass-map comparison.
 
 The central question is:
 

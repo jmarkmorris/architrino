@@ -12,7 +12,7 @@
 ## Task Queue
 
 1. `component_interfaces` — Build per-component observable interfaces against LambdaCDM. Status: `deferred`. Depends on: none.
-2. `predictive_pipeline` — Turn the CMB and tri-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
+2. `predictive_pipeline` — Turn the CMB and three-binary cosmology story into a predictive transfer-function pipeline. Status: `deferred`. Depends on: `component_interfaces`.
 3. `age_clock_convergence` — Add an oldest-object and material-clock interface for Hubble-time/time-redshift mapping, globular-cluster turnoff ages, white-dwarf cooling ages, Th/U/Eu radiochronometers, and presolar/interstellar-grain provenance. Status: `deferred`. Depends on: `component_interfaces`.
 4. `cmb_noether_braid_spectrum_linkage` — Examine whether the observed CMB spectrum has a derivable linkage to Noether braid ensemble modes, photon-channel provenance, Noether sea thermalization, and coherent photon-channel bundle transport, without treating the linkage as established before a spectrum-level residual exists. Status: `deferred`. Depends on: `predictive_pipeline`.
 5. `noether_sea_source_relaxation_balance` — Tie production, recycling, decay, reclassification, capture, and relaxation of Noether sea content to one continuity and energy ledger. Status: `deferred`. Depends on: `component_interfaces`.
@@ -46,7 +46,7 @@ This file remains the control surface for deferred cosmology closure. No sibling
 
 ## Closure Goal
 
-- Turn the current CMB and tri-binary cosmology story into a predictive transfer-function pipeline.
+- Turn the current CMB and three-binary cosmology story into a predictive transfer-function pipeline.
 - Build the pipeline so removing one foundation assumption does not collapse the whole stack.
 - Expose exactly where $\mathbb{A}\mathbb{A}\mathbb{A}$ matches, replaces, or diverges from each observable component.
 - Use the result for direct CMB, $H_0$, and $S_8$ comparison rather than narrative analogy.

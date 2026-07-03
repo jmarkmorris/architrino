@@ -36,7 +36,7 @@ $$
 so a single $\beta(\cdot)$ function is evaluated at each binary's own frequency. By definition, $\beta(f)=1$ exactly when $v=c_f$.
 
 **The Constraints:**
-1.  **Frequency Doubling (fixed ratios):** $f_M = 2f_O$ and $f_I = 2f_M = 4f_O$ are imposed here as a working closure ansatz across the full tri-binary range. This is not yet derived from the full delayed dynamics.
+1.  **Frequency Doubling (fixed ratios):** $f_M = 2f_O$ and $f_I = 2f_M = 4f_O$ are imposed here as a working closure ansatz across the full three-binary range. This is not yet derived from the full delayed dynamics.
 2.  **Field Speed Lock (middle branch):** $v_M = c_f$ is invariant for the full range $f_O \in [1\,\text{Hz}, f_P]$ (so $\beta(2f)=1$). The middle radius therefore follows $r_M = c_f/(2\pi f_M)$. The outer velocity varies with $f_O$ and reaches $c_f$ only at $f_O = f_P$, i.e., $\beta(f_P)=1$.
 3.  **Universal MCB Cap:** There is only one maximum-curvature binary (MCB) state, shared by all binaries as a hard cap. No binary can exceed the MCB curvature (or go beyond its defining radius/speed).
 
@@ -84,7 +84,7 @@ The live analytical path is now:
 1.  Write the regularized two-layer map first, keeping both phase and amplitude/speed variables.
 2.  Identify a candidate Lyapunov-Krasovskii or cycle-averaged causal-work functional for that map.
 3.  Test whether the Jacobian wall near $v=c_f$ makes the dyadic fixed point locally attracting as $\beta \to 1$.
-4.  Only then lift the argument to the full tri-binary chain and ask whether the stable extension is $1{:}2{:}4$.
+4.  Only then lift the argument to the full three-binary chain and ask whether the stable extension is $1{:}2{:}4$.
 
 This 1:2:4 lock remains a plausible working candidate for a Planck-scale assembly configuration, but the available support is kinematic plus reduced-map conjecture, not a completed selection theorem.
 
@@ -124,7 +124,7 @@ The strongest particle, strong-force, vacuum-pairing, black-hole-core, and toy-c
 
 ---
 
-The next subsection frames the tri-binary Noether braid assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
+The next subsection frames the Noether braid three-binary assembly as a candidate universal nucleus, emphasizing a proposed micro-macro correspondence between particles and black holes.
 
 ---
 
@@ -132,7 +132,7 @@ The next subsection frames the tri-binary Noether braid assembly as a candidate 
 
 Within this framework, the Noether Braid is treated as a candidate **fundamental solution** (Green's-function-like generator) for physical structure.
 
-In geometric analysis, when a single structural definition (the tri-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether sea), we call this **Conformal Invariance** or **Self-Similarity**.
+In geometric analysis, when a single structural definition (the three-binary) appears at the microscopic scale (particles), the macroscopic scale (black holes), and the background scale (the Noether sea), we call this **Conformal Invariance** or **Self-Similarity**.
 
 The following mapping motivates the "universal nucleus" interpretation.
 
@@ -142,20 +142,20 @@ Standard physics struggles to unify Quantum Mechanics (particles) and General Re
 In the architrino architecture, they are proposed to be topologically homologous.
 
 **The Isomorphism:**
-Let $\mathcal{M}$ be the manifold of a Tri-Binary.
-*   **The Particle (Fermion):** A tri-binary where the Inner Binary dominates energy dynamics (highest action-share branch in the self-hit regime), stabilized by self-hit.
-*   **The Black Hole:** A macroscopic aggregate of tri-binaries where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. This is only a provenance analogy until same-source roots and ledger closure are certified.
+Let $\mathcal{M}$ be the manifold of a Three-Binary.
+*   **The Particle (Fermion):** A three-binary where the Inner Binary dominates energy dynamics (highest action-share branch in the self-hit regime), stabilized by self-hit.
+*   **The Black Hole:** A macroscopic aggregate of Noether braid three-binary branches where the collective density was hypothesized to drive the aggregate toward an inner-binary-like, self-hit-capable regime. This is only a provenance analogy until same-source roots and ledger closure are certified.
 
 **The Map:**
 1.  **Inner Binary (self-hit-capable interior branch):** Corresponds to the **Singularity/Interior**. Super-field-speed history is a candidate marker, not an admission rule.
 2.  **Middle Binary ($v = c_f$):** Corresponds to the **Event Horizon**. (The surface of causal isolation).
 3.  **Outer Binary ($v < c_f$):** Corresponds to the **Gravitational Field**. (The region of standard causal connection).
 
-In this proposal, matter can be modeled as tri-binary structures that share some features with micro-black-hole-like self-hit-stabilized states.
+In this proposal, matter can be modeled as three-binary structures that share some features with micro-black-hole-like self-hit-stabilized states.
 
 ### The Completeness of the Architecture
 
-Why might the tri-binary be treated as a "nucleus for everything"?
+Why might the three-binary be treated as a "nucleus for everything"?
 One proposed reason is that it spans the model's **Logic of Causality**.
 
 Given a propagation speed $c_f$, this framework emphasizes three geometric relationships an object can have with a signal:
@@ -163,12 +163,12 @@ Given a propagation speed $c_f$, this framework emphasizes three geometric relat
 2.  **Equal ($v = c_f$):** You ride the information. (Resonance / Horizon / Limit).
 3.  **Faster ($v > c_f$):** You can outrun earlier wake surfaces. Candidate self-interaction, memory, and mass response are admitted only through the same-source root ledger.
 
-The Tri-Binary is modeled here as an assembly that can **occupy all three causal domains simultaneously**.
+The Three-Binary is modeled here as an assembly that can **occupy all three causal domains simultaneously**.
 *   It generates Mass (Inner).
 *   It defines Limits (Middle).
 *   It interacts (Outer).
 
-A complex universe in this framework would likely require units that access all three capacities. A system restricted to only $v<c_f$ or only $v>c_f$ would be dynamically impoverished in this picture. The Tri-Binary is therefore proposed as a minimal engine of complexity.
+A complex universe in this framework would likely require units that access all three capacities. A system restricted to only $v<c_f$ or only $v>c_f$ would be dynamically impoverished in this picture. The Three-Binary is therefore proposed as a minimal engine of complexity.
 
 ---
 

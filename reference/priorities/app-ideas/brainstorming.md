@@ -22,8 +22,8 @@ The idea bank favors app concepts that make the theory's native mechanisms visib
 ### 2. [Assembly Configuration Explorer](../app-assembly-explorer/braid-assembly-explorer.md)
 
 - Status: `promoted`.
-- The dedicated app packet owns the unquotiented tri-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
-- Summary: inspect candidate rows from the unordered tri-binary configuration space, preserve $S_3$-equivalent repeats, compare speed regimes and energy differentials, and prepare stable-sector and accessory-capture views without replacing solver authority.
+- The dedicated app packet owns the unquotiented three-binary dataset contract, comparison diagnostics, and solver-output adapter boundary.
+- Summary: inspect candidate rows from the unordered Noether braid configuration space, preserve $S_3$-equivalent repeats, compare speed regimes and energy differentials, and prepare stable-sector and accessory-capture views without replacing solver authority.
 
 ### 3. [Equation Mapping App](../app-equation-mapping/equation-mapping-app.md)
 

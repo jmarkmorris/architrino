@@ -32,7 +32,7 @@
 
 ## Scope
 
-This workstream owns the synthesis bridge from tri-binary Noether braid closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
+This workstream owns the synthesis bridge from Noether braid three-binary closure to rest mass, proper time, effective Lorentz/GR behavior, photon propagation, and measurement. It is a proof-architecture and routing surface: active-development claims can live here while the dependency ladder is being built, but unresolved claims must be closed, retained as explicit roadmap items, routed to another priority workstream, or cut before deployment.
 
 The deployed dynamics baseline is [nested shell braid dynamics](../../../content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md). That chapter owns the Noether braid roles, speed-regime conventions, delay-envelope geometry, gradient response, local clock diagnostics, and stability tests. This priority document should import those mechanisms rather than re-defining them, then test whether they support the mass, time, relativity, photon, and measurement claims in the sibling synthesis file.
 
@@ -55,12 +55,12 @@ Completed map-cleanup items are recorded in `Completed State` above. The live pr
 | `photon_gate_b_polarization` | [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md) | [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md), [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md), and [bell-theorem](../../../content/markdown/aaa/philosophy-history/theory-bridges/bell-theorem.md). | The transverse ledger must recover helicity, Malus' law, squared-amplitude capture, and no-signaling without repairing a failed Gate A branch. |
 | `photon_gate_c_vertices` | [radiation](../../../content/markdown/aaa/reactions/radiation.md), [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), and [compton-recoil-event-ledger-template.md](compton-recoil-event-ledger-template.md) | [standard-model-closure](../standard-model-closure/standard-model-closure.md), [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), and downstream QED-like transition material. | Emission, absorption, pair production, Compton-like scattering, transition rates, and $\alpha$ must be event-ledger transitions between massive assemblies and coaxial contra-rotating pro/anti planar pairs, not independent fit rules. |
 | `residual_routing_event_ledger` | [residual-routing-event-ledger.md](residual-routing-event-ledger.md) | [reaction-ledger](../../../content/markdown/aaa/validation/reaction-ledger.md), [reaction-cosmology-provenance-ledger](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md), [energy](../../../content/markdown/aaa/dynamics/energy.md), and [measurement-ontology](../../../content/markdown/aaa/quantum/measurement-ontology.md) | A named residual routes through admissible channels into a complete $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ event ledger before any transition, radiation event, measurement record, reaction, transport excitation, or strong-field release is promoted. |
-| `lorentz_residual_packet` | [lorentz-invariance-test-suite.md](../cross-theory-mapping/lorentz-invariance-test-suite.md) and [lorentz-test-residual-handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | A single tri-binary branch record must populate $\xi$, $\omega_{\text{clk}}/\omega_0$, $\Delta_{\mathrm{tw}}$, $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$, $(\alpha_1,\alpha_2,\alpha_3)$, and SME-style projection rows without separately tuned clock, ruler, photon, metric, or preferred-frame coefficients. |
+| `lorentz_residual_packet` | [lorentz-invariance-test-suite.md](../cross-theory-mapping/lorentz-invariance-test-suite.md) and [lorentz-test-residual-handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), and [ppn-parameters](../../../content/markdown/aaa/spacetime/ppn-parameters.md) | A single Noether braid three-binary branch record must populate $\xi$, $\omega_{\text{clk}}/\omega_0$, $\Delta_{\mathrm{tw}}$, $(R_{\mathrm{MM}},R_{\mathrm{KT}},R_{\mathrm{IS}})$, $(\alpha_1,\alpha_2,\alpha_3)$, and SME-style projection rows without separately tuned clock, ruler, photon, metric, or preferred-frame coefficients. |
 | `structural_integrity_common_limit` | [structural-integrity-common-limit-theorem.md](structural-integrity-common-limit-theorem.md) | [absolute-timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md), [lorentz-kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md), [proper-time-and-time-dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md), [electroweak-bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md), [gravitational-waves](../../../content/markdown/aaa/spacetime/gravitational-waves.md), and [constraint-ledger](../../../content/markdown/aaa/validation/constraint-ledger.md) | One retained branch must prove $c_{\mathrm{mat}}^{\mathrm{lim}}=c_{\text{eff}}=c_\gamma=c_0+O(\epsilon_{\text{LV}}c_0)$ while also closing clock/ruler deformation, two-way signal, $\mathfrak{S}_{\gamma A}^{(q)}(W)$, gravitational-wave speed, branch identity, and event-ledger residuals without observable-specific retuning. |
 
 ## Lorentz-Test Residual Interface
 
-The Living Reviews and SME source family sharpens the tri-binary relativity burden. A branch that visually produces the Lorentz envelope ratio is insufficient unless the same causal-root ledger also retunes clocks and closed signal paths. The export object for this workstream is
+The Living Reviews and SME source family sharpens the three-binary relativity burden. A branch that visually produces the Lorentz envelope ratio is insufficient unless the same causal-root ledger also retunes clocks and closed signal paths. The export object for this workstream is
 $$
 \mathcal{E}_{\mathrm{tri\text{-}Lor}}^{(q)}(\beta)
 =
@@ -73,7 +73,7 @@ R_{\mathrm{KT}}^{(q)},
 R_{\mathrm{IS}}^{(q)}
 \right),
 $$
-where $q$ labels the retained tri-binary branch class. The first two entries test moving-assembly deformation and clock retuning; the third tests two-way synchronization; the final three entries are the RMS decomposition that prevents a Michelson-Morley-only cancellation from being mistaken for full Lorentz closure.
+where $q$ labels the retained Noether braid three-binary branch class. The first two entries test moving-assembly deformation and clock retuning; the third tests two-way synchronization; the final three entries are the RMS decomposition that prevents a Michelson-Morley-only cancellation from being mistaken for full Lorentz closure.
 
 The residual packet must carry its provenance:
 $$
@@ -103,7 +103,7 @@ S_{\mathrm{EH}}=
 \frac{1}{16\pi G}
 \int d^4x\,\sqrt{-g}\,R,
 $$
-with matter variation defining $T_{\mu\nu}$ (`https://web.mit.edu/sahughes/www/8.962/lec13.pdf`). The safe extraction is not GR ontology. It is a benchmark interface: one tri-binary branch record must project to an effective curvature/source pair whose weak-field and conservation residuals close together.
+with matter variation defining $T_{\mu\nu}$ (`https://web.mit.edu/sahughes/www/8.962/lec13.pdf`). The safe extraction is not GR ontology. It is a benchmark interface: one Noether braid three-binary branch record must project to an effective curvature/source pair whose weak-field and conservation residuals close together.
 
 For a retained branch class $q$, define the GR-recovery export
 $$

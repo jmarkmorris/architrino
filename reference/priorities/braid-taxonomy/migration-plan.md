@@ -65,7 +65,9 @@ Remove the migrated nodes from `content/scenes/dynamics/dynamics.json`. Keep `Bi
 
 ## Phase 4: Taxonomy Chapter
 
-Create the taxonomy front door after the first source moves are stable:
+Status: implemented 2026-07-03 for the reader-facing taxonomy chapter, taxonomy scene, and Noether braid scene-order insertion.
+
+Created the taxonomy front door after the first source moves were stable:
 
 | New path | New scene |
 | --- | --- |
@@ -87,6 +89,8 @@ The taxonomy chapter should define the Noether braid architecture by independent
 The taxonomy chapter must not claim that all listed configurations are retained branches. It should separate explored support classes, candidate branch families, and accepted certificate statuses.
 
 ## Phase 5: Terminology Migration
+
+Status: implemented 2026-07-03 for authored corpus markdown, source scene labels, and inspected priority workstream prose. The pass preserved the canonical `planar tri-binary Noether braid reduced chart` term, script/schema identifiers, generated indexes, archived source-mining summaries, dormant legacy notes, the braid migration archive, and the large `braid-retained-branch-closure/shell-braid/` proof-packet corpus for separate focused handling if needed.
 
 Use these replacement directions for reader-facing prose and priority workstream prose in the first broad pass:
 
