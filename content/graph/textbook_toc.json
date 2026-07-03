@@ -9,7 +9,7 @@
     },
     "counts": {
       "entries": 181,
-      "sections": 1461
+      "sections": 1462
     }
   },
   "tocRoot": {
@@ -2328,6 +2328,14 @@
             "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json",
             "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
             "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Local Terms",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Local Terms",
+                "sectionKey": "local terms",
+                "headingLevel": 2
+              },
               {
                 "kind": "markdown-section",
                 "title": "Taxonomy Axes",

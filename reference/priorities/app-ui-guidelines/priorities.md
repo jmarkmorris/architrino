@@ -1,4 +1,4 @@
-# UI Standards
+# App UI Guidelines
 
 ## LLM Instructions
 

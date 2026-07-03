@@ -36870,6 +36870,17 @@ $$
 
 Each entry records a different kind of structure. Mixing the entries creates a candidate configuration; it does not by itself prove that the delayed dynamics admit a stable branch. Retention still belongs to the branch ledger, causal-root rows, action and energy rows, gluing status, and stability margin described in the surrounding Noether braid chapters.
 
+#### Local Terms
+
+This chapter uses four evidence-level terms in a controlled way:
+
+| Term | Meaning in this chapter | What it does not claim by itself |
+| --- | --- | --- |
+| branch | A candidate whole six-architrino Noether braid history over a declared finite memory window. The branch is the object whose inventory, paths, causal roots, wakes, energy/action rows, angular-momentum rows, phases, support data, response-center data, and Noether sea row are tested together. | A branch is not a single path, a single binary row, or a visual braid drawing. It is also not automatically stable or physical. |
+| retained | Evidential status for a branch, row, or chart whose required data close on the same record under the declared tolerance, event/domain convention, and stability conditions. | `Retained` does not mean assumed, preferred, or merely still under discussion. If the same-record ledgers are missing, the object remains a candidate. |
+| support | The geometric region, band, envelope, or comparison chart occupied by the branch data. Shell support, nested shell support, oblate support, and axial comparison support are different ways to describe where the six paths or their derived ledgers live. | Support is not a force law and not proof of retention. A support label says how the candidate is represented geometrically, not that the delayed dynamics preserve it. |
+| record | The finite ledger attached to one branch over the declared memory window. It includes only data that can still affect the next delayed update or certificate: inventory, path history, causal-root rows, wake rows, energy/action rows, momentum and angular-momentum rows, phase and plane-orientation rows, support claims, response-center and group-velocity rows, and the local Noether sea row. | A record is not a narrative summary or a loose collection of diagnostics. A proof claim must say which rows close on the same record. |
+
 #### Taxonomy Axes
 
 | Axis | Reader-facing purpose | Example values |
