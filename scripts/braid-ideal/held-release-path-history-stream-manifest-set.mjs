@@ -74,6 +74,35 @@ function normalizeStringRef(value) {
   return typeof value === "string" && value.length > 0 ? value : null;
 }
 
+function readCliOption(name) {
+  const prefix = `--${name}=`;
+  return process.argv.find((arg) => arg.startsWith(prefix))?.slice(prefix.length) ?? null;
+}
+
+function readCliOptions(name) {
+  const prefix = `--${name}=`;
+  return process.argv
+    .filter((arg) => arg.startsWith(prefix))
+    .map((arg) => arg.slice(prefix.length))
+    .filter((value) => value.length > 0);
+}
+
+function splitCliRefList(value) {
+  return normalizeStringRef(value)?.split(",").map((entry) => entry.trim()).filter(Boolean) ?? [];
+}
+
+function makeCandidateDurableManifestRefs(retainedRecordId) {
+  const retainedRecordRef = normalizeStringRef(retainedRecordId);
+  if (retainedRecordRef == null) {
+    return [];
+  }
+  const retainedPart = formatIdPart(retainedRecordRef);
+  return Array.from(
+    { length: 6 },
+    (_, index) => `candidate:native-app:path-history-stream-manifest:${retainedPart}:${index}`
+  );
+}
+
 function makeAuthorization() {
   return Object.fromEntries([
     ...AUTHORIZATION_FLAGS.map((flag) => [flag, false]),
@@ -523,7 +552,27 @@ export function validateHeldReleasePathHistoryStreamManifestSet(artifact) {
 }
 
 function runCli() {
-  const artifact = buildHeldReleasePathHistoryStreamManifestSet();
+  const retainedRecordId = readCliOption("retained-record-id");
+  const providerObjectRef = readCliOption("provider-object-ref");
+  const providerArtifactHash = readCliOption("provider-artifact-hash");
+  const cliDurableManifestRefs = [
+    ...readCliOptions("durable-manifest-ref"),
+    ...splitCliRefList(readCliOption("durable-manifest-refs")),
+  ];
+  const durableManifestRefs =
+    cliDurableManifestRefs.length > 0 || !process.argv.includes("--auto-durable-manifest-refs")
+      ? cliDurableManifestRefs
+      : makeCandidateDurableManifestRefs(retainedRecordId);
+  const artifact = buildHeldReleasePathHistoryStreamManifestSet({
+    seedPathRowOptions: {
+      retainedRecordId,
+      providerObjectRef,
+      providerArtifactHash,
+    },
+    providerObjectRef,
+    providerArtifactHash,
+    durableManifestRefs,
+  });
   const errors = validateHeldReleasePathHistoryStreamManifestSet(artifact);
   if (errors.length > 0) {
     console.error(errors.join("\n"));

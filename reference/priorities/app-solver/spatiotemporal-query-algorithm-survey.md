@@ -4,7 +4,7 @@ Status: `closed-prototype-benchmark-survey`
 
 Kind: `solver-acceleration-survey`
 
-Source task: `spatiotemporal_query_algorithm_survey` in [solver.md](solver.md)
+Source task: `spatiotemporal_query_algorithm_survey` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

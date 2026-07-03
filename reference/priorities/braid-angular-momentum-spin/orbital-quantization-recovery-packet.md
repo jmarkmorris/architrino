@@ -1,6 +1,6 @@
 # Orbital Quantization Recovery Packet
 
-Status. Proof packet for `orbital_quantization_recovery` in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md). This packet is priority material. It does not close internal Noether braid spin, spin-statistics, atomic spin-orbit coupling, hyperfine structure, or molecular singlet/triplet behavior.
+Status. Proof packet for `orbital_quantization_recovery` in [priorities.md](priorities.md). This packet is priority material. It does not close internal Noether braid spin, spin-statistics, atomic spin-orbit coupling, hyperfine structure, or molecular singlet/triplet behavior.
 
 Claim level. The packet recovers the standard observer-level orbital labels from an effective envelope in a central external potential, assuming the envelope extraction map has already been derived from assembly dynamics. The result is a contrast gate: orbital quantization follows from $2\pi$ azimuthal single-valuedness and angular regularity of the external envelope, while spinor closure still requires an ordered-core $2\pi$ history-sheet change and $4\pi$ restoration.
 

@@ -1,6 +1,6 @@
 # Residual-Routing and Event-Ledger Theorem Packet
 
-This detailed priority file supports [nested shell braid causal closure](braid-nested-shell-causal-closure.md). It owns the shared proof grammar for transitions that route unresolved action into a physical channel while closing the same event ledger.
+This detailed priority file supports [nested shell braid causal closure](priorities.md). It owns the shared proof grammar for transitions that route unresolved action into a physical channel while closing the same event ledger.
 
 ## Core Theorem Target
 
@@ -16,7 +16,7 @@ $$
 
 A sector event is promotable only when it names the residual $\mathcal{R}$, identifies the admissible channel or basin $\{B_i\}$, and closes the event ledger $\mathcal{L}_{E\mathbf{p}\mathbf{J}}$ without an untracked loss term.
 
-This is a dynamics and transition theorem first. [Validation Gates](../validation-gates/validation-gates.md) should test whether accepted sector closures survive together; it should not own this derivation.
+This is a dynamics and transition theorem first. [Validation Gates](../validation-gates/priorities.md) should test whether accepted sector closures survive together; it should not own this derivation.
 
 ## Event State And Ledger Object
 
@@ -220,7 +220,7 @@ This predicate is the shared event-ledger contract. Radiation, transport excitat
 
 ## Branch-Certificate Coupling Rule
 
-When a sector event belongs to a retained tri-binary branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell braid causal closure](braid-nested-shell-causal-closure.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
+When a sector event belongs to a retained Noether braid branch class $q$, the event record $\theta_{\mathsf e}$ must extend into the shared branch certificate $\mathcal{C}_{\mathrm{tri}}^{(q)}(W)$ from [nested shell braid causal closure](priorities.md). This does not add a sixth promotion factor. It binds $\operatorname{Replay}_S$, $\operatorname{Compat}_S$, and $\operatorname{Ledger}_S$ to the same finite closure graph, active causal-root ledger, branch-Jacobian floor, inactive-root gap, finite memory depth, stability gap, speed-convention row, and Noether sea response record used by the Lorentz and effective-metric rows.
 
 Equivalently, for every promoted event there must be an embedding
 $$
@@ -230,7 +230,7 @@ that preserves $(X,\mathcal{R},I_{\mathsf e},Y_{\mathsf e})$, every ledger row $
 
 ## Residual-Routing Promotion Lemma
 
-Fix a sector $S$ with acceptance set $\mathcal{C}_S$, and let $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ denote the cross-sector acceptance intersection from [Validation Gates](../validation-gates/validation-gates.md). A candidate event $\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})$ is promotable as a sector event if the following five conditions hold:
+Fix a sector $S$ with acceptance set $\mathcal{C}_S$, and let $\mathcal{C}_{\mathbb{A}\mathbb{A}\mathbb{A}}$ denote the cross-sector acceptance intersection from [Validation Gates](../validation-gates/priorities.md). A candidate event $\mathsf e=(X,I_{\mathsf e},Y_{\mathsf e})$ is promotable as a sector event if the following five conditions hold:
 
 1. **Replayable residual:** $\mathcal{R}(X)$ is computed from $\Gamma$, $\mathcal{H}$, $\rho_{\text{NS}}(\mathbf{x},t)$, $\chi_{\text{sea}}(\mathbf{x},t)$, and explicitly named sector variables, with no hidden sector-specific residual term.
 2. **Boundary selection:** each selected $B_i$ has a stated $g_i(X,\mathcal{R})\ge0$, and every excluded channel required by the sector either has $g_k(X,\mathcal{R})<0$ or is explicitly ruled out by a compatibility condition.
@@ -248,8 +248,8 @@ Under these conditions, the event may be promoted because the residual is replay
 | [condensed-matter-medium-transport.md](../braid-mass-response-map/condensed-matter-medium-transport.md) | Critical-transport residual separating reversible medium-dressed inertia from dissipative transport. | Use the shared contract when $\mathcal{R}_{\text{tr}}$ crosses into excitation, radiation, medium heating, or branch transition. |
 | [weak-sector-gauge-closure.md](../standard-model-closure/weak-sector-gauge-closure.md) | Weak-corridor provenance, charged-current handedness, and effective gauge compatibility. | Use the shared event ledger for weak reactions so outgoing lepton / antilepton cores and charged transaction deltas have source accounting. |
 | [nuclear-binding-closure.md](../nuclear-atomic-molecular-closure/nuclear-binding-closure.md) | Hadronic-to-nuclear coarse graining, residual strong channels, beta stability, and first nuclear benchmarks. | Use the shared residual-routing contract for residual strong channels, beta transitions, recoil, and binding-energy ledgers. |
-| [quantum-closure.md](../quantum-closure/quantum-closure.md) | Measurement-record formation after transfer-operator and invariant-measure closure. | Use the shared event ledger when a basin outcome becomes an apparatus record with energy, momentum, angular momentum, recoil, and medium updates. |
-| [strong-field-closure.md](../strong-field-closure/strong-field-closure.md) | Horizon-interface release channels and information-accounting consequences. | Use the shared routing grammar for jets, diffuse outflow, dark-sector escape, remnant updates, and failure diagnostics. |
+| [quantum-closure.md](../quantum-closure/priorities.md) | Measurement-record formation after transfer-operator and invariant-measure closure. | Use the shared event ledger when a basin outcome becomes an apparatus record with energy, momentum, angular momentum, recoil, and medium updates. |
+| [strong-field-closure.md](../strong-field-closure/priorities.md) | Horizon-interface release channels and information-accounting consequences. | Use the shared routing grammar for jets, diffuse outflow, dark-sector escape, remnant updates, and failure diagnostics. |
 
 ## Consumer Instantiation Table
 
@@ -420,13 +420,13 @@ The shared packet may appear in [reaction-ledger](../../../content/markdown/aaa/
 
 ## Related Priorities And Corpus Consumers
 
-- [nested-shell-braid-causal-closure](braid-nested-shell-causal-closure.md)
+- [nested-shell-braid-causal-closure](priorities.md)
 - [radiation](../../../content/markdown/aaa/reactions/radiation.md)
-- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
-- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
-- [quantum-closure](../quantum-closure/quantum-closure.md)
-- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
-- [validation-gates](../validation-gates/validation-gates.md)
+- [mass-map](../braid-mass-response-map/priorities.md)
+- [standard-model-closure](../standard-model-closure/priorities.md)
+- [quantum-closure](../quantum-closure/priorities.md)
+- [strong-field-closure](../strong-field-closure/priorities.md)
+- [validation-gates](../validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

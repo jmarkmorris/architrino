@@ -1,1 +1,16 @@
 content/generated/pdf/**/*.pdf binary
+
+*.ppt binary
+*.pptx binary
+*.pptm binary
+*.pps binary
+*.ppsx binary
+*.pot binary
+*.potx binary
+*.xls binary
+*.xlsx binary
+*.xlsm binary
+*.xlsb binary
+*.xlt binary
+*.xltx binary
+*.xltm binary

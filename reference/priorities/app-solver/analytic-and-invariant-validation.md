@@ -4,7 +4,7 @@ Status: `closed-validation-plan`
 
 Kind: `solver-validation-plan`
 
-Source task: `analytic_and_invariant_validation` in [solver.md](solver.md)
+Source task: `analytic_and_invariant_validation` in [priorities.md](priorities.md)
 
 Primary dependencies:
 
@@ -274,7 +274,7 @@ solver surface that the app will later consume.
 ## Closure Decision
 
 `analytic_and_invariant_validation` is complete as a standalone validation plan
-and closed in [solver.md](solver.md). Implementation coverage remains open under
+and closed in [priorities.md](priorities.md). Implementation coverage remains open under
 the fixture families above until native, WebAssembly, app-bridge, stream, and
 batch checks cover the full matrix.
 

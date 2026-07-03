@@ -4,7 +4,7 @@ Status: `closed-contract-baseline`
 
 Kind: `solver-contract-closeout`
 
-Source task: `solver_contract` in [solver.md](solver.md)
+Source task: `solver_contract` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

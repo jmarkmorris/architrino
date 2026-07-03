@@ -31,18 +31,6 @@
         "scenePath": "content/scenes/dynamics/binary_dynamics.json"
       },
       {
-        "nodeId": "tri_binary_configuration_space",
-        "scenePath": "content/scenes/dynamics/tri_binary_configuration_space.json"
-      },
-      {
-        "nodeId": "dyadic_resonance_lock",
-        "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json"
-      },
-      {
-        "nodeId": "assembly_topological_charge",
-        "scenePath": "content/scenes/dynamics/assembly_topological_charge.json"
-      },
-      {
         "nodeId": "causal_action_functional",
         "scenePath": "content/scenes/dynamics/causal_action_functional.json"
       },
@@ -94,30 +82,6 @@
       "radius": 2.688,
       "color": "#243d8f",
       "labelTitle": "Binary Dynamics",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "tri_binary_configuration_space",
-      "title": "Tri-Binary Configuration Space",
-      "radius": 2.688,
-      "color": "#3f6658",
-      "labelTitle": "Tri-Binary Configuration Space",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "dyadic_resonance_lock",
-      "title": "Dyadic Resonance Lock",
-      "radius": 2.688,
-      "color": "#6c4f8d",
-      "labelTitle": "Dyadic Resonance Lock",
-      "labelBadge": "doc"
-    },
-    {
-      "id": "assembly_topological_charge",
-      "title": "Assembly Topological Charge",
-      "radius": 2.688,
-      "color": "#315f4d",
-      "labelTitle": "Assembly Topological Charge",
       "labelBadge": "doc"
     },
     {

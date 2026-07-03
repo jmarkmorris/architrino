@@ -56,7 +56,7 @@ The candidate transformation may act first on inner and middle ledger variables,
 
 | Target | Proposed promotion | Gate |
 | --- | --- | --- |
-| [dark-sector.md](dark-sector.md) | Use the WIMP vector and supersymmetry guardrail for `wimp_benchmark_vector` and the candidate assembly registry. | Must mark the Jungman input as arXiv-limited unless the full review is separately mined. |
+| [priorities.md](priorities.md) | Use the WIMP vector and supersymmetry guardrail for `wimp_benchmark_vector` and the candidate assembly registry. | Must mark the Jungman input as arXiv-limited unless the full review is separately mined. |
 | [dark-matter.md](../../../content/markdown/aaa/cosmology/dark-matter.md) | Add comparison language for relic abundance, scattering, annihilation, direct detection, indirect detection, and null-result constraints. | Must not identify a native assembly with a supersymmetric neutralino without a candidate assembly record and transformation theorem. |
 
 ## Deferred Or Rejected Moves

@@ -28,7 +28,7 @@ The value is live because it protects contact with tested Bell-family data and p
 The reader-facing Bell chapter should stop at the closure target, obstruction, and failure conditions. The operational Bell work queue is retained here:
 
 1. Derive the total angular-momentum functional for a Noether braid with changing inner, middle, and outer binary frequencies, including self-action and causal-wake terms.
-2. Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a tri-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
+2. Evaluate the Master-Equation branch-sum apparatus impulse, separatrix normal, and record-cycle invariant measure for a three-binary assembly driven by a Stern-Gerlach-like apparatus potential gradient.
 3. Simulate a minimal fragmentation event and extract the joint pair ledger, not merely a pair of opposite classical axes.
 4. Compute $E(\theta_{AB})$ from the derived response kernel and source measure; compare against $-\cos\theta_{AB}$ and evaluate $|S|$.
 5. If $|S|<2\sqrt{2}$, identify whether the deficit comes from response-function shape, distribution non-uniformity, residual separability, or a product-screening collapse.

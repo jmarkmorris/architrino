@@ -1,6 +1,6 @@
 # Exposure-Quotient Theorem Packet
 
-This detailed priority file supports [Noether-Core Stability and First Mass Map](braid-mass-response-map.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether braid geometry becomes externally visible to a sector.
+This detailed priority file supports [Noether-Core Stability and First Mass Map](priorities.md). It generalizes shielding extraction into a sector exposure/quotient theorem: what part of internal Noether braid geometry becomes externally visible to a sector.
 
 ## Core Theorem Target
 
@@ -541,13 +541,13 @@ The theorem can promote into [particle-masses](../../../content/markdown/aaa/ass
 
 ## Related Priorities
 
-- [mass-map](braid-mass-response-map.md)
+- [mass-map](priorities.md)
 - [$A_0$ energy and shielding extraction](a0-energy-shielding-extraction.md)
-- [standard-model-closure](../standard-model-closure/standard-model-closure.md)
+- [standard-model-closure](../standard-model-closure/priorities.md)
 - [weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md)
-- [angular-momentum-spin](../braid-angular-momentum-spin/braid-angular-momentum-spin.md)
-- [braid](../braid-retained-branch-closure/braid-retained-branch-closure.md)
-- [validation-gates](../validation-gates/validation-gates.md)
+- [angular-momentum-spin](../braid-angular-momentum-spin/priorities.md)
+- [braid](../braid-retained-branch-closure/priorities.md)
+- [validation-gates](../validation-gates/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

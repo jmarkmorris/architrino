@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Status: `complete`
 - Mode: `team-agent continuation with executable reducer integration`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Score column updated: none
 - Claim level: score-neutral executable contract check
 
@@ -41,7 +41,7 @@ $$
 \right).
 $$
 
-The new executable artifact is [check-emit-02-04-contract.mjs](../../../scripts/equation-mapping/check-emit-02-04-contract.mjs). It consumes the live tri-binary solver report's `cases[].branchChartProjection.equationBearing` payload and projects it against the declared `EQ-02` through `EQ-04` rows without treating current-proxy rows as score evidence.
+The new executable artifact is [check-emit-02-04-contract.mjs](../../../scripts/equation-mapping/check-emit-02-04-contract.mjs). It consumes the live three-binary solver report's `cases[].branchChartProjection.equationBearing` payload and projects it against the declared `EQ-02` through `EQ-04` rows without treating current-proxy rows as score evidence.
 
 ## Executable Result
 
@@ -67,7 +67,7 @@ Summary:
 
 The checker is doing the intended fail-closed work. It confirms that the live report contains useful current-proxy rows, including root-chart, active-lineage, same-row torque/wake diagnostic, common-clock, lever-arm/speed, and energy-frequency target rows. It also confirms that those rows do not yet populate the retained translating-binary carrier or the full same-record residual.
 
-The checker separates retained target rows from current solver-report rows: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current tri-binary solver-report rows. In particular, `root_chart_reduced` is proxy-only and does not count as a retained $\mathfrak B_u$ row.
+The checker separates retained target rows from current solver-report rows: `requiredRows` are retained $\operatorname{Emit}_{02\text{-}04}^{\mathrm{bin}}$ target rows, while `currentProxyRows` are current three-binary solver-report rows. In particular, `root_chart_reduced` is proxy-only and does not count as a retained $\mathfrak B_u$ row.
 
 ## Missing Rows By Projection
 

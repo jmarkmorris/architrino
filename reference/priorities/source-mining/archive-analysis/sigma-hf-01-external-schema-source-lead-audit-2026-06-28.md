@@ -30,8 +30,8 @@ source lead is not itself a candidate external schema object.
 Paths searched:
 
 - `reference/priorities/source-mining/`
-- `reference/priorities/proof-programs/proof-programs.md`
-- `reference/priorities/proof-programs/breather-proof/breather-proof.md`
+- `reference/priorities/proof-programs/priorities.md`
+- `reference/priorities/proof-programs/breather-proof/priorities.md`
 - `reference/priorities/proof-programs/breather-proof/certificate/external_proof_grade_derivation_schema_acceptance_contract.md`
 - `reference/priorities/proof-programs/breather-proof/certificate/sigma_hf_01_external_schema_pilot_packet.md`
 - `reference/priorities/proof-programs/breather-proof/certificate/sigma_hf_01_external_schema_candidate_intake_checklist.md`

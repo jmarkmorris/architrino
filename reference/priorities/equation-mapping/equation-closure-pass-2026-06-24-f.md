@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Claim level: conservative equation-inventory addition
 - Promotion status: priority-only
@@ -70,7 +70,7 @@ If $\theta$ is selected by minimizing this residual directly, the row remains co
 ## Files Updated
 
 - [Equation Mapping Detail](equation.md)
-- [Equation Mapping Internal Priority](equation-mapping.md)
+- [Equation Mapping Internal Priority](priorities.md)
 - [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - [EQ-04A Koide Charged-Lepton Mass Relation](eq-04a-koide-charged-lepton-mass-relation.md)
 

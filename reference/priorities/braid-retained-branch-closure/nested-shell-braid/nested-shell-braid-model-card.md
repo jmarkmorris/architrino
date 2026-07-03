@@ -1,6 +1,6 @@
 # Nested Shell Braid Model Card
 
-Terminology status: `quarantined-priority-history`. This packet is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [Braid](../braid-retained-branch-closure.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
+Terminology status: `quarantined-priority-history`. This packet is inherited architecture source, not terminology authority. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted reader-facing taxonomy. Route any reuse through [Braid](../priorities.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
 
 Promotion status: `priority-only`. This packet records the proposed relation between the nested shell braid and shell braid cases. It does not authorize migration into `content/markdown/aaa`, simulations, scene assets, or app copy. It defines a branch-family target in which those cases are mathematical cases of one bounded-speed Noether braid model with explicit shell rows. After [Neutral Braid Model](../neutral-braid/neutral-braid-model.md), this packet is a binary-partition case of the broader neutral braid branch family. The partition-indexed radius shorthand $R_a$ is derived in [Nested Shell Braid Radial Support Functional](nested-shell-braid-radial-support-functional.md).
 

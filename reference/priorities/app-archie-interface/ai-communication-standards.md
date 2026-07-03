@@ -5,7 +5,7 @@
 - Kind: `priority-research`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](app-archie-interface.md)
+- Parent priority: [Archie Interface App](priorities.md)
 - Service platform: [Archie Service Platform](../archie/service-platform.md)
 - V1 product requirements: [v1-product-requirements.md](v1-product-requirements.md)
 - Generated media corporate standard: [corporate-media-standards.md](corporate-media-standards.md)
@@ -13,7 +13,7 @@
 
 ## Purpose
 
-This priority tracks emerging standards and guidance for how AI systems communicate with people, label AI-generated material, preserve source and provenance signals, explain limitations, and report service status without confusing users.
+This priority tracks emerging standards and guidance for how AI systems communicate with humans, label AI-generated material, preserve source and provenance signals, explain limitations, and report service status without confusing users.
 
 The goal is early adoption where it improves trust, interoperability, accessibility, compliance, or user understanding. The goal is not to import technical standards language into ordinary user-facing prose.
 
@@ -159,7 +159,7 @@ The first pass should produce:
 Closure goal:
 Research emerging AI communication standards and recommend which ones Archie should adopt early while keeping user-facing language plain and understandable.
 
-Use this packet, [app-archie-interface.md](app-archie-interface.md), [v1-product-requirements.md](v1-product-requirements.md), [corporate-media-standards.md](corporate-media-standards.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as source context.
+Use this packet, [priorities.md](priorities.md), [v1-product-requirements.md](v1-product-requirements.md), [corporate-media-standards.md](corporate-media-standards.md), [service-native-speech-presentation-contract.md](service-native-speech-presentation-contract.md), [visual-artifact-contract.md](visual-artifact-contract.md), [token-ledger-privacy-contract.md](token-ledger-privacy-contract.md), [observability-public-status-incident-contract.md](observability-public-status-incident-contract.md), and [service-terms-account-policy-contract.md](service-terms-account-policy-contract.md) as source context.
 
 Task:
 - Research official standards, regulatory guidance, accessibility guidance, and emerging industry practices for AI disclosure, generated-media labeling, provenance, model/service documentation, user consent, privacy, cost disclosure, status communication, and action confirmation.

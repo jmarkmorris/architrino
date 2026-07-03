@@ -4,7 +4,7 @@ Status: `closed-design-capture`
 
 Kind: `solver-execution-policy`
 
-Source task: `threading_execution_policy` in [solver.md](solver.md)
+Source task: `threading_execution_policy` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

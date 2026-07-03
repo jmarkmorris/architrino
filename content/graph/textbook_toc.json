@@ -8,8 +8,8 @@
       "markdownIndex": "content/markdown/markdown_index.json"
     },
     "counts": {
-      "entries": 180,
-      "sections": 1451
+      "entries": 181,
+      "sections": 1462
     }
   },
   "tocRoot": {
@@ -1555,268 +1555,6 @@
             ]
           },
           {
-            "id": "dynamics__tri_binary_configuration_space",
-            "title": "Tri-Binary Configuration Space",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/tri_binary_configuration_space.json",
-            "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Scope Of The Hypothesis",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Scope Of The Hypothesis",
-                "sectionKey": "scope of the hypothesis",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Why Three Binaries",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Why Three Binaries",
-                "sectionKey": "why three binaries",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "General Branch State",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "General Branch State",
-                "sectionKey": "general branch state",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Branch Group Velocity",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Branch Group Velocity",
-                "sectionKey": "branch group velocity",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Eigen-Braid Candidates",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Eigen-Braid Candidates",
-                "sectionKey": "eigen braid candidates",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Momentum And Principal-Direction Decomposition",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Momentum And Principal-Direction Decomposition",
-                "sectionKey": "momentum and principal direction decomposition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Unordered Layer Semantics",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Unordered Layer Semantics",
-                "sectionKey": "unordered layer semantics",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Super-Field-Speed Carrier Rows",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Super-Field-Speed Carrier Rows",
-                "sectionKey": "super field speed carrier rows",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Stability In A Sea Of Like Assemblies",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Stability In A Sea Of Like Assemblies",
-                "sectionKey": "stability in a sea of like assemblies",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Toward A Periodic Table Of The Noether Braid",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
-                "sectionKey": "toward a periodic table of the noether braid",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Accessory-Architrino Capture",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Accessory-Architrino Capture",
-                "sectionKey": "accessory architrino capture",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Frame Orthogonality And Framing Anisotropy",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
-                "sectionKey": "frame orthogonality and framing anisotropy",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Relation To The Dyadic Chapter",
-                "markdownPath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md",
-                "markdownSection": "Relation To The Dyadic Chapter",
-                "sectionKey": "relation to the dyadic chapter",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__dyadic_resonance_lock",
-            "title": "Dyadic Resonance Lock",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/dyadic_resonance_lock.json",
-            "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "General Tri-Binary Branch State",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "General Tri-Binary Branch State",
-                "sectionKey": "general tri binary branch state",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Status and Assumptions",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Status and Assumptions",
-                "sectionKey": "status and assumptions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Immediate Consequences",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Immediate Consequences",
-                "sectionKey": "immediate consequences",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
-                "sectionKey": "proposition 1 exterior integer lock formulas",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Could $1{:}2{:}4$ Be a Solution?",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
-                "sectionKey": "could 1 2 4 be a solution",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "What Exact Periodicity Gives, and What It Does Not",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
-                "sectionKey": "what exact periodicity gives and what it does not",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Interpreting the Cancellation Principle",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Interpreting the Cancellation Principle",
-                "sectionKey": "interpreting the cancellation principle",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "RG-Style Truncation Test",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "RG-Style Truncation Test",
-                "sectionKey": "rg style truncation test",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Reduced-Theorem Target",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Reduced-Theorem Target",
-                "sectionKey": "reduced theorem target",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Ancillary Symmetry Check",
-                "markdownPath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md",
-                "markdownSection": "Ancillary Symmetry Check",
-                "sectionKey": "ancillary symmetry check",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
-            "id": "dynamics__assembly_topological_charge",
-            "title": "Assembly Topological Charge",
-            "kind": "markdown-view",
-            "sceneType": "Scene-Markdown-View",
-            "scenePath": "content/scenes/dynamics/assembly_topological_charge.json",
-            "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-            "sections": [
-              {
-                "kind": "markdown-section",
-                "title": "Source Of The Three Entries",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Source Of The Three Entries",
-                "sectionKey": "source of the three entries",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Candidate Definition",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Candidate Definition",
-                "sectionKey": "candidate definition",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Invariance And Allowed Transitions",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Invariance And Allowed Transitions",
-                "sectionKey": "invariance and allowed transitions",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Role In The Assembly Atlas",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Role In The Assembly Atlas",
-                "sectionKey": "role in the assembly atlas",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Simulation Extraction",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Simulation Extraction",
-                "sectionKey": "simulation extraction",
-                "headingLevel": 2
-              },
-              {
-                "kind": "markdown-section",
-                "title": "Status",
-                "markdownPath": "content/markdown/aaa/dynamics/assembly-topological-charge.md",
-                "markdownSection": "Status",
-                "sectionKey": "status",
-                "headingLevel": 2
-              }
-            ]
-          },
-          {
             "id": "dynamics__causal_action_functional",
             "title": "Causal Action Functional",
             "kind": "markdown-view",
@@ -2583,6 +2321,358 @@
             ]
           },
           {
+            "id": "noether_braid__taxonomy",
+            "title": "Noether Braid Taxonomy",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_taxonomy.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Local Terms",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Local Terms",
+                "sectionKey": "local terms",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Taxonomy Axes",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Taxonomy Axes",
+                "sectionKey": "taxonomy axes",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Base Inventory",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Base Inventory",
+                "sectionKey": "base inventory",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Support Geometry",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Support Geometry",
+                "sectionKey": "support geometry",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Three-Binary Branch Record",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Three-Binary Branch Record",
+                "sectionKey": "three binary branch record",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Polarity Support",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Polarity Support",
+                "sectionKey": "polarity support",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Angular-Momentum Handedness",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Angular-Momentum Handedness",
+                "sectionKey": "angular momentum handedness",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Speed And Frequency Families",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Speed And Frequency Families",
+                "sectionKey": "speed and frequency families",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Certificate Status",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Certificate Status",
+                "sectionKey": "certificate status",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reading The Explored Configurations",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+                "markdownSection": "Reading The Explored Configurations",
+                "sectionKey": "reading the explored configurations",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__configuration_space",
+            "title": "Noether Braid Configuration Space",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_configuration_space.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Scope Of The Hypothesis",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Scope Of The Hypothesis",
+                "sectionKey": "scope of the hypothesis",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Why Three Binaries",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Why Three Binaries",
+                "sectionKey": "why three binaries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "General Branch State",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "General Branch State",
+                "sectionKey": "general branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Branch Group Velocity",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Branch Group Velocity",
+                "sectionKey": "branch group velocity",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Eigen-Braid Candidates",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Eigen-Braid Candidates",
+                "sectionKey": "eigen braid candidates",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Momentum And Principal-Direction Decomposition",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Momentum And Principal-Direction Decomposition",
+                "sectionKey": "momentum and principal direction decomposition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Unordered Layer Semantics",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Unordered Layer Semantics",
+                "sectionKey": "unordered layer semantics",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Super-Field-Speed Carrier Rows",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Super-Field-Speed Carrier Rows",
+                "sectionKey": "super field speed carrier rows",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Stability In A Sea Of Like Assemblies",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Stability In A Sea Of Like Assemblies",
+                "sectionKey": "stability in a sea of like assemblies",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Toward A Periodic Table Of The Noether Braid",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Toward A Periodic Table Of The Noether Braid",
+                "sectionKey": "toward a periodic table of the noether braid",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Accessory-Architrino Capture",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Accessory-Architrino Capture",
+                "sectionKey": "accessory architrino capture",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Frame Orthogonality And Framing Anisotropy",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Frame Orthogonality And Framing Anisotropy",
+                "sectionKey": "frame orthogonality and framing anisotropy",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Relation To The Dyadic Chapter",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+                "markdownSection": "Relation To The Dyadic Chapter",
+                "sectionKey": "relation to the dyadic chapter",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__dyadic_resonance_lock",
+            "title": "Noether Braid Dyadic Resonance Lock",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "General Noether Braid Branch State",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "General Noether Braid Branch State",
+                "sectionKey": "general noether braid branch state",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status and Assumptions",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Status and Assumptions",
+                "sectionKey": "status and assumptions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Immediate Consequences",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Immediate Consequences",
+                "sectionKey": "immediate consequences",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Proposition 1 (Exterior Integer Lock Formulas)",
+                "sectionKey": "proposition 1 exterior integer lock formulas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Could $1{:}2{:}4$ Be a Solution?",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Could $1{:}2{:}4$ Be a Solution?",
+                "sectionKey": "could 1 2 4 be a solution",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "What Exact Periodicity Gives, and What It Does Not",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "What Exact Periodicity Gives, and What It Does Not",
+                "sectionKey": "what exact periodicity gives and what it does not",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Interpreting the Cancellation Principle",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Interpreting the Cancellation Principle",
+                "sectionKey": "interpreting the cancellation principle",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "RG-Style Truncation Test",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "RG-Style Truncation Test",
+                "sectionKey": "rg style truncation test",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Reduced-Theorem Target",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Reduced-Theorem Target",
+                "sectionKey": "reduced theorem target",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Ancillary Symmetry Check",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+                "markdownSection": "Ancillary Symmetry Check",
+                "sectionKey": "ancillary symmetry check",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
+            "id": "noether_braid__topological_charge",
+            "title": "Noether Braid Topological Charge",
+            "kind": "markdown-view",
+            "sceneType": "Scene-Markdown-View",
+            "scenePath": "content/scenes/noether-braid/noether_braid_topological_charge.json",
+            "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+            "sections": [
+              {
+                "kind": "markdown-section",
+                "title": "Source Of The Three Entries",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Source Of The Three Entries",
+                "sectionKey": "source of the three entries",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Candidate Definition",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Candidate Definition",
+                "sectionKey": "candidate definition",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Invariance And Allowed Transitions",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Invariance And Allowed Transitions",
+                "sectionKey": "invariance and allowed transitions",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Role In The Assembly Atlas",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Role In The Assembly Atlas",
+                "sectionKey": "role in the assembly atlas",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Simulation Extraction",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Simulation Extraction",
+                "sectionKey": "simulation extraction",
+                "headingLevel": 2
+              },
+              {
+                "kind": "markdown-section",
+                "title": "Status",
+                "markdownPath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+                "markdownSection": "Status",
+                "sectionKey": "status",
+                "headingLevel": 2
+              }
+            ]
+          },
+          {
             "id": "noether_braid__nested_shell_braid_dynamics",
             "title": "Nested Shell Braid Dynamics",
             "kind": "markdown-view",
@@ -2648,10 +2738,10 @@
               },
               {
                 "kind": "markdown-section",
-                "title": "Planar Tri-Binary Reduced Chart",
+                "title": "Planar Tri-Binary Noether Braid Reduced Chart",
                 "markdownPath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-                "markdownSection": "Planar Tri-Binary Reduced Chart",
-                "sectionKey": "planar tri binary reduced chart",
+                "markdownSection": "Planar Tri-Binary Noether Braid Reduced Chart",
+                "sectionKey": "planar tri binary noether braid reduced chart",
                 "headingLevel": 2
               },
               {
@@ -11899,6 +11989,14 @@
                         "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
                         "markdownSection": "Curved-Spacetime Equation",
                         "sectionKey": "curved spacetime equation",
+                        "headingLevel": 2
+                      },
+                      {
+                        "kind": "markdown-section",
+                        "title": "Cosmological Scalar Comparison",
+                        "markdownPath": "content/markdown/aaa/philosophy-history/theory-bridges/klein-gordon-scalar-fields.md",
+                        "markdownSection": "Cosmological Scalar Comparison",
+                        "sectionKey": "cosmological scalar comparison",
                         "headingLevel": 2
                       },
                       {

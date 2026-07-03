@@ -51,8 +51,8 @@ where the rows compare trajectory flow, screen-density output, which-path distur
 | Source draft | Promotion target | Gate |
 | --- | --- | --- |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Use interference as the first phase-sensitive basin-measure proof target. |
-| This file | [quantum-closure](../quantum-closure/quantum-closure.md) | Map wavefunction ontology into path-history and detector-response records. |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add which-path and no-signaling constraints to quantum acceptance. |
+| This file | [quantum-closure](../quantum-closure/priorities.md) | Map wavefunction ontology into path-history and detector-response records. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add which-path and no-signaling constraints to quantum acceptance. |
 
 ## Failure Modes
 

@@ -4,11 +4,11 @@ Status: `closed-validation-capture`
 
 Kind: `runtime-validation-status`
 
-Source task: `cpp_clang_runtime_validation` in [solver.md](solver.md)
+Source task: `cpp_clang_runtime_validation` in [priorities.md](priorities.md)
 
 Audit date: 2026-06-20
 
-Write boundary: this closure pass updated this audit and [solver.md](solver.md),
+Write boundary: this closure pass updated this audit and [priorities.md](priorities.md),
 then refreshed build and report artifacts under `.tmp/`. It did not edit C++
 source, CMake files, JavaScript runtime files, TypeScript declarations, or JSON
 schemas.

@@ -4,7 +4,7 @@ Status: mined-source packet; priority-only; no corpus promotion.
 
 Date mined: June 30, 2026.
 
-Scope: charged leptons, selected light hadrons, $W/Z/H$, top mass rows, quark mass scheme definitions, widths, lifetimes, and branching-ratio rows. This packet sharpens downstream benchmark rows for [mass-map](../braid-mass-response-map/braid-mass-response-map.md), exposure, shielding, decay-clock, and detector-provenance recovery without using catalog values to choose native geometry.
+Scope: charged leptons, selected light hadrons, $W/Z/H$, top mass rows, quark mass scheme definitions, widths, lifetimes, and branching-ratio rows. This packet sharpens downstream benchmark rows for [mass-map](../braid-mass-response-map/priorities.md), exposure, shielding, decay-clock, and detector-provenance recovery without using catalog values to choose native geometry.
 
 ## Mining Result
 

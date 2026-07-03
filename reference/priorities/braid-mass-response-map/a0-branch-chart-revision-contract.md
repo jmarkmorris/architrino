@@ -2,7 +2,7 @@
 
 ## Packet Metadata
 
-- Workstream: [Noether-Core Stability and First Mass Map](braid-mass-response-map.md)
+- Workstream: [Noether-Core Stability and First Mass Map](priorities.md)
 - Source packet: [$A_0$ Reduced Branch Certificate Packet](a0-reduced-branch-certificate.md)
 - Claim level: priority-side branch-chart contract
 - Promotion decision: priority-only until an accepted corrected branch row exists

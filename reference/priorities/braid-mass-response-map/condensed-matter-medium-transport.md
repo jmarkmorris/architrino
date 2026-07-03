@@ -1,6 +1,6 @@
 # Condensed Matter and Medium Transport
 
-This detailed priority file supports [Noether-Core Stability and First Mass Map](braid-mass-response-map.md). It covers the medium-transport opportunity in [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md).
+This detailed priority file supports [Noether-Core Stability and First Mass Map](priorities.md). It covers the medium-transport opportunity in [Condensed Matter](../../../content/markdown/aaa/nuclear-atomic/condensed-matter.md).
 
 ## Core Opportunity
 

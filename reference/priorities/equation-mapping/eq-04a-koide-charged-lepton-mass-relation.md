@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `deferred-upstream-blocked`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Related corpus material: [Particle Masses](../../../content/markdown/aaa/assemblies/particle-masses.md)
 - Claim level: speculative charged-lepton benchmark and residual target

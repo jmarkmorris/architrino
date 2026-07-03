@@ -2,7 +2,7 @@
 
 ## Packet Metadata
 
-- Workstream: [Noether-Core Stability and First Mass Map](braid-mass-response-map.md)
+- Workstream: [Noether-Core Stability and First Mass Map](priorities.md)
 - Source packet: [$A_0$ Branch-Chart Revision Contract](a0-branch-chart-revision-contract.md)
 - Claim level: priority-side corpus recommendation packet
 - Promotion decision: first validation-facing AAA edit batch promoted on May 20, 2026; particle-facing and energy-facing edits remain recommendations only. No mass, energy, shielding, or medium-response claim is ready for promotion.

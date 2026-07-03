@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Claim level: `priority-only theorem target`
-- Workstream: [master-equation-closure](master-equation-closure.md)
+- Workstream: [master-equation-closure](priorities.md)
 - Topology layer: EOM-independent priority-only proof program. A chosen EOM may
   consume the retained ledger later, but it is not an input assumption here.
 - Downstream corpus destinations if accepted by a future EOM consumer:

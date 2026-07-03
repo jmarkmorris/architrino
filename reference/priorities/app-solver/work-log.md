@@ -7,7 +7,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 ## Log Entries
 ### 2026-07-02 Solver Current Note Migration
 
-Migrated current implementation, inventory, and runtime-validation status paragraphs out of `solver.md` so the priority tracker can stay focused on requirements, decisions, and the current queue. The original status text is preserved below, grouped by the section where it appeared.
+Migrated current implementation, inventory, and runtime-validation status paragraphs out of `priorities.md` so the priority tracker can stay focused on requirements, decisions, and the current queue. The original status text is preserved below, grouped by the section where it appeared.
 
 #### Simulation Capability Envelope
 

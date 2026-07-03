@@ -4,7 +4,7 @@ Status: `closed-causal-root-adapter`
 
 Kind: `solver-app-adapter-closeout`
 
-Source task: `photon_adapter` in [solver.md](solver.md)
+Source task: `photon_adapter` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

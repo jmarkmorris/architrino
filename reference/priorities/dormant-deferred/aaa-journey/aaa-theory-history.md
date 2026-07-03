@@ -16,7 +16,7 @@ Use it to capture the discovery sequence, seminal realization clusters, legacy-t
 
 This file also absorbs the former origin-history role: the thought process, parsimony constraints, pruning decisions, failed branches, and conceptual transitions that explain how the architecture narrowed toward its current form.
 
-The workstream control file is [aaa-journey](aaa-journey.md). This file is the long-form theory-history packet.
+The workstream control file is [aaa-journey](priorities.md). This file is the long-form theory-history packet.
 
 ## Capture Rules
 

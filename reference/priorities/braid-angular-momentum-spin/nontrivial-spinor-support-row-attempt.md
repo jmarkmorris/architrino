@@ -1,6 +1,6 @@
 # Nontrivial Spinor Support Row Attempt
 
-Status. Priority proof packet for the `spinor_closure` row in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md), following the rigid-control falsifier in [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
+Status. Priority proof packet for the `spinor_closure` row in [priorities.md](priorities.md), following the rigid-control falsifier in [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 Claim level. Support-condition / reduced-data no-go packet. The current reduced data do not honestly supply a retained non-gauge active-root row $r_\star$ with $\epsilon_{r_\star}^{2\pi}=1$ and $\epsilon_{r_\star}^{4\pi}=0$. The packet narrows the next admissible attempt to a specific minimal row family, exact parity sources, quotient exclusions, doubled-path restoration requirements, and missing branch-chart transport data.
 

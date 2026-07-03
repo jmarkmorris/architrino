@@ -189,9 +189,9 @@ with precession read as connection holonomy around the ordered-frame period loop
 
 [Equation Closure Pass 2026-06-23 W](equation-closure-pass-2026-06-23-w.md) turns this route into a score-neutral checker. The checker-ready route is not evidence-ready: the attempt fixture has $\eta_{\mathrm{spin}}=1$ and $g_{\mathrm{lead}}=2$ numerically, but it still blocks at `missing_accepted_ordered_frame_loop`.
 
-## Tri-Binary Bivector Sector Certificate
+## Noether Braid Bivector Sector Certificate
 
-For tri-binary frequency-family comparison, replace plane-normal reliance with oriented bivectors. To avoid collision with raw binary labels $B_1,B_2,B_3$, use $\mathcal B_a$ locally for the retained plane bivector:
+For three-binary frequency-family comparison, replace plane-normal reliance with oriented bivectors. To avoid collision with raw binary labels $B_1,B_2,B_3$, use $\mathcal B_a$ locally for the retained plane bivector:
 
 $$
 \mathcal B_a

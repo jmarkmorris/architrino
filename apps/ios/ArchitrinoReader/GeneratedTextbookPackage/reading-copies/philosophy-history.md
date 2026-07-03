@@ -15081,6 +15081,24 @@ Operationally, the metric background used in this equation is normally reconstru
 
 In $\mathbb{A}\mathbb{A}\mathbb{A}$, this places Klein-Gordon-like scalar behavior in the effective continuum layer. The $\mathbb{U}_{\text{now}}$ universe-state perspective would track the underlying architrino positions, velocities, and causal wake intersections directly, while Physical Observers infer scalar propagation on an emergent metric.
 
+##### Cosmological Scalar Comparison
+
+Quintessence is the standard scalar-field comparison for dynamical dark energy. Its useful sequence is narrow: choose a scalar amplitude $\phi$, assign a potential $V(\phi)$, let the homogeneous branch roll slowly enough that its stress-energy has $w \approx -1$, and test whether the resulting distance, CMB, lensing, and growth records outperform a pure cosmological constant. That sequence is retained as a comparison chart, not as a substrate claim.
+
+The particle-physics pressure on this chart is also useful. A dark-energy scalar with Hubble-scale mass is extraordinarily light, and generic couplings would mediate fifth forces or drift in Standard Model constants. Approximate shift symmetry,
+
+$$
+\phi \rightarrow \phi + c
+$$
+
+is the usual route to make such small masses and couplings technically natural. In pseudo-Nambu-Goldstone-boson versions, the allowed pseudoscalar coupling
+
+$$
+\phi\,\mathbf{E}\cdot\mathbf{B}
+$$
+
+can rotate the polarization angle of distant light. For $\mathbb{A}\mathbb{A}\mathbb{A}$, this is a clean observational recovery target: any Noether sea scalar-response analogue that claims the same role must preserve the polarization-rotation, CMB, lensing, redshift, and growth records without importing a continuous scalar field as ontology.
+
 ##### Source Terms
 
 With a source term, the same equation can be written schematically as
@@ -15856,7 +15874,7 @@ Use the same overlap/holonomy machinery in the lepton-neutral sector with a diff
 
 This chapter treats the Planck scale as an exploratory alignment-horizon problem for the nested shell braid rather than as a finished derivation. Its purpose is to translate familiar Planck-unit relations into concrete geometric and dynamical targets inside the delayed nested shell braid sector, then test which parts survive once full closure conditions are imposed.
 
-Its closest companions are [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
+Its closest companions are [Nested Shell Braid Dynamics](../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md), [Dyadic Resonance Lock](../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md), [Angular Momentum and Spin](../../../../markdown/aaa/philosophy-history/theory-bridges/angular-momentum-and-spin.md), [Horizon Chirality](../../../../markdown/aaa/spacetime/horizon-chirality.md), [Black Holes](../../../../markdown/aaa/spacetime/black-holes.md), and [Effective Lagrangian](../../../../markdown/aaa/dynamics/effective-lagrangian.md).
 
 The opening sections state the working thesis and the immediate kinematic map; later sections separate conjectural alignment, causal-wake framing, constant-mapping proposals, and failure modes. The reader should treat the whole note as a live mapping program, with explicit hypotheses rather than settled closure.
 
@@ -21302,7 +21320,7 @@ The same audit could have grouped open problems by their shared assumptions: pri
 
 The discipline needed here is falsification-driven architectural narrowing. A severe ansatz can be valuable before it is proven because it compresses the search space: start from the smallest equal-and-opposite polarity structure, then let forced branch problems chisel the architecture rather than adding free mechanisms.
 
-In this reading, two polarities pose the binary problem; stable binary behavior poses the tri-binary Noether braid problem; tri-binary closure poses the three-axis assembly problem in the Euclidean void; and frequency, phase, and retained action rows pose the clock and quantum-record problem. The branch is not kept because it is attractive. It is kept only while each added layer is logically forced by the preceding one and can bear weight across charge bookkeeping, inertia, radiation, quantum discreteness, Lorentz recovery, Standard Model phenomenology, and cosmological reconstruction.
+In this reading, two polarities pose the binary problem; stable binary behavior poses the Noether braid problem; Noether braid closure poses the three-axis assembly problem in the Euclidean void; and frequency, phase, and retained action rows pose the clock and quantum-record problem. The branch is not kept because it is attractive. It is kept only while each added layer is logically forced by the preceding one and can bear weight across charge bookkeeping, inertia, radiation, quantum discreteness, Lorentz recovery, Standard Model phenomenology, and cosmological reconstruction.
 
 Failed sub-branches should be carved away or reworked at the level of assumptions; they should not be protected by local rescues. That is the practical difference between disciplined abduction and unconstrained speculation.
 

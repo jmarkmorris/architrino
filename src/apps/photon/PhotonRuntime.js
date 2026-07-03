@@ -60,7 +60,7 @@ const PHOTON_DOCS = {
   },
   project: {
     name: "Photon App",
-    markdownPath: "reference/priorities/app-photon/photon-app.md",
+    markdownPath: "reference/priorities/app-photon/priorities.md",
     markdownColumns: 1,
   },
 };

@@ -4,7 +4,7 @@ Status: `closeout-complete`
 
 Kind: `contract-closeout`
 
-Source task: `model_contract` in [solver.md](solver.md)
+Source task: `model_contract` in [priorities.md](priorities.md)
 
 ## Purpose
 
@@ -99,6 +99,6 @@ This object is descriptive rather than a new schema demand. In the current bridg
 
 ## Completion Judgment
 
-`model_contract` is complete and recorded in [solver.md](solver.md).
+`model_contract` is complete and recorded in [priorities.md](priorities.md).
 
 The closeout is complete because the required fields are defined, the live app schema and TypeScript surface contain the model object, app and native admission validate it, claim level and precision compatibility fail closed, and run manifests preserve the model contract with a `modelContractHash`.

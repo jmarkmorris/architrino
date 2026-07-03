@@ -8,7 +8,7 @@ Provide the symmetry, invariant, and conservation-law backbone for $\mathbb{A}\m
 - Distinguish substrate symmetries from emergent observer symmetries using `foundations/ontology.md`, `foundations/absolute-timespace.md`, `spacetime/lorentz-kinematics.md`, and `spacetime/emergent-metric.md`.
 - Attach conservation-law diagnostics to `validation/simulations/run-protocols.md`, `validation/simulations/a0-branch-certificate-protocol.md`, `validation/constraint-ledger.md`, and `validation/failure-criteria.md`.
 - Treat `reference/priorities/braid-nested-shell-causal-closure/nested-shell-braid-dependency-map.md` as the active theorem-burden ledger for Lorentz, mass, photon, and effective-metric closure claims.
-- Treat `reference/priorities/braid-mass-response-map/braid-mass-response-map.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
+- Treat `reference/priorities/braid-mass-response-map/priorities.md` as the active mass-side ledger for $E_{\text{internal}}(A)$, $\zeta(A)$, exposed inertial-response trace, and $\mathcal{M}_{\text{sea}}^{ab}$.
 
 ## Perspective Response Mandate
 
@@ -18,7 +18,6 @@ When responding to the Philosophy-History Perspectives questions, Noether should
 - Ask why those achievements did not reveal the deeper architecture: the missing delayed action, retained branch chart, causal-root ledger, event ledger, and Noether sea constitutive response.
 - Distinguish exact substrate symmetries from observer-level Lorentz, gauge, metric, and conservation summaries.
 - Press every historical reinterpretation to name the conserved or quasi-conserved quantity that survives the move from standard formalism to architrino dynamics.
-- Preserve source provenance in public perspective prose: any Noether-style text is an AI-imagined commentary, not a historical quotation or claim about Noether's actual views.
 
 ## Core Responsibilities
 

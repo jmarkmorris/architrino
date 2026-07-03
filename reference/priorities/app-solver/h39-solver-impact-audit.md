@@ -4,7 +4,7 @@ Status: `closed-retrospective-boundary-capture`
 
 Kind: `retrospective-impact-audit`
 
-Source task: `h39_solver_impact_audit` in [solver.md](solver.md)
+Source task: `h39_solver_impact_audit` in [priorities.md](priorities.md)
 
 ## Purpose
 
@@ -24,10 +24,10 @@ This is not an app migration. It is also not a claim that the central solver wou
 
 The direct H39 sources inspected for this audit are:
 
-- [solver.md](solver.md)
+- [priorities.md](priorities.md)
 - [precision.md](precision.md)
 - [h39-h38-source-covariance-closure-sprint-wrap-up.md](../braid-geometry-export-bridge/h39-h38-source-covariance-closure-sprint-wrap-up.md)
-- [geometry-bridge.md](../braid-geometry-export-bridge/braid-geometry-export-bridge.md)
+- [geometry-bridge.md](../braid-geometry-export-bridge/priorities.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-primitive-diagnostic.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-hybrid-prefix-cauchy-order-diagnostic.md)
 - [octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md](../braid-geometry-export-bridge/octahedral-fold-aware-cross-binary-theta3minus-speed-dependent-fold-pair-first-y-gd-h39-shared-domain-coefficient-series-engine.md)
@@ -42,7 +42,7 @@ The direct H39 sources inspected for this audit are:
 - [receiver-normal-branch-strength-certificate.md](../master-equation-closure/receiver-normal-branch-strength-certificate.md)
 - [branch-provider-evidence-report.md](branch-provider-evidence-report.md)
 
-No H39-named proof-program artifacts were found under [proof-programs](../proof-programs/proof-programs.md). The proof-program relevance is indirect: H39 uses certificate discipline, claim boundaries, source-hash style provenance, fail-closed validators, and candidate-only proof artifacts.
+No H39-named proof-program artifacts were found under [proof-programs](../proof-programs/priorities.md). The proof-program relevance is indirect: H39 uses certificate discipline, claim boundaries, source-hash style provenance, fail-closed validators, and candidate-only proof artifacts.
 
 The H39/H38 source-covariance wrap-up records the live blocker as the missing same-domain branch-bearing source-map provider object before aggregate $P$ is formed. In concrete terms, the historical path needed one of these objects:
 
@@ -53,7 +53,7 @@ The H39/H38 source-covariance wrap-up records the live blocker as the missing sa
 
 The central solver can improve root, path-history, precision, replay, and ledger discipline. It does not currently define the H39 same-domain provider-object branch schema, projection map, pushforward identity, or directed-rounded proof-certificate backend needed to manufacture the missing $P_b$ object.
 
-Foundation/dynamics impact 2026-06-21: the new [Assembly Topological Charge](../../../content/markdown/aaa/dynamics/assembly-topological-charge.md) chapter sharpens solver ledger vocabulary through $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, but it does not change the H39 blocker. H39 can consume signed-root and assembly topological charge diagnostics as replay metadata, yet the live closure still requires the same-domain provider-object branch schema and upstream producer rows before aggregate $P$ is formed. Classification remains `h39_no_material_effect` for final H39 closure unless that provider-object surface is explicitly reopened.
+Foundation/dynamics impact 2026-06-21: the new [Assembly Topological Charge](../../../content/markdown/aaa/noether-braid/noether-braid-topological-charge.md) chapter sharpens solver ledger vocabulary through $[\mathfrak B]_{\mathrm{top}}=(N_s,M_p,c_1)$, but it does not change the H39 blocker. H39 can consume signed-root and assembly topological charge diagnostics as replay metadata, yet the live closure still requires the same-domain provider-object branch schema and upstream producer rows before aggregate $P$ is formed. Classification remains `h39_no_material_effect` for final H39 closure unless that provider-object surface is explicitly reopened.
 
 Master-equation sheaf refinement 2026-06-22: the latest [master-equation](../../../content/markdown/aaa/dynamics/master-equation.md) pass adds useful replay vocabulary for H39-style diagnostics: branch-chart local inverse data, $H^0$ global-section counts, $\check H^1$ gluing obstructions, separate $\eta$ versus $\epsilon_c$ regulator status, and finite-window degree changes at memory-boundary starvation. This still does not change the H39 final blocker. The missing object remains a same-domain branch-bearing provider object before aggregate $P$ is formed, so the impact classification remains `h39_no_material_effect` for final closure and `h39_refined_result` only for metadata-rich replay surfaces.
 
@@ -157,7 +157,7 @@ Therefore the best current retrospective classification is:
 ## Completion Judgment
 
 `h39_solver_impact_audit` is complete as a retrospective solver-impact audit and
-closed in [solver.md](solver.md). Representative H39 replay surfaces were
+closed in [priorities.md](priorities.md). Representative H39 replay surfaces were
 selected, two executable solver-style replay fixtures were built, historical
 artifact decisions were preserved, and the current classifications are recorded.
 

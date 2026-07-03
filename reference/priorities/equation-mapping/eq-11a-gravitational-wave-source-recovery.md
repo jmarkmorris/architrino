@@ -4,7 +4,7 @@
 
 - Kind: `priority-packet`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Source audit: [Equation Closure Pass 2026-06-25 B](equation-closure-pass-2026-06-25-b.md)
 - Parent packet: [EQ-11 Through EQ-20 Gravity And Dark-Energy Packet](eq-11-20-gravity-dark-energy-packet.md)

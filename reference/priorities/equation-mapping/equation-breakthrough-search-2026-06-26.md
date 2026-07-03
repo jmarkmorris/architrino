@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `active-checkpoint`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Score ladder: [Equation Score-5 Closure Ladder](equation-score-5-closure-ladder.md)
 - Common architecture: [Equation Common Architecture 2026-06-23 C](equation-common-architecture-2026-06-23-c.md)
@@ -895,7 +895,7 @@ Rows through score `3` still have meaningful work. The current wave is a second 
 - Files edited since checkpoint 0:
   - [eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md](eq-07b-black-hole-accretion-jet-release-horizon-thermodynamics.md)
   - [eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md](eq-23a-stellar-explosive-nucleosynthesis-shock-reaction-networks.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - [eq04a-koide-residual.mjs](../../../scripts/equation-mapping/eq04a-koide-residual.mjs)
   - [eq04a-koide-residual-attempt.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-attempt.v1.json)
   - [eq04a-koide-residual-direct-fit-negative-control.v1.json](../../../scripts/equation-mapping/eq04a-koide-residual-direct-fit-negative-control.v1.json)
@@ -956,7 +956,7 @@ No score changes.
   - [eq-22b-recombination-acoustic-transfer.md](eq-22b-recombination-acoustic-transfer.md)
   - [eq-11a-gw150914-source-field-map.md](eq-11a-gw150914-source-field-map.md)
   - [eq-11a-gravitational-wave-source-recovery.md](eq-11a-gravitational-wave-source-recovery.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - [eq22b-recombination-acoustic-residual.mjs](../../../scripts/equation-mapping/eq22b-recombination-acoustic-residual.mjs)
   - [eq22b-recombination-acoustic-attempt.v1.json](../../../scripts/equation-mapping/eq22b-recombination-acoustic-attempt.v1.json)
   - this checkpoint file.
@@ -1021,9 +1021,9 @@ No score changes.
   - [eq-07-10-17-19-effective-metric-cosmology-packet.md](eq-07-10-17-19-effective-metric-cosmology-packet.md)
   - [eq-12-16a-photon-quantum-gauge-neutrino-packet.md](eq-12-16a-photon-quantum-gauge-neutrino-packet.md)
   - [eq-26-31-observation-first-precision-packet.md](eq-26-31-observation-first-precision-packet.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - this checkpoint file.
-- Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md`, [master-equation-closure.md](../master-equation-closure/master-equation-closure.md), [classical-source-history-electrodynamics.md](../source-mining/classical-source-history-electrodynamics.md), and [source-mining-history.md](../source-mining/source-mining-history.md) are modified outside this run's allowed edit scope and are being left untouched.
+- Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md`, [master-equation-closure.md](../master-equation-closure/priorities.md), [classical-source-history-electrodynamics.md](../source-mining/classical-source-history-electrodynamics.md), and [source-mining-history.md](../source-mining/source-mining-history.md) are modified outside this run's allowed edit scope and are being left untouched.
 - Validation:
   - `node scripts/spacetime/noether-sea-density-compression-surface-slice.mjs --input scripts/spacetime/noether-sea-density-compression-surface-slice-retained-attempt.v1.json --summary --pretty`: passed as score-neutral, blocked at `missing_accepted_theta_sea_rho_NS`.
   - same `EQ-24` command with `--require-populated`: exited nonzero as the intended fail-closed result.
@@ -1084,7 +1084,7 @@ No score changes.
 - Files edited since checkpoint 3:
   - [eq-10-theta-w-source-field-map.md](eq-10-theta-w-source-field-map.md)
   - [eq-07-10-17-19-effective-metric-cosmology-packet.md](eq-07-10-17-19-effective-metric-cosmology-packet.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - this checkpoint file.
 - Current worktree note: `content/markdown/aaa/philosophy-history/treasure-physics-overlooked.md` is modified outside this run's allowed edit scope and is being left untouched.
 - Validation:
@@ -1147,7 +1147,7 @@ No score changes.
   - [eq-29-radiation-source-carrier-source-field-map.md](eq-29-radiation-source-carrier-source-field-map.md)
   - [eq-12-theta-gamma-packet-source-shell.md](eq-12-theta-gamma-packet-source-shell.md)
   - [eq-26-31-observation-first-precision-packet.md](eq-26-31-observation-first-precision-packet.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - [neutrino-common-clock-phase-operator.mjs](../../../scripts/equation-mapping/neutrino-common-clock-phase-operator.mjs)
   - [neutrino-common-clock-phase-domain-split-negative-control.v1.json](../../../scripts/equation-mapping/neutrino-common-clock-phase-domain-split-negative-control.v1.json)
   - this checkpoint file.
@@ -1295,7 +1295,7 @@ No score changes.
   - [eq23a-explosive-source-window-identity-attempt.v1.json](../../../scripts/equation-mapping/eq23a-explosive-source-window-identity-attempt.v1.json)
   - [eq-28a-path-frequency-exchange.md](eq-28a-path-frequency-exchange.md)
   - [eq-28a-theta-nu-ex-source-field-map.md](eq-28a-theta-nu-ex-source-field-map.md)
-  - [equation-mapping.md](equation-mapping.md)
+  - [priorities.md](priorities.md)
   - this checkpoint file.
 - Validation:
   - Latest full validation before this checkpoint append passed at 02:19 EDT: `git diff --check`, `node scripts/validate-content.mjs --check --strict`, and `node scripts/build-scene-graph.mjs --check --strict`.

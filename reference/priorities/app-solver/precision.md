@@ -1,6 +1,6 @@
 # Solver Precision
 
-This note owns the central solver's precision and dynamic-range strategy. The main [solver.md](solver.md) file keeps the cross-cutting requirement and task pointer; this document carries the detailed numeric forensics and policy.
+This note owns the central solver's precision and dynamic-range strategy. The main [priorities.md](priorities.md) file keeps the cross-cutting requirement and task pointer; this document carries the detailed numeric forensics and policy.
 
 ## Core Problem
 

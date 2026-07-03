@@ -1,72 +1,223 @@
-# Architrino Assembly Architecture
+# Architrino
 
-## Run locally
-Use a local web server so ES modules load correctly.
+Architrino is the source repository for `architrino.com`. It combines the
+$\mathbb{A}\mathbb{A}\mathbb{A}$ theory corpus, the interactive Architrino
+Assembly Architecture web app, generated textbook/scene artifacts, and a set of
+standalone research and visualization applications.
+
+The repo is intentionally content-heavy. Most public pages are not handwritten
+HTML pages; they are scene JSON files that point to markdown, generated graph
+manifests, and browser runtimes.
+
+## Run Locally
+
+Use the local web server so browser ES modules, JSON, markdown, images, and WASM
+assets load with the same path model as the deployed site.
 
 ```bash
-cd architrino
 node scripts/dev/start-local-dev.mjs
 ```
 
-Then open `http://localhost:5173/`.
+Then open:
 
-The local dev server now treats the live PDG reports and `pdgedit` reaction
-artifacts as generated outputs. When files under `scripts/pdg/`, `pdgfeed.py`,
-`pdgsolve.py`, or `src/apps/pdgedit/` change, it clears the old live
-`.tmp/pdgsolve` tree and regenerates the PDG report/tool artifacts before
-serving those paths again.
-
-## Controls
-- Click/tap a sphere to descend into its contents.
-- Pinch in/out to zoom (trackpad pinch supported).
-- Drag to pan.
-
-## Deployed to GitHub Pages via architrino.com
-
-## Runtime Contract
-- Runtime search is manifest-only and reads `content/graph/scene_graph.json`.
-- Periodic element routing is manifest-only via `runtimeRoutes.periodicGrid` in `content/graph/scene_graph.json`.
-- Element legend routing is generated from `content/graph/runtime_routes.json` into `runtimeRoutes.elementLegendTargets`.
-- Textbook TOC data is generated into `content/graph/textbook_toc.json`.
-- Textbook TOC scene markdown is generated into `content/generated/markdown/textbook/toc.md`.
-- Textbook reading-copy markdown moved from the old generated markdown tree is generated into `content/generated/markdown/textbook/reading-copies/`.
-- Textbook PDF review copies are generated into `content/generated/pdf/textbook/review-copies/`.
-- Keep the manifest up to date after content changes.
-
-## Authoring Contract (Explicit Scene Network)
-- Source of truth is explicit scene files under `content/scenes/**/*.json`.
-- Authored navigation/content fields are:
-  - `objects[]`
-  - `objects[].subScenes[]`
-  - `objects[].markdownPath`
-  - `objects[].markdownSection`
-- Generated artifacts are not hand-authored:
-  - `content/scenes/scenes_index.json`
-  - `content/markdown/markdown_index.json`
-  - `content/graph/scene_graph.json`
-  - `content/graph/textbook_toc.json`
-  - `content/generated/markdown/textbook/toc.md`
-  - moved textbook reading copies under `content/generated/markdown/textbook/reading-copies/`
-  - textbook PDF review copies under `content/generated/pdf/textbook/review-copies/`
-- After scene/markdown edits, regenerate artifacts before commit:
-  - `node scripts/validate-content.mjs --write`
-  - `node scripts/build-scene-graph.mjs --write`
-  - `node scripts/build-textbook-md-pdf.mjs --write`
-  - `node scripts/build-textbook-review-pdfs.mjs --write`
-
-## Content Validation
-Run these from the repo root:
-
-```bash
-node scripts/validate-content.mjs --check
-node scripts/validate-content.mjs --write
-node scripts/build-scene-graph.mjs --check
-node scripts/build-scene-graph.mjs --write
-node scripts/build-textbook-md-pdf.mjs --check
-node scripts/build-textbook-md-pdf.mjs --write
-node scripts/build-textbook-review-pdfs.mjs --check
-node scripts/build-textbook-review-pdfs.mjs --write
-node scripts/smoke-option3.mjs
+```text
+http://127.0.0.1:5173/
 ```
 
-If `--write` updates index or graph files intentionally, include those file changes in your commit.
+To use another port:
+
+```bash
+PORT=5174 node scripts/dev/start-local-dev.mjs
+```
+
+There is no `npm install` step for ordinary local serving. The root app is
+served from `index.html`, `app.js`, `style.css`, `vendor/`, `content/`, `src/`,
+and the standalone HTML entrypoints in the repo root.
+
+## Web App
+
+The default web app is the Architrino Assembly Architecture scene navigator.
+Its root scene is:
+
+```text
+content/scenes/architrino_assembly_architecture.json
+```
+
+The root scene organizes the corpus into these top-level areas:
+
+- Foundations
+- Dynamics
+- Noether Braid
+- Noether Sea and Effective Spacetime
+- Standard Model Assemblies
+- Atomic and Nuclear Assemblies
+- Reactions
+- Quantum
+- Cosmology
+- Validation
+- Philosophy-History
+- Project, documentation, applications, and outreach material
+
+The navigator renders the explicit scene network as interactive sphere layouts.
+Users can descend into scene children, open linked markdown, search the scene
+manifest, use the textbook table of contents, and open standalone apps from app
+scenes.
+
+Basic controls:
+
+- Click or tap a sphere to enter a linked scene or open its action.
+- Drag to pan.
+- Pinch or trackpad-pinch to zoom.
+- Use the toolbar for search, home, back/forward navigation, document view, PDF
+  export, and textbook navigation where available.
+
+## Public Applications
+
+The public Applications scene is the source of truth for the app list shown in
+the navigator:
+
+```text
+content/scenes/archie/applications.json
+```
+
+Current application and application-like surfaces include:
+
+- Ideal Noether Braid: `ideal-braid.html`
+- Photon and Polarization Visualization App: `photon.html`
+- Assembly Configuration Explorer: `assembly-explorer.html`
+- Causal Delay Feedback: `causal-delay-feedback.html`
+- Equation Mapping: `equation-mapping.html`
+- Animator: `animator.html`
+- Borg App: `borg.html`
+- Molecule Visualization: `molecule.html`
+- Periodic Table, Hyde Periodic Table, Atom, and Standard Model scene surfaces
+
+Standalone app launch routing lives in:
+
+```text
+src/apps/navigator/StandaloneAppLaunchRuntime.js
+```
+
+App runtime code is under `src/apps/`. Shared solver-owned behavior belongs
+under the central solver boundary in `src/solver/`; app-specific code should use
+that bridge instead of creating a parallel production solver.
+
+## Content Model
+
+Canonical authored content lives under:
+
+```text
+content/markdown/aaa/
+```
+
+The main corpus folders cover foundations, dynamics, Noether Braid, spacetime,
+assemblies, nuclear and atomic structure, reactions, quantum, cosmology,
+validation, philosophy-history, proof programs, and project-facing guides.
+
+Scene files live under:
+
+```text
+content/scenes/
+```
+
+Scene files define the explicit navigation network. Authored scene fields
+include:
+
+- `objects[]`
+- `objects[].subScenes[]`
+- `objects[].markdownPath`
+- `objects[].markdownSection`
+
+Generated artifacts are derived from those authored sources. Do not hand-edit
+generated files during ordinary content work.
+
+Important generated outputs include:
+
+- `content/scenes/scenes_index.json`
+- `content/markdown/markdown_index.json`
+- `content/graph/scene_graph.json`
+- `content/graph/runtime_routes.json`
+- `content/graph/textbook_toc.json`
+- `content/generated/markdown/textbook/toc.md`
+- `content/generated/markdown/textbook/reading-copies/`
+- `content/generated/pdf/textbook/review-copies/`
+
+## Common Commands
+
+Focused content and graph checks:
+
+```bash
+node scripts/validate-content.mjs --check --strict
+node scripts/build-scene-graph.mjs --check --strict
+node scripts/build-textbook-md-pdf.mjs --check
+```
+
+Regenerate generated content only when a check reports drift or when the work
+requires refreshed generated output:
+
+```bash
+node scripts/validate-content.mjs --write
+node scripts/build-scene-graph.mjs --write --strict
+node scripts/build-textbook-md-pdf.mjs --write
+node scripts/build-textbook-review-pdfs.mjs --write
+```
+
+Focused app-routing and runtime checks:
+
+```bash
+node --test tests/standalone-app-launch.test.js
+node scripts/check-animator-runtime-wiring.mjs
+```
+
+Full integrity gate before push:
+
+```bash
+node scripts/check-content-integrity.mjs
+node scripts/check-animator-runtime-wiring.mjs
+```
+
+Python scripts should use the shared environment when needed:
+
+```bash
+VIRTUAL_ENV="${AAA_VENV:-../.venv}" "${AAA_VENV:-../.venv}/bin/python" <script>
+```
+
+## Repository Map
+
+- `index.html`, `app.js`, `style.css`: root web app shell.
+- `*.html` at the repo root: standalone browser app entrypoints.
+- `src/apps/architrino/`: scene navigator runtime.
+- `src/apps/`: standalone application runtimes and app-specific modules.
+- `src/solver/`: central native/bridge solver implementation and fixtures.
+- `src/services/`, `src/runtime/`, `src/domain/`: shared runtime, service, and
+  domain helpers.
+- `content/markdown/aaa/`: authored corpus markdown.
+- `content/scenes/`: authored scene JSON plus generated scene index.
+- `content/graph/`: generated scene graph, runtime routes, and textbook TOC
+  manifests.
+- `content/generated/`: generated reading copies and review PDFs.
+- `scripts/`: validators, generators, solver/proof tooling, and local dev
+  utilities.
+- `tests/`: Node and Python tests for runtime, content, solver, and proof
+  artifacts.
+- `reference/`: operator procedures, priority workstreams, architectural
+  decisions, research notes, and non-public staging material.
+- `apps/ios/`: iOS reader project and reader assets used by the web app.
+
+## Deployment
+
+The public site is deployed through GitHub Pages with `CNAME` set for
+`architrino.com`. The deployed site should be treated as a generated-content
+consumer: update authored markdown and scenes first, refresh generated outputs
+when required, then verify the manifest and integrity checks before publishing.
+
+## Commit And Push Checks
+
+Git hooks are configured through `.githooks`.
+
+The pre-commit hook checks content references, the scene graph, textbook reading
+copies, receiver-normal clean-slate status, notation drift, and animator runtime
+wiring.
+
+The pre-push hook runs the Content Integrity gate and animator runtime wiring
+audit.

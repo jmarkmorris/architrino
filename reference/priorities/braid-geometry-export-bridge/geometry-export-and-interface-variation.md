@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-packet`
-- Bucket: [Geometry Bridge](braid-geometry-export-bridge.md)
+- Bucket: [Geometry Bridge](priorities.md)
 - Status: `theorem-target`
 - Scope: branch-local geometry export and assembly-interface first variation
 

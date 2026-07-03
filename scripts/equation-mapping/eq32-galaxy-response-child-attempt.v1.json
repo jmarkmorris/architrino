@@ -1,0 +1,129 @@
+{
+  "schema": "aaa-equation-map-eq32-galaxy-response-child-input/v1",
+  "claimLevel": "score-neutral EQ-32 galaxy-response child attempt; not accepted retained evidence",
+  "residualId": "R_eq32_galaxy_response_child_attempt_0001",
+  "tolerances": {
+    "residual": 1e-12,
+    "btfr": 0.001,
+    "highAcceleration": 0.002,
+    "lensing": 1e-12,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "outputProjection": {
+    "path": "scripts/spacetime/noether-sea-density-compression-provider-output-projection.v1.json"
+  },
+  "packet": {
+    "id": "eq32-galaxy-response-child-attempt-0001",
+    "rows": {
+      "galaxy_response_child": {
+        "status": "attempt",
+        "rowId": "eq32-galaxy-response-child-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "rar_response_row": {
+        "status": "attempt",
+        "rowId": "eq32-rar-response-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "btfr_response_row": {
+        "status": "attempt",
+        "rowId": "eq32-btfr-response-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "lensing_consistency_row": {
+        "status": "attempt",
+        "rowId": "eq32-lensing-consistency-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "high_acceleration_recovery_row": {
+        "status": "attempt",
+        "rowId": "eq32-high-acceleration-recovery-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "local_gravity_constraint_row": {
+        "status": "attempt",
+        "rowId": "eq32-local-gravity-constraint-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "delta_a_star_parent_row": {
+        "status": "attempt",
+        "rowId": "eq32-delta-a-star-parent-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "galaxy_response_grid": {
+        "status": "attempt",
+        "rowId": "eq32-galaxy-response-grid-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "source_provenance": {
+        "status": "attempt",
+        "rowId": "eq32-galaxy-response-source-provenance-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "attempt",
+        "rowId": "eq32-galaxy-response-no-hidden-retune-attempt-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "rho_NS",
+        "status": "attempt",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      }
+    ],
+    "model": {
+      "galaxyResponse": {
+        "status": "attempt",
+        "sourceFamily": "score-neutral predictive galaxy-response attempt",
+        "sourcePath": "scripts/equation-mapping/eq32-galaxy-response-child-attempt.v1.json"
+      },
+      "a_star": 0.0012,
+      "G_eff": 1,
+      "samples": [
+        {
+          "sampleId": "GR_low_g1e-8",
+          "regime": "low_acceleration",
+          "g_bar": 1.2e-11
+        },
+        {
+          "sampleId": "GR_transition_g1",
+          "regime": "transition",
+          "g_bar": 0.0012
+        },
+        {
+          "sampleId": "GR_high_g1000",
+          "regime": "high_acceleration",
+          "g_bar": 1.2
+        }
+      ]
+    }
+  }
+}

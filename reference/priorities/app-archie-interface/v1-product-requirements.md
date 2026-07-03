@@ -5,7 +5,7 @@
 - Kind: `priority-app-requirements`
 - Status: `draft`
 - Claim level: `priority-only`
-- Parent priority: [Archie Interface App](app-archie-interface.md)
+- Parent priority: [Archie Interface App](priorities.md)
 - Brainstorming source: [brainstorming.md](brainstorming.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](manifest-driven-service-architecture.md)

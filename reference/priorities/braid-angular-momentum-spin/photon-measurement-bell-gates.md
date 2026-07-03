@@ -1,6 +1,6 @@
 # Photon, Measurement, and Bell Gates
 
-This detailed priority file supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md). It preserves downstream consumer routing, photon Gate B dependencies, measurement-response focus areas, Bell placement, and near-term bridge work.
+This detailed priority file supports [Angular Momentum and Spin Closure](priorities.md). It preserves downstream consumer routing, photon Gate B dependencies, measurement-response focus areas, Bell placement, and near-term bridge work.
 
 ## Downstream Consumers Audit 2026-05-12
 
@@ -19,7 +19,7 @@ These documents should inherit the single-core angular-momentum ledger and order
 11. **[electroweak-bosons.md](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md).** Photon Gate B, W/Z spin-1 vector-channel language, longitudinal/mixed-axis separation, and Higgs scalar comparison are vector-mode consumers of this workstream. Gate B supplies the photon-specific transverse ledger only after Gate A kinematics and the fundamental angular-momentum ledger are available.
 12. **[mode-taxonomy.md](../../../content/markdown/aaa/reactions/mode-taxonomy.md).** Reaction-level planar-mode and corridor-mode language may record which ledger must close, but it should not make reaction taxonomy appear to derive photon polarization, vector spin, or Pauli/statistics by itself.
 13. **[particle-masses.md](../../../content/markdown/aaa/assemblies/particle-masses.md).** The mass-channel split between massless photon, massive W/Z corridor, and Higgs scalar mode depends on Gate A/B and vector-mode closure. It should stay a category discipline, not a completed spin/helicity derivation.
-14. **[reaction-ledger.md](../../../content/markdown/aaa/validation/reaction-ledger.md).** Weak-corridor provenance, beta-reaction handedness, antineutrino orientation, and event-level angular-momentum bookkeeping inherit the weak exposure proof, ordered-core spinor/helicity proof, and tri-binary partition ledger. The reaction ledger records the required fields; it does not prove weak chirality or spin response.
+14. **[reaction-ledger.md](../../../content/markdown/aaa/validation/reaction-ledger.md).** Weak-corridor provenance, beta-reaction handedness, antineutrino orientation, and event-level angular-momentum bookkeeping inherit the weak exposure proof, ordered-core spinor/helicity proof, and Noether braid partition ledger. The reaction ledger records the required fields; it does not prove weak chirality or spin response.
 15. **[reaction-cosmology-provenance-ledger.md](../../../content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md).** Photon-output, polarization, CMB, and cascade records consume Gate B as an acceptance filter. They should record the transverse-ledger fields needed by radiation and cosmology arguments without treating that record as a derivation of photon spin or polarization statistics.
 16. **[bremsstrahlung.md](../../../content/markdown/aaa/reactions/bremsstrahlung.md)** and **[synchrotron.md](../../../content/markdown/aaa/reactions/synchrotron.md).** Emitted photon energy, direction, polarization basis, synchrotron polarization limits, angular-momentum balance, and pair-production handoffs are photon-channel validation surfaces. The emission chapters own source and provenance bookkeeping; photon polarization and helicity closure still belongs to Gate B and the shared angular-momentum ledger.
 17. **[weak-mixing-ckm.md](../../../content/markdown/aaa/philosophy-history/theory-bridges/weak-mixing-ckm.md).** The left/right helicity exposure criterion for weak-coupling-triad docking depends on the unresolved spin/helicity geometry. It is a high-value vector/fermion test case, not an independent weak-sector proof of handedness.
@@ -167,7 +167,7 @@ This workstream owns photon Gate B only. Gate A remains the kinematics and optic
 7. Which part of the ledger becomes observer-level orbital angular momentum, which part becomes spin, and which part remains hidden inside assembly structure?
 8. What measured operation actually counts as a spin measurement in substrate terms?
 9. How does the same conserved ledger reduce to the planar-pair transverse photon ledger without importing a rest-frame spin representation?
-10. Once the quantum-level ledger exists, how do atomic and molecular spin labels emerge from it without conflating internal tri-binary rotational action with observer-level orbital angular momentum or molecular term symbols?
+10. Once the quantum-level ledger exists, how do atomic and molecular spin labels emerge from it without conflating internal three-binary rotational action with observer-level orbital angular momentum or molecular term symbols?
 
 ## Bell's Theorem Placement
 
@@ -186,7 +186,7 @@ Once angular momentum and spin are understood at the Noether braid level, [bell-
 ## Near-Term Development For The Bridge
 
 - Validate the derivation scaffold for the total angular-momentum functional in delayed dynamics.
-- Promote the one-$h$ action table into the tri-binary partition theorem target by carrying the normalized variables $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ through conservation, root-ledger, phase-lock, stability, and coupling-geometry constraints.
+- Promote the one-$h$ action table into the Noether braid partition theorem target by carrying the normalized variables $\Delta I_{\text{inner}}$, $\Delta I_{\text{middle}}$, $\Delta I_{\text{outer}}$, and $\Delta I_{\text{wake}}$ through conservation, root-ledger, phase-lock, stability, and coupling-geometry constraints.
 - Generalize the solved minimal four-substep branch into a family of admissible branches with coefficient values derived from the master equation or extracted from simulations.
 - Prove or falsify the ordered-frame spinor lift by extracting one stable branch certificate, proving the branch-preserving quotient lemma, and computing the $2\pi$ / $4\pi$ delayed-root holonomy.
 - Separate observer-level orbital quantization from internal Noether braid spin by deriving the effective far-zone envelope and its $(\ell,m)$ angular content before revisiting atomic and molecular spin labels.

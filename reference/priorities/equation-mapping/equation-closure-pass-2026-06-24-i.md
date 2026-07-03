@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `draft`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Claim level: no-retune geometry correction and solver-certificate target
 - Promotion status: priority-only
@@ -93,7 +93,7 @@ W_{\mathrm{hol}}
 \right).
 $$
 
-Here $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency tri-binary phase bundle on $T^3/S^1\simeq T^2$. Phase offsets should be connection holonomy, not free phase handles.
+Here $\Phi_{T^2}(u)$ is the holonomy of the equal-frequency three-binary phase bundle on $T^3/S^1\simeq T^2$. Phase offsets should be connection holonomy, not free phase handles.
 
 ## Koide Disposition
 

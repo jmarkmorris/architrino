@@ -5,7 +5,7 @@
 - Kind: `priority`
 - Status: `draft`
 - Scope: `EQ-26`, `EQ-26A`, `EQ-27`, `EQ-28`, `EQ-29`, `EQ-30`, `EQ-31`
-- Source priority files: [equation-mapping.md](equation-mapping.md), [equation.md](equation.md)
+- Source priority files: [priorities.md](priorities.md), [equation.md](equation.md)
 - Promotion decision: priority-only. Do not promote to reader-facing corpus until at least one row below supplies a derived variable map, residual, simulation target, or branch certificate rather than a comparison scaffold.
 
 This packet groups the observation-first precision rows that discipline atomic spectra, magnetic moments, photon-event recoil, radiation source mechanisms, scattering statistics, and resonance lifetimes. The shared rule is that every comparison equation must be routed through a retained Noether braid branch, local Noether sea state, event ledger, detector/readout row when applicable, and explicit residual. Standard equations remain benchmark surfaces; they are not substrate ontology.

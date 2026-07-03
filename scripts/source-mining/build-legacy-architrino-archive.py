@@ -1120,7 +1120,7 @@ def build_corpus_index() -> list[dict]:
             if rel in {
                 "reference/priorities/source-mining/legacy-architrino-wordpress-library-posts.md",
                 "reference/priorities/source-mining/source-mining-history.md",
-                "reference/priorities/source-mining/source-mining.md",
+                "reference/priorities/source-mining/priorities.md",
             }:
                 continue
             try:

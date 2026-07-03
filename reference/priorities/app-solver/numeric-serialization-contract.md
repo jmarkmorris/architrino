@@ -4,7 +4,7 @@ Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
-Source task: `numeric_serialization_contract` in [solver.md](solver.md)
+Source task: `numeric_serialization_contract` in [priorities.md](priorities.md)
 
 Primary dependency: [precision.md](precision.md)
 

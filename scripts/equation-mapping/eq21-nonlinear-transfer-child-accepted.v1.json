@@ -1,0 +1,266 @@
+{
+  "schema": "aaa-equation-map-eq21-nonlinear-transfer-child-input/v1",
+  "claimLevel": "accepted score-neutral EQ-21 nonlinear transfer child input computing a deterministic dimensionless-power nonlinear readout from the accepted shared-observation, growth, matter-power, CMB-lensing, shear/RSD, and halo/cluster chain",
+  "residualId": "R_eq21_nonlinear_transfer_child_provider_backed_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "shearRsdTransferChild": {
+    "path": "scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json"
+  },
+  "haloClusterTransferChild": {
+    "path": "scripts/equation-mapping/eq21-halo-cluster-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-nonlinear-transfer-child-provider-backed-0001",
+    "rows": {
+      "nonlinear_transfer_child": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-transfer-child-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "dimensionless_power_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-dimensionless-power-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "nonlinear_response_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-response-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "matter_power_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-matter-power-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "lensing_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-lensing-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "shear_rsd_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-shear-rsd-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "halo_cluster_parent_row": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-halo-cluster-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "nonlinear_grid": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-grid-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "source_provenance": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-source-provenance-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "accepted",
+        "rowId": "eq21-nonlinear-no-hidden-retune-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "rho_NS",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "n",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "chi_sea",
+        "status": "accepted",
+        "value": 1.002,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "Gamma_N",
+        "status": "accepted",
+        "value": 1.0000010100010202,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "M_sea_ab",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "rho_bar",
+        "status": "accepted",
+        "value": 0.05,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "rho_A",
+        "status": "accepted",
+        "value": 0.25,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "H_eff",
+        "status": "accepted",
+        "value": 3.424706202494149,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      {
+        "key": "a_eff",
+        "status": "accepted",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      }
+    ],
+    "model": {
+      "nonlinearTransfer": {
+        "status": "accepted",
+        "sourceFamily": "score-neutral nonlinear dimensionless-power readout",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json"
+      },
+      "formula": {
+        "Delta_L2": "k^3 * P_linear_consensus / (2 * pi^2)",
+        "P_nonlinear": "P_linear_consensus * (1 + Delta_L2)",
+        "residual": "max inherited parent-channel relative mismatch among matter, lensing, shear, and RSD P(k,z) readouts",
+        "parent": "P_linear_consensus is inherited from the accepted halo/cluster inversion child; no nonlinear fit coefficient is introduced"
+      },
+      "samples": [
+        {
+          "sampleId": "NL_L40_z1_k0p02",
+          "haloClusterSampleId": "HC_L40_z1_k0p02",
+          "shearRsdSampleId": "SR_L40_z1_k0p02",
+          "lensingSampleId": "L40_z1_k0p02",
+          "matterSampleId": "k0p02_z1"
+        },
+        {
+          "sampleId": "NL_L200_z1_k0p1",
+          "haloClusterSampleId": "HC_L200_z1_k0p1",
+          "shearRsdSampleId": "SR_L200_z1_k0p1",
+          "lensingSampleId": "L200_z1_k0p1",
+          "matterSampleId": "k0p1_z1"
+        },
+        {
+          "sampleId": "NL_L800_z1_k0p5",
+          "haloClusterSampleId": "HC_L800_z1_k0p5",
+          "shearRsdSampleId": "SR_L800_z1_k0p5",
+          "lensingSampleId": "L800_z1_k0p5",
+          "matterSampleId": "k0p5_z1"
+        }
+      ],
+      "derived": {
+        "nonlinear_order": 1,
+        "nonlinear_grid_normalized_residual": 3.0204931705456123e-16,
+        "samples": [
+          {
+            "sampleId": "NL_L40_z1_k0p02",
+            "haloClusterSampleId": "HC_L40_z1_k0p02",
+            "shearRsdSampleId": "SR_L40_z1_k0p02",
+            "lensingSampleId": "L40_z1_k0p02",
+            "matterSampleId": "k0p02_z1",
+            "k": 0.02,
+            "z": 1,
+            "P_linear": 0.08183881570182072,
+            "P_parent_matter": 0.08183881570182072,
+            "P_lensing": 0.08183881570182072,
+            "P_shear": 0.08183881570182072,
+            "P_RSD": 0.08183881570182072,
+            "P_linear_consensus": 0.08183881570182072,
+            "Delta_L2": 3.316802269918246e-8,
+            "nonlinear_boost": 1.0000000331680228,
+            "P_nonlinear": 0.08183881841625243,
+            "parent_consensus_residual": 0,
+            "nonlinear_normalized_residual": 0
+          },
+          {
+            "sampleId": "NL_L200_z1_k0p1",
+            "haloClusterSampleId": "HC_L200_z1_k0p1",
+            "shearRsdSampleId": "SR_L200_z1_k0p1",
+            "lensingSampleId": "L200_z1_k0p1",
+            "matterSampleId": "k0p1_z1",
+            "k": 0.1,
+            "z": 1,
+            "P_linear": 0.3834865117399782,
+            "P_parent_matter": 0.3834865117399782,
+            "P_lensing": 0.38348651173997816,
+            "P_shear": 0.38348651173997816,
+            "P_RSD": 0.3834865117399782,
+            "P_linear_consensus": 0.38348651173997816,
+            "Delta_L2": 0.00001942765364018293,
+            "nonlinear_boost": 1.0000194276536403,
+            "P_nonlinear": 0.383493961983104,
+            "parent_consensus_residual": 1.4475385582504394e-16,
+            "nonlinear_normalized_residual": 1.4475385582504394e-16
+          },
+          {
+            "sampleId": "NL_L800_z1_k0p5",
+            "haloClusterSampleId": "HC_L800_z1_k0p5",
+            "shearRsdSampleId": "SR_L800_z1_k0p5",
+            "lensingSampleId": "L800_z1_k0p5",
+            "matterSampleId": "k0p5_z1",
+            "k": 0.5,
+            "z": 1,
+            "P_linear": 1.4702539776636665,
+            "P_parent_matter": 1.4702539776636665,
+            "P_lensing": 1.4702539776636663,
+            "P_shear": 1.4702539776636663,
+            "P_RSD": 1.470253977663666,
+            "P_linear_consensus": 1.4702539776636663,
+            "Delta_L2": 0.00931049207948362,
+            "nonlinear_boost": 1.0093104920794835,
+            "P_nonlinear": 1.483942765677533,
+            "parent_consensus_residual": 3.0204931705456123e-16,
+            "nonlinear_normalized_residual": 3.0204931705456123e-16
+          }
+        ]
+      },
+      "residualComponents": {
+        "nonlinear_grid_normalized": 3.0204931705456123e-16,
+        "S_retune": 0
+      }
+    }
+  }
+}

@@ -4,7 +4,7 @@ Status: `closeout-complete`
 
 Kind: `storage-lifecycle-policy-closeout`
 
-Source task: `storage_lifecycle_policy` in [solver.md](solver.md)
+Source task: `storage_lifecycle_policy` in [priorities.md](priorities.md)
 
 ## Purpose
 
@@ -196,8 +196,8 @@ If active-memory pressure remains after all safe age-out decisions are applied, 
 
 ## Completion Judgment
 
-`storage_lifecycle_policy` can be marked complete once [solver.md](solver.md) is open for queue-status edits.
+`storage_lifecycle_policy` can be marked complete once [priorities.md](priorities.md) is open for queue-status edits.
 
 The policy is complete because browser and native retention behavior, cleanup, quota pressure, failed-run cleanup, export handoff, user-visible deletion, active/warm/cold tiers, age-out conditions, deep-index creation, and unsafe active-memory diagnostics are now defined here and mapped to the live lifecycle schema and bridge/native support.
 
-What remains is administrative: update the task queue entry in [solver.md](solver.md) from `active` to complete when that file is allowed to change. No `solver.md` edit is required for the policy itself.
+What remains is administrative: update the task queue entry in [priorities.md](priorities.md) from `active` to complete when that file is allowed to change. No `priorities.md` edit is required for the policy itself.

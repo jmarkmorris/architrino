@@ -7,7 +7,7 @@ This priority packet captures the 2026-05-17 operator discussion on ideal Noethe
 - **Status:** derivation scaffold.
 - **Main claim:** for a group-velocity-zero Noether braid at integer rest level $N$, the fixed $Nh$ action ledger determines the outer product $r_O v_O\propto Nh$. It does not by itself determine separate functions $r_O(N)$ and $v_O(N)$.
 - **Open burden:** the actual curve is not determined until the outer action share, rotational bookkeeping coefficient, speed closure, exclusion-threshold map, and delayed root-ledger balance are fixed on a branch chart. The former $r_O\propto Nh$ law is only the fixed-speed branch subcase.
-- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/dynamics/dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
+- **Promotion targets:** [dyadic-resonance-lock.md](../../../content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md), [binary-dynamics.md](../../../content/markdown/aaa/dynamics/binary-dynamics.md), [Noether Braid](../../../content/markdown/aaa/noether-braid/noether-braid.md), [Nested Shell Braid Geometry](../../../content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md), and [noether-sea.md](../../../content/markdown/aaa/spacetime/noether-sea.md) after the constants and branch assumptions are certified.
 
 ## Notation Discipline
 
@@ -331,7 +331,7 @@ $$
 =0,
 $$
 
-where $\mathcal{T}_{\mathrm{ext}}^{(q)}$ records tri-binary, wake, or medium terms not present in the bare same-sheet two-body kernel, and
+where $\mathcal{T}_{\mathrm{ext}}^{(q)}$ records three-binary, wake, or medium terms not present in the bare same-sheet two-body kernel, and
 
 $$
 \mathcal{T}_O(\beta;\Lambda_O)
@@ -347,7 +347,7 @@ w_\rho
 {\sin^2(\alpha_{s,\rho}/2)\,|J_{s,\rho}|}.
 $$
 
-This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared tri-binary / Noether sea return term that closes the angular-momentum ledger.
+This equation is the reason the radial scaling curve is not yet a proof of a stable outer binary. In the same-sheet bare kernel all retained roots have positive tangential drive. A true steady branch needs signed-root cancellation or a declared three-binary / Noether sea return term that closes the angular-momentum ledger.
 
 ### Sub-Field-Speed Outer Estimate
 

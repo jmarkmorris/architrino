@@ -22,7 +22,7 @@ Context:
 - Start from the live equation inventory and score ladder:
   - `reference/priorities/equation-mapping/equation.md`
   - `reference/priorities/equation-mapping/equation-score-5-closure-ladder.md`
-  - `reference/priorities/equation-mapping/equation-mapping.md`
+  - `reference/priorities/equation-mapping/priorities.md`
   - `reference/priorities/equation-mapping/equation-common-architecture-2026-06-23-c.md`
   - `reference/priorities/equation-mapping/equation-breakthrough-search-2026-06-26.md`
 - Prior work over-focused on high-value blockers and then falsely appeared to have run long after token interruption. This restart should deliberately continue from unfinished low-score work and second-pass implementation targets.

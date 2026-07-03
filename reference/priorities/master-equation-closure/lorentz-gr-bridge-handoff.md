@@ -1,10 +1,10 @@
 # Lorentz/GR Bridge Dependency Handoff
 
-Claim level: non-promotional dependency packet. This file prepares the Lorentz/GR bridge interface before `spiral_branch_chart_test` closes. It does not claim that moving tri-binary Lorentz behavior, weak-field GR recovery, PPN closure, or preferred-frame suppression has been proved.
+Claim level: non-promotional dependency packet. This file prepares the Lorentz/GR bridge interface before `spiral_branch_chart_test` closes. It does not claim that moving three-binary Lorentz behavior, weak-field GR recovery, PPN closure, or preferred-frame suppression has been proved.
 
 Source anchors inspected for this handoff:
 
-- [master-equation-closure.md](master-equation-closure.md)
+- [priorities.md](priorities.md)
 - [lorentz-kinematics.md](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md)
 - [emergent-metric.md](../../../content/markdown/aaa/spacetime/emergent-metric.md)
 - [proper-time-and-time-dilation.md](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md)
@@ -13,7 +13,7 @@ Source anchors inspected for this handoff:
 
 The bridge has two proof stages.
 
-1. Moving-assembly extraction: a retained moving tri-binary branch must supply contraction, clock-retuning, and two-way leakage rows from one branch ledger.
+1. Moving-assembly extraction: a retained moving Noether braid branch must supply contraction, clock-retuning, and two-way leakage rows from one branch ledger.
 2. Weak-field medium response: only after the moving-assembly packet closes may the coarse-grained Noether sea record be projected into ADM/Cartan variables and PPN residuals.
 
 The first stage is blocked by `spiral_branch_chart_test`. The second stage can be prepared as a coefficient and residual contract, but it cannot be evaluated until the first stage supplies a branch class and a shared clock/ruler ledger.
@@ -47,7 +47,7 @@ where:
 
 The Lorentz/GR bridge is blocked if any entry is missing, if the branch identity changes under refinement, or if the reported Lorentz variables are extracted from a different ledger than $\mathfrak{B}_{q}$.
 
-## Moving Tri-Binary Contract
+## Moving Noether Braid Contract
 
 Primitive causal roots remain solved with the field speed $c_f$. The observer-channel speed is declared only after the branch chart is fixed:
 

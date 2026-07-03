@@ -2,7 +2,7 @@
 
 Promotion status: `partially-promoted`. The all-pairs source-pair policy, the $|\Pi_{\mathrm{all}}|=30$ count, and the rule that $3$ attractive / $2$ repellent source-site inventory does not compress the force ledger were promoted into [Noether Braid](../../../../content/markdown/aaa/noether-braid/noether-braid.md) as theorem-target language. This packet still supplies the priority-side causal-root and Jacobian-floor ledger for a general six-site neutral braid. It is the first hard blocker for the downstream dynamics, action, event, support, and observer-export rows: those rows may not claim closure from a partitioned, paired, or symmetry-compressed root list unless this all-pairs ledger has first emitted an explicit reduction row.
 
-This packet refines [Neutral Braid Model](neutral-braid-model.md), [Braid](../braid-retained-branch-closure.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-braid/bounded-speed-factor-root-sheet-certificate.md). Promoted claim level: `theorem-target`. Remaining blocker: `all-pairs-root-ledger-open` until active, inactive, and tail cells are interval-certified or assimilated on one ledger.
+This packet refines [Neutral Braid Model](neutral-braid-model.md), [Braid](../priorities.md), and [bounded-speed-factor-root-sheet-certificate.md](../shell-braid/bounded-speed-factor-root-sheet-certificate.md). Promoted claim level: `theorem-target`. Remaining blocker: `all-pairs-root-ledger-open` until active, inactive, and tail cells are interval-certified or assimilated on one ledger.
 
 ---
 

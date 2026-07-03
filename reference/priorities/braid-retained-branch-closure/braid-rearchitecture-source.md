@@ -311,7 +311,7 @@ This naturally provides three distinct radial vectors $\mathbf{r}_1, \mathbf{r}_
 
 If we collapse the radial scales to a single radius $R$ and set all velocities to $v = c_f$, the geometric picture changes dramatically:
 
-*   **The Scale Is Lost**: We no longer have a multi-scale hierarchy to explain the mass-map derivation (`reference/priorities/braid-mass-response-map/braid-mass-response-map.md`). The mass scales of the Standard Model must then emerge purely from topological phase-locking configurations or multi-assembly collective states, rather than the internal geometric dimensions of a single isolated nested shell braid.
+*   **The Scale Is Lost**: We no longer have a multi-scale hierarchy to explain the mass-map derivation (`reference/priorities/braid-mass-response-map/priorities.md`). The mass scales of the Standard Model must then emerge purely from topological phase-locking configurations or multi-assembly collective states, rather than the internal geometric dimensions of a single isolated nested shell braid.
 *   **The Directional Triad Emerges**: Instead of three nested lengths, the vielbein must be constructed from the normal vectors to the three orbital planes:
     $$\mathbf{e}_a \propto \hat{\mathbf{n}}_a = \frac{\mathbf{r}_a \times \dot{\mathbf{r}}_a}{\|\mathbf{r}_a \times \dot{\mathbf{r}}_a\|} \quad \text{for } a \in \{1, 2, 3\}$$
     For this triad to be orthogonal (recovering a flat local tangent space in the absence of external gradients), the three orbital planes must be strictly mutually orthogonal. This is a highly symmetric $SO(3)$ structure—essentially a spherical, three-dimensional gyroscope.

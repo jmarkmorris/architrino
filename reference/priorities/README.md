@@ -12,12 +12,13 @@ Use `proof-programs/` for active mathematical proof-program priorities that shar
 
 Use `operations/` for repo-wide deployment, hosting, release, cost, reliability, browser performance, and user-growth operations that are not specific to one app or solver proof lane.
 
-Use `dormant-deferred/aaa-journey/aaa-journey.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
+Use `dormant-deferred/aaa-journey/priorities.md` for priority-stage reconstruction of the legacy Architrino archive's ideation sequence, origin-history notes, historical perspective-commentary staging, seminal realization clusters, promotion routing, and legacy-to-current terminology migrations.
 
 ## Priority-Doc Maintenance Pattern
 
 The current preferred style for live priority docs is:
 
+- name the main live tracker `priorities.md` in each active priority workstream directory;
 - keep priorities concise and code-verified;
 - use `Current` plus `Objective` rather than long migration diaries;
 - keep readable architecture notes, equation explanations, comparison matrices, conceptual maps, provisional insights, and draft corpus-promotable text in the sibling `brainstorming.md` file by default;

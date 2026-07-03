@@ -3,7 +3,7 @@
 ## Packet Metadata
 
 - Kind: `detailed-priority-packet`
-- Parent: [dark-sector](dark-sector.md)
+- Parent: [dark-sector](priorities.md)
 - Status: `speculative-watchlist`
 - Current claim strength: `candidate-release-channel`
 

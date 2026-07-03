@@ -37,7 +37,7 @@ This case pressures $\mathbb{A}\mathbb{A}\mathbb{A}$ to recover gauge-like holon
 | --- | --- | --- |
 | This file | [standard-model-closure/weak-sector-gauge-closure](../standard-model-closure/weak-sector-gauge-closure.md) | Use Aharonov-Bohm as a clean gauge-holonomy benchmark. |
 | This file | [quantum-closure/transfer-operator-basin-measure](../quantum-closure/transfer-operator-basin-measure.md) | Tie holonomy to interference outcome measures. |
-| This file | [validation-gates](../validation-gates/validation-gates.md) | Add gauge-potential observability as a replacement constraint rather than a fundamental ontology import. |
+| This file | [validation-gates](../validation-gates/priorities.md) | Add gauge-potential observability as a replacement constraint rather than a fundamental ontology import. |
 
 ## Failure Modes
 

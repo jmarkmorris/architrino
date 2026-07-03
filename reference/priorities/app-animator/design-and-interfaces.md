@@ -1,6 +1,6 @@
 # Animator Design and Interfaces
 
-This detailed priority file supports [Animator](animator.md). It preserves the stable product design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries.
+This detailed priority file supports [Animator](priorities.md). It preserves the stable product design doctrine, viewport model, observer/framing model, media and overlay boundaries, structure editing direction, inputs, outputs, and app boundaries.
 
 ## Design
 

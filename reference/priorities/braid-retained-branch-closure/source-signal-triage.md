@@ -1,4 +1,4 @@
-# Tri-Binary Source Signal Triage
+# Noether Braid Source Signal Triage
 
 Promotion status: `priority-only`. This document mines [Braid Rearchitecture Source](braid-rearchitecture-source.md) for inherited source signals and classifies each signal as a safe mathematical target, a deferred theorem target, a speculative comparison, or an overclaim to reject until a retained-branch certificate closes on one live ledger.
 

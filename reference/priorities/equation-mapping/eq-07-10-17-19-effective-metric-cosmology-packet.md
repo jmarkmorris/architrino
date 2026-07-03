@@ -7,7 +7,7 @@
 - Worker mode: `team-agent worker`
 - Owned IDs: `EQ-07`, `EQ-08`, `EQ-09`, `EQ-10`, `EQ-17`, `EQ-18`, `EQ-19`
 - Owned output file: `reference/priorities/equation-mapping/eq-07-10-17-19-effective-metric-cosmology-packet.md`
-- Source priority files: [Equation Mapping Internal Priority](equation-mapping.md), [Equation Mapping Detail](equation.md)
+- Source priority files: [Equation Mapping Internal Priority](priorities.md), [Equation Mapping Detail](equation.md)
 - Scope: priority-only; no reader-facing corpus edits in this packet
 
 ## Closure Thesis

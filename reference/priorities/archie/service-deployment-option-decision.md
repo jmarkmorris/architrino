@@ -8,7 +8,7 @@
 - Parent priority: [service-platform.md](service-platform.md)
 - Deployment architecture: [service-deployment-architecture.md](service-deployment-architecture.md)
 - Service scaffolding and fixtures: [service-scaffolding-and-fixtures.md](service-scaffolding-and-fixtures.md)
-- App interface: [Archie Interface App](../app-archie-interface/app-archie-interface.md)
+- App interface: [Archie Interface App](../app-archie-interface/priorities.md)
 - V1 product requirements: [v1-product-requirements.md](../app-archie-interface/v1-product-requirements.md)
 - Answer artifact manifest: [answer-artifact-manifest.md](../app-archie-interface/answer-artifact-manifest.md)
 - Manifest-driven service architecture: [manifest-driven-service-architecture.md](../app-archie-interface/manifest-driven-service-architecture.md)

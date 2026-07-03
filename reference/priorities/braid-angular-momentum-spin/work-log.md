@@ -8,7 +8,7 @@ Use `brainstorming.md` for provisional ideas, insights, conceptual maps, and dra
 
 ### 2026-05-20 Team-Agent Progress Entries
 
-Migrated from [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md) on 2026-07-02 as part of the priority tracker / work log partition. These entries remain priority-only proof/status updates, not reader-facing proof closure.
+Migrated from [priorities.md](priorities.md) on 2026-07-02 as part of the priority tracker / work log partition. These entries remain priority-only proof/status updates, not reader-facing proof closure.
 
 #### Team-Agent Progress 2026-05-20
 
@@ -420,7 +420,7 @@ These diagnostics advance the proof stack by naming exact residuals and pass/fai
 
 ### 2026-05-20 AAA Corpus Promotion Entries
 
-Migrated from [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md) on 2026-07-02 as part of the priority tracker / work log partition. These entries record historical promotion status and remaining blockers.
+Migrated from [priorities.md](priorities.md) on 2026-07-02 as part of the priority tracker / work log partition. These entries record historical promotion status and remaining blockers.
 
 #### AAA Corpus Promotion 2026-05-20
 

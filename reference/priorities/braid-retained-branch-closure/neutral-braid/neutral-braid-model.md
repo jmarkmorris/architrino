@@ -1,6 +1,6 @@
 # Neutral Braid Source Packet
 
-Terminology status: `quarantined-priority-history`. This packet was introduced before the clean Noether braid scene triad was repaired into the priority control file. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted taxonomy. Route any reuse through [Braid](../braid-retained-branch-closure.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
+Terminology status: `quarantined-priority-history`. This packet was introduced before the clean Noether braid scene triad was repaired into the priority control file. Its disputed labels may remain here for git history and mathematical source mining, but they are not accepted taxonomy. Route any reuse through [Braid](../priorities.md), whose active reader-facing triad is `neutral braid`, `shell braid`, and `nested shell braid`.
 
 Promotion status: `priority-only`. This packet generalizes the old three-binary architecture from an assumed binary partition to a neutral six-architrino free-support branch. The old binary partition, exact-antipodal, shell braid, and nested shell braid packets become mathematical cases of this broader branch family rather than mandatory ontology.
 

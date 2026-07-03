@@ -1,6 +1,6 @@
 # Structural-Integrity Common-Limit Theorem Packet
 
-This detailed priority file supports [nested shell braid causal closure](braid-nested-shell-causal-closure.md). It captures the proof route for the structural-integrity theorem target summarized in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and stated as Theorem G in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure).
+This detailed priority file supports [nested shell braid causal closure](priorities.md). It captures the proof route for the structural-integrity theorem target summarized in [Absolute Timespace](../../../content/markdown/aaa/foundations/absolute-timespace.md#causal-wake-geometry) and stated as Theorem G in [Lorentz Kinematics](../../../content/markdown/aaa/spacetime/lorentz-kinematics.md#theorem-g-structural-integrity-common-limit-closure).
 
 The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ corpus through scene-backed chapters. The dependency graph, residual vector, and fail-closed failure map remain priority-only until an accepted retained branch can populate the rows.
 
@@ -22,7 +22,7 @@ The compact theorem target is surfaced in the $\mathbb{A}\mathbb{A}\mathbb{A}$ c
 | [Proper Time and Time Dilation](../../../content/markdown/aaa/spacetime/proper-time-and-time-dilation.md#moving-branch-clock-retuning-target) | The moving-clock row is not sufficient in isolation; the same branch must also produce moving-ruler deformation and photon synchronization. |
 | [Electroweak Bosons](../../../content/markdown/aaa/assemblies/bosons/electroweak-bosons.md#gate-a-theorem-scaffold-kinematics-and-optics) | Photon Gate A is the photon side of the common-limit condition and cannot tune $c_\gamma$ separately from the clock/ruler $c_{\text{eff}}$ row. |
 | [Lorentz Test Residual Handoff](../master-equation-closure/lorentz-test-residual-handoff.md) | Residual export already requires shared branch, clock, ruler, signal, speed, medium-response, frame-projection, and null-row discipline. |
-| [Shared Branch Certificate Contract](braid-nested-shell-causal-closure.md#shared-branch-certificate-contract) | The shared branch certificate contract defines the retained-branch package that must carry $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
+| [Shared Branch Certificate Contract](priorities.md#shared-branch-certificate-contract) | The shared branch certificate contract defines the retained-branch package that must carry $c_f$, $c_{\text{eff}}$, $c_\gamma$, $c_0$, active-root ledger, stability gaps, Lorentz residual, photon rows, medium response, and event ledger. |
 
 ## Theorem Target
 

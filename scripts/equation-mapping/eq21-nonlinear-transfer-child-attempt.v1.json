@@ -1,0 +1,201 @@
+{
+  "schema": "aaa-equation-map-eq21-nonlinear-transfer-child-input/v1",
+  "claimLevel": "score-neutral EQ-21 nonlinear transfer child source attempt; must remain blocked until accepted nonlinear evidence exists",
+  "residualId": "R_eq21_nonlinear_transfer_child_attempt_0001",
+  "tolerances": {
+    "residual": 1,
+    "retune": 1e-12,
+    "sharedKey": 1e-12,
+    "derived": 1e-12
+  },
+  "sharedObservation": {
+    "path": "scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json"
+  },
+  "growthTransferChild": {
+    "path": "scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json"
+  },
+  "matterPowerTransferChild": {
+    "path": "scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json"
+  },
+  "lensingTransferChild": {
+    "path": "scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json"
+  },
+  "shearRsdTransferChild": {
+    "path": "scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json"
+  },
+  "haloClusterTransferChild": {
+    "path": "scripts/equation-mapping/eq21-halo-cluster-transfer-child-evidence.v1.json"
+  },
+  "packet": {
+    "id": "eq21-nonlinear-transfer-child-attempt-0001",
+    "rows": {
+      "nonlinear_transfer_child": {
+        "status": "attempt",
+        "rowId": "eq21-nonlinear-transfer-child-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "dimensionless_power_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-dimensionless-power-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "nonlinear_response_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-response-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "matter_power_parent_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-matter-power-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "lensing_parent_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-lensing-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "shear_rsd_parent_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-shear-rsd-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "halo_cluster_parent_row": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-halo-cluster-parent-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "nonlinear_grid": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-grid-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "source_provenance": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-source-provenance-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "no_hidden_retune_witness": {
+        "status": "pending",
+        "rowId": "eq21-nonlinear-no-hidden-retune-provider-backed-0001",
+        "carrierId": "theta-sea-density-compression-provider-0001",
+        "eventLedgerRef": "event-ledger-theta-sea-rho-ns-provider-0001",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      }
+    },
+    "sharedKeys": [
+      {
+        "key": "rho_NS",
+        "status": "pending",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "n",
+        "status": "pending",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "chi_sea",
+        "status": "pending",
+        "value": 1.002,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "Gamma_N",
+        "status": "pending",
+        "value": 1.0000010100010202,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "M_sea_ab",
+        "status": "pending",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "rho_bar",
+        "status": "pending",
+        "value": 0.05,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "rho_A",
+        "status": "pending",
+        "value": 0.25,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "H_eff",
+        "status": "pending",
+        "value": 3.424706202494149,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      {
+        "key": "a_eff",
+        "status": "pending",
+        "value": 1,
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      }
+    ],
+    "model": {
+      "nonlinearTransfer": {
+        "status": "attempt",
+        "sourceFamily": "score-neutral nonlinear dimensionless-power readout attempt",
+        "sourcePath": "scripts/equation-mapping/eq21-nonlinear-transfer-child-attempt.v1.json"
+      },
+      "formula": {
+        "Delta_L2": "k^3 * P_linear_consensus / (2 * pi^2)",
+        "P_nonlinear": "P_linear_consensus * (1 + Delta_L2)",
+        "residual": "max inherited parent-channel relative mismatch among matter, lensing, shear, and RSD P(k,z) readouts",
+        "parent": "P_linear_consensus is inherited from the accepted halo/cluster inversion child; no nonlinear fit coefficient is introduced"
+      },
+      "samples": [
+        {
+          "sampleId": "NL_L40_z1_k0p02",
+          "haloClusterSampleId": "HC_L40_z1_k0p02",
+          "shearRsdSampleId": "SR_L40_z1_k0p02",
+          "lensingSampleId": "L40_z1_k0p02",
+          "matterSampleId": "k0p02_z1"
+        },
+        {
+          "sampleId": "NL_L200_z1_k0p1",
+          "haloClusterSampleId": "HC_L200_z1_k0p1",
+          "shearRsdSampleId": "SR_L200_z1_k0p1",
+          "lensingSampleId": "L200_z1_k0p1",
+          "matterSampleId": "k0p1_z1"
+        },
+        {
+          "sampleId": "NL_L800_z1_k0p5",
+          "haloClusterSampleId": "HC_L800_z1_k0p5",
+          "shearRsdSampleId": "SR_L800_z1_k0p5",
+          "lensingSampleId": "L800_z1_k0p5",
+          "matterSampleId": "k0p5_z1"
+        }
+      ],
+      "derived": {},
+      "residualComponents": {
+        "nonlinear_grid_normalized": null,
+        "S_retune": null
+      }
+    }
+  }
+}

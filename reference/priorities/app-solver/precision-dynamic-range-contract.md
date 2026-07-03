@@ -4,7 +4,7 @@ Status: `closed-design-capture`
 
 Kind: `solver-contract`
 
-Source task: `precision_dynamic_range_contract` in [solver.md](solver.md)
+Source task: `precision_dynamic_range_contract` in [priorities.md](priorities.md)
 
 Primary source: [precision.md](precision.md)
 
@@ -226,7 +226,7 @@ This is why the solver can carry huge absolute coordinates, tiny local separatio
 | Item | Status | Closeout decision |
 | --- | --- | --- |
 | Full arbitrary-precision runtime kernels for every solver family | Split into runtime-validation capture and solver-core tasks. | This contract defines when stricter numeric types and paths are required; runtime breadth remains owned by `solver_contract`, `minimal_causal_root_core`, and later stage-level performance acceptance. |
-| Queue status in `solver.md` | Closed in [solver.md](solver.md). | This contract is no longer an active queue item. |
+| Queue status in `priorities.md` | Closed in [priorities.md](priorities.md). | This contract is no longer an active queue item. |
 | Corpus promotion | Not promoted. | This is operational solver contract material under `reference/priorities`, not reader-facing AAA prose. |
 
 ## Completion Judgment

@@ -1,6 +1,6 @@
 # Simulation Detailed Priority Packets
 
-This file preserves detailed simulation protocols, campaign objects, acceptance contracts, and executable diagnostics for [app-simulation](app-simulation.md). Loose idea and open-question material lives in [brainstorming.md](brainstorming.md).
+This file preserves detailed simulation protocols, campaign objects, acceptance contracts, and executable diagnostics for [app-simulation](priorities.md). Loose idea and open-question material lives in [brainstorming.md](brainstorming.md).
 
 ## Hydrogen Native Extractor Boundary
 
@@ -1118,11 +1118,11 @@ The promotion artifact `promotion_lemma_check.md` must list the exact priority-t
 
 ## Related Priorities
 
-- [master-equation-closure](../master-equation-closure/master-equation-closure.md)
-- [mass-map](../braid-mass-response-map/braid-mass-response-map.md)
-- [dyadic-lock](../braid-dyadic-lock/braid-dyadic-lock.md)
-- [quantum-closure](../quantum-closure/quantum-closure.md)
-- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [master-equation-closure](../master-equation-closure/priorities.md)
+- [mass-map](../braid-mass-response-map/priorities.md)
+- [dyadic-lock](../braid-dyadic-lock/priorities.md)
+- [quantum-closure](../quantum-closure/priorities.md)
+- [strong-field-closure](../strong-field-closure/priorities.md)
 
 ## Related $\mathbb{A}\mathbb{A}\mathbb{A}$ Notes
 

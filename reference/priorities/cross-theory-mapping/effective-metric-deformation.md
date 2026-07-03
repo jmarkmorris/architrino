@@ -4,7 +4,7 @@ Status note: this source packet is a candidate deformation map, not a completed 
 
 ## Motivation
 
-In this candidate map, a Noether braid (tri-binary) is modeled as occupying a physical exclusion volume that may deform from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). The assembly may also change size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, are proposed inputs to the local Noether sea state from which the effective metric experienced by propagating signals and assembly-based observers would have to be extracted.
+In this candidate map, a rank-three Noether braid is modeled as occupying a physical exclusion volume that may deform from nearly spherical (low energy, weak gravity, slow translation) through oblate spheroid (moderate stress) to a planar disk (Planck alignment, event horizon, photon-like states). The assembly may also change size, with the transverse radius $R_\perp$ shrinking as energy increases. These two channels of deformation, shape and scale, are proposed inputs to the local Noether sea state from which the effective metric experienced by propagating signals and assembly-based observers would have to be extracted.
 
 This section surveys the standard GR constructions where ellipsoidal geometry plays a structural role, identifies what is absent from GR that the architrino framework supplies, and develops the two-parameter effective metric mapping in detail.
 
@@ -131,9 +131,9 @@ As the universe cools and Noether braid assemblies lose energy, $R_\perp$ grows 
 
 Turning this structural mapping into a quantitative effective metric requires five steps:
 
-**Step 1. Equation of state of a single core.** Derive $R_\perp(E)$ from the outer-binary delay dynamics. This is the constitutive relation of the medium: how the transverse radius of a single tri-binary responds to energy input. The binary dynamics and Planck mapping sections provide the framework; a closed-form or numerical $R_\perp(E)$ curve is needed.
+**Step 1. Equation of state of a single core.** Derive $R_\perp(E)$ from the outer-binary delay dynamics. This is the constitutive relation of the medium: how the transverse radius of a single three-binary responds to energy input. The binary dynamics and Planck mapping sections provide the framework; a closed-form or numerical $R_\perp(E)$ curve is needed.
 
-**Step 2. Noether sea delay factor.** Define $\chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the tri-binary medium.
+**Step 2. Noether sea delay factor.** Define $\chi_{\text{sea}}(\xi, \lambda, n_{\text{cores}})$ for signal propagation through a medium of ellipsoidal cores. This is an effective-medium calculation, requiring averaging over core orientations and packing geometry, likely tractable in a Maxwell-Garnett or Bruggeman-type approximation adapted to the three-binary medium.
 
 **Step 3. Extract the effective metric.** Use the Gordon metric template to obtain $g_{\mu\nu}$ from $\chi_{\text{sea}}$ and the preferred-frame structure $\hat{u}$, specialized to a medium with two deformation parameters. Verify that the metric has Lorentzian signature and reduces to Minkowski in the homogeneous isotropic limit.
 
@@ -158,9 +158,9 @@ The reader-facing Noether sea pro/anti coupling chapter should state the provisi
 
 ## Related Priorities
 
-- [app-animator](../app-animator/animator.md)
-- [app-simulation](../app-simulation/app-simulation.md)
-- [strong-field-closure](../strong-field-closure/strong-field-closure.md)
+- [app-animator](../app-animator/priorities.md)
+- [app-simulation](../app-simulation/priorities.md)
+- [strong-field-closure](../strong-field-closure/priorities.md)
 
 ## Related AAA Notes
 

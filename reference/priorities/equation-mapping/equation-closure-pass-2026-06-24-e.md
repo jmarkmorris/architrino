@@ -35,7 +35,7 @@ Unless another row pins amplitude to frequency, $h_\Phi$ varies continuously alo
 
 ## Revised Positive Target
 
-The positive `EQ-12A` route is now a locked tri-binary action-unit theorem target. The strongest current candidate is the equal-frequency row set:
+The positive `EQ-12A` route is now a locked three-binary action-unit theorem target. The strongest current candidate is the equal-frequency row set:
 
 $$
 (f_1,f_2,f_3)=(f,f,f),
@@ -98,7 +98,7 @@ $$
 \approx0
 $$
 
-disqualifies the scalar Hopf orbit as a unit source and justifies the move to tri-binary symmetry/locking.
+disqualifies the scalar Hopf orbit as a unit source and justifies the move to three-binary symmetry/locking.
 
 ## Score Disposition
 
@@ -107,7 +107,7 @@ No score changes follow from this pass. `EQ-12A` remains at `2`.
 The first blocker remains accepted retained evidence, but the interpretation changes:
 
 - the constant-delay checker is a scaffold and falsifier;
-- the positive route is a symmetry-stabilized equal-frequency tri-binary branch;
+- the positive route is a symmetry-stabilized equal-frequency Noether braid branch;
 - score movement requires solver-generated plateau evidence, four-readout coincidence, and positive Floquet margin on the same retained branch.
 
 ## Promotion Classification
@@ -116,4 +116,4 @@ Classification: `priority-only`.
 
 Promote now: no.
 
-Defer with blocker: promotion waits for either the scalar counterexample result or a retained locked tri-binary branch whose winding, action readouts, and Floquet margin are produced from one same branch record.
+Defer with blocker: promotion waits for either the scalar counterexample result or a retained locked Noether braid branch whose winding, action readouts, and Floquet margin are produced from one same branch record.

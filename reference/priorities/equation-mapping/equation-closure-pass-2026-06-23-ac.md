@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-detail`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Detail source: [Equation Mapping Detail](equation.md)
 - Prior pass: [Equation Closure Pass 2026-06-23 AB](equation-closure-pass-2026-06-23-ab.md)
 - Assigned ID: `EQ-13`

@@ -1,5 +1,7 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import { buildHeldReleaseSeedPathRows } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
 import {
@@ -10,6 +12,13 @@ import {
   evaluateHeldReleasePathHistoryStreamManifestSetEvidence,
   validateHeldReleasePathHistoryStreamManifestSet,
 } from "../scripts/braid-ideal/held-release-path-history-stream-manifest-set.mjs";
+
+const SCRIPT_PATH = fileURLToPath(
+  new URL("../scripts/braid-ideal/held-release-path-history-stream-manifest-set.mjs", import.meta.url)
+);
+const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-acceptance-certificate";
+const PROVIDER_OBJECT_REF = "candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327";
+const PROVIDER_ARTIFACT_HASH = "7d4a8fe0a97923270179f2ca0b49b4bc0d6b6ba3251b26e82569bdb4bd1f91df";
 
 test("held-release path-history stream manifest set is deterministic and fails closed at retained record binding", () => {
   const first = buildHeldReleasePathHistoryStreamManifestSet();
@@ -143,6 +152,48 @@ test("path-history stream manifests can carry provider backing and durable refs 
     reason: "producer_does_not_authorize_accepted_stream_manifest_evidence",
     first_missing_field: "held_release_path_history_stream_manifest_set.acceptance_certificate_ref",
   });
+  assert.equal(artifact.authorization.held_release_path_history_stream_manifest_set, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateHeldReleasePathHistoryStreamManifestSet(artifact), []);
+});
+
+test("manifest-set CLI emits provider-backed acceptance blocker", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      `--retained-record-id=${RETAINED_RECORD_ID}`,
+      `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+      `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+      "--auto-durable-manifest-refs",
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const artifact = JSON.parse(output);
+
+  assert.equal(artifact.artifact_id, "held_release_path_history_stream_manifest_set:49297bfc0206431a");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(
+    artifact.first_missing_object,
+    "held_release_path_history_stream_manifest_set_acceptance_certificate"
+  );
+  assert.equal(
+    artifact.first_missing_field,
+    "held_release_path_history_stream_manifest_set.acceptance_certificate_ref"
+  );
+  assert.equal(artifact.retained_record_requirement.retained_record_id, RETAINED_RECORD_ID);
+  assert.equal(artifact.durable_stream_requirement.durable_stream_count, 6);
+  assert.equal(
+    artifact.stream_manifest_rows.every(
+      (row, index) =>
+        row.provider_provenance.provider_object_ref === PROVIDER_OBJECT_REF &&
+        row.provider_provenance.provider_artifact_hash === PROVIDER_ARTIFACT_HASH &&
+        row.durable_stream_binding.durable_manifest_ref ===
+          `candidate:native-app:path-history-stream-manifest:retainedminusrecord_heldminusreleaseminussixminuspoint_adapterminusacceptanceminuscertificate:${index}`
+    ),
+    true
+  );
   assert.equal(artifact.authorization.held_release_path_history_stream_manifest_set, false);
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
   assert.deepEqual(validateHeldReleasePathHistoryStreamManifestSet(artifact), []);

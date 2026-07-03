@@ -1,6 +1,6 @@
 # Spinor Holonomy Control Table
 
-This proof packet supports [Angular Momentum and Spin Closure](braid-angular-momentum-spin.md) and should be read beside [Spinor Holonomy Return Table Packet](spinor-holonomy-return-table-packet.md). It does not edit or canonize $\mathbb{A}\mathbb{A}\mathbb{A}$ prose. Its purpose is to make the ordered-frame spinor route falsifiable by evaluating a controlled null case.
+This proof packet supports [Angular Momentum and Spin Closure](priorities.md) and should be read beside [Spinor Holonomy Return Table Packet](spinor-holonomy-return-table-packet.md). It does not edit or canonize $\mathbb{A}\mathbb{A}\mathbb{A}$ prose. Its purpose is to make the ordered-frame spinor route falsifiable by evaluating a controlled null case.
 
 Claim level: provisional control / falsifier packet. The result below is not a proof that every ordered Noether braid branch is ordinary $SO(3)$. It proves only that a branch-preserving rigid ordered-frame loop with identity return on every retained history row has trivial table holonomy.
 

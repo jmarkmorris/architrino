@@ -1,6 +1,6 @@
 # Matter/Antimatter Chirality Retained-History Target
 
-Status. Priority-only retained-history simulation target under [Braid Ideal](braid-ideal.md). This is not a matter/antimatter discovery claim, not a particle-sector promotion, and not a retained branch certificate.
+Status. Priority-only retained-history simulation target under [Braid Ideal](priorities.md). This is not a matter/antimatter discovery claim, not a particle-sector promotion, and not a retained branch certificate.
 
 Claim level. Executable closure target. The target tests whether the matter/antimatter chirality bridge can be represented as pro/anti ordered-braid orientation reversal on a retained branch family. It must not be reduced to a static six-site support table, a Positrino/Electrino relabel, or a polarity-inventory shortcut.
 

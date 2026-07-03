@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `priority-detail`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Detail source: [Equation Mapping Detail](equation.md)
 - Prior packet: [EQ-21 Through EQ-23 And EQ-32 Structure/CMB/BBN/RAR Packet](eq-21-23-32-structure-cmb-bbn-rar-packet.md)
 - Upstream interface: [EQ-07 Through EQ-10 And EQ-17 Through EQ-19 Effective Metric / Cosmology Packet](eq-07-10-17-19-effective-metric-cosmology-packet.md)
@@ -12,6 +12,10 @@
 - Accepted growth child: [eq21-growth-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json) consumed by [eq21-growth-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-growth-transfer-child-accepted.v1.json)
 - Accepted matter-power child: [eq21-matter-power-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json) consumed by [eq21-matter-power-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-accepted.v1.json)
 - Accepted CMB-lensing child: [eq21-lensing-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json) consumed by [eq21-lensing-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-lensing-transfer-child-accepted.v1.json)
+- Accepted shear/RSD child: [eq21-shear-rsd-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json) consumed by [eq21-shear-rsd-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-accepted.v1.json)
+- Accepted halo/cluster child: [eq21-halo-cluster-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-evidence.v1.json) consumed by [eq21-halo-cluster-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-accepted.v1.json)
+- Accepted nonlinear child: [eq21-nonlinear-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json) consumed by [eq21-nonlinear-transfer-child-accepted.v1.json](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-accepted.v1.json)
+- Accepted galaxy-response child: [eq32-galaxy-response-child-evidence.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json) consumed by [eq32-galaxy-response-child-accepted.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-accepted.v1.json)
 - Assigned IDs: `EQ-21`, `EQ-22`, `EQ-22A`, `EQ-23`, `EQ-32`
 - Status: `second-round residual packet`
 - Scope: priority-only; no reader-facing corpus promotion and no score-table edits in this packet
@@ -34,9 +38,10 @@ The second-round residual should make hidden retuning visible. A branch may proj
 - Current score snapshot: the prior packet recommends `3` for `EQ-21`, `EQ-22`, `EQ-23`, and `EQ-32`; `EQ-22A` remains `2` inside the Planck blackbody core note. This pass does not update [equation.md](equation.md).
 - Closure driver: one retained $\Theta_{\mathrm{obs}}$ record must bind source-window, readout, thermal/provenance, galaxy, and energy-momentum-angular-momentum ledger rows before growth, CMB, BBN, Planck blackbody, or RAR/BTFR comparisons can count as evidence.
 - Accepted route status: [shared-observation-residual.mjs](../../../scripts/equation-mapping/shared-observation-residual.mjs) now accepts the provider-backed $\Theta_{\mathrm{obs}}$ consumer. The accepted input consumes the populated shared `EQ-11`/`EQ-20` residual, accepted `theta_W` evidence, accepted output-projection evidence, accepted `theta_cos` handoff, and accepted `delta_a_star` output projection. It reports `status=populated`, `nextBlocker=null`, no missing projection families, no missing shared keys, and `hiddenRetuneNumericPass=true`.
-- `EQ-21` child status: [eq21-growth-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-growth-transfer-child-residual.mjs) accepts the first predictive child, [eq21-matter-power-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-residual.mjs) accepts the matter-power child, and [eq21-lensing-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-lensing-transfer-child-residual.mjs) accepts the CMB-lensing child. The accepted inputs consume the same shared-observation parent; the matter-power child consumes the accepted $f\sigma_8$ child; the lensing child consumes the accepted parent, accepted $f\sigma_8$ child, and accepted normalized $P(k,z)$ child; inherited shared keys do not retune. The accepted runs report $f\sigma_8=0.4165634684945517$, `matterPowerGridNormalizedResidual=0` with `sampleCount=6`, and `cmbLensingGridNormalizedResidual=0` with `sampleCount=3`.
-- Remaining blocker boundary: the parent observation carrier, first $f\sigma_8$ child, normalized $P(k,z)$ child, and normalized CMB-lensing child are score-neutral and populated; they do not yet derive shear/RSD, halo/cluster, nonlinear growth, score-review observational transfer, CMB transfer, Planck blackbody, recombination/acoustic, BBN source-window, or galaxy-response child physics.
-- Smallest next artifact: a shear/RSD, halo/cluster, nonlinear, or score-review observational transfer child, blackbody/acoustic transfer, a BBN source-window row, or a RAR/BTFR galaxy-response law, consuming the accepted shared-observation evidence without replacing it.
+- `EQ-21` child status: [eq21-growth-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-growth-transfer-child-residual.mjs) accepts the first predictive child, [eq21-matter-power-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-residual.mjs) accepts the matter-power child, [eq21-lensing-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-lensing-transfer-child-residual.mjs) accepts the CMB-lensing child, [eq21-shear-rsd-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-residual.mjs) accepts the shear/RSD child, [eq21-halo-cluster-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-residual.mjs) accepts the halo/cluster child, and [eq21-nonlinear-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-residual.mjs) accepts the nonlinear transfer child. The accepted inputs consume the same shared-observation parent; the matter-power child consumes the accepted $f\sigma_8$ child; the lensing child consumes the accepted parent, accepted $f\sigma_8$ child, and accepted normalized $P(k,z)$ child; the shear/RSD child consumes that accepted parent/growth/matter/lensing chain; the halo/cluster child consumes the same chain plus the accepted shear/RSD child; the nonlinear child consumes the same chain plus the accepted halo/cluster child; inherited shared keys do not retune. The accepted runs report $f\sigma_8=0.4165634684945517$, `matterPowerGridNormalizedResidual=0` with `sampleCount=6`, `cmbLensingGridNormalizedResidual=0` with `sampleCount=3`, `shearRsdGridNormalizedResidual=0` with `sampleCount=3`, `haloClusterGridNormalizedResidual=3.0204931705456123e-16` with `sampleCount=3`, and `nonlinearGridNormalizedResidual=3.0204931705456123e-16` with `sampleCount=3`.
+- `EQ-32` child status: [eq32-galaxy-response-child-residual.mjs](../../../scripts/equation-mapping/eq32-galaxy-response-child-residual.mjs) accepts the first predictive galaxy-response child. The accepted input consumes the accepted shared-observation parent and accepted `delta_a_star` output projection, computes a three-sample RAR/BTFR/high-acceleration response grid, and reports `status=populated`, `nextBlocker=null`, `sourceEvidenceFailureCount=0`, `parentSharedObservationAccepted=true`, `parentOutputProjectionAccepted=true`, `hiddenRetuneNumericPass=true`, `rarGridResidualPass=true`, `btfrLowAccelerationPass=true`, `highAccelerationRecoveryPass=true`, `lensingDynamicsSplitPass=true`, and `scoreDecision=no_score_increase`.
+- Remaining blocker boundary: the parent observation carrier, first $f\sigma_8$ child, normalized $P(k,z)$ child, normalized CMB-lensing child, shear/RSD child, halo/cluster child, nonlinear child, and galaxy-response child are score-neutral and populated; they do not yet derive score-review observational transfer, CMB transfer, Planck blackbody, recombination/acoustic, or BBN source-window physics.
+- Smallest next artifact: a score-review observational transfer child, blackbody/acoustic transfer, or BBN source-window row, consuming the accepted shared-observation evidence without replacing it.
 - Safe pass action: priority packet refinement only. No score change follows from the accepted carrier or residual handoff by itself.
 
 ## Retained Shared Record
@@ -126,11 +131,11 @@ Here $W_{\mathrm{src}}$ is the declared source window for the BBN-like thermal a
 
 | Standard comparison term | $\mathbb{A}\mathbb{A}\mathbb{A}$ geometric readout | Required carrier or row | Same-record binding | Fail-closed negative control | Smallest accepted evidence object |
 | --- | --- | --- | --- | --- | --- |
-| Structure growth, matter power, $f\sigma_8$, $S_8$, and CMB lensing | Linear-growth and matter-loading projections from the same Noether sea, baryon, neutral-assembly, effective-coupling, and readout rows. | Accepted $\Theta_{\mathrm{obs}}$ parent with accepted `growth_projection` and $\Theta_{\mathrm{read}}$ rows. | Growth, lensing, equality scale, free-streaming, and BAO rows must share $\rho_{\text{NS}}$, $\rho_{\mathrm{bar}}$, $\rho_A$, $G_{\mathrm{eff}}^\theta$, $a_{\mathrm{eff}}^\theta$, and $H_{\mathrm{eff}}^\theta$. | Hidden retune between growth, CMB lensing, and FRW readout rows; failure to consume the accepted upstream `theta_cos` handoff. | [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json) for the accepted parent and growth projection, [eq21-growth-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json) for the accepted score-neutral $f\sigma_8$ child, [eq21-matter-power-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json) for the accepted score-neutral normalized $P(k,z)$ child, and [eq21-lensing-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json) for the accepted score-neutral normalized $C_L^{\phi\phi}$ child; shear/RSD, BAO, halo/cluster, nonlinear, and score-review transfer remain downstream. |
+| Structure growth, matter power, $f\sigma_8$, $S_8$, CMB lensing, shear/RSD, halo/cluster, and nonlinear transfer | Linear-growth and matter-loading projections from the same Noether sea, baryon, neutral-assembly, effective-coupling, and readout rows. | Accepted $\Theta_{\mathrm{obs}}$ parent with accepted `growth_projection` and $\Theta_{\mathrm{read}}$ rows. | Growth, lensing, shear/RSD, halo/cluster, nonlinear, equality scale, free-streaming, and BAO rows must share $\rho_{\text{NS}}$, $\rho_{\mathrm{bar}}$, $\rho_A$, $G_{\mathrm{eff}}^\theta$, $a_{\mathrm{eff}}^\theta$, and $H_{\mathrm{eff}}^\theta$. | Hidden retune between growth, CMB lensing, shear/RSD, halo/cluster, nonlinear, and FRW readout rows; failure to consume the accepted upstream `theta_cos` handoff. | [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json) for the accepted parent and growth projection, [eq21-growth-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-growth-transfer-child-evidence.v1.json) for the accepted score-neutral $f\sigma_8$ child, [eq21-matter-power-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-matter-power-transfer-child-evidence.v1.json) for the accepted score-neutral normalized $P(k,z)$ child, [eq21-lensing-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-lensing-transfer-child-evidence.v1.json) for the accepted score-neutral normalized $C_L^{\phi\phi}$ child, [eq21-shear-rsd-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-evidence.v1.json) for the accepted score-neutral shear/RSD child, [eq21-halo-cluster-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-evidence.v1.json) for the accepted score-neutral halo/cluster child, and [eq21-nonlinear-transfer-child-evidence.v1.json](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-evidence.v1.json) for the accepted score-neutral nonlinear child; BAO and score-review transfer remain downstream. |
 | CMB transfer, blackbody preservation, acoustic phase, damping, and lensing | Photon-loading, transfer, acoustic, thermalization, and lensing readouts from $\Theta_{\mathrm{src}}$, $\Theta_{\mathrm{read}}$, and $\Theta_{\mathrm{therm/prov}}$. | Accepted CMB projection rows plus accepted $\Theta_{\mathrm{src}}$ and $\Theta_{\mathrm{therm/prov}}$ subrecords. | CMB spectra, blackbody, acoustic phase, lensing, $N_{\mathrm{eff}}$, $Y_p$, and baryon-loading rows must point to the same source and readout identities. | CMB-only readout refit, photon-loading split from BBN, and thermal/provenance rows sourced only to priority prose. | Accepted `CMB` projection under [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json); transfer, thermalization, blackbody, and recombination/acoustic child rows remain downstream. |
 | Planck blackbody occupancy and zero photon chemical potential | Photon mode measure, transverse mode count, maximum-entropy occupancy, $h_\vartheta$, $T_\theta$, $c_\gamma$, and $\mu_\gamma^\theta=0$ readouts. | Accepted $\Theta_{\mathrm{bb}}$ row, accepted `theta_gamma_packet`, and accepted therm/provenance rows. | Blackbody mode density, photon energy ledger, transversality count, temperature, and source-window energy exchange must share $\Theta_{\mathrm{therm/prov}}$ and inherited photon carrier identities. | Longitudinal leakage, nonzero undeclared $\mu_\gamma^\theta$, and inherited `missing_accepted_theta_gamma_packet`. | Retained blackbody source packet proving mode count, zero photon-number charge, thermalization depth, and photon packet inheritance on one accepted record. |
 | BBN freezeout, weak rates, light-element yields, and photon/neutrino loading | Source-window reaction, freezeout clock, neutron/proton, photon-loading, neutrino, heat, and yield-vector rows from $\Theta_{\mathrm{src}}$. | Accepted $\Theta_{\mathrm{src}}$ row with BBN projection and energy-momentum-angular-momentum ledger rows. | BBN yields, $N_{\mathrm{eff}}$, $\eta^\theta$, photon loading, neutrino rows, and CMB handoff variables must use the same source-window record. | BBN parameter import without source-window mechanism; CMB/BBN handoff split; source rows without provenance. | Accepted `BBN` projection under [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json); predictive BBN reaction/freezeout rows remain downstream. |
-| RAR/BTFR and low-acceleration galaxy response | Galaxy response projection from $\Pi_{\mathrm{gal}}\theta_{\mathrm{sea}}$, baryonic density, neutral-assembly density, response tensor, $G_{\mathrm{eff}}^\theta$, and $a_\star^\theta(E)$. | Accepted $\Theta_{\mathrm{gal}}$ plus accepted `theta_sea_rho_NS` and `delta_a_star` projection. | Galaxy response, lensing, high-acceleration recovery, baryon loading, and local Noether sea rows must share the same retained Noether sea coefficient record. | Private galaxy $\Theta_{\mathrm{obs}}$ ledger, missing `theta_sea_rho_NS`, and missing `delta_a_star`. | Accepted output projection for `delta_a_star` plus accepted `RAR` projection under [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json); predictive galaxy-response law remains downstream. |
+| RAR/BTFR and low-acceleration galaxy response | Galaxy response projection from $\Pi_{\mathrm{gal}}\theta_{\mathrm{sea}}$, baryonic density, neutral-assembly density, response tensor, $G_{\mathrm{eff}}^\theta$, and $a_\star^\theta(E)$. | Accepted $\Theta_{\mathrm{gal}}$ plus accepted `theta_sea_rho_NS` and `delta_a_star` projection. | Galaxy response, lensing, high-acceleration recovery, baryon loading, and local Noether sea rows must share the same retained Noether sea coefficient record. | Private galaxy $\Theta_{\mathrm{obs}}$ ledger, missing `theta_sea_rho_NS`, and missing `delta_a_star`. | Accepted output projection for `delta_a_star` plus accepted `RAR` projection under [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json); [eq32-galaxy-response-child-evidence.v1.json](../../../scripts/equation-mapping/eq32-galaxy-response-child-evidence.v1.json) now supplies the first score-neutral predictive child. |
 | Upstream FRW/readout handoff | $\Theta_{\mathrm{read}}=\Pi_{\mathrm{read}}\Pi_{\mathrm{FRW}}\theta_{\mathrm{cos}}$ and $z_X^\theta=\exp(Z_X[\theta_{\mathrm{cos}}])-1$. | Accepted `theta_cos` and accepted $\Theta_{\mathrm{read}}$ rows. | Growth, CMB, BBN, and RAR/BTFR consumers must consume the same $a_{\mathrm{eff}}^\theta$, $H_{\mathrm{eff}}^\theta$, distance, redshift, $G_{\mathrm{eff}}^\theta$, and source-term rows. | Separate downstream readout state, void-expansion-level collapse, or failure to reference the accepted upstream handoff. | [effective-frw-theta-cos-handoff.v1.json](../../../scripts/equation-mapping/effective-frw-theta-cos-handoff.v1.json) consumed through [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json). |
 | Thermal and provenance ledger | Energy, photon, baryon, neutrino, Noether sea work, compact-object release, and recycling rows carried by $\mathcal L_{E\mathbf p\mathbf J}$. | Accepted $\Theta_{\mathrm{therm/prov}}$ and accepted $\mathcal L_{E\mathbf p\mathbf J}$ rows. | All source, transport, thermalization, and readout projections must cite one provenance ledger or declare the transformation row that changes the record. | `cosmology.source_without_provenance`, `accepted_without_evidence_source`, and hidden thermal/provenance retune. | Accepted `thermal_provenance_ledger`, `event_ledger`, and no-hidden-retune rows under [shared-observation-provider-backed-consumer-evidence.v1.json](../../../scripts/equation-mapping/shared-observation-provider-backed-consumer-evidence.v1.json); detailed thermal child closure remains downstream. |
 
@@ -679,7 +684,129 @@ sampleCount: 3
 cmbLensingGridNormalizedResidual: 0
 ```
 
-This child computes a normalized $C_L^{\phi\phi}$ grid from the accepted $\Theta_{\mathrm{obs}}$ parent, accepted $f\sigma_8$ child, and accepted normalized $P(k,z)$ child. It remains score-neutral and does not replace the need for shear/RSD, halo/cluster, nonlinear, or score-review observational transfer.
+This child computes a normalized $C_L^{\phi\phi}$ grid from the accepted $\Theta_{\mathrm{obs}}$ parent, accepted $f\sigma_8$ child, and accepted normalized $P(k,z)$ child. It remains score-neutral and supplies the lensing parent samples for the shear/RSD child.
+
+The shear/RSD child is executable through [eq21-shear-rsd-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-shear-rsd-transfer-child-residual.mjs):
+
+```bash
+node scripts/equation-mapping/eq21-shear-rsd-transfer-child-residual.mjs --input scripts/equation-mapping/eq21-shear-rsd-transfer-child-accepted.v1.json --summary --pretty --require-populated
+```
+
+```text
+status: populated
+scoreDecision: no_score_increase
+nextBlocker: null
+sourceEvidenceFailureCount: 0
+parentSharedObservationAccepted: true
+parentGrowthTransferAccepted: true
+parentMatterPowerTransferAccepted: true
+parentLensingTransferAccepted: true
+hiddenRetuneNumericPass: true
+modelDerivedPass: true
+shearRsdGridResidualPass: true
+sampleCount: 3
+shearRsdGridNormalizedResidual: 0
+```
+
+This child computes shear-band and RSD growth readouts from the accepted $\Theta_{\mathrm{obs}}$ parent, accepted $f\sigma_8$ child, accepted normalized $P(k,z)$ child, and accepted normalized $C_L^{\phi\phi}$ child. It remains score-neutral and supplies the shear/RSD parent samples for the halo/cluster child.
+
+The halo/cluster child is executable through [eq21-halo-cluster-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-halo-cluster-transfer-child-residual.mjs):
+
+```bash
+node scripts/equation-mapping/eq21-halo-cluster-transfer-child-residual.mjs --input scripts/equation-mapping/eq21-halo-cluster-transfer-child-accepted.v1.json --summary --pretty --require-populated
+```
+
+```text
+status: populated
+scoreDecision: no_score_increase
+nextBlocker: null
+sourceEvidenceFailureCount: 0
+parentSharedObservationAccepted: true
+parentGrowthTransferAccepted: true
+parentMatterPowerTransferAccepted: true
+parentLensingTransferAccepted: true
+parentShearRsdTransferAccepted: true
+hiddenRetuneNumericPass: true
+modelDerivedPass: true
+haloClusterGridResidualPass: true
+sampleCount: 3
+haloClusterGridNormalizedResidual: 3.0204931705456123e-16
+```
+
+This child checks that the accepted lensing, shear, and RSD readouts invert back to the same inherited $P(k,z)$ samples from the accepted parent/growth/matter/lensing/shear/RSD chain. It remains score-neutral and supplies the accepted parent for the nonlinear transfer child.
+
+The nonlinear child is executable through [eq21-nonlinear-transfer-child-residual.mjs](../../../scripts/equation-mapping/eq21-nonlinear-transfer-child-residual.mjs):
+
+```bash
+node scripts/equation-mapping/eq21-nonlinear-transfer-child-residual.mjs --input scripts/equation-mapping/eq21-nonlinear-transfer-child-accepted.v1.json --summary --pretty --require-populated
+```
+
+```text
+status: populated
+scoreDecision: no_score_increase
+nextBlocker: null
+sourceEvidenceFailureCount: 0
+parentSharedObservationAccepted: true
+parentGrowthTransferAccepted: true
+parentMatterPowerTransferAccepted: true
+parentLensingTransferAccepted: true
+parentShearRsdTransferAccepted: true
+parentHaloClusterTransferAccepted: true
+hiddenRetuneNumericPass: true
+modelDerivedPass: true
+nonlinearGridResidualPass: true
+sampleCount: 3
+nonlinearGridNormalizedResidual: 3.0204931705456123e-16
+```
+
+This child computes a deterministic dimensionless-power nonlinear readout from the accepted halo/cluster inversion samples:
+
+$$
+\Delta_L^2(k,z)=\frac{k^3 P_{\mathrm{linear,consensus}}(k,z)}{2\pi^2},
+\qquad
+P_{\mathrm{nonlinear}}(k,z)=P_{\mathrm{linear,consensus}}(k,z)\left(1+\Delta_L^2(k,z)\right).
+$$
+
+It remains score-neutral. It is a no-new-coefficient nonlinear readout and does not replace the need for score-review observational transfer.
+
+The galaxy-response child is executable through [eq32-galaxy-response-child-residual.mjs](../../../scripts/equation-mapping/eq32-galaxy-response-child-residual.mjs):
+
+```bash
+node scripts/equation-mapping/eq32-galaxy-response-child-residual.mjs --input scripts/equation-mapping/eq32-galaxy-response-child-accepted.v1.json --summary --pretty --require-populated
+```
+
+```text
+status: populated
+scoreDecision: no_score_increase
+nextBlocker: null
+sourceEvidenceFailureCount: 0
+parentSharedObservationAccepted: true
+parentOutputProjectionAccepted: true
+deltaAStarAccepted: true
+hiddenRetuneNumericPass: true
+rarGridResidualPass: true
+btfrLowAccelerationPass: true
+highAccelerationRecoveryPass: true
+lensingDynamicsSplitPass: true
+sampleCount: 3
+rarGridNormalizedResidual: 0
+btfrLowAccelerationResidual: 0.00010000500012496971
+highAccelerationRecoveryResidual: 0.000999001995013904
+```
+
+This child uses the accepted `delta_a_star` row as $a_\star^\theta$ and computes the observer-level response
+
+$$
+g_{\mathrm{response}}
+=
+g_{\mathrm{bar}}
+\left(
+\sqrt{\frac{1}{4}+\frac{a_\star^\theta}{g_{\mathrm{bar}}}}
+-\frac{1}{2}
+\right)g_{\mathrm{bar}}.
+$$
+
+The law is checked as a RAR/BTFR and high-acceleration recovery child of the accepted $\Theta_{\mathrm{obs}}$ record. It is not promoted as substrate ontology and does not change the `EQ-32` score.
 
 The current attempt fixture [shared-observation-residual-attempt.v1.json](../../../scripts/equation-mapping/shared-observation-residual-attempt.v1.json) remains the legacy guard. It declares all expected shared keys and computes a residual vector, but every source-bearing row is still `attempt`, so it still reports `status=blocked_missing_rows` with `nextBlocker=missing_accepted_theta_obs`.
 
@@ -691,7 +818,7 @@ node scripts/equation-mapping/shared-observation-residual.mjs --input scripts/eq
 
 Expected result: `status=blocked_missing_rows`, `scoreDecision=no_score_increase`, `nextBlocker=missing_accepted_theta_obs`, and `sourceEvidenceFailureCount=26`. Running the same fixture with `--require-populated` must exit nonzero.
 
-The shared-observation lane remains downstream of the Noether sea coefficient lane, but that parent dependency is now populated: accepted `theta_sea_rho_NS` and output-projection evidence provide the shared $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\mathbf u_{\mathrm{sea}}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryonic-density, assembly-density, and `delta_a_star` rows consumed by the accepted `RAR` projection. The open `EQ-32` work is now the predictive galaxy-response law, not the carrier identity or `delta_a_star` intake.
+The shared-observation lane remains downstream of the Noether sea coefficient lane, but that parent dependency is now populated: accepted `theta_sea_rho_NS` and output-projection evidence provide the shared $\rho_{\text{NS}}$, $n$, $\chi_{\text{sea}}$, $\mathbf u_{\mathrm{sea}}$, $\mathcal{M}_{\mathrm{sea}}^{ab}$, baryonic-density, assembly-density, and `delta_a_star` rows consumed by the accepted `RAR` projection and first predictive galaxy-response child. The open `EQ-32` work is now score-review-grade observational transfer and broader compatibility, not carrier identity, `delta_a_star` intake, or the first RAR/BTFR child law.
 
 ## Failure Modes And Falsifiers
 
@@ -711,7 +838,7 @@ Classification: `priority-only`.
 
 Promote now: no.
 
-Defer with blocker: promotion should wait until the normalized $P(k,z)$ and CMB-lensing children are broadened into shear/RSD, halo/cluster, nonlinear, or score-review observational transfer; CMB transfer or blackbody/acoustic rows; BBN source-window physics; or the galaxy-response law from the accepted $\Theta_{\mathrm{obs}}$ parent without changing the shared record.
+Defer with blocker: promotion should wait until the accepted nonlinear and galaxy-response children are broadened into score-review observational transfer, CMB transfer or blackbody/acoustic rows, or BBN source-window physics without changing the shared record.
 
 Candidate reader-facing destinations after the blocker clears:
 
@@ -719,8 +846,8 @@ Candidate reader-facing destinations after the blocker clears:
 | --- | --- | --- |
 | Growth/CMB/BBN shared observation residual | `content/markdown/aaa/cosmology/structure-formation.md`, `content/markdown/aaa/cosmology/CMB.md`, `content/markdown/aaa/cosmology/BBN-constraints.md` | One branch computes the shared handoff rows for BBN, CMB, and growth without hidden retuning. |
 | Source-window and thermal/provenance ledger | `content/markdown/aaa/validation/reaction-cosmology-provenance-ledger.md`, `content/markdown/aaa/cosmology/BBN-constraints.md`, `content/markdown/aaa/cosmology/CMB.md` | Energy, photon, baryon, neutrino, and Noether sea work terms close over a declared source and transport window. |
-| Low-acceleration constitutive response | `content/markdown/aaa/cosmology/dark-matter.md`, `content/markdown/aaa/cosmology/structure-formation.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | $a_\star^\theta(E)$ and $f^\theta(E)$ are derived from Noether sea response rows and pass local, kSZ, CMB, BBN, and growth constraints. |
+| Low-acceleration constitutive response | `content/markdown/aaa/cosmology/dark-matter.md`, `content/markdown/aaa/cosmology/structure-formation.md`, `content/markdown/aaa/spacetime/emergent-metric.md` | The accepted galaxy-response child is broadened into score-review observational transfer and passes local, kSZ, CMB, BBN, growth, and cluster constraints without private retune. |
 
 ## Next Safe Action
 
-Build a shear/RSD, halo/cluster, nonlinear, or score-review observational transfer child from the accepted $\Theta_{\mathrm{obs}}$ parent, the populated $f\sigma_8$ child, the populated normalized $P(k,z)$ child, and the populated CMB-lensing child. The output should remain a row-by-row residual ledger, not a score change: branch value, comparison value, consumed shared rows, provenance rows, and whether $\mathcal{S}_{\mathrm{retune}}$ is zero, declared, or failing.
+Build the next score-review observational transfer child, CMB transfer/blackbody/acoustic child, or BBN source-window row from the accepted $\Theta_{\mathrm{obs}}$ parent and the populated `EQ-21` growth, matter-power, CMB-lensing, shear/RSD, halo/cluster, nonlinear, and `EQ-32` galaxy-response children. The output should remain a row-by-row residual ledger unless an existing score-review rule is explicitly satisfied: branch value, comparison value, consumed shared rows, provenance rows, and whether $\mathcal{S}_{\mathrm{retune}}$ is zero, declared, or failing.

@@ -92,7 +92,9 @@ Use a full regeneration checkpoint when the operator/developer requests `regener
 Closure goal: Regenerate.
 ```
 
-A full regeneration checkpoint means running both write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, the operator/developer asks for a full regeneration checkpoint, or a required check reports generated drift.
+A full regeneration checkpoint means running both write commands above, then the check pass below. Do not run the write commands after every small code or documentation edit. For priority-only math packets, such as [adjoint-cokernel-equations.md](../priorities/braid-retained-branch-closure/shell-braid/adjoint-cokernel-equations.md), stay in the targeted edit/check loop unless the packet is promoted into textbook-facing corpus material, changes scene/TOC inputs, or the operator/developer asks for a full regeneration checkpoint.
+
+Outside this final branch/PR process, a generator `--check` drift report should be handed back with the exact `--write` command needed unless the operator/developer has explicitly requested regeneration or a fix-drift pass.
 
 Regenerate both layers before the final check pass whenever a PR touches any source that can affect textbook PDF reading copies:
 
@@ -103,7 +105,7 @@ Regenerate both layers before the final check pass whenever a PR touches any sou
 
 The local browser PDF made from a reading-copy view is not a committed repo artifact.
 
-If scene-graph or textbook reading-copy drift is reported, regenerate and re-check:
+During this final branch/PR process, if scene-graph or textbook reading-copy drift is reported, regenerate and re-check:
 
 ```bash
 node scripts/build-scene-graph.mjs --write --strict

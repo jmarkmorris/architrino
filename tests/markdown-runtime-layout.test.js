@@ -650,7 +650,7 @@ test("priority markdown links stay inside the markdown runtime", async (t) => {
 
   await runtime.showMarkdownPanel({
     name: "Photon App",
-    markdownPath: "reference/priorities/app-photon/photon-app.md",
+    markdownPath: "reference/priorities/app-photon/priorities.md",
     markdownColumns: 1,
   });
 

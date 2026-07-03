@@ -4,7 +4,7 @@
 
 - Kind: `priority`
 - Status: `priority-only`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Source inventory: [Equation Mapping Detail](equation.md)
 - Prior pass: [Equation Closure Pass 2026-06-23 B](equation-closure-pass-2026-06-23-b.md)
 - Claim level: second-pass common-architecture note for reusable equation components
@@ -235,7 +235,7 @@ If the overlap preimage is absent or inconsistent, the run is a split-domain or 
 
 ### Candidate Equation Form
 
-For a retained tri-binary candidate $\mathfrak a$ generated from a branch state $B_{3B}(q,v)$, route equation-map pressure into the branch-selection law through
+For a retained Noether braid candidate $\mathfrak a$ generated from a branch state $B_{3B}(q,v)$, route equation-map pressure into the branch-selection law through
 
 $$
 B_{3B}(q,v)
@@ -279,11 +279,11 @@ The active role-assigned frequency families are $(I,M,O)=(f+2,f,f-1)$, $(I,M,O)=
 
 ### Architectural Clarification
 
-This component keeps the solver general. The frequency family is an input coordinate; the architecture remains the velocity-deforming tri-binary Noether braid branch state with effective lever arms, phase offsets, branch angular momenta, wake rows, principal-direction rows, and coupling rows. Flattened circular rows are projection views of that object, not the model itself.
+This component keeps the solver general. The frequency family is an input coordinate; the architecture remains the velocity-deforming Noether braid branch state with effective lever arms, phase offsets, branch angular momenta, wake rows, principal-direction rows, and coupling rows. Flattened circular rows are projection views of that object, not the model itself.
 
 ### Proof Or Simulation Burden
 
-The first executable hook is now an `equationBearing` payload on each tri-binary candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
+The first executable hook is now an `equationBearing` payload on each Noether braid candidate branch-chart projection. It reports the candidate family, raw binary frequency row, role-assigned $I:M:O$ row, root signature, geometry/energy residual, common-clock phase residual, event-ledger residual, stability residual, and precision/readout residual. Missing fields fail closed unless they are explicitly outside the candidate's declared comparison scope. The hook does not certify a retained branch; it makes the branch-selection solver consume the same residual architecture as the equation map.
 
 ## Common Component 1: Same-Record / No-Hidden-Retune Residual
 
@@ -617,7 +617,7 @@ while still rejecting the all-zero residual case $\bar H_X=0$ when measured beat
 
 ### Equations It Connects
 
-- `EQ-16A`: equal-frequency tri-binary candidate, neutrino oscillation phase gaps, and PMNS readout.
+- `EQ-16A`: equal-frequency Noether braid candidate, neutrino oscillation phase gaps, and PMNS readout.
 - `EQ-08` and `EQ-17`: clock/cadence extraction and endpoint redshift.
 - `EQ-12` and `EQ-26`: photon frequency, atomic transition rates, and local clock/rate conversion.
 - `EQ-14` and `EQ-15`: record-facing phase evolution and spinor/ordered-frame rows when observer wave equations are used as downstream charts.
@@ -1121,13 +1121,13 @@ The projection/refinement residual and finite-window statistical pushforward sho
 ## Recommended Coordinator Actions
 
 1. Treat `EQ-01`, `EQ-05`, `EQ-11`, and `EQ-20` as common-architecture rows before assigning them as isolated packets. `EQ-01` is the root dependency, `EQ-05` is the event-ledger equation, `EQ-11` is a metric/constitutive projection consumer, and `EQ-20` is a pressure/constitutive projection consumer.
-2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [equation-mapping.md](equation-mapping.md) while other agents are changing them.
+2. Add a later coordinator pass that links packet residuals to this common architecture after concurrent edits settle. Do not edit [equation.md](equation.md) or [priorities.md](priorities.md) while other agents are changing them.
 3. Instantiate the retained event or positive-width domain carrier $\mathfrak D_R$ first on $S_{\mathrm{eq}}$, $\mathsf e_{\gamma e}^{0}$, or $\Theta_{\mathrm{sea}}^{(\ell,W)}$; the first successful instance should show which row binding is easiest to certify.
 4. Instantiate $\mathcal C_G\to\Theta_G\to\mathcal R_{\mathrm{shared}}$ first on the translating binary benchmark for `EQ-02` through `EQ-04`, because it is compact and already declares clock, envelope, mass-shell, rest-invariance, and Noether sea response projection slots.
 5. Build the Noether sea constitutive state as the next shared target for `EQ-07` through `EQ-11`, `EQ-18` through `EQ-21`, `EQ-24`, and `EQ-32`. Require one coefficient extraction before any score-change review.
 6. Use Compton/recoil as the first finite-window event-ledger replay. It cross-checks photon packets, atomic spectra, exposed mass, recoil, angular momentum, and medium updates in one event.
 7. Populate the neutral-lepton phase-operator packet as the focused `EQ-16A` follow-up. The executable checker now reports `missing_accepted_neutral_lepton_retained_branch`; its crisp falsifier remains that common-clock cancellation must not erase $\delta H_{3B}$, and the residual spectrum must not collapse into all-zero or equal-spacing gaps.
-8. Keep the `equationBearing` payload attached to the stable tri-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
+8. Keep the `equationBearing` payload attached to the stable three-binary configuration search so $(f+2,f,f-1)$, $(f+1,f,f-1)$, $(f,f,f)$, $(4f,2f,f)$, and $(nf,mf,f)$ candidates are compared by retained residuals, not by ratio labels alone.
 9. Defer reader-facing promotion. These components are architecture candidates and closure targets until a packet supplies a derived equation, coefficient extraction, executable residual, or retained branch calculation.
 
 ## Promotion Classification

@@ -4,7 +4,7 @@ Status: `closeout-complete`
 
 Kind: `contract-closeout`
 
-Source task: `app_bridge_contract` in [solver.md](solver.md)
+Source task: `app_bridge_contract` in [priorities.md](priorities.md)
 
 Primary dependencies:
 
@@ -170,6 +170,6 @@ Capabilities are discovery metadata, not permission to weaken a run's model, pre
 
 ## Completion Judgment
 
-`app_bridge_contract` is complete as a contract artifact and closed in [solver.md](solver.md). The shared direct client, worker protocol, TypeScript declarations, JSON schema, capabilities surface, run/stream/cancel/dispose methods, app request builders, and validation checks are defined enough for solver work to consume one bridge contract.
+`app_bridge_contract` is complete as a contract artifact and closed in [priorities.md](priorities.md). The shared direct client, worker protocol, TypeScript declarations, JSON schema, capabilities surface, run/stream/cancel/dispose methods, app request builders, and validation checks are defined enough for solver work to consume one bridge contract.
 
 Future scoped work may extend implementation breadth and migration evidence: keep performance thresholds in stage-level acceptance records, keep app migration decisions tied to baseline parity evidence, and extend solver-core coverage through new focused tasks.

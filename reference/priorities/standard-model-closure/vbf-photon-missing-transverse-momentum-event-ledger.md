@@ -68,7 +68,7 @@ The rows are:
 
 ## Transverse Closure Row
 
-The detector-level missing-transverse-momentum row specializes the shared convention from [Standard Model Closure](standard-model-closure.md):
+The detector-level missing-transverse-momentum row specializes the shared convention from [Standard Model Closure](priorities.md):
 
 $$
 \mathbf{p}_T^{\mathrm{miss}}

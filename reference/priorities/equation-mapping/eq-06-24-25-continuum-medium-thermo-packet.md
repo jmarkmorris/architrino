@@ -4,7 +4,7 @@
 
 - IDs owned: `EQ-06`, `EQ-24`, `EQ-25`.
 - Status: priority-only closure packet.
-- Source rows: [equation.md](equation.md) and [equation-mapping.md](equation-mapping.md).
+- Source rows: [equation.md](equation.md) and [priorities.md](priorities.md).
 - Do not promote this packet into reader-facing prose until the score recommendations are accepted and the missing coefficient/proof rows are supplied.
 
 This packet treats continuum, acoustic/elastic, and thermodynamic equations as one ladder:

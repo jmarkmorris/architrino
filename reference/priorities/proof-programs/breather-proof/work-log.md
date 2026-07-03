@@ -2,13 +2,13 @@
 
 This file is the chronological work log for the `proof-programs/breather-proof` nested priority workstream. Use it for dated agent status, proof-attempt notes, checker narratives, handoffs, failed paths, and operator/developer communication that must remain discoverable but should not crowd the live nested priority tracker.
 
-Use the parent `proof-programs/brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text unless this nested workstream later needs its own brainstorming file. Use `breather-proof.md` for the compact current queue, blockers, promotion routing, and next action. Keep focused certificates, reports, and proof packets in their own sibling files when they need a stable structure.
+Use the parent `proof-programs/brainstorming.md` for provisional ideas, insights, conceptual maps, and draft corpus-promotable text unless this nested workstream later needs its own brainstorming file. Use `priorities.md` for the compact current queue, blockers, promotion routing, and next action. Keep focused certificates, reports, and proof packets in their own sibling files when they need a stable structure.
 
 ## Log Entries
 
 ### 2026-07-02 Current Stopping Point And Routing Updates
 
-Migrated from `breather-proof.md` so the nested tracker keeps a compact current state while preserving the fail-closed stopping point and 2026-06-28 routing updates.
+Migrated from `priorities.md` so the nested tracker keeps a compact current state while preserving the fail-closed stopping point and 2026-06-28 routing updates.
 
 ## Current Stopping Point
 

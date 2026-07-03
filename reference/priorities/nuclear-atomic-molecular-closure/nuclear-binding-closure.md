@@ -1,6 +1,6 @@
 # Nuclear Binding Closure
 
-This detailed priority file supports [Nuclear Atomic Molecular Closure](nuclear-atomic-molecular-closure.md) and remains downstream of [Standard Model Closure](../standard-model-closure/standard-model-closure.md). It captures the downstream opportunity in [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md).
+This detailed priority file supports [Nuclear Atomic Molecular Closure](priorities.md) and remains downstream of [Standard Model Closure](../standard-model-closure/priorities.md). It captures the downstream opportunity in [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md).
 
 ## Core Opportunity
 

@@ -4,7 +4,7 @@ Status: `closed-parity-harness`
 
 Kind: `solver-validation-harness`
 
-Source task: `baseline_comparison_sandbox` in [solver.md](solver.md)
+Source task: `baseline_comparison_sandbox` in [priorities.md](priorities.md)
 
 Primary dependencies:
 

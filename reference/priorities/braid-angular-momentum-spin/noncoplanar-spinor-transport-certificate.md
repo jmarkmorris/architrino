@@ -1,6 +1,6 @@
 # Noncoplanar Spinor Transport Certificate
 
-Status. Priority proof packet for the `spinor_closure` row in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md), following [spinor-holonomy-return-table-packet.md](spinor-holonomy-return-table-packet.md), [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md), and [nontrivial-spinor-support-row-attempt.md](nontrivial-spinor-support-row-attempt.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
+Status. Priority proof packet for the `spinor_closure` row in [priorities.md](priorities.md), following [spinor-holonomy-return-table-packet.md](spinor-holonomy-return-table-packet.md), [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md), and [nontrivial-spinor-support-row-attempt.md](nontrivial-spinor-support-row-attempt.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 Claim level. Certificate template / defer-with-blocker. The packet defines the exact rows needed to evaluate a candidate retained active-root row $r_\star$ on a non-coplanar ordered branch. It does not claim a passing spinor support row. The current status remains blocked until a populated branch chart supplies the row transport, parity extraction, quotient witness, angular-momentum ledger, and doubled-path return data.
 

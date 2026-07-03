@@ -1,6 +1,6 @@
 # Unit-Quaternion Spinor Chart Packet
 
-Status. Priority proof packet for the `spinor_closure` row in [braid-angular-momentum-spin.md](braid-angular-momentum-spin.md), supporting [noncoplanar-spinor-transport-certificate.md](noncoplanar-spinor-transport-certificate.md), [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md), and [nontrivial-spinor-support-row-attempt.md](nontrivial-spinor-support-row-attempt.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
+Status. Priority proof packet for the `spinor_closure` row in [priorities.md](priorities.md), supporting [noncoplanar-spinor-transport-certificate.md](noncoplanar-spinor-transport-certificate.md), [spinor-holonomy-control-table.md](spinor-holonomy-control-table.md), and [nontrivial-spinor-support-row-attempt.md](nontrivial-spinor-support-row-attempt.md). This file is priority material only. It does not edit or canonize reader-facing $\mathbb{A}\mathbb{A}\mathbb{A}$ prose.
 
 Claim level. Coordinate-chart scaffold / defer-with-blocker. Unit quaternions are useful as the visible rotation chart for the ordered-frame path because $S^3$ double-covers $SO(3)$. They do not supply spinor support by themselves. A quaternion endpoint sign change is evidence only for the visible lifted rotation coordinate; spinor support still requires a populated retained active-root row with physical branch-history parity, quotient witness, doubled-path restoration, and angular-momentum compatibility.
 

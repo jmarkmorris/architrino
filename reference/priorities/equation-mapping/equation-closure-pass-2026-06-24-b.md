@@ -3,7 +3,7 @@
 ## Workstream Metadata
 
 - Kind: `closure-pass`
-- Parent: [Equation Mapping Internal Priority](equation-mapping.md)
+- Parent: [Equation Mapping Internal Priority](priorities.md)
 - Prior pass: [Equation Closure Pass 2026-06-24 A](equation-closure-pass-2026-06-24-a.md)
 - Source prompt: [terence-tao-period-quantization-2026-06-24.md](../../entourage/review-packets/terence-tao-period-quantization-2026-06-24.md)
 - Source response: [terence-tao-period-quantization-response-2026-06-24.md](../../entourage/review-packets/terence-tao-period-quantization-response-2026-06-24.md)

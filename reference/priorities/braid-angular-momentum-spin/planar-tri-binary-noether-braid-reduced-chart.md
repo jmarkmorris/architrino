@@ -5,7 +5,7 @@ Status. Priority proof packet for the reduced chart connecting the frequency-tri
 Claim level. Derivation-closure target. The candidate statement is:
 
 $$
-\text{A planar tri-binary chart can nominate frequency, phase, and circulation families only if one retained row set closes the planar, root, wake, angular-momentum, energy-routing, and stability ledgers.}
+\text{A planar Noether braid chart can nominate frequency, phase, and circulation families only if one retained row set closes the planar, root, wake, angular-momentum, energy-routing, and stability ledgers.}
 $$
 
 Promotion decision. Defer with blocker. Promote only after a retained branch replay supplies one event or positive-width retained domain whose rows close the residual below. Until then, treat planar rows as reduced-chart evidence that can guide the full nested shell braid and photon Gate A/B searches.
@@ -60,7 +60,7 @@ The rows are:
 
 | Residual | Meaning |
 | --- | --- |
-| $d_{\mathrm{plane}}$ | Oriented-bivector sector support: coplanar cyclic, near-orthogonal tri-binary, or another retained sector. |
+| $d_{\mathrm{plane}}$ | Oriented-bivector sector support: coplanar cyclic, near-orthogonal three-binary, or another retained sector. |
 | $d_{\mathrm{root}}$ | Same retained causal-root row set across the three binary rows and any inter-binary carrier rows. |
 | $d_{\Theta}$ | Retained phase-bundle, return-period, or holonomy closure. |
 | $d_{\mathbf{J}}$ | Total angular-momentum closure, including wake contribution. |
@@ -122,7 +122,7 @@ support, branch weights, wake/action routing, return-period closure, or
 stability. The diagnostic fails as promotion evidence if the low residual
 appears only after changing row sets, choosing a role map before the raw
 branch proves one, suppressing nontriadic controls, or collapsing an
-unweighted phase identity into near-orthogonal tri-binary evidence without
+unweighted phase identity into near-orthogonal three-binary evidence without
 plane-sector data.
 
 ## Photon Bridge
@@ -154,7 +154,7 @@ q_{\mathrm{pro}}^{\mathrm{eff}}
 -q_{\mathrm{anti}}^{\mathrm{eff}}.
 $$
 
-This is the priority bridge to the coaxial contra-rotating pro/anti planar pair. A phase-locked planar tri-binary row can nominate photon-like transverse behavior, but Gate A and Gate B remain blocked until kinematics, no-rest branch, transverse survival, helicity, source depletion, recoil, wake, analyzer handoff, and event balance close on the same retained photon record.
+This is the priority bridge to the coaxial contra-rotating pro/anti planar pair. A phase-locked planar Noether braid row can nominate photon-like transverse behavior, but Gate A and Gate B remain blocked until kinematics, no-rest branch, transverse survival, helicity, source depletion, recoil, wake, analyzer handoff, and event balance close on the same retained photon record.
 
 ## Relation To Braid Symmetry Breaking
 

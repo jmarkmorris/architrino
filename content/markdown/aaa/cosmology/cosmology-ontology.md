@@ -193,7 +193,11 @@ This decomposition prevents hidden dependency loops where one assumed foundation
 
 ### Big Bang Evidence Chain as Data-Product Pipeline
 
-The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints. The sequence is therefore:
+The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints.
+
+The label "Big Bang" itself must be kept at this same level of discipline. In standard use it can name the hot, dense early observer-era record, the singular boundary obtained by extrapolating classical GR, a reheating interface after an inflationary model, or the whole $\Lambda\mathrm{CDM}$ history. $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the hot, dense record as an observational recovery target and treats the stronger origin claims as model-dependent reconstructions. Bounce, cyclic, no-boundary, and pre-inflationary branches, along with models in which a universe emerges from a black hole, are comparison frameworks only after they supply declared data products, such as CMB spectra, BBN yields, structure-growth records, primordial-gravitational-wave bounds, or non-Gaussianity tests, from the same Noether sea and assembly record.
+
+The sequence is therefore:
 
 1. calibrated flux and distance ladder,
 2. spectral-line identity and redshift,

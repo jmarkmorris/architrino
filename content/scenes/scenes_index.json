@@ -1,6 +1,271 @@
 {
   "scenes": [
     {
+      "id": "archie__aaa_journey",
+      "name": "AAA Journey",
+      "path": "content/scenes/archie/aaa_journey.json"
+    },
+    {
+      "id": "archie__about_architrino",
+      "name": "About Architrino",
+      "path": "content/scenes/archie/about_architrino.json"
+    },
+    {
+      "id": "archie__about",
+      "name": "About the Webapp",
+      "path": "content/scenes/archie/about.json"
+    },
+    {
+      "id": "archie__academic_style_guide",
+      "name": "Academic Style Guide",
+      "path": "content/scenes/archie/academic_style_guide.json"
+    },
+    {
+      "id": "animator",
+      "name": "Animator",
+      "path": "content/scenes/archie/animator.json"
+    },
+    {
+      "id": "archie__applications",
+      "name": "Applications",
+      "path": "content/scenes/archie/applications.json"
+    },
+    {
+      "id": "archie",
+      "name": "Archie",
+      "path": "content/scenes/archie/archie.json"
+    },
+    {
+      "id": "assembly-explorer",
+      "name": "Assembly Configuration Explorer",
+      "path": "content/scenes/archie/assembly_explorer.json"
+    },
+    {
+      "id": "borg",
+      "name": "Borg App",
+      "path": "content/scenes/archie/borg.json"
+    },
+    {
+      "id": "causal-delay-feedback",
+      "name": "Causal Delay Feedback",
+      "path": "content/scenes/archie/causal_delay_feedback.json"
+    },
+    {
+      "id": "archie__comics",
+      "name": "Comics",
+      "path": "content/scenes/archie/comics.json"
+    },
+    {
+      "id": "archie__comics__acknowledgements_in_architrinos_room",
+      "name": "Acknowledgements In Architrino's Room",
+      "path": "content/scenes/archie/comics/acknowledgements_in_architrinos_room.json"
+    },
+    {
+      "id": "archie__comics__birthday_cake_for_observer_era",
+      "name": "Birthday Cake For The Observer Era",
+      "path": "content/scenes/archie/comics/birthday_cake_for_observer_era.json"
+    },
+    {
+      "id": "archie__comics__candidate_not_a_throne",
+      "name": "Candidate, Not A Throne",
+      "path": "content/scenes/archie/comics/candidate_not_a_throne.json"
+    },
+    {
+      "id": "archie__comics__citation_needed",
+      "name": "Citation Needed",
+      "path": "content/scenes/archie/comics/citation_needed.json"
+    },
+    {
+      "id": "archie__comics__first_footage_not_birth_certificate",
+      "name": "Opening Scene, Not Building Permit",
+      "path": "content/scenes/archie/comics/first_footage_not_birth_certificate.json"
+    },
+    {
+      "id": "archie__comics__first_page_is_not_the_beginning",
+      "name": "First Page Problem",
+      "path": "content/scenes/archie/comics/first_page_is_not_the_beginning.json"
+    },
+    {
+      "id": "archie__comics__four_theories_one_oval",
+      "name": "Four Theories, One Oval",
+      "path": "content/scenes/archie/comics/four_theories_one_oval.json"
+    },
+    {
+      "id": "archie__comics__group_project_assumption",
+      "name": "Group Project Assumption",
+      "path": "content/scenes/archie/comics/group_project_assumption.json"
+    },
+    {
+      "id": "archie__comics__new_theory_same_budget",
+      "name": "New Theory Same Budget",
+      "path": "content/scenes/archie/comics/new_theory_same_budget.json"
+    },
+    {
+      "id": "archie__comics__observable_edge_receipt",
+      "name": "The Observable Edge Receipt",
+      "path": "content/scenes/archie/comics/observable_edge_receipt.json"
+    },
+    {
+      "id": "archie__comics__office_hours_for_a_claim",
+      "name": "Office Hours For A Claim",
+      "path": "content/scenes/archie/comics/office_hours_for_a_claim.json"
+    },
+    {
+      "id": "archie__comics__old_alchemy_new_apparatus",
+      "name": "Old Alchemy, New Apparatus",
+      "path": "content/scenes/archie/comics/old_alchemy_new_apparatus.json"
+    },
+    {
+      "id": "archie__comics__present_has_an_inbox",
+      "name": "Signals From Earlier",
+      "path": "content/scenes/archie/comics/present_has_an_inbox.json"
+    },
+    {
+      "id": "archie__comics__show_the_residuals",
+      "name": "Show The Residuals",
+      "path": "content/scenes/archie/comics/show_the_residuals.json"
+    },
+    {
+      "id": "archie__comics__we_need_to_talk",
+      "name": "We Need To Talk",
+      "path": "content/scenes/archie/comics/we_need_to_talk.json"
+    },
+    {
+      "id": "archie__comics__what_counts_as_evidence",
+      "name": "What Counts As Evidence?",
+      "path": "content/scenes/archie/comics/what_counts_as_evidence.json"
+    },
+    {
+      "id": "archie__documentation",
+      "name": "Documentation",
+      "path": "content/scenes/archie/documentation.json"
+    },
+    {
+      "id": "equation-mapping",
+      "name": "Equation Mapping",
+      "path": "content/scenes/archie/equation_mapping.json"
+    },
+    {
+      "id": "archie__github_presence_and_community",
+      "name": "GitHub Presence & Community",
+      "path": "content/scenes/archie/github_presence_and_community.json"
+    },
+    {
+      "id": "archie__glossary",
+      "name": "Comparative Glossary",
+      "path": "content/scenes/archie/glossary.json"
+    },
+    {
+      "id": "archie__help",
+      "name": "Navigation & Controls",
+      "path": "content/scenes/archie/help.json"
+    },
+    {
+      "id": "archie__ideal_braid",
+      "name": "Ideal Noether Braid: Lorentz Geometry App",
+      "path": "content/scenes/archie/ideal_braid.json"
+    },
+    {
+      "id": "archie__legal_terms",
+      "name": "Legal Terms",
+      "path": "content/scenes/archie/legal_terms.json"
+    },
+    {
+      "id": "archie__licenses_attributions",
+      "name": "Licenses & Attributions",
+      "path": "content/scenes/archie/licenses_attributions.json"
+    },
+    {
+      "id": "archie__mathematical_style_guide",
+      "name": "Mathematical Style Guide",
+      "path": "content/scenes/archie/mathematical_style_guide.json"
+    },
+    {
+      "id": "archie__mathematical_terminology",
+      "name": "Mathematical Terminology Reference",
+      "path": "content/scenes/archie/mathematical_terminology.json"
+    },
+    {
+      "id": "molecule",
+      "name": "Molecule Visualization",
+      "path": "content/scenes/archie/molecule.json"
+    },
+    {
+      "id": "archie__people",
+      "name": "People",
+      "path": "content/scenes/archie/people.json"
+    },
+    {
+      "id": "archie__photon",
+      "name": "Photon and Polarization Visualization App",
+      "path": "content/scenes/archie/photon.json"
+    },
+    {
+      "id": "archie__project",
+      "name": "Project",
+      "path": "content/scenes/archie/project.json"
+    },
+    {
+      "id": "archie__research_notebook",
+      "name": "Research Notebook",
+      "path": "content/scenes/archie/research_notebook.json"
+    },
+    {
+      "id": "archie__software_architecture_and_maintenance",
+      "name": "Software Architecture and Maintenance",
+      "path": "content/scenes/archie/software_architecture_and_maintenance.json"
+    },
+    {
+      "id": "archie__support_architrino_research",
+      "name": "Support Architrino Research",
+      "path": "content/scenes/archie/support_architrino_research.json"
+    },
+    {
+      "id": "archie__system_card__overview",
+      "name": "System Card Overview",
+      "path": "content/scenes/archie/system_card_overview.json"
+    },
+    {
+      "id": "archie__system_card",
+      "name": "System Card",
+      "path": "content/scenes/archie/system_card.json"
+    },
+    {
+      "id": "archie__terminology_usage",
+      "name": "Terminology Usage",
+      "path": "content/scenes/archie/terminology_usage.json"
+    },
+    {
+      "id": "archie__textbook_pdf_snapshots",
+      "name": "Textbook Markdown to PDF",
+      "path": "content/scenes/archie/textbook_pdf_snapshots.json"
+    },
+    {
+      "id": "archie__textbook_toc",
+      "name": "Textbook TOC",
+      "path": "content/scenes/archie/textbook_toc.json"
+    },
+    {
+      "id": "archie__ui_guidelines",
+      "name": "UI Guidelines",
+      "path": "content/scenes/archie/ui_guidelines.json"
+    },
+    {
+      "id": "archie__user_interface",
+      "name": "User Interface",
+      "path": "content/scenes/archie/user_interface.json"
+    },
+    {
+      "id": "archie__values",
+      "name": "Values",
+      "path": "content/scenes/archie/values.json"
+    },
+    {
+      "id": "archie__website_stats",
+      "name": "Website Stats",
+      "path": "content/scenes/archie/website_stats.json"
+    },
+    {
       "id": "architrino_assembly_architecture",
       "name": "Architrino Assembly Architecture",
       "path": "content/scenes/architrino_assembly_architecture.json"
@@ -16,6 +281,71 @@
       "path": "content/scenes/architrino-theory/positrino.json"
     },
     {
+      "id": "assemblies",
+      "name": "Standard Model Assemblies",
+      "path": "content/scenes/assemblies/assemblies.json"
+    },
+    {
+      "id": "fermions__color_charge_su3",
+      "name": "Color Charge SU3",
+      "path": "content/scenes/assemblies/color_charge_su3.json"
+    },
+    {
+      "id": "assemblies__electroweak_bosons",
+      "name": "Electroweak Bosons",
+      "path": "content/scenes/assemblies/electroweak_bosons.json"
+    },
+    {
+      "id": "fermions",
+      "name": "Fermions",
+      "path": "content/scenes/assemblies/fermions.json"
+    },
+    {
+      "id": "assemblies__gauge_structure_emergence",
+      "name": "Gauge Structure Emergence",
+      "path": "content/scenes/assemblies/gauge_structure_emergence.json"
+    },
+    {
+      "id": "assemblies__gauge_symmetries",
+      "name": "Gauge Symmetries",
+      "path": "content/scenes/assemblies/gauge_symmetries.json"
+    },
+    {
+      "id": "assemblies__gluons",
+      "name": "Gluons",
+      "path": "content/scenes/assemblies/gluons.json"
+    },
+    {
+      "id": "assemblies__mesons_doc",
+      "name": "Mesons",
+      "path": "content/scenes/assemblies/mesons_doc.json"
+    },
+    {
+      "id": "fermions__neutrinos",
+      "name": "Neutrinos",
+      "path": "content/scenes/assemblies/neutrinos.json"
+    },
+    {
+      "id": "assemblies__particle_masses",
+      "name": "Particle Masses",
+      "path": "content/scenes/assemblies/particle_masses.json"
+    },
+    {
+      "id": "fermions__quantum_number_mapping",
+      "name": "Quantum Number Mapping",
+      "path": "content/scenes/assemblies/quantum_number_mapping.json"
+    },
+    {
+      "id": "assemblies__quarks",
+      "name": "Quarks",
+      "path": "content/scenes/assemblies/quarks.json"
+    },
+    {
+      "id": "fermions__weak_mixing_angle",
+      "name": "Weak Mixing Angle",
+      "path": "content/scenes/assemblies/weak_mixing_angle.json"
+    },
+    {
       "id": "hyde_periodic_table",
       "name": "Hyde Periodic Table",
       "path": "content/scenes/chemistry/hyde_periodic_table_scene.json"
@@ -26,9 +356,34 @@
       "path": "content/scenes/chemistry/periodic_table_scene.json"
     },
     {
+      "id": "cosmology__bbn_constraints",
+      "name": "BBN Constraints",
+      "path": "content/scenes/cosmology/bbn_constraints.json"
+    },
+    {
+      "id": "cosmology__cmb",
+      "name": "CMB",
+      "path": "content/scenes/cosmology/cmb.json"
+    },
+    {
+      "id": "cosmology__cosmology_ontology",
+      "name": "Cosmology Ontology",
+      "path": "content/scenes/cosmology/cosmology_ontology.json"
+    },
+    {
       "id": "cosmology",
       "name": "Cosmology",
       "path": "content/scenes/cosmology/cosmology.json"
+    },
+    {
+      "id": "cosmology__dark_energy",
+      "name": "Dark Energy",
+      "path": "content/scenes/cosmology/dark_energy.json"
+    },
+    {
+      "id": "cosmology__dark_matter",
+      "name": "Dark Matter",
+      "path": "content/scenes/cosmology/dark_matter.json"
     },
     {
       "id": "galaxy_disk",
@@ -36,9 +391,24 @@
       "path": "content/scenes/cosmology/disk.json"
     },
     {
+      "id": "cosmology__expansion_mechanism",
+      "name": "Expansion Mechanism",
+      "path": "content/scenes/cosmology/expansion_mechanism.json"
+    },
+    {
       "id": "galaxy",
       "name": "Galaxy",
       "path": "content/scenes/cosmology/galaxy.json"
+    },
+    {
+      "id": "cosmology__hubble_s8_tensions",
+      "name": "Hubble and S8 Tensions",
+      "path": "content/scenes/cosmology/hubble_s8_tensions.json"
+    },
+    {
+      "id": "cosmology__inflation_model",
+      "name": "Inflation Model",
+      "path": "content/scenes/cosmology/inflation_model.json"
     },
     {
       "id": "intracluster_medium",
@@ -66,14 +436,49 @@
       "path": "content/scenes/cosmology/star.json"
     },
     {
+      "id": "cosmology__structure_formation",
+      "name": "Structure Formation",
+      "path": "content/scenes/cosmology/structure_formation.json"
+    },
+    {
       "id": "universe",
       "name": "Universe",
       "path": "content/scenes/cosmology/universe.json"
     },
     {
+      "id": "dynamics__binary_dynamics",
+      "name": "Binary Dynamics",
+      "path": "content/scenes/dynamics/binary_dynamics.json"
+    },
+    {
+      "id": "dynamics__causal_action_functional",
+      "name": "Causal Action Functional",
+      "path": "content/scenes/dynamics/causal_action_functional.json"
+    },
+    {
       "id": "dynamics",
       "name": "Dynamics",
       "path": "content/scenes/dynamics/dynamics.json"
+    },
+    {
+      "id": "dynamics__effective_lagrangian",
+      "name": "Effective Lagrangian",
+      "path": "content/scenes/dynamics/effective_lagrangian.json"
+    },
+    {
+      "id": "dynamics__entropy_and_record_coarse_graining",
+      "name": "Entropy",
+      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
+    },
+    {
+      "id": "dynamics__kinetic_and_potential_energy",
+      "name": "Energy",
+      "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
+    },
+    {
+      "id": "dynamics__master_equation_of_motion",
+      "name": "Master Equation",
+      "path": "content/scenes/dynamics/master_equation_of_motion.json"
     },
     {
       "id": "ac",
@@ -671,9 +1076,109 @@
       "path": "content/scenes/elements/zr.json"
     },
     {
+      "id": "foundations__absolute_time_defense",
+      "name": "Absolute Time Defense",
+      "path": "content/scenes/foundations/absolute_time_defense.json"
+    },
+    {
+      "id": "foundations__absolute_time",
+      "name": "Absolute Time",
+      "path": "content/scenes/foundations/absolute_time.json"
+    },
+    {
+      "id": "foundations__absolute_timespace",
+      "name": "Absolute Timespace",
+      "path": "content/scenes/foundations/absolute_timespace.json"
+    },
+    {
+      "id": "foundations__architrino",
+      "name": "Architrino",
+      "path": "content/scenes/foundations/architrino.json"
+    },
+    {
+      "id": "foundations__constructing_the_absolute_frame",
+      "name": "Constructing the Absolute Frame",
+      "path": "content/scenes/foundations/constructing_the_absolute_frame.json"
+    },
+    {
+      "id": "foundations__detecting_the_absolute_frame",
+      "name": "Detecting the Absolute Frame",
+      "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
+    },
+    {
+      "id": "foundations__emergence_of_structure",
+      "name": "Emergence of Structure",
+      "path": "content/scenes/foundations/emergence_of_structure.json"
+    },
+    {
+      "id": "foundations__euclidean_void",
+      "name": "Euclidean Void",
+      "path": "content/scenes/foundations/euclidean_void.json"
+    },
+    {
+      "id": "foundations__foundational_ontology",
+      "name": "Ontology",
+      "path": "content/scenes/foundations/foundational_ontology.json"
+    },
+    {
       "id": "foundations",
       "name": "Foundations",
       "path": "content/scenes/foundations/foundations.json"
+    },
+    {
+      "id": "noether_braid__nested_shell_braid_dynamics",
+      "name": "Nested Shell Braid Dynamics",
+      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
+    },
+    {
+      "id": "noether_braid__nested_shell_braid_geometry",
+      "name": "Nested Shell Braid Geometry",
+      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
+    },
+    {
+      "id": "noether_braid__nested_shell_braid",
+      "name": "Nested Shell Braid",
+      "path": "content/scenes/noether-braid/nested_shell_braid.json"
+    },
+    {
+      "id": "noether_braid__neutral_braid",
+      "name": "Neutral Braid",
+      "path": "content/scenes/noether-braid/neutral_braid.json"
+    },
+    {
+      "id": "noether_braid__configuration_space",
+      "name": "Noether Braid Configuration Space",
+      "path": "content/scenes/noether-braid/noether_braid_configuration_space.json"
+    },
+    {
+      "id": "noether_braid__dyadic_resonance_lock",
+      "name": "Noether Braid Dyadic Resonance Lock",
+      "path": "content/scenes/noether-braid/noether_braid_dyadic_resonance_lock.json"
+    },
+    {
+      "id": "noether_braid__overview",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid_overview.json"
+    },
+    {
+      "id": "noether_braid__taxonomy",
+      "name": "Noether Braid Taxonomy",
+      "path": "content/scenes/noether-braid/noether_braid_taxonomy.json"
+    },
+    {
+      "id": "noether_braid__topological_charge",
+      "name": "Noether Braid Topological Charge",
+      "path": "content/scenes/noether-braid/noether_braid_topological_charge.json"
+    },
+    {
+      "id": "noether_braid",
+      "name": "Noether Braid",
+      "path": "content/scenes/noether-braid/noether_braid.json"
+    },
+    {
+      "id": "noether_braid__shell_braid",
+      "name": "Shell Braid",
+      "path": "content/scenes/noether-braid/shell_braid.json"
     },
     {
       "id": "atom",
@@ -681,9 +1186,29 @@
       "path": "content/scenes/nuclear/atom.json"
     },
     {
+      "id": "nuclear_atomic__atomic_spectra",
+      "name": "Atomic Spectra",
+      "path": "content/scenes/nuclear/atomic_spectra.json"
+    },
+    {
+      "id": "nuclear_atomic__atomic_structure",
+      "name": "Atomic Structure",
+      "path": "content/scenes/nuclear/atomic_structure.json"
+    },
+    {
       "id": "cno_cycle_detail",
       "name": "CNO Cycle Detail",
       "path": "content/scenes/nuclear/cno_cycle_detail.json"
+    },
+    {
+      "id": "nuclear_atomic__condensed_matter",
+      "name": "Condensed Matter",
+      "path": "content/scenes/nuclear/condensed_matter.json"
+    },
+    {
+      "id": "nuclear_atomic__molecular_geometry",
+      "name": "Molecular Geometry",
+      "path": "content/scenes/nuclear/molecular_geometry.json"
     },
     {
       "id": "neutron",
@@ -696,6 +1221,16 @@
       "path": "content/scenes/nuclear/nuclear_atomic.json"
     },
     {
+      "id": "nuclear_atomic__nuclear_binding",
+      "name": "Nuclear Binding",
+      "path": "content/scenes/nuclear/nuclear_binding.json"
+    },
+    {
+      "id": "nuclear_atomic__nucleon_structure",
+      "name": "Nucleon Structure",
+      "path": "content/scenes/nuclear/nucleon_structure.json"
+    },
+    {
       "id": "nucleus",
       "name": "Nucleus",
       "path": "content/scenes/nuclear/nucleus.json"
@@ -706,9 +1241,219 @@
       "path": "content/scenes/nuclear/proton.json"
     },
     {
+      "id": "philosophy_history__agency_and_internal_causation",
+      "name": "Agency and Internal Causation",
+      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json"
+    },
+    {
+      "id": "philosophy_history__cosmic_censorship_holography",
+      "name": "Cosmic Censorship and Holography",
+      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
+    },
+    {
+      "id": "philosophy_history__crisis_in_physics",
+      "name": "Crisis in Physics",
+      "path": "content/scenes/philosophy_history/crisis_in_physics.json"
+    },
+    {
+      "id": "philosophy_history__geometry_and_ontology",
+      "name": "Geometry and Ontology",
+      "path": "content/scenes/philosophy_history/geometry_and_ontology.json"
+    },
+    {
+      "id": "philosophy_history__historical_context_missed_opportunities",
+      "name": "Historical Context and Missed Opportunities",
+      "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
+    },
+    {
+      "id": "information_computation",
+      "name": "Information / Computation",
+      "path": "content/scenes/philosophy_history/information_computation.json"
+    },
+    {
+      "id": "inherited_theory_interface",
+      "name": "Inherited Theory Interface",
+      "path": "content/scenes/philosophy_history/inherited_theory_interface.json"
+    },
+    {
+      "id": "major_thinkers",
+      "name": "Major Thinkers",
+      "path": "content/scenes/philosophy_history/major_thinkers.json"
+    },
+    {
+      "id": "philosophy_history__overview",
+      "name": "Philosophy and History",
+      "path": "content/scenes/philosophy_history/overview.json"
+    },
+    {
       "id": "philosophy_history",
       "name": "Philosophy-History",
       "path": "content/scenes/philosophy_history/philosophy_history.json"
+    },
+    {
+      "id": "philosophy_of_science",
+      "name": "Philosophy of Science",
+      "path": "content/scenes/philosophy_history/philosophy_of_science.json"
+    },
+    {
+      "id": "philosophy_history__religious_ontologies",
+      "name": "Religious Ontologies",
+      "path": "content/scenes/philosophy_history/religious_ontologies.json"
+    },
+    {
+      "id": "philosophy_history__solving_the_crisis",
+      "name": "Solving the Crisis",
+      "path": "content/scenes/philosophy_history/solving_the_crisis.json"
+    },
+    {
+      "id": "substance_structure_potential",
+      "name": "Substance Structure and Potential",
+      "path": "content/scenes/philosophy_history/substance_structure_potential.json"
+    },
+    {
+      "id": "theory_bridges__angular_momentum_and_spin",
+      "name": "Angular Momentum and Spin",
+      "path": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json"
+    },
+    {
+      "id": "theory_bridges__bell_theorem",
+      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json"
+    },
+    {
+      "id": "theory_bridges__collapse_problem",
+      "name": "Measurement Problem and Collapse",
+      "path": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json"
+    },
+    {
+      "id": "theory_bridges__entanglement_nonlocality",
+      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json"
+    },
+    {
+      "id": "theory_bridges__klein_gordon_scalar_fields",
+      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
+      "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json"
+    },
+    {
+      "id": "theory_bridges__overview",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/overview.json"
+    },
+    {
+      "id": "theory_bridges__pilot_wave_character",
+      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json"
+    },
+    {
+      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
+      "name": "Planck Scale Nested Shell Braid Alignment",
+      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json"
+    },
+    {
+      "id": "theory_bridges__quantum_operator_mapping",
+      "name": "Quantum Operator Mapping",
+      "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
+    },
+    {
+      "id": "theory_bridges__return_cycle_lorentz_quantization",
+      "name": "Return-Cycle Lorentz Quantization",
+      "path": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json"
+    },
+    {
+      "id": "theory_bridges__spacetime_models_and_noether_sea",
+      "name": "Spacetime Models and the Noether Sea",
+      "path": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json"
+    },
+    {
+      "id": "theory_bridges__special_relativity_noether_braid",
+      "name": "Special Relativity and Deformable Noether Braids",
+      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json"
+    },
+    {
+      "id": "theory_bridges__superposition_mechanism",
+      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
+      "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json"
+    },
+    {
+      "id": "theory_bridges",
+      "name": "Theory Bridges",
+      "path": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json"
+    },
+    {
+      "id": "theory_bridges__weak_mixing_ckm",
+      "name": "Weak Mixing CKM",
+      "path": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json"
+    },
+    {
+      "id": "theory_differentials",
+      "name": "Theory Differentials",
+      "path": "content/scenes/philosophy_history/theory_differentials.json"
+    },
+    {
+      "id": "philosophy_history__theory_inheritance_discipline",
+      "name": "Theory Inheritance Discipline",
+      "path": "content/scenes/philosophy_history/theory_inheritance_discipline.json"
+    },
+    {
+      "id": "philosophy_history__theory_mapping",
+      "name": "Theory Mapping",
+      "path": "content/scenes/philosophy_history/theory_mapping.json"
+    },
+    {
+      "id": "philosophy_history__treasure_physics_overlooked",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked.json"
+    },
+    {
+      "id": "philosophy_history__treasure_physics_overlooked_overview",
+      "name": "The Treasure Physics Overlooked",
+      "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
+    },
+    {
+      "id": "proof_programs__closed_form_collinear_breather_ansatz",
+      "name": "Closed-Form Collinear Breather Ansatz",
+      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
+    },
+    {
+      "id": "dynamics__collinear_breather",
+      "name": "Collinear Breather",
+      "path": "content/scenes/proof-programs/collinear_breather.json"
+    },
+    {
+      "id": "dynamics__master_equation_breather",
+      "name": "Master Equation Breather",
+      "path": "content/scenes/proof-programs/master_equation_breather.json"
+    },
+    {
+      "id": "dynamics__planar_bridge_closure",
+      "name": "Planar Bridge Closure",
+      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
+    },
+    {
+      "id": "proof_programs",
+      "name": "Proof Programs",
+      "path": "content/scenes/proof-programs/proof_programs.json"
+    },
+    {
+      "id": "quantum__algorithmic_resonance",
+      "name": "Algorithmic Resonance",
+      "path": "content/scenes/quantum/algorithmic_resonance.json"
+    },
+    {
+      "id": "quantum__measurement_ontology",
+      "name": "Measurement Ontology",
+      "path": "content/scenes/quantum/measurement_ontology.json"
+    },
+    {
+      "id": "quantum__quantum_statistics",
+      "name": "Fermi-Dirac & Bose-Einstein Statistics",
+      "path": "content/scenes/quantum/quantum_statistics.json"
+    },
+    {
+      "id": "quantum__quantum_summary",
+      "name": "Quantum Summary",
+      "path": "content/scenes/quantum/quantum_summary.json"
     },
     {
       "id": "quantum",
@@ -716,9 +1461,129 @@
       "path": "content/scenes/quantum/quantum.json"
     },
     {
+      "id": "quantum__reality_causality_and_navigation",
+      "name": "Reality Quantum Causality",
+      "path": "content/scenes/quantum/reality_causality_and_navigation.json"
+    },
+    {
+      "id": "quantum__wavefunction_ontology",
+      "name": "Wavefunction Ontology",
+      "path": "content/scenes/quantum/wavefunction_ontology.json"
+    },
+    {
+      "id": "reactions__atomic_transition_radiation",
+      "name": "Atomic Transition Radiation",
+      "path": "content/scenes/reactions/atomic_transition_radiation.json"
+    },
+    {
+      "id": "reactions__bremsstrahlung",
+      "name": "Bremsstrahlung",
+      "path": "content/scenes/reactions/bremsstrahlung.json"
+    },
+    {
+      "id": "reactions__mode_taxonomy",
+      "name": "Mode Taxonomy",
+      "path": "content/scenes/reactions/mode_taxonomy.json"
+    },
+    {
+      "id": "reactions__radiation",
+      "name": "Radiation",
+      "path": "content/scenes/reactions/radiation.json"
+    },
+    {
+      "id": "reactions",
+      "name": "Reactions",
+      "path": "content/scenes/reactions/reactions.json"
+    },
+    {
+      "id": "reactions__synchrotron_cascades",
+      "name": "Synchrotron",
+      "path": "content/scenes/reactions/synchrotron_cascades.json"
+    },
+    {
+      "id": "spacetime__black_holes",
+      "name": "Black Holes",
+      "path": "content/scenes/spacetime/black_holes.json"
+    },
+    {
+      "id": "effective_metric",
+      "name": "Effective Metric",
+      "path": "content/scenes/spacetime/effective_metric.json"
+    },
+    {
+      "id": "spacetime__emergent_metric",
+      "name": "Emergent Metric",
+      "path": "content/scenes/spacetime/emergent_metric.json"
+    },
+    {
+      "id": "spacetime__general_relativity_observables",
+      "name": "General Relativity",
+      "path": "content/scenes/spacetime/general_relativity_observables.json"
+    },
+    {
+      "id": "spacetime__gravitational_waves",
+      "name": "Gravitational Waves",
+      "path": "content/scenes/spacetime/gravitational_waves.json"
+    },
+    {
+      "id": "spacetime__horizon_chirality",
+      "name": "Horizon Chirality",
+      "path": "content/scenes/spacetime/horizon_chirality.json"
+    },
+    {
+      "id": "spacetime__lorentz_kinematics",
+      "name": "Lorentz Kinematics",
+      "path": "content/scenes/spacetime/lorentz_kinematics.json"
+    },
+    {
+      "id": "spacetime__molecular_exclusion_and_noether_sea_response",
+      "name": "Molecular Exclusion and Noether Sea Response",
+      "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
+    },
+    {
+      "id": "spacetime__noether_sea_pro_anti_coupling",
+      "name": "Noether Sea Pro/Anti Coupling",
+      "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json"
+    },
+    {
+      "id": "spacetime__noether_sea",
+      "name": "Noether Sea",
+      "path": "content/scenes/spacetime/noether_sea.json"
+    },
+    {
+      "id": "spacetime__observer_framework",
+      "name": "Observer Framework",
+      "path": "content/scenes/spacetime/observer_framework.json"
+    },
+    {
+      "id": "physical_observers",
+      "name": "Physical Observers",
+      "path": "content/scenes/spacetime/physical_observers.json"
+    },
+    {
+      "id": "spacetime__ppn_parameters",
+      "name": "PPN Parameters",
+      "path": "content/scenes/spacetime/ppn_parameters.json"
+    },
+    {
+      "id": "spacetime__proper_time_and_time_dilation",
+      "name": "Proper Time and Time Dilation",
+      "path": "content/scenes/spacetime/proper_time_and_time_dilation.json"
+    },
+    {
+      "id": "spacetime__singularity_resolution",
+      "name": "Singularity Resolution",
+      "path": "content/scenes/spacetime/singularity_resolution.json"
+    },
+    {
       "id": "spacetime",
       "name": "Noether Sea and Effective Spacetime",
       "path": "content/scenes/spacetime/spacetime.json"
+    },
+    {
+      "id": "strong_field_regime",
+      "name": "Strong-Field Regime",
+      "path": "content/scenes/spacetime/strong_field_regime.json"
     },
     {
       "id": "bottom",
@@ -791,284 +1656,9 @@
       "path": "content/scenes/standard-model-particles/up_quark.json"
     },
     {
-      "id": "validation_simulations",
-      "name": "Validation Simulations",
-      "path": "content/scenes/validation/simulations.json"
-    },
-    {
-      "id": "validation",
-      "name": "Validation",
-      "path": "content/scenes/validation/validation.json"
-    },
-    {
-      "id": "assemblies",
-      "name": "Standard Model Assemblies",
-      "path": "content/scenes/assemblies/assemblies.json"
-    },
-    {
-      "id": "fermions",
-      "name": "Fermions",
-      "path": "content/scenes/assemblies/fermions.json"
-    },
-    {
       "id": "validation_action_energy",
       "name": "Action-Energy",
       "path": "content/scenes/validation/action_energy.json"
-    },
-    {
-      "id": "major_thinkers",
-      "name": "Major Thinkers",
-      "path": "content/scenes/philosophy_history/major_thinkers.json"
-    },
-    {
-      "id": "fermions__color_charge_su3",
-      "name": "Color Charge SU3",
-      "path": "content/scenes/assemblies/color_charge_su3.json"
-    },
-    {
-      "id": "assemblies__electroweak_bosons",
-      "name": "Electroweak Bosons",
-      "path": "content/scenes/assemblies/electroweak_bosons.json"
-    },
-    {
-      "id": "assemblies__gluons",
-      "name": "Gluons",
-      "path": "content/scenes/assemblies/gluons.json"
-    },
-    {
-      "id": "assemblies__mesons_doc",
-      "name": "Mesons",
-      "path": "content/scenes/assemblies/mesons_doc.json"
-    },
-    {
-      "id": "fermions__neutrinos",
-      "name": "Neutrinos",
-      "path": "content/scenes/assemblies/neutrinos.json"
-    },
-    {
-      "id": "assemblies__particle_masses",
-      "name": "Particle Masses",
-      "path": "content/scenes/assemblies/particle_masses.json"
-    },
-    {
-      "id": "fermions__quantum_number_mapping",
-      "name": "Quantum Number Mapping",
-      "path": "content/scenes/assemblies/quantum_number_mapping.json"
-    },
-    {
-      "id": "fermions__weak_mixing_angle",
-      "name": "Weak Mixing Angle",
-      "path": "content/scenes/assemblies/weak_mixing_angle.json"
-    },
-    {
-      "id": "cosmology__bbn_constraints",
-      "name": "BBN Constraints",
-      "path": "content/scenes/cosmology/bbn_constraints.json"
-    },
-    {
-      "id": "cosmology__cmb",
-      "name": "CMB",
-      "path": "content/scenes/cosmology/cmb.json"
-    },
-    {
-      "id": "cosmology__cosmology_ontology",
-      "name": "Cosmology Ontology",
-      "path": "content/scenes/cosmology/cosmology_ontology.json"
-    },
-    {
-      "id": "cosmology__dark_energy",
-      "name": "Dark Energy",
-      "path": "content/scenes/cosmology/dark_energy.json"
-    },
-    {
-      "id": "cosmology__dark_matter",
-      "name": "Dark Matter",
-      "path": "content/scenes/cosmology/dark_matter.json"
-    },
-    {
-      "id": "cosmology__expansion_mechanism",
-      "name": "Expansion Mechanism",
-      "path": "content/scenes/cosmology/expansion_mechanism.json"
-    },
-    {
-      "id": "cosmology__hubble_s8_tensions",
-      "name": "Hubble and S8 Tensions",
-      "path": "content/scenes/cosmology/hubble_s8_tensions.json"
-    },
-    {
-      "id": "cosmology__inflation_model",
-      "name": "Inflation Model",
-      "path": "content/scenes/cosmology/inflation_model.json"
-    },
-    {
-      "id": "cosmology__structure_formation",
-      "name": "Structure Formation",
-      "path": "content/scenes/cosmology/structure_formation.json"
-    },
-    {
-      "id": "dynamics__binary_dynamics",
-      "name": "Binary Dynamics",
-      "path": "content/scenes/dynamics/binary_dynamics.json"
-    },
-    {
-      "id": "dynamics__causal_action_functional",
-      "name": "Causal Action Functional",
-      "path": "content/scenes/dynamics/causal_action_functional.json"
-    },
-    {
-      "id": "dynamics__tri_binary_configuration_space",
-      "name": "Tri-Binary Configuration Space",
-      "path": "content/scenes/dynamics/tri_binary_configuration_space.json"
-    },
-    {
-      "id": "dynamics__dyadic_resonance_lock",
-      "name": "Dyadic Resonance Lock",
-      "path": "content/scenes/dynamics/dyadic_resonance_lock.json"
-    },
-    {
-      "id": "dynamics__effective_lagrangian",
-      "name": "Effective Lagrangian",
-      "path": "content/scenes/dynamics/effective_lagrangian.json"
-    },
-    {
-      "id": "dynamics__kinetic_and_potential_energy",
-      "name": "Energy",
-      "path": "content/scenes/dynamics/kinetic_and_potential_energy.json"
-    },
-    {
-      "id": "dynamics__master_equation_of_motion",
-      "name": "Master Equation",
-      "path": "content/scenes/dynamics/master_equation_of_motion.json"
-    },
-    {
-      "id": "dynamics__master_equation_breather",
-      "name": "Master Equation Breather",
-      "path": "content/scenes/proof-programs/master_equation_breather.json"
-    },
-    {
-      "id": "foundations__absolute_time_defense",
-      "name": "Absolute Time Defense",
-      "path": "content/scenes/foundations/absolute_time_defense.json"
-    },
-    {
-      "id": "foundations__constructing_the_absolute_frame",
-      "name": "Constructing the Absolute Frame",
-      "path": "content/scenes/foundations/constructing_the_absolute_frame.json"
-    },
-    {
-      "id": "foundations__emergence_of_structure",
-      "name": "Emergence of Structure",
-      "path": "content/scenes/foundations/emergence_of_structure.json"
-    },
-    {
-      "id": "foundations__euclidean_void",
-      "name": "Euclidean Void",
-      "path": "content/scenes/foundations/euclidean_void.json"
-    },
-    {
-      "id": "foundations__foundational_ontology",
-      "name": "Ontology",
-      "path": "content/scenes/foundations/foundational_ontology.json"
-    },
-    {
-      "id": "nuclear_atomic__atomic_spectra",
-      "name": "Atomic Spectra",
-      "path": "content/scenes/nuclear/atomic_spectra.json"
-    },
-    {
-      "id": "nuclear_atomic__atomic_structure",
-      "name": "Atomic Structure",
-      "path": "content/scenes/nuclear/atomic_structure.json"
-    },
-    {
-      "id": "nuclear_atomic__condensed_matter",
-      "name": "Condensed Matter",
-      "path": "content/scenes/nuclear/condensed_matter.json"
-    },
-    {
-      "id": "spacetime__molecular_exclusion_and_noether_sea_response",
-      "name": "Molecular Exclusion and Noether Sea Response",
-      "path": "content/scenes/spacetime/molecular_exclusion_and_noether_sea_response.json"
-    },
-    {
-      "id": "nuclear_atomic__molecular_geometry",
-      "name": "Molecular Geometry",
-      "path": "content/scenes/nuclear/molecular_geometry.json"
-    },
-    {
-      "id": "nuclear_atomic__nuclear_binding",
-      "name": "Nuclear Binding",
-      "path": "content/scenes/nuclear/nuclear_binding.json"
-    },
-    {
-      "id": "nuclear_atomic__nucleon_structure",
-      "name": "Nucleon Structure",
-      "path": "content/scenes/nuclear/nucleon_structure.json"
-    },
-    {
-      "id": "philosophy_history__crisis_in_physics",
-      "name": "Crisis in Physics",
-      "path": "content/scenes/philosophy_history/crisis_in_physics.json"
-    },
-    {
-      "id": "philosophy_history__historical_context_missed_opportunities",
-      "name": "Historical Context and Missed Opportunities",
-      "path": "content/scenes/philosophy_history/historical_context_missed_opportunities.json"
-    },
-    {
-      "id": "philosophy_history__religious_ontologies",
-      "name": "Religious Ontologies",
-      "path": "content/scenes/philosophy_history/religious_ontologies.json"
-    },
-    {
-      "id": "philosophy_history__theory_mapping",
-      "name": "Theory Mapping",
-      "path": "content/scenes/philosophy_history/theory_mapping.json"
-    },
-    {
-      "id": "quantum__reality_causality_and_navigation",
-      "name": "Reality Quantum Causality",
-      "path": "content/scenes/quantum/reality_causality_and_navigation.json"
-    },
-    {
-      "id": "quantum__wavefunction_ontology",
-      "name": "Wavefunction Ontology",
-      "path": "content/scenes/quantum/wavefunction_ontology.json"
-    },
-    {
-      "id": "spacetime__emergent_metric",
-      "name": "Emergent Metric",
-      "path": "content/scenes/spacetime/emergent_metric.json"
-    },
-    {
-      "id": "spacetime__general_relativity_observables",
-      "name": "General Relativity",
-      "path": "content/scenes/spacetime/general_relativity_observables.json"
-    },
-    {
-      "id": "spacetime__gravitational_waves",
-      "name": "Gravitational Waves",
-      "path": "content/scenes/spacetime/gravitational_waves.json"
-    },
-    {
-      "id": "spacetime__lorentz_kinematics",
-      "name": "Lorentz Kinematics",
-      "path": "content/scenes/spacetime/lorentz_kinematics.json"
-    },
-    {
-      "id": "spacetime__ppn_parameters",
-      "name": "PPN Parameters",
-      "path": "content/scenes/spacetime/ppn_parameters.json"
-    },
-    {
-      "id": "spacetime__proper_time_and_time_dilation",
-      "name": "Proper Time and Time Dilation",
-      "path": "content/scenes/spacetime/proper_time_and_time_dilation.json"
-    },
-    {
-      "id": "spacetime__singularity_resolution",
-      "name": "Singularity Resolution",
-      "path": "content/scenes/spacetime/singularity_resolution.json"
     },
     {
       "id": "validation_action_energy__action_model",
@@ -1111,6 +1701,11 @@
       "path": "content/scenes/validation/constraint_ledger.json"
     },
     {
+      "id": "validation_action_energy__delay_dynamics_energy",
+      "name": "Delay Dynamics Energy",
+      "path": "content/scenes/validation/delay_dynamics_energy.json"
+    },
+    {
       "id": "validation__failure_criteria",
       "name": "Failure Criteria",
       "path": "content/scenes/validation/failure_criteria.json"
@@ -1124,6 +1719,11 @@
       "id": "validation__known_tensions",
       "name": "Known Tensions",
       "path": "content/scenes/validation/known_tensions.json"
+    },
+    {
+      "id": "validation__massive_superposition_gravity",
+      "name": "Massive Superposition Gravity",
+      "path": "content/scenes/validation/massive_superposition_gravity.json"
     },
     {
       "id": "validation__no_go_theorems",
@@ -1144,6 +1744,11 @@
       "id": "validation_action_energy__radial_attraction",
       "name": "Radial Attraction",
       "path": "content/scenes/validation/radial_attraction.json"
+    },
+    {
+      "id": "validation__reaction_cosmology_provenance_ledger",
+      "name": "Reaction-Cosmology Provenance Ledger",
+      "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
     },
     {
       "id": "validation__reaction_ledger",
@@ -1171,504 +1776,19 @@
       "path": "content/scenes/validation/self_interaction_switch.json"
     },
     {
-      "id": "validation_simulations__sim_architrino",
-      "name": "Architrino",
-      "path": "content/scenes/validation/sim_architrino.json"
-    },
-    {
-      "id": "validation_simulations__sim_convergence_tests",
-      "name": "Convergence Tests",
-      "path": "content/scenes/validation/sim_convergence_tests.json"
-    },
-    {
-      "id": "validation_simulations__sim_perspective",
-      "name": "Perspective",
-      "path": "content/scenes/validation/sim_perspective.json"
-    },
-    {
-      "id": "validation_simulations__sim_readme",
-      "name": "README",
-      "path": "content/scenes/validation/sim_readme.json"
-    },
-    {
-      "id": "validation_simulations__sim_run_protocols",
-      "name": "Run Protocols",
-      "path": "content/scenes/validation/sim_run_protocols.json"
-    },
-    {
       "id": "validation_simulations__sim_a0_branch_certificate_protocol",
       "name": "A0 Branch Certificate Protocol",
       "path": "content/scenes/validation/sim_a0_branch_certificate_protocol.json"
     },
     {
-      "id": "validation_simulations__sim_synthetic_observables",
-      "name": "Synthetic Observables",
-      "path": "content/scenes/validation/sim_synthetic_observables.json"
-    },
-    {
-      "id": "validation_action_energy__superposition_locality",
-      "name": "Superposition and Locality",
-      "path": "content/scenes/validation/superposition_locality.json"
-    },
-    {
-      "id": "validation_action_energy__units_constants",
-      "name": "Units and Constants",
-      "path": "content/scenes/validation/units_constants.json"
-    },
-    {
-      "id": "validation__validation_protocols",
-      "name": "Validation Protocols",
-      "path": "content/scenes/validation/validation_protocols.json"
-    },
-    {
-      "id": "validation_action_energy__well_posedness_regularization",
-      "name": "Well-Posedness and Regularization",
-      "path": "content/scenes/validation/well_posedness_regularization.json"
-    },
-    {
-      "id": "theory_differentials",
-      "name": "Theory Differentials",
-      "path": "content/scenes/philosophy_history/theory_differentials.json"
-    },
-    {
-      "id": "philosophy_of_science",
-      "name": "Philosophy of Science",
-      "path": "content/scenes/philosophy_history/philosophy_of_science.json"
-    },
-    {
-      "id": "information_computation",
-      "name": "Information / Computation",
-      "path": "content/scenes/philosophy_history/information_computation.json"
-    },
-    {
-      "id": "archie__about",
-      "name": "About the Webapp",
-      "path": "content/scenes/archie/about.json"
-    },
-    {
-      "id": "archie__academic_style_guide",
-      "name": "Academic Style Guide",
-      "path": "content/scenes/archie/academic_style_guide.json"
-    },
-    {
-      "id": "archie",
-      "name": "Archie",
-      "path": "content/scenes/archie/archie.json"
-    },
-    {
-      "id": "archie__github_presence_and_community",
-      "name": "GitHub Presence & Community",
-      "path": "content/scenes/archie/github_presence_and_community.json"
-    },
-    {
-      "id": "archie__glossary",
-      "name": "Comparative Glossary",
-      "path": "content/scenes/archie/glossary.json"
-    },
-    {
-      "id": "archie__help",
-      "name": "Navigation & Controls",
-      "path": "content/scenes/archie/help.json"
-    },
-    {
-      "id": "archie__licenses_attributions",
-      "name": "Licenses & Attributions",
-      "path": "content/scenes/archie/licenses_attributions.json"
-    },
-    {
-      "id": "archie__mathematical_style_guide",
-      "name": "Mathematical Style Guide",
-      "path": "content/scenes/archie/mathematical_style_guide.json"
-    },
-    {
-      "id": "archie__mathematical_terminology",
-      "name": "Mathematical Terminology Reference",
-      "path": "content/scenes/archie/mathematical_terminology.json"
-    },
-    {
-      "id": "archie__research_notebook",
-      "name": "Research Notebook",
-      "path": "content/scenes/archie/research_notebook.json"
-    },
-    {
-      "id": "archie__support_architrino_research",
-      "name": "Support Architrino Research",
-      "path": "content/scenes/archie/support_architrino_research.json"
-    },
-    {
-      "id": "archie__textbook_toc",
-      "name": "Textbook TOC",
-      "path": "content/scenes/archie/textbook_toc.json"
-    },
-    {
-      "id": "philosophy_history__agency_and_internal_causation",
-      "name": "Agency and Internal Causation",
-      "path": "content/scenes/philosophy_history/agency_and_internal_causation.json"
-    },
-    {
-      "id": "philosophy_history__cosmic_censorship_holography",
-      "name": "Cosmic Censorship and Holography",
-      "path": "content/scenes/philosophy_history/cosmic_censorship_holography.json"
-    },
-    {
-      "id": "foundations__detecting_the_absolute_frame",
-      "name": "Detecting the Absolute Frame",
-      "path": "content/scenes/foundations/detecting_the_absolute_frame.json"
-    },
-    {
-      "id": "spacetime__black_holes",
-      "name": "Black Holes",
-      "path": "content/scenes/spacetime/black_holes.json"
-    },
-    {
-      "id": "dynamics__collinear_breather",
-      "name": "Collinear Breather",
-      "path": "content/scenes/proof-programs/collinear_breather.json"
-    },
-    {
-      "id": "spacetime__horizon_chirality",
-      "name": "Horizon Chirality",
-      "path": "content/scenes/spacetime/horizon_chirality.json"
-    },
-    {
-      "id": "dynamics__planar_bridge_closure",
-      "name": "Planar Bridge Closure",
-      "path": "content/scenes/proof-programs/planar_bridge_closure.json"
-    },
-    {
-      "id": "archie__applications",
-      "name": "Applications",
-      "path": "content/scenes/archie/applications.json"
-    },
-    {
-      "id": "archie__documentation",
-      "name": "Documentation",
-      "path": "content/scenes/archie/documentation.json"
-    },
-    {
-      "id": "archie__project",
-      "name": "Project",
-      "path": "content/scenes/archie/project.json"
-    },
-    {
-      "id": "archie__user_interface",
-      "name": "User Interface",
-      "path": "content/scenes/archie/user_interface.json"
-    },
-    {
-      "id": "foundations__absolute_time",
-      "name": "Absolute Time",
-      "path": "content/scenes/foundations/absolute_time.json"
-    },
-    {
-      "id": "foundations__absolute_timespace",
-      "name": "Absolute Timespace",
-      "path": "content/scenes/foundations/absolute_timespace.json"
-    },
-    {
-      "id": "foundations__architrino",
-      "name": "Architrino",
-      "path": "content/scenes/foundations/architrino.json"
-    },
-    {
-      "id": "proof_programs__closed_form_collinear_breather_ansatz",
-      "name": "Closed-Form Collinear Breather Ansatz",
-      "path": "content/scenes/proof-programs/closed_form_collinear_breather_ansatz.json"
-    },
-    {
-      "id": "proof_programs",
-      "name": "Proof Programs",
-      "path": "content/scenes/proof-programs/proof_programs.json"
-    },
-    {
-      "id": "spacetime__noether_sea",
-      "name": "Noether Sea",
-      "path": "content/scenes/spacetime/noether_sea.json"
-    },
-    {
-      "id": "spacetime__observer_framework",
-      "name": "Observer Framework",
-      "path": "content/scenes/spacetime/observer_framework.json"
-    },
-    {
-      "id": "archie__software_architecture_and_maintenance",
-      "name": "Software Architecture and Maintenance",
-      "path": "content/scenes/archie/software_architecture_and_maintenance.json"
-    },
-    {
-      "id": "archie__terminology_usage",
-      "name": "Terminology Usage",
-      "path": "content/scenes/archie/terminology_usage.json"
-    },
-    {
-      "id": "archie__ui_guidelines",
-      "name": "UI Guidelines",
-      "path": "content/scenes/archie/ui_guidelines.json"
-    },
-    {
-      "id": "assemblies__quarks",
-      "name": "Quarks",
-      "path": "content/scenes/assemblies/quarks.json"
-    },
-    {
-      "id": "quantum__algorithmic_resonance",
-      "name": "Algorithmic Resonance",
-      "path": "content/scenes/quantum/algorithmic_resonance.json"
-    },
-    {
-      "id": "quantum__measurement_ontology",
-      "name": "Measurement Ontology",
-      "path": "content/scenes/quantum/measurement_ontology.json"
-    },
-    {
-      "id": "quantum__quantum_summary",
-      "name": "Quantum Summary",
-      "path": "content/scenes/quantum/quantum_summary.json"
-    },
-    {
-      "id": "quantum__quantum_statistics",
-      "name": "Fermi-Dirac & Bose-Einstein Statistics",
-      "path": "content/scenes/quantum/quantum_statistics.json"
-    },
-    {
-      "id": "reactions__bremsstrahlung",
-      "name": "Bremsstrahlung",
-      "path": "content/scenes/reactions/bremsstrahlung.json"
-    },
-    {
-      "id": "reactions",
-      "name": "Reactions",
-      "path": "content/scenes/reactions/reactions.json"
-    },
-    {
-      "id": "reactions__synchrotron_cascades",
-      "name": "Synchrotron",
-      "path": "content/scenes/reactions/synchrotron_cascades.json"
-    },
-    {
-      "id": "effective_metric",
-      "name": "Effective Metric",
-      "path": "content/scenes/spacetime/effective_metric.json"
-    },
-    {
-      "id": "physical_observers",
-      "name": "Physical Observers",
-      "path": "content/scenes/spacetime/physical_observers.json"
-    },
-    {
-      "id": "strong_field_regime",
-      "name": "Strong-Field Regime",
-      "path": "content/scenes/spacetime/strong_field_regime.json"
-    },
-    {
-      "id": "theory_bridges__bell_theorem",
-      "name": "Bell's Theorem: QM Foundations vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/philosophy_history/theory_bridges/bell_theorem.json"
-    },
-    {
-      "id": "theory_bridges__collapse_problem",
-      "name": "Measurement Problem and Collapse",
-      "path": "content/scenes/philosophy_history/theory_bridges/collapse_problem.json"
-    },
-    {
-      "id": "theory_bridges__entanglement_nonlocality",
-      "name": "Entanglement and Nonlocality: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/philosophy_history/theory_bridges/entanglement_nonlocality.json"
-    },
-    {
-      "id": "theory_bridges__klein_gordon_scalar_fields",
-      "name": "Relativistic Scalar Fields and the Klein-Gordon Equation",
-      "path": "content/scenes/philosophy_history/theory_bridges/klein_gordon_scalar_fields.json"
-    },
-    {
-      "id": "theory_bridges__overview",
-      "name": "Theory Bridges",
-      "path": "content/scenes/philosophy_history/theory_bridges/overview.json"
-    },
-    {
-      "id": "theory_bridges__pilot_wave_character",
-      "name": "Pilot-Wave Character: de Broglie–Bohm (QM) vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/philosophy_history/theory_bridges/pilot_wave_character.json"
-    },
-    {
-      "id": "theory_bridges__planck_scale_nested_shell_braid_alignment",
-      "name": "Planck Scale Nested Shell Braid Alignment",
-      "path": "content/scenes/philosophy_history/theory_bridges/planck_scale_nested_shell_braid_alignment.json"
-    },
-    {
-      "id": "theory_bridges__quantum_operator_mapping",
-      "name": "Quantum Operator Mapping",
-      "path": "content/scenes/philosophy_history/theory_bridges/quantum_operator_mapping.json"
-    },
-    {
-      "id": "theory_bridges__special_relativity_noether_braid",
-      "name": "Special Relativity and Deformable Noether Braids",
-      "path": "content/scenes/philosophy_history/theory_bridges/special_relativity_noether_braid.json"
-    },
-    {
-      "id": "theory_bridges__superposition_mechanism",
-      "name": "Superposition Mechanism: QM vs. 𝔸𝔸𝔸",
-      "path": "content/scenes/philosophy_history/theory_bridges/superposition_mechanism.json"
-    },
-    {
-      "id": "theory_bridges",
-      "name": "Theory Bridges",
-      "path": "content/scenes/philosophy_history/theory_bridges/theory_bridges.json"
-    },
-    {
-      "id": "theory_bridges__weak_mixing_ckm",
-      "name": "Weak Mixing CKM",
-      "path": "content/scenes/philosophy_history/theory_bridges/weak_mixing_ckm.json"
-    },
-    {
-      "id": "substance_structure_potential",
-      "name": "Substance Structure and Potential",
-      "path": "content/scenes/philosophy_history/substance_structure_potential.json"
-    },
-    {
-      "id": "philosophy_history__overview",
-      "name": "Philosophy and History",
-      "path": "content/scenes/philosophy_history/overview.json"
-    },
-    {
-      "id": "archie__textbook_pdf_snapshots",
-      "name": "Textbook Markdown to PDF",
-      "path": "content/scenes/archie/textbook_pdf_snapshots.json"
-    },
-    {
-      "id": "theory_bridges__spacetime_models_and_noether_sea",
-      "name": "Spacetime Models and the Noether Sea",
-      "path": "content/scenes/philosophy_history/theory_bridges/spacetime_models_and_noether_sea.json"
-    },
-    {
-      "id": "theory_bridges__return_cycle_lorentz_quantization",
-      "name": "Return-Cycle Lorentz Quantization",
-      "path": "content/scenes/philosophy_history/theory_bridges/return_cycle_lorentz_quantization.json"
-    },
-    {
-      "id": "inherited_theory_interface",
-      "name": "Inherited Theory Interface",
-      "path": "content/scenes/philosophy_history/inherited_theory_interface.json"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid",
-      "name": "Nested Shell Braid",
-      "path": "content/scenes/noether-braid/nested_shell_braid.json"
-    },
-    {
-      "id": "noether_braid__neutral_braid",
-      "name": "Neutral Braid",
-      "path": "content/scenes/noether-braid/neutral_braid.json"
-    },
-    {
-      "id": "noether_braid",
-      "name": "Noether Braid",
-      "path": "content/scenes/noether-braid/noether_braid.json"
-    },
-    {
-      "id": "noether_braid__shell_braid",
-      "name": "Shell Braid",
-      "path": "content/scenes/noether-braid/shell_braid.json"
-    },
-    {
-      "id": "assemblies__gauge_structure_emergence",
-      "name": "Gauge Structure Emergence",
-      "path": "content/scenes/assemblies/gauge_structure_emergence.json"
-    },
-    {
-      "id": "assemblies__gauge_symmetries",
-      "name": "Gauge Symmetries",
-      "path": "content/scenes/assemblies/gauge_symmetries.json"
-    },
-    {
-      "id": "reactions__mode_taxonomy",
-      "name": "Mode Taxonomy",
-      "path": "content/scenes/reactions/mode_taxonomy.json"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid_dynamics",
-      "name": "Nested Shell Braid Dynamics",
-      "path": "content/scenes/noether-braid/nested_shell_braid_dynamics.json"
-    },
-    {
-      "id": "noether_braid__overview",
-      "name": "Noether Braid",
-      "path": "content/scenes/noether-braid/noether_braid_overview.json"
-    },
-    {
-      "id": "noether_braid__nested_shell_braid_geometry",
-      "name": "Nested Shell Braid Geometry",
-      "path": "content/scenes/noether-braid/nested_shell_braid_geometry.json"
-    },
-    {
-      "id": "spacetime__noether_sea_pro_anti_coupling",
-      "name": "Noether Sea Pro/Anti Coupling",
-      "path": "content/scenes/spacetime/noether_sea_pro_anti_coupling.json"
-    },
-    {
-      "id": "archie__ideal_braid",
-      "name": "Ideal Noether Braid: Lorentz Geometry App",
-      "path": "content/scenes/archie/ideal_braid.json"
-    },
-    {
-      "id": "validation_action_energy__delay_dynamics_energy",
-      "name": "Delay Dynamics Energy",
-      "path": "content/scenes/validation/delay_dynamics_energy.json"
-    },
-    {
-      "id": "archie__photon",
-      "name": "Photon and Polarization Visualization App",
-      "path": "content/scenes/archie/photon.json"
-    },
-    {
-      "id": "molecule",
-      "name": "Molecule Visualization",
-      "path": "content/scenes/archie/molecule.json"
-    },
-    {
-      "id": "dynamics__entropy_and_record_coarse_graining",
-      "name": "Entropy",
-      "path": "content/scenes/dynamics/entropy_and_record_coarse_graining.json"
-    },
-    {
-      "id": "philosophy_history__geometry_and_ontology",
-      "name": "Geometry and Ontology",
-      "path": "content/scenes/philosophy_history/geometry_and_ontology.json"
-    },
-    {
-      "id": "philosophy_history__theory_inheritance_discipline",
-      "name": "Theory Inheritance Discipline",
-      "path": "content/scenes/philosophy_history/theory_inheritance_discipline.json"
-    },
-    {
-      "id": "reactions__atomic_transition_radiation",
-      "name": "Atomic Transition Radiation",
-      "path": "content/scenes/reactions/atomic_transition_radiation.json"
-    },
-    {
-      "id": "reactions__radiation",
-      "name": "Radiation",
-      "path": "content/scenes/reactions/radiation.json"
-    },
-    {
-      "id": "validation__massive_superposition_gravity",
-      "name": "Massive Superposition Gravity",
-      "path": "content/scenes/validation/massive_superposition_gravity.json"
-    },
-    {
-      "id": "validation__reaction_cosmology_provenance_ledger",
-      "name": "Reaction-Cosmology Provenance Ledger",
-      "path": "content/scenes/validation/reaction_cosmology_provenance_ledger.json"
-    },
-    {
-      "id": "theory_bridges__angular_momentum_and_spin",
-      "name": "Angular Momentum and Spin",
-      "path": "content/scenes/philosophy_history/theory_bridges/angular_momentum_and_spin.json"
-    },
-    {
       "id": "validation_simulations__sim_branch_quantum__sim_a0_tier0_result_interpretation",
       "name": "A0 Tier 0 Result Interpretation",
       "path": "content/scenes/validation/sim_a0_tier0_result_interpretation.json"
+    },
+    {
+      "id": "validation_simulations__sim_architrino",
+      "name": "Architrino",
+      "path": "content/scenes/validation/sim_architrino.json"
     },
     {
       "id": "validation_simulations__sim_branch_quantum__sim_bell_family_record_measure",
@@ -1679,6 +1799,11 @@
       "id": "validation_simulations__sim_branch_quantum",
       "name": "Branch / Quantum",
       "path": "content/scenes/validation/sim_branch_quantum.json"
+    },
+    {
+      "id": "validation_simulations__sim_convergence_tests",
+      "name": "Convergence Tests",
+      "path": "content/scenes/validation/sim_convergence_tests.json"
     },
     {
       "id": "validation_simulations__sim_cosmology_residuals",
@@ -1706,6 +1831,16 @@
       "path": "content/scenes/validation/sim_nested_shell_braid_action_increment_protocol.json"
     },
     {
+      "id": "validation_simulations__sim_perspective",
+      "name": "Perspective",
+      "path": "content/scenes/validation/sim_perspective.json"
+    },
+    {
+      "id": "validation_simulations__sim_readme",
+      "name": "README",
+      "path": "content/scenes/validation/sim_readme.json"
+    },
+    {
       "id": "validation_simulations__sim_cosmology_residuals__sim_redshift_budget_toy_model",
       "name": "Redshift-Budget Toy Model",
       "path": "content/scenes/validation/sim_redshift_budget_toy_model.json"
@@ -1716,9 +1851,19 @@
       "path": "content/scenes/validation/sim_retuning_map_toy_model.json"
     },
     {
+      "id": "validation_simulations__sim_run_protocols",
+      "name": "Run Protocols",
+      "path": "content/scenes/validation/sim_run_protocols.json"
+    },
+    {
       "id": "validation_simulations__sim_metric_observer__sim_static_response_vector_toy_model",
       "name": "Static Response Vector Toy Model",
       "path": "content/scenes/validation/sim_static_response_vector_toy_model.json"
+    },
+    {
+      "id": "validation_simulations__sim_synthetic_observables",
+      "name": "Synthetic Observables",
+      "path": "content/scenes/validation/sim_synthetic_observables.json"
     },
     {
       "id": "validation_simulations__sim_metric_observer__sim_thermodynamic_residual",
@@ -1726,174 +1871,39 @@
       "path": "content/scenes/validation/sim_thermodynamic_residual.json"
     },
     {
-      "id": "dynamics__assembly_topological_charge",
-      "name": "Assembly Topological Charge",
-      "path": "content/scenes/dynamics/assembly_topological_charge.json"
+      "id": "validation_simulations",
+      "name": "Validation Simulations",
+      "path": "content/scenes/validation/simulations.json"
     },
     {
-      "id": "philosophy_history__treasure_physics_overlooked",
-      "name": "The Treasure Physics Overlooked",
-      "path": "content/scenes/philosophy_history/treasure_physics_overlooked.json"
+      "id": "validation_action_energy__superposition_locality",
+      "name": "Superposition and Locality",
+      "path": "content/scenes/validation/superposition_locality.json"
     },
     {
-      "id": "philosophy_history__treasure_physics_overlooked_overview",
-      "name": "The Treasure Physics Overlooked",
-      "path": "content/scenes/philosophy_history/treasure_physics_overlooked/overview.json"
+      "id": "validation_action_energy__units_constants",
+      "name": "Units and Constants",
+      "path": "content/scenes/validation/units_constants.json"
     },
     {
-      "id": "archie__website_stats",
-      "name": "Website Stats",
-      "path": "content/scenes/archie/website_stats.json"
+      "id": "validation__validation_protocols",
+      "name": "Validation Protocols",
+      "path": "content/scenes/validation/validation_protocols.json"
     },
     {
-      "id": "archie__comics",
-      "name": "Comics",
-      "path": "content/scenes/archie/comics.json"
+      "id": "validation",
+      "name": "Validation",
+      "path": "content/scenes/validation/validation.json"
     },
     {
-      "id": "archie__comics__acknowledgements_in_architrinos_room",
-      "name": "Acknowledgements In Architrino's Room",
-      "path": "content/scenes/archie/comics/acknowledgements_in_architrinos_room.json"
+      "id": "validation_action_energy__well_posedness_regularization",
+      "name": "Well-Posedness and Regularization",
+      "path": "content/scenes/validation/well_posedness_regularization.json"
     },
     {
-      "id": "archie__comics__birthday_cake_for_observer_era",
-      "name": "Birthday Cake For The Observer Era",
-      "path": "content/scenes/archie/comics/birthday_cake_for_observer_era.json"
-    },
-    {
-      "id": "archie__comics__candidate_not_a_throne",
-      "name": "Candidate, Not A Throne",
-      "path": "content/scenes/archie/comics/candidate_not_a_throne.json"
-    },
-    {
-      "id": "archie__comics__citation_needed",
-      "name": "Citation Needed",
-      "path": "content/scenes/archie/comics/citation_needed.json"
-    },
-    {
-      "id": "archie__comics__first_footage_not_birth_certificate",
-      "name": "Opening Scene, Not Building Permit",
-      "path": "content/scenes/archie/comics/first_footage_not_birth_certificate.json"
-    },
-    {
-      "id": "archie__comics__first_page_is_not_the_beginning",
-      "name": "First Page Problem",
-      "path": "content/scenes/archie/comics/first_page_is_not_the_beginning.json"
-    },
-    {
-      "id": "archie__comics__four_theories_one_oval",
-      "name": "Four Theories, One Oval",
-      "path": "content/scenes/archie/comics/four_theories_one_oval.json"
-    },
-    {
-      "id": "archie__comics__group_project_assumption",
-      "name": "Group Project Assumption",
-      "path": "content/scenes/archie/comics/group_project_assumption.json"
-    },
-    {
-      "id": "archie__comics__new_theory_same_budget",
-      "name": "New Theory Same Budget",
-      "path": "content/scenes/archie/comics/new_theory_same_budget.json"
-    },
-    {
-      "id": "archie__comics__observable_edge_receipt",
-      "name": "The Observable Edge Receipt",
-      "path": "content/scenes/archie/comics/observable_edge_receipt.json"
-    },
-    {
-      "id": "archie__comics__office_hours_for_a_claim",
-      "name": "Office Hours For A Claim",
-      "path": "content/scenes/archie/comics/office_hours_for_a_claim.json"
-    },
-    {
-      "id": "archie__comics__old_alchemy_new_apparatus",
-      "name": "Old Alchemy, New Apparatus",
-      "path": "content/scenes/archie/comics/old_alchemy_new_apparatus.json"
-    },
-    {
-      "id": "archie__comics__present_has_an_inbox",
-      "name": "Signals From Earlier",
-      "path": "content/scenes/archie/comics/present_has_an_inbox.json"
-    },
-    {
-      "id": "archie__comics__show_the_residuals",
-      "name": "Show The Residuals",
-      "path": "content/scenes/archie/comics/show_the_residuals.json"
-    },
-    {
-      "id": "archie__comics__we_need_to_talk",
-      "name": "We Need To Talk",
-      "path": "content/scenes/archie/comics/we_need_to_talk.json"
-    },
-    {
-      "id": "archie__comics__what_counts_as_evidence",
-      "name": "What Counts As Evidence?",
-      "path": "content/scenes/archie/comics/what_counts_as_evidence.json"
-    },
-    {
-      "id": "archie__system_card",
-      "name": "System Card",
-      "path": "content/scenes/archie/system_card.json"
-    },
-    {
-      "id": "archie__system_card__overview",
-      "name": "System Card Overview",
-      "path": "content/scenes/archie/system_card_overview.json"
-    },
-    {
-      "id": "archie__about_architrino",
-      "name": "About Architrino",
-      "path": "content/scenes/archie/about_architrino.json"
-    },
-    {
-      "id": "archie__people",
-      "name": "People",
-      "path": "content/scenes/archie/people.json"
-    },
-    {
-      "id": "philosophy_history__solving_the_crisis",
-      "name": "Solving the Crisis",
-      "path": "content/scenes/philosophy_history/solving_the_crisis.json"
-    },
-    {
-      "id": "archie__aaa_journey",
-      "name": "AAA Journey",
-      "path": "content/scenes/archie/aaa_journey.json"
-    },
-    {
-      "id": "animator",
-      "name": "Animator",
-      "path": "content/scenes/archie/animator.json"
-    },
-    {
-      "id": "assembly-explorer",
-      "name": "Assembly Configuration Explorer",
-      "path": "content/scenes/archie/assembly_explorer.json"
-    },
-    {
-      "id": "borg",
-      "name": "Borg App",
-      "path": "content/scenes/archie/borg.json"
-    },
-    {
-      "id": "causal-delay-feedback",
-      "name": "Causal Delay Feedback",
-      "path": "content/scenes/archie/causal_delay_feedback.json"
-    },
-    {
-      "id": "archie__values",
-      "name": "Values",
-      "path": "content/scenes/archie/values.json"
-    },
-    {
-      "id": "archie__legal_terms",
-      "name": "Legal Terms",
-      "path": "content/scenes/archie/legal_terms.json"
-    },
-    {
-      "id": "equation-mapping",
-      "name": "Equation Mapping",
-      "path": "content/scenes/archie/equation_mapping.json"
+      "id": "archie__presentations",
+      "name": "Presentations",
+      "path": "content/scenes/archie/presentations.json"
     }
   ]
 }

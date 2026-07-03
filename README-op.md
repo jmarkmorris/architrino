@@ -21,6 +21,7 @@ This file is the agent's living feedback backlog for improving operator/develope
 - [ ] Say whether you want implementation, review, planning, or brainstorming before long prompts with mixed signals.
 - [ ] Prefer one hard target per turn; batch only independent items with clear file boundaries.
 - [ ] Promote recurring operating decisions into repo docs instead of re-explaining them in chat.
+- [ ] Keep generated-artifact writes out of ordinary turns; reserve generator `--write` commands for explicit regeneration/fix-drift requests or the `codex-pr-branch.md` final branch/PR process.
 - [ ] Keep the local push gate and GitHub Content Integrity gate in parity before treating a push as clean.
 - [ ] For broad advancement prompts, let the agent continue into safe direct follow-on work instead of stopping at a Priority Action Menu.
 - [ ] Treat "continue..." as approval to execute the last safe scoped recommendation or closure goal unless it requires a theory/canon decision, destructive action, or broad scope expansion.

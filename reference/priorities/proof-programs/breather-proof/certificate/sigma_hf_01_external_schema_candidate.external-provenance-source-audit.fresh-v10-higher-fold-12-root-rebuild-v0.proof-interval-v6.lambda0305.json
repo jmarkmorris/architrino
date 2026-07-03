@@ -9106,7 +9106,7 @@
   "reference_signal_records": [
     {
       "source_kind": "reference_markdown_signal",
-      "path": "reference/priorities/proof-programs/breather-proof/breather-proof.md",
+      "path": "reference/priorities/proof-programs/breather-proof/priorities.md",
       "basename": "breather-proof.md",
       "sha256": "0b84497da75a3190bd055ba47afac5b09d7855f64087e04736e9e0afaae74895",
       "category_flags": {
@@ -13111,7 +13111,7 @@
     },
     {
       "source_kind": "reference_markdown_signal",
-      "path": "reference/priorities/proof-programs/proof-programs.md",
+      "path": "reference/priorities/proof-programs/priorities.md",
       "basename": "proof-programs.md",
       "sha256": "f90b7d4df6d6b5e5087be23773b8e01391d1886d117fa37c92067d0f464b2c4c",
       "category_flags": {
@@ -14666,7 +14666,7 @@
     },
     {
       "source_kind": "reference_markdown_signal",
-      "path": "reference/priorities/proof-programs/breather-proof/breather-proof.md",
+      "path": "reference/priorities/proof-programs/breather-proof/priorities.md",
       "basename": "breather-proof.md",
       "sha256": "0b84497da75a3190bd055ba47afac5b09d7855f64087e04736e9e0afaae74895",
       "category_flags": {

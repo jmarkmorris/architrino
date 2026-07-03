@@ -6,8 +6,8 @@
 - Status: `priority-only`
 - Assigned IDs: `EQ-01`, `EQ-05`
 - Claim level: `EQ-01` is native at the per-hit causal wake law; `EQ-05` remains an internal/candidate finite-window conservation packet until a symmetry-preserving action chart and residual calculation close on one retained branch.
-- Source rows: [equation.md](equation.md) and [equation-mapping.md](equation-mapping.md)
-- Edit boundary: this packet only. Do not update `equation.md` or `equation-mapping.md` from this packet.
+- Source rows: [equation.md](equation.md) and [priorities.md](priorities.md)
+- Edit boundary: this packet only. Do not update `equation.md` or `priorities.md` from this packet.
 
 This packet ties the native causal wake equation to Noether-style conservation laws without promoting a new reader-facing claim. The central rule is same-root conservation: energy, momentum, and angular momentum may be scored only when their wake-history charges, event ledger, boundary flux, and residuals consume the same causal-root ledger, Jacobian floors, memory convention, branch label, and Noether sea state as the force row.
 

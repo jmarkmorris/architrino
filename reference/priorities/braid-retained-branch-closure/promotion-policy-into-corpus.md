@@ -2,7 +2,7 @@
 
 Promotion status: `priority-only`. This packet decides how neutral braid, shell braid, nested shell braid, validation, and closure material can move from `reference/priorities/braid-retained-branch-closure/` into reader-facing corpus prose without overclaiming a retained branch. It does not itself promote material into `content/markdown/aaa`, does not modify any corpus file, and does not retain a branch.
 
-The policy follows the active braid terminology in [Braid](braid-retained-branch-closure.md): `neutral braid`, `shell braid`, and `nested shell braid` are the reader-facing case terms. Priority packets may link to each other for workstream bookkeeping. Corpus pages must remain self-contained and must not link to `reference/priorities`.
+The policy follows the active braid terminology in [Braid](priorities.md): `neutral braid`, `shell braid`, and `nested shell braid` are the reader-facing case terms. Priority packets may link to each other for workstream bookkeeping. Corpus pages must remain self-contained and must not link to `reference/priorities`.
 
 ---
 

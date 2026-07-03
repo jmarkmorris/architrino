@@ -5,7 +5,7 @@
 - Kind: source-mined benchmark packet.
 - Date mined: June 30, 2026.
 - Status: priority-only; not reader-facing canon.
-- Supports: [Standard Model Closure](standard-model-closure.md), [Standard Model Geometry-First Program](geometry-first-program.md), and [Nuclear Binding Closure](../nuclear-atomic-molecular-closure/nuclear-binding-closure.md).
+- Supports: [Standard Model Closure](priorities.md), [Standard Model Geometry-First Program](geometry-first-program.md), and [Nuclear Binding Closure](../nuclear-atomic-molecular-closure/nuclear-binding-closure.md).
 - Intended corpus destinations: [Color Charge and SU(3)](../../../content/markdown/aaa/assemblies/fermions/color-charge-su3.md), [Gluons and the Strong Force](../../../content/markdown/aaa/assemblies/bosons/gluons.md), [Nucleon Structure](../../../content/markdown/aaa/nuclear-atomic/nucleon-structure.md), and [Nuclear Binding](../../../content/markdown/aaa/nuclear-atomic/nuclear-binding.md), after the native derivation burdens below are ready.
 
 ## Scope
@@ -52,7 +52,7 @@ Boundary: quarks, gluons, showers, and partons are comparison-layer terms. They 
 
 ## Captured Recovery Equations
 
-The existing comparison object in [Standard Model Closure](standard-model-closure.md) remains the owner:
+The existing comparison object in [Standard Model Closure](priorities.md) remains the owner:
 
 $$
 \mathcal{R}_{\mathrm{QCD}\text{-}\mathrm{asm}}

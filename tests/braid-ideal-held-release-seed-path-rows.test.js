@@ -1,14 +1,99 @@
 import assert from "node:assert/strict";
+import { execFileSync } from "node:child_process";
+import crypto from "node:crypto";
+import fs from "node:fs";
+import os from "node:os";
+import path from "node:path";
 import test from "node:test";
+import { fileURLToPath } from "node:url";
 
 import {
+  ACCEPTANCE_CERTIFICATE_REQUIREMENT_SCHEMA,
+  ACCEPTANCE_CERTIFICATE_SCHEMA,
+  EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+  EXTERNAL_ACCEPTED_AUTHORITY_REF_PREFIX,
+  EXTERNAL_ACCEPTED_AUTHORITY_VERIFICATION_REF_PREFIX,
   FIRST_MISSING_FIELD,
   FIRST_MISSING_OBJECT,
   NEGATIVE_CONTROL_REASONS,
+  buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement,
   buildHeldReleaseSeedPathRows,
+  evaluateHeldReleaseSeedPathRowsAcceptanceCertificate,
   evaluateHeldReleaseSeedPathRowsEvidence,
   validateHeldReleaseSeedPathRows,
 } from "../scripts/braid-ideal/held-release-seed-path-rows.mjs";
+
+const SCRIPT_PATH = fileURLToPath(
+  new URL("../scripts/braid-ideal/held-release-seed-path-rows.mjs", import.meta.url)
+);
+const RETAINED_RECORD_ID = "retained-record:held-release-six-point:adapter-acceptance-certificate";
+const SOURCE_ROW_ID = "two-speed-preferred-row:u0.8:v0.2";
+const PROVIDER_OBJECT_REF = "candidate:central_solver_retained_history_provider_object:7d4a8fe0a9792327";
+const PROVIDER_ARTIFACT_HASH = "7d4a8fe0a97923270179f2ca0b49b4bc0d6b6ba3251b26e82569bdb4bd1f91df";
+
+function stableHash(value) {
+  return crypto.createHash("sha256").update(JSON.stringify(value)).digest("hex");
+}
+
+function buildCurrentProviderBackedArtifact() {
+  return buildHeldReleaseSeedPathRows({
+    retainedRecordId: RETAINED_RECORD_ID,
+    providerObjectRef: PROVIDER_OBJECT_REF,
+    providerArtifactHash: PROVIDER_ARTIFACT_HASH,
+  });
+}
+
+function makeMatchingAcceptanceCertificate(artifact) {
+  return {
+    schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    non_repo_external_authority: true,
+    external_accepted_authority_ref:
+      `external-authority:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+    external_accepted_authority_verification_ref:
+      `external-verification:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      `accepted:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}:certificate`,
+    held_release_seed_path_rows_artifact_id: artifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
+    retained_record_id: RETAINED_RECORD_ID,
+    source_row_id: SOURCE_ROW_ID,
+    source_run_id: artifact.source_run_identity.source_run_id,
+    source_dataset_id: artifact.source_run_identity.source_dataset_id,
+    provider_object_ref: PROVIDER_OBJECT_REF,
+    provider_artifact_hash: PROVIDER_ARTIFACT_HASH,
+    row_ids: artifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: artifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+}
+
+function makeMatchingExternalAuthorityPackage(artifact, certificate) {
+  return {
+    schema: EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA,
+    accepted_external_authority: true,
+    non_repo_external_authority: true,
+    external_accepted_authority_package_ref:
+      `external-authority-package:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`,
+    external_accepted_authority_ref: certificate.external_accepted_authority_ref,
+    external_accepted_authority_verification_ref: certificate.external_accepted_authority_verification_ref,
+    verified_certificate_schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    verified_certificate_ref: certificate.held_release_seed_path_rows_acceptance_certificate_ref,
+    verified_certificate_artifact_hash: stableHash(certificate),
+    held_release_seed_path_rows_artifact_id: artifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: artifact.artifact_hash,
+    retained_record_id: RETAINED_RECORD_ID,
+    source_row_id: SOURCE_ROW_ID,
+    source_run_id: artifact.source_run_identity.source_run_id,
+    source_dataset_id: artifact.source_run_identity.source_dataset_id,
+    provider_object_ref: PROVIDER_OBJECT_REF,
+    provider_artifact_hash: PROVIDER_ARTIFACT_HASH,
+    row_ids: artifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: artifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+}
 
 test("held-release seed path rows are deterministic and fail closed at retained record binding", () => {
   const first = buildHeldReleaseSeedPathRows();
@@ -122,6 +207,699 @@ test("held-release seed path rows can carry candidate provider backing without a
   assert.equal(artifact.authorization.held_release_seed_path_rows, false);
   assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
   assert.deepEqual(validateHeldReleaseSeedPathRows(artifact), []);
+});
+
+test("held-release seed path rows CLI emits the current provider-backed source artifact", () => {
+  const output = execFileSync(
+    process.execPath,
+    [
+      SCRIPT_PATH,
+      `--retained-record-id=${RETAINED_RECORD_ID}`,
+      `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+      `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+      "--pretty",
+    ],
+    { encoding: "utf8" }
+  );
+  const artifact = JSON.parse(output);
+
+  assert.equal(artifact.artifact_id, "held_release_seed_path_rows:5833f18e53586201");
+  assert.equal(artifact.source_status, "candidate_provider_backed_source_unaccepted");
+  assert.equal(artifact.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(artifact.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+  assert.equal(artifact.retained_record_requirement.retained_record_id, RETAINED_RECORD_ID);
+  assert.equal(
+    artifact.rows.every(
+      (row) =>
+        row.same_record_binding.retained_record_id === RETAINED_RECORD_ID &&
+        row.provider_provenance.provider_object_ref === PROVIDER_OBJECT_REF &&
+        row.provider_provenance.provider_artifact_hash === PROVIDER_ARTIFACT_HASH
+    ),
+    true
+  );
+  assert.equal(artifact.authorization.held_release_seed_path_rows, false);
+  assert.equal(artifact.authorization.scoreMovement, "no_score_increase");
+  assert.deepEqual(validateHeldReleaseSeedPathRows(artifact), []);
+});
+
+test("seed path acceptance-certificate requirement names the exact non-repo authority object", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const requirement = buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+  });
+
+  assert.equal(requirement.schema, ACCEPTANCE_CERTIFICATE_REQUIREMENT_SCHEMA);
+  assert.equal(requirement.accepted, false);
+  assert.equal(requirement.requirement_passed, false);
+  assert.equal(requirement.artifact_id, "held_release_seed_path_rows:5833f18e53586201");
+  assert.equal(requirement.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(requirement.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+  assert.equal(requirement.required_certificate_schema, ACCEPTANCE_CERTIFICATE_SCHEMA);
+  assert.equal(
+    requirement.required_certificate_ref_prefix,
+    `accepted:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}:`
+  );
+  assert.equal(
+    requirement.required_external_authority_package_schema,
+    EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA
+  );
+  assert.equal(
+    requirement.required_external_authority_package_ref_prefix,
+    "external-authority-package:held-release-seed-path-rows:"
+  );
+  assert.equal(
+    requirement.required_external_authority_package_ref,
+    `external-authority-package:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(
+    requirement.required_certificate_fields.includes("held_release_seed_path_rows_acceptance_certificate_ref"),
+    true
+  );
+  assert.equal(
+    requirement.required_external_authority_ref_prefix,
+    "external-authority:held-release-seed-path-rows:"
+  );
+  assert.equal(
+    requirement.required_external_authority_ref,
+    `external-authority:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(
+    requirement.required_external_authority_verification_ref_prefix,
+    "external-verification:held-release-seed-path-rows:"
+  );
+  assert.equal(
+    requirement.required_external_authority_verification_ref,
+    `external-verification:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.deepEqual(requirement.missing_fields, ["held_release_seed_path_rows.acceptance_certificate_ref"]);
+  assert.equal(
+    requirement.acceptance_certificate_verification.expected_certificate_payload.retained_record_id,
+    RETAINED_RECORD_ID
+  );
+  assert.equal(requirement.acceptance_certificate_verification.expected_certificate_payload.source_row_id, SOURCE_ROW_ID);
+  assert.equal(
+    requirement.acceptance_certificate_verification.expected_certificate_payload.provider_object_ref,
+    PROVIDER_OBJECT_REF
+  );
+  assert.equal(requirement.acceptance_certificate_verification.expected_certificate_payload.row_ids.length, 6);
+  assert.equal(
+    requirement.acceptance_certificate_verification.expected_external_authority_package_payload.schema,
+    EXTERNAL_ACCEPTED_AUTHORITY_PACKAGE_SCHEMA
+  );
+  assert.equal(
+    requirement.acceptance_certificate_verification.expected_external_authority_package_payload
+      .external_accepted_authority_package_ref,
+    `external-authority-package:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(requirement.authorization.held_release_seed_path_rows, false);
+  assert.equal(requirement.authorization.scoreMovement, "no_score_increase");
+});
+
+test("seed path certificate verifier rejects ref-only and copied candidate packages", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const refOnly = {
+    schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      `accepted:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}:certificate`,
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate: refOnly,
+  });
+
+  assert.equal(verification.accepted, false);
+  assert.equal(verification.certificate_conditionally_verified, false);
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.non_repo_external_authority"
+    ),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes("held_release_seed_path_rows.acceptance_certificate.provider_object_ref"),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+
+  const fixtureLooking = {
+    ...makeMatchingAcceptanceCertificate(artifact),
+    external_accepted_authority_ref: "external:seed-path-authority:fixture",
+    external_accepted_authority_verification_ref: "external:seed-path-authority-verification:fixture",
+    held_release_seed_path_rows_acceptance_certificate_ref: `accepted:seed-path-rows:${RETAINED_RECORD_ID}`,
+  };
+  const fixtureVerification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate: fixtureLooking,
+  });
+  assert.equal(fixtureVerification.certificate_conditionally_verified, false);
+  assert.equal(
+    fixtureVerification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.held_release_seed_path_rows_acceptance_certificate_ref"
+    ),
+    true
+  );
+  assert.equal(
+    fixtureVerification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.external_accepted_authority_ref"
+    ),
+    true
+  );
+});
+
+test("seed path certificate verifier rejects wrong-family external authority refs", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = {
+    ...makeMatchingAcceptanceCertificate(artifact),
+    external_accepted_authority_ref: "external-authority:generic-review",
+    external_accepted_authority_verification_ref: "external-verification:generic-review",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, false);
+  assert.equal(
+    verification.required_external_authority_ref_prefix,
+    EXTERNAL_ACCEPTED_AUTHORITY_REF_PREFIX
+  );
+  assert.equal(
+    verification.required_external_authority_ref,
+    `external-authority:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(
+    verification.required_external_authority_verification_ref_prefix,
+    EXTERNAL_ACCEPTED_AUTHORITY_VERIFICATION_REF_PREFIX
+  );
+  assert.equal(
+    verification.required_external_authority_verification_ref,
+    `external-verification:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.external_accepted_authority_ref"
+    ),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.external_accepted_authority_verification_ref"
+    ),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("seed path certificate verifier rejects same-family stale external authority refs", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = {
+    ...makeMatchingAcceptanceCertificate(artifact),
+    external_accepted_authority_ref: "external-authority:held-release-seed-path-rows:temp-probe",
+    external_accepted_authority_verification_ref:
+      "external-verification:held-release-seed-path-rows:temp-probe",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, false);
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.external_accepted_authority_ref"
+    ),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.external_accepted_authority_verification_ref"
+    ),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("seed path certificate verifier rejects same-family stale certificate refs", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = {
+    ...makeMatchingAcceptanceCertificate(artifact),
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      "accepted:held-release-seed-path-rows:stale-record:stale-source:certificate",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, false);
+  assert.equal(
+    verification.required_certificate_ref_prefix,
+    `accepted:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}:`
+  );
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.held_release_seed_path_rows_acceptance_certificate_ref"
+    ),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("matching seed path certificate still requires an external authority package", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const requirement = buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    acceptanceCertificate: certificate,
+  });
+
+  assert.equal(requirement.requirement_passed, false);
+  assert.equal(requirement.accepted, false);
+  assert.equal(requirement.status, "seed_path_external_authority_package_missing");
+  assert.equal(requirement.acceptance_certificate_verification.certificate_conditionally_verified, true);
+  assert.equal(
+    requirement.acceptance_certificate_verification.external_authority_package_conditionally_verified,
+    false
+  );
+  assert.equal(
+    requirement.first_missing_object,
+    "held_release_seed_path_rows_external_accepted_authority_package"
+  );
+  assert.equal(
+    requirement.first_missing_field,
+    "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+  );
+  assert.equal(
+    requirement.required_repo_authorization_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(
+    requirement.required_repo_authorization_field,
+    "held_release_seed_path_rows.acceptance_certificate_ref"
+  );
+  assert.equal(
+    requirement.repo_authorization_status,
+    "pending_seed_path_certificate_and_external_authority_package"
+  );
+  assert.equal(requirement.authorization.held_release_seed_path_rows, false);
+  assert.equal(requirement.authorization.scoreMovement, "no_score_increase");
+});
+
+test("matching seed path certificate and external authority package conditionally verify without repo authorization", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = makeMatchingExternalAuthorityPackage(artifact, certificate);
+  const requirement = buildHeldReleaseSeedPathRowsAcceptanceCertificateRequirement({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    acceptanceCertificate: certificate,
+    externalAuthorityPackage,
+  });
+
+  assert.equal(requirement.requirement_passed, false);
+  assert.equal(requirement.accepted, false);
+  assert.equal(
+    requirement.status,
+    "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+  );
+  assert.equal(requirement.acceptance_certificate_verification.conditionally_verified, true);
+  assert.equal(
+    requirement.acceptance_certificate_verification.supplied_external_authority_package_ref,
+    `external-authority-package:held-release-seed-path-rows:${RETAINED_RECORD_ID}:${SOURCE_ROW_ID}`
+  );
+  assert.equal(requirement.first_missing_object, "repo_authorization_for_accepted_held_release_seed_path_rows");
+  assert.equal(requirement.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+  assert.equal(
+    requirement.required_repo_authorization_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(
+    requirement.required_repo_authorization_field,
+    "held_release_seed_path_rows.acceptance_certificate_ref"
+  );
+  assert.equal(
+    requirement.repo_authorization_status,
+    "missing_after_conditionally_verified_external_authority_package"
+  );
+  assert.equal(
+    requirement.acceptance_certificate_verification.required_repo_authorization_object,
+    "repo_authorization_for_accepted_held_release_seed_path_rows"
+  );
+  assert.equal(
+    requirement.acceptance_certificate_verification.required_repo_authorization_field,
+    "held_release_seed_path_rows.acceptance_certificate_ref"
+  );
+  assert.equal(
+    requirement.acceptance_certificate_verification.repo_authorization_status,
+    "missing_after_conditionally_verified_external_authority_package"
+  );
+  assert.deepEqual(requirement.missing_fields, ["held_release_seed_path_rows.acceptance_certificate_ref"]);
+  assert.deepEqual(requirement.acceptance_certificate_verification.missing_fields, [
+    "held_release_seed_path_rows.acceptance_certificate_ref",
+  ]);
+  assert.equal(requirement.authorization.held_release_seed_path_rows, false);
+  assert.equal(requirement.authorization.scoreMovement, "no_score_increase");
+});
+
+test("external authority package verifier rejects copied certificate hashes and fixture refs", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = {
+    ...makeMatchingExternalAuthorityPackage(artifact, certificate),
+    external_accepted_authority_package_ref: "external:seed-path-authority-package:fixture",
+    verified_certificate_artifact_hash: "copied-candidate-hash",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+    externalAuthorityPackage,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, true);
+  assert.equal(verification.external_authority_package_conditionally_verified, false);
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+    ),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.external_authority.verified_certificate_artifact_hash"
+    ),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("external authority package verifier rejects wrong package ref family", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = {
+    ...makeMatchingExternalAuthorityPackage(artifact, certificate),
+    external_accepted_authority_package_ref:
+      `external-authority-package:central-retained-source-adapter-review:${RETAINED_RECORD_ID}`,
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+    externalAuthorityPackage,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, true);
+  assert.equal(verification.external_authority_package_conditionally_verified, false);
+  assert.equal(
+    verification.missing_fields.includes(
+      "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+    ),
+    true
+  );
+  assert.equal(
+    verification.first_missing_field,
+    "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("seed path certificate verifier rejects null-copy fail-closed source artifacts", () => {
+  const failClosedArtifact = buildHeldReleaseSeedPathRows();
+  const nullCopyCertificate = {
+    schema: ACCEPTANCE_CERTIFICATE_SCHEMA,
+    accepted_held_release_seed_path_rows: true,
+    accepted_same_record_evidence: true,
+    non_repo_external_authority: true,
+    external_accepted_authority_ref: "external-authority:held-release-seed-path-review",
+    external_accepted_authority_verification_ref: "external-verification:held-release-seed-path-review",
+    held_release_seed_path_rows_acceptance_certificate_ref:
+      "accepted:held-release-seed-path-rows:null-copy",
+    held_release_seed_path_rows_artifact_id: failClosedArtifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: failClosedArtifact.artifact_hash,
+    retained_record_id: null,
+    source_row_id: null,
+    source_run_id: failClosedArtifact.source_run_identity.source_run_id,
+    source_dataset_id: failClosedArtifact.source_run_identity.source_dataset_id,
+    provider_object_ref: null,
+    provider_artifact_hash: null,
+    row_ids: failClosedArtifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: failClosedArtifact.rows.map((row) => row.artifact_hash),
+    negative_control_rejection_verified: true,
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact: failClosedArtifact,
+    sourceRowId: null,
+    certificate: nullCopyCertificate,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, false);
+  assert.equal(
+    verification.missing_fields.includes("held_release_seed_path_rows.acceptance_certificate.retained_record_id"),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes("held_release_seed_path_rows.acceptance_certificate.source_row_id"),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes("held_release_seed_path_rows.acceptance_certificate.provider_object_ref"),
+    true
+  );
+  assert.equal(
+    verification.missing_fields.includes("held_release_seed_path_rows.acceptance_certificate.provider_artifact_hash"),
+    true
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+
+  const retainedOnlyArtifact = buildHeldReleaseSeedPathRows({
+    retainedRecordId: RETAINED_RECORD_ID,
+  });
+  const retainedOnlyNullCopyCertificate = {
+    ...nullCopyCertificate,
+    held_release_seed_path_rows_artifact_id: retainedOnlyArtifact.artifact_id,
+    held_release_seed_path_rows_artifact_hash: retainedOnlyArtifact.artifact_hash,
+    retained_record_id: RETAINED_RECORD_ID,
+    source_row_id: SOURCE_ROW_ID,
+    source_run_id: retainedOnlyArtifact.source_run_identity.source_run_id,
+    source_dataset_id: retainedOnlyArtifact.source_run_identity.source_dataset_id,
+    row_ids: retainedOnlyArtifact.rows.map((row) => row.row_id),
+    row_artifact_hashes: retainedOnlyArtifact.rows.map((row) => row.artifact_hash),
+  };
+  const retainedOnlyVerification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact: retainedOnlyArtifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate: retainedOnlyNullCopyCertificate,
+  });
+
+  assert.equal(retainedOnlyVerification.certificate_conditionally_verified, false);
+  assert.equal(
+    retainedOnlyVerification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.provider_object_ref"
+    ),
+    true
+  );
+  assert.equal(
+    retainedOnlyVerification.missing_fields.includes(
+      "held_release_seed_path_rows.acceptance_certificate.provider_artifact_hash"
+    ),
+    true
+  );
+  assert.equal(retainedOnlyVerification.authorization.held_release_seed_path_rows, false);
+});
+
+test("external authority package verifier rejects correct-prefix temp probes", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const certificate = makeMatchingAcceptanceCertificate(artifact);
+  const externalAuthorityPackage = {
+    ...makeMatchingExternalAuthorityPackage(artifact, certificate),
+    external_accepted_authority_package_ref:
+      "external-authority-package:held-release-seed-path-rows:temp-probe",
+  };
+  const verification = evaluateHeldReleaseSeedPathRowsAcceptanceCertificate({
+    artifact,
+    sourceRowId: SOURCE_ROW_ID,
+    certificate,
+    externalAuthorityPackage,
+  });
+
+  assert.equal(verification.certificate_conditionally_verified, true);
+  assert.equal(verification.external_authority_package_conditionally_verified, false);
+  assert.equal(
+    verification.first_missing_field,
+    "held_release_seed_path_rows.external_authority.external_accepted_authority_package_ref"
+  );
+  assert.equal(verification.authorization.held_release_seed_path_rows, false);
+});
+
+test("held-release seed path rows CLI fails required certificate mode without source package", () => {
+  let error;
+  try {
+    execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+        `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+        "--require-acceptance-certificate",
+        "--pretty",
+      ],
+      { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }
+    );
+  } catch (caught) {
+    error = caught;
+  }
+
+  assert.ok(error);
+  const diagnostic = JSON.parse(error.stderr.toString());
+  assert.equal(diagnostic.schema, ACCEPTANCE_CERTIFICATE_REQUIREMENT_SCHEMA);
+  assert.equal(diagnostic.requirement_passed, false);
+  assert.equal(diagnostic.first_missing_object, "held_release_seed_path_rows_acceptance_certificate");
+  assert.equal(diagnostic.first_missing_field, "held_release_seed_path_rows.acceptance_certificate_ref");
+});
+
+test("held-release seed path rows CLI requires the external authority package with a supplied certificate", () => {
+  const artifact = buildCurrentProviderBackedArtifact();
+  const tempDir = fs.mkdtempSync(path.join(os.tmpdir(), "seed-path-certificate-"));
+  const certificatePath = path.join(tempDir, "seed-path-certificate.json");
+  const authorityPackagePath = path.join(tempDir, "seed-path-external-authority-package.json");
+  try {
+    const certificate = makeMatchingAcceptanceCertificate(artifact);
+    fs.writeFileSync(certificatePath, JSON.stringify(certificate));
+    fs.writeFileSync(
+      authorityPackagePath,
+      JSON.stringify(makeMatchingExternalAuthorityPackage(artifact, certificate))
+    );
+
+    let missingAuthorityError;
+    try {
+      execFileSync(
+        process.execPath,
+        [
+          SCRIPT_PATH,
+          `--retained-record-id=${RETAINED_RECORD_ID}`,
+          `--source-row-id=${SOURCE_ROW_ID}`,
+          `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+          `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+          `--acceptance-certificate-json=${certificatePath}`,
+          "--require-acceptance-certificate",
+          "--pretty",
+        ],
+        { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }
+      );
+    } catch (caught) {
+      missingAuthorityError = caught;
+    }
+    assert.ok(missingAuthorityError);
+    const missingAuthorityDiagnostic = JSON.parse(missingAuthorityError.stderr.toString());
+    assert.equal(
+      missingAuthorityDiagnostic.first_missing_object,
+      "held_release_seed_path_rows_external_accepted_authority_package"
+    );
+
+    const output = execFileSync(
+      process.execPath,
+      [
+        SCRIPT_PATH,
+        `--retained-record-id=${RETAINED_RECORD_ID}`,
+        `--source-row-id=${SOURCE_ROW_ID}`,
+        `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+        `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+        `--acceptance-certificate-json=${certificatePath}`,
+        `--external-authority-package-json=${authorityPackagePath}`,
+        "--pretty",
+      ],
+      { encoding: "utf8" }
+    );
+    const verifiedArtifact = JSON.parse(output);
+
+    assert.equal(verifiedArtifact.artifact_id, "held_release_seed_path_rows:5833f18e53586201");
+    assert.equal(verifiedArtifact.source_status, "candidate_provider_backed_source_unaccepted");
+    assert.equal(verifiedArtifact.acceptance_certificate_requirement.requirement_passed, false);
+    assert.equal(
+      verifiedArtifact.acceptance_certificate_requirement.acceptance_certificate_verification.conditionally_verified,
+      true
+    );
+    assert.equal(verifiedArtifact.acceptance_certificate_requirement.accepted, false);
+    assert.equal(verifiedArtifact.authorization.held_release_seed_path_rows, false);
+    assert.equal(verifiedArtifact.authorization.scoreMovement, "no_score_increase");
+
+    let unacceptedRequirementError;
+    try {
+      execFileSync(
+        process.execPath,
+        [
+          SCRIPT_PATH,
+          `--retained-record-id=${RETAINED_RECORD_ID}`,
+          `--source-row-id=${SOURCE_ROW_ID}`,
+          `--provider-object-ref=${PROVIDER_OBJECT_REF}`,
+          `--provider-artifact-hash=${PROVIDER_ARTIFACT_HASH}`,
+          `--acceptance-certificate-json=${certificatePath}`,
+          `--external-authority-package-json=${authorityPackagePath}`,
+          "--require-acceptance-certificate",
+          "--pretty",
+        ],
+        { encoding: "utf8", stdio: ["ignore", "pipe", "pipe"] }
+      );
+    } catch (caught) {
+      unacceptedRequirementError = caught;
+    }
+    assert.ok(unacceptedRequirementError);
+    const unacceptedRequirementDiagnostic = JSON.parse(unacceptedRequirementError.stderr.toString());
+    assert.equal(unacceptedRequirementDiagnostic.requirement_passed, false);
+    assert.equal(
+      unacceptedRequirementDiagnostic.status,
+      "seed_path_acceptance_certificate_and_external_authority_conditionally_verified_repo_authorization_blocked"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.first_missing_object,
+      "repo_authorization_for_accepted_held_release_seed_path_rows"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.first_missing_field,
+      "held_release_seed_path_rows.acceptance_certificate_ref"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.required_repo_authorization_object,
+      "repo_authorization_for_accepted_held_release_seed_path_rows"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.required_repo_authorization_field,
+      "held_release_seed_path_rows.acceptance_certificate_ref"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.repo_authorization_status,
+      "missing_after_conditionally_verified_external_authority_package"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.acceptance_certificate_verification.required_repo_authorization_object,
+      "repo_authorization_for_accepted_held_release_seed_path_rows"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.acceptance_certificate_verification.required_repo_authorization_field,
+      "held_release_seed_path_rows.acceptance_certificate_ref"
+    );
+    assert.equal(
+      unacceptedRequirementDiagnostic.acceptance_certificate_verification.repo_authorization_status,
+      "missing_after_conditionally_verified_external_authority_package"
+    );
+    assert.deepEqual(unacceptedRequirementDiagnostic.missing_fields, [
+      "held_release_seed_path_rows.acceptance_certificate_ref",
+    ]);
+    assert.deepEqual(unacceptedRequirementDiagnostic.acceptance_certificate_verification.missing_fields, [
+      "held_release_seed_path_rows.acceptance_certificate_ref",
+    ]);
+  } finally {
+    fs.rmSync(tempDir, { recursive: true, force: true });
+  }
 });
 
 test("generic path rows without same-record binding are rejected as source evidence", () => {

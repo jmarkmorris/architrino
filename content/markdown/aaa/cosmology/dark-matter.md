@@ -12,6 +12,8 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+
 ## $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 ### The Noether Sea as Gravitational Medium
@@ -160,6 +162,64 @@ $$
 $$
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
+
+### Local Missing-Baryon Benchmark
+
+The local missing-baryon relation is a useful dark-sector benchmark because it compares two retained data products without deciding the substrate in advance: the observed condensed baryonic mass
+
+$$
+M_b = M_\star + M_g
+$$
+
+and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+=
+\frac{M_b}{M_{200}^{\mathrm{obs}}}
+$$
+
+record the observed baryonic mass fraction. A 2026 baryonic mass-halo mass compilation reports that systems from dwarfs through rich clusters are summarized by
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+\simeq
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4},
+\qquad
+f_b \simeq 0.157,
+\quad
+M_0 \simeq 5\times 10^{13}M_\odot.
+$$
+
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+
+For a candidate shared record, define the local missing-baryon residual as
+
+$$
+\mathcal{R}_{\mathrm{local\ baryon}}(\theta_{\mathrm{sea}},\rho_A)
+=
+d_{\mathrm{BTFR}}\!\left(
+D_{\mathrm{BTFR}}^{\mathrm{obs}},
+D_{\mathrm{BTFR}}^\theta
+\right)
++
+d_m\!\left(
+\frac{M_b}{M_{200}^{\theta}},
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4}
+\right)
++
+\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{gal/cl}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
+\right).
+$$
+
+Here $D_{\mathrm{BTFR}}^{\mathrm{obs}}$ is the retained baryonic Tully-Fisher data packet, $D_{\mathrm{BTFR}}^\theta$ is the branch prediction from the same medium-and-assembly record, and $M_{200}^{\theta}$ is the model's dynamical or lensing projection. The velocity factor $f_v=V_f/V_{200}$ belongs inside the same comparison. A fit cannot remove the missing-baryon trend by retuning $f_v$ unless that retuning remains compatible with rotation curves, weak-lensing velocities, rich-cluster baryon closure, CMB loading, and the cluster-offset residual above.
 
 ### Shared Dark-Sector Scale Gate
 
