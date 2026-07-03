@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-07-03T00:46:38.293Z",
-  "total_links": 1585,
+  "generated_at": "2026-07-03T16:49:57.891Z",
+  "total_links": 1594,
   "links": [
     {
       "sourceChapterId": "archie-academic-style-guide",
@@ -1358,6 +1358,14 @@
     {
       "sourceChapterId": "cosmology",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
+      "target": "../../../../markdown/aaa/cosmology/dark-matter.md#local-missing-baryon-benchmark",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/cosmology/dark-matter.md"
+    },
+    {
+      "sourceChapterId": "cosmology",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/cosmology.md",
       "target": "../../../../markdown/aaa/cosmology/expansion-mechanism.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1830,38 +1838,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -1879,30 +1855,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
@@ -1911,14 +1863,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#principal-partner-root-certificate",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
@@ -2030,54 +1974,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/causal-action-functional.md#geometrictopological-framework",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/causal-action-functional.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md#exact-integer-phase-closure",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2102,14 +1998,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#regularized-nonlocal-action-and-variation",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2119,14 +2007,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#symmetries-and-history-aware-conservation-laws",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
@@ -2191,22 +2071,6 @@
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/energy.md#entropy-free-energy-and-coarse-residuals",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
@@ -2382,22 +2246,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2470,50 +2318,10 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#symmetric-delayed-logarithmic-spiral-advanced-non-circular-benchmark",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md#eigen-braid-candidates",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2590,14 +2398,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md#terminal-alignment-label-count-target",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2606,18 +2406,50 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
     },
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "dynamics",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2658,14 +2490,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/pilot-wave-character.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -2886,14 +2710,6 @@
     {
       "sourceChapterId": "dynamics",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/proof-programs/planar-bridge-closure.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
       "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -2930,14 +2746,6 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/general-relativity.md"
-    },
-    {
-      "sourceChapterId": "dynamics",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/dynamics.md",
-      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
     },
     {
       "sourceChapterId": "dynamics",
@@ -3510,22 +3318,6 @@
     {
       "sourceChapterId": "foundations",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md#eigen-braid-candidates",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "foundations",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
-      "target": "../../../../markdown/aaa/dynamics/tri-binary-configuration-space.md#frame-orthogonality-and-framing-anisotropy",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/tri-binary-configuration-space.md"
-    },
-    {
-      "sourceChapterId": "foundations",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
       "target": "../../../../markdown/aaa/foundations/absolute-time-defense.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -3922,6 +3714,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "foundations",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/foundations.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#frame-orthogonality-and-framing-anisotropy",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
     },
     {
       "sourceChapterId": "foundations",
@@ -4494,10 +4302,10 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/assembly-topological-charge.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/assembly-topological-charge.md"
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4511,6 +4319,22 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#emergent-properties-and-measurement-standards",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
@@ -4526,18 +4350,50 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/dynamics/binary-dynamics.md#super-field-speed-root-ledgers-and-resonance-lock",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/dynamics/binary-dynamics.md"
     },
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
+      "target": "../../../../markdown/aaa/dynamics/causal-action-functional.md#geometrictopological-framework",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
+      "targetBundlePath": "content/markdown/aaa/dynamics/causal-action-functional.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#ordinary-hamiltonian-orientation",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md#topological-constraints-and-assembly-stability",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/effective-lagrangian.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/energy.md#self-hit-echo-and-discrete-steps-working-note",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/energy.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4550,7 +4406,15 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
-      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#caustic-transit-and-finite-impulse",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#delay-map-theorem-pack-formalized",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -4567,6 +4431,22 @@
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#exact-nonlocal-lagrangian",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/dynamics/master-equation.md#signed-causal-root-complex",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/dynamics/master-equation.md"
@@ -4578,6 +4458,22 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/foundations/architrino.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-dynamics.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-dynamics.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4646,6 +4542,134 @@
     {
       "sourceChapterId": "noether_braid",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/nested-shell-braid-geometry.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-configuration-space.md#eigen-braid-candidates",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-configuration-space.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md#exact-integer-phase-closure",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-taxonomy.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-taxonomy.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-topological-charge.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-topological-charge.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
       "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -4666,6 +4690,30 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/planck-scale-nested-shell-braid-alignment.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4698,6 +4746,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/philosophy-history/theory-bridges/special-relativity-noether-braid.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/proof-programs/planar-bridge-closure.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/proof-programs/planar-bridge-closure.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -4746,6 +4802,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/spacetime/emergent-metric.md"
+    },
+    {
+      "sourceChapterId": "noether_braid",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/noether-braid.md",
+      "target": "../../../../markdown/aaa/spacetime/horizon-chirality.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/spacetime/horizon-chirality.md"
     },
     {
       "sourceChapterId": "noether_braid",
@@ -5718,14 +5782,6 @@
     {
       "sourceChapterId": "philosophy_history",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "philosophy_history",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
       "target": "../../../../markdown/aaa/dynamics/effective-lagrangian.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -5978,6 +6034,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "philosophy_history",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/philosophy-history.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
     },
     {
       "sourceChapterId": "philosophy_history",
@@ -8018,6 +8082,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/quantum/fermi-dirac-and-bose-einstein-statistics.md"
+    },
+    {
+      "sourceChapterId": "quantum",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/quantum.md",
+      "target": "../../../../markdown/aaa/quantum/measurement-ontology.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/quantum/measurement-ontology.md"
     },
     {
       "sourceChapterId": "quantum",
@@ -10798,14 +10870,6 @@
     {
       "sourceChapterId": "validation",
       "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
-      "target": "../../../../markdown/aaa/dynamics/dyadic-resonance-lock.md",
-      "kind": "markdown",
-      "status": "kept_out_of_bundle",
-      "targetBundlePath": "content/markdown/aaa/dynamics/dyadic-resonance-lock.md"
-    },
-    {
-      "sourceChapterId": "validation",
-      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
       "target": "../../../../markdown/aaa/dynamics/energy.md",
       "kind": "markdown",
       "status": "kept_out_of_bundle",
@@ -11034,6 +11098,14 @@
       "kind": "markdown",
       "status": "kept_out_of_bundle",
       "targetBundlePath": "content/markdown/aaa/noether-braid/nested-shell-braid-geometry.md"
+    },
+    {
+      "sourceChapterId": "validation",
+      "sourcePath": "content/generated/markdown/textbook/reading-copies/validation.md",
+      "target": "../../../../markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md",
+      "kind": "markdown",
+      "status": "kept_out_of_bundle",
+      "targetBundlePath": "content/markdown/aaa/noether-braid/noether-braid-dyadic-resonance-lock.md"
     },
     {
       "sourceChapterId": "validation",

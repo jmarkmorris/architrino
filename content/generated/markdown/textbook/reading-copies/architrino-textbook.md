@@ -66795,6 +66795,64 @@ $$
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
 
+##### Local Missing-Baryon Benchmark
+
+The local missing-baryon relation is a useful dark-sector benchmark because it compares two retained data products without deciding the substrate in advance: the observed condensed baryonic mass
+
+$$
+M_b = M_\star + M_g
+$$
+
+and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+=
+\frac{M_b}{M_{200}^{\mathrm{obs}}}
+$$
+
+record the observed baryonic mass fraction. A 2026 baryonic mass-halo mass compilation reports that systems from dwarfs through rich clusters are summarized by
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+\simeq
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4},
+\qquad
+f_b \simeq 0.157,
+\quad
+M_0 \simeq 5\times 10^{13}M_\odot.
+$$
+
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+
+For a candidate shared record, define the local missing-baryon residual as
+
+$$
+\mathcal{R}_{\mathrm{local\ baryon}}(\theta_{\mathrm{sea}},\rho_A)
+=
+d_{\mathrm{BTFR}}\!\left(
+D_{\mathrm{BTFR}}^{\mathrm{obs}},
+D_{\mathrm{BTFR}}^\theta
+\right)
++
+d_m\!\left(
+\frac{M_b}{M_{200}^{\theta}},
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4}
+\right)
++
+\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{gal/cl}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
+\right).
+$$
+
+Here $D_{\mathrm{BTFR}}^{\mathrm{obs}}$ is the retained baryonic Tully-Fisher data packet, $D_{\mathrm{BTFR}}^\theta$ is the branch prediction from the same medium-and-assembly record, and $M_{200}^{\theta}$ is the model's dynamical or lensing projection. The velocity factor $f_v=V_f/V_{200}$ belongs inside the same comparison. A fit cannot remove the missing-baryon trend by retuning $f_v$ unless that retuning remains compatible with rotation curves, weak-lensing velocities, rich-cluster baryon closure, CMB loading, and the cluster-offset residual above.
+
 ##### Shared Dark-Sector Scale Gate
 
 Some quantum-gravity comparison programs try to relate the dark-matter and dark-energy problems through one scale. In this chapter that signal is useful only as a closure discipline. The $\mathbb{A}\mathbb{A}\mathbb{A}$ claim is not that dark matter and dark energy are one imported object; it is that any proposed relation between them must be carried by the same Noether sea state record used by the dark-energy, growth, lensing, and CMB modules.
@@ -68503,14 +68561,14 @@ $$
 \right)
 $$
 
-where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
+where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, the local missing-baryon benchmark, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
 
 $$
 \mathcal{R}_{\mathrm{lin/nl}}(\theta_{\mathrm{sea}})
 =
 \mathcal{R}_{P,D,C_L,f\sigma_8}(\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}})
 +
-\mathcal{R}_{\mathrm{RAR/cl/rot}}(\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}})
+\mathcal{R}_{\mathrm{RAR/local\ baryon/cl/rot}}(\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}})
 +
 \lambda_{\mathrm{split}}
 d_{\mathrm{shared}}\!\left(
@@ -68555,6 +68613,26 @@ Flat rotation curves require either a dark-matter halo or a modified gravitation
 - A halo of weakly coupled neutral assemblies reproduces standard NFW-like profiles.
 - Alternatively, if $G_{\text{eff}}$ develops scale dependence at galactic scales (from nonlinear medium response at low density gradients), MOND-like behavior emerges without particle dark matter.
 - The Bullet Cluster and similar offset systems provide a high-pressure inference gate rather than a one-image ontological proof. If an ensemble of cluster-offset reconstructions robustly requires lensing mass separated from the baryonic gas under the same lensing priors, gas dynamics, and shared Noether sea state record, then pure medium-modification scenarios fail and a collisionless neutral-assembly component is required.
+
+##### Local Missing-Baryon Benchmark
+
+The local missing-baryon benchmark in [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md#local-missing-baryon-benchmark) is also a structure-formation observable. It ties the condensed baryonic mass $M_b=M_\star+M_g$, the flat-equivalent velocity $V_f$, the inferred enclosed dynamical mass $M_{200}$, and the missing baryon ledger
+
+$$
+M_X = f_bM_{200} - M_b
+$$
+
+into one low-redshift readout. The important signal is not only that $m_b=M_b/M_{200}$ falls below $f_b$ in lower-mass systems. It is that the trend is smooth, low-scatter, and weakly dependent on whether the observed baryons are stars or gas.
+
+For the growth module, the retained data packet is
+
+$$
+D_{\mathrm{local\ baryon}}^{\mathrm{obs}}(E)
+=
+\{M_b,V_f,M_{200},m_b,M_X,\Sigma_{\mathrm{gas/lens}}\}_E,
+$$
+
+where $E$ labels the environment class and $\Sigma_{\mathrm{gas/lens}}$ records the gas and lensing reconstruction used for groups and clusters. A branch cannot explain this packet by feedback, circumgalactic retention, ejection to the intergalactic medium, or a velocity-factor recalibration unless the same source-history record also recovers the baryonic Tully-Fisher relation, group weak-lensing velocities, rich-cluster baryon closure, and cluster-offset behavior. The group-to-X-ray-cluster transition is therefore a high-value structure-formation band: it decides where Noether sea medium response, observed hot gas, and collisionless neutral-assembly loading must separate or couple.
 
 ##### Cluster Mass Profiles
 

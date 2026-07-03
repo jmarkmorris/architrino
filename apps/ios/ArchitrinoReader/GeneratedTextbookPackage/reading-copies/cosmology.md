@@ -195,7 +195,11 @@ This decomposition prevents hidden dependency loops where one assumed foundation
 
 #### Big Bang Evidence Chain as Data-Product Pipeline
 
-The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints. The sequence is therefore:
+The standard Big Bang argument is strongest when read as an ordered evidence pipeline rather than as one indivisible ontology claim. Apparent magnitude, parallax, Cepheid period-luminosity calibration, and the distance modulus first turn faint sources into distance data. Spectral fingerprints then supply laboratory wavelength anchors, so observed line displacement becomes a redshift data product. The low-redshift Hubble relation combines those two products into an effective slope, while the hot-plasma inference predicts a thermal microwave background and light-element yield constraints.
+
+The label "Big Bang" itself must be kept at this same level of discipline. In standard use it can name the hot, dense early observer-era record, the singular boundary obtained by extrapolating classical GR, a reheating interface after an inflationary model, or the whole $\Lambda\mathrm{CDM}$ history. $\mathbb{A}\mathbb{A}\mathbb{A}$ retains the hot, dense record as an observational recovery target and treats the stronger origin claims as model-dependent reconstructions. Bounce, cyclic, no-boundary, and pre-inflationary branches, along with models in which a universe emerges from a black hole, are comparison frameworks only after they supply declared data products, such as CMB spectra, BBN yields, structure-growth records, primordial-gravitational-wave bounds, or non-Gaussianity tests, from the same Noether sea and assembly record.
+
+The sequence is therefore:
 
 1. calibrated flux and distance ladder,
 2. spectral-line identity and redshift,
@@ -3405,6 +3409,8 @@ Throughout, "dark matter" refers to the set of phenomena conventionally attribut
 
 The dark-matter density entry is an observationally constrained bookkeeping requirement before it is a substrate identification. Lensing, growth, CMB matter loading, cluster offsets, and baryon-fraction constraints require an effective gravitating component beyond ordinary baryons, but the component ledger does not by itself decide whether the native carrier is neutral assemblies, Noether sea response, or a hybrid branch.
 
+The historical route through spiral-galaxy rotation curves should not make those curves look like the whole evidence base. A branch that explains flat rotation curves has only solved one nonlinear galaxy-scale residual. It must still recover CMB acoustic matter loading, CMB lensing, BAO and large-scale-structure transfer shape, cluster offsets, and BBN baryon accounting from the same Noether sea and neutral-assembly record. This is why a MOND-like or medium-response success at galaxy scale cannot by itself remove the dark-sector burden.
+
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 #### The Noether Sea as Gravitational Medium
@@ -3553,6 +3559,64 @@ $$
 $$
 
 with the same lensing priors, gas model, and shared Noether sea state record used to test the neutral-assembly or hybrid branch. Passing the gate does not by itself prove a collisionless neutral-assembly interpretation; it shows that the candidate branch has recovered the cluster-offset observable without changing the inference stack per system.
+
+#### Local Missing-Baryon Benchmark
+
+The local missing-baryon relation is a useful dark-sector benchmark because it compares two retained data products without deciding the substrate in advance: the observed condensed baryonic mass
+
+$$
+M_b = M_\star + M_g
+$$
+
+and the enclosed dynamical mass $M_{200}$ inferred from kinematics or weak gravitational lensing. Let
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+=
+\frac{M_b}{M_{200}^{\mathrm{obs}}}
+$$
+
+record the observed baryonic mass fraction. A 2026 baryonic mass-halo mass compilation reports that systems from dwarfs through rich clusters are summarized by
+
+$$
+m_b^{\mathrm{obs}}(M_b)
+\simeq
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4},
+\qquad
+f_b \simeq 0.157,
+\quad
+M_0 \simeq 5\times 10^{13}M_\odot.
+$$
+
+Rich clusters approach the cosmic baryon fraction, while lower-mass systems fall below it with a smooth mass dependence. For $\mathbb{A}\mathbb{A}\mathbb{A}$ this is not a reason to import either a MOND ontology or a $\Lambda\mathrm{CDM}$ halo ontology. It is a cross-scale recovery target for the same neutral-assembly and Noether sea record: the branch must recover the galaxy baryonic Tully-Fisher relation, the mass-dependent baryon fraction, and the cluster lensing/gas behavior without changing calibration per regime.
+
+For a candidate shared record, define the local missing-baryon residual as
+
+$$
+\mathcal{R}_{\mathrm{local\ baryon}}(\theta_{\mathrm{sea}},\rho_A)
+=
+d_{\mathrm{BTFR}}\!\left(
+D_{\mathrm{BTFR}}^{\mathrm{obs}},
+D_{\mathrm{BTFR}}^\theta
+\right)
++
+d_m\!\left(
+\frac{M_b}{M_{200}^{\theta}},
+f_b
+\tanh\!\left(\frac{M_b}{M_0}\right)^{1/4}
+\right)
++
+\lambda_{\mathrm{cl}}\mathcal{R}_{\mathrm{cl\ offset}}(\theta_{\mathrm{sea}},\rho_A)
++
+\lambda_{\mathrm{shared}}
+d_{\mathrm{shared}}\!\left(
+\Pi_{\mathrm{gal/cl}}\theta_{\mathrm{sea}},
+\Pi_{\mathrm{cos}}\theta_{\mathrm{sea}}
+\right).
+$$
+
+Here $D_{\mathrm{BTFR}}^{\mathrm{obs}}$ is the retained baryonic Tully-Fisher data packet, $D_{\mathrm{BTFR}}^\theta$ is the branch prediction from the same medium-and-assembly record, and $M_{200}^{\theta}$ is the model's dynamical or lensing projection. The velocity factor $f_v=V_f/V_{200}$ belongs inside the same comparison. A fit cannot remove the missing-baryon trend by retuning $f_v$ unless that retuning remains compatible with rotation curves, weak-lensing velocities, rich-cluster baryon closure, CMB loading, and the cluster-offset residual above.
 
 #### Shared Dark-Sector Scale Gate
 
@@ -4164,6 +4228,25 @@ $$
 
 The residual is not just numerical agreement with a preferred $\Lambda$. It is agreement between the claimed branch role and the data product that selected it. A constant introduced to repair a static branch cannot be reified as a medium density merely because a later accelerated-expansion fit also uses the symbol $\Lambda$.
 
+The Lemaître vacuum-energy reinterpretation adds a separate algebraic lesson. In the standard metric comparison,
+
+$$
+G_{\mu\nu}+\Lambda g_{\mu\nu}
+=
+\frac{8\pi G}{c^4}T_{\mu\nu}
+\quad\Longleftrightarrow\quad
+G_{\mu\nu}
+=
+\frac{8\pi G}{c^4}
+\left(T_{\mu\nu}+T_{\mu\nu}^{(\Lambda)}\right),
+\qquad
+T_{\mu\nu}^{(\Lambda)}
+=
+-\frac{c^4\Lambda}{8\pi G}g_{\mu\nu}
+$$
+
+Thus the geometric-$\Lambda$ and vacuum-stress readings are the same comparison model written with the term on different sides of the equation. That equivalence should be preserved in the inherited effective theory. It should not be promoted into the stronger claim that the Euclidean void itself carries energy.
+
 ### $\mathbb{A}\mathbb{A}\mathbb{A}$ Ontology Foundations
 
 #### The Void Does Not Expand
@@ -4565,6 +4648,16 @@ $$
 
 where $\rho_r$, $\rho_m$, and $\rho_{\mathrm{DE,eff}}$ are the effective energy densities of radiation-mode assemblies, matter assemblies (baryonic + neutral dark assemblies), and the Noether sea baseline/tension term respectively. In the standard limit, $G_{\mathrm{eff}} \to G_N$ and $\rho_{\mathrm{DE,eff}} \to \rho_\Lambda = \text{const}$, recovering $\Lambda\mathrm{CDM}$.
 
+If the dark-energy term dominates and remains effectively constant, then the comparison equation gives nearly constant $H$. The corresponding homogeneous observer variable has the exponential form
+
+$$
+a_{\mathrm{eff}}(t)
+\propto
+\exp(H_{\mathrm{eff}}t)
+$$
+
+This is the clean comparison reason that a constant density produces accelerated expansion. The negative-pressure statement is mathematically equivalent in the standard acceleration equation, but in $\mathbb{A}\mathbb{A}\mathbb{A}$ it should not be translated into a literal force that pushes on the Euclidean void.
+
 The effective dark-energy density evolves according to:
 
 $$
@@ -4588,6 +4681,16 @@ w(a) = w_0 + w_a(1-a)
 $$
 
 with $a = 1/(1+z)$ the effective scale factor (defined operationally through the redshift of photon-mode assemblies).
+
+For a constant fitted $w$ with no explicit source term, the standard continuity equation gives
+
+$$
+\rho_{\mathrm{DE,fit}}(a)
+\propto
+a^{-3(1+w)}
+$$
+
+This compact scaling keeps the phenomenology legible. If $w=-1$, the fitted density is constant. If $w > -1$, it fades as the observer-level scale variable increases. If $w < -1$, the fitted density grows. In $\mathbb{A}\mathbb{A}\mathbb{A}$ this last case is not promoted to a literal negative-kinetic-energy component. It is first a warning that the fit may be absorbing a source term, projection drift, scalar-tensor leakage, or an incomplete data-product model.
 
 #### Observed Equation of State and Medium Accounting
 
@@ -4640,6 +4743,8 @@ The distances here are comparison metrics fixed by the data product being tested
 
 A fitted value $w_{\mathrm{eff}} < -1$ requires special care. In standard perfect-fluid language, persistent phantom behavior threatens the energy-condition and causality assumptions that also protect ordinary horizon and wormhole results. In this framework, such a fit is admissible only if it is an effective transfer signature, for example energy being routed between matter, radiation, black-hole recycling channels, and the slowly varying outer-binary tension sector. It should not be read as permission for acausal propagation or unaccounted energy creation.
 
+The practical inference rule is stronger than a verbal caution. A $w_{\mathrm{eff}} < -1$ preference must be rechecked against the theory space allowed in the fit: scalar-tensor drift in $G_{\mathrm{eff}}$, environment-dependent coupling, source-history loading, and changes in the projection from $\theta_{\mathrm{sea}}$ to the fitted density can all make a restricted comparison model report phantom-like behavior. The promoted object is therefore the shared SN/BAO/CMB/lensing/growth data product and its covariance record, not the phantom label itself.
+
 ### The Cosmological-Constant Problem
 
 #### The Hierarchy as an Ontology Mismatch
@@ -4651,6 +4756,8 @@ $$
 $$
 
 which for $\Lambda_{\mathrm{UV}} = M_{\mathrm{Pl}}c$ exceeds the observed $\rho_\Lambda$ by $\sim 120$ orders of magnitude. This is the cosmological-constant problem.
+
+The comparison should be stated carefully. A single harmonic oscillator's zero-point term is an additive energy offset relative to a chosen classical normalization, and an ordinary nongravitating quantum field theory can renormalize the vacuum-energy constant. The crisis appears when gravity and cosmology ask what constant actually couples to the large-scale curvature channel. The problem is therefore not that the continuum mode sum literally proves an infinite energy in empty space; it is that natural changes in the effective vacuum constant appear vastly larger than the observed cosmological term.
 
 In the $\mathbb{A}\mathbb{A}\mathbb{A}$ framework, the problem is reframed as an ontology mismatch:
 
@@ -5219,14 +5326,14 @@ $$
 \right)
 $$
 
-where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
+where $\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}}$ supplies $P(k,z)$, $D(z,k)$, $C_L^{\phi\phi}$, and $f\sigma_8$, while $\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}}$ supplies the radial-acceleration relation, the local missing-baryon benchmark, cluster hydrostatic profiles, and rotation-curve residuals. A compact split residual is
 
 $$
 \mathcal{R}_{\mathrm{lin/nl}}(\theta_{\mathrm{sea}})
 =
 \mathcal{R}_{P,D,C_L,f\sigma_8}(\Pi_{\mathrm{lin}}\theta_{\mathrm{sea}})
 +
-\mathcal{R}_{\mathrm{RAR/cl/rot}}(\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}})
+\mathcal{R}_{\mathrm{RAR/local\ baryon/cl/rot}}(\Pi_{\mathrm{nl}}\theta_{\mathrm{sea}})
 +
 \lambda_{\mathrm{split}}
 d_{\mathrm{shared}}\!\left(
@@ -5271,6 +5378,26 @@ Flat rotation curves require either a dark-matter halo or a modified gravitation
 - A halo of weakly coupled neutral assemblies reproduces standard NFW-like profiles.
 - Alternatively, if $G_{\text{eff}}$ develops scale dependence at galactic scales (from nonlinear medium response at low density gradients), MOND-like behavior emerges without particle dark matter.
 - The Bullet Cluster and similar offset systems provide a high-pressure inference gate rather than a one-image ontological proof. If an ensemble of cluster-offset reconstructions robustly requires lensing mass separated from the baryonic gas under the same lensing priors, gas dynamics, and shared Noether sea state record, then pure medium-modification scenarios fail and a collisionless neutral-assembly component is required.
+
+#### Local Missing-Baryon Benchmark
+
+The local missing-baryon benchmark in [Dark Matter](../../../../markdown/aaa/cosmology/dark-matter.md#local-missing-baryon-benchmark) is also a structure-formation observable. It ties the condensed baryonic mass $M_b=M_\star+M_g$, the flat-equivalent velocity $V_f$, the inferred enclosed dynamical mass $M_{200}$, and the missing baryon ledger
+
+$$
+M_X = f_bM_{200} - M_b
+$$
+
+into one low-redshift readout. The important signal is not only that $m_b=M_b/M_{200}$ falls below $f_b$ in lower-mass systems. It is that the trend is smooth, low-scatter, and weakly dependent on whether the observed baryons are stars or gas.
+
+For the growth module, the retained data packet is
+
+$$
+D_{\mathrm{local\ baryon}}^{\mathrm{obs}}(E)
+=
+\{M_b,V_f,M_{200},m_b,M_X,\Sigma_{\mathrm{gas/lens}}\}_E,
+$$
+
+where $E$ labels the environment class and $\Sigma_{\mathrm{gas/lens}}$ records the gas and lensing reconstruction used for groups and clusters. A branch cannot explain this packet by feedback, circumgalactic retention, ejection to the intergalactic medium, or a velocity-factor recalibration unless the same source-history record also recovers the baryonic Tully-Fisher relation, group weak-lensing velocities, rich-cluster baryon closure, and cluster-offset behavior. The group-to-X-ray-cluster transition is therefore a high-value structure-formation band: it decides where Noether sea medium response, observed hot gas, and collisionless neutral-assembly loading must separate or couple.
 
 #### Cluster Mass Profiles
 
@@ -5656,6 +5783,8 @@ For $S_8$:
 ### DESI-Era Data-Product Gate
 
 The 2025 DESI first-three-year BAO results strengthen the comparison pressure for time-varying dark-energy fits when BAO measurements are combined with CMB, supernova, and weak-lensing data. DESI has also released first-three-year BAO cosmology chains and supporting products in advance of the full public DR2 catalogue, and as of April 2026 DESI has completed the observations for its originally planned five-year survey. The first dark-energy results from the full five-year dataset are expected in 2027. These are data-product signals, not ontology claims. The useful requirement is to preserve the separable observables: BAO distances, supernova residual handling, CMB anchoring, weak-lensing growth, and $f\sigma_8$ growth.
+
+Within that packet, Hubble-tension proposals split into two comparison routes. Late-time routes alter the inferred distance to last scattering, but BAO rows anchored by galaxy correlations tend to follow the CMB-inferred expansion record rather than the local ladder. Early-time routes shrink the physical sound horizon through early-dark-energy-like injection, but CMB and galaxy-survey scrutiny has narrowed the allowed model space. A DESI/DES $w(a)$ improvement that leaves $\Lambda\mathrm{CDM}$ acceptable, or that has no clear connection to the Hubble tension, should therefore remain a model-dependent fit comparison rather than a solved expansion mechanism. The neutrino-mass side belongs to the same discipline: DESI-era bounds on $\sum_i m_i$ constrain the joint matter inventory and growth fit, so they must be read with the same BAO, CMB, growth, and source-history record rather than as an isolated neutral-lepton ontology change.
 
 The $\mathbb{A}\mathbb{A}\mathbb{A}$ question is whether one Noether sea history can satisfy
 $$
